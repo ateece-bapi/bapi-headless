@@ -8,11 +8,29 @@ dist/
 .env.local
 .env.*.local
 
+# WordPress core files (don't commit core - use composer or install scripts)
+cms/wp-admin/
+cms/wp-includes/
+cms/*.php
+cms/readme.html
+cms/license.txt
+
 # WordPress uploads (don't store large media in repo)
 cms/wp-content/uploads/
 
-# DDEV cache
-.ddev/.cache/
+# WordPress plugins and themes (manage via composer or document separately)
+cms/wp-content/plugins/
+cms/wp-content/themes/twentytwenty*/
+
+# Database dumps and archives
+*.sql
+*.sql.gz
+*.tgz
+*.tar.gz
+*.zip
+
+# DDEV
+.ddev/
 
 # OS / Editor
 .DS_Store

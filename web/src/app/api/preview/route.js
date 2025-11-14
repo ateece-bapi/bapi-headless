@@ -48,4 +48,3 @@ export async function GET(request) {
   res.cookies.set('__next_preview_data', '1', { httpOnly: true, path: '/' });
   return res;
 }
-

@@ -1,25 +1,21 @@
-// web/src/app/api/preview/route.js
 import { NextResponse } from 'next/server';
 
-/**
- * GET /api/preview?secret=<secret>&slug=/path
- * - Validates PREVIEW_SECRET
- * - Sets Next preview cookies and redirects to the slug
- */
 export async function GET(request) {
+  // DEBUG only: log presence/length, do NOT log secret value
+  console.log('PREVIEW_SECRET present?', !!process.env.PREVIEW_SECRET, 'length=', process.env.PREVIEW_SECRET?.length ?? 0);
+
   const url = new URL(request.url);
   const secret = url.searchParams.get('secret');
-  const slug = url.searchParams.get('slug') || '/';
+  const slugParam = url.searchParams.get('slug') || '/';
 
   if (!secret || secret !== process.env.PREVIEW_SECRET) {
     return new NextResponse('Invalid or missing preview secret', { status: 401 });
   }
 
-  const res = NextResponse.redirect(slug);
-
-  // Set preview cookies. These are the cookies Next uses for Preview Mode.
+  // Ensure redirect uses an absolute URL. Build from the incoming request URL.
+  const redirectUrl = new URL(slugParam, request.url);
+  const res = NextResponse.redirect(redirectUrl.toString());
   res.cookies.set('__prerender_bypass', '1', { httpOnly: true, path: '/' });
   res.cookies.set('__next_preview_data', '1', { httpOnly: true, path: '/' });
-
   return res;
 }

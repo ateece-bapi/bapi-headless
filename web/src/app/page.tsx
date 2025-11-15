@@ -1,21 +1,29 @@
 import Image from "next/image";
 import { cookies } from "next/headers";
 
+type PageData = {
+  title?: string;
+  content?: string;
+};
+
 export default async function Home() {
+  // Resolve cookies and detect preview mode
   const cookieStore = await cookies();
   const isPreview = !!cookieStore.get("__prerender_bypass")?.value;
 
-  let pageData: { title?: string; content?: string } | null = null;
+  let pageData: PageData | null = null;
 
   if (isPreview) {
     try {
+      // Build an absolute URL for server-side fetches.
+      // In dev, NEXT_PUBLIC_APP_URL can be left undefined and we fall back to localhost.
       const origin =
         process.env.NEXT_PUBLIC_APP_URL ??
         process.env.NEXT_PUBLIC_SITE_URL ??
         "http://localhost:3000";
       const previewProxyUrl = new URL("/api/preview-proxy", origin).toString();
 
-      // Example GraphQL query — adjust to match your WP GraphQL schema if different.
+      // Replace this query to match your WP GraphQL schema if different.
       const query = `
         query PagePreview($uri: String!) {
           pageBy(uri: $uri) {
@@ -31,18 +39,24 @@ export default async function Home() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query, variables }),
+        // Ensure preview requests bypass any Next caching
         cache: "no-store",
       });
 
-      const json = await res.json();
+      // If the proxy returned a non-JSON or error, handle gracefully
+      const json = await res.json().catch(() => null);
       const page = json?.data?.pageBy;
       if (page) {
         pageData = {
           title: page.title ?? "",
           content: page.content ?? "",
         };
+      } else {
+        // When WP returns nothing for preview, keep pageData null and fall back to starter UI
+        pageData = null;
       }
     } catch (err) {
+      // Non-fatal: log to server terminal and fall back to default UI
       // eslint-disable-next-line no-console
       console.error("preview fetch error", err);
       pageData = null;
@@ -66,10 +80,11 @@ export default async function Home() {
             <div className="max-w-3xl text-left">
               <h2 className="text-2xl font-semibold text-rose-500">Preview mode</h2>
               <h1 className="mt-4 text-3xl font-bold">{pageData.title}</h1>
+
+              {/* WordPress content is HTML — sanitize in production. */}
               <article
                 className="mt-6 prose max-w-none"
-                // WP content is HTML — ensure you sanitize/limit in production as needed.
-                dangerouslySetInnerHTML={{ __html: pageData.content }}
+                dangerouslySetInnerHTML={{ __html: pageData.content ?? "" }}
               />
             </div>
           ) : (

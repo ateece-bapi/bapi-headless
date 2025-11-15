@@ -29,6 +29,9 @@ cms/wp-content/themes/twentytwenty*/
 *.tar.gz
 *.zip
 
+# Cookies and session files
+cookies.txt
+
 # DDEV
 .ddev/
 

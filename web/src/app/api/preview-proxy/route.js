@@ -74,7 +74,23 @@ export async function POST(request) {
 
     // If PREVIEW_ALLOW_INSECURE is set to 'true' and we're not in production,
     // allow skipping TLS verification for local mkcert/DDEV setups.
-    if (process.env.PREVIEW_ALLOW_INSECURE === 'true' && process.env.NODE_ENV !== 'production') {
+    // If a CA path is provided, use it to verify the upstream TLS certificate.
+    // This allows using the mkcert root CA without disabling verification.
+    if (process.env.PREVIEW_CA_PATH) {
+      try {
+        const https = await import('https');
+        const fs = await import('fs');
+        const ca = fs.readFileSync(process.env.PREVIEW_CA_PATH);
+        fetchOptions.agent = new https.Agent({ ca });
+        console.log('preview-proxy: using PREVIEW_CA_PATH for upstream TLS verification');
+      } catch (e) {
+        console.warn('preview-proxy: failed to use PREVIEW_CA_PATH, falling back to default CA behavior', e?.message ?? e);
+      }
+    }
+
+    // If PREVIEW_ALLOW_INSECURE is explicitly enabled (dev only), allow skipping TLS
+    // verification. This is a fallback convenience for local debugging only.
+    if (!fetchOptions.agent && process.env.PREVIEW_ALLOW_INSECURE === 'true' && process.env.NODE_ENV !== 'production') {
       try {
         const https = await import('https');
         fetchOptions.agent = new https.Agent({ rejectUnauthorized: false });

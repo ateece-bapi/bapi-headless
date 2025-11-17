@@ -105,12 +105,19 @@ export async function POST(request) {
       wpRes = await fetch(wpEndpoint, fetchOptions);
     } catch (fetchErr) {
       // Provide a clearer, non-secret diagnostic for TLS/network failures.
-      const msg = String(fetchErr?.message || fetchErr);
-      console.error('preview-proxy: upstream fetch failed', { message: msg });
-      if (msg.includes('unable to verify the first certificate') || msg.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')) {
+      const name = fetchErr?.name || 'Error';
+      const code = fetchErr?.code || null;
+      const message = String(fetchErr?.message || fetchErr);
+      console.error('preview-proxy: upstream fetch failed', { name, code, message });
+      // Log stack for server-side debugging (do not return stack to client)
+      if (fetchErr?.stack) console.error(fetchErr.stack);
+
+      if (message.includes('unable to verify the first certificate') || message.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')) {
         return NextResponse.json({ error: 'Upstream TLS verification failed. If this is a local DDEV site with mkcert, either trust the mkcert CA system-wide or set PREVIEW_ALLOW_INSECURE=true for local development.' }, { status: 502 });
       }
-      return NextResponse.json({ error: 'Upstream fetch failed', details: msg }, { status: 502 });
+
+      // Return non-sensitive diagnostic fields to the client to aid debugging in dev.
+      return NextResponse.json({ error: 'Upstream fetch failed', name, code, message }, { status: 502 });
     }
 
     const status = wpRes.status;

@@ -64,11 +64,38 @@ export async function POST(request) {
       console.log('preview-proxy: upstream Authorization will be sent');
     }
 
-    const wpRes = await fetch(wpEndpoint, {
+    // Configure fetch agent for local development if explicitly allowed.
+    // DO NOT enable insecure fetch in production.
+    const fetchOptions = {
       method: 'POST',
       headers,
       body: JSON.stringify({ query, variables }),
-    });
+    };
+
+    // If PREVIEW_ALLOW_INSECURE is set to 'true' and we're not in production,
+    // allow skipping TLS verification for local mkcert/DDEV setups.
+    if (process.env.PREVIEW_ALLOW_INSECURE === 'true' && process.env.NODE_ENV !== 'production') {
+      try {
+        const https = await import('https');
+        fetchOptions.agent = new https.Agent({ rejectUnauthorized: false });
+        console.warn('preview-proxy: PREVIEW_ALLOW_INSECURE=true, skipping TLS verification for upstream (dev only)');
+      } catch {
+        // ignore and continue without custom agent
+      }
+    }
+
+    let wpRes;
+    try {
+      wpRes = await fetch(wpEndpoint, fetchOptions);
+    } catch (fetchErr) {
+      // Provide a clearer, non-secret diagnostic for TLS/network failures.
+      const msg = String(fetchErr?.message || fetchErr);
+      console.error('preview-proxy: upstream fetch failed', { message: msg });
+      if (msg.includes('unable to verify the first certificate') || msg.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')) {
+        return NextResponse.json({ error: 'Upstream TLS verification failed. If this is a local DDEV site with mkcert, either trust the mkcert CA system-wide or set PREVIEW_ALLOW_INSECURE=true for local development.' }, { status: 502 });
+      }
+      return NextResponse.json({ error: 'Upstream fetch failed', details: msg }, { status: 502 });
+    }
 
     const status = wpRes.status;
     const textRes = await wpRes.text();

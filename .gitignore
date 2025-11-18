@@ -38,3 +38,7 @@ cookies.txt
 # OS / Editor
 .DS_Store
 .vscode/
+
+# local cookie dumps from testing / browser exports
+cookies.txt
+web/cookies.txt

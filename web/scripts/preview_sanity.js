@@ -1,8 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-import url from 'url';
+const fs = require('fs');
+const path = require('path');
 
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+// CommonJS __dirname is available in this file (CI Node runs this as CJS).
 const repoRoot = path.resolve(__dirname, '..');
 const previewRoute = path.join(repoRoot, 'src', 'app', 'api', 'preview', 'route.js');
 const proxyRoute = path.join(repoRoot, 'src', 'app', 'api', 'preview-proxy', 'route.js');

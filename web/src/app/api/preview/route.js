@@ -19,7 +19,4 @@ export async function GET(request) {
   res.cookies.set('__next_preview_data', '1', { httpOnly: true, path: '/' });
   return res;
 }
-<<<<<<< HEAD
-=======
-[PASTE THE CONTENTS OF web/src/app/api/preview/route.js HERE]
->>>>>>> 7df0b0e (feat(api): restore preview GET route (redirect + preview cookies))
+

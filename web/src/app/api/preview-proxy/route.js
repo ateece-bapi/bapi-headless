@@ -114,4 +114,3 @@ export async function POST(request) {
   }
 }
 
-[PASTE THE CONTENTS OF web/src/app/api/preview-proxy/route.js HERE]

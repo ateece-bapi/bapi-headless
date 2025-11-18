@@ -1,14 +1,38 @@
+import crypto from 'crypto';
 import { NextResponse } from 'next/server';
+
+function safeCompare(a = '', b = '') {
+  try {
+    const ab = Buffer.from(a);
+    const bb = Buffer.from(b);
+    // If lengths differ, compare against equal-length buffers to avoid timing leaks
+    if (ab.length !== bb.length) {
+      const max = Math.max(ab.length, bb.length);
+      const pa = Buffer.alloc(max);
+      const pb = Buffer.alloc(max);
+      ab.copy(pa);
+      bb.copy(pb);
+      return crypto.timingSafeEqual(pa, pb);
+    }
+    return crypto.timingSafeEqual(ab, bb);
+  } catch (e) {
+    return false;
+  }
+}
 
 export async function GET(request) {
   // DEBUG only: log presence/length, do NOT log secret value
   console.log('PREVIEW_SECRET present?', !!process.env.PREVIEW_SECRET, 'length=', process.env.PREVIEW_SECRET?.length ?? 0);
 
   const url = new URL(request.url);
-  const secret = url.searchParams.get('secret');
+  // Support secret via query param `secret` or header `x-preview-secret`.
+  const querySecret = url.searchParams.get('secret') || '';
+  const headerSecret = request.headers.get('x-preview-secret') || '';
+  const provided = headerSecret || querySecret;
+
   const slugParam = url.searchParams.get('slug') || '/';
 
-  if (!secret || secret !== process.env.PREVIEW_SECRET) {
+  if (!provided || !safeCompare(provided, process.env.PREVIEW_SECRET || '')) {
     return new NextResponse('Invalid or missing preview secret', { status: 401 });
   }
 

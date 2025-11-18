@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Run preview sanity
-        run: node scripts/preview_sanity.js
+        run: node scripts/preview_sanity.mjs
 
       - name: Run tests
         run: npm test --if-present

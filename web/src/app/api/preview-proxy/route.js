@@ -92,7 +92,7 @@ export async function POST(request) {
       if (fetchErr?.stack) console.error(fetchErr.stack);
 
       if (message.includes('unable to verify the first certificate') || message.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')) {
-        return NextResponse.json({ error: 'Upstream TLS verification failed. If this is a local DDEV site with mkcert, either trust the mkcert CA sys\ntem-wide or set PREVIEW_ALLOW_INSECURE=true for local development.' }, { status: 502 });
+        return NextResponse.json({ error: 'Upstream TLS verification failed. If this is a local DDEV site with mkcert, either trust the mkcert CA system-wide or set PREVIEW_ALLOW_INSECURE=true for local development.' }, { status: 502 });
       }
 
       return NextResponse.json({ error: 'Upstream fetch failed', name, code, message }, { status: 502 });
@@ -113,3 +113,5 @@ export async function POST(request) {
     return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }
+
+[PASTE THE CONTENTS OF web/src/app/api/preview-proxy/route.js HERE]

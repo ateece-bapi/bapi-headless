@@ -22,7 +22,7 @@ function safeCompare(a = '', b = '') {
 
 export async function GET(request) {
   // DEBUG only: log presence/length, do NOT log secret value
-  console.log('PREVIEW_SECRET present?', sed -n '1,240p' web/src/app/api/preview-proxy/route.jsprocess.env.PREVIEW_SECRET, 'length=', process.env.PREVIEW_SECRET?.length ?? 0);
+  console.log('PREVIEW_SECRET present?', !!process.env.PREVIEW_SECRET, 'length=', process.env.PREVIEW_SECRET?.length ?? 0);
 
   const url = new URL(request.url);
   // Support secret via query param `secret` or header `x-preview-secret`.

@@ -1,23 +1,15 @@
-// Preview proxy: forwards GraphQL requests to WordPress endpoint for previewing.
-// Security: requires the preview secret be present in header `x-preview-secret`.
-
+import fs from 'fs';
+import https from 'https';
 import crypto from 'crypto';
 import { NextResponse } from 'next/server';
 
 function safeCompare(a = '', b = '') {
   try {
-    const bufA = Buffer.from(a);
-    const bufB = Buffer.from(b);
-    if (bufA.length !== bufB.length) {
-      const max = Math.max(bufA.length, bufB.length);
-      const pa = Buffer.alloc(max);
-      const pb = Buffer.alloc(max);
-      bufA.copy(pa);
-      bufB.copy(pb);
-      return crypto.timingSafeEqual(pa, pb);
-    }
-    return crypto.timingSafeEqual(bufA, bufB);
-  } catch {
+    const ab = Buffer.from(a);
+    const bb = Buffer.from(b);
+    if (ab.length !== bb.length) return false;
+    return crypto.timingSafeEqual(ab, bb);
+  } catch (e) {
     return false;
   }
 }
@@ -64,22 +56,14 @@ export async function POST(request) {
       console.log('preview-proxy: upstream Authorization will be sent');
     }
 
-    // Configure fetch agent for local development if explicitly allowed.
-    // DO NOT enable insecure fetch in production.
     const fetchOptions = {
       method: 'POST',
       headers,
       body: JSON.stringify({ query, variables }),
     };
 
-    // If PREVIEW_ALLOW_INSECURE is set to 'true' and we're not in production,
-    // allow skipping TLS verification for local mkcert/DDEV setups.
-    // If a CA path is provided, use it to verify the upstream TLS certificate.
-    // This allows using the mkcert root CA without disabling verification.
     if (process.env.PREVIEW_CA_PATH) {
       try {
-        const https = await import('https');
-        const fs = await import('fs');
         const ca = fs.readFileSync(process.env.PREVIEW_CA_PATH);
         fetchOptions.agent = new https.Agent({ ca });
         console.log('preview-proxy: using PREVIEW_CA_PATH for upstream TLS verification');
@@ -88,11 +72,8 @@ export async function POST(request) {
       }
     }
 
-    // If PREVIEW_ALLOW_INSECURE is explicitly enabled (dev only), allow skipping TLS
-    // verification. This is a fallback convenience for local debugging only.
     if (!fetchOptions.agent && process.env.PREVIEW_ALLOW_INSECURE === 'true' && process.env.NODE_ENV !== 'production') {
       try {
-        const https = await import('https');
         fetchOptions.agent = new https.Agent({ rejectUnauthorized: false });
         console.warn('preview-proxy: PREVIEW_ALLOW_INSECURE=true, skipping TLS verification for upstream (dev only)');
       } catch {
@@ -104,19 +85,16 @@ export async function POST(request) {
     try {
       wpRes = await fetch(wpEndpoint, fetchOptions);
     } catch (fetchErr) {
-      // Provide a clearer, non-secret diagnostic for TLS/network failures.
       const name = fetchErr?.name || 'Error';
       const code = fetchErr?.code || null;
       const message = String(fetchErr?.message || fetchErr);
       console.error('preview-proxy: upstream fetch failed', { name, code, message });
-      // Log stack for server-side debugging (do not return stack to client)
       if (fetchErr?.stack) console.error(fetchErr.stack);
 
       if (message.includes('unable to verify the first certificate') || message.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')) {
         return NextResponse.json({ error: 'Upstream TLS verification failed. If this is a local DDEV site with mkcert, either trust the mkcert CA system-wide or set PREVIEW_ALLOW_INSECURE=true for local development.' }, { status: 502 });
       }
 
-      // Return non-sensitive diagnostic fields to the client to aid debugging in dev.
       return NextResponse.json({ error: 'Upstream fetch failed', name, code, message }, { status: 502 });
     }
 

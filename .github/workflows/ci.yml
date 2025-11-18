@@ -25,6 +25,8 @@ jobs:
           cache-dependency-path: web/package-lock.json
 
       - name: Install dependencies
+        env:
+          HUSKY: 0
         run: npm ci
 
       - name: Run preview sanity

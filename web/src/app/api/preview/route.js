@@ -32,6 +32,11 @@ export async function GET(request) {
 
   const slugParam = url.searchParams.get('slug') || '/';
 
+  // If PREVIEW_SECRET is not configured, preview functionality is disabled.
+  if (!process.env.PREVIEW_SECRET) {
+    return new NextResponse('Preview functionality is disabled on this server (no PREVIEW_SECRET)', { status: 503 });
+  }
+
   if (!provided || !safeCompare(provided, process.env.PREVIEW_SECRET || '')) {
     return new NextResponse('Invalid or missing preview secret', { status: 401 });
   }

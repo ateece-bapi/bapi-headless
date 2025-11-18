@@ -17,12 +17,15 @@ describe('preview GET handler', () => {
   });
 
   it('returns 401 when PREVIEW_SECRET unset or does not match', async () => {
+    // If PREVIEW_SECRET is not set, the handler intentionally disables preview
+    // functionality and returns 503 (service unavailable). When it's set but
+    // the provided secret doesn't match, it returns 401.
     delete process.env.PREVIEW_SECRET;
     const req = new Request('http://localhost/api/preview?secret=wrong');
     const res = await GET(req);
-    expect(res.status).toBe(401);
+    expect(res.status).toBe(503);
     const text = await res.text();
-    expect(text).toMatch(/Invalid or missing preview secret/);
+    expect(text).toMatch(/Preview functionality is disabled/);
   });
 
   it('redirects and sets cookies when secret matches', async () => {

@@ -42,3 +42,7 @@ cookies.txt
 # local cookie dumps from testing / browser exports
 cookies.txt
 web/cookies.txt
+
+# CI/test artifacts
+web/test-output/
+prune-dryrun-*.txt

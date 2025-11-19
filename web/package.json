@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "prepare": "husky install",
-  "test": "vitest",
-  "test:ci": "vitest --run --reporter=junit --reporter-options outputFile=test-output/junit.xml"
+    "test": "vitest",
+  "test:ci": "vitest --run"
   },
   "dependencies": {
     "next": "16.0.3",
@@ -23,10 +23,10 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.0",
     "tailwindcss": "^4",
     "typescript": "5.9.3",
-    "vitest": "^1.1.5",
-    "husky": "^8.0.0",
-    "lint-staged": "^14.0.0"
+    "vitest": "^1.1.5"
   }
 }

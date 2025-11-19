@@ -46,9 +46,9 @@ jobs:
           PREVIEW_INTEGRATION_SECRET: ${{ secrets.PREVIEW_INTEGRATION_SECRET }}
         run: |
           mkdir -p "$ARTIFACT_DIR"
-          # run tests, capture stdout+stderr to a log file and preserve exit code
+          # run tests (JUnit reporter writes XML to test-output), capture stdout+stderr to a log file and preserve exit code
           set -o pipefail
-          npm --prefix web test -- --run 2>&1 | tee "$ARTIFACT_DIR/test.log"
+          npm --prefix web run test:ci 2>&1 | tee "$ARTIFACT_DIR/test.log"
           rc=${PIPESTATUS[0]}
           echo "exitcode=$rc" >> $GITHUB_OUTPUT
           echo "$rc" > "$ARTIFACT_DIR/exitcode"

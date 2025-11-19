@@ -1,0 +1,82 @@
+name: 'CI - Preview Integration'
+
+on:
+  # manual dispatch (defaults to main)
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Branch/ref to run the integration tests against'
+        required: false
+        default: 'main'
+  # scheduled nightly run (UTC)
+  schedule:
+    - cron: '0 2 * * *'
+  # only run on pushes to `main`
+  push:
+    branches:
+      - main
+
+jobs:
+  preview-integration:
+    name: Preview integration tests
+    runs-on: ubuntu-latest
+    env:
+      ARTIFACT_DIR: test-output
+      ARTIFACT_NAME: ci-preview-integration-${{ github.run_id }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        env:
+          HUSKY: 0
+        run: |
+          npm --prefix web ci
+
+      - id: run-tests
+        name: Run preview integration tests (capture logs)
+        continue-on-error: true
+        env:
+          PREVIEW_INTEGRATION_URL: ${{ secrets.PREVIEW_INTEGRATION_URL }}
+          PREVIEW_INTEGRATION_SECRET: ${{ secrets.PREVIEW_INTEGRATION_SECRET }}
+        run: |
+          mkdir -p "$ARTIFACT_DIR"
+          # run tests, capture stdout+stderr to a log file and preserve exit code
+          set -o pipefail
+          npm --prefix web test -- --run 2>&1 | tee "$ARTIFACT_DIR/test.log"
+          rc=${PIPESTATUS[0]}
+          echo "exitcode=$rc" >> $GITHUB_OUTPUT
+          echo "$rc" > "$ARTIFACT_DIR/exitcode"
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACT_DIR }}
+
+      - name: Create GitHub issue on failure
+        if: steps.run-tests.outputs.exitcode != '0'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const exitcode = parseInt("${{ steps.run-tests.outputs.exitcode }}", 10);
+            const body = `Preview integration tests failed (exit code ${exitcode}).\n\nRun: ${{ github.run_id }}.\n\nArtifacts: ${process.env.ARTIFACT_NAME || 'ci-preview-integration'} (test log and exitcode).`;
+            await github.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `CI: Preview integration failed (${context.sha.substring(0,7)})`,
+              body,
+            });
+
+      - name: Fail if tests failed
+        run: |
+          if [ "${{ steps.run-tests.outputs.exitcode }}" != "0" ]; then
+            echo "Tests failed with exit code ${{ steps.run-tests.outputs.exitcode }}"
+            exit 1
+          fi

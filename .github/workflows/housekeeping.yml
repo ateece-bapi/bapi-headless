@@ -1,0 +1,30 @@
+name: 'Housekeeping — prune merged branches'
+
+on:
+  schedule:
+    # run weekly on Monday at 03:00 UTC
+    - cron: '0 3 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run prune merged branches (DRY RUN by default)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          DRY_RUN: 'true'
+        run: |
+          node scripts/prune_merged_branches.mjs

@@ -29,6 +29,10 @@ jobs:
           HUSKY: 0
         run: npm ci
 
+      - name: CI: check production envs (main only)
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: node scripts/check_prod_envs.mjs
+
       - name: Run preview sanity
         run: node scripts/preview_sanity.mjs
 

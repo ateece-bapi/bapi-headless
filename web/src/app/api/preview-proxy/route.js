@@ -82,6 +82,12 @@ export async function POST(request) {
     }
 
     let wpRes;
+    // Attach AbortController to upstream fetch so we can timeout hung requests.
+    const controller = new AbortController();
+    const timeoutMs = Number(process.env.PREVIEW_FETCH_TIMEOUT_MS || '10000');
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    fetchOptions.signal = controller.signal;
+
     try {
       wpRes = await fetch(wpEndpoint, fetchOptions);
     } catch (fetchErr) {
@@ -91,6 +97,11 @@ export async function POST(request) {
       console.error('preview-proxy: upstream fetch failed', { name, code, message });
       if (fetchErr?.stack) console.error(fetchErr.stack);
 
+      // Recognize aborts as timeouts and return a 502 with a clear message.
+      if (name === 'AbortError' || message.toLowerCase().includes('aborted') || message.toLowerCase().includes('abort')) {
+        return NextResponse.json({ error: 'Upstream fetch timed out' }, { status: 502 });
+      }
+
       if (message.includes('unable to verify the first certificate') || message.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')) {
         return NextResponse.json({ error: 'Upstream TLS verification failed. If this is a local DDEV site with mkcert, either trust the mkcert CA system-wide or set PREVIEW_ALLOW_INSECURE=true for local development.' }, { status: 502 });
       }
@@ -98,8 +109,20 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Upstream fetch failed', name, code, message }, { status: 502 });
     }
 
+    // clear the timeout if fetch succeeded
+    clearTimeout(timeoutId);
+
     const status = wpRes.status;
     const textRes = await wpRes.text();
+
+    // If upstream returned a non-2xx, do not forward upstream body or status
+    // verbatim. Normalize to 502 to present a consistent contract to callers
+    // and avoid leaking upstream internals.
+    if (!wpRes.ok) {
+      console.warn('preview-proxy: upstream returned non-2xx', { status });
+      return NextResponse.json({ error: 'Upstream returned non-2xx', upstreamStatus: status }, { status: 502 });
+    }
+
     let json;
     try {
       json = JSON.parse(textRes);

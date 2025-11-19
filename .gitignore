@@ -1,0 +1,44 @@
+# Node / Next.js
+node_modules/
+.next/
+dist/
+
+# Local envs
+.env
+.env.local
+.env.*.local
+
+# WordPress core files (don't commit core - use composer or install scripts)
+cms/wp-admin/
+cms/wp-includes/
+cms/*.php
+cms/readme.html
+cms/license.txt
+
+# WordPress uploads (don't store large media in repo)
+cms/wp-content/uploads/
+
+# WordPress plugins and themes (manage via composer or document separately)
+cms/wp-content/plugins/
+cms/wp-content/themes/twentytwenty*/
+
+# Database dumps and archives
+*.sql
+*.sql.gz
+*.tgz
+*.tar.gz
+*.zip
+
+# Cookies and session files
+cookies.txt
+
+# DDEV
+.ddev/
+
+# OS / Editor
+.DS_Store
+.vscode/
+
+# local cookie dumps from testing / browser exports
+cookies.txt
+web/cookies.txt

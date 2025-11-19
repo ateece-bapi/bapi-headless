@@ -1,0 +1,44 @@
+name: 'Prune branches (DRY RUN) and upload report'
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 6 * * 1' # weekly Monday 06:00 UTC (optional)
+
+permissions:
+  contents: read
+
+jobs:
+  prune-dryrun:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create reports dir
+        run: mkdir -p reports
+
+      - name: Run prune script (DRY_RUN)
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRUNE_TOKEN }}
+          DRY_RUN: 'true'
+        run: |
+          ts=$(date +%s)
+          out="reports/prune-dryrun-${ts}.txt"
+          echo "Running dry-run prune; output will be saved to $out"
+          node scripts/prune_merged_branches.mjs > "$out" 2>&1 || true
+          echo "Report saved to $out"
+
+      - name: Upload prune report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prune-dryrun-report
+          path: reports/prune-dryrun-*.txt
+
+      - name: Show artifact location note
+        run: echo "The prune DRY_RUN report has been uploaded as artifact 'prune-dryrun-report' (check Actions run artifacts)."

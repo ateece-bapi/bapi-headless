@@ -36,3 +36,25 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 For local preview & TLS instructions see `PREVIEW.md`.
+
+## Monitoring
+
+We expose a health endpoint for the preview proxy at `/api/preview-proxy/health` suitable for uptime checks. Recommended configuration:
+
+- Pingdom / Upptime / UptimeRobot: use an HTTP POST to `https://<your-site>/api/preview-proxy/health` with JSON body `{ "query": "{ __typename }" }` and the header `x-preview-secret: <secret>`.
+- Check frequency: 1–5 minutes. Alert on 3 consecutive failures.
+
+Example manual check:
+
+```bash
+export PREVIEW_SECRET="${PREVIEW_SECRET}"
+curl -i -X POST \
+	-H "Content-Type: application/json" \
+	-H "x-preview-secret: $PREVIEW_SECRET" \
+	-d '{"query":"{ __typename }"}' \
+	https://<your-site>/api/preview-proxy/health
+```
+
+See `docs/PREVIEW-OPERATIONS.md` for full runbook, rotation steps, and troubleshooting guidance.
+
+CI status badge: [![web CI](https://github.com/ateece-bapi/bapi-headless/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ateece-bapi/bapi-headless/actions/workflows/ci.yml)

@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import { NextResponse } from 'next/server';
+import logger from '../../../lib/logger.js';
 
 function safeCompare(a = '', b = '') {
   try {
@@ -15,14 +16,14 @@ function safeCompare(a = '', b = '') {
       return crypto.timingSafeEqual(pa, pb);
     }
     return crypto.timingSafeEqual(ab, bb);
-  } catch (e) {
+  } catch {
     return false;
   }
 }
 
 export async function GET(request) {
   // DEBUG only: log presence/length, do NOT log secret value
-  console.log('PREVIEW_SECRET present?', !!process.env.PREVIEW_SECRET, 'length=', process.env.PREVIEW_SECRET?.length ?? 0);
+  logger.debug('preview.secret_presence', { present: !!process.env.PREVIEW_SECRET, length: process.env.PREVIEW_SECRET?.length ?? 0 });
 
   const url = new URL(request.url);
   // Support secret via query param `secret` or header `x-preview-secret`.

@@ -31,6 +31,9 @@ jobs:
 
       - name: "CI: check production envs (main only)"
         if: ${{ github.ref == 'refs/heads/main' }}
+        env:
+          NEXT_PUBLIC_WORDPRESS_GRAPHQL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_GRAPHQL }}
+          PREVIEW_SECRET: ${{ secrets.PREVIEW_SECRET }}
         run: node scripts/check_prod_envs.mjs
 
       - name: Run preview sanity

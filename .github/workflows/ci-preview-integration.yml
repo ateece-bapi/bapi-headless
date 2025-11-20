@@ -41,6 +41,8 @@ jobs:
       - id: run-tests
         name: Run preview integration tests (capture logs)
         continue-on-error: true
+        # only run integration tests when the preview integration URL secret is set
+        if: ${{ secrets.PREVIEW_INTEGRATION_URL != '' }}
         env:
           PREVIEW_INTEGRATION_URL: ${{ secrets.PREVIEW_INTEGRATION_URL }}
           PREVIEW_INTEGRATION_SECRET: ${{ secrets.PREVIEW_INTEGRATION_SECRET }}

@@ -1,0 +1,72 @@
+name: 'Housekeeping - Prune merged branches (approval-gated delete)'
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_delete:
+        description: 'Set to true to run the deletion step after approval (approval still required)'
+        required: false
+        default: 'false'
+
+jobs:
+  dry-run:
+    name: Dry-run prune (automatic)
+    runs-on: ubuntu-latest
+    outputs:
+      report-artifact: ${{ steps.upload.outputs.artifact-name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run prune (DRY_RUN=true)
+        id: run-dry
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: 'true'
+        run: |
+          mkdir -p reports
+          node scripts/prune_merged_branches.mjs > reports/prune-dryrun-${{ github.run_id }}.txt 2>&1 || true
+
+      - name: Upload dry-run artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: prune-dryrun-${{ github.run_id }}
+          path: reports/prune-dryrun-${{ github.run_id }}.txt
+
+  delete:
+    name: Delete merged branches (approval required)
+    needs: dry-run
+    runs-on: ubuntu-latest
+    # This job requires approval via the `prune-deletions` environment. Create this environment
+    # in repository settings and add required reviewers/approvers before enabling destructive runs.
+    environment: prune-deletions
+    if: ${{ github.event.inputs.run_delete == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run prune (DRY_RUN=false) and upload report
+        id: run-delete
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: 'false'
+        run: |
+          mkdir -p reports
+          node scripts/prune_merged_branches.mjs > reports/prune-delete-${{ github.run_id }}.txt 2>&1 || true
+
+      - name: Upload delete artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prune-delete-${{ github.run_id }}
+          path: reports/prune-delete-${{ github.run_id }}.txt

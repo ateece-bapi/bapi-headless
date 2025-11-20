@@ -9,7 +9,7 @@
     "lint": "eslint",
     "prepare": "husky install",
   "test": "vitest",
-  "test:ci": "vitest --run --reporter=junit --reporter-options outputFile=test-output/junit.xml"
+  "test:ci": "vitest --run"
   },
   "dependencies": {
     "next": "16.0.3",

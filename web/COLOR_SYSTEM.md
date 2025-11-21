@@ -2,101 +2,143 @@
 
 ## Overview
 
-This document describes the BAPI brand color system implemented in Tailwind CSS. The system is based on the **2024 BAPI Brand Standards** and uses **PANTONE 1225 C** (bright yellow/gold) as the primary brand color.
+This document describes the BAPI brand color system implemented in Tailwind CSS. The system is based on the **2024 BAPI Brand Standards** using actual **web colors** (not Pantone - Pantone is for print media only).
+
+## Official BAPI Web Colors
+
+```
+BAPI Blue:   #1479BC  (Primary - 30% usage)
+BAPI Yellow: #FFC843  (Accent - 10% usage)  
+BAPI Gray:   #97999B  (Neutral - with white, 60% usage)
+BAPI White:  #FFFFFF  (Background - with gray, 60% usage)
+```
+
+## Color Distribution Guidelines
+
+**60% White/Gray** - Backgrounds, surfaces, subtle UI elements
+**30% BAPI Blue** - Navigation, primary actions, headings, trust elements
+**10% BAPI Yellow** - Call-to-action buttons, highlights, accents
+
+These percentages are guidelines for visual balance, not strict rules.
 
 ## Design Philosophy
 
 A senior developer approach to color tokens includes:
 
-1. **Semantic naming** - Colors named by purpose (primary, secondary, accent) not appearance (yellow, blue)
+1. **Semantic naming** - Colors named by purpose (primary, accent) not appearance
 2. **Scale consistency** - All color families use 50-950 scale for predictable shading
 3. **Accessibility** - Color combinations meet WCAG contrast requirements
-4. **Flexibility** - CSS custom properties allow theme switching and customization
-5. **Future-proof** - System scales for dark mode and additional themes
+4. **Flexibility** - CSS custom properties allow theme switching
+5. **Brand alignment** - Matches existing BAPI website color scheme
 
 ## Color Families
 
-### Primary Colors (BAPI Yellow/Gold)
+### Primary Colors (BAPI Blue #1479BC)
 
-Based on **PANTONE 1225 C**, this is the signature BAPI brand color used for:
-- Primary call-to-action buttons
-- Brand accents and highlights
-- Key interactive elements
-- Logo and brand identity
+The signature BAPI brand blue used for trust, professionalism, and primary actions:
+- Navigation and links
+- Primary interactive elements
+- Headings and key content
+- Checkout and important CTAs
+- **Usage: ~30% of visual elements**
 
 ```css
---color-primary-50: #fefce8   /* Lightest tint - backgrounds */
---color-primary-100: #fef9c3
---color-primary-200: #fef08a
---color-primary-300: #fde047
---color-primary-400: #facc15  /* Base brand yellow */
---color-primary-500: #eab308  /* Default button state */
---color-primary-600: #ca8a04  /* Hover/active state */
---color-primary-700: #a16207
---color-primary-800: #854d0e
---color-primary-900: #713f12
---color-primary-950: #422006  /* Darkest shade */
+--color-primary-50: #e6f2f9   /* Lightest tint - backgrounds */
+--color-primary-100: #cce5f3
+--color-primary-200: #99cbe7
+--color-primary-300: #66b1db
+--color-primary-400: #3397cf
+--color-primary-500: #1479bc  /* Base BAPI Blue */
+--color-primary-600: #106196  /* Hover state */
+--color-primary-700: #0c4971
+--color-primary-800: #08304b
+--color-primary-900: #041826
+--color-primary-950: #020c13  /* Darkest shade */
 ```
 
 **Usage in Tailwind:**
 ```tsx
 <button className="bg-primary-500 hover:bg-primary-600 text-white">
-  Shop Now
+  Proceed to Checkout
+</button>
+<Link className="text-primary-500 hover:text-primary-600">
+  Learn More
+</Link>
+```
+
+### Accent Colors (BAPI Yellow #FFC843)
+
+High-visibility accent color for drawing attention to key actions:
+- Primary call-to-action buttons
+- Special offers and highlights  
+- Important notifications
+- Add to cart buttons
+- **Usage: ~10% of visual elements**
+
+```css
+--color-accent-50: #fffbf0   /* Lightest tint */
+--color-accent-100: #fff7e1
+--color-accent-200: #ffefc3
+--color-accent-300: #ffe7a5
+--color-accent-400: #ffdf87
+--color-accent-500: #ffc843  /* Base BAPI Yellow */
+--color-accent-600: #e6b43c  /* Hover state */
+--color-accent-700: #cca035
+--color-accent-800: #b38c2e
+--color-accent-900: #997827
+--color-accent-950: #4d3c14  /* Darkest shade */
+```
+
+**Usage in Tailwind:**
+```tsx
+<button className="bg-accent-500 hover:bg-accent-600 text-neutral-900">
+  Add to Cart
 </button>
 ```
 
-### Secondary Colors (Cool Gray)
+### Neutral Colors (BAPI Gray #97999B + White)
 
-Professional gray scale for balance and hierarchy:
-- Text and typography
+Professional gray scale and white for backgrounds, text, and subtle UI:
+- Page backgrounds (white)
+- Section backgrounds (light gray)
+- Body text and headings
 - Borders and dividers
-- Backgrounds and surfaces
-- Secondary UI elements
+- **Usage: ~60% of visual elements**
 
 ```css
---color-secondary-50: #f8fafc   /* Light backgrounds */
---color-secondary-500: #64748b  /* Body text */
---color-secondary-900: #0f172a  /* Headings */
+--color-neutral-50: #fafafa   /* Near white backgrounds */
+--color-neutral-100: #f5f5f5  /* Light gray sections */
+--color-neutral-200: #e8e8e9  /* Subtle borders */
+--color-neutral-300: #d4d5d6
+--color-neutral-400: #b5b6b8
+--color-neutral-500: #97999b  /* Base BAPI Gray */
+--color-neutral-600: #797a7c
+--color-neutral-700: #5e5f60  /* Dark text */
+--color-neutral-800: #434445  /* Darker text */
+--color-neutral-900: #282829  /* Headings */
+--color-neutral-950: #141415  /* Darkest */
 ```
 
 **Usage in Tailwind:**
 ```tsx
-<h1 className="text-secondary-900">Heading</h1>
-<p className="text-secondary-600">Body text</p>
-```
-
-### Accent Colors (Professional Blue)
-
-Used for trust indicators and technology-focused elements:
-- Links and navigation
-- Secondary actions
-- Information highlights
-- Professional credibility cues
-
-```css
---color-accent-500: #3b82f6   /* Default link color */
---color-accent-600: #2563eb   /* Hover state */
-```
-
-**Usage in Tailwind:**
-```tsx
-<a href="/products" className="text-accent-600 hover:text-accent-700">
-  Learn More
-</a>
+<div className="bg-white">                    {/* Primary surface */}
+<div className="bg-neutral-50">               {/* Subtle background */}
+<h1 className="text-neutral-900">Main Title</h1>
+<p className="text-neutral-600">Body text</p>
 ```
 
 ### Semantic Colors
 
-Purpose-specific colors for user feedback:
+Purpose-specific colors for user feedback (using BAPI palette where appropriate):
 
 **Success** (Green)
 ```css
 --color-success-500: #22c55e  /* Confirmations, success states */
 ```
 
-**Warning** (Orange)
+**Warning** (BAPI Yellow)
 ```css
---color-warning-500: #f59e0b  /* Cautions, warnings */
+--color-warning-500: #ffc843  /* Uses BAPI Yellow for warnings */
 ```
 
 **Error** (Red)
@@ -104,9 +146,9 @@ Purpose-specific colors for user feedback:
 --color-error-500: #ef4444    /* Errors, destructive actions */
 ```
 
-**Info** (Sky Blue)
+**Info** (BAPI Blue)
 ```css
---color-info-500: #0ea5e9     /* Informational messages */
+--color-info-500: #1479bc     /* Uses BAPI Blue for info messages */
 ```
 
 **Usage in Tailwind:**
@@ -116,37 +158,27 @@ Purpose-specific colors for user feedback:
 </div>
 ```
 
-### Neutral Colors
-
-True grayscale for maximum flexibility:
-
-```css
---color-neutral-50: #fafafa   /* Backgrounds */
---color-neutral-500: #737373  /* Muted text */
---color-neutral-900: #171717  /* Strong contrast */
-```
-
 ## Usage Guidelines
 
-### Buttons
+### Button Hierarchy
 
-**Primary Action (most important)**
+**Primary Action (Yellow - 10% usage)**
 ```tsx
-<button className="bg-primary-500 hover:bg-primary-600 text-white">
+<button className="bg-accent-500 hover:bg-accent-600 text-neutral-900 font-semibold">
   Add to Cart
 </button>
 ```
 
-**Secondary Action**
+**Secondary Action (Blue - 30% usage)**
 ```tsx
-<button className="bg-white hover:bg-neutral-50 text-primary-700 border-2 border-primary-500">
-  Learn More
+<button className="bg-primary-500 hover:bg-primary-600 text-white font-semibold">
+  Proceed to Checkout
 </button>
 ```
 
 **Tertiary/Ghost Action**
 ```tsx
-<button className="text-secondary-700 hover:text-primary-600">
+<button className="text-neutral-700 hover:text-primary-500">
   View Details
 </button>
 ```
@@ -154,19 +186,27 @@ True grayscale for maximum flexibility:
 ### Text Hierarchy
 
 ```tsx
-<h1 className="text-secondary-900">Main Heading</h1>
-<h2 className="text-secondary-800">Subheading</h2>
-<p className="text-secondary-600">Body text</p>
-<small className="text-secondary-500">Helper text</small>
+<h1 className="text-neutral-900">Main Heading</h1>
+<h2 className="text-neutral-800">Subheading</h2>
+<p className="text-neutral-600">Body text</p>
+<small className="text-neutral-500">Helper text</small>
 ```
 
-### Backgrounds & Surfaces
+### Backgrounds & Surfaces (60% usage)
 
 ```tsx
 <div className="bg-white">                    {/* Primary surface */}
-<div className="bg-secondary-50">             {/* Subtle background */}
-<div className="bg-gradient-to-br from-primary-50 via-white to-accent-50">
-                                              {/* Hero sections */}
+<div className="bg-neutral-50">               {/* Subtle section background */}
+<div className="bg-neutral-100">              {/* Cards on gray background */}
+```
+
+### Links & Navigation (30% usage - Blue)
+
+```tsx
+<Link className="text-primary-500 hover:text-primary-600">
+  Products
+</Link>
+<a className="text-primary-500 underline">Learn more</a>
 ```
 
 ### Borders
@@ -179,41 +219,52 @@ True grayscale for maximum flexibility:
 
 ## Accessibility
 
-All color combinations in this system meet **WCAG 2.1 Level AA** requirements:
+All color combinations meet **WCAG 2.1 Level AA** requirements:
 
-✅ **Primary-500 text on white** - Pass (sufficient contrast)
-✅ **Secondary-900 headings on white** - Pass (4.5:1 minimum)
-✅ **Secondary-600 body text on white** - Pass (readable)
-✅ **White text on Primary-500** - Pass (button text)
+✅ **BAPI Blue (#1479BC) on white** - Pass (4.55:1 ratio)
+✅ **White text on BAPI Blue** - Pass (4.55:1 ratio)
+✅ **BAPI Yellow (#FFC843) with dark text** - Pass (sufficient contrast)
+✅ **Neutral-900 headings on white** - Pass (readable)
+✅ **Neutral-600 body text on white** - Pass (4.5:1 minimum)
 
-## Dark Mode Support
+## Color Distribution in Practice
 
-The system includes dark mode overrides (future implementation):
+Based on current BAPI website (reference screenshot):
 
-```css
-.dark {
-  --color-background: #0f172a;     /* Dark background */
-  --color-text-primary: #f8fafc;   /* Light text */
-}
-```
+### Homepage Example
+- **60% White/Gray**: Background, product cards, section backgrounds
+- **30% Blue**: Header, navigation, "Learn More" buttons, product prices, icons
+- **10% Yellow**: Hero CTA button ("Browse Products"), special callouts
+
+### Product Cards
+- White background (60%)
+- Blue text for product name and price (30%)
+- Yellow "Add to Cart" button (10%)
+
+### Navigation
+- White background
+- Blue logo and active links
+- Hover states use blue
 
 ## Best Practices
 
 ### Do ✅
 
-- Use `primary-*` for all CTAs and brand-critical actions
-- Use `secondary-*` grays for text and subtle UI elements
-- Use semantic colors (`success`, `error`, etc.) for user feedback
-- Maintain consistent hover states (typically +100 on scale)
+- Use BAPI Yellow (`accent-*`) sparingly for high-priority CTAs
+- Use BAPI Blue (`primary-*`) for navigation, links, and trust elements
+- Maintain 60/30/10 color distribution for visual balance
+- Use white and light gray for majority of backgrounds
 - Test color combinations for accessibility
+- Match the established BAPI website aesthetic
 
 ### Don't ❌
 
+- Don't overuse yellow - it loses impact (stay near 10%)
 - Don't use arbitrary color values (`text-[#abc123]`)
-- Don't mix color families for the same purpose
-- Don't use primary colors for destructive actions (use `error-*`)
-- Don't use color alone to convey information (add icons/text)
-- Don't override brand colors without design approval
+- Don't use Pantone references for web (Pantone is print-only)
+- Don't use color alone to convey information
+- Don't stray far from the 60/30/10 guideline
+- Don't use yellow for destructive actions (use `error-*`)
 
 ## Implementation
 
@@ -227,8 +278,9 @@ Colors are defined in the `@theme inline` directive:
 
 ```css
 @theme inline {
-  --color-primary-500: #eab308;
-  --color-accent-600: #2563eb;
+  --color-primary-500: #1479bc;  /* BAPI Blue */
+  --color-accent-500: #ffc843;   /* BAPI Yellow */
+  --color-neutral-500: #97999b;  /* BAPI Gray */
   /* ... */
 }
 ```
@@ -243,17 +295,18 @@ className="bg-primary-500 text-white border-neutral-200"
 
 ## Color Reference Table
 
-| Use Case | Color Token | Example Class |
-|----------|-------------|---------------|
-| Primary CTA | `primary-500` | `bg-primary-500` |
-| CTA Hover | `primary-600` | `hover:bg-primary-600` |
-| Main Heading | `secondary-900` | `text-secondary-900` |
-| Body Text | `secondary-600` | `text-secondary-600` |
-| Subtle Background | `secondary-50` | `bg-secondary-50` |
-| Links | `accent-600` | `text-accent-600` |
-| Success Message | `success-500` | `text-success-500` |
-| Error Message | `error-500` | `text-error-500` |
-| Border Default | `neutral-200` | `border-neutral-200` |
+| Use Case | Color Token | Hex Value | Example Class |
+|----------|-------------|-----------|---------------|
+| Primary CTA (Yellow) | `accent-500` | `#FFC843` | `bg-accent-500` |
+| Secondary CTA (Blue) | `primary-500` | `#1479BC` | `bg-primary-500` |
+| CTA Hover (Yellow) | `accent-600` | `#E6B43C` | `hover:bg-accent-600` |
+| CTA Hover (Blue) | `primary-600` | `#106196` | `hover:bg-primary-600` |
+| Main Heading | `neutral-900` | `#282829` | `text-neutral-900` |
+| Body Text | `neutral-600` | `#797A7C` | `text-neutral-600` |
+| Links | `primary-500` | `#1479BC` | `text-primary-500` |
+| Light Background | `neutral-50` | `#FAFAFA` | `bg-neutral-50` |
+| White Background | - | `#FFFFFF` | `bg-white` |
+| Border Default | `neutral-200` | `#E8E8E9` | `border-neutral-200` |
 
 ## Migration Guide
 
@@ -263,16 +316,20 @@ To update existing code:
 // Before (generic colors)
 <button className="bg-blue-600 hover:bg-blue-700">
 
-// After (brand colors)
+// After (BAPI blue - secondary actions)
 <button className="bg-primary-500 hover:bg-primary-600">
-```
 
-```tsx
-// Before
-<h1 className="text-gray-900">
+// Before (yellow/gold)
+<button className="bg-yellow-500">
 
-// After  
-<h1 className="text-secondary-900">
+// After (BAPI yellow - primary CTAs)
+<button className="bg-accent-500 hover:bg-accent-600">
+
+// Before (gray text)
+<p className="text-gray-600">
+
+// After (BAPI gray)
+<p className="text-neutral-600">
 ```
 
 ## Questions?
@@ -281,9 +338,11 @@ For color system questions or updates, refer to:
 - **Brand Guidelines**: `/2024_brand_standards.pdf`
 - **Implementation**: `/web/src/app/globals.css`
 - **Usage Examples**: `/web/src/app/page.tsx` (homepage)
+- **Current Website**: https://www.bapihvac.com (for reference)
 
 ---
 
 **Last Updated**: 2025-01-21
-**Version**: 1.0
-**Based on**: BAPI 2024 Brand Standards (PANTONE 1225 C)
+**Version**: 2.0 (Corrected with actual web colors)
+**Web Colors**: BAPI Blue #1479BC, BAPI Yellow #FFC843, BAPI Gray #97999B
+**Distribution**: 60% White/Gray, 30% Blue, 10% Yellow

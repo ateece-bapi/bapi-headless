@@ -19,7 +19,8 @@
     "graphql-tag": "^2.12.6",
     "next": "16.0.3",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^6.1.0",

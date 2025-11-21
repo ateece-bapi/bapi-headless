@@ -2,6 +2,18 @@ import { getProducts } from '@/lib/graphql';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql';
 
 export default async function ProductsTestPage() {
+  // Skip data fetching if environment variable not set (build time)
+  if (!process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-6">Products Test</h1>
+        <p className="text-red-600">
+          NEXT_PUBLIC_WORDPRESS_GRAPHQL environment variable is not configured.
+        </p>
+      </div>
+    );
+  }
+
   const data = await getProducts(5);
   const products = data.products?.nodes || [];
 

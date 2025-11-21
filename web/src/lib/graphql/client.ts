@@ -2,11 +2,14 @@ import { GraphQLClient } from 'graphql-request';
 
 const endpoint = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
-if (!endpoint) {
-  throw new Error('NEXT_PUBLIC_WORDPRESS_GRAPHQL environment variable is not set');
+function getEndpoint(): string {
+  if (!endpoint) {
+    throw new Error('NEXT_PUBLIC_WORDPRESS_GRAPHQL environment variable is not set');
+  }
+  return endpoint;
 }
 
-export const graphqlClient = new GraphQLClient(endpoint, {
+export const graphqlClient = new GraphQLClient(endpoint || 'https://placeholder.local/graphql', {
   headers: {
     'Content-Type': 'application/json',
   },
@@ -16,7 +19,7 @@ export const graphqlClient = new GraphQLClient(endpoint, {
  * GraphQL client for server-side requests with caching
  */
 export const getGraphQLClient = () => {
-  return new GraphQLClient(endpoint, {
+  return new GraphQLClient(getEndpoint(), {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -30,7 +33,7 @@ export const getGraphQLClient = () => {
 /**
  * GraphQL client for client-side requests
  */
-export const clientGraphQLClient = new GraphQLClient(endpoint, {
+export const clientGraphQLClient = new GraphQLClient(endpoint || 'https://placeholder.local/graphql', {
   headers: {
     'Content-Type': 'application/json',
   },

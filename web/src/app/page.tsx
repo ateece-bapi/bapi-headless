@@ -3,9 +3,21 @@ import { getProductPrice } from '@/lib/graphql';
 import Link from 'next/link';
 import { CartButton, CartDrawer, AddToCartButton } from '@/components/cart';
 
+interface ProductData {
+  id: string;
+  databaseId: number | null;
+  name: string;
+  slug: string;
+  price: string;
+  image: {
+    sourceUrl: string;
+    altText: string;
+  } | null;
+}
+
 export default async function Home() {
   // Skip data fetching if environment variable not set (build time)
-  let products = [];
+  let products: ProductData[] = [];
   if (process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
     const data = await getProducts(6);
     products = (data.products?.nodes || []).map((product) => ({

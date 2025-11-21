@@ -2,18 +2,9 @@ import { getProducts } from '@/lib/graphql';
 import { getProductPrice } from '@/lib/graphql';
 import Link from 'next/link';
 import { CartButton, CartDrawer, AddToCartButton } from '@/components/cart';
+import type { CartItem } from '@/store';
 
-interface ProductData {
-  id: string;
-  databaseId: number | null;
-  name: string;
-  slug: string;
-  price: string;
-  image: {
-    sourceUrl: string;
-    altText: string;
-  } | null;
-}
+type ProductData = Omit<CartItem, 'quantity'>;
 
 export default async function Home() {
   // Skip data fetching if environment variable not set (build time)
@@ -22,7 +13,7 @@ export default async function Home() {
     const data = await getProducts(6);
     products = (data.products?.nodes || []).map((product) => ({
       id: product.id,
-      databaseId: product.databaseId,
+      databaseId: product.databaseId ?? 0,
       name: product.name || 'Unnamed Product',
       slug: product.slug || '',
       price: getProductPrice(product) || '$0.00',

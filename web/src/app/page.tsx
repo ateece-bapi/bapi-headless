@@ -25,16 +25,16 @@ export default async function Home() {
     <>
       <div className="min-h-screen">
         {/* Header */}
-        <header className="border-b">
+        <header className="border-b border-neutral-200 bg-white">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold text-blue-600">
+            <Link href="/" className="text-2xl font-bold text-primary-600 hover:text-primary-700 transition">
               BAPI
             </Link>
             <nav className="flex gap-6 items-center">
-              <Link href="/products" className="hover:text-blue-600 transition">
+              <Link href="/products" className="text-secondary-700 hover:text-primary-600 transition font-medium">
                 Products
               </Link>
-              <Link href="/cart-test" className="hover:text-blue-600 transition">
+              <Link href="/cart-test" className="text-secondary-700 hover:text-primary-600 transition font-medium">
                 Cart Test
               </Link>
               <CartButton />
@@ -43,24 +43,24 @@ export default async function Home() {
         </header>
 
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-50 to-gray-50 py-20">
+        <section className="bg-gradient-to-br from-primary-50 via-white to-accent-50 py-20">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-5xl font-bold mb-6">
+            <h1 className="text-5xl font-bold mb-6 text-secondary-900">
               Building Automation & Control Solutions
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-secondary-600 mb-8 max-w-2xl mx-auto">
               Professional sensors and control modules for modern building automation systems
             </p>
             <div className="flex gap-4 justify-center">
               <Link
                 href="/products"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition"
+                className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold transition shadow-sm hover:shadow-md"
               >
                 Browse Products
               </Link>
               <Link
                 href="/cart-test"
-                className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-3 rounded-lg font-semibold border-2 border-blue-600 transition"
+                className="bg-white hover:bg-neutral-50 text-primary-700 px-8 py-3 rounded-lg font-semibold border-2 border-primary-500 transition shadow-sm"
               >
                 Try Cart Demo
               </Link>
@@ -72,13 +72,13 @@ export default async function Home() {
         {products.length > 0 && (
           <section className="py-16">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold mb-8 text-center">Featured Products</h2>
+              <h2 className="text-3xl font-bold mb-8 text-center text-secondary-900">Featured Products</h2>
               
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {products.map((product) => (
                   <div
                     key={product.id}
-                    className="border rounded-lg p-6 shadow-sm hover:shadow-md transition"
+                    className="border border-neutral-200 rounded-lg p-6 shadow-sm hover:shadow-lg hover:border-primary-300 transition bg-white"
                   >
                     {product.image && (
                       <img
@@ -87,8 +87,8 @@ export default async function Home() {
                         className="w-full h-48 object-cover rounded mb-4"
                       />
                     )}
-                    <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-                    <p className="text-2xl font-bold text-blue-600 mb-4">
+                    <h3 className="text-lg font-semibold mb-2 text-secondary-800">{product.name}</h3>
+                    <p className="text-2xl font-bold text-primary-600 mb-4">
                       {product.price}
                     </p>
                     <AddToCartButton product={product} className="w-full" />
@@ -100,27 +100,27 @@ export default async function Home() {
         )}
 
         {/* Features/USPs */}
-        <section className="bg-gray-50 py-16">
+        <section className="bg-secondary-50 py-16">
           <div className="container mx-auto px-4">
             <div className="grid gap-8 md:grid-cols-3">
-              <div className="text-center">
+              <div className="text-center p-6 bg-white rounded-lg shadow-sm">
                 <div className="text-4xl mb-4">🔧</div>
-                <h3 className="text-xl font-bold mb-2">Professional Grade</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-secondary-900">Professional Grade</h3>
+                <p className="text-secondary-600">
                   Industry-leading sensors and control modules
                 </p>
               </div>
-              <div className="text-center">
+              <div className="text-center p-6 bg-white rounded-lg shadow-sm">
                 <div className="text-4xl mb-4">⚡</div>
-                <h3 className="text-xl font-bold mb-2">Easy Integration</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-secondary-900">Easy Integration</h3>
+                <p className="text-secondary-600">
                   BACnet, Modbus, and wireless connectivity
                 </p>
               </div>
-              <div className="text-center">
+              <div className="text-center p-6 bg-white rounded-lg shadow-sm">
                 <div className="text-4xl mb-4">✓</div>
-                <h3 className="text-xl font-bold mb-2">Reliable Support</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-bold mb-2 text-secondary-900">Reliable Support</h3>
+                <p className="text-secondary-600">
                   Expert technical assistance when you need it
                 </p>
               </div>
@@ -129,8 +129,8 @@ export default async function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t py-8 bg-white">
-          <div className="container mx-auto px-4 text-center text-gray-600">
+        <footer className="border-t border-neutral-200 py-8 bg-white">
+          <div className="container mx-auto px-4 text-center text-secondary-600">
             <p>&copy; 2025 BAPI. All rights reserved.</p>
           </div>
         </footer>

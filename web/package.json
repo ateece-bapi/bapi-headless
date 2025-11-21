@@ -9,24 +9,33 @@
     "lint": "eslint",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {}\"",
     "test": "vitest",
-    "test:ci": "vitest --run"
+    "test:ci": "vitest --run",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "codegen:watch": "graphql-codegen --config codegen.ts --watch"
   },
   "dependencies": {
+    "graphql": "^16.12.0",
+    "graphql-request": "^7.3.4",
+    "graphql-tag": "^2.12.6",
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^6.1.0",
+    "@graphql-codegen/typescript": "^5.0.5",
+    "@graphql-codegen/typescript-graphql-request": "^6.3.0",
+    "@graphql-codegen/typescript-operations": "^5.0.5",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.0",
     "tailwindcss": "^4",
     "typescript": "5.9.3",
-    "vitest": "^1.1.5",
-    "husky": "^8.0.0",
-    "lint-staged": "^14.0.0"
+    "vitest": "^1.1.5"
   }
 }

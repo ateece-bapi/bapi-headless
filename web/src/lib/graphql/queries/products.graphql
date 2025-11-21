@@ -1,0 +1,157 @@
+query GetProducts($first: Int = 10, $after: String) {
+  products(first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      endCursor
+      startCursor
+    }
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      description
+      shortDescription
+      ... on SimpleProduct {
+        price
+        regularPrice
+        salePrice
+        onSale
+        stockStatus
+        stockQuantity
+      }
+      ... on VariableProduct {
+        price
+        regularPrice
+        salePrice
+        onSale
+        stockStatus
+      }
+      image {
+        id
+        sourceUrl
+        altText
+        mediaDetails {
+          height
+          width
+        }
+      }
+      ... on Product {
+        productCategories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetProductBySlug($slug: ID!) {
+  product(id: $slug, idType: SLUG) {
+    id
+    databaseId
+    name
+    slug
+    description
+    shortDescription
+    ... on SimpleProduct {
+      price
+      regularPrice
+      salePrice
+      onSale
+      stockStatus
+      stockQuantity
+      sku
+    }
+    ... on VariableProduct {
+      price
+      regularPrice
+      salePrice
+      onSale
+      stockStatus
+      variations {
+        nodes {
+          id
+          databaseId
+          name
+          price
+          regularPrice
+          stockStatus
+        }
+      }
+    }
+    image {
+      id
+      sourceUrl
+      altText
+      mediaDetails {
+        height
+        width
+      }
+    }
+    galleryImages {
+      nodes {
+        id
+        sourceUrl
+        altText
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+    productCategories {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+    productTags {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+    related {
+      nodes {
+        id
+        databaseId
+        name
+        slug
+        ... on SimpleProduct {
+          price
+          stockStatus
+        }
+        image {
+          id
+          sourceUrl
+          altText
+        }
+      }
+    }
+  }
+}
+
+query GetProductCategories($first: Int = 100) {
+  productCategories(first: $first) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+      description
+      image {
+        id
+        sourceUrl
+        altText
+      }
+    }
+  }
+}

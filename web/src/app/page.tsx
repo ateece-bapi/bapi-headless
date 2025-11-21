@@ -1,23 +1,146 @@
-import Image from "next/image";
-import { cookies } from "next/headers";
-
-type PageData = {
-  title?: string;
-  content?: string;
-};
+import { getProducts } from '@/lib/graphql';
+import { getProductPrice } from '@/lib/graphql';
+import Link from 'next/link';
+import { CartButton, CartDrawer, AddToCartButton } from '@/components/cart';
 
 export default async function Home() {
-  // Resolve cookies and detect preview mode
-  const cookieStore = await cookies();
-  const isPreview = !!cookieStore.get("__prerender_bypass")?.value;
+  // Skip data fetching if environment variable not set (build time)
+  let products = [];
+  if (process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
+    const data = await getProducts(6);
+    products = (data.products?.nodes || []).map((product) => ({
+      id: product.id,
+      databaseId: product.databaseId,
+      name: product.name || 'Unnamed Product',
+      slug: product.slug || '',
+      price: getProductPrice(product) || '$0.00',
+      image: product.image ? {
+        sourceUrl: product.image.sourceUrl || '',
+        altText: product.image.altText || product.name || '',
+      } : null,
+    }));
+  }
 
-  let pageData: PageData | null = null;
+  return (
+    <>
+      <div className="min-h-screen">
+        {/* Header */}
+        <header className="border-b">
+          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+            <Link href="/" className="text-2xl font-bold text-blue-600">
+              BAPI
+            </Link>
+            <nav className="flex gap-6 items-center">
+              <Link href="/products" className="hover:text-blue-600 transition">
+                Products
+              </Link>
+              <Link href="/cart-test" className="hover:text-blue-600 transition">
+                Cart Test
+              </Link>
+              <CartButton />
+            </nav>
+          </div>
+        </header>
 
-  if (isPreview) {
-    try {
-      // Build an absolute URL for server-side fetches.
-      // In dev, NEXT_PUBLIC_APP_URL can be left undefined and we fall back to localhost.
-      const origin =
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-blue-50 to-gray-50 py-20">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-5xl font-bold mb-6">
+              Building Automation & Control Solutions
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Professional sensors and control modules for modern building automation systems
+            </p>
+            <div className="flex gap-4 justify-center">
+              <Link
+                href="/products"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition"
+              >
+                Browse Products
+              </Link>
+              <Link
+                href="/cart-test"
+                className="bg-white hover:bg-gray-50 text-blue-600 px-8 py-3 rounded-lg font-semibold border-2 border-blue-600 transition"
+              >
+                Try Cart Demo
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Products */}
+        {products.length > 0 && (
+          <section className="py-16">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold mb-8 text-center">Featured Products</h2>
+              
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {products.map((product) => (
+                  <div
+                    key={product.id}
+                    className="border rounded-lg p-6 shadow-sm hover:shadow-md transition"
+                  >
+                    {product.image && (
+                      <img
+                        src={product.image.sourceUrl}
+                        alt={product.image.altText}
+                        className="w-full h-48 object-cover rounded mb-4"
+                      />
+                    )}
+                    <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
+                    <p className="text-2xl font-bold text-blue-600 mb-4">
+                      {product.price}
+                    </p>
+                    <AddToCartButton product={product} className="w-full" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Features/USPs */}
+        <section className="bg-gray-50 py-16">
+          <div className="container mx-auto px-4">
+            <div className="grid gap-8 md:grid-cols-3">
+              <div className="text-center">
+                <div className="text-4xl mb-4">🔧</div>
+                <h3 className="text-xl font-bold mb-2">Professional Grade</h3>
+                <p className="text-gray-600">
+                  Industry-leading sensors and control modules
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-4">⚡</div>
+                <h3 className="text-xl font-bold mb-2">Easy Integration</h3>
+                <p className="text-gray-600">
+                  BACnet, Modbus, and wireless connectivity
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl mb-4">✓</div>
+                <h3 className="text-xl font-bold mb-2">Reliable Support</h3>
+                <p className="text-gray-600">
+                  Expert technical assistance when you need it
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t py-8 bg-white">
+          <div className="container mx-auto px-4 text-center text-gray-600">
+            <p>&copy; 2025 BAPI. All rights reserved.</p>
+          </div>
+        </footer>
+      </div>
+      
+      {/* Cart Drawer */}
+      <CartDrawer />
+    </>
+  );
+}
         process.env.NEXT_PUBLIC_APP_URL ??
         process.env.NEXT_PUBLIC_SITE_URL ??
         "http://localhost:3000";

@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "prepare": "husky install",
-  "test": "vitest",
-  "test:ci": "vitest --run"
+    "prepare": "node -e \"if (process.env.CI !== 'true') require('husky').install()\"",
+    "test": "vitest",
+    "test:ci": "vitest --run"
   },
   "dependencies": {
     "next": "16.0.3",

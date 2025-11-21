@@ -5,3 +5,4 @@
 export { AddToCartButton } from './AddToCartButton';
 export { CartIcon } from './CartIcon';
 export { CartDrawer } from './CartDrawer';
+export { CartButton } from './CartButton';

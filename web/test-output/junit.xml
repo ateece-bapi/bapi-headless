@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="1" failures="1" errors="0" time="1.194">
-    <testsuite name="src/app/products/[slug]/__tests__/page.test.tsx" timestamp="2025-12-02T13:56:17.965Z" hostname="MKT-ATEECE" tests="1" failures="1" errors="0" skipped="0" time="0">
-        <testcase classname="src/app/products/[slug]/__tests__/page.test.tsx" name="src/app/products/[slug]/__tests__/page.test.tsx" time="0">
-            <failure message="Failed to resolve import &quot;@/test/msw/fixtures&quot; from &quot;src/app/products/[slug]/__tests__/page.test.tsx&quot;. Does the file exist?" type="Error">
-Error: Failed to resolve import &quot;@/test/msw/fixtures&quot; from &quot;src/app/products/[slug]/__tests__/page.test.tsx&quot;. Does the file exist?
- ❯ TransformPluginContext._formatError node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:49258:41
- ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:49253:16
- ❯ normalizeUrl node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64307:23
- ❯ async file:/home/ateece/bapi-headless/web/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64439:39
- ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64366:7
- ❯ PluginContainer.transform node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:49099:18
- ❯ loadAndTransform node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:51978:27
-            </failure>
+<testsuites name="vitest tests" tests="1" failures="0" errors="0" time="1.399">
+    <testsuite name="src/app/products/[slug]/__tests__/page.test.tsx" timestamp="2025-12-02T14:45:10.604Z" hostname="MKT-ATEECE" tests="1" failures="0" errors="0" skipped="0" time="0.057">
+        <testcase classname="src/app/products/[slug]/__tests__/page.test.tsx" name="ProductDetailClient &gt; renders and adds product to cart" time="0.055">
         </testcase>
     </testsuite>
 </testsuites>

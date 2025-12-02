@@ -14,7 +14,9 @@ function stripHtml(html?: string | null) {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const data = await getProductBySlug(params.slug);
+  if (!params?.slug) return {};
+  const slug = String(params.slug);
+  const data = await getProductBySlug(slug);
   // Runtime-validate the GraphQL response shape
   getProductQuerySchema.parse(data as unknown);
   const product = data.product;
@@ -36,8 +38,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
   if (!process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
     notFound();
   }
-
-  const data = await getProductBySlug(params.slug);
+  if (!params?.slug) {
+    notFound();
+  }
+  const slug = String(params.slug);
+  const data = await getProductBySlug(slug);
   // Runtime-validate the GraphQL response shape
   getProductQuerySchema.parse(data as unknown);
   const product = data.product;

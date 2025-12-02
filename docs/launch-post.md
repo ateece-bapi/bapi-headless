@@ -72,7 +72,7 @@ Call to action
 --------------
 We’ll publish the next article focused on migration and staging this week. If you’re working with Sensor solutions or managing legacy WordPress/WooCommerce sites, follow the series and open an issue in the repo with questions or collaboration ideas. We welcome feedback and contributions.
 
-— The BAPI engineering team
+— The BAPI Marketing team
 
 --
 

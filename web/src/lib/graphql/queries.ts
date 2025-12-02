@@ -15,6 +15,14 @@ export async function getProducts(first: number = 10, after?: string): Promise<G
  */
 export async function getProductBySlug(slug: string): Promise<GetProductBySlugQuery> {
   const client = getGraphQLClient();
+  // Defensive validation: ensure callers pass a non-empty slug.
+  // GraphQL requires `$slug: ID!` for this query; calling with an empty
+  // value results in a runtime error from the server. Centralize the
+  // check here so callers get a clear, early error message.
+  if (slug === null || slug === undefined || String(slug).trim() === '') {
+    throw new Error('getProductBySlug called without a valid `slug` (received empty value)');
+  }
+
   return client.request(GetProductBySlugDocument, { slug });
 }
 

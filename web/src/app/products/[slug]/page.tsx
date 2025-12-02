@@ -1,8 +1,10 @@
 import React from 'react';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getProductBySlug, getProductPrice, getProductStockStatus } from '@/lib/graphql';
 import { getProductQuerySchema, productSchema } from '@/lib/validation/product';
+import { z } from 'zod';
 import ProductDetailClient from '@/components/products/ProductDetailClient';
 import { CartDrawer } from '@/components/cart';
 
@@ -59,12 +61,18 @@ export default async function ProductPage({ params }: { params: { slug: string }
     variations:
       // normalize variable product variations into simple shape
       // Use the validated product schema to access variation nodes safely
-      (product ? productSchema.parse(product).variations?.nodes?.map((v) => ({
-        id: v.id,
-        databaseId: v.databaseId ?? 0,
-        name: v.name || `${product.name} variant`,
-        price: (v as any).price || null,
-      })) : []) || [],
+      (product
+        ? (() => {
+            const validated = productSchema.parse(product) as z.infer<typeof productSchema>;
+            return validated.variations?.nodes?.map((v) => ({
+              id: v.id,
+              databaseId: v.databaseId ?? 0,
+              name: v.name || `${product.name} variant`,
+              // `price` may or may not exist on different variation types; access safely
+              price: (v as { price?: string | null }).price ?? null,
+            })) || [];
+          })()
+        : []) || [],
     shortDescription: product.shortDescription || null,
     description: product.description || null,
   };
@@ -91,11 +99,15 @@ export default async function ProductPage({ params }: { params: { slug: string }
               {/* Left: images */}
               <div className="lg:col-span-1">
                 {productForClient.image ? (
-                  <img
-                    src={productForClient.image.sourceUrl}
-                    alt={productForClient.image.altText || productForClient.name}
-                    className="w-full h-[420px] object-cover rounded mb-4"
-                  />
+                  <div className="relative w-full h-[420px] rounded mb-4">
+                    <Image
+                      src={productForClient.image.sourceUrl}
+                      alt={productForClient.image.altText || productForClient.name}
+                      fill
+                      className="object-cover rounded"
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                    />
+                  </div>
                 ) : (
                   <div className="w-full h-[420px] bg-neutral-100 rounded mb-4 flex items-center justify-center">
                     <div className="text-neutral-400">No image</div>
@@ -104,8 +116,10 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
                 {productForClient.gallery && productForClient.gallery.length > 0 && (
                   <div className="grid grid-cols-4 gap-2 mt-2">
-                    {productForClient.gallery.map((g: any, i: number) => (
-                      <img key={i} src={g.sourceUrl} alt={g.altText || `${productForClient.name} ${i + 1}`} className="w-full h-20 object-cover rounded" />
+                    {productForClient.gallery.map((g, i) => (
+                      <div key={i} className="w-full h-20 relative rounded overflow-hidden">
+                        <Image src={g.sourceUrl} alt={g.altText || `${productForClient.name} ${i + 1}`} width={160} height={80} className="object-cover rounded" />
+                      </div>
                     ))}
                   </div>
                 )}

@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Ignore generated GraphQL file and tooling scripts that intentionally use CommonJS
+    "src/lib/graphql/generated.ts",
+    "scripts/preview_sanity.js",
   ]),
 ]);
 

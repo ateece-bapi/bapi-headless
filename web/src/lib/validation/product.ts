@@ -34,3 +34,4 @@ export const getProductQuerySchema = z.object({
 });
 
 export type ProductQuery = z.infer<typeof getProductQuerySchema>;
+

@@ -1,5 +1,6 @@
 import { getProducts } from '@/lib/graphql';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql';
+import Image from 'next/image';
 
 export default async function ProductsTestPage() {
   // Skip data fetching if environment variable not set (build time)
@@ -29,9 +30,11 @@ export default async function ProductsTestPage() {
           return (
             <div key={product.id} className="border rounded-lg p-4 shadow-sm hover:shadow-md transition">
               {product.image && (
-                <img
+                <Image
                   src={product.image.sourceUrl || ''}
                   alt={product.image.altText || product.name || ''}
+                  width={640}
+                  height={192}
                   className="w-full h-48 object-cover rounded mb-4"
                 />
               )}

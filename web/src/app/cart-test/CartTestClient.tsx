@@ -3,6 +3,7 @@
 import { useCartDrawer } from '@/store';
 import { CartIcon, CartDrawer, AddToCartButton } from '@/components/cart';
 import type { CartItem } from '@/store';
+import Image from 'next/image';
 
 interface CartTestClientProps {
   products: Omit<CartItem, 'quantity'>[];
@@ -38,9 +39,11 @@ export default function CartTestClient({ products }: CartTestClientProps) {
               className="border rounded-lg p-4 shadow-sm hover:shadow-md transition"
             >
               {product.image && (
-                <img
+                <Image
                   src={product.image.sourceUrl}
-                  alt={product.image.altText}
+                  alt={product.image.altText || product.name || ''}
+                  width={640}
+                  height={192}
                   className="w-full h-48 object-cover rounded mb-4"
                 />
               )}

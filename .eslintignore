@@ -1,0 +1,5 @@
+# Ignore large generated GraphQL file to avoid spurious lint errors
+web/src/lib/graphql/generated.ts
+
+# Ignore scripts that use CommonJS in repo tooling
+web/scripts/preview_sanity.js

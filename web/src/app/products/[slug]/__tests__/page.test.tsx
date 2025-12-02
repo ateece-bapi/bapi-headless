@@ -5,16 +5,9 @@ import ProductDetailClient from '@/components/products/ProductDetailClient';
 import { useCartStore } from '@/store';
 type ProductForClient = React.ComponentProps<typeof ProductDetailClient>['product'];
 
-const productShape: ProductForClient = {
-  id: 'cHJvZHVjdDox',
-  databaseId: 101,
-  name: 'Test Sensor 101',
-  slug: 'test-sensor-101',
-  price: '$49.00',
-  image: { sourceUrl: 'https://example.com/test-101.jpg', altText: 'Test Sensor 101' },
-  gallery: [],
-  variations: [],
-};
+import { mockProductForClient, makeProductForClient } from '../../../../../test/msw/fixtures';
+
+const productShape: ProductForClient = makeProductForClient();
 
 describe('ProductDetailClient', () => {
   beforeEach(() => {

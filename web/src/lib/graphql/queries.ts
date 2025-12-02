@@ -23,7 +23,56 @@ export async function getProductBySlug(slug: string): Promise<GetProductBySlugQu
     throw new Error('getProductBySlug called without a valid `slug` (received empty value)');
   }
 
-  return client.request(GetProductBySlugDocument, { slug });
+  const resp = await client.request(GetProductBySlugDocument, { slug });
+  // Normalize the response at the fetch layer so callers receive a
+  // consistent, repaired shape and validation can run deterministically.
+  return normalizeProductQueryResponse(resp);
+}
+
+// Normalizer: Make best-effort repairs to common GraphQL response issues so
+// callers (and validation) can depend on a consistent shape.
+export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQuery {
+  const safe = (raw ?? {}) as any;
+
+  if (!safe.product) return { product: null } as GetProductBySlugQuery;
+
+  const p = { ...safe.product } as any;
+
+  if (p.__typename === undefined || p.__typename === null) {
+    p.__typename = 'Product';
+  }
+
+  if (p.image && typeof p.image === 'object') {
+    p.image = {
+      sourceUrl: p.image.sourceUrl ?? p.image.source_url ?? '',
+      altText: p.image.altText ?? p.image.alt_text ?? p.image.alt ?? '',
+      mediaDetails: p.image.mediaDetails ?? p.image.media_details ?? null,
+    };
+  } else {
+    p.image = null;
+  }
+
+  if (!p.galleryImages) {
+    p.galleryImages = { nodes: [] };
+  } else if (Array.isArray(p.galleryImages)) {
+    p.galleryImages = { nodes: p.galleryImages };
+  } else if (p.galleryImages && !Array.isArray(p.galleryImages.nodes)) {
+    p.galleryImages = { nodes: p.galleryImages.nodes ? Array.from(p.galleryImages.nodes) : [] };
+  }
+
+  if (!p.variations) {
+    p.variations = { nodes: [] };
+  } else if (p.variations && !Array.isArray(p.variations.nodes)) {
+    p.variations = { nodes: p.variations.nodes ? Array.from(p.variations.nodes) : [] };
+  }
+
+  p.name = p.name ?? '';
+  p.slug = p.slug ?? '';
+  p.price = p.price ?? '';
+  p.shortDescription = p.shortDescription ?? p.short_description ?? null;
+  p.description = p.description ?? p.content ?? null;
+
+  return { product: p } as GetProductBySlugQuery;
 }
 
 /**

@@ -17,28 +17,12 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
   const resolvedParams = await params;
   if (!resolvedParams?.slug) return {};
   const slug = String(resolvedParams.slug);
-  let data = await getProductBySlug(slug);
-  // Runtime-validate the GraphQL response shape. Use safeParse so we can
-  // attempt a minimal repair (add missing `__typename`) before failing
-  // hard. This helps when the GraphQL endpoint omits `__typename`.
+  const data = await getProductBySlug(slug);
+  // Validate the (already-normalized) GraphQL response shape.
   const parsed = getProductQuerySchema.safeParse(data as unknown);
-  if (!parsed.success) {
-    // Attempt to repair common missing-fields (e.g. __typename)
-    const repaired = JSON.parse(JSON.stringify(data || {}));
-    if (repaired && repaired.product && repaired.product.__typename === undefined) {
-      repaired.product.__typename = 'Product';
-    }
+  if (!parsed.success) throw parsed.error;
 
-    const reparsed = getProductQuerySchema.safeParse(repaired as unknown);
-    if (!reparsed.success) {
-      // Still invalid — rethrow the original validation error for visibility
-      throw parsed.error;
-    }
-
-    data = repaired as typeof data;
-  }
-
-  const product = data.product;
+  const product = data.product as any;
 
   if (!product) return {};
 
@@ -63,9 +47,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
   }
   const slug = String(resolvedParams.slug);
   const data = await getProductBySlug(slug);
-  // Runtime-validate the GraphQL response shape
+  // The fetch layer returns normalized data; validate shape here.
   getProductQuerySchema.parse(data as unknown);
-  const product = data.product;
+  const product = data.product as any;
 
   if (!product) {
     notFound();
@@ -82,14 +66,14 @@ export default async function ProductPage({ params }: { params: { slug: string }
     image: product.image
       ? { sourceUrl: product.image.sourceUrl || '', altText: product.image.altText || product.name || '' }
       : null,
-    gallery: (product.galleryImages?.nodes || []).map((g) => ({ sourceUrl: g?.sourceUrl || '', altText: g?.altText || '' })),
+    gallery: (product.galleryImages?.nodes || []).map((g: any) => ({ sourceUrl: g?.sourceUrl || '', altText: g?.altText || '' })),
     variations:
       // normalize variable product variations into simple shape
       // Use the validated product schema to access variation nodes safely
       (product
         ? (() => {
             const validated = productSchema.parse(product) as z.infer<typeof productSchema>;
-            return validated.variations?.nodes?.map((v) => ({
+            return validated.variations?.nodes?.map((v: any) => ({
               id: v.id,
               databaseId: v.databaseId ?? 0,
               name: v.name || `${product.name} variant`,
@@ -141,7 +125,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
                 {productForClient.gallery && productForClient.gallery.length > 0 && (
                   <div className="grid grid-cols-4 gap-2 mt-2">
-                    {productForClient.gallery.map((g, i) => (
+                    {productForClient.gallery.map((g: any, i: number) => (
                       <div key={i} className="w-full h-20 relative rounded overflow-hidden">
                         <Image src={g.sourceUrl} alt={g.altText || `${productForClient.name} ${i + 1}`} width={160} height={80} className="object-cover rounded" />
                       </div>

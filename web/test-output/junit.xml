@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="2" failures="1" errors="0" time="1.085">
-    <testsuite name="src/lib/graphql/queries.test.ts" timestamp="2025-12-02T16:07:26.513Z" hostname="MKT-ATEECE" tests="1" failures="1" errors="0" skipped="0" time="0.007">
-        <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; throws a descriptive error when called with an empty slug" time="0.005">
-            <failure message="expected [Function] to throw error including &apos;getProductBySlug called without a val…&apos; but got &apos;NEXT_PUBLIC_WORDPRESS_GRAPHQL environ…&apos;" type="AssertionError">
-AssertionError: expected [Function] to throw error including &apos;getProductBySlug called without a val…&apos; but got &apos;NEXT_PUBLIC_WORDPRESS_GRAPHQL environ…&apos;
-
-- Expected
-+ Received
-
-- getProductBySlug called without a valid `slug` (received empty value)
-+ NEXT_PUBLIC_WORDPRESS_GRAPHQL environment variable is not set
-            </failure>
+<testsuites name="vitest tests" tests="4" failures="0" errors="0" time="1.425">
+    <testsuite name="src/lib/graphql/queries.test.ts" timestamp="2025-12-02T19:02:02.739Z" hostname="MKT-ATEECE" tests="3" failures="0" errors="0" skipped="0" time="0.203">
+        <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; throws a descriptive error when called with an empty slug" time="0.199">
+        </testcase>
+        <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; resolves with product data when given a valid slug" time="0.001">
+        </testcase>
+        <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; normalizes incomplete GraphQL responses (adds __typename, normalizes gallery/image)" time="0.001">
         </testcase>
     </testsuite>
-    <testsuite name="src/app/products/[slug]/__tests__/page.test.tsx" timestamp="2025-12-02T16:07:26.517Z" hostname="MKT-ATEECE" tests="1" failures="0" errors="0" skipped="0" time="0.07">
-        <testcase classname="src/app/products/[slug]/__tests__/page.test.tsx" name="ProductDetailClient &gt; renders and adds product to cart" time="0.068">
+    <testsuite name="src/app/products/[slug]/__tests__/page.test.tsx" timestamp="2025-12-02T19:02:02.742Z" hostname="MKT-ATEECE" tests="1" failures="0" errors="0" skipped="0" time="0.072">
+        <testcase classname="src/app/products/[slug]/__tests__/page.test.tsx" name="ProductDetailClient &gt; renders and adds product to cart" time="0.069">
         </testcase>
     </testsuite>
 </testsuites>

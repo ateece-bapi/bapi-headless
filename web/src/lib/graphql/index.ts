@@ -9,6 +9,7 @@ export { graphqlClient, getGraphQLClient, clientGraphQLClient } from './client';
 
 // Query functions
 export { getProducts, getProductBySlug, getProductCategories } from './queries';
+export { normalizeProductQueryResponse } from './queries';
 
 // Type guards and utilities
 export {

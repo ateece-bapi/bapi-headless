@@ -1,6 +1,7 @@
 import { getProducts } from '@/lib/graphql';
 import { getProductPrice } from '@/lib/graphql';
 import Link from 'next/link';
+import Image from 'next/image';
 import { CartButton, CartDrawer, AddToCartButton } from '@/components/cart';
 import type { CartItem } from '@/store';
 
@@ -84,9 +85,11 @@ export default async function Home() {
                     className="border border-neutral-200 rounded p-6 shadow-sm hover:shadow-lg hover:border-primary-300 transition bg-white"
                   >
                     {product.image && (
-                      <img
+                      <Image
                         src={product.image.sourceUrl}
-                        alt={product.image.altText}
+                        alt={product.image.altText || product.name || ''}
+                        width={640}
+                        height={192}
                         className="w-full h-48 object-cover rounded mb-4"
                       />
                     )}

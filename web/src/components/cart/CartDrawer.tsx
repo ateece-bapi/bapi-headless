@@ -1,5 +1,6 @@
-'use client';
+ 'use client';
 
+import Image from 'next/image';
 import { useCart, useCartDrawer } from '@/store';
 
 export function CartDrawer() {
@@ -41,9 +42,11 @@ export function CartDrawer() {
               {items.map((item) => (
                 <div key={item.id} className="flex gap-4 border-b border-neutral-200 pb-4">
                   {item.image && (
-                    <img
+                    <Image
                       src={item.image.sourceUrl}
                       alt={item.image.altText || item.name}
+                      width={80}
+                      height={80}
                       className="w-20 h-20 object-cover rounded"
                     />
                   )}

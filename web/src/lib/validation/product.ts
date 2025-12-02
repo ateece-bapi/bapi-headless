@@ -20,7 +20,7 @@ export const productSchema = z.object({
   slug: z.string(),
   shortDescription: z.string().nullable().optional(),
   description: z.string().nullable().optional(),
-  __typename: z.string(),
+  __typename: z.string().optional(),
   price: z.string(),
   image: imageSchema.nullable().optional(),
   galleryImages: galleryImagesSchema,

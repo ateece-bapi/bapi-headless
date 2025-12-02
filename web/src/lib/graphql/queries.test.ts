@@ -47,4 +47,49 @@ describe('getProductBySlug', () => {
 
     spy.mockRestore();
   });
+
+  it('normalizes incomplete GraphQL responses (adds __typename, normalizes gallery/image)', async () => {
+    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'http://example.test/graphql';
+
+    const incompleteProduct = {
+      product: {
+        id: 'prod-2',
+        databaseId: 2,
+        name: 'Incomplete Product',
+        slug: 'incomplete-product',
+        // missing __typename
+        price: '$19.99',
+        // image uses alternative keys sometimes returned by WP
+        image: { source_url: 'https://example.test/img.png', alt_text: 'Alt Text' },
+        // galleryImages is null in some responses
+        galleryImages: null,
+        // variations missing nodes
+        variations: null,
+      },
+    };
+
+    const { vi } = await import('vitest');
+    const clientModule = await import('./client');
+    const spy = vi.spyOn(clientModule, 'getGraphQLClient').mockImplementation(() => ({
+      request: async (_doc: unknown, _vars: unknown) => incompleteProduct,
+    } as any));
+
+    const mod = await import('./queries');
+
+    const resp = await mod.getProductBySlug('incomplete-product');
+    expect(resp).toHaveProperty('product');
+    const p = resp.product as any;
+    // normalizer should add a __typename
+    expect(p.__typename).toBeDefined();
+    // image should be normalized to have sourceUrl and altText
+    expect(p.image).toBeDefined();
+    expect(p.image.sourceUrl).toBe('https://example.test/img.png');
+    expect(p.image.altText).toBe('Alt Text');
+    // galleryImages.nodes should be an array
+    expect(Array.isArray(p.galleryImages?.nodes)).toBe(true);
+    // variations.nodes should be an array
+    expect(Array.isArray(p.variations?.nodes)).toBe(true);
+
+    spy.mockRestore();
+  });
 });

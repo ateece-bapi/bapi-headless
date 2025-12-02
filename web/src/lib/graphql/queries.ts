@@ -32,47 +32,99 @@ export async function getProductBySlug(slug: string): Promise<GetProductBySlugQu
 // Normalizer: Make best-effort repairs to common GraphQL response issues so
 // callers (and validation) can depend on a consistent shape.
 export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQuery {
-  const safe = (raw ?? {}) as any;
+  const safe = (raw ?? {}) as Record<string, unknown>;
 
-  if (!safe.product) return { product: null } as GetProductBySlugQuery;
+  if (!('product' in safe) || safe.product == null) return { product: null } as GetProductBySlugQuery;
 
-  const p = { ...safe.product } as any;
+  const productRaw = safe.product as Record<string, unknown>;
+  const p: Record<string, unknown> = { ...productRaw };
 
+  // Ensure typename exists
   if (p.__typename === undefined || p.__typename === null) {
     p.__typename = 'Product';
   }
 
-  if (p.image && typeof p.image === 'object') {
-    p.image = {
-      sourceUrl: p.image.sourceUrl ?? p.image.source_url ?? '',
-      altText: p.image.altText ?? p.image.alt_text ?? p.image.alt ?? '',
-      mediaDetails: p.image.mediaDetails ?? p.image.media_details ?? null,
+  // Normalize image fields from various WP naming conventions
+  const imageRaw = productRaw.image as Record<string, unknown> | null | undefined;
+  if (imageRaw && typeof imageRaw === 'object') {
+    const normalizedImage = {
+      sourceUrl: String(imageRaw.sourceUrl ?? imageRaw.source_url ?? ''),
+      altText: (imageRaw.altText ?? imageRaw.alt_text ?? imageRaw.alt ?? '') as string | null,
+      mediaDetails: imageRaw.mediaDetails ?? imageRaw.media_details ?? null,
     };
+    p.image = normalizedImage;
   } else {
     p.image = null;
   }
 
-  if (!p.galleryImages) {
+  // Normalize galleryImages to the { nodes: [] } shape
+  const galleryRaw = productRaw.galleryImages;
+  if (!galleryRaw) {
     p.galleryImages = { nodes: [] };
-  } else if (Array.isArray(p.galleryImages)) {
-    p.galleryImages = { nodes: p.galleryImages };
-  } else if (p.galleryImages && !Array.isArray(p.galleryImages.nodes)) {
-    p.galleryImages = { nodes: p.galleryImages.nodes ? Array.from(p.galleryImages.nodes) : [] };
+  } else if (Array.isArray(galleryRaw)) {
+    p.galleryImages = { nodes: galleryRaw };
+  } else if (galleryRaw && typeof galleryRaw === 'object') {
+    const nodes = Array.isArray((galleryRaw as Record<string, unknown>).nodes)
+      ? ((galleryRaw as Record<string, unknown>).nodes as Array<Record<string, unknown>>)
+      : [];
+    p.galleryImages = { nodes };
   }
 
-  if (!p.variations) {
+  // Normalize variations to the { nodes: [] } shape
+  const variRaw = productRaw.variations as Record<string, unknown> | null | undefined;
+  if (!variRaw) {
     p.variations = { nodes: [] };
-  } else if (p.variations && !Array.isArray(p.variations.nodes)) {
-    p.variations = { nodes: p.variations.nodes ? Array.from(p.variations.nodes) : [] };
+  } else if (variRaw && typeof variRaw === 'object') {
+    const nodes = Array.isArray((variRaw as Record<string, unknown>).nodes) ? ((variRaw as Record<string, unknown>).nodes as Array<Record<string, unknown>>) : [];
+    // Normalize each variation's attributes and image fields for consistency
+    const normalizedVariations = nodes.map((vn) => {
+      const v = (vn ?? {}) as Record<string, unknown>;
+
+      // Normalize attributes to { nodes: Array< { name, label, value } > }
+      const attrsRaw = v.attributes as Record<string, unknown> | null | undefined;
+      let attrsNodes: Array<Record<string, unknown>> = [];
+      if (attrsRaw) {
+        if (Array.isArray((attrsRaw as any).nodes)) {
+          attrsNodes = (attrsRaw as any).nodes as Array<Record<string, unknown>>;
+        } else if (Array.isArray(attrsRaw)) {
+          attrsNodes = attrsRaw as Array<Record<string, unknown>>;
+        }
+      }
+
+      const normalizedAttrs = attrsNodes.map((a) => ({
+        id: a?.id ?? null,
+        name: a?.name ?? a?.label ?? null,
+        label: a?.label ?? a?.name ?? null,
+        value: a?.value ?? null,
+      }));
+
+      // Normalize variation image
+      const vImageRaw = v.image as Record<string, unknown> | null | undefined;
+      const vImage = vImageRaw && typeof vImageRaw === 'object'
+        ? {
+            sourceUrl: String(vImageRaw.sourceUrl ?? vImageRaw.source_url ?? ''),
+            altText: (vImageRaw.altText ?? vImageRaw.alt_text ?? vImageRaw.alt ?? '') as string | null,
+          }
+        : null;
+
+      return {
+        ...v,
+        attributes: { nodes: normalizedAttrs },
+        image: vImage,
+      } as Record<string, unknown>;
+    });
+
+    p.variations = { nodes: normalizedVariations };
   }
 
-  p.name = p.name ?? '';
-  p.slug = p.slug ?? '';
-  p.price = p.price ?? '';
-  p.shortDescription = p.shortDescription ?? p.short_description ?? null;
-  p.description = p.description ?? p.content ?? null;
+  // Basic string fallbacks
+  p.name = (p.name ?? '') as string;
+  p.slug = (p.slug ?? '') as string;
+  p.price = (p.price ?? '') as string;
+  p.shortDescription = (p.shortDescription ?? (productRaw.short_description ?? null)) as string | null;
+  p.description = (p.description ?? (productRaw.content ?? null)) as string | null;
 
-  return { product: p } as GetProductBySlugQuery;
+  return { product: p as GetProductBySlugQuery['product'] } as GetProductBySlugQuery;
 }
 
 /**

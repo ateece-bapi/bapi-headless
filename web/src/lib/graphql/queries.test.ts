@@ -32,9 +32,10 @@ describe('getProductBySlug', () => {
       },
     };
 
-    // Mock the GraphQL client module before importing queries so the module
-    // uses our test double when calling getGraphQLClient().
-    const vi = (await import('vitest')).vi;
+    // Reset module cache and mock the GraphQL client module before importing
+    // `./queries` so the module uses our test double when calling getGraphQLClient().
+    const { vi } = await import('vitest');
+    vi.resetModules();
     vi.mock('./client', () => ({
       getGraphQLClient: () => ({
         request: async (_doc: unknown, _vars: unknown) => mockProduct,
@@ -47,5 +48,6 @@ describe('getProductBySlug', () => {
     expect(resp).toEqual(mockProduct);
 
     vi.unmock('./client');
+    vi.resetModules();
   });
 });

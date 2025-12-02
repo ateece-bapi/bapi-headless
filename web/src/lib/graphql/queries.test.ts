@@ -32,22 +32,19 @@ describe('getProductBySlug', () => {
       },
     };
 
-    // Reset module cache and mock the GraphQL client module before importing
-    // `./queries` so the module uses our test double when calling getGraphQLClient().
+    // Spy on the real client module's getGraphQLClient export so queries
+    // uses our mocked implementation at runtime (ESM live-binding).
     const { vi } = await import('vitest');
-    vi.resetModules();
-    vi.mock('./client', () => ({
-      getGraphQLClient: () => ({
-        request: async (_doc: unknown, _vars: unknown) => mockProduct,
-      }),
-    }));
+    const clientModule = await import('./client');
+    const spy = vi.spyOn(clientModule, 'getGraphQLClient').mockImplementation(() => ({
+      request: async (_doc: unknown, _vars: unknown) => mockProduct,
+    } as any));
 
     const mod = await import('./queries');
 
     const resp = await mod.getProductBySlug('test-product');
     expect(resp).toEqual(mockProduct);
 
-    vi.unmock('./client');
-    vi.resetModules();
+    spy.mockRestore();
   });
 });

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="4" failures="0" errors="0" time="1.425">
-    <testsuite name="src/lib/graphql/queries.test.ts" timestamp="2025-12-02T19:02:02.739Z" hostname="MKT-ATEECE" tests="3" failures="0" errors="0" skipped="0" time="0.203">
-        <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; throws a descriptive error when called with an empty slug" time="0.199">
+<testsuites name="vitest tests" tests="5" failures="0" errors="0" time="1.108">
+    <testsuite name="src/lib/graphql/queries.test.ts" timestamp="2025-12-02T22:51:34.674Z" hostname="MKT-ATEECE" tests="4" failures="0" errors="0" skipped="0" time="0.176">
+        <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; throws a descriptive error when called with an empty slug" time="0.171">
         </testcase>
-        <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; resolves with product data when given a valid slug" time="0.001">
+        <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; resolves with product data when given a valid slug" time="0.002">
         </testcase>
         <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; normalizes incomplete GraphQL responses (adds __typename, normalizes gallery/image)" time="0.001">
         </testcase>
+        <testcase classname="src/lib/graphql/queries.test.ts" name="getProductBySlug &gt; normalizes variation attributes and variation image" time="0">
+        </testcase>
     </testsuite>
-    <testsuite name="src/app/products/[slug]/__tests__/page.test.tsx" timestamp="2025-12-02T19:02:02.742Z" hostname="MKT-ATEECE" tests="1" failures="0" errors="0" skipped="0" time="0.072">
+    <testsuite name="src/app/products/[slug]/__tests__/page.test.tsx" timestamp="2025-12-02T22:51:34.677Z" hostname="MKT-ATEECE" tests="1" failures="0" errors="0" skipped="0" time="0.073">
         <testcase classname="src/app/products/[slug]/__tests__/page.test.tsx" name="ProductDetailClient &gt; renders and adds product to cart" time="0.069">
         </testcase>
     </testsuite>

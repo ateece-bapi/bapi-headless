@@ -10,6 +10,8 @@ interface Variation {
   databaseId: number;
   name: string;
   price?: string | null;
+  attributes?: Record<string, string>;
+  image?: ImageShape | null;
 }
 
 interface ImageShape {
@@ -27,15 +29,26 @@ interface ProductForClient {
   image?: ImageShape | null;
   gallery?: ImageShape[];
   variations?: Variation[];
+  attributes?: Array<{ name: string; options: string[] }>;
   shortDescription?: string | null;
   description?: string | null;
 }
 
 export default function ProductDetailClient({ product }: { product: ProductForClient }) {
-  const { variations = [] } = product;
-  const [selectedVariationId, setSelectedVariationId] = useState<number | null>(
-    variations.length > 0 ? variations[0].databaseId : null
-  );
+  const { variations = [], attributes = [] } = product;
+
+  // Attribute selection state (e.g., { Size: 'M', Color: 'Red' })
+  const initialAttributeSelection = attributes.reduce<Record<string, string>>((acc, a) => {
+    acc[a.name] = a.options[0] ?? '';
+    return acc;
+  }, {});
+
+  const [attributeSelection, setAttributeSelection] = useState<Record<string, string>>(initialAttributeSelection);
+
+  const [selectedVariationId, setSelectedVariationId] = useState<number | null>(() => {
+    if (variations.length > 0) return variations[0].databaseId;
+    return null;
+  });
 
   // Gallery state: index into gallery or -1 for the main image
   const gallery = product.gallery || [];
@@ -44,10 +57,20 @@ export default function ProductDetailClient({ product }: { product: ProductForCl
     product.image ? -1 : initialIndex
   );
 
-  const selectedVariation = useMemo(
-    () => variations.find((v) => v.databaseId === selectedVariationId) ?? null,
-    [variations, selectedVariationId]
-  );
+  const selectedVariation = useMemo(() => {
+    // If attributeSelection is present, prefer finding a variation matching attributes
+    if (Object.keys(attributeSelection).length > 0) {
+      const found = variations.find((v) => {
+        if (!v.attributes) return false;
+        for (const k of Object.keys(attributeSelection)) {
+          if ((v.attributes[k] ?? '') !== attributeSelection[k]) return false;
+        }
+        return true;
+      });
+      if (found) return found;
+    }
+    return variations.find((v) => v.databaseId === selectedVariationId) ?? null;
+  }, [variations, selectedVariationId, attributeSelection]);
 
   const cartProduct: Omit<CartItem, 'quantity'> = {
     id: selectedVariation ? `${product.id}::${selectedVariation.databaseId}` : product.id,
@@ -55,24 +78,26 @@ export default function ProductDetailClient({ product }: { product: ProductForCl
     name: selectedVariation ? selectedVariation.name : product.name,
     slug: product.slug,
     price: selectedVariation && selectedVariation.price ? selectedVariation.price : product.price,
-    image:
-      selectedImageIndex === -1
-        ? product.image
-          ? { sourceUrl: product.image.sourceUrl, altText: product.image.altText ?? undefined }
-          : null
-        : gallery[selectedImageIndex]
-        ? { sourceUrl: gallery[selectedImageIndex].sourceUrl, altText: gallery[selectedImageIndex].altText ?? undefined }
-        : product.image
-        ? { sourceUrl: product.image.sourceUrl, altText: product.image.altText ?? undefined }
-        : null,
+    // Resolve the image to send to cart in a small helper so TypeScript can
+    // properly narrow nullable values and we avoid nested ternaries.
+    image: (() => {
+      if (selectedImageIndex === -1) {
+        const img = selectedVariation?.image ?? product.image;
+        return img ? { sourceUrl: img.sourceUrl, altText: img.altText ?? undefined } : null;
+      }
+      const galleryImg = gallery[selectedImageIndex];
+      if (galleryImg) return { sourceUrl: galleryImg.sourceUrl, altText: galleryImg.altText ?? undefined };
+      const fallback = selectedVariation?.image ?? product.image;
+      return fallback ? { sourceUrl: fallback.sourceUrl, altText: fallback.altText ?? undefined } : null;
+    })(),
     variationId: selectedVariation ? selectedVariation.databaseId : undefined,
     variationName: selectedVariation ? selectedVariation.name : undefined,
   };
 
-  const mainImage =
-    selectedImageIndex === -1
-      ? product.image
-      : gallery[selectedImageIndex] || product.image || null;
+  const mainImage = (() => {
+    if (selectedImageIndex === -1) return selectedVariation?.image ?? product.image ?? null;
+    return gallery[selectedImageIndex] ?? selectedVariation?.image ?? product.image ?? null;
+  })();
 
   return (
     <div className="grid gap-8 lg:grid-cols-3">
@@ -134,19 +159,41 @@ export default function ProductDetailClient({ product }: { product: ProductForCl
 
         {variations.length > 0 && (
           <div className="mb-4">
-            <label htmlFor="variation" className="font-medium block mb-2">Variant</label>
-            <select
-              id="variation"
-              value={selectedVariationId ?? ''}
-              onChange={(e) => setSelectedVariationId(Number(e.target.value) || null)}
-              className="border border-neutral-200 rounded px-3 py-2"
-            >
-              {variations.map((v) => (
-                <option key={v.id} value={v.databaseId}>
-                  {v.name} {v.price ? ` — ${v.price}` : ''}
-                </option>
-              ))}
-            </select>
+            {/* If attributes are present, render attribute selectors */}
+            {attributes.length > 0 ? (
+              <div className="space-y-3">
+                {attributes.map((attr) => (
+                  <div key={attr.name}>
+                    <label className="font-medium block mb-2">{attr.name}</label>
+                    <select
+                      value={attributeSelection[attr.name] ?? ''}
+                      onChange={(e) => setAttributeSelection((s) => ({ ...s, [attr.name]: e.target.value }))}
+                      className="border border-neutral-200 rounded px-3 py-2"
+                    >
+                      {attr.options.map((opt) => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <>
+                <label htmlFor="variation" className="font-medium block mb-2">Variant</label>
+                <select
+                  id="variation"
+                  value={selectedVariationId ?? ''}
+                  onChange={(e) => setSelectedVariationId(Number(e.target.value) || null)}
+                  className="border border-neutral-200 rounded px-3 py-2"
+                >
+                  {variations.map((v) => (
+                    <option key={v.id} value={v.databaseId}>
+                      {v.name} {v.price ? ` — ${v.price}` : ''}
+                    </option>
+                  ))}
+                </select>
+              </>
+            )}
           </div>
         )}
 

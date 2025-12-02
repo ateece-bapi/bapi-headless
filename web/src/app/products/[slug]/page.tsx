@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getProductBySlug, getProductPrice, getProductStockStatus } from '@/lib/graphql';
+import type { GetProductBySlugQuery } from '@/lib/graphql';
 import { getProductQuerySchema, productSchema } from '@/lib/validation/product';
 import { z } from 'zod';
 import ProductDetailClient from '@/components/products/ProductDetailClient';
@@ -19,10 +20,10 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
   const slug = String(resolvedParams.slug);
   const data = await getProductBySlug(slug);
   // Validate the (already-normalized) GraphQL response shape.
-  const parsed = getProductQuerySchema.safeParse(data as unknown);
+  const parsed = getProductQuerySchema.safeParse(data);
   if (!parsed.success) throw parsed.error;
 
-  const product = data.product as any;
+  const product = data.product as GetProductBySlugQuery['product'] | null;
 
   if (!product) return {};
 
@@ -48,8 +49,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
   const slug = String(resolvedParams.slug);
   const data = await getProductBySlug(slug);
   // The fetch layer returns normalized data; validate shape here.
-  getProductQuerySchema.parse(data as unknown);
-  const product = data.product as any;
+  getProductQuerySchema.parse(data);
+  const product = data.product as GetProductBySlugQuery['product'] | null;
 
   if (!product) {
     notFound();
@@ -66,22 +67,67 @@ export default async function ProductPage({ params }: { params: { slug: string }
     image: product.image
       ? { sourceUrl: product.image.sourceUrl || '', altText: product.image.altText || product.name || '' }
       : null,
-    gallery: (product.galleryImages?.nodes || []).map((g: any) => ({ sourceUrl: g?.sourceUrl || '', altText: g?.altText || '' })),
+    gallery: ((product.galleryImages?.nodes || []) as Array<{ sourceUrl?: string; altText?: string | null }>).map((node) => {
+      return { sourceUrl: node?.sourceUrl ?? '', altText: node?.altText ?? '' };
+    }),
     variations:
       // normalize variable product variations into simple shape
       // Use the validated product schema to access variation nodes safely
       (product
         ? (() => {
             const validated = productSchema.parse(product) as z.infer<typeof productSchema>;
-            return validated.variations?.nodes?.map((v: any) => ({
-              id: v.id,
-              databaseId: v.databaseId ?? 0,
-              name: v.name || `${product.name} variant`,
-              // `price` may or may not exist on different variation types; access safely
-              price: (v as { price?: string | null }).price ?? null,
-            })) || [];
+            return (
+              validated.variations?.nodes?.map((v) => {
+                const vv = v as {
+                  id: string;
+                  databaseId?: number;
+                  name?: string | null;
+                  price?: string | null;
+                  attributes?: { nodes?: Array<{ name?: string; label?: string; value?: string | null }> } | null;
+                  image?: { sourceUrl?: string; altText?: string | null } | null;
+                };
+                const attrs = (vv.attributes?.nodes || []).reduce<Record<string, string>>((acc, a) => {
+                  if (a && a.name && a.value) acc[a.name] = a.value;
+                  return acc;
+                }, {});
+
+                return {
+                  id: vv.id,
+                  databaseId: vv.databaseId ?? 0,
+                  name: vv.name || `${product?.name ?? 'Product'} variant`,
+                  // `price` may or may not exist on different variation types; access safely
+                  price: vv.price ?? null,
+                  attributes: attrs,
+                  image: vv.image ? { sourceUrl: vv.image.sourceUrl ?? '', altText: vv.image.altText ?? '' } : null,
+                };
+              }) || []
+            );
           })()
         : []) || [],
+    // derive top-level attribute options from variations (size, color, etc.)
+    attributes: (() => {
+      // `product` is a union of different product types; `variations` only
+      // exists on variable products. Narrow safely before accessing.
+      const prodWithVariations = product as GetProductBySlugQuery['product'] | null;
+      const variationsArr = (() => {
+        if (!prodWithVariations) return [] as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
+        if (!('variations' in prodWithVariations)) return [] as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
+        const maybe = (prodWithVariations as any).variations;
+        if (!maybe || !Array.isArray(maybe.nodes)) return [] as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
+        return maybe.nodes as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
+      })();
+      const acc: Record<string, Set<string>> = {};
+      for (const v of variationsArr) {
+        const vv = v as { attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null };
+        const nodes = vv.attributes?.nodes || [];
+        for (const a of nodes) {
+          if (!a || !a.name) continue;
+          acc[a.name] = acc[a.name] || new Set<string>();
+          if (a.value) acc[a.name].add(a.value);
+        }
+      }
+      return Object.entries(acc).map(([name, set]) => ({ name, options: Array.from(set) }));
+    })(),
     shortDescription: product.shortDescription || null,
     description: product.description || null,
   };
@@ -104,53 +150,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
         <main className="py-12">
           <div className="container mx-auto px-4">
-            <div className="grid gap-8 lg:grid-cols-3">
-              {/* Left: images */}
-              <div className="lg:col-span-1">
-                {productForClient.image ? (
-                  <div className="relative w-full h-[420px] rounded mb-4">
-                    <Image
-                      src={productForClient.image.sourceUrl}
-                      alt={productForClient.image.altText || productForClient.name}
-                      fill
-                      className="object-cover rounded"
-                      sizes="(min-width: 1024px) 33vw, 100vw"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full h-[420px] bg-neutral-100 rounded mb-4 flex items-center justify-center">
-                    <div className="text-neutral-400">No image</div>
-                  </div>
-                )}
-
-                {productForClient.gallery && productForClient.gallery.length > 0 && (
-                  <div className="grid grid-cols-4 gap-2 mt-2">
-                    {productForClient.gallery.map((g: any, i: number) => (
-                      <div key={i} className="w-full h-20 relative rounded overflow-hidden">
-                        <Image src={g.sourceUrl} alt={g.altText || `${productForClient.name} ${i + 1}`} width={160} height={80} className="object-cover rounded" />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Right: product info and actions */}
-              <div className="lg:col-span-2">
-                <h1 className="text-3xl font-bold text-neutral-900 mb-2">{productForClient.name}</h1>
-                <p className="text-lg text-primary-500 font-semibold mb-4">{productForClient.price}</p>
-
-                {productForClient.shortDescription && (
-                  <div className="prose max-w-none mb-6" dangerouslySetInnerHTML={{ __html: productForClient.shortDescription }} />
-                )}
-
-                <ProductDetailClient product={productForClient} />
-
-                <section className="mt-8 prose max-w-none">
-                  <h2>Description</h2>
-                  <div dangerouslySetInnerHTML={{ __html: productForClient.description || '<p>No description</p>' }} />
-                </section>
-              </div>
-            </div>
+            {/* ProductDetailClient renders images, gallery, pricing, variations and description */}
+            <ProductDetailClient product={productForClient} />
           </div>
         </main>
 

@@ -36297,6 +36297,23 @@ export const GetProductBySlugDocument = gql`
           price
           regularPrice
           stockStatus
+          attributes {
+            nodes {
+              id
+              name
+              label
+              value
+            }
+          }
+          image {
+            id
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
         }
       }
     }

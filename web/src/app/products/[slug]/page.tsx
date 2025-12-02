@@ -17,9 +17,27 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
   const resolvedParams = await params;
   if (!resolvedParams?.slug) return {};
   const slug = String(resolvedParams.slug);
-  const data = await getProductBySlug(slug);
-  // Runtime-validate the GraphQL response shape
-  getProductQuerySchema.parse(data as unknown);
+  let data = await getProductBySlug(slug);
+  // Runtime-validate the GraphQL response shape. Use safeParse so we can
+  // attempt a minimal repair (add missing `__typename`) before failing
+  // hard. This helps when the GraphQL endpoint omits `__typename`.
+  const parsed = getProductQuerySchema.safeParse(data as unknown);
+  if (!parsed.success) {
+    // Attempt to repair common missing-fields (e.g. __typename)
+    const repaired = JSON.parse(JSON.stringify(data || {}));
+    if (repaired && repaired.product && repaired.product.__typename === undefined) {
+      repaired.product.__typename = 'Product';
+    }
+
+    const reparsed = getProductQuerySchema.safeParse(repaired as unknown);
+    if (!reparsed.success) {
+      // Still invalid — rethrow the original validation error for visibility
+      throw parsed.error;
+    }
+
+    data = repaired as typeof data;
+  }
+
   const product = data.product;
 
   if (!product) return {};

@@ -6,6 +6,9 @@ import { AddToCartButton } from '@/components/cart';
 import type { CartItem } from '@/store';
 import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 
+/**
+ * Product variation (e.g., size/color option)
+ */
 export interface Variation {
   id: string;
   databaseId: number;
@@ -15,11 +18,17 @@ export interface Variation {
   image?: ImageShape | null;
 }
 
+/**
+ * Image shape for product and variations
+ */
 export interface ImageShape {
   sourceUrl: string;
   altText?: string | null;
 }
 
+/**
+ * Product data for client-side rendering
+ */
 export interface ProductForClient {
   id: string;
   databaseId: number;
@@ -35,6 +44,13 @@ export interface ProductForClient {
   description?: string | null;
 }
 
+/**
+ * Product detail component for displaying product info, variations, and cart actions.
+ *
+ * @param product Product data to display
+ * @param useCart Optional custom cart hook
+ * @param useCartDrawer Optional custom cart drawer hook
+ */
 export default function ProductDetailClient({
   product,
   useCart = defaultUseCart,

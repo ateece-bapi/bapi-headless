@@ -7,7 +7,7 @@ type ProductForClient = React.ComponentProps<typeof ProductDetailClient>['produc
 
 import { mockProductForClient, makeProductForClient } from '../../../../../test/msw/fixtures';
 
-const productShape: ProductForClient = makeProductForClient();
+const productShape: ProductForClient = makeProductForClient({ stockStatus: 'IN_STOCK' });
 
 describe('ProductDetailClient', () => {
   beforeEach(() => {

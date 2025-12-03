@@ -10,6 +10,7 @@ interface AddToCartButtonProps {
   showCartOnAdd?: boolean;
   useCart?: typeof useCart;
   useCartDrawer?: typeof useCartDrawer;
+  disabled?: boolean;
 }
 
 export function AddToCartButton({
@@ -19,6 +20,7 @@ export function AddToCartButton({
   showCartOnAdd = true,
   useCart: injectedUseCart,
   useCartDrawer: injectedUseCartDrawer,
+  disabled = false,
 }: AddToCartButtonProps) {
   const useCartHook = injectedUseCart ?? useCart;
   const useCartDrawerHook = injectedUseCartDrawer ?? useCartDrawer;
@@ -36,6 +38,7 @@ export function AddToCartButton({
     <button
       onClick={handleAddToCart}
       className={`bg-accent-500 hover:bg-accent-600 text-neutral-900 font-semibold py-2 px-4 rounded transition shadow-sm hover:shadow-md ${className}`}
+      disabled={disabled}
     >
       Add to Cart
     </button>

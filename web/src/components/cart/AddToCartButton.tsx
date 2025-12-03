@@ -8,6 +8,8 @@ interface AddToCartButtonProps {
   quantity?: number;
   className?: string;
   showCartOnAdd?: boolean;
+  useCart?: typeof useCart;
+  useCartDrawer?: typeof useCartDrawer;
 }
 
 export function AddToCartButton({
@@ -15,17 +17,21 @@ export function AddToCartButton({
   quantity = 1,
   className = '',
   showCartOnAdd = true,
+  useCart: injectedUseCart,
+  useCartDrawer: injectedUseCartDrawer,
 }: AddToCartButtonProps) {
-  const { addItem } = useCart();
-  const { openCart } = useCartDrawer();
-  
+  const useCartHook = injectedUseCart ?? useCart;
+  const useCartDrawerHook = injectedUseCartDrawer ?? useCartDrawer;
+  const { addItem } = useCartHook();
+  const { openCart } = useCartDrawerHook();
+
   const handleAddToCart = () => {
     addItem(product, quantity);
     if (showCartOnAdd) {
       openCart();
     }
   };
-  
+
   return (
     <button
       onClick={handleAddToCart}

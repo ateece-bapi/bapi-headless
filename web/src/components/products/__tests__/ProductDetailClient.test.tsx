@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import type { ProductForClient, Variation } from '../ProductDetailClient';
 import type { useCart as useCartType, useCartDrawer as useCartDrawerType } from '@/store';
 import { describe, it, expect, vi } from 'vitest';
@@ -118,8 +119,22 @@ describe('ProductDetailClient', () => {
     it('adds correct variation to cart on Add to Cart', () => {
       const addItemMock = vi.fn();
       const openCartMock = vi.fn();
-      const mockUseCart = () => ({ addItem: addItemMock });
-      const mockUseCartDrawer = () => ({ openCart: openCartMock });
+      const mockUseCart = () => ({
+        items: [],
+        addItem: addItemMock,
+        removeItem: vi.fn(),
+        updateQuantity: vi.fn(),
+        clearCart: vi.fn(),
+        totalItems: 0,
+        subtotal: 0,
+        isEmpty: false,
+      });
+      const mockUseCartDrawer = () => ({
+        isOpen: false,
+        toggleCart: vi.fn(),
+        openCart: openCartMock,
+        closeCart: vi.fn(),
+      });
       renderProductDetail(baseProduct, {
         useCart: mockUseCart,
         useCartDrawer: mockUseCartDrawer,

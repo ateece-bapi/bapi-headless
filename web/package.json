@@ -37,6 +37,7 @@
     "baseline-browser-mapping": "^2.8.32",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
+    "eslint-plugin-jsdoc": "^61.4.1",
     "husky": "^8.0.0",
     "jsdom": "^22.1.0",
     "lint-staged": "^16.2.7",

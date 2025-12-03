@@ -22,7 +22,7 @@
       "@/*": ["./src/*"]
     }
     ,
-    "types": ["vitest/globals", "node"]
+    "types": ["vitest/globals", "node", "@testing-library/jest-dom"]
   },
   "include": [
     "next-env.d.ts",
@@ -36,9 +36,6 @@
     "node_modules",
     "test",
     "test/**",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/__tests__/**",
     "web/test-output"
   ]
 }

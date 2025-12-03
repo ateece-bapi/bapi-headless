@@ -6,7 +6,7 @@ import { AddToCartButton } from '@/components/cart';
 import type { CartItem } from '@/store';
 import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 
-interface Variation {
+export interface Variation {
   id: string;
   databaseId: number;
   name: string;
@@ -15,12 +15,12 @@ interface Variation {
   image?: ImageShape | null;
 }
 
-interface ImageShape {
+export interface ImageShape {
   sourceUrl: string;
   altText?: string | null;
 }
 
-interface ProductForClient {
+export interface ProductForClient {
   id: string;
   databaseId: number;
   name: string;
@@ -213,6 +213,7 @@ export default function ProductDetailClient({
             className="inline-block"
             useCart={useCart}
             useCartDrawer={useCartDrawer}
+            disabled={product.stockStatus !== 'IN_STOCK'}
           />
           <div className="text-sm text-neutral-600">{product.stockStatus ?? ''}</div>
         </div>

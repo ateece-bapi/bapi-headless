@@ -183,23 +183,7 @@ export default function ProductDetailClient({
                   </div>
                 ))}
               </div>
-            ) : (
-              <>
-                <label htmlFor="variation" className="font-medium block mb-2">Variant</label>
-                <select
-                  id="variation"
-                  value={selectedVariationId ?? ''}
-                  onChange={(e) => setSelectedVariationId(Number(e.target.value) || null)}
-                  className="border border-neutral-200 rounded px-3 py-2"
-                >
-                  {variations.map((v) => (
-                    <option key={v.id} value={v.databaseId}>
-                      {v.name} {v.price ? ` — ${v.price}` : ''}
-                    </option>
-                  ))}
-                </select>
-              </>
-            )}
+            ) : null}
           </div>
         )}
 

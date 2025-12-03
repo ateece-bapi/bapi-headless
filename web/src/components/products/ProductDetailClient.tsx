@@ -4,6 +4,7 @@ import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { AddToCartButton } from '@/components/cart';
 import type { CartItem } from '@/store';
+import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 
 interface Variation {
   id: string;
@@ -34,7 +35,15 @@ interface ProductForClient {
   description?: string | null;
 }
 
-export default function ProductDetailClient({ product }: { product: ProductForClient }) {
+export default function ProductDetailClient({
+  product,
+  useCart = defaultUseCart,
+  useCartDrawer = defaultUseCartDrawer,
+}: {
+  product: ProductForClient;
+  useCart?: typeof defaultUseCart;
+  useCartDrawer?: typeof defaultUseCartDrawer;
+}) {
   const { variations = [], attributes = [] } = product;
 
   // Attribute selection state (e.g., { Size: 'M', Color: 'Red' })
@@ -164,8 +173,9 @@ export default function ProductDetailClient({ product }: { product: ProductForCl
               <div className="space-y-3">
                 {attributes.map((attr) => (
                   <div key={attr.name}>
-                    <label className="font-medium block mb-2">{attr.name}</label>
+                    <label htmlFor={attr.name} className="font-medium block mb-2">{attr.name}</label>
                     <select
+                      id={attr.name}
                       value={attributeSelection[attr.name] ?? ''}
                       onChange={(e) => setAttributeSelection((s) => ({ ...s, [attr.name]: e.target.value }))}
                       className="border border-neutral-200 rounded px-3 py-2"
@@ -198,7 +208,12 @@ export default function ProductDetailClient({ product }: { product: ProductForCl
         )}
 
         <div className="flex items-center gap-4">
-          <AddToCartButton product={cartProduct} className="inline-block" />
+          <AddToCartButton
+            product={cartProduct}
+            className="inline-block"
+            useCart={useCart}
+            useCartDrawer={useCartDrawer}
+          />
           <div className="text-sm text-neutral-600">{product.stockStatus ?? ''}</div>
         </div>
 

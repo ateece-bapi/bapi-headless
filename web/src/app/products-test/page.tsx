@@ -1,8 +1,42 @@
 import { getProducts } from '@/lib/graphql';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql';
+import { getCollectionPageJsonLd } from '@/lib/seo';
+export const metadata = {
+  title: 'Products Test | BAPI',
+  description: 'Test page for viewing building automation products and their stock status.',
+  openGraph: {
+    title: 'Products Test | BAPI',
+    description: 'Test page for viewing building automation products and their stock status.',
+    type: 'website',
+    url: 'https://yourdomain.com/products-test',
+    images: [
+      {
+        url: 'https://yourdomain.com/og-default.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'BAPI - Building Automation Products'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Products Test | BAPI',
+    description: 'Test page for viewing building automation products and their stock status.',
+    images: ['https://yourdomain.com/og-default.jpg']
+  },
+  alternates: {
+    canonical: '/products-test'
+  }
+};
 import Image from 'next/image';
 
 export default async function ProductsTestPage() {
+  // --- JSON-LD Structured Data ---
+  const jsonLd = getCollectionPageJsonLd({
+    title: 'Products Test | BAPI',
+    description: 'Test page for viewing building automation products and their stock status.',
+    url: 'https://yourdomain.com/products-test'
+  });
   // Skip data fetching if environment variable not set (build time)
   if (!process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
     return (
@@ -19,7 +53,9 @@ export default async function ProductsTestPage() {
   const products = data.products?.nodes || [];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Products Test</h1>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -69,5 +105,8 @@ export default async function ProductsTestPage() {
         <p className="text-center text-gray-500 mt-8">No products found</p>
       )}
     </div>
+    </>
   );
+
+
 }

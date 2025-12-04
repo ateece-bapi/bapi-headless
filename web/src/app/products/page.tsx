@@ -1,5 +1,6 @@
 import { getProducts } from '@/lib/graphql';
 import { getProductPrice } from '@/lib/graphql';
+import { getCollectionPageJsonLd } from '@/lib/seo';
 import Link from 'next/link';
 import Image from 'next/image';
 import { AddToCartButton, CartButton, CartDrawer } from '@/components/cart';
@@ -10,6 +11,29 @@ type ProductData = Omit<CartItem, 'quantity'>;
 export const metadata = {
   title: 'Products | BAPI',
   description: 'Browse our complete selection of building automation sensors and control modules',
+  openGraph: {
+    title: 'Products | BAPI',
+    description: 'Browse our complete selection of building automation sensors and control modules',
+    type: 'website',
+    url: 'https://yourdomain.com/products',
+    images: [
+      {
+        url: 'https://yourdomain.com/og-default.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'BAPI - Building Automation Products'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Products | BAPI',
+    description: 'Browse our complete selection of building automation sensors and control modules',
+    images: ['https://yourdomain.com/og-default.jpg']
+  },
+  alternates: {
+    canonical: '/products'
+  }
 };
 
 export default async function ProductsPage() {
@@ -37,8 +61,34 @@ export default async function ProductsPage() {
     }
   }
 
+  // --- JSON-LD Structured Data ---
+  const jsonLd = getCollectionPageJsonLd({
+    title: 'Products | BAPI',
+    description: 'Browse our complete selection of building automation sensors and control modules',
+    url: 'https://yourdomain.com/products'
+  });
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://yourdomain.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Products",
+        "item": "https://yourdomain.com/products"
+      }
+    ]
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <div className="min-h-screen bg-white">
         {/* Header */}
         <header className="border-b border-neutral-200 bg-white sticky top-0 z-10">
@@ -108,7 +158,7 @@ export default async function ProductsPage() {
                         </div>
                       )}
                       
-                      <h3 className="text-lg font-semibold mb-2 text-neutral-800 line-clamp-2 min-h-[3.5rem]">
+                      <h3 className="text-lg font-semibold mb-2 text-neutral-800 line-clamp-2 min-h-14">
                         {product.name}
                       </h3>
                       

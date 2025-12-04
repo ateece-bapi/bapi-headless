@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image';
+import { useState } from 'react';
+import { AppImage } from '@/components/AppImage';
 import { AddToCartButton } from '@/components/cart';
 import { useProductAttributes } from './useProductAttributes';
 import type { CartItem } from '@/store';
@@ -99,6 +99,11 @@ export default function ProductDetailClient({
     variationName: selectedVariation ? selectedVariation.name : undefined,
   };
 
+  /**
+   * Resolve the main image to display:
+   * - If selectedImageIndex is -1, show the selected variation's image or product image.
+   * - Otherwise, show the selected gallery image, or fallback to variation/product image.
+   */
   const mainImage = (() => {
     if (selectedImageIndex === -1) return selectedVariation?.image ?? product.image ?? null;
     return gallery[selectedImageIndex] ?? selectedVariation?.image ?? product.image ?? null;
@@ -110,9 +115,10 @@ export default function ProductDetailClient({
       <div className="lg:col-span-1">
         <div className="w-full h-[420px] relative rounded mb-4 bg-neutral-100 overflow-hidden">
           {mainImage ? (
-            <Image
+            <AppImage
               src={mainImage.sourceUrl}
               alt={mainImage.altText || product.name}
+              fallbackAlt={product.name}
               fill
               className="object-cover"
               sizes="(min-width:1024px) 33vw, 100vw"
@@ -131,7 +137,8 @@ export default function ProductDetailClient({
                 className={`w-full h-20 relative rounded overflow-hidden border ${selectedImageIndex === i ? 'ring-2 ring-primary-400' : ''}`}
                 aria-label={`Show image ${i + 1}`}
               >
-                <Image src={g.sourceUrl} alt={g.altText || `${product.name} ${i + 1}`} width={160} height={80} className="object-cover" />
+                {/* Gallery thumbnail: use alt text if present, otherwise fallback to product name and index for accessibility */}
+                <AppImage src={g.sourceUrl} alt={g.altText || `${product.name} ${i + 1}`} fallbackAlt={`${product.name} ${i + 1}`} width={160} height={80} className="object-cover" sizes="80px" />
               </button>
             ))}
             {product.image && (
@@ -140,12 +147,15 @@ export default function ProductDetailClient({
                 className={`w-full h-20 relative rounded overflow-hidden border ${selectedImageIndex === -1 ? 'ring-2 ring-primary-400' : ''}`}
                 aria-label="Show main image"
               >
-                <Image
+                {/* Main image thumbnail: use alt text if present, otherwise fallback to product name for accessibility */}
+                <AppImage
                   src={product.image.sourceUrl}
                   alt={product.image.altText || product.name}
+                  fallbackAlt={product.name}
                   width={160}
                   height={80}
                   className="object-cover"
+                  sizes="80px"
                 />
               </button>
             )}

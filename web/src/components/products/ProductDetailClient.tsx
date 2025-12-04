@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { AppImage } from '@/components/AppImage';
 import React, { useState } from 'react';
 import { AddToCartButton } from '@/components/cart';

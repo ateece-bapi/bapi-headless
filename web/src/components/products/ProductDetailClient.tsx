@@ -60,7 +60,13 @@ export default function ProductDetailClient({
   useCart?: typeof defaultUseCart;
   useCartDrawer?: typeof defaultUseCartDrawer;
 }) {
-  const { variations = [], attributes = [] } = product;
+  // Runtime prop validation for critical fields
+  if (!product?.id || !product?.name || product?.price == null) {
+    return (
+      <div className="text-red-600 p-4">Error: Product data is missing required fields.</div>
+    );
+  }
+  const { variations = [], attributes = [] } = product ?? {};
 
   // Attribute selection state (e.g., { Size: 'M', Color: 'Red' })
   const initialAttributeSelection = attributes.reduce<Record<string, string>>((acc, a) => {
@@ -76,52 +82,49 @@ export default function ProductDetailClient({
   });
 
   // Gallery state: index into gallery or -1 for the main image
-  const gallery = product.gallery || [];
+  const gallery = product?.gallery ?? [];
   const initialIndex = gallery.length > 0 ? 0 : -1;
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(
     product.image ? -1 : initialIndex
   );
 
   const selectedVariation = useMemo(() => {
-    // If attributeSelection is present, prefer finding a variation matching attributes
     if (Object.keys(attributeSelection).length > 0) {
       const found = variations.find((v) => {
-        if (!v.attributes) return false;
+        if (!v?.attributes) return false;
         for (const k of Object.keys(attributeSelection)) {
-          if ((v.attributes[k] ?? '') !== attributeSelection[k]) return false;
+          if ((v?.attributes?.[k] ?? '') !== attributeSelection[k]) return false;
         }
         return true;
       });
       if (found) return found;
     }
-    return variations.find((v) => v.databaseId === selectedVariationId) ?? null;
+    return variations.find((v) => v?.databaseId === selectedVariationId) ?? null;
   }, [variations, selectedVariationId, attributeSelection]);
 
   const cartProduct: Omit<CartItem, 'quantity'> = {
-    id: selectedVariation ? `${product.id}::${selectedVariation.databaseId}` : product.id,
-    databaseId: selectedVariation ? selectedVariation.databaseId : product.databaseId,
-    name: selectedVariation ? selectedVariation.name : product.name,
+    id: selectedVariation ? `${product.id}::${selectedVariation?.databaseId}` : product.id,
+    databaseId: selectedVariation ? selectedVariation?.databaseId : product.databaseId,
+    name: selectedVariation ? selectedVariation?.name : product.name,
     slug: product.slug,
-    price: selectedVariation && selectedVariation.price ? selectedVariation.price : product.price,
-    // Resolve the image to send to cart in a small helper so TypeScript can
-    // properly narrow nullable values and we avoid nested ternaries.
+    price: selectedVariation && selectedVariation?.price ? selectedVariation?.price : product.price,
     image: (() => {
       if (selectedImageIndex === -1) {
-        const img = selectedVariation?.image ?? product.image;
-        return img ? { sourceUrl: img.sourceUrl, altText: img.altText ?? undefined } : null;
+        const img = selectedVariation?.image ?? product?.image;
+        return img ? { sourceUrl: img?.sourceUrl, altText: img?.altText ?? undefined } : null;
       }
-      const galleryImg = gallery[selectedImageIndex];
-      if (galleryImg) return { sourceUrl: galleryImg.sourceUrl, altText: galleryImg.altText ?? undefined };
-      const fallback = selectedVariation?.image ?? product.image;
-      return fallback ? { sourceUrl: fallback.sourceUrl, altText: fallback.altText ?? undefined } : null;
+      const galleryImg = gallery?.[selectedImageIndex];
+      if (galleryImg) return { sourceUrl: galleryImg?.sourceUrl, altText: galleryImg?.altText ?? undefined };
+      const fallback = selectedVariation?.image ?? product?.image;
+      return fallback ? { sourceUrl: fallback?.sourceUrl, altText: fallback?.altText ?? undefined } : null;
     })(),
-    variationId: selectedVariation ? selectedVariation.databaseId : undefined,
-    variationName: selectedVariation ? selectedVariation.name : undefined,
+    variationId: selectedVariation ? selectedVariation?.databaseId : undefined,
+    variationName: selectedVariation ? selectedVariation?.name : undefined,
   };
 
   const mainImage = (() => {
-    if (selectedImageIndex === -1) return selectedVariation?.image ?? product.image ?? null;
-    return gallery[selectedImageIndex] ?? selectedVariation?.image ?? product.image ?? null;
+    if (selectedImageIndex === -1) return selectedVariation?.image ?? product?.image ?? null;
+    return gallery?.[selectedImageIndex] ?? selectedVariation?.image ?? product?.image ?? null;
   })();
 
   return (
@@ -131,8 +134,8 @@ export default function ProductDetailClient({
         <div className="w-full h-[420px] relative rounded mb-4 bg-neutral-100 overflow-hidden">
           {mainImage ? (
             <Image
-              src={mainImage.sourceUrl}
-              alt={mainImage.altText || product.name}
+              src={mainImage?.sourceUrl}
+              alt={mainImage?.altText || product?.name}
               fill
               className="object-cover"
               sizes="(min-width:1024px) 33vw, 100vw"
@@ -151,18 +154,18 @@ export default function ProductDetailClient({
                 className={`w-full h-20 relative rounded overflow-hidden border ${selectedImageIndex === i ? 'ring-2 ring-primary-400' : ''}`}
                 aria-label={`Show image ${i + 1}`}
               >
-                <Image src={g.sourceUrl} alt={g.altText || `${product.name} ${i + 1}`} width={160} height={80} className="object-cover" />
+                <Image src={g?.sourceUrl} alt={g?.altText || `${product?.name} ${i + 1}`} width={160} height={80} className="object-cover" />
               </button>
             ))}
-            {product.image && (
+            {product?.image && (
               <button
                 onClick={() => setSelectedImageIndex(-1)}
                 className={`w-full h-20 relative rounded overflow-hidden border ${selectedImageIndex === -1 ? 'ring-2 ring-primary-400' : ''}`}
                 aria-label="Show main image"
               >
                 <Image
-                  src={product.image.sourceUrl}
-                  alt={product.image.altText || product.name}
+                  src={product?.image?.sourceUrl}
+                  alt={product?.image?.altText || product?.name}
                   width={160}
                   height={80}
                   className="object-cover"
@@ -229,9 +232,10 @@ export default function ProductDetailClient({
             className="inline-block"
             useCart={useCart}
             useCartDrawer={useCartDrawer}
-            disabled={product.stockStatus !== 'IN_STOCK'}
+            disabled={product?.stockStatus !== 'IN_STOCK'}
+            aria-disabled={product?.stockStatus !== 'IN_STOCK'}
           />
-          <div className="text-sm text-neutral-600">{product.stockStatus ?? ''}</div>
+          <div className="text-sm text-neutral-600" aria-live="polite">{product?.stockStatus ?? ''}</div>
         </div>
 
         <section className="mt-8 prose max-w-none">

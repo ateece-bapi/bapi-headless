@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { AppImage } from '@/components/AppImage';
-import React, { useState } from 'react';
 import { AddToCartButton } from '@/components/cart';
 import { useProductAttributes } from './useProductAttributes';
 import type { CartItem } from '@/store';
@@ -118,7 +117,7 @@ export default function ProductDetailClient({
           {mainImage ? (
             <AppImage
               src={mainImage.sourceUrl}
-              alt={mainImage.altText}
+              alt={mainImage.altText ?? undefined}
               fallbackAlt={product.name}
               fill
               className="object-cover"
@@ -139,7 +138,7 @@ export default function ProductDetailClient({
                 aria-label={`Show image ${i + 1}`}
               >
                 {/* Gallery thumbnail: use alt text if present, otherwise fallback to product name and index for accessibility */}
-                <AppImage src={g.sourceUrl} alt={g.altText} fallbackAlt={`${product.name} ${i + 1}`} width={160} height={80} className="object-cover" sizes="80px" />
+                <AppImage src={g.sourceUrl} alt={g.altText ?? undefined} fallbackAlt={`${product.name} ${i + 1}`} width={160} height={80} className="object-cover" sizes="80px" />
               </button>
             ))}
             {product.image && (
@@ -151,7 +150,7 @@ export default function ProductDetailClient({
                 {/* Main image thumbnail: use alt text if present, otherwise fallback to product name for accessibility */}
                 <AppImage
                   src={product.image.sourceUrl}
-                  alt={product.image.altText}
+                  alt={product.image.altText ?? undefined}
                   fallbackAlt={product.name}
                   width={160}
                   height={80}

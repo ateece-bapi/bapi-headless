@@ -2,7 +2,9 @@
 
 import React, { useMemo, useState } from 'react';
 import { AppImage } from '@/components/AppImage';
+import React, { useState } from 'react';
 import { AddToCartButton } from '@/components/cart';
+import { useProductAttributes } from './useProductAttributes';
 import type { CartItem } from '@/store';
 import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 
@@ -62,18 +64,12 @@ export default function ProductDetailClient({
 }) {
   const { variations = [], attributes = [] } = product;
 
-  // Attribute selection state (e.g., { Size: 'M', Color: 'Red' })
-  const initialAttributeSelection = attributes.reduce<Record<string, string>>((acc, a) => {
-    acc[a.name] = a.options[0] ?? '';
-    return acc;
-  }, {});
-
-  const [attributeSelection, setAttributeSelection] = useState<Record<string, string>>(initialAttributeSelection);
-
-  const [selectedVariationId, setSelectedVariationId] = useState<number | null>(() => {
-    if (variations.length > 0) return variations[0].databaseId;
-    return null;
-  });
+  // Use custom hook for attribute selection and matching
+  const {
+    attributeSelection,
+    setAttributeSelection,
+    selectedVariation,
+  } = useProductAttributes(attributes, variations);
 
   // Gallery state: index into gallery or -1 for the main image
   const gallery = product.gallery || [];
@@ -81,21 +77,6 @@ export default function ProductDetailClient({
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(
     product.image ? -1 : initialIndex
   );
-
-  const selectedVariation = useMemo(() => {
-    // If attributeSelection is present, prefer finding a variation matching attributes
-    if (Object.keys(attributeSelection).length > 0) {
-      const found = variations.find((v) => {
-        if (!v.attributes) return false;
-        for (const k of Object.keys(attributeSelection)) {
-          if ((v.attributes[k] ?? '') !== attributeSelection[k]) return false;
-        }
-        return true;
-      });
-      if (found) return found;
-    }
-    return variations.find((v) => v.databaseId === selectedVariationId) ?? null;
-  }, [variations, selectedVariationId, attributeSelection]);
 
   const cartProduct: Omit<CartItem, 'quantity'> = {
     id: selectedVariation ? `${product.id}::${selectedVariation.databaseId}` : product.id,
@@ -213,23 +194,7 @@ export default function ProductDetailClient({
                   </div>
                 ))}
               </div>
-            ) : (
-              <>
-                <label htmlFor="variation" className="font-medium block mb-2">Variant</label>
-                <select
-                  id="variation"
-                  value={selectedVariationId ?? ''}
-                  onChange={(e) => setSelectedVariationId(Number(e.target.value) || null)}
-                  className="border border-neutral-200 rounded px-3 py-2"
-                >
-                  {variations.map((v) => (
-                    <option key={v.id} value={v.databaseId}>
-                      {v.name} {v.price ? ` — ${v.price}` : ''}
-                    </option>
-                  ))}
-                </select>
-              </>
-            )}
+            ) : null}
           </div>
         )}
 

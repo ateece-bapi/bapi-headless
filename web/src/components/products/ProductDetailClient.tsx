@@ -136,6 +136,7 @@ export default function ProductDetailClient({
               fill
               className="object-cover"
               sizes="(min-width:1024px) 33vw, 100vw"
+              loading="lazy"
             />
           ) : (
             <div className="flex items-center justify-center h-full text-neutral-400">No image</div>
@@ -151,7 +152,7 @@ export default function ProductDetailClient({
                 className={`w-full h-20 relative rounded overflow-hidden border ${selectedImageIndex === i ? 'ring-2 ring-primary-400' : ''}`}
                 aria-label={`Show image ${i + 1}`}
               >
-                <Image src={g.sourceUrl} alt={g.altText || `${product.name} ${i + 1}`} width={160} height={80} className="object-cover" />
+                <Image src={g.sourceUrl} alt={g.altText || `${product.name} ${i + 1}`} width={160} height={80} className="object-cover" loading="lazy" />
               </button>
             ))}
             {product.image && (
@@ -166,6 +167,7 @@ export default function ProductDetailClient({
                   width={160}
                   height={80}
                   className="object-cover"
+                  loading="lazy"
                 />
               </button>
             )}

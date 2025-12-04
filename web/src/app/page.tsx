@@ -35,6 +35,7 @@ import type { CartItem } from '@/store';
 
 type ProductData = Omit<CartItem, 'quantity'>;
 
+export default async function Home() {
   // --- JSON-LD Structured Data ---
   const collectionJsonLd = getCollectionPageJsonLd({
     title: 'Home | BAPI',

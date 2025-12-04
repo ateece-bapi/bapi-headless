@@ -1,5 +1,33 @@
 import { getProducts } from '@/lib/graphql';
 import { getProductPrice } from '@/lib/graphql';
+import { getCollectionPageJsonLd } from '@/lib/seo';
+export const metadata = {
+  title: 'Home | BAPI',
+  description: 'Welcome to BAPI, your source for building automation sensors and control modules.',
+  openGraph: {
+    title: 'Home | BAPI',
+    description: 'Welcome to BAPI, your source for building automation sensors and control modules.',
+    type: 'website',
+    url: 'https://yourdomain.com/',
+    images: [
+      {
+        url: 'https://yourdomain.com/og-default.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'BAPI - Building Automation Products'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Home | BAPI',
+    description: 'Welcome to BAPI, your source for building automation sensors and control modules.',
+    images: ['https://yourdomain.com/og-default.jpg']
+  },
+  alternates: {
+    canonical: '/'
+  }
+};
 import Link from 'next/link';
 import Image from 'next/image';
 import { CartButton, CartDrawer, AddToCartButton } from '@/components/cart';
@@ -7,7 +35,26 @@ import type { CartItem } from '@/store';
 
 type ProductData = Omit<CartItem, 'quantity'>;
 
-export default async function Home() {
+  // --- JSON-LD Structured Data ---
+  const collectionJsonLd = getCollectionPageJsonLd({
+    title: 'Home | BAPI',
+    description: 'Welcome to BAPI, your source for building automation sensors and control modules.',
+    url: 'https://yourdomain.com/'
+  });
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "BAPI",
+    "url": "https://yourdomain.com",
+    "logo": "https://yourdomain.com/logo.png",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+1-800-555-1234",
+        "contactType": "customer service"
+      }
+    ]
+  };
   // Skip data fetching if environment variable not set (build time)
   let products: ProductData[] = [];
   if (process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
@@ -27,6 +74,8 @@ export default async function Home() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       <div className="min-h-screen">
         {/* Header */}
         <header className="border-b border-neutral-200 bg-white">

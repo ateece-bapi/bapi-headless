@@ -105,5 +105,8 @@ export default async function ProductsTestPage() {
         <p className="text-center text-gray-500 mt-8">No products found</p>
       )}
     </div>
+    </>
   );
+
+
 }

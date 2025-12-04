@@ -25,7 +25,7 @@ import React from 'react';
  * ```
  */
 export interface AppImageProps extends Omit<ImageProps, 'placeholder' | 'blurDataURL' | 'loading'> {
-  alt?: string;
+  alt: string;
   fallbackAlt?: string;
   blurDataURL?: string;
   fallbackSrc?: string;
@@ -42,14 +42,13 @@ export const AppImage: React.FC<AppImageProps> = ({
   ...props
 }) => {
   const [error, setError] = React.useState(false);
-  const resolvedAlt = alt || fallbackAlt || 'Image';
   const resolvedSrc = error && fallbackSrc ? fallbackSrc : (props.src as string);
 
   return (
     <Image
       {...props}
       src={resolvedSrc}
-      alt={resolvedAlt}
+      alt={alt}
       loading="lazy"
       placeholder="blur"
       blurDataURL={blurDataURL}

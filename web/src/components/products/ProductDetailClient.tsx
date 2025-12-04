@@ -117,7 +117,7 @@ export default function ProductDetailClient({
           {mainImage ? (
             <AppImage
               src={mainImage.sourceUrl}
-              alt={mainImage.altText ?? undefined}
+              alt={mainImage.altText || product.name}
               fallbackAlt={product.name}
               fill
               className="object-cover"
@@ -138,7 +138,7 @@ export default function ProductDetailClient({
                 aria-label={`Show image ${i + 1}`}
               >
                 {/* Gallery thumbnail: use alt text if present, otherwise fallback to product name and index for accessibility */}
-                <AppImage src={g.sourceUrl} alt={g.altText ?? undefined} fallbackAlt={`${product.name} ${i + 1}`} width={160} height={80} className="object-cover" sizes="80px" />
+                <AppImage src={g.sourceUrl} alt={g.altText || `${product.name} ${i + 1}`} fallbackAlt={`${product.name} ${i + 1}`} width={160} height={80} className="object-cover" sizes="80px" />
               </button>
             ))}
             {product.image && (
@@ -150,7 +150,7 @@ export default function ProductDetailClient({
                 {/* Main image thumbnail: use alt text if present, otherwise fallback to product name for accessibility */}
                 <AppImage
                   src={product.image.sourceUrl}
-                  alt={product.image.altText ?? undefined}
+                  alt={product.image.altText || product.name}
                   fallbackAlt={product.name}
                   width={160}
                   height={80}

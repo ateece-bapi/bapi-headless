@@ -19,22 +19,36 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
   if (!resolvedParams?.slug) return {};
   const slug = String(resolvedParams.slug);
   const data = await getProductBySlug(slug);
-  // Validate the (already-normalized) GraphQL response shape.
   const parsed = getProductQuerySchema.safeParse(data);
   if (!parsed.success) throw parsed.error;
-
   const product = data.product as GetProductBySlugQuery['product'] | null;
-
   if (!product) return {};
-
+  const ogImage = product.image?.sourceUrl || (product.galleryImages?.nodes?.[0]?.sourceUrl ?? "");
+  const ogDescription = stripHtml(product.shortDescription || product.description);
+  // Dynamic title and description using real product data
   return {
     title: `${product.name} | BAPI`,
-    description: stripHtml(product.shortDescription || product.description),
+    description: ogDescription,
     openGraph: {
-      title: product.name,
-      description: stripHtml(product.shortDescription || product.description),
-      images: product.image ? [product.image.sourceUrl] : [],
+      title: `${product.name} | BAPI`,
+      description: ogDescription,
+      type: "product",
+      url: `https://yourdomain.com/products/${slug}`,
+      images: ogImage ? [ogImage] : [],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | BAPI`,
+      description: ogDescription,
+      images: ogImage ? [ogImage] : [],
+    },
+    alternates: {
+      canonical: `/products/${slug}`,
+      languages: {
+        'en-US': `/en/products/${slug}`,
+        'es-ES': `/es/products/${slug}`
+      }
+    }
   };
 }
 
@@ -132,8 +146,48 @@ export default async function ProductPage({ params }: { params: { slug: string }
     description: product.description || null,
   };
 
+  // --- JSON-LD Structured Data ---
+  const ogImage = productForClient.image?.sourceUrl || (productForClient.gallery?.[0]?.sourceUrl ?? "");
+  // BreadcrumbList JSON-LD
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Products",
+        "item": "https://yourdomain.com/products"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": productForClient.name,
+        "item": `https://yourdomain.com/products/${productForClient.slug}`
+      }
+    ]
+  };
+  // Expanded Product JSON-LD
+  const jsonLd = {
+    '@context': 'https://schema.org/',
+    '@type': 'Product',
+    name: productForClient.name,
+    image: [ogImage],
+    description: productForClient.shortDescription || productForClient.description || '',
+    sku: productForClient.id,
+    brand: { '@type': 'Brand', name: 'BAPI' },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'USD',
+      price: productForClient.price,
+      availability: productForClient.stockStatus === 'IN_STOCK' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      url: `https://yourdomain.com/products/${productForClient.slug}`,
+    },
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <div className="min-h-screen bg-white">
         <header className="border-b border-neutral-200 bg-white sticky top-0 z-10">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">

@@ -128,7 +128,8 @@ export default function ProductDetailClient({
   })();
 
   return (
-    <div className="grid gap-8 lg:grid-cols-3">
+    <>
+      <div className="grid gap-8 lg:grid-cols-3">
       {/* Images */}
       <div className="lg:col-span-1">
         <div className="w-full h-[420px] relative rounded mb-4 bg-neutral-100 overflow-hidden">
@@ -244,5 +245,6 @@ export default function ProductDetailClient({
         </section>
       </div>
     </div>
+    </>
   );
 }

@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
     openGraph: {
       title: `${product.name} | BAPI`,
       description: ogDescription,
-      type: "product",
+      type: "article",
       url: `https://yourdomain.com/products/${slug}`,
       images: ogImage ? [ogImage] : [],
     },

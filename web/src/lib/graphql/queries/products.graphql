@@ -124,6 +124,7 @@ query GetProductBySlug($slug: ID!) {
         databaseId
         name
         slug
+        partNumber
         ... on SimpleProduct {
           price
           stockStatus

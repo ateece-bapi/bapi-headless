@@ -79,12 +79,13 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
         name: rp.name ?? '',
         slug: rp.slug ?? '',
         partNumber: rp.partNumber ?? '',
-        image: rp.image
-          ? {
-              sourceUrl: rp.image.sourceUrl ?? '',
-              altText: rp.image.altText ?? rp.name ?? '',
-            }
-          : null,
+        image:
+          rp.image && typeof rp.image === 'object' && 'sourceUrl' in rp.image
+            ? {
+                sourceUrl: (rp.image as any).sourceUrl ?? '',
+                altText: (rp.image as any).altText ?? rp.name ?? '',
+              }
+            : null,
       }))
     : [];
 

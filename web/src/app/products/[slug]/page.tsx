@@ -73,7 +73,13 @@ export default async function ProductPage({ params }: { params: { slug: string }
   getProductQuerySchema.parse(data);
   // Use the normalized product object for client props
   // Extend the type to include relatedProducts for type safety
-  type NormalizedProduct = GetProductBySlugQuery['product'] & { relatedProducts?: any[] };
+  type NormalizedProduct = GetProductBySlugQuery['product'] & {
+    relatedProducts?: any[];
+    partNumber?: string;
+    multiplier?: string;
+    iosAppUrl?: string;
+    androidAppUrl?: string;
+  };
   const product = data.product as NormalizedProduct | null;
 
   if (!product) {
@@ -87,6 +93,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
     databaseId: product.databaseId ?? 0,
     name: product.name ?? 'Product',
     slug: product.slug ?? '',
+    partNumber: product.partNumber ?? '',
+    multiplier: product.multiplier ?? '',
     price: getProductPrice(product) || '$0.00',
     stockStatus: getProductStockStatus(product) || null,
     image: product.image
@@ -230,7 +238,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             <ProductConfigurator product={productForClient} />
             <ProductTabs product={productForClient} />
             <RelatedProducts related={productForClient.relatedProducts} />
-            <AppLinks product={productForClient} />
+            <AppLinks product={{ iosAppUrl: product.iosAppUrl, androidAppUrl: product.androidAppUrl }} />
             <ContactInfo />
             {/* Main Product Detail Client removed to prevent duplicate layout */}
             {/* <ProductDetailClient product={productForClient} /> */}

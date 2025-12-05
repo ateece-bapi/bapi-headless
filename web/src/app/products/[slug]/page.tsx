@@ -92,8 +92,6 @@ export default async function ProductPage({ params }: { params: { slug: string }
       return { sourceUrl: node?.sourceUrl ?? '', altText: node?.altText ?? '' };
     }),
     variations:
-      // normalize variable product variations into simple shape
-      // Use the validated product schema to access variation nodes safely
       (product
         ? (() => {
             const validated = productSchema.parse(product) as z.infer<typeof productSchema>;
@@ -116,7 +114,6 @@ export default async function ProductPage({ params }: { params: { slug: string }
                   id: vv.id,
                   databaseId: vv.databaseId ?? 0,
                   name: vv.name || `${product?.name ?? 'Product'} variant`,
-                  // `price` may or may not exist on different variation types; access safely
                   price: vv.price ?? null,
                   attributes: attrs,
                   image: vv.image ? { sourceUrl: vv.image.sourceUrl ?? '', altText: vv.image.altText ?? '' } : null,
@@ -125,10 +122,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             );
           })()
         : []) || [],
-    // derive top-level attribute options from variations (size, color, etc.)
     attributes: (() => {
-      // `product` is a union of different product types; `variations` only
-      // exists on variable products. Narrow safely before accessing.
       const prodWithVariations = product as GetProductBySlugQuery['product'] | null;
       const variationsArr = (() => {
         if (!prodWithVariations) return [] as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
@@ -151,6 +145,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
     })(),
     shortDescription: product.shortDescription || null,
     description: product.description || null,
+    relatedProducts: product.relatedProducts || [],
   };
 
   // --- JSON-LD Structured Data ---

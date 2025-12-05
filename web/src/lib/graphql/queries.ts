@@ -57,6 +57,7 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
     p.image = null;
   }
 
+
   // Normalize galleryImages to the { nodes: [] } shape
   const galleryRaw = productRaw.galleryImages;
   if (!galleryRaw) {
@@ -69,6 +70,23 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
       : [];
     p.galleryImages = { nodes };
   }
+
+  // Normalize related products to include partNumber
+  const relatedRaw = productRaw.related as { nodes?: Array<Record<string, unknown>> } | undefined;
+  p.relatedProducts = Array.isArray(relatedRaw?.nodes)
+    ? relatedRaw.nodes.map((rp) => ({
+        id: rp.id ?? '',
+        name: rp.name ?? '',
+        slug: rp.slug ?? '',
+        partNumber: rp.partNumber ?? '',
+        image: rp.image
+          ? {
+              sourceUrl: rp.image.sourceUrl ?? '',
+              altText: rp.image.altText ?? rp.name ?? '',
+            }
+          : null,
+      }))
+    : [];
 
   // Normalize variations to the { nodes: [] } shape
   const variRaw = productRaw.variations as Record<string, unknown> | null | undefined;

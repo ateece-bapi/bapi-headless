@@ -1,7 +1,13 @@
 import React from 'react';
 
 interface RelatedProductsProps {
-  related?: Array<{ id: string; name: string; slug: string; image?: { sourceUrl: string; altText?: string } }>; 
+  related?: Array<{
+    id: string;
+    name: string;
+    slug: string;
+    partNumber?: string;
+    image?: { sourceUrl: string; altText?: string };
+  }>;
 }
 
 export default function RelatedProducts({ related }: RelatedProductsProps) {
@@ -16,6 +22,9 @@ export default function RelatedProducts({ related }: RelatedProductsProps) {
               <img src={product.image.sourceUrl} alt={product.image.altText || product.name} className="w-full h-24 object-contain mb-2" />
             )}
             <div className="text-sm font-medium text-neutral-900">{product.name}</div>
+            {product.partNumber && (
+              <div className="text-xs text-neutral-500">Part #: {product.partNumber}</div>
+            )}
           </a>
         ))}
       </div>

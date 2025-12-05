@@ -136,6 +136,15 @@ query GetProductBySlug($slug: ID!) {
         }
       }
     }
+    ... on Product {
+      multiplierGroups {
+        nodes {
+          id
+          name
+          slug
+        }
+      }
+    }
   }
 }
 

@@ -210,15 +210,16 @@ export default async function ProductPage({ params }: { params: { slug: string }
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <div className="min-h-screen bg-white">
-        <header className="border-b border-neutral-200 bg-white sticky top-0 z-10">
+        <header className="border-b border-neutral-200 bg-white sticky top-0 z-20 shadow-sm">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold text-primary-500 hover:text-primary-600 transition">
-              BAPI
+            <Link href="/" className="flex items-center gap-3">
+              <img src="/images/bapi-logo.svg" alt="BAPI Logo" className="h-8 w-auto" />
+              <span className="text-2xl font-bold text-primary-500 hover:text-primary-600 transition">BAPI</span>
             </Link>
-            <nav className="flex gap-6 items-center">
-              <Link href="/products" className="text-primary-500 font-semibold">
-                Products
-              </Link>
+            <nav className="flex gap-8 items-center text-base font-semibold">
+              <Link href="/products" className="text-primary-500 hover:text-primary-600 transition">Products</Link>
+              <Link href="/about" className="text-neutral-700 hover:text-primary-500 transition">About</Link>
+              <Link href="/contact" className="text-neutral-700 hover:text-primary-500 transition">Contact</Link>
             </nav>
           </div>
         </header>

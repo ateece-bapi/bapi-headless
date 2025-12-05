@@ -19,7 +19,7 @@ export default function ProductPage({ product, relatedProducts = [], appLinks }:
       <ProductHero product={product} />
       <ProductConfigurator product={product} />
       <ProductTabs product={product} />
-      {appLinks && (appLinks.iosUrl || appLinks.androidUrl) && <AppLinks {...appLinks} />}
+      {appLinks && (appLinks.iosUrl || appLinks.androidUrl) && <AppLinks product={{ iosAppUrl: appLinks.iosUrl, androidAppUrl: appLinks.androidUrl }} />}
       <RelatedProducts related={relatedProducts} />
       <ContactInfo />
     </div>

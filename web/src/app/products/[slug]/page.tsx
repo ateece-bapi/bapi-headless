@@ -6,8 +6,15 @@ import { getProductBySlug, getProductPrice, getProductStockStatus } from '@/lib/
 import type { GetProductBySlugQuery } from '@/lib/graphql';
 import { getProductQuerySchema, productSchema } from '@/lib/validation/product';
 import { z } from 'zod';
-import ProductDetailClient from '@/components/products/ProductDetailClient';
 import { CartDrawer } from '@/components/cart';
+import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
+import ProductHero from '@/components/products/ProductPage/ProductHero';
+import ProductConfigurator from '@/components/products/ProductPage/ProductConfigurator';
+import ProductTabs from '@/components/products/ProductPage/ProductTabs';
+import RelatedProducts from '@/components/products/ProductPage/RelatedProducts';
+import AppLinks from '@/components/products/ProductPage/AppLinks';
+import ContactInfo from '@/components/products/ProductPage/ContactInfo';
+import ProductSummaryCard from '@/components/products/ProductPage/ProductSummaryCard';
 
 function stripHtml(html?: string | null) {
   if (!html) return '';
@@ -204,8 +211,30 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
         <main className="py-12">
           <div className="container mx-auto px-4">
-            {/* ProductDetailClient renders images, gallery, pricing, variations and description */}
-            <ProductDetailClient product={productForClient} />
+            <Breadcrumbs
+              items={[
+                { label: 'Products', href: '/products' },
+                { label: productForClient.name }
+              ]}
+            />
+            <div className="flex flex-col md:flex-row gap-8 mb-8 items-start">
+              <div className="flex-1">
+                <ProductHero product={productForClient} />
+              </div>
+              <ProductSummaryCard product={{
+                partNumber: productForClient.partNumber,
+                price: productForClient.price,
+                multiplier: productForClient.multiplier,
+                stockStatus: productForClient.stockStatus,
+              }} />
+            </div>
+            <ProductConfigurator product={productForClient} />
+            <ProductTabs product={productForClient} />
+            <RelatedProducts related={productForClient.relatedProducts} />
+            <AppLinks product={productForClient} />
+            <ContactInfo />
+            {/* Main Product Detail Client removed to prevent duplicate layout */}
+            {/* <ProductDetailClient product={productForClient} /> */}
           </div>
         </main>
 

@@ -71,13 +71,17 @@ export default async function ProductPage({ params }: { params: { slug: string }
   const data = await getProductBySlug(slug);
   // The fetch layer returns normalized data; validate shape here.
   getProductQuerySchema.parse(data);
-  const product = data.product as GetProductBySlugQuery['product'] | null;
+  // Use the normalized product object for client props
+  // Extend the type to include relatedProducts for type safety
+  type NormalizedProduct = GetProductBySlugQuery['product'] & { relatedProducts?: any[] };
+  const product = data.product as NormalizedProduct | null;
 
   if (!product) {
     notFound();
   }
 
   // Build a lightweight, serializable shape for the client component
+  // This uses the normalized product object, which includes relatedProducts
   const productForClient = {
     id: product.id,
     databaseId: product.databaseId ?? 0,
@@ -123,7 +127,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           })()
         : []) || [],
     attributes: (() => {
-      const prodWithVariations = product as GetProductBySlugQuery['product'] | null;
+      const prodWithVariations = product as NormalizedProduct | null;
       const variationsArr = (() => {
         if (!prodWithVariations) return [] as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
         if (!('variations' in prodWithVariations)) return [] as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;

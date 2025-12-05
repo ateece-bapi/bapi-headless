@@ -1,15 +1,68 @@
-import React from 'react';
+
+"use client";
+import React, { useState } from 'react';
+
+interface Variation {
+  id: string;
+  name?: string;
+  price?: string | null;
+  regularPrice?: string | null;
+  attributes: Record<string, string>;
+}
+
+interface AttributeOption {
+  name: string;
+  options: string[];
+}
 
 interface ProductConfiguratorProps {
-  product: any;
+  product: {
+    attributes?: AttributeOption[];
+    variations?: Variation[];
+    price?: string | null;
+    regularPrice?: string | null;
+  };
 }
 
 export default function ProductConfigurator({ product }: ProductConfiguratorProps) {
+  const { attributes = [], variations = [], price, regularPrice } = product;
+  // Build initial state for each attribute
+  const initialSelections = attributes.reduce<Record<string, string>>((acc, attr) => {
+    acc[attr.name] = attr.options[0] || '';
+    return acc;
+  }, {});
+  const [selections, setSelections] = useState<Record<string, string>>(initialSelections);
+
+  // Find matching variation
+  const selectedVariation = variations.find((v) => {
+    return Object.entries(selections).every(([name, value]) => v.attributes[name] === value);
+  });
+
   return (
     <section className="mb-8">
       <h2 className="text-lg font-semibold mb-2">Configure Product</h2>
-      {/* Placeholder for configuration UI */}
-      <div className="bg-neutral-100 rounded p-4 text-neutral-500">Configuration options go here.</div>
+      {attributes.length > 0 ? (
+        <form className="flex flex-col gap-4 mb-4">
+          {attributes.map((attr) => (
+            <div key={attr.name} className="flex flex-col md:flex-row md:items-center gap-2">
+              <label htmlFor={`attr-${attr.name}`} className="font-medium min-w-[120px]">{attr.name}</label>
+              <select
+                id={`attr-${attr.name}`}
+                value={selections[attr.name]}
+                onChange={(e) => setSelections({ ...selections, [attr.name]: e.target.value })}
+                className="border rounded px-3 py-2 bg-white"
+              >
+                {attr.options.map((opt) => (
+                  <option key={opt} value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+          ))}
+        </form>
+      ) : (
+        <div className="bg-neutral-100 rounded p-4 text-neutral-500">No configuration options available.</div>
+      )}
+      {/* Price and action now in summary card */}
     </section>
   );
 }

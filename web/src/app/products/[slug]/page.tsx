@@ -77,6 +77,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
     relatedProducts?: any[];
     partNumber?: string;
     multiplier?: string;
+    multiplierGroups?: Array<{ id: string; name: string; slug: string }>;
+    regularPrice?: string;
+    stockQuantity?: number;
     iosAppUrl?: string;
     androidAppUrl?: string;
   };
@@ -94,9 +97,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
     name: product.name ?? 'Product',
     slug: product.slug ?? '',
     partNumber: product.partNumber ?? '',
-    multiplier: product.multiplier ?? '',
+    multiplierGroups: Array.isArray(product.multiplierGroups) ? product.multiplierGroups : [],
     price: getProductPrice(product) || '$0.00',
+    regularPrice: product.regularPrice ?? '',
     stockStatus: getProductStockStatus(product) || null,
+    stockQuantity: product.stockQuantity ?? null,
     image: product.image
       ? { sourceUrl: product.image.sourceUrl || '', altText: product.image.altText || product.name || '' }
       : null,
@@ -114,6 +119,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                   databaseId?: number;
                   name?: string | null;
                   price?: string | null;
+                  regularPrice?: string | null;
                   attributes?: { nodes?: Array<{ name?: string; label?: string; value?: string | null }> } | null;
                   image?: { sourceUrl?: string; altText?: string | null } | null;
                 };
@@ -127,6 +133,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                   databaseId: vv.databaseId ?? 0,
                   name: vv.name || `${product?.name ?? 'Product'} variant`,
                   price: vv.price ?? null,
+                  regularPrice: vv.regularPrice ?? null,
                   attributes: attrs,
                   image: vv.image ? { sourceUrl: vv.image.sourceUrl ?? '', altText: vv.image.altText ?? '' } : null,
                 };
@@ -231,9 +238,27 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <ProductSummaryCard product={{
                 partNumber: productForClient.partNumber,
                 price: productForClient.price,
-                multiplier: productForClient.multiplier,
+                regularPrice: productForClient.regularPrice,
+                multiplierGroups: productForClient.multiplierGroups,
                 stockStatus: productForClient.stockStatus,
+                stockQuantity: productForClient.stockQuantity,
               }} />
+                        {/* Quantity Selector Example */}
+                        {typeof productForClient.stockQuantity === 'number' && productForClient.stockQuantity > 0 && (
+                          <div className="mb-6">
+                            <label htmlFor="quantity" className="block font-medium mb-2">Quantity</label>
+                            <input
+                              type="number"
+                              id="quantity"
+                              name="quantity"
+                              min={1}
+                              max={productForClient.stockQuantity}
+                              defaultValue={1}
+                              className="border rounded px-3 py-2 w-24"
+                            />
+                            <span className="ml-2 text-sm text-neutral-500">In stock: {productForClient.stockQuantity}</span>
+                          </div>
+                        )}
             </div>
             <ProductConfigurator product={productForClient} />
             <ProductTabs product={productForClient} />

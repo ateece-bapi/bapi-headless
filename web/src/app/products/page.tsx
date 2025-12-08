@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { AddToCartButton, CartButton, CartDrawer } from '@/components/cart';
 import type { CartItem } from '@/store';
 
-type ProductData = Omit<CartItem, 'quantity'>;
+type ProductData = Omit<CartItem, 'quantity'> & { partNumber?: string };
 
 export const metadata = {
   title: 'Products | BAPI',
@@ -44,17 +44,24 @@ export default async function ProductsPage() {
   if (process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
     try {
       const data = await getProducts(50); // Get up to 50 products
-      products = (data.products?.nodes || []).map((product) => ({
-        id: product.id,
-        databaseId: product.databaseId ?? 0,
-        name: product.name || 'Unnamed Product',
-        slug: product.slug || '',
-        price: getProductPrice(product) || '$0.00',
-        image: product.image ? {
-          sourceUrl: product.image.sourceUrl || '',
-          altText: product.image.altText || product.name || '',
-        } : null,
-      }));
+      products = (data.products?.nodes || []).map((product) => {
+        let partNumber = '';
+        if ('partNumber' in product && typeof product.partNumber === 'string') {
+          partNumber = product.partNumber;
+        }
+        return {
+          id: product.id,
+          databaseId: product.databaseId ?? 0,
+          name: product.name || 'Unnamed Product',
+          slug: product.slug || '',
+          price: getProductPrice(product) || '$0.00',
+          partNumber,
+          image: product.image ? {
+            sourceUrl: product.image.sourceUrl || '',
+            altText: product.image.altText || product.name || '',
+          } : null,
+        };
+      });
       hasProducts = products.length > 0;
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -161,11 +168,12 @@ export default async function ProductsPage() {
                       <h3 className="text-lg font-semibold mb-2 text-neutral-800 line-clamp-2 min-h-14">
                         {product.name}
                       </h3>
-                      
+                      {product.partNumber && (
+                        <div className="text-xs text-neutral-500 mb-1">Part #: {product.partNumber}</div>
+                      )}
                       <p className="text-2xl font-bold text-primary-500 mb-4">
                         {product.price}
                       </p>
-                      
                       <div className="space-y-2">
                         <AddToCartButton product={product} className="w-full" />
                         <Link

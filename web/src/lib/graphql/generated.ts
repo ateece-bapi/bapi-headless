@@ -2212,6 +2212,12 @@ export enum ContentTypesOfCategoryEnum {
   Post = 'POST'
 }
 
+/** Allowed Content Types of the MultiplierGroup taxonomy. */
+export enum ContentTypesOfMultiplierGroupEnum {
+  /** The Type of Content object */
+  Product = 'PRODUCT'
+}
+
 /** Allowed Content Types of the PaAirQualityApplication taxonomy. */
 export enum ContentTypesOfPaAirQualityApplicationEnum {
   /** The Type of Content object */
@@ -3428,6 +3434,29 @@ export type CreateMediaItemPayload = {
   mediaItem?: Maybe<MediaItem>;
 };
 
+/** Input for the createMultiplierGroup mutation. */
+export type CreateMultiplierGroupInput = {
+  /** The slug that the multiplier_group will be an alias of */
+  aliasOf?: InputMaybe<Scalars['String']['input']>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The description of the multiplier_group object */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The name of the multiplier_group object to mutate */
+  name: Scalars['String']['input'];
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the createMultiplierGroup mutation. */
+export type CreateMultiplierGroupPayload = {
+  __typename?: 'CreateMultiplierGroupPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The created multiplier_group */
+  multiplierGroup?: Maybe<MultiplierGroup>;
+};
+
 /** Input for the createOrder mutation. */
 export type CreateOrderInput = {
   /** Order billing address */
@@ -3996,6 +4025,8 @@ export type CreateProductInput = {
   excerpt?: InputMaybe<Scalars['String']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
   menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** Set connections between the Product and multiplierGroups */
+  multiplierGroups?: InputMaybe<ProductMultiplierGroupsInput>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars['String']['input']>;
   /** Set connections between the Product and productCategories */
@@ -5220,6 +5251,25 @@ export type DeleteMediaItemPayload = {
   mediaItem?: Maybe<MediaItem>;
 };
 
+/** Input for the deleteMultiplierGroup mutation. */
+export type DeleteMultiplierGroupInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the multiplierGroup to delete */
+  id: Scalars['ID']['input'];
+};
+
+/** The payload for the deleteMultiplierGroup mutation. */
+export type DeleteMultiplierGroupPayload = {
+  __typename?: 'DeleteMultiplierGroupPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']['output']>;
+  /** The deleted term object */
+  multiplierGroup?: Maybe<MultiplierGroup>;
+};
+
 /** Input for the deleteOrder mutation. */
 export type DeleteOrderInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -6225,10 +6275,14 @@ export type ExternalProduct = ContentNode & DatabaseIdentifier & MenuItemLinkabl
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** Connection between the Product type and the multiplierGroup type */
+  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
+  /** The part number for the product */
+  partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
   /** The database id of the preview node */
@@ -6547,6 +6601,16 @@ export type ExternalProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** A external product object */
+export type ExternalProductMultiplierGroupsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -7097,10 +7161,14 @@ export type GroupProduct = ContentNode & DatabaseIdentifier & MenuItemLinkable &
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** Connection between the Product type and the multiplierGroup type */
+  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
+  /** The part number for the product */
+  partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
   /** The database id of the preview node */
@@ -7421,6 +7489,16 @@ export type GroupProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** A group product object */
+export type GroupProductMultiplierGroupsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -8971,7 +9049,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkable Interface */
-export type MenuItemObjectUnion = Category | Page | Post | PostFormat | ProductCategory | ProductTag | Tag;
+export type MenuItemObjectUnion = Category | MultiplierGroup | Page | Post | PostFormat | ProductCategory | ProductTag | Tag;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -9311,6 +9389,341 @@ export enum MimeTypeEnum {
   /** video/x-ms-wmx mime type. */
   VideoXMsWmx = 'VIDEO_X_MS_WMX'
 }
+
+/** The multiplierGroup type */
+export type MultiplierGroup = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
+  __typename?: 'MultiplierGroup';
+  /** Connection between the MultiplierGroup type and the ContentNode type */
+  contentNodes?: Maybe<MultiplierGroupToContentNodeConnection>;
+  /** The number of objects connected to the object */
+  count?: Maybe<Scalars['Int']['output']>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int']['output'];
+  /** The description of the object */
+  description?: Maybe<Scalars['String']['output']>;
+  /** Connection between the TermNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+  /** Connection between the TermNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+  /** The globally unique ID for the object */
+  id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
+  /** The link to the term */
+  link?: Maybe<Scalars['String']['output']>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of databaseId
+   */
+  multiplierGroupId?: Maybe<Scalars['Int']['output']>;
+  /** The human friendly name of the object. */
+  name?: Maybe<Scalars['String']['output']>;
+  /** Connection between the MultiplierGroup type and the Product type */
+  products?: Maybe<MultiplierGroupToProductConnection>;
+  /** An alphanumeric identifier for the object unique to its type. */
+  slug?: Maybe<Scalars['String']['output']>;
+  /** Connection between the MultiplierGroup type and the Taxonomy type */
+  taxonomy?: Maybe<MultiplierGroupToTaxonomyConnectionEdge>;
+  /** The name of the taxonomy that the object is associated with */
+  taxonomyName?: Maybe<Scalars['String']['output']>;
+  /** The ID of the term group that this term object belongs to */
+  termGroupId?: Maybe<Scalars['Int']['output']>;
+  /** The taxonomy ID that the object is associated with */
+  termTaxonomyId?: Maybe<Scalars['Int']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The multiplierGroup type */
+export type MultiplierGroupContentNodesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MultiplierGroupToContentNodeConnectionWhereArgs>;
+};
+
+
+/** The multiplierGroup type */
+export type MultiplierGroupEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The multiplierGroup type */
+export type MultiplierGroupEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The multiplierGroup type */
+export type MultiplierGroupProductsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<MultiplierGroupToProductConnectionWhereArgs>;
+};
+
+/** A paginated collection of multiplierGroup Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of multiplierGroup Nodes */
+export type MultiplierGroupConnection = {
+  /** A list of edges (relational context) between RootQuery and connected multiplierGroup Nodes */
+  edges: Array<MultiplierGroupConnectionEdge>;
+  /** A list of connected multiplierGroup Nodes */
+  nodes: Array<MultiplierGroup>;
+  /** Information about pagination in a connection. */
+  pageInfo: MultiplierGroupConnectionPageInfo;
+};
+
+/** Represents a connection to a multiplierGroup. Contains both the multiplierGroup Node and metadata about the relationship. */
+export type MultiplierGroupConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The connected multiplierGroup Node */
+  node: MultiplierGroup;
+};
+
+/** Pagination metadata specific to &quot;MultiplierGroupConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;MultiplierGroupConnectionEdge&quot; Nodes. */
+export type MultiplierGroupConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Identifier types for retrieving a specific MultiplierGroup. Determines which unique property (global ID, database ID, slug, etc.) is used to locate the MultiplierGroup. */
+export enum MultiplierGroupIdType {
+  /** The Database ID for the node */
+  DatabaseId = 'DATABASE_ID',
+  /** The hashed Global ID */
+  Id = 'ID',
+  /** The name of the node */
+  Name = 'NAME',
+  /** Url friendly name of the node */
+  Slug = 'SLUG',
+  /** The URI for the node */
+  Uri = 'URI'
+}
+
+/** Connection between the MultiplierGroup type and the ContentNode type */
+export type MultiplierGroupToContentNodeConnection = Connection & ContentNodeConnection & {
+  __typename?: 'MultiplierGroupToContentNodeConnection';
+  /** Edges for the MultiplierGroupToContentNodeConnection connection */
+  edges: Array<MultiplierGroupToContentNodeConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<ContentNode>;
+  /** Information about pagination in a connection. */
+  pageInfo: MultiplierGroupToContentNodeConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type MultiplierGroupToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
+  __typename?: 'MultiplierGroupToContentNodeConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: ContentNode;
+};
+
+/** Pagination metadata specific to &quot;MultiplierGroupToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of MultiplierGroupToContentNodeConnection Nodes. */
+export type MultiplierGroupToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'MultiplierGroupToContentNodeConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the MultiplierGroupToContentNodeConnection connection */
+export type MultiplierGroupToContentNodeConnectionWhereArgs = {
+  /** The Types of content to filter */
+  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfMultiplierGroupEnum>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Connection between the MultiplierGroup type and the Product type */
+export type MultiplierGroupToProductConnection = Connection & ProductConnection & {
+  __typename?: 'MultiplierGroupToProductConnection';
+  /** Edges for the MultiplierGroupToProductConnection connection */
+  edges: Array<MultiplierGroupToProductConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Product>;
+  /** Information about pagination in a connection. */
+  pageInfo: MultiplierGroupToProductConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type MultiplierGroupToProductConnectionEdge = Edge & ProductConnectionEdge & {
+  __typename?: 'MultiplierGroupToProductConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: Product;
+};
+
+/** Pagination metadata specific to &quot;MultiplierGroupToProductConnection&quot; collections. Provides cursors and flags for navigating through sets of MultiplierGroupToProductConnection Nodes. */
+export type MultiplierGroupToProductConnectionPageInfo = PageInfo & ProductConnectionPageInfo & WpPageInfo & {
+  __typename?: 'MultiplierGroupToProductConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the MultiplierGroupToProductConnection connection */
+export type MultiplierGroupToProductConnectionWhereArgs = {
+  /** Limit result set to products with a specific attribute. Use the taxonomy name/attribute slug. */
+  attribute?: InputMaybe<Scalars['String']['input']>;
+  /** Limit result set to products with a specific attribute term ID (required an assigned attribute). */
+  attributeTerm?: InputMaybe<Scalars['String']['input']>;
+  /** Limit result set to products assigned a specific category name. */
+  category?: InputMaybe<Scalars['String']['input']>;
+  /** Limit result set to products assigned a specific category name. */
+  categoryId?: InputMaybe<Scalars['Int']['input']>;
+  /** Limit result set to products assigned to a specific group of category IDs. */
+  categoryIdIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** Limit result set to products not assigned to a specific group of category IDs. */
+  categoryIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** Limit result set to products assigned to a group of specific categories by name. */
+  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Limit result set to products not assigned to a group of specific categories by name. */
+  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Filter the connection based on dates. */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** Ensure result set excludes specific IDs. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** Limit result set to featured products. */
+  featured?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Limit result set to specific ids. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** Include variations in the result set. */
+  includeVariations?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Limit result set to products based on a maximum price. */
+  maxPrice?: InputMaybe<Scalars['Float']['input']>;
+  /** Limit result set to products based on a minimum price. */
+  minPrice?: InputMaybe<Scalars['Float']['input']>;
+  /** Limit result set to products on sale. */
+  onSale?: InputMaybe<Scalars['Boolean']['input']>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<ProductsOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items. */
+  parent?: InputMaybe<Scalars['Int']['input']>;
+  /** Specify objects whose parent is in an array. */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** Specify objects whose parent is not in an array. */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** Limit result set to products with a specific average rating. Must be between 1 and 5 */
+  rating?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** Limit result set to products based on a keyword search. */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Limit result set to products assigned a specific shipping class ID. */
+  shippingClassId?: InputMaybe<Scalars['Int']['input']>;
+  /** Limit result set to products with specific SKU(s). Use commas to separate. */
+  sku?: InputMaybe<Scalars['String']['input']>;
+  /** Limit result set to products with specific slugs. */
+  slugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Limit result set to products assigned a specific status. */
+  status?: InputMaybe<Scalars['String']['input']>;
+  /** Limit result set to products in stock or out of stock. */
+  stockStatus?: InputMaybe<Array<InputMaybe<StockStatusEnum>>>;
+  /** Limit result types to types supported by WooGraphQL. */
+  supportedTypesOnly?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Limit result set to products assigned a specific tag name. */
+  tag?: InputMaybe<Scalars['String']['input']>;
+  /** Limit result set to products assigned a specific tag ID. */
+  tagId?: InputMaybe<Scalars['Int']['input']>;
+  /** Limit result set to products assigned to a specific group of tag IDs. */
+  tagIdIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** Limit result set to products not assigned to a specific group of tag IDs. */
+  tagIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** Limit result set to products assigned to a specific group of tags by name. */
+  tagIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Limit result set to products not assigned to a specific group of tags by name. */
+  tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Limit result set to products with a specific tax class. */
+  taxClass?: InputMaybe<TaxClassEnum>;
+  /** Limit result set with complex set of taxonomy filters. */
+  taxonomyFilter?: InputMaybe<ProductTaxonomyInput>;
+  /** Limit result set to products assigned a specific type. */
+  type?: InputMaybe<ProductTypesEnum>;
+  /** Limit result set to products assigned to a group of specific types. */
+  typeIn?: InputMaybe<Array<InputMaybe<ProductTypesEnum>>>;
+  /** Limit result set to products not assigned to a group of specific types. */
+  typeNotIn?: InputMaybe<Array<InputMaybe<ProductTypesEnum>>>;
+  /** Limit result set to products with a specific visibility level. */
+  visibility?: InputMaybe<CatalogVisibilityEnum>;
+};
+
+/** Connection between the MultiplierGroup type and the Taxonomy type */
+export type MultiplierGroupToTaxonomyConnectionEdge = Edge & OneToOneConnection & TaxonomyConnectionEdge & {
+  __typename?: 'MultiplierGroupToTaxonomyConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The node of the connection, without the edges */
+  node: Taxonomy;
+};
 
 /** An object with a globally unique identifier. All objects that can be identified by a unique ID implement this interface. */
 export type Node = {
@@ -19344,10 +19757,14 @@ export type Product = {
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** Connection between the Product type and the multiplierGroup type */
+  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
+  /** The part number for the product */
+  partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
   /** The database id of the preview node */
@@ -19647,6 +20064,16 @@ export type ProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** This is where you can browse products in this store. */
+export type ProductMultiplierGroupsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -20877,6 +21304,26 @@ export enum ProductIdTypeEnum {
   Slug = 'SLUG'
 }
 
+/** Set relationships between the Product to multiplierGroups */
+export type ProductMultiplierGroupsInput = {
+  /** If true, this will append the multiplierGroup to existing related multiplierGroups. If false, this will replace existing relationships. Default true. */
+  append?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The input list of items to set. */
+  nodes?: InputMaybe<Array<InputMaybe<ProductMultiplierGroupsNodeInput>>>;
+};
+
+/** List of multiplierGroups to connect the Product to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
+export type ProductMultiplierGroupsNodeInput = {
+  /** The description of the multiplierGroup. This field is used to set a description of the multiplierGroup if a new one is created during the mutation. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the multiplierGroup. If present, this will be used to connect to the Product. If no existing multiplierGroup exists with this ID, no connection will be made. */
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** The name of the multiplierGroup. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the multiplierGroup. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** Set relationships between the Product to productCategories */
 export type ProductProductCategoriesInput = {
   /** If true, this will append the productCategory to existing related productCategories. If false, this will replace existing relationships. Default true. */
@@ -21294,6 +21741,7 @@ export type ProductTagToTaxonomyConnectionEdge = Edge & OneToOneConnection & Tax
 
 /** Product taxonomies */
 export enum ProductTaxonomyEnum {
+  MultiplierGroup = 'MULTIPLIER_GROUP',
   PaAirQualityApplication = 'PA_AIR_QUALITY_APPLICATION',
   PaAirQualitySensorType = 'PA_AIR_QUALITY_SENSOR_TYPE',
   PaApplication = 'PA_APPLICATION',
@@ -21673,6 +22121,83 @@ export type ProductToMediaItemConnectionWhereArgs = {
   status?: InputMaybe<PostStatusEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Connection between the Product type and the multiplierGroup type */
+export type ProductToMultiplierGroupConnection = Connection & MultiplierGroupConnection & {
+  __typename?: 'ProductToMultiplierGroupConnection';
+  /** Edges for the ProductToMultiplierGroupConnection connection */
+  edges: Array<ProductToMultiplierGroupConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<MultiplierGroup>;
+  /** Information about pagination in a connection. */
+  pageInfo: ProductToMultiplierGroupConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type ProductToMultiplierGroupConnectionEdge = Edge & MultiplierGroupConnectionEdge & {
+  __typename?: 'ProductToMultiplierGroupConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: MultiplierGroup;
+};
+
+/** Pagination metadata specific to &quot;ProductToMultiplierGroupConnection&quot; collections. Provides cursors and flags for navigating through sets of ProductToMultiplierGroupConnection Nodes. */
+export type ProductToMultiplierGroupConnectionPageInfo = MultiplierGroupConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'ProductToMultiplierGroupConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the ProductToMultiplierGroupConnection connection */
+export type ProductToMultiplierGroupConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']['input']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']['input']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']['input']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Connection between the Product type and the paAirQualityApplication type */
@@ -24969,6 +25494,8 @@ export type RootMutation = {
   createCoupon?: Maybe<CreateCouponPayload>;
   /** The createMediaItem mutation */
   createMediaItem?: Maybe<CreateMediaItemPayload>;
+  /** The createMultiplierGroup mutation */
+  createMultiplierGroup?: Maybe<CreateMultiplierGroupPayload>;
   /** The createOrder mutation */
   createOrder?: Maybe<CreateOrderPayload>;
   /** The createPaAirQualityApplication mutation */
@@ -25031,6 +25558,8 @@ export type RootMutation = {
   deleteCoupon?: Maybe<DeleteCouponPayload>;
   /** The deleteMediaItem mutation */
   deleteMediaItem?: Maybe<DeleteMediaItemPayload>;
+  /** The deleteMultiplierGroup mutation */
+  deleteMultiplierGroup?: Maybe<DeleteMultiplierGroupPayload>;
   /** The deleteOrder mutation */
   deleteOrder?: Maybe<DeleteOrderPayload>;
   /** The deleteOrderItems mutation */
@@ -25129,6 +25658,8 @@ export type RootMutation = {
   updateItemQuantities?: Maybe<UpdateItemQuantitiesPayload>;
   /** The updateMediaItem mutation */
   updateMediaItem?: Maybe<UpdateMediaItemPayload>;
+  /** The updateMultiplierGroup mutation */
+  updateMultiplierGroup?: Maybe<UpdateMultiplierGroupPayload>;
   /** The updateOrder mutation */
   updateOrder?: Maybe<UpdateOrderPayload>;
   /** The updatePaAirQualityApplication mutation */
@@ -25247,6 +25778,12 @@ export type RootMutationCreateCouponArgs = {
 /** The root mutation */
 export type RootMutationCreateMediaItemArgs = {
   input: CreateMediaItemInput;
+};
+
+
+/** The root mutation */
+export type RootMutationCreateMultiplierGroupArgs = {
+  input: CreateMultiplierGroupInput;
 };
 
 
@@ -25433,6 +25970,12 @@ export type RootMutationDeleteCouponArgs = {
 /** The root mutation */
 export type RootMutationDeleteMediaItemArgs = {
   input: DeleteMediaItemInput;
+};
+
+
+/** The root mutation */
+export type RootMutationDeleteMultiplierGroupArgs = {
+  input: DeleteMultiplierGroupInput;
 };
 
 
@@ -25731,6 +26274,12 @@ export type RootMutationUpdateMediaItemArgs = {
 
 
 /** The root mutation */
+export type RootMutationUpdateMultiplierGroupArgs = {
+  input: UpdateMultiplierGroupInput;
+};
+
+
+/** The root mutation */
 export type RootMutationUpdateOrderArgs = {
   input: UpdateOrderInput;
 };
@@ -26025,6 +26574,10 @@ export type RootQuery = {
   menuItems?: Maybe<RootQueryToMenuItemConnection>;
   /** Connection between the RootQuery type and the Menu type */
   menus?: Maybe<RootQueryToMenuConnection>;
+  /** A 0bject */
+  multiplierGroup?: Maybe<MultiplierGroup>;
+  /** Connection between the RootQuery type and the multiplierGroup type */
+  multiplierGroups?: Maybe<RootQueryToMultiplierGroupConnection>;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Fetches an object given its Unique Resource Identifier */
@@ -26537,6 +27090,23 @@ export type RootQueryMenusArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToMenuConnectionWhereArgs>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryMultiplierGroupArgs = {
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<MultiplierGroupIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryMultiplierGroupsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -27681,6 +28251,83 @@ export type RootQueryToMenuItemConnectionWhereArgs = {
   parentDatabaseId?: InputMaybe<Scalars['Int']['input']>;
   /** The ID of the parent menu object */
   parentId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** Connection between the RootQuery type and the multiplierGroup type */
+export type RootQueryToMultiplierGroupConnection = Connection & MultiplierGroupConnection & {
+  __typename?: 'RootQueryToMultiplierGroupConnection';
+  /** Edges for the RootQueryToMultiplierGroupConnection connection */
+  edges: Array<RootQueryToMultiplierGroupConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<MultiplierGroup>;
+  /** Information about pagination in a connection. */
+  pageInfo: RootQueryToMultiplierGroupConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type RootQueryToMultiplierGroupConnectionEdge = Edge & MultiplierGroupConnectionEdge & {
+  __typename?: 'RootQueryToMultiplierGroupConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: MultiplierGroup;
+};
+
+/** Pagination metadata specific to &quot;RootQueryToMultiplierGroupConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToMultiplierGroupConnection Nodes. */
+export type RootQueryToMultiplierGroupConnectionPageInfo = MultiplierGroupConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToMultiplierGroupConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the RootQueryToMultiplierGroupConnection connection */
+export type RootQueryToMultiplierGroupConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']['input']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']['input']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']['input']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Connection between the RootQuery type and the Order type */
@@ -31081,10 +31728,14 @@ export type SimpleProduct = ContentNode & DatabaseIdentifier & DownloadableProdu
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** Connection between the Product type and the multiplierGroup type */
+  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
+  /** The part number for the product */
+  partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
   /** The database id of the preview node */
@@ -31431,6 +32082,16 @@ export type SimpleProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** A simple product object */
+export type SimpleProductMultiplierGroupsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -32504,6 +33165,8 @@ export type TaxonomyConnectionPageInfo = {
 export enum TaxonomyEnum {
   /** Taxonomy enum category */
   Category = 'CATEGORY',
+  /** Taxonomy enum multiplier_group */
+  Multipliergroup = 'MULTIPLIERGROUP',
   /** Taxonomy enum pa_air-quality-application */
   Paairqualityapplication = 'PAAIRQUALITYAPPLICATION',
   /** Taxonomy enum pa_air-quality-sensor-type */
@@ -33146,6 +33809,31 @@ export type UpdateMediaItemPayload = {
   mediaItem?: Maybe<MediaItem>;
 };
 
+/** Input for the updateMultiplierGroup mutation. */
+export type UpdateMultiplierGroupInput = {
+  /** The slug that the multiplier_group will be an alias of */
+  aliasOf?: InputMaybe<Scalars['String']['input']>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The description of the multiplier_group object */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the multiplierGroup object to update */
+  id: Scalars['ID']['input'];
+  /** The name of the multiplier_group object to mutate */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the updateMultiplierGroup mutation. */
+export type UpdateMultiplierGroupPayload = {
+  __typename?: 'UpdateMultiplierGroupPayload';
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The created multiplier_group */
+  multiplierGroup?: Maybe<MultiplierGroup>;
+};
+
 /** Input for the updateOrder mutation. */
 export type UpdateOrderInput = {
   /** Order billing address */
@@ -33763,6 +34451,8 @@ export type UpdateProductInput = {
   ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
   menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** Set connections between the Product and multiplierGroups */
+  multiplierGroups?: InputMaybe<ProductMultiplierGroupsInput>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars['String']['input']>;
   /** Set connections between the Product and productCategories */
@@ -35083,10 +35773,14 @@ export type VariableProduct = ContentNode & DatabaseIdentifier & InventoriedProd
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** Connection between the Product type and the multiplierGroup type */
+  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
+  /** The part number for the product */
+  partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
   /** The database id of the preview node */
@@ -35433,6 +36127,16 @@ export type VariableProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** A variable product object */
+export type VariableProductMultiplierGroupsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -36174,33 +36878,33 @@ export type GetProductBySlugQueryVariables = Exact<{
 
 
 export type GetProductBySlugQuery = { __typename?: 'RootQuery', product?:
-    | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+    | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
+          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
-    | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+    | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
+          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
-    | { __typename?: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+    | { __typename?: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
+          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
-    | { __typename?: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+    | { __typename?: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined }> } | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
+          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
    | null | undefined };
 
@@ -36274,6 +36978,7 @@ export const GetProductBySlugDocument = gql`
     slug
     description
     shortDescription
+    partNumber
     ... on SimpleProduct {
       price
       regularPrice
@@ -36297,23 +37002,6 @@ export const GetProductBySlugDocument = gql`
           price
           regularPrice
           stockStatus
-          attributes {
-            nodes {
-              id
-              name
-              label
-              value
-            }
-          }
-          image {
-            id
-            sourceUrl
-            altText
-            mediaDetails {
-              height
-              width
-            }
-          }
         }
       }
     }
@@ -36357,14 +37045,36 @@ export const GetProductBySlugDocument = gql`
         databaseId
         name
         slug
+        ... on Product {
+          partNumber
+        }
         ... on SimpleProduct {
+          partNumber
           price
           stockStatus
+        }
+        ... on VariableProduct {
+          partNumber
+        }
+        ... on ExternalProduct {
+          partNumber
+        }
+        ... on GroupProduct {
+          partNumber
         }
         image {
           id
           sourceUrl
           altText
+        }
+      }
+    }
+    ... on Product {
+      multiplierGroups {
+        nodes {
+          id
+          name
+          slug
         }
       }
     }

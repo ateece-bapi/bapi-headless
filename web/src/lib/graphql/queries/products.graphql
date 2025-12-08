@@ -58,6 +58,7 @@ query GetProductBySlug($slug: ID!) {
     slug
     description
     shortDescription
+    partNumber
     ... on SimpleProduct {
       price
       regularPrice
@@ -124,16 +125,28 @@ query GetProductBySlug($slug: ID!) {
         databaseId
         name
         slug
-        partNumber
-        ... on SimpleProduct {
-          price
-          stockStatus
-        }
-        image {
-          id
-          sourceUrl
-          altText
-        }
+          ... on Product {
+            partNumber
+          }
+          ... on SimpleProduct {
+            partNumber
+            price
+            stockStatus
+          }
+          ... on VariableProduct {
+            partNumber
+          }
+          ... on ExternalProduct {
+            partNumber
+          }
+          ... on GroupProduct {
+            partNumber
+          }
+          image {
+            id
+            sourceUrl
+            altText
+          }
       }
     }
     ... on Product {

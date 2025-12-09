@@ -24,7 +24,7 @@ export default function ProductSummaryCard({ product }: ProductSummaryCardProps)
       <h2 className="text-neutral-900 text-xl font-bold mb-4">Product Summary</h2>
       <div className="mb-4">
         <div className="text-xs text-neutral-500">Part Number</div>
-        <div className="font-medium text-neutral-900 text-lg">{product.partNumber || 'N/A'}</div>
+        <div className="font-medium text-neutral-900 text-lg">{product.partNumber || product.sku || 'N/A'}</div>
       </div>
       <div className="mb-4 flex justify-between items-center gap-4">
         <div>

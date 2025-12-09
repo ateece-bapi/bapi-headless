@@ -1,32 +1,3 @@
-# Ignore WordPress core files and sensitive/unnecessary files
-cms/wp-content/index.php
-cms/wp-content/themes/index.php
-cms/.htaccess
-cms/wp-content/debug.log
-cms/wp-content/uploads/
-cms/wp-content/cache/
-cms/wp-content/upgrade/
-cms/wp-content/advanced-cache.php
-cms/wp-content/object-cache.php
-cms/wp-content/wp-cache-config.php
-cms/wp-config.php
-cms/wp-config-sample.php
-cms/xmlrpc.php
-cms/license.txt
-cms/readme.html
-cms/wp-activate.php
-cms/wp-blog-header.php
-cms/wp-comments-post.php
-cms/wp-cron.php
-cms/wp-links-opml.php
-cms/wp-load.php
-cms/wp-login.php
-cms/wp-mail.php
-cms/wp-settings.php
-cms/wp-signup.php
-cms/wp-trackback.php
-cms/wp-admin/
-cms/wp-includes/
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies

@@ -13,6 +13,16 @@ query GetProducts($first: Int = 10, $after: String) {
       slug
       description
       shortDescription
+        ... on Product {
+          partNumber
+          productCategories {
+            nodes {
+              id
+              name
+              slug
+            }
+          }
+        }
       ... on SimpleProduct {
         price
         regularPrice
@@ -35,15 +45,6 @@ query GetProducts($first: Int = 10, $after: String) {
         mediaDetails {
           height
           width
-        }
-      }
-      ... on Product {
-        productCategories {
-          nodes {
-            id
-            name
-            slug
-          }
         }
       }
     }
@@ -82,6 +83,8 @@ query GetProductBySlug($slug: ID!) {
           price
           regularPrice
           stockStatus
+          partNumber
+          sku
         }
       }
     }

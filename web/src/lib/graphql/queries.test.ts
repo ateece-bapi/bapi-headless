@@ -31,6 +31,7 @@ describe('getProductBySlug', () => {
         galleryImages: { nodes: [] },
         variations: { nodes: [] },
         relatedProducts: [],
+        sku: '',
       },
     };
 

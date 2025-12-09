@@ -10,11 +10,12 @@ import { CartDrawer } from '@/components/cart';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import ProductHero from '@/components/products/ProductPage/ProductHero';
 import ProductConfigurator from '@/components/products/ProductPage/ProductConfigurator';
+import dynamic from 'next/dynamic';
 import ProductTabs from '@/components/products/ProductPage/ProductTabs';
 import RelatedProducts from '@/components/products/ProductPage/RelatedProducts';
 import AppLinks from '@/components/products/ProductPage/AppLinks';
 import ContactInfo from '@/components/products/ProductPage/ContactInfo';
-import ProductSummaryCard from '@/components/products/ProductPage/ProductSummaryCard';
+import ProductDetailClient from '@/components/products/ProductPage/ProductDetailClient';
 
 function stripHtml(html?: string | null) {
   if (!html) return '';
@@ -76,12 +77,16 @@ export default async function ProductPage({ params }: { params: { slug: string }
   type NormalizedProduct = GetProductBySlugQuery['product'] & {
     relatedProducts?: any[];
     partNumber?: string;
+    sku?: string;
     multiplier?: string;
     multiplierGroups?: Array<{ id: string; name: string; slug: string }>;
     regularPrice?: string;
     stockQuantity?: number;
     iosAppUrl?: string;
     androidAppUrl?: string;
+    variations?: {
+      nodes: Array<any>;
+    };
   };
   const product = data.product as NormalizedProduct | null;
 
@@ -89,14 +94,14 @@ export default async function ProductPage({ params }: { params: { slug: string }
     notFound();
   }
 
-  // Build a lightweight, serializable shape for the client component
-  // This uses the normalized product object, which includes relatedProducts
+  // Minimal normalization for client
   const productForClient = {
     id: product.id,
     databaseId: product.databaseId ?? 0,
     name: product.name ?? 'Product',
     slug: product.slug ?? '',
     partNumber: product.partNumber ?? '',
+    sku: product.sku ?? '',
     multiplierGroups: Array.isArray(product.multiplierGroups) ? product.multiplierGroups : [],
     price: getProductPrice(product) || '$0.00',
     regularPrice: product.regularPrice ?? '',
@@ -108,177 +113,32 @@ export default async function ProductPage({ params }: { params: { slug: string }
     gallery: ((product.galleryImages?.nodes || []) as Array<{ sourceUrl?: string; altText?: string | null }>).map((node) => {
       return { sourceUrl: node?.sourceUrl ?? '', altText: node?.altText ?? '' };
     }),
-    variations:
-      (product
-        ? (() => {
-            const validated = productSchema.parse(product) as z.infer<typeof productSchema>;
-            return (
-              validated.variations?.nodes?.map((v) => {
-                const vv = v as {
-                  id: string;
-                  databaseId?: number;
-                  name?: string | null;
-                  price?: string | null;
-                  regularPrice?: string | null;
-                  attributes?: { nodes?: Array<{ name?: string; label?: string; value?: string | null }> } | null;
-                  image?: { sourceUrl?: string; altText?: string | null } | null;
-                };
-                const attrs = (vv.attributes?.nodes || []).reduce<Record<string, string>>((acc, a) => {
-                  if (a && a.name && a.value) acc[a.name] = a.value;
-                  return acc;
-                }, {});
-
-                return {
-                  id: vv.id,
-                  databaseId: vv.databaseId ?? 0,
-                  name: vv.name || `${product?.name ?? 'Product'} variant`,
-                  price: vv.price ?? null,
-                  regularPrice: vv.regularPrice ?? null,
-                  attributes: attrs,
-                  image: vv.image ? { sourceUrl: vv.image.sourceUrl ?? '', altText: vv.image.altText ?? '' } : null,
-                };
-              }) || []
-            );
-          })()
-        : []) || [],
-    attributes: (() => {
-      const prodWithVariations = product as NormalizedProduct | null;
-      const variationsArr = (() => {
-        if (!prodWithVariations) return [] as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
-        if (!('variations' in prodWithVariations)) return [] as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
-        const maybe = (prodWithVariations as any).variations;
-        if (!maybe || !Array.isArray(maybe.nodes)) return [] as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
-        return maybe.nodes as Array<{ attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null }>;
-      })();
-      const acc: Record<string, Set<string>> = {};
-      for (const v of variationsArr) {
-        const vv = v as { attributes?: { nodes?: Array<{ name?: string; value?: string | null }> } | null };
-        const nodes = vv.attributes?.nodes || [];
-        for (const a of nodes) {
-          if (!a || !a.name) continue;
-          acc[a.name] = acc[a.name] || new Set<string>();
-          if (a.value) acc[a.name].add(a.value);
-        }
-      }
-      return Object.entries(acc).map(([name, set]) => ({ name, options: Array.from(set) }));
-    })(),
+    variations: Array.isArray(product.variations?.nodes)
+      ? product.variations.nodes.map((v: any) => ({
+          id: v.id,
+          databaseId: v.databaseId ?? 0,
+          name: v.name ?? `${product.name ?? 'Product'} variant`,
+          price: v.price ?? null,
+          regularPrice: v.regularPrice ?? null,
+          attributes: Array.isArray(v.attributes?.nodes)
+            ? v.attributes.nodes.reduce((acc: Record<string, string>, a: any) => {
+                if (a && a.name && a.value) acc[a.name] = a.value;
+                return acc;
+              }, {})
+            : {},
+          image: v.image ? { sourceUrl: v.image.sourceUrl ?? '', altText: v.image.altText ?? '' } : null,
+          partNumber: v.partNumber ?? null,
+          sku: v.sku ?? null,
+        }) )
+      : [],
+    attributes: [], // Add attribute normalization if needed
     shortDescription: product.shortDescription || null,
     description: product.description || null,
     relatedProducts: product.relatedProducts || [],
-  };
-
-  // --- JSON-LD Structured Data ---
-  const ogImage = productForClient.image?.sourceUrl || (productForClient.gallery?.[0]?.sourceUrl ?? "");
-  // BreadcrumbList JSON-LD
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Products",
-        "item": "https://yourdomain.com/products"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": productForClient.name,
-        "item": `https://yourdomain.com/products/${productForClient.slug}`
-      }
-    ]
-  };
-  // Expanded Product JSON-LD
-  const jsonLd = {
-    '@context': 'https://schema.org/',
-    '@type': 'Product',
-    name: productForClient.name,
-    image: [ogImage],
-    description: productForClient.shortDescription || productForClient.description || '',
-    sku: productForClient.id,
-    brand: { '@type': 'Brand', name: 'BAPI' },
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'USD',
-      price: productForClient.price,
-      availability: productForClient.stockStatus === 'IN_STOCK' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      url: `https://yourdomain.com/products/${productForClient.slug}`,
-    },
+    iosAppUrl: (product as any).iosAppUrl ?? null,
+    androidAppUrl: (product as any).androidAppUrl ?? null,
   };
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <div className="min-h-screen bg-white">
-        <header className="border-b border-neutral-200 bg-white sticky top-0 z-20 shadow-sm">
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <Link href="/" className="flex items-center gap-3">
-              <img src="/images/bapi-logo.svg" alt="BAPI Logo" className="h-8 w-auto" />
-              <span className="text-2xl font-bold text-primary-500 hover:text-primary-600 transition">BAPI</span>
-            </Link>
-            <nav className="flex gap-8 items-center text-base font-semibold">
-              <Link href="/products" className="text-primary-500 hover:text-primary-600 transition">Products</Link>
-              <Link href="/about" className="text-neutral-700 hover:text-primary-500 transition">About</Link>
-              <Link href="/contact" className="text-neutral-700 hover:text-primary-500 transition">Contact</Link>
-            </nav>
-          </div>
-        </header>
-
-        <main className="py-12">
-          <div className="container mx-auto px-4">
-            <Breadcrumbs
-              items={[
-                { label: 'Products', href: '/products' },
-                { label: productForClient.name }
-              ]}
-            />
-            <div className="flex flex-col md:flex-row gap-8 mb-8 items-start">
-              <div className="flex-1">
-                <ProductHero product={productForClient} />
-              </div>
-              <ProductSummaryCard product={{
-                partNumber: productForClient.partNumber,
-                price: productForClient.price,
-                regularPrice: productForClient.regularPrice,
-                multiplierGroups: productForClient.multiplierGroups,
-                stockStatus: productForClient.stockStatus,
-                stockQuantity: productForClient.stockQuantity,
-              }} />
-                        {/* Quantity Selector Example */}
-                        {typeof productForClient.stockQuantity === 'number' && productForClient.stockQuantity > 0 && (
-                          <div className="mb-6">
-                            <label htmlFor="quantity" className="block font-medium mb-2">Quantity</label>
-                            <input
-                              type="number"
-                              id="quantity"
-                              name="quantity"
-                              min={1}
-                              max={productForClient.stockQuantity}
-                              defaultValue={1}
-                              className="border rounded px-3 py-2 w-24"
-                            />
-                            <span className="ml-2 text-sm text-neutral-500">In stock: {productForClient.stockQuantity}</span>
-                          </div>
-                        )}
-            </div>
-            <ProductConfigurator product={productForClient} />
-            <ProductTabs product={productForClient} />
-            <RelatedProducts related={productForClient.relatedProducts} />
-            <AppLinks product={{ iosAppUrl: product.iosAppUrl, androidAppUrl: product.androidAppUrl }} />
-            <ContactInfo />
-            {/* Main Product Detail Client removed to prevent duplicate layout */}
-            {/* <ProductDetailClient product={productForClient} /> */}
-          </div>
-        </main>
-
-        <footer className="border-t border-neutral-200 py-8 bg-white">
-          <div className="container mx-auto px-4 text-center text-neutral-600">
-            <p>&copy; 2025 BAPI. All rights reserved.</p>
-          </div>
-        </footer>
-      </div>
-
-      <CartDrawer />
-    </>
+    <ProductDetailClient product={productForClient} />
   );
 }

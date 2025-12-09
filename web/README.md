@@ -1,3 +1,20 @@
+# Product Field: partNumber (Developer Note)
+
+## Purpose
+The `partNumber` field is reserved for future use. It is intended to store a manufacturer or customer-facing part number, which may differ from the internal SKU. Currently, most products only have a SKU, and `partNumber` is often null.
+
+## Frontend Handling
+- The UI will display the SKU if `partNumber` is null, so users always see a value.
+- Do not make `partNumber` required in the schema or UI until business needs require it.
+
+## When to Use
+- If a product has a distinct part number (different from SKU), populate `partNumber`.
+- Otherwise, fallback to displaying SKU in all user-facing contexts.
+
+## Maintenance
+- Keep this field in the schema for future flexibility.
+- Update this documentation if business requirements change.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

@@ -55,9 +55,9 @@ export default function ProductHero({ product }: ProductHeroProps) {
       </div>
       <div className="flex-1">
         <h1 className="text-3xl font-bold mb-2 text-neutral-900">{product.name}</h1>
-        {product.partNumber && (
-          <div className="text-sm text-neutral-500 mb-2">Part Number: <span className="font-medium text-neutral-800">{product.partNumber}</span></div>
-        )}
+        <div className="text-sm text-neutral-500 mb-2">
+          Part Number: <span className="font-medium text-neutral-800">{product.partNumber || product.sku || 'N/A'}</span>
+        </div>
         {product.shortDescription && (
           <div className="mb-4 text-neutral-700">{product.shortDescription}</div>
         )}

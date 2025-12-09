@@ -26,9 +26,7 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({ related }) => {
               <img src={product.image.sourceUrl} alt={product.image.altText || product.name} className="w-full h-24 object-contain mb-2" />
             )}
             <div className="text-sm font-medium text-neutral-900 mb-1">{product.name}</div>
-            {product.partNumber && (
-              <div className="text-xs text-neutral-500 mb-1">Part #: {product.partNumber}</div>
-            )}
+            <div className="text-xs text-neutral-500 mb-1">Part #: {product.partNumber || product.sku || 'N/A'}</div>
             {product.price && (
               <div className="text-xs font-semibold text-primary-700 mb-2">{product.price}</div>
             )}

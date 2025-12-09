@@ -8,6 +8,8 @@ interface Variation {
   price?: string | null;
   regularPrice?: string | null;
   attributes: Record<string, string>;
+  partNumber?: string | null;
+  sku?: string | null;
 }
 
 interface AttributeOption {
@@ -22,9 +24,10 @@ interface ProductConfiguratorProps {
     price?: string | null;
     regularPrice?: string | null;
   };
+  onVariationChange?: (variation: Variation | null) => void;
 }
 
-export default function ProductConfigurator({ product }: ProductConfiguratorProps) {
+export default function ProductConfigurator({ product, onVariationChange }: ProductConfiguratorProps) {
   const { attributes = [], variations = [], price, regularPrice } = product;
   // Build initial state for each attribute
   const initialSelections = attributes.reduce<Record<string, string>>((acc, attr) => {
@@ -37,6 +40,13 @@ export default function ProductConfigurator({ product }: ProductConfiguratorProp
   const selectedVariation = variations.find((v) => {
     return Object.entries(selections).every(([name, value]) => v.attributes[name] === value);
   });
+
+  React.useEffect(() => {
+    if (onVariationChange) {
+      onVariationChange(selectedVariation || null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedVariation]);
 
   return (
     <section className="mb-8">
@@ -61,6 +71,14 @@ export default function ProductConfigurator({ product }: ProductConfiguratorProp
         </form>
       ) : (
         <div className="bg-neutral-100 rounded p-4 text-neutral-500">No configuration options available.</div>
+      )}
+      {selectedVariation && (
+        <div className="mt-4">
+          <div className="text-xs text-neutral-500">Variation Part Number</div>
+          <div className="font-medium text-neutral-900 text-lg">
+            {selectedVariation.partNumber || selectedVariation.sku || 'N/A'}
+          </div>
+        </div>
       )}
       {/* Price and action now in summary card */}
     </section>

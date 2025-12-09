@@ -5,6 +5,7 @@ import React from 'react';
 interface ProductSummaryCardProps {
   product: {
     partNumber?: string | null;
+    sku?: string | null;
     price?: string | null;
     regularPrice?: string | null;
     multiplier?: string | null;

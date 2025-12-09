@@ -77,6 +77,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
   type NormalizedProduct = GetProductBySlugQuery['product'] & {
     relatedProducts?: any[];
     partNumber?: string;
+    sku?: string;
     multiplier?: string;
     multiplierGroups?: Array<{ id: string; name: string; slug: string }>;
     regularPrice?: string;
@@ -100,6 +101,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
     name: product.name ?? 'Product',
     slug: product.slug ?? '',
     partNumber: product.partNumber ?? '',
+    sku: product.sku ?? '',
     multiplierGroups: Array.isArray(product.multiplierGroups) ? product.multiplierGroups : [],
     price: getProductPrice(product) || '$0.00',
     regularPrice: product.regularPrice ?? '',

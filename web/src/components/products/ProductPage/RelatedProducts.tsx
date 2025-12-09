@@ -6,6 +6,7 @@ interface RelatedProduct {
   name: string;
   slug: string;
   partNumber?: string;
+  sku?: string;
   image?: { sourceUrl: string; altText?: string };
   price?: string | null;
 }

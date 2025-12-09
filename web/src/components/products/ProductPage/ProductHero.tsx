@@ -14,6 +14,7 @@ interface ProductHeroProps {
     image?: GalleryImage | null;
     gallery?: GalleryImage[];
     partNumber?: string | null;
+    sku?: string | null;
     shortDescription?: string | null;
     specs?: string | null;
     price?: string | null;

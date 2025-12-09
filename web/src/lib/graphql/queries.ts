@@ -89,6 +89,9 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
       }))
     : [];
 
+    // Normalize sku for main product
+    p.sku = productRaw.sku ?? '';
+
   // Normalize variations to the { nodes: [] } shape
   const variRaw = productRaw.variations as Record<string, unknown> | null | undefined;
   if (!variRaw) {

@@ -1,32 +1,47 @@
 "use client";
-import React, { useEffect, useState } from "react";
 
-const TAGLINES = [
-  "Changing the way you think about sensors.",
-  "Changing the way you think about sensors since 1993.",
-  "...It’s in the details",
-  "Another BAPI Original",
+import React, { useState, useEffect } from 'react';
+
+const taglines = [
+  "BAPI-Backed",
+  "Industry Leading Sensors",
+  "Trusted by Professionals",
   "Seamless wireless integration for your existing BAS",
-  "People. Building. Sensors.",
-  "BAPI-Backed"
+  "Precision Engineering",
+  "Building the Future",
 ];
 
-const ROTATE_INTERVAL = 3500;
-
 const TaglineRotator: React.FC = () => {
-  const [index, setIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % TAGLINES.length);
-    }, ROTATE_INTERVAL);
-    return () => clearInterval(timer);
+    const interval = setInterval(() => {
+      setIsVisible(false);
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % taglines.length);
+        setIsVisible(true);
+      }, 500);
+    }, 4000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <p className="text-lg md:text-xl text-blue-700 font-semibold mb-2 min-h-[2.5rem] transition-all duration-500">
-      {TAGLINES[index]}
-    </p>
+    <div className="min-h-[4rem] flex items-center justify-center">
+      <p
+        className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold transition-opacity duration-500 ${
+          isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          fontSmooth: 'always',
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
+        }}
+      >
+        {taglines[currentIndex]}
+      </p>
+    </div>
   );
 };
 

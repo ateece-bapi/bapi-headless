@@ -15,8 +15,10 @@ export const HeroActions: React.FC<HeroActionsProps> = ({ actions }) => (
         href={action.href}
         color={action.variant}
         className={`w-full sm:w-auto min-w-[220px] ${
-          index === 0 ? 'sm:mr-2' : ''
-        }`}
+          action.variant === 'blue' 
+            ? 'shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/35' 
+            : 'shadow-lg shadow-yellow-600/25 hover:shadow-xl hover:shadow-yellow-600/35'
+        } ${index === 0 ? 'sm:mr-2' : ''}`}
       >
         {action.label}
       </BapiButton>

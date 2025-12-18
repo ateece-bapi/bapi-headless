@@ -13,12 +13,12 @@ export const HeroContent: React.FC<HeroContentProps> = ({ title, subtitle, descr
       {title}
     </h1>
     
-    {/* Tagline Rotator with improved spacing */}
+    {/* Dynamic Tagline Rotator - back with style */}
     <div className="inline-block mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
       <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-[#0054b6] via-[#1479bc] to-[#0054b6] bg-clip-text text-transparent mb-6 pb-2 px-4">
         <TaglineRotator />
       </div>
-      <div className="h-2 w-4/5 mx-auto bg-gradient-to-r from-transparent via-[#ffc843] to-transparent rounded-full shadow-lg shadow-[#ffc843]/50 animate-pulse" />
+      <div className="h-2 w-4/5 mx-auto bg-gradient-to-r from-transparent via-[#ffc843] to-transparent rounded-full shadow-lg shadow-[#ffc843]/50" />
     </div>
     
     <p className="text-xl sm:text-2xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-normal mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">

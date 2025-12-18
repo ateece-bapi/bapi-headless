@@ -1,15 +1,19 @@
 import React from "react";
 import clsx from "clsx";
 
-interface BapiButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface BapiButtonProps {
   color?: "blue" | "yellow";
   as?: "button" | "a";
   href?: string;
   children: React.ReactNode;
+  className?: string;
 }
 
+type ButtonProps = BapiButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type AnchorProps = BapiButtonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
 // BAPI brand button: blue (white text, drop shadow) or yellow (black text, no shadow)
-const BapiButton: React.FC<BapiButtonProps> = ({
+const BapiButton: React.FC<ButtonProps | AnchorProps> = ({
   color = "blue",
   as = "button",
   href,
@@ -32,14 +36,19 @@ const BapiButton: React.FC<BapiButtonProps> = ({
   );
 
   if (as === "a" && href) {
+    // Extract only anchor-specific props
+    const { as: _, ...anchorProps } = props as AnchorProps;
     return (
-      <a href={href} className={btnClass} {...props}>
+      <a href={href} className={btnClass} {...anchorProps}>
         {children}
       </a>
     );
   }
+  
+  // Extract only button-specific props
+  const { as: _, href: __, ...buttonProps } = props as ButtonProps;
   return (
-    <button className={btnClass} {...props}>
+    <button className={btnClass} {...buttonProps}>
       {children}
     </button>
   );

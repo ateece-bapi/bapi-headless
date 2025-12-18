@@ -82,10 +82,10 @@ const Header: React.FC = () => {
             <Image
               src="/BAPI_Logo_with_white_border.jpg"
               alt="BAPI - Sensors for HVAC/R"
-              width={200}
-              height={67}
+              width={280}
+              height={93}
               priority
-              className="h-12 sm:h-14 w-auto"
+              className="h-16 sm:h-20 w-auto"
             />
           </Link>
 

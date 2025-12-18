@@ -15,7 +15,7 @@ export const Logo: React.FC = () => (
       width={HEADER_CONFIG.logo.width}
       height={HEADER_CONFIG.logo.height}
       priority
-      className="h-16 sm:h-20 lg:h-24 xl:h-28 w-auto"
+      className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto"
     />
   </Link>
 );

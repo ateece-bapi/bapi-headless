@@ -21,4 +21,8 @@ export const HEADER_CONFIG = {
     height: 117,
   },
   scrollThreshold: 10,
+  colors: {
+    blue: '#0054b6',
+    yellow: '#ffc843',
+  },
 } as const;

@@ -17,7 +17,7 @@ export const Navigation: React.FC<NavigationProps> = ({ links, className = '' })
       >
         {link.label}
         <span
-          className="absolute left-0 -bottom-0 w-0 h-0.5 bg-[#0054b6] transition-all duration-300 group-hover:w-full group-focus:w-full"
+          className="absolute left-0 -bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#0054b6] to-[#ffc843] transition-all duration-300 group-hover:w-full group-focus:w-full"
           aria-hidden="true"
         />
       </Link>

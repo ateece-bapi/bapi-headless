@@ -1,23 +1,11 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import TaglineRotator from './components/TaglineRotator';
-import BapiButton from './components/BapiButton';
+import Hero from './components/Hero';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <section className="w-full bg-white border-b py-20">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-neutral-900 tracking-tight">Building Automation & Control Solutions</h1>
-          <TaglineRotator />
-          <p className="text-xl md:text-2xl text-neutral-600 mb-10 max-w-2xl mx-auto">Professional sensors and control modules for modern building automation systems.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
-            <BapiButton as="a" href="/products" color="blue">Browse Products</BapiButton>
-            <BapiButton as="a" href="/contact" color="yellow">Contact Sales</BapiButton>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* Featured Products */}
       <section className="max-w-6xl mx-auto px-4 py-16">

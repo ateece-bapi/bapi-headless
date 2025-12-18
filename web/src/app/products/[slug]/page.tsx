@@ -22,7 +22,9 @@ function stripHtml(html?: string | null) {
   return html.replace(/<[^>]*>/g, '').slice(0, 160);
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: { slug: string } | Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   if (!resolvedParams?.slug) return {};
   const slug = String(resolvedParams.slug);

@@ -1,199 +1,119 @@
-import { getProducts } from '@/lib/graphql';
-import { getProductPrice } from '@/lib/graphql';
-import { getCollectionPageJsonLd } from '@/lib/seo';
-export const metadata = {
-  title: 'Home | BAPI',
-  description: 'Welcome to BAPI, your source for building automation sensors and control modules.',
-  openGraph: {
-    title: 'Home | BAPI',
-    description: 'Welcome to BAPI, your source for building automation sensors and control modules.',
-    type: 'website',
-    url: 'https://yourdomain.com/',
-    images: [
-      {
-        url: 'https://yourdomain.com/og-default.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'BAPI - Building Automation Products'
-      }
-    ]
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Home | BAPI',
-    description: 'Welcome to BAPI, your source for building automation sensors and control modules.',
-    images: ['https://yourdomain.com/og-default.jpg']
-  },
-  alternates: {
-    canonical: '/'
-  }
-};
 import Link from 'next/link';
 import Image from 'next/image';
-import { CartButton, CartDrawer, AddToCartButton } from '@/components/cart';
-import type { CartItem } from '@/store';
+import TaglineRotator from './components/TaglineRotator';
+import BapiButton from './components/BapiButton';
 
-type ProductData = Omit<CartItem, 'quantity'>;
-
-export default async function Home() {
-  // --- JSON-LD Structured Data ---
-  const collectionJsonLd = getCollectionPageJsonLd({
-    title: 'Home | BAPI',
-    description: 'Welcome to BAPI, your source for building automation sensors and control modules.',
-    url: 'https://yourdomain.com/'
-  });
-  const orgJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BAPI",
-    "url": "https://yourdomain.com",
-    "logo": "https://yourdomain.com/logo.png",
-    "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "telephone": "+1-800-555-1234",
-        "contactType": "customer service"
-      }
-    ]
-  };
-  // Skip data fetching if environment variable not set (build time)
-  let products: ProductData[] = [];
-  if (process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
-    const data = await getProducts(6);
-    products = (data.products?.nodes || []).map((product) => ({
-      id: product.id,
-      databaseId: product.databaseId ?? 0,
-      name: product.name || 'Unnamed Product',
-      slug: product.slug || '',
-      price: getProductPrice(product) || '$0.00',
-      image: product.image ? {
-        sourceUrl: product.image.sourceUrl || '',
-        altText: product.image.altText || product.name || '',
-      } : null,
-    }));
-  }
-
+export default function Home() {
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
-      <div className="min-h-screen">
-        {/* Header */}
-        <header className="border-b border-neutral-200 bg-white">
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold text-primary-500 hover:text-primary-600 transition">
-              BAPI
-            </Link>
-            <nav className="flex gap-6 items-center">
-              <Link href="/products" className="text-neutral-700 hover:text-primary-500 transition font-medium">
-                Products
-              </Link>
-              <Link href="/cart-test" className="text-neutral-700 hover:text-primary-500 transition font-medium">
-                Cart Test
-              </Link>
-              <CartButton />
-            </nav>
+    <main className="min-h-screen bg-neutral-50">
+      {/* Hero Section */}
+      <section className="w-full bg-white border-b py-20">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-neutral-900 tracking-tight">Building Automation & Control Solutions</h1>
+          <TaglineRotator />
+          <p className="text-xl md:text-2xl text-neutral-600 mb-10 max-w-2xl mx-auto">Professional sensors and control modules for modern building automation systems.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
+            <BapiButton as="a" href="/products" color="blue">Browse Products</BapiButton>
+            <BapiButton as="a" href="/contact" color="yellow">Contact Sales</BapiButton>
           </div>
-        </header>
+        </div>
+      </section>
 
-        {/* Hero Section */}
-        <section className="bg-neutral-50 py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-5xl font-bold mb-6 text-neutral-900">
-              Building Automation & Control Solutions
-            </h1>
-            <p className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
-              Professional sensors and control modules for modern building automation systems
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Link
-                href="/products"
-                className="bg-accent-500 hover:bg-accent-600 text-neutral-900 px-8 py-3 rounded font-semibold transition shadow-sm hover:shadow-md"
-              >
-                Browse Products
-              </Link>
-              <Link
-                href="/cart-test"
-                className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-3 rounded font-semibold transition shadow-sm"
-              >
-                Try Cart Demo
-              </Link>
+      {/* Featured Products */}
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-center mb-10">Featured Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {[1,2,3,4,5,6].map((i) => (
+            <div key={i} className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+              <div className="w-32 h-24 bg-neutral-100 rounded mb-4 flex items-center justify-center">
+                <span className="text-4xl text-neutral-300">📦</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Product Name {i}</h3>
+              <p className="text-neutral-500 mb-4 text-center">Short product description goes here.</p>
+              <span className="font-bold text-blue-700 text-xl mb-4">$XXX.00</span>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded font-semibold transition">Add to Cart</button>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
+      </section>
 
-        {/* Featured Products */}
-        {products.length > 0 && (
-          <section className="py-16">
-            <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold mb-8 text-center text-neutral-900">Featured Products</h2>
-              
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {products.map((product) => (
-                  <div
-                    key={product.id}
-                    className="border border-neutral-200 rounded p-6 shadow-sm hover:shadow-lg hover:border-primary-300 transition bg-white"
-                  >
-                    {product.image && (
-                      <Image
-                        src={product.image.sourceUrl}
-                        alt={product.image.altText || product.name || ''}
-                        width={640}
-                        height={192}
-                        className="w-full h-48 object-cover rounded mb-4"
-                      />
-                    )}
-                    <h3 className="text-lg font-semibold mb-2 text-neutral-800">{product.name}</h3>
-                    <p className="text-2xl font-bold text-primary-500 mb-4">
-                      {product.price}
-                    </p>
-                    <AddToCartButton product={product} className="w-full" />
-                  </div>
-                ))}
+      {/* Solutions / Industries Served */}
+      <section className="w-full bg-neutral-100 py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-10">Industries & Solutions</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            {['Commercial Buildings', 'Healthcare', 'Manufacturing', 'Data Centers'].map((industry, idx) => (
+              <div key={industry} className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <span className="text-4xl mb-4">🏢</span>
+                <h3 className="font-semibold text-lg mb-2">{industry}</h3>
+                <p className="text-neutral-500 text-center">Brief description of how BAPI serves this industry.</p>
+                <Link href="/solutions" className="mt-4 text-blue-600 hover:underline font-medium">Learn more</Link>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Value Propositions */}
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+          {[
+            {icon: '🛡️', title: 'Professional Grade', desc: 'Industry-leading sensors and control modules.'},
+            {icon: '🔌', title: 'Easy Integration', desc: 'BACnet, Modbus, and wireless connectivity.'},
+            {icon: '🤝', title: 'Reliable Support', desc: 'Expert technical assistance when you need it.'},
+            {icon: '🌱', title: 'Sustainability', desc: 'Committed to sustainable and efficient solutions.'},
+          ].map((item) => (
+            <div key={item.title} className="bg-white rounded-lg shadow p-8 flex flex-col items-center">
+              <span className="text-4xl mb-4">{item.icon}</span>
+              <h4 className="font-semibold text-lg mb-2">{item.title}</h4>
+              <p className="text-neutral-500">{item.desc}</p>
             </div>
-          </section>
-        )}
+          ))}
+        </div>
+      </section>
 
-        {/* Features/USPs */}
-        <section className="bg-neutral-50 py-16">
-          <div className="container mx-auto px-4">
-            <div className="grid gap-8 md:grid-cols-3">
-              <div className="text-center p-6 bg-white rounded shadow-sm">
-                <div className="text-4xl mb-4">🔧</div>
-                <h3 className="text-xl font-bold mb-2 text-neutral-900">Professional Grade</h3>
-                <p className="text-neutral-600">
-                  Industry-leading sensors and control modules
-                </p>
+      {/* Trust Signals / Customer Stories */}
+      <section className="w-full bg-neutral-100 py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-10">Trusted by Industry Leaders</h2>
+          <div className="flex flex-wrap justify-center gap-8 items-center">
+            {["Siemens", "Honeywell", "Schneider Electric", "Johnson Controls", "ABB", "Rockwell Automation"].map((logo) => (
+              <div key={logo} className="bg-white rounded shadow p-6 flex items-center justify-center min-w-[160px] min-h-[80px] text-xl font-bold text-neutral-400">
+                {logo}
               </div>
-              <div className="text-center p-6 bg-white rounded shadow-sm">
-                <div className="text-4xl mb-4">⚡</div>
-                <h3 className="text-xl font-bold mb-2 text-neutral-900">Easy Integration</h3>
-                <p className="text-neutral-600">
-                  BACnet, Modbus, and wireless connectivity
-                </p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* News & Insights */}
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-center mb-10">News & Insights</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[1,2,3].map((i) => (
+            <div key={i} className="bg-white rounded-lg shadow p-6 flex flex-col">
+              <div className="h-32 bg-neutral-100 rounded mb-4 flex items-center justify-center">
+                <span className="text-3xl text-neutral-300">📰</span>
               </div>
-              <div className="text-center p-6 bg-white rounded shadow-sm">
-                <div className="text-4xl mb-4">✓</div>
-                <h3 className="text-xl font-bold mb-2 text-neutral-900">Reliable Support</h3>
-                <p className="text-neutral-600">
-                  Expert technical assistance when you need it
-                </p>
-              </div>
+              <h3 className="font-semibold text-lg mb-2">News Headline {i}</h3>
+              <p className="text-neutral-500 mb-4">Short summary of the news or blog post goes here.</p>
+              <Link href="/news" className="text-blue-600 hover:underline font-medium mt-auto">Read more</Link>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
+      </section>
 
-        {/* Footer */}
-        <footer className="border-t border-neutral-200 py-8 bg-white">
-          <div className="container mx-auto px-4 text-center text-neutral-600">
-            <p>&copy; 2025 BAPI. All rights reserved.</p>
+      {/* Final CTA Banner */}
+      <section className="w-full bg-blue-600 py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to get started?</h2>
+          <p className="text-lg text-blue-100 mb-8">Contact our team or browse our products to find the right solution for your building automation needs.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contact" className="bg-white hover:bg-blue-50 text-blue-700 px-8 py-3 rounded font-semibold text-lg shadow transition">Contact Sales</Link>
+            <Link href="/products" className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded font-semibold text-lg shadow transition">Browse Products</Link>
           </div>
-        </footer>
-      </div>
-      
-      {/* Cart Drawer */}
-      <CartDrawer />
-    </>
+        </div>
+      </section>
+    </main>
   );
 }

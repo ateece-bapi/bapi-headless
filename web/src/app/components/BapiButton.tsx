@@ -1,57 +1,97 @@
-import React from "react";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
 
-interface BapiButtonProps {
-  color?: "blue" | "yellow";
-  as?: "button" | "a";
-  href?: string;
+type ButtonVariant = 'blue' | 'yellow';
+type ButtonElement = 'button' | 'a';
+
+interface BaseButtonProps {
   children: React.ReactNode;
+  color?: ButtonVariant;
   className?: string;
 }
 
-type ButtonProps = BapiButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
-type AnchorProps = BapiButtonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+interface ButtonAsButton extends BaseButtonProps {
+  as?: 'button';
+  onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
+}
 
-// BAPI brand button: blue (white text, drop shadow) or yellow (black text, no shadow)
-const BapiButton: React.FC<ButtonProps | AnchorProps> = ({
-  color = "blue",
-  as = "button",
-  href,
-  children,
-  className = "",
-  ...props
-}) => {
-  const base =
-    "rounded-lg px-8 py-3 font-bold text-2xl tracking-tight transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2";
-  const blue =
-    "bg-[#0054b6] text-white shadow-[0_4px_0_#1479bc] hover:bg-[#1479bc] hover:shadow-[0_2px_0_#044976]";
-  const yellow =
-    "bg-gradient-to-r from-[#f89623] to-[#ffc843] text-black hover:from-[#ffc843] hover:to-[#f89623]";
+interface ButtonAsLink extends BaseButtonProps {
+  as: 'a';
+  href: string;
+}
 
-  const btnClass = clsx(
-    base,
-    color === "blue" ? blue : yellow,
-    color === "blue" ? "drop-shadow-md" : "",
-    className
-  );
+type BapiButtonProps = ButtonAsButton | ButtonAsLink;
 
-  if (as === "a" && href) {
-    // Extract only anchor-specific props
-    const { as: _, ...anchorProps } = props as AnchorProps;
+const BapiButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, BapiButtonProps>(
+  ({ children, color = 'blue', className, ...props }, ref) => {
+    const baseStyles = clsx(
+      'inline-flex items-center justify-center',
+      'px-8 py-4',
+      'text-lg font-bold',
+      'rounded-xl',
+      'transition-all duration-300 ease-out',
+      'focus:outline-none focus:ring-4 focus:ring-offset-2',
+      'active:scale-95',
+      'shadow-lg hover:shadow-xl',
+      'transform hover:-translate-y-0.5',
+      // Font smoothing for crisp text
+      'antialiased',
+      className
+    );
+
+    const colorStyles = {
+      blue: clsx(
+        'bg-[#0054b6] hover:bg-[#003d85]',
+        'text-white',
+        'focus:ring-[#0054b6]/50',
+        'shadow-[#0054b6]/30 hover:shadow-[#0054b6]/40'
+      ),
+      yellow: clsx(
+        'bg-[#ffc843] hover:bg-[#ffb700]',
+        'text-gray-900',
+        'focus:ring-[#ffc843]/50',
+        'shadow-[#ffc843]/30 hover:shadow-[#ffc843]/40'
+      ),
+    };
+
+    const combinedStyles = clsx(baseStyles, colorStyles[color]);
+
+    if (props.as === 'a') {
+      const { href } = props;
+      return (
+        <a
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          href={href}
+          className={combinedStyles}
+          style={{
+            WebkitFontSmoothing: 'antialiased',
+            MozOsxFontSmoothing: 'grayscale',
+          }}
+        >
+          {children}
+        </a>
+      );
+    }
+
+    const { onClick, type = 'button' } = props as ButtonAsButton;
     return (
-      <a href={href} className={btnClass} {...anchorProps}>
+      <button
+        ref={ref as React.Ref<HTMLButtonElement>}
+        type={type}
+        onClick={onClick}
+        className={combinedStyles}
+        style={{
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
+        }}
+      >
         {children}
-      </a>
+      </button>
     );
   }
-  
-  // Extract only button-specific props
-  const { as: _, href: __, ...buttonProps } = props as ButtonProps;
-  return (
-    <button className={btnClass} {...buttonProps}>
-      {children}
-    </button>
-  );
-};
+);
+
+BapiButton.displayName = 'BapiButton';
 
 export default BapiButton;

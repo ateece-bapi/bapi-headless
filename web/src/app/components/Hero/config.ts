@@ -1,11 +1,11 @@
 import { HeroAction } from './types';
 
 export const HERO_CONFIG = {
-  title: 'Building Automation & Control Solutions',
-  subtitle: 'BAPI-Backed',
-  description: 'Professional sensors and control modules for modern building automation systems.',
+  title: 'Precision Sensor Solutions for Building Automation',
+  subtitle: 'Engineered for Mission-Critical Performance',
+  description: 'NIST-traceable sensors and BACnet-certified controllers trusted by engineers worldwide for healthcare, data centers, and critical facilities.',
   actions: [
-    { label: 'Browse Products', href: '/products', variant: 'blue' },
-    { label: 'Contact Sales', href: '/contact', variant: 'yellow' },
+    { label: 'Explore Solutions', href: '/solutions', variant: 'blue' },
+    { label: 'Talk to an Engineer', href: '/contact', variant: 'yellow' },
   ] as HeroAction[],
 } as const;

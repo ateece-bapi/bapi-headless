@@ -316,10 +316,10 @@ export default function Home() {
                 { label: 'Made in USA', desc: 'Gays Mills, WI Facility' }
               ].map((cert) => (
                 <div key={cert.label} className="text-center">
-                  <div className="bg-white rounded-lg p-4 shadow-sm border border-primary-100 mb-2">
-                    <p className="font-bold text-sm text-primary-500">{cert.label}</p>
+                  <div className="bg-white rounded-lg p-5 lg:p-6 shadow-sm border border-primary-100 mb-2 hover:shadow-md transition-shadow">
+                    <p className="font-bold text-sm lg:text-base text-primary-500">{cert.label}</p>
                   </div>
-                  <p className="text-xs text-neutral-600">{cert.desc}</p>
+                  <p className="text-xs lg:text-sm text-neutral-600">{cert.desc}</p>
                 </div>
               ))}
             </div>
@@ -386,7 +386,7 @@ export default function Home() {
                   Find a Distributor
                 </Link>
               </div>
-              <div className="bg-primary-50 rounded-xl p-8 border border-primary-100">
+              <div className="bg-white rounded-xl p-8 border border-primary-200 shadow-sm">
                 <h4 className="font-bold text-lg text-neutral-900 mb-4">Become a Partner</h4>
                 <p className="text-sm text-neutral-700 mb-4">
                   Join our network of authorized distributors and system integrators.

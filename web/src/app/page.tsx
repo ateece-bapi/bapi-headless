@@ -1,5 +1,30 @@
 import Link from 'next/link';
 import Hero from './components/Hero';
+import { 
+  Thermometer, 
+  Gauge, 
+  Wind, 
+  Radio, 
+  Settings, 
+  Wrench,
+  Building2,
+  Server,
+  Building,
+  Factory,
+  Target,
+  Cable,
+  HardHat,
+  Package,
+  FileText,
+  Cog,
+  GraduationCap,
+  MessageSquare,
+  BarChart3,
+  RefreshCw,
+  Phone,
+  ClipboardList,
+  Check
+} from 'lucide-react';
 
 export default function Home() {
   return (
@@ -24,44 +49,46 @@ export default function Home() {
               {
                 title: 'Temperature & Humidity Sensing',
                 desc: 'High-accuracy sensors for HVAC control, cleanrooms, and data centers. ±0.2°C accuracy with BACnet/Modbus integration.',
-                icon: '🌡️',
+                icon: Thermometer,
                 features: ['±0.2°C Accuracy', 'BACnet MS/TP', 'IP65 Rated Options']
               },
               {
                 title: 'Pressure Monitoring',
                 desc: 'Differential and static pressure transmitters for critical room pressurization and airflow verification.',
-                icon: '📊',
+                icon: Gauge,
                 features: ['0-10" WC Range', 'Hospital Grade', 'ASHRAE 170 Compliant']
               },
               {
                 title: 'Air Quality Sensors',
                 desc: 'CO₂, VOC, and particulate monitoring for indoor air quality and demand-controlled ventilation.',
-                icon: '🌬️',
+                icon: Wind,
                 features: ['NDIR CO₂ Sensing', 'LEED Certified', 'Multi-Point Calibration']
               },
               {
                 title: 'Wireless Solutions',
                 desc: 'Battery-powered and energy harvesting sensors for retrofit and new construction.',
-                icon: '📡',
+                icon: Radio,
                 features: ['10-Year Battery Life', 'Mesh Networking', 'Cloud-Ready']
               },
               {
                 title: 'Zone Controllers',
                 desc: 'Networked controllers for VAV, FCU, and unitary equipment with flexible I/O configuration.',
-                icon: '🎛️',
+                icon: Settings,
                 features: ['Modular Design', 'Open Protocol', 'Web Interface']
               },
               {
                 title: 'Integration Services',
                 desc: 'Custom sensor configuration, system design support, and technical training for integrators.',
-                icon: '🔧',
+                icon: Wrench,
                 features: ['Engineering Support', 'Custom Calibration', 'Project Consulting']
               }
-            ].map((solution) => (
+            ].map((solution) => {
+              const IconComponent = solution.icon;
+              return (
               <div key={solution.title} className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-8 border border-neutral-100 hover:border-[#0054b6] group">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#0054b6] to-[#1479bc] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <span className="text-2xl">{solution.icon}</span>
+                  <div className="w-14 h-14 bg-gradient-to-br from-[#0054b6] to-[#1479bc] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <IconComponent className="w-7 h-7 text-white" strokeWidth={2} />
                   </div>
                   <div>
                     <h3 className="font-bold text-xl text-gray-900 mb-2">{solution.title}</h3>
@@ -71,7 +98,7 @@ export default function Home() {
                 <ul className="space-y-2 mb-6">
                   {solution.features.map((feature) => (
                     <li key={feature} className="text-sm text-gray-700 flex items-center">
-                      <span className="text-[#0054b6] mr-2">✓</span>
+                      <Check className="w-4 h-4 text-[#0054b6] mr-2 flex-shrink-0" strokeWidth={2.5} />
                       {feature}
                     </li>
                   ))}
@@ -85,7 +112,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
       </section>
@@ -106,7 +133,7 @@ export default function Home() {
             {[
               {
                 industry: 'Healthcare & Life Sciences',
-                icon: '🏥',
+                icon: Building2,
                 challenges: [
                   'Operating room pressurization (ASHRAE 170)',
                   'Cleanroom ISO classification maintenance',
@@ -117,7 +144,7 @@ export default function Home() {
               },
               {
                 industry: 'Data Centers',
-                icon: '🖥️',
+                icon: Server,
                 challenges: [
                   'Hot/cold aisle temperature monitoring',
                   'Humidity control for static prevention',
@@ -128,7 +155,7 @@ export default function Home() {
               },
               {
                 industry: 'Commercial Real Estate',
-                icon: '🏢',
+                icon: Building,
                 challenges: [
                   'Multi-tenant comfort control',
                   'Energy management and LEED certification',
@@ -139,7 +166,7 @@ export default function Home() {
               },
               {
                 industry: 'Manufacturing & Industrial',
-                icon: '🏭',
+                icon: Factory,
                 challenges: [
                   'Process control environment stability',
                   'Clean manufacturing compliance',
@@ -148,11 +175,13 @@ export default function Home() {
                 ],
                 outcomes: 'ISO 14644 cleanroom compliance'
               }
-            ].map((app) => (
+            ].map((app) => {
+              const IconComponent = app.icon;
+              return (
               <div key={app.industry} className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-blue-100 hover:border-[#0054b6]">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 bg-gradient-to-br from-[#0054b6] to-[#1479bc] rounded-xl flex items-center justify-center flex-shrink-0">
-                    <span className="text-3xl">{app.icon}</span>
+                    <IconComponent className="w-9 h-9 text-white" strokeWidth={2} />
                   </div>
                   <h3 className="font-bold text-2xl text-gray-900">{app.industry}</h3>
                 </div>
@@ -184,7 +213,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
       </section>
@@ -204,7 +233,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             {[
               {
-                icon: '🎯',
+                icon: Target,
                 title: 'Precision Instrumentation',
                 desc: 'Every sensor is individually calibrated and tested to NIST-traceable standards',
                 specs: [
@@ -215,7 +244,7 @@ export default function Home() {
                 ]
               },
               {
-                icon: '🔌',
+                icon: Cable,
                 title: 'Open Protocol Integration',
                 desc: 'Native support for all major building automation protocols',
                 specs: [
@@ -226,7 +255,7 @@ export default function Home() {
                 ]
               },
               {
-                icon: '🏗️',
+                icon: HardHat,
                 title: 'Application Engineering',
                 desc: 'Dedicated support team with decades of HVAC and controls experience',
                 specs: [
@@ -237,7 +266,7 @@ export default function Home() {
                 ]
               },
               {
-                icon: '📦',
+                icon: Package,
                 title: 'Supply Chain Reliability',
                 desc: 'Manufactured in the USA with robust inventory and fast shipping',
                 specs: [
@@ -247,11 +276,13 @@ export default function Home() {
                   'Extensive distributor network'
                 ]
               }
-            ].map((diff) => (
+            ].map((diff) => {
+              const IconComponent = diff.icon;
+              return (
               <div key={diff.title} className="bg-gradient-to-br from-white to-neutral-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-8 border border-neutral-100 hover:border-[#0054b6]">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-[#ffc843] to-[#ffb700] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <span className="text-3xl">{diff.icon}</span>
+                    <IconComponent className="w-8 h-8 text-gray-900" strokeWidth={2} />
                   </div>
                   <div>
                     <h3 className="font-bold text-xl text-gray-900 mb-2">{diff.title}</h3>
@@ -261,13 +292,13 @@ export default function Home() {
                 <ul className="space-y-2 mt-6 ml-20">
                   {diff.specs.map((spec) => (
                     <li key={spec} className="text-sm text-gray-700 flex items-start">
-                      <span className="text-[#0054b6] mr-2 mt-0.5">✓</span>
+                      <Check className="w-4 h-4 text-[#0054b6] mr-2 mt-0.5 flex-shrink-0" strokeWidth={2.5} />
                       <span>{spec}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            ))}
+            )})}
           </div>
           
           {/* Compliance & Certifications */}
@@ -346,7 +377,7 @@ export default function Home() {
                     'Custom sensor configuration services'
                   ].map((benefit) => (
                     <li key={benefit} className="flex items-center text-sm text-gray-700">
-                      <span className="text-[#0054b6] mr-2">✓</span>
+                      <Check className="w-4 h-4 text-[#0054b6] mr-2 flex-shrink-0" strokeWidth={2.5} />
                       {benefit}
                     </li>
                   ))}
@@ -390,7 +421,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {[
               {
-                icon: '📄',
+                icon: FileText,
                 title: 'Technical Documentation',
                 desc: 'Datasheets, installation guides, and protocol implementation documents',
                 links: [
@@ -400,7 +431,7 @@ export default function Home() {
                 ]
               },
               {
-                icon: '🛠️',
+                icon: Cog,
                 title: 'Design Tools',
                 desc: 'Software utilities, CAD files, and configuration tools for system designers',
                 links: [
@@ -410,7 +441,7 @@ export default function Home() {
                 ]
               },
               {
-                icon: '🎓',
+                icon: GraduationCap,
                 title: 'Training & Education',
                 desc: 'Webinars, white papers, and certification programs for professionals',
                 links: [
@@ -420,7 +451,7 @@ export default function Home() {
                 ]
               },
               {
-                icon: '💬',
+                icon: MessageSquare,
                 title: 'Technical Support',
                 desc: 'Expert application engineers ready to assist with your project',
                 links: [
@@ -430,7 +461,7 @@ export default function Home() {
                 ]
               },
               {
-                icon: '📊',
+                icon: BarChart3,
                 title: 'Case Studies',
                 desc: 'Real-world implementations and performance data from deployed systems',
                 links: [
@@ -440,7 +471,7 @@ export default function Home() {
                 ]
               },
               {
-                icon: '🔄',
+                icon: RefreshCw,
                 title: 'Product Updates',
                 desc: 'Latest product releases, firmware updates, and feature announcements',
                 links: [
@@ -449,10 +480,12 @@ export default function Home() {
                   { label: 'Release Notes', href: '/resources/release-notes' }
                 ]
               }
-            ].map((resource) => (
+            ].map((resource) => {
+              const IconComponent = resource.icon;
+              return (
               <div key={resource.title} className="bg-gradient-to-br from-white to-neutral-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-neutral-100 hover:border-[#0054b6]">
                 <div className="w-14 h-14 bg-gradient-to-br from-[#0054b6] to-[#1479bc] rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-2xl">{resource.icon}</span>
+                  <IconComponent className="w-7 h-7 text-white" strokeWidth={2} />
                 </div>
                 <h3 className="font-bold text-lg text-gray-900 mb-2">{resource.title}</h3>
                 <p className="text-sm text-gray-600 mb-4">{resource.desc}</p>
@@ -466,7 +499,7 @@ export default function Home() {
                   ))}
                 </ul>
               </div>
-            ))}
+            )})}
           </div>
           
           {/* Featured Resource Banner */}
@@ -502,7 +535,9 @@ export default function Home() {
           
           <div className="grid md:grid-cols-3 gap-6 mb-10">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="text-3xl mb-3">📞</div>
+              <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-3">
+                <Phone className="w-6 h-6 text-white" strokeWidth={2} />
+              </div>
               <h3 className="font-bold text-lg text-white mb-2">Talk to an Engineer</h3>
               <p className="text-blue-100 text-sm mb-4">Get expert guidance on sensor selection and system design</p>
               <Link href="/contact" className="text-white hover:text-[#ffc843] font-semibold text-sm hover:underline transition-colors">
@@ -511,7 +546,9 @@ export default function Home() {
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="text-3xl mb-3">📋</div>
+              <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-3">
+                <ClipboardList className="w-6 h-6 text-white" strokeWidth={2} />
+              </div>
               <h3 className="font-bold text-lg text-white mb-2">Request a Quote</h3>
               <p className="text-blue-100 text-sm mb-4">Submit your project specs for customized pricing and delivery</p>
               <Link href="/quote" className="text-white hover:text-[#ffc843] font-semibold text-sm hover:underline transition-colors">
@@ -520,7 +557,9 @@ export default function Home() {
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="text-3xl mb-3">📦</div>
+              <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-3">
+                <Package className="w-6 h-6 text-white" strokeWidth={2} />
+              </div>
               <h3 className="font-bold text-lg text-white mb-2">Order Through Distributor</h3>
               <p className="text-blue-100 text-sm mb-4">Work with your preferred distribution partner</p>
               <Link href="/distributors" className="text-white hover:text-[#ffc843] font-semibold text-sm hover:underline transition-colors">

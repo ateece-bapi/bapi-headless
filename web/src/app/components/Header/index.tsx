@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import BackToTop from '../BackToTop';
 import clsx from 'clsx';
 import { HeaderProps } from './types';
 import { HEADER_CONFIG } from './config';
@@ -51,6 +52,9 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         {/* Mobile Navigation Menu */}
         <MobileMenu isOpen={mobileMenu.isOpen} onClose={mobileMenu.close} />
       </div>
+      {/* BAPI blue-to-yellow gradient divider under header */}
+      <div className="w-full h-1 bg-gradient-to-r from-accent-400/90 via-primary-600/90 via-60% to-accent-400/90 shadow-[0_2px_8px_0_rgba(20,121,188,0.10)]" />
+      <BackToTop />
     </header>
   );
 };

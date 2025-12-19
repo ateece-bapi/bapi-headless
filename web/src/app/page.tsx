@@ -36,10 +36,10 @@ export default function Home() {
       <section className="w-full bg-white py-12 lg:py-16 xl:py-20">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-gray-900">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Engineered Solutions for Critical Environments
             </h2>
-            <p className="text-base lg:text-lg xl:text-xl text-gray-600 max-w-4xl mx-auto">
+            <p className="text-base lg:text-lg xl:text-xl text-neutral-600 max-w-4xl mx-auto">
               Precision measurement and control solutions designed for the most demanding building automation applications
             </p>
           </div>
@@ -85,30 +85,30 @@ export default function Home() {
             ].map((solution) => {
               const IconComponent = solution.icon;
               return (
-              <div key={solution.title} className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 lg:p-8 border border-neutral-100 hover:border-[#0054b6] group">
+              <div key={solution.title} className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 lg:p-8 border border-neutral-200 hover:border-primary-500 group">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-[#0054b6] to-[#1479bc] rounded-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <div className="w-12 h-12 lg:w-14 lg:h-14 bg-primary-500 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary-600 transition-colors">
                     <IconComponent className="w-6 h-6 lg:w-7 lg:h-7 text-white" strokeWidth={2} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-lg lg:text-xl text-gray-900 mb-2 leading-tight">{solution.title}</h3>
+                    <h3 className="font-bold text-lg lg:text-xl text-neutral-900 mb-2 leading-tight">{solution.title}</h3>
                   </div>
                 </div>
                 <p className="text-neutral-600 mb-4 text-sm lg:text-base leading-relaxed">{solution.desc}</p>
                 <ul className="space-y-2 mb-6">
                   {solution.features.map((feature) => (
-                    <li key={feature} className="text-sm lg:text-base text-gray-700 flex items-center">
-                      <Check className="w-4 h-4 text-[#0054b6] mr-2 shrink-0" strokeWidth={2.5} />
+                    <li key={feature} className="text-sm lg:text-base text-neutral-700 flex items-center">
+                      <Check className="w-4 h-4 text-primary-500 mr-2 shrink-0" strokeWidth={2.5} />
                       {feature}
                     </li>
                   ))}
                 </ul>
                 <div className="flex gap-3 flex-wrap">
-                  <Link href="/solutions" className="text-[#0054b6] hover:text-[#003d85] font-semibold text-sm lg:text-base hover:underline transition-colors">
-                    View Solutions →
-                  </Link>
-                  <Link href="/contact" className="text-gray-600 hover:text-gray-900 font-semibold text-sm lg:text-base hover:underline transition-colors">
+                  <Link href="/contact" className="inline-flex items-center justify-center px-4 py-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold text-sm lg:text-base rounded-lg transition-colors shadow-sm">
                     Get Specs
+                  </Link>
+                  <Link href="/solutions" className="inline-flex items-center justify-center px-4 py-2 text-primary-500 hover:text-primary-600 font-semibold text-sm lg:text-base transition-colors">
+                    View Solutions →
                   </Link>
                 </div>
               </div>
@@ -118,13 +118,13 @@ export default function Home() {
       </section>
 
       {/* Industry Applications - Light Blue Gradient */}
-      <section className="w-full bg-gradient-to-br from-blue-50 via-white to-blue-50/30 py-12 lg:py-16 xl:py-20 border-y border-blue-100">
+      <section className="w-full bg-primary-50/30 py-12 lg:py-16 xl:py-20 border-y border-primary-100">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-gray-900">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Industry-Specific Applications
             </h2>
-            <p className="text-base lg:text-lg xl:text-xl text-gray-600 max-w-4xl mx-auto">
+            <p className="text-base lg:text-lg xl:text-xl text-neutral-600 max-w-4xl mx-auto">
               Proven solutions deployed in mission-critical facilities worldwide
             </p>
           </div>
@@ -178,38 +178,38 @@ export default function Home() {
             ].map((app) => {
               const IconComponent = app.icon;
               return (
-              <div key={app.industry} className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 lg:p-8 xl:p-10 border border-blue-100 hover:border-[#0054b6]">
+              <div key={app.industry} className="bg-white/95 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 lg:p-8 xl:p-10 border border-neutral-200 hover:border-primary-500">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-[#0054b6] to-[#1479bc] rounded-xl flex items-center justify-center shrink-0">
+                  <div className="w-14 h-14 lg:w-16 lg:h-16 bg-primary-500 rounded-xl flex items-center justify-center shrink-0">
                     <IconComponent className="w-7 h-7 lg:w-9 lg:h-9 text-white" strokeWidth={2} />
                   </div>
-                  <h3 className="font-bold text-xl lg:text-2xl xl:text-3xl text-gray-900">{app.industry}</h3>
+                  <h3 className="font-bold text-xl lg:text-2xl xl:text-3xl text-neutral-900">{app.industry}</h3>
                 </div>
                 
                 <div className="mb-6">
-                  <h4 className="font-semibold text-xs lg:text-sm text-gray-700 mb-3 uppercase tracking-wide">Critical Requirements:</h4>
+                  <h4 className="font-semibold text-xs lg:text-sm text-neutral-700 mb-3 uppercase tracking-wide">Critical Requirements:</h4>
                   <ul className="space-y-2">
                     {app.challenges.map((challenge) => (
-                      <li key={challenge} className="text-sm lg:text-base text-gray-600 flex items-start">
-                        <span className="text-[#0054b6] mr-2 mt-0.5">•</span>
+                      <li key={challenge} className="text-sm lg:text-base text-neutral-600 flex items-start">
+                        <span className="text-primary-500 mr-2 mt-0.5">•</span>
                         <span>{challenge}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 
-                <div className="bg-gradient-to-r from-blue-50 to-transparent p-4 rounded-lg mb-6">
-                  <p className="text-sm lg:text-base font-semibold text-[#0054b6]">
-                    <span className="text-gray-700">Proven Results: </span>{app.outcomes}
+                <div className="bg-primary-50 p-4 rounded-lg mb-6 border border-primary-100">
+                  <p className="text-sm lg:text-base font-semibold text-primary-600">
+                    <span className="text-neutral-700">Proven Results: </span>{app.outcomes}
                   </p>
                 </div>
                 
-                <div className="flex gap-4 flex-wrap">
-                  <Link href={`/solutions/${app.industry.toLowerCase().replace(/\s+/g, '-')}`} className="text-[#0054b6] hover:text-[#003d85] font-semibold text-sm lg:text-base hover:underline transition-colors">
-                    View Case Studies →
-                  </Link>
-                  <Link href="/contact" className="text-gray-600 hover:text-gray-900 font-semibold text-sm lg:text-base hover:underline transition-colors">
+                <div className="flex gap-3 flex-wrap">
+                  <Link href="/contact" className="inline-flex items-center justify-center px-5 py-2.5 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold text-sm lg:text-base rounded-lg transition-colors shadow-sm">
                     Request Consultation
+                  </Link>
+                  <Link href={`/solutions/${app.industry.toLowerCase().replace(/\s+/g, '-')}`} className="inline-flex items-center justify-center px-5 py-2.5 text-primary-500 hover:text-primary-600 font-semibold text-sm lg:text-base transition-colors">
+                    View Case Studies →
                   </Link>
                 </div>
               </div>
@@ -222,10 +222,10 @@ export default function Home() {
       <section className="w-full bg-white py-12 lg:py-16 xl:py-20">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-gray-900">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Engineering Excellence Since 1993
             </h2>
-            <p className="text-base lg:text-lg xl:text-xl text-gray-600 max-w-4xl mx-auto">
+            <p className="text-base lg:text-lg xl:text-xl text-neutral-600 max-w-4xl mx-auto">
               What sets BAPI apart in building automation
             </p>
           </div>
@@ -279,20 +279,20 @@ export default function Home() {
             ].map((diff) => {
               const IconComponent = diff.icon;
               return (
-              <div key={diff.title} className="bg-gradient-to-br from-white to-neutral-50 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 lg:p-8 border border-neutral-100 hover:border-[#0054b6]">
+              <div key={diff.title} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 lg:p-8 border border-neutral-200 hover:border-primary-500">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-[#ffc843] to-[#ffb700] rounded-xl flex items-center justify-center shrink-0 shadow-lg">
-                    <IconComponent className="w-7 h-7 lg:w-8 lg:h-8 text-gray-900" strokeWidth={2} />
+                  <div className="w-14 h-14 lg:w-16 lg:h-16 bg-accent-500 rounded-xl flex items-center justify-center shrink-0 shadow-md">
+                    <IconComponent className="w-7 h-7 lg:w-8 lg:h-8 text-neutral-900" strokeWidth={2.5} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-lg lg:text-xl xl:text-2xl text-gray-900 mb-2">{diff.title}</h3>
-                    <p className="text-sm lg:text-base text-gray-600">{diff.desc}</p>
+                    <h3 className="font-bold text-lg lg:text-xl xl:text-2xl text-neutral-900 mb-2">{diff.title}</h3>
+                    <p className="text-sm lg:text-base text-neutral-600">{diff.desc}</p>
                   </div>
                 </div>
                 <ul className="space-y-2 mt-6 lg:ml-20">
                   {diff.specs.map((spec) => (
-                    <li key={spec} className="text-sm lg:text-base text-gray-700 flex items-start">
-                      <Check className="w-4 h-4 text-[#0054b6] mr-2 mt-0.5 shrink-0" strokeWidth={2.5} />
+                    <li key={spec} className="text-sm lg:text-base text-neutral-700 flex items-start">
+                      <Check className="w-4 h-4 text-primary-500 mr-2 mt-0.5 shrink-0" strokeWidth={2.5} />
                       <span>{spec}</span>
                     </li>
                   ))}
@@ -302,8 +302,8 @@ export default function Home() {
           </div>
           
           {/* Compliance & Certifications */}
-          <div className="bg-gradient-to-r from-blue-50 to-blue-50/30 rounded-2xl p-6 lg:p-8 xl:p-10 border border-blue-100">
-            <h3 className="font-bold text-lg lg:text-xl xl:text-2xl text-gray-900 mb-6 lg:mb-8 text-center">Standards & Certifications</h3>
+          <div className="bg-primary-50 rounded-2xl p-6 lg:p-8 xl:p-10 border border-primary-100">
+            <h3 className="font-bold text-lg lg:text-xl xl:text-2xl text-neutral-900 mb-6 lg:mb-8 text-center">Standards & Certifications</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-4 lg:gap-6">
               {[
                 { label: 'BACnet B-ASC', desc: 'Certified Device' },
@@ -316,10 +316,10 @@ export default function Home() {
                 { label: 'Made in USA', desc: 'Gays Mills, WI Facility' }
               ].map((cert) => (
                 <div key={cert.label} className="text-center">
-                  <div className="bg-white rounded-lg p-4 shadow-sm border border-blue-100 mb-2">
-                    <p className="font-bold text-sm text-[#0054b6]">{cert.label}</p>
+                  <div className="bg-white rounded-lg p-4 shadow-sm border border-primary-100 mb-2">
+                    <p className="font-bold text-sm text-primary-500">{cert.label}</p>
                   </div>
-                  <p className="text-xs text-gray-600">{cert.desc}</p>
+                  <p className="text-xs text-neutral-600">{cert.desc}</p>
                 </div>
               ))}
             </div>
@@ -331,10 +331,10 @@ export default function Home() {
       <section className="w-full bg-gradient-to-br from-amber-50/30 via-white to-neutral-50 py-12 lg:py-16 xl:py-20 border-y border-neutral-200">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-gray-900">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Trusted Integration Partners
             </h2>
-            <p className="text-base lg:text-lg xl:text-xl text-gray-600 max-w-4xl mx-auto">
+            <p className="text-base lg:text-lg xl:text-xl text-neutral-600 max-w-4xl mx-auto">
               BAPI sensors integrate seamlessly with the world's leading building automation platforms
             </p>
           </div>
@@ -352,8 +352,8 @@ export default function Home() {
                 "Carrier/Abound",
                 "Distech Controls"
               ].map((partner) => (
-                <div key={partner} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-5 lg:p-6 flex items-center justify-center min-w-40 lg:min-w-[180px] min-h-[80px] lg:min-h-[90px] border border-neutral-200 hover:border-[#0054b6] group">
-                  <span className="text-sm lg:text-base font-bold text-neutral-400 group-hover:text-[#0054b6] transition-colors text-center">
+                <div key={partner} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-5 lg:p-6 flex items-center justify-center min-w-40 lg:min-w-[180px] min-h-[80px] lg:min-h-[90px] border border-neutral-200 hover:border-primary-500 group">
+                  <span className="text-sm lg:text-base font-bold text-neutral-400 group-hover:text-primary-500 transition-colors text-center">
                     {partner}
                   </span>
                 </div>
@@ -365,8 +365,8 @@ export default function Home() {
           <div className="bg-white rounded-2xl shadow-md p-6 lg:p-8 xl:p-10 border border-neutral-200">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <h3 className="font-bold text-xl lg:text-2xl xl:text-3xl text-gray-900 mb-4">Global Distributor Network</h3>
-                <p className="text-base lg:text-lg text-gray-600 mb-6">
+                <h3 className="font-bold text-xl lg:text-2xl xl:text-3xl text-neutral-900 mb-4">Global Distributor Network</h3>
+                <p className="text-base lg:text-lg text-neutral-600 mb-6">
                   Work with your preferred distributor or let us connect you with an authorized BAPI partner in your region.
                 </p>
                 <ul className="space-y-3 mb-6">
@@ -376,28 +376,28 @@ export default function Home() {
                     'Volume pricing programs available',
                     'Custom sensor configuration services'
                   ].map((benefit) => (
-                    <li key={benefit} className="flex items-center text-sm lg:text-base text-gray-700">
-                      <Check className="w-4 h-4 text-[#0054b6] mr-2 shrink-0" strokeWidth={2.5} />
+                    <li key={benefit} className="flex items-center text-sm lg:text-base text-neutral-700">
+                      <Check className="w-4 h-4 text-primary-500 mr-2 shrink-0" strokeWidth={2.5} />
                       {benefit}
                     </li>
                   ))}
                 </ul>
-                <Link href="/distributors" className="inline-block bg-[#0054b6] hover:bg-[#003d85] text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                <Link href="/distributors" className="inline-block bg-accent-500 hover:bg-accent-600 text-neutral-900 px-6 py-3 rounded-lg font-bold transition-colors shadow-sm">
                   Find a Distributor
                 </Link>
               </div>
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8">
-                <h4 className="font-bold text-lg text-gray-900 mb-4">Become a Partner</h4>
-                <p className="text-sm text-gray-700 mb-4">
+              <div className="bg-primary-50 rounded-xl p-8 border border-primary-100">
+                <h4 className="font-bold text-lg text-neutral-900 mb-4">Become a Partner</h4>
+                <p className="text-sm text-neutral-700 mb-4">
                   Join our network of authorized distributors and system integrators.
                 </p>
-                <ul className="space-y-2 text-sm text-gray-600 mb-6">
+                <ul className="space-y-2 text-sm text-neutral-600 mb-6">
                   <li>• Technical training and certification</li>
                   <li>• Marketing and sales support</li>
                   <li>• Competitive pricing tiers</li>
                   <li>• Priority access to new products</li>
                 </ul>
-                <Link href="/partner-program" className="text-[#0054b6] hover:text-[#003d85] font-semibold hover:underline transition-colors">
+                <Link href="/partner-program" className="text-primary-500 hover:text-primary-600 font-semibold hover:underline transition-colors">
                   Learn About Partnership →
                 </Link>
               </div>
@@ -410,10 +410,10 @@ export default function Home() {
       <section className="w-full bg-white py-12 lg:py-16 xl:py-20">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-gray-900">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Engineering Resources
             </h2>
-            <p className="text-base lg:text-lg xl:text-xl text-gray-600 max-w-4xl mx-auto">
+            <p className="text-base lg:text-lg xl:text-xl text-neutral-600 max-w-4xl mx-auto">
               Technical documentation, tools, and support to accelerate your project
             </p>
           </div>
@@ -483,16 +483,16 @@ export default function Home() {
             ].map((resource) => {
               const IconComponent = resource.icon;
               return (
-              <div key={resource.title} className="bg-gradient-to-br from-white to-neutral-50 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 lg:p-8 border border-neutral-100 hover:border-[#0054b6]">
-                <div className="w-12 h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-[#0054b6] to-[#1479bc] rounded-lg flex items-center justify-center mb-4">
+              <div key={resource.title} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 lg:p-8 border border-neutral-200 hover:border-primary-500">
+                <div className="w-12 h-12 lg:w-14 lg:h-14 bg-primary-500 rounded-lg flex items-center justify-center mb-4 shadow-sm">
                   <IconComponent className="w-6 h-6 lg:w-7 lg:h-7 text-white" strokeWidth={2} />
                 </div>
-                <h3 className="font-bold text-base lg:text-lg xl:text-xl text-gray-900 mb-2">{resource.title}</h3>
-                <p className="text-sm lg:text-base text-gray-600 mb-4">{resource.desc}</p>
+                <h3 className="font-bold text-base lg:text-lg xl:text-xl text-neutral-900 mb-2">{resource.title}</h3>
+                <p className="text-sm lg:text-base text-neutral-600 mb-4">{resource.desc}</p>
                 <ul className="space-y-2">
                   {resource.links.map((link) => (
                     <li key={link.label}>
-                      <Link href={link.href} className="text-sm lg:text-base text-[#0054b6] hover:text-[#003d85] hover:underline transition-colors">
+                      <Link href={link.href} className="text-sm lg:text-base text-primary-500 hover:text-primary-600 hover:underline transition-colors">
                         {link.label} →
                       </Link>
                     </li>
@@ -503,13 +503,13 @@ export default function Home() {
           </div>
           
           {/* Featured Resource Banner */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 lg:p-8 xl:p-10 text-white">
+          <div className="bg-primary-500 rounded-2xl p-6 lg:p-8 xl:p-10 text-white shadow-lg">
             <div className="max-w-5xl mx-auto text-center">
               <h3 className="font-bold text-xl lg:text-2xl xl:text-3xl mb-4">Download: Building Automation Sensor Selection Guide</h3>
-              <p className="text-sm lg:text-base xl:text-lg text-blue-100 mb-6">
+              <p className="text-sm lg:text-base xl:text-lg text-primary-100 mb-6">
                 A comprehensive 40-page guide covering sensor selection, application best practices, and integration strategies for modern building automation systems.
               </p>
-              <Link href="/resources/sensor-guide" className="inline-block bg-white text-[#0054b6] px-6 lg:px-8 py-2.5 lg:py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors text-sm lg:text-base">
+              <Link href="/resources/sensor-guide" className="inline-block bg-accent-500 hover:bg-accent-600 text-neutral-900 px-6 lg:px-8 py-2.5 lg:py-3 rounded-lg font-bold transition-colors text-sm lg:text-base shadow-md">
                 Download Free Guide (PDF)
               </Link>
             </div>
@@ -518,7 +518,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA Banner - Blue Gradient */}
-      <section className="w-full bg-gradient-to-br from-[#0054b6] via-[#1479bc] to-[#0054b6] py-12 lg:py-16 xl:py-20 relative overflow-hidden">
+      <section className="w-full bg-primary-500 py-12 lg:py-16 xl:py-20 relative overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1)_0%,transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,200,67,0.1)_0%,transparent_50%)]" />
@@ -528,7 +528,7 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-6">
               Start Your Next Project with BAPI
             </h2>
-            <p className="text-base lg:text-lg xl:text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base lg:text-lg xl:text-xl text-primary-100 max-w-4xl mx-auto leading-relaxed">
               Our application engineers are ready to help you select the right solution
             </p>
           </div>
@@ -539,8 +539,8 @@ export default function Home() {
                 <Phone className="w-6 h-6 lg:w-7 lg:h-7 text-white" strokeWidth={2} />
               </div>
               <h3 className="font-bold text-base lg:text-lg xl:text-xl text-white mb-2">Talk to an Engineer</h3>
-              <p className="text-blue-100 text-sm lg:text-base mb-4">Get expert guidance on sensor selection and system design</p>
-              <Link href="/contact" className="text-white hover:text-[#ffc843] font-semibold text-sm lg:text-base hover:underline transition-colors">
+              <p className="text-primary-100 text-sm lg:text-base mb-4">Get expert guidance on sensor selection and system design</p>
+              <Link href="/contact" className="text-white hover:text-accent-400 font-semibold text-sm lg:text-base hover:underline transition-colors">
                 Schedule Consultation →
               </Link>
             </div>
@@ -550,8 +550,8 @@ export default function Home() {
                 <ClipboardList className="w-6 h-6 lg:w-7 lg:h-7 text-white" strokeWidth={2} />
               </div>
               <h3 className="font-bold text-base lg:text-lg xl:text-xl text-white mb-2">Request a Quote</h3>
-              <p className="text-blue-100 text-sm lg:text-base mb-4">Submit your project specs for customized pricing and delivery</p>
-              <Link href="/quote" className="text-white hover:text-[#ffc843] font-semibold text-sm lg:text-base hover:underline transition-colors">
+              <p className="text-primary-100 text-sm lg:text-base mb-4">Submit your project specs for customized pricing and delivery</p>
+              <Link href="/quote" className="text-white hover:text-accent-400 font-semibold text-sm lg:text-base hover:underline transition-colors">
                 Get Quote →
               </Link>
             </div>
@@ -561,19 +561,19 @@ export default function Home() {
                 <Package className="w-6 h-6 lg:w-7 lg:h-7 text-white" strokeWidth={2} />
               </div>
               <h3 className="font-bold text-base lg:text-lg xl:text-xl text-white mb-2">Order Through Distributor</h3>
-              <p className="text-blue-100 text-sm lg:text-base mb-4">Work with your preferred distribution partner</p>
-              <Link href="/distributors" className="text-white hover:text-[#ffc843] font-semibold text-sm lg:text-base hover:underline transition-colors">
+              <p className="text-primary-100 text-sm lg:text-base mb-4">Work with your preferred distribution partner</p>
+              <Link href="/distributors" className="text-white hover:text-accent-400 font-semibold text-sm lg:text-base hover:underline transition-colors">
                 Find Distributor →
               </Link>
             </div>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center">
-            <Link href="/contact" className="inline-flex items-center justify-center px-6 lg:px-8 xl:px-10 py-3 lg:py-4 bg-white hover:bg-blue-50 text-[#0054b6] rounded-xl font-bold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-              Contact Application Engineering
-            </Link>
-            <Link href="/resources" className="inline-flex items-center justify-center px-6 lg:px-8 xl:px-10 py-3 lg:py-4 bg-[#ffc843] hover:bg-[#ffb700] text-gray-900 rounded-xl font-bold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <Link href="/resources" className="inline-flex items-center justify-center px-6 lg:px-8 xl:px-10 py-3 lg:py-4 bg-accent-500 hover:bg-accent-600 text-neutral-900 rounded-xl font-bold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300">
               Download Technical Resources
+            </Link>
+            <Link href="/contact" className="inline-flex items-center justify-center px-6 lg:px-8 xl:px-10 py-3 lg:py-4 bg-white hover:bg-neutral-50 text-primary-500 rounded-xl font-bold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300">
+              Contact Application Engineering
             </Link>
           </div>
         </div>

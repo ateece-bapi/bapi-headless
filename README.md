@@ -76,6 +76,8 @@ bapi-headless/
 ### Frontend (Next.js)
 - ⚡ **Next.js 16** with App Router and Turbopack
 - 🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
+- 🧭 **Enterprise Mega Menu** – Multi-column navigation with icons, featured products, quick actions, and B2B enhancements
+- ⬆️ **Back to Top Button** – Floating button for fast site-wide navigation
 - 📱 **Fully Responsive** - Mobile-first design
 - 🛒 **Shopping Cart** - Zustand state management with localStorage
 - 🔒 **Type-Safe** - Full TypeScript with auto-generated GraphQL types
@@ -153,6 +155,8 @@ BAPI uses a professional color system with specific usage guidelines:
 | **BAPI Yellow** | `#FFC843` | CTAs, highlights, accents | ~10% |
 | **BAPI Gray** | `#97999B` | Text, borders, backgrounds | ~60% |
 
+- The header divider uses a BAPI yellow–blue–yellow gradient for a branded accent.
+
 See [`web/COLOR_SYSTEM.md`](./web/COLOR_SYSTEM.md) for complete color documentation.
 
 ## 📚 Documentation
@@ -175,6 +179,7 @@ git commit -m "feat: add feature description"
 # Push and create PR
 git push -u origin feat/feature-name
 ```
+> **Tip:** Always merge feature branches into `main` before deleting, or recover with `git checkout -b branch <commit>` if needed.
 
 ### Available Scripts
 

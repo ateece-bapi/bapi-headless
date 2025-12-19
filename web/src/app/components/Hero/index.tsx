@@ -30,26 +30,19 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
         <HeroActions actions={HERO_CONFIG.actions} />
       </div>
       
-      {/* Enhanced wave divider - more visible */}
+      {/* Subtle wave divider - elegant transition */}
       <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none">
         <svg 
-          className="relative block w-full h-24 sm:h-28 lg:h-32" 
+          className="relative block w-full h-20 sm:h-24 lg:h-28" 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 1200 120" 
           preserveAspectRatio="none"
         >
-          {/* Main blue wave - more visible */}
+          {/* Single smooth blue wave - subtle and professional */}
           <path 
             d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V120H0Z" 
-            fill="#dbeafe"
-            opacity="0.7"
-          />
-          
-          {/* Yellow accent wave */}
-          <path 
-            d="M0,95 Q300,105 600,95 T1200,95 L1200,120 L0,120 Z" 
-            fill="#ffc843"
-            opacity="0.2"
+            fill="#1479BC"
+            opacity="0.12"
           />
         </svg>
       </div>

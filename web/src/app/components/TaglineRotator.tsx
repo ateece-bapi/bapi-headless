@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const taglines = [
-  "BAPI-Backed",
   "Industry Leading Sensors",
   "Trusted by Professionals",
   "Seamless wireless integration for your existing BAS",
@@ -31,12 +30,12 @@ const TaglineRotator: React.FC = () => {
     <div className="min-h-[4rem] flex items-center justify-center">
       <p
         className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold transition-opacity duration-500 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
+          isVisible ? "opacity-100" : "opacity-0"
         }`}
         style={{
-          fontSmooth: 'always',
-          WebkitFontSmoothing: 'antialiased',
-          MozOsxFontSmoothing: 'grayscale',
+          fontSmooth: "always",
+          WebkitFontSmoothing: "antialiased",
+          MozOsxFontSmoothing: "grayscale",
         }}
       >
         {taglines[currentIndex]}

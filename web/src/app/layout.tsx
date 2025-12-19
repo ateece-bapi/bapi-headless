@@ -16,13 +16,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "BAPI | Building Automation Products",
+    default: "BAPI | Precision Sensor Solutions for Building Automation",
     template: "%s | BAPI"
   },
-  description: "Shop building automation sensors and control modules. Reliable, accurate, and trusted by professionals.",
+  description: "Engineered sensor solutions for mission-critical facilities. NIST-traceable accuracy, BACnet-certified controllers, trusted by engineers worldwide for healthcare, data centers, and critical infrastructure.",
   openGraph: {
-    title: "BAPI | Building Automation Products",
-    description: "Shop building automation sensors and control modules. Reliable, accurate, and trusted by professionals.",
+    title: "BAPI | Precision Sensor Solutions for Building Automation",
+    description: "Engineered sensor solutions for mission-critical facilities. NIST-traceable accuracy, BACnet-certified controllers, trusted by engineers worldwide.",
     type: "website",
     url: "https://yourdomain.com/",
     siteName: "BAPI",
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@bapi",
-    title: "BAPI | Building Automation Products",
-    description: "Shop building automation sensors and control modules. Reliable, accurate, and trusted by professionals.",
+    title: "BAPI | Precision Sensor Solutions for Building Automation",
+    description: "Engineered sensor solutions for mission-critical facilities. NIST-traceable accuracy, BACnet-certified controllers, trusted by engineers worldwide.",
     images: ["https://yourdomain.com/og-default.jpg"]
   },
   metadataBase: new URL("https://yourdomain.com/"),

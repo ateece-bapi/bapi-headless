@@ -3,17 +3,17 @@
 import React from 'react';
 import clsx from 'clsx';
 import { HeaderProps } from './types';
-import { NAV_LINKS, HEADER_CONFIG } from './config';
+import { HEADER_CONFIG } from './config';
 import { useScrollDetection } from './hooks/useScrollDetection';
 import { useMobileMenu } from './hooks/useMobileMenu';
 import { RegionSelector } from './components/RegionSelector';
 import { SignInButton } from './components/SignInButton';
 import { CartButton } from './components/CartButton';
 import { Logo } from './components/Logo';
-import { Navigation } from './components/Navigation';
 import { SearchButton } from './components/SearchButton';
 import { MobileMenuButton } from './components/MobileMenuButton';
 import { MobileMenu } from './components/MobileMenu';
+import { MegaMenu } from './components/MegaMenu';
 
 export const Header: React.FC<HeaderProps> = ({ className }) => {
   const scrolled = useScrollDetection(HEADER_CONFIG.scrollThreshold);
@@ -39,10 +39,8 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         <div className="flex items-center justify-between gap-4 lg:gap-8">
           <Logo />
 
-          <Navigation
-            links={NAV_LINKS}
-            className="hidden lg:flex items-center space-x-6 xl:space-x-10"
-          />
+          {/* Desktop Mega Menu Navigation */}
+          <MegaMenu className="hidden lg:flex" />
 
           <div className="flex items-center gap-1 lg:gap-2">
             <SearchButton />
@@ -51,7 +49,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         </div>
 
         {/* Mobile Navigation Menu */}
-        <MobileMenu isOpen={mobileMenu.isOpen} links={NAV_LINKS} onClose={mobileMenu.close} />
+        <MobileMenu isOpen={mobileMenu.isOpen} onClose={mobileMenu.close} />
       </div>
     </header>
   );

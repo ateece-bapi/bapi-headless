@@ -3,6 +3,35 @@ export interface NavLink {
   label: string;
 }
 
+export interface MegaMenuLink {
+  label: string;
+  href: string;
+  description?: string;
+  badge?: string;
+}
+
+export interface MegaMenuColumn {
+  title: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  links: MegaMenuLink[];
+}
+
+export interface MegaMenuFeatured {
+  title: string;
+  description: string;
+  href: string;
+  cta: string;
+}
+
+export interface MegaMenuItem {
+  label: string;
+  href?: string;
+  megaMenu?: {
+    columns: MegaMenuColumn[];
+    featured?: MegaMenuFeatured;
+  };
+}
+
 export interface HeaderProps {
   className?: string;
 }

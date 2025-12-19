@@ -104,7 +104,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="flex gap-3 flex-wrap">
-                  <Link href="/contact" className="inline-flex items-center justify-center px-4 py-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold text-sm lg:text-base rounded-lg transition-colors shadow-sm">
+                  <Link href="/contact" className="inline-flex items-center justify-center px-4 py-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold text-sm lg:text-base rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105">
                     Get Specs
                   </Link>
                   <Link href="/solutions" className="inline-flex items-center justify-center px-4 py-2 text-primary-500 hover:text-primary-600 font-semibold text-sm lg:text-base transition-colors">
@@ -117,8 +117,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Industry Applications - Light Blue Gradient */}
-      <section className="w-full bg-primary-50/30 py-12 lg:py-16 xl:py-20 border-y border-primary-100">
+      {/* Industry Applications - Very Light Gray */}
+      <section className="w-full bg-gradient-to-br from-neutral-50/20 via-white to-neutral-50/30 py-12 lg:py-16 xl:py-20 border-y border-neutral-200/20">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
@@ -178,7 +178,7 @@ export default function Home() {
             ].map((app) => {
               const IconComponent = app.icon;
               return (
-              <div key={app.industry} className="bg-white/95 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 lg:p-8 xl:p-10 border border-neutral-200 hover:border-primary-500">
+              <div key={app.industry} className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 lg:p-8 xl:p-10 border border-neutral-200 hover:border-primary-500">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-14 h-14 lg:w-16 lg:h-16 bg-primary-500 rounded-xl flex items-center justify-center shrink-0">
                     <IconComponent className="w-7 h-7 lg:w-9 lg:h-9 text-white" strokeWidth={2} />
@@ -205,7 +205,7 @@ export default function Home() {
                 </div>
                 
                 <div className="flex gap-3 flex-wrap">
-                  <Link href="/contact" className="inline-flex items-center justify-center px-5 py-2.5 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold text-sm lg:text-base rounded-lg transition-colors shadow-sm">
+                  <Link href="/contact" className="inline-flex items-center justify-center px-5 py-2.5 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold text-sm lg:text-base rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105">
                     Request Consultation
                   </Link>
                   <Link href={`/solutions/${app.industry.toLowerCase().replace(/\s+/g, '-')}`} className="inline-flex items-center justify-center px-5 py-2.5 text-primary-500 hover:text-primary-600 font-semibold text-sm lg:text-base transition-colors">
@@ -306,8 +306,8 @@ export default function Home() {
             <h3 className="font-bold text-lg lg:text-xl xl:text-2xl text-neutral-900 mb-6 lg:mb-8 text-center">Standards & Certifications</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-4 lg:gap-6">
               {[
-                { label: 'BACnet B-ASC', desc: 'Certified Device' },
-                { label: 'ISO 9001:2015', desc: 'Quality Management' },
+                { label: 'BACnet B-ASC', desc: 'Certified Device', featured: true },
+                { label: 'ISO 9001:2015', desc: 'Quality Management', featured: true },
                 { label: 'ASHRAE 170', desc: 'Healthcare Compliant' },
                 { label: 'UL Listed', desc: 'Product Safety' },
                 { label: 'CE Marked', desc: 'European Conformity' },
@@ -316,8 +316,14 @@ export default function Home() {
                 { label: 'Made in USA', desc: 'Gays Mills, WI Facility' }
               ].map((cert) => (
                 <div key={cert.label} className="text-center">
-                  <div className="bg-white rounded-lg p-5 lg:p-6 shadow-sm border border-primary-100 mb-2 hover:shadow-md transition-shadow">
-                    <p className="font-bold text-sm lg:text-base text-primary-500">{cert.label}</p>
+                  <div className={`rounded-lg p-5 lg:p-6 shadow-sm mb-2 hover:shadow-md transition-shadow ${
+                    cert.featured 
+                      ? 'bg-accent-50 border border-accent-200' 
+                      : 'bg-white border border-primary-100'
+                  }`}>
+                    <p className={`font-bold text-sm lg:text-base ${
+                      cert.featured ? 'text-accent-600' : 'text-primary-500'
+                    }`}>{cert.label}</p>
                   </div>
                   <p className="text-xs lg:text-sm text-neutral-600">{cert.desc}</p>
                 </div>
@@ -327,8 +333,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Integration Partners & Ecosystem - Light Yellow/Neutral Gradient */}
-      <section className="w-full bg-gradient-to-br from-amber-50/30 via-white to-neutral-50 py-12 lg:py-16 xl:py-20 border-y border-neutral-200">
+      {/* Integration Partners & Ecosystem - Light Gradient */}
+      <section className="w-full bg-gradient-to-br from-blue-50/20 via-white to-neutral-50/50 py-12 lg:py-16 xl:py-20 border-y border-primary-100/40">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
@@ -352,8 +358,8 @@ export default function Home() {
                 "Carrier/Abound",
                 "Distech Controls"
               ].map((partner) => (
-                <div key={partner} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-5 lg:p-6 flex items-center justify-center min-w-40 lg:min-w-[180px] min-h-[80px] lg:min-h-[90px] border border-neutral-200 hover:border-primary-500 group">
-                  <span className="text-sm lg:text-base font-bold text-neutral-400 group-hover:text-primary-500 transition-colors text-center">
+                <div key={partner} className="bg-white/80 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-5 lg:p-6 flex items-center justify-center min-w-40 lg:min-w-[180px] min-h-[80px] lg:min-h-[90px] border border-neutral-200/60 hover:border-primary-400 group">
+                  <span className="text-sm lg:text-base font-semibold text-neutral-500 group-hover:text-primary-600 transition-colors text-center">
                     {partner}
                   </span>
                 </div>
@@ -382,7 +388,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/distributors" className="inline-block bg-accent-500 hover:bg-accent-600 text-neutral-900 px-6 py-3 rounded-lg font-bold transition-colors shadow-sm">
+                <Link href="/distributors" className="inline-block bg-accent-500 hover:bg-accent-600 text-neutral-900 px-6 py-3 rounded-lg font-bold transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105">
                   Find a Distributor
                 </Link>
               </div>
@@ -509,7 +515,7 @@ export default function Home() {
               <p className="text-sm lg:text-base xl:text-lg text-primary-100 mb-6">
                 A comprehensive 40-page guide covering sensor selection, application best practices, and integration strategies for modern building automation systems.
               </p>
-              <Link href="/resources/sensor-guide" className="inline-block bg-accent-500 hover:bg-accent-600 text-neutral-900 px-6 lg:px-8 py-2.5 lg:py-3 rounded-lg font-bold transition-colors text-sm lg:text-base shadow-md">
+              <Link href="/resources/sensor-guide" className="inline-block bg-accent-500 hover:bg-accent-600 text-neutral-900 px-6 lg:px-8 py-2.5 lg:py-3 rounded-lg font-bold transition-all duration-300 text-sm lg:text-base shadow-md hover:shadow-lg hover:scale-105">
                 Download Free Guide (PDF)
               </Link>
             </div>
@@ -569,7 +575,7 @@ export default function Home() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center">
-            <Link href="/resources" className="inline-flex items-center justify-center px-6 lg:px-8 xl:px-10 py-3 lg:py-4 bg-accent-500 hover:bg-accent-600 text-neutral-900 rounded-xl font-bold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <Link href="/resources" className="inline-flex items-center justify-center px-6 lg:px-8 xl:px-10 py-3 lg:py-4 bg-accent-500 hover:bg-accent-600 text-neutral-900 rounded-xl font-bold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               Download Technical Resources
             </Link>
             <Link href="/contact" className="inline-flex items-center justify-center px-6 lg:px-8 xl:px-10 py-3 lg:py-4 bg-white hover:bg-neutral-50 text-primary-500 rounded-xl font-bold text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300">

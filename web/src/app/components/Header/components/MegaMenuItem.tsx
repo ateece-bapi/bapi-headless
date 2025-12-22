@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
@@ -32,8 +31,6 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   const panelRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelId = `mega-menu-${index}`;
-  const router = useRouter();
-  const [isFading, setIsFading] = useState(false);
 
   // Close on outside click
   useOutsideClick(panelRef, onCloseImmediate, isOpen);
@@ -51,8 +48,6 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   }
 
   // ...existing code...
-  // For Products, use a <Link> styled as a button for correct cursor and navigation
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -66,11 +61,11 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
 
   return (
     <div className="relative">
-      {/* Trigger Button */}
+      {/* Trigger Button: Use <Link> for Products, <button> for others */}
       {item.label === 'Products' && item.href ? (
-        <a
-          ref={buttonRef as any}
+        <Link
           href={item.href}
+          ref={buttonRef as any}
           aria-haspopup="true"
           aria-expanded={isOpen}
           aria-controls={panelId}
@@ -89,18 +84,6 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
               : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm hover:scale-105',
             'cursor-pointer'
           )}
-          onClick={async (e) => {
-            e.preventDefault();
-            if (isOpen) {
-              setIsFading(true);
-              onCloseImmediate();
-              await new Promise((resolve) => setTimeout(resolve, 320));
-              setIsFading(false);
-              router.push(item.href!);
-            } else {
-              onToggle();
-            }
-          }}
         >
           <span>{item.label}</span>
           <ChevronDown
@@ -111,7 +94,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
             aria-hidden="true"
           />
           <span className="sr-only">{isOpen ? 'close menu' : 'open menu'}</span>
-        </a>
+        </Link>
       ) : (
         <button
           ref={buttonRef}
@@ -161,11 +144,9 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           'p-4 sm:p-6 md:p-8',
           'origin-top transition-all duration-200 ease-out',
           'focus-within:border-primary-500/40',
-          isOpen && !isFading
+          isOpen
             ? 'visible translate-y-0 opacity-100'
-            : isFading
-              ? 'visible translate-y-0 opacity-0 pointer-events-none transition-opacity duration-300'
-              : 'invisible -translate-y-1 opacity-0 pointer-events-none'
+            : 'invisible -translate-y-1 opacity-0 pointer-events-none'
         )}
       >
         <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-12">

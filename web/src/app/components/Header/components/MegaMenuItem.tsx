@@ -48,6 +48,21 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   }
 
   // ...existing code...
+  // On click, navigate to /products if this is the Products menu
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // Only navigate if this is the Products menu (label === 'Products')
+    if (item.label === 'Products' && item.href) {
+      // If menu is already open, navigate; if closed, open menu
+      if (isOpen) {
+        window.location.href = item.href;
+      } else {
+        onToggle();
+      }
+    } else {
+      onToggle();
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -72,7 +87,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
         onMouseLeave={onCloseWithGrace}
         onFocus={onOpenWithIntent}
         onBlur={onCloseWithGrace}
-        onClick={onToggle}
+        onClick={handleButtonClick}
         onKeyDown={handleKeyDown}
         className={clsx(
           'inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-200',

@@ -74,6 +74,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           onFocus={onOpenWithIntent}
           onBlur={onCloseWithGrace}
           onKeyDown={handleKeyDown}
+          tabIndex={0}
           className={clsx(
             'inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-200',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',

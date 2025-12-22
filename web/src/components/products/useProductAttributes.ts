@@ -1,3 +1,4 @@
+"use client";
 /**
  * Custom hook for managing product attribute selection and matching variations.
  * @param attributes Product attributes array

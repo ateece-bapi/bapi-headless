@@ -47,7 +47,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
     );
   }
 
-    export default MegaMenuItemComponent;
+  // ...existing code...
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();

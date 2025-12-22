@@ -13,7 +13,8 @@ interface AddToCartButtonProps {
   disabled?: boolean;
 }
 
-export function AddToCartButton({
+
+const AddToCartButton = ({
   product,
   quantity = 1,
   className = '',
@@ -21,7 +22,7 @@ export function AddToCartButton({
   useCart: injectedUseCart,
   useCartDrawer: injectedUseCartDrawer,
   disabled = false,
-}: AddToCartButtonProps) {
+}: AddToCartButtonProps) => {
   const useCartHook = injectedUseCart ?? useCart;
   const useCartDrawerHook = injectedUseCartDrawer ?? useCartDrawer;
   const { addItem } = useCartHook();
@@ -44,3 +45,5 @@ export function AddToCartButton({
     </button>
   );
 }
+
+export default AddToCartButton;

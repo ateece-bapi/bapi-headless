@@ -2,7 +2,7 @@
 
 import { useCart } from '@/store';
 
-export function CartIcon() {
+const CartIcon = () => {
   const { totalItems } = useCart();
   
   return (
@@ -28,3 +28,5 @@ export function CartIcon() {
     </div>
   );
 }
+
+export default CartIcon;

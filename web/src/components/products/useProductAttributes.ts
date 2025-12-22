@@ -1,14 +1,15 @@
+"use client";
 /**
  * Custom hook for managing product attribute selection and matching variations.
  * @param attributes Product attributes array
  * @param variations Product variations array
  */
 import { useState, useMemo } from 'react';
-import type { Variation } from './ProductDetailClient';
+
 
 export function useProductAttributes(
   attributes: Array<{ name: string; options: string[] }> = [],
-  variations: Variation[] = []
+  variations: any[] = []
 ) {
   // Initial selection: first option for each attribute
   const initialSelection = attributes.reduce<Record<string, string>>((acc, attr) => {

@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
-import { MegaMenuItem } from '../types';
+import type { MegaMenuItem } from '../types';
 import { useOutsideClick } from '../hooks/useOutsideClick';
 
 interface MegaMenuItemProps {
@@ -18,7 +18,7 @@ interface MegaMenuItemProps {
   onCloseImmediate: () => void;
 }
 
-export const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
+const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   item,
   index,
   isOpen,
@@ -47,6 +47,7 @@ export const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
     );
   }
 
+  // ...existing code...
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -313,3 +314,5 @@ export const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
     </div>
   );
 };
+
+export default MegaMenuItemComponent;

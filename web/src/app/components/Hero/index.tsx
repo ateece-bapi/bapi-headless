@@ -2,8 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { HeroProps } from './types';
 import { HERO_CONFIG } from './config';
-import { HeroContent } from './components/HeroContent';
-import { HeroActions } from './components/HeroActions';
+import { HeroContent, HeroActions } from './components';
 
 export const Hero: React.FC<HeroProps> = ({ className }) => {
   return (

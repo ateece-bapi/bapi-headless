@@ -7,14 +7,16 @@ import { HeaderProps } from './types';
 import { HEADER_CONFIG } from './config';
 import { useScrollDetection } from './hooks/useScrollDetection';
 import { useMobileMenu } from './hooks/useMobileMenu';
-import { RegionSelector } from './components/RegionSelector';
-import { SignInButton } from './components/SignInButton';
-import { CartButton } from './components/CartButton';
-import { Logo } from './components/Logo';
-import { SearchButton } from './components/SearchButton';
-import { MobileMenuButton } from './components/MobileMenuButton';
-import { MobileMenu } from './components/MobileMenu';
-import { MegaMenu } from './components/MegaMenu';
+import {
+  RegionSelector,
+  SignInButton,
+  CartButton,
+  Logo,
+  SearchButton,
+  MobileMenuButton,
+  MobileMenu,
+  MegaMenu
+} from './components';
 
 export const Header: React.FC<HeaderProps> = ({ className }) => {
   const scrolled = useScrollDetection(HEADER_CONFIG.scrollThreshold);

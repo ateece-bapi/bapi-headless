@@ -4,7 +4,7 @@ interface SearchButtonProps {
   onClick?: () => void;
 }
 
-export const SearchButton: React.FC<SearchButtonProps> = ({ onClick }) => (
+const SearchButton: React.FC<SearchButtonProps> = ({ onClick }) => (
   <button
     className="flex items-center justify-center w-10 h-10 hover:bg-neutral-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#0054b6] focus:ring-offset-2 active:scale-95"
     aria-label="Search"
@@ -24,3 +24,5 @@ export const SearchButton: React.FC<SearchButtonProps> = ({ onClick }) => (
     </svg>
   </button>
 );
+
+export default SearchButton;

@@ -48,10 +48,12 @@ export default function ProductConfigurator({ product, onVariationChange }: Prod
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedVariation]);
 
+  // Hide selectors if no variations
+  const showSelectors = variations.length > 0 && attributes.length > 0;
   return (
     <section className="mb-8">
       <h2 className="text-lg font-semibold mb-2">Configure Product</h2>
-      {attributes.length > 0 ? (
+      {showSelectors ? (
         <form className="flex flex-col gap-4 mb-4">
           {attributes.map((attr) => (
             <div key={attr.name} className="flex flex-col md:flex-row md:items-center gap-2">

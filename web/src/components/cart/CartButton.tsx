@@ -1,9 +1,9 @@
 'use client';
 
 import { useCartDrawer } from '../../store/hooks';
-import { CartIcon } from './CartIcon';
+import CartIcon from './CartIcon';
 
-export function CartButton() {
+const CartButton = () => {
   const { openCart } = useCartDrawer();
   
   return (
@@ -16,3 +16,5 @@ export function CartButton() {
     </button>
   );
 }
+
+export default CartButton;

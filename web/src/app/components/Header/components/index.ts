@@ -3,7 +3,7 @@ export { default as MobileMenu } from './MobileMenu';
 export { default as CartButton } from './CartButton';
 export { default as MobileMenuButton } from './MobileMenuButton';
 export { default as MegaMenu } from './MegaMenu';
-export { default as MegaMenuItem } from './MegaMenuItem';
+export { default as MegaMenuItemComponent } from './MegaMenuItem';
 export { default as SignInButton } from './SignInButton';
 export { default as RegionSelector } from './RegionSelector';
 export { default as SearchButton } from './SearchButton';

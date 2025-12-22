@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
@@ -33,6 +33,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelId = `mega-menu-${index}`;
   const router = useRouter();
+  const [isFading, setIsFading] = useState(false);
 
   // Close on outside click
   useOutsideClick(panelRef, onCloseImmediate, isOpen);
@@ -91,8 +92,10 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           onClick={async (e) => {
             e.preventDefault();
             if (isOpen) {
+              setIsFading(true);
               onCloseImmediate();
-              await new Promise((resolve) => setTimeout(resolve, 180));
+              await new Promise((resolve) => setTimeout(resolve, 320));
+              setIsFading(false);
               router.push(item.href!);
             } else {
               onToggle();
@@ -158,9 +161,11 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           'p-4 sm:p-6 md:p-8',
           'origin-top transition-all duration-200 ease-out',
           'focus-within:border-primary-500/40',
-          isOpen
+          isOpen && !isFading
             ? 'visible translate-y-0 opacity-100'
-            : 'invisible -translate-y-1 opacity-0 pointer-events-none'
+            : isFading
+              ? 'visible translate-y-0 opacity-0 pointer-events-none transition-opacity duration-300'
+              : 'invisible -translate-y-1 opacity-0 pointer-events-none'
         )}
       >
         <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-12">

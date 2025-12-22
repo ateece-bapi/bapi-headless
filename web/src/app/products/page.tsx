@@ -1,6 +1,7 @@
-
+"use client";
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 // Mock data for product categories
 const productCategories = [
@@ -55,8 +56,25 @@ const productCategories = [
 ];
 
 export default function MainProductPage() {
+  // For page fade
+  const [pageVisible, setPageVisible] = useState(false);
+  // For card animation
+  const [showCards, setShowCards] = useState(false);
+
+  useEffect(() => {
+    setPageVisible(true);
+    // Staggered card animation
+    const timeout = setTimeout(() => setShowCards(true), 100);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // Fade out on navigation (optional, for future: use router events)
+
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div
+      className={`min-h-screen bg-white flex flex-col transition-opacity duration-500 ${pageVisible ? 'opacity-100' : 'opacity-0'}`}
+      data-testid="products-page-fade"
+    >
       {/* Breadcrumb */}
       <nav className="bg-neutral-100 py-3 px-4 text-sm" aria-label="Breadcrumb">
         <ol className="container mx-auto flex items-center space-x-2">
@@ -79,11 +97,16 @@ export default function MainProductPage() {
       {/* Category Grid */}
       <main className="container mx-auto px-4 flex-1">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {productCategories.map((cat) => (
+          {productCategories.map((cat, i) => (
             <Link
               key={cat.slug}
               href={`/products/${cat.slug}`}
-              className="group block rounded-xl border border-neutral-200 bg-white shadow-sm hover:shadow-2xl focus:shadow-2xl transition-all duration-200 ease-in-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary-500 hover:bg-primary-50/60 focus:bg-primary-50/60 group-hover:scale-[1.02] group-focus:scale-[1.02]"
+              className={`group block rounded-xl border border-neutral-200 bg-white shadow-sm hover:shadow-2xl focus:shadow-2xl transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary-500 hover:bg-primary-50/60 focus:bg-primary-50/60 group-hover:scale-[1.02] group-focus:scale-[1.02]
+                ${showCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+              `}
+              style={{
+                transitionDelay: showCards ? `${i * 100 + 150}ms` : '0ms',
+              }}
               tabIndex={0}
               aria-label={`View ${cat.name} category (${cat.count} products)`}
             >

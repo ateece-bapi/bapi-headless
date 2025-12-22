@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
@@ -31,6 +32,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   const panelRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelId = `mega-menu-${index}`;
+  const router = useRouter();
 
   // Close on outside click
   useOutsideClick(panelRef, onCloseImmediate, isOpen);
@@ -65,7 +67,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
     <div className="relative">
       {/* Trigger Button */}
       {item.label === 'Products' && item.href ? (
-        <Link
+        <a
           ref={buttonRef as any}
           href={item.href}
           aria-haspopup="true"
@@ -86,6 +88,16 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
               : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm hover:scale-105',
             'cursor-pointer'
           )}
+          onClick={async (e) => {
+            e.preventDefault();
+            if (isOpen) {
+              onCloseImmediate();
+              await new Promise((resolve) => setTimeout(resolve, 180));
+              router.push(item.href!);
+            } else {
+              onToggle();
+            }
+          }}
         >
           <span>{item.label}</span>
           <ChevronDown
@@ -96,7 +108,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
             aria-hidden="true"
           />
           <span className="sr-only">{isOpen ? 'close menu' : 'open menu'}</span>
-        </Link>
+        </a>
       ) : (
         <button
           ref={buttonRef}

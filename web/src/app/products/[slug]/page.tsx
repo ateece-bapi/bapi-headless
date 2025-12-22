@@ -7,6 +7,7 @@ import type { GetProductBySlugQuery } from '@/lib/graphql';
 import { getProductQuerySchema, productSchema } from '@/lib/validation/product';
 import { z } from 'zod';
 import { CartDrawer } from '@/components/cart';
+import {
   Breadcrumbs,
   ProductHero,
   ProductConfigurator,

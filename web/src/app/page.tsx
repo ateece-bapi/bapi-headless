@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Hero from './components/Hero';
+import { Hero } from './components';
 import { 
   Thermometer, 
   Gauge, 
@@ -271,7 +271,7 @@ export default function Home() {
                 desc: 'Manufactured in the USA with robust inventory and fast shipping',
                 specs: [
                   'Same-day shipping on stock items',
-                  'Made in USA (Minnesota facility)',
+                  'Made in USA (Wisconsin facility)',
                   'ISO 9001:2015 certified manufacturing',
                   'Extensive distributor network'
                 ]

@@ -7,15 +7,16 @@ import type { GetProductBySlugQuery } from '@/lib/graphql';
 import { getProductQuerySchema, productSchema } from '@/lib/validation/product';
 import { z } from 'zod';
 import { CartDrawer } from '@/components/cart';
-import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
-import ProductHero from '@/components/products/ProductPage/ProductHero';
-import ProductConfigurator from '@/components/products/ProductPage/ProductConfigurator';
+  Breadcrumbs,
+  ProductHero,
+  ProductConfigurator,
+  ProductTabs,
+  RelatedProducts,
+  AppLinks,
+  ContactInfo,
+  ProductDetailClient
+} from '@/components/products';
 import dynamic from 'next/dynamic';
-import ProductTabs from '@/components/products/ProductPage/ProductTabs';
-import RelatedProducts from '@/components/products/ProductPage/RelatedProducts';
-import AppLinks from '@/components/products/ProductPage/AppLinks';
-import ContactInfo from '@/components/products/ProductPage/ContactInfo';
-import ProductDetailClient from '@/components/products/ProductPage/ProductDetailClient';
 
 function stripHtml(html?: string | null) {
   if (!html) return '';

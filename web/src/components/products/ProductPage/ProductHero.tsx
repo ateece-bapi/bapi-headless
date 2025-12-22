@@ -8,6 +8,7 @@ interface GalleryImage {
   altText?: string | null;
 }
 
+
 interface ProductHeroProps {
   product: {
     name: string;
@@ -23,21 +24,37 @@ interface ProductHeroProps {
     stockQuantity?: number | null;
     regularPrice?: string | null;
   };
+  variation?: {
+    image?: GalleryImage | null;
+    name?: string;
+  } | null;
 }
 
-export default function ProductHero({ product }: ProductHeroProps) {
-  const [mainImage, setMainImage] = useState<GalleryImage | null>(product.image || null);
+
+export default function ProductHero({ product, variation }: ProductHeroProps) {
+  // Prefer variation image if present, else product image
+  const initialImage = variation?.image || product.image || null;
+  const [mainImage, setMainImage] = useState<GalleryImage | null>(initialImage);
   const gallery = product.gallery || [];
+
+  // If variation changes, update mainImage to variation image
+  React.useEffect(() => {
+    setMainImage(variation?.image || product.image || null);
+  }, [variation, product.image]);
 
   return (
     <section className="flex flex-col md:flex-row items-start gap-8 mb-8">
       <div className="flex flex-col items-center md:flex-row md:items-start gap-4">
-        {mainImage && (
+        {mainImage ? (
           <img
             src={mainImage.sourceUrl}
-            alt={mainImage.altText || product.name}
+            alt={mainImage.altText || variation?.name || product.name}
             className="w-72 h-72 object-contain bg-neutral-50 rounded-xl shadow mb-4"
           />
+        ) : (
+          <div className="w-72 h-72 flex items-center justify-center bg-neutral-100 rounded-xl shadow mb-4 text-neutral-400 text-lg font-semibold">
+            No image
+          </div>
         )}
         {/* Action buttons now in summary card */}
         {gallery.length > 1 && (
@@ -48,7 +65,7 @@ export default function ProductHero({ product }: ProductHeroProps) {
                 onClick={() => setMainImage(img)}
                 className={`border rounded p-1 bg-white ${mainImage?.sourceUrl === img.sourceUrl ? 'border-primary-500' : 'border-neutral-200'}`}
               >
-                <img src={img.sourceUrl} alt={img.altText || product.name} className="w-12 h-12 object-contain" />
+                <img src={img.sourceUrl} alt="Product thumbnail" className="w-12 h-12 object-contain" />
               </button>
             ))}
           </div>
@@ -66,9 +83,6 @@ export default function ProductHero({ product }: ProductHeroProps) {
           <div className="mb-4 text-neutral-600 text-sm">{product.specs}</div>
         )}
         <div className="flex flex-col gap-2 mb-4">
-          {product.price && (
-            <div className="text-xl font-semibold text-primary-700">{product.price}</div>
-          )}
           {product.regularPrice && (
             <div className="text-sm text-neutral-500">List Price: <span className="font-medium text-neutral-800">{product.regularPrice}</span></div>
           )}

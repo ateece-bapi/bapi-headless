@@ -7,7 +7,7 @@ interface HeroContentProps {
   description: string;
 }
 
-export const HeroContent: React.FC<HeroContentProps> = ({ title, subtitle, description }) => (
+const HeroContent: React.FC<HeroContentProps> = ({ title, subtitle, description }) => (
   <div className="text-center max-w-6xl mx-auto mb-14">
     <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-gray-900 mb-10 leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
       {title}
@@ -26,3 +26,5 @@ export const HeroContent: React.FC<HeroContentProps> = ({ title, subtitle, descr
     </p>
   </div>
 );
+
+export default HeroContent;

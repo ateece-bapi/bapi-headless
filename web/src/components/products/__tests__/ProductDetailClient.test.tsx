@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
-import type { ProductForClient, Variation } from '../ProductDetailClient';
+import type { ProductForClient, Variation } from '../ProductPage/ProductDetailClient';
 import type { useCart as useCartType, useCartDrawer as useCartDrawerType } from '@/store';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import ProductDetailClient from '../ProductDetailClient';
+import { ProductDetailClient } from '@/components/products';
 
 const baseProduct: ProductForClient = {
   id: 'prod-1',

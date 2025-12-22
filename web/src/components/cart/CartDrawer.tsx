@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useCart, useCartDrawer } from '@/store';
 
-export function CartDrawer() {
+const CartDrawer = () => {
   const { items, updateQuantity, removeItem, subtotal, isEmpty } = useCart();
   const { isOpen, closeCart } = useCartDrawer();
   
@@ -99,3 +99,5 @@ export function CartDrawer() {
     </>
   );
 }
+
+export default CartDrawer;

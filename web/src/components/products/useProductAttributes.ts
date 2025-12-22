@@ -4,7 +4,7 @@
  * @param variations Product variations array
  */
 import { useState, useMemo } from 'react';
-import type { Variation } from './ProductDetailClient';
+import type { Variation } from './ProductPage/ProductDetailClient';
 
 export function useProductAttributes(
   attributes: Array<{ name: string; options: string[] }> = [],

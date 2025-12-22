@@ -108,9 +108,7 @@ export default function MainProductPage() {
                     aria-hidden="true"
                   />
                 </h2>
-                <div className="text-xs sm:text-sm text-neutral-500 font-medium mb-1 uppercase tracking-wide">
-                  {cat.count} products
-                </div>
+                {/* Product count removed for cleaner UI */}
                 {/* Optional: Add a short description for branding polish */}
                 {/* <p className="text-xs text-neutral-500 mt-1">High quality {cat.name.toLowerCase()} for every application.</p> */}
               </div>

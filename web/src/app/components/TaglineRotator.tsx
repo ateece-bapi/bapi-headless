@@ -4,10 +4,12 @@ import React, { useState, useEffect } from "react";
 
 const taglines = [
   "Industry Leading Sensors",
-  "Trusted by Professionals",
+  "Changing the way you think about sensors since 1993",
   "Seamless wireless integration for your existing BAS",
   "Precision Engineering",
   "Building the Future",
+  "...It's in the details",
+  "People. Building. Sensors"
 ];
 
 const TaglineRotator: React.FC = () => {

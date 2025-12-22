@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
-import { MegaMenuItem } from '../types';
+import type { MegaMenuItem } from '../types';
 import { useOutsideClick } from '../hooks/useOutsideClick';
 
 interface MegaMenuItemProps {

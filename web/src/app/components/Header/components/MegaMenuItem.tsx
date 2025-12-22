@@ -314,4 +314,4 @@ const MegaMenuItem: React.FC<MegaMenuItemProps> = ({
   );
 };
 
-export default MegaMenuItem;
+export default MegaMenuItemComponent;

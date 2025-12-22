@@ -4,6 +4,7 @@ import type { NextConfig } from 'next';
 
 
 const nextConfig: NextConfig = {
+  outputFileTracingRoot: path.resolve(__dirname),
   // Use an absolute path for turbopack.root (resolve from this file's directory)
   turbopack: {
     root: path.resolve(__dirname),

@@ -7,7 +7,7 @@ interface NavigationProps {
   className?: string;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ links, className = '' }) => (
+const Navigation: React.FC<NavigationProps> = ({ links, className = '' }) => (
   <nav className={className} aria-label="Main navigation">
     {links.map((link) => (
       <Link
@@ -24,3 +24,5 @@ export const Navigation: React.FC<NavigationProps> = ({ links, className = '' })
     ))}
   </nav>
 );
+
+export default Navigation;

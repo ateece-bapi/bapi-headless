@@ -34,7 +34,7 @@ export interface AppImageProps extends Omit<ImageProps, 'placeholder' | 'blurDat
 const DEFAULT_BLUR =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAn8B9p1enZkAAAAASUVORK5CYII=';
 
-export const AppImage: React.FC<AppImageProps> = ({
+const AppImage: React.FC<AppImageProps> = ({
   alt,
   fallbackAlt,
   blurDataURL = DEFAULT_BLUR,
@@ -56,3 +56,5 @@ export const AppImage: React.FC<AppImageProps> = ({
     />
   );
 };
+
+export default AppImage;

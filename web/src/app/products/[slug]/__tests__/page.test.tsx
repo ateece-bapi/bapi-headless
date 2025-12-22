@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import ProductDetailClient from '@/components/products/ProductDetailClient';
+import { ProductDetailClient } from '@/components/products';
 import { useCartStore } from '@/store';
 type ProductForClient = React.ComponentProps<typeof ProductDetailClient>['product'];
 

@@ -1,25 +1,42 @@
 "use client";
 
 import React from 'react';
+import AddToCartButton from '@/components/cart/AddToCartButton';
 
 interface ProductSummaryCardProps {
-  product: {
-    partNumber?: string | null;
-    sku?: string | null;
-    price?: string | null;
-    regularPrice?: string | null;
-    multiplier?: string | null;
-    multiplierGroups?: Array<{ id: string; name: string; slug: string }>;
-    stockStatus?: string | null;
-    stockQuantity?: number | null;
-  };
+  product: any;
+  variation?: any;
+  useCart?: any;
+  useCartDrawer?: any;
 }
 
-export default function ProductSummaryCard({ product }: ProductSummaryCardProps) {
+export default function ProductSummaryCard({ product, variation, useCart, useCartDrawer }: ProductSummaryCardProps) {
   const [quantity, setQuantity] = React.useState(1);
   const price = parseFloat(product.price || '0');
   const multiplier = parseFloat(product.multiplier || '1');
   const calculated = isNaN(price * multiplier * quantity) ? '0.00' : (price * multiplier * quantity).toFixed(2);
+  const isOutOfStock = product.stockStatus !== 'IN_STOCK' || (typeof product.stockQuantity === 'number' && product.stockQuantity < 1);
+
+  // If product price is empty, always show fallback UI, regardless of variation
+  const summaryId = variation?.id || product.id || product.partNumber || product.sku || '';
+  const summaryName = variation?.name || product.name || product.partNumber || product.sku || 'Product';
+  const summarySlug = product.slug || product.partNumber || product.sku || '';
+  const summaryPrice = (product.price && product.price.trim() !== '')
+    ? (variation && variation.price && variation.price.trim() !== '' ? variation.price : product.price)
+    : '';
+  const summaryImage = variation?.image || product.image || null;
+  const variationId = variation?.databaseId || undefined;
+  const variationName = variation?.name || undefined;
+
+  if (!summaryPrice || summaryPrice.trim() === '') {
+    return (
+      <aside className="bg-white border border-neutral-200 rounded-xl shadow p-6 w-full md:w-80 mb-8 md:mb-0">
+        {/* Only fallback <p> for missing price, no other children */}
+        <p className="text-primary-500 mb-4"> </p>
+      </aside>
+    );
+  }
+
   return (
     <aside className="bg-white border border-neutral-200 rounded-xl shadow p-6 w-full md:w-80 mb-8 md:mb-0">
       <h2 className="text-neutral-900 text-xl font-bold mb-4">Product Summary</h2>
@@ -30,7 +47,7 @@ export default function ProductSummaryCard({ product }: ProductSummaryCardProps)
       <div className="mb-4 flex justify-between items-center gap-4">
         <div>
           <div className="text-xs text-neutral-500">List Price</div>
-          <div className="font-bold text-primary-700 text-lg">{product.price || 'N/A'}</div>
+          <div className="font-bold text-primary-700 text-lg">{summaryPrice}</div>
         </div>
         <div>
           <div className="text-xs text-neutral-500">Multiplier</div>
@@ -56,7 +73,18 @@ export default function ProductSummaryCard({ product }: ProductSummaryCardProps)
         <div className="text-xs text-neutral-500">Total</div>
         <div className="text-2xl font-bold text-primary-700">${calculated}</div>
       </div>
-      <button className="bg-accent-500 hover:bg-accent-600 text-neutral-900 font-semibold text-lg py-3 px-6 rounded-lg shadow focus:outline-primary-500 transition w-full mb-4">Add to Cart</button>
+      <AddToCartButton
+        product={{
+          ...product,
+          variationId,
+          variationName,
+        }}
+        quantity={quantity}
+        className="text-lg py-3 px-6 w-full mb-4"
+        disabled={isOutOfStock}
+        useCart={typeof useCart === 'function' ? useCart : undefined}
+        useCartDrawer={typeof useCartDrawer === 'function' ? useCartDrawer : undefined}
+      />
       {product.stockStatus && (
         <div className="mt-2 text-xs text-success-700 font-semibold">{product.stockStatus}</div>
       )}

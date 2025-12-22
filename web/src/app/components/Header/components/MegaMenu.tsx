@@ -4,13 +4,13 @@ import React from 'react';
 import clsx from 'clsx';
 import { MEGA_MENU_ITEMS } from '../config';
 import { useMegaMenu } from '../hooks/useMegaMenu';
-import { MegaMenuItemComponent } from './MegaMenuItem';
+import MegaMenuItemComponent from './MegaMenuItem';
 
 interface MegaMenuProps {
   className?: string;
 }
 
-export const MegaMenu: React.FC<MegaMenuProps> = ({ className }) => {
+const MegaMenu: React.FC<MegaMenuProps> = ({ className }) => {
   const menu = useMegaMenu();
 
   return (
@@ -34,3 +34,5 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ className }) => {
     </nav>
   );
 };
+
+export default MegaMenu;

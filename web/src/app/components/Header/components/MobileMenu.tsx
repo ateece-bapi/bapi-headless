@@ -11,7 +11,7 @@ interface MobileMenuProps {
   onClose: () => void;
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   if (!isOpen) return null;
@@ -162,4 +162,6 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       </nav>
     </>
   );
-};
+}
+
+export default MobileMenu;

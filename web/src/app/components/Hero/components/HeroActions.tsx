@@ -6,7 +6,7 @@ interface HeroActionsProps {
   actions: readonly HeroAction[];
 }
 
-export const HeroActions: React.FC<HeroActionsProps> = ({ actions }) => (
+const HeroActions: React.FC<HeroActionsProps> = ({ actions }) => (
   <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
     {actions.map((action, index) => (
       <BapiButton
@@ -25,3 +25,5 @@ export const HeroActions: React.FC<HeroActionsProps> = ({ actions }) => (
     ))}
   </div>
 );
+
+export default HeroActions;

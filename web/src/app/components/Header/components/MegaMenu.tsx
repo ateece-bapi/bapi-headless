@@ -10,7 +10,7 @@ interface MegaMenuProps {
   className?: string;
 }
 
-export const MegaMenu: React.FC<MegaMenuProps> = ({ className }) => {
+const MegaMenu: React.FC<MegaMenuProps> = ({ className }) => {
   const menu = useMegaMenu();
 
   return (
@@ -34,3 +34,5 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ className }) => {
     </nav>
   );
 };
+
+export default MegaMenu;

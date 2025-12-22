@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { HEADER_CONFIG } from '../config';
 
-export const Logo: React.FC = () => (
+const Logo: React.FC = () => (
   <Link
     href="/"
     className="flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#0054b6] focus:ring-offset-2 rounded transition-transform hover:scale-105 active:scale-100"
@@ -19,3 +19,5 @@ export const Logo: React.FC = () => (
     />
   </Link>
 );
+
+export default Logo;

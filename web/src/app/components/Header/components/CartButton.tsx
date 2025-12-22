@@ -5,7 +5,7 @@ interface CartButtonProps {
   itemCount?: number;
 }
 
-export const CartButton: React.FC<CartButtonProps> = ({ itemCount = 0 }) => (
+const CartButton: React.FC<CartButtonProps> = ({ itemCount = 0 }) => (
   <Link
     href="/cart"
     className="relative flex items-center justify-center w-10 h-10 hover:bg-neutral-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#0054b6] focus:ring-offset-2 active:scale-95"
@@ -33,3 +33,5 @@ export const CartButton: React.FC<CartButtonProps> = ({ itemCount = 0 }) => (
     )}
   </Link>
 );
+
+export default CartButton;

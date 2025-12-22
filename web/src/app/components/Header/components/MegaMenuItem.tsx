@@ -18,7 +18,7 @@ interface MegaMenuItemProps {
   onCloseImmediate: () => void;
 }
 
-export const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
+const MegaMenuItem: React.FC<MegaMenuItemProps> = ({
   item,
   index,
   isOpen,
@@ -313,3 +313,5 @@ export const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
     </div>
   );
 };
+
+export default MegaMenuItem;

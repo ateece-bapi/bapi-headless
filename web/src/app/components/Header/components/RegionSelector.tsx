@@ -1,7 +1,7 @@
 import React from 'react';
 import { REGIONS } from '../config';
 
-export const RegionSelector: React.FC = () => (
+const RegionSelector: React.FC = () => (
   <div className="relative">
     <label htmlFor="region-select" className="sr-only">
       Select your region
@@ -32,3 +32,5 @@ export const RegionSelector: React.FC = () => (
     </svg>
   </div>
 );
+
+export default RegionSelector;

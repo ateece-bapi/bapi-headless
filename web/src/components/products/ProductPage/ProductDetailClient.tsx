@@ -13,9 +13,12 @@ import { CartDrawer } from "@/components/cart";
 
 interface ProductDetailClientProps {
   product: any;
+  useCart?: any;
+  useCartDrawer?: any;
 }
 
-export default function ProductDetailClient({ product }: ProductDetailClientProps) {
+export default function ProductDetailClient({ product, useCart, useCartDrawer }: ProductDetailClientProps) {
+
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
 
   return (
@@ -31,16 +34,14 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             />
             <div className="flex flex-col md:flex-row gap-8 mb-8 items-start">
               <div className="flex-1">
-                <ProductHero product={product} />
+                <ProductHero product={product} variation={selectedVariation} />
               </div>
-              <ProductSummaryCard product={{
-                partNumber: selectedVariation?.partNumber || selectedVariation?.sku || product.partNumber,
-                price: product.price,
-                regularPrice: product.regularPrice,
-                multiplierGroups: product.multiplierGroups,
-                stockStatus: product.stockStatus,
-                stockQuantity: product.stockQuantity,
-              }} />
+              <ProductSummaryCard
+                product={product}
+                variation={selectedVariation}
+                useCart={useCart}
+                useCartDrawer={useCartDrawer}
+              />
             </div>
             <ProductConfigurator
               product={product}

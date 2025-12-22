@@ -18,7 +18,7 @@ interface MegaMenuItemProps {
   onCloseImmediate: () => void;
 }
 
-const MegaMenuItem: React.FC<MegaMenuItemProps> = ({
+const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   item,
   index,
   isOpen,
@@ -44,9 +44,9 @@ const MegaMenuItem: React.FC<MegaMenuItemProps> = ({
       >
         {item.label}
       </Link>
-    );
-  }
+    };
 
+    export default MegaMenuItemComponent;
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();

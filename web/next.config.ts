@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       // Add your CDN hostname(s) here if needed
       // { protocol: 'https', hostname: 'cdn.example.com' },
     ],
+    qualities: [75, 85],
   },
   // other Next options (keep whatever you already need here)...
   // Example: uncomment if you want a custom distDir explicitly inside the project:

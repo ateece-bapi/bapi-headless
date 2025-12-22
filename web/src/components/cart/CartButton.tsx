@@ -1,7 +1,7 @@
 'use client';
 
 import { useCartDrawer } from '../../store/hooks';
-import { CartIcon } from './CartIcon';
+import CartIcon from './CartIcon';
 
 const CartButton = () => {
   const { openCart } = useCartDrawer();

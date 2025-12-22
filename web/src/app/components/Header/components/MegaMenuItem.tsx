@@ -44,7 +44,8 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
       >
         {item.label}
       </Link>
-    };
+    );
+  }
 
     export default MegaMenuItemComponent;
   const handleKeyDown = (e: React.KeyboardEvent) => {

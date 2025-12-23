@@ -1,5 +1,5 @@
 import React from 'react';
-import BapiButton from '../../BapiButton';
+import BapiButton from '@/components/ui/BapiButton';
 import { HeroAction } from '../types';
 
 interface HeroActionsProps {

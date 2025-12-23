@@ -43,7 +43,22 @@ export function isGroupProduct(product: Product | null | undefined): product is 
 }
 
 /**
- * Get the price from any product type
+ * Extracts formatted price from WooCommerce product
+ * 
+ * Handles various product types (Simple, Variable, Group) which may
+ * have different price field structures. Returns pre-formatted string
+ * from WooCommerce (e.g., "$19.99", "$10.00 - $25.00").
+ * 
+ * @param product - Product from GraphQL query (nullable for safe type guards)
+ * @returns Formatted price string with currency symbol, or null if unavailable
+ * 
+ * @example
+ * ```ts
+ * const price = getProductPrice(product);
+ * if (price) {
+ *   console.log(`Product costs ${price}`);
+ * }
+ * ```
  */
 export function getProductPrice(product: Product | null | undefined): string | null {
   if (!product) return null;
@@ -56,7 +71,21 @@ export function getProductPrice(product: Product | null | undefined): string | n
 }
 
 /**
- * Get stock status from any product type
+ * Extracts stock status from WooCommerce product
+ * 
+ * Returns WooCommerce stock status enum value. Common values:
+ * - "IN_STOCK" - Available for purchase
+ * - "OUT_OF_STOCK" - Not available
+ * - "ON_BACKORDER" - Can order but will ship later
+ * 
+ * @param product - Product from GraphQL query
+ * @returns Stock status string or null if unavailable
+ * 
+ * @example
+ * ```ts
+ * const status = getProductStockStatus(product);
+ * const isAvailable = status === 'IN_STOCK';
+ * ```
  */
 export function getProductStockStatus(product: Product | null | undefined): string | null {
   if (!product) return null;
@@ -69,7 +98,20 @@ export function getProductStockStatus(product: Product | null | undefined): stri
 }
 
 /**
- * Check if product is on sale
+ * Checks if WooCommerce product is currently on sale
+ * 
+ * Sale status is set in WooCommerce admin when sale price is active.
+ * Use this to show "SALE" badges or calculate discounts.
+ * 
+ * @param product - Product from GraphQL query
+ * @returns true if product has active sale, false otherwise
+ * 
+ * @example
+ * ```tsx
+ * {isProductOnSale(product) && (
+ *   <span className="badge">SALE</span>
+ * )}
+ * ```
  */
 export function isProductOnSale(product: Product | null | undefined): boolean {
   if (!product) return false;

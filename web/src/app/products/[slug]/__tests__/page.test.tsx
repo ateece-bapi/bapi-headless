@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProductDetailClient } from '@/components/products';
 import { useCartStore } from '@/store';
+import { ToastProvider } from '@/components/ui/Toast';
 type ProductForClient = React.ComponentProps<typeof ProductDetailClient>['product'];
 
 import { mockProductForClient, makeProductForClient } from '../../../../../test/msw/fixtures';
@@ -16,9 +17,13 @@ describe('ProductDetailClient', () => {
   });
 
   it('renders and adds product to cart', async () => {
-    render(<ProductDetailClient product={productShape} />);
+    render(
+      <ToastProvider>
+        <ProductDetailClient product={productShape} />
+      </ToastProvider>
+    );
 
-    const addBtn = screen.getByRole('button', { name: /add to cart/i });
+    const addBtn = screen.getByRole('button', { name: /add.*to cart/i });
     expect(addBtn).toBeInTheDocument();
 
     const user = userEvent.setup();

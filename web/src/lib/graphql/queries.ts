@@ -1,32 +1,56 @@
 import { getGraphQLClient } from './client';
 import { GetProductsDocument, GetProductBySlugDocument, GetProductCategoriesDocument } from './generated';
 import type { GetProductsQuery, GetProductBySlugQuery, GetProductCategoriesQuery } from './generated';
+import { AppError } from '@/lib/errors';
 
 /**
  * Server-side function to fetch products with pagination
  */
 export async function getProducts(first: number = 10, after?: string): Promise<GetProductsQuery> {
-  const client = getGraphQLClient();
-  return client.request(GetProductsDocument, { first, after });
+  try {
+    const client = getGraphQLClient(['products', 'product-list']);
+    return await client.request(GetProductsDocument, { first, after });
+  } catch (error) {
+    throw new AppError(
+      `Failed to fetch products: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      'Unable to load products at this time. Please try again later.',
+      'PRODUCTS_FETCH_ERROR',
+      500
+    );
+  }
 }
 
 /**
  * Server-side function to fetch a single product by slug
  */
 export async function getProductBySlug(slug: string): Promise<GetProductBySlugQuery> {
-  const client = getGraphQLClient();
   // Defensive validation: ensure callers pass a non-empty slug.
   // GraphQL requires `$slug: ID!` for this query; calling with an empty
   // value results in a runtime error from the server. Centralize the
   // check here so callers get a clear, early error message.
   if (slug === null || slug === undefined || String(slug).trim() === '') {
-    throw new Error('getProductBySlug called without a valid `slug` (received empty value)');
+    throw new AppError(
+      'getProductBySlug called without a valid slug',
+      'Invalid product URL. Please check the link and try again.',
+      'INVALID_PRODUCT_SLUG',
+      400
+    );
   }
 
-  const resp = await client.request(GetProductBySlugDocument, { slug });
-  // Normalize the response at the fetch layer so callers receive a
-  // consistent, repaired shape and validation can run deterministically.
-  return normalizeProductQueryResponse(resp);
+  try {
+    const client = getGraphQLClient(['products', `product-${slug}`]);
+    const resp = await client.request(GetProductBySlugDocument, { slug });
+    // Normalize the response at the fetch layer so callers receive a
+    // consistent, repaired shape and validation can run deterministically.
+    return normalizeProductQueryResponse(resp);
+  } catch (error) {
+    throw new AppError(
+      `Failed to fetch product '${slug}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+      'Unable to load this product. The product may not exist or there may be a temporary issue.',
+      'PRODUCT_FETCH_ERROR',
+      404
+    );
+  }
 }
 
 // Normalizer: Make best-effort repairs to common GraphQL response issues so
@@ -153,6 +177,6 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
  * Server-side function to fetch product categories
  */
 export async function getProductCategories(first: number = 100): Promise<GetProductCategoriesQuery> {
-  const client = getGraphQLClient();
+  const client = getGraphQLClient(['products', 'categories']);
   return client.request(GetProductCategoriesDocument, { first });
 }

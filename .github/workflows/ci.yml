@@ -43,4 +43,7 @@ jobs:
         run: npm test --if-present
 
       - name: Build (if present)
+        env:
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
         run: npm run build --if-present

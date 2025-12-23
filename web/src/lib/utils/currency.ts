@@ -12,6 +12,7 @@ const EXCHANGE_RATES: Record<CurrencyCode, number> = {
   JPY: 149.5,
   CNY: 7.24,
   SGD: 1.34,
+  AED: 3.67,
 };
 
 /**

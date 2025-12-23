@@ -2,9 +2,9 @@
  * Region and localization types
  */
 
-export type RegionCode = 'us' | 'eu' | 'asia';
-export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD';
-export type LanguageCode = 'en' | 'de' | 'fr' | 'es' | 'ja' | 'zh';
+export type RegionCode = 'us' | 'eu' | 'asia' | 'mena';
+export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED';
+export type LanguageCode = 'en' | 'de' | 'fr' | 'es' | 'ja' | 'zh' | 'ar';
 
 export interface Region {
   code: RegionCode;
@@ -56,6 +56,14 @@ export const REGIONS: Record<RegionCode, Region> = {
     locale: 'en-SG',
     flag: '🌏',
   },
+  mena: {
+    code: 'mena',
+    name: 'Middle East',
+    currency: 'AED',
+    language: 'en',
+    locale: 'en-AE',
+    flag: '🇦🇪',
+  },
 };
 
 export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
@@ -101,6 +109,13 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     decimals: 2,
     position: 'before',
   },
+  AED: {
+    code: 'AED',
+    symbol: 'د.إ',
+    name: 'UAE Dirham',
+    decimals: 2,
+    position: 'after',
+  },
 };
 
 export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
@@ -145,5 +160,12 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     nativeName: '中文',
     dateFormat: 'YYYY-MM-DD',
     timeFormat: '24h',
+  },
+  ar: {
+    code: 'ar',
+    name: 'Arabic',
+    nativeName: 'العربية',
+    dateFormat: 'DD/MM/YYYY',
+    timeFormat: '12h',
   },
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import TaglineRotator from '../../TaglineRotator';
+import TaglineRotator from '@/components/ui/TaglineRotator';
 
 interface HeroContentProps {
   title: string;

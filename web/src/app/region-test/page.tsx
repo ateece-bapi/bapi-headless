@@ -22,49 +22,61 @@ export default function RegionTestPage() {
 
         <RegionDemoCard />
 
-        <div className="mt-12 prose prose-blue max-w-2xl mx-auto">
-          <h2>How It Works</h2>
+        <div className="mt-12 max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">How It Works</h2>
           
-          <h3>🌍 Region Selection</h3>
-          <p>
-            Use the region selector in the header (globe icon) to choose your region.
-            Your selection is saved in localStorage and persists across sessions.
-          </p>
+          <div className="space-y-6 text-gray-800">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">🌍 Region Selection</h3>
+              <p className="text-gray-700">
+                Use the region selector in the header (globe icon) to choose your region.
+                Your selection is saved in localStorage and persists across sessions.
+              </p>
+            </div>
 
-          <h3>💰 Currency & Pricing</h3>
-          <ul>
-            <li><strong>United States (🇺🇸):</strong> Prices in USD ($)</li>
-            <li><strong>Europe (🇪🇺):</strong> Prices in EUR (€)</li>
-            <li><strong>Asia Pacific (🌏):</strong> Prices in SGD (S$)</li>
-          </ul>
-          <p>
-            All prices are automatically converted from the base USD price using
-            current exchange rates. Symbol positioning and decimal places adjust
-            per currency.
-          </p>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">💰 Currency & Pricing</h3>
+              <ul className="list-disc list-inside space-y-1 text-gray-700">
+                <li><strong className="text-gray-900">United States (🇺🇸):</strong> Prices in USD ($)</li>
+                <li><strong className="text-gray-900">Europe (🇪🇺):</strong> Prices in EUR (€)</li>
+                <li><strong className="text-gray-900">Asia Pacific (🌏):</strong> Prices in SGD (S$)</li>
+              </ul>
+              <p className="text-gray-700 mt-2">
+                All prices are automatically converted from the base USD price using
+                current exchange rates. Symbol positioning and decimal places adjust
+                per currency.
+              </p>
+            </div>
 
-          <h3>📅 Date & Time Formatting</h3>
-          <ul>
-            <li><strong>US:</strong> MM/DD/YYYY, 12-hour time</li>
-            <li><strong>Europe:</strong> DD/MM/YYYY, 24-hour time</li>
-            <li><strong>Asia:</strong> YYYY-MM-DD, 24-hour time</li>
-          </ul>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">📅 Date & Time Formatting</h3>
+              <ul className="list-disc list-inside space-y-1 text-gray-700">
+                <li><strong className="text-gray-900">US:</strong> MM/DD/YYYY, 12-hour time</li>
+                <li><strong className="text-gray-900">Europe:</strong> DD/MM/YYYY, 24-hour time</li>
+                <li><strong className="text-gray-900">Asia:</strong> YYYY-MM-DD, 24-hour time</li>
+              </ul>
+            </div>
 
-          <h3>📏 Unit Conversion</h3>
-          <ul>
-            <li><strong>US:</strong> Fahrenheit (°F), Feet (ft)</li>
-            <li><strong>Others:</strong> Celsius (°C), Meters (m)</li>
-          </ul>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">📏 Unit Conversion</h3>
+              <ul className="list-disc list-inside space-y-1 text-gray-700">
+                <li><strong className="text-gray-900">US:</strong> Fahrenheit (°F), Feet (ft)</li>
+                <li><strong className="text-gray-900">Others:</strong> Celsius (°C), Meters (m)</li>
+              </ul>
+            </div>
 
-          <h3>🔢 Number Formatting</h3>
-          <p>
-            Large numbers are formatted according to regional conventions
-            (e.g., 1,234.56 vs 1.234,56).
-          </p>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">🔢 Number Formatting</h3>
+              <p className="text-gray-700">
+                Large numbers are formatted according to regional conventions
+                (e.g., 1,234.56 vs 1.234,56).
+              </p>
+            </div>
 
-          <h3>🛠️ For Developers</h3>
-          <p>Use the provided utilities in your components:</p>
-          <pre>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">🛠️ For Developers</h3>
+              <p className="text-gray-700 mb-3">Use the provided utilities in your components:</p>
+              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm">
 {`import { useRegion } from '@/store/regionStore';
 import { formatConvertedPrice } from '@/lib/utils/currency';
 import { formatDate } from '@/lib/utils/locale';
@@ -73,7 +85,9 @@ import { formatDate } from '@/lib/utils/locale';
 const region = useRegion();
 const price = formatConvertedPrice(99.99, region.currency);
 const date = formatDate(new Date(), region.language);`}
-          </pre>
+              </pre>
+            </div>
+          </div>
         </div>
       </div>
     </main>

@@ -7,30 +7,37 @@ const eslintConfig = defineConfig([
   ...nextTs,
   {
     rules: {
-      // Enforce JSDoc comments on exported functions, classes, and types
+      // Enforce JSDoc comments on public API functions
+      // Only warns for exported function declarations and classes
       'jsdoc/require-jsdoc': [
         'warn',
         {
           require: {
             FunctionDeclaration: true,
-            MethodDefinition: true,
             ClassDeclaration: true,
-            ArrowFunctionExpression: true,
-            FunctionExpression: true,
+            // Don't require for arrow functions (too noisy with TypeScript)
+            ArrowFunctionExpression: false,
+            FunctionExpression: false,
+            MethodDefinition: false,
           },
           contexts: [
-            'ExportNamedDeclaration',
-            'ExportDefaultDeclaration',
+            // Only exported functions/classes
+            'ExportNamedDeclaration > FunctionDeclaration',
+            'ExportDefaultDeclaration > FunctionDeclaration',
+            'ExportNamedDeclaration > ClassDeclaration',
           ],
+          exemptEmptyFunctions: true,
+          checkConstructors: false,
+          enableFixer: false,
         },
       ],
-      // Optional: Enforce JSDoc validity
+      // Enforce JSDoc validity when present
       'jsdoc/check-tag-names': 'warn',
-      'jsdoc/check-types': 'warn',
+      'jsdoc/check-types': 'off', // TypeScript handles this
       'jsdoc/check-param-names': 'warn',
-      'jsdoc/check-property-names': 'warn',
-      'jsdoc/check-indentation': 'warn',
-      'jsdoc/check-syntax': 'warn',
+      'jsdoc/require-param-type': 'off', // TypeScript handles this
+      'jsdoc/require-returns-type': 'off', // TypeScript handles this
+      'jsdoc/check-indentation': 'off', // Prettier handles this
     },
     plugins: ['jsdoc'],
   },

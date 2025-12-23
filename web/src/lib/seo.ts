@@ -4,6 +4,20 @@
  * Utility functions for generating SEO metadata and JSON-LD structured data.
  */
 
+/**
+ * Returns base site metadata for Next.js layouts
+ * 
+ * Provides default Open Graph, Twitter Card, and canonical URL settings.
+ * Use as fallback when page-specific metadata is unavailable.
+ * 
+ * @returns Next.js metadata object with site-wide defaults
+ * 
+ * @example
+ * ```ts
+ * // In layout.tsx
+ * export const metadata = getSiteMetadata();
+ * ```
+ */
 export function getSiteMetadata() {
   return {
     title: {
@@ -40,6 +54,24 @@ export function getSiteMetadata() {
   };
 }
 
+/**
+ * Generates SEO metadata for product pages
+ * 
+ * Creates optimized Open Graph and Twitter Card metadata using product
+ * data. Falls back gracefully when images or descriptions are missing.
+ * 
+ * @param product - Product object from GraphQL (WooCommerce)
+ * @returns Next.js metadata object with product-specific SEO tags
+ * 
+ * @example
+ * ```ts
+ * // In product page
+ * export async function generateMetadata({ params }) {
+ *   const product = await getProductBySlug(params.slug);
+ *   return getProductMetadata(product);
+ * }
+ * ```
+ */
 export function getProductMetadata(product: any) {
   const ogImage = product?.image?.sourceUrl || (product?.gallery?.[0]?.sourceUrl ?? "");
   const ogDescription = product?.shortDescription || product?.description || '';
@@ -64,6 +96,26 @@ export function getProductMetadata(product: any) {
   };
 }
 
+/**
+ * Generates Product schema JSON-LD for rich snippets
+ * 
+ * Creates schema.org Product markup for Google Shopping and search results.
+ * Improves product visibility with rich snippets (price, availability, ratings).
+ * 
+ * @param product - Product object from GraphQL
+ * @returns JSON-LD object for Product schema
+ * 
+ * @see https://schema.org/Product
+ * @see https://developers.google.com/search/docs/appearance/structured-data/product
+ * 
+ * @example
+ * ```tsx
+ * // In product page
+ * <script type="application/ld+json">
+ *   {JSON.stringify(getProductJsonLd(product))}
+ * </script>
+ * ```
+ */
 export function getProductJsonLd(product: any) {
   const ogImage = product?.image?.sourceUrl || (product?.gallery?.[0]?.sourceUrl ?? "");
   return {
@@ -83,6 +135,20 @@ export function getProductJsonLd(product: any) {
   };
 }
 
+/**
+ * Generates CollectionPage schema JSON-LD for category/listing pages
+ * 
+ * Creates schema.org CollectionPage markup for improved categorization
+ * in search results. Use for product category and listing pages.
+ * 
+ * @param params - Page metadata
+ * @param params.title - Page title (e.g., "Temperature Sensors")
+ * @param params.description - Page description
+ * @param params.url - Canonical URL of the collection page
+ * @returns JSON-LD object for CollectionPage schema
+ * 
+ * @see https://schema.org/CollectionPage
+ */
 export function getCollectionPageJsonLd({ title, description, url }: { title: string, description: string, url: string }) {
   return {
     '@context': 'https://schema.org',
@@ -93,6 +159,24 @@ export function getCollectionPageJsonLd({ title, description, url }: { title: st
   };
 }
 
+/**
+ * Generates WebSite schema JSON-LD for site-wide context
+ * 
+ * Creates schema.org WebSite markup with site search functionality.
+ * Include in root layout for site-wide structured data.
+ * 
+ * @returns JSON-LD object for WebSite schema with SearchAction
+ * 
+ * @see https://schema.org/WebSite
+ * 
+ * @example
+ * ```tsx
+ * // In root layout
+ * <script type="application/ld+json">
+ *   {JSON.stringify(getWebsiteJsonLd())}
+ * </script>
+ * ```
+ */
 export function getWebsiteJsonLd() {
   return {
     '@context': 'https://schema.org',

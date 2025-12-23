@@ -1,13 +1,17 @@
 /** web/next.config.ts */
 import path from 'path';
 import type { NextConfig } from 'next';
+import bundleAnalyzer from '@next/bundle-analyzer';
 
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.resolve(__dirname),
   // Use an absolute path for turbopack.root (resolve from this file's directory)
   turbopack: {
-    root: path.resolve(__dirname),
+    root: path.join(__dirname),
   },
   images: {
     remotePatterns: [
@@ -25,4 +29,4 @@ const nextConfig: NextConfig = {
   // distDir: path.join(path.resolve(__dirname), '.next'),
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

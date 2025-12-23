@@ -2,10 +2,11 @@
 
 > Modern headless WordPress/WooCommerce with Next.js frontend, showcasing professional building automation products with full e-commerce capabilities.
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.0.3-black?logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.0.7-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![WordPress](https://img.shields.io/badge/WordPress-6.8.2-21759b?logo=wordpress)](https://wordpress.org/)
 [![WooCommerce](https://img.shields.io/badge/WooCommerce-10.3.5-96588a?logo=woocommerce)](https://woocommerce.com/)
+[![Clerk](https://img.shields.io/badge/Clerk-Auth-6C47FF?logo=clerk)](https://clerk.com/)
 
 ## 🌐 Live Demo
 
@@ -28,6 +29,7 @@ This project demonstrates a modern headless CMS architecture:
 │  • Server Components (SSR)                                   │
 │  • TypeScript + Tailwind CSS                                 │
 │  • Zustand State Management                                  │
+│  • Clerk Authentication (Google OAuth)                       │
 │  • BAPI Brand Color System                                   │
 └────────────────────────┬────────────────────────────────────┘
                          │
@@ -75,6 +77,7 @@ bapi-headless/
 
 ### Frontend (Next.js)
 - ⚡ **Next.js 16** with App Router and Turbopack
+- 🔐 **Clerk Authentication** - Google OAuth, user profiles, protected routes
 - 🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
 - 🧭 **Enterprise Mega Menu** – Multi-column navigation with icons, featured products, quick actions, and B2B enhancements
 - ⬆️ **Back to Top Button** – Floating button for fast site-wide navigation
@@ -128,6 +131,10 @@ bapi-headless/
    ```env
    NEXT_PUBLIC_WORDPRESS_GRAPHQL=https://bapiheadlessstaging.kinsta.cloud/graphql
    NEXT_PUBLIC_APP_URL=http://localhost:3000
+   
+   # Clerk Authentication (get keys from https://dashboard.clerk.com)
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+   CLERK_SECRET_KEY=sk_test_...
    ```
 
 4. **Generate GraphQL types**
@@ -162,6 +169,7 @@ See [`web/COLOR_SYSTEM.md`](./web/COLOR_SYSTEM.md) for complete color documentat
 ## 📚 Documentation
 
 - **[Color System](./web/COLOR_SYSTEM.md)** - Complete brand color guidelines
+- **[Clerk Authentication](./web/CLERK_SETUP.md)** - Authentication setup and configuration
 - **[GraphQL Setup](./web/GRAPHQL_SETUP.md)** - GraphQL client configuration
 - **[Preview Mode](./web/PREVIEW.md)** - WordPress preview integration
 
@@ -260,6 +268,10 @@ NEXT_PUBLIC_WORDPRESS_GRAPHQL=https://your-site.kinsta.cloud/graphql
 # Application URL
 NEXT_PUBLIC_APP_URL=https://your-site.vercel.app
 
+# Clerk Authentication (required)
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your-key
+CLERK_SECRET_KEY=sk_test_your-key
+
 # Preview mode (optional)
 PREVIEW_SECRET=your-secret-key
 PREVIEW_USER=admin
@@ -299,6 +311,7 @@ For questions or issues:
 ## 🙏 Acknowledgments
 
 - [Next.js](https://nextjs.org/) - React framework
+- [Clerk](https://clerk.com/) - Authentication and user management
 - [WPGraphQL](https://www.wpgraphql.com/) - GraphQL for WordPress
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
 - [Zustand](https://github.com/pmndrs/zustand) - State management

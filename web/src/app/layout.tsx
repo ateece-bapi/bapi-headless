@@ -24,11 +24,11 @@ export const metadata: Metadata = {
     title: "BAPI | Precision Sensor Solutions for Building Automation",
     description: "Engineered sensor solutions for mission-critical facilities. NIST-traceable accuracy, BACnet-certified controllers, trusted by engineers worldwide.",
     type: "website",
-    url: "https://yourdomain.com/",
+    url: "https://bapi-headless.vercel.app/",
     siteName: "BAPI",
     images: [
       {
-        url: "https://yourdomain.com/og-default.jpg",
+        url: "https://bapi-headless.vercel.app/og-default.jpg",
         width: 1200,
         height: 630,
         alt: "BAPI - Building Automation Products"
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
     site: "@bapi",
     title: "BAPI | Precision Sensor Solutions for Building Automation",
     description: "Engineered sensor solutions for mission-critical facilities. NIST-traceable accuracy, BACnet-certified controllers, trusted by engineers worldwide.",
-    images: ["https://yourdomain.com/og-default.jpg"]
+    images: ["https://bapi-headless.vercel.app/og-default.jpg"]
   },
-  metadataBase: new URL("https://yourdomain.com/"),
+  metadataBase: new URL("https://bapi-headless.vercel.app/"),
   alternates: {
     canonical: "/",
     languages: {

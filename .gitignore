@@ -42,3 +42,5 @@ cookies.txt
 # local cookie dumps from testing / browser exports
 cookies.txt
 web/cookies.txt
+artifacts*/
+ci-preview-integration-*/

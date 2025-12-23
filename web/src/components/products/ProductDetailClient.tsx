@@ -140,6 +140,7 @@ export default function ProductDetailClient({
               fill
               className="object-cover"
               sizes="(min-width:1024px) 33vw, 100vw"
+              priority
             />
           ) : (
             <div className="flex items-center justify-center h-full text-neutral-400">No image</div>

@@ -118,8 +118,8 @@ export default function MainProductPage() {
                   className="object-contain p-4 sm:p-6 group-hover:scale-105 group-focus:scale-105 transition-transform duration-200 drop-shadow-md bg-linear-to-br from-primary-50 to-white"
                   sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                   quality={85}
-                  priority={cat.slug === 'temperature-sensors'}
-                  loading={cat.slug === 'temperature-sensors' ? 'eager' : 'lazy'}
+                  priority={i === 0}
+                  loading={i === 0 ? 'eager' : 'lazy'}
                 />
               </div>
               <div className="p-5 flex flex-col items-start">

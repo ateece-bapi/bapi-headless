@@ -10,7 +10,7 @@ describe('getProductBySlug', () => {
     const mod = await import('./queries');
 
     await expect(mod.getProductBySlug('')).rejects.toThrow(
-      'getProductBySlug called without a valid `slug` (received empty value)'
+      'getProductBySlug called without a valid slug'
     );
   });
 

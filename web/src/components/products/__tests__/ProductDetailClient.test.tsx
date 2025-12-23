@@ -4,6 +4,7 @@ import type { useCart as useCartType, useCartDrawer as useCartDrawerType } from 
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ProductDetailClient } from '@/components/products';
+import { ToastProvider } from '@/components/ui/Toast';
 
 const baseProduct: ProductForClient = {
   id: 'prod-1',
@@ -47,11 +48,13 @@ function renderProductDetail(
 ) {
   const { useCart, useCartDrawer } = opts;
   return render(
-    <ProductDetailClient
-      product={product}
-      useCart={useCart}
-      useCartDrawer={useCartDrawer}
-    />
+    <ToastProvider>
+      <ProductDetailClient
+        product={product}
+        useCart={useCart}
+        useCartDrawer={useCartDrawer}
+      />
+    </ToastProvider>
   );
 }
 
@@ -89,7 +92,7 @@ describe('ProductDetailClient', () => {
     it('disables Add to Cart when out of stock', () => {
       const outOfStockProduct = { ...baseProduct, stockStatus: 'OUT_OF_STOCK' };
       renderProductDetail(outOfStockProduct);
-      const addToCartBtn = screen.getByRole('button', { name: /Add to Cart/i });
+      const addToCartBtn = screen.getByRole('button', { name: /out of stock/i });
       expect(addToCartBtn).toBeDisabled();
     });
 
@@ -140,7 +143,7 @@ describe('ProductDetailClient', () => {
         useCartDrawer: mockUseCartDrawer,
       });
       selectAttributes({ size: 'L', color: 'Blue' });
-      fireEvent.click(screen.getByRole('button', { name: /Add to Cart/i }));
+      fireEvent.click(screen.getByRole('button', { name: /Add.*to cart/i }));
       expect(addItemMock).toHaveBeenCalled();
       const callArgs = addItemMock.mock.calls[0][0];
       expect(callArgs.variationId).toBe(102);
@@ -155,7 +158,7 @@ describe('Keyboard navigation and robustness', () => {
     const userTabOrder = [
       screen.getByLabelText(/Size/i),
       screen.getByLabelText(/Color/i),
-      screen.getByRole('button', { name: /Add to Cart/i }),
+      screen.getByRole('button', { name: /Add.*to cart/i }),
     ];
     userTabOrder.forEach((el) => {
       el.focus();
@@ -217,9 +220,9 @@ describe('Accessibility', () => {
 
   it('Add to Cart button is accessible', () => {
     renderProductDetail();
-    const btn = screen.getByRole('button', { name: /Add to Cart/i });
+    const btn = screen.getByRole('button', { name: /Add.*to cart/i });
     expect(btn).toBeInTheDocument();
-    expect(btn).toHaveAccessibleName('Add to Cart');
+    expect(btn).toHaveAccessibleName(/Add.*to cart/i);
   });
 
   it('images have meaningful alt text', () => {

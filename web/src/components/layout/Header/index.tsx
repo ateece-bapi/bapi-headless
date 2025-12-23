@@ -32,8 +32,9 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-4">
         {/* Top Row: Region, Sign In, Cart */}
-        <div className="flex items-center justify-end gap-3 mb-4 lg:mb-6">
+        <div className="flex items-center justify-end gap-3 mb-4 lg:mb-6 p-2 rounded-full bg-gradient-to-r from-neutral-50/50 via-white to-neutral-50/50">
           <RegionSelector />
+          <div className="h-6 w-px bg-neutral-200" />
           <SignInButton />
           <CartButton />
         </div>
@@ -54,8 +55,15 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         {/* Mobile Navigation Menu */}
         <MobileMenu isOpen={mobileMenu.isOpen} onClose={mobileMenu.close} />
       </div>
-      {/* BAPI blue-to-yellow gradient divider under header */}
-      <div className="w-full h-1 bg-gradient-to-r from-accent-400/90 via-primary-600/90 via-60% to-accent-400/90 shadow-[0_2px_8px_0_rgba(20,121,188,0.10)]" />
+      {/* BAPI blue-to-yellow gradient divider under header with animation */}
+      <div 
+        className={clsx(
+          'w-full h-1 bg-gradient-to-r from-accent-400/90 via-primary-600/90 via-60% to-accent-400/90 transition-all duration-300',
+          scrolled 
+            ? 'shadow-[0_4px_12px_0_rgba(20,121,188,0.15)]' 
+            : 'shadow-[0_2px_8px_0_rgba(20,121,188,0.10)]'
+        )} 
+      />
       <BackToTop />
     </header>
   );

@@ -40,9 +40,10 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
     return (
       <Link
         href={item.href || '#'}
-        className="inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 hover:text-white hover:bg-primary-600 transition-all duration-200 hover:shadow-sm"
+        className="group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 hover:text-white hover:bg-primary-600 transition-all duration-200 hover:shadow-sm hover:scale-[1.02]"
       >
         {item.label}
+        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-primary-400 transition-all duration-200" />
       </Link>
     );
   }
@@ -76,24 +77,25 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           onKeyDown={handleKeyDown}
           tabIndex={0}
           className={clsx(
-            'inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-200',
+            'group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-200',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
-            'active:scale-95',
+            'active:scale-[0.98]',
             isOpen
-              ? 'bg-primary-600 text-white shadow-md scale-105'
-              : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm hover:scale-105',
+              ? 'bg-primary-600 text-white shadow-md scale-[1.02]'
+              : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm hover:scale-[1.02]',
             'cursor-pointer'
           )}
         >
           <span>{item.label}</span>
           <ChevronDown
             className={clsx(
-              'h-4 w-4 transition-all duration-300',
+              'h-4 w-4 transition-all duration-300 ease-out',
               isOpen ? 'rotate-180 scale-110' : 'rotate-0 scale-100'
             )}
             aria-hidden="true"
           />
           <span className="sr-only">{isOpen ? 'close menu' : 'open menu'}</span>
+          {!isOpen && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-primary-400 transition-all duration-200" />}
         </Link>
       ) : (
         <button
@@ -109,23 +111,24 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           onClick={onToggle}
           onKeyDown={handleKeyDown}
           className={clsx(
-            'inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-200',
+            'group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-200',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
-            'active:scale-95',
+            'active:scale-[0.98]',
             isOpen
-              ? 'bg-primary-600 text-white shadow-md scale-105'
-              : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm hover:scale-105'
+              ? 'bg-primary-600 text-white shadow-md scale-[1.02]'
+              : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm hover:scale-[1.02]'
           )}
         >
           <span>{item.label}</span>
           <ChevronDown
             className={clsx(
-              'h-4 w-4 transition-all duration-300',
+              'h-4 w-4 transition-all duration-300 ease-out',
               isOpen ? 'rotate-180 scale-110' : 'rotate-0 scale-100'
             )}
             aria-hidden="true"
           />
           <span className="sr-only">{isOpen ? 'close menu' : 'open menu'}</span>
+          {!isOpen && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-primary-400 transition-all duration-200" />}
         </button>
       )}
 
@@ -142,11 +145,11 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           'mx-auto max-w-7xl w-[min(100vw-2rem,72rem)]',
           'overflow-hidden rounded-2xl border-2 border-primary-500/20 bg-white shadow-2xl',
           'p-4 sm:p-6 md:p-8',
-          'origin-top transition-all duration-200 ease-out',
+          'origin-top transition-all duration-300 ease-out',
           'focus-within:border-primary-500/40',
           isOpen
             ? 'visible translate-y-0 opacity-100'
-            : 'invisible -translate-y-1 opacity-0 pointer-events-none'
+            : 'invisible -translate-y-2 opacity-0 pointer-events-none'
         )}
       >
         <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-12">

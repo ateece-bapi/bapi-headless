@@ -6,7 +6,7 @@ import { HEADER_CONFIG } from '../config';
 const Logo: React.FC = () => (
   <Link
     href="/"
-    className="flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#0054b6] focus:ring-offset-2 rounded transition-transform hover:scale-105 active:scale-100"
+    className="flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg transition-all duration-200 hover:opacity-90"
     aria-label="BAPI Home - Sensors for HVAC/R"
   >
     <Image

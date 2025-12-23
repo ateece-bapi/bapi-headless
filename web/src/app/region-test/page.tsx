@@ -40,6 +40,7 @@ export default function RegionTestPage() {
                 <li><strong className="text-gray-900">United States (🇺🇸):</strong> Prices in USD ($)</li>
                 <li><strong className="text-gray-900">Europe (🇪🇺):</strong> Prices in EUR (€)</li>
                 <li><strong className="text-gray-900">Asia Pacific (🌏):</strong> Prices in SGD (S$)</li>
+                <li><strong className="text-gray-900">Middle East (🇦🇪):</strong> Prices in AED (د.إ)</li>
               </ul>
               <p className="text-gray-700 mt-2">
                 All prices are automatically converted from the base USD price using

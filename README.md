@@ -56,20 +56,37 @@ bapi-headless/
 │   ├── src/
 │   │   ├── app/                # App Router pages
 │   │   │   ├── page.tsx        # Homepage
+│   │   │   ├── layout.tsx      # Root layout with ClerkProvider
 │   │   │   ├── products/       # Products listing
-│   │   │   └── cart-test/      # Cart demo
-│   │   ├── components/         # React components
-│   │   │   └── cart/           # Cart UI components
+│   │   │   ├── products-test/  # Product testing page
+│   │   │   ├── cart-test/      # Cart demo
+│   │   │   ├── api/            # API routes
+│   │   │   └── components/     # App-specific components
+│   │   ├── components/         # Shared React components
+│   │   │   ├── layout/         # Layout components (Header, Footer)
+│   │   │   ├── cart/           # Cart UI components
+│   │   │   ├── products/       # Product components
+│   │   │   ├── Hero/           # Hero section
+│   │   │   ├── ui/             # Reusable UI components
+│   │   │   └── examples/       # Example components
 │   │   ├── lib/
-│   │   │   └── graphql/        # GraphQL client & types
-│   │   └── store/              # Zustand stores
+│   │   │   └── graphql/        # GraphQL client & generated types
+│   │   ├── store/              # Zustand stores
+│   │   └── styles/             # Global styles
+│   ├── middleware.ts           # Clerk authentication middleware
 │   ├── public/                 # Static assets
+│   ├── __tests__/              # Test files
 │   ├── package.json            # Dependencies
-│   └── next.config.ts          # Next.js configuration
+│   ├── next.config.ts          # Next.js configuration
+│   ├── CLERK_SETUP.md          # Clerk authentication guide
+│   ├── COLOR_SYSTEM.md         # Brand color documentation
+│   └── PREVIEW.md              # WordPress preview guide
 │
 ├── .github/
 │   └── workflows/              # CI/CD workflows
 │
+├── docs/                       # Project documentation
+├── scripts/                    # Utility scripts
 └── README.md                   # This file
 ```
 

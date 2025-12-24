@@ -304,6 +304,47 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
   {
     label: 'Company',
     href: '/company',
+    megaMenu: {
+      columns: [
+        {
+          title: 'About BAPI',
+          icon: Building2,
+          links: [
+            { 
+              label: 'Mission & Values', 
+              href: '/company/mission-values',
+              description: 'Our commitment to precision and innovation'
+            },
+            { 
+              label: 'Why BAPI', 
+              href: '/company/why-bapi',
+              description: 'What sets us apart in the industry'
+            },
+          ],
+        },
+        {
+          title: 'Connect',
+          icon: Network,
+          links: [
+            { 
+              label: 'News', 
+              href: '/company/news',
+              description: 'Latest updates and announcements'
+            },
+            { 
+              label: 'Careers', 
+              href: '/company/careers',
+              description: 'Join our team'
+            },
+            { 
+              label: 'Contact Us', 
+              href: '/company/contact-us',
+              description: 'Get in touch with our team'
+            },
+          ],
+        },
+      ],
+    },
   },
   {
     label: 'Support',

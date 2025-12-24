@@ -1,0 +1,39 @@
+{
+  "common": {
+    "language": "Deutsch",
+    "region": "Region",
+    "currency": "Währung",
+    "search": "Suchen",
+    "cart": "Warenkorb",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "backToTop": "Nach oben"
+  },
+  "nav": {
+    "products": "Produkte",
+    "solutions": "Lösungen",
+    "resources": "Ressourcen",
+    "company": "Unternehmen",
+    "support": "Support"
+  },
+  "products": {
+    "title": "Produkte",
+    "viewAll": "Alle Produkte ansehen"
+  },
+  "home": {
+    "hero": {
+      "title": "Präzise Sensorlösungen für die Gebäudeautomation",
+      "subtitle": "Von Ingenieuren weltweit für zuverlässige HVAC/R-Sensorik geschätzt",
+      "cta": "Produkte erkunden"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} BAPI. Alle Rechte vorbehalten."
+  },
+  "region": {
+    "us": "Vereinigte Staaten",
+    "eu": "Europa",
+    "asia": "Asien-Pazifik",
+    "mena": "Naher Osten"
+  }
+}

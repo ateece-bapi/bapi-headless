@@ -62,8 +62,8 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
 
   return (
     <div className="relative">
-      {/* Trigger Button: Use <Link> for Products, <button> for others */}
-      {item.label === 'Products' && item.href ? (
+      {/* Trigger Button: Use <Link> when href exists, <button> otherwise */}
+      {item.href ? (
         <Link
           href={item.href}
           ref={buttonRef as any}
@@ -114,6 +114,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
             'group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-200',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
             'active:scale-[0.98]',
+            'cursor-pointer',
             isOpen
               ? 'bg-primary-600 text-white shadow-md scale-[1.02]'
               : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm hover:scale-[1.02]'

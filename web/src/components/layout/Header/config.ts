@@ -16,9 +16,6 @@ import {
 } from 'lucide-react';
 
 export const NAV_LINKS: NavLink[] = [
-  { href: '/solutions', label: 'Solutions' },
-  { href: '/resources', label: 'Resources' },
-  { href: '/company', label: 'Company' },
   { href: '/support', label: 'Support' },
 ];
 

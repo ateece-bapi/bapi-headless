@@ -40,10 +40,10 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
     return (
       <Link
         href={item.href || '#'}
-        className="group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 hover:text-white hover:bg-primary-600 transition-all duration-200 hover:shadow-sm hover:scale-[1.02]"
+        className="group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 hover:text-white hover:bg-primary-600 transition-all duration-300 ease-out hover:shadow-sm"
       >
         {item.label}
-        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-primary-400 transition-all duration-200" />
+        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-primary-400 transition-all duration-300 ease-out" />
       </Link>
     );
   }
@@ -77,12 +77,11 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           onKeyDown={handleKeyDown}
           tabIndex={0}
           className={clsx(
-            'group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-200',
+            'group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-300 ease-out',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
-            'active:scale-[0.98]',
             isOpen
-              ? 'bg-primary-600 text-white shadow-md scale-[1.02]'
-              : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm hover:scale-[1.02]',
+              ? 'bg-primary-600 text-white shadow-md'
+              : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm',
             'cursor-pointer'
           )}
         >
@@ -95,7 +94,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
             aria-hidden="true"
           />
           <span className="sr-only">{isOpen ? 'close menu' : 'open menu'}</span>
-          {!isOpen && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-primary-400 transition-all duration-200" />}
+          {!isOpen && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-primary-400 transition-all duration-300 ease-out" />}
         </Link>
       ) : (
         <button
@@ -111,13 +110,12 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           onClick={onToggle}
           onKeyDown={handleKeyDown}
           className={clsx(
-            'group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-200',
+            'group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold transition-all duration-300 ease-out',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
-            'active:scale-[0.98]',
             'cursor-pointer',
             isOpen
-              ? 'bg-primary-600 text-white shadow-md scale-[1.02]'
-              : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm hover:scale-[1.02]'
+              ? 'bg-primary-600 text-white shadow-md'
+              : 'text-neutral-700 hover:text-white hover:bg-primary-600 hover:shadow-sm'
           )}
         >
           <span>{item.label}</span>
@@ -129,7 +127,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
             aria-hidden="true"
           />
           <span className="sr-only">{isOpen ? 'close menu' : 'open menu'}</span>
-          {!isOpen && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-primary-400 transition-all duration-200" />}
+          {!isOpen && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-1/2 h-0.5 bg-primary-400 transition-all duration-300 ease-out" />}
         </button>
       )}
 

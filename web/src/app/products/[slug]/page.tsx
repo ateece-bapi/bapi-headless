@@ -177,6 +177,13 @@ export default async function ProductPage({ params }: { params: { slug: string }
       regularPrice: product.regularPrice ?? '',
       stockStatus: getProductStockStatus(product) || null,
       stockQuantity: product.stockQuantity ?? null,
+      productCategories: Array.isArray((product as any).productCategories?.nodes) 
+        ? (product as any).productCategories.nodes.map((cat: any) => ({
+            id: cat.id,
+            name: cat.name,
+            slug: cat.slug,
+          }))
+        : [],
       image: product.image
         ? { sourceUrl: product.image.sourceUrl || '', altText: product.image.altText || product.name || '' }
         : null,

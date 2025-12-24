@@ -37,6 +37,13 @@
 - [x] Visual Composer shortcode cleanup (112 pages)
 - [x] Kinsta CDN with WebP conversion
 - [x] ISR caching strategy
+- [ ] Deploy block patterns plugin to Kinsta
+  - [ ] Upload `docs/wordpress-plugin/` to `/wp-content/plugins/bapi-block-patterns/`
+  - [ ] Activate plugin in WordPress admin
+  - [ ] Test all 8 patterns with content creators
+  - [ ] Get feedback and iterate
+- [ ] Create child theme (if needed for customization)
+- [ ] Content creator training on new patterns
 
 ---
 

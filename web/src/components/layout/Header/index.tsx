@@ -9,6 +9,7 @@ import { useScrollDetection } from './hooks/useScrollDetection';
 import { useMobileMenu } from './hooks/useMobileMenu';
 import {
   RegionSelector,
+  LanguageSelector,
   SignInButton,
   CartButton,
   Logo,
@@ -31,10 +32,12 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-4">
-        {/* Top Row: Region, Sign In, Cart */}
+        {/* Top Row: Region, Language, Sign In, Cart */}
         <div className="flex items-center justify-end gap-3 mb-4 lg:mb-6 p-2 rounded-full bg-gradient-to-r from-neutral-50/50 via-white to-neutral-50/50">
           <RegionSelector />
-          <div className="h-6 w-px bg-neutral-200" />
+          <div className="h-6 w-px bg-neutral-300" />
+          <LanguageSelector />
+          <div className="h-6 w-px bg-neutral-300" />
           <SignInButton />
           <CartButton />
         </div>

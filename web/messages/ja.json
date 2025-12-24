@@ -1,0 +1,39 @@
+{
+  "common": {
+    "language": "日本語",
+    "region": "地域",
+    "currency": "通貨",
+    "search": "検索",
+    "cart": "カート",
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "backToTop": "トップへ戻る"
+  },
+  "nav": {
+    "products": "製品",
+    "solutions": "ソリューション",
+    "resources": "リソース",
+    "company": "会社情報",
+    "support": "サポート"
+  },
+  "products": {
+    "title": "製品",
+    "viewAll": "すべての製品を見る"
+  },
+  "home": {
+    "hero": {
+      "title": "ビルオートメーション向け精密センサーソリューション",
+      "subtitle": "信頼性の高いHVAC/R センシングで世界中のエンジニアに信頼されています",
+      "cta": "製品を探す"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} BAPI. 全著作権所有。"
+  },
+  "region": {
+    "us": "アメリカ合衆国",
+    "eu": "ヨーロッパ",
+    "asia": "アジア太平洋",
+    "mena": "中東"
+  }
+}

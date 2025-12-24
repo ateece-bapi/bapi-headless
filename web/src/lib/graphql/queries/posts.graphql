@@ -1,0 +1,72 @@
+query GetPosts($first: Int = 20, $after: String) {
+  posts(first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      title
+      content
+      excerpt
+      slug
+      date
+      modified
+      author {
+        node {
+          name
+        }
+      }
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+    }
+  }
+}
+
+query GetPostBySlug($slug: ID!) {
+  post(id: $slug, idType: SLUG) {
+    id
+    title
+    content
+    excerpt
+    slug
+    date
+    modified
+    author {
+      node {
+        name
+        avatar {
+          url
+        }
+      }
+    }
+    categories {
+      nodes {
+        name
+        slug
+      }
+    }
+    tags {
+      nodes {
+        name
+        slug
+      }
+    }
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+  }
+}

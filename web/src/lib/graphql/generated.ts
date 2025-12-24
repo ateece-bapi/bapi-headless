@@ -6281,7 +6281,7 @@ export type ExternalProduct = ContentNode & DatabaseIdentifier & MenuItemLinkabl
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The product part number */
+  /** The part number for the product */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -7167,7 +7167,7 @@ export type GroupProduct = ContentNode & DatabaseIdentifier & MenuItemLinkable &
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The product part number */
+  /** The part number for the product */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -19763,7 +19763,7 @@ export type Product = {
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The product part number */
+  /** The part number for the product */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -31736,7 +31736,7 @@ export type SimpleProduct = ContentNode & DatabaseIdentifier & DownloadableProdu
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The product part number */
+  /** The part number for the product */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -35783,7 +35783,7 @@ export type VariableProduct = ContentNode & DatabaseIdentifier & InventoriedProd
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The product part number */
+  /** The part number for the product */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -36862,6 +36862,35 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type GetPageBySlugQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type GetPageBySlugQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', id: string, title?: string | null | undefined, content?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined } | null | undefined };
+
+export type GetPagesQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetPagesQuery = { __typename?: 'RootQuery', pages?: { __typename?: 'RootQueryToPageConnection', nodes: Array<{ __typename?: 'Page', id: string, title?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined }> } | null | undefined };
+
+export type GetPostsQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetPostsQuery = { __typename?: 'RootQuery', posts?: { __typename?: 'RootQueryToPostConnection', pageInfo: { __typename?: 'RootQueryToPostConnectionPageInfo', hasNextPage: boolean, endCursor?: string | null | undefined }, nodes: Array<{ __typename?: 'Post', id: string, title?: string | null | undefined, content?: string | null | undefined, excerpt?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null | undefined } } | null | undefined, categories?: { __typename?: 'PostToCategoryConnection', nodes: Array<{ __typename?: 'Category', name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined }> } | null | undefined };
+
+export type GetPostBySlugQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type GetPostBySlugQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', id: string, title?: string | null | undefined, content?: string | null | undefined, excerpt?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null | undefined, avatar?: { __typename?: 'Avatar', url?: string | null | undefined } | null | undefined } } | null | undefined, categories?: { __typename?: 'PostToCategoryConnection', nodes: Array<{ __typename?: 'Category', name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, tags?: { __typename?: 'PostToTagConnection', nodes: Array<{ __typename?: 'Tag', name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined } | null | undefined };
+
 export type GetProductsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
@@ -36920,6 +36949,118 @@ export type GetProductCategoriesQueryVariables = Exact<{
 export type GetProductCategoriesQuery = { __typename?: 'RootQuery', productCategories?: { __typename?: 'RootQueryToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined, description?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }> } | null | undefined };
 
 
+export const GetPageBySlugDocument = gql`
+    query GetPageBySlug($slug: ID!) {
+  page(id: $slug, idType: URI) {
+    id
+    title
+    content
+    slug
+    date
+    modified
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+  }
+}
+    `;
+export const GetPagesDocument = gql`
+    query GetPages($first: Int = 100) {
+  pages(first: $first) {
+    nodes {
+      id
+      title
+      slug
+      date
+      modified
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetPostsDocument = gql`
+    query GetPosts($first: Int = 20, $after: String) {
+  posts(first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      title
+      content
+      excerpt
+      slug
+      date
+      modified
+      author {
+        node {
+          name
+        }
+      }
+      categories {
+        nodes {
+          name
+          slug
+        }
+      }
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetPostBySlugDocument = gql`
+    query GetPostBySlug($slug: ID!) {
+  post(id: $slug, idType: SLUG) {
+    id
+    title
+    content
+    excerpt
+    slug
+    date
+    modified
+    author {
+      node {
+        name
+        avatar {
+          url
+        }
+      }
+    }
+    categories {
+      nodes {
+        name
+        slug
+      }
+    }
+    tags {
+      nodes {
+        name
+        slug
+      }
+    }
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+  }
+}
+    `;
 export const GetProductsDocument = gql`
     query GetProducts($first: Int = 10, $after: String) {
   products(first: $first, after: $after) {
@@ -37115,6 +37256,18 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    GetPageBySlug(variables: GetPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPageBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetPageBySlugQuery>({ document: GetPageBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPageBySlug', 'query', variables);
+    },
+    GetPages(variables?: GetPagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPagesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetPagesQuery>({ document: GetPagesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPages', 'query', variables);
+    },
+    GetPosts(variables?: GetPostsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPostsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetPostsQuery>({ document: GetPostsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPosts', 'query', variables);
+    },
+    GetPostBySlug(variables: GetPostBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPostBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetPostBySlugQuery>({ document: GetPostBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPostBySlug', 'query', variables);
+    },
     GetProducts(variables?: GetProductsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetProductsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductsQuery>({ document: GetProductsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetProducts', 'query', variables);
     },

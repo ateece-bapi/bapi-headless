@@ -1,0 +1,34 @@
+query GetPageBySlug($slug: ID!) {
+  page(id: $slug, idType: URI) {
+    id
+    title
+    content
+    slug
+    date
+    modified
+    featuredImage {
+      node {
+        sourceUrl
+        altText
+      }
+    }
+  }
+}
+
+query GetPages($first: Int = 100) {
+  pages(first: $first) {
+    nodes {
+      id
+      title
+      slug
+      date
+      modified
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+    }
+  }
+}

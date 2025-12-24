@@ -1,6 +1,18 @@
 import { getGraphQLClient } from './client';
-import { GetProductsDocument, GetProductBySlugDocument, GetProductCategoriesDocument } from './generated';
-import type { GetProductsQuery, GetProductBySlugQuery, GetProductCategoriesQuery } from './generated';
+import { 
+  GetProductsDocument, 
+  GetProductBySlugDocument, 
+  GetProductCategoriesDocument,
+  GetProductCategoryDocument,
+  GetProductsByCategoryDocument 
+} from './generated';
+import type { 
+  GetProductsQuery, 
+  GetProductBySlugQuery, 
+  GetProductCategoriesQuery,
+  GetProductCategoryQuery,
+  GetProductsByCategoryQuery 
+} from './generated';
 import { AppError } from '@/lib/errors';
 
 /**
@@ -179,4 +191,64 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
 export async function getProductCategories(first: number = 100): Promise<GetProductCategoriesQuery> {
   const client = getGraphQLClient(['products', 'categories']);
   return client.request(GetProductCategoriesDocument, { first });
+}
+
+/**
+ * Server-side function to fetch a single product category by slug
+ */
+export async function getProductCategory(slug: string): Promise<GetProductCategoryQuery> {
+  if (slug === null || slug === undefined || String(slug).trim() === '') {
+    throw new AppError(
+      'getProductCategory called without a valid slug',
+      'Invalid category URL. Please check the link and try again.',
+      'INVALID_CATEGORY_SLUG',
+      400
+    );
+  }
+
+  try {
+    const client = getGraphQLClient(['products', 'categories', `category-${slug}`]);
+    return await client.request(GetProductCategoryDocument, { slug });
+  } catch (error) {
+    throw new AppError(
+      `Failed to fetch category '${slug}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+      'Unable to load this category. The category may not exist or there may be a temporary issue.',
+      'CATEGORY_FETCH_ERROR',
+      404
+    );
+  }
+}
+
+/**
+ * Server-side function to fetch products by category slug with pagination
+ */
+export async function getProductsByCategory(
+  categorySlug: string, 
+  first: number = 50, 
+  after?: string
+): Promise<GetProductsByCategoryQuery> {
+  if (categorySlug === null || categorySlug === undefined || String(categorySlug).trim() === '') {
+    throw new AppError(
+      'getProductsByCategory called without a valid category slug',
+      'Invalid category. Please check the link and try again.',
+      'INVALID_CATEGORY_SLUG',
+      400
+    );
+  }
+
+  try {
+    const client = getGraphQLClient(['products', `category-${categorySlug}`]);
+    return await client.request(GetProductsByCategoryDocument, { 
+      categorySlug, 
+      first, 
+      after 
+    });
+  } catch (error) {
+    throw new AppError(
+      `Failed to fetch products for category '${categorySlug}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+      'Unable to load products for this category. Please try again later.',
+      'CATEGORY_PRODUCTS_FETCH_ERROR',
+      500
+    );
+  }
 }

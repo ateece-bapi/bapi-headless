@@ -8,7 +8,13 @@
 export { graphqlClient, getGraphQLClient, clientGraphQLClient } from './client';
 
 // Query functions
-export { getProducts, getProductBySlug, getProductCategories } from './queries';
+export { 
+  getProducts, 
+  getProductBySlug, 
+  getProductCategories,
+  getProductCategory,
+  getProductsByCategory 
+} from './queries';
 export { normalizeProductQueryResponse } from './queries';
 
 // Type guards and utilities
@@ -39,4 +45,8 @@ export type {
   GetProductBySlugQueryVariables,
   GetProductCategoriesQuery,
   GetProductCategoriesQueryVariables,
+  GetProductCategoryQuery,
+  GetProductCategoryQueryVariables,
+  GetProductsByCategoryQuery,
+  GetProductsByCategoryQueryVariables,
 } from './generated';

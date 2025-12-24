@@ -21,17 +21,34 @@ export default function ProductDetailClient({ product, useCart, useCartDrawer }:
 
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
 
+  // Build breadcrumb items from product categories
+  const buildBreadcrumbs = (): Array<{ label: string; href?: string }> => {
+    const breadcrumbs: Array<{ label: string; href?: string }> = [
+      { label: "Home", href: "/" },
+      { label: "Products", href: "/products" }
+    ];
+
+    // Add only the first (primary) category if it exists
+    if (product.productCategories && Array.isArray(product.productCategories) && product.productCategories.length > 0) {
+      const primaryCategory = product.productCategories[0];
+      breadcrumbs.push({
+        label: primaryCategory.name,
+        href: `/products/${primaryCategory.slug}`
+      });
+    }
+
+    // Add the product name as the final item (no href)
+    breadcrumbs.push({ label: product.name });
+
+    return breadcrumbs;
+  };
+
   return (
     <>
       <div className="min-h-screen bg-white">
         <main className="py-12">
           <div className="container mx-auto px-4">
-            <Breadcrumbs
-              items={[
-                { label: "Products", href: "/products" },
-                { label: product.name }
-              ]}
-            />
+            <Breadcrumbs items={buildBreadcrumbs()} />
             <div className="flex flex-col md:flex-row gap-8 mb-8 items-start">
               <div className="flex-1">
                 <ProductHero product={product} variation={selectedVariation} />

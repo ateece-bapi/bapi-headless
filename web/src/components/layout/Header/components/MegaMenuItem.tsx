@@ -187,10 +187,10 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                         <Link
                           href={link.href}
                           onClick={onCloseImmediate}
-                          className="group block rounded-lg p-4 hover:bg-primary-50 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 hover:scale-[1.02] border border-transparent hover:border-primary-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:bg-primary-50"
+                          className="group block rounded-lg p-4 bg-white hover:bg-primary-50 transition-all duration-300 ease-out hover:shadow-sm border border-transparent hover:border-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:bg-primary-50"
                         >
                           <div className="flex items-start justify-between gap-2">
-                            <span className="text-sm font-bold text-neutral-900 group-hover:text-primary-700 transition-colors">
+                            <span className="text-sm font-bold text-neutral-900 group-hover:text-primary-700 transition-colors duration-300 ease-out">
                               {link.label}
                             </span>
                             {link.badge && (

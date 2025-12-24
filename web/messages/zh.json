@@ -1,0 +1,39 @@
+{
+  "common": {
+    "language": "中文",
+    "region": "地区",
+    "currency": "货币",
+    "search": "搜索",
+    "cart": "购物车",
+    "signIn": "登录",
+    "signOut": "退出",
+    "backToTop": "返回顶部"
+  },
+  "nav": {
+    "products": "产品",
+    "solutions": "解决方案",
+    "resources": "资源",
+    "company": "公司",
+    "support": "支持"
+  },
+  "products": {
+    "title": "产品",
+    "viewAll": "查看所有产品"
+  },
+  "home": {
+    "hero": {
+      "title": "楼宇自动化精密传感器解决方案",
+      "subtitle": "全球工程师信赖的可靠HVAC/R传感",
+      "cta": "探索产品"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} BAPI. 保留所有权利。"
+  },
+  "region": {
+    "us": "美国",
+    "eu": "欧洲",
+    "asia": "亚太地区",
+    "mena": "中东"
+  }
+}

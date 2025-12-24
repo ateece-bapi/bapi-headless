@@ -27,6 +27,7 @@ export interface LanguageConfig {
   code: LanguageCode;
   name: string;
   nativeName: string;
+  flag: string;
   dateFormat: string;
   timeFormat: string;
 }
@@ -123,6 +124,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'en',
     name: 'English',
     nativeName: 'English',
+    flag: '🇺🇸',
     dateFormat: 'MM/DD/YYYY',
     timeFormat: '12h',
   },
@@ -130,6 +132,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'de',
     name: 'German',
     nativeName: 'Deutsch',
+    flag: '🇩🇪',
     dateFormat: 'DD.MM.YYYY',
     timeFormat: '24h',
   },
@@ -137,6 +140,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'fr',
     name: 'French',
     nativeName: 'Français',
+    flag: '🇫🇷',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '24h',
   },
@@ -144,6 +148,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'es',
     name: 'Spanish',
     nativeName: 'Español',
+    flag: '🇪🇸',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '24h',
   },
@@ -151,6 +156,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'ja',
     name: 'Japanese',
     nativeName: '日本語',
+    flag: '🇯🇵',
     dateFormat: 'YYYY/MM/DD',
     timeFormat: '24h',
   },
@@ -158,6 +164,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'zh',
     name: 'Chinese',
     nativeName: '中文',
+    flag: '🇨🇳',
     dateFormat: 'YYYY-MM-DD',
     timeFormat: '24h',
   },
@@ -165,6 +172,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'ar',
     name: 'Arabic',
     nativeName: 'العربية',
+    flag: '🇸🇦',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '12h',
   },

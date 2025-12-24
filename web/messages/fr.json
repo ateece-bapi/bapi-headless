@@ -1,0 +1,39 @@
+{
+  "common": {
+    "language": "Français",
+    "region": "Région",
+    "currency": "Devise",
+    "search": "Rechercher",
+    "cart": "Panier",
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter",
+    "backToTop": "Retour en haut"
+  },
+  "nav": {
+    "products": "Produits",
+    "solutions": "Solutions",
+    "resources": "Ressources",
+    "company": "Entreprise",
+    "support": "Support"
+  },
+  "products": {
+    "title": "Produits",
+    "viewAll": "Voir tous les produits"
+  },
+  "home": {
+    "hero": {
+      "title": "Solutions de capteurs de précision pour l'automatisation des bâtiments",
+      "subtitle": "Approuvé par les ingénieurs du monde entier pour la détection HVAC/R fiable",
+      "cta": "Explorer les produits"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} BAPI. Tous droits réservés."
+  },
+  "region": {
+    "us": "États-Unis",
+    "eu": "Europe",
+    "asia": "Asie-Pacifique",
+    "mena": "Moyen-Orient"
+  }
+}

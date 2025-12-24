@@ -9,3 +9,5 @@ export { default as RelatedProducts } from './ProductPage/RelatedProducts';
 export { default as ProductPage } from './ProductPage/ProductPage';
 export { default as ProductDetailClient } from './ProductPage/ProductDetailClient';
 export { useProductAttributes } from './useProductAttributes';
+export { ProductCard } from './ProductCard';
+export { CategoryPage } from './CategoryPage';

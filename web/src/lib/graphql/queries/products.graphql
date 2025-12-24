@@ -181,3 +181,72 @@ query GetProductCategories($first: Int = 100) {
     }
   }
 }
+
+query GetProductCategory($slug: ID!) {
+  productCategory(id: $slug, idType: SLUG) {
+    id
+    databaseId
+    name
+    slug
+    count
+    description
+    image {
+      id
+      sourceUrl
+      altText
+    }
+  }
+}
+
+query GetProductsByCategory($categorySlug: String!, $first: Int = 50, $after: String) {
+  products(where: { category: $categorySlug }, first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      endCursor
+      startCursor
+    }
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      shortDescription
+      ... on Product {
+        partNumber
+        productCategories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+      }
+      ... on SimpleProduct {
+        price
+        regularPrice
+        salePrice
+        onSale
+        stockStatus
+        stockQuantity
+        sku
+      }
+      ... on VariableProduct {
+        price
+        regularPrice
+        salePrice
+        onSale
+        stockStatus
+      }
+      image {
+        id
+        sourceUrl
+        altText
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
+  }
+}

@@ -10,11 +10,15 @@ import { ToastProvider } from "@/components/ui/Toast";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false, // Don't preload monospace font
 });
 
 export const metadata: Metadata = {

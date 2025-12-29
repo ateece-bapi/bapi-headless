@@ -74,7 +74,7 @@ export function ProductCard({
         <h3 className="relative text-lg font-bold text-gray-900 mb-2 line-clamp-2 leading-tight group-hover:text-primary-600 transition-colors duration-300">
           {name}
           {/* BAPI Yellow underline on hover */}
-          <span className="absolute left-0 -bottom-1 h-1 w-0 bg-[#FFD600] rounded transition-all duration-300 ease-in-out group-hover:w-full" />
+          <span className="absolute left-0 -bottom-1 h-1 w-0 bg-accent-500 rounded transition-all duration-300 ease-in-out group-hover:w-full" />
         </h3>
 
         {cleanDescription && (

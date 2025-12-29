@@ -364,7 +364,7 @@ export const HEADER_CONFIG = {
   },
   scrollThreshold: 10,
   colors: {
-    blue: '#0054b6',
-    yellow: '#ffc843',
+    blue: 'var(--color-primary-600)',
+    yellow: 'var(--color-accent-500)',
   },
 } as const;

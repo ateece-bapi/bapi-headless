@@ -20,7 +20,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
       <div className="absolute top-20 right-10 w-32 h-32 bg-primary-500 rounded-full opacity-5 blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
       <div className="absolute bottom-40 left-10 w-40 h-40 bg-accent-500 rounded-full opacity-5 blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
       
-      <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pb-20">
+      <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pb-20">
         <HeroContent
           title={HERO_CONFIG.title}
           subtitle={HERO_CONFIG.subtitle}

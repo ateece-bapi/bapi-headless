@@ -41,9 +41,16 @@ wp plugin install wp-graphql-cors --activate
 ```
 
 **Configure:**
-- Settings → GraphQL CORS
-- Enable "Allow GET requests"
-- Set Access-Control-Max-Age: 86400
+- Settings → GraphQL (left menu) → CORS Settings tab
+- **Extend "Access-Control-Allow-Origin" header**: Add your frontend domains (one per line):
+  ```
+  https://your-vercel-app.vercel.app
+  https://yourdomain.com
+  ```
+- Leave all checkboxes UNCHECKED (not needed for public read-only queries)
+- **Samesite cookie mode**: Keep as "None"
+- Click "Save Changes"
+- **Note**: GET requests are automatically enabled when plugin is active
 
 ## WPGraphQL Configuration
 

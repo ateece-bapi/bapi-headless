@@ -23,14 +23,26 @@ export const graphqlClient = new GraphQLClient(endpoint || 'https://placeholder.
 });
 
 /**
- * GraphQL client for server-side requests with caching
+ * GraphQL client for server-side requests with caching and GET method support
+ * 
+ * Performance optimizations:
+ * - Uses GET requests for read queries (CDN cacheable)
+ * - Adds cache-control headers for WordPress Smart Cache
+ * - Next.js 15+ caching with ISR
+ * 
  * @param tags - Cache tags for on-demand revalidation
+ * @param useGetMethod - Use GET instead of POST for CDN caching (default: true for read queries)
  */
-export const getGraphQLClient = (tags?: string[]) => {
+export const getGraphQLClient = (tags?: string[], useGetMethod: boolean = true) => {
   return new GraphQLClient(getEndpoint(), {
     headers: {
       'Content-Type': 'application/json',
+      // Cache-control header for WordPress caching plugins
+      'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
     },
+    // Use GET method for read queries to enable CDN caching
+    // GET requests can be cached by Kinsta CDN, POST cannot
+    method: useGetMethod ? 'GET' : 'POST',
     // Next.js 15+ caching
     next: {
       revalidate: CACHE_REVALIDATION.DEFAULT,

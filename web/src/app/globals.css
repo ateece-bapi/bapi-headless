@@ -205,3 +205,41 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 
+ * Modern Tailwind v4 Utilities
+ * Enhanced utilities for better UX and component responsiveness
+ */
+
+@layer utilities {
+  /* Container Queries - Component-level responsive design */
+  .container-query {
+    container-type: inline-size;
+  }
+
+  /* Named containers for specific queries */
+  .container-card {
+    container-type: inline-size;
+    container-name: card;
+  }
+
+  .container-sidebar {
+    container-type: inline-size;
+    container-name: sidebar;
+  }
+
+  /* Text Balance - Better typography for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Text Pretty - Orphan prevention for paragraphs */
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Smooth Scrolling */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+}

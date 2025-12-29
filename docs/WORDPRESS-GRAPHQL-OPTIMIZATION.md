@@ -24,10 +24,13 @@ wp plugin install wp-graphql-smart-cache --activate
 ```
 
 **Configure:**
-- Settings → GraphQL Smart Cache
-- Enable "Cache GraphQL Queries"
-- Enable "Purge on Post Update"
-- Cache TTL: 3600 seconds (1 hour)
+- Settings → GraphQL (left menu) → Cache tab
+- **Network Cache Settings**:
+  - Cache-Control max-age: `3600` (1 hour)
+- **Object Cache Settings**:
+  - ✅ Check "Use Object Cache"
+  - Object Cache Expiration: `3600` (1 hour)
+- Click "Save Changes"
 
 ### 3. WPGraphQL CORS (REQUIRED for GET requests)
 Allows GET requests for CDN-cacheable queries.

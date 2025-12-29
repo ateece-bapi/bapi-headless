@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { getGraphQLClient } from './client';
 import { 
   GetProductsDocument, 
@@ -17,8 +18,9 @@ import { AppError } from '@/lib/errors';
 
 /**
  * Server-side function to fetch products with pagination
+ * Wrapped with React cache() for automatic deduplication across generateMetadata and page components
  */
-export async function getProducts(first: number = 10, after?: string): Promise<GetProductsQuery> {
+export const getProducts = cache(async (first: number = 10, after?: string): Promise<GetProductsQuery> => {
   try {
     const client = getGraphQLClient(['products', 'product-list']);
     return await client.request(GetProductsDocument, { first, after });
@@ -30,12 +32,13 @@ export async function getProducts(first: number = 10, after?: string): Promise<G
       500
     );
   }
-}
+});
 
 /**
  * Server-side function to fetch a single product by slug
+ * Wrapped with React cache() for automatic deduplication across generateMetadata and page components
  */
-export async function getProductBySlug(slug: string): Promise<GetProductBySlugQuery> {
+export const getProductBySlug = cache(async (slug: string): Promise<GetProductBySlugQuery> => {
   // Defensive validation: ensure callers pass a non-empty slug.
   // GraphQL requires `$slug: ID!` for this query; calling with an empty
   // value results in a runtime error from the server. Centralize the
@@ -63,7 +66,7 @@ export async function getProductBySlug(slug: string): Promise<GetProductBySlugQu
       404
     );
   }
-}
+});
 
 // Normalizer: Make best-effort repairs to common GraphQL response issues so
 // callers (and validation) can depend on a consistent shape.
@@ -195,8 +198,9 @@ export async function getProductCategories(first: number = 100): Promise<GetProd
 
 /**
  * Server-side function to fetch a single product category by slug
+ * Wrapped with React cache() for automatic deduplication across generateMetadata and page components
  */
-export async function getProductCategory(slug: string): Promise<GetProductCategoryQuery> {
+export const getProductCategory = cache(async (slug: string): Promise<GetProductCategoryQuery> => {
   if (slug === null || slug === undefined || String(slug).trim() === '') {
     throw new AppError(
       'getProductCategory called without a valid slug',
@@ -217,16 +221,17 @@ export async function getProductCategory(slug: string): Promise<GetProductCatego
       404
     );
   }
-}
+});
 
 /**
  * Server-side function to fetch products by category slug with pagination
+ * Wrapped with React cache() for automatic deduplication across generateMetadata and page components
  */
-export async function getProductsByCategory(
+export const getProductsByCategory = cache(async (
   categorySlug: string, 
   first: number = 50, 
   after?: string
-): Promise<GetProductsByCategoryQuery> {
+): Promise<GetProductsByCategoryQuery> => {
   if (categorySlug === null || categorySlug === undefined || String(categorySlug).trim() === '') {
     throw new AppError(
       'getProductsByCategory called without a valid category slug',
@@ -251,4 +256,4 @@ export async function getProductsByCategory(
       500
     );
   }
-}
+});

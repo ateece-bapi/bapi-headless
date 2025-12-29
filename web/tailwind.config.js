@@ -11,8 +11,15 @@
  */
 module.exports = {
   content: [
+    // Scan all component and app files
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/lib/**/*.{js,ts,jsx,tsx,mdx}',
+    
+    // Exclude test files for faster builds
+    '!./src/**/*.test.{js,ts,jsx,tsx}',
+    '!./src/**/*.spec.{js,ts,jsx,tsx}',
+    '!./__tests__/**',
+    '!./test/**',
   ],
 };

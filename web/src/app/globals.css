@@ -90,6 +90,35 @@
   --color-info-500: #1479bc;  /* BAPI Blue for info */
   --color-info-600: #106196;
   --color-info-700: #0c4971;
+
+  /* Z-Index Scale - Stacking order for UI layers */
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* Container Widths - Max widths for content areas */
+  --width-container: 1600px;
+  --width-content: 1200px;
+  --width-narrow: 800px;
+
+  /* Animation Durations - Consistent timing across UI */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+
+  /* Animation Easings - Standard easing curves */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 :root {
@@ -97,7 +126,12 @@
   --foreground: #171717;
 }
 
-/* Toast animations */
+/* 
+ * Custom Animations & Keyframes
+ * Define reusable animations for UI components
+ */
+
+/* Slide in from right - used for toasts */
 @keyframes slide-in-right {
   from {
     transform: translateX(100%);
@@ -111,6 +145,52 @@
 
 .animate-slide-in-right {
   animation: slide-in-right 0.3s ease-out;
+}
+
+/* Fade in - general purpose */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide up - modals, dialogs */
+@keyframes slide-up {
+  from {
+    transform: translateY(0.5rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slide down - dropdowns, menus */
+@keyframes slide-down {
+  from {
+    transform: translateY(-0.5rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Scale in - buttons, interactive elements */
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

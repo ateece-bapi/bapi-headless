@@ -270,27 +270,108 @@ Based on current BAPI website (reference screenshot):
 
 ### Location
 
-All color tokens are defined in: `/web/src/app/globals.css`
+All design tokens (colors, spacing, animations) are defined in: `/web/src/app/globals.css`
 
 ### Syntax (Tailwind v4)
 
-Colors are defined in the `@theme inline` directive:
+With Tailwind v4, configuration is **CSS-first** using the `@theme inline` directive. The JavaScript config file (`tailwind.config.js`) only contains content paths.
+
+Colors are defined in globals.css:
 
 ```css
 @theme inline {
+  /* Colors */
   --color-primary-500: #1479bc;  /* BAPI Blue */
   --color-accent-500: #ffc843;   /* BAPI Yellow */
   --color-neutral-500: #97999b;  /* BAPI Gray */
-  /* ... */
+  
+  /* Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-modal: 1050;
+  --z-toast: 1080;
+  
+  /* Container Widths */
+  --width-container: 1600px;
+  --width-content: 1200px;
+  
+  /* Animation Durations */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-normal: 300ms;
+  
+  /* ... full scale 50-950 for each color */
 }
 ```
 
-### Usage
+### Usage in Components
 
-Simply use the color name in Tailwind classes:
-
+**Direct Utility Classes** (Preferred):
 ```tsx
-className="bg-primary-500 text-white border-neutral-200"
+<div className="bg-primary-500 text-white border-neutral-200">
+  Semantic color tokens in utilities
+</div>
+```
+
+**CSS Custom Properties** (When needed in style prop):
+```tsx
+<div style={{ backgroundColor: 'var(--color-primary-500)' }}>
+  Using CSS variables directly
+</div>
+```
+
+**Z-Index Usage**:
+```tsx
+<div className="z-toast">       {/* Toast notifications */}
+<div className="z-modal">       {/* Modal dialogs */}
+<div className="z-dropdown">    {/* Dropdown menus */}
+```
+
+**Container Widths**:
+```tsx
+<div className="max-w-container mx-auto">  {/* 1600px max */}
+<div className="max-w-content mx-auto">    {/* 1200px max */}
+<div className="max-w-narrow mx-auto">     {/* 800px max */}
+```
+
+**Animation Timing**:
+```tsx
+<div className="transition-all duration-base">     {/* 200ms */}
+<div className="transition-colors duration-fast">  {/* 150ms */}
+<div className="animate-[fade-in_300ms_ease-out]"> {/* Custom keyframe */}
+```
+
+### Tailwind v4 Migration Notes
+
+**What Changed:**
+- ✅ Colors now defined in CSS via `@theme`, not in JS config
+- ✅ No need for `theme.extend.colors` in tailwind.config.js
+- ✅ Automatic CSS variable generation for all theme values
+- ✅ Semantic token names used directly in classes
+
+**Removed:**
+- ❌ Legacy `bapi-blue-*`, `bapi-accent-*`, `bapi-gray-*` prefixes
+- ❌ Duplicate color definitions in tailwind.config.js
+- ❌ Complex JavaScript theme configuration
+
+**How to Update Code:**
+```tsx
+// OLD (v3 style with bapi- prefix)
+<button className="bg-bapi-blue-500 hover:bg-bapi-blue-600">
+
+// NEW (v4 style with semantic names)
+<button className="bg-primary-500 hover:bg-primary-600">
+
+// OLD (arbitrary hex values)
+<div className="text-[#1479bc]">
+
+// NEW (semantic tokens)
+<div className="text-primary-500">
+
+// OLD (hardcoded z-index)
+<div className="z-[9999]">
+
+// NEW (semantic scale)
+<div className="z-toast">
 ```
 
 ## Color Reference Table
@@ -342,7 +423,8 @@ For color system questions or updates, refer to:
 
 ---
 
-**Last Updated**: 2025-01-21
-**Version**: 2.0 (Corrected with actual web colors)
+**Last Updated**: December 29, 2025
+**Version**: 3.0 (Tailwind v4 CSS-first architecture)
 **Web Colors**: BAPI Blue #1479BC, BAPI Yellow #FFC843, BAPI Gray #97999B
 **Distribution**: 60% White/Gray, 30% Blue, 10% Yellow
+**Architecture**: CSS-first theming with semantic tokens via `@theme inline`

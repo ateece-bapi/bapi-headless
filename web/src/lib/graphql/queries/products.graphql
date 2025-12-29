@@ -122,31 +122,15 @@ query GetProductBySlug($slug: ID!) {
         slug
       }
     }
-    related {
+    related(first: 6) {
       nodes {
         id
-        databaseId
         name
         slug
           ... on Product {
             partNumber
           }
-          ... on SimpleProduct {
-            partNumber
-            price
-            stockStatus
-          }
-          ... on VariableProduct {
-            partNumber
-          }
-          ... on ExternalProduct {
-            partNumber
-          }
-          ... on GroupProduct {
-            partNumber
-          }
           image {
-            id
             sourceUrl
             altText
           }

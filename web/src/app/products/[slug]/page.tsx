@@ -7,7 +7,9 @@ import {
   getProductPrice, 
   getProductStockStatus,
   getProductCategory,
-  getProductsByCategory 
+  getProductsByCategory,
+  getProducts,
+  getProductCategories
 } from '@/lib/graphql';
 import type { 
   GetProductBySlugQuery,
@@ -42,72 +44,108 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
   if (!resolvedParams?.slug) return {};
   const slug = String(resolvedParams.slug);
   
-  // Try category first
-  try {
-    const categoryData = await getProductCategory(slug);
-    if (categoryData.productCategory) {
-      const category = categoryData.productCategory;
-      const description = category.description 
-        ? category.description.replace(/<[^>]*>/g, '').slice(0, 160)
-        : `Browse ${category.name} products from BAPI`;
-      
-      return {
-        title: `${category.name} | BAPI Products`,
-        description,
-        openGraph: {
-          title: `${category.name} | BAPI Products`,
-          description,
-          type: "website",
-          url: `https://yourdomain.com/products/${slug}`,
-          images: category.image?.sourceUrl ? [category.image.sourceUrl] : [],
-        },
-      };
-    }
-  } catch (error) {
-    // Not a category, continue to product check
-  }
+  // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
+  const [categoryResult, productResult] = await Promise.allSettled([
+    getProductCategory(slug),
+    getProductBySlug(slug)
+  ]);
   
-  // Try product
-  try {
-    const data = await getProductBySlug(slug);
-    const parsed = getProductQuerySchema.safeParse(data);
-    if (!parsed.success) throw parsed.error;
-    const product = data.product as GetProductBySlugQuery['product'] | null;
-    if (!product) return {};
-    const ogImage = product.image?.sourceUrl || (product.galleryImages?.nodes?.[0]?.sourceUrl ?? "");
-    const ogDescription = stripHtml(product.shortDescription || product.description);
+  // Check if it's a category
+  if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
+    const category = categoryResult.value.productCategory;
+    const description = category.description 
+      ? category.description.replace(/<[^>]*>/g, '').slice(0, 160)
+      : `Browse ${category.name} products from BAPI`;
     
     return {
-      title: `${product.name} | BAPI`,
-      description: ogDescription,
+      title: `${category.name} | BAPI Products`,
+      description,
       openGraph: {
-        title: `${product.name} | BAPI`,
-        description: ogDescription,
-        type: "article",
+        title: `${category.name} | BAPI Products`,
+        description,
+        type: "website",
         url: `https://yourdomain.com/products/${slug}`,
-        images: ogImage ? [ogImage] : [],
+        images: category.image?.sourceUrl ? [category.image.sourceUrl] : [],
       },
-      twitter: {
-        card: "summary_large_image",
-        title: `${product.name} | BAPI`,
-        description: ogDescription,
-        images: ogImage ? [ogImage] : [],
-      },
-      alternates: {
-        canonical: `/products/${slug}`,
-        languages: {
-          'en-US': `/en/products/${slug}`,
-          'es-ES': `/es/products/${slug}`
-        }
-      }
     };
-  } catch (error) {
-    return {};
   }
+  
+  // Check if it's a product
+  if (productResult.status === 'fulfilled') {
+    const parsed = getProductQuerySchema.safeParse(productResult.value);
+    if (parsed.success) {
+      const product = productResult.value.product as GetProductBySlugQuery['product'] | null;
+      if (product) {
+        const ogImage = product.image?.sourceUrl || (product.galleryImages?.nodes?.[0]?.sourceUrl ?? "");
+        const ogDescription = stripHtml(product.shortDescription || product.description);
+        
+        return {
+          title: `${product.name} | BAPI`,
+          description: ogDescription,
+          openGraph: {
+            title: `${product.name} | BAPI`,
+            description: ogDescription,
+            type: "article",
+            url: `https://yourdomain.com/products/${slug}`,
+            images: ogImage ? [ogImage] : [],
+          },
+          twitter: {
+            card: "summary_large_image",
+            title: `${product.name} | BAPI`,
+            description: ogDescription,
+            images: ogImage ? [ogImage] : [],
+          },
+          alternates: {
+            canonical: `/products/${slug}`,
+            languages: {
+              'en-US': `/en/products/${slug}`,
+              'es-ES': `/es/products/${slug}`
+            }
+          }
+        };
+      }
+    }
+  }
+  
+  return {};
 }
 
 // ISR revalidation - 1 hour for both categories and products
 export const revalidate = 3600;
+
+/**
+ * Pre-generate static pages at build time for top products and all categories
+ * This ensures the first visitor gets instant page loads for popular content
+ * ISR will handle updates after 1 hour, and on-demand rendering for long-tail products
+ */
+export async function generateStaticParams() {
+  try {
+    // Fetch top 10 products (most critical for first-visitor experience)
+    // Keep this conservative to avoid build timeouts
+    const productsData = await getProducts(10);
+    const productSlugs = productsData.products?.nodes
+      ?.filter(p => p?.slug)
+      .map(p => ({ slug: p.slug })) || [];
+
+    // Fetch main categories (high-value landing pages)
+    // Limit to 20 to avoid build timeouts
+    const categoriesData = await getProductCategories(20);
+    const categorySlugs = categoriesData.productCategories?.nodes
+      ?.filter(c => c?.slug)
+      .map(c => ({ slug: c.slug })) || [];
+
+    // Combine products and categories for static generation
+    const allParams = [...productSlugs, ...categorySlugs];
+    
+    console.log(`[generateStaticParams] Pre-generating ${allParams.length} pages (${productSlugs.length} products + ${categorySlugs.length} categories)`);
+    
+    return allParams;
+  } catch (error) {
+    console.error('[generateStaticParams] Failed to fetch params:', error);
+    // Return empty array to continue build without static generation
+    return [];
+  }
+}
 
 export default async function ProductPage({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
   if (!process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
@@ -119,108 +157,114 @@ export default async function ProductPage({ params }: { params: { slug: string }
   }
   const slug = String(resolvedParams.slug);
   
-  // Try to fetch as a category first
-  try {
-    const categoryData = await getProductCategory(slug);
-    if (categoryData.productCategory) {
-      // Fetch products for this category
-      const productsData = await getProductsByCategory(slug, 50);
-      
-      return (
-        <CategoryPage 
-          category={categoryData.productCategory} 
-          products={productsData.products} 
-        />
-      );
-    }
-  } catch (error) {
-    // Not a category or error fetching, continue to product check
-  }
+  // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
+  const [categoryResult, productResult] = await Promise.allSettled([
+    getProductCategory(slug),
+    getProductBySlug(slug)
+  ]);
   
-  // Try to fetch as a product
-  try {
-    const data = await getProductBySlug(slug);
-    // The fetch layer returns normalized data; validate shape here.
-    getProductQuerySchema.parse(data);
-    // Use the normalized product object for client props
-    // Extend the type to include relatedProducts for type safety
-    type NormalizedProduct = GetProductBySlugQuery['product'] & {
-      relatedProducts?: any[];
-      partNumber?: string;
-      sku?: string;
-      multiplier?: string;
-      multiplierGroups?: Array<{ id: string; name: string; slug: string }>;
-      regularPrice?: string;
-      stockQuantity?: number;
-      iosAppUrl?: string;
-      androidAppUrl?: string;
-      variations?: {
-        nodes: Array<any>;
-      };
-    };
-    const product = data.product as NormalizedProduct | null;
-
-    if (!product) {
-      notFound();
-    }
-
-    // Minimal normalization for client
-    const productForClient = {
-      id: product.id,
-      databaseId: product.databaseId ?? 0,
-      name: product.name ?? 'Product',
-      slug: product.slug ?? '',
-      partNumber: product.partNumber ?? '',
-      sku: product.sku ?? '',
-      multiplierGroups: Array.isArray(product.multiplierGroups) ? product.multiplierGroups : [],
-      price: getProductPrice(product) || '$0.00',
-      regularPrice: product.regularPrice ?? '',
-      stockStatus: getProductStockStatus(product) || null,
-      stockQuantity: product.stockQuantity ?? null,
-      productCategories: Array.isArray((product as any).productCategories?.nodes) 
-        ? (product as any).productCategories.nodes.map((cat: any) => ({
-            id: cat.id,
-            name: cat.name,
-            slug: cat.slug,
-          }))
-        : [],
-      image: product.image
-        ? { sourceUrl: product.image.sourceUrl || '', altText: product.image.altText || product.name || '' }
-        : null,
-      gallery: ((product.galleryImages?.nodes || []) as Array<{ sourceUrl?: string; altText?: string | null }>).map((node) => {
-        return { sourceUrl: node?.sourceUrl ?? '', altText: node?.altText ?? '' };
-      }),
-      variations: Array.isArray(product.variations?.nodes)
-        ? product.variations.nodes.map((v: any) => ({
-            id: v.id,
-            databaseId: v.databaseId ?? 0,
-            name: v.name ?? `${product.name ?? 'Product'} variant`,
-            price: v.price ?? null,
-            regularPrice: v.regularPrice ?? null,
-            attributes: Array.isArray(v.attributes?.nodes)
-              ? v.attributes.nodes.reduce((acc: Record<string, string>, a: any) => {
-                  if (a && a.name && a.value) acc[a.name] = a.value;
-                  return acc;
-                }, {})
-              : {},
-            image: v.image ? { sourceUrl: v.image.sourceUrl ?? '', altText: v.image.altText ?? '' } : null,
-            partNumber: v.partNumber ?? null,
-            sku: v.sku ?? null,
-          }) )
-        : [],
-      attributes: [], // Add attribute normalization if needed
-      shortDescription: product.shortDescription || null,
-      description: product.description || null,
-      relatedProducts: product.relatedProducts || [],
-      iosAppUrl: (product as any).iosAppUrl ?? null,
-      androidAppUrl: (product as any).androidAppUrl ?? null,
-    };
+  // Check if it's a category
+  if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
+    // Fetch products for this category
+    const productsData = await getProductsByCategory(slug, 50);
     
     return (
-      <ProductDetailClient product={productForClient} />
+      <CategoryPage 
+        category={categoryResult.value.productCategory} 
+        products={productsData.products} 
+      />
     );
-  } catch (error) {
-    // Neither category nor product found
-    notFound();
   }
+  
+  // Check if it's a product
+  if (productResult.status === 'fulfilled') {
+    try {
+      const data = productResult.value;
+      // The fetch layer returns normalized data; validate shape here.
+      getProductQuerySchema.parse(data);
+      // Use the normalized product object for client props
+      // Extend the type to include relatedProducts for type safety
+      type NormalizedProduct = GetProductBySlugQuery['product'] & {
+        relatedProducts?: any[];
+        partNumber?: string;
+        sku?: string;
+        multiplier?: string;
+        multiplierGroups?: Array<{ id: string; name: string; slug: string }>;
+        regularPrice?: string;
+        stockQuantity?: number;
+        iosAppUrl?: string;
+        androidAppUrl?: string;
+        variations?: {
+          nodes: Array<any>;
+        };
+      };
+      const product = data.product as NormalizedProduct | null;
+
+      if (!product) {
+        notFound();
+      }
+
+      // Minimal normalization for client
+      const productForClient = {
+        id: product.id,
+        databaseId: product.databaseId ?? 0,
+        name: product.name ?? 'Product',
+        slug: product.slug ?? '',
+        partNumber: product.partNumber ?? '',
+        sku: product.sku ?? '',
+        multiplierGroups: Array.isArray(product.multiplierGroups) ? product.multiplierGroups : [],
+        price: getProductPrice(product) || '$0.00',
+        regularPrice: product.regularPrice ?? '',
+        stockStatus: getProductStockStatus(product) || null,
+        stockQuantity: product.stockQuantity ?? null,
+        productCategories: Array.isArray((product as any).productCategories?.nodes) 
+          ? (product as any).productCategories.nodes.map((cat: any) => ({
+              id: cat.id,
+              name: cat.name,
+              slug: cat.slug,
+            }))
+          : [],
+        image: product.image
+          ? { sourceUrl: product.image.sourceUrl || '', altText: product.image.altText || product.name || '' }
+          : null,
+        gallery: ((product.galleryImages?.nodes || []) as Array<{ sourceUrl?: string; altText?: string | null }>).map((node) => {
+          return { sourceUrl: node?.sourceUrl ?? '', altText: node?.altText ?? '' };
+        }),
+        variations: Array.isArray(product.variations?.nodes)
+          ? product.variations.nodes.map((v: any) => ({
+              id: v.id,
+              databaseId: v.databaseId ?? 0,
+              name: v.name ?? `${product.name ?? 'Product'} variant`,
+              price: v.price ?? null,
+              regularPrice: v.regularPrice ?? null,
+              attributes: Array.isArray(v.attributes?.nodes)
+                ? v.attributes.nodes.reduce((acc: Record<string, string>, a: any) => {
+                    if (a && a.name && a.value) acc[a.name] = a.value;
+                    return acc;
+                  }, {})
+                : {},
+              image: v.image ? { sourceUrl: v.image.sourceUrl ?? '', altText: v.image.altText ?? '' } : null,
+              partNumber: v.partNumber ?? null,
+              sku: v.sku ?? null,
+            }) )
+          : [],
+        attributes: [], // Add attribute normalization if needed
+        shortDescription: product.shortDescription || null,
+        description: product.description || null,
+        relatedProducts: product.relatedProducts || [],
+        iosAppUrl: (product as any).iosAppUrl ?? null,
+        androidAppUrl: (product as any).androidAppUrl ?? null,
+      };
+      
+      return (
+        <ProductDetailClient product={productForClient} />
+      );
+    } catch (error) {
+      // Product data invalid
+      notFound();
+    }
+  }
+  
+  // Neither category nor product found
+  notFound();
 }

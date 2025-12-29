@@ -34,7 +34,7 @@ export default function Home() {
 
       {/* Solution Categories - White */}
       <section className="w-full bg-white py-12 lg:py-16 xl:py-20">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Engineered Solutions for Critical Environments
@@ -119,7 +119,7 @@ export default function Home() {
 
       {/* Industry Applications - Very Light Gray */}
       <section className="w-full bg-gradient-to-br from-neutral-50/20 via-white to-neutral-50/30 py-12 lg:py-16 xl:py-20 border-y border-neutral-200/20">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Industry-Specific Applications
@@ -220,7 +220,7 @@ export default function Home() {
 
       {/* Technical Differentiators - White */}
       <section className="w-full bg-white py-12 lg:py-16 xl:py-20">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Engineering Excellence Since 1993
@@ -335,7 +335,7 @@ export default function Home() {
 
       {/* Integration Partners & Ecosystem - Light Gradient */}
       <section className="w-full bg-gradient-to-br from-blue-50/20 via-white to-neutral-50/50 py-12 lg:py-16 xl:py-20 border-y border-primary-100/40">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Trusted Integration Partners
@@ -414,7 +414,7 @@ export default function Home() {
 
       {/* Resources & Support - White */}
       <section className="w-full bg-white py-12 lg:py-16 xl:py-20">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
               Engineering Resources
@@ -529,7 +529,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1)_0%,transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,200,67,0.1)_0%,transparent_50%)]" />
         
-        <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-6">
               Start Your Next Project with BAPI

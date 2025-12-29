@@ -42,16 +42,16 @@ const BapiButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, BapiB
 
     const colorStyles = {
       blue: clsx(
-        'bg-[#0054b6] hover:bg-[#003d85]',
+        'bg-primary-600 hover:bg-primary-700',
         'text-white',
-        'focus:ring-[#0054b6]/50',
-        'shadow-[#0054b6]/30 hover:shadow-[#0054b6]/40'
+        'focus:ring-primary-600/50',
+        'shadow-primary-600/30 hover:shadow-primary-600/40'
       ),
       yellow: clsx(
-        'bg-[#ffc843] hover:bg-[#ffb700]',
+        'bg-accent-500 hover:bg-accent-600',
         'text-gray-900',
-        'focus:ring-[#ffc843]/50',
-        'shadow-[#ffc843]/30 hover:shadow-[#ffc843]/40'
+        'focus:ring-accent-500/50',
+        'shadow-accent-500/30 hover:shadow-accent-500/40'
       ),
     };
 

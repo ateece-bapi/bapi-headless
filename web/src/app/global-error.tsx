@@ -12,19 +12,19 @@ export default function GlobalError({
       <body>
         <div 
           className="min-h-screen flex items-center justify-center px-6"
-          style={{ background: '#fafafa' }}
+          style={{ background: 'var(--color-neutral-50)' }}
         >
           <div className="max-w-md text-center">
             <div 
               className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center"
-              style={{ background: '#e6f2f9' }}
+              style={{ background: 'var(--color-primary-50)' }}
             >
               <svg 
                 className="w-8 h-8" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
-                style={{ color: '#106196' }}
+                style={{ color: 'var(--color-primary-600)' }}
               >
                 <path 
                   strokeLinecap="round" 
@@ -37,14 +37,14 @@ export default function GlobalError({
             
             <h2 
               className="text-2xl font-bold mb-3"
-              style={{ color: '#282829' }}
+              style={{ color: 'var(--color-neutral-900)' }}
             >
               Critical Error
             </h2>
             
             <p 
               className="text-base mb-6"
-              style={{ color: '#5e5f60' }}
+              style={{ color: 'var(--color-neutral-700)' }}
             >
               A critical error occurred in the application. Please refresh the page or contact support if the issue persists.
             </p>
@@ -54,7 +54,7 @@ export default function GlobalError({
                 onClick={reset}
                 className="px-6 py-3 rounded-lg font-semibold"
                 style={{ 
-                  background: '#1479bc',
+                  background: 'var(--color-primary-500)',
                   color: 'white'
                 }}
               >
@@ -65,8 +65,8 @@ export default function GlobalError({
                 href="/"
                 className="px-6 py-3 rounded-lg font-semibold border"
                 style={{ 
-                  borderColor: '#d4d5d6',
-                  color: '#5e5f60'
+                  borderColor: 'var(--color-neutral-300)',
+                  color: 'var(--color-neutral-700)'
                 }}
               >
                 Go to homepage
@@ -76,7 +76,7 @@ export default function GlobalError({
             {error.digest && (
               <p 
                 className="text-xs mt-6"
-                style={{ color: '#b5b6b8' }}
+                style={{ color: 'var(--color-neutral-400)' }}
               >
                 Error ID: {error.digest}
               </p>

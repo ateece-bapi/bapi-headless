@@ -205,7 +205,7 @@ export default function MainProductPage() {
                     <h2 className="relative text-xl font-bold text-gray-900 transition-colors duration-300 leading-tight">
                       {cat.name}
                       {/* BAPI Yellow underline on hover */}
-                      <span className="absolute left-0 -bottom-1 h-1 w-0 bg-[#FFD600] rounded transition-all duration-300 ease-in-out group-hover:w-full" />
+                      <span className="absolute left-0 -bottom-1 h-1 w-0 bg-accent-500 rounded transition-all duration-300 ease-in-out group-hover:w-full" />
                     </h2>
                     <span className="flex-shrink-0 px-3 py-1.5 bg-gradient-to-br from-primary-50 to-primary-100/50 border border-primary-200 text-primary-700 font-bold text-sm rounded-lg shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all duration-300">
                       {cat.count}

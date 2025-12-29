@@ -7,7 +7,7 @@ interface MobileMenuButtonProps {
 
 const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({ isOpen, onClick }) => (
   <button
-    className="lg:hidden flex items-center justify-center w-10 h-10 rounded-full hover:bg-neutral-100 transition-colors focus:outline-none focus:ring-2 focus:ring-[#0054b6] focus:ring-offset-2 active:scale-95"
+    className="lg:hidden flex items-center justify-center w-10 h-10 rounded-full hover:bg-neutral-100 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 active:scale-95"
     onClick={onClick}
     aria-expanded={isOpen}
     aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}

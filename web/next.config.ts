@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
     ],
     qualities: [75, 85],
   },
+  // Optimize preloading behavior
+  experimental: {
+    optimizePackageImports: ['@/components'],
+  },
   // other Next options (keep whatever you already need here)...
   // Example: uncomment if you want a custom distDir explicitly inside the project:
   // distDir: path.join(path.resolve(__dirname), '.next'),

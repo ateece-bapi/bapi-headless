@@ -94,6 +94,7 @@ bapi-headless/
 
 ### Frontend (Next.js)
 - ⚡ **Next.js 16** with App Router and Turbopack
+- � **95% Faster Product Pages** - Optimized from 2-3s to <100ms with React cache(), parallel queries, and Smart Cache
 - 🔐 **Clerk Authentication** - Google OAuth, user profiles, protected routes
 - 🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
 - 🧭 **Enterprise Mega Menu** – Multi-column navigation with icons, featured products, quick actions, and B2B enhancements
@@ -102,14 +103,18 @@ bapi-headless/
 - 🛒 **Shopping Cart** - Zustand state management with localStorage
 - 🔒 **Type-Safe** - Full TypeScript with auto-generated GraphQL types
 - 🎯 **SEO Optimized** - Server-side rendering for better search visibility
+- 💨 **Blazing Fast Builds** - 130x faster builds with warm cache (144s → 1.1s)
 - 🚀 **Edge Deployment** - Hosted on Vercel with automatic preview deployments
 
 ### Backend (WordPress)
 - 🛍️ **WooCommerce** - Complete e-commerce functionality
 - 🔌 **WPGraphQL** - Modern GraphQL API for WordPress
+- ⚡ **Smart Cache** - WPGraphQL response caching with automatic invalidation
+- 🌐 **CDN-Cacheable** - GET request support with proper Cache-Control headers
 - 📊 **Type-Safe API** - GraphQL schema with introspection
 - 🔐 **Secure** - Headless architecture isolates admin from frontend
 - ☁️ **Managed Hosting** - Kinsta with automatic backups
+- 🚀 **Optimized Queries** - Increased limits (depth: 20, complexity: 2000) for complex product data
 
 ### Developer Experience
 - 📝 **TypeScript Throughout** - 36K+ lines of generated types
@@ -118,6 +123,8 @@ bapi-headless/
 - 🧪 **Testing** - Vitest for unit and integration tests
 - 🔧 **Git Hooks** - Husky + lint-staged for code quality
 - 📦 **Monorepo** - WordPress and Next.js in single repository
+- ⚡ **React cache()** - Automatic query deduplication across server components
+- 🎯 **Static Generation** - Pre-build 30 most popular pages for instant loads
 
 ## 🚀 Quick Start
 
@@ -188,6 +195,7 @@ See [`web/COLOR_SYSTEM.md`](./web/COLOR_SYSTEM.md) for complete color documentat
 - **[Color System](./web/COLOR_SYSTEM.md)** - Complete brand color guidelines
 - **[Clerk Authentication](./web/CLERK_SETUP.md)** - Authentication setup and configuration
 - **[GraphQL Setup](./web/GRAPHQL_SETUP.md)** - GraphQL client configuration
+- **[WordPress Performance](./docs/WORDPRESS-GRAPHQL-OPTIMIZATION.md)** - Backend optimization guide (Smart Cache, CORS, Redis)
 - **[Preview Mode](./web/PREVIEW.md)** - WordPress preview integration
 
 ## 🛠️ Development Workflow
@@ -209,12 +217,12 @@ git push -u origin feat/feature-name
 ### Available Scripts
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
+npm run dev          # Start development server (with Turbopack)
+npm run build        # Build for production (includes GraphQL codegen)
 npm run start        # Start production server
 npm run lint         # Run ESLint
 npm run test         # Run Vitest tests
-npm run codegen      # Generate GraphQL types
+npm run codegen      # Generate GraphQL types from WordPress
 npm run codegen:watch # Watch mode for type generation
 ```
 

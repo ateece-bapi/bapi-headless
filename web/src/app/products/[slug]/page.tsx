@@ -7,7 +7,9 @@ import {
   getProductPrice, 
   getProductStockStatus,
   getProductCategory,
-  getProductsByCategory 
+  getProductsByCategory,
+  getProducts,
+  getProductCategories
 } from '@/lib/graphql';
 import type { 
   GetProductBySlugQuery,
@@ -110,6 +112,40 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
 
 // ISR revalidation - 1 hour for both categories and products
 export const revalidate = 3600;
+
+/**
+ * Pre-generate static pages at build time for top products and all categories
+ * This ensures the first visitor gets instant page loads for popular content
+ * ISR will handle updates after 1 hour, and on-demand rendering for long-tail products
+ */
+export async function generateStaticParams() {
+  try {
+    // Fetch top 10 products (most critical for first-visitor experience)
+    // Keep this conservative to avoid build timeouts
+    const productsData = await getProducts(10);
+    const productSlugs = productsData.products?.nodes
+      ?.filter(p => p?.slug)
+      .map(p => ({ slug: p.slug })) || [];
+
+    // Fetch main categories (high-value landing pages)
+    // Limit to 20 to avoid build timeouts
+    const categoriesData = await getProductCategories(20);
+    const categorySlugs = categoriesData.productCategories?.nodes
+      ?.filter(c => c?.slug)
+      .map(c => ({ slug: c.slug })) || [];
+
+    // Combine products and categories for static generation
+    const allParams = [...productSlugs, ...categorySlugs];
+    
+    console.log(`[generateStaticParams] Pre-generating ${allParams.length} pages (${productSlugs.length} products + ${categorySlugs.length} categories)`);
+    
+    return allParams;
+  } catch (error) {
+    console.error('[generateStaticParams] Failed to fetch params:', error);
+    // Return empty array to continue build without static generation
+    return [];
+  }
+}
 
 export default async function ProductPage({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
   if (!process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {

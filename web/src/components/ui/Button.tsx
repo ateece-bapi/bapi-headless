@@ -1,9 +1,9 @@
 /**
  * Modern Button Component with Class Variance Authority
- * 
+ *
  * Example of using CVA for type-safe, variant-based styling.
  * Replaces the existing BapiButton with a more modern approach.
- * 
+ *
  * Usage:
  * <Button variant="primary" size="lg" onClick={...}>Click Me</Button>
  * <Button variant="accent" size="sm" fullWidth>Add to Cart</Button>
@@ -18,10 +18,10 @@ const buttonVariants = cva(
   [
     'inline-flex items-center justify-center',
     'rounded-xl font-bold',
-    'transition-all duration-normal',
+    'duration-normal transition-all',
     'focus:outline-none focus:ring-4 focus:ring-offset-2',
     'active:scale-95',
-    'disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100',
+    'disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100',
   ],
   {
     variants: {
@@ -29,17 +29,17 @@ const buttonVariants = cva(
         primary: [
           'bg-primary-600 hover:bg-primary-700',
           'text-white',
-          'shadow-lg shadow-primary-600/30 hover:shadow-xl hover:shadow-primary-600/40',
+          'shadow-primary-600/30 hover:shadow-primary-600/40 shadow-lg hover:shadow-xl',
           'focus:ring-primary-600/50',
         ],
         accent: [
           'bg-accent-500 hover:bg-accent-600',
           'text-neutral-900',
-          'shadow-lg shadow-accent-500/30 hover:shadow-xl hover:shadow-accent-500/40',
+          'shadow-accent-500/30 hover:shadow-accent-500/40 shadow-lg hover:shadow-xl',
           'focus:ring-accent-500/50',
         ],
         outline: [
-          'border-2 border-primary-600',
+          'border-primary-600 border-2',
           'text-primary-600 hover:text-white',
           'hover:bg-primary-600',
           'focus:ring-primary-600/50',
@@ -52,7 +52,7 @@ const buttonVariants = cva(
         danger: [
           'bg-error-500 hover:bg-error-600',
           'text-white',
-          'shadow-lg shadow-error-500/30 hover:shadow-xl hover:shadow-error-500/40',
+          'shadow-error-500/30 hover:shadow-error-500/40 shadow-lg hover:shadow-xl',
           'focus:ring-error-500/50',
         ],
       },
@@ -75,8 +75,7 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   /**
    * Whether the button should take up full width of its container
    */

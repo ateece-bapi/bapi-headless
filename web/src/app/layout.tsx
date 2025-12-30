@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs';
 import { TranslationProvider } from "@/components/providers/TranslationProvider";
 import "./globals.css";
@@ -7,19 +7,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ToastProvider } from "@/components/ui/Toast";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-  preload: false, // Don't preload monospace font
-});
+// Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
 
 export const metadata: Metadata = {
   title: {
@@ -67,9 +55,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body className="antialiased">
           <TranslationProvider>
             <ToastProvider>
               <Header />

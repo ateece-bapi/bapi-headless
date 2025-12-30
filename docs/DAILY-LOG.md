@@ -4,6 +4,49 @@ Track daily progress on the BAPI Headless project.
 
 ---
 
+## December 30, 2025
+
+### BAPI Brand Font & UI/UX Polish (Completed ✅)
+- **Font System Overhaul:**
+  - Removed Geist and Geist_Mono font imports from layout.tsx
+  - Implemented Roboto as the primary font family site-wide
+  - Enabled OpenType features: kerning, ligatures, contextual alternates
+  - Added smooth font rendering with antialiasing
+  - Configured hardware acceleration for smooth animations
+
+- **Color Token Fix (Critical):**
+  - Fixed Tailwind v4 `@theme inline` directive processing
+  - Moved all color tokens from `:root` to `@theme inline` block
+  - Resolved local vs production color mismatch
+  - Hardcoded BAPI brand colors in tailwind.config.js for reliability
+  - All colors now render correctly: BAPI Blue (#1479BC), BAPI Yellow (#FFC843), BAPI Gray (#97999B)
+
+- **Micro-interactions Implementation:**
+  - Added smooth transitions for all interactive elements (200ms ease-out)
+  - Implemented hover effects: lift (translateY -2px), scale (1.02x)
+  - Created focus glow with BAPI Blue outline (2px solid)
+  - Added utility classes: `.hover-lift`, `.hover-scale`, `.transition-colors-smooth`
+  - Global transitions for color, background, border, opacity, and transform
+  - Smooth opacity transitions for links on hover
+
+- **Design Token Documentation:**
+  - Created comprehensive `DESIGN_TOKENS.md` documentation
+  - Documented complete color system (primary, accent, neutral, semantic)
+  - Typography system with Roboto font family
+  - Animation durations and easing curves
+  - Z-index scale and layout tokens
+  - Micro-interaction utilities and usage examples
+  - Accessibility guidelines and WCAG compliance notes
+
+- **Updated Project Documentation:**
+  - Updated TODO.md with completed font/UI polish tasks
+  - Added this entry to DAILY-LOG.md
+  - Marked all font and micro-interaction tasks as complete
+
+**Impact:** Site now has consistent BAPI branding with polished micro-interactions matching production quality.
+
+---
+
 ## November 21, 2025
 
 ### BAPI Brand Color System (Completed ✅)

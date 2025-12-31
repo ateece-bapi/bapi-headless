@@ -121,32 +121,24 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
 export const revalidate = 3600;
 
 /**
- * Pre-generate static pages at build time for top products and all categories
- * Limit to 5 products to avoid build timeouts with deferred queries
- * ISR will handle remaining products on-demand with 1-hour revalidation
+ * Pre-generate static pages at build time for top products ONLY
+ * Categories render on-demand with ISR (faster builds, better performance)
+ * 
+ * Strategy: Only pre-render high-value product pages for SEO
+ * Categories get cached on first visit and revalidate every hour
  */
 export async function generateStaticParams() {
   try {
-    // Fetch only top 5 products to avoid build timeouts
-    // Deferred queries make build slower, so keep this minimal
+    // Only pre-render top 5 product detail pages
+    // Categories are skipped to avoid 60s+ build timeouts
     const productsData = await getProducts(5);
     const productSlugs = productsData.products?.nodes
       ?.filter(p => p?.slug)
       .map(p => ({ slug: p.slug })) || [];
 
-    // Fetch main categories (faster, no deferred queries)
-    // Limit to 20 to avoid build timeouts
-    const categoriesData = await getProductCategories(20);
-    const categorySlugs = categoriesData.productCategories?.nodes
-      ?.filter(c => c?.slug)
-      .map(c => ({ slug: c.slug })) || [];
-
-    // Combine products and categories for static generation
-    const allParams = [...productSlugs, ...categorySlugs];
+    console.log(`[generateStaticParams] Pre-generating ${productSlugs.length} product pages (categories on-demand)`);
     
-    console.log(`[generateStaticParams] Pre-generating ${allParams.length} pages (${productSlugs.length} products + ${categorySlugs.length} categories)`);
-    
-    return allParams;
+    return productSlugs;
   } catch (error) {
     console.error('[generateStaticParams] Failed to fetch params:', error);
     // Return empty array to continue build without static generation

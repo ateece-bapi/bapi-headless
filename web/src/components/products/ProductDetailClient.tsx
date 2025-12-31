@@ -44,22 +44,27 @@ export interface ProductForClient {
   description?: string | null;
 }
 
+export interface ProductDetailClientProps {
+  product: ProductForClient;
+  productId?: string;
+  useCart?: typeof defaultUseCart;
+  useCartDrawer?: typeof defaultUseCartDrawer;
+}
+
 /**
  * Product detail component for displaying product info, variations, and cart actions.
  *
  * @param product Product data to display
+ * @param productId Database ID for fetching deferred data
  * @param useCart Optional custom cart hook
  * @param useCartDrawer Optional custom cart drawer hook
  */
 export default function ProductDetailClient({
   product,
+  productId,
   useCart = defaultUseCart,
   useCartDrawer = defaultUseCartDrawer,
-}: {
-  product: ProductForClient;
-  useCart?: typeof defaultUseCart;
-  useCartDrawer?: typeof defaultUseCartDrawer;
-}) {
+}: ProductDetailClientProps) {
   // Runtime prop validation for critical fields
   if (!product?.id || !product?.name || product?.price == null) {
     return (

@@ -28,6 +28,9 @@ export {
   isProductOnSale,
 } from './types';
 
+// Transforms
+export { transformProductForClient } from './transforms';
+
 // Type exports
 export type {
   SimpleProduct,

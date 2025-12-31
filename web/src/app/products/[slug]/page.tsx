@@ -171,8 +171,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
   
   // Check if it's a category
   if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
-    // Fetch products for this category
-    const productsData = await getProductsByCategory(slug, 50);
+    // Fetch products for this category (10 products for better performance)
+    const productsData = await getProductsByCategory(slug, 10);
     
     return (
       <CategoryPage 

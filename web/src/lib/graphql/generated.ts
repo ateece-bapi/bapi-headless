@@ -38628,7 +38628,7 @@ export const GetProductCategoryDocument = gql`
 }
     `;
 export const GetProductsByCategoryDocument = gql`
-    query GetProductsByCategory($categorySlug: String!, $first: Int = 50, $after: String) {
+    query GetProductsByCategory($categorySlug: String!, $first: Int = 10, $after: String) {
   products(where: {category: $categorySlug}, first: $first, after: $after) {
     pageInfo {
       hasNextPage

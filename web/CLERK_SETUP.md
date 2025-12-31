@@ -93,15 +93,46 @@ Configure in Clerk Dashboard → Customization:
 
 ## Production Deployment
 
-### Vercel
-1. Add environment variables in Vercel dashboard
-2. Use production Clerk keys (start with `pk_live_` and `sk_live_`)
-3. Deploy - Clerk will work automatically
+### ⚠️ IMPORTANT: Development vs Production Keys
 
-### Clerk Dashboard
-Update these in production:
-- **Allowed Origins**: Add your production URL
+**Development/Test Keys** (`pk_test_`, `sk_test_`):
+- ✅ Safe for local development
+- ✅ Safe for staging/preview environments
+- ❌ **NOT FOR PRODUCTION** - Clerk will show console warnings
+- Limited to development domains
+
+**Production Keys** (`pk_live_`, `sk_live_`):
+- Required for production domains
+- No console warnings
+- Higher rate limits
+- Production-grade security
+
+### Current Status (Dec 31, 2025)
+- **Staging Site** (bapi-headless.vercel.app): Using test keys (intentional)
+- Console warning is expected and harmless for staging
+- Production deployment will require live keys
+
+### Vercel Deployment Steps
+
+#### For Staging/Preview Environments:
+1. Add environment variables in Vercel dashboard
+2. Use test keys (`pk_test_`, `sk_test_`) - acceptable for non-production
+3. Deploy - expect console warning (can be ignored)
+
+#### For Production Environment:
+1. Create production instance in Clerk Dashboard
+2. Get production keys (`pk_live_`, `sk_live_`)
+3. Add to Vercel environment variables (Production only)
+4. Set allowed origins to production domain
+5. Deploy - no warnings
+
+### Clerk Dashboard Production Setup
+Update these when moving to production:
+- **Instance**: Create separate production instance
+- **Allowed Origins**: Add your production URL(s)
+- **Allowed Redirect URLs**: Configure post-auth redirects
 - **Webhook Endpoints**: If using webhooks for user sync
+- **Email/SMS Settings**: Configure production providers
 
 ## Security
 

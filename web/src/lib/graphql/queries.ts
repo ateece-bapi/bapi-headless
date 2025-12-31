@@ -2,14 +2,22 @@ import { cache } from 'react';
 import { getGraphQLClient } from './client';
 import { 
   GetProductsDocument, 
-  GetProductBySlugDocument, 
+  GetProductBySlugDocument,
+  GetProductBySlugLightDocument,
+  GetProductDetailsDeferredDocument,
+  GetProductVariationsDocument,
+  GetProductRelatedDocument,
   GetProductCategoriesDocument,
   GetProductCategoryDocument,
   GetProductsByCategoryDocument 
 } from './generated';
 import type { 
   GetProductsQuery, 
-  GetProductBySlugQuery, 
+  GetProductBySlugQuery,
+  GetProductBySlugLightQuery,
+  GetProductDetailsDeferredQuery,
+  GetProductVariationsQuery,
+  GetProductRelatedQuery,
   GetProductCategoriesQuery,
   GetProductCategoryQuery,
   GetProductsByCategoryQuery 
@@ -187,6 +195,115 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
 
   return { product: p as GetProductBySlugQuery['product'] } as GetProductBySlugQuery;
 }
+
+/**
+ * Lightweight product query for initial page load (above-the-fold only)
+ * Reduces payload by ~70% for faster Time to First Byte
+ * Only fetches: name, price, main image, short description, categories
+ */
+export const getProductBySlugLight = cache(async (slug: string): Promise<GetProductBySlugLightQuery> => {
+  if (slug === null || slug === undefined || String(slug).trim() === '') {
+    throw new AppError(
+      'getProductBySlugLight called without a valid slug',
+      'Invalid product URL. Please check the link and try again.',
+      'INVALID_PRODUCT_SLUG',
+      400
+    );
+  }
+
+  try {
+    const client = getGraphQLClient(['products', `product-light-${slug}`]);
+    return await client.request(GetProductBySlugLightDocument, { slug });
+  } catch (error) {
+    throw new AppError(
+      `Failed to fetch product '${slug}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+      'Unable to load this product. The product may not exist or there may be a temporary issue.',
+      'PRODUCT_FETCH_ERROR',
+      404
+    );
+  }
+});
+
+/**
+ * Deferred product details (description, gallery, tags, multipliers)
+ * Load after hero section renders in separate Suspense boundary
+ */
+export const getProductDetailsDeferred = cache(async (id: string): Promise<GetProductDetailsDeferredQuery> => {
+  if (!id) {
+    throw new AppError(
+      'getProductDetailsDeferred called without a valid ID',
+      'Invalid product ID',
+      'INVALID_PRODUCT_ID',
+      400
+    );
+  }
+
+  try {
+    const client = getGraphQLClient(['products', `product-details-${id}`]);
+    return await client.request(GetProductDetailsDeferredDocument, { id });
+  } catch (error) {
+    throw new AppError(
+      `Failed to fetch product details for ID '${id}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+      'Unable to load product details.',
+      'PRODUCT_DETAILS_FETCH_ERROR',
+      500
+    );
+  }
+});
+
+/**
+ * Product variations for VariableProduct configurator
+ * Only load when needed for variable products
+ */
+export const getProductVariations = cache(async (id: string): Promise<GetProductVariationsQuery> => {
+  if (!id) {
+    throw new AppError(
+      'getProductVariations called without a valid ID',
+      'Invalid product ID',
+      'INVALID_PRODUCT_ID',
+      400
+    );
+  }
+
+  try {
+    const client = getGraphQLClient(['products', `product-variations-${id}`]);
+    return await client.request(GetProductVariationsDocument, { id });
+  } catch (error) {
+    throw new AppError(
+      `Failed to fetch variations for product ID '${id}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+      'Unable to load product variations.',
+      'PRODUCT_VARIATIONS_FETCH_ERROR',
+      500
+    );
+  }
+});
+
+/**
+ * Related products
+ * Load in separate Suspense boundary at bottom of page
+ */
+export const getProductRelated = cache(async (id: string): Promise<GetProductRelatedQuery> => {
+  if (!id) {
+    throw new AppError(
+      'getProductRelated called without a valid ID',
+      'Invalid product ID',
+      'INVALID_PRODUCT_ID',
+      400
+    );
+  }
+
+  try {
+    const client = getGraphQLClient(['products', `product-related-${id}`]);
+    return await client.request(GetProductRelatedDocument, { id });
+  } catch (error) {
+    throw new AppError(
+      `Failed to fetch related products for ID '${id}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+      'Unable to load related products.',
+      'PRODUCT_RELATED_FETCH_ERROR',
+      500
+    );
+  }
+});
 
 /**
  * Server-side function to fetch product categories

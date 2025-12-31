@@ -10,7 +10,11 @@ export { graphqlClient, getGraphQLClient, clientGraphQLClient } from './client';
 // Query functions
 export { 
   getProducts, 
-  getProductBySlug, 
+  getProductBySlug,
+  getProductBySlugLight,
+  getProductDetailsDeferred,
+  getProductVariations,
+  getProductRelated,
   getProductCategories,
   getProductCategory,
   getProductsByCategory 
@@ -46,6 +50,14 @@ export type {
   GetProductsQueryVariables,
   GetProductBySlugQuery,
   GetProductBySlugQueryVariables,
+  GetProductBySlugLightQuery,
+  GetProductBySlugLightQueryVariables,
+  GetProductDetailsDeferredQuery,
+  GetProductDetailsDeferredQueryVariables,
+  GetProductVariationsQuery,
+  GetProductVariationsQueryVariables,
+  GetProductRelatedQuery,
+  GetProductRelatedQueryVariables,
   GetProductCategoriesQuery,
   GetProductCategoriesQueryVariables,
   GetProductCategoryQuery,

@@ -1,15 +1,16 @@
-import { getProductBySlug } from '@/lib/graphql';
+import { getProductDetailsDeferred } from '@/lib/graphql';
 
 type ProductTabsAsyncProps = {
-  slug: string;
+  productId: string;
 };
 
-export async function ProductTabsAsync({ slug }: ProductTabsAsyncProps) {
-  // Re-fetch product (will be cached by React cache())
-  const data = await getProductBySlug(slug);
-  const product = data.product;
-  
-  if (!product?.description) return null;
+export async function ProductTabsAsync({ productId }: ProductTabsAsyncProps) {
+  try {
+    // Fetch only deferred details (description, tags, etc.)
+    const data = await getProductDetailsDeferred(productId);
+    const product = data.product;
+    
+    if (!product?.description) return null;
   
   return (
     <div className="container mx-auto px-4 py-8">
@@ -33,6 +34,10 @@ export async function ProductTabsAsync({ slug }: ProductTabsAsyncProps) {
       />
     </div>
   );
+  } catch (error) {
+    console.error('[ProductTabsAsync] Error fetching product details:', error);
+    return null;
+  }
 }
 
 export function ProductTabsSkeleton() {

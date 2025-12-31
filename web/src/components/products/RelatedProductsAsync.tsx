@@ -1,17 +1,18 @@
-import { getProductBySlug } from '@/lib/graphql';
+import { getProductRelated } from '@/lib/graphql';
 import Link from 'next/link';
 import Image from 'next/image';
 
 type RelatedProductsAsyncProps = {
-  slug: string;
+  productId: string;
 };
 
-export async function RelatedProductsAsync({ slug }: RelatedProductsAsyncProps) {
-  // Re-fetch product (will be cached)
-  const data = await getProductBySlug(slug);
-  const relatedProducts = (data.product as any)?.relatedProducts || [];
-  
-  if (relatedProducts.length === 0) return null;
+export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncProps) {
+  try {
+    // Fetch only related products
+    const data = await getProductRelated(productId);
+    const relatedProducts = data.product?.related?.nodes || [];
+    
+    if (relatedProducts.length === 0) return null;
   
   return (
     <section className="container mx-auto px-4 py-12 bg-gray-50">
@@ -42,6 +43,10 @@ export async function RelatedProductsAsync({ slug }: RelatedProductsAsyncProps) 
       </div>
     </section>
   );
+  } catch (error) {
+    console.error('[RelatedProductsAsync] Error fetching related products:', error);
+    return null; // Silently fail during build
+  }
 }
 
 export function RelatedProductsSkeleton() {

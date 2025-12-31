@@ -11,3 +11,8 @@ export { default as ProductDetailClient } from './ProductPage/ProductDetailClien
 export { useProductAttributes } from './useProductAttributes';
 export { ProductCard } from './ProductCard';
 export { CategoryPage } from './CategoryPage';
+
+// New streaming components
+export { ProductHeroFast } from './ProductHeroFast';
+export { ProductTabsAsync, ProductTabsSkeleton } from './ProductTabsAsync';
+export { RelatedProductsAsync, RelatedProductsSkeleton } from './RelatedProductsAsync';

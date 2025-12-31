@@ -13,11 +13,12 @@ import { CartDrawer } from "@/components/cart";
 
 interface ProductDetailClientProps {
   product: any;
+  productId?: string;
   useCart?: any;
   useCartDrawer?: any;
 }
 
-export default function ProductDetailClient({ product, useCart, useCartDrawer }: ProductDetailClientProps) {
+export default function ProductDetailClient({ product, productId, useCart, useCartDrawer }: ProductDetailClientProps) {
 
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
 

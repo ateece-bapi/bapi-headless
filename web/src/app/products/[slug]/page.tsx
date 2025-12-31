@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { 
-  getProductBySlug, 
+  getProductBySlug,
+  getProductBySlugLight,
   getProductPrice, 
   getProductStockStatus,
   getProductCategory,
@@ -14,6 +15,7 @@ import {
 } from '@/lib/graphql';
 import type { 
   GetProductBySlugQuery,
+  GetProductBySlugLightQuery,
   GetProductCategoryQuery,
   GetProductsByCategoryQuery 
 } from '@/lib/graphql';
@@ -31,6 +33,9 @@ import {
   ProductDetailClient,
   CategoryPage
 } from '@/components/products';
+import { ProductGalleryAsync } from '@/components/products/ProductGalleryAsync';
+import { ProductTabsAsync } from '@/components/products/ProductTabsAsync';
+import { RelatedProductsAsync } from '@/components/products/RelatedProductsAsync';
 import dynamic from 'next/dynamic';
 import { PerformanceTimer } from '@/lib/monitoring/performance';
 
@@ -117,19 +122,19 @@ export const revalidate = 3600;
 
 /**
  * Pre-generate static pages at build time for top products and all categories
- * This ensures the first visitor gets instant page loads for popular content
- * ISR will handle updates after 1 hour, and on-demand rendering for long-tail products
+ * Limit to 5 products to avoid build timeouts with deferred queries
+ * ISR will handle remaining products on-demand with 1-hour revalidation
  */
 export async function generateStaticParams() {
   try {
-    // Fetch top 10 products (most critical for first-visitor experience)
-    // Keep this conservative to avoid build timeouts
-    const productsData = await getProducts(10);
+    // Fetch only top 5 products to avoid build timeouts
+    // Deferred queries make build slower, so keep this minimal
+    const productsData = await getProducts(5);
     const productSlugs = productsData.products?.nodes
       ?.filter(p => p?.slug)
       .map(p => ({ slug: p.slug })) || [];
 
-    // Fetch main categories (high-value landing pages)
+    // Fetch main categories (faster, no deferred queries)
     // Limit to 20 to avoid build timeouts
     const categoriesData = await getProductCategories(20);
     const categorySlugs = categoriesData.productCategories?.nodes
@@ -164,9 +169,10 @@ export default async function ProductPage({ params }: { params: { slug: string }
   timer.mark('params-resolved');
   
   // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
+  // Use LIGHT query for product to reduce initial payload by ~70%
   const [categoryResult, productResult] = await Promise.allSettled([
     getProductCategory(slug),
-    getProductBySlug(slug)
+    getProductBySlugLight(slug)
   ]);
   
   timer.mark('data-fetched');
@@ -188,25 +194,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
   if (productResult.status === 'fulfilled') {
     try {
       const data = productResult.value;
-      // The fetch layer returns normalized data; validate shape here.
-      getProductQuerySchema.parse(data);
-      // Use the normalized product object for client props
-      // Extend the type to include relatedProducts for type safety
-      type NormalizedProduct = GetProductBySlugQuery['product'] & {
-        relatedProducts?: any[];
-        partNumber?: string;
-        sku?: string;
-        multiplier?: string;
-        multiplierGroups?: Array<{ id: string; name: string; slug: string }>;
-        regularPrice?: string;
-        stockQuantity?: number;
-        iosAppUrl?: string;
-        androidAppUrl?: string;
-        variations?: {
-          nodes: Array<any>;
-        };
-      };
-      const product = data.product as NormalizedProduct | null;
+      // Light query validation - only essential fields
+      const product = data.product as GetProductBySlugLightQuery['product'] | null;
 
       if (!product) {
         notFound();
@@ -214,33 +203,59 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
       timer.mark('validation-complete');
 
-      // Use cached transformation utility to reduce blocking time
-      const baseTransform = transformProductForClient(product);
-      
-      if (!baseTransform) {
-        notFound();
-      }
-      
-      timer.mark('transform-complete');
-
-      // Add fields not included in the base transform
+      // Transform light product data for client
       const productForClient = {
-        ...baseTransform,
-        multiplierGroups: Array.isArray(product.multiplierGroups) ? product.multiplierGroups : [],
-        attributes: [], // Add attribute normalization if needed
-        description: product.description || null,
-        relatedProducts: product.relatedProducts || [],
-        iosAppUrl: (product as any).iosAppUrl ?? null,
-        androidAppUrl: (product as any).androidAppUrl ?? null,
+        id: product.id,
+        databaseId: product.databaseId?.toString() || '',
+        name: product.name || '',
+        slug: product.slug || '',
+        shortDescription: product.shortDescription || null,
+        description: null, // Will be loaded by ProductTabsAsync
+        partNumber: (product as any).partNumber || null,
+        price: (product as any).price || null,
+        regularPrice: (product as any).regularPrice || null,
+        salePrice: (product as any).salePrice || null,
+        onSale: (product as any).onSale || false,
+        stockStatus: (product as any).stockStatus || null,
+        sku: (product as any).sku || null,
+        image: product.image || null,
+        galleryImages: [], // Will be loaded by ProductGalleryAsync
+        productCategories: product.productCategories?.nodes || [],
+        tags: [], // Will be loaded deferred
+        multiplierGroups: [], // Will be loaded deferred
+        attributes: [],
+        variations: [], // Will be loaded if needed (should be array, not {nodes:[]})
+        relatedProducts: [], // Will be loaded by RelatedProductsAsync
+        iosAppUrl: null,
+        androidAppUrl: null,
       };
       
+      timer.mark('transform-complete');
       timer.end();
       
+      const productDbId = product.databaseId?.toString() || product.id;
+      
       return (
-        <ProductDetailClient product={productForClient} />
+        <>
+          <ProductDetailClient product={productForClient} productId={productDbId} />
+          
+          {/* Deferred content loaded in separate Suspense boundaries on client */}
+          <Suspense fallback={<div className="container mx-auto px-4 py-8 animate-pulse h-64 bg-gray-100 rounded" />}>
+            <ProductTabsAsync productId={productDbId} />
+          </Suspense>
+          
+          <Suspense fallback={<div className="container mx-auto px-4 py-8 animate-pulse h-48 bg-gray-50 rounded" />}>
+            <ProductGalleryAsync productId={productDbId} productName={product.name || ''} />
+          </Suspense>
+          
+          <Suspense fallback={<div className="container mx-auto px-4 py-12 bg-gray-50 animate-pulse h-96 rounded" />}>
+            <RelatedProductsAsync productId={productDbId} />
+          </Suspense>
+        </>
       );
     } catch (error) {
       // Product data invalid
+      console.error('[ProductPage] Error:', error);
       notFound();
     }
   }

@@ -9,7 +9,8 @@ import {
   getProductCategory,
   getProductsByCategory,
   getProducts,
-  getProductCategories
+  getProductCategories,
+  transformProductForClient
 } from '@/lib/graphql';
 import type { 
   GetProductBySlugQuery,
@@ -31,6 +32,7 @@ import {
   CategoryPage
 } from '@/components/products';
 import dynamic from 'next/dynamic';
+import { PerformanceTimer } from '@/lib/monitoring/performance';
 
 function stripHtml(html?: string | null) {
   if (!html) return '';
@@ -148,6 +150,8 @@ export async function generateStaticParams() {
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
+  const timer = new PerformanceTimer('ProductPage');
+  
   if (!process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
     notFound();
   }
@@ -157,11 +161,15 @@ export default async function ProductPage({ params }: { params: { slug: string }
   }
   const slug = String(resolvedParams.slug);
   
+  timer.mark('params-resolved');
+  
   // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
   const [categoryResult, productResult] = await Promise.allSettled([
     getProductCategory(slug),
     getProductBySlug(slug)
   ]);
+  
+  timer.mark('data-fetched');
   
   // Check if it's a category
   if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
@@ -204,57 +212,29 @@ export default async function ProductPage({ params }: { params: { slug: string }
         notFound();
       }
 
-      // Minimal normalization for client
+      timer.mark('validation-complete');
+
+      // Use cached transformation utility to reduce blocking time
+      const baseTransform = transformProductForClient(product);
+      
+      if (!baseTransform) {
+        notFound();
+      }
+      
+      timer.mark('transform-complete');
+
+      // Add fields not included in the base transform
       const productForClient = {
-        id: product.id,
-        databaseId: product.databaseId ?? 0,
-        name: product.name ?? 'Product',
-        slug: product.slug ?? '',
-        partNumber: product.partNumber ?? '',
-        sku: product.sku ?? '',
+        ...baseTransform,
         multiplierGroups: Array.isArray(product.multiplierGroups) ? product.multiplierGroups : [],
-        price: getProductPrice(product) || '$0.00',
-        regularPrice: product.regularPrice ?? '',
-        stockStatus: getProductStockStatus(product) || null,
-        stockQuantity: product.stockQuantity ?? null,
-        productCategories: Array.isArray((product as any).productCategories?.nodes) 
-          ? (product as any).productCategories.nodes.map((cat: any) => ({
-              id: cat.id,
-              name: cat.name,
-              slug: cat.slug,
-            }))
-          : [],
-        image: product.image
-          ? { sourceUrl: product.image.sourceUrl || '', altText: product.image.altText || product.name || '' }
-          : null,
-        gallery: ((product.galleryImages?.nodes || []) as Array<{ sourceUrl?: string; altText?: string | null }>).map((node) => {
-          return { sourceUrl: node?.sourceUrl ?? '', altText: node?.altText ?? '' };
-        }),
-        variations: Array.isArray(product.variations?.nodes)
-          ? product.variations.nodes.map((v: any) => ({
-              id: v.id,
-              databaseId: v.databaseId ?? 0,
-              name: v.name ?? `${product.name ?? 'Product'} variant`,
-              price: v.price ?? null,
-              regularPrice: v.regularPrice ?? null,
-              attributes: Array.isArray(v.attributes?.nodes)
-                ? v.attributes.nodes.reduce((acc: Record<string, string>, a: any) => {
-                    if (a && a.name && a.value) acc[a.name] = a.value;
-                    return acc;
-                  }, {})
-                : {},
-              image: v.image ? { sourceUrl: v.image.sourceUrl ?? '', altText: v.image.altText ?? '' } : null,
-              partNumber: v.partNumber ?? null,
-              sku: v.sku ?? null,
-            }) )
-          : [],
         attributes: [], // Add attribute normalization if needed
-        shortDescription: product.shortDescription || null,
         description: product.description || null,
         relatedProducts: product.relatedProducts || [],
         iosAppUrl: (product as any).iosAppUrl ?? null,
         androidAppUrl: (product as any).androidAppUrl ?? null,
       };
+      
+      timer.end();
       
       return (
         <ProductDetailClient product={productForClient} />

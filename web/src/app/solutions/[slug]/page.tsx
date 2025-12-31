@@ -205,8 +205,9 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const solution = solutions[params.slug as keyof typeof solutions];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const solution = solutions[slug as keyof typeof solutions];
   
   if (!solution) {
     return {
@@ -220,8 +221,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function SolutionPage({ params }: { params: { slug: string } }) {
-  const solution = solutions[params.slug as keyof typeof solutions];
+export default async function SolutionPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const solution = solutions[slug as keyof typeof solutions];
 
   if (!solution) {
     notFound();

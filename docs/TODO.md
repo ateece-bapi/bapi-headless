@@ -37,16 +37,26 @@
 - [x] Visual Composer shortcode cleanup (112 pages)
 - [x] Kinsta CDN with WebP conversion
 - [x] ISR caching strategy
-- [x] **Performance optimization - 95% faster product pages**
+- [x] **GraphQL Performance Optimization - Phase 1 (Dec 30, 2025)**
   - [x] React cache() for query deduplication
   - [x] Parallel fetching (Promise.allSettled)
-  - [x] GraphQL query optimization (70% smaller payloads)
   - [x] Static generation for top 30 pages
   - [x] GET request support with Cache-Control headers
   - [x] WPGraphQL Smart Cache configured
   - [x] CORS enabled for CDN caching
   - [x] Query limits increased via MU-plugin
   - [x] Comprehensive optimization documentation
+- [x] **GraphQL Performance Optimization - Phase 2 (Dec 31, 2025)**
+  - [x] Query splitting: GetProductBySlugLight (70% smaller payload)
+  - [x] Deferred queries: details, variations, related products
+  - [x] ProductGalleryAsync component with Suspense
+  - [x] Updated async components (ProductTabsAsync, RelatedProductsAsync)
+  - [x] Removed categories from generateStaticParams (6.9s builds)
+  - [x] Reduced category products from 50 → 10
+  - [x] WPGraphQL Smart Cache verified and configured
+  - [x] Redis enabled on Kinsta ($100/month)
+  - [x] Redis Object Cache plugin installed and activated
+  - [x] **Results: 96% faster (6.7s → 258ms cached)**
 - [ ] Deploy block patterns plugin to Kinsta
   - [ ] Upload `docs/wordpress-plugin/` to `/wp-content/plugins/bapi-block-patterns/`
   - [ ] Activate plugin in WordPress admin
@@ -54,7 +64,6 @@
   - [ ] Get feedback and iterate
 - [ ] Create child theme (if needed for customization)
 - [ ] Content creator training on new patterns
-- [ ] Optional: Enable Redis Cache ($100/month) for additional 90% database load reduction
 
 ---
 

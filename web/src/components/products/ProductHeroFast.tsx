@@ -14,7 +14,7 @@ export function ProductHeroFast({ product }: ProductHeroProps) {
       <div className="grid md:grid-cols-2 gap-12">
         {/* Image */}
         <div className="relative aspect-square bg-gray-50 rounded-2xl overflow-hidden">
-          {product.image ? (
+          {product.image?.sourceUrl ? (
             <Image
               src={product.image.sourceUrl}
               alt={product.image.altText || product.name || 'Product image'}

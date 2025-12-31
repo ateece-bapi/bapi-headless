@@ -23,11 +23,11 @@ export async function RelatedProductsAsync({ slug }: RelatedProductsAsyncProps) 
             href={`/products/${product.slug}`}
             className="block group bg-white rounded-xl p-4 hover:shadow-lg transition-shadow"
           >
-            {product.image && (
+            {product.image?.sourceUrl && (
               <div className="relative aspect-square mb-3">
                 <Image
                   src={product.image.sourceUrl}
-                  alt={product.name}
+                  alt={product.name || 'Product'}
                   fill
                   className="object-contain group-hover:scale-105 transition-transform"
                   sizes="(min-width: 768px) 25vw, 50vw"

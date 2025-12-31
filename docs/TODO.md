@@ -139,11 +139,25 @@
 - [ ] Lighthouse score improvements
 
 ### Authentication & User Features
-- [ ] User dashboard
-- [ ] Order history
-- [ ] Saved products/favorites
-- [ ] Quote requests
-- [ ] Account settings
+**Clerk Infrastructure Status (Dec 31, 2025):**
+- ✅ ClerkProvider integrated in root layout
+- ✅ Middleware with route protection configured
+- ✅ SignInButton component (modal sign-in/sign-up)
+- ✅ UserButton for authenticated users
+- ✅ Public routes defined (products, home, APIs)
+
+**Missing User Features (Future Work):**
+- [ ] Protected user dashboard page (`/account`)
+- [ ] User profile management (update name, email, preferences)
+- [ ] Order history page (requires e-commerce integration)
+- [ ] Saved products/favorites (user-specific product lists)
+- [ ] Quote request system with auth
+- [ ] Role-based access control (RBAC):
+  - [ ] Customer role (default)
+  - [ ] Distributor role (special pricing access)
+  - [ ] Admin role (content/order management)
+- [ ] Auth-protected checkout flow
+- [ ] User-specific cart persistence across devices
 
 ### Cart & Checkout
 - [ ] Complete cart implementation
@@ -167,6 +181,24 @@
 
 ## 📝 Technical Debt
 
+### Test Coverage Gaps (Documented: Dec 31, 2025)
+**Current Coverage:**
+- ✅ GraphQL queries (queries.test.ts)
+- ✅ ProductDetailClient component (14 tests covering accessibility, variants, cart, edge cases)
+- ✅ Product page route (page.test.tsx)
+
+**Missing Coverage (Priority for future sprints):**
+- [ ] Header component tests (navigation, mobile menu, megamenu)
+- [ ] Footer component tests (links, layout, responsive)
+- [ ] Hero component tests (image loading, CTA interactions)
+- [ ] Cart drawer component tests (add/remove/update items, persistence)
+- [ ] Cart state management tests (Zustand store operations)
+- [ ] Form components tests (validation, error states, submission)
+- [ ] Error boundary tests (graceful failures, fallback UI)
+- [ ] Integration tests (multi-component workflows)
+- [ ] E2E tests (critical user journeys: browse → add to cart → checkout)
+
+### General Technical Debt
 - [ ] Review and optimize bundle size
 - [ ] Audit and remove unused dependencies
 - [ ] Code splitting optimization

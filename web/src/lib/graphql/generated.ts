@@ -38209,6 +38209,29 @@ export type GetProductsByCategoryQuery = { __typename?: 'RootQuery', products?: 
       | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
     > } | null | undefined };
 
+export type GetResourcesQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetResourcesQuery = { __typename?: 'RootQuery', mediaItems?: { __typename?: 'RootQueryToMediaItemConnection', pageInfo: { __typename?: 'RootQueryToMediaItemConnectionPageInfo', hasNextPage: boolean, endCursor?: string | null | undefined }, nodes: Array<{ __typename?: 'MediaItem', id: string, databaseId: number, title?: string | null | undefined, description?: string | null | undefined, caption?: string | null | undefined, altText?: string | null | undefined, mediaItemUrl?: string | null | undefined, fileSize?: number | null | undefined, mimeType?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, sourceUrl?: string | null | undefined }> } | null | undefined };
+
+export type SearchResourcesQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type SearchResourcesQuery = { __typename?: 'RootQuery', mediaItems?: { __typename?: 'RootQueryToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, databaseId: number, title?: string | null | undefined, description?: string | null | undefined, caption?: string | null | undefined, mediaItemUrl?: string | null | undefined, fileSize?: number | null | undefined, mimeType?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, sourceUrl?: string | null | undefined }> } | null | undefined };
+
+export type GetResourceBySlugQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetResourceBySlugQuery = { __typename?: 'RootQuery', mediaItem?: { __typename?: 'MediaItem', id: string, databaseId: number, title?: string | null | undefined, description?: string | null | undefined, caption?: string | null | undefined, altText?: string | null | undefined, mediaItemUrl?: string | null | undefined, fileSize?: number | null | undefined, mimeType?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, sourceUrl?: string | null | undefined, author?: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', name?: string | null | undefined } } | null | undefined } | null | undefined };
+
 export type SearchProductsQueryVariables = Exact<{
   search: Scalars['String']['input'];
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -38695,6 +38718,76 @@ export const GetProductsByCategoryDocument = gql`
   }
 }
     `;
+export const GetResourcesDocument = gql`
+    query GetResources($first: Int = 100, $after: String) {
+  mediaItems(
+    first: $first
+    after: $after
+    where: {mimeType: APPLICATION_PDF, orderby: {field: DATE, order: DESC}}
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      databaseId
+      title
+      description
+      caption
+      altText
+      mediaItemUrl
+      fileSize
+      mimeType
+      date
+      modified
+      sourceUrl
+    }
+  }
+}
+    `;
+export const SearchResourcesDocument = gql`
+    query SearchResources($search: String!, $first: Int = 50) {
+  mediaItems(first: $first, where: {mimeType: APPLICATION_PDF, search: $search}) {
+    nodes {
+      id
+      databaseId
+      title
+      description
+      caption
+      mediaItemUrl
+      fileSize
+      mimeType
+      date
+      modified
+      sourceUrl
+    }
+  }
+}
+    `;
+export const GetResourceBySlugDocument = gql`
+    query GetResourceBySlug($id: ID!) {
+  mediaItem(id: $id, idType: DATABASE_ID) {
+    id
+    databaseId
+    title
+    description
+    caption
+    altText
+    mediaItemUrl
+    fileSize
+    mimeType
+    date
+    modified
+    sourceUrl
+    author {
+      node {
+        name
+      }
+    }
+  }
+}
+    `;
 export const SearchProductsDocument = gql`
     query SearchProducts($search: String!, $first: Int = 20) {
   products(where: {search: $search, visibility: VISIBLE}, first: $first) {
@@ -38781,6 +38874,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetProductsByCategory(variables: GetProductsByCategoryQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetProductsByCategoryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductsByCategoryQuery>({ document: GetProductsByCategoryDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetProductsByCategory', 'query', variables);
+    },
+    GetResources(variables?: GetResourcesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetResourcesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetResourcesQuery>({ document: GetResourcesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetResources', 'query', variables);
+    },
+    SearchResources(variables: SearchResourcesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchResourcesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchResourcesQuery>({ document: SearchResourcesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'SearchResources', 'query', variables);
+    },
+    GetResourceBySlug(variables: GetResourceBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetResourceBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetResourceBySlugQuery>({ document: GetResourceBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetResourceBySlug', 'query', variables);
     },
     SearchProducts(variables: SearchProductsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchProductsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchProductsQuery>({ document: SearchProductsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'SearchProducts', 'query', variables);

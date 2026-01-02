@@ -1,0 +1,82 @@
+query GetApplicationNotes($first: Int = 100, $after: String) {
+  applicationNotes(
+    first: $first
+    after: $after
+    where: { orderby: { field: DATE, order: DESC } }
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      databaseId
+      title
+      content
+      excerpt
+      slug
+      date
+      modified
+      featuredImage {
+        node {
+          id
+          sourceUrl
+          altText
+          mediaDetails {
+            width
+            height
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetApplicationNoteBySlug($slug: ID!) {
+  applicationNote(id: $slug, idType: SLUG) {
+    id
+    databaseId
+    title
+    content
+    excerpt
+    slug
+    date
+    modified
+    featuredImage {
+      node {
+        id
+        sourceUrl
+        altText
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
+  }
+}
+
+query SearchApplicationNotes($search: String!, $first: Int = 50) {
+  applicationNotes(
+    first: $first
+    where: { 
+      search: $search
+      orderby: { field: DATE, order: DESC }
+    }
+  ) {
+    nodes {
+      id
+      databaseId
+      title
+      excerpt
+      slug
+      date
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { BookOpen } from 'lucide-react';
 import { ResourceList } from '@/components/resources/ResourceList';
-
-const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
 interface MediaItemNode {
   id: string;
@@ -21,6 +21,13 @@ interface GetResourcesResponse {
 }
 
 async function fetchResources(): Promise<MediaItemNode[]> {
+  const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL;
+  
+  if (!GRAPHQL_ENDPOINT) {
+    console.warn('NEXT_PUBLIC_WORDPRESS_GRAPHQL not set, returning empty resources');
+    return [];
+  }
+
   const query = `
     query GetResources {
       mediaItems(
@@ -85,7 +92,7 @@ export default async function ResourcesPage() {
       <div className="bg-linear-to-br from-primary-600 to-primary-700 text-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4">
               Technical Resources
             </h1>
             <p className="text-xl text-primary-50">
@@ -107,7 +114,7 @@ export default async function ResourcesPage() {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-accent-400 rounded-full" />
-                <span>Application Notes</span>
+                <span>Technical Catalogs</span>
               </div>
             </div>
           </div>
@@ -116,6 +123,26 @@ export default async function ResourcesPage() {
 
       {/* Resource List */}
       <div className="container mx-auto px-4 py-12">
+        {/* Application Notes CTA Card */}
+        <Link 
+          href="/application-notes"
+          className="block mb-8 p-6 bg-linear-to-br from-accent-50 to-accent-100 border-2 border-accent-200 rounded-lg hover:border-accent-300 hover:shadow-lg transition-all duration-250 group"
+        >
+          <div className="flex items-center gap-4">
+            <div className="flex-shrink-0 w-16 h-16 bg-linear-to-br from-accent-500 to-accent-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-250">
+              <BookOpen className="w-8 h-8 text-white" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-semibold text-neutral-900 mb-1 group-hover:text-accent-700 transition-colors">
+                Looking for Technical Guides?
+              </h3>
+              <p className="text-neutral-600">
+                Browse our collection of Application Notes for in-depth technical guidance, best practices, and implementation examples →
+              </p>
+            </div>
+          </div>
+        </Link>
+
         <ResourceList resources={resources} />
       </div>
     </div>

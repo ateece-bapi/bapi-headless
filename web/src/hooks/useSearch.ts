@@ -55,61 +55,17 @@ export function useSearch(options: UseSearchOptions = {}) {
     setIsLoading(true);
 
     try {
-      const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
-      
-      const response = await fetch(GRAPHQL_ENDPOINT, {
+      const response = await fetch('/api/search', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: `
-            query SearchProducts($search: String!) {
-              products(where: { search: $search, visibility: VISIBLE }, first: 8) {
-                nodes {
-                  id
-                  databaseId
-                  name
-                  slug
-                  ... on SimpleProduct {
-                    price
-                    shortDescription
-                    image {
-                      sourceUrl
-                      altText
-                    }
-                    productCategories {
-                      nodes {
-                        name
-                        slug
-                      }
-                    }
-                  }
-                  ... on VariableProduct {
-                    price
-                    shortDescription
-                    image {
-                      sourceUrl
-                      altText
-                    }
-                    productCategories {
-                      nodes {
-                        name
-                        slug
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          `,
-          variables: { search: searchQuery },
-        }),
+        body: JSON.stringify({ query: searchQuery }),
         signal: abortControllerRef.current.signal,
       });
 
       const data = await response.json();
       
-      if (data.data?.products?.nodes) {
-        setResults(data.data.products.nodes);
+      if (data.products?.nodes) {
+        setResults(data.products.nodes);
       } else {
         setResults([]);
       }

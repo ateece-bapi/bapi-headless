@@ -110,10 +110,25 @@
 - [ ] BACnet Device Lookup
 
 ### Search Functionality
-- [ ] Global search implementation
-- [ ] Search results page
-- [ ] Product search filters
-- [ ] Search analytics
+**Phase 1 - Basic Search (In Progress - Jan 2, 2026):**
+- [ ] Search input component in header
+- [ ] Dedicated `/search` results page
+- [ ] GraphQL search query with WPGraphQL `search` parameter
+- [ ] Product grid for search results
+- [ ] Loading and empty states
+- [ ] Client-side category filter
+- [ ] URL query params for search state
+- [ ] Mobile-responsive search UI
+
+**Phase 2 - Enhanced Search (Future):**
+- [ ] Autocomplete/instant search dropdown
+- [ ] Advanced filters (price range, specifications, attributes)
+- [ ] Faceted search navigation
+- [ ] Search analytics tracking
+- [ ] "Did you mean?" suggestions
+- [ ] Recent searches
+- [ ] Popular products in search dropdown
+- [ ] Integration with Algolia or Meilisearch (optional)
 
 ### Performance & SEO
 - [x] **Major performance optimization - 95% faster (Dec 29, 2025)**

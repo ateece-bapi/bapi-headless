@@ -89,13 +89,18 @@ export default async function ResourcesPage() {
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <div className="bg-linear-to-br from-primary-600 to-primary-700 text-white py-16">
-        <div className="container mx-auto px-4">
+      <div className="relative bg-linear-to-br from-primary-600 to-primary-700 text-white py-20 overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-400 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2" />
+        </div>
+        <div className="relative container mx-auto px-4">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
               Technical Resources
             </h1>
-            <p className="text-xl text-primary-50">
+            <p className="text-xl text-primary-50 mb-8 leading-relaxed">
               Access comprehensive documentation, installation guides, and technical specifications
               for BAPI building automation products.
             </p>
@@ -126,14 +131,14 @@ export default async function ResourcesPage() {
         {/* Application Notes CTA Card */}
         <Link 
           href="/application-notes"
-          className="block mb-8 p-6 bg-linear-to-br from-accent-50 to-accent-100 border-2 border-accent-200 rounded-lg hover:border-accent-300 hover:shadow-lg transition-all duration-250 group"
+          className="block mb-8 p-6 bg-linear-to-br from-primary-50 to-blue-50 border-2 border-primary-200 rounded-lg hover:border-primary-300 hover:shadow-lg transition-all duration-250 group"
         >
           <div className="flex items-center gap-4">
-            <div className="flex-shrink-0 w-16 h-16 bg-linear-to-br from-accent-500 to-accent-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-250">
+            <div className="shrink-0 w-16 h-16 bg-linear-to-br from-primary-600 to-primary-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-250">
               <BookOpen className="w-8 h-8 text-white" />
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-neutral-900 mb-1 group-hover:text-accent-700 transition-colors">
+              <h3 className="text-xl font-semibold text-neutral-900 mb-1 group-hover:text-primary-700 transition-colors">
                 Looking for Technical Guides?
               </h3>
               <p className="text-neutral-600">

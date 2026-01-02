@@ -110,6 +110,665 @@ export type AddToCartPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>;
 };
 
+/** The applicationNote type */
+export type ApplicationNote = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
+  __typename?: 'ApplicationNote';
+  /**
+   * The ancestors of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  ancestors?: Maybe<ApplicationNoteToApplicationNoteConnection>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  applicationNoteId: Scalars['Int']['output'];
+  /** Connection between the ApplicationNote type and the category type */
+  categories?: Maybe<ApplicationNoteToCategoryConnection>;
+  /** The content of the post. */
+  content?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The name of the Content Type the node belongs to */
+  contentTypeName: Scalars['String']['output'];
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int']['output'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']['output']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']['output']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']['output']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** The excerpt of the post. */
+  excerpt?: Maybe<Scalars['String']['output']>;
+  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+  /** The database identifier for the featured image node assigned to the content node */
+  featuredImageDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Globally unique ID of the featured image assigned to the node */
+  featuredImageId?: Maybe<Scalars['ID']['output']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the application_note object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
+  /** The globally unique identifier of the application_note object. */
+  id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** True if the node is a revision of another node */
+  isRevision?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']['output']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']['output']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /**
+   * The parent of the content node.
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  parent?: Maybe<ApplicationNoteToParentConnectionEdge>;
+  /** The password for the application_note object. */
+  password?: Maybe<Scalars['String']['output']>;
+  /** Connection between the applicationNote type and the applicationNote type */
+  preview?: Maybe<ApplicationNoteToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']['output']>;
+  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+  /** Connection between the ApplicationNote type and the applicationNote type */
+  revisions?: Maybe<ApplicationNoteToRevisionConnection>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']['output']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']['output']>;
+  /** Connection between the ApplicationNote type and the tag type */
+  tags?: Maybe<ApplicationNoteToTagConnection>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  /** Connection between the ApplicationNote type and the TermNode type */
+  terms?: Maybe<ApplicationNoteToTermNodeConnection>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteAncestorsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteCategoriesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ApplicationNoteToCategoryConnectionWhereArgs>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteContentArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteExcerptArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteRevisionsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ApplicationNoteToRevisionConnectionWhereArgs>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteTagsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ApplicationNoteToTagConnectionWhereArgs>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteTermsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ApplicationNoteToTermNodeConnectionWhereArgs>;
+};
+
+
+/** The applicationNote type */
+export type ApplicationNoteTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Set relationships between the applicationNote to categories */
+export type ApplicationNoteCategoriesInput = {
+  /** If true, this will append the category to existing related categories. If false, this will replace existing relationships. Default true. */
+  append?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The input list of items to set. */
+  nodes?: InputMaybe<Array<InputMaybe<ApplicationNoteCategoriesNodeInput>>>;
+};
+
+/** List of categories to connect the applicationNote to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
+export type ApplicationNoteCategoriesNodeInput = {
+  /** The description of the category. This field is used to set a description of the category if a new one is created during the mutation. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the category. If present, this will be used to connect to the applicationNote. If no existing category exists with this ID, no connection will be made. */
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** The name of the category. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the category. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** A paginated collection of applicationNote Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of applicationNote Nodes */
+export type ApplicationNoteConnection = {
+  /** A list of edges (relational context) between RootQuery and connected applicationNote Nodes */
+  edges: Array<ApplicationNoteConnectionEdge>;
+  /** A list of connected applicationNote Nodes */
+  nodes: Array<ApplicationNote>;
+  /** Information about pagination in a connection. */
+  pageInfo: ApplicationNoteConnectionPageInfo;
+};
+
+/** Represents a connection to a applicationNote. Contains both the applicationNote Node and metadata about the relationship. */
+export type ApplicationNoteConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The connected applicationNote Node */
+  node: ApplicationNote;
+};
+
+/** Pagination metadata specific to &quot;ApplicationNoteConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;ApplicationNoteConnectionEdge&quot; Nodes. */
+export type ApplicationNoteConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Identifier types for retrieving a specific ApplicationNote. Specifies which unique attribute is used to find an exact ApplicationNote. */
+export enum ApplicationNoteIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = 'DATABASE_ID',
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = 'ID',
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = 'SLUG',
+  /** Identify a resource by the URI. */
+  Uri = 'URI'
+}
+
+/** Set relationships between the applicationNote to tags */
+export type ApplicationNoteTagsInput = {
+  /** If true, this will append the tag to existing related tags. If false, this will replace existing relationships. Default true. */
+  append?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The input list of items to set. */
+  nodes?: InputMaybe<Array<InputMaybe<ApplicationNoteTagsNodeInput>>>;
+};
+
+/** List of tags to connect the applicationNote to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
+export type ApplicationNoteTagsNodeInput = {
+  /** The description of the tag. This field is used to set a description of the tag if a new one is created during the mutation. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the tag. If present, this will be used to connect to the applicationNote. If no existing tag exists with this ID, no connection will be made. */
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** The name of the tag. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the tag. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Connection between the applicationNote type and the applicationNote type */
+export type ApplicationNoteToApplicationNoteConnection = ApplicationNoteConnection & Connection & {
+  __typename?: 'ApplicationNoteToApplicationNoteConnection';
+  /** Edges for the ApplicationNoteToApplicationNoteConnection connection */
+  edges: Array<ApplicationNoteToApplicationNoteConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<ApplicationNote>;
+  /** Information about pagination in a connection. */
+  pageInfo: ApplicationNoteToApplicationNoteConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type ApplicationNoteToApplicationNoteConnectionEdge = ApplicationNoteConnectionEdge & Edge & {
+  __typename?: 'ApplicationNoteToApplicationNoteConnectionEdge';
+  /**
+   * A cursor for use in pagination
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The item at the end of the edge
+   * @deprecated This content type is not hierarchical and typically will not have ancestors
+   */
+  node: ApplicationNote;
+};
+
+/** Pagination metadata specific to &quot;ApplicationNoteToApplicationNoteConnection&quot; collections. Provides cursors and flags for navigating through sets of ApplicationNoteToApplicationNoteConnection Nodes. */
+export type ApplicationNoteToApplicationNoteConnectionPageInfo = ApplicationNoteConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'ApplicationNoteToApplicationNoteConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Connection between the ApplicationNote type and the category type */
+export type ApplicationNoteToCategoryConnection = CategoryConnection & Connection & {
+  __typename?: 'ApplicationNoteToCategoryConnection';
+  /** Edges for the ApplicationNoteToCategoryConnection connection */
+  edges: Array<ApplicationNoteToCategoryConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Category>;
+  /** Information about pagination in a connection. */
+  pageInfo: ApplicationNoteToCategoryConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type ApplicationNoteToCategoryConnectionEdge = CategoryConnectionEdge & Edge & {
+  __typename?: 'ApplicationNoteToCategoryConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: Category;
+};
+
+/** Pagination metadata specific to &quot;ApplicationNoteToCategoryConnection&quot; collections. Provides cursors and flags for navigating through sets of ApplicationNoteToCategoryConnection Nodes. */
+export type ApplicationNoteToCategoryConnectionPageInfo = CategoryConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'ApplicationNoteToCategoryConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the ApplicationNoteToCategoryConnection connection */
+export type ApplicationNoteToCategoryConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']['input']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']['input']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']['input']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Connection between the applicationNote type and the applicationNote type */
+export type ApplicationNoteToParentConnectionEdge = ApplicationNoteConnectionEdge & Edge & OneToOneConnection & {
+  __typename?: 'ApplicationNoteToParentConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /**
+   * The node of the connection, without the edges
+   * @deprecated This content type is not hierarchical and typically will not have a parent
+   */
+  node: ApplicationNote;
+};
+
+/** Connection between the applicationNote type and the applicationNote type */
+export type ApplicationNoteToPreviewConnectionEdge = ApplicationNoteConnectionEdge & Edge & OneToOneConnection & {
+  __typename?: 'ApplicationNoteToPreviewConnectionEdge';
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The node of the connection, without the edges */
+  node: ApplicationNote;
+};
+
+/** Connection between the ApplicationNote type and the applicationNote type */
+export type ApplicationNoteToRevisionConnection = ApplicationNoteConnection & Connection & {
+  __typename?: 'ApplicationNoteToRevisionConnection';
+  /** Edges for the ApplicationNoteToRevisionConnection connection */
+  edges: Array<ApplicationNoteToRevisionConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<ApplicationNote>;
+  /** Information about pagination in a connection. */
+  pageInfo: ApplicationNoteToRevisionConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type ApplicationNoteToRevisionConnectionEdge = ApplicationNoteConnectionEdge & Edge & {
+  __typename?: 'ApplicationNoteToRevisionConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: ApplicationNote;
+};
+
+/** Pagination metadata specific to &quot;ApplicationNoteToRevisionConnection&quot; collections. Provides cursors and flags for navigating through sets of ApplicationNoteToRevisionConnection Nodes. */
+export type ApplicationNoteToRevisionConnectionPageInfo = ApplicationNoteConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'ApplicationNoteToRevisionConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the ApplicationNoteToRevisionConnection connection */
+export type ApplicationNoteToRevisionConnectionWhereArgs = {
+  /** Category ID */
+  categoryId?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Use Category Slug */
+  categoryName?: InputMaybe<Scalars['String']['input']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Tag Slug */
+  tag?: InputMaybe<Scalars['String']['input']>;
+  /** Use Tag ID */
+  tagId?: InputMaybe<Scalars['String']['input']>;
+  /** Array of tag IDs, used to display objects from one tag OR another */
+  tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of tag IDs, used to display objects from one tag OR another */
+  tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of tag slugs, used to display objects from one tag AND another */
+  tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of tag slugs, used to include objects in ANY specified tags */
+  tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Connection between the ApplicationNote type and the tag type */
+export type ApplicationNoteToTagConnection = Connection & TagConnection & {
+  __typename?: 'ApplicationNoteToTagConnection';
+  /** Edges for the ApplicationNoteToTagConnection connection */
+  edges: Array<ApplicationNoteToTagConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<Tag>;
+  /** Information about pagination in a connection. */
+  pageInfo: ApplicationNoteToTagConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type ApplicationNoteToTagConnectionEdge = Edge & TagConnectionEdge & {
+  __typename?: 'ApplicationNoteToTagConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: Tag;
+};
+
+/** Pagination metadata specific to &quot;ApplicationNoteToTagConnection&quot; collections. Provides cursors and flags for navigating through sets of ApplicationNoteToTagConnection Nodes. */
+export type ApplicationNoteToTagConnectionPageInfo = PageInfo & TagConnectionPageInfo & WpPageInfo & {
+  __typename?: 'ApplicationNoteToTagConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the ApplicationNoteToTagConnection connection */
+export type ApplicationNoteToTagConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']['input']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']['input']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']['input']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Connection between the ApplicationNote type and the TermNode type */
+export type ApplicationNoteToTermNodeConnection = Connection & TermNodeConnection & {
+  __typename?: 'ApplicationNoteToTermNodeConnection';
+  /** Edges for the ApplicationNoteToTermNodeConnection connection */
+  edges: Array<ApplicationNoteToTermNodeConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<TermNode>;
+  /** Information about pagination in a connection. */
+  pageInfo: ApplicationNoteToTermNodeConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type ApplicationNoteToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
+  __typename?: 'ApplicationNoteToTermNodeConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: TermNode;
+};
+
+/** Pagination metadata specific to &quot;ApplicationNoteToTermNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of ApplicationNoteToTermNodeConnection Nodes. */
+export type ApplicationNoteToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
+  __typename?: 'ApplicationNoteToTermNodeConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the ApplicationNoteToTermNodeConnection connection */
+export type ApplicationNoteToTermNodeConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']['input']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']['input']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']['input']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** The Taxonomy to filter terms by */
+  taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 /** Coupon applied to the shopping cart. */
 export type AppliedCoupon = {
   __typename?: 'AppliedCoupon';
@@ -727,6 +1386,8 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   __typename?: 'Category';
   /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
   ancestors?: Maybe<CategoryToAncestorsCategoryConnection>;
+  /** Connection between the Category type and the applicationNote type */
+  applicationNotes?: Maybe<CategoryToApplicationNoteConnection>;
   /**
    * The id field matches the WP_Post-&gt;ID field.
    * @deprecated Deprecated in favor of databaseId
@@ -793,6 +1454,16 @@ export type CategoryAncestorsArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** A taxonomy term that classifies content. Categories support hierarchy and can be used to create a nested structure. */
+export type CategoryApplicationNotesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CategoryToApplicationNoteConnectionWhereArgs>;
 };
 
 
@@ -918,6 +1589,97 @@ export type CategoryToAncestorsCategoryConnectionPageInfo = CategoryConnectionPa
   hasPreviousPage: Scalars['Boolean']['output'];
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Connection between the Category type and the applicationNote type */
+export type CategoryToApplicationNoteConnection = ApplicationNoteConnection & Connection & {
+  __typename?: 'CategoryToApplicationNoteConnection';
+  /** Edges for the CategoryToApplicationNoteConnection connection */
+  edges: Array<CategoryToApplicationNoteConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<ApplicationNote>;
+  /** Information about pagination in a connection. */
+  pageInfo: CategoryToApplicationNoteConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type CategoryToApplicationNoteConnectionEdge = ApplicationNoteConnectionEdge & Edge & {
+  __typename?: 'CategoryToApplicationNoteConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: ApplicationNote;
+};
+
+/** Pagination metadata specific to &quot;CategoryToApplicationNoteConnection&quot; collections. Provides cursors and flags for navigating through sets of CategoryToApplicationNoteConnection Nodes. */
+export type CategoryToApplicationNoteConnectionPageInfo = ApplicationNoteConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'CategoryToApplicationNoteConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the CategoryToApplicationNoteConnection connection */
+export type CategoryToApplicationNoteConnectionWhereArgs = {
+  /** Category ID */
+  categoryId?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Use Category Slug */
+  categoryName?: InputMaybe<Scalars['String']['input']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Tag Slug */
+  tag?: InputMaybe<Scalars['String']['input']>;
+  /** Use Tag ID */
+  tagId?: InputMaybe<Scalars['String']['input']>;
+  /** Array of tag IDs, used to display objects from one tag OR another */
+  tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of tag IDs, used to display objects from one tag OR another */
+  tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of tag slugs, used to display objects from one tag AND another */
+  tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of tag slugs, used to include objects in ANY specified tags */
+  tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Connection between the Category type and the category type */
@@ -2083,6 +2845,8 @@ export type ContentTypeConnectionPageInfo = {
 /** Available content entity types that can be queried or filtered. Identifies the primary content structures available in the system. */
 export enum ContentTypeEnum {
   /** The Type of Content object */
+  ApplicationNote = 'APPLICATION_NOTE',
+  /** The Type of Content object */
   Attachment = 'ATTACHMENT',
   /** The Type of Content object */
   GraphqlDocument = 'GRAPHQL_DOCUMENT',
@@ -2210,6 +2974,8 @@ export type ContentTypeToTaxonomyConnectionPageInfo = PageInfo & TaxonomyConnect
 
 /** Allowed Content Types of the Category taxonomy. */
 export enum ContentTypesOfCategoryEnum {
+  /** The Type of Content object */
+  ApplicationNote = 'APPLICATION_NOTE',
   /** The Type of Content object */
   Post = 'POST'
 }
@@ -2348,6 +3114,8 @@ export enum ContentTypesOfShippingClassEnum {
 
 /** Allowed Content Types of the Tag taxonomy. */
 export enum ContentTypesOfTagEnum {
+  /** The Type of Content object */
+  ApplicationNote = 'APPLICATION_NOTE',
   /** The Type of Content object */
   Post = 'POST'
 }
@@ -3280,6 +4048,41 @@ export type CreateAccountInput = {
   password: Scalars['String']['input'];
   /** Customer username */
   username: Scalars['String']['input'];
+};
+
+/** Input for the createApplicationNote mutation. */
+export type CreateApplicationNoteInput = {
+  /** Set connections between the applicationNote and categories */
+  categories?: InputMaybe<ApplicationNoteCategoriesInput>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** The excerpt of the object */
+  excerpt?: InputMaybe<Scalars['String']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Set connections between the applicationNote and tags */
+  tags?: InputMaybe<ApplicationNoteTagsInput>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the createApplicationNote mutation. */
+export type CreateApplicationNotePayload = {
+  __typename?: 'CreateApplicationNotePayload';
+  /** The Post object mutation type. */
+  applicationNote?: Maybe<ApplicationNote>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
 };
 
 /** Input for the createCategory mutation. */
@@ -5239,6 +6042,29 @@ export type DefaultTemplate = ContentTemplate & {
   __typename?: 'DefaultTemplate';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
+};
+
+/** Input for the deleteApplicationNote mutation. */
+export type DeleteApplicationNoteInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the applicationNote to delete */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** The payload for the deleteApplicationNote mutation. */
+export type DeleteApplicationNotePayload = {
+  __typename?: 'DeleteApplicationNotePayload';
+  /** The object before it was deleted */
+  applicationNote?: Maybe<ApplicationNote>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']['output']>;
 };
 
 /** Input for the deleteCategory mutation. */
@@ -9893,7 +10719,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkable Interface */
-export type MenuItemObjectUnion = Category | MultiplierGroup | Page | Post | PostFormat | ProductCategory | ProductTag | Tag;
+export type MenuItemObjectUnion = ApplicationNote | Category | MultiplierGroup | Page | Post | PostFormat | ProductCategory | ProductTag | Tag;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -26332,6 +27158,8 @@ export type RootMutation = {
   applyCoupon?: Maybe<ApplyCouponPayload>;
   /** The checkout mutation */
   checkout?: Maybe<CheckoutPayload>;
+  /** The createApplicationNote mutation */
+  createApplicationNote?: Maybe<CreateApplicationNotePayload>;
   /** The createCategory mutation */
   createCategory?: Maybe<CreateCategoryPayload>;
   /** The createComment mutation */
@@ -26400,6 +27228,8 @@ export type RootMutation = {
   createUser?: Maybe<CreateUserPayload>;
   /** The createVisibleProduct mutation */
   createVisibleProduct?: Maybe<CreateVisibleProductPayload>;
+  /** The deleteApplicationNote mutation */
+  deleteApplicationNote?: Maybe<DeleteApplicationNotePayload>;
   /** The deleteCategory mutation */
   deleteCategory?: Maybe<DeleteCategoryPayload>;
   /** The deleteComment mutation */
@@ -26500,6 +27330,8 @@ export type RootMutation = {
   sendPasswordResetEmail?: Maybe<SendPasswordResetEmailPayload>;
   /** The setDefaultPaymentMethod mutation */
   setDefaultPaymentMethod?: Maybe<SetDefaultPaymentMethodPayload>;
+  /** The updateApplicationNote mutation */
+  updateApplicationNote?: Maybe<UpdateApplicationNotePayload>;
   /** The updateCategory mutation */
   updateCategory?: Maybe<UpdateCategoryPayload>;
   /** The updateComment mutation */
@@ -26612,6 +27444,12 @@ export type RootMutationApplyCouponArgs = {
 /** The root mutation */
 export type RootMutationCheckoutArgs = {
   input: CheckoutInput;
+};
+
+
+/** The root mutation */
+export type RootMutationCreateApplicationNoteArgs = {
+  input: CreateApplicationNoteInput;
 };
 
 
@@ -26816,6 +27654,12 @@ export type RootMutationCreateUserArgs = {
 /** The root mutation */
 export type RootMutationCreateVisibleProductArgs = {
   input: CreateVisibleProductInput;
+};
+
+
+/** The root mutation */
+export type RootMutationDeleteApplicationNoteArgs = {
+  input: DeleteApplicationNoteInput;
 };
 
 
@@ -27120,6 +27964,12 @@ export type RootMutationSetDefaultPaymentMethodArgs = {
 
 
 /** The root mutation */
+export type RootMutationUpdateApplicationNoteArgs = {
+  input: UpdateApplicationNoteInput;
+};
+
+
+/** The root mutation */
 export type RootMutationUpdateCategoryArgs = {
   input: UpdateCategoryInput;
 };
@@ -27401,6 +28251,15 @@ export type RootQuery = {
   allSettings?: Maybe<Settings>;
   /** Countries that the store sells to */
   allowedCountries?: Maybe<Array<Maybe<CountriesEnum>>>;
+  /** An object of the applicationNote Type.  */
+  applicationNote?: Maybe<ApplicationNote>;
+  /**
+   * A applicationNote object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  applicationNoteBy?: Maybe<ApplicationNote>;
+  /** Connection between the RootQuery type and the applicationNote type */
+  applicationNotes?: Maybe<RootQueryToApplicationNoteConnection>;
   /** The cart object */
   cart?: Maybe<Cart>;
   /** The cart object */
@@ -27785,6 +28644,33 @@ export type RootQueryAllPaWirelessApplicationArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToPaWirelessApplicationConnectionWhereArgs>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryApplicationNoteArgs = {
+  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<ApplicationNoteIdType>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryApplicationNoteByArgs = {
+  applicationNoteId?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  uri?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** The root entry point into the Graph */
+export type RootQueryApplicationNotesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToApplicationNoteConnectionWhereArgs>;
 };
 
 
@@ -28587,6 +29473,97 @@ export type RootQueryVisibleProductsArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToVisibleProductConnectionWhereArgs>;
+};
+
+/** Connection between the RootQuery type and the applicationNote type */
+export type RootQueryToApplicationNoteConnection = ApplicationNoteConnection & Connection & {
+  __typename?: 'RootQueryToApplicationNoteConnection';
+  /** Edges for the RootQueryToApplicationNoteConnection connection */
+  edges: Array<RootQueryToApplicationNoteConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<ApplicationNote>;
+  /** Information about pagination in a connection. */
+  pageInfo: RootQueryToApplicationNoteConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type RootQueryToApplicationNoteConnectionEdge = ApplicationNoteConnectionEdge & Edge & {
+  __typename?: 'RootQueryToApplicationNoteConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: ApplicationNote;
+};
+
+/** Pagination metadata specific to &quot;RootQueryToApplicationNoteConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToApplicationNoteConnection Nodes. */
+export type RootQueryToApplicationNoteConnectionPageInfo = ApplicationNoteConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToApplicationNoteConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the RootQueryToApplicationNoteConnection connection */
+export type RootQueryToApplicationNoteConnectionWhereArgs = {
+  /** Category ID */
+  categoryId?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Use Category Slug */
+  categoryName?: InputMaybe<Scalars['String']['input']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Tag Slug */
+  tag?: InputMaybe<Scalars['String']['input']>;
+  /** Use Tag ID */
+  tagId?: InputMaybe<Scalars['String']['input']>;
+  /** Array of tag IDs, used to display objects from one tag OR another */
+  tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of tag IDs, used to display objects from one tag OR another */
+  tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of tag slugs, used to display objects from one tag AND another */
+  tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of tag slugs, used to include objects in ANY specified tags */
+  tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Connection between the RootQuery type and the category type */
@@ -33692,6 +34669,8 @@ export enum StockStatusEnum {
 /** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
 export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'Tag';
+  /** Connection between the Tag type and the applicationNote type */
+  applicationNotes?: Maybe<TagToApplicationNoteConnection>;
   /** Connection between the Tag type and the ContentNode type */
   contentNodes?: Maybe<TagToContentNodeConnection>;
   /** The number of objects connected to the object */
@@ -33741,6 +34720,16 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   termTaxonomyId?: Maybe<Scalars['Int']['output']>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** A taxonomy term used to organize and classify content. Tags do not have a hierarchy and are generally used for more specific classifications. */
+export type TagApplicationNotesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TagToApplicationNoteConnectionWhereArgs>;
 };
 
 
@@ -33824,6 +34813,97 @@ export enum TagIdType {
   /** The URI for the node */
   Uri = 'URI'
 }
+
+/** Connection between the Tag type and the applicationNote type */
+export type TagToApplicationNoteConnection = ApplicationNoteConnection & Connection & {
+  __typename?: 'TagToApplicationNoteConnection';
+  /** Edges for the TagToApplicationNoteConnection connection */
+  edges: Array<TagToApplicationNoteConnectionEdge>;
+  /** The nodes of the connection, without the edges */
+  nodes: Array<ApplicationNote>;
+  /** Information about pagination in a connection. */
+  pageInfo: TagToApplicationNoteConnectionPageInfo;
+};
+
+/** An edge in a connection */
+export type TagToApplicationNoteConnectionEdge = ApplicationNoteConnectionEdge & Edge & {
+  __typename?: 'TagToApplicationNoteConnectionEdge';
+  /** A cursor for use in pagination */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The item at the end of the edge */
+  node: ApplicationNote;
+};
+
+/** Pagination metadata specific to &quot;TagToApplicationNoteConnection&quot; collections. Provides cursors and flags for navigating through sets of TagToApplicationNoteConnection Nodes. */
+export type TagToApplicationNoteConnectionPageInfo = ApplicationNoteConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'TagToApplicationNoteConnectionPageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** Arguments for filtering the TagToApplicationNoteConnection connection */
+export type TagToApplicationNoteConnectionWhereArgs = {
+  /** Category ID */
+  categoryId?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Use Category Slug */
+  categoryName?: InputMaybe<Scalars['String']['input']>;
+  /** Array of category IDs, used to display objects from one category OR another */
+  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Tag Slug */
+  tag?: InputMaybe<Scalars['String']['input']>;
+  /** Use Tag ID */
+  tagId?: InputMaybe<Scalars['String']['input']>;
+  /** Array of tag IDs, used to display objects from one tag OR another */
+  tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of tag IDs, used to display objects from one tag OR another */
+  tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of tag slugs, used to display objects from one tag AND another */
+  tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of tag slugs, used to include objects in ANY specified tags */
+  tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
 
 /** Connection between the Tag type and the ContentNode type */
 export type TagToContentNodeConnection = Connection & ContentNodeConnection & {
@@ -34667,6 +35747,45 @@ export type UniformResourceIdentifiable = {
   isTermNode: Scalars['Boolean']['output'];
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
+};
+
+/** Input for the updateApplicationNote mutation. */
+export type UpdateApplicationNoteInput = {
+  /** Set connections between the applicationNote and categories */
+  categories?: InputMaybe<ApplicationNoteCategoriesInput>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars['String']['input']>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars['String']['input']>;
+  /** The excerpt of the object */
+  excerpt?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the applicationNote object */
+  id: Scalars['ID']['input'];
+  /** Override the edit lock when another user is editing the post */
+  ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars['Int']['input']>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Set connections between the applicationNote and tags */
+  tags?: InputMaybe<ApplicationNoteTagsInput>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the updateApplicationNote mutation. */
+export type UpdateApplicationNotePayload = {
+  __typename?: 'UpdateApplicationNotePayload';
+  /** The Post object mutation type. */
+  applicationNote?: Maybe<ApplicationNote>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
 };
 
 /** Input for the updateCategory mutation. */
@@ -38029,6 +39148,29 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type GetApplicationNotesQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetApplicationNotesQuery = { __typename?: 'RootQuery', applicationNotes?: { __typename?: 'RootQueryToApplicationNoteConnection', pageInfo: { __typename?: 'RootQueryToApplicationNoteConnectionPageInfo', hasNextPage: boolean, endCursor?: string | null | undefined }, nodes: Array<{ __typename?: 'ApplicationNote', id: string, databaseId: number, title?: string | null | undefined, content?: string | null | undefined, excerpt?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null | undefined, height?: number | null | undefined } | null | undefined } } | null | undefined }> } | null | undefined };
+
+export type GetApplicationNoteBySlugQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type GetApplicationNoteBySlugQuery = { __typename?: 'RootQuery', applicationNote?: { __typename?: 'ApplicationNote', id: string, databaseId: number, title?: string | null | undefined, content?: string | null | undefined, excerpt?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, modified?: string | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', width?: number | null | undefined, height?: number | null | undefined } | null | undefined } } | null | undefined } | null | undefined };
+
+export type SearchApplicationNotesQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type SearchApplicationNotesQuery = { __typename?: 'RootQuery', applicationNotes?: { __typename?: 'RootQueryToApplicationNoteConnection', nodes: Array<{ __typename?: 'ApplicationNote', id: string, databaseId: number, title?: string | null | undefined, excerpt?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined }> } | null | undefined };
+
 export type GetPageBySlugQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
 }>;
@@ -38247,6 +39389,89 @@ export type SearchProductsQuery = { __typename?: 'RootQuery', products?: { __typ
     > } | null | undefined };
 
 
+export const GetApplicationNotesDocument = gql`
+    query GetApplicationNotes($first: Int = 100, $after: String) {
+  applicationNotes(
+    first: $first
+    after: $after
+    where: {orderby: {field: DATE, order: DESC}}
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      databaseId
+      title
+      content
+      excerpt
+      slug
+      date
+      modified
+      featuredImage {
+        node {
+          id
+          sourceUrl
+          altText
+          mediaDetails {
+            width
+            height
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetApplicationNoteBySlugDocument = gql`
+    query GetApplicationNoteBySlug($slug: ID!) {
+  applicationNote(id: $slug, idType: SLUG) {
+    id
+    databaseId
+    title
+    content
+    excerpt
+    slug
+    date
+    modified
+    featuredImage {
+      node {
+        id
+        sourceUrl
+        altText
+        mediaDetails {
+          width
+          height
+        }
+      }
+    }
+  }
+}
+    `;
+export const SearchApplicationNotesDocument = gql`
+    query SearchApplicationNotes($search: String!, $first: Int = 50) {
+  applicationNotes(
+    first: $first
+    where: {search: $search, orderby: {field: DATE, order: DESC}}
+  ) {
+    nodes {
+      id
+      databaseId
+      title
+      excerpt
+      slug
+      date
+      featuredImage {
+        node {
+          sourceUrl
+          altText
+        }
+      }
+    }
+  }
+}
+    `;
 export const GetPageBySlugDocument = gql`
     query GetPageBySlug($slug: ID!) {
   page(id: $slug, idType: URI) {
@@ -38836,6 +40061,15 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    GetApplicationNotes(variables?: GetApplicationNotesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetApplicationNotesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetApplicationNotesQuery>({ document: GetApplicationNotesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetApplicationNotes', 'query', variables);
+    },
+    GetApplicationNoteBySlug(variables: GetApplicationNoteBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetApplicationNoteBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetApplicationNoteBySlugQuery>({ document: GetApplicationNoteBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetApplicationNoteBySlug', 'query', variables);
+    },
+    SearchApplicationNotes(variables: SearchApplicationNotesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchApplicationNotesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchApplicationNotesQuery>({ document: SearchApplicationNotesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'SearchApplicationNotes', 'query', variables);
+    },
     GetPageBySlug(variables: GetPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetPageBySlugQuery>({ document: GetPageBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPageBySlug', 'query', variables);
     },

@@ -153,6 +153,32 @@
 - ✅ UserButton for authenticated users
 - ✅ Public routes defined (products, home, APIs)
 
+**WordPress to Clerk User Migration (Phased Approach):**
+- [ ] **Phase 1 - New Registrations (Current)**
+  - [ ] New customer registrations use Clerk only
+  - [ ] Keep existing WordPress users active (no disruption)
+  - [ ] Document customer migration plan
+- [ ] **Phase 2 - Existing Customer Import**
+  - [ ] Export WordPress/WooCommerce users via WP-CLI or REST API
+  - [ ] Import to Clerk via Bulk User Import API
+  - [ ] Migration strategy:
+    - [ ] Option A: Send "Set New Password" emails via Clerk
+    - [ ] Option B: Password migration (users enter current password, Clerk validates against WP, then migrates)
+    - [ ] Option C: Email verification flow with password reset
+  - [ ] Link WordPress customer ID to Clerk user metadata
+  - [ ] Test with small batch before full migration
+- [ ] **Phase 3 - Order History Integration**
+  - [ ] Create GraphQL queries for WooCommerce orders by customer
+  - [ ] Build order history page in headless dashboard
+  - [ ] Query WordPress orders using linked customer ID
+  - [ ] Display order details, tracking, invoices
+  - [ ] Consider: Sync key order data to separate DB for performance
+- [ ] **Phase 4 - Gradual Cutover**
+  - [ ] Deprecate WordPress login form
+  - [ ] Redirect to headless site for authentication
+  - [ ] Maintain WordPress admin access for staff
+  - [ ] Monitor migration completion rate
+
 **Missing User Features (Future Work):**
 - [ ] Protected user dashboard page (`/account`)
 - [ ] User profile management (update name, email, preferences)

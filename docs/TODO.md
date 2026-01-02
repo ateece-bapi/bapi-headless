@@ -109,6 +109,35 @@
 - [x] 1,100+ technical documents accessible
 - [x] File size and date metadata display
 - [x] Responsive grid layout with hover states
+- [x] **Senior UI/UX Polish (Jan 2, 2026):**
+  - [x] Smooth hover effects (scale 1.01, shadow transitions 250ms)
+  - [x] Category badges with dynamic counts
+  - [x] 6 sorting options (date/title ascending/descending)
+  - [x] Grid/List view toggle
+  - [x] Text truncation with ellipsis
+  - [x] Clear filters button
+  - [x] Accessibility improvements (ARIA, keyboard nav)
+  - [x] CTA card linking to Application Notes
+  - [x] Hero heading size consistency (text-5xl md:text-6xl)
+
+**Application Notes Section (✅ Completed - Jan 2, 2026):**
+- [x] WordPress must-use plugin for custom post type
+- [x] GraphQL queries (list, single, search)
+- [x] 61 application notes exposed and accessible
+- [x] List page with search, filters, sort, view toggle
+- [x] Individual article pages with senior-level polish:
+  - [x] Reading progress bar
+  - [x] Sticky navigation with print/share buttons
+  - [x] Enhanced hero with decorative elements
+  - [x] Overview section with gradient styling
+  - [x] Black text for maximum readability
+  - [x] Content card with hover effects
+  - [x] Enhanced CTA footer with animations
+  - [x] SEO metadata and Open Graph
+- [x] Icon-based card design (consistent BookOpen icon)
+- [x] Reading time calculation
+- [x] Cross-linking with Resources section
+- [x] Typography plugin configuration for prose
 
 **Phase 2 - Interactive Tools (Future):**
 - [ ] Product Selector tool

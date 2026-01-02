@@ -88,11 +88,11 @@ export default async function WhyBapiPage() {
               What Sets Us Apart
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
               Why BAPI?
             </h1>
             
-            <p className="text-xl text-primary-50 leading-relaxed mb-8">
+            <p className="text-xl md:text-2xl text-primary-50 leading-relaxed mb-8">
               BAPI has been changing the way you think about sensors since 1993. We believe sensors 
               are not simple commodities—they are integral to building automation systems and critical 
               to saving energy.

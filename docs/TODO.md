@@ -133,6 +133,13 @@
 - [x] Add structured data (JSON-LD) - Product pages
 - [x] Optimize images (lazy loading, Next.js Image)
 - [x] Meta tags for all pages
+- [ ] **Cold Cache Performance Investigation (Future)**
+  - [ ] Test: Cold cache loads at ~4.2s vs warm cache ~250ms
+  - [ ] Verify Redis caching working correctly in production
+  - [ ] Check query deduplication effectiveness
+  - [ ] Review ISR revalidation frequency (1h currently)
+  - [ ] Consider: Additional CDN layer for GraphQL responses
+  - [ ] Note: Current performance acceptable but room for improvement
 - [ ] Generate sitemap.xml
 - [ ] Add robots.txt
 - [ ] Core Web Vitals optimization (ongoing)

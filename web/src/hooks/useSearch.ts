@@ -55,7 +55,9 @@ export function useSearch(options: UseSearchOptions = {}) {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/graphql', {
+      const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
+      
+      const response = await fetch(GRAPHQL_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

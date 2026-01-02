@@ -1,0 +1,72 @@
+query GetResources($first: Int = 100, $after: String) {
+  mediaItems(
+    first: $first
+    after: $after
+    where: { mimeType: APPLICATION_PDF, orderby: { field: DATE, order: DESC } }
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      id
+      databaseId
+      title
+      description
+      caption
+      altText
+      mediaItemUrl
+      fileSize
+      mimeType
+      date
+      modified
+      sourceUrl
+    }
+  }
+}
+
+query SearchResources($search: String!, $first: Int = 50) {
+  mediaItems(
+    first: $first
+    where: { 
+      mimeType: APPLICATION_PDF
+      search: $search
+    }
+  ) {
+    nodes {
+      id
+      databaseId
+      title
+      description
+      caption
+      mediaItemUrl
+      fileSize
+      mimeType
+      date
+      modified
+      sourceUrl
+    }
+  }
+}
+
+query GetResourceBySlug($id: ID!) {
+  mediaItem(id: $id, idType: DATABASE_ID) {
+    id
+    databaseId
+    title
+    description
+    caption
+    altText
+    mediaItemUrl
+    fileSize
+    mimeType
+    date
+    modified
+    sourceUrl
+    author {
+      node {
+        name
+      }
+    }
+  }
+}

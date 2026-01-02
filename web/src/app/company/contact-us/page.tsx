@@ -112,11 +112,11 @@ export default async function ContactUsPage() {
               Get in Touch
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
               Contact BAPI
             </h1>
             
-            <p className="text-xl text-primary-50 leading-relaxed">
+            <p className="text-xl md:text-2xl text-primary-50 leading-relaxed">
               Whether you need technical support, have sales inquiries, or want to learn more 
               about our products, we're here to help. Reach out to us today!
             </p>

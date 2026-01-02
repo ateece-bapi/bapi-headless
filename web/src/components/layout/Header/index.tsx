@@ -7,13 +7,13 @@ import { HeaderProps } from './types';
 import { HEADER_CONFIG } from './config';
 import { useScrollDetection } from './hooks/useScrollDetection';
 import { useMobileMenu } from './hooks/useMobileMenu';
+import { SearchInput } from '@/components/search';
 import {
   RegionSelector,
   LanguageSelector,
   SignInButton,
   CartButton,
   Logo,
-  SearchButton,
   MobileMenuButton,
   MobileMenu,
   MegaMenu
@@ -49,10 +49,19 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           {/* Desktop Mega Menu Navigation */}
           <MegaMenu className="hidden lg:flex" />
 
+          {/* Search - Desktop */}
+          <div className="hidden lg:block flex-1 max-w-md">
+            <SearchInput />
+          </div>
+
           <div className="flex items-center gap-1 lg:gap-2">
-            <SearchButton />
             <MobileMenuButton isOpen={mobileMenu.isOpen} onClick={mobileMenu.toggle} />
           </div>
+        </div>
+
+        {/* Search - Mobile */}
+        <div className="lg:hidden mt-4">
+          <SearchInput />
         </div>
 
         {/* Mobile Navigation Menu */}

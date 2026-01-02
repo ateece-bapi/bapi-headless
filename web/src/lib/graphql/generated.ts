@@ -38209,6 +38209,20 @@ export type GetProductsByCategoryQuery = { __typename?: 'RootQuery', products?: 
       | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
     > } | null | undefined };
 
+export type SearchProductsQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type SearchProductsQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', nodes: Array<
+      | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
+      | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
+      | { __typename?: 'SimpleProduct', price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
+      | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
+      | { __typename?: 'VariableProduct', price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
+    > } | null | undefined };
+
 
 export const GetPageBySlugDocument = gql`
     query GetPageBySlug($slug: ID!) {
@@ -38681,6 +38695,46 @@ export const GetProductsByCategoryDocument = gql`
   }
 }
     `;
+export const SearchProductsDocument = gql`
+    query SearchProducts($search: String!, $first: Int = 20) {
+  products(where: {search: $search, visibility: VISIBLE}, first: $first) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      ... on SimpleProduct {
+        price
+        shortDescription
+        image {
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            name
+            slug
+          }
+        }
+      }
+      ... on VariableProduct {
+        price
+        shortDescription
+        image {
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -38727,6 +38781,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetProductsByCategory(variables: GetProductsByCategoryQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetProductsByCategoryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductsByCategoryQuery>({ document: GetProductsByCategoryDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetProductsByCategory', 'query', variables);
+    },
+    SearchProducts(variables: SearchProductsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchProductsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchProductsQuery>({ document: SearchProductsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'SearchProducts', 'query', variables);
     }
   };
 }

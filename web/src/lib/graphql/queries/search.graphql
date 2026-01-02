@@ -1,0 +1,38 @@
+query SearchProducts($search: String!, $first: Int = 20) {
+  products(where: { search: $search, visibility: VISIBLE }, first: $first) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      ... on SimpleProduct {
+        price
+        shortDescription
+        image {
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            name
+            slug
+          }
+        }
+      }
+      ... on VariableProduct {
+        price
+        shortDescription
+        image {
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+}

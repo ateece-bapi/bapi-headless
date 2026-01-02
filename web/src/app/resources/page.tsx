@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
 import { ResourceList } from '@/components/resources/ResourceList';
 
-const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
-
 interface MediaItemNode {
   id: string;
   databaseId: number;
@@ -23,6 +21,13 @@ interface GetResourcesResponse {
 }
 
 async function fetchResources(): Promise<MediaItemNode[]> {
+  const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL;
+  
+  if (!GRAPHQL_ENDPOINT) {
+    console.warn('NEXT_PUBLIC_WORDPRESS_GRAPHQL not set, returning empty resources');
+    return [];
+  }
+
   const query = `
     query GetResources {
       mediaItems(

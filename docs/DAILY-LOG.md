@@ -4,6 +4,73 @@ Track daily progress on the BAPI Headless project.
 
 ---
 
+## January 2, 2026 (Continued)
+
+### Technical Resources Section Implementation (Completed ✅)
+
+**Strategic Decision:**
+- After completing search, identified Resources section as next highest priority
+- Engineers need technical documentation, datasheets, installation guides
+- 1,123 PDFs already in WordPress uploads directory
+
+**Resources Implementation:**
+- **GraphQL Query:**
+  - Created `resources.graphql` for WordPress Media Library
+  - Query fetches PDF metadata: title, description, URL, fileSize, date
+  - Filters by mimeType: "application/pdf"
+  - Returns mediaItems with Kinsta CDN URLs
+
+- **ResourceList Component:**
+  - Search functionality across document titles and descriptions
+  - Category filtering with auto-detection from filename patterns:
+    - Installation Guides: Files with "ins_" prefix
+    - Datasheets: Files with product codes or "NoPrice"
+    - Application Notes: Files with "AppNote" suffix
+    - Catalogs: Full catalog, mini-catalog files
+  - Responsive grid layout (1-3 columns)
+  - Document cards with:
+    - PDF icon
+    - Title and description
+    - File size (formatted KB/MB)
+    - Upload date
+    - Download button with Kinsta CDN link
+
+- **Resources Page:**
+  - `/resources` route with SSR
+  - Blue hero section with description
+  - Filter badges for category selection
+  - Search input with real-time filtering
+  - Direct downloads (no proxy needed)
+  - 1-hour ISR revalidation
+
+**Files Created:**
+- `web/src/app/resources/page.tsx` - Main resources page
+- `web/src/components/resources/ResourceList.tsx` - Filter and grid component
+- `web/src/components/resources/index.ts` - Barrel export
+- `web/src/lib/graphql/queries/resources.graphql` - Media query
+- Updated `web/src/lib/graphql/generated.ts` via codegen
+
+**Git Workflow:**
+- Branch: Initially created `feat/resources-section` but work was on `main`
+- Commit: `9a693eb` - "feat: add resources section with PDF library and filtering"
+- Deployed to Vercel production
+
+**Technical Details:**
+- Zero server-side PDF storage (all hosted on Kinsta)
+- Kinsta CDN handles delivery and caching
+- Client-side filtering for instant UX
+- Auto-categorization reduces manual tagging
+- 1,100+ documents immediately accessible
+
+**Impact:**
+- ✅ Engineers can find technical docs instantly
+- ✅ Search + filter provides powerful discovery
+- ✅ No manual PDF uploads to Vercel
+- ✅ Content team manages docs in WordPress
+- ✅ Foundation for Phase 2 interactive tools
+
+---
+
 ## January 2, 2026
 
 ### Premium Product Search Implementation (Completed ✅)

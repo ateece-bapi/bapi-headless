@@ -1,7 +1,11 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { FileText, Download, Search, Filter, Calendar, HardDrive } from 'lucide-react';
+import { 
+  FileText, Download, Search, Filter, Calendar, HardDrive, 
+  BookOpen, FileSpreadsheet, ClipboardList, Book, File,
+  SortAsc, Grid3x3, List, X
+} from 'lucide-react';
 
 interface Resource {
   id: string;
@@ -18,7 +22,9 @@ interface ResourceListProps {
   resources: Resource[];
 }
 
-type ResourceCategory = 'all' | 'installation' | 'datasheet' | 'application' | 'catalog' | 'other';
+type ResourceCategory = 'all' | 'installation' | 'datasheet' | 'catalog' | 'other';
+type SortOption = 'date-desc' | 'date-asc' | 'name-asc' | 'name-desc' | 'size-desc' | 'size-asc';
+type ViewMode = 'grid' | 'list';
 
 function categorizeResource(resource: Resource): ResourceCategory {
   const title = resource.title.toLowerCase();
@@ -26,9 +32,26 @@ function categorizeResource(resource: Resource): ResourceCategory {
   
   if (title.includes('install') || url.includes('_ins_')) return 'installation';
   if (title.includes('datasheet') || title.includes('sell sheet') || url.includes('sellsheet')) return 'datasheet';
-  if (title.includes('application') || title.includes('appnote') || url.includes('appnote')) return 'application';
   if (title.includes('catalog')) return 'catalog';
   return 'other';
+}
+
+function getCategoryIcon(category: ResourceCategory) {
+  switch (category) {
+    case 'installation': return BookOpen;
+    case 'datasheet': return FileSpreadsheet;
+    case 'catalog': return Book;
+    default: return File;
+  }
+}
+
+function getCategoryColor(category: ResourceCategory) {
+  switch (category) {
+    case 'installation': return 'bg-blue-50 text-blue-700 border-blue-200';
+    case 'datasheet': return 'bg-green-50 text-green-700 border-green-200';
+    case 'catalog': return 'bg-amber-50 text-amber-700 border-amber-200';
+    default: return 'bg-neutral-50 text-neutral-700 border-neutral-200';
+  }
 }
 
 function formatFileSize(bytes: number | null): string {
@@ -53,16 +76,26 @@ const CATEGORIES: { value: ResourceCategory; label: string; count?: number }[] =
   { value: 'all', label: 'All Documents' },
   { value: 'installation', label: 'Installation Guides' },
   { value: 'datasheet', label: 'Datasheets & Specs' },
-  { value: 'application', label: 'Application Notes' },
   { value: 'catalog', label: 'Catalogs' },
   { value: 'other', label: 'Other Resources' },
+];
+
+const SORT_OPTIONS: { value: SortOption; label: string }[] = [
+  { value: 'date-desc', label: 'Newest First' },
+  { value: 'date-asc', label: 'Oldest First' },
+  { value: 'name-asc', label: 'Name (A-Z)' },
+  { value: 'name-desc', label: 'Name (Z-A)' },
+  { value: 'size-desc', label: 'Largest First' },
+  { value: 'size-asc', label: 'Smallest First' },
 ];
 
 export function ResourceList({ resources }: ResourceListProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<ResourceCategory>('all');
+  const [sortBy, setSortBy] = useState<SortOption>('date-desc');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
 
-  const filteredResources = useMemo(() => {
+  const filteredAndSortedResources = useMemo(() => {
     let filtered = resources;
 
     // Filter by category
@@ -83,8 +116,28 @@ export function ResourceList({ resources }: ResourceListProps) {
       );
     }
 
-    return filtered;
-  }, [resources, selectedCategory, searchQuery]);
+    // Sort
+    const sorted = [...filtered].sort((a, b) => {
+      switch (sortBy) {
+        case 'date-desc':
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        case 'date-asc':
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        case 'name-asc':
+          return a.title.localeCompare(b.title);
+        case 'name-desc':
+          return b.title.localeCompare(a.title);
+        case 'size-desc':
+          return (b.fileSize || 0) - (a.fileSize || 0);
+        case 'size-asc':
+          return (a.fileSize || 0) - (b.fileSize || 0);
+        default:
+          return 0;
+      }
+    });
+
+    return sorted;
+  }, [resources, selectedCategory, searchQuery, sortBy]);
 
   // Calculate category counts
   const categoryCounts = useMemo(() => {
@@ -92,7 +145,6 @@ export function ResourceList({ resources }: ResourceListProps) {
       all: resources.length,
       installation: 0,
       datasheet: 0,
-      application: 0,
       catalog: 0,
       other: 0,
     };
@@ -105,8 +157,15 @@ export function ResourceList({ resources }: ResourceListProps) {
     return counts;
   }, [resources]);
 
+  const hasActiveFilters = searchQuery !== '' || selectedCategory !== 'all';
+
+  const clearAllFilters = () => {
+    setSearchQuery('');
+    setSelectedCategory('all');
+  };
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Search and Filters */}
       <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-6">
         {/* Search Input */}
@@ -117,8 +176,18 @@ export function ResourceList({ resources }: ResourceListProps) {
             placeholder="Search documents..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-neutral-900 placeholder:text-neutral-400"
+            aria-label="Search documents"
+            className="w-full pl-12 pr-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-neutral-900 placeholder:text-neutral-400 transition-shadow"
           />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              aria-label="Clear search"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-neutral-100 rounded transition-colors"
+            >
+              <X className="w-4 h-4 text-neutral-500" />
+            </button>
+          )}
         </div>
 
         {/* Category Filters */}
@@ -131,10 +200,12 @@ export function ResourceList({ resources }: ResourceListProps) {
             <button
               key={category.value}
               onClick={() => setSelectedCategory(category.value)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              aria-label={`Filter by ${category.label}`}
+              aria-pressed={selectedCategory === category.value}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 selectedCategory === category.value
-                  ? 'bg-primary-600 text-white shadow-sm'
-                  : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                  ? 'bg-primary-600 text-white shadow-md scale-105'
+                  : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 hover:scale-102'
               }`}
             >
               {category.label}
@@ -146,83 +217,207 @@ export function ResourceList({ resources }: ResourceListProps) {
         </div>
       </div>
 
-      {/* Results Count */}
-      <div className="flex items-center justify-between">
-        <p className="text-neutral-600">
-          Showing <span className="font-semibold text-neutral-900">{filteredResources.length}</span> of{' '}
-          <span className="font-semibold text-neutral-900">{resources.length}</span> documents
-        </p>
+      {/* Toolbar: Results Count, Sort, View Toggle */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white rounded-lg shadow-sm border border-neutral-200 p-4">
+        <div className="flex items-center gap-4 flex-wrap">
+          <p className="text-neutral-600 text-sm">
+            Showing <span className="font-semibold text-neutral-900">{filteredAndSortedResources.length}</span> of{' '}
+            <span className="font-semibold text-neutral-900">{resources.length}</span> documents
+          </p>
+          {hasActiveFilters && (
+            <button
+              onClick={clearAllFilters}
+              className="flex items-center gap-1 text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors"
+            >
+              <X className="w-4 h-4" />
+              Clear all filters
+            </button>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3">
+          {/* Sort Dropdown */}
+          <div className="relative">
+            <label htmlFor="sort-select" className="sr-only">Sort documents</label>
+            <select
+              id="sort-select"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as SortOption)}
+              className="appearance-none pl-10 pr-10 py-2 border border-neutral-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white text-neutral-700 cursor-pointer transition-shadow"
+            >
+              {SORT_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <SortAsc className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 pointer-events-none" />
+          </div>
+
+          {/* View Toggle */}
+          <div className="flex items-center gap-1 border border-neutral-300 rounded-lg p-1">
+            <button
+              onClick={() => setViewMode('grid')}
+              aria-label="Grid view"
+              aria-pressed={viewMode === 'grid'}
+              className={`p-2 rounded transition-colors ${
+                viewMode === 'grid'
+                  ? 'bg-primary-600 text-white'
+                  : 'text-neutral-600 hover:bg-neutral-100'
+              }`}
+            >
+              <Grid3x3 className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              aria-label="List view"
+              aria-pressed={viewMode === 'list'}
+              className={`p-2 rounded transition-colors ${
+                viewMode === 'list'
+                  ? 'bg-primary-600 text-white'
+                  : 'text-neutral-600 hover:bg-neutral-100'
+              }`}
+            >
+              <List className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Resource Grid */}
-      {filteredResources.length === 0 ? (
-        <div className="text-center py-12 bg-neutral-50 rounded-lg">
-          <FileText className="w-12 h-12 text-neutral-300 mx-auto mb-3" />
-          <p className="text-neutral-600">No documents found matching your criteria</p>
+      {/* Resource Grid/List */}
+      {filteredAndSortedResources.length === 0 ? (
+        <div className="text-center py-16 bg-white rounded-lg border border-neutral-200">
+          <FileText className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-neutral-900 mb-2">No documents found</h3>
+          <p className="text-neutral-600 mb-4">
+            {searchQuery
+              ? `No results for "${searchQuery}"`
+              : 'No documents match your selected filters'}
+          </p>
           <button
-            onClick={() => {
-              setSearchQuery('');
-              setSelectedCategory('all');
-            }}
-            className="mt-4 text-primary-600 hover:text-primary-700 font-medium"
+            onClick={clearAllFilters}
+            className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
           >
-            Clear filters
+            Clear all filters
           </button>
         </div>
-      ) : (
+      ) : viewMode === 'grid' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredResources.map((resource) => (
-            <a
-              key={resource.id}
-              href={resource.mediaItemUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-white rounded-lg shadow-sm border border-neutral-200 p-6 hover:shadow-md hover:border-primary-300 transition-all duration-200"
-            >
-              {/* Icon and Category */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-primary-50 rounded-lg group-hover:bg-primary-100 transition-colors">
+          {filteredAndSortedResources.map((resource) => {
+            const category = categorizeResource(resource);
+            const CategoryIcon = getCategoryIcon(category);
+            const categoryLabel = CATEGORIES.find((c) => c.value === category)?.label || 'Document';
+
+            return (
+              <a
+                key={resource.id}
+                href={resource.mediaItemUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={resource.title}
+                className="group bg-white rounded-lg shadow-sm border border-neutral-200 p-6 hover:shadow-lg hover:border-primary-300 transition-[transform,shadow,border-color] duration-250 ease-in-out hover:scale-[1.01] will-change-transform focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              >
+                {/* Icon and Category Badge */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-3 bg-primary-50 rounded-lg group-hover:bg-primary-100 transition-colors duration-250">
+                    <FileText className="w-6 h-6 text-primary-600" />
+                  </div>
+                  <span className={`flex items-center gap-1 text-xs font-medium px-2 py-1 rounded border ${getCategoryColor(category)} transition-colors`}>
+                    <CategoryIcon className="w-3 h-3" />
+                    <span className="hidden sm:inline">{categoryLabel}</span>
+                  </span>
+                </div>
+
+                {/* Title with Truncation */}
+                <h3 className="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors line-clamp-2 min-h-[3.5rem]">
+                  {resource.title}
+                </h3>
+
+                {/* Description */}
+                {resource.description && (
+                  <p
+                    className="text-sm text-neutral-600 mb-4 line-clamp-2 min-h-[2.5rem]"
+                    dangerouslySetInnerHTML={{ __html: resource.description }}
+                  />
+                )}
+
+                {/* Metadata */}
+                <div className="flex items-center justify-between text-xs text-neutral-500 pt-4 border-t border-neutral-100">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>{formatDate(resource.date)}</span>
+                  </div>
+                  {resource.fileSize && (
+                    <div className="flex items-center gap-1 font-medium">
+                      <HardDrive className="w-3.5 h-3.5" />
+                      <span>{formatFileSize(resource.fileSize)}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Download Button */}
+                <div className="flex items-center justify-center gap-2 mt-4 py-2 px-4 bg-primary-50 text-primary-600 font-medium text-sm rounded-lg group-hover:bg-primary-600 group-hover:text-white transition-[background-color,color] duration-250">
+                  <Download className="w-4 h-4" />
+                  <span>Download PDF {resource.fileSize && `(${formatFileSize(resource.fileSize)})`}</span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {filteredAndSortedResources.map((resource) => {
+            const category = categorizeResource(resource);
+            const CategoryIcon = getCategoryIcon(category);
+            const categoryLabel = CATEGORIES.find((c) => c.value === category)?.label || 'Document';
+
+            return (
+              <a
+                key={resource.id}
+                href={resource.mediaItemUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={resource.title}
+                className="group flex items-center gap-4 bg-white rounded-lg shadow-sm border border-neutral-200 p-4 hover:shadow-md hover:border-primary-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              >
+                {/* Icon */}
+                <div className="flex-shrink-0 p-3 bg-primary-50 rounded-lg group-hover:bg-primary-100 transition-colors">
                   <FileText className="w-6 h-6 text-primary-600" />
                 </div>
-                <span className="text-xs font-medium px-2 py-1 bg-neutral-100 text-neutral-600 rounded">
-                  {CATEGORIES.find((c) => c.value === categorizeResource(resource))?.label || 'Document'}
-                </span>
-              </div>
 
-              {/* Title */}
-              <h3 className="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
-                {resource.title}
-              </h3>
-
-              {/* Description */}
-              {resource.description && (
-                <p
-                  className="text-sm text-neutral-600 mb-4 line-clamp-2"
-                  dangerouslySetInnerHTML={{ __html: resource.description }}
-                />
-              )}
-
-              {/* Metadata */}
-              <div className="flex items-center justify-between text-xs text-neutral-500 pt-4 border-t border-neutral-100">
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-3 h-3" />
-                  <span>{formatDate(resource.date)}</span>
-                </div>
-                {resource.fileSize && (
-                  <div className="flex items-center gap-1">
-                    <HardDrive className="w-3 h-3" />
-                    <span>{formatFileSize(resource.fileSize)}</span>
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start gap-2 mb-1">
+                    <h3 className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors truncate flex-1">
+                      {resource.title}
+                    </h3>
+                    <span className={`flex-shrink-0 flex items-center gap-1 text-xs font-medium px-2 py-1 rounded border ${getCategoryColor(category)}`}>
+                      <CategoryIcon className="w-3 h-3" />
+                      <span className="hidden sm:inline">{categoryLabel}</span>
+                    </span>
                   </div>
-                )}
-              </div>
+                  <div className="flex items-center gap-4 text-xs text-neutral-500">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
+                      <span>{formatDate(resource.date)}</span>
+                    </div>
+                    {resource.fileSize && (
+                      <div className="flex items-center gap-1">
+                        <HardDrive className="w-3 h-3" />
+                        <span>{formatFileSize(resource.fileSize)}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-              {/* Download Button */}
-              <div className="flex items-center gap-2 mt-4 text-primary-600 font-medium text-sm group-hover:text-primary-700">
-                <Download className="w-4 h-4" />
-                <span>Download PDF</span>
-              </div>
-            </a>
-          ))}
+                {/* Download Button */}
+                <div className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-primary-50 text-primary-600 font-medium text-sm rounded-lg group-hover:bg-primary-600 group-hover:text-white transition-all duration-200">
+                  <Download className="w-4 h-4" />
+                  <span className="hidden md:inline">Download</span>
+                </div>
+              </a>
+            );
+          })}
         </div>
       )}
     </div>

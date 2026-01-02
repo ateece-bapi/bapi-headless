@@ -26,6 +26,40 @@ module.exports = {
   ],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#282829', // neutral-900
+            p: {
+              color: '#282829',
+            },
+            li: {
+              color: '#282829',
+            },
+            strong: {
+              color: '#282829',
+            },
+            td: {
+              color: '#282829',
+            },
+            blockquote: {
+              color: '#434445', // neutral-800
+            },
+            h1: {
+              color: '#282829',
+            },
+            h2: {
+              color: '#282829',
+            },
+            h3: {
+              color: '#282829',
+            },
+            h4: {
+              color: '#282829',
+            },
+          },
+        },
+      },
       colors: {
         primary: {
           50: '#e6f2f9',
@@ -93,4 +127,7 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };

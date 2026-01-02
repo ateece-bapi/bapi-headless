@@ -60,7 +60,7 @@ export function SearchInput() {
             }
           }}
           placeholder="Search products..."
-          className="w-full pl-10 pr-20 py-2.5 border border-neutral-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+          className="w-full pl-10 pr-20 py-2.5 border border-neutral-300 rounded-lg text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
           aria-label="Search products"
           aria-expanded={isOpen}
           aria-controls="search-dropdown"

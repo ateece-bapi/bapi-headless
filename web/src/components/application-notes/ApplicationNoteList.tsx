@@ -207,17 +207,19 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
 
       {/* Application Notes Grid/List */}
       {filteredAndSortedNotes.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-lg border border-neutral-200">
-          <BookOpen className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-neutral-900 mb-2">No articles found</h3>
-          <p className="text-neutral-600 mb-4">
+        <div className="text-center py-20 bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-xl border-2 border-dashed border-neutral-300">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-sm mb-6">
+            <BookOpen className="w-10 h-10 text-neutral-400" />
+          </div>
+          <h3 className="text-xl font-bold text-neutral-900 mb-2">No articles found</h3>
+          <p className="text-neutral-600 mb-6 max-w-md mx-auto">
             {searchQuery
-              ? `No results for "${searchQuery}"`
-              : 'No application notes match your criteria'}
+              ? `We couldn't find any articles matching "${searchQuery}". Try a different search term.`
+              : 'No application notes match your criteria. Try clearing your search.'}
           </p>
           <button
             onClick={clearSearch}
-            className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
+            className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold shadow-md hover:shadow-lg"
           >
             Clear search
           </button>

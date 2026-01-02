@@ -97,10 +97,10 @@ export default async function ResourcesPage() {
         </div>
         <div className="relative container mx-auto px-4">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               Technical Resources
             </h1>
-            <p className="text-xl text-primary-50 mb-8 leading-relaxed">
+            <p className="text-xl md:text-2xl text-primary-50 mb-8 leading-relaxed">
               Access comprehensive documentation, installation guides, and technical specifications
               for BAPI building automation products.
             </p>

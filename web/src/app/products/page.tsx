@@ -132,11 +132,11 @@ export default function MainProductPage() {
               Precision Sensors & Controllers
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
               Building Automation Products
             </h1>
             
-            <p className="text-xl text-primary-50 leading-relaxed mb-8">
+            <p className="text-xl md:text-2xl text-primary-50 leading-relaxed mb-8">
               Explore our complete range of high-accuracy sensors, controllers, and test instruments. 
               Trusted by engineers worldwide for critical HVAC applications.
             </p>

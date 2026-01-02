@@ -82,11 +82,11 @@ export default async function MissionValuesPage() {
               Our Purpose
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
               Mission & Values
             </h1>
             
-            <p className="text-xl text-primary-50 leading-relaxed">
+            <p className="text-xl md:text-2xl text-primary-50 leading-relaxed">
               For over 30 years, our mission and values have guided every decision we make, 
               every product we design, and every customer relationship we build.
             </p>

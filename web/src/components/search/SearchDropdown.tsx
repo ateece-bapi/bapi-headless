@@ -45,6 +45,7 @@ export function SearchDropdown({
 }: SearchDropdownProps) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   // Click outside to close
   useEffect(() => {
@@ -134,17 +135,26 @@ export function SearchDropdown({
               return (
                 <button
                   key={product.id}
-                  onClick={() => onSelect(product.slug)}
-                  className={`w-full flex items-center gap-4 px-4 py-3 transition-colors ${
+                  onClick={() => {
+                    setIsNavigating(true);
+                    onSelect(product.slug);
+                  }}
+                  onMouseEnter={() => setSelectedIndex(index)}
+                  disabled={isNavigating}
+                  className={`w-full flex items-center gap-4 px-4 py-3 transition-all duration-200 ${
+                    isNavigating 
+                      ? 'cursor-wait opacity-60'
+                      : 'cursor-pointer'
+                  } ${
                     selectedIndex === index
-                      ? 'bg-primary-50'
-                      : 'hover:bg-neutral-50'
+                      ? 'bg-primary-50 border-l-4 border-primary-500 shadow-sm'
+                      : 'hover:bg-neutral-50 border-l-4 border-transparent'
                   }`}
                   role="option"
                   aria-selected={selectedIndex === index}
                 >
                   {product.image && (
-                    <div className="relative w-12 h-12 flex-shrink-0 bg-neutral-100 rounded">
+                    <div className="relative w-12 h-12 flex-shrink-0 bg-neutral-100 rounded overflow-hidden group-hover:shadow-md transition-shadow">
                       <Image
                         src={product.image.sourceUrl}
                         alt={product.image.altText || product.name}
@@ -155,13 +165,19 @@ export function SearchDropdown({
                     </div>
                   )}
                   <div className="flex-1 text-left min-w-0">
-                    <h4 className="font-semibold text-neutral-900 truncate">{product.name}</h4>
+                    <h4 className={`font-semibold truncate transition-colors ${
+                      selectedIndex === index ? 'text-primary-700' : 'text-neutral-900'
+                    }`}>
+                      {product.name}
+                    </h4>
                     {category && (
-                      <p className="text-sm text-neutral-500">{category.name}</p>
+                      <p className="text-xs text-neutral-500 mt-0.5">{category.name}</p>
                     )}
                   </div>
                   {product.price && (
-                    <div className="text-primary-600 font-bold whitespace-nowrap">
+                    <div className={`font-bold text-sm whitespace-nowrap transition-colors ${
+                      selectedIndex === index ? 'text-primary-600' : 'text-primary-500'
+                    }`}>
                       {product.price}
                     </div>
                   )}
@@ -171,17 +187,35 @@ export function SearchDropdown({
           </div>
 
           <button
-            onClick={onViewAll}
-            className={`w-full flex items-center justify-center gap-2 px-4 py-3 border-t border-neutral-200 font-semibold transition-colors ${
-              selectedIndex === results.length
-                ? 'bg-primary-50 text-primary-700'
-                : 'bg-neutral-50 text-primary-600 hover:bg-neutral-100'
+            onClick={() => {
+              setIsNavigating(true);
+              onViewAll();
+            }}
+            onMouseEnter={() => setSelectedIndex(results.length)}
+            disabled={isNavigating}
+            className={`w-full flex items-center justify-center gap-2 px-4 py-4 border-t border-neutral-200 font-semibold text-sm transition-all duration-200 ${
+              isNavigating 
+                ? 'bg-primary-600 text-white cursor-wait'
+                : selectedIndex === results.length
+                  ? 'bg-primary-600 text-white shadow-md cursor-pointer'
+                  : 'bg-white text-primary-600 hover:bg-primary-50 hover:text-primary-700 cursor-pointer'
             }`}
             role="option"
             aria-selected={selectedIndex === results.length}
           >
-            View all results for "{query}"
-            <ArrowRight className="w-4 h-4" />
+            {isNavigating ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Loading results...</span>
+              </>
+            ) : (
+              <>
+                <span>View all results for "{query}"</span>
+                <ArrowRight className={`w-4 h-4 transition-transform ${
+                  selectedIndex === results.length ? 'translate-x-1' : ''
+                }`} />
+              </>
+            )}
           </button>
         </>
       )}

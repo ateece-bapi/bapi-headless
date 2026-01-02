@@ -69,12 +69,12 @@ export default function CompanyPage() {
               About BAPI
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 tracking-tight">
               Precision sensors for
               <span className="block text-primary-600">building automation</span>
             </h1>
             
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
               For over 30 years, BAPI has been the trusted name in precision sensor solutions 
               for building automation and HVAC control. We deliver quality products that exceed 
               our customers' expectations.

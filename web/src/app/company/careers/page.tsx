@@ -124,11 +124,11 @@ export default async function CareersPage() {
               Join Our Team
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
               Build Your Career at BAPI
             </h1>
             
-            <p className="text-xl text-primary-50 leading-relaxed mb-8">
+            <p className="text-xl md:text-2xl text-primary-50 leading-relaxed mb-8">
               BAPI supports a culture of work-life balance with family oriented employee benefits 
               such as company picnics & holiday parties, aesthetic wellness initiatives, exercise 
               programs and much more. We are an Equal Opportunity Employer (EOP) and we are 

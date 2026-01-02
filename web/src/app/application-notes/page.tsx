@@ -56,18 +56,23 @@ export default async function ApplicationNotesPage() {
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
-        <div className="container mx-auto px-4 py-16 md:py-20">
-          <div className="flex items-center gap-3 mb-4">
+      <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-400 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2" />
+        </div>
+        <div className="relative container mx-auto px-4 py-20 md:py-24">
+          <div className="flex items-center gap-3 mb-6">
             <BookOpen className="w-10 h-10" />
             <span className="text-sm font-semibold uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full">
               Technical Guidance
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 max-w-4xl">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 max-w-4xl leading-tight">
             Application Notes
           </h1>
-          <p className="text-xl md:text-2xl text-primary-100 max-w-3xl">
+          <p className="text-xl md:text-2xl text-primary-100 max-w-3xl leading-relaxed mb-2">
             In-depth technical articles covering sensor installation, best practices, and industry
             insights to help you get the most out of your BAPI sensors.
           </p>

@@ -10,8 +10,24 @@ export default async function QuotesPage() {
     redirect('/sign-in');
   }
 
-  // TODO: Fetch quote requests from database
-  const quotes: QuoteRequest[] = [];
+  // Fetch quote requests from API
+  let quotes: QuoteRequest[] = [];
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/quotes`, {
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      quotes = data.quotes || [];
+    }
+  } catch (error) {
+    console.error('Error fetching quotes:', error);
+  }
 
   return (
     <main className="min-h-screen bg-neutral-50">

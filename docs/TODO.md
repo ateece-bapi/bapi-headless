@@ -69,6 +69,18 @@
 
 ## 🚧 In Progress / Next Steps
 
+### Back to Top Button Bug (High Priority)
+- [ ] **Issue**: Back to Top button only appears at very bottom of page
+- [ ] **Expected**: Should appear after scrolling 300px from top
+- [ ] **Current State**: Component exists, properly positioned, but visibility broken
+- [ ] **Investigation Needed**: 
+  - [ ] Check if scroll event is firing correctly
+  - [ ] Verify window.scrollY values in browser
+  - [ ] Test with different scroll containers
+  - [ ] Check for CSS conflicts or z-index issues
+  - [ ] Review if Next.js hydration is causing issues
+- [ ] **Files**: `web/src/components/layout/BackToTop.tsx`, `web/src/app/layout.tsx`
+
 ### Translations (High Priority)
 - [ ] Complete translation files for all 7 languages
   - [ ] Current: Only skeleton/sample translations exist

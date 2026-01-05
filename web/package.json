@@ -17,9 +17,11 @@
     "codegen:watch": "graphql-codegen --config codegen.ts --watch"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.13.23",
     "@clerk/nextjs": "^6.36.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
     "graphql": "^16.12.0",
     "graphql-request": "^7.3.4",
     "graphql-tag": "^2.12.6",

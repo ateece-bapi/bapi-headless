@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Hero } from './components';
+import { IndustryBrowse } from '@/components/home';
 import { 
   Thermometer, 
   Gauge, 
@@ -7,10 +8,6 @@ import {
   Radio, 
   Settings, 
   Wrench,
-  Building2,
-  Server,
-  Building,
-  Factory,
   Target,
   Cable,
   HardHat,
@@ -31,6 +28,9 @@ export default function Home() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <Hero />
+
+      {/* Industry Browse Section */}
+      <IndustryBrowse />
 
       {/* Solution Categories - White */}
       <section className="w-full bg-white py-12 lg:py-16 xl:py-20">
@@ -109,107 +109,6 @@ export default function Home() {
                   </Link>
                   <Link href="/solutions" className="inline-flex items-center justify-center px-4 py-2 text-primary-500 hover:text-primary-600 font-semibold text-sm lg:text-base transition-colors">
                     View Solutions →
-                  </Link>
-                </div>
-              </div>
-            )})}
-          </div>
-        </div>
-      </section>
-
-      {/* Industry Applications - Very Light Gray */}
-      <section className="w-full bg-gradient-to-br from-neutral-50/20 via-white to-neutral-50/30 py-12 lg:py-16 xl:py-20 border-y border-neutral-200/20">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
-              Industry-Specific Applications
-            </h2>
-            <p className="text-base lg:text-lg xl:text-xl text-neutral-600 max-w-4xl mx-auto">
-              Proven solutions deployed in mission-critical facilities worldwide
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            {[
-              {
-                industry: 'Healthcare & Life Sciences',
-                icon: Building2,
-                challenges: [
-                  'Operating room pressurization (ASHRAE 170)',
-                  'Cleanroom ISO classification maintenance',
-                  'Pharmacy and compounding room monitoring',
-                  'Patient comfort and infection control'
-                ],
-                outcomes: '99.9% uptime in critical care environments'
-              },
-              {
-                industry: 'Data Centers',
-                icon: Server,
-                challenges: [
-                  'Hot/cold aisle temperature monitoring',
-                  'Humidity control for static prevention',
-                  'Airflow verification and optimization',
-                  'PUE improvement through precise control'
-                ],
-                outcomes: 'Average 15% reduction in cooling costs'
-              },
-              {
-                industry: 'Commercial Real Estate',
-                icon: Building,
-                challenges: [
-                  'Multi-tenant comfort control',
-                  'Energy management and LEED certification',
-                  'Indoor air quality for occupant health',
-                  'Predictive maintenance integration'
-                ],
-                outcomes: 'LEED Platinum certification support'
-              },
-              {
-                industry: 'Manufacturing & Industrial',
-                icon: Factory,
-                challenges: [
-                  'Process control environment stability',
-                  'Clean manufacturing compliance',
-                  'Energy-intensive system optimization',
-                  'Integration with existing SCADA/BMS'
-                ],
-                outcomes: 'ISO 14644 cleanroom compliance'
-              }
-            ].map((app) => {
-              const IconComponent = app.icon;
-              return (
-              <div key={app.industry} className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 lg:p-8 xl:p-10 border border-neutral-200 hover:border-primary-500">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 lg:w-16 lg:h-16 bg-primary-500 rounded-xl flex items-center justify-center shrink-0">
-                    <IconComponent className="w-7 h-7 lg:w-9 lg:h-9 text-white" strokeWidth={2} />
-                  </div>
-                  <h3 className="font-bold text-xl lg:text-2xl xl:text-3xl text-neutral-900">{app.industry}</h3>
-                </div>
-                
-                <div className="mb-6">
-                  <h4 className="font-semibold text-xs lg:text-sm text-neutral-700 mb-3 uppercase tracking-wide">Critical Requirements:</h4>
-                  <ul className="space-y-2">
-                    {app.challenges.map((challenge) => (
-                      <li key={challenge} className="text-sm lg:text-base text-neutral-600 flex items-start">
-                        <span className="text-primary-500 mr-2 mt-0.5">•</span>
-                        <span>{challenge}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="bg-primary-50 p-4 rounded-lg mb-6 border border-primary-100">
-                  <p className="text-sm lg:text-base font-semibold text-primary-600">
-                    <span className="text-neutral-700">Proven Results: </span>{app.outcomes}
-                  </p>
-                </div>
-                
-                <div className="flex gap-3 flex-wrap">
-                  <Link href="/contact" className="inline-flex items-center justify-center px-5 py-2.5 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold text-sm lg:text-base rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105">
-                    Request Consultation
-                  </Link>
-                  <Link href={`/solutions/${app.industry.toLowerCase().replace(/\s+/g, '-')}`} className="inline-flex items-center justify-center px-5 py-2.5 text-primary-500 hover:text-primary-600 font-semibold text-sm lg:text-base transition-colors">
-                    View Case Studies →
                   </Link>
                 </div>
               </div>
@@ -334,7 +233,7 @@ export default function Home() {
       </section>
 
       {/* Integration Partners & Ecosystem - Light Gradient */}
-      <section className="w-full bg-gradient-to-br from-blue-50/20 via-white to-neutral-50/50 py-12 lg:py-16 xl:py-20 border-y border-primary-100/40">
+      <section className="w-full bg-linear-to-br from-blue-50/20 via-white to-neutral-50/50 py-12 lg:py-16 xl:py-20 border-y border-primary-100/40">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-neutral-900">
@@ -358,7 +257,7 @@ export default function Home() {
                 "Carrier/Abound",
                 "Distech Controls"
               ].map((partner) => (
-                <div key={partner} className="bg-white/80 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-5 lg:p-6 flex items-center justify-center min-w-40 lg:min-w-[180px] min-h-[80px] lg:min-h-[90px] border border-neutral-200/60 hover:border-primary-400 group">
+                <div key={partner} className="bg-white/80 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-5 lg:p-6 flex items-center justify-center min-w-40 lg:min-w-45 min-h-20 lg:min-h-22.5 border border-neutral-200/60 hover:border-primary-400 group">
                   <span className="text-sm lg:text-base font-semibold text-neutral-500 group-hover:text-primary-600 transition-colors text-center">
                     {partner}
                   </span>

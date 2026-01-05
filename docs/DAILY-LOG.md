@@ -4,6 +4,57 @@ Track daily progress on the BAPI Headless project.
 
 ---
 
+## January 5, 2026
+
+### Homepage Redesign - Industry Browse Section (Completed ✅)
+
+**Strategic Planning:**
+- User provided mockup for new Industry Browse section
+- Goal: Replace old "Industry-Specific Applications" with cleaner card-based design
+- New section to be placed immediately after Hero section
+
+**Implementation:**
+- **New Component: `IndustryBrowse.tsx`:**
+  - Client-side interactive component with toggle between "Industry" and "Sensor Type"
+  - 8 industry cards in 4-column grid (responsive: 1 col mobile, 2 col tablet, 4 col desktop)
+  - Icons: HVAC/R (Wind), Agriculture (Sprout), Food Service (UtensilsCrossed), Transportation (Truck), Healthcare (HeartPulse), Grocery (ShoppingCart), Meat Processing (Beef), Cold Chain (Snowflake)
+  - Card design: white bg, rounded-2xl corners, shadow effects on hover
+  - Icon positioned top-right in light blue rounded container
+  - Industry name bottom-left in primary blue color
+  - Smooth transitions and hover states (border color, shadow, background)
+  - Toggle buttons: rounded-full design with yellow accent for active state
+  - Sensor Type view placeholder (future implementation)
+
+- **Homepage Updates:**
+  - Added IndustryBrowse component import
+  - Positioned right after Hero section
+  - Removed old "Industry-Specific Applications" section (4 large cards with challenges/outcomes)
+  - Cleaned up unused icon imports (Building2, Server, Building, Factory)
+  - Fixed Tailwind v4 class naming issues (bg-gradient → bg-linear, arbitrary values)
+
+**Design Features:**
+- Clean, minimal card design matching mockup
+- Professional hover effects (shadow-lg, border-primary-500)
+- Responsive padding and sizing (p-8 lg:p-10)
+- Min height constraints for consistent card sizing (min-h-45 lg:min-h-50)
+- Icon containers with background transitions
+- Yellow accent toggle buttons matching brand
+
+**Files Created:**
+- `web/src/components/home/IndustryBrowse.tsx` - Industry browse component
+- `web/src/components/home/index.ts` - Barrel export
+
+**Files Modified:**
+- `web/src/app/page.tsx` - Integrated new section, removed old section
+
+**Next Steps:**
+- Sensor Type browsing implementation
+- Create actual industry landing pages at `/industries/*` routes
+- Consider adding brief descriptions to industry cards
+- Test responsive behavior across devices
+
+---
+
 ## January 2, 2026 (Evening)
 
 ### Resources UI/UX Polish & Application Notes Implementation (Completed ✅)

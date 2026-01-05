@@ -17,6 +17,13 @@ export default async function AccountPage() {
     redirect('/sign-in');
   }
 
+  // Get user's display name from Clerk or WordPress metadata
+  const displayName = user.firstName || 
+                     user.lastName ||
+                     (user.username as string) ||
+                     user.emailAddresses[0]?.emailAddress?.split('@')[0] ||
+                     'there';
+
   const dashboardSections = [
     {
       title: 'Profile',
@@ -69,7 +76,7 @@ export default async function AccountPage() {
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 lg:py-16">
           <div className="max-w-3xl">
             <h1 className="text-4xl lg:text-5xl font-bold text-neutral-900 mb-4">
-              Welcome back, {user.firstName || 'there'}!
+              Welcome back, {displayName}!
             </h1>
             <p className="text-lg lg:text-xl text-neutral-600">
               Manage your account, orders, and preferences from your dashboard

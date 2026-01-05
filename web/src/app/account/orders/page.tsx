@@ -2,7 +2,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Package, Eye, Download } from 'lucide-react';
-import { graphqlClient } from '@/lib/graphql/client';
+import { authenticatedGraphqlClient } from '@/lib/graphql/authenticated-client';
 import { GET_CUSTOMER_ORDERS } from '@/lib/graphql/queries/customer-orders';
 
 interface Order {
@@ -42,7 +42,7 @@ export default async function OrdersPage() {
 
   if (wpCustomerId) {
     try {
-      const data = await graphqlClient.request(GET_CUSTOMER_ORDERS, {
+      const data = await authenticatedGraphqlClient.request(GET_CUSTOMER_ORDERS, {
         customerId: wpCustomerId,
         first: 50,
       });

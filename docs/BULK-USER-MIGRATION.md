@@ -86,8 +86,8 @@ wp user list --format=json > wordpress-users.json
 ```bash
 cd web
 
-# Install Clerk SDK
-npm install @clerk/clerk-sdk-node
+# Install dependencies
+npm install @clerk/clerk-sdk-node dotenv
 
 # Copy users export to web directory
 cp ~/wordpress-users.json ./
@@ -95,27 +95,58 @@ cp ~/wordpress-users.json ./
 
 ### 3. Set Environment Variables
 
-Add to `web/.env.local`:
+Add to `web/.env` or `web/.env.local`:
 
 ```env
 CLERK_SECRET_KEY=sk_test_...
 ```
 
-### 4. Run Bulk Import
+### 4. Test with Single User (RECOMMENDED)
+
+**Before importing all users, test with your own email:**
 
 ```bash
+# Test WITHOUT sending email (safe)
+TEST_EMAIL="your@email.com" node scripts/bulk-import-users.mjs
+
+# Test WITH email sending (you'll receive password setup email)
+TEST_EMAIL="your@email.com" SEND_EMAILS=true node scripts/bulk-import-users.mjs
+```
+
+**Or use the interactive test script:**
+
+```bash
+./scripts/test-user-import.sh
+```
+
+This ensures:
+- ✓ Import works correctly
+- ✓ Metadata is linked properly
+- ✓ Email sending works
+- ✓ No surprises with production run
+
+### 5. Run Production Bulk Import
+
+**⚠️ PRODUCTION ONLY - DO NOT RUN ON STAGING WITH REAL EMAILS**
+
+```bash
+# Import all users and send password setup emails
+SEND_EMAILS=true node scripts/bulk-import-users.mjs
+
+# Or import without emails (users must manually reset)
 node scripts/bulk-import-users.mjs
 ```
 
 **What It Does:**
 - Reads WordPress users from JSON
 - Skips admins/editors (they only need WP access)
+- Checks for existing Clerk accounts
 - Creates Clerk accounts for customers
 - Links WordPress customer ID in metadata
-- Sends "Set Password" emails
-- Generates import report
+- Optionally sends password setup emails
+- Generates detailed import report
 
-### 5. Review Results
+### 6. Review Results
 
 Check `import-results.json`:
 
@@ -140,6 +171,13 @@ Check `import-results.json`:
 
 ### 6. Customer Communication
 
+**If SEND_EMAILS=true was used:**
+- ✓ Customers automatically receive password setup emails from Clerk
+- ✓ They click link and set password immediately
+- ✓ Can sign in right away
+
+**If emails were NOT sent:**
+
 Send migration announcement email:
 
 ```
@@ -158,6 +196,36 @@ Your order history and account information remain unchanged.
 
 Questions? Contact support@bapi.com
 ```
+
+## Testing Strategy
+
+### Staging Environment (Current)
+
+**✅ SAFE:**
+```bash
+# Import test users without emails
+TEST_EMAIL="your@email.com" node scripts/bulk-import-users.mjs
+
+# Test email functionality with your own address
+TEST_EMAIL="your@email.com" SEND_EMAILS=true node scripts/bulk-import-users.mjs
+```
+
+**❌ NEVER DO ON STAGING:**
+```bash
+# This would email ALL real customers!
+SEND_EMAILS=true node scripts/bulk-import-users.mjs
+```
+
+### Production Migration Day
+
+1. **Schedule off-hours maintenance window**
+2. **Run full migration:**
+   ```bash
+   SEND_EMAILS=true node scripts/bulk-import-users.mjs
+   ```
+3. **Verify import results**
+4. **Launch new site**
+5. **Monitor customer support for issues**
 
 ## Order History Access
 

@@ -57,6 +57,13 @@ bapi-headless/
 │   │   ├── app/                # App Router pages
 │   │   │   ├── page.tsx        # Homepage
 │   │   │   ├── layout.tsx      # Root layout with ClerkProvider
+│   │   │   ├── account/        # User dashboard (6 pages)
+│   │   │   │   ├── page.tsx    # Dashboard overview
+│   │   │   │   ├── profile/    # User profile management
+│   │   │   │   ├── orders/     # WooCommerce order history
+│   │   │   │   ├── favorites/  # Saved products
+│   │   │   │   ├── quotes/     # Quote requests
+│   │   │   │   └── settings/   # Account settings
 │   │   │   ├── products/       # Products listing
 │   │   │   ├── products-test/  # Product testing page
 │   │   │   ├── cart-test/      # Cart demo
@@ -70,10 +77,16 @@ bapi-headless/
 │   │   │   ├── ui/             # Reusable UI components
 │   │   │   └── examples/       # Example components
 │   │   ├── lib/
-│   │   │   └── graphql/        # GraphQL client & generated types
+│   │   │   └── graphql/        # GraphQL clients & generated types
+│   │   │       ├── client.ts   # Public GraphQL client
+│   │   │       ├── authenticated-client.ts  # WordPress authenticated client
+│   │   │       └── queries/    # GraphQL query definitions
 │   │   ├── store/              # Zustand stores
 │   │   └── styles/             # Global styles
 │   ├── middleware.ts           # Clerk authentication middleware
+│   ├── scripts/                # Utility scripts
+│   │   ├── bulk-import-users.mjs  # WordPress to Clerk migration
+│   │   └── test-user-import.sh    # Safe migration testing
 │   ├── public/                 # Static assets
 │   ├── __tests__/              # Test files
 │   ├── package.json            # Dependencies
@@ -86,7 +99,9 @@ bapi-headless/
 │   └── workflows/              # CI/CD workflows
 │
 ├── docs/                       # Project documentation
-├── scripts/                    # Utility scripts
+│   ├── BULK-USER-MIGRATION.md  # WordPress user migration guide
+│   └── ...                     # Additional docs
+├── scripts/                    # Repository-level scripts
 └── README.md                   # This file
 ```
 
@@ -94,8 +109,13 @@ bapi-headless/
 
 ### Frontend (Next.js)
 - ⚡ **Next.js 16** with App Router and Turbopack
-- � **95% Faster Product Pages** - Optimized from 2-3s to <100ms with React cache(), parallel queries, and Smart Cache
+- ⚡ **95% Faster Product Pages** - Optimized from 2-3s to <100ms with React cache(), parallel queries, and Smart Cache
 - 🔐 **Clerk Authentication** - Google OAuth, user profiles, protected routes
+- 👤 **Complete User Dashboard** - 6-page account system (dashboard, profile, orders, favorites, quotes, settings)
+- 🛍️ **Real Order History** - Display WooCommerce orders via authenticated GraphQL
+- 💬 **Quote Request System** - Custom quote forms with file uploads
+- ⭐ **Favorites System** - Save and manage favorite products
+- 🔄 **WordPress User Migration** - Bulk import system for existing customers
 - 🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
 - 🧭 **Enterprise Mega Menu** – Multi-column navigation with icons, featured products, quick actions, and B2B enhancements
 - ⬆️ **Back to Top Button** – Floating button for fast site-wide navigation
@@ -109,6 +129,8 @@ bapi-headless/
 ### Backend (WordPress)
 - 🛍️ **WooCommerce** - Complete e-commerce functionality
 - 🔌 **WPGraphQL** - Modern GraphQL API for WordPress
+- 🔐 **Authenticated GraphQL** - Customer-specific data via WordPress Application Passwords
+- 📦 **Customer Order Integration** - Real-time order history from WooCommerce
 - ⚡ **Smart Cache** - WPGraphQL response caching with automatic invalidation
 - 🌐 **CDN-Cacheable** - GET request support with proper Cache-Control headers
 - 📊 **Type-Safe API** - GraphQL schema with introspection
@@ -194,6 +216,7 @@ See [`web/COLOR_SYSTEM.md`](./web/COLOR_SYSTEM.md) for complete color documentat
 
 - **[Color System](./web/COLOR_SYSTEM.md)** - Complete brand color guidelines
 - **[Clerk Authentication](./web/CLERK_SETUP.md)** - Authentication setup and configuration
+- **[WordPress User Migration](./docs/BULK-USER-MIGRATION.md)** - Bulk import guide for existing customers
 - **[GraphQL Setup](./web/GRAPHQL_SETUP.md)** - GraphQL client configuration
 - **[WordPress Performance](./docs/WORDPRESS-GRAPHQL-OPTIMIZATION.md)** - Backend optimization guide (Smart Cache, CORS, Redis)
 - **[Preview Mode](./web/PREVIEW.md)** - WordPress preview integration
@@ -296,6 +319,10 @@ NEXT_PUBLIC_APP_URL=https://your-site.vercel.app
 # Clerk Authentication (required)
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your-key
 CLERK_SECRET_KEY=sk_test_your-key
+
+# WordPress Authenticated GraphQL (required for order history)
+WORDPRESS_API_USER=your-wordpress-username
+WORDPRESS_API_PASSWORD=your-wordpress-app-password
 
 # Preview mode (optional)
 PREVIEW_SECRET=your-secret-key

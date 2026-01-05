@@ -19,6 +19,22 @@
 - [x] Contact Us page
 - [x] Senior UI/UX polish applied to all pages
 
+### User Authentication & Account Management
+- [x] Clerk authentication integration
+- [x] Protected route middleware (proxy.ts)
+- [x] User dashboard with 6 sections
+- [x] Profile page with user data display
+- [x] Orders page (placeholder for WooCommerce)
+- [x] Favorites/saved products feature
+- [x] Settings page with Clerk UserProfile
+- [x] Quote requests page with status tracking
+- [x] Quote request form with file uploads
+- [x] Favorites API (GET/POST/DELETE)
+- [x] Quotes API (GET/POST)
+- [x] FavoriteButton component (reusable)
+- [x] Account Dashboard link in user menu
+- [x] Test pages for quotes and favorites
+
 ### Product Pages
 - [x] Main products page redesign with category cards
 - [x] Smart category/product routing in [slug]
@@ -227,18 +243,49 @@
 - [ ] Lighthouse score improvements
 
 ### Authentication & User Features
-**Clerk Infrastructure Status (Dec 31, 2025):**
+**Clerk Infrastructure Status (✅ COMPLETED - Jan 5, 2026):**
 - ✅ ClerkProvider integrated in root layout
-- ✅ Middleware with route protection configured
+- ✅ Middleware with route protection configured (proxy.ts for Next.js 15)
 - ✅ SignInButton component (modal sign-in/sign-up)
-- ✅ UserButton for authenticated users
-- ✅ Public routes defined (products, home, APIs)
+- ✅ UserButton for authenticated users with Account Dashboard link
+- ✅ Protected `/account/*` routes
+- ✅ Complete user dashboard with 6 pages:
+  - ✅ Main dashboard overview
+  - ✅ Profile page with user data
+  - ✅ Order history (placeholder)
+  - ✅ Favorites/saved products
+  - ✅ Account settings (Clerk UserProfile)
+  - ✅ Quote requests management
+- ✅ Quote request system:
+  - ✅ Comprehensive form with file uploads
+  - ✅ API endpoints (POST/GET)
+  - ✅ JSON storage (/data/quotes.json)
+  - ✅ Status tracking (pending/reviewing/quoted/declined)
+- ✅ Favorites system:
+  - ✅ FavoriteButton component (2 variants, 3 sizes)
+  - ✅ API endpoints (GET/POST/DELETE)
+  - ✅ JSON storage (/data/favorites.json)
+  - ✅ Test page for development
+- ✅ Navigation integration with user menu
+
+**Next Steps for User Features:**
+- [ ] Database migration (replace JSON storage):
+  - [ ] Set up PostgreSQL/MySQL database
+  - [ ] Create schema for quotes and favorites
+  - [ ] Migrate API routes to use database
+  - [ ] Add Prisma or similar ORM
+- [ ] Add FavoriteButton to actual product pages
+- [ ] Integrate WooCommerce for real order history
+- [ ] Email notifications for quotes
+- [ ] Admin dashboard for quote management
+- [ ] Quote detail view page (`/account/quotes/[id]`)
+- [ ] Update dashboard cards with real counts
 
 **WordPress to Clerk User Migration (Phased Approach):**
-- [ ] **Phase 1 - New Registrations (Current)**
-  - [ ] New customer registrations use Clerk only
-  - [ ] Keep existing WordPress users active (no disruption)
-  - [ ] Document customer migration plan
+- [x] **Phase 1 - New Registrations (Current)**
+  - [x] New customer registrations use Clerk only
+  - [x] Keep existing WordPress users active (no disruption)
+  - [x] Document customer migration plan
 - [ ] **Phase 2 - Existing Customer Import**
   - [ ] Export WordPress/WooCommerce users via WP-CLI or REST API
   - [ ] Import to Clerk via Bulk User Import API

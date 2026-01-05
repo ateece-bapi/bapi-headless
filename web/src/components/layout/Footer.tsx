@@ -1,114 +1,209 @@
+import React from 'react';
+import Link from 'next/link';
+import { Linkedin, Youtube } from 'lucide-react';
 
-import React from "react";
-
-const navigation = [
-  { name: "Products", href: "/products" },
-  { name: "Solutions", href: "/solutions" },
-  { name: "Support", href: "/support" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+const footerSections = [
+  {
+    title: 'Products',
+    links: [
+      { label: 'Temperature Sensors', href: '/products/temperature' },
+      { label: 'Humidity Sensors', href: '/products/humidity' },
+      { label: 'Pressure Sensors', href: '/products/pressure' },
+      { label: 'Air Quality', href: '/products/air-quality' },
+      { label: 'Wireless Solutions', href: '/products/wireless' },
+      { label: 'Controllers', href: '/products/controllers' },
+    ],
+  },
+  {
+    title: 'Solutions',
+    links: [
+      { label: 'Healthcare', href: '/solutions/healthcare' },
+      { label: 'Data Centers', href: '/solutions/data-centers' },
+      { label: 'Commercial Buildings', href: '/solutions/commercial' },
+      { label: 'Manufacturing', href: '/solutions/manufacturing' },
+      { label: 'BACnet Integration', href: '/solutions/bacnet' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { label: 'Technical Datasheets', href: '/resources/datasheets' },
+      { label: 'Installation Guides', href: '/resources/installation' },
+      { label: 'Application Notes', href: '/resources/application-notes' },
+      { label: 'Video Library', href: '/resources/videos' },
+      { label: 'Case Studies', href: '/resources/case-studies' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'Mission & Values', href: '/company/mission-values' },
+      { label: 'Why BAPI', href: '/company/why-bapi' },
+      { label: 'News', href: '/company/news' },
+      { label: 'Careers', href: '/company/careers' },
+      { label: 'Contact Us', href: '/company/contact-us' },
+    ],
+  },
+  {
+    title: 'Support',
+    links: [
+      { label: 'Technical Support', href: '/support' },
+      { label: 'Product Selector', href: '/resources/selector' },
+      { label: 'Cross Reference', href: '/resources/cross-reference' },
+      { label: 'Distributor Network', href: '/distributors' },
+    ],
+  },
 ];
 
 const social = [
   {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/company/bapi-building-automation-products-inc-/",
-    icon: (
-      <svg fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
-        <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 10.28h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.89v1.23h.04c.4-.75 1.37-1.54 2.82-1.54 3.01 0 3.57 1.98 3.57 4.56v4.75z" />
-      </svg>
-    ),
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/bapi-building-automation-products-inc-/',
+    icon: Linkedin,
   },
   {
-    name: "YouTube",
-    href: "https://www.youtube.com/@BAPIInc",
-    icon: (
-      <svg fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
-        <path d="M23.498 6.186a2.994 2.994 0 0 0-2.112-2.12C19.425 3.5 12 3.5 12 3.5s-7.425 0-9.386.566A2.994 2.994 0 0 0 .502 6.186C0 8.147 0 12 0 12s0 3.853.502 5.814a2.994 2.994 0 0 0 2.112 2.12C4.575 20.5 12 20.5 12 20.5s7.425 0 9.386-.566a2.994 2.994 0 0 0 2.112-2.12C24 15.853 24 12 24 12s0-3.853-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-      </svg>
-    ),
+    name: 'YouTube',
+    href: 'https://www.youtube.com/@BAPIInc',
+    icon: Youtube,
   },
 ];
 
-
 const Footer: React.FC = () => (
-  <footer
-    className="w-full border-t mt-16 shadow-inner"
-    style={{
-      background: 'var(--color-primary-950)',
-      color: 'var(--color-primary-100)',
-      borderColor: 'var(--color-primary-800)',
-    }}
-  >
-    <div
-      className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-12 border-b"
-      style={{ borderColor: 'var(--color-primary-800)' }}
-    >
-      {/* Brand & Mission */}
-      <div className="flex flex-col gap-4">
-        <img src="/bapi-logo.svg" alt="BAPI Logo" className="h-12 w-auto mb-2 drop-shadow-lg" />
-        <p className="text-base font-medium leading-relaxed" style={{ color: 'var(--color-primary-100)' }}>
-          <span style={{ color: 'var(--color-accent-500)', fontWeight: 700 }}>Precision Sensor Solutions</span> for Building Automation.<br />
-          <span style={{ color: 'var(--color-primary-200)' }}>Trusted by engineers worldwide for mission-critical facilities.</span>
-        </p>
-      </div>
-      {/* Quick Links */}
-      <nav aria-label="Footer Navigation" className="flex flex-col gap-2">
-        <span className="font-semibold mb-2 tracking-wide uppercase" style={{ color: 'var(--color-accent-500)' }}>Quick Links</span>
-        {navigation.map((item) => (
-          <a
-            key={item.name}
-            href={item.href}
-            className="text-sm font-medium py-0.5 transition-colors hover:underline hover:text-yellow-400"
-            style={{ color: 'var(--color-primary-100)' }}
-          >
-            {item.name}
-          </a>
-        ))}
-      </nav>
-      {/* Contact */}
-      <div className="flex flex-col gap-2">
-        <span className="font-semibold mb-2 tracking-wide uppercase" style={{ color: 'var(--color-accent-500)' }}>Contact</span>
-        <span className="text-sm" style={{ color: 'var(--color-primary-100)' }}>750 N Royal Ave, Gays Mills, WI 54631</span>
-        <a href="tel:6087354800" className="text-sm font-medium transition-colors hover:underline hover:text-yellow-400" style={{ color: 'var(--color-primary-100)' }}>(608) 735-4800</a>
-        <a href="mailto:sales@bapihvac.com" className="text-sm font-medium transition-colors hover:underline hover:text-yellow-400" style={{ color: 'var(--color-primary-100)' }}>sales@bapihvac.com</a>
-      </div>
-      {/* Social & Copyright */}
-      <div className="flex flex-col gap-4 items-start md:items-end justify-between h-full">
-        <div className="flex gap-4 mb-2">
-          {social.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={item.name}
-              className="rounded-full p-2 transition-colors shadow-md border hover:bg-yellow-400 hover:text-black"
-              style={{
-                background: 'var(--color-primary-900)',
-                color: 'var(--color-accent-500)',
-                borderColor: 'var(--color-primary-800)',
-              }}
-            >
-              {item.icon}
-            </a>
-          ))}
+  <footer className="w-full bg-neutral-50 border-t border-neutral-200 mt-16">
+    <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 lg:py-16">
+      {/* Main Footer Content */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12 pb-12 border-b border-neutral-200">
+        {/* Brand & Mission - Takes 2 columns on large screens */}
+        <div className="lg:col-span-2 flex flex-col gap-4">
+          <Link href="/" className="inline-block mb-2">
+            <img 
+              src="/bapi-logo.svg" 
+              alt="BAPI Logo" 
+              className="h-10 lg:h-12 w-auto transition-opacity hover:opacity-80" 
+            />
+          </Link>
+          <p className="text-sm lg:text-base text-neutral-900 leading-relaxed max-w-sm">
+            <span className="font-bold text-primary-600">Precision Sensor Solutions</span> for Building Automation.
+          </p>
+          <p className="text-sm text-neutral-600 max-w-sm">
+            Trusted by engineers worldwide for mission-critical facilities since 1993.
+          </p>
+          
+          {/* Social Links */}
+          <div className="flex gap-3 mt-2">
+            {social.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.name}
+                  className="w-10 h-10 rounded-lg bg-white border border-neutral-300 flex items-center justify-center text-neutral-600 hover:text-primary-600 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300 shadow-sm"
+                >
+                  <IconComponent className="w-5 h-5" strokeWidth={2} />
+                </a>
+              );
+            })}
+          </div>
         </div>
-        <span className="text-xs font-medium tracking-wide" style={{ color: 'var(--color-primary-200)' }}>© {new Date().getFullYear()} BAPI. All rights reserved.</span>
+
+        {/* Navigation Sections */}
+        {footerSections.map((section) => (
+          <nav key={section.title} className="flex flex-col gap-3">
+            <h3 className="font-bold text-sm lg:text-base text-primary-600 uppercase tracking-wide mb-1">
+              {section.title}
+            </h3>
+            <ul className="space-y-2">
+              {section.links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-neutral-700 hover:text-primary-600 transition-colors duration-200 inline-block"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
       </div>
-    </div>
-    <div
-      className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between text-xs"
-      style={{ color: 'var(--color-primary-200)' }}
-    >
-      <span>BAPI® is a registered trademark of Building Automation Products, Inc.</span>
-      <a
-        href="#top"
-        className="ml-2 font-semibold transition-colors hover:text-white hover:underline"
-        style={{ color: 'var(--color-accent-500)' }}
-      >
-        Back to Top ↑
-      </a>
+
+      {/* Bottom Section - Contact & Legal */}
+      <div className="pt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 pb-8 border-b border-neutral-200">
+        {/* Contact Information */}
+        <div className="flex flex-col gap-2">
+          <h4 className="font-semibold text-sm text-primary-600 uppercase tracking-wide mb-1">
+            Contact
+          </h4>
+          <address className="not-italic text-sm text-neutral-700 space-y-1.5">
+            <p>750 N Royal Ave</p>
+            <p>Gays Mills, WI 54631</p>
+            <a
+              href="tel:6087354800"
+              className="block hover:text-primary-600 transition-colors duration-200"
+            >
+              (608) 735-4800
+            </a>
+            <a
+              href="mailto:sales@bapihvac.com"
+              className="block hover:text-primary-600 transition-colors duration-200"
+            >
+              sales@bapihvac.com
+            </a>
+          </address>
+        </div>
+
+        {/* Certifications */}
+        <div className="flex flex-col gap-2">
+          <h4 className="font-semibold text-sm text-primary-600 uppercase tracking-wide mb-1">
+            Certifications
+          </h4>
+          <div className="text-sm text-neutral-700 space-y-1">
+            <p>BACnet B-ASC Certified</p>
+            <p>ISO 9001:2015</p>
+            <p>UL Listed</p>
+            <p>Made in USA</p>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="flex flex-col gap-3">
+          <h4 className="font-semibold text-sm text-primary-600 uppercase tracking-wide mb-1">
+            Quick Actions
+          </h4>
+          <Link
+            href="/quote"
+            className="inline-flex items-center justify-center px-4 py-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
+          >
+            Request Quote
+          </Link>
+          <Link
+            href="/distributors"
+            className="inline-flex items-center justify-center px-4 py-2 border border-neutral-300 text-neutral-700 hover:border-primary-600 hover:bg-white hover:text-primary-600 font-semibold text-sm rounded-lg transition-all duration-300"
+          >
+            Find Distributor
+          </Link>
+        </div>
+      </div>
+
+      {/* Copyright & Legal */}
+      <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-neutral-600">
+        <div className="space-y-1">
+          <p>© {new Date().getFullYear()} Building Automation Products, Inc. All rights reserved.</p>
+          <p>BAPI® is a registered trademark of Building Automation Products, Inc.</p>
+        </div>
+        <div className="flex gap-4">
+          <Link href="/privacy" className="hover:text-primary-600 transition-colors">
+            Privacy Policy
+          </Link>
+          <Link href="/terms" className="hover:text-primary-600 transition-colors">
+            Terms of Use
+          </Link>
+        </div>
+      </div>
     </div>
   </footer>
 );

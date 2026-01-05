@@ -5,6 +5,7 @@ import { TranslationProvider } from "@/components/providers/TranslationProvider"
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import BackToTop from "@/components/layout/BackToTop";
 import { ToastProvider } from "@/components/ui/Toast";
 
 // Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
@@ -61,6 +62,7 @@ export default function RootLayout({
               <Header />
               {children}
               <Footer />
+              <BackToTop />
             </ToastProvider>
           </TranslationProvider>
         </body>

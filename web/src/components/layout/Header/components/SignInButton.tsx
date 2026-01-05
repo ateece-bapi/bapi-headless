@@ -37,10 +37,25 @@ const SignInButton: React.FC = () => (
           appearance={{
             elements: {
               avatarBox: "w-9 h-9 ring-2 ring-transparent group-hover:ring-primary-500/20 transition-all duration-200",
-              userButtonPopoverCard: "shadow-lg"
+              userButtonPopoverCard: "shadow-lg",
+              userButtonPopoverActionButton: "hover:bg-primary-50",
+              userButtonPopoverActionButtonText: "text-neutral-700 hover:text-primary-600"
             }
           }}
-        />
+        >
+          <UserButton.MenuItems>
+            <UserButton.Link
+              label="Account Dashboard"
+              labelIcon={
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              }
+              href="/account"
+            />
+            <UserButton.Action label="manageAccount" />
+          </UserButton.MenuItems>
+        </UserButton>
       </div>
     </SignedIn>
   </>

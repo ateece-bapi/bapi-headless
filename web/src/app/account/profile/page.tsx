@@ -119,14 +119,14 @@ export default async function ProfilePage() {
                       {user.username || 'Not set'}
                     </span>
                   </div>
-                  {user.publicMetadata.role && typeof user.publicMetadata.role === 'string' && (
+                  {typeof user.publicMetadata?.role === 'string' ? (
                     <div className="flex justify-between">
                       <span className="text-neutral-600">Role:</span>
                       <span className="text-neutral-900 font-semibold capitalize">
                         {user.publicMetadata.role}
                       </span>
                     </div>
-                  )}
+                  ) : null}
                 </div>
               </div>
 

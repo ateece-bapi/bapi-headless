@@ -10,19 +10,27 @@ import {
   HeartPulse, 
   ShoppingCart, 
   Beef, 
-  Snowflake 
+  Snowflake,
+  Thermometer,
+  Gauge,
+  Droplets,
+  Radio,
+  Waves,
+  Settings,
+  Cable,
+  Zap
 } from 'lucide-react';
 
 type BrowseMode = 'industry' | 'sensor-type';
 
-interface IndustryCard {
+interface Card {
   id: string;
   name: string;
   icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   href: string;
 }
 
-const industries: IndustryCard[] = [
+const industries: Card[] = [
   { id: 'hvac', name: 'HVAC/R', icon: Wind, href: '/industries/hvac-r' },
   { id: 'agriculture', name: 'Agriculture', icon: Sprout, href: '/industries/agriculture' },
   { id: 'food-service', name: 'Food Service', icon: UtensilsCrossed, href: '/industries/food-service' },
@@ -31,6 +39,17 @@ const industries: IndustryCard[] = [
   { id: 'grocery', name: 'Grocery', icon: ShoppingCart, href: '/industries/grocery' },
   { id: 'meat-processing', name: 'Meat Processing', icon: Beef, href: '/industries/meat-processing' },
   { id: 'cold-chain', name: 'Cold Chain', icon: Snowflake, href: '/industries/cold-chain' },
+];
+
+const sensorTypes: Card[] = [
+  { id: 'temperature', name: 'Temperature', icon: Thermometer, href: '/products/temperature' },
+  { id: 'humidity', name: 'Humidity', icon: Droplets, href: '/products/humidity' },
+  { id: 'pressure', name: 'Pressure', icon: Gauge, href: '/products/pressure' },
+  { id: 'air-quality', name: 'Air Quality', icon: Wind, href: '/products/air-quality' },
+  { id: 'wireless', name: 'Wireless', icon: Radio, href: '/products/wireless' },
+  { id: 'current', name: 'Current Sensors', icon: Zap, href: '/products/current-sensors' },
+  { id: 'controllers', name: 'Controllers', icon: Settings, href: '/products/controllers' },
+  { id: 'accessories', name: 'Accessories', icon: Cable, href: '/products/accessories' },
 ];
 
 export default function IndustryBrowse() {
@@ -106,10 +125,30 @@ export default function IndustryBrowse() {
 
         {/* Sensor Type Cards Grid (Placeholder for now) */}
         {browseMode === 'sensor-type' && (
-          <div className="text-center py-12">
-            <p className="text-neutral-600 text-lg">
-              Sensor Type browsing coming soon...
-            </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            {sensorTypes.map((sensor) => {
+              const IconComponent = sensor.icon;
+              return (
+                <Link
+                  key={sensor.id}
+                  href={sensor.href}
+                  className="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-8 lg:p-10 border border-neutral-200 hover:border-primary-500 flex flex-col items-start justify-end min-h-45 lg:min-h-50 relative overflow-hidden"
+                >
+                  {/* Icon - Top Right */}
+                  <div className="absolute top-6 right-6 w-16 h-16 lg:w-20 lg:h-20 bg-primary-50 rounded-2xl flex items-center justify-center group-hover:bg-primary-100 transition-colors">
+                    <IconComponent 
+                      className="w-8 h-8 lg:w-10 lg:h-10 text-primary-500" 
+                      strokeWidth={2}
+                    />
+                  </div>
+                  
+                  {/* Title - Bottom Left */}
+                  <h3 className="font-bold text-lg lg:text-xl text-primary-600 group-hover:text-primary-700 transition-colors">
+                    {sensor.name}
+                  </h3>
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>

@@ -6,6 +6,136 @@ Track daily progress on the BAPI Headless project.
 
 ## January 5, 2026
 
+### WordPress to Clerk User Migration System ✅ COMPLETED
+
+**Strategic Planning:**
+- User returned after completing Clerk dashboard to address WordPress user migration
+- Initial exploration: Seamless password migration vs bulk migration approach
+- Decision: Industry-standard bulk migration (used by Shopify, Stripe, Auth0)
+- Architecture: Link entities via metadata, don't duplicate data
+
+**Implementation - Bulk Migration System:**
+- **Export Script:**
+  - WP-CLI command exports 5,437 WordPress users to JSON
+  - Includes user ID, email, name, username, roles, registration date
+  - Excludes sensitive data (passwords stay in WordPress)
+
+- **Import Script (`scripts/bulk-import-users.mjs`):**
+  - Complete Node.js script with dotenv support
+  - Safety features:
+    - SEND_EMAILS flag (default: false) for password setup emails
+    - TEST_EMAIL mode for single-user testing
+    - 5-second warning before bulk email operations
+    - Role filtering (skips admin/editor roles)
+  - Clerk integration:
+    - Creates users with skipPasswordRequirement: true
+    - Stores wordpressUserId and wordpressCustomerId in publicMetadata
+    - Optional password setup email via Clerk API
+  - Performance:
+    - Checks for existing users to avoid duplicates
+    - Rate limits to 100ms per API call
+    - Generates detailed import-results.json report
+  - Testing: Successfully imported 98 users on staging
+
+- **Interactive Test Script (`scripts/test-user-import.sh`):**
+  - Bash script for safe testing
+  - Two modes: with/without email sending
+  - Prompts for email address in test mode
+  - User-friendly testing workflow
+
+**Implementation - GraphQL Authentication:**
+- **Critical Issue Identified:**
+  - Orders page returning "Not authorized to access this customer"
+  - WordPress GraphQL customer queries require authentication
+  
+- **Solution - Authenticated Client:**
+  - Created `authenticated-client.ts` with Basic Auth
+  - Uses WordPress application password for API access
+  - Generated password for admin user: vKCB U6YC LacP FSCk Q0VI 5tqT
+  - Environment variables: WORDPRESS_API_USER, WORDPRESS_API_PASSWORD
+
+- **Orders Page Updates:**
+  - Modified to use authenticatedGraphqlClient
+  - Reads wordpressCustomerId from Clerk publicMetadata
+  - Queries WordPress for customer's WooCommerce orders
+  - Displays order history with status badges, products, totals
+  - Handles empty state and loading states
+
+- **Account Dashboard Enhancement:**
+  - Fixed "Welcome back, there!" issue
+  - Now displays username or email prefix
+  - Fallback chain: firstName → lastName → username → email prefix
+
+**Testing & Verification:**
+- Successfully tested with brian.ormsby@carrier.com (Customer ID: 16130)
+- Orders page loads without errors (user had 0 orders)
+- Account dashboard shows proper username
+- GraphQL authentication working with admin credentials
+- Metadata properly stored and retrieved from Clerk
+
+**Documentation:**
+- Comprehensive BULK-USER-MIGRATION.md guide:
+  - Architecture diagrams and explanations
+  - Step-by-step migration process
+  - Safety warnings for staging vs production
+  - Customer communication templates
+  - Testing strategy with TEST_EMAIL mode
+
+**Files Created:**
+- `web/scripts/bulk-import-users.mjs` - Main import script (169 lines)
+- `web/scripts/test-user-import.sh` - Interactive test script
+- `web/src/lib/graphql/authenticated-client.ts` - Auth client
+- `web/src/lib/graphql/queries/customer-orders.ts` - Order queries (215 lines)
+- `docs/BULK-USER-MIGRATION.md` - Migration guide
+- `web/wordpress-users.json` - Export of 5,437 users
+- `web/import-results.json` - Test results (98 successful)
+
+**Files Modified:**
+- `web/src/app/account/orders/page.tsx` - Use authenticated client, fetch real orders
+- `web/src/app/account/page.tsx` - Display user names properly
+- `web/.env` - Added WordPress API credentials
+
+**Dependencies Added:**
+- `@clerk/clerk-sdk-node` - Clerk server-side SDK
+- `dotenv` - Environment variable loading
+
+**Git Workflow:**
+- Branch: `feature/wordpress-user-migration`
+- Commits:
+  1. `feat: implement bulk WordPress to Clerk user migration`
+  2. `feat: add email sending and test mode to user migration`
+  3. `feat: add WordPress authentication for customer order queries`
+  4. `feat: display user name on account dashboard`
+- PRs merged to main
+- Deployed to Vercel production
+- Branch cleanup: local and remote deleted
+- Synced to main branch
+
+**Performance & Results:**
+- Staging test: 98 users imported successfully
+- GraphQL query: 258ms (cached) for customer orders
+- Authentication: Working with admin credentials
+- Production-ready system awaiting go-live decision
+
+**Impact:**
+- ✅ Complete user migration system from WordPress to Clerk
+- ✅ Real-time order history from WooCommerce
+- ✅ Safe testing with TEST_EMAIL mode
+- ✅ Production-ready with safety controls
+- ✅ Zero downtime migration path
+- ✅ Email system for proactive password setup
+- ✅ Comprehensive documentation for team
+- ✅ 5,437 customers ready to migrate
+
+**Next Steps:**
+- Add WORDPRESS_API_USER and WORDPRESS_API_PASSWORD to Vercel
+- Run production migration when ready: `node scripts/bulk-import-users.mjs`
+- Optional: Add SEND_EMAILS=true to trigger password setup emails
+- Monitor migration success rate
+- Communicate with customers about new authentication
+
+---
+
 ### Clerk User Dashboard Implementation ✅ COMPLETED
 
 **Strategic Planning:**

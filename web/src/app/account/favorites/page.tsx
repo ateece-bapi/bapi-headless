@@ -50,10 +50,10 @@ export default function FavoritesPage() {
     }
   };
 
-  const handleFavoriteToggle = (isFavorited: boolean) => {
-    // Refresh the favorites list when a product is removed
+  const handleFavoriteToggle = (isFavorited: boolean, productId: string) => {
+    // Optimistically update UI by removing the item immediately
     if (!isFavorited) {
-      fetchFavorites();
+      setFavorites(prev => prev.filter(fav => fav.productId !== productId));
     }
   };
 
@@ -202,7 +202,7 @@ export default function FavoritesPage() {
                             productPrice={favorite.productPrice}
                             size="md"
                             variant="icon"
-                            onToggle={handleFavoriteToggle}
+                            onToggle={(isFavorited) => handleFavoriteToggle(isFavorited, favorite.productId)}
                           />
                         </div>
                       </div>

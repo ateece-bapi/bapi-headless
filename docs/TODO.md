@@ -56,6 +56,14 @@
   - [x] Removed redundant dropdown arrow from region selector
   - [x] Touch-friendly layout with proper button sizing
   - [x] **Result: 30% reduction in mobile header height, improved UX**
+- [x] **BackToTop Button Fix (Jan 6, 2026)**
+  - [x] Root cause: `transform: translateZ(0)` on body created new stacking context
+  - [x] Removed transform from body in globals.css
+  - [x] Implemented React Portal for direct body rendering
+  - [x] Button now appears correctly at 300px scroll position
+  - [x] Fixed to viewport (not page content)
+  - [x] Proper BAPI brand styling with smooth animations
+  - [x] **Result: BackToTop working correctly across all pages**
 
 ### WordPress Integration
 - [x] GraphQL setup and queries
@@ -93,18 +101,6 @@
 ---
 
 ## 🚧 In Progress / Next Steps
-
-### Back to Top Button Bug (High Priority)
-- [ ] **Issue**: Back to Top button only appears at very bottom of page
-- [ ] **Expected**: Should appear after scrolling 300px from top
-- [ ] **Current State**: Component exists, properly positioned, but visibility broken
-- [ ] **Investigation Needed**: 
-  - [ ] Check if scroll event is firing correctly
-  - [ ] Verify window.scrollY values in browser
-  - [ ] Test with different scroll containers
-  - [ ] Check for CSS conflicts or z-index issues
-  - [ ] Review if Next.js hydration is causing issues
-- [ ] **Files**: `web/src/components/layout/BackToTop.tsx`, `web/src/app/layout.tsx`
 
 ### Translations (High Priority)
 - [ ] Complete translation files for all 7 languages

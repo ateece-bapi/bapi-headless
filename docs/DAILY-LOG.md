@@ -383,6 +383,82 @@ Track daily progress on the BAPI Headless project.
 
 ---
 
+### BackToTop Button Fix ✅ COMPLETED
+
+**Issue Identified:**
+- User reported BackToTop button only appearing at footer (bottom of page content)
+- Expected behavior: Button should appear after scrolling 300px anywhere on page
+- Console logs showed logic working correctly (visible: true at 300px)
+- Button was rendering but not visible in correct position
+
+**Root Cause Analysis:**
+- Investigated z-index issues (z-100 invalid, changed to z-[1080])
+- Tested various CSS approaches (opacity, scale, translate)
+- Moved component outside provider wrappers (ToastProvider, TranslationProvider)
+- **Discovered:** `transform: translateZ(0)` on body element in globals.css
+- This CSS property creates a new containing block for `position: fixed`
+- Caused fixed positioning to behave like absolute positioning relative to body content
+
+**Solution Implemented:**
+- **Removed problematic CSS:**
+  - Deleted `transform: translateZ(0)` from body element
+  - Deleted `backface-visibility: hidden` (also causes stacking issues)
+  - Originally added for "hardware acceleration" but broke fixed positioning
+
+- **Enhanced BackToTop Component:**
+  - Implemented React Portal (`createPortal`) to render directly to `document.body`
+  - Bypasses any parent CSS that might interfere with positioning
+  - Inline position styles to prevent overrides
+  - Proper z-index (1080) matching design tokens
+  - Smooth transitions and hover effects
+
+**Technical Details:**
+- CSS Properties that break `position: fixed`:
+  - `transform` (any value except none)
+  - `filter` (any value except none)
+  - `perspective` (any value except none)
+  - `contain: layout` or `contain: paint`
+  - `will-change: transform` or `will-change: filter`
+- These create new stacking contexts and containing blocks
+
+**Files Modified:**
+- `web/src/app/globals.css` - Removed transform from body
+- `web/src/components/layout/BackToTop.tsx` - Added Portal, inline positioning
+- `web/src/app/layout.tsx` - Moved BackToTop outside providers
+
+**Git Workflow:**
+- Branch: `fix/back-to-top-z-index`
+- Commit: "fix: resolve BackToTop button visibility issue"
+  - Root cause documented in commit message
+  - Complete solution with React Portal
+  - Restored proper BAPI brand styling
+- PR merged to main
+- Deployed to Vercel production
+- Branch cleanup: local and remote deleted
+
+**Testing & Verification:**
+- Console logs confirmed scroll detection working (300px threshold)
+- Tested with oversized red button (debugging)
+- Confirmed fixed positioning now works correctly
+- Button appears at 300px scroll anywhere on page
+- Stays fixed to bottom-right of viewport (not page content)
+
+**Impact:**
+- ✅ BackToTop button now works as expected
+- ✅ Appears after 300px scroll on any page
+- ✅ Fixed to viewport, not page content
+- ✅ Smooth animations and BAPI brand styling
+- ✅ Proper z-index stacking (above all content)
+- ✅ Production-ready implementation with Portal
+
+**Lessons Learned:**
+- Hardware acceleration tricks (`transform: translateZ(0)`) can break layout
+- Always test `position: fixed` elements when adding transform properties
+- React Portals are essential for overlay components (modals, tooltips, fixed buttons)
+- CSS stacking contexts are complex - document thoroughly
+
+---
+
 ## January 5, 2026
 
 ### WordPress to Clerk User Migration System ✅ COMPLETED

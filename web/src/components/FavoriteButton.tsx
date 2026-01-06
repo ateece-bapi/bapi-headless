@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 interface FavoriteButtonProps {
   productId: string;
@@ -63,19 +64,31 @@ export default function FavoriteButton({
       return;
     }
 
+    // Store previous state for rollback
+    const previousState = isFavorited;
+    
+    // Optimistic update - update UI immediately
+    setIsFavorited(!isFavorited);
     setIsLoading(true);
 
+    // Show optimistic toast
+    const toastId = toast.loading(
+      previousState ? 'Removing from favorites...' : 'Adding to favorites...'
+    );
+
     try {
-      if (isFavorited) {
+      if (previousState) {
         // Remove from favorites
         const response = await fetch(`/api/favorites?productId=${productId}`, {
           method: 'DELETE',
         });
 
-        if (response.ok) {
-          setIsFavorited(false);
-          onToggle?.(false);
+        if (!response.ok) {
+          throw new Error('Failed to remove from favorites');
         }
+
+        toast.success('Removed from favorites', { id: toastId });
+        onToggle?.(false);
       } else {
         // Add to favorites
         const response = await fetch('/api/favorites', {
@@ -92,13 +105,25 @@ export default function FavoriteButton({
           }),
         });
 
-        if (response.ok) {
-          setIsFavorited(true);
-          onToggle?.(true);
+        if (!response.ok) {
+          throw new Error('Failed to add to favorites');
         }
+
+        toast.success('Added to favorites', { id: toastId });
+        onToggle?.(true);
       }
     } catch (error) {
       console.error('Error toggling favorite:', error);
+      
+      // Rollback on error
+      setIsFavorited(previousState);
+      
+      toast.error(
+        previousState 
+          ? 'Failed to remove from favorites. Please try again.' 
+          : 'Failed to add to favorites. Please try again.',
+        { id: toastId }
+      );
     } finally {
       setIsLoading(false);
     }

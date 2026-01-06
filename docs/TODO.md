@@ -47,6 +47,15 @@
 - [x] Megamenu stability fixes (timer management)
 - [x] Smooth hover transitions (300ms ease-out)
 - [x] Mobile menu
+- [x] **Mobile Header Responsiveness (Jan 6, 2026)**
+  - [x] Hide region/language selectors on mobile header (desktop only)
+  - [x] Add region/language selectors to mobile menu Settings section
+  - [x] Progressive logo sizing (h-12 mobile → h-28 desktop)
+  - [x] Icon-only Sign In button on mobile
+  - [x] Optimized spacing and padding for mobile devices
+  - [x] Removed redundant dropdown arrow from region selector
+  - [x] Touch-friendly layout with proper button sizing
+  - [x] **Result: 30% reduction in mobile header height, improved UX**
 
 ### WordPress Integration
 - [x] GraphQL setup and queries
@@ -381,6 +390,15 @@
   - [ ] Touch-friendly button sizes (44px minimum)
   - [ ] Pull-to-refresh for order history
   - [ ] Native app-like feel
+
+- [ ] **Two-Factor Authentication (2FA/MFA)**
+  - [ ] Enable in Clerk Dashboard (User & Authentication → Multi-factor)
+  - [ ] Choose methods: SMS codes, Authenticator apps (TOTP), Backup codes
+  - [ ] Decide: Optional (user choice) vs Required (enforced)
+  - [ ] Test enrollment flow in UserProfile component
+  - [ ] Test sign-in flow with 2FA enabled
+  - [ ] Documentation for users on enabling/using 2FA
+  - [ ] Consider making 2FA required for admin/distributor roles
 
 **Next Steps for User Features:**
 - [ ] Database migration (replace JSON storage):

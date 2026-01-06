@@ -1,30 +1,34 @@
 "use client";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { ArrowUp } from "lucide-react";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const checkScroll = () => {
-      const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+      const scrolled = window.scrollY;
       const shouldShow = scrolled > 300;
       
-      if (shouldShow !== visible) {
-        setVisible(shouldShow);
-      }
+      setVisible(shouldShow);
     };
 
     // Check immediately on mount
     checkScroll();
     
-    // Add scroll listener with passive option for better performance
+    // Add scroll listener
     window.addEventListener("scroll", checkScroll, { passive: true });
     
     return () => {
       window.removeEventListener("scroll", checkScroll);
     };
-  }, [visible]);
+  }, []);
 
   const handleClick = () => {
     window.scrollTo({ 
@@ -33,18 +37,23 @@ export default function BackToTop() {
     });
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <button
       aria-label="Back to top"
       onClick={handleClick}
       style={{ 
-        transform: visible ? 'translateY(0)' : 'translateY(100px)',
-        opacity: visible ? 1 : 0,
-        pointerEvents: visible ? 'auto' : 'none'
+        zIndex: 1080,
+        display: visible ? 'flex' : 'none',
+        position: 'fixed',
+        bottom: '24px',
+        right: '24px'
       }}
-      className="fixed bottom-6 right-6 z-100 w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary-600 text-white shadow-xl transition-all duration-300 hover:bg-primary-700 hover:scale-110 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 flex items-center justify-center"
+      className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary-600 text-white shadow-xl hover:bg-primary-700 hover:scale-110 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 flex items-center justify-center transition-all duration-300 ease-out"
     >
       <ArrowUp className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.5} />
-    </button>
+    </button>,
+    document.body
   );
 }

@@ -63,7 +63,6 @@ export default function RootLayout({
               <Header />
               {children}
               <Footer />
-              <BackToTop />
               <Toaster 
                 position="top-right" 
                 richColors 
@@ -77,6 +76,7 @@ export default function RootLayout({
               />
             </ToastProvider>
           </TranslationProvider>
+          <BackToTop />
         </body>
       </html>
     </ClerkProvider>

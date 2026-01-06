@@ -163,9 +163,7 @@ body {
   /* Smooth font rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Enable hardware acceleration for smooth animations */
-  transform: translateZ(0);
-  backface-visibility: hidden;
+  /* Removed transform: translateZ(0) - it breaks position: fixed */
 }
 
 /* 

@@ -39,7 +39,10 @@ const SignInButton: React.FC = () => (
               avatarBox: "w-9 h-9 ring-2 ring-transparent group-hover:ring-primary-500/20 transition-all duration-200",
               userButtonPopoverCard: "shadow-lg",
               userButtonPopoverActionButton: "hover:bg-primary-50",
-              userButtonPopoverActionButtonText: "text-neutral-700 hover:text-primary-600"
+              userButtonPopoverActionButtonText: "text-neutral-700 hover:text-primary-600",
+              userButtonPopoverActionButton__manageAccount: {
+                display: "none"
+              }
             }
           }}
         >
@@ -53,7 +56,7 @@ const SignInButton: React.FC = () => (
               }
               href="/account"
             />
-            <UserButton.Action label="manageAccount" />
+            <UserButton.Action label="signOut" />
           </UserButton.MenuItems>
         </UserButton>
       </div>

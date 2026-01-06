@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Globe, Languages } from 'lucide-react';
 import clsx from 'clsx';
 import { MEGA_MENU_ITEMS } from '../config';
+import RegionSelector from './RegionSelector';
+import { LanguageSelector } from './LanguageSelector';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -36,6 +38,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         aria-label="Mobile navigation"
       >
         <div className="max-w-7xl mx-auto px-4 py-4">
+          {/* Region & Language Settings - Mobile Only */}
+          <div className="mb-4 p-4 bg-gradient-to-r from-primary-50 via-white to-primary-50 rounded-lg border border-primary-200 space-y-3">
+            <div className="flex items-center gap-2 mb-2">
+              <Globe className="w-4 h-4 text-primary-600" />
+              <h3 className="text-sm font-bold text-neutral-900">Settings</h3>
+            </div>
+            <div className="flex flex-col gap-3">
+              <RegionSelector />
+              <LanguageSelector />
+            </div>
+          </div>
+
           {MEGA_MENU_ITEMS.map((item, index) => (
             <div key={item.label} className="border-b border-neutral-100 last:border-0">
               {/* Top-level item */}

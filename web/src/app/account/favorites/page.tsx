@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Heart, Loader2 } from 'lucide-react';
+import { ArrowLeft, Heart } from 'lucide-react';
 import FavoriteButton from '@/components/FavoriteButton';
+import { ProductCardSkeleton } from '@/components/skeletons';
 
 interface Favorite {
   id: string;
@@ -58,9 +59,38 @@ export default function FavoritesPage() {
 
   if (!isLoaded || isLoading) {
     return (
-      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-primary-600 animate-spin" />
-      </div>
+      <main className="min-h-screen bg-neutral-50">
+        {/* Header */}
+        <section className="w-full bg-white border-b border-neutral-200">
+          <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
+            <Link
+              href="/account"
+              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors mb-6"
+            >
+              <ArrowLeft className="w-4 h-4" strokeWidth={2.5} />
+              Back to Dashboard
+            </Link>
+            <h1 className="text-3xl lg:text-4xl font-bold text-neutral-900">
+              Saved Products
+            </h1>
+          </div>
+        </section>
+
+        {/* Loading Skeletons */}
+        <section className="w-full py-12">
+          <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+            <div className="h-7 bg-neutral-200 rounded w-40 mb-6 animate-pulse"></div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+            </div>
+          </div>
+        </section>
+      </main>
     );
   }
 

@@ -40,7 +40,7 @@ const RegionSelector: React.FC = () => {
           id="region-select"
           value={currentRegion.code}
           onChange={handleChange}
-        className="appearance-none pl-9 lg:pl-10 pr-9 lg:pr-10 py-2 border border-neutral-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-neutral-50 hover:border-neutral-400 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 focus:border-transparent transition-all duration-200 cursor-pointer"
+        className="appearance-none pl-9 lg:pl-10 pr-3 py-2 border border-neutral-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-neutral-50 hover:border-neutral-400 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 focus:border-transparent transition-all duration-200 cursor-pointer"
         aria-label="Select region"
       >
         {Object.values(REGIONS).map((region) => (
@@ -49,16 +49,6 @@ const RegionSelector: React.FC = () => {
           </option>
         ))}
       </select>
-      {/* Chevron down icon */}
-      <svg
-        className="absolute right-2.5 lg:right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-hover:text-primary-600 transition-colors pointer-events-none"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
       </div>
     </div>
   );

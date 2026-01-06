@@ -30,9 +30,9 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         className
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-4">
-        {/* Top Row: Region, Language, Sign In, Cart */}
-        <div className="flex items-end justify-end gap-3 mb-4 lg:mb-6 p-2 rounded-full bg-linear-to-r from-neutral-50/50 via-white to-neutral-50/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 lg:py-4">
+        {/* Top Row: Region, Language, Sign In, Cart - Hidden on mobile, visible on desktop */}
+        <div className="hidden lg:flex items-end justify-end gap-3 mb-4 lg:mb-6 p-2 rounded-full bg-linear-to-r from-neutral-50/50 via-white to-neutral-50/50">
           <RegionSelector />
           <div className="h-6 w-px bg-neutral-300 mb-2" />
           <LanguageSelector />
@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         </div>
 
         {/* Bottom Row: Logo, Navigation, Search */}
-        <div className="flex items-center justify-between gap-4 lg:gap-8">
+        <div className="flex items-center justify-between gap-2 lg:gap-8">
           <Logo />
 
           {/* Desktop Mega Menu Navigation */}
@@ -53,13 +53,18 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
             <SearchInput />
           </div>
 
-          <div className="flex items-center gap-1 lg:gap-2">
+          <div className="flex items-center gap-2 lg:gap-2">
+            {/* Mobile-only Sign In and Cart */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <SignInButton />
+              <CartButton />
+            </div>
             <MobileMenuButton isOpen={mobileMenu.isOpen} onClick={mobileMenu.toggle} />
           </div>
         </div>
 
         {/* Search - Mobile */}
-        <div className="lg:hidden mt-4">
+        <div className="lg:hidden mt-3">
           <SearchInput />
         </div>
 

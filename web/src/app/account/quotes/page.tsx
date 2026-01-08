@@ -1,7 +1,8 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, FileText, Clock, CheckCircle, XCircle, Plus } from 'lucide-react';
+import { ArrowLeft, FileText, Clock, CheckCircle, XCircle, Plus, AlertCircle } from 'lucide-react';
+import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 
 export default async function QuotesPage() {
   const user = await currentUser();
@@ -10,27 +11,35 @@ export default async function QuotesPage() {
     redirect('/sign-in');
   }
 
-  // Fetch quote requests from API
-  let quotes: QuoteRequest[] = [];
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/quotes`, {
-      cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    
-    if (response.ok) {
-      const data = await response.json();
-      quotes = data.quotes || [];
-    }
-  } catch (error) {
-    console.error('Error fetching quotes:', error);
-  }
+  // Get mock data if enabled
+  const mockEnabled = isMockDataEnabled();
+  const profile = mockEnabled ? getMockUserData(user.id) : null;
+  
+  // Use mock quotes or empty array
+  const quotes = profile?.savedQuotes.map(q => ({
+    id: q.quoteId,
+    quoteId: q.quoteId,
+    date: q.date,
+    expiresAt: q.expiresAt,
+    status: 'pending' as const,
+    total: q.total,
+    itemCount: q.items,
+  })) || [];
 
   return (
     <main className="min-h-screen bg-neutral-50">
+      {/* Mock Data Banner */}
+      {mockEnabled && profile && (
+        <div className="w-full bg-yellow-50 border-b border-yellow-200">
+          <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-3">
+            <div className="flex items-center gap-2 text-sm text-yellow-800">
+              <AlertCircle className="w-4 h-4" />
+              <span><strong>Development Mode:</strong> Showing mock quote data</span>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* Header */}
       <section className="w-full bg-linear-to-r from-primary-600 to-primary-700 text-white">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
@@ -131,17 +140,11 @@ export default async function QuotesPage() {
                         </h3>
                         {getStatusBadge(quote.status)}
                       </div>
-                      <p className="text-neutral-700 mb-2 font-medium">
-                        {quote.subject}
-                      </p>
-                      <p className="text-sm text-neutral-600 mb-4">
-                        {quote.description}
-                      </p>
-                      <div className="flex flex-wrap gap-4 text-sm">
+                      <div className="flex flex-wrap gap-4 text-sm mb-4">
                         <div>
-                          <span className="text-neutral-500">Submitted:</span>{' '}
+                          <span className="text-neutral-500">Created:</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {new Date(quote.submittedAt).toLocaleDateString('en-US', {
+                            {new Date(quote.date).toLocaleDateString('en-US', {
                               month: 'short',
                               day: 'numeric',
                               year: 'numeric',
@@ -149,23 +152,21 @@ export default async function QuotesPage() {
                           </span>
                         </div>
                         <div>
-                          <span className="text-neutral-500">Updated:</span>{' '}
+                          <span className="text-neutral-500">Expires:</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {new Date(quote.updatedAt).toLocaleDateString('en-US', {
+                            {new Date(quote.expiresAt).toLocaleDateString('en-US', {
                               month: 'short',
                               day: 'numeric',
                               year: 'numeric',
                             })}
                           </span>
                         </div>
-                        {quote.quantity && (
-                          <div>
-                            <span className="text-neutral-500">Quantity:</span>{' '}
-                            <span className="font-medium text-neutral-700">
-                              {quote.quantity.toLocaleString()}
-                            </span>
-                          </div>
-                        )}
+                        <div>
+                          <span className="text-neutral-500">Items:</span>{' '}
+                          <span className="font-medium text-neutral-700">
+                            {quote.itemCount} {quote.itemCount === 1 ? 'item' : 'items'}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="flex flex-col sm:flex-row lg:flex-col gap-2">

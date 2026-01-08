@@ -1,9 +1,10 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Package, Eye, Download } from 'lucide-react';
+import { ArrowLeft, Package, Eye, Download, AlertCircle } from 'lucide-react';
 import { authenticatedGraphqlClient } from '@/lib/graphql/authenticated-client';
 import { GET_CUSTOMER_ORDERS } from '@/lib/graphql/queries/customer-orders';
+import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 
 interface Order {
   id: string;
@@ -34,27 +35,68 @@ export default async function OrdersPage() {
     redirect('/sign-in');
   }
 
-  // Get WordPress customer ID from Clerk metadata
-  const wpCustomerId = user.publicMetadata?.wordpressCustomerId as number | undefined;
+  // Check for mock data first
+  const mockEnabled = isMockDataEnabled();
+  const profile = mockEnabled ? getMockUserData(user.id) : null;
 
   let orders: Order[] = [];
   let error = null;
+  let useMockData = false;
 
-  if (wpCustomerId) {
-    try {
-      const data = await authenticatedGraphqlClient.request(GET_CUSTOMER_ORDERS, {
-        customerId: wpCustomerId,
-        first: 50,
-      });
-      orders = data.customer?.orders?.nodes || [];
-    } catch (err) {
-      console.error('Error fetching orders:', err);
-      error = 'Failed to load order history';
+  // If mock data available, use it
+  if (profile) {
+    useMockData = true;
+    orders = profile.orderHistory.map(order => ({
+      id: order.orderId,
+      databaseId: parseInt(order.orderId.split('-')[2] || '0'),
+      orderNumber: order.orderId,
+      date: order.date,
+      status: order.status,
+      total: `$${order.total.toFixed(2)}`,
+      lineItems: {
+        nodes: order.items.map(item => ({
+          quantity: item.quantity,
+          product: {
+            node: {
+              name: item.name,
+              image: undefined,
+            }
+          }
+        }))
+      }
+    }));
+  } else {
+    // Get WordPress customer ID from Clerk metadata
+    const wpCustomerId = user.publicMetadata?.wordpressCustomerId as number | undefined;
+
+    if (wpCustomerId) {
+      try {
+        const data = await authenticatedGraphqlClient.request(GET_CUSTOMER_ORDERS, {
+          customerId: wpCustomerId,
+          first: 50,
+        });
+        orders = data.customer?.orders?.nodes || [];
+      } catch (err) {
+        console.error('Error fetching orders:', err);
+        error = 'Failed to load order history';
+      }
     }
   }
 
   return (
     <main className="min-h-screen bg-neutral-50">
+      {/* Mock Data Banner */}
+      {useMockData && (
+        <div className="w-full bg-yellow-50 border-b border-yellow-200">
+          <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-3">
+            <div className="flex items-center gap-2 text-sm text-yellow-800">
+              <AlertCircle className="w-4 h-4" />
+              <span><strong>Development Mode:</strong> Showing mock order data</span>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* Header */}
       <section className="w-full bg-linear-to-r from-primary-600 to-primary-700 text-white">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">

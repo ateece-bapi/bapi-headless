@@ -44,3 +44,6 @@ cookies.txt
 web/cookies.txt
 artifacts*/
 ci-preview-integration-*/
+
+# WordPress temp files
+cms/temp/

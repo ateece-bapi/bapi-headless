@@ -39,6 +39,9 @@ export default async function OrdersPage() {
   const mockEnabled = isMockDataEnabled();
   const profile = mockEnabled ? getMockUserData(user.id) : null;
 
+  // Get WordPress customer ID from Clerk metadata
+  const wpCustomerId = user.publicMetadata?.wordpressCustomerId as number | undefined;
+
   let orders: Order[] = [];
   let error = null;
   let useMockData = false;
@@ -65,21 +68,16 @@ export default async function OrdersPage() {
         }))
       }
     }));
-  } else {
-    // Get WordPress customer ID from Clerk metadata
-    const wpCustomerId = user.publicMetadata?.wordpressCustomerId as number | undefined;
-
-    if (wpCustomerId) {
-      try {
-        const data = await authenticatedGraphqlClient.request(GET_CUSTOMER_ORDERS, {
-          customerId: wpCustomerId,
-          first: 50,
-        });
-        orders = data.customer?.orders?.nodes || [];
-      } catch (err) {
-        console.error('Error fetching orders:', err);
-        error = 'Failed to load order history';
-      }
+  } else if (wpCustomerId) {
+    try {
+      const data = await authenticatedGraphqlClient.request(GET_CUSTOMER_ORDERS, {
+        customerId: wpCustomerId,
+        first: 50,
+      });
+      orders = data.customer?.orders?.nodes || [];
+    } catch (err) {
+      console.error('Error fetching orders:', err);
+      error = 'Failed to load order history';
     }
   }
 

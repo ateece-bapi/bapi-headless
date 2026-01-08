@@ -140,17 +140,11 @@ export default async function QuotesPage() {
                         </h3>
                         {getStatusBadge(quote.status)}
                       </div>
-                      <p className="text-neutral-700 mb-2 font-medium">
-                        {quote.subject}
-                      </p>
-                      <p className="text-sm text-neutral-600 mb-4">
-                        {quote.description}
-                      </p>
-                      <div className="flex flex-wrap gap-4 text-sm">
+                      <div className="flex flex-wrap gap-4 text-sm mb-4">
                         <div>
-                          <span className="text-neutral-500">Submitted:</span>{' '}
+                          <span className="text-neutral-500">Created:</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {new Date(quote.submittedAt).toLocaleDateString('en-US', {
+                            {new Date(quote.date).toLocaleDateString('en-US', {
                               month: 'short',
                               day: 'numeric',
                               year: 'numeric',
@@ -158,23 +152,21 @@ export default async function QuotesPage() {
                           </span>
                         </div>
                         <div>
-                          <span className="text-neutral-500">Updated:</span>{' '}
+                          <span className="text-neutral-500">Expires:</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {new Date(quote.updatedAt).toLocaleDateString('en-US', {
+                            {new Date(quote.expiresAt).toLocaleDateString('en-US', {
                               month: 'short',
                               day: 'numeric',
                               year: 'numeric',
                             })}
                           </span>
                         </div>
-                        {quote.quantity && (
-                          <div>
-                            <span className="text-neutral-500">Quantity:</span>{' '}
-                            <span className="font-medium text-neutral-700">
-                              {quote.quantity.toLocaleString()}
-                            </span>
-                          </div>
-                        )}
+                        <div>
+                          <span className="text-neutral-500">Items:</span>{' '}
+                          <span className="font-medium text-neutral-700">
+                            {quote.itemCount} {quote.itemCount === 1 ? 'item' : 'items'}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="flex flex-col sm:flex-row lg:flex-col gap-2">

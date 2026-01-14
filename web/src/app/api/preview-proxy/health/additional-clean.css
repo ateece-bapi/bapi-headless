@@ -1,0 +1,126 @@
+/* ===== CORE LAYOUT & INPUTS ===== */
+input,
+.input-text,
+input[type=email],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=url],
+textarea {
+  width: 100%;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+.site,
+#page,
+.site-header .header-wrap,
+.col-full {
+  max-width: none;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.global-nav {
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+  top: 0;
+  z-index: var(--z-modal);
+  right: 0;
+  font-size: 17px;
+  letter-spacing: 0.09px;
+  margin-left: auto;
+  margin-right: 180px;
+  width: fit-content;
+}
+
+/* ===== VIDEO/IFRAME SPACING FIXES ===== */
+#section-home-icons {
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+  margin-top: 0 !important;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25% !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+  margin-bottom: 24px !important;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.video-container + *,
+.video-container ~ * {
+  margin-top: 0 !important;
+}
+
+.wpb_wrapper .video-container,
+.vc_column-inner .video-container,
+.entry-content .video-container {
+  margin-bottom: 24px !important;
+}
+
+iframe[src*="youtube.com"],
+iframe[src*="vimeo.com"],
+iframe[src*="youtu.be"] {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+.wpb_wrapper iframe,
+.vc_column-inner iframe,
+.vc_column_container iframe,
+.entry-content iframe,
+.wpb_text_column iframe {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.wpb_wrapper:has(iframe),
+.vc_column-inner:has(iframe),
+.vc_column_container:has(iframe),
+.wpb_text_column:has(iframe),
+.vc_column:has(iframe) {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.vc_row:has(iframe),
+.wpb_row:has(iframe) {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+*:has(> iframe) {
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+*:has(> iframe) + *,
+*:has(iframe) + * {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}

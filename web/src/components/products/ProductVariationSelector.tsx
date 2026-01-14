@@ -122,15 +122,9 @@ export default function ProductVariationSelector({
   // Hide selector if no variations or attributes
   const showSelector = variations.length > 0 && attributes.length > 0;
 
+  // Don't render anything if no variations - keeps page clean
   if (!showSelector) {
-    return (
-      <section className={`mb-8 ${className}`}>
-        <h2 className="text-xl font-semibold text-neutral-900 mb-4">Product Options</h2>
-        <div className="bg-neutral-50 rounded-xl p-6 text-neutral-500 text-center border border-neutral-200">
-          This product has no configurable options.
-        </div>
-      </section>
-    );
+    return null;
   }
 
   return (

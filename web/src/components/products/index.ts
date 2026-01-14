@@ -16,3 +16,11 @@ export { CategoryPage } from './CategoryPage';
 export { ProductHeroFast } from './ProductHeroFast';
 export { ProductTabsAsync, ProductTabsSkeleton } from './ProductTabsAsync';
 export { RelatedProductsAsync, RelatedProductsSkeleton } from './RelatedProductsAsync';
+
+// Phase 1: Product Pages + Cart Integration
+export { default as ProductGallery } from './ProductGallery';
+export { default as QuantitySelector } from './QuantitySelector';
+export { default as ProductAvailability } from './ProductAvailability';
+export { default as ProductSpecifications } from './ProductSpecifications';
+export type { SpecificationGroup } from './ProductSpecifications';
+export type { GalleryImage } from './ProductGallery';

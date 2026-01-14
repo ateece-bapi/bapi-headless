@@ -89,34 +89,56 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
         )}
       </div>
       <div className="flex-1">
-        <h1 className="text-3xl font-bold mb-2 text-neutral-900">{product.name}</h1>
-        <div className="text-sm text-neutral-500 mb-2">
-          Part Number: <span className="font-medium text-neutral-800">{product.partNumber || product.sku || 'N/A'}</span>
+        {/* Increased heading size for better hierarchy */}
+        <h1 className="text-4xl lg:text-5xl font-bold mb-3 text-neutral-900 leading-tight">{product.name}</h1>
+        
+        {/* Part number with better visibility */}
+        <div className="text-base text-neutral-600 mb-4 flex items-center gap-2">
+          <span className="text-neutral-500">Part Number:</span>
+          <span className="font-semibold text-neutral-900">{product.partNumber || product.sku || 'N/A'}</span>
         </div>
+        
         {product.shortDescription && (
-          <div className="mb-4 text-neutral-700">{product.shortDescription}</div>
+          <div className="mb-6 text-neutral-700 text-lg leading-relaxed">{product.shortDescription}</div>
         )}
         {product.specs && (
-          <div className="mb-4 text-neutral-600 text-sm">{product.specs}</div>
+          <div className="mb-6 text-neutral-600">{product.specs}</div>
         )}
-        <div className="flex flex-col gap-2 mb-4">
-          {product.regularPrice && (
-            <div className="text-sm text-neutral-500">List Price: <span className="font-medium text-neutral-800">{product.regularPrice}</span></div>
-          )}
-          {product.multiplier && (
-            <div className="text-sm text-neutral-500">Multiplier: <span className="font-medium text-neutral-800">{product.multiplier}</span></div>
-          )}
-          {typeof product.stockQuantity === 'number' && (
-            <div className="text-sm text-neutral-500">In Stock: <span className="font-medium text-neutral-800">{product.stockQuantity}</span></div>
-          )}
-          {product.stockStatus && (
-            <div className={`text-xs font-semibold ${product.stockStatus === 'IN_STOCK' ? 'text-green-700' : 'text-red-600'}`}>{product.stockStatus.replace('_', ' ')}</div>
-          )}
+        
+        {/* Pricing section with better visual prominence */}
+        <div className="bg-neutral-50 rounded-lg p-4 mb-6 border border-neutral-200">
+          <div className="flex flex-col gap-3">
+            {product.regularPrice && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-neutral-500">List Price:</span>
+                <span className="text-lg font-semibold text-neutral-700">{product.regularPrice}</span>
+              </div>
+            )}
+            {product.multiplier && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-neutral-500">Multiplier:</span>
+                <span className="text-lg font-semibold text-primary-600">{product.multiplier}</span>
+              </div>
+            )}
+            {typeof product.stockQuantity === 'number' && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-neutral-500">In Stock:</span>
+                <span className="text-lg font-semibold text-green-700">{product.stockQuantity} units</span>
+              </div>
+            )}
+            {product.stockStatus && (
+              <div className={`inline-flex items-center gap-2 text-sm font-semibold px-3 py-1 rounded-full w-fit ${product.stockStatus === 'IN_STOCK' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                <span className={`w-2 h-2 rounded-full ${product.stockStatus === 'IN_STOCK' ? 'bg-green-600' : 'bg-red-600'}`}></span>
+                {product.stockStatus.replace('_', ' ')}
+              </div>
+            )}
+          </div>
         </div>
+        
         <div className="flex items-center gap-4 mb-4">
           {typeof product.stockQuantity === 'number' && product.stockQuantity > 0 && (
             <>
-              <label htmlFor="quantity" className="block font-medium">Quantity</label>
+              <label htmlFor="quantity" className="block font-medium text-neutral-700">Quantity</label>
               <input
                 type="number"
                 id="quantity"
@@ -124,7 +146,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
                 min={1}
                 max={product.stockQuantity}
                 defaultValue={1}
-                className="border rounded px-3 py-2 w-20"
+                className="border border-neutral-300 rounded-lg px-4 py-2 w-24 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
             </>
           )}

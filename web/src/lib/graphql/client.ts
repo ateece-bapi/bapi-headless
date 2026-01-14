@@ -32,13 +32,20 @@ export const graphqlClient = new GraphQLClient(endpoint || 'https://placeholder.
  * 
  * @param tags - Cache tags for on-demand revalidation
  * @param useGetMethod - Use GET instead of POST for CDN caching (default: true for read queries)
+ * @param customHeaders - Additional headers (e.g., WooCommerce session token)
  */
-export const getGraphQLClient = (tags?: string[], useGetMethod: boolean = true) => {
+export const getGraphQLClient = (
+  tags?: string[], 
+  useGetMethod: boolean = true,
+  customHeaders?: Record<string, string>
+) => {
   return new GraphQLClient(getEndpoint(), {
     headers: {
       'Content-Type': 'application/json',
       // Cache-control header for WordPress caching plugins
       'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+      // Spread custom headers (e.g., woocommerce-session)
+      ...customHeaders,
     },
     // Use GET method for read queries to enable CDN caching
     // GET requests can be cached by Kinsta CDN, POST cannot

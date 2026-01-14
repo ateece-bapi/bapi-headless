@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import type { ProductForClient, Variation } from '../ProductPage/ProductDetailClient';
 import type { useCart as useCartType, useCartDrawer as useCartDrawerType } from '@/store';
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { ProductDetailClient } from '@/components/products';
 import { ToastProvider } from '@/components/ui/Toast';
 
@@ -119,7 +119,7 @@ describe('ProductDetailClient', () => {
   });
 
   describe('Cart interaction', () => {
-    it('adds correct variation to cart on Add to Cart', () => {
+    it('adds correct variation to cart on Add to Cart', async () => {
       const addItemMock = vi.fn();
       const openCartMock = vi.fn();
       const mockUseCart = () => ({
@@ -144,7 +144,12 @@ describe('ProductDetailClient', () => {
       });
       selectAttributes({ size: 'L', color: 'Blue' });
       fireEvent.click(screen.getByRole('button', { name: /Add.*to cart/i }));
-      expect(addItemMock).toHaveBeenCalled();
+      
+      // Wait for async operation in AddToCartButton (300ms delay + processing)
+      await waitFor(() => {
+        expect(addItemMock).toHaveBeenCalled();
+      });
+      
       const callArgs = addItemMock.mock.calls[0][0];
       expect(callArgs.variationId).toBe(102);
       expect(callArgs.variationName).toBe('Variant B');

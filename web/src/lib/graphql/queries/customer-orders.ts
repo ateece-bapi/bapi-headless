@@ -87,7 +87,7 @@ export const GET_CUSTOMER_ORDERS = gql`
 `;
 
 export const GET_CUSTOMER_ORDER_DETAILS = gql`
-  query GetCustomerOrderDetails($orderId: Int!) {
+  query GetCustomerOrderDetails($orderId: ID!) {
     order(id: $orderId, idType: DATABASE_ID) {
       id
       databaseId

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import {
   ProductGallery,
@@ -7,11 +9,6 @@ import {
   type SpecificationGroup,
   type GalleryImage,
 } from '@/components/products';
-
-export const metadata = {
-  title: 'Product Components Demo | BAPI',
-  description: 'Test page for Phase 1 product components',
-};
 
 // Sample data for testing
 const sampleImages: GalleryImage[] = [

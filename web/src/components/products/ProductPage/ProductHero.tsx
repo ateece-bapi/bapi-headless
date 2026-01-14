@@ -2,6 +2,8 @@
 
 "use client";
 import React, { useState } from 'react';
+import { ZoomIn } from 'lucide-react';
+import ImageModal from '@/components/ui/ImageModal';
 
 interface GalleryImage {
   sourceUrl: string;
@@ -35,6 +37,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
   // Prefer variation image if present, else product image
   const initialImage = variation?.image || product.image || null;
   const [mainImage, setMainImage] = useState<GalleryImage | null>(initialImage);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const gallery = product.gallery || [];
 
   // If variation changes, update mainImage to variation image
@@ -46,11 +49,25 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
     <section className="flex flex-col md:flex-row items-start gap-8 mb-8">
       <div className="flex flex-col items-center md:flex-row md:items-start gap-4">
         {mainImage ? (
-          <img
-            src={mainImage.sourceUrl}
-            alt={mainImage.altText || variation?.name || product.name}
-            className="w-72 h-72 object-contain bg-neutral-50 rounded-xl shadow mb-4"
-          />
+          <div className="relative group">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="relative w-72 h-72 block cursor-zoom-in"
+              aria-label="Click to enlarge product image"
+            >
+              <img
+                src={mainImage.sourceUrl}
+                alt={mainImage.altText || variation?.name || product.name}
+                className="w-full h-full object-contain bg-neutral-50 rounded-xl shadow transition-transform duration-base hover:scale-105"
+              />
+              {/* Zoom icon overlay */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-colors duration-base rounded-xl">
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-base bg-white/90 rounded-full p-3 shadow-lg">
+                  <ZoomIn className="w-6 h-6 text-primary-500" />
+                </div>
+              </div>
+            </button>
+          </div>
         ) : (
           <div className="w-72 h-72 flex items-center justify-center bg-neutral-100 rounded-xl shadow mb-4 text-neutral-400 text-lg font-semibold">
             No image
@@ -113,6 +130,16 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
           )}
         </div>
       </div>
+
+      {/* Image Modal */}
+      {mainImage && (
+        <ImageModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          imageSrc={mainImage.sourceUrl}
+          imageAlt={mainImage.altText || variation?.name || product.name}
+        />
+      )}
     </section>
   );
 }

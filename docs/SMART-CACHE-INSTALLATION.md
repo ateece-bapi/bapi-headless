@@ -48,9 +48,28 @@ ki-cf-cache-status: BYPASS
 x-kinsta-cache: BYPASS
 ```
 
+## Redis Object Cache Status ✅
+
+**Confirmed Working** (January 14, 2026):
+```
+Status: Connected
+Client: PhpRedis 6.2.0
+Redis Version: 7.2.5
+Metrics recorded: 25+
+Drop-in: Valid
+```
+
+Redis is actively caching WordPress objects, providing faster database query performance.
+
 ## Next Steps - Kinsta CDN Configuration
 
 ### Required Action: Enable CDN Caching for GraphQL
+
+**Kinsta Dashboard Investigation**:
+- ✅ `/graphql` is NOT in CDN exclusion list
+- ✅ Edge Caching is enabled
+- ✅ Cache-Control headers are properly set
+- ❌ CDN still bypassing (likely Kinsta security policy)
 
 **Option 1: Kinsta Dashboard (Recommended)**
 1. Log into Kinsta: https://my.kinsta.com/
@@ -69,11 +88,19 @@ If cache rules aren't available in dashboard:
 - Request: "Enable CDN caching for GET requests to `/graphql` endpoint"
 - Mention: Cache-Control headers are already configured
 
+### Current Performance (Redis + Smart Cache Enabled)
+
+**Actual Results** (January 14, 2026):
+- **All requests**: 3-4s (hitting WordPress, Smart Cache + Redis working)
+- **Redis Status**: ✅ Connected (PhpRedis 6.2.0, Redis 7.2.5)
+- **Smart Cache**: ✅ Object cache active
+- **CDN Edge Caching**: ❌ Still bypassed by Kinsta policy
+
 ### Expected Performance After CDN Configuration
 
-- **First request** (cold): ~3s (WordPress + Smart Cache)
+- **First request** (cold): ~3s (WordPress + Smart Cache + Redis)
 - **Subsequent requests** (CDN edge): **<100ms** ⚡
-- **Total improvement**: **~95% faster** for cached responses
+- **Total improvement**: **~95% faster** for CDN-cached responses
 
 ## Testing CDN Caching (After Configuration)
 

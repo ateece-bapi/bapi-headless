@@ -38,24 +38,24 @@ export default function ProductSummaryCard({ product, variation, useCart, useCar
   }
 
   return (
-    <aside className="bg-white border border-neutral-200 rounded-xl shadow p-6 w-full md:w-80 mb-8 md:mb-0">
+    <aside className="bg-white border border-neutral-200 rounded-xl shadow p-6 w-full md:w-80 mb-8 md:mb-0 md:sticky md:top-4">
       <h2 className="text-neutral-900 text-xl font-bold mb-4">Product Summary</h2>
       <div className="mb-4">
-        <div className="text-xs text-neutral-500">Part Number</div>
-        <div className="font-medium text-neutral-900 text-lg">{product.partNumber || product.sku || 'N/A'}</div>
+        <div className="text-xs text-neutral-500 uppercase tracking-wide">Part Number</div>
+        <div className="font-semibold text-neutral-900 text-lg">{product.partNumber || product.sku || 'N/A'}</div>
       </div>
       <div className="mb-4 flex justify-between items-center gap-4">
         <div>
-          <div className="text-xs text-neutral-500">List Price</div>
-          <div className="font-bold text-primary-700 text-lg">{summaryPrice}</div>
+          <div className="text-xs text-neutral-500 uppercase tracking-wide">List Price</div>
+          <div className="font-bold text-primary-600 text-2xl">{summaryPrice}</div>
         </div>
         <div>
-          <div className="text-xs text-neutral-500">Multiplier</div>
-          <div className="font-medium text-neutral-700 text-lg">{product.multiplier || 'N/A'}</div>
+          <div className="text-xs text-neutral-500 uppercase tracking-wide">Multiplier</div>
+          <div className="font-semibold text-neutral-700 text-xl">{product.multiplier || 'N/A'}</div>
         </div>
       </div>
       <div className="mb-4 flex items-center gap-3">
-        <label htmlFor="quantity" className="text-xs text-neutral-500">Quantity</label>
+        <label htmlFor="quantity" className="text-xs text-neutral-500 uppercase tracking-wide">Quantity</label>
         <input
           type="number"
           id="quantity"
@@ -63,15 +63,15 @@ export default function ProductSummaryCard({ product, variation, useCart, useCar
           max={product.stockQuantity || 999}
           value={quantity}
           onChange={e => setQuantity(Math.max(1, Number(e.target.value)))}
-          className="border border-neutral-200 focus:border-primary-500 bg-white text-neutral-900 rounded-lg px-3 py-2 w-20 shadow-sm transition"
+          className="border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 bg-white text-neutral-900 rounded-lg px-4 py-2 w-24 shadow-sm transition font-medium"
         />
         {typeof product.stockQuantity === 'number' && (
-          <span className="text-xs text-neutral-500">In stock: {product.stockQuantity}</span>
+          <span className="text-xs text-neutral-600 font-medium">In stock: {product.stockQuantity}</span>
         )}
       </div>
-      <div className="mb-6">
-        <div className="text-xs text-neutral-500">Total</div>
-        <div className="text-2xl font-bold text-primary-700">${calculated}</div>
+      <div className="mb-6 bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+        <div className="text-xs text-neutral-500 uppercase tracking-wide mb-1">Total</div>
+        <div className="text-3xl font-bold text-primary-700">${calculated}</div>
       </div>
       <AddToCartButton
         product={{
@@ -86,11 +86,14 @@ export default function ProductSummaryCard({ product, variation, useCart, useCar
         useCartDrawer={typeof useCartDrawer === 'function' ? useCartDrawer : undefined}
       />
       {product.stockStatus && (
-        <div className="mt-2 text-xs text-success-700 font-semibold">{product.stockStatus}</div>
+        <div className={`mt-2 text-sm font-semibold inline-flex items-center gap-2 px-3 py-1 rounded-full ${product.stockStatus === 'IN_STOCK' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+          <span className={`w-2 h-2 rounded-full ${product.stockStatus === 'IN_STOCK' ? 'bg-green-600' : 'bg-red-600'}`}></span>
+          {product.stockStatus.replace('_', ' ')}
+        </div>
       )}
       <div className="flex gap-2 mt-6">
-        <button className="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-4 rounded-lg shadow focus:outline-primary-500 transition w-full">Add to Job Estimate</button>
-        <button className="bg-neutral-100 text-neutral-700 hover:bg-neutral-200 font-semibold py-2 px-4 rounded-lg shadow focus:outline-primary-500 transition w-full">Add to Favorites</button>
+        <button className="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-4 focus:ring-primary-500/50 transition w-full">Add to Job Estimate</button>
+        <button className="bg-white border-2 border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:bg-neutral-50 font-semibold py-2 px-4 rounded-lg shadow-sm focus:outline-none focus:ring-4 focus:ring-neutral-300/50 transition w-full">Add to Favorites</button>
       </div>
     </aside>
   );

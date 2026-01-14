@@ -39171,6 +39171,107 @@ export type SearchApplicationNotesQueryVariables = Exact<{
 
 export type SearchApplicationNotesQuery = { __typename?: 'RootQuery', applicationNotes?: { __typename?: 'RootQueryToApplicationNoteConnection', nodes: Array<{ __typename?: 'ApplicationNote', id: string, databaseId: number, title?: string | null | undefined, excerpt?: string | null | undefined, slug?: string | null | undefined, date?: string | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } } | null | undefined }> } | null | undefined };
 
+export type AddToCartMutationVariables = Exact<{
+  productId: Scalars['Int']['input'];
+  quantity?: InputMaybe<Scalars['Int']['input']>;
+  variationId?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type AddToCartMutation = { __typename?: 'RootMutation', addToCart?: { __typename?: 'AddToCartPayload', cart?: { __typename?: 'Cart', isEmpty?: boolean | null | undefined, total?: string | null | undefined, subtotal?: string | null | undefined, contentsTax?: string | null | undefined, shippingTotal?: string | null | undefined, totalTax?: string | null | undefined, contents?: { __typename?: 'CartToCartItemConnection', nodes: Array<{ __typename?: 'SimpleCartItem', key: string, quantity?: number | null | undefined, subtotal?: string | null | undefined, total?: string | null | undefined, product?: { __typename?: 'CartItemToProductConnectionEdge', node:
+              | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'SimpleProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'VariableProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+             } | null | undefined, variation?: { __typename?: 'CartItemToProductVariationConnectionEdge', node: { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined } } | null | undefined }> } | null | undefined } | null | undefined, cartItem?: { __typename?: 'SimpleCartItem', key: string, quantity?: number | null | undefined, total?: string | null | undefined } | null | undefined } | null | undefined };
+
+export type UpdateCartItemQuantityMutationVariables = Exact<{
+  key: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+}>;
+
+
+export type UpdateCartItemQuantityMutation = { __typename?: 'RootMutation', updateItemQuantities?: { __typename?: 'UpdateItemQuantitiesPayload', cart?: { __typename?: 'Cart', isEmpty?: boolean | null | undefined, total?: string | null | undefined, subtotal?: string | null | undefined, contentsTax?: string | null | undefined, shippingTotal?: string | null | undefined, totalTax?: string | null | undefined, contents?: { __typename?: 'CartToCartItemConnection', nodes: Array<{ __typename?: 'SimpleCartItem', key: string, quantity?: number | null | undefined, subtotal?: string | null | undefined, total?: string | null | undefined, product?: { __typename?: 'CartItemToProductConnectionEdge', node:
+              | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'SimpleProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'VariableProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+             } | null | undefined, variation?: { __typename?: 'CartItemToProductVariationConnectionEdge', node: { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined } } | null | undefined }> } | null | undefined } | null | undefined } | null | undefined };
+
+export type RemoveItemsFromCartMutationVariables = Exact<{
+  key: Scalars['ID']['input'];
+}>;
+
+
+export type RemoveItemsFromCartMutation = { __typename?: 'RootMutation', removeItemsFromCart?: { __typename?: 'RemoveItemsFromCartPayload', cart?: { __typename?: 'Cart', isEmpty?: boolean | null | undefined, total?: string | null | undefined, subtotal?: string | null | undefined, contentsTax?: string | null | undefined, shippingTotal?: string | null | undefined, totalTax?: string | null | undefined, contents?: { __typename?: 'CartToCartItemConnection', nodes: Array<{ __typename?: 'SimpleCartItem', key: string, quantity?: number | null | undefined, subtotal?: string | null | undefined, total?: string | null | undefined, product?: { __typename?: 'CartItemToProductConnectionEdge', node:
+              | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'SimpleProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'VariableProduct', price?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+             } | null | undefined }> } | null | undefined } | null | undefined } | null | undefined };
+
+export type EmptyCartMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type EmptyCartMutation = { __typename?: 'RootMutation', emptyCart?: { __typename?: 'EmptyCartPayload', cart?: { __typename?: 'Cart', isEmpty?: boolean | null | undefined, total?: string | null | undefined } | null | undefined } | null | undefined };
+
+export type GetCartQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCartQuery = { __typename?: 'RootQuery', cart?: { __typename?: 'Cart', isEmpty?: boolean | null | undefined, total?: string | null | undefined, subtotal?: string | null | undefined, contentsTax?: string | null | undefined, shippingTotal?: string | null | undefined, shippingTax?: string | null | undefined, totalTax?: string | null | undefined, discountTotal?: string | null | undefined, discountTax?: string | null | undefined, contents?: { __typename?: 'CartToCartItemConnection', itemCount?: number | null | undefined, nodes: Array<{ __typename?: 'SimpleCartItem', key: string, quantity?: number | null | undefined, subtotal?: string | null | undefined, total?: string | null | undefined, tax?: string | null | undefined, product?: { __typename?: 'CartItemToProductConnectionEdge', node:
+            | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+            | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+            | { __typename?: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+            | { __typename?: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+           } | null | undefined, variation?: { __typename?: 'CartItemToProductVariationConnectionEdge', node: { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined } } | null | undefined }> } | null | undefined, availableShippingMethods?: Array<{ __typename?: 'ShippingPackage', packageDetails?: string | null | undefined, rates?: Array<{ __typename?: 'ShippingRate', id: string, label?: string | null | undefined, cost?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined } | null | undefined };
+
+export type ApplyCouponMutationVariables = Exact<{
+  code: Scalars['String']['input'];
+}>;
+
+
+export type ApplyCouponMutation = { __typename?: 'RootMutation', applyCoupon?: { __typename?: 'ApplyCouponPayload', cart?: { __typename?: 'Cart', total?: string | null | undefined, subtotal?: string | null | undefined, discountTotal?: string | null | undefined, appliedCoupons?: Array<{ __typename?: 'AppliedCoupon', code: string, discountAmount: string, description?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined } | null | undefined };
+
+export type RemoveCouponMutationVariables = Exact<{
+  codes: Array<Scalars['String']['input']> | Scalars['String']['input'];
+}>;
+
+
+export type RemoveCouponMutation = { __typename?: 'RootMutation', removeCoupons?: { __typename?: 'RemoveCouponsPayload', cart?: { __typename?: 'Cart', total?: string | null | undefined, subtotal?: string | null | undefined, discountTotal?: string | null | undefined, appliedCoupons?: Array<{ __typename?: 'AppliedCoupon', code: string, discountAmount: string } | null | undefined> | null | undefined } | null | undefined } | null | undefined };
+
+export type GetCustomerOrdersQueryVariables = Exact<{
+  customerId: Scalars['Int']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetCustomerOrdersQuery = { __typename?: 'RootQuery', customer?: { __typename?: 'Customer', orders?: { __typename?: 'CustomerToOrderConnection', nodes: Array<{ __typename?: 'Order', id: string, databaseId?: number | null | undefined, orderNumber?: string | null | undefined, date?: string | null | undefined, status?: OrderStatusEnum | null | undefined, total?: string | null | undefined, subtotal?: string | null | undefined, totalTax?: string | null | undefined, shippingTotal?: string | null | undefined, discountTotal?: string | null | undefined, paymentMethod?: string | null | undefined, paymentMethodTitle?: string | null | undefined, customerNote?: string | null | undefined, billing?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined, email?: string | null | undefined, phone?: string | null | undefined } | null | undefined, shipping?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined } | null | undefined, lineItems?: { __typename?: 'OrderToLineItemConnection', nodes: Array<{ __typename?: 'LineItem', productId?: number | null | undefined, variationId?: number | null | undefined, quantity?: number | null | undefined, subtotal?: string | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined, product?: { __typename?: 'LineItemToProductConnectionEdge', node:
+                | { __typename?: 'ExternalProduct' }
+                | { __typename?: 'GroupProduct' }
+                | { __typename?: 'SimpleProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined } | null | undefined }
+                | { __typename?: 'VariableProduct' }
+               } | null | undefined }> } | null | undefined, shippingLines?: { __typename?: 'OrderToShippingLineConnection', nodes: Array<{ __typename?: 'ShippingLine', methodTitle?: string | null | undefined, total?: string | null | undefined }> } | null | undefined }>, pageInfo: { __typename?: 'CustomerToOrderConnectionPageInfo', hasNextPage: boolean, endCursor?: string | null | undefined } } | null | undefined } | null | undefined };
+
+export type GetCustomerOrderDetailsQueryVariables = Exact<{
+  orderId: Scalars['ID']['input'];
+}>;
+
+
+export type GetCustomerOrderDetailsQuery = { __typename?: 'RootQuery', order?: { __typename?: 'Order', id: string, databaseId?: number | null | undefined, orderNumber?: string | null | undefined, date?: string | null | undefined, status?: OrderStatusEnum | null | undefined, total?: string | null | undefined, subtotal?: string | null | undefined, totalTax?: string | null | undefined, shippingTotal?: string | null | undefined, discountTotal?: string | null | undefined, paymentMethod?: string | null | undefined, paymentMethodTitle?: string | null | undefined, customerNote?: string | null | undefined, billing?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined, email?: string | null | undefined, phone?: string | null | undefined } | null | undefined, shipping?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined } | null | undefined, lineItems?: { __typename?: 'OrderToLineItemConnection', nodes: Array<{ __typename?: 'LineItem', productId?: number | null | undefined, variationId?: number | null | undefined, quantity?: number | null | undefined, subtotal?: string | null | undefined, subtotalTax?: string | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined, product?: { __typename?: 'LineItemToProductConnectionEdge', node:
+            | { __typename?: 'ExternalProduct' }
+            | { __typename?: 'GroupProduct' }
+            | { __typename?: 'SimpleProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, price?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined } | null | undefined }
+            | { __typename?: 'VariableProduct' }
+           } | null | undefined }> } | null | undefined, shippingLines?: { __typename?: 'OrderToShippingLineConnection', nodes: Array<{ __typename?: 'ShippingLine', methodTitle?: string | null | undefined, total?: string | null | undefined }> } | null | undefined, couponLines?: { __typename?: 'OrderToCouponLineConnection', nodes: Array<{ __typename?: 'CouponLine', code?: string | null | undefined, discount?: string | null | undefined }> } | null | undefined, refunds?: { __typename?: 'OrderToRefundConnection', nodes: Array<{ __typename?: 'Refund', id: string, amount?: number | null | undefined, reason?: string | null | undefined, date?: string | null | undefined }> } | null | undefined } | null | undefined };
+
+export type GetCustomerInfoQueryVariables = Exact<{
+  customerId: Scalars['Int']['input'];
+}>;
+
+
+export type GetCustomerInfoQuery = { __typename?: 'RootQuery', customer?: { __typename?: 'Customer', id: string, databaseId?: number | null | undefined, email?: string | null | undefined, firstName?: string | null | undefined, lastName?: string | null | undefined, username?: string | null | undefined, orderCount?: number | null | undefined, billing?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined, email?: string | null | undefined, phone?: string | null | undefined } | null | undefined, shipping?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined } | null | undefined } | null | undefined };
+
 export type GetPageBySlugQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
 }>;
@@ -39469,6 +39570,479 @@ export const SearchApplicationNotesDocument = gql`
         }
       }
     }
+  }
+}
+    `;
+export const AddToCartDocument = gql`
+    mutation AddToCart($productId: Int!, $quantity: Int = 1, $variationId: Int) {
+  addToCart(
+    input: {productId: $productId, quantity: $quantity, variationId: $variationId}
+  ) {
+    cart {
+      isEmpty
+      total
+      subtotal
+      contentsTax
+      shippingTotal
+      totalTax
+      contents {
+        nodes {
+          key
+          quantity
+          subtotal
+          total
+          product {
+            node {
+              id
+              databaseId
+              name
+              slug
+              ... on SimpleProduct {
+                price
+                stockStatus
+                stockQuantity
+              }
+              ... on VariableProduct {
+                price
+                stockStatus
+              }
+              image {
+                sourceUrl
+                altText
+              }
+            }
+          }
+          variation {
+            node {
+              id
+              databaseId
+              name
+              price
+              stockStatus
+              stockQuantity
+            }
+          }
+        }
+      }
+    }
+    cartItem {
+      key
+      quantity
+      total
+    }
+  }
+}
+    `;
+export const UpdateCartItemQuantityDocument = gql`
+    mutation UpdateCartItemQuantity($key: ID!, $quantity: Int!) {
+  updateItemQuantities(input: {items: [{key: $key, quantity: $quantity}]}) {
+    cart {
+      isEmpty
+      total
+      subtotal
+      contentsTax
+      shippingTotal
+      totalTax
+      contents {
+        nodes {
+          key
+          quantity
+          subtotal
+          total
+          product {
+            node {
+              id
+              databaseId
+              name
+              slug
+              ... on SimpleProduct {
+                price
+                stockStatus
+              }
+              ... on VariableProduct {
+                price
+                stockStatus
+              }
+              image {
+                sourceUrl
+                altText
+              }
+            }
+          }
+          variation {
+            node {
+              id
+              databaseId
+              name
+              price
+              stockStatus
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const RemoveItemsFromCartDocument = gql`
+    mutation RemoveItemsFromCart($key: ID!) {
+  removeItemsFromCart(input: {keys: [$key]}) {
+    cart {
+      isEmpty
+      total
+      subtotal
+      contentsTax
+      shippingTotal
+      totalTax
+      contents {
+        nodes {
+          key
+          quantity
+          subtotal
+          total
+          product {
+            node {
+              id
+              databaseId
+              name
+              slug
+              ... on SimpleProduct {
+                price
+                stockStatus
+              }
+              ... on VariableProduct {
+                price
+                stockStatus
+              }
+              image {
+                sourceUrl
+                altText
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const EmptyCartDocument = gql`
+    mutation EmptyCart {
+  emptyCart(input: {clearPersistentCart: true}) {
+    cart {
+      isEmpty
+      total
+    }
+  }
+}
+    `;
+export const GetCartDocument = gql`
+    query GetCart {
+  cart {
+    isEmpty
+    total
+    subtotal
+    contentsTax
+    shippingTotal
+    shippingTax
+    totalTax
+    discountTotal
+    discountTax
+    contents {
+      itemCount
+      nodes {
+        key
+        quantity
+        subtotal
+        total
+        tax
+        product {
+          node {
+            id
+            databaseId
+            name
+            slug
+            ... on SimpleProduct {
+              price
+              regularPrice
+              salePrice
+              stockStatus
+              stockQuantity
+            }
+            ... on VariableProduct {
+              price
+              regularPrice
+              salePrice
+              stockStatus
+            }
+            image {
+              sourceUrl
+              altText
+            }
+          }
+        }
+        variation {
+          node {
+            id
+            databaseId
+            name
+            price
+            regularPrice
+            salePrice
+            stockStatus
+            stockQuantity
+            image {
+              sourceUrl
+              altText
+            }
+          }
+        }
+      }
+    }
+    availableShippingMethods {
+      packageDetails
+      rates {
+        id
+        label
+        cost
+      }
+    }
+  }
+}
+    `;
+export const ApplyCouponDocument = gql`
+    mutation ApplyCoupon($code: String!) {
+  applyCoupon(input: {code: $code}) {
+    cart {
+      total
+      subtotal
+      discountTotal
+      appliedCoupons {
+        code
+        discountAmount
+        description
+      }
+    }
+  }
+}
+    `;
+export const RemoveCouponDocument = gql`
+    mutation RemoveCoupon($codes: [String!]!) {
+  removeCoupons(input: {codes: $codes}) {
+    cart {
+      total
+      subtotal
+      discountTotal
+      appliedCoupons {
+        code
+        discountAmount
+      }
+    }
+  }
+}
+    `;
+export const GetCustomerOrdersDocument = gql`
+    query GetCustomerOrders($customerId: Int!, $first: Int = 10, $after: String) {
+  customer(customerId: $customerId) {
+    orders(first: $first, after: $after) {
+      nodes {
+        id
+        databaseId
+        orderNumber
+        date
+        status
+        total
+        subtotal
+        totalTax
+        shippingTotal
+        discountTotal
+        paymentMethod
+        paymentMethodTitle
+        customerNote
+        billing {
+          firstName
+          lastName
+          company
+          address1
+          address2
+          city
+          state
+          postcode
+          country
+          email
+          phone
+        }
+        shipping {
+          firstName
+          lastName
+          company
+          address1
+          address2
+          city
+          state
+          postcode
+          country
+        }
+        lineItems {
+          nodes {
+            productId
+            variationId
+            quantity
+            subtotal
+            total
+            totalTax
+            product {
+              node {
+                ... on SimpleProduct {
+                  id
+                  databaseId
+                  name
+                  slug
+                  image {
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+        shippingLines {
+          nodes {
+            methodTitle
+            total
+          }
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}
+    `;
+export const GetCustomerOrderDetailsDocument = gql`
+    query GetCustomerOrderDetails($orderId: ID!) {
+  order(id: $orderId, idType: DATABASE_ID) {
+    id
+    databaseId
+    orderNumber
+    date
+    status
+    total
+    subtotal
+    totalTax
+    shippingTotal
+    discountTotal
+    paymentMethod
+    paymentMethodTitle
+    customerNote
+    billing {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+      email
+      phone
+    }
+    shipping {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+    }
+    lineItems {
+      nodes {
+        productId
+        variationId
+        quantity
+        subtotal
+        subtotalTax
+        total
+        totalTax
+        product {
+          node {
+            ... on SimpleProduct {
+              id
+              databaseId
+              name
+              slug
+              image {
+                sourceUrl
+              }
+              price
+            }
+          }
+        }
+      }
+    }
+    shippingLines {
+      nodes {
+        methodTitle
+        total
+      }
+    }
+    couponLines {
+      nodes {
+        code
+        discount
+      }
+    }
+    refunds {
+      nodes {
+        id
+        amount
+        reason
+        date
+      }
+    }
+  }
+}
+    `;
+export const GetCustomerInfoDocument = gql`
+    query GetCustomerInfo($customerId: Int!) {
+  customer(customerId: $customerId) {
+    id
+    databaseId
+    email
+    firstName
+    lastName
+    username
+    billing {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+      email
+      phone
+    }
+    shipping {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+    }
+    orderCount
   }
 }
     `;
@@ -40069,6 +40643,36 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     SearchApplicationNotes(variables: SearchApplicationNotesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchApplicationNotesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchApplicationNotesQuery>({ document: SearchApplicationNotesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'SearchApplicationNotes', 'query', variables);
+    },
+    AddToCart(variables: AddToCartMutationVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<AddToCartMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AddToCartMutation>({ document: AddToCartDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'AddToCart', 'mutation', variables);
+    },
+    UpdateCartItemQuantity(variables: UpdateCartItemQuantityMutationVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<UpdateCartItemQuantityMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UpdateCartItemQuantityMutation>({ document: UpdateCartItemQuantityDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'UpdateCartItemQuantity', 'mutation', variables);
+    },
+    RemoveItemsFromCart(variables: RemoveItemsFromCartMutationVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<RemoveItemsFromCartMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RemoveItemsFromCartMutation>({ document: RemoveItemsFromCartDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'RemoveItemsFromCart', 'mutation', variables);
+    },
+    EmptyCart(variables?: EmptyCartMutationVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EmptyCartMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<EmptyCartMutation>({ document: EmptyCartDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'EmptyCart', 'mutation', variables);
+    },
+    GetCart(variables?: GetCartQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetCartQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCartQuery>({ document: GetCartDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetCart', 'query', variables);
+    },
+    ApplyCoupon(variables: ApplyCouponMutationVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ApplyCouponMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ApplyCouponMutation>({ document: ApplyCouponDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ApplyCoupon', 'mutation', variables);
+    },
+    RemoveCoupon(variables: RemoveCouponMutationVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<RemoveCouponMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RemoveCouponMutation>({ document: RemoveCouponDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'RemoveCoupon', 'mutation', variables);
+    },
+    GetCustomerOrders(variables: GetCustomerOrdersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetCustomerOrdersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCustomerOrdersQuery>({ document: GetCustomerOrdersDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetCustomerOrders', 'query', variables);
+    },
+    GetCustomerOrderDetails(variables: GetCustomerOrderDetailsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetCustomerOrderDetailsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCustomerOrderDetailsQuery>({ document: GetCustomerOrderDetailsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetCustomerOrderDetails', 'query', variables);
+    },
+    GetCustomerInfo(variables: GetCustomerInfoQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetCustomerInfoQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCustomerInfoQuery>({ document: GetCustomerInfoDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetCustomerInfo', 'query', variables);
     },
     GetPageBySlug(variables: GetPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetPageBySlugQuery>({ document: GetPageBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPageBySlug', 'query', variables);

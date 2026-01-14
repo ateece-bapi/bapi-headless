@@ -1,0 +1,287 @@
+# WooCommerce Cart Operations
+# These mutations manage the server-side cart with session persistence
+
+mutation AddToCart($productId: Int!, $quantity: Int = 1, $variationId: Int) {
+  addToCart(
+    input: {
+      productId: $productId
+      quantity: $quantity
+      variationId: $variationId
+    }
+  ) {
+    cart {
+      isEmpty
+      total
+      subtotal
+      contentsTax
+      shippingTotal
+      totalTax
+      contents {
+        nodes {
+          key
+          quantity
+          subtotal
+          total
+          product {
+            node {
+              id
+              databaseId
+              name
+              slug
+              ... on SimpleProduct {
+                price
+                stockStatus
+                stockQuantity
+              }
+              ... on VariableProduct {
+                price
+                stockStatus
+              }
+              image {
+                sourceUrl
+                altText
+              }
+            }
+          }
+          variation {
+            node {
+              id
+              databaseId
+              name
+              price
+              stockStatus
+              stockQuantity
+            }
+          }
+        }
+      }
+    }
+    cartItem {
+      key
+      quantity
+      total
+    }
+  }
+}
+
+mutation UpdateCartItemQuantity($key: ID!, $quantity: Int!) {
+  updateItemQuantities(
+    input: {
+      items: [{ key: $key, quantity: $quantity }]
+    }
+  ) {
+    cart {
+      isEmpty
+      total
+      subtotal
+      contentsTax
+      shippingTotal
+      totalTax
+      contents {
+        nodes {
+          key
+          quantity
+          subtotal
+          total
+          product {
+            node {
+              id
+              databaseId
+              name
+              slug
+              ... on SimpleProduct {
+                price
+                stockStatus
+              }
+              ... on VariableProduct {
+                price
+                stockStatus
+              }
+              image {
+                sourceUrl
+                altText
+              }
+            }
+          }
+          variation {
+            node {
+              id
+              databaseId
+              name
+              price
+              stockStatus
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation RemoveItemsFromCart($key: ID!) {
+  removeItemsFromCart(
+    input: {
+      keys: [$key]
+    }
+  ) {
+    cart {
+      isEmpty
+      total
+      subtotal
+      contentsTax
+      shippingTotal
+      totalTax
+      contents {
+        nodes {
+          key
+          quantity
+          subtotal
+          total
+          product {
+            node {
+              id
+              databaseId
+              name
+              slug
+              ... on SimpleProduct {
+                price
+                stockStatus
+              }
+              ... on VariableProduct {
+                price
+                stockStatus
+              }
+              image {
+                sourceUrl
+                altText
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation EmptyCart {
+  emptyCart(
+    input: {
+      clearPersistentCart: true
+    }
+  ) {
+    cart {
+      isEmpty
+      total
+    }
+  }
+}
+
+query GetCart {
+  cart {
+    isEmpty
+    total
+    subtotal
+    contentsTax
+    shippingTotal
+    shippingTax
+    totalTax
+    discountTotal
+    discountTax
+    contents {
+      itemCount
+      nodes {
+        key
+        quantity
+        subtotal
+        total
+        tax
+        product {
+          node {
+            id
+            databaseId
+            name
+            slug
+            ... on SimpleProduct {
+              price
+              regularPrice
+              salePrice
+              stockStatus
+              stockQuantity
+            }
+            ... on VariableProduct {
+              price
+              regularPrice
+              salePrice
+              stockStatus
+            }
+            image {
+              sourceUrl
+              altText
+            }
+          }
+        }
+        variation {
+          node {
+            id
+            databaseId
+            name
+            price
+            regularPrice
+            salePrice
+            stockStatus
+            stockQuantity
+            image {
+              sourceUrl
+              altText
+            }
+          }
+        }
+      }
+    }
+    availableShippingMethods {
+      packageDetails
+      rates {
+        id
+        label
+        cost
+      }
+    }
+  }
+}
+
+mutation ApplyCoupon($code: String!) {
+  applyCoupon(
+    input: {
+      code: $code
+    }
+  ) {
+    cart {
+      total
+      subtotal
+      discountTotal
+      appliedCoupons {
+        code
+        discountAmount
+        description
+      }
+    }
+  }
+}
+
+mutation RemoveCoupon($codes: [String!]!) {
+  removeCoupons(
+    input: {
+      codes: $codes
+    }
+  ) {
+    cart {
+      total
+      subtotal
+      discountTotal
+      appliedCoupons {
+        code
+        discountAmount
+      }
+    }
+  }
+}

@@ -22,5 +22,7 @@ export { default as ProductGallery } from './ProductGallery';
 export { default as QuantitySelector } from './QuantitySelector';
 export { default as ProductAvailability } from './ProductAvailability';
 export { default as ProductSpecifications } from './ProductSpecifications';
+export { default as RecentlyViewed } from './RecentlyViewed';
+export { default as ProductVariationSelector } from './ProductVariationSelector';
 export type { SpecificationGroup } from './ProductSpecifications';
 export type { GalleryImage } from './ProductGallery';

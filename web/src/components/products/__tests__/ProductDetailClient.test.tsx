@@ -21,6 +21,8 @@ const baseProduct: ProductForClient = {
       databaseId: 101,
       name: 'Variant A',
       price: '$9.99',
+      stockStatus: 'IN_STOCK',
+      stockQuantity: 10,
       attributes: { Size: 'M', Color: 'Red' },
       image: { sourceUrl: 'https://example.test/var-a.png', altText: 'Variant A' },
     },
@@ -29,8 +31,30 @@ const baseProduct: ProductForClient = {
       databaseId: 102,
       name: 'Variant B',
       price: '$10.99',
+      stockStatus: 'IN_STOCK',
+      stockQuantity: 5,
       attributes: { Size: 'L', Color: 'Blue' },
       image: { sourceUrl: 'https://example.test/var-b.png', altText: 'Variant B' },
+    },
+    {
+      id: 'var-3',
+      databaseId: 103,
+      name: 'Variant C',
+      price: '$9.99',
+      stockStatus: 'IN_STOCK',
+      stockQuantity: 8,
+      attributes: { Size: 'M', Color: 'Blue' },
+      image: { sourceUrl: 'https://example.test/var-c.png', altText: 'Variant C' },
+    },
+    {
+      id: 'var-4',
+      databaseId: 104,
+      name: 'Variant D',
+      price: '$10.99',
+      stockStatus: 'IN_STOCK',
+      stockQuantity: 3,
+      attributes: { Size: 'L', Color: 'Red' },
+      image: { sourceUrl: 'https://example.test/var-d.png', altText: 'Variant D' },
     },
   ],
   attributes: [
@@ -58,33 +82,48 @@ function renderProductDetail(
   );
 }
 
+/**
+ * Helper to select attributes with the new ProductVariationSelector (button-based UI)
+ * ProductVariationSelector uses buttons with aria-label="Select AttributeName: Value"
+ */
 function selectAttributes({ size, color }: { size?: string; color?: string }) {
-  if (size) fireEvent.change(screen.getByLabelText(/Size/i), { target: { value: size } });
-  if (color) fireEvent.change(screen.getByLabelText(/Color/i), { target: { value: color } });
+  if (size) {
+    const sizeButton = screen.getByRole('button', { name: new RegExp(`Select Size: ${size}`, 'i') });
+    fireEvent.click(sizeButton);
+  }
+  if (color) {
+    const colorButton = screen.getByRole('button', { name: new RegExp(`Select Color: ${color}`, 'i') });
+    fireEvent.click(colorButton);
+  }
 }
 
 describe('ProductDetailClient', () => {
   describe('Attribute selection', () => {
     it('renders selectors and updates selection', () => {
       renderProductDetail();
-      expect(screen.getByLabelText(/Size/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/Color/i)).toBeInTheDocument();
+      // ProductVariationSelector uses <label> elements with attribute names
+      expect(screen.getByText(/Size/i)).toBeInTheDocument();
+      expect(screen.getByText(/Color/i)).toBeInTheDocument();
 
-      expect(screen.getByDisplayValue('M')).toBeInTheDocument();
-      expect(screen.getByDisplayValue('Red')).toBeInTheDocument();
+      // Check initial selected buttons (M and Red are first options, selected by default)
+      expect(screen.getByRole('button', { name: /Select Size: M/i })).toHaveAttribute('aria-pressed', 'true');
+      expect(screen.getByRole('button', { name: /Select Color: Red/i })).toHaveAttribute('aria-pressed', 'true');
 
+      // Select different options
       selectAttributes({ size: 'L' });
-      expect(screen.getByDisplayValue('L')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /Select Size: L/i })).toHaveAttribute('aria-pressed', 'true');
 
       selectAttributes({ color: 'Blue' });
-      expect(screen.getByDisplayValue('Blue')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /Select Color: Blue/i })).toHaveAttribute('aria-pressed', 'true');
     });
-    it('matches correct variation and prefers variation image', () => {
+    it('matches correct variation and prefers variation image', async () => {
       renderProductDetail();
       expect(screen.getByAltText('Variant A')).toBeInTheDocument();
 
       selectAttributes({ size: 'L', color: 'Blue' });
-      expect(screen.getByAltText('Variant B')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByAltText('Variant B')).toBeInTheDocument();
+      });
     });
   });
 
@@ -161,8 +200,8 @@ describe('Keyboard navigation and robustness', () => {
   it('allows tabbing to all interactive elements', async () => {
     renderProductDetail();
     const userTabOrder = [
-      screen.getByLabelText(/Size/i),
-      screen.getByLabelText(/Color/i),
+      screen.getByRole('button', { name: /Select Size: M/i }),
+      screen.getByRole('button', { name: /Select Color: Red/i }),
       screen.getByRole('button', { name: /Add.*to cart/i }),
     ];
     userTabOrder.forEach((el) => {
@@ -216,11 +255,14 @@ describe('Error states and UI feedback', () => {
 describe('Accessibility', () => {
   it('all selectors have associated labels', () => {
     renderProductDetail();
-    // Each attribute should have a label and a select
+    // ProductVariationSelector uses <label> elements for attributes
+    // Check that attribute names are present as labels
     (baseProduct.attributes ?? []).forEach((attr: { name: string }) => {
-      const label = screen.getByLabelText(attr.name);
-      expect(label).toBeInTheDocument();
+      expect(screen.getByText(attr.name)).toBeInTheDocument();
     });
+    // Also check that buttons have proper aria-label
+    expect(screen.getByRole('button', { name: /Select Size: M/i })).toHaveAttribute('aria-label');
+    expect(screen.getByRole('button', { name: /Select Color: Red/i })).toHaveAttribute('aria-label');
   });
 
   it('Add to Cart button is accessible', () => {
@@ -230,12 +272,14 @@ describe('Accessibility', () => {
     expect(btn).toHaveAccessibleName(/Add.*to cart/i);
   });
 
-  it('images have meaningful alt text', () => {
+  it('images have meaningful alt text', async () => {
     renderProductDetail();
     // Default image is the first variation's image
     expect(screen.getByAltText('Variant A')).toBeInTheDocument();
     // Variant image after selection
     selectAttributes({ size: 'L', color: 'Blue' });
-    expect(screen.getByAltText('Variant B')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByAltText('Variant B')).toBeInTheDocument();
+    });
   });
 });

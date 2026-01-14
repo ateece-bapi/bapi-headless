@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from "react";
 import ProductHero from "@/components/products/ProductPage/ProductHero";
 import ProductSummaryCard from "@/components/products/ProductPage/ProductSummaryCard";
-import ProductConfigurator from "@/components/products/ProductPage/ProductConfigurator";
 import ProductTabs from "@/components/products/ProductPage/ProductTabs";
 import RelatedProducts from "@/components/products/ProductPage/RelatedProducts";
 import AppLinks from "@/components/products/ProductPage/AppLinks";
 import ContactInfo from "@/components/products/ProductPage/ContactInfo";
 import Breadcrumbs from "@/components/products/ProductPage/Breadcrumbs";
 import { CartDrawer } from "@/components/cart";
+import { ProductVariationSelector, ProductGallery } from "@/components/products";
+import { useRecentlyViewed } from "@/store";
 
 interface ProductDetailClientProps {
   product: any;
@@ -21,6 +22,24 @@ interface ProductDetailClientProps {
 export default function ProductDetailClient({ product, productId, useCart, useCartDrawer }: ProductDetailClientProps) {
 
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
+  const { addProduct } = useRecentlyViewed();
+
+  // Track this product as recently viewed
+  useEffect(() => {
+    if (product?.id && product?.name && product?.databaseId) {
+      addProduct({
+        id: product.id,
+        databaseId: product.databaseId,
+        name: product.name,
+        slug: product.slug || '',
+        price: product.price || '',
+        image: product.image ? {
+          sourceUrl: product.image.sourceUrl,
+          altText: product.image.altText || product.name,
+        } : null,
+      });
+    }
+  }, [product, addProduct]);
 
   // Build breadcrumb items from product categories
   const buildBreadcrumbs = (): Array<{ label: string; href?: string }> => {
@@ -52,7 +71,18 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
             <Breadcrumbs items={buildBreadcrumbs()} />
             <div className="flex flex-col md:flex-row gap-8 mb-8 items-start">
               <div className="flex-1">
-                <ProductHero product={product} variation={selectedVariation} />
+                {/* Enhanced Product Gallery */}
+                {product.gallery && product.gallery.length > 0 ? (
+                  <ProductGallery
+                    images={product.gallery.map((img: any) => ({
+                      url: img.sourceUrl,
+                      alt: img.altText || product.name,
+                    }))}
+                    productName={product.name}
+                  />
+                ) : (
+                  <ProductHero product={product} variation={selectedVariation} />
+                )}
               </div>
               <ProductSummaryCard
                 product={product}
@@ -61,7 +91,8 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
                 useCartDrawer={useCartDrawer}
               />
             </div>
-            <ProductConfigurator
+            {/* Enhanced Variation Selector (replaces ProductConfigurator) */}
+            <ProductVariationSelector
               product={product}
               onVariationChange={setSelectedVariation}
             />

@@ -9,8 +9,9 @@ import AppLinks from "@/components/products/ProductPage/AppLinks";
 import ContactInfo from "@/components/products/ProductPage/ContactInfo";
 import Breadcrumbs from "@/components/products/ProductPage/Breadcrumbs";
 import TrustBadges from "@/components/products/ProductPage/TrustBadges";
+import HelpCTA from "@/components/products/ProductPage/HelpCTA";
 import { CartDrawer } from "@/components/cart";
-import { ProductVariationSelector, ProductGallery } from "@/components/products";
+import { ProductVariationSelector, ProductGallery, RecentlyViewed } from "@/components/products";
 import { useRecentlyViewed } from "@/store";
 
 interface ProductDetailClientProps {
@@ -102,6 +103,15 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
               onVariationChange={setSelectedVariation}
             />
             <ProductTabs product={product} />
+            
+            {/* Recently Viewed Products - shows below tabs */}
+            <div className="my-8">
+              <RecentlyViewed excludeProductId={product.id} maxDisplay={6} />
+            </div>
+            
+            {/* Help CTA for customer support */}
+            <HelpCTA className="mb-8" />
+            
             <RelatedProducts related={product.relatedProducts} />
             <AppLinks product={{ iosAppUrl: product.iosAppUrl, androidAppUrl: product.androidAppUrl }} />
             <ContactInfo />

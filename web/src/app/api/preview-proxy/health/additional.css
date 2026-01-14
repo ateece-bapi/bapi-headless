@@ -1,0 +1,2167 @@
+#section-home-icons {
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+  margin-top: 0 !important;
+}
+
+/* Video container - fix excessive white space below videos */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25% !important; /* 16:9 aspect ratio */
+  height: 0 !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+  margin-bottom: 24px !important; /* Controlled spacing */
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove excessive spacing after video containers */
+.video-container + *,
+.video-container ~ * {
+  margin-top: 0 !important;
+}
+
+/* Ensure parent containers don't add extra spacing */
+.wpb_wrapper .video-container,
+.vc_column-inner .video-container,
+.entry-content .video-container {
+  margin-bottom: 24px !important;
+}
+
+/* Target standalone iframes (YouTube, Vimeo, etc.) not wrapped in video-container */
+iframe[src*="youtube.com"],
+iframe[src*="vimeo.com"],
+iframe[src*="youtu.be"] {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Remove ALL spacing from WPBakery containers holding iframes */
+.wpb_wrapper iframe,
+.vc_column-inner iframe,
+.vc_column_container iframe,
+.entry-content iframe,
+.wpb_text_column iframe {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Parent containers of iframes should have no extra spacing */
+.wpb_wrapper:has(iframe),
+.vc_column-inner:has(iframe),
+.vc_column_container:has(iframe),
+.wpb_text_column:has(iframe),
+.vc_column:has(iframe) {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Row containers with iframes */
+.vc_row:has(iframe),
+.wpb_row:has(iframe) {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Remove ALL spacing from any element directly containing an iframe */
+*:has(> iframe) {
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Remove spacing before and after elements containing iframes */
+*:has(> iframe) + *,
+*:has(iframe) + * {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Restore proper input sizing */
+input,
+.input-text,
+input[type=email],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=url],
+textarea {
+  width: 100%;
+  max-width: 100% !important;
+}
+
+.site,
+#page,
+.site-header .header-wrap,
+.col-full {
+  max-width: none;
+  width: 100% ;
+  box-sizing: border-box;
+	padding-left:24px;
+	padding-right: 24px;
+}
+
+
+.global-nav {
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative; /* changed from absolute */
+  top: 0;
+  z-index: var(--z-modal);
+  right: 0;
+  font-size: 17px;
+  letter-spacing: 0.09px;
+	margin-left: auto;
+	margin-right: 180px;
+	width: fit-content;
+}
+
+/* Hide language selector dropdown by default */
+#menu-item-417468 .sub-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Show language selector dropdown when parent is active/hovered */
+#menu-item-417468.active .sub-menu {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Show language selector dropdown on hover/focus for accessibility */
+#menu-item-417468:hover .sub-menu,
+#menu-item-417468:focus-within .sub-menu {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+
+.content-area {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* About Us page - hide sidebar only */
+.page-id-52897 .woo-sidebar,
+.page-id-52897 .sidebar {
+  display: none !important;
+}
+
+.page-id-52897 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* About Us - main content area styling ONLY (not header) */
+.page-id-52897 .site-main {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* About Us - WPBakery content containers */
+.page-id-52897 .site-main .vc_row,
+.page-id-52897 .site-main .wpb_row {
+  max-width: 900px !important;
+  margin: 0 auto 48px auto !important;
+  padding: 48px 60px !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 4px !important;
+}
+
+/* About Us - Typography in main content only */
+.page-id-52897 .site-main h1,
+.page-id-52897 .site-main h2 {
+  margin-bottom: 32px !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-52897 .site-main h1 {
+  font-size: 42px !important;
+}
+
+.page-id-52897 .site-main h2 {
+  font-size: 32px !important;
+  margin-top: 48px !important;
+  color: #0066cc !important;
+}
+
+.page-id-52897 .site-main p {
+  line-height: 1.8 !important;
+  margin-bottom: 24px !important;
+  font-size: 16px !important;
+}
+
+/* About Us - List styling in main content only */
+.page-id-52897 .site-main ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.page-id-52897 .site-main ul li {
+  margin-bottom: 24px !important;
+  padding-left: 32px !important;
+  position: relative !important;
+  line-height: 1.7 !important;
+}
+
+.page-id-52897 .site-main ul li::before {
+  content: "✓" !important;
+  position: absolute !important;
+  left: 0 !important;
+  color: #0066cc !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
+.page-id-52897 .site-main ul li strong {
+  color: #0066cc !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+/* About Us - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-52897 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-52897 .site-main .vc_row,
+  .page-id-52897 .site-main .wpb_row {
+    padding: 32px 24px !important;
+  }
+}
+
+/* Careers page - hide sidebar only */
+.page-id-420543 .woo-sidebar,
+.page-id-420543 .sidebar {
+  display: none !important;
+}
+
+.page-id-420543 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Careers - main content area styling ONLY (not header) */
+.page-id-420543 .site-main {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* Careers - WPBakery content containers */
+.page-id-420543 .site-main .vc_row,
+.page-id-420543 .site-main .wpb_row {
+  max-width: 900px !important;
+  margin: 0 auto 48px auto !important;
+  padding: 48px 60px !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 4px !important;
+}
+
+/* Careers - Typography in main content only */
+.page-id-420543 .site-main h1,
+.page-id-420543 .site-main h2 {
+  margin-bottom: 32px !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-420543 .site-main h1 {
+  font-size: 42px !important;
+}
+
+.page-id-420543 .site-main h2 {
+  font-size: 32px !important;
+  margin-top: 48px !important;
+  color: #0066cc !important;
+}
+
+.page-id-420543 .site-main p {
+  line-height: 1.8 !important;
+  margin-bottom: 24px !important;
+  font-size: 16px !important;
+}
+
+/* Careers - List styling in main content only */
+.page-id-420543 .site-main ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.page-id-420543 .site-main ul li {
+  margin-bottom: 24px !important;
+  padding-left: 32px !important;
+  position: relative !important;
+  line-height: 1.7 !important;
+}
+
+.page-id-420543 .site-main ul li::before {
+  content: "✓" !important;
+  position: absolute !important;
+  left: 0 !important;
+  color: #0066cc !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
+.page-id-420543 .site-main ul li strong {
+  color: #0066cc !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+/* Careers - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-420543 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-420543 .site-main .vc_row,
+  .page-id-420543 .site-main .wpb_row {
+    padding: 32px 24px !important;
+  }
+}
+
+/* Mission and Values page - hide sidebar only */
+.page-id-8169 .woo-sidebar,
+.page-id-8169 .sidebar {
+  display: none !important;
+}
+
+.page-id-8169 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Mission and Values - main content area styling ONLY (not header) */
+.page-id-8169 .site-main {
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Mission and Values - WPBakery content containers */
+.page-id-8169 .site-main .vc_row,
+.page-id-8169 .site-main .wpb_row {
+  margin: 0 auto 48px auto !important;
+}
+
+/* Mission and Values - Text content sections get card styling */
+.page-id-8169 .site-main .vc_row:not(:first-child),
+.page-id-8169 .site-main .wpb_row:not(:first-child) {
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 48px 60px !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 4px !important;
+}
+
+/* Mission and Values - First row (hero image) full width edge-to-edge */
+.page-id-8169 .site-main .vc_row:first-child,
+.page-id-8169 .site-main .wpb_row:first-child {
+  max-width: 100vw !important;
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  margin-top: 0 !important;
+  margin-bottom: 48px !important;
+  padding: 0 !important;
+}
+
+.page-id-8169 .site-main .vc_row:first-child .vc_column_container,
+.page-id-8169 .site-main .wpb_row:first-child .vc_column_container,
+.page-id-8169 .site-main .vc_row:first-child .vc_column-inner,
+.page-id-8169 .site-main .wpb_row:first-child .vc_column-inner {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.page-id-8169 .site-main .vc_row:first-child img,
+.page-id-8169 .site-main .wpb_row:first-child img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* Mission and Values - Typography in main content only */
+.page-id-8169 .site-main h1,
+.page-id-8169 .site-main h2 {
+  margin-bottom: 32px !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-8169 .site-main h1 {
+  font-size: 42px !important;
+}
+
+.page-id-8169 .site-main h2 {
+  font-size: 32px !important;
+  margin-top: 48px !important;
+  color: #0066cc !important;
+}
+
+.page-id-8169 .site-main p {
+  line-height: 1.8 !important;
+  margin-bottom: 24px !important;
+  font-size: 16px !important;
+}
+
+/* Mission and Values - List styling in main content only */
+.page-id-8169 .site-main ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.page-id-8169 .site-main ul li {
+  margin-bottom: 24px !important;
+  padding-left: 32px !important;
+  position: relative !important;
+  line-height: 1.7 !important;
+}
+
+.page-id-8169 .site-main ul li::before {
+  content: "✓" !important;
+  position: absolute !important;
+  left: 0 !important;
+  color: #0066cc !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
+.page-id-8169 .site-main ul li strong {
+  color: #0066cc !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+/* Mission and Values - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-8169 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-8169 .site-main .vc_row,
+  .page-id-8169 .site-main .wpb_row {
+    padding: 32px 24px !important;
+  }
+}
+
+/* Why BAPI page - hide sidebar only */
+.page-id-138622 .woo-sidebar,
+.page-id-138622 .sidebar {
+  display: none !important;
+}
+
+.page-id-138622 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Why BAPI - main content area styling ONLY (not header) */
+.page-id-138622 .site-main {
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Why BAPI - WPBakery content containers */
+.page-id-138622 .site-main .vc_row,
+.page-id-138622 .site-main .wpb_row {
+  margin: 0 auto 48px auto !important;
+}
+
+/* Why BAPI - Text content sections get card styling */
+.page-id-138622 .site-main .vc_row:not(:first-child),
+.page-id-138622 .site-main .wpb_row:not(:first-child) {
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 48px 60px !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 4px !important;
+}
+
+/* Why BAPI - First row (hero image) full width edge-to-edge */
+.page-id-138622 .site-main .vc_row:first-child,
+.page-id-138622 .site-main .wpb_row:first-child {
+  max-width: 100vw !important;
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  margin-top: 0 !important;
+  margin-bottom: 48px !important;
+  padding: 0 !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.page-id-138622 .site-main .vc_row:first-child .vc_column_container,
+.page-id-138622 .site-main .wpb_row:first-child .vc_column_container,
+.page-id-138622 .site-main .vc_row:first-child .vc_column-inner,
+.page-id-138622 .site-main .wpb_row:first-child .vc_column-inner {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+.page-id-138622 .site-main .vc_row:first-child img,
+.page-id-138622 .site-main .wpb_row:first-child img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* Why BAPI - Center text overlay on hero image */
+.page-id-138622 .site-main .vc_row:first-child .wpb_wrapper,
+.page-id-138622 .site-main .wpb_row:first-child .wpb_wrapper {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.page-id-138622 .site-main .vc_row:first-child h1,
+.page-id-138622 .site-main .vc_row:first-child h2,
+.page-id-138622 .site-main .vc_row:first-child p,
+.page-id-138622 .site-main .wpb_row:first-child h1,
+.page-id-138622 .site-main .wpb_row:first-child h2,
+.page-id-138622 .site-main .wpb_row:first-child p {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Why BAPI - Typography in main content only */
+.page-id-138622 .site-main h1,
+.page-id-138622 .site-main h2 {
+  margin-bottom: 32px !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-138622 .site-main h1 {
+  font-size: 42px !important;
+}
+
+.page-id-138622 .site-main h2 {
+  font-size: 32px !important;
+  margin-top: 48px !important;
+  color: #0066cc !important;
+}
+
+.page-id-138622 .site-main p {
+  line-height: 1.8 !important;
+  margin-bottom: 24px !important;
+  font-size: 16px !important;
+}
+
+/* Why BAPI - List styling in main content only */
+.page-id-138622 .site-main ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.page-id-138622 .site-main ul li {
+  margin-bottom: 24px !important;
+  padding-left: 32px !important;
+  position: relative !important;
+  line-height: 1.7 !important;
+}
+
+.page-id-138622 .site-main ul li::before {
+  content: "✓" !important;
+  position: absolute !important;
+  left: 0 !important;
+  color: #0066cc !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
+.page-id-138622 .site-main ul li strong {
+  color: #0066cc !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+/* Why BAPI - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-138622 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-138622 .site-main .vc_row,
+  .page-id-138622 .site-main .wpb_row {
+    padding: 32px 24px !important;
+  }
+}
+
+/* Resource Library page - hide sidebar only */
+.page-id-8113 .woo-sidebar,
+.page-id-8113 .sidebar {
+  display: none !important;
+}
+
+.page-id-8113 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Resource Library - main content area styling ONLY (not header) */
+.page-id-8113 .site-main {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* Resource Library - WPBakery content containers */
+.page-id-8113 .site-main .vc_row,
+.page-id-8113 .site-main .wpb_row {
+  max-width: 1200px !important;
+  margin: 0 auto 48px auto !important;
+}
+
+/* Resource Library - Typography in main content only */
+.page-id-8113 .site-main h1,
+.page-id-8113 .site-main h2 {
+  margin-bottom: 32px !important;
+  line-height: 1.3 !important;
+  text-align: center !important;
+}
+
+.page-id-8113 .site-main h1 {
+  font-size: 42px !important;
+  color: #0066cc !important;
+}
+
+.page-id-8113 .site-main h2 {
+  font-size: 32px !important;
+  margin-top: 48px !important;
+  color: #0066cc !important;
+}
+
+.page-id-8113 .site-main p {
+  line-height: 1.8 !important;
+  margin-bottom: 24px !important;
+  font-size: 16px !important;
+}
+
+/* Resource Library - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-8113 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-8113 .site-main .vc_row,
+  .page-id-8113 .site-main .wpb_row {
+    padding: 32px 24px !important;
+  }
+}
+
+/* BAPI Wireless Site Verification page - hide sidebar only */
+.page-id-420924 .woo-sidebar,
+.page-id-420924 .sidebar {
+  display: none !important;
+}
+
+.page-id-420924 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Wireless Verification - main content area styling ONLY (not header) */
+.page-id-420924 .site-main {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* Wireless Verification - Typography in main content only */
+.page-id-420924 .site-main h1 {
+  font-size: 36px !important;
+  text-align: center !important;
+  margin-bottom: 32px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-420924 .site-main h2 {
+  font-size: 24px !important;
+  margin-top: 32px !important;
+  margin-bottom: 16px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-420924 .site-main h3 {
+  font-size: 20px !important;
+  margin-top: 24px !important;
+  margin-bottom: 12px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-420924 .site-main p {
+  line-height: 1.7 !important;
+  margin-bottom: 20px !important;
+  font-size: 16px !important;
+}
+
+/* Wireless Verification - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-420924 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-420924 .site-main h1 {
+    font-size: 28px !important;
+  }
+}
+
+/* RMA Request page - hide sidebar only */
+.page-id-420545 .woo-sidebar,
+.page-id-420545 .sidebar {
+  display: none !important;
+}
+
+.page-id-420545 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* RMA Request - main content area styling ONLY (not header) */
+.page-id-420545 .site-main {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* RMA Request - Typography in main content only */
+.page-id-420545 .site-main h1 {
+  font-size: 36px !important;
+  text-align: center !important;
+  margin-bottom: 16px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-420545 .site-main h2,
+.page-id-420545 .site-main h3 {
+  font-size: 20px !important;
+  margin-top: 32px !important;
+  margin-bottom: 16px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-420545 .site-main p {
+  line-height: 1.7 !important;
+  margin-bottom: 20px !important;
+  font-size: 16px !important;
+}
+
+/* RMA Request - Form styling */
+.page-id-420545 .site-main form {
+  margin-top: 32px !important;
+}
+
+.page-id-420545 .site-main form table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+.page-id-420545 .site-main form td {
+  padding: 12px 8px !important;
+  vertical-align: top !important;
+}
+
+.page-id-420545 .site-main form label {
+  font-weight: 600 !important;
+  color: #333 !important;
+  display: block !important;
+  margin-bottom: 4px !important;
+}
+
+.page-id-420545 .site-main form input[type="text"],
+.page-id-420545 .site-main form input[type="email"],
+.page-id-420545 .site-main form input[type="tel"],
+.page-id-420545 .site-main form select,
+.page-id-420545 .site-main form textarea {
+  width: 100% !important;
+  padding: 10px 12px !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  font-size: 15px !important;
+  box-sizing: border-box !important;
+}
+
+.page-id-420545 .site-main form textarea {
+  min-height: 100px !important;
+}
+
+.page-id-420545 .site-main form input[type="submit"],
+.page-id-420545 .site-main form button[type="submit"] {
+  background: #0066cc !important;
+  color: white !important;
+  padding: 14px 32px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  margin-top: 16px !important;
+  transition: background 0.3s !important;
+}
+
+.page-id-420545 .site-main form input[type="submit"]:hover,
+.page-id-420545 .site-main form button[type="submit"]:hover {
+  background: #0052a3 !important;
+}
+
+/* RMA Request - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-420545 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-420545 .site-main h1 {
+    font-size: 28px !important;
+  }
+  
+  .page-id-420545 .site-main form td {
+    display: block !important;
+    width: 100% !important;
+    padding: 8px 0 !important;
+  }
+}
+
+/* Terms & Conditions page - hide sidebar only */
+.page-id-96 .woo-sidebar,
+.page-id-96 .sidebar {
+  display: none !important;
+}
+
+.page-id-96 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Terms & Conditions - main content area styling ONLY (not header) */
+.page-id-96 .site-main {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* Terms & Conditions - Typography in main content only */
+.page-id-96 .site-main h1 {
+  font-size: 36px !important;
+  text-align: center !important;
+  margin-bottom: 32px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-96 .site-main h2 {
+  font-size: 28px !important;
+  margin-top: 48px !important;
+  margin-bottom: 24px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-96 .site-main h3 {
+  font-size: 22px !important;
+  margin-top: 32px !important;
+  margin-bottom: 16px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-96 .site-main p {
+  line-height: 1.8 !important;
+  margin-bottom: 20px !important;
+  font-size: 16px !important;
+}
+
+/* Terms & Conditions - List styling in main content only */
+.page-id-96 .site-main ul {
+  margin-bottom: 24px !important;
+  padding-left: 24px !important;
+}
+
+.page-id-96 .site-main ul li {
+  margin-bottom: 12px !important;
+  line-height: 1.7 !important;
+}
+
+.page-id-96 .site-main ol {
+  margin-bottom: 24px !important;
+  padding-left: 24px !important;
+}
+
+.page-id-96 .site-main ol li {
+  margin-bottom: 12px !important;
+  line-height: 1.7 !important;
+}
+
+/* Terms & Conditions - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-96 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-96 .site-main h1 {
+    font-size: 28px !important;
+  }
+  
+  .page-id-96 .site-main h2 {
+    font-size: 24px !important;
+  }
+  
+  .page-id-96 .site-main h3 {
+    font-size: 20px !important;
+  }
+}
+
+/* Contact BAPI page - hide sidebar only */
+.page-id-92 .woo-sidebar,
+.page-id-92 .sidebar {
+  display: none !important;
+}
+
+.page-id-92 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Contact BAPI - main content area styling ONLY (not header) */
+.page-id-92 .site-main {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* Contact BAPI - Typography in main content only */
+.page-id-92 .site-main h1 {
+  font-size: 36px !important;
+  text-align: center !important;
+  margin-bottom: 32px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-92 .site-main h2 {
+  font-size: 32px !important;
+  margin-top: 32px !important;
+  margin-bottom: 16px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-92 .site-main h3 {
+  font-size: 20px !important;
+  margin-top: 24px !important;
+  margin-bottom: 12px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-92 .site-main p {
+  line-height: 1.7 !important;
+  margin-bottom: 20px !important;
+  font-size: 16px !important;
+}
+
+/* Contact BAPI - Form styling */
+.page-id-92 .site-main form input[type="text"],
+.page-id-92 .site-main form input[type="email"],
+.page-id-92 .site-main form input[type="tel"],
+.page-id-92 .site-main form select,
+.page-id-92 .site-main form textarea {
+  width: 100% !important;
+  padding: 10px 12px !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  font-size: 15px !important;
+  box-sizing: border-box !important;
+  margin-bottom: 16px !important;
+}
+
+.page-id-92 .site-main form textarea {
+  min-height: 120px !important;
+}
+
+.page-id-92 .site-main form input[type="submit"],
+.page-id-92 .site-main form button[type="submit"] {
+  background: #0066cc !important;
+  color: white !important;
+  padding: 14px 32px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: background 0.3s !important;
+}
+
+.page-id-92 .site-main form input[type="submit"]:hover,
+.page-id-92 .site-main form button[type="submit"]:hover {
+  background: #0052a3 !important;
+}
+
+/* Contact BAPI - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-92 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-92 .site-main h1 {
+    font-size: 28px !important;
+  }
+}
+
+/* Homepage - Revolution Slider link styling - MUST override other link styles */
+body.page-id-1 .tp-caption a,
+body.page-id-1 .rev_slider a,
+body.page-id-1 #rev_slider_1_1 a,
+body.home .tp-caption a,
+body.home .rev_slider a,
+body.home #rev_slider_1_1 a,
+body.page-id-1 .tp-button,
+body.home .tp-button,
+body.page-id-1 a.tp-button,
+body.home a.tp-button {
+  color: #000000 !important;
+  background-color: #fcb900 !important;
+  text-decoration: none !important;
+}
+
+body.page-id-1 .tp-caption a:hover,
+body.page-id-1 .rev_slider a:hover,
+body.page-id-1 #rev_slider_1_1 a:hover,
+body.home .tp-caption a:hover,
+body.home .rev_slider a:hover,
+body.home #rev_slider_1_1 a:hover,
+body.page-id-1 .tp-button:hover,
+body.home .tp-button:hover,
+body.page-id-1 a.tp-button:hover,
+body.home a.tp-button:hover {
+  color: #000000 !important;
+  background-color: #fcd34d !important;
+  text-decoration: none !important;
+}
+
+/* Homepage - hide sidebar only */
+.page-id-1 .woo-sidebar,
+.page-id-1 .sidebar,
+.home .woo-sidebar,
+.home .sidebar {
+  display: none !important;
+}
+
+.page-id-1 .content-area,
+.home .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Homepage - main content area styling ONLY (not header) */
+.page-id-1 .site-main,
+.home .site-main {
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Homepage - Typography improvements */
+.page-id-1 .site-main h2,
+.home .site-main h2 {
+  font-size: 28px !important;
+  margin-bottom: 16px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-1 .site-main h3,
+.home .site-main h3 {
+  font-size: 22px !important;
+  margin-bottom: 12px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-1 .site-main p,
+.home .site-main p {
+  line-height: 1.7 !important;
+  margin-bottom: 16px !important;
+}
+
+/* Homepage - Three column section cards - exclude first row with slider */
+.page-id-1 .site-main .vc_row:not(:first-child) .vc_column_container,
+.home .site-main .vc_row:not(:first-child) .vc_column_container {
+  margin-bottom: 24px !important;
+}
+
+/* Remove margin from first row containing Revolution Slider */
+.page-id-1 .site-main .vc_row:first-child .vc_column_container,
+.home .site-main .vc_row:first-child .vc_column_container,
+body.page-id-1 .site-main .vc_row:first-child .vc_column_container,
+body.home .site-main .vc_row:first-child .vc_column_container,
+html body.page-id-1 .site-main .vc_row:first-child .vc_column_container,
+html body.home .site-main .vc_row:first-child .vc_column_container {
+  margin-bottom: 0 !important;
+}
+
+/* Homepage - Ensure images are responsive */
+.page-id-1 .site-main img,
+.home .site-main img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 4px !important;
+}
+
+/* Homepage - Link styling ONLY for content area (NOT header, NOT Revolution Slider) */
+.page-id-1 .site-main .wpb_wrapper a:not(.tp-button):not([id*="slider"]),
+.page-id-1 .site-main .entry-content a:not(.tp-button):not([id*="slider"]),
+.home .site-main .wpb_wrapper a:not(.tp-button):not([id*="slider"]),
+.home .site-main .entry-content a:not(.tp-button):not([id*="slider"]) {
+  color: #0066cc !important;
+  transition: color 0.3s !important;
+}
+
+.page-id-1 .site-main .wpb_wrapper a:not(.tp-button):not([id*="slider"]):hover,
+.page-id-1 .site-main .entry-content a:not(.tp-button):not([id*="slider"]):hover,
+.home .site-main .wpb_wrapper a:not(.tp-button):not([id*="slider"]):hover,
+.home .site-main .entry-content a:not(.tp-button):not([id*="slider"]):hover {
+  color: #0052a3 !important;
+}
+
+/* Force Revolution Slider links to use their default styling - MUST come after blue link rules */
+.page-id-1 #rev_slider_3_1 a,
+.page-id-1 #rev_slider_3_1 rs-layer a,
+.page-id-1 .rev_slider a,
+.page-id-1 .tp-caption a,
+.home #rev_slider_3_1 a,
+.home #rev_slider_3_1 rs-layer a,
+.home .rev_slider a,
+.home .tp-caption a {
+  color: inherit !important;
+}
+
+/* Homepage - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-1 .site-main h2,
+  .home .site-main h2 {
+    font-size: 24px !important;
+  }
+  
+  .page-id-1 .site-main h3,
+  .home .site-main h3 {
+    font-size: 20px !important;
+  }
+}
+
+/* Application Notes - hide sidebar for all application note posts */
+.single-application_note .woo-sidebar,
+.single-application_note .sidebar {
+  display: none !important;
+}
+
+.single-application_note .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Application Notes - main content area styling ONLY (not header) */
+.single-application_note .site-main {
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* Application Notes - Typography */
+.single-application_note .site-main h1 {
+  font-size: 32px !important;
+  text-align: center !important;
+  margin-bottom: 32px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.single-application_note .site-main h2 {
+  font-size: 24px !important;
+  margin-top: 32px !important;
+  margin-bottom: 16px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.single-application_note .site-main h3 {
+  font-size: 20px !important;
+  margin-top: 24px !important;
+  margin-bottom: 12px !important;
+  color: #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+.single-application_note .site-main p {
+  line-height: 1.8 !important;
+  margin-bottom: 20px !important;
+  font-size: 16px !important;
+}
+
+/* Application Notes - Table styling */
+.single-application_note .site-main table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 32px 0 !important;
+  background: white !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+.single-application_note .site-main table th {
+  background: #0066cc !important;
+  color: white !important;
+  padding: 12px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  border: 1px solid #0052a3 !important;
+}
+
+.single-application_note .site-main table td {
+  padding: 10px !important;
+  text-align: center !important;
+  border: 1px solid #ddd !important;
+}
+
+.single-application_note .site-main table tr:nth-child(even) {
+  background: #f8f8f8 !important;
+}
+
+.single-application_note .site-main table tr:hover {
+  background: #f0f7ff !important;
+}
+
+/* Application Notes - Icon/image centering */
+.single-application_note .site-main img {
+  display: block !important;
+  margin: 24px auto !important;
+  max-width: 100px !important;
+  height: auto !important;
+}
+
+/* Application Notes - Links */
+.single-application_note .site-main a {
+  color: #0066cc !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: color 0.3s !important;
+}
+
+.single-application_note .site-main a:hover {
+  color: #0052a3 !important;
+  text-decoration: underline !important;
+}
+
+/* Application Notes - Post navigation arrows */
+.single-application_note .post-navigation {
+  max-width: 1000px !important;
+  margin: 32px auto !important;
+  padding: 0 24px !important;
+}
+
+/* Application Notes - Mobile responsive */
+@media (max-width: 768px) {
+  .single-application_note .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .single-application_note .site-main h1 {
+    font-size: 26px !important;
+  }
+  
+  .single-application_note .site-main table {
+    font-size: 14px !important;
+  }
+  
+  .single-application_note .site-main table th,
+  .single-application_note .site-main table td {
+    padding: 8px 4px !important;
+  }
+}
+
+/* Specific Application Note page 141912 - Make tables larger */
+.postid-141912 .site-main table {
+  font-size: 18px !important;
+  margin: 40px auto !important;
+  min-width: 600px !important;
+}
+
+.postid-141912 .site-main table th {
+  padding: 16px 20px !important;
+  font-size: 18px !important;
+}
+
+.postid-141912 .site-main table td {
+  padding: 14px 18px !important;
+  font-size: 17px !important;
+}
+
+.postid-141912 .site-main img {
+  max-width: 100% !important;
+}
+
+/* Mobile adjustments for page 141912 */
+@media (max-width: 768px) {
+  .postid-141912 .site-main table {
+    min-width: 100% !important;
+    font-size: 16px !important;
+  }
+  
+  .postid-141912 .site-main table th,
+  .postid-141912 .site-main table td {
+    padding: 12px 8px !important;
+  }
+}
+
+/* Application Notes Archive - hide sidebar */
+.post-type-archive-application_note .woo-sidebar,
+.post-type-archive-application_note .sidebar {
+  display: none !important;
+}
+
+.post-type-archive-application_note .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Application Notes Archive - main content area */
+.post-type-archive-application_note .site-main {
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* Application Notes Archive - Page title */
+.post-type-archive-application_note .site-main .page-title {
+  font-size: 36px !important;
+  text-align: center !important;
+  margin-bottom: 48px !important;
+  color: #0066cc !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Application Notes Archive - Category headings */
+.post-type-archive-application_note .site-main h2,
+.post-type-archive-application_note .site-main h3 {
+  font-size: 24px !important;
+  margin-top: 48px !important;
+  margin-bottom: 20px !important;
+  color: #0066cc !important;
+  padding-bottom: 12px !important;
+  border-bottom: 2px solid #0066cc !important;
+  line-height: 1.3 !important;
+}
+
+/* Application Notes Archive - List styling */
+.post-type-archive-application_note .site-main ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-bottom: 32px !important;
+}
+
+.post-type-archive-application_note .site-main ul li {
+  margin-bottom: 12px !important;
+  padding-left: 28px !important;
+  position: relative !important;
+  line-height: 1.6 !important;
+}
+
+.post-type-archive-application_note .site-main ul li::before {
+  content: "→" !important;
+  position: absolute !important;
+  left: 0 !important;
+  color: #0066cc !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+
+/* Application Notes Archive - Link styling */
+.post-type-archive-application_note .site-main a {
+  color: #0066cc !important;
+  text-decoration: none !important;
+  transition: color 0.3s !important;
+}
+
+.post-type-archive-application_note .site-main a:hover {
+  color: #0052a3 !important;
+  text-decoration: underline !important;
+}
+
+/* Application Notes Archive - Mobile responsive */
+@media (max-width: 768px) {
+  .post-type-archive-application_note .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .post-type-archive-application_note .site-main .page-title {
+    font-size: 28px !important;
+  }
+  
+  .post-type-archive-application_note .site-main h2,
+  .post-type-archive-application_note .site-main h3 {
+    font-size: 20px !important;
+    margin-top: 32px !important;
+  }
+}
+
+/* Main Products archive page ONLY - grid layout */
+body.post-type-archive-product:not(.tax-product_cat) .products {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 24px !important;
+}
+
+body.post-type-archive-product:not(.tax-product_cat) .products .product {
+  flex: 0 1 calc(25% - 18px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  max-width: calc(25% - 18px) !important;
+  box-sizing: border-box !important;
+}
+
+/* Product archive list layout - apply only to category pages */
+.tax-product_cat .products:not(.columns-5) {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Vertical list layout for category pages only */
+.tax-product_cat .products:not(.columns-5) .product:not(.product-category) {
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  gap: 30px;
+}
+
+.tax-product_cat .products:not(.columns-5) .product:not(.product-category) img {
+  max-width: 180px;
+  flex-shrink: 0;
+}
+
+.tax-product_cat .products .product .woocommerce-loop-product__title,
+.tax-product_cat .products .product h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .tax-product_cat .products:not(.columns-5) .product:not(.product-category) {
+    flex-direction: column;
+  }
+  .tax-product_cat .products:not(.columns-5) .product:not(.product-category) img {
+    max-width: 100%;
+  }
+}
+
+/* Single product page - make main product image larger */
+.single-product div.product div.images {
+  width: 48% !important;
+  float: left;
+}
+
+.single-product div.product div.images img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.single-product div.product div.summary {
+  width: 48% !important;
+  float: right;
+}
+
+/* Single product content sections - constrain width */
+.single-product .woocommerce-tabs,
+.single-product .entry-content,
+.single-product .product .woocommerce-product-details__short-description {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Video embeds on single product pages */
+.single-product iframe,
+.single-product video,
+.single-product .woocommerce-tabs iframe,
+.single-product .entry-content iframe {
+  max-width: 900px !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16/9;
+  margin: 20px auto !important;
+  display: block !important;
+}
+
+/* Related products section - horizontal card layout */
+.related.products .products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.related.products .product {
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  padding: 20px !important;
+  border: 1px solid #e0e0e0 !important;
+  background: white !important;
+  max-width: 100% !important;
+  flex: 1 1 100% !important;
+}
+
+.related.products .product img {
+  max-width: 150px !important;
+  width: 150px !important;
+  height: auto !important;
+  flex-shrink: 0 !important;
+  margin-right: 20px !important;
+}
+
+.related.products .product .woocommerce-loop-product__title {
+  font-size: 1.2em !important;
+  margin: 0 0 10px 0 !important;
+}
+
+.related.products .product .price {
+  font-size: 1em !important;
+  margin: 10px 0 !important;
+}
+
+
+
+/* Hide featured image inside the single post view */
+.single-post img.wp-post-image {
+  display: none !important;
+}
+
+/* Some themes wrap the thumbnail in a link or figure—cover those too */
+.single-post a > img.wp-post-image,
+.single-post figure img.wp-post-image,
+.single-post .entry-media img.wp-post-image,
+.single-post .post-thumbnail img.wp-post-image {
+  display: none !important;
+}
+
+/* Center and style featured images */
+.single-post .entry-content img,
+.single-post .post-thumbnail img {
+  display: block;
+  margin: 32px auto 16px auto;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+/* Style image captions */
+.single-post .wp-caption-text {
+  text-align: center;
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+/* Headline styling */
+.single-post .entry-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #174ea6;
+}
+
+/* Article meta info */
+.single-post .entry-meta {
+  text-align: center;
+  color: #888;
+  font-size: 0.95em;
+  margin-bottom: 16px;
+}
+
+/* Article body */
+.single-post .entry-content {
+  font-size: 1.15em;
+  line-height: 1.7;
+  color: #222;
+  max-width: 900px;
+  margin: 0 auto 48px auto;
+  padding: 0 24px;
+}
+
+/* Single post container - ensure full width and centered */
+.single-post .site-main,
+.single-post .content-area {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  float: none !important;
+}
+
+.single-post .site-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Category and navigation links */
+.single-post .post-navigation,
+.single-post .cat-links {
+  text-align: center;
+  margin: 32px 0 0 0;
+}
+
+/* Archive pages - ensure full width content area */
+.archive .site-main,
+.archive .content-area {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  float: none !important;
+}
+
+.archive .post {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto 48px auto;
+  padding: 32px; /* more padding inside the card */
+  border-bottom: 1px solid #e0e0e0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(23, 78, 166, 0.07); /* softer, blue-tinted shadow */
+}
+
+.archive .post-thumbnail img {
+  width: 320px;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: none;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Page 136159 - hide sidebar only */
+.page-id-136159 .woo-sidebar,
+.page-id-136159 .sidebar {
+  display: none !important;
+}
+
+.page-id-136159 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Page 136159 - main content area styling ONLY (not header) */
+.page-id-136159 .site-main {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+/* Page 136159 - First row (hero) ONLY - center everything */
+.page-id-136159 .site-main .vc_row:first-child,
+.page-id-136159 .site-main .wpb_row:first-child {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto 48px auto !important;
+  padding: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  text-align: center !important;
+  display: block !important;
+}
+
+.page-id-136159 .site-main .vc_row:first-child .vc_column_container,
+.page-id-136159 .site-main .wpb_row:first-child .vc_column_container,
+.page-id-136159 .site-main .vc_row:first-child .vc_column-inner,
+.page-id-136159 .site-main .wpb_row:first-child .vc_column-inner,
+.page-id-136159 .site-main .vc_row:first-child .wpb_wrapper,
+.page-id-136159 .site-main .wpb_row:first-child .wpb_wrapper,
+.page-id-136159 .site-main .vc_row:first-child .vc_column,
+.page-id-136159 .site-main .wpb_row:first-child .vc_column {
+  padding: 0 !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+  display: block !important;
+}
+
+.page-id-136159 .site-main .vc_row:first-child img,
+.page-id-136159 .site-main .wpb_row:first-child img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+  left: auto !important;
+  right: auto !important;
+  position: relative !important;
+}
+
+.page-id-136159 .site-main .vc_row:first-child h1,
+.page-id-136159 .site-main .vc_row:first-child h2,
+.page-id-136159 .site-main .vc_row:first-child h3,
+.page-id-136159 .site-main .vc_row:first-child p,
+.page-id-136159 .site-main .wpb_row:first-child h1,
+.page-id-136159 .site-main .wpb_row:first-child h2,
+.page-id-136159 .site-main .wpb_row:first-child h3,
+.page-id-136159 .site-main .wpb_row:first-child p {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Page 136159 - Typography in main content only */
+.page-id-136159 .site-main h1,
+.page-id-136159 .site-main h2 {
+  margin-bottom: 32px !important;
+  line-height: 1.3 !important;
+}
+
+.page-id-136159 .site-main h1 {
+  font-size: 42px !important;
+}
+
+.page-id-136159 .site-main h2 {
+  font-size: 32px !important;
+  margin-top: 48px !important;
+  color: #0066cc !important;
+}
+
+.page-id-136159 .site-main p {
+  line-height: 1.8 !important;
+  margin-bottom: 24px !important;
+  font-size: 16px !important;
+}
+
+/* Page 136159 - List styling in main content only */
+.page-id-136159 .site-main ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.page-id-136159 .site-main ul li {
+  margin-bottom: 24px !important;
+  padding-left: 32px !important;
+  position: relative !important;
+  line-height: 1.7 !important;
+}
+
+.page-id-136159 .site-main ul li::before {
+  content: "✓" !important;
+  position: absolute !important;
+  left: 0 !important;
+  color: #0066cc !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
+.page-id-136159 .site-main ul li strong {
+  color: #0066cc !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+/* Page 136159 - Mobile responsive */
+@media (max-width: 768px) {
+  .page-id-136159 .site-main {
+    padding: 24px 16px !important;
+  }
+  
+  .page-id-136159 .site-main .vc_row,
+  .page-id-136159 .site-main .wpb_row {
+    padding: 32px 24px !important;
+  }
+}
+
+/* Page 407376 - Fix alignment issues */
+.page-id-407376 .woo-sidebar,
+.page-id-407376 .sidebar {
+  display: none !important;
+}
+
+.page-id-407376 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+.page-id-407376 .site-main {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+.page-id-407376 .site-main .vc_row,
+.page-id-407376 .site-main .wpb_row {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Page 407299 - WAM page alignment */
+.page-id-407299 .woo-sidebar,
+.page-id-407299 .sidebar {
+  display: none !important;
+}
+
+.page-id-407299 .content-area {
+  width: 100% !important;
+  float: none !important;
+}
+
+.page-id-407299 .site-main {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 48px 24px !important;
+}
+
+.page-id-407299 .site-main .vc_row,
+.page-id-407299 .site-main .wpb_row {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Page 404345 - UK page alignment */
+body.page-id-404345 {
+  --uk-content-max: 1180px;
+  --uk-side-pad: 20px;
+}
+
+body.page-id-404345 .site-main,
+body.page-id-404345 #primary,
+body.page-id-404345 .entry-content {
+  max-width: var(--uk-content-max) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--uk-side-pad) !important;
+  padding-right: var(--uk-side-pad) !important;
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  width: auto !important;
+  float: none !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+}
+
+body.page-id-404345 .site-main[style*="left:"],
+body.page-id-404345 #primary[style*="left:"],
+body.page-id-404345 .entry-content[style*="left:"] {
+  left: auto !important;
+  position: static !important;
+  transform: none !important;
+}
+
+body.page-id-404345 .vc_row.vc_row-fluid,
+body.page-id-404345 .vc_row.full-width-row,
+body.page-id-404345 .page-banner,
+body.page-id-404345 .hero,
+body.page-id-404345 .site-hero,
+body.page-id-404345 .full-width-hero,
+body.page-id-404345 .vc_row.stretched {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (max-width: 900px) {
+  body.page-id-404345 .site-main,
+  body.page-id-404345 #primary,
+  body.page-id-404345 .entry-content {
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* Page 403545 - Canada page alignment */
+body.page-id-403545 {
+  --ca-content-max: 1200px;
+  --ca-side-pad: 20px;
+}
+
+body.page-id-403545 .site-main,
+body.page-id-403545 #primary,
+body.page-id-403545 .entry-content {
+  max-width: var(--ca-content-max) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--ca-side-pad) !important;
+  padding-right: var(--ca-side-pad) !important;
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  width: auto !important;
+  float: none !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+}
+
+body.page-id-403545 .site-main[style*="left:"],
+body.page-id-403545 #primary[style*="left:"],
+body.page-id-403545 .entry-content[style*="left:"] {
+  left: auto !important;
+  position: static !important;
+  transform: none !important;
+}
+
+body.page-id-403545 .vc_row.vc_row-fluid,
+body.page-id-403545 .vc_row.full-width-row,
+body.page-id-403545 .page-banner,
+body.page-id-403545 .hero,
+body.page-id-403545 .site-hero,
+body.page-id-403545 .full-width-hero,
+body.page-id-403545 .vc_row.stretched {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (max-width: 900px) {
+  body.page-id-403545 .site-main,
+  body.page-id-403545 #primary,
+  body.page-id-403545 .entry-content {
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* News category archive - larger images */
+.category-news .thumbnail img,
+.category-news .post-thumbnail img {
+  width: 380px !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+.category-news .thumbnail,
+.category-news .post-thumbnail {
+  width: 380px !important;
+  flex-shrink: 0 !important;
+}
+
+.archive .entry-header {
+  margin-bottom: 8px;
+}
+.archive .entry-title {
+  font-size: 1.35em;
+  font-weight: 700;
+  color: #174ea6;
+  margin: 0 0 8px 0;
+}
+.archive .entry-summary {
+  font-size: 1.08em;
+  color: #333;
+  margin-bottom: 12px;
+  max-width: 700px;
+  line-height: 1.7;
+}
+.archive .more-link {
+  display: inline-block;
+  color: #174ea6;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.2s;
+  margin-top: 8px;
+}
+.archive .more-link:hover {
+  color: #fcb900;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .archive .post {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 20px 10px;
+  }
+  .archive .post-thumbnail img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+}
+
+/* top menu fix - boost z-index to ensure dropdowns appear above everything */
+ul#menu-demo-top-top-menu.main-nav li#menu-item-405428 > .sub-menu,
+.global-nav .region > .sub-menu {
+  z-index: 999999 !important;
+  position: absolute !important;
+}
+
+.site-header,
+.header-wrap {
+  position: relative;
+  z-index: 1000;
+}
+
+/* Force GTranslate dropdown to appear inside the Select Language menu */
+#menu-item-417468 .gtranslate_wrapper,
+#menu-item-417468 #google_translate_element2 {
+  position: static !important;
+  display: block !important;
+  margin: 0 !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+/* Fix GTranslate floating issue in PROD - force inside dropdown */
+#menu-item-417468 {
+  position: relative !important;
+}
+
+#menu-item-417468 .gtranslate_wrapper,
+#menu-item-417468 #google_translate_element2,
+#menu-item-417468 .sub-menu .gtranslate_wrapper {
+  position: absolute !important;
+  left: 0 !important;
+  top: 100% !important;
+  min-width: 180px !important;
+  background: #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  border-radius: 4px !important;
+  padding: 8px 12px !important;
+  display: block !important;
+  white-space: nowrap !important;
+}
+
+/* Force hide floating GTranslate widgets that shouldn't be there */
+.gt_container--yahn4y,
+.gt_container--ybimvb,
+.gtranslate_wrapper.gt_container,
+body > .gtranslate_wrapper {
+  display: none !important;
+}
+
+/* Mobile/Tablet Fix: Hide region selector on mobile, only show on desktop */
+@media screen and (max-width: 767px) {
+  .global-wrap .region-wrap {
+    display: none !important;
+  }
+  
+  .global-nav ul li.account,
+  .global-nav ul li.cart,
+  #menu-item-405426 {
+    display: none !important;
+  }
+  
+  .global-wrap .global-stuff,
+  .global-wrap {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .global-wrap .region-wrap {
+    width: calc(100vw - 40px) !important;
+    max-width: 500px !important;
+    right: 20px !important;
+    left: 20px !important;
+    margin: 0 auto !important;
+  }
+  
+  .global-wrap #menu-region-selector {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  
+  .global-nav .region>.sub-menu {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .global-nav .region>.sub-menu>li {
+    border-right: none !important;
+    border-bottom: 1px solid #c6c7ca !important;
+  }
+  
+  .global-nav .region>.sub-menu>li:last-child {
+    border-bottom: none !important;
+  }
+}
+
+/* Force hide any floating GTranslate widgets */
+.gt_container--yahn4y,
+.gt_container--ybimvb,
+div[class*="gt_container--"],
+.gt_float_switcher {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

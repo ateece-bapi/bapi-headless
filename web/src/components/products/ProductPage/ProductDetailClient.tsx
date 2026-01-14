@@ -8,6 +8,7 @@ import RelatedProducts from "@/components/products/ProductPage/RelatedProducts";
 import AppLinks from "@/components/products/ProductPage/AppLinks";
 import ContactInfo from "@/components/products/ProductPage/ContactInfo";
 import Breadcrumbs from "@/components/products/ProductPage/Breadcrumbs";
+import TrustBadges from "@/components/products/ProductPage/TrustBadges";
 import { CartDrawer } from "@/components/cart";
 import { ProductVariationSelector, ProductGallery } from "@/components/products";
 import { useRecentlyViewed } from "@/store";
@@ -91,6 +92,10 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
                 useCartDrawer={useCartDrawer}
               />
             </div>
+            
+            {/* Trust and credibility badges */}
+            <TrustBadges className="mb-8" />
+            
             {/* Enhanced Variation Selector (replaces ProductConfigurator) */}
             <ProductVariationSelector
               product={product}

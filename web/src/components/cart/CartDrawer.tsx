@@ -1,6 +1,7 @@
  'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useCart, useCartDrawer } from '@/store';
 
 const CartDrawer = () => {
@@ -85,14 +86,25 @@ const CartDrawer = () => {
         
         {/* Footer */}
         {!isEmpty && (
-          <div className="border-t border-neutral-200 p-4 space-y-4">
+          <div className="border-t border-neutral-200 p-4 space-y-3">
             <div className="flex justify-between text-lg font-bold text-neutral-900">
               <span>Subtotal:</span>
               <span>${subtotal.toFixed(2)}</span>
             </div>
-            <button className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded transition shadow-sm hover:shadow-md">
+            <Link 
+              href="/cart"
+              onClick={closeCart}
+              className="block w-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold py-3 rounded-lg text-center transition shadow-sm hover:shadow-md"
+            >
+              View Cart
+            </Link>
+            <Link
+              href="/checkout"
+              onClick={closeCart}
+              className="block w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-lg text-center transition shadow-sm hover:shadow-md"
+            >
               Proceed to Checkout
-            </button>
+            </Link>
           </div>
         )}
       </div>

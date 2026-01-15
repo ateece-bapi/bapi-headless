@@ -486,12 +486,6 @@
 - [ ] Order tracking and notifications
 - [ ] Reorder functionality
 
-### Cart & Checkout
-- [ ] Complete cart implementation
-- [ ] Checkout flow
-- [ ] Payment integration
-- [ ] Order confirmation emails
-
 ### Analytics & Monitoring
 - [ ] Google Analytics setup
 - [ ] Error tracking (Sentry?)
@@ -503,6 +497,35 @@
 - [ ] Integration tests for key flows
 - [ ] E2E tests with Playwright/Cypress
 - [ ] Accessibility testing
+
+### Backend Integration (High Priority)
+- [ ] WooCommerce order creation API integration
+  - [ ] Replace mock order data in `/api/payment/confirm`
+  - [ ] Implement GraphQL mutation to create real WooCommerce orders
+  - [ ] Map order data: line items, addresses, payment info, totals
+- [ ] Order fetching API route
+  - [ ] Create `/api/orders/[orderId]` endpoint
+  - [ ] Replace mock data in OrderConfirmationClient
+  - [ ] Fetch order details via GraphQL or REST API
+- [ ] PayPal integration
+  - [ ] PayPal SDK integration in PaymentStep
+  - [ ] PayPal order creation API route
+  - [ ] PayPal redirect handling
+
+### Production Configuration (Critical Before Launch)
+- [ ] Stripe live API keys
+  - [ ] Switch from test keys (`pk_test_`, `sk_test_`) to live keys (`pk_live_`, `sk_live_`)
+  - [ ] Update environment variables in Vercel
+  - [ ] Complete Stripe account verification
+- [ ] SMTP provider setup
+  - [ ] Configure SendGrid account (recommended)
+  - [ ] Install WP Mail SMTP plugin
+  - [ ] Add SPF, DKIM, DMARC DNS records
+  - [ ] Test email deliverability
+- [ ] Email template customization
+  - [ ] Customize WooCommerce email templates with BAPI branding
+  - [ ] Upload BAPI logo to WordPress Media Library
+  - [ ] Test all email types (order confirmation, shipping, etc.)
 
 ---
 

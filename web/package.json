@@ -19,6 +19,8 @@
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.23",
     "@clerk/nextjs": "^6.36.5",
+    "@stripe/react-stripe-js": "^5.4.1",
+    "@stripe/stripe-js": "^8.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.3",
@@ -32,6 +34,7 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "sonner": "^2.0.7",
+    "stripe": "^20.1.2",
     "zustand": "^5.0.8"
   },
   "devDependencies": {

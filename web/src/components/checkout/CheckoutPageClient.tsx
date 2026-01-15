@@ -52,6 +52,7 @@ export interface CheckoutData {
   paymentMethod: PaymentMethod | null;
   shippingMethod: string | null;
   orderNotes: string;
+  paymentIntentId?: string; // Stripe payment intent ID
 }
 
 export default function CheckoutPageClient() {

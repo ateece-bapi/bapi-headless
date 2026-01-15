@@ -85,7 +85,7 @@ Configure in Clerk Dashboard → Customization:
 
 ## Testing
 
-1. Start dev server: `npm run dev`
+1. Start dev server: `pnpm run dev`
 2. Click "User Sign In" in header
 3. Sign up with email or social provider
 4. After sign in, you'll see your profile avatar

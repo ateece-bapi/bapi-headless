@@ -71,7 +71,7 @@ If the old WordPress site is still available:
 **After GraphQL exposure is fixed:**
 
 1. ✅ GraphQL query already created: `web/src/lib/graphql/queries/applicationNotes.graphql`
-2. Run `npm run codegen` to generate TypeScript types
+2. Run `pnpm run codegen` to generate TypeScript types
 3. Build `/application-notes` list page
 4. Build `/application-notes/[slug]` article pages  
 5. Add CTA on Resources page

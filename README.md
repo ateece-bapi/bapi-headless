@@ -65,13 +65,25 @@ bapi-headless/
 │   │   │   │   ├── quotes/     # Quote requests
 │   │   │   │   └── settings/   # Account settings
 │   │   │   ├── products/       # Products listing
-│   │   │   ├── products-test/  # Product testing page
-│   │   │   ├── cart-test/      # Cart demo
+│   │   │   ├── cart/           # Shopping cart page
+│   │   │   ├── checkout/       # Multi-step checkout wizard
+│   │   │   ├── order-confirmation/[orderId]/  # Order success page
 │   │   │   ├── api/            # API routes
+│   │   │   │   ├── payment/    # Stripe payment endpoints
+│   │   │   │   ├── cart/       # WooCommerce cart operations
+│   │   │   │   └── ...         # Other API routes
 │   │   │   └── components/     # App-specific components
 │   │   ├── components/         # Shared React components
 │   │   │   ├── layout/         # Layout components (Header, Footer)
 │   │   │   ├── cart/           # Cart UI components
+│   │   │   │   ├── CartDrawer.tsx         # Sliding cart drawer
+│   │   │   │   └── CartPage/              # Full cart page components
+│   │   │   ├── checkout/       # Checkout flow components
+│   │   │   │   ├── CheckoutWizard.tsx     # 3-step wizard
+│   │   │   │   ├── CheckoutSummary.tsx    # Sticky order summary
+│   │   │   │   └── steps/                 # Shipping, Payment, Review steps
+│   │   │   ├── order-confirmation/  # Order success components
+│   │   │   ├── payment/        # Stripe payment components
 │   │   │   ├── products/       # Product components
 │   │   │   ├── Hero/           # Hero section
 │   │   │   ├── ui/             # Reusable UI components
@@ -100,6 +112,9 @@ bapi-headless/
 │
 ├── docs/                       # Project documentation
 │   ├── BULK-USER-MIGRATION.md  # WordPress user migration guide
+│   ├── STRIPE-PAYMENT-INTEGRATION.md  # Stripe setup and testing
+│   ├── EMAIL-NOTIFICATIONS.md  # Email system configuration
+│   ├── PHASE2-COMPLETION-SUMMARY.md  # Phase 2 project summary
 │   └── ...                     # Additional docs
 ├── scripts/                    # Repository-level scripts
 └── README.md                   # This file

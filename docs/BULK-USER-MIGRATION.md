@@ -87,7 +87,7 @@ wp user list --format=json > wordpress-users.json
 cd web
 
 # Install dependencies
-npm install @clerk/clerk-sdk-node dotenv
+pnpm add @clerk/clerk-sdk-node dotenv
 
 # Copy users export to web directory
 cp ~/wordpress-users.json ./

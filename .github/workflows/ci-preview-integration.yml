@@ -27,16 +27,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: web/pnpm-lock.yaml
 
       - name: Install dependencies
         env:
           HUSKY: 0
         run: |
-          npm --prefix web ci
+          pnpm --prefix web install --frozen-lockfile
 
       - id: run-tests
         name: Run preview integration tests (capture logs)
@@ -56,7 +63,7 @@ jobs:
           fi
           # run tests (JUnit reporter writes XML to test-output), capture stdout+stderr to a log file and preserve exit code
           set -o pipefail
-          npm --prefix web run test:ci 2>&1 | tee "$ARTIFACT_DIR/test.log"
+          pnpm --prefix web run test:ci 2>&1 | tee "$ARTIFACT_DIR/test.log"
           rc=${PIPESTATUS[0]}
           echo "exitcode=$rc" >> $GITHUB_OUTPUT
           echo "$rc" > "$ARTIFACT_DIR/exitcode"

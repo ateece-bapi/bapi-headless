@@ -153,14 +153,40 @@ export default function CheckoutPageClient() {
     try {
       setIsProcessing(true);
 
-      // TODO: Implement actual order placement with WooCommerce
-      // For now, simulate order placement
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // If using Stripe, confirm payment first
+      if (checkoutData.paymentIntentId) {
+        const response = await fetch('/api/payment/confirm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            paymentIntentId: checkoutData.paymentIntentId,
+            orderData: {
+              shippingAddress: checkoutData.shippingAddress,
+              billingAddress: checkoutData.billingAddress,
+              orderNotes: checkoutData.orderNotes,
+            },
+          }),
+        });
 
-      showToast('success', 'Order Placed!', 'Your order has been placed successfully.');
-      
-      // Redirect to order confirmation (TODO: with actual order ID)
-      router.push('/checkout/confirmation?order=12345');
+        const result = await response.json();
+
+        if (!result.success) {
+          throw new Error(result.message || 'Payment confirmation failed');
+        }
+
+        // Redirect to order confirmation with actual order ID
+        router.push(`/order-confirmation/${result.order.id}`);
+        showToast('success', 'Order Placed!', 'Your order has been placed successfully.');
+      } else {
+        // PayPal or other payment methods
+        // TODO: Implement PayPal order creation
+        // For now, create mock order
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        
+        const mockOrderId = Math.floor(Math.random() * 100000);
+        router.push(`/order-confirmation/${mockOrderId}`);
+        showToast('success', 'Order Placed!', 'Your order has been placed successfully.');
+      }
       
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);

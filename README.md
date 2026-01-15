@@ -233,6 +233,7 @@ See [`web/COLOR_SYSTEM.md`](./web/COLOR_SYSTEM.md) for complete color documentat
 
 ## 📚 Documentation
 
+- **[PNPM Setup Guide](./docs/PNPM-TEAM-GUIDE.md)** - 5-minute team onboarding for PNPM migration
 - **[Color System](./web/COLOR_SYSTEM.md)** - Complete brand color guidelines
 - **[Clerk Authentication](./web/CLERK_SETUP.md)** - Authentication setup and configuration
 - **[WordPress User Migration](./docs/BULK-USER-MIGRATION.md)** - Bulk import guide for existing customers

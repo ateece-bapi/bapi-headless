@@ -75,15 +75,13 @@ export async function GET(
       date: wcOrder.date_created,
       total: wcOrder.total,
       subtotal: wcOrder.line_items.reduce((sum: number, item: any) => sum + parseFloat(item.subtotal), 0).toString(),
-      totalTax: wcOrder.total_tax,
-      shippingTotal: wcOrder.shipping_total,
-      discountTotal: wcOrder.discount_total,
+      tax: wcOrder.total_tax,
+      shipping: wcOrder.shipping_total,
+      discount: wcOrder.discount_total,
       currency: wcOrder.currency,
       paymentMethod: wcOrder.payment_method,
       paymentMethodTitle: wcOrder.payment_method_title,
       transactionId: wcOrder.transaction_id || null,
-      billing: wcOrder.billing,
-      shipping: wcOrder.shipping,
       // Map items for OrderItems component
       items: wcOrder.line_items.map((item: any) => ({
         id: item.id.toString(),

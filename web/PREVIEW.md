@@ -33,7 +33,7 @@ node web/scripts/preview_sanity.mjs
 - Run unit tests for the web package:
 
 ```bash
-npm --prefix web test
+pnpm --prefix web test
 ```
 
 Security notes

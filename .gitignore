@@ -3,6 +3,14 @@ node_modules/
 .next/
 dist/
 
+# PNPM
+.pnpm-store/
+.pnpm-debug.log*
+
+# Test output
+test-output/
+*.junit.xml
+
 # Local envs
 .env
 .env.local

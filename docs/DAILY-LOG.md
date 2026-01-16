@@ -642,6 +642,28 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 **Key Takeaway:**
 Sometimes the simpler approach is the better approach. REST API proved more reliable and maintainable than GraphQL mutations for this use case. The pivot decision saved future debugging time and resulted in a more robust system.
 
+#### Deployment Status
+
+**Staging Deployment (✅ COMPLETE):**
+- Branch: `feature/phase3-backend-integration`
+- PR: Merged to `main` successfully
+- Vercel: Deployed to production (bapi-headless.vercel.app)
+- Build: Successful (Node 20.20.0 pinned via Volta)
+- Environment: Staging with Stripe test mode
+- Status: **LIVE ON STAGING** ✅
+
+**Production Readiness:**
+- ⚠️ **Not yet production-ready** - Stripe in test mode
+- ⏳ **Required before production:**
+  - Switch Stripe to live keys (pk_live_, sk_live_)
+  - Configure SMTP for email notifications
+  - Test email templates
+  - Production environment variables in Vercel
+  - Final QA testing with real payment scenarios
+
+**Staging URL:** https://bapi-headless.vercel.app  
+**WordPress Backend:** https://bapiheadlessstaging.kinsta.cloud  
+
 ---
 
 ## January 15, 2026

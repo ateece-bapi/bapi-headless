@@ -125,10 +125,6 @@ export async function GET(
         postcode: wcOrder.billing.postcode || '',
         country: wcOrder.billing.country || 'US',
       },
-      shipping: wcOrder.shipping_total,
-      tax: wcOrder.total_tax,
-      createdAt: wcOrder.date_created,
-      metaData: wcOrder.meta_data,
     };
 
     return NextResponse.json({

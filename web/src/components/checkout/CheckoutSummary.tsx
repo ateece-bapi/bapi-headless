@@ -22,13 +22,14 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
     return null;
   }
 
-  const parsePrice = (price: string): number => {
+  const parsePrice = (price: string | undefined): number => {
+    if (!price) return 0;
     return parseFloat(price.replace(/[^0-9.-]+/g, '')) || 0;
   };
 
   const subtotal = parsePrice(cart.subtotal);
-  const tax = parsePrice(cart.totalTax);
-  const shipping = parsePrice(cart.shippingTotal);
+  const tax = parsePrice(cart.tax || cart.totalTax);
+  const shipping = parsePrice(cart.shipping || cart.shippingTotal);
   const discount = parsePrice(cart.discountTotal);
   const total = parsePrice(cart.total);
 

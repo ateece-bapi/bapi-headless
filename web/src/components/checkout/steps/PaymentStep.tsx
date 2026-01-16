@@ -51,20 +51,35 @@ export default function PaymentStep({
   const [isLoadingIntent, setIsLoadingIntent] = useState(false);
   const [cartTotal, setCartTotal] = useState<number>(0);
 
-  // Fetch cart total from cart API
+  // Fetch cart total from localStorage
   useEffect(() => {
-    const fetchCartTotal = async () => {
+    const fetchCartTotal = () => {
       try {
-        const response = await fetch('/api/cart');
-        const cartData = await response.json();
-        
-        if (cartData.cart?.totals?.total) {
-          // Remove currency symbol and convert to number
-          const total = parseFloat(cartData.cart.totals.total.replace(/[^0-9.]/g, ''));
-          setCartTotal(total);
+        // Get cart from local storage (Zustand store)
+        const localCartData = localStorage.getItem('bapi-cart-storage');
+        if (!localCartData) {
+          console.log('[PaymentStep] No cart data found');
+          return;
         }
+        
+        const parsed = JSON.parse(localCartData);
+        const items = parsed.state?.items || [];
+        
+        if (items.length === 0) {
+          console.log('[PaymentStep] Cart is empty');
+          return;
+        }
+        
+        // Calculate total from items
+        const subtotal = items.reduce((sum: number, item: any) => {
+          const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+          return sum + (price * item.quantity);
+        }, 0);
+        
+        console.log('[PaymentStep] Cart total:', subtotal);
+        setCartTotal(subtotal);
       } catch (error) {
-        console.error('Failed to fetch cart total:', error);
+        console.error('[PaymentStep] Failed to fetch cart total:', error);
       }
     };
 

@@ -14,6 +14,7 @@ import CartItems from './CartItems';
 import CartSummary from './CartSummary';
 import { useToast } from '@/components/ui/Toast';
 import { getUserErrorMessage, logError } from '@/lib/errors';
+import { useCartStore } from '@/store/cart';
 
 interface CartData {
   isEmpty: boolean;
@@ -81,11 +82,79 @@ export default function CartPageClient() {
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
   const { showToast } = useToast();
+  
+  // Get Zustand store actions
+  const { updateQuantity: updateZustandQuantity, removeItem: removeZustandItem } = useCartStore();
 
   // Fetch cart on mount
   useEffect(() => {
-    fetchCart();
+    // For Phase 3: Use local cart from Zustand instead of WooCommerce API
+    // WooCommerce cart will be synced during checkout
+    fetchLocalCart();
   }, []);
+
+  const fetchLocalCart = () => {
+    try {
+      setIsLoading(true);
+      
+      // Get cart from local storage (Zustand store)
+      const localCartData = localStorage.getItem('bapi-cart-storage');
+      if (!localCartData) {
+        setCart(null);
+        setIsLoading(false);
+        return;
+      }
+      
+      const parsed = JSON.parse(localCartData);
+      const items = parsed.state?.items || [];
+      
+      // Convert Zustand cart format to WooCommerce cart format
+      const mockCart: CartData = {
+        isEmpty: items.length === 0,
+        total: items.reduce((sum: number, item: any) => {
+          const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+          return sum + (price * item.quantity);
+        }, 0).toFixed(2),
+        subtotal: items.reduce((sum: number, item: any) => {
+          const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+          return sum + (price * item.quantity);
+        }, 0).toFixed(2),
+        contentsTax: '0.00',
+        shippingTotal: '0.00',
+        shippingTax: '0.00',
+        totalTax: '0.00',
+        discountTotal: '0.00',
+        discountTax: '0.00',
+        contents: {
+          itemCount: items.reduce((sum: number, item: any) => sum + item.quantity, 0),
+          nodes: items.map((item: any) => ({
+            key: item.id,
+            quantity: item.quantity,
+            subtotal: `$${(parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity).toFixed(2)}`,
+            total: `$${(parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity).toFixed(2)}`,
+            tax: '$0.00',
+            product: {
+              node: {
+                id: item.id,
+                databaseId: item.databaseId,
+                name: item.name,
+                slug: item.slug,
+                price: item.price,
+                stockStatus: 'IN_STOCK',
+                image: item.image,
+              },
+            },
+          })),
+        },
+      };
+      
+      setCart(mockCart as any);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('[CartPage] Error loading local cart:', error);
+      setIsLoading(false);
+    }
+  };
 
   const fetchCart = async () => {
     try {
@@ -112,18 +181,13 @@ export default function CartPageClient() {
     
     try {
       setIsUpdating(true);
-      const response = await fetch('/api/cart/update', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ key: itemKey, quantity: newQuantity }),
-      });
       
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      // Update Zustand store
+      updateZustandQuantity(itemKey, newQuantity);
       
-      const data = await response.json();
-      setCart(data.cart);
+      // Refresh cart display
+      fetchLocalCart();
+      
       showToast('success', 'Updated', 'Cart updated successfully');
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
@@ -137,18 +201,13 @@ export default function CartPageClient() {
   const handleRemoveItem = async (itemKey: string) => {
     try {
       setIsUpdating(true);
-      const response = await fetch('/api/cart/remove', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ keys: [itemKey] }),
-      });
       
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      // Remove from Zustand store
+      removeZustandItem(itemKey);
       
-      const data = await response.json();
-      setCart(data.cart);
+      // Refresh cart display
+      fetchLocalCart();
+      
       showToast('success', 'Removed', 'Item removed from cart');
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);

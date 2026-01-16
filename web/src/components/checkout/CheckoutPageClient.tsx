@@ -59,7 +59,7 @@ export interface CheckoutData {
 export default function CheckoutPageClient() {
   const router = useRouter();
   const { showToast } = useToast();
-  const { clearCart } = useCartStore();
+  const { clearCart, items: cartItems, totalItems } = useCartStore();
   const [currentStep, setCurrentStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [cart, setCart] = useState<any>(null);
@@ -104,6 +104,19 @@ export default function CheckoutPageClient() {
     // For Phase 3: Use local cart from Zustand
     fetchLocalCart();
   }, []);
+
+  // Monitor cart changes - redirect if cart becomes empty during checkout
+  useEffect(() => {
+    // Skip during initial loading
+    if (isLoadingCart) return;
+    
+    // Redirect to cart if empty (e.g., after clearing or manual removal)
+    if (totalItems() === 0) {
+      console.log('[Checkout] Cart became empty, redirecting to cart page');
+      showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
+      router.push('/cart');
+    }
+  }, [totalItems, isLoadingCart, router, showToast]);
 
   const fetchLocalCart = () => {
     try {

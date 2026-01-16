@@ -87,13 +87,18 @@ Track daily progress on the BAPI Headless project.
 **Impact:** Repository now has only active, mergeable branches  
 **Reason:** Security force-push created diverged histories on old branches  
 
-**Branches Deleted:**
+**Branches Deleted (Round 1):**
 - `chore/add-preview-api` (19 commits) - Already merged into main
 - `temp/keep-main-changes` (4 commits) - Temporary branch, obsolete
 - `feat/add-prune-dryrun-workflow` (50 commits) - Based on pre-security cleanup history, unmergeable conflicts
 
+**Branches Deleted (Round 2):**
+- `feat/structured-logging` (20+ commits) - Same diverged history issue, unmergeable
+  - Included: structured logging system, branch pruning workflow, husky hooks
+
 **Decision Rationale:**
-- All 3 branches based on old commit history before security cleanup
+- All 4 branches based on old commit history before security cleanup
+- No common ancestor with cleaned main (git merge-base returned empty)
 - Attempting rebase resulted in conflicts on early commits (.gitignore, README.md)
 - Cherry-picking individual commits also conflicted (preview/route.js)
 - Features already in main or can be re-implemented cleanly if needed
@@ -101,11 +106,13 @@ Track daily progress on the BAPI Headless project.
 
 **Cleanup Actions:**
 ```bash
-# Delete local branches
+# Round 1: Delete first 3 branches
 git branch -D chore/add-preview-api temp/keep-main-changes feat/add-prune-dryrun-workflow
-
-# Delete remote branches (closes PRs automatically)
 git push origin --delete chore/add-preview-api temp/keep-main-changes feat/add-prune-dryrun-workflow
+
+# Round 2: Delete structured-logging
+git branch -D feat/structured-logging
+git push origin --delete feat/structured-logging
 ```
 
 **Valuable Features Lost:**

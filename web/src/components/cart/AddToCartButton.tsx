@@ -93,11 +93,11 @@ const AddToCartButton = ({
       // Show loading state
       setInternalLoading(true);
       
-      // Simulate async operation (in real app, this would be an API call)
-      // For now, we'll just add a small delay to show the loading state
-      await new Promise(resolve => setTimeout(resolve, 300));
+      // Phase 3: Skip WooCommerce API call, only use local cart
+      // Cart will be synced to WooCommerce during checkout
+      await new Promise(resolve => setTimeout(resolve, 300)); // Brief delay for UX
       
-      // Add to cart (optimistic update)
+      // Add to local cart store
       addItem(product, quantity);
       
       // Show success state
@@ -126,12 +126,26 @@ const AddToCartButton = ({
       setInternalLoading(false);
       setShowSuccess(false);
       logError('cart.add_failed', error, { product, quantity });
-      showToast(
-        'error',
-        ERROR_MESSAGES.ADD_TO_CART_ERROR.title,
-        ERROR_MESSAGES.ADD_TO_CART_ERROR.message,
-        5000
-      );
+      
+      // Check if this is a variable product that needs options selected
+      const errorMessage = error instanceof Error ? error.message : '';
+      const isVariableProductError = errorMessage.includes('choose product options');
+      
+      if (isVariableProductError) {
+        showToast(
+          'warning',
+          'Product Options Required',
+          'This product requires selecting options (size, range, etc.). Variable product support coming soon.',
+          6000
+        );
+      } else {
+        showToast(
+          'error',
+          ERROR_MESSAGES.ADD_TO_CART_ERROR.title,
+          ERROR_MESSAGES.ADD_TO_CART_ERROR.message,
+          5000
+        );
+      }
     }
   };
   

@@ -12,11 +12,16 @@ import { ERROR_MESSAGES, logError } from '@/lib/errors';
 
 export async function GET(request: NextRequest) {
   try {
-    // Get WooCommerce session token from cookies
-    const sessionToken = request.cookies.get('woocommerce-session')?.value;
+    // Get WooCommerce session token from cookies (try multiple cookie names)
+    const sessionToken = request.cookies.get('woo-session')?.value || 
+                        request.cookies.get('woocommerce-session')?.value;
+    
+    console.log('[API /cart GET] Session token:', sessionToken ? 'Present' : 'Missing');
     
     // Fetch cart from WooCommerce
     const result = await CartService.getCart(sessionToken);
+    
+    console.log('[API /cart GET] Cart:', JSON.stringify(result.cart, null, 2));
     
     return NextResponse.json({
       success: true,

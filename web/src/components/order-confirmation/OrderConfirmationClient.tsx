@@ -81,62 +81,23 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
     setIsLoading(true);
     
     try {
-      // TODO: Replace with actual WooCommerce order API call
-      // const response = await fetch(`/api/orders/${orderId}`);
+      // Fetch real order data from WooCommerce API
+      const response = await fetch(`/api/orders/${orderId}`);
       
-      // Mock order data for now
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
-      
-      const mockOrder: OrderData = {
-        id: parseInt(orderId),
-        orderNumber: `BAPI-${orderId}`,
-        status: 'processing',
-        total: '$1,249.99',
-        currency: 'USD',
-        paymentMethod: 'Credit Card',
-        transactionId: 'pi_' + Math.random().toString(36).substring(7),
-        items: [
-          {
-            id: '1',
-            name: 'BACnet IP Module',
-            quantity: 2,
-            price: '$499.99',
-            image: '/placeholder-product.jpg',
-          },
-          {
-            id: '2',
-            name: 'Temperature Sensor',
-            quantity: 5,
-            price: '$49.99',
-          },
-        ],
-        shippingAddress: {
-          firstName: 'John',
-          lastName: 'Doe',
-          address1: '123 Industrial Blvd',
-          address2: 'Suite 456',
-          city: 'Minneapolis',
-          state: 'MN',
-          postcode: '55401',
-          country: 'US',
-        },
-        billingAddress: {
-          firstName: 'John',
-          lastName: 'Doe',
-          address1: '123 Industrial Blvd',
-          address2: 'Suite 456',
-          city: 'Minneapolis',
-          state: 'MN',
-          postcode: '55401',
-          country: 'US',
-        },
-        subtotal: '$1,199.90',
-        shipping: '$25.00',
-        tax: '$25.09',
-        createdAt: new Date().toISOString(),
-      };
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error('Order not found');
+        }
+        throw new Error('Failed to fetch order details');
+      }
 
-      setOrder(mockOrder);
+      const result = await response.json();
+      
+      if (!result.success || !result.order) {
+        throw new Error('Invalid response from server');
+      }
+
+      setOrder(result.order);
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
       logError('order_confirmation.fetch_failed', error, { orderId });

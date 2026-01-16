@@ -62,9 +62,9 @@ export default function OrderSummary({
           </div>
           
           {transactionId && (
-            <div className="flex justify-between">
+            <div className="flex flex-col gap-1">
               <span className="text-neutral-600">Transaction ID</span>
-              <span className="font-mono text-xs text-neutral-900">
+              <span className="font-mono text-xs text-neutral-900 break-all">
                 {transactionId}
               </span>
             </div>

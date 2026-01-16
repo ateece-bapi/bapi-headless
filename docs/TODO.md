@@ -499,7 +499,7 @@
 - [ ] Accessibility testing
 
 ### Backend Integration (High Priority)
-**Phase 3 - Core E-Commerce Backend (✅ Completed - Jan 16, 2026):**
+**Phase 3 - Core E-Commerce Backend (✅ Completed - Jan 16, 2026 - STAGING):**
 - [x] **WooCommerce Order Creation via REST API**
   - [x] Complete rewrite of `/api/payment/confirm` route
   - [x] Switched from GraphQL to WooCommerce REST API (`/wp-json/wc/v3/orders`)
@@ -508,6 +508,7 @@
   - [x] Stripe transaction ID storage in order metadata
   - [x] **Architecture Decision:** Abandoned GraphQL checkout mutation due to session complexity
   - [x] **Result:** 100% reliable order creation (tested with Order #421728)
+  - [x] **Deployment:** Live on staging (bapi-headless.vercel.app)
 
 - [x] **Order Fetching API Route**
   - [x] Created `/api/orders/[orderId]` endpoint with REST API
@@ -536,6 +537,16 @@
 - **Order Creation:** Direct WooCommerce REST API POST (no GraphQL)
 - **Authentication:** WordPress Application Password (Basic auth)
 - **Success Rate:** 100% (3/3 test orders successful)
+- **Environment:** Staging (Stripe test mode)
+
+**Before Production Launch:**
+- [ ] Switch Stripe to live keys (pk_live_, sk_live_)
+- [ ] Configure SMTP for email notifications (SendGrid/Postmark)
+- [ ] Test email templates (order confirmation, shipping)
+- [ ] Add stock reduction after order
+- [ ] Clear cart after successful order
+- [ ] Test with variable/grouped products
+- [ ] Production deployment to main branch
 
 **Phase 4 - Enhanced Backend Features (Future):**
 - [ ] PayPal integration

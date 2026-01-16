@@ -8,11 +8,14 @@
 [![WooCommerce](https://img.shields.io/badge/WooCommerce-10.3.5-96588a?logo=woocommerce)](https://woocommerce.com/)
 [![Clerk](https://img.shields.io/badge/Clerk-Auth-6C47FF?logo=clerk)](https://clerk.com/)
 
-## 🌐 Live Demo
+## 🌐 Staging Environment
 
-- **Frontend**: [bapi-headless.vercel.app](https://bapi-headless.vercel.app)
+> ⚠️ **Note:** This is a staging environment with Stripe test mode enabled. Not yet configured for production use.
+
+- **Frontend (Staging)**: [bapi-headless.vercel.app](https://bapi-headless.vercel.app)
 - **WordPress Admin**: [bapiheadlessstaging.kinsta.cloud/wp-admin](https://bapiheadlessstaging.kinsta.cloud/wp-admin)
 - **GraphQL Endpoint**: [bapiheadlessstaging.kinsta.cloud/graphql](https://bapiheadlessstaging.kinsta.cloud/graphql)
+- **Payment Processing**: Stripe Test Mode (use card `4242 4242 4242 4242`)
 
 ## 🏗️ Architecture
 
@@ -135,11 +138,12 @@ bapi-headless/
 - 🧭 **Enterprise Mega Menu** – Multi-column navigation with icons, featured products, quick actions, and B2B enhancements
 - ⬆️ **Back to Top Button** – Floating button for fast site-wide navigation
 - 📱 **Fully Responsive** - Mobile-first design
-- 🛒 **Complete Shopping Cart** - Full cart management with WooCommerce API integration, coupon codes, quantity controls
+- 🛒 **Complete Shopping Cart** - Full cart management with localStorage persistence, coupon codes, quantity controls
 - 🛍️ **Multi-Step Checkout** - 3-step wizard (Shipping → Payment → Review) with form validation
-- 💳 **Stripe Payment Integration** - Secure card processing with PCI compliance, test mode ready
+- 💳 **Stripe Payment Integration** - Secure card processing with PCI compliance (test mode on staging)
+- 🏪 **WooCommerce REST API Orders** - Direct order creation via REST API (100% reliable)
 - ✅ **Order Confirmation** - Beautiful success page with order details and status tracking
-- 📧 **Email Notifications** - WooCommerce email system with SMTP configuration guide
+- 📧 **Email Notifications** - WooCommerce email system (SMTP configuration needed for production)
 - 🔒 **Type-Safe** - Full TypeScript with auto-generated GraphQL types
 - 🎯 **SEO Optimized** - Server-side rendering for better search visibility
 - 💨 **Blazing Fast Builds** - 130x faster builds with warm cache (144s → 1.1s)
@@ -149,6 +153,7 @@ bapi-headless/
 - 🛍️ **WooCommerce** - Complete e-commerce functionality
 - 🔌 **WPGraphQL** - Modern GraphQL API for WordPress
 - 🔐 **Authenticated GraphQL** - Customer-specific data via WordPress Application Passwords
+- 📦 **WooCommerce REST API** - Direct order creation via `/wp-json/wc/v3/orders`
 - 📦 **Customer Order Integration** - Real-time order history from WooCommerce
 - ⚡ **Smart Cache** - WPGraphQL response caching with automatic invalidation
 - 🌐 **CDN-Cacheable** - GET request support with proper Cache-Control headers

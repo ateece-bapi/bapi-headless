@@ -1,0 +1,396 @@
+# GraphQL Queries and Mutations for WooCommerce Orders
+
+# Checkout Mutation
+# Processes cart session and creates order with payment intent
+mutation Checkout($input: CheckoutInput!) {
+  checkout(input: $input) {
+    clientMutationId
+    order {
+      id
+      databaseId
+      orderNumber
+      status
+      date
+      total
+      subtotal
+      totalTax
+      shippingTotal
+      shippingTax
+      discountTotal
+      discountTax
+      currency
+      paymentMethod
+      paymentMethodTitle
+      transactionId
+      customerNote
+      
+      billing {
+        firstName
+        lastName
+        company
+        address1
+        address2
+        city
+        state
+        postcode
+        country
+        email
+        phone
+      }
+      
+      shipping {
+        firstName
+        lastName
+        company
+        address1
+        address2
+        city
+        state
+        postcode
+        country
+      }
+      
+      lineItems {
+        nodes {
+          productId
+          variationId
+          quantity
+          total
+          totalTax
+          subtotal
+          subtotalTax
+          product {
+            node {
+              ... on SimpleProduct {
+                id
+                name
+                slug
+                image {
+                  sourceUrl
+                  altText
+                }
+              }
+              ... on VariableProduct {
+                id
+                name
+                slug
+                image {
+                  sourceUrl
+                  altText
+                }
+              }
+            }
+          }
+          variation {
+            node {
+              id
+              name
+              price
+            }
+          }
+        }
+      }
+      
+      shippingLines {
+        nodes {
+          methodTitle
+          total
+          totalTax
+        }
+      }
+      
+      taxLines {
+        nodes {
+          label
+          taxTotal
+          shippingTaxTotal
+          rateCode
+        }
+      }
+      
+      metaData {
+        key
+        value
+      }
+    }
+    customer {
+      id
+      databaseId
+      sessionToken
+    }
+    result
+    redirect
+  }
+}
+
+# Get Order Query
+# Fetches order details by order ID
+query GetOrder($id: ID!) {
+  order(id: $id) {
+    id
+    databaseId
+    orderNumber
+    status
+    date
+    dateCompleted
+    datePaid
+    total
+    subtotal
+    totalTax
+    shippingTotal
+    shippingTax
+    discountTotal
+    discountTax
+    currency
+    paymentMethod
+    paymentMethodTitle
+    transactionId
+    customerNote
+    customerIpAddress
+    
+    billing {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+      email
+      phone
+    }
+    
+    shipping {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+    }
+    
+    lineItems {
+      nodes {
+        databaseId
+        productId
+        variationId
+        quantity
+        total
+        totalTax
+        subtotal
+        subtotalTax
+        product {
+          node {
+            ... on SimpleProduct {
+              id
+              databaseId
+              name
+              slug
+              sku
+              image {
+                id
+                sourceUrl
+                altText
+              }
+            }
+            ... on VariableProduct {
+              id
+              databaseId
+              name
+              slug
+              sku
+              image {
+                id
+                sourceUrl
+                altText
+              }
+            }
+          }
+        }
+        variation {
+          node {
+            id
+            databaseId
+            name
+            price
+            sku
+          }
+        }
+      }
+    }
+    
+    shippingLines {
+      nodes {
+        databaseId
+        methodTitle
+        total
+        totalTax
+      }
+    }
+    
+    taxLines {
+      nodes {
+        label
+        taxTotal
+        shippingTaxTotal
+        rateCode
+        taxRate {
+          rate
+        }
+      }
+    }
+    
+    feeLines {
+      nodes {
+        databaseId
+        name
+        total
+        totalTax
+      }
+    }
+    
+    metaData {
+      key
+      value
+    }
+  }
+}
+
+# Get Order By Database ID Query
+# Fetches order using database ID (integer)
+query GetOrderByDatabaseId($databaseId: ID!) {
+  order(id: $databaseId, idType: DATABASE_ID) {
+    id
+    databaseId
+    orderNumber
+    status
+    date
+    dateCompleted
+    datePaid
+    total
+    subtotal
+    totalTax
+    shippingTotal
+    shippingTax
+    discountTotal
+    discountTax
+    currency
+    paymentMethod
+    paymentMethodTitle
+    transactionId
+    customerNote
+    
+    billing {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+      email
+      phone
+    }
+    
+    shipping {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+    }
+    
+    lineItems {
+      nodes {
+        databaseId
+        productId
+        variationId
+        quantity
+        total
+        totalTax
+        subtotal
+        subtotalTax
+        product {
+          node {
+            ... on SimpleProduct {
+              id
+              databaseId
+              name
+              slug
+              sku
+              image {
+                id
+                sourceUrl
+                altText
+              }
+            }
+            ... on VariableProduct {
+              id
+              databaseId
+              name
+              slug
+              sku
+              image {
+                id
+                sourceUrl
+                altText
+              }
+            }
+          }
+        }
+        variation {
+          node {
+            id
+            databaseId
+            name
+            price
+            sku
+          }
+        }
+      }
+    }
+    
+    shippingLines {
+      nodes {
+        databaseId
+        methodTitle
+        total
+        totalTax
+      }
+    }
+    
+    taxLines {
+      nodes {
+        label
+        taxTotal
+        shippingTaxTotal
+        rateCode
+      }
+    }
+    
+    feeLines {
+      nodes {
+        databaseId
+        name
+        total
+        totalTax
+      }
+    }
+    
+    metaData {
+      key
+      value
+    }
+  }
+}

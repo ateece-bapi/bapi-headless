@@ -2167,7 +2167,7 @@ export type CommentAuthor = Commenter & DatabaseIdentifier & Node & {
   avatar?: Maybe<Avatar>;
   /** The unique identifier stored in the database */
   databaseId: Scalars['Int']['output'];
-  /** The email for the comment author */
+  /** The email for the comment author. */
   email?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier for the comment author object */
   id: Scalars['ID']['output'];
@@ -2337,7 +2337,7 @@ export type CommentToCommenterConnectionEdge = CommenterConnectionEdge & Edge & 
   __typename?: 'CommentToCommenterConnectionEdge';
   /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
   cursor?: Maybe<Scalars['String']['output']>;
-  /** The email address representing the author for this particular comment */
+  /** Email address representing the author for this particular comment */
   email?: Maybe<Scalars['String']['output']>;
   /** IP address of the author at the time of making this comment. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL. */
   ipAddress?: Maybe<Scalars['String']['output']>;
@@ -39272,6 +39272,42 @@ export type GetCustomerInfoQueryVariables = Exact<{
 
 export type GetCustomerInfoQuery = { __typename?: 'RootQuery', customer?: { __typename?: 'Customer', id: string, databaseId?: number | null | undefined, email?: string | null | undefined, firstName?: string | null | undefined, lastName?: string | null | undefined, username?: string | null | undefined, orderCount?: number | null | undefined, billing?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined, email?: string | null | undefined, phone?: string | null | undefined } | null | undefined, shipping?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined } | null | undefined } | null | undefined };
 
+export type CheckoutMutationVariables = Exact<{
+  input: CheckoutInput;
+}>;
+
+
+export type CheckoutMutation = { __typename?: 'RootMutation', checkout?: { __typename?: 'CheckoutPayload', clientMutationId?: string | null | undefined, result?: string | null | undefined, redirect?: string | null | undefined, order?: { __typename?: 'Order', id: string, databaseId?: number | null | undefined, orderNumber?: string | null | undefined, status?: OrderStatusEnum | null | undefined, date?: string | null | undefined, total?: string | null | undefined, subtotal?: string | null | undefined, totalTax?: string | null | undefined, shippingTotal?: string | null | undefined, shippingTax?: string | null | undefined, discountTotal?: string | null | undefined, discountTax?: string | null | undefined, currency?: string | null | undefined, paymentMethod?: string | null | undefined, paymentMethodTitle?: string | null | undefined, transactionId?: string | null | undefined, customerNote?: string | null | undefined, billing?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined, email?: string | null | undefined, phone?: string | null | undefined } | null | undefined, shipping?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined } | null | undefined, lineItems?: { __typename?: 'OrderToLineItemConnection', nodes: Array<{ __typename?: 'LineItem', productId?: number | null | undefined, variationId?: number | null | undefined, quantity?: number | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined, subtotal?: string | null | undefined, subtotalTax?: string | null | undefined, product?: { __typename?: 'LineItemToProductConnectionEdge', node:
+              | { __typename?: 'ExternalProduct' }
+              | { __typename?: 'GroupProduct' }
+              | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+              | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+             } | null | undefined, variation?: { __typename?: 'LineItemToProductVariationConnectionEdge', node: { __typename?: 'SimpleProductVariation', id: string, name?: string | null | undefined, price?: string | null | undefined } } | null | undefined }> } | null | undefined, shippingLines?: { __typename?: 'OrderToShippingLineConnection', nodes: Array<{ __typename?: 'ShippingLine', methodTitle?: string | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined }> } | null | undefined, taxLines?: { __typename?: 'OrderToTaxLineConnection', nodes: Array<{ __typename?: 'TaxLine', label?: string | null | undefined, taxTotal?: string | null | undefined, shippingTaxTotal?: string | null | undefined, rateCode?: string | null | undefined }> } | null | undefined, metaData?: Array<{ __typename?: 'MetaData', key: string, value?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined, customer?: { __typename?: 'Customer', id: string, databaseId?: number | null | undefined, sessionToken?: string | null | undefined } | null | undefined } | null | undefined };
+
+export type GetOrderQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetOrderQuery = { __typename?: 'RootQuery', order?: { __typename?: 'Order', id: string, databaseId?: number | null | undefined, orderNumber?: string | null | undefined, status?: OrderStatusEnum | null | undefined, date?: string | null | undefined, dateCompleted?: string | null | undefined, datePaid?: string | null | undefined, total?: string | null | undefined, subtotal?: string | null | undefined, totalTax?: string | null | undefined, shippingTotal?: string | null | undefined, shippingTax?: string | null | undefined, discountTotal?: string | null | undefined, discountTax?: string | null | undefined, currency?: string | null | undefined, paymentMethod?: string | null | undefined, paymentMethodTitle?: string | null | undefined, transactionId?: string | null | undefined, customerNote?: string | null | undefined, customerIpAddress?: string | null | undefined, billing?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined, email?: string | null | undefined, phone?: string | null | undefined } | null | undefined, shipping?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined } | null | undefined, lineItems?: { __typename?: 'OrderToLineItemConnection', nodes: Array<{ __typename?: 'LineItem', databaseId?: number | null | undefined, productId?: number | null | undefined, variationId?: number | null | undefined, quantity?: number | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined, subtotal?: string | null | undefined, subtotalTax?: string | null | undefined, product?: { __typename?: 'LineItemToProductConnectionEdge', node:
+            | { __typename?: 'ExternalProduct' }
+            | { __typename?: 'GroupProduct' }
+            | { __typename?: 'SimpleProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+            | { __typename?: 'VariableProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+           } | null | undefined, variation?: { __typename?: 'LineItemToProductVariationConnectionEdge', node: { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, sku?: string | null | undefined } } | null | undefined }> } | null | undefined, shippingLines?: { __typename?: 'OrderToShippingLineConnection', nodes: Array<{ __typename?: 'ShippingLine', databaseId?: number | null | undefined, methodTitle?: string | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined }> } | null | undefined, taxLines?: { __typename?: 'OrderToTaxLineConnection', nodes: Array<{ __typename?: 'TaxLine', label?: string | null | undefined, taxTotal?: string | null | undefined, shippingTaxTotal?: string | null | undefined, rateCode?: string | null | undefined, taxRate?: { __typename?: 'TaxRate', rate?: string | null | undefined } | null | undefined }> } | null | undefined, feeLines?: { __typename?: 'OrderToFeeLineConnection', nodes: Array<{ __typename?: 'FeeLine', databaseId?: number | null | undefined, name?: string | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined }> } | null | undefined, metaData?: Array<{ __typename?: 'MetaData', key: string, value?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined };
+
+export type GetOrderByDatabaseIdQueryVariables = Exact<{
+  databaseId: Scalars['ID']['input'];
+}>;
+
+
+export type GetOrderByDatabaseIdQuery = { __typename?: 'RootQuery', order?: { __typename?: 'Order', id: string, databaseId?: number | null | undefined, orderNumber?: string | null | undefined, status?: OrderStatusEnum | null | undefined, date?: string | null | undefined, dateCompleted?: string | null | undefined, datePaid?: string | null | undefined, total?: string | null | undefined, subtotal?: string | null | undefined, totalTax?: string | null | undefined, shippingTotal?: string | null | undefined, shippingTax?: string | null | undefined, discountTotal?: string | null | undefined, discountTax?: string | null | undefined, currency?: string | null | undefined, paymentMethod?: string | null | undefined, paymentMethodTitle?: string | null | undefined, transactionId?: string | null | undefined, customerNote?: string | null | undefined, billing?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined, email?: string | null | undefined, phone?: string | null | undefined } | null | undefined, shipping?: { __typename?: 'CustomerAddress', firstName?: string | null | undefined, lastName?: string | null | undefined, company?: string | null | undefined, address1?: string | null | undefined, address2?: string | null | undefined, city?: string | null | undefined, state?: string | null | undefined, postcode?: string | null | undefined, country?: CountriesEnum | null | undefined } | null | undefined, lineItems?: { __typename?: 'OrderToLineItemConnection', nodes: Array<{ __typename?: 'LineItem', databaseId?: number | null | undefined, productId?: number | null | undefined, variationId?: number | null | undefined, quantity?: number | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined, subtotal?: string | null | undefined, subtotalTax?: string | null | undefined, product?: { __typename?: 'LineItemToProductConnectionEdge', node:
+            | { __typename?: 'ExternalProduct' }
+            | { __typename?: 'GroupProduct' }
+            | { __typename?: 'SimpleProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+            | { __typename?: 'VariableProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+           } | null | undefined, variation?: { __typename?: 'LineItemToProductVariationConnectionEdge', node: { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, sku?: string | null | undefined } } | null | undefined }> } | null | undefined, shippingLines?: { __typename?: 'OrderToShippingLineConnection', nodes: Array<{ __typename?: 'ShippingLine', databaseId?: number | null | undefined, methodTitle?: string | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined }> } | null | undefined, taxLines?: { __typename?: 'OrderToTaxLineConnection', nodes: Array<{ __typename?: 'TaxLine', label?: string | null | undefined, taxTotal?: string | null | undefined, shippingTaxTotal?: string | null | undefined, rateCode?: string | null | undefined }> } | null | undefined, feeLines?: { __typename?: 'OrderToFeeLineConnection', nodes: Array<{ __typename?: 'FeeLine', databaseId?: number | null | undefined, name?: string | null | undefined, total?: string | null | undefined, totalTax?: string | null | undefined }> } | null | undefined, metaData?: Array<{ __typename?: 'MetaData', key: string, value?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined };
+
 export type GetPageBySlugQueryVariables = Exact<{
   slug: Scalars['ID']['input'];
 }>;
@@ -40046,6 +40082,378 @@ export const GetCustomerInfoDocument = gql`
   }
 }
     `;
+export const CheckoutDocument = gql`
+    mutation Checkout($input: CheckoutInput!) {
+  checkout(input: $input) {
+    clientMutationId
+    order {
+      id
+      databaseId
+      orderNumber
+      status
+      date
+      total
+      subtotal
+      totalTax
+      shippingTotal
+      shippingTax
+      discountTotal
+      discountTax
+      currency
+      paymentMethod
+      paymentMethodTitle
+      transactionId
+      customerNote
+      billing {
+        firstName
+        lastName
+        company
+        address1
+        address2
+        city
+        state
+        postcode
+        country
+        email
+        phone
+      }
+      shipping {
+        firstName
+        lastName
+        company
+        address1
+        address2
+        city
+        state
+        postcode
+        country
+      }
+      lineItems {
+        nodes {
+          productId
+          variationId
+          quantity
+          total
+          totalTax
+          subtotal
+          subtotalTax
+          product {
+            node {
+              ... on SimpleProduct {
+                id
+                name
+                slug
+                image {
+                  sourceUrl
+                  altText
+                }
+              }
+              ... on VariableProduct {
+                id
+                name
+                slug
+                image {
+                  sourceUrl
+                  altText
+                }
+              }
+            }
+          }
+          variation {
+            node {
+              id
+              name
+              price
+            }
+          }
+        }
+      }
+      shippingLines {
+        nodes {
+          methodTitle
+          total
+          totalTax
+        }
+      }
+      taxLines {
+        nodes {
+          label
+          taxTotal
+          shippingTaxTotal
+          rateCode
+        }
+      }
+      metaData {
+        key
+        value
+      }
+    }
+    customer {
+      id
+      databaseId
+      sessionToken
+    }
+    result
+    redirect
+  }
+}
+    `;
+export const GetOrderDocument = gql`
+    query GetOrder($id: ID!) {
+  order(id: $id) {
+    id
+    databaseId
+    orderNumber
+    status
+    date
+    dateCompleted
+    datePaid
+    total
+    subtotal
+    totalTax
+    shippingTotal
+    shippingTax
+    discountTotal
+    discountTax
+    currency
+    paymentMethod
+    paymentMethodTitle
+    transactionId
+    customerNote
+    customerIpAddress
+    billing {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+      email
+      phone
+    }
+    shipping {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+    }
+    lineItems {
+      nodes {
+        databaseId
+        productId
+        variationId
+        quantity
+        total
+        totalTax
+        subtotal
+        subtotalTax
+        product {
+          node {
+            ... on SimpleProduct {
+              id
+              databaseId
+              name
+              slug
+              sku
+              image {
+                id
+                sourceUrl
+                altText
+              }
+            }
+            ... on VariableProduct {
+              id
+              databaseId
+              name
+              slug
+              sku
+              image {
+                id
+                sourceUrl
+                altText
+              }
+            }
+          }
+        }
+        variation {
+          node {
+            id
+            databaseId
+            name
+            price
+            sku
+          }
+        }
+      }
+    }
+    shippingLines {
+      nodes {
+        databaseId
+        methodTitle
+        total
+        totalTax
+      }
+    }
+    taxLines {
+      nodes {
+        label
+        taxTotal
+        shippingTaxTotal
+        rateCode
+        taxRate {
+          rate
+        }
+      }
+    }
+    feeLines {
+      nodes {
+        databaseId
+        name
+        total
+        totalTax
+      }
+    }
+    metaData {
+      key
+      value
+    }
+  }
+}
+    `;
+export const GetOrderByDatabaseIdDocument = gql`
+    query GetOrderByDatabaseId($databaseId: ID!) {
+  order(id: $databaseId, idType: DATABASE_ID) {
+    id
+    databaseId
+    orderNumber
+    status
+    date
+    dateCompleted
+    datePaid
+    total
+    subtotal
+    totalTax
+    shippingTotal
+    shippingTax
+    discountTotal
+    discountTax
+    currency
+    paymentMethod
+    paymentMethodTitle
+    transactionId
+    customerNote
+    billing {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+      email
+      phone
+    }
+    shipping {
+      firstName
+      lastName
+      company
+      address1
+      address2
+      city
+      state
+      postcode
+      country
+    }
+    lineItems {
+      nodes {
+        databaseId
+        productId
+        variationId
+        quantity
+        total
+        totalTax
+        subtotal
+        subtotalTax
+        product {
+          node {
+            ... on SimpleProduct {
+              id
+              databaseId
+              name
+              slug
+              sku
+              image {
+                id
+                sourceUrl
+                altText
+              }
+            }
+            ... on VariableProduct {
+              id
+              databaseId
+              name
+              slug
+              sku
+              image {
+                id
+                sourceUrl
+                altText
+              }
+            }
+          }
+        }
+        variation {
+          node {
+            id
+            databaseId
+            name
+            price
+            sku
+          }
+        }
+      }
+    }
+    shippingLines {
+      nodes {
+        databaseId
+        methodTitle
+        total
+        totalTax
+      }
+    }
+    taxLines {
+      nodes {
+        label
+        taxTotal
+        shippingTaxTotal
+        rateCode
+      }
+    }
+    feeLines {
+      nodes {
+        databaseId
+        name
+        total
+        totalTax
+      }
+    }
+    metaData {
+      key
+      value
+    }
+  }
+}
+    `;
 export const GetPageBySlugDocument = gql`
     query GetPageBySlug($slug: ID!) {
   page(id: $slug, idType: URI) {
@@ -40673,6 +41081,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetCustomerInfo(variables: GetCustomerInfoQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetCustomerInfoQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetCustomerInfoQuery>({ document: GetCustomerInfoDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetCustomerInfo', 'query', variables);
+    },
+    Checkout(variables: CheckoutMutationVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CheckoutMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CheckoutMutation>({ document: CheckoutDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'Checkout', 'mutation', variables);
+    },
+    GetOrder(variables: GetOrderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetOrderQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetOrderQuery>({ document: GetOrderDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetOrder', 'query', variables);
+    },
+    GetOrderByDatabaseId(variables: GetOrderByDatabaseIdQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetOrderByDatabaseIdQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetOrderByDatabaseIdQuery>({ document: GetOrderByDatabaseIdDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetOrderByDatabaseId', 'query', variables);
     },
     GetPageBySlug(variables: GetPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetPageBySlugQuery>({ document: GetPageBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPageBySlug', 'query', variables);

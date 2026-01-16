@@ -99,8 +99,82 @@ export default function CheckoutPageClient() {
 
   // Fetch cart on mount
   useEffect(() => {
-    fetchCart();
+    // For Phase 3: Use local cart from Zustand
+    fetchLocalCart();
   }, []);
+
+  const fetchLocalCart = () => {
+    try {
+      setIsLoadingCart(true);
+      
+      // Get cart from local storage (Zustand store)
+      const localCartData = localStorage.getItem('bapi-cart-storage');
+      
+      console.log('[Checkout] LocalStorage data:', localCartData ? 'Present' : 'Missing');
+      
+      if (!localCartData) {
+        console.log('[Checkout] No cart data found');
+        setIsLoadingCart(false);
+        showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
+        setTimeout(() => router.push('/cart'), 1000);
+        return;
+      }
+      
+      const parsed = JSON.parse(localCartData);
+      const items = parsed.state?.items || [];
+      
+      console.log('[Checkout] Cart items:', items.length);
+      
+      if (items.length === 0) {
+        console.log('[Checkout] Cart is empty');
+        setIsLoadingCart(false);
+        showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
+        setTimeout(() => router.push('/cart'), 1000);
+        return;
+      }
+      
+      // Calculate totals
+      const subtotal = items.reduce((sum: number, item: any) => {
+        const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+        return sum + (price * item.quantity);
+      }, 0);
+      
+      console.log('[Checkout] Setting cart data with', items.length, 'items, subtotal:', subtotal);
+      
+      // Convert to WooCommerce cart format expected by CheckoutSummary
+      setCart({
+        subtotal: `$${subtotal.toFixed(2)}`,
+        tax: '$0.00',
+        shipping: '$0.00',
+        total: `$${subtotal.toFixed(2)}`,
+        contents: {
+          itemCount: items.length,
+          nodes: items.map((item: any) => ({
+            key: item.id,
+            quantity: item.quantity,
+            product: {
+              node: {
+                id: item.id,
+                name: item.name,
+                image: item.image ? {
+                  sourceUrl: item.image.sourceUrl,
+                  altText: item.name
+                } : null
+              }
+            },
+            subtotal: item.price,
+            total: `$${(parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity).toFixed(2)}`
+          }))
+        }
+      });
+      
+      setIsLoadingCart(false);
+    } catch (error) {
+      console.error('[Checkout] Error loading local cart:', error);
+      showToast('error', 'Error', 'Unable to load cart.');
+      setIsLoadingCart(false);
+    }
+  };
 
   const fetchCart = async () => {
     try {
@@ -153,6 +227,10 @@ export default function CheckoutPageClient() {
     try {
       setIsProcessing(true);
 
+      // Get cart items from localStorage
+      const localCartData = localStorage.getItem('bapi-cart-storage');
+      const cartItems = localCartData ? JSON.parse(localCartData).state?.items || [] : [];
+
       // If using Stripe, confirm payment first
       if (checkoutData.paymentIntentId) {
         const response = await fetch('/api/payment/confirm', {
@@ -165,6 +243,7 @@ export default function CheckoutPageClient() {
               billingAddress: checkoutData.billingAddress,
               orderNotes: checkoutData.orderNotes,
             },
+            cartItems, // Send cart items for WooCommerce sync
           }),
         });
 

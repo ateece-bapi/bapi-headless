@@ -23,11 +23,18 @@ export async function POST(request: NextRequest) {
     // Parse request body
     const body = await request.json();
     
+    console.log('[API /cart/add] Request:', body);
+    
     // Validate input
     const validatedData = addToCartSchema.parse(body);
     
-    // Get WooCommerce session token from cookies
-    const sessionToken = request.cookies.get('woocommerce-session')?.value;
+    console.log('[API /cart/add] Validated:', validatedData);
+    
+    // Get WooCommerce session token from cookies (try multiple names)
+    const sessionToken = request.cookies.get('woo-session')?.value ||
+                        request.cookies.get('woocommerce-session')?.value;
+    
+    console.log('[API /cart/add] Session token:', sessionToken ? 'Present' : 'Missing');
     
     // Add to cart via WooCommerce GraphQL
     const result = await CartService.addToCart(
@@ -37,27 +44,32 @@ export async function POST(request: NextRequest) {
       sessionToken
     );
     
-    // Extract new session token from response headers (if provided by WooCommerce)
-    const newSessionToken = result.addToCart?.cart
-      ? request.cookies.get('woocommerce-session')?.value
-      : undefined;
+    console.log('[API /cart/add] Result:', JSON.stringify(result, null, 2));
+    
+    // Extract cart key if available (WooCommerce sometimes returns this)
+    const cartKey = result.addToCart?.cartItem?.key;
     
     // Return cart data
     const response = NextResponse.json({
       success: true,
       cart: result.addToCart?.cart,
       cartItem: result.addToCart?.cartItem,
+      cartKey: cartKey,
     });
     
-    // Set session cookie if new token provided
-    if (newSessionToken) {
-      response.cookies.set('woocommerce-session', newSessionToken, {
+    // If we got a cart key, store it in a cookie for future requests
+    if (cartKey) {
+      response.cookies.set('woo-cart-key', cartKey, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
+        path: '/',
         maxAge: 60 * 60 * 24 * 7, // 7 days
       });
+      console.log('[API /cart/add] Cart key stored:', cartKey);
     }
+    
+    console.log('[API /cart/add] Success');
     
     return response;
     

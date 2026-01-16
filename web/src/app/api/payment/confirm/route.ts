@@ -147,9 +147,10 @@ export async function POST(request: NextRequest) {
     const order = await wcResponse.json();
     console.log('[Payment Confirm] Order created:', order.id);
 
-    // Return order details
+    // Return order details with clearCart flag
     return NextResponse.json({
       success: true,
+      clearCart: true, // Signal to client to clear cart
       order: {
         id: order.id,
         orderNumber: order.number,

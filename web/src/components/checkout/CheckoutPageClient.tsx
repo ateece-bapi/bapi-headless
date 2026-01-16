@@ -22,6 +22,7 @@ import CheckoutWizard from './CheckoutWizard';
 import CheckoutSummary from './CheckoutSummary';
 import { useToast } from '@/components/ui/Toast';
 import { getUserErrorMessage, logError } from '@/lib/errors';
+import { useCartStore } from '@/store/cart';
 
 export interface ShippingAddress {
   firstName: string;
@@ -58,6 +59,7 @@ export interface CheckoutData {
 export default function CheckoutPageClient() {
   const router = useRouter();
   const { showToast } = useToast();
+  const { clearCart } = useCartStore();
   const [currentStep, setCurrentStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [cart, setCart] = useState<any>(null);
@@ -251,6 +253,12 @@ export default function CheckoutPageClient() {
 
         if (!result.success) {
           throw new Error(result.message || 'Payment confirmation failed');
+        }
+
+        // Clear cart after successful order
+        if (result.clearCart) {
+          clearCart();
+          console.log('[Checkout] Cart cleared after successful order');
         }
 
         // Redirect to order confirmation with actual order ID

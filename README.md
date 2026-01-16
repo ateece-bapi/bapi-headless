@@ -170,7 +170,7 @@ bapi-headless/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ and pnpm
+- Node.js 20+ and pnpm (see [PNPM Setup Guide](./docs/PNPM-TEAM-GUIDE.md))
 - Git
 
 ### Installation

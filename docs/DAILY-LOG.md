@@ -528,18 +528,18 @@ return NextResponse.json({
 
 **WordPress API Credentials:**
 ```env
-WORDPRESS_API_USER=ateece
-WORDPRESS_API_PASSWORD=[REDACTED_PASSWORD]
+WORDPRESS_API_USER=your-wordpress-username
+WORDPRESS_API_PASSWORD=your-wordpress-app-password
 NEXT_PUBLIC_WORDPRESS_URL=https://bapiheadlessstaging.kinsta.cloud
 ```
 
 **Stripe:**
 ```env
-STRIPE_SECRET_KEY=sk_test_...
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_your_secret_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_publishable_key
 ```
 
-**Note:** Test keys are appropriate for staging environment.
+**Note:** Test keys are appropriate for staging environment. **Never commit actual credentials to version control.**
 
 #### Benefits Realized
 

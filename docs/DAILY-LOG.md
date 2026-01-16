@@ -62,6 +62,18 @@ Track daily progress on the BAPI Headless project.
   - `web/src/app/api/orders/[orderId]/route.ts`
 - **Commits:** `d6771e3`
 
+**Bonus Fix: Transaction ID Overflow** ✅
+- **Issue:** Long Stripe transaction IDs causing horizontal overflow in Payment Information section
+- **Example:** Transaction ID `pi_3SqLGXKHIwUWNiBX1F9vzH1y` overflowed container on mobile
+- **Solution:**
+  - Changed layout from `flex justify-between` (single line) to `flex flex-col gap-1` (stacked)
+  - Added `break-all` class to transaction ID span for proper wrapping
+  - Transaction ID now displays below label without horizontal scroll
+- **Files Modified:**
+  - `web/src/components/order-confirmation/OrderSummary.tsx` (lines 68-74)
+- **Commits:** `7fab109`
+- **Impact:** Better mobile UX, more professional appearance
+
 **Testing Results:**
 - ✅ Test order #421729 placed successfully
 - ✅ Cart cleared after checkout

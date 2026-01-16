@@ -131,7 +131,7 @@ export const MOCK_USER_DATA: Record<string, MockUserProfile> = {
 1. **Start your dev server**:
    ```bash
    cd web
-   npm run dev
+   pnpm run dev
    ```
 
 2. **Open in browser**: http://localhost:3000
@@ -195,10 +195,10 @@ Feel free to edit:
 ### "No profile data available"
 - ✅ Check the Clerk user ID is exactly correct (case-sensitive)
 - ✅ Verify user ID is in `MOCK_USER_DATA` object
-- ✅ Restart dev server: `npm run dev`
+- ✅ Restart dev server: `pnpm run dev`
 
 ### Yellow banner not showing
-- ✅ Check you're in development mode: `npm run dev` (not `npm run build`)
+- ✅ Check you're in development mode: `pnpm run dev` (not `pnpm run build`)
 - ✅ Clear browser cache and reload
 
 ### Can't sign in
@@ -220,7 +220,7 @@ In production (after April 2026 launch):
 
 ```bash
 # Start dev server
-cd web && npm run dev
+cd web && pnpm run dev
 
 # Open in browser
 open http://localhost:3000

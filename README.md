@@ -170,7 +170,7 @@ bapi-headless/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ and npm
+- Node.js 18+ and pnpm
 - Git
 
 ### Installation
@@ -184,7 +184,7 @@ bapi-headless/
 2. **Install dependencies**
    ```bash
    cd web
-   npm install
+   pnpm install
    ```
 
 3. **Configure environment variables**
@@ -204,12 +204,12 @@ bapi-headless/
 
 4. **Generate GraphQL types**
    ```bash
-   npm run codegen
+   pnpm run codegen
    ```
 
 5. **Start development server**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 6. **Open browser**
@@ -233,6 +233,7 @@ See [`web/COLOR_SYSTEM.md`](./web/COLOR_SYSTEM.md) for complete color documentat
 
 ## 📚 Documentation
 
+- **[PNPM Setup Guide](./docs/PNPM-TEAM-GUIDE.md)** - 5-minute team onboarding for PNPM migration
 - **[Color System](./web/COLOR_SYSTEM.md)** - Complete brand color guidelines
 - **[Clerk Authentication](./web/CLERK_SETUP.md)** - Authentication setup and configuration
 - **[WordPress User Migration](./docs/BULK-USER-MIGRATION.md)** - Bulk import guide for existing customers
@@ -259,13 +260,13 @@ git push -u origin feat/feature-name
 ### Available Scripts
 
 ```bash
-npm run dev          # Start development server (with Turbopack)
-npm run build        # Build for production (includes GraphQL codegen)
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run test         # Run Vitest tests
-npm run codegen      # Generate GraphQL types from WordPress
-npm run codegen:watch # Watch mode for type generation
+pnpm run dev          # Start development server (with Turbopack)
+pnpm run build        # Build for production (includes GraphQL codegen)
+pnpm run start        # Start production server
+pnpm run lint         # Run ESLint
+pnpm run test         # Run Vitest tests
+pnpm run codegen      # Generate GraphQL types from WordPress
+pnpm run codegen:watch # Watch mode for type generation
 ```
 
 ## 🔧 GraphQL Integration
@@ -298,13 +299,13 @@ const product: GetProductsQuery['products']['nodes'][0];
 
 ```bash
 # Run all tests
-npm test
+pnpm test
 
 # Run tests in watch mode
-npm test -- --watch
+pnpm test -- --watch
 
 # Run tests with coverage
-npm test -- --coverage
+pnpm test -- --coverage
 ```
 
 ## 📦 Deployment

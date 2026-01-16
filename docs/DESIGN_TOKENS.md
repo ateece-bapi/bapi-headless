@@ -371,10 +371,10 @@ Respect user preferences for reduced motion:
 npx unused-css-variables --ignore "*.test.*"
 
 # Validate color contrast
-npm run test:a11y
+pnpm run test:a11y
 
 # Visual regression testing
-npm run test:visual
+pnpm run test:visual
 ```
 
 ## Resources

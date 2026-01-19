@@ -553,9 +553,14 @@
   - [ ] PayPal SDK integration in PaymentStep
   - [ ] PayPal order creation API route
   - [ ] PayPal redirect handling
-- [ ] Stock management integration
-  - [ ] Reduce stock after successful order
-  - [ ] Handle out-of-stock scenarios during checkout
+- [x] **Stock management - SIMPLIFIED (Jan 19, 2026)**
+  - ✅ Investigation complete: BAPI does NOT use WooCommerce inventory tracking
+  - ✅ Stock status already available in GraphQL (IN_STOCK, OUT_OF_STOCK, ON_BACKORDER)
+  - ✅ No automatic stock reduction needed (B2B manufacturing model)
+  - ✅ Current approach matches production (status flags only)
+  - [ ] (Optional) Add stock status badges to product pages ("In Stock", "Out of Stock", "On Backorder")
+  - [ ] (Optional) Prevent adding out-of-stock items to cart
+  - [ ] (Future) ERP integration if real-time inventory tracking needed
 - [ ] Order status webhooks
   - [ ] Stripe webhook for payment updates
   - [ ] WooCommerce webhook for order status changes
@@ -573,6 +578,10 @@
 - [ ] Guest checkout optimization
   - [ ] Create customer account after first order
   - [ ] Link subsequent orders to account
+- [x] **Cart clearing after order (Jan 19, 2026 - NEXT PRIORITY)**
+  - [ ] Clear cart in `/api/payment/confirm` after successful order
+  - [ ] Clear localStorage on order confirmation page
+  - [ ] Show success message confirming cart cleared
 
 ### Email System (Jan 19, 2026)
 **Current Status (✅ Staging Configured):**

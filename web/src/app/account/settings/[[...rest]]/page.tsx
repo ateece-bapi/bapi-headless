@@ -2,7 +2,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { UserProfile } from '@clerk/nextjs';
+import UserProfileClient from './UserProfileClient';
 
 export default async function SettingsPage() {
   const user = await currentUser();
@@ -36,24 +36,8 @@ export default async function SettingsPage() {
       <section className="w-full py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden">
-            {/* Clerk UserProfile Component */}
-            <UserProfile
-              appearance={{
-                elements: {
-                  rootBox: 'w-full',
-                  card: 'shadow-none border-0',
-                  navbar: 'bg-neutral-50',
-                  navbarButton: 'text-neutral-700 hover:bg-white hover:text-primary-600',
-                  navbarButtonActive: 'bg-white text-primary-600 font-semibold',
-                  pageScrollBox: 'p-6 lg:p-8',
-                  profileSectionPrimaryButton: 'bg-primary-600 hover:bg-primary-700 text-white',
-                  formButtonPrimary: 'bg-primary-600 hover:bg-primary-700',
-                  formFieldInput: 'border-neutral-300 focus:border-primary-500 focus:ring-primary-500',
-                  identityPreviewEditButton: 'text-primary-600 hover:text-primary-700',
-                  badge: 'bg-primary-100 text-primary-700',
-                },
-              }}
-            />
+            {/* Clerk UserProfile Component (dynamically loaded) */}
+            <UserProfileClient />
           </div>
 
           {/* Help Section */}

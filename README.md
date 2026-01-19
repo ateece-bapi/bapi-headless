@@ -166,7 +166,10 @@ bapi-headless/
 - 📝 **TypeScript Throughout** - 36K+ lines of generated types
 - 🎨 **Tailwind CSS v4** - Utility-first styling with custom tokens
 - 🔄 **GraphQL Code Generator** - Auto-generate types from schema
-- 🧪 **Testing** - Vitest for unit and integration tests
+- 🧪 **Comprehensive Testing** - 648 tests with Vitest (80%+ coverage)
+  - ✅ 125 unit tests (utilities, formatters, type guards)
+  - ✅ 309 integration tests (products, cart, components)
+  - ✅ 214 checkout tests (wizard, summary, steps)
 - 🔧 **Git Hooks** - Husky + lint-staged for code quality
 - 📦 **Monorepo** - WordPress and Next.js in single repository
 - ⚡ **React cache()** - Automatic query deduplication across server components

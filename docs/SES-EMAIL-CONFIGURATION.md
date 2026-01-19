@@ -187,6 +187,59 @@ To move out of SES sandbox mode:
    - **Expected daily volume:** Start with 1000 emails/day
    - **Process for handling bounces:** Automatic bounce handling via plugin
 
+## Email Logging & Monitoring
+
+### WP Mail Logging Plugin
+
+Installed on staging (January 19, 2026) for email debugging and monitoring.
+
+**Plugin:** WP Mail Logging v1.15.0  
+**Access:** WordPress Admin → Tools → Email Log  
+**Status:** Active on staging
+
+**Installation:**
+```bash
+ssh -p 17338 bapiheadlessstaging@35.224.70.159
+cd /www/bapiheadlessstaging_582/public
+wp plugin install wp-mail-logging --activate
+```
+
+**Features:**
+- ✅ Logs all wp_mail() calls (including WooCommerce)
+- ✅ Records email subject, recipient, timestamp
+- ✅ Stores full email content (HTML and plain text)
+- ✅ Shows send success/failure status
+- ✅ Searchable email log in WordPress admin
+- ✅ Useful for debugging email delivery issues
+
+**Use Cases:**
+- Verify WooCommerce emails are being sent
+- Debug email template issues
+- Confirm recipient addresses are correct
+- Troubleshoot Amazon SES delivery failures
+- Test email content before production
+
+**Accessing Logs:**
+1. Log in to WordPress admin: https://bapiheadlessstaging.kinsta.cloud/wp-admin
+2. Navigate to: **Tools → Email Log**
+3. View all sent emails with full details
+4. Search by recipient, subject, or date
+
+**Testing Email Delivery:**
+```bash
+# Send test email via WP-CLI
+wp eval 'wp_mail("your-email@example.com", "Test Subject", "Test message body");'
+
+# Check logs in WordPress admin
+# Tools → Email Log → Look for the test email
+```
+
+**Production Deployment:**
+- ⚠️ Do NOT install on production (performance impact)
+- Use AWS SES Console for production email monitoring
+- Enable bounce/complaint notifications in AWS SES
+- Consider external monitoring (e.g., AWS CloudWatch, Datadog)
+
 ## Security Notes
 
 - ✅ AWS credentials are stored in wp-config.php (not in database)
@@ -219,4 +272,4 @@ Both sites use identical configuration:
 **Last Updated:** January 19, 2026  
 **Configured By:** ateece  
 **Production Status:** ✅ Active  
-**Staging Status:** ✅ Active
+**Staging Status:** ✅ Active (with WP Mail Logging for testing)

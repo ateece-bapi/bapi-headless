@@ -7,6 +7,7 @@ import { HEADER_CONFIG } from './config';
 import { useScrollDetection } from './hooks/useScrollDetection';
 import { useMobileMenu } from './hooks/useMobileMenu';
 import { SearchInput } from '@/components/search';
+import { useCartStore } from '@/store/cart';
 import {
   RegionSelector,
   LanguageSelector,
@@ -21,6 +22,7 @@ import {
 export const Header: React.FC<HeaderProps> = ({ className }) => {
   const scrolled = useScrollDetection(HEADER_CONFIG.scrollThreshold);
   const mobileMenu = useMobileMenu();
+  const totalItems = useCartStore((state) => state.totalItems);
 
   return (
     <header
@@ -38,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           <LanguageSelector />
           <div className="h-6 w-px bg-neutral-300 mb-2" />
           <SignInButton />
-          <CartButton />
+          <CartButton itemCount={totalItems} />
         </div>
 
         {/* Bottom Row: Logo, Navigation, Search */}
@@ -57,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
             {/* Mobile-only Sign In and Cart */}
             <div className="flex items-center gap-2 lg:hidden">
               <SignInButton />
-              <CartButton />
+              <CartButton itemCount={totalItems} />
             </div>
             <MobileMenuButton isOpen={mobileMenu.isOpen} onClick={mobileMenu.toggle} />
           </div>

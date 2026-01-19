@@ -10,6 +10,7 @@
  * - Shipping details
  * - Order items list
  * - Call to action buttons
+ * - Cart clearing on mount
  */
 
 import { useState, useEffect } from 'react';
@@ -18,6 +19,7 @@ import { useRouter } from 'next/navigation';
 import { CheckCircle, Package, Truck, CreditCard, Home, ArrowRight, Loader2 } from 'lucide-react';
 import { useToast } from '@/components/ui/Toast';
 import { getUserErrorMessage, logError } from '@/lib/errors';
+import { useCartStore } from '@/store/cart';
 import OrderSummary from './OrderSummary';
 import OrderItems from './OrderItems';
 import ShippingDetails from './ShippingDetails';
@@ -70,8 +72,14 @@ interface OrderData {
 export default function OrderConfirmationClient({ orderId }: OrderConfirmationClientProps) {
   const router = useRouter();
   const { showToast } = useToast();
+  const clearCart = useCartStore((state) => state.clearCart);
   const [order, setOrder] = useState<OrderData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Clear cart on mount (order successfully placed)
+  useEffect(() => {
+    clearCart();
+  }, [clearCart]);
 
   useEffect(() => {
     fetchOrderDetails();

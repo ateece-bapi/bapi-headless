@@ -574,20 +574,77 @@
   - [ ] Create customer account after first order
   - [ ] Link subsequent orders to account
 
+### Email System (Jan 19, 2026)
+**Current Status (✅ Staging Configured):**
+- [x] **Amazon SES Migration Complete**
+  - [x] Staging migrated from WP Mail SMTP to wp-ses (matching production)
+  - [x] AWS credentials configured in wp-config.php
+  - [x] Plugin settings identical to production
+  - [x] Test email sent successfully
+  - [x] Documentation: SES-EMAIL-CONFIGURATION.md
+
+**Production Ready Improvements (Before April Launch):**
+- [ ] **SES Account Verification**
+  - [ ] Verify SES is in production mode (not sandbox)
+  - [ ] Confirm can send to any email address (not just verified)
+  - [ ] Request increased sending limits if needed
+  
+- [ ] **Security & Configuration**
+  - [ ] Move AWS credentials to environment variables (more secure than wp-config.php)
+  - [ ] Set up SPF/DKIM/DMARC DNS records for bapisensors.com
+  - [ ] Configure bounce/complaint handling in AWS SES
+  
+- [ ] **Monitoring & Logging**
+  - [ ] Install WP Mail Logging plugin for debugging
+  - [ ] Set up email delivery monitoring/alerting
+  - [ ] Configure SES notifications for bounces and complaints
+  - [ ] Set up dashboard for email delivery metrics
+  
+- [ ] **Testing & Validation**
+  - [ ] Test all 8 WooCommerce email types:
+    - [ ] New order (customer)
+    - [ ] Processing order (customer)
+    - [ ] Completed order (customer)
+    - [ ] Refunded order (customer)
+    - [ ] Customer invoice
+    - [ ] Customer note
+    - [ ] Reset password
+    - [ ] New account
+  - [ ] Test email rendering in major clients (Gmail, Outlook, Apple Mail)
+  - [ ] Verify email deliverability (inbox vs spam)
+  
+- [ ] **Email Template Customization**
+  - [ ] Customize WooCommerce email templates with BAPI branding
+  - [ ] Upload BAPI logo to WordPress Media Library
+  - [ ] Apply BAPI blue (#1479bc) to email headers
+  - [ ] Test responsive email design
+  
+- [ ] **Alternative Provider Evaluation (Optional)**
+  - [ ] Consider Postmark ($15/mo, best deliverability)
+  - [ ] Consider SendGrid ($20/mo after free tier)
+  - [ ] Consider Mailgun (developer-friendly)
+  - [ ] Cost-benefit analysis vs Amazon SES
+
 ### Production Configuration (Critical Before Launch)
-- [ ] Stripe live API keys
+- [ ] **Stripe live API keys**
   - [ ] Switch from test keys (`pk_test_`, `sk_test_`) to live keys (`pk_live_`, `sk_live_`)
   - [ ] Update environment variables in Vercel
   - [ ] Complete Stripe account verification
-- [ ] SMTP provider setup
-  - [ ] Configure SendGrid account (recommended)
-  - [ ] Install WP Mail SMTP plugin
-  - [ ] Add SPF, DKIM, DMARC DNS records
-  - [ ] Test email deliverability
-- [ ] Email template customization
-  - [ ] Customize WooCommerce email templates with BAPI branding
-  - [ ] Upload BAPI logo to WordPress Media Library
-  - [ ] Test all email types (order confirmation, shipping, etc.)
+  - [ ] Test live payment flow with small transaction
+  
+- [ ] **Domain & SSL**
+  - [ ] Configure production domain (www.bapihvac.com or new domain)
+  - [ ] SSL certificate setup (Vercel automatic)
+  - [ ] DNS configuration
+  - [ ] Redirect old site if replacing existing domain
+  
+- [ ] **Environment Variables Audit**
+  - [ ] Verify all production env vars in Vercel
+  - [ ] Remove any staging/test credentials
+  - [ ] Ensure WordPress API credentials are production
+  - [ ] Document required env vars for team
+
+---
 
 ---
 

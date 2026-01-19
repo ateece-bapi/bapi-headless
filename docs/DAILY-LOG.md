@@ -4,6 +4,226 @@ Track daily progress on the BAPI Headless project.
 
 ---
 
+## January 19, 2026
+
+### Email System Migration: Amazon SES - **100% COMPLETE** 📧✅
+
+**Status:** Staging email configuration migrated from WP Mail SMTP to Amazon SES (matching production)  
+**Impact:** Email reliability improved, consistent email infrastructure across environments  
+**Timeline:** ~2 hours (discovery, migration, testing, documentation)  
+
+**Background:**
+- Staging site was using WP Mail SMTP with Gmail (different from production)
+- Production site uses Amazon SES (WP Offload SES Lite plugin)
+- Needed to match production configuration for consistency
+
+**Discovery Phase:**
+
+**Production Email Investigation:**
+- SSH'd into production WordPress: `bapihvac@prod-2025.bapihvac.com`
+- Checked active plugins: `wp plugin list --status=active`
+- **Found:** `wp-ses` (WP Offload SES Lite v1.7.2) active on production
+- **NOT using:** WP Mail SMTP (different from staging)
+
+**Production Configuration Retrieved:**
+```bash
+# AWS credentials from wp-config.php
+define( 'WPOSES_AWS_ACCESS_KEY_ID',     'AKIAXXXXXXXXXXXX' );
+define( 'WPOSES_AWS_SECRET_ACCESS_KEY', 'your-aws-secret-access-key-here' );
+
+# Plugin settings from database
+wp option get wposes_settings --format=json
+```
+
+**Production Settings:**
+- AWS Region: `us-east-2` (Ohio)
+- Default Email: `bapi@website.bapihvac.com`
+- Default Name: `BAPI`
+- WooCommerce From: `customerservice@bapisensors.com`
+- Return Path: `chris@vendiadvertising.com`
+- Send via SES: Enabled
+- Click/Open Tracking: Disabled
+- Health Reports: Weekly to site admins
+
+**Migration Steps:**
+
+**1. Install wp-ses Plugin on Staging** ✅
+```bash
+ssh -p 17338 bapiheadlessstaging@35.224.70.159
+cd /www/bapiheadlessstaging_582/public
+wp plugin install wp-ses --activate
+```
+- Plugin installed: WP Offload SES Lite 1.7.2
+- Activation successful
+
+**2. Add AWS Credentials to wp-config.php** ✅
+- Initial sed command attempts created syntax errors ("n/* Amazon SES")
+- Fixed with PHP-based string replacement
+- Final working command:
+```bash
+php -r "
+\$config = file_get_contents('wp-config.php');
+\$insert = PHP_EOL . '/* Amazon SES Configuration */' . PHP_EOL . 
+           'define( \'WPOSES_AWS_ACCESS_KEY_ID\',     \'AKIAXXXXXXXXXXXX\' );' . PHP_EOL .
+           'define( \'WPOSES_AWS_SECRET_ACCESS_KEY\', \'your-aws-secret-key\' );' . PHP_EOL;
+\$config = str_replace('define( \'DB_COLLATE\', \'\'  );', 'define( \'DB_COLLATE\', \'\'  );' . \$insert, \$config);
+file_put_contents('wp-config.php', \$config);
+"
+```
+- Verified with `php -l wp-config.php` → No syntax errors ✅
+
+**3. Configure wp-ses Settings** ✅
+```bash
+wp option update wposes_settings '{"completed-setup":"1","default-email":"bapi@website.bapihvac.com","default-email-name":"BAPI","delete-successful":"0","enable-click-tracking":"0","enable-health-report":"1","enable-open-tracking":"0","enqueue-only":"0","health-report-frequency":"weekly","health-report-recipients":"site-admins","log-duration":"90","region":"us-east-2","reply-to":"","return-path":"chris@vendiadvertising.com","send-via-ses":"1"}' --format=json
+```
+- Settings updated successfully (matched production exactly)
+
+**4. Deactivate WP Mail SMTP** ✅
+```bash
+wp plugin deactivate wp-mail-smtp
+```
+- Old plugin deactivated (only one email plugin should be active)
+
+**5. Test Email Delivery** ✅
+```bash
+wp eval 'wp_mail("ateece@bapisensors.com", "Test Email from Staging - wp-ses", "This is a test email from the staging site using Amazon SES (matching production config).");'
+```
+- Test email sent successfully
+- Email delivered to ateece@bapisensors.com
+
+**Troubleshooting & Fixes:**
+
+**Issue 1: wp-config.php Syntax Error**
+- **Error:** "PHP Parse error: syntax error, unexpected identifier 'define' in wp-config.php on line 41"
+- **Cause:** sed command inserted malformed line ("n/* Amazon SES" instead of newline)
+- **Attempts:**
+  1. Initial sed with escaped newlines → created "n" character
+  2. Restore backup and retry → same issue
+  3. Try heredoc method → worked, but needed cleanup
+- **Solution:** PHP-based string replacement for clean insertion
+- **Verification:** `php -l wp-config.php` confirmed no syntax errors
+
+**Issue 2: WP-CLI Errors After Credential Fix**
+- **Error:** Same parse error persisted in backup file
+- **Cause:** Backup file also had malformed credentials from first sed attempt
+- **Solution:** Used sed to remove bad lines, then clean insert
+- **Commands:**
+```bash
+sed -i '/n\/\* Amazon SES/d; /WPOSES_AWS/d' wp-config.php
+sed -i "/define( 'DB_COLLATE'/a\\n/* Amazon SES Configuration */\\ndefine( 'WPOSES_AWS_ACCESS_KEY_ID', 'AKIAXXXXXXXXXXXX' );\\ndefine( 'WPOSES_AWS_SECRET_ACCESS_KEY', 'your-aws-secret-key' );" wp-config.php
+```
+
+**Configuration Summary:**
+
+**Staging vs Production Comparison:**
+
+| Setting | Production | Staging | Status |
+|---------|-----------|---------|--------|
+| Plugin | wp-ses 1.7.2 | wp-ses 1.7.2 | ✅ Match |
+| AWS Access Key | AKIAXXXXXXXXXXXX | AKIAXXXXXXXXXXXX | ✅ Match |
+| AWS Region | us-east-2 | us-east-2 | ✅ Match |
+| Default From | bapi@website.bapihvac.com | bapi@website.bapihvac.com | ✅ Match |
+| WooCommerce From | customerservice@bapisensors.com | customerservice@bapisensors.com | ✅ Match |
+| WooCommerce Name | BAPI | BAPI | ✅ Match |
+| Click Tracking | Disabled | Disabled | ✅ Match |
+| Open Tracking | Disabled | Disabled | ✅ Match |
+| Health Reports | Weekly | Weekly | ✅ Match |
+
+**Email Addresses in Use:**
+- **WordPress Admin:** BAPI_Marketing@bapisensors.com
+- **WP SES Default:** bapi@website.bapihvac.com (sends from)
+- **WooCommerce Orders:** customerservice@bapisensors.com (from address)
+- **Return Path:** chris@vendiadvertising.com
+- **Stock Alerts:** customerservice@www.bapihvac.com
+- **Purchase Log CC:** accountsreceivable@bapisensors.com
+
+**Documentation Created:**
+
+**docs/SES-EMAIL-CONFIGURATION.md** (new file, 280+ lines)
+- Complete Amazon SES setup guide
+- AWS credentials and configuration
+- Installation steps for new sites
+- Troubleshooting procedures
+- SMTP provider comparison
+- Security best practices
+- Production vs Staging comparison table
+- Verified sender addresses list
+- Common error solutions
+
+**Benefits of Amazon SES:**
+✅ Very reliable delivery (99.9% uptime)  
+✅ Low cost ($0.10 per 1,000 emails)  
+✅ High deliverability rates  
+✅ Scales to millions of emails  
+✅ Already proven in production  
+✅ No monthly subscription fees  
+✅ Pay-as-you-go pricing  
+
+**Production Readiness:**
+- ✅ Staging email configuration matches production
+- ✅ Test email delivered successfully
+- ✅ WooCommerce email settings verified
+- ✅ AWS SES credentials confirmed working
+- ⚠️ Verify SES account is out of sandbox mode (allows sending to any address)
+- ⚠️ Set up SPF/DKIM/DMARC for production domain
+- ⚠️ Test all WooCommerce email templates before launch
+
+**Remaining Tasks (Before Production):**
+1. Verify Amazon SES production access (not sandbox mode)
+2. Test all 8 WooCommerce email types:
+   - New order (customer)
+   - Processing order (customer)
+   - Completed order (customer)
+   - Refunded order (customer)
+   - Customer invoice
+   - Customer note
+   - Reset password
+   - New account
+3. Verify all sender addresses in AWS SES console
+4. Configure SPF/DKIM/DMARC DNS records for bapisensors.com
+5. Install WP Mail Logging plugin for production monitoring
+6. Set up email delivery monitoring/alerting
+
+**Senior Developer Recommendations:**
+1. **Current choice (Amazon SES) is correct** - Matches production, proven reliable
+2. **Better alternatives for future consideration:**
+   - Postmark ($15/mo, best deliverability)
+   - SendGrid ($20/mo after free tier)
+   - Mailgun (developer-friendly)
+3. **Security improvements:**
+   - Move AWS credentials to environment variables
+   - Implement bounce/complaint handling
+   - Set up email delivery monitoring
+4. **Testing requirements:**
+   - Test all email types before production
+   - Verify email rendering in major clients
+   - Monitor delivery rates and spam reports
+
+**Files Modified:**
+- Staging `wp-config.php` - Added AWS SES credentials
+- Staging WordPress database - Updated wposes_settings option
+
+**Files Created:**
+- `docs/SES-EMAIL-CONFIGURATION.md` - Complete setup guide (280 lines)
+
+**Git Workflow:**
+- No branch created (infrastructure change, documentation only)
+- Documentation ready to commit to main
+- Commit message: "docs: add Amazon SES email configuration documentation"
+
+**Time Investment:**
+- Production investigation: ~20 minutes
+- Plugin installation and configuration: ~30 minutes
+- Troubleshooting wp-config.php syntax: ~45 minutes
+- Testing and verification: ~15 minutes
+- Documentation: ~30 minutes
+- **Total:** ~2 hours
+
+**Key Takeaway:**
+Infrastructure consistency between staging and production is critical. Using the same email service (Amazon SES) ensures emails work identically in both environments, simplifies troubleshooting, and reduces deployment risks.
+
+---
+
 ## January 16, 2026
 
 ### Production Blocker Fixes - **100% COMPLETE** 🚀✅

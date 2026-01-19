@@ -22,7 +22,7 @@ import {
 export const Header: React.FC<HeaderProps> = ({ className }) => {
   const scrolled = useScrollDetection(HEADER_CONFIG.scrollThreshold);
   const mobileMenu = useMobileMenu();
-  const totalItems = useCartStore((state) => state.totalItems);
+  const totalItems = useCartStore((state) => state.totalItems());
 
   return (
     <header

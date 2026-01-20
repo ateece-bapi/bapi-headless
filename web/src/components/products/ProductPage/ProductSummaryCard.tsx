@@ -73,39 +73,105 @@ export default function ProductSummaryCard({ product, variation, useCart, useCar
   return (
     <aside className="bg-white border border-neutral-200 rounded-xl shadow p-6 w-full mb-8 md:mb-0 md:sticky md:top-4">
       <h2 className="text-neutral-900 text-xl font-bold mb-4">Product Summary</h2>
+      
+      {/* Configuration Complete Indicator */}
+      {isVariableProduct && variation && (
+        <div className="flex items-center gap-2 text-green-600 mb-4 bg-green-50 px-3 py-2 rounded-lg">
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+          </svg>
+          <span className="text-sm font-semibold">Configuration Complete</span>
+        </div>
+      )}
+      
+      {/* Stock Status Badge - Prominent Position */}
+      {displayStockStatus && (
+        <div className={`mb-4 inline-flex items-center gap-2 px-3 py-2 rounded-lg font-semibold text-sm ${
+          displayStockStatus === 'IN_STOCK' 
+            ? 'bg-green-100 text-green-800 border border-green-200' 
+            : displayStockStatus === 'ON_BACKORDER'
+            ? 'bg-yellow-100 text-yellow-800 border border-yellow-200'
+            : 'bg-red-100 text-red-800 border border-red-200'
+        }`}>
+          <span className={`w-2 h-2 rounded-full ${
+            displayStockStatus === 'IN_STOCK' 
+              ? 'bg-green-600' 
+              : displayStockStatus === 'ON_BACKORDER'
+              ? 'bg-yellow-600'
+              : 'bg-red-600'
+          }`}></span>
+          {displayStockStatus === 'IN_STOCK' ? '✓ In Stock' : 
+           displayStockStatus === 'ON_BACKORDER' ? 'On Backorder' :
+           'Out of Stock'}
+        </div>
+      )}
+      
+      {/* Part Number - Styled with monospace */}
       <div className="mb-4">
-        <div className="text-xs text-neutral-500 uppercase tracking-wide">Part Number</div>
-        <div className="font-semibold text-neutral-900 text-lg">{displayPartNumber}</div>
+        <div className="text-xs text-neutral-500 uppercase tracking-wide mb-1">Part Number</div>
+        <code className="inline-block px-3 py-2 bg-neutral-100 border border-neutral-200 rounded-lg font-mono text-sm font-semibold text-neutral-900">
+          {displayPartNumber}
+        </code>
       </div>
-      <div className="mb-4 flex justify-between items-center gap-4">
-        <div>
-          <div className="text-xs text-neutral-500 uppercase tracking-wide">List Price</div>
-          <div className="font-bold text-primary-600 text-2xl">{displayPrice}</div>
+      
+      {/* Price Hierarchy - Improved Visual Weight */}
+      <div className="mb-6 bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-xl p-4">
+        <div className="flex justify-between items-start mb-3">
+          <div>
+            <div className="text-xs text-primary-700 uppercase tracking-wide font-semibold mb-1">Your Price</div>
+            <div className="text-4xl font-bold text-primary-600">${calculated}</div>
+          </div>
+          <div className="text-right">
+            <div className="text-xs text-neutral-600 uppercase tracking-wide">Multiplier</div>
+            <div className="text-xl font-bold text-neutral-700">{product.multiplier || '1.0'}</div>
+          </div>
         </div>
-        <div>
-          <div className="text-xs text-neutral-500 uppercase tracking-wide">Multiplier</div>
-          <div className="font-semibold text-neutral-700 text-xl">{product.multiplier || 'N/A'}</div>
+        <div className="text-xs text-neutral-600 border-t border-primary-200 pt-2">
+          List Price: <span className="font-semibold">{displayPrice}</span> × Qty: <span className="font-semibold">{quantity}</span> × Multiplier: <span className="font-semibold">{product.multiplier || '1.0'}</span>
         </div>
       </div>
-      <div className="mb-4 flex items-center gap-3">
-        <label htmlFor="quantity" className="text-xs text-neutral-500 uppercase tracking-wide">Quantity</label>
-        <input
-          type="number"
-          id="quantity"
-          min={1}
-          max={product.stockQuantity || 999}
-          value={quantity}
-          onChange={e => setQuantity(Math.max(1, Number(e.target.value)))}
-          className="border border-neutral-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 bg-white text-neutral-900 rounded-lg px-4 py-2 w-24 shadow-sm transition font-medium"
-        />
+      
+      {/* Quantity Input - With Stepper Buttons */}
+      <div className="mb-6">
+        <label htmlFor="quantity" className="text-xs text-neutral-500 uppercase tracking-wide block mb-2">Quantity</label>
+        <div className="flex items-center border border-neutral-300 rounded-lg overflow-hidden shadow-sm">
+          <button
+            type="button"
+            onClick={() => setQuantity(q => Math.max(1, q - 1))}
+            className="bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
+            aria-label="Decrease quantity"
+          >
+            −
+          </button>
+          <input
+            type="number"
+            id="quantity"
+            min={1}
+            max={product.stockQuantity || 999}
+            value={quantity}
+            onChange={e => setQuantity(Math.max(1, Number(e.target.value)))}
+            className="flex-1 text-center border-0 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 bg-white text-neutral-900 py-3 font-semibold text-lg"
+          />
+          <button
+            type="button"
+            onClick={() => setQuantity(q => Math.min(product.stockQuantity || 999, q + 1))}
+            className="bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
+            aria-label="Increase quantity"
+          >
+            +
+          </button>
+        </div>
         {typeof product.stockQuantity === 'number' && (
-          <span className="text-xs text-neutral-600 font-medium">In stock: {product.stockQuantity}</span>
+          <div className="text-xs text-neutral-600 mt-2 flex items-center gap-1">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            {product.stockQuantity} units available
+          </div>
         )}
       </div>
-      <div className="mb-6 bg-neutral-50 border border-neutral-200 rounded-lg p-4">
-        <div className="text-xs text-neutral-500 uppercase tracking-wide mb-1">Total</div>
-        <div className="text-3xl font-bold text-primary-700">${calculated}</div>
-      </div>
+      
+      {/* Add to Cart - Primary CTA Above Fold */}
       <AddToCartButton
         product={{
           ...product,
@@ -121,20 +187,20 @@ export default function ProductSummaryCard({ product, variation, useCart, useCar
           selectedAttributes,
         }}
         quantity={quantity}
-        className="text-lg py-3 px-6 w-full mb-4"
+        className="text-lg py-4 px-6 w-full mb-4 font-bold shadow-lg hover:shadow-xl transition-all"
         disabled={isOutOfStock}
         useCart={typeof useCart === 'function' ? useCart : undefined}
         useCartDrawer={typeof useCartDrawer === 'function' ? useCartDrawer : undefined}
       />
-      {displayStockStatus && (
-        <div className={`mt-2 text-sm font-semibold inline-flex items-center gap-2 px-3 py-1 rounded-full ${displayStockStatus === 'IN_STOCK' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-          <span className={`w-2 h-2 rounded-full ${displayStockStatus === 'IN_STOCK' ? 'bg-green-600' : 'bg-red-600'}`}></span>
-          {displayStockStatus.replace('_', ' ')}
-        </div>
-      )}
-      <div className="flex gap-2 mt-6">
-        <button className="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-4 focus:ring-primary-500/50 transition w-full">Add to Job Estimate</button>
-        <button className="bg-white border-2 border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:bg-neutral-50 font-semibold py-2 px-4 rounded-lg shadow-sm focus:outline-none focus:ring-4 focus:ring-neutral-300/50 transition w-full">Add to Favorites</button>
+      
+      {/* Secondary Actions */}
+      <div className="flex gap-2">
+        <button className="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-4 focus:ring-primary-500/50 transition w-full text-sm">
+          Add to Job Estimate
+        </button>
+        <button className="bg-white border-2 border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:bg-neutral-50 font-semibold py-2 px-4 rounded-lg shadow-sm focus:outline-none focus:ring-4 focus:ring-neutral-300/50 transition w-full text-sm">
+          Add to Favorites
+        </button>
       </div>
     </aside>
   );

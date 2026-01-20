@@ -234,10 +234,12 @@ export default async function ProductPage({ params }: { params: { slug: string }
         tags: [], // Will be loaded deferred
         multiplierGroups: [], // Will be loaded deferred
         attributes: variationData?.__typename === 'VariableProduct' ? 
-          (variationData.attributes?.nodes || []).map((attr: any) => ({
-            name: attr.name,
-            options: attr.options || []
-          })) : [],
+          (variationData.attributes?.nodes || [])
+            .filter((attr: any) => attr.variation === true)
+            .map((attr: any) => ({
+              name: attr.name,
+              options: attr.options || []
+            })) : [],
         variations: variationData?.__typename === 'VariableProduct' ? 
           (variationData.variations?.nodes || []).map((variation: any) => ({
             id: variation.id,

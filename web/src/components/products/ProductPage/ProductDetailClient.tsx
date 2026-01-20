@@ -12,7 +12,6 @@ import TrustBadges from "@/components/products/ProductPage/TrustBadges";
 import HelpCTA from "@/components/products/ProductPage/HelpCTA";
 import { CartDrawer } from "@/components/cart";
 import { ProductVariationSelector, ProductGallery, RecentlyViewed } from "@/components/products";
-import DebugProductData from "@/components/products/DebugProductData";
 import { useRecentlyViewed } from "@/store";
 
 interface ProductDetailClientProps {
@@ -97,9 +96,6 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
             
             {/* Trust and credibility badges */}
             <TrustBadges className="mb-8" />
-            
-            {/* DEBUG: Show product data */}
-            <DebugProductData product={product} />
             
             {/* Enhanced Variation Selector (replaces ProductConfigurator) */}
             <ProductVariationSelector

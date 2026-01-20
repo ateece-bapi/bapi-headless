@@ -125,23 +125,22 @@ export default function VariationSelector({
             label: attribute.label,
             options: attribute.options,
             value,
-            onChange: (val: string) => handleAttributeChange(attribute.name, val),
-            key: attribute.id
+            onChange: (val: string) => handleAttributeChange(attribute.name, val)
           };
           
           switch (uiType) {
             case 'color-swatch':
-              return <ColorSwatchSelector {...commonProps} />;
+              return <ColorSwatchSelector key={attribute.id} {...commonProps} />;
             
             case 'binary-toggle':
-              return <BinaryToggleSelector {...commonProps} options={attribute.options as [string, string]} />;
+              return <BinaryToggleSelector key={attribute.id} {...commonProps} options={attribute.options as [string, string]} />;
             
             case 'radio-group':
-              return <RadioGroupSelector {...commonProps} />;
+              return <RadioGroupSelector key={attribute.id} {...commonProps} />;
             
             case 'dropdown':
             default:
-              return <DropdownSelector {...commonProps} />;
+              return <DropdownSelector key={attribute.id} {...commonProps} />;
           }
         })}
       </div>

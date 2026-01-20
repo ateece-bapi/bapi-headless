@@ -152,6 +152,7 @@ query GetProductBySlug($slug: ID!) {
 # Reduces payload by ~70% for faster Time to First Byte
 query GetProductBySlugLight($slug: ID!) {
   product(id: $slug, idType: SLUG) {
+    __typename
     id
     databaseId
     name
@@ -231,6 +232,7 @@ query GetProductDetailsDeferred($id: ID!) {
 # Only load when needed for VariableProduct configurator
 query GetProductVariations($id: ID!) {
   product(id: $id, idType: DATABASE_ID) {
+    __typename
     ... on VariableProduct {
       attributes {
         nodes {

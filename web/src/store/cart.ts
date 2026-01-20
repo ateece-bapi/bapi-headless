@@ -12,8 +12,12 @@ export interface CartItem {
     sourceUrl: string;
     altText?: string;
   } | null;
+  // Variation-specific fields
   variationId?: number;
   variationName?: string;
+  variationSku?: string;
+  selectedAttributes?: Record<string, string>;
+  partNumber?: string;
 }
 
 interface CartState {
@@ -22,8 +26,8 @@ interface CartState {
   
   // Actions
   addItem: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void;
-  removeItem: (id: string) => void;
-  updateQuantity: (id: string, quantity: number) => void;
+  removeItem: (id: string, variationId?: number) => void;
+  updateQuantity: (id: string, quantity: number, variationId?: number) => void;
   clearCart: () => void;
   toggleCart: () => void;
   openCart: () => void;
@@ -42,16 +46,24 @@ export const useCartStore = create<CartState>()(
       
       addItem: (item, quantity = 1) => {
         set((state) => {
-          const existingItem = state.items.find((i) => i.id === item.id);
+          // For variable products, use variationId as unique identifier
+          // For simple products, use product id
+          const uniqueKey = item.variationId ? `${item.id}-${item.variationId}` : item.id;
+          
+          const existingItem = state.items.find((i) => {
+            const existingKey = i.variationId ? `${i.id}-${i.variationId}` : i.id;
+            return existingKey === uniqueKey;
+          });
           
           if (existingItem) {
             // Update quantity if item already exists
             return {
-              items: state.items.map((i) =>
-                i.id === item.id
+              items: state.items.map((i) => {
+                const currentKey = i.variationId ? `${i.id}-${i.variationId}` : i.id;
+                return currentKey === uniqueKey
                   ? { ...i, quantity: i.quantity + quantity }
-                  : i
-              ),
+                  : i;
+              }),
             };
           }
           
@@ -62,23 +74,33 @@ export const useCartStore = create<CartState>()(
         });
       },
       
-      removeItem: (id) => {
-        set((state) => ({
-          items: state.items.filter((item) => item.id !== id),
-        }));
+      removeItem: (id, variationId) => {
+        set((state) => {
+          const uniqueKey = variationId ? `${id}-${variationId}` : id;
+          return {
+            items: state.items.filter((item) => {
+              const itemKey = item.variationId ? `${item.id}-${item.variationId}` : item.id;
+              return itemKey !== uniqueKey;
+            }),
+          };
+        });
       },
       
-      updateQuantity: (id, quantity) => {
+      updateQuantity: (id, quantity, variationId) => {
         if (quantity <= 0) {
-          get().removeItem(id);
+          get().removeItem(id, variationId);
           return;
         }
         
-        set((state) => ({
-          items: state.items.map((item) =>
-            item.id === id ? { ...item, quantity } : item
-          ),
-        }));
+        set((state) => {
+          const uniqueKey = variationId ? `${id}-${variationId}` : id;
+          return {
+            items: state.items.map((item) => {
+              const itemKey = item.variationId ? `${item.id}-${item.variationId}` : item.id;
+              return itemKey === uniqueKey ? { ...item, quantity } : item;
+            }),
+          };
+        });
       },
       
       clearCart: () => {

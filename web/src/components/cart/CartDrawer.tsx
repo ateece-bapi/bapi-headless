@@ -41,7 +41,7 @@ const CartDrawer = () => {
           ) : (
             <div className="space-y-4">
               {items.map((item) => (
-                <div key={item.id} className="flex gap-4 border-b border-neutral-200 pb-4">
+                <div key={`${item.id}-${item.variationId || ''}`} className="flex gap-4 border-b border-neutral-200 pb-4">
                   {item.image && (
                     <Image
                       src={item.image.sourceUrl}
@@ -53,10 +53,29 @@ const CartDrawer = () => {
                   )}
                   <div className="flex-1">
                     <h3 className="font-semibold text-neutral-900">{item.name}</h3>
-                    <p className="text-sm text-neutral-600">{item.price}</p>
+                    
+                    {/* Show variation details if present */}
+                    {item.selectedAttributes && Object.keys(item.selectedAttributes).length > 0 && (
+                      <div className="text-xs text-neutral-600 mt-1 space-y-0.5">
+                        {Object.entries(item.selectedAttributes).map(([attr, value]) => (
+                          <div key={attr}>
+                            <span className="font-medium capitalize">{attr.replace(/-/g, ' ')}:</span> {value}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* Show part number or variation SKU if available */}
+                    {(item.partNumber || item.variationSku) && (
+                      <p className="text-xs text-neutral-500 mt-1 font-mono">
+                        {item.partNumber || item.variationSku}
+                      </p>
+                    )}
+                    
+                    <p className="text-sm text-neutral-600 mt-1">{item.price}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        onClick={() => updateQuantity(item.id, item.quantity - 1, item.variationId)}
                         className="px-2 py-1 bg-neutral-200 rounded hover:bg-neutral-300 transition"
                         aria-label="Decrease quantity"
                       >
@@ -64,14 +83,14 @@ const CartDrawer = () => {
                       </button>
                       <span className="w-8 text-center font-medium">{item.quantity}</span>
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        onClick={() => updateQuantity(item.id, item.quantity + 1, item.variationId)}
                         className="px-2 py-1 bg-neutral-200 rounded hover:bg-neutral-300 transition"
                         aria-label="Increase quantity"
                       >
                         +
                       </button>
                       <button
-                        onClick={() => removeItem(item.id)}
+                        onClick={() => removeItem(item.id, item.variationId)}
                         className="ml-auto text-error-600 hover:text-error-700 font-medium transition"
                       >
                         Remove

@@ -232,6 +232,15 @@ query GetProductDetailsDeferred($id: ID!) {
 query GetProductVariations($id: ID!) {
   product(id: $id, idType: DATABASE_ID) {
     ... on VariableProduct {
+      attributes {
+        nodes {
+          id
+          name
+          label
+          options
+          variation
+        }
+      }
       variations {
         nodes {
           id
@@ -242,6 +251,13 @@ query GetProductVariations($id: ID!) {
           stockStatus
           partNumber
           sku
+          attributes {
+            nodes {
+              name
+              label
+              value
+            }
+          }
         }
       }
     }

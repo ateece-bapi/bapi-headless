@@ -39420,7 +39420,10 @@ export type GetProductVariationsQuery = { __typename?: 'RootQuery', product?:
     | { __typename?: 'ExternalProduct' }
     | { __typename?: 'GroupProduct' }
     | { __typename?: 'SimpleProduct' }
-    | { __typename?: 'VariableProduct', variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, partNumber?: string | null | undefined, sku?: string | null | undefined }> } | null | undefined }
+    | { __typename?: 'VariableProduct', attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
+          | { __typename?: 'GlobalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
+          | { __typename?: 'LocalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
+        > } | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, partNumber?: string | null | undefined, sku?: string | null | undefined, attributes?: { __typename?: 'ProductVariationToVariationAttributeConnection', nodes: Array<{ __typename?: 'VariationAttribute', name?: string | null | undefined, label?: string | null | undefined, value?: string | null | undefined }> } | null | undefined }> } | null | undefined }
    | null | undefined };
 
 export type GetProductRelatedQueryVariables = Exact<{
@@ -40799,6 +40802,15 @@ export const GetProductVariationsDocument = gql`
     query GetProductVariations($id: ID!) {
   product(id: $id, idType: DATABASE_ID) {
     ... on VariableProduct {
+      attributes {
+        nodes {
+          id
+          name
+          label
+          options
+          variation
+        }
+      }
       variations {
         nodes {
           id
@@ -40809,6 +40821,13 @@ export const GetProductVariationsDocument = gql`
           stockStatus
           partNumber
           sku
+          attributes {
+            nodes {
+              name
+              label
+              value
+            }
+          }
         }
       }
     }

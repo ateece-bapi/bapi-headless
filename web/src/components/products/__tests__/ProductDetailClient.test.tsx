@@ -230,8 +230,10 @@ describe('ProductDetailClient', () => {
         expect(priceText).toBeInTheDocument();
       }, { timeout: 2000 });
       
-      // Click Add to Cart
-      fireEvent.click(screen.getByRole('button', { name: /Add.*to cart/i }));
+      // Click Add to Cart - use queryByRole to find the specific button
+      const addToCartBtn = await screen.findByRole('button', { name: /^Add .* to cart$/i });
+      expect(addToCartBtn).toBeInTheDocument();
+      fireEvent.click(addToCartBtn);
       
       // Wait for async operation in AddToCartButton
       await waitFor(() => {
@@ -252,10 +254,15 @@ describe('Keyboard navigation and robustness', () => {
     // For variable products, select a variation first to show Add to Cart button
     await selectAttributes({ size: 'M', color: 'Red' });
     
+    // Wait for variation to be applied
+    await waitFor(() => {
+      expect(screen.queryByRole('button', { name: /^Add .* to cart$/i })).toBeInTheDocument();
+    });
+    
     const userTabOrder = [
       screen.getByRole('radio', { name: /M Selected/i }),
       screen.getByRole('button', { name: /Select Red/i }),
-      screen.getByRole('button', { name: /Add.*to cart/i }),
+      screen.getByRole('button', { name: /^Add .* to cart$/i }),
     ];
     userTabOrder.forEach((el) => {
       el.focus();
@@ -325,9 +332,15 @@ describe('Accessibility', () => {
     // For variable products, must select a variation first
     await selectAttributes({ size: 'L', color: 'Blue' });
     
-    const btn = screen.getByRole('button', { name: /Add.*to cart/i });
-    expect(btn).toBeInTheDocument();
-    expect(btn).toHaveAccessibleName(/Add.*to cart/i);
+    // Wait for variation to be applied and button to render
+    await waitFor(() => {
+      // Use queryByRole to avoid throwing, then check if it exists
+      const addToCartBtn = screen.queryByRole('button', { name: /^Add .* to cart$/i });
+      expect(addToCartBtn).toBeInTheDocument();
+      if (addToCartBtn) {
+        expect(addToCartBtn).toHaveAccessibleName(/Add.*to cart/i);
+      }
+    });
   });
 
   it('images have meaningful alt text', async () => {

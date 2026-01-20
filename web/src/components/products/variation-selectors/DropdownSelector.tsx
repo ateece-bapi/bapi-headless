@@ -26,18 +26,16 @@ export default function DropdownSelector({
   description
 }: DropdownSelectorProps) {
   return (
-    <div className={className}>
-      <div className="mb-2">
-        <label 
-          htmlFor={`dropdown-${label}`}
-          className="block text-sm font-semibold text-neutral-700 uppercase tracking-wide"
-        >
-          {label}
-        </label>
-        {description && (
-          <p className="mt-1 text-xs text-neutral-600">{description}</p>
-        )}
-      </div>
+    <div className={`${className}`}>
+      <label 
+        htmlFor={`dropdown-${label}`}
+        className="block text-sm font-bold text-neutral-900 uppercase tracking-wide mb-2"
+      >
+        {label}
+      </label>
+      {description && (
+        <p className="mb-2 text-xs text-neutral-600">{description}</p>
+      )}
       
       <div className="relative">
         <select
@@ -45,13 +43,13 @@ export default function DropdownSelector({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className={`
-            w-full px-4 py-3 pr-10 rounded-lg border-2 transition-all appearance-none bg-white
+            w-full px-4 py-3.5 pr-12 rounded-lg border-2 transition-all appearance-none bg-white text-base
             ${value 
-              ? 'border-primary-500 text-neutral-900 font-medium' 
+              ? 'border-accent-500 text-neutral-900 font-semibold shadow-sm' 
               : 'border-neutral-300 text-neutral-600'
             }
-            hover:border-primary-400
-            focus:border-primary-600 focus:ring-2 focus:ring-primary-500/20 focus:outline-none
+            hover:border-accent-400 focus:border-accent-500 focus:ring-4 focus:ring-accent-500/20 focus:outline-none
+            cursor-pointer
           `}
         >
           <option value="">Choose an option</option>
@@ -63,10 +61,10 @@ export default function DropdownSelector({
         </select>
         
         {/* Custom chevron icon */}
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
           <ChevronDown className={`
             w-5 h-5 transition-colors
-            ${value ? 'text-primary-600' : 'text-neutral-400'}
+            ${value ? 'text-accent-600' : 'text-neutral-400'}
           `} />
         </div>
       </div>

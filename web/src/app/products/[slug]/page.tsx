@@ -236,10 +236,31 @@ export default async function ProductPage({ params }: { params: { slug: string }
         attributes: variationData?.__typename === 'VariableProduct' ? 
           (variationData.attributes?.nodes || [])
             .filter((attr: any) => attr.variation === true)
-            .map((attr: any) => ({
-              name: attr.name,
-              options: attr.options || []
-            })) : [],
+            .map((attr: any) => {
+              // Get actual values from variations, not from attribute.options
+              // Normalize both attribute name and variation attribute name for comparison
+              const normalizeSlug = (name: string) => name.toLowerCase().replace(/\s+/g, '-');
+              const attributeSlug = normalizeSlug(attr.name);
+              const actualValues = new Set<string>();
+              
+              (variationData.variations?.nodes || []).forEach((variation: any) => {
+                const varAttr = variation.attributes?.nodes?.find((va: any) => {
+                  const vaSlug = normalizeSlug(va.name);
+                  return vaSlug === attributeSlug;
+                });
+                if (varAttr?.value) {
+                  actualValues.add(varAttr.value);
+                }
+              });
+              
+              return {
+                id: attr.id,
+                name: attr.name, // slug for matching (e.g., "pressure-range")
+                label: attr.label, // display name (e.g., "Pressure Range")
+                options: Array.from(actualValues), // Use actual variation values
+                variation: attr.variation
+              };
+            }) : [],
         variations: variationData?.__typename === 'VariableProduct' ? 
           (variationData.variations?.nodes || []).map((variation: any) => ({
             id: variation.id,

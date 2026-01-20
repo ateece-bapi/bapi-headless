@@ -71,9 +71,11 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
         <main className="py-12">
           <div className="container mx-auto px-4">
             <Breadcrumbs items={buildBreadcrumbs()} />
-            <div className="flex flex-col md:flex-row gap-8 mb-8 items-start">
-              <div className="flex-1">
-                {/* Enhanced Product Gallery */}
+            
+            {/* Main Product Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              {/* Left Column: Product Image */}
+              <div className="lg:col-span-2">
                 {product.gallery && product.gallery.length > 0 ? (
                   <ProductGallery
                     images={product.gallery.map((img: any) => ({
@@ -86,18 +88,22 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
                   <ProductHero product={product} variation={selectedVariation} />
                 )}
               </div>
-              <ProductSummaryCard
-                product={product}
-                variation={selectedVariation}
-                useCart={useCart}
-                useCartDrawer={useCartDrawer}
-              />
+              
+              {/* Right Column: Product Summary (Sticky) */}
+              <div className="lg:col-span-1">
+                <ProductSummaryCard
+                  product={product}
+                  variation={selectedVariation}
+                  useCart={useCart}
+                  useCartDrawer={useCartDrawer}
+                />
+              </div>
             </div>
             
             {/* Trust and credibility badges */}
             <TrustBadges className="mb-8" />
             
-            {/* Enhanced Variation Selector (replaces ProductConfigurator) */}
+            {/* Enhanced Variation Selector */}
             <ProductVariationSelector
               product={product}
               onVariationChange={setSelectedVariation}

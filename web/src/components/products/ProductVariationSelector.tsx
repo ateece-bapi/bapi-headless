@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useMemo } from 'react';
 import VariationSelector from './VariationSelector';
 import type { ProductAttribute, ProductVariation } from '@/types/variations';
 
@@ -64,32 +65,40 @@ export default function ProductVariationSelector({
   }
 
   // Transform old attribute format to new ProductAttribute format
-  const transformedAttributes: ProductAttribute[] = attributes.map((attr, index) => ({
-    id: `attr-${index}`,
-    name: attr.name,
-    label: attr.name, // Same as name for now
-    options: attr.options,
-    variation: true // All attributes are for variations
-  }));
+  // Memoize to prevent recreating arrays on every render
+  const transformedAttributes: ProductAttribute[] = useMemo(() => 
+    attributes.map((attr, index) => ({
+      id: `attr-${index}`,
+      name: attr.name,
+      label: attr.name, // Same as name for now
+      options: attr.options,
+      variation: true // All attributes are for variations
+    })),
+    [attributes]
+  );
 
   // Transform old variation format to new ProductVariation format
-  const transformedVariations: ProductVariation[] = variations.map((variation) => ({
-    id: variation.id,
-    databaseId: variation.databaseId || 0,
-    name: variation.name || '',
-    price: variation.price || '',
-    regularPrice: variation.regularPrice || '',
-    stockStatus: variation.stockStatus || 'IN_STOCK',
-    partNumber: variation.partNumber || undefined, // Transform null to undefined
-    sku: variation.sku || '',
-    attributes: {
-      nodes: Object.entries(variation.attributes).map(([name, value]) => ({
-        name,
-        label: name,
-        value: String(value)
-      }))
-    }
-  }));
+  // Memoize to prevent recreating arrays on every render
+  const transformedVariations: ProductVariation[] = useMemo(() =>
+    variations.map((variation) => ({
+      id: variation.id,
+      databaseId: variation.databaseId || 0,
+      name: variation.name || '',
+      price: variation.price || '',
+      regularPrice: variation.regularPrice || '',
+      stockStatus: variation.stockStatus || 'IN_STOCK',
+      partNumber: variation.partNumber || undefined, // Transform null to undefined
+      sku: variation.sku || '',
+      attributes: {
+        nodes: Object.entries(variation.attributes).map(([name, value]) => ({
+          name,
+          label: name,
+          value: String(value)
+        }))
+      }
+    })),
+    [variations]
+  );
 
   // Handle variation change - transform back to old format
   const handleVariationChange = (

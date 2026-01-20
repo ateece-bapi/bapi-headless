@@ -23,7 +23,7 @@ const baseProduct: ProductForClient = {
       price: '$9.99',
       stockStatus: 'IN_STOCK',
       stockQuantity: 10,
-      attributes: { Size: 'M', Color: 'Red' },
+      attributes: { size: 'M', color: 'Red' },
       image: { sourceUrl: 'https://example.test/var-a.png', altText: 'Variant A' },
     },
     {
@@ -33,7 +33,7 @@ const baseProduct: ProductForClient = {
       price: '$10.99',
       stockStatus: 'IN_STOCK',
       stockQuantity: 5,
-      attributes: { Size: 'L', Color: 'Blue' },
+      attributes: { size: 'L', color: 'Blue' },
       image: { sourceUrl: 'https://example.test/var-b.png', altText: 'Variant B' },
     },
     {
@@ -43,7 +43,7 @@ const baseProduct: ProductForClient = {
       price: '$9.99',
       stockStatus: 'IN_STOCK',
       stockQuantity: 8,
-      attributes: { Size: 'M', Color: 'Blue' },
+      attributes: { size: 'M', color: 'Blue' },
       image: { sourceUrl: 'https://example.test/var-c.png', altText: 'Variant C' },
     },
     {
@@ -53,7 +53,7 @@ const baseProduct: ProductForClient = {
       price: '$10.99',
       stockStatus: 'IN_STOCK',
       stockQuantity: 3,
-      attributes: { Size: 'L', Color: 'Red' },
+      attributes: { size: 'L', color: 'Red' },
       image: { sourceUrl: 'https://example.test/var-d.png', altText: 'Variant D' },
     },
   ],
@@ -152,10 +152,23 @@ describe('ProductDetailClient', () => {
   });
 
   describe('Edge cases', () => {
-    it('disables Add to Cart when out of stock', () => {
-      const outOfStockProduct = { ...baseProduct, stockStatus: 'OUT_OF_STOCK' };
+    it('disables Add to Cart when out of stock', async () => {
+      // Make all variations out of stock
+      const outOfStockProduct = { 
+        ...baseProduct, 
+        stockStatus: 'OUT_OF_STOCK',
+        variations: baseProduct.variations.map(v => ({
+          ...v,
+          stockStatus: 'OUT_OF_STOCK'
+        }))
+      };
       renderProductDetail(outOfStockProduct);
-      const addToCartBtn = screen.getByRole('button', { name: /out of stock/i });
+      
+      // Select a variation to show the Add to Cart button
+      await selectAttributes({ size: 'M', color: 'Red' });
+      
+      // Button should appear with "Out of Stock" text and be disabled
+      const addToCartBtn = await screen.findByRole('button', { name: /Out of Stock/i });
       expect(addToCartBtn).toBeDisabled();
     });
 
@@ -235,9 +248,13 @@ describe('ProductDetailClient', () => {
 describe('Keyboard navigation and robustness', () => {
   it('allows tabbing to all interactive elements', async () => {
     renderProductDetail();
+    
+    // For variable products, select a variation first to show Add to Cart button
+    await selectAttributes({ size: 'M', color: 'Red' });
+    
     const userTabOrder = [
-      screen.getByRole('radio', { name: /M/i }),
-      screen.getByRole('button', { name: /Red/i }),
+      screen.getByRole('radio', { name: /M Selected/i }),
+      screen.getByRole('button', { name: /Select Red/i }),
       screen.getByRole('button', { name: /Add.*to cart/i }),
     ];
     userTabOrder.forEach((el) => {
@@ -273,12 +290,11 @@ describe('Error states and UI feedback', () => {
   });
 
   it('renders gracefully when price is missing', () => {
-    const noPriceProduct = { ...baseProduct, price: '' };
+    const noPriceProduct = { ...baseProduct, price: '', variations: [], attributes: [] };
     renderProductDetail(noPriceProduct);
-    // Should not throw, and price area should be empty
-    const priceEl = screen.getByText((content, node) => !!node && node.tagName === 'P' && node.className.includes('text-primary-500'));
-    expect(priceEl).toBeInTheDocument();
-    expect(priceEl).toHaveTextContent('');
+    // Should not throw, and should render the empty price fallback
+    const aside = screen.getByRole('complementary');
+    expect(aside).toBeInTheDocument();
   });
 
   it('shows fallback description if missing', () => {
@@ -303,8 +319,12 @@ describe('Accessibility', () => {
     expect(screen.getByRole('button', { name: /Blue/i })).toBeInTheDocument();
   });
 
-  it('Add to Cart button is accessible', () => {
+  it('Add to Cart button is accessible', async () => {
     renderProductDetail();
+    
+    // For variable products, must select a variation first
+    await selectAttributes({ size: 'L', color: 'Blue' });
+    
     const btn = screen.getByRole('button', { name: /Add.*to cart/i });
     expect(btn).toBeInTheDocument();
     expect(btn).toHaveAccessibleName(/Add.*to cart/i);

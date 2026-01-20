@@ -13,11 +13,14 @@ import {
   getProductCategories,
   transformProductForClient
 } from '@/lib/graphql';
+import { getGraphQLClient } from '@/lib/graphql/client';
+import { GetProductVariationsDocument } from '@/lib/graphql/generated';
 import type { 
   GetProductBySlugQuery,
   GetProductBySlugLightQuery,
   GetProductCategoryQuery,
-  GetProductsByCategoryQuery 
+  GetProductsByCategoryQuery,
+  GetProductVariationsQuery
 } from '@/lib/graphql';
 import { getProductQuerySchema, productSchema } from '@/lib/validation/product';
 import { z } from 'zod';
@@ -195,6 +198,21 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
       timer.mark('validation-complete');
 
+      // Fetch variations if this is a VariableProduct
+      let variationData = null;
+      if (product.__typename === 'VariableProduct') {
+        try {
+          const client = getGraphQLClient(['product-variations', `product-${product.databaseId}`], true);
+          const variationsResult = await client.request<GetProductVariationsQuery>(
+            GetProductVariationsDocument,
+            { id: product.databaseId?.toString() || product.id }
+          );
+          variationData = variationsResult.product;
+        } catch (error) {
+          console.error('[ProductPage] Failed to fetch variations:', error);
+        }
+      }
+
       // Transform light product data for client
       const productForClient = {
         id: product.id,
@@ -215,8 +233,26 @@ export default async function ProductPage({ params }: { params: { slug: string }
         productCategories: product.productCategories?.nodes || [],
         tags: [], // Will be loaded deferred
         multiplierGroups: [], // Will be loaded deferred
-        attributes: [],
-        variations: [], // Will be loaded if needed (should be array, not {nodes:[]})
+        attributes: variationData?.__typename === 'VariableProduct' ? 
+          (variationData.attributes?.nodes || []).map((attr: any) => ({
+            name: attr.name,
+            options: attr.options || []
+          })) : [],
+        variations: variationData?.__typename === 'VariableProduct' ? 
+          (variationData.variations?.nodes || []).map((variation: any) => ({
+            id: variation.id,
+            databaseId: variation.databaseId,
+            name: variation.name,
+            price: variation.price,
+            regularPrice: variation.regularPrice,
+            stockStatus: variation.stockStatus,
+            partNumber: variation.partNumber,
+            sku: variation.sku,
+            attributes: (variation.attributes?.nodes || []).reduce((acc: any, attr: any) => {
+              acc[attr.name] = attr.value;
+              return acc;
+            }, {})
+          })) : [],
         relatedProducts: [], // Will be loaded by RelatedProductsAsync
         iosAppUrl: null,
         androidAppUrl: null,

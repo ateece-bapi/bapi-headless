@@ -36,8 +36,6 @@ import {
   ProductDetailClient,
   CategoryPage
 } from '@/components/products';
-import { ProductGalleryAsync } from '@/components/products/ProductGalleryAsync';
-import { ProductTabsAsync } from '@/components/products/ProductTabsAsync';
 import { RelatedProductsAsync } from '@/components/products/RelatedProductsAsync';
 import dynamic from 'next/dynamic';
 import { PerformanceTimer } from '@/lib/monitoring/performance';
@@ -187,10 +185,21 @@ export default async function ProductPage({ params }: { params: { slug: string }
   
   // Check if it's a product
   if (productResult.status === 'fulfilled') {
+
     try {
       const data = productResult.value;
       // Light query validation - only essential fields
       const product = data.product as GetProductBySlugLightQuery['product'] | null;
+
+      // DEBUG: Log galleryImages to verify images from backend
+      if (
+        product &&
+        'galleryImages' in product &&
+        product.galleryImages
+      ) {
+        // eslint-disable-next-line no-console
+        console.log('[ProductPage] galleryImages:', product.galleryImages);
+      }
 
       if (!product) {
         notFound();
@@ -220,7 +229,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
         name: product.name || '',
         slug: product.slug || '',
         shortDescription: product.shortDescription || null,
-        description: null, // Will be loaded by ProductTabsAsync
+        description: product.description || null,
         partNumber: (product as any).partNumber || null,
         price: (product as any).price || null,
         regularPrice: (product as any).regularPrice || null,
@@ -229,7 +238,31 @@ export default async function ProductPage({ params }: { params: { slug: string }
         stockStatus: (product as any).stockStatus || null,
         sku: (product as any).sku || null,
         image: product.image || null,
-        galleryImages: [], // Will be loaded by ProductGalleryAsync
+        gallery: ((product as any).galleryImages?.nodes || []).map((img: any) => ({
+          sourceUrl: img.sourceUrl,
+          altText: img.altText
+        })),
+        documents: (product.productDocuments || [])
+          .filter((category): category is NonNullable<typeof category> => category !== null && category !== undefined)
+          .flatMap(category => 
+            (category.files || [])
+              .filter((file): file is NonNullable<typeof file> => file !== null && file !== undefined)
+              .map(file => ({
+                title: file.title || '',
+                url: file.url || '',
+                category: category.heading || 'Documents'
+              }))
+          ),
+        videos: (product.productVideos || [])
+          .filter((category): category is NonNullable<typeof category> => category !== null && category !== undefined)
+          .flatMap(category =>
+            (category.videos || [])
+              .filter((video): video is NonNullable<typeof video> => video !== null && video !== undefined)
+              .map(video => ({
+                title: category.heading || 'Video',
+                url: video.url || ''
+              }))
+          ),
         productCategories: product.productCategories?.nodes || [],
         tags: [], // Will be loaded deferred
         multiplierGroups: [], // Will be loaded deferred
@@ -291,15 +324,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           <ProductDetailClient product={productForClient} productId={productDbId} />
           
           {/* Deferred content loaded in separate Suspense boundaries on client */}
-          <Suspense fallback={<div className="container mx-auto px-4 py-8 animate-pulse h-64 bg-gray-100 rounded" />}>
-            <ProductTabsAsync productId={productDbId} />
-          </Suspense>
-          
-          <Suspense fallback={<div className="container mx-auto px-4 py-8 animate-pulse h-48 bg-gray-50 rounded" />}>
-            <ProductGalleryAsync productId={productDbId} productName={product.name || ''} />
-          </Suspense>
-          
-          <Suspense fallback={<div className="container mx-auto px-4 py-12 bg-gray-50 animate-pulse h-96 rounded" />}>
+          <Suspense fallback={<div className="container mx-auto px-4 py-12 bg-neutral-50 animate-pulse h-96 rounded" />}>
             <RelatedProductsAsync productId={productDbId} />
           </Suspense>
         </>

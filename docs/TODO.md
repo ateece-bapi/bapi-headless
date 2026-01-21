@@ -1,3 +1,11 @@
+# ---
+# Product Gallery Multi-Image Debug (Jan 21, 2026)
+- [ ] Investigate why additional product images (galleryImages) are not showing for products with multiple images
+  - Confirm images are present in WordPress product gallery
+  - Confirm galleryImages.nodes is populated in GraphQL API
+  - Confirm frontend mapping and rendering logic
+  - Resume debugging and fix so thumbnails/lightbox work for all images
+
 # BAPI Headless - TODO & Next Steps
 
 ## ✅ Completed

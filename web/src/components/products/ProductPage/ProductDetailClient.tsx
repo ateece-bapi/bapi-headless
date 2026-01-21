@@ -7,7 +7,6 @@ import ProductSummaryCard from "@/components/products/ProductPage/ProductSummary
 import ProductTabs from "@/components/products/ProductPage/ProductTabs";
 import RelatedProducts from "@/components/products/ProductPage/RelatedProducts";
 import AppLinks from "@/components/products/ProductPage/AppLinks";
-import ContactInfo from "@/components/products/ProductPage/ContactInfo";
 import Breadcrumbs from "@/components/products/ProductPage/Breadcrumbs";
 import TrustBadges from "@/components/products/ProductPage/TrustBadges";
 import HelpCTA from "@/components/products/ProductPage/HelpCTA";
@@ -146,7 +145,6 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
             
             <RelatedProducts related={product.relatedProducts} />
             <AppLinks product={{ iosAppUrl: product.iosAppUrl, androidAppUrl: product.androidAppUrl }} />
-            <ContactInfo />
           </div>
         </main>
         <footer className="border-t border-neutral-200 py-8 bg-white">

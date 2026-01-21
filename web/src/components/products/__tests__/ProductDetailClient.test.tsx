@@ -95,7 +95,8 @@ async function selectAttributes({ size, color }: { size?: string; color?: string
   
   if (size) {
     // Size is rendered as radio group (2-4 options: M, L, XL)
-    const sizeRadio = screen.getByRole('radio', { name: new RegExp(size, 'i') });
+    // Radio inputs have the size value as their accessible name from label
+    const sizeRadio = screen.getByDisplayValue(size);
     await act(async () => {
       fireEvent.click(sizeRadio);
     });
@@ -319,8 +320,8 @@ describe('Accessibility', () => {
       expect(screen.getByText(attr.name)).toBeInTheDocument();
     });
     // Check that size radio inputs exist (radio group UI)
-    expect(screen.getByRole('radio', { name: /M/i })).toBeInTheDocument();
-    expect(screen.getByRole('radio', { name: /L/i })).toBeInTheDocument();
+    expect(screen.getByDisplayValue('M')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('L')).toBeInTheDocument();
     // Check that color swatches exist (button-based UI for colors)
     expect(screen.getByRole('button', { name: /Red/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Blue/i })).toBeInTheDocument();

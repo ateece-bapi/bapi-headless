@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Package, TrendingUp, Clock, RotateCcw } from 'lucide-react';
+import { Package, TrendingUp, Clock, RotateCcw, Share2, Check } from 'lucide-react';
 import type { 
   ProductAttribute, 
   ProductVariation, 
@@ -49,6 +49,7 @@ export default function VariationSelector({
 }: VariationSelectorProps) {
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
+  const [showShareConfirmation, setShowShareConfirmation] = useState(false);
   
   // Filter to only attributes used for variations
   const variationAttributes = attributes.filter(attr => attr.variation);
@@ -106,6 +107,87 @@ export default function VariationSelector({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attributes, variations]);
   
+  // Sync selected attributes to URL on mount and when selections change
+  useEffect(() => {
+    // On mount, read URL params and restore selection
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlSelections: SelectedAttributes = {};
+      let hasUrlParams = false;
+      
+      variationAttributes.forEach(attr => {
+        const slug = normalizeToSlug(attr.name);
+        const value = params.get(slug);
+        if (value) {
+          urlSelections[slug] = value;
+          hasUrlParams = true;
+        }
+      });
+      
+      if (hasUrlParams && Object.keys(selectedAttributes).length === 0) {
+        setSelectedAttributes(urlSelections);
+        
+        // Check if we can find a matching variation
+        const attributeSlugs = variationAttributes.map(a => normalizeToSlug(a.name));
+        const allSelected = areAllAttributesSelected(attributeSlugs, urlSelections);
+        if (allSelected) {
+          const variation = findMatchingVariation(variations, urlSelections);
+          if (variation) {
+            setMatchedVariation(variation);
+            onVariationChange(variation, variation.partNumber || variation.sku || null);
+          }
+        }
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+  // Update URL when selections change
+  useEffect(() => {
+    if (typeof window !== 'undefined' && Object.keys(selectedAttributes).length > 0) {
+      const params = new URLSearchParams(window.location.search);
+      
+      // Add/update selected attributes
+      Object.entries(selectedAttributes).forEach(([key, value]) => {
+        if (value) {
+          params.set(key, value);
+        } else {
+          params.delete(key);
+        }
+      });
+      
+      // Update URL without page reload
+      const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [selectedAttributes]);
+  
+  // Handle share configuration
+  const handleShare = async () => {
+    if (typeof window !== 'undefined' && Object.keys(selectedAttributes).length > 0) {
+      const url = window.location.href;
+      
+      try {
+        // Try using Web Share API (mobile)
+        if (navigator.share) {
+          await navigator.share({
+            title: `${matchedVariation?.name || 'Product Configuration'}`,
+            text: `Check out this configuration: ${matchedVariation?.partNumber || matchedVariation?.sku || ''}`,
+            url: url,
+          });
+        } else {
+          // Fallback: copy to clipboard
+          await navigator.clipboard.writeText(url);
+          setShowShareConfirmation(true);
+          setTimeout(() => setShowShareConfirmation(false), 3000);
+        }
+      } catch (error) {
+        // Silent fail - user might have cancelled
+        console.log('Share cancelled or failed');
+      }
+    }
+  };
+  
   if (variationAttributes.length === 0) {
     return null;
   }
@@ -126,15 +208,37 @@ export default function VariationSelector({
               Select your specifications below • {selectedCount} of {totalCount} options selected
             </p>
           </div>
-          {selectedCount > 0 && (
-            <button
-              onClick={handleClear}
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors backdrop-blur-sm border border-white/20"
-            >
-              <RotateCcw className="w-4 h-4" />
-              <span className="font-medium">Reset</span>
-            </button>
-          )}
+          <div className="flex gap-2">
+            {selectedCount > 0 && (
+              <>
+                <button
+                  onClick={handleShare}
+                  className="flex items-center gap-2 px-4 py-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 rounded-lg transition-colors font-semibold shadow-md relative"
+                  disabled={!matchedVariation}
+                  title={matchedVariation ? 'Share this configuration' : 'Complete configuration to share'}
+                >
+                  {showShareConfirmation ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      <span className="font-medium">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="w-4 h-4" />
+                      <span className="font-medium hidden sm:inline">Share</span>
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={handleClear}
+                  className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors backdrop-blur-sm border border-white/20"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  <span className="font-medium hidden sm:inline">Reset</span>
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
       

@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { Briefcase, Heart } from 'lucide-react';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 
 interface ProductSummaryCardProps {
@@ -19,6 +20,7 @@ export default function ProductSummaryCard({
   isLoadingVariation = false 
 }: ProductSummaryCardProps) {
   const [quantity, setQuantity] = React.useState(1);
+  const [isFavorited, setIsFavorited] = React.useState(false);
   
   // Check if this is a variable product
   const isVariableProduct = product.attributes && product.attributes.length > 0;
@@ -243,11 +245,24 @@ export default function ProductSummaryCard({
       
       {/* Secondary Actions */}
       <div className="flex gap-2">
-        <button className="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-4 rounded-lg shadow focus:outline-none focus:ring-4 focus:ring-primary-500/50 transition w-full text-sm min-h-[44px]">
-          Add to Job Estimate
+        <button 
+          className="flex items-center justify-center gap-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-4 rounded-lg shadow focus:outline-none focus:ring-4 focus:ring-primary-500/50 transition w-full text-sm min-h-[44px]"
+          title="Add to Job Estimate"
+        >
+          <Briefcase className="w-4 h-4" />
+          <span className="hidden sm:inline">Job Estimate</span>
         </button>
-        <button className="bg-white border-2 border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:bg-neutral-50 font-semibold py-3 px-4 rounded-lg shadow-sm focus:outline-none focus:ring-4 focus:ring-neutral-300/50 transition w-full text-sm min-h-[44px]">
-          Add to Favorites
+        <button 
+          onClick={() => setIsFavorited(!isFavorited)}
+          className={`flex items-center justify-center gap-2 font-semibold py-3 px-4 rounded-lg shadow focus:outline-none focus:ring-4 transition w-full text-sm min-h-[44px] ${
+            isFavorited 
+              ? 'bg-red-500 hover:bg-red-600 text-white focus:ring-red-500/50' 
+              : 'bg-white border-2 border-neutral-300 text-neutral-700 hover:border-red-400 hover:text-red-500 focus:ring-neutral-300/50'
+          }`}
+          title={isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+        >
+          <Heart className={`w-4 h-4 ${isFavorited ? 'fill-current' : ''}`} />
+          <span className="hidden sm:inline">{isFavorited ? 'Favorited' : 'Favorite'}</span>
         </button>
       </div>
       </>

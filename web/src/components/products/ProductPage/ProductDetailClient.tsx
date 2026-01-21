@@ -91,8 +91,8 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
                 {product.gallery && product.gallery.length > 0 ? (
                   <ProductGallery
                     images={product.gallery.map((img: any) => ({
-                      url: img.sourceUrl,
-                      alt: img.altText || product.name,
+                      sourceUrl: img.sourceUrl,
+                      altText: img.altText || product.name,
                     }))}
                     productName={product.name}
                   />

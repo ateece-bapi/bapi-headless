@@ -60,6 +60,21 @@ query GetProductBySlug($slug: ID!) {
     description
     shortDescription
     partNumber
+    productDocuments {
+      heading
+      files {
+        id
+        url
+        title
+        filename
+      }
+    }
+    productVideos {
+      heading
+      videos {
+        url
+      }
+    }
     ... on SimpleProduct {
       price
       regularPrice
@@ -157,6 +172,7 @@ query GetProductBySlugLight($slug: ID!) {
     databaseId
     name
     slug
+    description
     shortDescription
     partNumber
     ... on SimpleProduct {
@@ -189,6 +205,21 @@ query GetProductBySlugLight($slug: ID!) {
         slug
       }
     }
+    productDocuments {
+      heading
+      files {
+        id
+        url
+        title
+        filename
+      }
+    }
+    productVideos {
+      heading
+      videos {
+        url
+      }
+    }
   }
 }
 
@@ -198,6 +229,21 @@ query GetProductDetailsDeferred($id: ID!) {
   product(id: $id, idType: DATABASE_ID) {
     id
     description
+    productDocuments {
+      heading
+      files {
+        id
+        url
+        title
+        filename
+      }
+    }
+    productVideos {
+      heading
+      videos {
+        url
+      }
+    }
     galleryImages {
       nodes {
         id

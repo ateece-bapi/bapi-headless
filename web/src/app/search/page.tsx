@@ -1,3 +1,4 @@
+import { sanitizeWordPressContent } from '@/lib/sanitizeDescription';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -178,7 +179,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                   {product.shortDescription && (
                     <div
                       className="text-sm text-neutral-600 mb-3 line-clamp-2"
-                      dangerouslySetInnerHTML={{ __html: product.shortDescription }}
+                      dangerouslySetInnerHTML={{ __html: sanitizeWordPressContent(product.shortDescription) }}
                     />
                   )}
                   

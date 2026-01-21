@@ -1,6 +1,7 @@
 import { getProductPrice } from '@/lib/graphql';
 import Image from 'next/image';
 import type { GetProductBySlugQuery } from '@/lib/graphql';
+import { sanitizeWordPressContent } from '@/lib/sanitizeDescription';
 
 type ProductHeroProps = {
   product: NonNullable<GetProductBySlugQuery['product']>;
@@ -43,7 +44,7 @@ export function ProductHeroFast({ product }: ProductHeroProps) {
           {product.shortDescription && (
             <div 
               className="prose prose-sm max-w-none mb-6 text-gray-600"
-              dangerouslySetInnerHTML={{ __html: product.shortDescription }}
+              dangerouslySetInnerHTML={{ __html: sanitizeWordPressContent(product.shortDescription) }}
             />
           )}
           

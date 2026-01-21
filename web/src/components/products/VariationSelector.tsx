@@ -174,28 +174,33 @@ export default function VariationSelector({
           
           {/* Configuration Summary - Shows when variation is matched */}
           {matchedVariation && (
-            <div className="mt-8 pt-8 border-t-2 border-neutral-200">
-              <div className="bg-gradient-to-br from-accent-50 to-accent-100 border-2 border-accent-400 rounded-xl p-6 shadow-md">
+            <div className="mt-8 pt-8 border-t-2 border-primary-200 bg-gradient-to-br from-primary-25 to-primary-50 -m-8 mb-0 p-8 rounded-b-2xl">
+              <div className="bg-gradient-to-br from-accent-50 via-accent-100 to-white border-2 border-accent-500 rounded-xl p-6 shadow-xl">
                 <div className="flex items-start justify-between gap-6">
                   {/* Price and Part Number */}
                   <div className="flex-1">
-                    <p className="text-xs font-bold text-accent-700 uppercase tracking-wider mb-2">
-                      Selected Configuration
-                    </p>
-                    <div className="space-y-3">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 bg-accent-500 rounded-full flex items-center justify-center">
+                        <Package className="w-4 h-4 text-white" />
+                      </div>
+                      <p className="text-sm font-bold text-accent-800 uppercase tracking-wider">
+                        ✓ Selected Configuration
+                      </p>
+                    </div>
+                    <div className="space-y-4">
                       <div>
-                        <p className="text-sm text-neutral-600 mb-1">Part Number</p>
-                        <p className="text-xl font-mono font-bold text-neutral-900 bg-white px-3 py-2 rounded-lg border border-accent-300 inline-block">
+                        <p className="text-xs text-neutral-600 uppercase tracking-wide mb-2">Part Number</p>
+                        <p className="text-xl font-mono font-bold text-neutral-900 bg-white px-4 py-3 rounded-lg border-2 border-accent-400 inline-block shadow-sm">
                           {matchedVariation.partNumber || matchedVariation.sku}
                         </p>
                       </div>
                       <div>
-                        <p className="text-sm text-neutral-600 mb-1">Price</p>
-                        <p className="text-3xl font-bold text-primary-700">
+                        <p className="text-xs text-neutral-600 uppercase tracking-wide mb-2">Your Price</p>
+                        <p className="text-4xl font-bold text-primary-700">
                           {matchedVariation.price}
                         </p>
                         {basePrice && basePrice !== matchedVariation.price && (
-                          <span className="text-sm text-neutral-500 line-through ml-2">{basePrice}</span>
+                          <span className="text-base text-neutral-500 line-through ml-3">{basePrice}</span>
                         )}
                       </div>
                     </div>

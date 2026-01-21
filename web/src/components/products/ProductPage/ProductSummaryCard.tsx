@@ -8,9 +8,16 @@ interface ProductSummaryCardProps {
   variation?: any;
   useCart?: any;
   useCartDrawer?: any;
+  isLoadingVariation?: boolean; // New prop for loading state
 }
 
-export default function ProductSummaryCard({ product, variation, useCart, useCartDrawer }: ProductSummaryCardProps) {
+export default function ProductSummaryCard({ 
+  product, 
+  variation, 
+  useCart, 
+  useCartDrawer,
+  isLoadingVariation = false 
+}: ProductSummaryCardProps) {
   const [quantity, setQuantity] = React.useState(1);
   
   // Check if this is a variable product
@@ -84,6 +91,47 @@ export default function ProductSummaryCard({ product, variation, useCart, useCar
         </div>
       )}
       
+      {/* Loading State Overlay */}
+      {isLoadingVariation && (
+        <div className="space-y-4 animate-pulse">
+          {/* Stock Status Skeleton */}
+          <div className="h-10 bg-neutral-200 rounded-lg w-32"></div>
+          
+          {/* Part Number Skeleton */}
+          <div>
+            <div className="h-3 bg-neutral-200 rounded w-24 mb-2"></div>
+            <div className="h-10 bg-neutral-200 rounded-lg w-48"></div>
+          </div>
+          
+          {/* Price Skeleton */}
+          <div className="bg-neutral-100 rounded-xl p-4 space-y-3">
+            <div className="flex justify-between">
+              <div>
+                <div className="h-3 bg-neutral-200 rounded w-16 mb-2"></div>
+                <div className="h-10 bg-neutral-200 rounded w-32"></div>
+              </div>
+              <div>
+                <div className="h-3 bg-neutral-200 rounded w-16 mb-2"></div>
+                <div className="h-8 bg-neutral-200 rounded w-16"></div>
+              </div>
+            </div>
+            <div className="h-3 bg-neutral-200 rounded w-full"></div>
+          </div>
+          
+          {/* Quantity Skeleton */}
+          <div>
+            <div className="h-3 bg-neutral-200 rounded w-20 mb-2"></div>
+            <div className="h-12 bg-neutral-200 rounded-lg"></div>
+          </div>
+          
+          {/* Button Skeleton */}
+          <div className="h-14 bg-neutral-200 rounded-xl"></div>
+        </div>
+      )}
+      
+      {/* Actual Content - Hidden when loading */}
+      {!isLoadingVariation && (
+        <>
       {/* Stock Status Badge - Prominent Position */}
       {displayStockStatus && (
         <div className={`mb-4 inline-flex items-center gap-2 px-3 py-2 rounded-lg font-semibold text-sm ${
@@ -138,7 +186,7 @@ export default function ProductSummaryCard({ product, variation, useCart, useCar
           <button
             type="button"
             onClick={() => setQuantity(q => Math.max(1, q - 1))}
-            className="bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
+            className="bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold px-5 py-4 transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset min-w-[44px] min-h-[44px]"
             aria-label="Decrease quantity"
           >
             −
@@ -150,12 +198,12 @@ export default function ProductSummaryCard({ product, variation, useCart, useCar
             max={product.stockQuantity || 999}
             value={quantity}
             onChange={e => setQuantity(Math.max(1, Number(e.target.value)))}
-            className="flex-1 text-center border-0 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 bg-white text-neutral-900 py-3 font-semibold text-lg"
+            className="flex-1 text-center border-0 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 bg-white text-neutral-900 py-4 font-semibold text-lg min-h-[44px]"
           />
           <button
             type="button"
             onClick={() => setQuantity(q => Math.min(product.stockQuantity || 999, q + 1))}
-            className="bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
+            className="bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold px-5 py-4 transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset min-w-[44px] min-h-[44px]"
             aria-label="Increase quantity"
           >
             +
@@ -195,13 +243,15 @@ export default function ProductSummaryCard({ product, variation, useCart, useCar
       
       {/* Secondary Actions */}
       <div className="flex gap-2">
-        <button className="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-4 focus:ring-primary-500/50 transition w-full text-sm">
+        <button className="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-4 rounded-lg shadow focus:outline-none focus:ring-4 focus:ring-primary-500/50 transition w-full text-sm min-h-[44px]">
           Add to Job Estimate
         </button>
-        <button className="bg-white border-2 border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:bg-neutral-50 font-semibold py-2 px-4 rounded-lg shadow-sm focus:outline-none focus:ring-4 focus:ring-neutral-300/50 transition w-full text-sm">
+        <button className="bg-white border-2 border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:bg-neutral-50 font-semibold py-3 px-4 rounded-lg shadow-sm focus:outline-none focus:ring-4 focus:ring-neutral-300/50 transition w-full text-sm min-h-[44px]">
           Add to Favorites
         </button>
       </div>
+      </>
+      )}
     </aside>
   );
 }

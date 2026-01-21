@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { Package } from 'lucide-react';
 import ProductHero from "@/components/products/ProductPage/ProductHero";
 import ProductSummaryCard from "@/components/products/ProductPage/ProductSummaryCard";
 import ProductTabs from "@/components/products/ProductPage/ProductTabs";
@@ -24,7 +25,18 @@ interface ProductDetailClientProps {
 export default function ProductDetailClient({ product, productId, useCart, useCartDrawer }: ProductDetailClientProps) {
 
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
+  const [isLoadingVariation, setIsLoadingVariation] = useState(false);
   const { addProduct } = useRecentlyViewed();
+
+  // Handle variation change with loading state
+  const handleVariationChange = (variation: any) => {
+    setIsLoadingVariation(true);
+    // Simulate slight delay for loading state visibility
+    setTimeout(() => {
+      setSelectedVariation(variation);
+      setIsLoadingVariation(false);
+    }, 150); // Brief delay to show loading state
+  };
 
   // Track this product as recently viewed
   useEffect(() => {
@@ -96,6 +108,7 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
                   variation={selectedVariation}
                   useCart={useCart}
                   useCartDrawer={useCartDrawer}
+                  isLoadingVariation={isLoadingVariation}
                 />
               </div>
             </div>
@@ -103,10 +116,23 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
             {/* Trust and credibility badges */}
             <TrustBadges className="mb-8" />
             
+            {/* Product Name Header - Sticky on mobile for context */}
+            {product.attributes && product.attributes.length > 0 && (
+              <div className="bg-white border-b-2 border-primary-500 mb-4 -mx-4 px-4 py-4 md:mx-0 md:px-6 md:rounded-t-xl sticky top-0 z-10 shadow-md md:static md:shadow-none">
+                <h2 className="text-xl md:text-2xl font-bold text-neutral-900 flex items-center gap-3">
+                  <Package className="w-6 h-6 text-primary-600" />
+                  <span>{product.name}</span>
+                </h2>
+                <p className="text-sm text-neutral-600 mt-1 ml-9">
+                  Configure your specifications below
+                </p>
+              </div>
+            )}
+            
             {/* Enhanced Variation Selector */}
             <ProductVariationSelector
               product={product}
-              onVariationChange={setSelectedVariation}
+              onVariationChange={handleVariationChange}
             />
             <ProductTabs product={product} />
             

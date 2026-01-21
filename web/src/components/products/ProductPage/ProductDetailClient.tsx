@@ -12,6 +12,7 @@ import TrustBadges from "@/components/products/ProductPage/TrustBadges";
 import HelpCTA from "@/components/products/ProductPage/HelpCTA";
 import { CartDrawer } from "@/components/cart";
 import { ProductVariationSelector, ProductGallery, RecentlyViewed } from "@/components/products";
+import VariationComparisonTool from "@/components/products/VariationComparisonTool";
 import { useRecentlyViewed } from "@/store";
 
 interface ProductDetailClientProps {
@@ -133,6 +134,15 @@ export default function ProductDetailClient({ product, productId, useCart, useCa
               product={product}
               onVariationChange={handleVariationChange}
             />
+            
+            {/* Variation Comparison Tool - Collapsible */}
+            {product.variations && product.variations.length > 1 && (
+              <VariationComparisonTool
+                variations={product.variations}
+                className="mb-8"
+              />
+            )}
+            
             <ProductTabs product={product} />
             
             {/* Recently Viewed Products - shows below tabs */}

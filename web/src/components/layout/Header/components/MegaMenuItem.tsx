@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Radio } from 'lucide-react';
 import clsx from 'clsx';
 import type { MegaMenuItem } from '../types';
 import { useOutsideClick } from '../hooks/useOutsideClick';
@@ -226,7 +226,13 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           {/* Featured Section */}
           {item.megaMenu.featured && (
             <div className="md:col-span-3">
-              <div className="rounded-xl border-2 border-accent-400 bg-gradient-to-br from-accent-50 via-accent-100/80 to-accent-50 p-5 sm:p-6 md:p-8 transition-shadow duration-300 hover:shadow-2xl hover:shadow-accent-500/20 relative overflow-hidden">
+              <div className={clsx(
+                "rounded-xl border-2 p-5 sm:p-6 md:p-8 transition-shadow duration-300 relative overflow-hidden",
+                // WAM™ gets yellow accent styling
+                item.megaMenu.featured.title.includes('WAM™')
+                  ? "border-accent-400 bg-gradient-to-br from-accent-50 via-accent-100/80 to-accent-50 hover:shadow-2xl hover:shadow-accent-500/20"
+                  : "border-accent-400 bg-gradient-to-br from-accent-50 via-accent-100/80 to-accent-50 hover:shadow-2xl hover:shadow-accent-500/20"
+              )}>
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,200,67,0.3)_0%,transparent_70%)] animate-pulse" style={{ animationDuration: '4s' }} />
                 <div className="absolute inset-0 bg-gradient-to-br from-accent-300/0 via-accent-300/20 to-accent-300/0 animate-pulse" style={{ animationDuration: '3s', animationDelay: '1s' }} />
@@ -235,20 +241,43 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                 <div className="relative z-10 space-y-4">
                   {/* Badge */}
                   <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-accent-500 text-neutral-900 text-xs font-black rounded-full shadow-sm">
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    FEATURED PRODUCT
+                    {item.megaMenu.featured.badge ? (
+                      <>
+                        <Radio className="w-3 h-3" />
+                        {item.megaMenu.featured.badge}
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        FEATURED PRODUCT
+                      </>
+                    )}
                   </div>
 
                   {/* Product Image Placeholder */}
-                  <div className="w-full aspect-video bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg overflow-hidden shadow-inner relative">
+                  <div className={clsx(
+                    "w-full aspect-video rounded-lg overflow-hidden shadow-inner relative",
+                    item.megaMenu.featured.title.includes('WAM™')
+                      ? "bg-gradient-to-br from-accent-200 to-accent-300"
+                      : "bg-gradient-to-br from-primary-100 to-primary-200"
+                  )}>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center">
-                        <svg className="w-16 h-16 mx-auto text-primary-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                        </svg>
-                        <p className="text-xs text-primary-600 font-semibold">Product Image</p>
+                        {item.megaMenu.featured.title.includes('WAM™') ? (
+                          <>
+                            <Radio className="w-16 h-16 mx-auto text-accent-600 mb-2" />
+                            <p className="text-xs text-accent-700 font-semibold">Wireless Monitoring</p>
+                          </>
+                        ) : (
+                          <>
+                            <svg className="w-16 h-16 mx-auto text-primary-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                            </svg>
+                            <p className="text-xs text-primary-600 font-semibold">Product Image</p>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

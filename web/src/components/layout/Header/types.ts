@@ -21,6 +21,7 @@ export interface MegaMenuFeatured {
   description: string;
   href: string;
   cta: string;
+  badge?: string;
 }
 
 export interface MegaMenuItem {

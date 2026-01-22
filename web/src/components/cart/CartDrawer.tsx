@@ -12,9 +12,9 @@ const CartDrawer = () => {
   
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop - Semi-transparent neutral with subtle blue tint for brand cohesion */}
       <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        className="fixed inset-0 bg-gradient-to-br from-neutral-900/60 via-neutral-800/50 to-primary-900/40 backdrop-blur-sm z-40 transition-opacity duration-300"
         onClick={closeCart}
       />
       
@@ -76,22 +76,22 @@ const CartDrawer = () => {
                     <div className="flex items-center gap-2 mt-2">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1, item.variationId)}
-                        className="px-2 py-1 bg-neutral-200 rounded hover:bg-neutral-300 transition"
+                        className="w-8 h-8 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 active:scale-95"
                         aria-label="Decrease quantity"
                       >
-                        -
+                        −
                       </button>
-                      <span className="w-8 text-center font-medium">{item.quantity}</span>
+                      <span className="w-10 text-center font-semibold text-neutral-900 text-base">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1, item.variationId)}
-                        className="px-2 py-1 bg-neutral-200 rounded hover:bg-neutral-300 transition"
+                        className="w-8 h-8 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 active:scale-95"
                         aria-label="Increase quantity"
                       >
                         +
                       </button>
                       <button
                         onClick={() => removeItem(item.id, item.variationId)}
-                        className="ml-auto text-error-600 hover:text-error-700 font-medium transition"
+                        className="ml-auto text-error-600 hover:text-error-700 font-medium transition-colors"
                       >
                         Remove
                       </button>
@@ -105,7 +105,7 @@ const CartDrawer = () => {
         
         {/* Footer */}
         {!isEmpty && (
-          <div className="border-t border-neutral-200 p-4 space-y-3">
+          <div className="border-t border-neutral-200 p-4 space-y-3 bg-neutral-50">
             <div className="flex justify-between text-lg font-bold text-neutral-900">
               <span>Subtotal:</span>
               <span>${subtotal.toFixed(2)}</span>
@@ -113,14 +113,14 @@ const CartDrawer = () => {
             <Link 
               href="/cart"
               onClick={closeCart}
-              className="block w-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold py-3 rounded-lg text-center transition shadow-sm hover:shadow-md"
+              className="block w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-xl text-center transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.98]"
             >
               View Cart
             </Link>
             <Link
               href="/checkout"
               onClick={closeCart}
-              className="block w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-lg text-center transition shadow-sm hover:shadow-md"
+              className="block w-full bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold py-3 rounded-xl text-center transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.98]"
             >
               Proceed to Checkout
             </Link>

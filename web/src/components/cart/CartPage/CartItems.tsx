@@ -174,18 +174,18 @@ export default function CartItems({
                     <button
                       onClick={() => onUpdateQuantity(item.key, item.quantity - 1)}
                       disabled={isUpdating || item.quantity <= 1}
-                      className="w-8 h-8 flex items-center justify-center bg-neutral-200 hover:bg-neutral-300 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-9 h-9 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-neutral-100 disabled:hover:border-neutral-300 active:scale-95"
                       aria-label="Decrease quantity"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
-                    <span className="w-12 text-center font-semibold text-neutral-900">
+                    <span className="w-12 text-center font-bold text-neutral-900 text-base">
                       {item.quantity}
                     </span>
                     <button
                       onClick={() => onUpdateQuantity(item.key, item.quantity + 1)}
                       disabled={isUpdating}
-                      className="w-8 h-8 flex items-center justify-center bg-neutral-200 hover:bg-neutral-300 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-9 h-9 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-neutral-100 disabled:hover:border-neutral-300 active:scale-95"
                       aria-label="Increase quantity"
                     >
                       <Plus className="w-4 h-4" />
@@ -226,18 +226,18 @@ export default function CartItems({
                   <button
                     onClick={() => onUpdateQuantity(item.key, item.quantity - 1)}
                     disabled={isUpdating || item.quantity <= 1}
-                    className="w-8 h-8 flex items-center justify-center bg-neutral-200 hover:bg-neutral-300 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-9 h-9 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-neutral-100 disabled:hover:border-neutral-300 active:scale-95"
                     aria-label="Decrease quantity"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="w-12 text-center font-semibold text-neutral-900">
+                  <span className="w-12 text-center font-bold text-neutral-900 text-base">
                     {item.quantity}
                   </span>
                   <button
                     onClick={() => onUpdateQuantity(item.key, item.quantity + 1)}
                     disabled={isUpdating}
-                    className="w-8 h-8 flex items-center justify-center bg-neutral-200 hover:bg-neutral-300 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-9 h-9 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-neutral-100 disabled:hover:border-neutral-300 active:scale-95"
                     aria-label="Increase quantity"
                   >
                     <Plus className="w-4 h-4" />

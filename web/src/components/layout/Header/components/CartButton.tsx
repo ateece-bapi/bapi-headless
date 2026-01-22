@@ -10,6 +10,7 @@ const CartButton: React.FC<CartButtonProps> = ({ itemCount = 0 }) => (
     href="/cart"
     className="group relative flex items-center justify-center w-10 h-10 hover:bg-neutral-50 hover:shadow-md rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 active:scale-[0.98]"
     aria-label={`View shopping cart${itemCount > 0 ? ` with ${itemCount} items` : ''}`}
+    suppressHydrationWarning
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +28,10 @@ const CartButton: React.FC<CartButtonProps> = ({ itemCount = 0 }) => (
       />
     </svg>
     {itemCount > 0 && (
-      <span className="absolute -top-1 -right-1 bg-gradient-to-br from-red-500 to-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-md animate-pulse">
+      <span 
+        className="absolute -top-1 -right-1 bg-gradient-to-br from-red-500 to-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-md animate-pulse"
+        suppressHydrationWarning
+      >
         {itemCount > 9 ? '9+' : itemCount}
       </span>
     )}

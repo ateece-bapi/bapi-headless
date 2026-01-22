@@ -12,14 +12,115 @@ import {
   Wrench,
   Network,
   Target,
-  Presentation
+  Presentation,
+  LifeBuoy,
+  Phone,
+  MessageCircle,
+  BookOpen
 } from 'lucide-react';
 
-export const NAV_LINKS: NavLink[] = [
-  { href: '/support', label: 'Support' },
-];
+export const NAV_LINKS: NavLink[] = [];
 
 export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
+  {
+    label: 'Applications',
+    href: '/applications',
+    megaMenu: {
+      columns: [
+        {
+          title: 'Building Automation',
+          icon: Building2,
+          links: [
+            { 
+              label: 'Room & Space Monitoring', 
+              href: '/applications/building-automation/room-monitoring',
+              description: 'Offices, classrooms, healthcare spaces'
+            },
+            { 
+              label: 'HVAC Duct & Air Handler', 
+              href: '/applications/building-automation/hvac-duct',
+              description: 'Supply, return, mixed air sensing'
+            },
+            { 
+              label: 'Outdoor & Weather Stations', 
+              href: '/applications/building-automation/outdoor-weather',
+              description: 'Building weather monitoring'
+            },
+            { 
+              label: 'Critical Spaces', 
+              href: '/applications/building-automation/critical-spaces',
+              description: 'Data centers, server rooms, labs',
+              badge: 'Popular'
+            },
+            { 
+              label: 'Indoor Air Quality', 
+              href: '/applications/building-automation/indoor-air-quality',
+              description: 'CO₂, VOC monitoring'
+            },
+          ],
+        },
+        {
+          title: 'Industrial & Wireless',
+          icon: Factory,
+          links: [
+            { 
+              label: 'Manufacturing Process', 
+              href: '/applications/industrial-process/manufacturing',
+              description: 'Industrial temperature & pressure'
+            },
+            { 
+              label: 'Industrial Refrigeration', 
+              href: '/applications/industrial-process/refrigeration',
+              description: 'Cold storage monitoring'
+            },
+            { 
+              label: 'Wireless Temp & Humidity', 
+              href: '/applications/wireless-remote/wireless-temp-humidity',
+              description: 'Battery-powered sensors',
+              badge: 'New'
+            },
+            { 
+              label: 'Wireless Pressure', 
+              href: '/applications/wireless-remote/wireless-pressure',
+              description: 'Filter differential pressure'
+            },
+          ],
+        },
+        {
+          title: 'Retrofit & Support',
+          icon: Wrench,
+          links: [
+            { 
+              label: 'BACnet Upgrades', 
+              href: '/applications/retrofit-replacement/bacnet-upgrades',
+              description: 'Modernize legacy systems'
+            },
+            { 
+              label: 'Pneumatic Replacement', 
+              href: '/applications/retrofit-replacement/pneumatic-to-electronic',
+              description: 'Convert to electronic sensors'
+            },
+            { 
+              label: 'Mounting Hardware', 
+              href: '/applications/installation-support/mounting-hardware',
+              description: 'Installation accessories'
+            },
+            { 
+              label: 'Test Equipment', 
+              href: '/applications/installation-support/test-equipment',
+              description: 'Commissioning tools'
+            },
+          ],
+        },
+      ],
+      featured: {
+        title: 'Find Sensors by Application',
+        description: 'Browse products organized by your specific use case. Discover sensors optimized for your industry, environment, and mounting requirements.',
+        cta: 'Explore Applications',
+        href: '/applications',
+      },
+    },
+  },
   {
     label: 'Products',
     href: '/products',
@@ -130,90 +231,95 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
     },
   },
   {
-    label: 'Solutions',
-    href: '/solutions',
+    label: 'Support',
+    href: '/support',
     megaMenu: {
       columns: [
         {
-          title: 'By Industry',
-          icon: Building2,
+          title: 'Get Help',
+          icon: LifeBuoy,
           links: [
             { 
-              label: 'Healthcare & Life Sciences', 
-              href: '/solutions/healthcare',
-              description: 'ASHRAE 170 compliant solutions'
+              label: 'Technical Support', 
+              href: '/support/technical',
+              description: 'Product troubleshooting and configuration'
             },
             { 
-              label: 'Data Centers', 
-              href: '/solutions/data-centers',
-              description: 'Hot/cold aisle monitoring'
+              label: 'Contact Us', 
+              href: '/support/contact',
+              description: 'Phone, email, and live chat support'
             },
             { 
-              label: 'Commercial Buildings', 
-              href: '/solutions/commercial',
-              description: 'LEED certification support'
+              label: 'RMA & Returns', 
+              href: '/support/rma',
+              description: 'Return merchandise authorization'
             },
             { 
-              label: 'Manufacturing', 
-              href: '/solutions/manufacturing',
-              description: 'Cleanroom and process control'
+              label: 'Warranty Information', 
+              href: '/support/warranty',
+              description: 'Product warranty details'
             },
           ],
         },
         {
-          title: 'By Application',
-          icon: Wind,
+          title: 'Documentation',
+          icon: BookOpen,
           links: [
             { 
-              label: 'Room Pressurization', 
-              href: '/solutions/pressurization',
-              description: 'Critical space pressure control'
+              label: 'Installation Guides', 
+              href: '/resources/installation',
+              description: 'Step-by-step instructions'
             },
             { 
-              label: 'Energy Management', 
-              href: '/solutions/energy',
-              description: 'Demand-controlled ventilation'
+              label: 'Technical Data Sheets', 
+              href: '/resources/datasheets',
+              description: 'Product specifications'
             },
             { 
-              label: 'Indoor Air Quality', 
-              href: '/solutions/iaq',
-              description: 'CO₂ and VOC monitoring'
+              label: 'Application Notes', 
+              href: '/resources/application-notes',
+              description: 'Technical guides and best practices'
             },
             { 
-              label: 'BACnet Integration', 
-              href: '/solutions/bacnet',
-              description: 'Native BACnet devices',
+              label: 'Video Tutorials', 
+              href: '/resources/videos',
+              description: 'Product demos and how-tos'
+            },
+          ],
+        },
+        {
+          title: 'Tools & Resources',
+          icon: Wrench,
+          links: [
+            { 
+              label: 'Product Selector', 
+              href: '/resources/selector',
+              description: 'Find the right sensor',
               badge: 'Popular'
             },
-          ],
-        },
-        {
-          title: 'System Integration',
-          icon: Network,
-          links: [
             { 
-              label: 'BMS Integration', 
-              href: '/solutions/bms',
-              description: 'BACnet, Modbus, LonWorks'
+              label: 'Cross Reference', 
+              href: '/resources/cross-reference',
+              description: 'Competitive part lookup'
             },
             { 
-              label: 'Cloud Connectivity', 
-              href: '/solutions/cloud',
-              description: 'IoT and cloud platforms'
+              label: 'CAD Drawings', 
+              href: '/resources/cad',
+              description: 'AutoCAD and Revit files'
             },
             { 
-              label: 'Custom Configuration', 
-              href: '/solutions/custom',
-              description: 'Factory calibration services'
+              label: 'FAQs', 
+              href: '/support/faq',
+              description: 'Frequently asked questions'
             },
           ],
         },
       ],
       featured: {
-        title: 'Healthcare Compliance Package',
-        description: 'Complete pressure monitoring solution for operating rooms, isolation rooms, and pharmacies. ASHRAE 170 certified.',
-        cta: 'Learn More',
-        href: '/solutions/healthcare-package',
+        title: 'Need Technical Help?',
+        description: 'Our support team is ready to help with product selection, installation, and troubleshooting. Average response time: 2 hours.',
+        cta: 'Contact Support',
+        href: '/support/contact',
       },
     },
   },
@@ -223,129 +329,86 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
     megaMenu: {
       columns: [
         {
-          title: 'Documentation',
-          icon: FileText,
+          title: 'Solutions & Case Studies',
+          icon: Target,
           links: [
             { 
-              label: 'Technical Data Sheets', 
-              href: '/resources/datasheets',
-              description: 'Product specifications and drawings'
+              label: 'Healthcare Solutions', 
+              href: '/solutions/healthcare',
+              description: 'ASHRAE 170 compliance'
             },
             { 
-              label: 'Installation Guides', 
-              href: '/resources/installation',
-              description: 'Step-by-step installation instructions'
-            },
-            { 
-              label: 'Application Notes', 
-              href: '/resources/application-notes',
-              description: 'Technical application guides'
-            },
-            { 
-              label: 'CAD Drawings', 
-              href: '/resources/cad',
-              description: 'AutoCAD and Revit files'
-            },
-          ],
-        },
-        {
-          title: 'Learning',
-          icon: GraduationCap,
-          links: [
-            { 
-              label: 'Video Library', 
-              href: '/resources/videos',
-              description: 'Product demos and tutorials'
-            },
-            { 
-              label: 'Webinars', 
-              href: '/resources/webinars',
-              description: 'Live and on-demand training'
-            },
-            { 
-              label: 'White Papers', 
-              href: '/resources/whitepapers',
-              description: 'Technical research and insights'
+              label: 'Data Center Solutions', 
+              href: '/solutions/data-centers',
+              description: 'Critical environment monitoring'
             },
             { 
               label: 'Case Studies', 
               href: '/resources/case-studies',
               description: 'Real-world success stories'
             },
+            { 
+              label: 'White Papers', 
+              href: '/resources/whitepapers',
+              description: 'Technical insights'
+            },
           ],
         },
         {
-          title: 'Tools',
-          icon: Wrench,
+          title: 'Learning & Training',
+          icon: GraduationCap,
           links: [
             { 
-              label: 'Product Selector', 
-              href: '/resources/selector',
-              description: 'Find the right sensor for your application'
+              label: 'Webinars', 
+              href: '/resources/webinars',
+              description: 'Live and on-demand training'
             },
             { 
-              label: 'Cross Reference', 
-              href: '/resources/cross-reference',
-              description: 'Competitive part number lookup'
+              label: 'Video Library', 
+              href: '/resources/videos',
+              description: 'Product demos and tutorials'
             },
             { 
-              label: 'BACnet Device Lookup', 
-              href: '/resources/bacnet-lookup',
-              description: 'Search BACnet BTL database'
+              label: 'BACnet Integration', 
+              href: '/solutions/bacnet',
+              description: 'BACnet device setup guides'
             },
           ],
         },
-      ],
-    },
-  },
-  {
-    label: 'Company',
-    href: '/company',
-    megaMenu: {
-      columns: [
         {
           title: 'About BAPI',
           icon: Building2,
           links: [
             { 
-              label: 'Mission & Values', 
-              href: '/company/mission-values',
-              description: 'Our commitment to precision and innovation'
-            },
-            { 
               label: 'Why BAPI', 
               href: '/company/why-bapi',
-              description: 'What sets us apart in the industry'
+              description: 'What sets us apart'
             },
-          ],
-        },
-        {
-          title: 'Connect',
-          icon: Network,
-          links: [
             { 
-              label: 'News', 
+              label: 'Mission & Values', 
+              href: '/company/mission-values',
+              description: 'Our commitment to quality'
+            },
+            { 
+              label: 'News & Updates', 
               href: '/company/news',
-              description: 'Latest updates and announcements'
+              description: 'Latest announcements'
             },
             { 
               label: 'Careers', 
               href: '/company/careers',
               description: 'Join our team'
             },
-            { 
-              label: 'Contact Us', 
-              href: '/company/contact-us',
-              description: 'Get in touch with our team'
-            },
           ],
         },
       ],
+      featured: {
+        title: 'Healthcare Compliance Package',
+        description: 'Complete pressure monitoring solution for operating rooms and isolation rooms. ASHRAE 170 certified.',
+        cta: 'Learn More',
+        href: '/solutions/healthcare-package',
+      },
     },
-  },
-  {
-    label: 'Support',
-    href: '/support',
   },
 ];
 

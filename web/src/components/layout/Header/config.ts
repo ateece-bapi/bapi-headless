@@ -248,8 +248,8 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
             },
             { 
               label: 'Contact Us', 
-              href: '/support/contact',
-              description: 'Phone, email, and live chat support'
+              href: '/contact',
+              description: 'Phone, email, and sales team'
             },
             { 
               label: 'RMA & Returns', 

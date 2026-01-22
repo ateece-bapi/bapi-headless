@@ -1,5 +1,315 @@
 ## January 22, 2026 - Enterprise B2B Navigation Restructure 🏢🔄
 
+### Phase 5: Contact & Sales Team Page - **COMPLETE** ✅
+
+**Branch:** `feat/contact-sales-page`  
+**Time:** ~3 hours (page structure + video integration + UI polish + hover debugging)  
+**Files Created:** 2 (contact page + sales card component)  
+**Impact:** Professional sales team showcase with video introductions and lead generation form  
+**User Request:** "Now the contact us and sales people we need to work on"
+
+**Strategic Decision:**
+- **Option A**: Simple contact form only
+- **Option B**: Full page with sales team grid ← SELECTED
+- **Option C**: WordPress integration via post ID 92
+- **Decision**: Hardcode sales team data, use placeholder system for photos
+
+**What We Built:**
+
+✅ **1. Contact Page Structure** (`/app/contact/page.tsx` - 416 lines)
+
+**Four Main Sections:**
+
+1. **Hero Section**
+   - BAPI blue gradient background
+   - Clear messaging: "Connect with our expert sales team"
+   - Compact design (py-12 lg:py-16)
+
+2. **Contact Form + Info Sidebar** (2-column layout)
+   - **Left Column**: Full contact form
+     - Name, Company, Email, Phone, Subject, Message
+     - Yellow submit button (BAPI accent-500)
+     - Compact inputs (px-3.5 py-2.5) for professional look
+     - Blue focus states (focus:ring-primary-500)
+   - **Right Column**: Contact info cards
+     - Phone: (800) 553-3027 + Fax
+     - Email: info@bapihvac.com
+     - Hours: Monday-Friday 8AM-5PM CST
+     - Address: 750 North Royal Avenue, Gays Mills, WI
+     - Card design: white bg, subtle border, compact padding
+
+3. **Sales Team Grid** (15 representatives)
+   - 4-column responsive layout (sm:2 lg:3 xl:4)
+   - Professional cards with 3:4 portrait photos
+   - Video functionality for 3 reps (Jan Zurawski, Jon Greenwald, Jacob Melgosa)
+   - Email button (primary-600) + Phone icon button
+   - Hover effects and border transitions
+
+4. **Map Section**
+   - Placeholder for Google Maps embed
+   - Clean design with centered content
+   - "Open in Google Maps" link
+
+**Design System:**
+- **Colors**: primary-500 blue, accent-500 yellow, neutral-50/100 backgrounds
+- **Typography**: Compact and professional (text-2xl headings, text-sm labels)
+- **Spacing**: Tighter than Phase 4 (py-12 vs py-16, gap-6 vs gap-8)
+- **Icons**: Lucide (Phone, Mail, MapPin, Clock, Send, Play, X)
+
+✅ **2. Sales Team Infrastructure**
+
+**Photo System:**
+- Directory: `/public/images/team/`
+- Naming: `firstname-lastname.jpg` or `.png` or `.webp`
+- Placeholder: `placeholder.svg` (gray silhouette, 400x400px)
+- **Actual Photos**: 15 team member photos uploaded by user
+  - Format: PNG and WebP
+  - Examples: `jan-zurawski.png`, `Jacob-Melgosa.webp`
+
+**Sales Team Data** (hardcoded in page.tsx):
+```typescript
+interface SalesRep {
+  name: string;
+  title: string;
+  region: string;
+  email: string;
+  phone: string;
+  photo: string;
+  video?: string; // Optional YouTube embed URL
+}
+```
+
+**Team Members:**
+- Matt Holder - Business Development & Regional Sales
+- Steve Lindquist - Key Account Specialist
+- Todd Vanden Heuvel - Key Account Specialist
+- Mitchell Ogorman - Key Account Specialist
+- Jennifer Sanford - Key Account Specialist
+- Andy Brooks - Regional Sales (Eastern USA)
+- Murtaza Kalabhai - Business Development (International)
+- Mike Moss - Regional Sales (Pacific)
+- John Shields - Business Development (Canada)
+- Jan Zurawski - Regional Sales (International) + VIDEO
+- Jon Greenwald - Distribution Leader + VIDEO
+- Brian Thaldorf - Distribution Account Specialist
+- Jacob Melgosa - WAM Sales + VIDEO
+- Jonathan Hillebrand - Senior Product Manager
+- Andrew Leirmo - Product Manager
+
+✅ **3. SalesTeamCard Component** (Client Component)
+
+**File:** `web/src/components/contact/SalesTeamCard.tsx` (106 lines)
+
+**Features:**
+- **Photo with Fallback**: Next.js Image with error handling
+  - Tries to load named photo
+  - Falls back to `placeholder.svg` on error
+  - 3:4 portrait aspect ratio (aspect-[3/4])
+  - Object-cover for proper cropping
+
+- **Video Modal Integration** (3 reps have videos):
+  - Jan Zurawski: `https://www.youtube.com/embed/O5jwFOFAO0A`
+  - Jon Greenwald: `https://www.youtube.com/embed/iBeUe3OGrk4`
+  - Jacob Melgosa: `https://www.youtube.com/embed/riEBii0LG3s`
+  - Video badge (always visible): Blue "Video" badge with Play icon
+  - Hover overlay: Dark bg + large play button + "Watch Introduction" text
+  - Modal: Fullscreen with YouTube iframe, autoplay, X button to close
+
+- **Hover Effects**:
+  - Photo container: `group/video` for named group hover
+  - Overlay: `[opacity:0]` → `group-hover/video:[opacity:1]`
+  - **Critical Fix**: Used arbitrary values `[opacity:0]` instead of `opacity-0` class
+    - `opacity-0` has `!important` flag that blocks hover
+    - Arbitrary values don't have `!important`
+    - Result: Hover effects work smoothly
+
+- **Contact Buttons**:
+  - Email: Full-width button with Mail icon (primary-600)
+  - Phone: Icon-only button (neutral-100 bg, border)
+  - Both have hover states and aria labels
+
+**Video Modal Pattern:**
+```tsx
+{video && showVideoModal && (
+  <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999]"
+       onClick={closeVideo}>
+    <div className="relative w-full max-w-3xl aspect-video">
+      <button onClick={closeVideo} className="absolute top-2 right-3">
+        <X className="w-6 h-6" />
+      </button>
+      <iframe src={`${video}?autoplay=1`} allowFullScreen />
+    </div>
+  </div>
+)}
+```
+
+✅ **4. UI/UX Polish** (Professional B2B Design)
+
+**Visual Improvements:**
+- Compact spacing throughout (smaller than Phase 4)
+- Subtle shadows (shadow-sm, hover:shadow-md)
+- Clean borders (border-neutral-200)
+- Professional typography (text-base for names, text-xs for details)
+- BAPI color system (60% white/gray, 30% blue, 10% yellow)
+- Responsive grid (1 → 2 → 3 → 4 columns)
+
+**Interactive States:**
+- Card hover: border changes to primary-300
+- Photo hover (with video): overlay fades in smoothly
+- Button hover: color darkens, slight shadow
+- Form inputs: blue focus ring
+
+**Accessibility:**
+- Proper heading hierarchy (h1 → h2 → h3)
+- ARIA labels on all buttons
+- Keyboard navigation support (tabIndex, onKeyDown)
+- Alt text on all images
+- Touch-friendly button sizes
+
+✅ **5. Technical Challenges Solved**
+
+**Issue #1: Event Handlers on Server Components**
+- **Error**: "Event handlers cannot be passed to Client Component props"
+- **Problem**: Image `onError` handler in Server Component
+- **Solution**: Created Client Component `SalesTeamCard.tsx` with useState for image fallback
+- **Result**: Server Component page.tsx + Client Component for interactive cards
+
+**Issue #2: Hover Effects Not Working**
+- **Symptoms**: Video badge shows, but no overlay on hover
+- **Root Cause**: `opacity-0` class has `!important` flag in Tailwind
+  - Dev tools showed: `.opacity-0 { opacity: 0 !important; }`
+  - `group-hover:opacity-100` couldn't override it
+- **Attempted Fixes**:
+  1. `group-hover:!opacity-100` - Used !important (BAD PRACTICE)
+  2. `style={{ opacity: 0 }}` - Inline style (lost hover functionality)
+  3. Direct `hover:opacity-100` on button - Still blocked by !important
+- **Final Solution**: Arbitrary values `[opacity:0]` and `[opacity:1]`
+  - No !important flag
+  - Works with group-hover system
+  - Clean, maintainable code
+- **Key Lesson**: Avoid `!important` at all costs - it breaks CSS cascade
+
+**Issue #3: Group Hover Targeting**
+- **Problem**: Multiple attempts at group hover pattern
+- **Solution**: Named group `group/video` with `group-hover/video:[opacity:1]`
+- **Result**: Parent hover triggers child overlay opacity change
+
+**Code Evolution (Hover Fix):**
+```tsx
+// ❌ Attempt 1: !important (bad practice)
+className="opacity-0 group-hover/video:!opacity-100"
+
+// ❌ Attempt 2: Inline style (lost hover)
+style={{ opacity: 0 }} className="group-hover/video:opacity-100"
+
+// ✅ Final: Arbitrary values (clean solution)
+className="[opacity:0] group-hover/video:[opacity:1]"
+```
+
+✅ **6. Video Integration Pattern**
+
+**User-Provided HTML Reference:**
+```html
+<div class="contact-image-wrapper">
+  <img src="jan-zurawski.png" alt="Jan Zurawski">
+  <button class="contact-video-overlay" 
+          data-video="https://www.youtube.com/embed/O5jwFOFAO0A?autoplay=1">
+    ▶
+  </button>
+</div>
+```
+
+**Our Implementation (React):**
+- State management for modal open/close
+- YouTube embed with autoplay parameter
+- Click outside to close modal
+- Keyboard support (Enter/Space to open video)
+- Z-index stacking (badge z-30, overlay z-20)
+- Smooth transitions (duration-500)
+
+**Business Impact:**
+
+🎯 **Lead Generation:**
+- Contact form captures inquiries
+- 15 direct email/phone contacts (no gatekeepers)
+- Territory-based rep assignment
+- Video introductions build trust and connection
+
+🎯 **Sales Team Visibility:**
+- Professional headshots (uploaded by user)
+- Clear titles and regions
+- Direct contact methods
+- 3 video introductions for personal touch
+
+🎯 **User Experience:**
+- Clean, professional design
+- Mobile responsive (sales reps use phones)
+- Fast contact options (call/email)
+- Industry-specific rep discovery
+
+🎯 **Brand Consistency:**
+- BAPI color system throughout
+- Matches WAM™ and applications pages
+- Professional B2B aesthetic
+- Trust-building design
+
+**Files Created:**
+1. **`web/src/app/contact/page.tsx`** (NEW - 416 lines)
+   - Complete contact page with form, info, sales team, map
+   - Hardcoded sales team data (15 reps)
+   - 3 reps with video URLs
+   - TypeScript interface for SalesRep
+
+2. **`web/src/components/contact/SalesTeamCard.tsx`** (NEW - 106 lines)
+   - Client Component for interactive features
+   - Photo with error fallback
+   - Video modal functionality
+   - Email/phone contact buttons
+   - Hover effects with arbitrary opacity values
+
+3. **`web/public/images/team/placeholder.svg`** (NEW - SVG file)
+   - Gray silhouette placeholder (400x400px)
+   - Used when team member photo not found
+   - Professional "Add Photo Here" design
+
+**Photo Assets (Added by User):**
+- 15 team member photos in `/public/images/team/`
+- Mix of PNG and WebP formats
+- Professional headshots from current BAPI site
+
+**Git Status:**
+- Branch: `feat/contact-sales-page` (active)
+- Clean working tree
+- Ready for testing
+
+**Next Steps:**
+- [ ] Test contact form submission (needs backend API)
+- [ ] Verify all 15 photos load correctly
+- [ ] Test video modals for all 3 reps
+- [ ] Mobile device testing
+- [ ] User acceptance testing
+- [ ] Commit and push to GitHub
+- [ ] Create PR for review
+- [ ] Deploy to staging
+
+**Key Learnings:**
+
+1. **Client vs Server Components**: Use Client Components for interactive features (video modals, image fallbacks)
+2. **!important Avoidance**: Arbitrary values `[opacity:0]` bypass !important issues
+3. **CSS Best Practices**: Never use `!important` - breaks cascade and maintainability
+4. **Named Groups**: `group/video` allows multiple independent group hovers on same page
+5. **Photo System**: Placeholder approach gives flexibility for user to add photos later
+
+**Development Time Breakdown:**
+- Page structure: ~45 minutes
+- Sales card component: ~30 minutes
+- Video integration: ~30 minutes
+- Hover debugging: ~45 minutes (opacity !important issue)
+- UI polish: ~30 minutes
+- **Total**: ~3 hours
+
+---
+
 ### Phase 4: WAM™ Premium Solution - **COMPLETE** ✅
 
 **Branch:** `feat/wam-premium-solution`  

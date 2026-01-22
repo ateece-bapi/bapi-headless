@@ -9,6 +9,9 @@ import {
 } from '@/lib/navigation/applicationCategories';
 import { getProducts, getProductPrice } from '@/lib/graphql';
 
+// Force dynamic rendering (don't pre-render at build time)
+export const dynamic = 'force-dynamic';
+
 interface ApplicationSubcategoryPageProps {
   params: Promise<{
     category: string;
@@ -221,24 +224,6 @@ export default async function ApplicationSubcategoryPage({
       </section>
     </div>
   );
-}
-
-/**
- * Generate static params for all subcategories
- */
-export function generateStaticParams() {
-  const params: Array<{ category: string; subcategory: string }> = [];
-
-  for (const categorySlug of getApplicationCategorySlugs()) {
-    for (const subcategorySlug of getSubcategorySlugs(categorySlug)) {
-      params.push({
-        category: categorySlug,
-        subcategory: subcategorySlug,
-      });
-    }
-  }
-
-  return params;
 }
 
 /**

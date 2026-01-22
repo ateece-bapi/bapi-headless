@@ -16,7 +16,8 @@ import {
   LifeBuoy,
   Phone,
   MessageCircle,
-  BookOpen
+  BookOpen,
+  Radio
 } from 'lucide-react';
 
 export const NAV_LINKS: NavLink[] = [];
@@ -223,10 +224,11 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
         },
       ],
       featured: {
-        title: 'BA/10K Series Temperature Sensors',
-        description: 'Our most popular sensors. ±0.2°C accuracy, BACnet MS/TP, and 5-year warranty. Trusted in healthcare, data centers, and critical facilities worldwide.',
-        cta: 'View BA Series',
-        href: '/products/featured/ba-series',
+        title: 'WAM™ Wireless Asset Monitoring',
+        description: '24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.',
+        cta: 'Learn More',
+        href: '/wam',
+        badge: 'Premium Solution',
       },
     },
   },

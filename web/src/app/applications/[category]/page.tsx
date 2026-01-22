@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { applicationCategories, getApplicationCategorySlugs } from '@/lib/navigation/applicationCategories';
 
 interface ApplicationCategoryPageProps {
@@ -23,77 +24,76 @@ export default async function ApplicationCategoryPage({ params }: ApplicationCat
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-white border-b border-neutral-200">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <section className="bg-gradient-to-br from-primary-50 via-white to-primary-50/30 border-b border-neutral-200">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
           {/* Breadcrumbs */}
-          <nav className="text-sm text-neutral-600 mb-6">
-            <Link href="/" className="hover:text-primary-600">
+          <nav className="flex items-center text-sm text-neutral-600 mb-8">
+            <Link href="/" className="hover:text-primary-600 transition-colors">
               Home
             </Link>
-            <span className="mx-2">/</span>
-            <Link href="/applications" className="hover:text-primary-600">
+            <ChevronRight className="w-4 h-4 mx-2 text-neutral-400" />
+            <Link href="/applications" className="hover:text-primary-600 transition-colors">
               Applications
             </Link>
-            <span className="mx-2">/</span>
+            <ChevronRight className="w-4 h-4 mx-2 text-neutral-400" />
             <span className="text-neutral-900 font-medium">{category.name}</span>
           </nav>
 
-          <h1 className="text-4xl lg:text-5xl font-bold text-neutral-900 mb-4">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6">
             {category.name}
           </h1>
-          <p className="text-lg text-neutral-600 max-w-3xl">
+          <p className="text-xl text-neutral-600 max-w-3xl leading-relaxed">
             {category.description}
           </p>
         </div>
       </section>
 
       {/* Subcategories Grid */}
-      <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+      <section className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+        <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-10">
           Choose Your Application
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {Object.entries(category.subcategories).map(([slug, subcategory]) => (
             <Link
               key={slug}
               href={`/applications/${categorySlug}/${slug}`}
-              className="group bg-white border-2 border-neutral-200 rounded-xl p-6 hover:border-primary-500 hover:shadow-lg transition-all duration-base"
+              className="group bg-white border border-neutral-200 rounded-2xl p-6 hover:border-primary-400 hover:shadow-xl transition-all duration-300"
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors">
+              <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors">
                 {subcategory.name}
               </h3>
 
-              <p className="text-neutral-600 mb-4">
+              <p className="text-neutral-600 text-sm leading-relaxed mb-5">
                 {subcategory.description}
               </p>
 
               {/* Featured Products Preview */}
               {subcategory.featuredProducts && subcategory.featuredProducts.length > 0 && (
-                <div className="text-sm text-neutral-500 mb-4">
-                  <span className="font-medium">Featured: </span>
-                  {subcategory.featuredProducts.slice(0, 3).join(', ')}
+                <div className="flex flex-wrap items-center gap-2 mb-5 pt-4 border-t border-neutral-100">
+                  <span className="text-xs font-medium text-neutral-500 uppercase tracking-wide">
+                    Featured:
+                  </span>
+                  {subcategory.featuredProducts.slice(0, 3).map((product, index) => (
+                    <span
+                      key={index}
+                      className="inline-flex items-center px-2.5 py-1 bg-primary-50 text-primary-700 text-xs font-medium rounded-lg"
+                    >
+                      {product}
+                    </span>
+                  ))}
                 </div>
               )}
 
-              {/* WordPress Categories Mapped (for transparency) */}
-              <div className="flex items-center text-sm text-primary-600 font-medium">
-                <span>View Products</span>
-                <svg
-                  className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
+              {/* View Products CTA */}
+              <div className="flex items-center justify-between text-sm pt-4 border-t border-neutral-100">
+                <span className="text-primary-600 font-medium group-hover:gap-2 transition-all">
+                  View Products
+                </span>
+                <ChevronRight className="w-4 h-4 text-primary-600 group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
           ))}
@@ -101,25 +101,13 @@ export default async function ApplicationCategoryPage({ params }: ApplicationCat
       </section>
 
       {/* Back to Applications */}
-      <section className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+      <section className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <Link
           href="/applications"
-          className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
+          className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium transition-colors group"
         >
-          <svg
-            className="w-5 h-5 mr-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-          Back to All Applications
+          <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+          <span>Back to All Applications</span>
         </Link>
       </section>
     </div>

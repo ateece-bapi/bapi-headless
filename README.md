@@ -71,6 +71,7 @@ bapi-headless/
 │   │   │   ├── cart/           # Shopping cart page
 │   │   │   ├── checkout/       # Multi-step checkout wizard
 │   │   │   ├── order-confirmation/[orderId]/  # Order success page
+│   │   │   ├── contact/        # Contact & sales team page
 │   │   │   ├── api/            # API routes
 │   │   │   │   ├── payment/    # Stripe payment endpoints
 │   │   │   │   ├── cart/       # WooCommerce cart operations
@@ -78,6 +79,8 @@ bapi-headless/
 │   │   │   └── components/     # App-specific components
 │   │   ├── components/         # Shared React components
 │   │   │   ├── layout/         # Layout components (Header, Footer)
+│   │   │   ├── contact/        # Contact & sales team components
+│   │   │   │   └── SalesTeamCard.tsx  # Sales rep card with video modals
 │   │   │   ├── cart/           # Cart UI components
 │   │   │   │   ├── CartDrawer.tsx         # Sliding cart drawer
 │   │   │   │   └── CartPage/              # Full cart page components
@@ -136,6 +139,7 @@ bapi-headless/
 - 🔄 **WordPress User Migration** - Bulk import system for existing customers
 - 🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
 - 🧭 **Enterprise Mega Menu** – Multi-column navigation with icons, featured products, quick actions, and B2B enhancements
+- 👥 **Contact & Sales Team** - Professional contact page with 15 sales representatives, video introductions, lead generation form
 - ⬆️ **Back to Top Button** – Floating button for fast site-wide navigation
 - 📱 **Fully Responsive** - Mobile-first design
 - 🛒 **Complete Shopping Cart** - Full cart management with localStorage persistence, coupon codes, quantity controls

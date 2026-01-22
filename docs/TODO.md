@@ -24,7 +24,14 @@
 - [x] Why BAPI page
 - [x] News page with GraphQL integration
 - [x] Careers page
-- [x] Contact Us page
+- [x] **Contact & Sales Team Page (✅ Phase 5 - Jan 22, 2026)**
+  - [x] Professional contact form with 6 fields
+  - [x] Contact info sidebar (phone, email, hours, address)
+  - [x] Sales team grid (15 representatives with photos)
+  - [x] Video introductions for 3 reps (YouTube embeds with modals)
+  - [x] SalesTeamCard Client Component with hover effects
+  - [x] Navigation integration (Support > Contact Us)
+  - [x] Deployed to production (bapi-headless.vercel.app/contact)
 - [x] Senior UI/UX polish applied to all pages
 
 ### User Authentication & Account Management

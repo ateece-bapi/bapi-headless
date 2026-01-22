@@ -8,7 +8,15 @@ import {
   ArrowRight,
   Zap,
   Award,
-  Globe
+  Globe,
+  Fan,
+  Server,
+  Utensils,
+  Truck,
+  Heart,
+  ShoppingCart,
+  Beef,
+  Snowflake
 } from 'lucide-react';
 
 export default function Home() {
@@ -36,60 +44,102 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Shop by Application - Quick Links to New Navigation */}
+      {/* Browse by Industry - 8 Industries */}
       <section className="bg-white py-12 lg:py-16">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-              Shop by Application
+              Innovative sensor solutions for the global market
             </h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              Find the right sensors for your specific use case
-            </p>
+            <div className="flex items-center justify-center gap-4 mt-6">
+              <span className="text-neutral-600 font-medium">Browse by:</span>
+              <div className="flex gap-2">
+                <button className="px-4 py-2 bg-accent-500 text-neutral-900 rounded-lg font-semibold text-sm">
+                  Industry
+                </button>
+                <Link 
+                  href="/products"
+                  className="px-4 py-2 bg-white border border-neutral-300 text-neutral-700 hover:border-primary-500 hover:text-primary-600 rounded-lg font-semibold text-sm transition-colors"
+                >
+                  Sensor Type
+                </Link>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
             {[
               {
-                title: 'Building Automation',
-                description: 'HVAC control, room monitoring, and facility management',
+                name: 'HVAC/R',
+                icon: Fan,
                 href: '/applications/building-automation',
-                color: 'from-blue-500 to-blue-600'
+                description: 'Commercial HVAC and refrigeration'
               },
               {
-                title: 'Industrial Process',
-                description: 'Manufacturing, cleanrooms, and process control',
+                name: 'Data Centers',
+                icon: Server,
+                href: '/applications/building-automation',
+                description: 'Critical temperature and humidity control'
+              },
+              {
+                name: 'Food Service',
+                icon: Utensils,
+                href: '/applications/building-automation',
+                description: 'Commercial kitchens and restaurants'
+              },
+              {
+                name: 'Transportation',
+                icon: Truck,
+                href: '/applications/building-automation',
+                description: 'Fleet monitoring and logistics'
+              },
+              {
+                name: 'Healthcare',
+                icon: Heart,
+                href: '/applications/building-automation',
+                description: 'Hospitals and medical facilities'
+              },
+              {
+                name: 'Grocery',
+                icon: ShoppingCart,
+                href: '/applications/building-automation',
+                description: 'Supermarkets and retail food'
+              },
+              {
+                name: 'Meat Processing',
+                icon: Beef,
                 href: '/applications/industrial-process',
-                color: 'from-orange-500 to-orange-600'
+                description: 'Food processing and safety'
               },
               {
-                title: 'Critical Environments',
-                description: 'Healthcare, data centers, and laboratories',
+                name: 'Cold Chain',
+                icon: Snowflake,
                 href: '/applications/building-automation',
-                color: 'from-red-500 to-red-600'
+                description: 'Temperature-controlled logistics'
               }
-            ].map((app) => (
-              <Link
-                key={app.title}
-                href={app.href}
-                className="group bg-white border border-neutral-200 rounded-2xl p-6 hover:border-primary-400 hover:shadow-xl transition-all duration-300"
-              >
-                <div className={`w-12 h-12 bg-gradient-to-br ${app.color} rounded-xl mb-4 flex items-center justify-center shadow-lg`}>
-                  <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" />
-                </div>
-                <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
-                  {app.title}
-                </h3>
-                <p className="text-neutral-600 text-sm mb-4">{app.description}</p>
-                <span className="text-primary-600 font-medium text-sm inline-flex items-center gap-2">
-                  Browse Solutions
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
-            ))}
+            ].map((industry) => {
+              const IconComponent = industry.icon;
+              return (
+                <Link
+                  key={industry.name}
+                  href={industry.href}
+                  className="group bg-white border border-neutral-200 rounded-xl p-6 hover:border-primary-400 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl mb-4 flex items-center justify-center">
+                    <IconComponent className="w-7 h-7 text-primary-600" strokeWidth={2} />
+                  </div>
+                  <h3 className="text-lg font-bold text-primary-600 mb-2">
+                    {industry.name}
+                  </h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed">
+                    {industry.description}
+                  </p>
+                </Link>
+              );
+            })}
           </div>
 
-          <div className="text-center">
+          <div className="text-center mt-8">
             <Link 
               href="/applications"
               className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors"

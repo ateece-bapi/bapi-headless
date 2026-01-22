@@ -19,10 +19,10 @@
 ### Phase 3: Homepage Simplification - **COMPLETE** ✅
 
 **Branch:** `feat/homepage-simplify`  
-**Time:** ~1 hour  
+**Time:** ~1.5 hours  
 **Files Modified:** 1 (page.tsx)  
 **Lines:** 488 → 302 (75% reduction, 186 lines removed)  
-**Impact:** E-commerce focused homepage with clear product discovery path  
+**Impact:** E-commerce focused homepage with clear product discovery path + industry-specific browsing  
 **User Goal:** "Browse and buy products (e-commerce focus)"
 
 **Senior UX Designer Analysis:**
@@ -52,10 +52,13 @@
 2. **Quick Stats Bar** - 30+ Years | 608 Products | Global | ISO 9001
    - Trust signals in compact blue bar
    - 2x4 grid on desktop, 2x2 on mobile
-3. **Shop by Application** - 3 cards linking to application navigation
-   - Building Automation, Industrial Process, Critical Environments
-   - Colored gradient icons (blue/orange/red)
-   - Direct paths to product discovery
+3. **Browse by Industry** - 8 industry-specific cards replacing generic "Shop by Application"
+   - HVAC/R, Data Centers, Food Service, Transportation
+   - Healthcare, Grocery, Meat Processing, Cold Chain
+   - Lucide icons (Fan, Server, Utensils, Truck, Heart, ShoppingCart, Beef, Snowflake)
+   - Industry-specific descriptions with application context
+   - Toggle UI: "Industry" (active) | "Sensor Type" (link to /products)
+   - **User Decision**: Replaced Agriculture with Data Centers ("huge money maker for us the last 2 years")
 4. **Featured Products** - 3 popular products with specs
    - BA/10K-3 Room Sensor (Temperature)
    - BA/RH-WD4 Room Humidity (Multi-function)
@@ -117,26 +120,68 @@ import {
   ArrowRight,     // CTA arrows
   Zap,            // Speed/rapid delivery
   Award,          // Quality/precision
-  Globe           // Global reach
+  Globe,          // Global reach
+  // Industry Browse Icons:
+  Fan,            // HVAC/R
+  Server,         // Data Centers
+  Utensils,       // Food Service
+  Truck,          // Transportation
+  Heart,          // Healthcare
+  ShoppingCart,   // Grocery
+  Beef,           // Meat Processing
+  Snowflake       // Cold Chain
 } from 'lucide-react';
 ```
 
-**Application Cards:**
+**Industry Browse Cards:**
 ```tsx
 {[
   {
-    title: 'Building Automation',
-    description: 'HVAC control, room monitoring, facility management',
+    name: 'HVAC/R',
+    icon: Fan,
     href: '/applications/building-automation',
-    color: 'from-blue-500 to-blue-600'
+    description: 'Commercial HVAC and refrigeration'
   },
-  // ... 2 more
-].map((app) => (
-  <Link className="group hover:shadow-xl transition-all duration-300">
-    {/* Gradient icon, title, description, arrow CTA */}
+  {
+    name: 'Data Centers',
+    icon: Server,
+    href: '/applications/building-automation',
+    description: 'Critical temperature and humidity control'
+  },
+  // ... 6 more industry cards
+].map((industry) => (
+  <Link className="group hover:border-primary-500 transition-all duration-300">
+    {/* Gradient icon circle, industry name, description, hover effects */}
   </Link>
 ))}
 ```
+
+**Browse Toggle UI:**
+```tsx
+<div className="flex items-center justify-center gap-6 mb-8">
+  <span className="text-neutral-900 font-semibold">Browse by</span>
+  <div className="flex items-center gap-4">
+    <span className="font-bold text-primary-500 border-b-2 border-primary-500">
+      Industry
+    </span>
+    <span className="text-neutral-400">|</span>
+    <Link href="/products" className="text-neutral-600 hover:text-primary-500">
+      Sensor Type
+    </Link>
+  </div>
+</div>
+```
+
+**Design Decision: Sensor Type as Link (Not Toggle)**
+- **User Question**: "Should 'browse by - Sensor' be active or just leave it as a link?"
+- **Recommendation**: Keep as link to /products page (Option A)
+- **Reasoning**:
+  - Maintains homepage simplification goal (no added complexity)
+  - Clear separation: Industry cards = homepage, Sensor types = products page
+  - Avoids duplication of product filtering
+  - Better performance (no state management/conditional rendering)
+  - Clearer UX on mobile (direct link vs toggle state)
+- **User Decision**: "A it is" (keep as link)
 
 **Featured Products:**
 ```tsx
@@ -157,7 +202,11 @@ import {
 1. **`web/src/app/page.tsx`** (488 → 302 lines)
    - Removed IndustryBrowse import (old 8-icon section)
    - Removed 12 unused Lucide icons
-   - Kept 8 essential icons for new sections
+   - Added 8 industry-specific icons (Fan, Server, Utensils, Truck, Heart, ShoppingCart, Beef, Snowflake)
+   - Replaced generic 3-card "Shop by Application" with 8-card "Browse by Industry"
+   - Added browse toggle UI (Industry active, Sensor Type link)
+   - Replaced Agriculture card with Data Centers (user request: "huge money maker")
+   - Kept 8 essential icons for featured products, stats, benefits
    - Simplified from 8 complex sections to 7 focused sections
    - Added Quick Stats, Featured Products, Why BAPI, Testimonial
    - Removed Solutions, Excellence, Partners (verbose), Resources sections
@@ -173,8 +222,11 @@ import {
 🎯 **User Experience:**
 - Clear mental model: Browse → Discover → Purchase
 - Single decision per section (no option paralysis)
+- 8 industry-specific entry points (vs 3 generic categories)
+- Industry context helps users find relevant products faster
 - Featured products provide quick access
 - Testimonial builds trust without sales pitch
+- Data Centers prioritized (high-growth vertical for BAPI)
 
 🎯 **Mobile Performance:**
 - 186 fewer lines = faster page load

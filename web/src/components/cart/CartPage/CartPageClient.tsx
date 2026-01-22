@@ -84,7 +84,7 @@ export default function CartPageClient() {
   const { showToast } = useToast();
   
   // Get Zustand store actions
-  const { updateQuantity: updateZustandQuantity, removeItem: removeZustandItem } = useCartStore();
+  const { updateQuantity: updateZustandQuantity, removeItem: removeZustandItem, clearCart: clearZustandCart } = useCartStore();
 
   // Fetch cart on mount
   useEffect(() => {
@@ -128,7 +128,8 @@ export default function CartPageClient() {
         contents: {
           itemCount: items.reduce((sum: number, item: any) => sum + item.quantity, 0),
           nodes: items.map((item: any) => ({
-            key: item.id,
+            // Use composite key for variations, simple id for simple products (matches Zustand store)
+            key: item.variationId ? `${item.id}-${item.variationId}` : item.id,
             quantity: item.quantity,
             subtotal: `$${(parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity).toFixed(2)}`,
             total: `$${(parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity).toFixed(2)}`,
@@ -144,6 +145,12 @@ export default function CartPageClient() {
                 image: item.image,
               },
             },
+            // Add variation data if present
+            variation: item.variationId ? {
+              node: {
+                databaseId: item.variationId,
+              },
+            } : null,
           })),
         },
       };
@@ -202,13 +209,22 @@ export default function CartPageClient() {
     try {
       setIsUpdating(true);
       
-      // Remove from Zustand store
-      removeZustandItem(itemKey);
+      // Parse the itemKey to extract id and variationId
+      // Format: "productId" or "productId-variationId"
+      const keyParts = itemKey.split('-');
+      const productId = keyParts[0];
+      const variationId = keyParts.length > 1 ? parseInt(keyParts[1], 10) : undefined;
+      
+      // Remove from Zustand store with correct parameters
+      removeZustandItem(productId, variationId);
       
       // Refresh cart display
       fetchLocalCart();
       
-      showToast('success', 'Removed', 'Item removed from cart');
+      // Show success toast after state updates complete
+      setTimeout(() => {
+        showToast('success', 'Removed', 'Item removed from cart');
+      }, 100);
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
       logError('cart.remove_failed', error, { itemKey });
@@ -223,17 +239,17 @@ export default function CartPageClient() {
     
     try {
       setIsUpdating(true);
-      const response = await fetch('/api/cart/clear', {
-        method: 'POST',
-      });
       
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      // Clear cart from Zustand store
+      clearZustandCart();
       
-      const data = await response.json();
-      setCart(data.cart);
-      showToast('success', 'Cart Cleared', 'All items removed from cart');
+      // Refresh cart display
+      fetchLocalCart();
+      
+      // Show success toast after state updates complete
+      setTimeout(() => {
+        showToast('success', 'Cart Cleared', 'All items removed from cart');
+      }, 100);
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
       logError('cart.clear_failed', error);

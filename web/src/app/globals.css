@@ -125,12 +125,7 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* BAPI uses a light theme only - no dark mode */
 
 /* Global micro-interactions: Smooth transitions for all interactive elements */
 a, button, input, select, textarea {

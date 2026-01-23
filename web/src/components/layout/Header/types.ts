@@ -12,7 +12,7 @@ export interface MegaMenuLink {
 
 export interface MegaMenuColumn {
   title: string;
-  icon?: React.ComponentType<{ className?: string }>;
+  icon?: React.ComponentType<{ className?: string }> | string; // Support both React components and image paths
   links: MegaMenuLink[];
 }
 

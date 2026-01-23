@@ -1,23 +1,11 @@
 import { NavLink, MegaMenuItem } from './types';
 import { 
-  Thermometer, 
-  Droplets, 
-  Gauge, 
-  Settings,
   Building2,
-  Wind,
   Factory,
-  FileText,
-  GraduationCap,
   Wrench,
-  Network,
-  Target,
-  Presentation,
   LifeBuoy,
   Phone,
-  MessageCircle,
   BookOpen,
-  Radio
 } from 'lucide-react';
 
 export const NAV_LINKS: NavLink[] = [];
@@ -30,7 +18,7 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
       columns: [
         {
           title: 'Temperature',
-          icon: Thermometer,
+          icon: '/images/icons/Temperature_Icon.png',
           links: [
             { 
               label: 'Room & Wall Sensors', 
@@ -56,7 +44,7 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
         },
         {
           title: 'Humidity & Air Quality',
-          icon: Droplets,
+          icon: '/images/icons/AirQuality_Icon.png',
           links: [
             { 
               label: 'RH Sensors', 
@@ -82,7 +70,7 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
         },
         {
           title: 'Pressure & Controllers',
-          icon: Gauge,
+          icon: '/images/icons/Pressure_Icon.png',
           links: [
             { 
               label: 'Differential Pressure', 
@@ -155,7 +143,7 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
         },
         {
           title: 'Industrial & Wireless',
-          icon: Factory,
+          icon: '/images/icons/Wireless_Icon.png',
           links: [
             { 
               label: 'Manufacturing Process', 

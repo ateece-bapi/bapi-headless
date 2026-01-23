@@ -20,13 +20,36 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
       <div className="absolute top-20 right-10 w-32 h-32 bg-primary-500 rounded-full opacity-5 blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
       <div className="absolute bottom-40 left-10 w-40 h-40 bg-accent-500 rounded-full opacity-5 blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
       
-      <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pb-20">
+      <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <HeroContent
           title={HERO_CONFIG.title}
           subtitle={HERO_CONFIG.subtitle}
           description={HERO_CONFIG.description}
         />
         <HeroActions actions={HERO_CONFIG.actions} />
+        
+        {/* 2025 Product Family Showcase */}
+        <div className="mt-16 lg:mt-20 relative">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100 p-6 lg:p-8 shadow-2xl border-2 border-neutral-200">
+            {/* Subtle decorative corner accents */}
+            <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-transparent rounded-br-full"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-accent-500/10 to-transparent rounded-tl-full"></div>
+            
+            <img
+              src="/images/products/families/BAPI_Full_Family_11K_Wide_2025_noWAM_US.png"
+              alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
+              className="relative w-full h-auto rounded-xl shadow-lg"
+              loading="eager"
+            />
+            
+            {/* Product family caption */}
+            <div className="mt-6 text-center">
+              <p className="text-sm lg:text-base font-semibold text-neutral-700">
+                Complete sensor solutions for building automation systems
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       
       {/* Subtle wave divider - elegant transition */}

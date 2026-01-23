@@ -50,7 +50,7 @@ const footerSections = [
       { label: 'Technical Support', href: '/support' },
       { label: 'Product Selector', href: '/resources/selector' },
       { label: 'Cross Reference', href: '/resources/cross-reference' },
-      { label: 'Distributor Network', href: '/distributors' },
+      { label: 'Distributor Network', href: '/where-to-buy' },
     ],
   },
 ];
@@ -181,7 +181,7 @@ const Footer: React.FC = () => (
             Request Quote
           </Link>
           <Link
-            href="/distributors"
+            href="/where-to-buy"
             className="inline-flex items-center justify-center px-4 py-2 border border-neutral-300 text-neutral-700 hover:border-primary-600 hover:bg-white hover:text-primary-600 font-semibold text-sm rounded-lg transition-all duration-300"
           >
             Find Distributor

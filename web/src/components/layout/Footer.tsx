@@ -69,7 +69,10 @@ const social = [
 ];
 
 const Footer: React.FC = () => (
-  <footer className="w-full bg-neutral-50 border-t border-neutral-200 mt-16">
+  <footer className="w-full bg-neutral-50 border-t border-neutral-200 mt-16 relative">
+    {/* Gradient Accent Line */}
+    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500"></div>
+    
     <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 lg:py-16">
       {/* Main Footer Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12 pb-12 border-b border-neutral-200">
@@ -82,10 +85,10 @@ const Footer: React.FC = () => (
               className="h-10 lg:h-12 w-auto transition-opacity hover:opacity-80" 
             />
           </Link>
-          <p className="text-sm lg:text-base text-neutral-900 leading-relaxed max-w-sm">
-            <span className="font-bold text-primary-600">Precision Sensor Solutions</span> for Building Automation.
+          <p className="text-sm lg:text-base text-neutral-900 font-semibold leading-relaxed max-w-sm">
+            <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">Precision Sensor Solutions</span> for Building Automation.
           </p>
-          <p className="text-sm text-neutral-600 max-w-sm">
+          <p className="text-sm text-neutral-600 max-w-sm leading-relaxed">
             Trusted by engineers worldwide for mission-critical facilities since 1993.
           </p>
           
@@ -100,9 +103,9 @@ const Footer: React.FC = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.name}
-                  className="w-10 h-10 rounded-lg bg-white border border-neutral-300 flex items-center justify-center text-neutral-600 hover:text-primary-600 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300 shadow-sm"
+                  className="w-11 h-11 rounded-lg bg-white border-2 border-neutral-300 flex items-center justify-center text-neutral-600 hover:text-white hover:bg-gradient-to-br hover:from-primary-600 hover:to-primary-700 hover:border-primary-600 transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-110"
                 >
-                  <IconComponent className="w-5 h-5" strokeWidth={2} />
+                  <IconComponent className="w-5 h-5" strokeWidth={2.5} />
                 </a>
               );
             })}
@@ -111,16 +114,17 @@ const Footer: React.FC = () => (
 
         {/* Navigation Sections */}
         {footerSections.map((section) => (
-          <nav key={section.title} className="flex flex-col gap-3">
-            <h3 className="font-bold text-sm lg:text-base text-primary-600 uppercase tracking-wide mb-1">
+          <nav key={section.title} className="flex flex-col gap-3 group">
+            <h3 className="font-extrabold text-sm lg:text-base text-primary-600 uppercase tracking-wide mb-2 relative pb-2">
               {section.title}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 group-hover:w-full transition-all duration-500"></span>
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5">
               {section.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-neutral-700 hover:text-primary-600 transition-colors duration-200 inline-block"
+                    className="text-sm text-neutral-700 hover:text-primary-600 hover:translate-x-1 transition-all duration-300 inline-block font-medium"
                   >
                     {link.label}
                   </Link>
@@ -135,21 +139,21 @@ const Footer: React.FC = () => (
       <div className="pt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 pb-8 border-b border-neutral-200">
         {/* Contact Information */}
         <div className="flex flex-col gap-2">
-          <h4 className="font-semibold text-sm text-primary-600 uppercase tracking-wide mb-1">
+          <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
             Contact
           </h4>
-          <address className="not-italic text-sm text-neutral-700 space-y-1.5">
-            <p>750 N Royal Ave</p>
-            <p>Gays Mills, WI 54631</p>
+          <address className="not-italic text-sm text-neutral-700 space-y-2 font-medium">
+            <p className="text-neutral-900">750 N Royal Ave</p>
+            <p className="text-neutral-900">Gays Mills, WI 54631</p>
             <a
               href="tel:6087354800"
-              className="block hover:text-primary-600 transition-colors duration-200"
+              className="block hover:text-primary-600 transition-all duration-300 hover:translate-x-1 font-semibold"
             >
               (608) 735-4800
             </a>
             <a
               href="mailto:sales@bapihvac.com"
-              className="block hover:text-primary-600 transition-colors duration-200"
+              className="block hover:text-primary-600 transition-all duration-300 hover:translate-x-1 font-semibold"
             >
               sales@bapihvac.com
             </a>
@@ -158,31 +162,32 @@ const Footer: React.FC = () => (
 
         {/* Certifications */}
         <div className="flex flex-col gap-2">
-          <h4 className="font-semibold text-sm text-primary-600 uppercase tracking-wide mb-1">
+          <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
             Certifications
           </h4>
-          <div className="text-sm text-neutral-700 space-y-1">
-            <p>BACnet B-ASC Certified</p>
-            <p>ISO 9001:2015</p>
-            <p>UL Listed</p>
+          <div className="text-sm text-neutral-700 space-y-2 font-medium">
+            <p className="text-neutral-900">BACnet B-ASC Certified</p>
+            <p className="text-neutral-900">ISO 9001:2015</p>
+            <p className="text-neutral-900">UL Listed</p>
+            <p className="text-neutral-900">UL Listed</p>
             <p>Made in USA</p>
           </div>
         </div>
 
         {/* Quick Actions */}
         <div className="flex flex-col gap-3">
-          <h4 className="font-semibold text-sm text-primary-600 uppercase tracking-wide mb-1">
+          <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
             Quick Actions
           </h4>
           <Link
             href="/quote"
-            className="inline-flex items-center justify-center px-4 py-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold text-sm rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
+            className="inline-flex items-center justify-center px-5 py-3 bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-neutral-900 font-bold text-sm rounded-lg transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105 border-2 border-accent-600"
           >
             Request Quote
           </Link>
           <Link
             href="/where-to-buy"
-            className="inline-flex items-center justify-center px-4 py-2 border border-neutral-300 text-neutral-700 hover:border-primary-600 hover:bg-white hover:text-primary-600 font-semibold text-sm rounded-lg transition-all duration-300"
+            className="inline-flex items-center justify-center px-5 py-3 bg-white border-2 border-neutral-300 text-neutral-700 hover:border-primary-600 hover:bg-primary-50 hover:text-primary-600 font-bold text-sm rounded-lg transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105"
           >
             Find Distributor
           </Link>
@@ -191,15 +196,15 @@ const Footer: React.FC = () => (
 
       {/* Copyright & Legal */}
       <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-neutral-600">
-        <div className="space-y-1">
+        <div className="space-y-1.5 font-medium">
           <p>© {new Date().getFullYear()} Building Automation Products, Inc. All rights reserved.</p>
-          <p>BAPI® is a registered trademark of Building Automation Products, Inc.</p>
+          <p className="text-neutral-500">BAPI® is a registered trademark of Building Automation Products, Inc.</p>
         </div>
-        <div className="flex gap-4">
-          <Link href="/privacy" className="hover:text-primary-600 transition-colors">
+        <div className="flex gap-6">
+          <Link href="/privacy" className="hover:text-primary-600 transition-all duration-300 font-semibold hover:translate-x-1">
             Privacy Policy
           </Link>
-          <Link href="/terms" className="hover:text-primary-600 transition-colors">
+          <Link href="/terms" className="hover:text-primary-600 transition-all duration-300 font-semibold hover:translate-x-1">
             Terms of Use
           </Link>
         </div>

@@ -1,4 +1,23 @@
 # ---
+# Performance & Image Optimization Investigation (Jan 23, 2026)
+- [ ] **Performance Analysis: Product Images**
+  - [ ] Run Lighthouse audit on product pages (check Largest Contentful Paint)
+  - [ ] Measure actual image load times in Network tab
+  - [ ] Document current performance baseline
+  - **Current Setup:**
+    - Images stored in WordPress/Kinsta (already on Kinsta CDN)
+    - Next.js Image component handles optimization (WebP, resizing, lazy load)
+    - Images served through Vercel edge cache
+  - **Quick Win Options (Try First):**
+    - [ ] Install WordPress image optimization plugin (ShortPixel, Smush)
+    - [ ] Enable WebP conversion in WordPress
+    - [ ] Verify Next.js image domains configured correctly
+  - **Advanced Options (Only If Needed):**
+    - [ ] Consider Cloudinary/Imgix proxy (no migration, just URL rewrite)
+    - [ ] Only migrate images if: >3s load times OR >1000 images OR WordPress storage issues
+  - **Decision:** Don't migrate unless measurement proves it's necessary
+  - **Note:** Next.js Image optimization + Kinsta CDN should be sufficient for 608 products
+
 # Product Gallery Multi-Image Debug (Jan 21, 2026)
 - [ ] Investigate why additional product images (galleryImages) are not showing for products with multiple images
   - Confirm images are present in WordPress product gallery

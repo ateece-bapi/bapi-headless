@@ -24,105 +24,6 @@ export const NAV_LINKS: NavLink[] = [];
 
 export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
   {
-    label: 'Applications',
-    href: '/applications',
-    megaMenu: {
-      columns: [
-        {
-          title: 'Building Automation',
-          icon: Building2,
-          links: [
-            { 
-              label: 'Room & Space Monitoring', 
-              href: '/applications/building-automation/room-monitoring',
-              description: 'Offices, classrooms, healthcare spaces'
-            },
-            { 
-              label: 'HVAC Duct & Air Handler', 
-              href: '/applications/building-automation/hvac-duct',
-              description: 'Supply, return, mixed air sensing'
-            },
-            { 
-              label: 'Outdoor & Weather Stations', 
-              href: '/applications/building-automation/outdoor-weather',
-              description: 'Building weather monitoring'
-            },
-            { 
-              label: 'Critical Spaces', 
-              href: '/applications/building-automation/critical-spaces',
-              description: 'Data centers, server rooms, labs',
-              badge: 'Popular'
-            },
-            { 
-              label: 'Indoor Air Quality', 
-              href: '/applications/building-automation/indoor-air-quality',
-              description: 'CO₂, VOC monitoring'
-            },
-          ],
-        },
-        {
-          title: 'Industrial & Wireless',
-          icon: Factory,
-          links: [
-            { 
-              label: 'Manufacturing Process', 
-              href: '/applications/industrial-process/manufacturing',
-              description: 'Industrial temperature & pressure'
-            },
-            { 
-              label: 'Industrial Refrigeration', 
-              href: '/applications/industrial-process/refrigeration',
-              description: 'Cold storage monitoring'
-            },
-            { 
-              label: 'Wireless Temp & Humidity', 
-              href: '/applications/wireless-remote/wireless-temp-humidity',
-              description: 'Battery-powered sensors',
-              badge: 'New'
-            },
-            { 
-              label: 'Wireless Pressure', 
-              href: '/applications/wireless-remote/wireless-pressure',
-              description: 'Filter differential pressure'
-            },
-          ],
-        },
-        {
-          title: 'Retrofit & Support',
-          icon: Wrench,
-          links: [
-            { 
-              label: 'BACnet Upgrades', 
-              href: '/applications/retrofit-replacement/bacnet-upgrades',
-              description: 'Modernize legacy systems'
-            },
-            { 
-              label: 'Pneumatic Replacement', 
-              href: '/applications/retrofit-replacement/pneumatic-to-electronic',
-              description: 'Convert to electronic sensors'
-            },
-            { 
-              label: 'Mounting Hardware', 
-              href: '/applications/installation-support/mounting-hardware',
-              description: 'Installation accessories'
-            },
-            { 
-              label: 'Test Equipment', 
-              href: '/applications/installation-support/test-equipment',
-              description: 'Commissioning tools'
-            },
-          ],
-        },
-      ],
-      featured: {
-        title: 'Find Sensors by Application',
-        description: 'Browse products organized by your specific use case. Discover sensors optimized for your industry, environment, and mounting requirements.',
-        cta: 'Explore Applications',
-        href: '/applications',
-      },
-    },
-  },
-  {
     label: 'Products',
     href: '/products',
     megaMenu: {
@@ -133,22 +34,22 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
           links: [
             { 
               label: 'Room & Wall Sensors', 
-              href: '/products/temperature/room-wall',
+              href: '/products',
               description: 'High-accuracy temperature sensing for HVAC control'
             },
             { 
               label: 'Duct Sensors', 
-              href: '/products/temperature/duct',
+              href: '/products',
               description: 'Duct-mounted temperature transmitters'
             },
             { 
               label: 'Immersion & Well', 
-              href: '/products/temperature/immersion',
+              href: '/products',
               description: 'Liquid temperature measurement solutions'
             },
             { 
               label: 'Outdoor Sensors', 
-              href: '/products/temperature/outdoor',
+              href: '/products',
               description: 'Weather-resistant temperature sensing'
             },
           ],
@@ -159,66 +60,49 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
           links: [
             { 
               label: 'RH Sensors', 
-              href: '/products/humidity/rh-sensors',
+              href: '/products',
               description: 'Relative humidity measurement'
             },
             { 
               label: 'CO₂ Sensors', 
-              href: '/products/air-quality/co2',
+              href: '/products',
               description: 'Carbon dioxide monitoring for IAQ'
             },
             { 
               label: 'VOC Sensors', 
-              href: '/products/air-quality/voc',
+              href: '/products',
               description: 'Volatile organic compound detection'
             },
             { 
               label: 'Particulate Matter', 
-              href: '/products/air-quality/particulate',
+              href: '/products',
               description: 'PM2.5 and PM10 monitoring'
             },
           ],
         },
         {
-          title: 'Pressure & Flow',
+          title: 'Pressure & Controllers',
           icon: Gauge,
           links: [
             { 
               label: 'Differential Pressure', 
-              href: '/products/pressure/differential',
+              href: '/products',
               description: 'Room pressurization and filter monitoring'
             },
             { 
               label: 'Static Pressure', 
-              href: '/products/pressure/static',
+              href: '/products',
               description: 'Duct static pressure transmitters'
             },
             { 
-              label: 'Airflow Stations', 
-              href: '/products/flow/airflow',
-              description: 'Air velocity and volume measurement'
-            },
-          ],
-        },
-        {
-          title: 'Controllers & I/O',
-          icon: Settings,
-          links: [
-            { 
               label: 'Zone Controllers', 
-              href: '/products/controllers/zone',
+              href: '/products',
               description: 'VAV and FCU control solutions'
             },
             { 
               label: 'I/O Modules', 
-              href: '/products/controllers/io',
+              href: '/products',
               description: 'Expandable input/output modules'
-            },
-            { 
-              label: 'Wireless Solutions', 
-              href: '/products/wireless',
-              description: 'Battery-powered and energy harvesting',
-              badge: 'New'
             },
           ],
         },
@@ -233,8 +117,102 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
     },
   },
   {
+    label: 'Applications',
+    href: '/applications',
+    megaMenu: {
+      columns: [
+        {
+          title: 'Building Automation',
+          icon: Building2,
+          links: [
+            { 
+              label: 'Room & Space Monitoring', 
+              href: '/applications/building-automation',
+              description: 'Offices, classrooms, healthcare spaces'
+            },
+            { 
+              label: 'HVAC Duct & Air Handler', 
+              href: '/applications/building-automation',
+              description: 'Supply, return, mixed air sensing'
+            },
+            { 
+              label: 'Outdoor & Weather Stations', 
+              href: '/applications/building-automation',
+              description: 'Building weather monitoring'
+            },
+            { 
+              label: 'Critical Spaces', 
+              href: '/applications/building-automation',
+              description: 'Data centers, server rooms, labs',
+              badge: 'Popular'
+            },
+            { 
+              label: 'Indoor Air Quality', 
+              href: '/applications/building-automation',
+              description: 'CO₂, VOC monitoring'
+            },
+          ],
+        },
+        {
+          title: 'Industrial & Wireless',
+          icon: Factory,
+          links: [
+            { 
+              label: 'Manufacturing Process', 
+              href: '/applications',
+              description: 'Industrial temperature & pressure'
+            },
+            { 
+              label: 'Industrial Refrigeration', 
+              href: '/applications',
+              description: 'Cold storage monitoring'
+            },
+            { 
+              label: 'Wireless Monitoring', 
+              href: '/wam',
+              description: 'Battery-powered remote sensors',
+              badge: 'Premium'
+            },
+            { 
+              label: 'Wireless Pressure', 
+              href: '/wam',
+              description: 'Filter differential pressure'
+            },
+          ],
+        },
+        {
+          title: 'Retrofit & Support',
+          icon: Wrench,
+          links: [
+            { 
+              label: 'BACnet Upgrades', 
+              href: '/applications',
+              description: 'Modernize legacy systems'
+            },
+            { 
+              label: 'Pneumatic Replacement', 
+              href: '/applications',
+              description: 'Convert to electronic sensors'
+            },
+            { 
+              label: 'Installation Support', 
+              href: '/contact',
+              description: 'Talk to our technical team'
+            },
+          ],
+        },
+      ],
+      featured: {
+        title: 'Find Sensors by Application',
+        description: 'Browse products organized by your specific use case. Discover sensors optimized for your industry, environment, and mounting requirements.',
+        cta: 'Explore Applications',
+        href: '/applications',
+      },
+    },
+  },
+  {
     label: 'Support',
-    href: '/support',
+    href: '/contact',
     megaMenu: {
       columns: [
         {
@@ -242,24 +220,20 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
           icon: LifeBuoy,
           links: [
             { 
+              label: 'Contact Support', 
+              href: '/contact',
+              description: 'Phone, email, and sales team',
+              badge: 'Popular'
+            },
+            { 
               label: 'Technical Support', 
-              href: '/support/technical',
+              href: '/contact',
               description: 'Product troubleshooting and configuration'
             },
             { 
-              label: 'Contact Us', 
-              href: '/contact',
-              description: 'Phone, email, and sales team'
-            },
-            { 
-              label: 'RMA & Returns', 
-              href: '/support/rma',
-              description: 'Return merchandise authorization'
-            },
-            { 
-              label: 'Warranty Information', 
-              href: '/support/warranty',
-              description: 'Product warranty details'
+              label: 'Request a Quote', 
+              href: '/request-quote',
+              description: 'Custom pricing for your project'
             },
           ],
         },
@@ -268,24 +242,19 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
           icon: BookOpen,
           links: [
             { 
-              label: 'Installation Guides', 
-              href: '/resources/installation',
-              description: 'Step-by-step instructions'
-            },
-            { 
-              label: 'Technical Data Sheets', 
-              href: '/resources/datasheets',
-              description: 'Product specifications'
-            },
-            { 
               label: 'Application Notes', 
-              href: '/resources/application-notes',
+              href: '/application-notes',
               description: 'Technical guides and best practices'
             },
             { 
-              label: 'Video Tutorials', 
-              href: '/resources/videos',
-              description: 'Product demos and how-tos'
+              label: 'All Resources', 
+              href: '/resources',
+              description: 'Installation guides and specs'
+            },
+            { 
+              label: 'Product Search', 
+              href: '/products',
+              description: 'Find the right sensor'
             },
           ],
         },
@@ -294,25 +263,19 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
           icon: Wrench,
           links: [
             { 
-              label: 'Product Selector', 
-              href: '/resources/selector',
-              description: 'Find the right sensor',
-              badge: 'Popular'
+              label: 'Product Catalog', 
+              href: '/products',
+              description: 'Browse all products',
             },
             { 
-              label: 'Cross Reference', 
-              href: '/resources/cross-reference',
-              description: 'Competitive part lookup'
+              label: 'Applications Guide', 
+              href: '/applications',
+              description: 'Find sensors by use case'
             },
             { 
-              label: 'CAD Drawings', 
-              href: '/resources/cad',
-              description: 'AutoCAD and Revit files'
-            },
-            { 
-              label: 'FAQs', 
-              href: '/support/faq',
-              description: 'Frequently asked questions'
+              label: 'Contact Sales Team', 
+              href: '/contact',
+              description: 'Talk to a product expert'
             },
           ],
         },
@@ -321,62 +284,15 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
         title: 'Need Technical Help?',
         description: 'Our support team is ready to help with product selection, installation, and troubleshooting. Average response time: 2 hours.',
         cta: 'Contact Support',
-        href: '/support/contact',
+        href: '/contact',
       },
     },
   },
   {
-    label: 'Resources',
-    href: '/resources',
+    label: 'Company',
+    href: '/company',
     megaMenu: {
       columns: [
-        {
-          title: 'Solutions & Case Studies',
-          icon: Target,
-          links: [
-            { 
-              label: 'Healthcare Solutions', 
-              href: '/solutions/healthcare',
-              description: 'ASHRAE 170 compliance'
-            },
-            { 
-              label: 'Data Center Solutions', 
-              href: '/solutions/data-centers',
-              description: 'Critical environment monitoring'
-            },
-            { 
-              label: 'Case Studies', 
-              href: '/resources/case-studies',
-              description: 'Real-world success stories'
-            },
-            { 
-              label: 'White Papers', 
-              href: '/resources/whitepapers',
-              description: 'Technical insights'
-            },
-          ],
-        },
-        {
-          title: 'Learning & Training',
-          icon: GraduationCap,
-          links: [
-            { 
-              label: 'Webinars', 
-              href: '/resources/webinars',
-              description: 'Live and on-demand training'
-            },
-            { 
-              label: 'Video Library', 
-              href: '/resources/videos',
-              description: 'Product demos and tutorials'
-            },
-            { 
-              label: 'BACnet Integration', 
-              href: '/solutions/bacnet',
-              description: 'BACnet device setup guides'
-            },
-          ],
-        },
         {
           title: 'About BAPI',
           icon: Building2,
@@ -403,12 +319,50 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
             },
           ],
         },
+        {
+          title: 'Resources',
+          icon: BookOpen,
+          links: [
+            { 
+              label: 'Application Notes', 
+              href: '/application-notes',
+              description: 'Technical documentation'
+            },
+            { 
+              label: 'All Resources', 
+              href: '/resources',
+              description: 'Guides and white papers'
+            },
+            { 
+              label: 'Product Solutions', 
+              href: '/solutions/building-automation',
+              description: 'Industry-specific solutions'
+            },
+          ],
+        },
+        {
+          title: 'Get in Touch',
+          icon: Phone,
+          links: [
+            { 
+              label: 'Contact & Sales Team', 
+              href: '/contact',
+              description: 'Phone, email, and global team',
+              badge: 'Popular'
+            },
+            { 
+              label: 'Request a Quote', 
+              href: '/request-quote',
+              description: 'Custom pricing for your project'
+            },
+          ],
+        },
       ],
       featured: {
-        title: 'Healthcare Compliance Package',
-        description: 'Complete pressure monitoring solution for operating rooms and isolation rooms. ASHRAE 170 certified.',
-        cta: 'Learn More',
-        href: '/solutions/healthcare-package',
+        title: 'Talk to Our Experts',
+        description: 'Our sales and technical team is ready to help with product selection, installation guidance, and custom solutions for your project.',
+        cta: 'Contact Us',
+        href: '/contact',
       },
     },
   },

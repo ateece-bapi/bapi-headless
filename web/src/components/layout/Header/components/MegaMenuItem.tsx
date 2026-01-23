@@ -140,10 +140,10 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
         onMouseEnter={onCancelTimers}
         onMouseLeave={onCloseWithGrace}
         className={clsx(
-          'absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2',
-          'mx-auto max-w-7xl w-[min(100vw-2rem,72rem)]',
-          'overflow-hidden rounded-2xl border-2 border-primary-500/20 bg-white shadow-2xl',
-          'p-4 sm:p-6 md:p-8',
+          'absolute left-0 md:left-1/2 top-full z-50 mt-2 md:-translate-x-1/2',
+          'mx-auto max-w-7xl w-[min(100vw-1rem,72rem)]',
+          'overflow-y-auto max-h-[calc(100vh-8rem)] rounded-2xl border-2 border-primary-500/20 bg-white shadow-2xl',
+          'p-3 sm:p-4 md:p-5',
           'origin-top transition-all duration-300 ease-out',
           'focus-within:border-primary-500/40',
           isOpen
@@ -151,16 +151,16 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
             : 'invisible -translate-y-2 opacity-0 pointer-events-none'
         )}
       >
-        <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-12">
+        <div className="grid grid-cols-1 gap-4 md:gap-5 md:grid-cols-12">
           {/* Main Columns */}
           <div className="md:col-span-9">
-            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {item.megaMenu.columns.map((column, colIndex) => {
                 const IconComponent = column.icon;
                 return (
                 <div 
                   key={column.title} 
-                  className="space-y-5 relative animate-in fade-in slide-in-from-left-4 duration-300"
+                  className="space-y-3 relative animate-in fade-in slide-in-from-left-4 duration-300"
                   style={{ animationDelay: `${colIndex * 75}ms` }}
                 >
                   {/* Column divider (except first column) */}
@@ -169,7 +169,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                   )}
                   
                   {/* Column header with icon */}
-                  <div className="flex items-center gap-2 pb-3 border-b-2 border-primary-500/20">
+                  <div className="flex items-center gap-2 pb-2 border-b-2 border-primary-500/20">
                     {IconComponent && (
                       <div className="p-1.5 rounded-md bg-primary-100">
                         <IconComponent className="h-4 w-4 text-primary-700" />
@@ -179,13 +179,13 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                       {column.title}
                     </h3>
                   </div>
-                  <ul className="space-y-2.5">
-                    {column.links.map((link) => (
-                      <li key={link.href}>
+                  <ul className="space-y-1.5">
+                    {column.links.map((link, linkIndex) => (
+                      <li key={`${link.href}-${link.label}-${linkIndex}`}>
                         <Link
                           href={link.href}
                           onClick={onCloseImmediate}
-                          className="group block rounded-lg p-4 bg-white hover:bg-primary-50 transition-all duration-300 ease-out hover:shadow-sm border border-transparent hover:border-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:bg-primary-50"
+                          className="group block rounded-lg p-2.5 bg-white hover:bg-primary-50 transition-all duration-300 ease-out hover:shadow-sm border border-transparent hover:border-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:bg-primary-50"
                         >
                           <div className="flex items-start justify-between gap-2">
                             <span className="text-sm font-bold text-neutral-900 group-hover:text-primary-700 transition-colors duration-300 ease-out">

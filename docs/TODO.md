@@ -1,4 +1,33 @@
 # ---
+
+## 🔄 In Progress
+
+### Phase 10: Where to Buy Distributor Directory (Jan 23, 2026)
+- [x] Create `/where-to-buy` page with modern enterprise B2B design
+- [x] Build interactive search and regional filtering
+- [x] Add 21 USA distributors with complete data (phone, website, regions)
+- [x] Add 13 Europe distributors with complete data
+- [x] Organize 34 distributor logos in public folder
+- [x] Style page to match Sales Team page design (gradients, hover effects, animations)
+- [ ] Add International distributor data
+- [ ] Resolve MRU logo visibility issue
+- [ ] Test responsive behavior on all screen sizes
+- [ ] Verify all 34 phone numbers and website links functional
+- [ ] User acceptance testing
+- [ ] Commit and push to feature branch
+- [ ] Create PR for review
+- [ ] Merge to main and deploy
+
+### Phase 9: Sales Team Data Refresh (Jan 23, 2026)
+- [x] Add 2 new India sales reps (Sharad Thakur, Shyam Krishnareddygari) with professional photos
+- [x] Add 2 new North America reps (Reggie Saucke, Jacob Benson) with placeholder photos
+- [x] Update titles for existing sales reps (8 total updated)
+- [x] Refine regional coverage for all reps
+- [x] Update DAILY-LOG with Phase 9 documentation
+- [x] Commit, push, and merge PR to main
+- [x] Deploy to production (Vercel)
+- [ ] Replace placeholder photos for Reggie Saucke and Jacob Benson
+
 # Performance & Image Optimization Investigation (Jan 23, 2026)
 - [ ] **Performance Analysis: Product Images**
   - [ ] Run Lighthouse audit on product pages (check Largest Contentful Paint)

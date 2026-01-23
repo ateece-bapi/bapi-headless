@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Mail, Phone, Play, X } from 'lucide-react';
+import { Mail, Phone, Play, X, MapPin, Briefcase } from 'lucide-react';
 
 interface SalesTeamCardProps {
   name: string;
@@ -45,14 +45,14 @@ export default function SalesTeamCard({
 
   return (
     <>
-      <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-neutral-200 hover:shadow-md transition-all duration-200 hover:border-primary-300">
+      <div className="group bg-white rounded-xl overflow-hidden shadow-md border-2 border-neutral-200 hover:shadow-2xl hover:border-primary-500 transition-all duration-300 hover:-translate-y-1">
         {/* Photo */}
         <div className="relative aspect-[3/4] bg-neutral-100 overflow-hidden group/video">
           <Image
             src={imageSrc}
             alt={name}
             fill
-            className="object-cover"
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
             onError={() => {
               // Fallback to placeholder if image doesn't exist
@@ -62,9 +62,9 @@ export default function SalesTeamCard({
           
           {/* Video Badge - Always Visible */}
           {video && (
-            <div className="absolute top-2 right-2 bg-primary-600 text-white px-2 py-1 rounded-md flex items-center gap-1 text-xs font-medium shadow-lg z-30">
-              <Play className="w-3 h-3" fill="currentColor" />
-              Video
+            <div className="absolute top-3 right-3 bg-gradient-to-r from-accent-500 to-accent-600 text-neutral-900 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs font-bold shadow-lg z-30 animate-pulse">
+              <Play className="w-3.5 h-3.5" fill="currentColor" />
+              Watch Video
             </div>
           )}
           
@@ -72,7 +72,7 @@ export default function SalesTeamCard({
           {video && (
             <div
               onClick={openVideo}
-              className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/50 [opacity:0] group-hover/video:[opacity:1] transition-opacity duration-500 cursor-pointer"
+              className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-gradient-to-t from-black/70 via-black/50 to-transparent [opacity:0] group-hover/video:[opacity:1] transition-opacity duration-500 cursor-pointer"
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
@@ -82,36 +82,54 @@ export default function SalesTeamCard({
               }}
               aria-label={`Play introduction video for ${name}`}
             >
-              <div className="w-16 h-16 rounded-full bg-white/95 flex items-center justify-center mb-2">
-                <Play className="w-8 h-8 text-primary-600 ml-1" fill="currentColor" />
+              <div className="w-20 h-20 rounded-full bg-white/95 flex items-center justify-center mb-3 shadow-xl transform group-hover/video:scale-110 transition-transform duration-300">
+                <Play className="w-10 h-10 text-primary-600 ml-1" fill="currentColor" />
               </div>
-              <span className="text-white font-semibold text-sm">Watch Introduction</span>
+              <span className="text-white font-bold text-base tracking-wide">Watch Introduction</span>
             </div>
           )}
         </div>
 
         {/* Info */}
-        <div className="p-4">
-          <h3 className="text-base font-bold text-neutral-900 mb-0.5 leading-tight">{name}</h3>
-          <p className="text-xs text-primary-600 font-medium mb-0.5">{title}</p>
-          <p className="text-xs text-neutral-500 mb-4">{region}</p>
+        <div className="p-5">
+          {/* Name - Larger, bolder */}
+          <h3 className="text-xl font-extrabold text-neutral-900 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300">
+            {name}
+          </h3>
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 mb-3 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+
+          {/* Title with Icon */}
+          <div className="flex items-start gap-2 mb-2">
+            <Briefcase className="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" />
+            <p className="text-sm text-neutral-700 font-semibold leading-tight flex-1">{title}</p>
+          </div>
+
+          {/* Region Badge */}
+          <div className="flex items-center gap-2 mb-4">
+            <MapPin className="w-4 h-4 text-accent-500 flex-shrink-0" />
+            <span className="inline-block bg-gradient-to-r from-primary-50 to-accent-50 text-primary-700 px-3 py-1 rounded-full text-xs font-bold border border-primary-200">
+              {region}
+            </span>
+          </div>
 
           {/* Contact Buttons */}
           <div className="flex gap-2">
             <a
               href={`mailto:${email}`}
-              className="flex-1 flex items-center justify-center gap-1.5 bg-primary-600 hover:bg-primary-700 text-white px-3 py-2 rounded-md font-medium text-xs transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105"
               title={`Email ${name}`}
             >
-              <Mail className="w-3.5 h-3.5" />
+              <Mail className="w-4 h-4" />
               Email
             </a>
             <a
               href={`tel:${phone.replace(/[^0-9+]/g, '')}`}
-              className="w-10 h-9 flex items-center justify-center bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-md transition-colors border border-neutral-300"
+              className="w-12 h-11 flex items-center justify-center bg-accent-500 hover:bg-accent-600 text-neutral-900 rounded-lg transition-all duration-300 shadow-md hover:shadow-xl border-2 border-accent-600 transform hover:scale-105"
               title={`Call ${name}`}
             >
-              <Phone className="w-3.5 h-3.5" />
+              <Phone className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -120,16 +138,16 @@ export default function SalesTeamCard({
       {/* Video Modal */}
       {video && showVideoModal && (
         <div
-          className="fixed inset-0 bg-black/85 flex items-center justify-center z-[9999] p-4"
+          className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-[9999] p-4 animate-in fade-in duration-300"
           onClick={closeVideo}
         >
           <div
-            className="relative w-full max-w-3xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl"
+            className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={closeVideo}
-              className="absolute top-2 right-3 z-10 text-white hover:text-neutral-300 transition-colors"
+              className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300 hover:scale-110"
               aria-label="Close video"
             >
               <X className="w-6 h-6" />

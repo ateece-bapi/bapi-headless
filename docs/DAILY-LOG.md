@@ -1,6 +1,76 @@
 # BAPI Headless Development Log
 
-## January 23, 2026 - Mega Menu Navigation Audit & UX Fixes 🔧
+## January 23, 2026 (Afternoon) - Contact Page Sales Team Updates 👥
+
+### Phase 9: Sales Team Data Refresh - **IN PROGRESS** 🔄
+
+**Branch:** `main` (working directly)  
+**Time:** ~1 hour (data updates + photo processing)  
+**Files Modified:** 3 files  
+**Impact:** Updated sales team information, added 2 new India reps, refined titles and regions
+
+**User Request:** "We have some current sales reps to add to the contact page and some titles that need updated"
+
+**Changes Made:**
+
+**1. Sales Team Data Updates (`web/src/app/contact/page.tsx`):**
+
+**North America Team (8 → 10 reps):**
+- Matt Holder: Title updated → "Business Development & Regional Sales Manager"
+- Jon Greenwald: Title updated → "Distribution Accounts Leader" 
+- Jacob Melgosa: Title simplified → "WAM Sales"
+- ✅ **NEW:** Reggie Saucke - "HVAC Sensor Sales" (placeholder photo)
+- ✅ **NEW:** Jacob Benson - "HVAC Sensor Sales" (placeholder photo)
+
+**UK Team:**
+- Mike Moss: Title updated → "Business Development & Regional Sales Manager"
+- Mike Moss: Region refined → "UK & Western Europe"
+
+**Europe Team:**
+- Jan Zurawski: Title updated → "Regional Business Development & Operations Manager"
+- Jan Zurawski: Region refined → "Central & Eastern Europe"
+
+**Middle East Team:**
+- Murtaza Kalabhai: Title updated → "Regional Sales Manager"
+- Murtaza Kalabhai: Region expanded → "Middle East & India"
+
+**India Team (Major Update):**
+- ✅ **NEW:** Sharad Thakur - "North India Sales Manager" 
+  - Photo added: `/images/team/Sharad-Thakur.png`
+  - Email: sharad@bapihvac.com
+- ✅ **NEW:** Shyam Krishnareddygari - "South India Sales Manager"
+  - Photo added: `/images/team/Shyam-Krishnareddygari.png`
+  - Email: shyam@bapihvac.com
+
+**2. New Sales Rep Photos Added:**
+- `web/public/images/team/Sharad-Thakur.png` (professional headshot)
+- `web/public/images/team/Shyam-Krishnareddygari.png` (professional headshot)
+- Both photos properly formatted and optimized for web
+
+**3. SalesTeamCard Component Updates (`web/src/components/contact/SalesTeamCard.tsx`):**
+- Minor refinements to card styling and layout
+- Enhanced responsive behavior
+
+**Current Team Size:**
+- **Total:** 21 sales representatives (was 19)
+- **North America:** 10 reps (was 8)
+- **India:** 2 reps (was 0 placeholder entries)
+- **Other Regions:** Unchanged (UK: 1, Europe: 1, Middle East: 1, etc.)
+
+**Pending Tasks:**
+- [ ] Update placeholder photos for Reggie Saucke and Jacob Benson
+- [ ] Verify email addresses for new North America reps
+- [ ] Consider merging Phase A/B/C geographic improvements (from previous session)
+
+**Technical Notes:**
+- All new photos follow naming convention: `Firstname-Lastname.png`
+- India team photos sourced from user-provided files
+- Placeholder.svg used for pending photos (Reggie & Jacob)
+- Zone.Identifier files present (Windows download artifacts, safe to ignore)
+
+---
+
+## January 23, 2026 (Morning) - Mega Menu Navigation Audit & UX Fixes 🔧
 
 ### Phase 8: Navigation Overhaul - **COMPLETE** ✅
 

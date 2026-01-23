@@ -31,7 +31,7 @@ interface SalesRep {
 const northAmericaTeam: SalesRep[] = [
   {
     name: 'Matt Holder',
-    title: 'Business Development & Regional Sales',
+    title: 'Business Development & Regional Sales Manager',
     region: 'North America',
     email: 'mholder@bapihvac.com',
     phone: '(800) 553-3027',
@@ -71,7 +71,7 @@ const northAmericaTeam: SalesRep[] = [
   },
   {
     name: 'Jon Greenwald',
-    title: 'Distribution & Emerging Leader',
+    title: 'Distribution Accounts Leader',
     region: 'North America',
     email: 'jgreenwald@bapihvac.com',
     phone: '(800) 553-3027',
@@ -88,20 +88,36 @@ const northAmericaTeam: SalesRep[] = [
   },
   {
     name: 'Jacob Melgosa',
-    title: 'Wireless Asset Monitoring Sales',
+    title: 'WAM Sales',
     region: 'North America',
     email: 'jmelgosa@bapihvac.com',
     phone: '(800) 553-3027',
     photo: '/images/team/Jacob-Melgosa.webp',
     video: 'https://www.youtube.com/embed/riEBii0LG3s',
   },
+  {
+    name: 'Reggie Saucke',
+    title: 'HVAC Sensor Sales',
+    region: 'North America',
+    email: 'rsaucke@bapihvac.com',
+    phone: '(800) 553-3027',
+    photo: '/images/team/placeholder.svg',
+  },
+  {
+    name: 'Jacob Benson',
+    title: 'HVAC Sensor Sales',
+    region: 'North America',
+    email: 'jbenson@bapihvac.com',
+    phone: '(800) 553-3027',
+    photo: '/images/team/placeholder.svg',
+  },
 ];
 
 const ukTeam: SalesRep[] = [
   {
     name: 'Mike Moss',
-    title: 'Regional Sales',
-    region: 'United Kingdom',
+    title: 'Business Development & Regional Sales Manager',
+    region: 'UK & Western Europe',
     email: 'mmoss@bapihvac.com',
     phone: '(800) 553-3027',
     photo: '/images/team/mike-moss.png',
@@ -111,8 +127,8 @@ const ukTeam: SalesRep[] = [
 const europeTeam: SalesRep[] = [
   {
     name: 'Jan Zurawski',
-    title: 'Regional Sales, Development & Applications',
-    region: 'Europe',
+    title: 'Regional Business Development & Operations Manager',
+    region: 'Central & Eastern Europe',
     email: 'jzurawski@bapihvac.com',
     phone: '(800) 553-3027',
     photo: '/images/team/jan-zurawski.png',
@@ -123,8 +139,8 @@ const europeTeam: SalesRep[] = [
 const middleEastTeam: SalesRep[] = [
   {
     name: 'Murtaza Kalabhai',
-    title: 'Business Development',
-    region: 'Middle East',
+    title: 'Regional Sales Manager',
+    region: 'Middle East & India',
     email: 'mkalabhai@bapihvac.com',
     phone: '(800) 553-3027',
     photo: '/images/team/murtaza-kalabhai.png',
@@ -133,28 +149,28 @@ const middleEastTeam: SalesRep[] = [
 
 const indiaTeam: SalesRep[] = [
   {
-    name: 'Sharad',
-    title: 'Regional Sales',
+    name: 'Sharad Thakur',
+    title: 'North India Sales Manager',
     region: 'India',
     email: 'sharad@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/placeholder.svg',
+    photo: '/images/team/Sharad-Thakur.png',
   },
   {
-    name: 'Shyam',
-    title: 'Regional Sales',
+    name: 'Shyam Krishnareddygari',
+    title: 'South India Sales Manager',
     region: 'India',
     email: 'shyam@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/placeholder.svg',
+    photo: '/images/team/Shyam-Krishnareddygari.png',
   },
 ];
 
 const southAmericaTeam: SalesRep[] = [
   {
     name: 'John Shields',
-    title: 'Business Development, Regional Sales',
-    region: 'South America',
+    title: 'Business Development & Regional Sales Manager',
+    region: 'Africa, South America, Middle East, India, Scandinavia',
     email: 'jshields@bapihvac.com',
     phone: '(800) 553-3027',
     photo: '/images/team/john-shields.png',
@@ -164,8 +180,8 @@ const southAmericaTeam: SalesRep[] = [
 const africaTeam: SalesRep[] = [
   {
     name: 'John Shields',
-    title: 'Business Development, Regional Sales',
-    region: 'Africa',
+    title: 'Business Development & Regional Sales Manager',
+    region: 'Africa, South America, Middle East, India, Scandinavia',
     email: 'jshields@bapihvac.com',
     phone: '(800) 553-3027',
     photo: '/images/team/john-shields.png',
@@ -175,7 +191,7 @@ const africaTeam: SalesRep[] = [
 const asiaTeam: SalesRep[] = [
   {
     name: 'Tim Wilder',
-    title: 'Regional Sales',
+    title: 'Director of Research & Development',
     region: 'Asia',
     email: 'twilder@bapihvac.com',
     phone: '(800) 553-3027',
@@ -186,7 +202,7 @@ const asiaTeam: SalesRep[] = [
 const australiaTeam: SalesRep[] = [
   {
     name: 'Andy Brooks',
-    title: 'Regional Sales',
+    title: 'Business Development & Regional Sales Manager',
     region: 'Australia & New Zealand',
     email: 'abrooks@bapihvac.com',
     phone: '(800) 553-3027',
@@ -202,14 +218,6 @@ const technicalTeam: SalesRep[] = [
     email: 'jhillebrand@bapihvac.com',
     phone: '(800) 553-3027',
     photo: '/images/team/jonathan-hillebrand.png',
-  },
-  {
-    name: 'Andrew Leirmo',
-    title: 'Product Manager',
-    region: 'Technical Support',
-    email: 'aleirmo@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/andrew-leirmo.png',
   },
 ];
 
@@ -482,7 +490,7 @@ export default function ContactPage() {
                   <Users className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
-                  19
+                  20
                 </div>
                 <div className="text-sm font-medium text-white/90">Team Members</div>
               </div>
@@ -651,7 +659,7 @@ export default function ContactPage() {
             >
               <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
                 <span>
-                  <span className="mr-2">🌎</span>North America <span className="text-neutral-500 font-normal text-lg">(8)</span>
+                  <span className="mr-2">🌎</span>North America <span className="text-neutral-500 font-normal text-lg">(10)</span>
                 </span>
                 <span className="lg:hidden text-primary-500">
                   {expandedSections.has('north-america') ? '▼' : '▶'}

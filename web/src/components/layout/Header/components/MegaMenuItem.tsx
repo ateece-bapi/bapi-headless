@@ -156,7 +156,10 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           <div className="md:col-span-9">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {item.megaMenu.columns.map((column, colIndex) => {
-                const IconComponent = column.icon;
+                // Handle both string (image path) and React component icons
+                const IconComponent = typeof column.icon === 'string' ? null : column.icon;
+                const iconPath = typeof column.icon === 'string' ? column.icon : null;
+                
                 return (
                 <div 
                   key={column.title} 
@@ -170,11 +173,19 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                   
                   {/* Column header with icon */}
                   <div className="flex items-center gap-2 pb-2 border-b-2 border-primary-500/20">
-                    {IconComponent && (
+                    {iconPath ? (
+                      <div className="p-1.5 rounded-md bg-primary-100">
+                        <img 
+                          src={iconPath} 
+                          alt={`${column.title} icon`}
+                          className="h-5 w-5 object-contain"
+                        />
+                      </div>
+                    ) : IconComponent ? (
                       <div className="p-1.5 rounded-md bg-primary-100">
                         <IconComponent className="h-4 w-4 text-primary-700" />
                       </div>
-                    )}
+                    ) : null}
                     <h3 className="text-xs font-black uppercase tracking-wider text-primary-800">
                       {column.title}
                     </h3>

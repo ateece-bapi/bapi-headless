@@ -161,16 +161,39 @@ const Footer: React.FC = () => (
         </div>
 
         {/* Certifications */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
             Certifications
           </h4>
-          <div className="text-sm text-neutral-700 space-y-2 font-medium">
-            <p className="text-neutral-900">BACnet B-ASC Certified</p>
-            <p className="text-neutral-900">ISO 9001:2015</p>
-            <p className="text-neutral-900">UL Listed</p>
-            <p className="text-neutral-900">UL Listed</p>
-            <p>Made in USA</p>
+          
+          {/* Certification Logos */}
+          <div className="flex flex-col gap-4">
+            {/* Logo Badges */}
+            <div className="flex flex-wrap items-center gap-4">
+              <img 
+                src="/images/logos/5_year_warranty_C92M55.png" 
+                alt="5 Year Warranty" 
+                className="h-12 w-auto hover:scale-110 transition-transform duration-300"
+              />
+              <img 
+                src="/images/logos/NSF_Logo.png" 
+                alt="NSF Certified" 
+                className="h-10 w-auto hover:scale-110 transition-transform duration-300"
+              />
+              <img 
+                src="/images/logos/RoHS_Logo.png" 
+                alt="RoHS Compliant" 
+                className="h-10 w-auto hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            
+            {/* Text Certifications */}
+            <div className="text-sm text-neutral-700 space-y-1.5 font-medium">
+              <p className="text-neutral-900 font-semibold">BACnet B-ASC Certified</p>
+              <p className="text-neutral-900 font-semibold">ISO 9001:2015</p>
+              <p className="text-neutral-900 font-semibold">UL Listed</p>
+              <p className="text-neutral-700">Made in USA</p>
+            </div>
           </div>
         </div>
 

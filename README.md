@@ -103,6 +103,7 @@ bapi-headless/
 │   │   └── styles/             # Global styles
 │   ├── middleware.ts           # Clerk authentication middleware
 │   ├── scripts/                # Utility scripts
+│   │   ├── optimize-images.mjs    # WebP batch conversion script
 │   │   ├── bulk-import-users.mjs  # WordPress to Clerk migration
 │   │   └── test-user-import.sh    # Safe migration testing
 │   ├── public/                 # Static assets
@@ -131,7 +132,8 @@ bapi-headless/
 ### Frontend (Next.js)
 - ⚡ **Next.js 16** with App Router and Turbopack
 - ⚡ **95% Faster Product Pages** - Optimized from 2-3s to <100ms with React cache(), parallel queries, and Smart Cache
-- 🔐 **Clerk Authentication** - Google OAuth, user profiles, protected routes
+- �️ **WebP Image Optimization** - 60% size reduction (88.52 MB → 35.44 MB) across 26 images, hero image alone reduced from 60 MB to 9.4 MB
+- �🔐 **Clerk Authentication** - Google OAuth, user profiles, protected routes
 - 👤 **Complete User Dashboard** - 6-page account system (dashboard, profile, orders, favorites, quotes, settings)
 - 🛍️ **Real Order History** - Display WooCommerce orders via authenticated GraphQL
 - 💬 **Quote Request System** - Custom quote forms with file uploads

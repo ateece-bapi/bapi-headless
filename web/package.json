@@ -14,7 +14,9 @@
     "test": "vitest",
     "test:ci": "vitest --run",
     "codegen": "graphql-codegen --config codegen.ts",
-    "codegen:watch": "graphql-codegen --config codegen.ts --watch"
+    "codegen:watch": "graphql-codegen --config codegen.ts --watch",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "optimize:families": "node scripts/optimize-images.mjs families"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.23",
@@ -64,6 +66,8 @@
     "msw": "^2.12.3",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "sharp": "^0.34.5",
+    "sharp-cli": "^5.2.0",
     "tailwindcss": "^4",
     "typescript": "5.9.3",
     "vite": "^7.2.6",

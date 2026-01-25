@@ -18,7 +18,7 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
       columns: [
         {
           title: 'Temperature',
-          icon: '/images/icons/Temperature_Icon.png',
+          icon: '/images/icons/Temperature_Icon.webp',
           links: [
             { 
               label: 'Room & Wall Sensors', 
@@ -44,7 +44,7 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
         },
         {
           title: 'Humidity & Air Quality',
-          icon: '/images/icons/AirQuality_Icon.png',
+          icon: '/images/icons/AirQuality_Icon.webp',
           links: [
             { 
               label: 'RH Sensors', 
@@ -70,7 +70,7 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
         },
         {
           title: 'Pressure & Controllers',
-          icon: '/images/icons/Pressure_Icon.png',
+          icon: '/images/icons/Pressure_Icon.webp',
           links: [
             { 
               label: 'Differential Pressure', 
@@ -143,7 +143,7 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
         },
         {
           title: 'Industrial & Wireless',
-          icon: '/images/icons/Wireless_Icon.png',
+          icon: '/images/icons/Wireless_Icon.webp',
           links: [
             { 
               label: 'Manufacturing Process', 

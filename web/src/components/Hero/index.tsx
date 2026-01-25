@@ -36,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-accent-500/10 to-transparent rounded-tl-full"></div>
             
             <img
-              src="/images/products/families/BAPI_Full_Family_11K_Wide_2025_noWAM_US.png"
+              src="/images/products/families/BAPI_Full_Family_11K_Wide_2025_noWAM_US.webp"
               alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
               className="relative w-full h-auto rounded-xl shadow-lg"
               loading="eager"

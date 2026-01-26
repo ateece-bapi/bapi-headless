@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Real-World Installations | BAPI - Building Automation Products',
-  description: 'Explore real-world installations of BAPI sensors across data centers, industrial facilities, and retail environments. Proven building automation solutions.',
+  description: 'Explore real-world installations of BAPI sensors across data centers, industrial facilities, retail environments, and WAM wireless food safety monitoring. Proven building automation solutions.',
 };
 
 const installations = {
@@ -74,6 +74,98 @@ const installations = {
       },
     ],
   },
+  wam: {
+    title: 'WAM - Wireless Asset Monitoring',
+    description: 'Food safety monitoring for walk-in coolers, freezers, and refrigerated display cases',
+    subcategories: [
+      {
+        name: 'Walk-In Coolers',
+        images: [
+          {
+            src: '/images/applications/retail/coolers/Cooler_Front_4.webp',
+            alt: 'WAM sensor on walk-in cooler door',
+            title: 'Walk-In Cooler Door Monitoring',
+            caption: 'Wireless temperature monitoring for cold storage rooms',
+          },
+          {
+            src: '/images/applications/retail/coolers/Cooler_Back_1.webp',
+            alt: 'WAM sensor installation inside cooler',
+            title: 'Interior Cooler Monitoring',
+            caption: 'Real-time temperature tracking with cloud dashboard',
+          },
+          {
+            src: '/images/applications/retail/coolers/Cooler_Case_1.webp',
+            alt: 'Refrigerated case with WAM sensor',
+            title: 'Display Case Temperature Control',
+            caption: 'Food safety compliance for refrigerated displays',
+          },
+        ],
+      },
+      {
+        name: 'Walk-In Freezers',
+        images: [
+          {
+            src: '/images/applications/retail/freezers/Freezer_Door_1.webp',
+            alt: 'WAM sensor on freezer door',
+            title: 'Freezer Door Monitoring',
+            caption: 'Sub-zero temperature monitoring with alerts',
+          },
+          {
+            src: '/images/applications/retail/freezers/Freezer_Buffer_1.webp',
+            alt: 'Freezer buffer zone sensor',
+            title: 'Buffer Zone Temperature Control',
+            caption: 'Multi-zone monitoring for large freezer rooms',
+          },
+          {
+            src: '/images/applications/retail/freezers/FrozenFoods_1.webp',
+            alt: 'Frozen food storage monitoring',
+            title: 'Frozen Food Storage',
+            caption: 'Continuous monitoring for frozen food safety',
+          },
+        ],
+      },
+      {
+        name: 'Deli & Prepared Foods',
+        images: [
+          {
+            src: '/images/applications/retail/deli-cases/Deli_Cases_All_1.webp',
+            alt: 'Multiple deli cases with WAM sensors',
+            title: 'Multi-Case Deli Monitoring',
+            caption: 'Comprehensive monitoring for deli departments',
+          },
+          {
+            src: '/images/applications/retail/deli-cases/Deli_Cases_All_4.webp',
+            alt: 'Deli case temperature monitoring array',
+            title: 'Deli Case Array Monitoring',
+            caption: 'Food safety compliance for prepared foods',
+          },
+        ],
+      },
+      {
+        name: 'Convenience Stores',
+        images: [
+          {
+            src: '/images/applications/retail/convenience/Mini-Mart_Overhead_4.webp',
+            alt: 'Convenience store overhead sensors',
+            title: 'Store-Wide Climate Control',
+            caption: 'Multi-zone monitoring for convenience stores',
+          },
+          {
+            src: '/images/applications/retail/convenience/DoorSwitch_1.webp',
+            alt: 'Door switch sensor on refrigerator',
+            title: 'Door Switch Monitoring',
+            caption: 'Alert when cooler/freezer doors left open',
+          },
+          {
+            src: '/images/applications/retail/convenience/Island 1.webp',
+            alt: 'Island refrigerator monitoring',
+            title: 'Island Cooler Monitoring',
+            caption: 'Temperature control for beverage coolers',
+          },
+        ],
+      },
+    ],
+  },
 };
 
 export default function RealWorldInstallationsPage() {
@@ -99,7 +191,7 @@ export default function RealWorldInstallationsPage() {
       {/* Quick Navigation */}
       <section className="bg-white border-b border-neutral-200 sticky top-0 z-10 shadow-sm">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center justify-center gap-6 py-4">
+          <nav className="flex items-center justify-center gap-6 py-4 flex-wrap">
             <a 
               href="#data-centers"
               className="text-sm font-semibold text-neutral-700 hover:text-primary-600 transition-colors duration-200"
@@ -119,6 +211,16 @@ export default function RealWorldInstallationsPage() {
               className="text-sm font-semibold text-neutral-700 hover:text-primary-600 transition-colors duration-200"
             >
               Retail
+            </a>
+            <span className="text-neutral-300">|</span>
+            <a 
+              href="#wam"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-700 hover:text-primary-600 transition-colors duration-200"
+            >
+              WAM
+              <span className="px-2 py-0.5 text-xs font-bold bg-accent-500 text-neutral-900 rounded-full">
+                New
+              </span>
             </a>
           </nav>
         </div>
@@ -144,45 +246,98 @@ export default function RealWorldInstallationsPage() {
                   </p>
                 </div>
 
-                {/* Image Grid */}
-                <div className={`grid gap-8 ${
-                  category.images.length === 2 
-                    ? 'md:grid-cols-2 max-w-5xl mx-auto' 
-                    : 'md:grid-cols-2 lg:grid-cols-3'
-                }`}>
-                  {category.images.map((image, imageIndex) => (
-                    <div 
-                      key={imageIndex}
-                      className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                    >
-                      {/* Image Container */}
-                      <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          fill
-                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                        {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      </div>
+                {/* Handle WAM subcategories */}
+                {'subcategories' in category ? (
+                  <div className="space-y-16">
+                    {category.subcategories.map((subcategory, subIndex) => (
+                      <div key={subIndex}>
+                        {/* Subcategory Header */}
+                        <div className="mb-8">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 text-center mb-2">
+                            {subcategory.name}
+                          </h3>
+                          <div className="h-1 w-20 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto rounded-full" />
+                        </div>
 
-                      {/* Content */}
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
-                          {image.title}
-                        </h3>
-                        <p className="text-neutral-600 text-sm leading-relaxed">
-                          {image.caption}
-                        </p>
-                      </div>
+                        {/* Subcategory Image Grid */}
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                          {subcategory.images.map((image, imageIndex) => (
+                            <div 
+                              key={imageIndex}
+                              className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                            >
+                              {/* Image Container */}
+                              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+                                <Image
+                                  src={image.src}
+                                  alt={image.alt}
+                                  fill
+                                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                />
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                              </div>
 
-                      {/* Accent Bar */}
-                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                    </div>
-                  ))}
-                </div>
+                              {/* Content */}
+                              <div className="p-6">
+                                <h4 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
+                                  {image.title}
+                                </h4>
+                                <p className="text-neutral-600 text-sm leading-relaxed">
+                                  {image.caption}
+                                </p>
+                              </div>
+
+                              {/* Accent Bar */}
+                              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  /* Regular Image Grid */
+                  <div className={`grid gap-8 ${
+                    category.images.length === 2 
+                      ? 'md:grid-cols-2 max-w-5xl mx-auto' 
+                      : 'md:grid-cols-2 lg:grid-cols-3'
+                  }`}>
+                    {category.images.map((image, imageIndex) => (
+                      <div 
+                        key={imageIndex}
+                        className="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                      >
+                        {/* Image Container */}
+                        <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            fill
+                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          {/* Gradient Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-6">
+                          <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
+                            {image.title}
+                          </h3>
+                          <p className="text-neutral-600 text-sm leading-relaxed">
+                            {image.caption}
+                          </p>
+                        </div>
+
+                        {/* Accent Bar */}
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 {/* Category Divider (except last) */}
                 {categoryIndex < Object.keys(installations).length - 1 && (

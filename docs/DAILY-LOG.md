@@ -80,12 +80,19 @@ web/public/images/
 4. [x] Committed images to feature branch (commit 584a514)
 5. [x] Added Awards section to Footer with 3 AHR innovation badges (commit d53c0ef)
 6. [x] Created `/installations` showcase page with 8 real-world photos (commit 0e346d7)
+7. [x] Added navigation link to /installations in Applications menu (commit fc8b483)
+8. [x] Implemented Hero background rotation with 3 enterprise images (commit 261634a)
+   - 8-second rotation cycle with 1.5s smooth crossfade
+   - Professional overlay maintains text readability
+   - Brand storytelling: People+Sensors, BAS Software, Data Center
+
+**Phase 13A Complete!** ✅
 
 **Next Steps:**
-7. [ ] Test `/installations` page in browser (verify images load, responsive design)
-8. [ ] Add navigation link to /installations in Header menu
-9. [ ] (Optional) Add Hero background rotation using brand images
-10. [ ] Push feature branch and create PR
+9. [ ] Push feature branch to origin
+10. [ ] Create pull request for review
+11. [ ] Deploy to staging for final testing
+12. [ ] Merge to main and deploy to production
 
 ---
 

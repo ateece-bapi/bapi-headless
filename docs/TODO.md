@@ -2,6 +2,18 @@
 
 ## 🔄 In Progress
 
+### Phase 13B: WAM Retail Installation Images (Jan 26, 2026)
+- [ ] Extract 47 WAM convenience store installation images
+- [ ] Create WAM applications directory structure
+- [ ] Optimize all images to WebP format
+- [ ] Enhance `/installations` page with dedicated WAM/Retail tab
+- [ ] Create `/wam` page gallery section with installation photos
+- [ ] Add WAM software dashboard screenshots
+- [ ] Add temperature trending graphics
+- [ ] Commit and push to feature branch `feat/phase13b-wam-retail-images`
+- [ ] Create PR and deploy to staging
+- [ ] Merge to main and deploy to production
+
 ### Phase 13A: Enterprise B2B Image Integration (Jan 26, 2026) ✅ **COMPLETE**
 - [x] Extract 15 high-priority enterprise images from staging folder
 - [x] Create new directory structure (applications/, awards/, brand/, wireless/)

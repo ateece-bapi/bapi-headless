@@ -94,6 +94,42 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
             },
           ],
         },
+        {
+          title: 'Product Families',
+          icon: '/images/icons/Temperature_Icon.webp',
+          links: [
+            { 
+              label: 'Sensors', 
+              href: '/sensors',
+              description: 'Temperature, Humidity & Pressure',
+              badge: 'New'
+            },
+            { 
+              label: 'Wireless Monitoring', 
+              href: '/wireless',
+              description: 'WAM cloud-based solutions',
+              badge: 'New'
+            },
+            { 
+              label: 'Test Instruments', 
+              href: '/test-instruments',
+              description: 'Blu-Test diagnostic tools',
+              badge: 'New'
+            },
+            { 
+              label: 'Air Quality', 
+              href: '/air-quality',
+              description: 'CO₂, VOC & IAQ sensors',
+              badge: 'New'
+            },
+            { 
+              label: 'Accessories', 
+              href: '/accessories',
+              description: 'Mounting hardware & cables',
+              badge: 'New'
+            },
+          ],
+        },
       ],
       featured: {
         title: 'WAM™ Wireless Asset Monitoring',

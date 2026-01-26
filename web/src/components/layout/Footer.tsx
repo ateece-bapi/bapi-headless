@@ -6,12 +6,12 @@ const footerSections = [
   {
     title: 'Products',
     links: [
-      { label: 'Temperature Sensors', href: '/products/temperature' },
-      { label: 'Humidity Sensors', href: '/products/humidity' },
-      { label: 'Pressure Sensors', href: '/products/pressure' },
-      { label: 'Air Quality', href: '/products/air-quality' },
-      { label: 'Wireless Solutions', href: '/products/wireless' },
-      { label: 'Controllers', href: '/products/controllers' },
+      { label: 'All Sensors', href: '/sensors' },
+      { label: 'Wireless Monitoring', href: '/wireless' },
+      { label: 'Test Instruments', href: '/test-instruments' },
+      { label: 'Air Quality Sensors', href: '/air-quality' },
+      { label: 'Accessories', href: '/accessories' },
+      { label: 'Browse Catalog', href: '/products' },
     ],
   },
   {

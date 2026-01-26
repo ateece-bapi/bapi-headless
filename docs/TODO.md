@@ -2,7 +2,20 @@
 
 ## 🔄 In Progress
 
-### Future Asset Integration (Phases 12+)
+### Phase 13A: Enterprise B2B Image Integration (Jan 26, 2026)
+- [ ] Extract 15 high-priority enterprise images from staging folder
+- [ ] Create new directory structure (applications/, awards/, brand/, wireless/)
+- [ ] Optimize to WebP format (expect 60-70% size reduction)
+- [ ] Add Awards section to Footer (3 AHR award badges)
+- [ ] Create /applications page with real installation photos
+- [ ] Add rotating hero backgrounds for industry-specific landing
+- [ ] Update relevant product pages with application examples
+- [ ] Test and verify all images rendering correctly
+- [ ] Commit and push to feature branch `feat/phase13a-enterprise-images`
+- [ ] Create PR and deploy to staging
+- [ ] Merge to main and deploy to production
+
+### Future Asset Integration (Phases 13B+)
 - [ ] WAM product pages: Integrate 47 convenience store installation photos
 - [ ] Product detail pages: Add more real-world application photos (32 available)
 - [ ] About/Company pages: Facility and team graphics
@@ -48,6 +61,21 @@
 - [x] Deploy to production (Vercel)
 - [x] Clean up feature branches (local + remote)
 - Note: 1,507 additional images available in staging folder for future phases
+
+### Phase 12: Image Optimization with WebP Conversion (Jan 25, 2026) ✅ **COMPLETE**
+- [x] Install image optimization tooling (sharp library)
+- [x] Create custom batch optimization script (optimize-images.mjs)
+- [x] Convert 26 images to WebP format (60% size reduction: 88.52 MB → 35.44 MB)
+- [x] Update Hero component to use WebP (60 MB → 9.4 MB, 84% reduction)
+- [x] Update Footer certification badges to WebP
+- [x] Update Header mega menu icons to WebP
+- [x] Test optimization on local dev server
+- [x] Commit and push to feature branch `feat/optimize-images-webp`
+- [x] Create PR and merge to main
+- [x] Deploy to production (Vercel)
+- [x] Clean up feature branches (local + remote)
+- [x] Update README with WebP optimization features
+- [x] Update DAILY-LOG with Phase 12 documentation
 
 # Performance & Image Optimization Investigation (Jan 23, 2026)
 - [ ] **Performance Analysis: Product Images**

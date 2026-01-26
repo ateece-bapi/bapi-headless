@@ -173,6 +173,12 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
           icon: Wrench,
           links: [
             { 
+              label: 'Real-World Installations', 
+              href: '/installations',
+              description: 'See BAPI sensors in action',
+              badge: 'New'
+            },
+            { 
               label: 'BACnet Upgrades', 
               href: '/applications',
               description: 'Modernize legacy systems'

@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { ArrowRight, Thermometer, Droplets, Gauge, Building2, Factory, Hospital, ShoppingCart } from 'lucide-react';
+import { ArrowRight, Thermometer, Droplets, Gauge, Building2, Factory, Hospital, ShoppingCart, ChevronRight } from 'lucide-react';
+import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Temperature, Humidity & Pressure Sensors | BAPI',
@@ -16,6 +17,19 @@ export default function SensorsPage() {
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-sm text-primary-100 mb-6" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-white transition-colors">
+              Home
+            </Link>
+            <ChevronRight className="w-4 h-4" />
+            <Link href="/products" className="hover:text-white transition-colors">
+              Products
+            </Link>
+            <ChevronRight className="w-4 h-4" />
+            <span className="text-white font-medium">Sensors</span>
+          </nav>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-balance">

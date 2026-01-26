@@ -78,12 +78,14 @@ web/public/images/
    - Brand: 96% savings (7.58 MB → 0.30 MB)
    - Wireless: 79% savings (0.10 MB → 0.02 MB)
 4. [x] Committed images to feature branch (commit 584a514)
+5. [x] Added Awards section to Footer with 3 AHR innovation badges (commit d53c0ef)
+6. [x] Created `/installations` showcase page with 8 real-world photos (commit 0e346d7)
 
 **Next Steps:**
-5. [ ] Add Awards section to Footer component
-6. [ ] Create /applications page with category tabs
-7. [ ] Update Hero with enterprise background options
-8. [ ] Test and deploy
+7. [ ] Test `/installations` page in browser (verify images load, responsive design)
+8. [ ] Add navigation link to /installations in Header menu
+9. [ ] (Optional) Add Hero background rotation using brand images
+10. [ ] Push feature branch and create PR
 
 ---
 

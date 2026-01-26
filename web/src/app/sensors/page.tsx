@@ -30,14 +30,14 @@ export default function SensorsPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/products?category=sensors"
-                  className="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl"
+                  className="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Browse Sensors
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/request-quote"
-                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300"
+                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white border-2 border-white/30 hover:border-white/50 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Request Quote
                 </Link>
@@ -45,29 +45,38 @@ export default function SensorsPage() {
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-white/20">
-                <div>
-                  <div className="text-3xl lg:text-4xl font-bold text-accent-500">±1%</div>
-                  <div className="text-sm lg:text-base text-primary-100 mt-1">Accuracy</div>
+                <div className="group relative cursor-default">
+                  <div className="absolute inset-0 bg-accent-500/10 rounded-xl border-2 border-accent-500/20 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105" />
+                  <div className="relative p-4 text-center">
+                    <div className="text-3xl lg:text-4xl font-bold text-accent-500 mb-2 group-hover:scale-110 transition-transform duration-300">±1%</div>
+                    <div className="text-sm lg:text-base text-primary-100 font-medium">Accuracy</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl lg:text-4xl font-bold text-accent-500">5-Year</div>
-                  <div className="text-sm lg:text-base text-primary-100 mt-1">Warranty</div>
+                <div className="group relative cursor-default">
+                  <div className="absolute inset-0 bg-accent-500/10 rounded-xl border-2 border-accent-500/20 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105" />
+                  <div className="relative p-4 text-center">
+                    <div className="text-3xl lg:text-4xl font-bold text-accent-500 mb-2 group-hover:scale-110 transition-transform duration-300">5-Year</div>
+                    <div className="text-sm lg:text-base text-primary-100 font-medium">Warranty</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl lg:text-4xl font-bold text-accent-500">40+</div>
-                  <div className="text-sm lg:text-base text-primary-100 mt-1">Years</div>
+                <div className="group relative cursor-default">
+                  <div className="absolute inset-0 bg-accent-500/10 rounded-xl border-2 border-accent-500/20 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105" />
+                  <div className="relative p-4 text-center">
+                    <div className="text-3xl lg:text-4xl font-bold text-accent-500 mb-2 group-hover:scale-110 transition-transform duration-300">30+</div>
+                    <div className="text-sm lg:text-base text-primary-100 font-medium">Years</div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="relative">
-              <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl">
+              <div className="aspect-[16/10] relative rounded-2xl overflow-hidden shadow-2xl bg-white p-8 group/image">
                 <Image
-                  src="/images/installations/Server_Room_HotAisle.webp"
-                  alt="BAPI sensor installation in server room"
+                  src="/images/products/families/BAPI_Full_Family_withWireless_11Kpix_2025_US.webp"
+                  alt="BAPI complete sensor family with wireless monitoring"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
+                  className="object-contain transition-transform duration-700 group-hover/image:scale-105"
                   priority
                 />
               </div>
@@ -123,18 +132,18 @@ export default function SensorsPage() {
                 <h3 className="text-2xl font-bold text-neutral-900 mb-3">{sensor.title}</h3>
                 <p className="text-neutral-600 mb-6">{sensor.description}</p>
                 
-                <ul className="space-y-2 mb-8">
+                <ul className="space-y-3 mb-8">
                   {sensor.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-neutral-700">
-                      <span className="text-primary-500 mt-1">✓</span>
-                      <span>{feature}</span>
+                    <li key={i} className="flex items-start gap-3 text-sm text-neutral-700">
+                      <span className="flex-shrink-0 w-5 h-5 bg-primary-50 rounded-full flex items-center justify-center text-primary-600 font-bold text-xs mt-0.5">✓</span>
+                      <span className="leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Link
                   href={sensor.link}
-                  className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-semibold group-hover:gap-4 transition-all duration-300"
+                  className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-semibold group-hover:gap-4 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg px-2 py-1 -ml-2"
                 >
                   View Products
                   <ArrowRight className="w-4 h-4" />
@@ -258,14 +267,14 @@ export default function SensorsPage() {
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/products?category=sensors"
-              className="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl"
+              className="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
             >
               Browse All Sensors
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white border-2 border-white/30 hover:border-white/50 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary-700"
             >
               Contact Sales Team
             </Link>

@@ -35,14 +35,14 @@ export default function TestInstrumentsPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/products?category=test-instruments"
-                  className="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl"
+                  className="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Browse Blu-Test Products
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/request-quote"
-                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300"
+                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white border-2 border-white/30 hover:border-white/50 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Request Quote
                 </Link>
@@ -50,29 +50,38 @@ export default function TestInstrumentsPage() {
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-white/20">
-                <div>
-                  <div className="text-3xl lg:text-4xl font-bold text-accent-500">±0.3°F</div>
-                  <div className="text-sm lg:text-base text-primary-100 mt-1">Accuracy</div>
+                <div className="group relative cursor-default">
+                  <div className="absolute inset-0 bg-accent-500/10 rounded-xl border-2 border-accent-500/20 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105" />
+                  <div className="relative p-4 text-center">
+                    <div className="text-3xl lg:text-4xl font-bold text-accent-500 mb-2 group-hover:scale-110 transition-transform duration-300">±0.3°F</div>
+                    <div className="text-sm lg:text-base text-primary-100 font-medium">Accuracy</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl lg:text-4xl font-bold text-accent-500">NIST</div>
-                  <div className="text-sm lg:text-base text-primary-100 mt-1">Traceable</div>
+                <div className="group relative cursor-default">
+                  <div className="absolute inset-0 bg-accent-500/10 rounded-xl border-2 border-accent-500/20 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105" />
+                  <div className="relative p-4 text-center">
+                    <div className="text-3xl lg:text-4xl font-bold text-accent-500 mb-2 group-hover:scale-110 transition-transform duration-300">NIST</div>
+                    <div className="text-sm lg:text-base text-primary-100 font-medium">Traceable</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl lg:text-4xl font-bold text-accent-500">iOS/Android</div>
-                  <div className="text-sm lg:text-base text-primary-100 mt-1">App Free</div>
+                <div className="group relative cursor-default">
+                  <div className="absolute inset-0 bg-accent-500/10 rounded-xl border-2 border-accent-500/20 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105" />
+                  <div className="relative p-4 text-center">
+                    <div className="text-3xl lg:text-4xl font-bold text-accent-500 mb-2 group-hover:scale-110 transition-transform duration-300">iOS/Android</div>
+                    <div className="text-sm lg:text-base text-primary-100 font-medium">App</div>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="relative">
-              <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl bg-white p-8">
+              <div className="aspect-[16/10] relative rounded-2xl overflow-hidden shadow-2xl bg-white p-8 group/image">
                 <Image
                   src="/images/products/families/Blu-Test_Family_2025_US.webp"
                   alt="Blu-Test HVAC diagnostic tools family"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain"
+                  className="object-contain transition-transform duration-700 group-hover/image:scale-105"
                   priority
                 />
               </div>
@@ -128,18 +137,18 @@ export default function TestInstrumentsPage() {
                 <h3 className="text-2xl font-bold text-neutral-900 mb-3">{product.title}</h3>
                 <p className="text-neutral-600 mb-6">{product.description}</p>
                 
-                <ul className="space-y-2 mb-8">
+                <ul className="space-y-3 mb-8">
                   {product.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-neutral-700">
-                      <span className="text-primary-500 mt-1">✓</span>
-                      <span>{feature}</span>
+                    <li key={i} className="flex items-start gap-3 text-sm text-neutral-700">
+                      <span className="flex-shrink-0 w-5 h-5 bg-primary-50 rounded-full flex items-center justify-center text-primary-600 font-bold text-xs mt-0.5">✓</span>
+                      <span className="leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Link
                   href={product.link}
-                  className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-semibold group-hover:gap-4 transition-all duration-300"
+                  className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-semibold group-hover:gap-4 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg px-2 py-1 -ml-2"
                 >
                   View Products
                   <ArrowRight className="w-4 h-4" />

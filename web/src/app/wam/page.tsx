@@ -426,6 +426,21 @@ export default function WAMPage() {
                   alt: 'Multi-zone cooler monitoring',
                   title: 'Multi-Zone Monitoring',
                 },
+                {
+                  src: '/images/applications/retail/coolers/Cooler_Case_1.webp',
+                  alt: 'Cooler case temperature monitoring',
+                  title: 'Display Case Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/coolers/Cooler_Slim_2.webp',
+                  alt: 'Slim profile cooler sensor',
+                  title: 'Slim Profile Installation',
+                },
+                {
+                  src: '/images/applications/retail/coolers/Cooler_Slim_3.webp',
+                  alt: 'Compact cooler sensor installation',
+                  title: 'Compact Installation',
+                },
               ].map((image, idx) => (
                 <div
                   key={idx}
@@ -502,6 +517,31 @@ export default function WAMPage() {
                   alt: 'Freezer slim sensor placement',
                   title: 'Space-Saving Sensors',
                 },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Buffer_2.webp',
+                  alt: 'Freezer buffer area sensor',
+                  title: 'Additional Buffer Zone',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Door_3.webp',
+                  alt: 'Freezer door sensor configuration',
+                  title: 'Door Sensor Configuration',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Slim_3.webp',
+                  alt: 'Slim profile freezer sensor',
+                  title: 'Low-Profile Installation',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Slim_5.webp',
+                  alt: 'Freezer slim sensor variant',
+                  title: 'Flexible Sensor Placement',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Buffer_2_Edited.webp',
+                  alt: 'Freezer buffer monitoring system',
+                  title: 'Complete Buffer System',
+                },
               ].map((image, idx) => (
                 <div
                   key={idx}
@@ -552,6 +592,16 @@ export default function WAMPage() {
                   src: '/images/applications/retail/deli-cases/Deli_Case_1.webp',
                   alt: 'Single deli case sensor',
                   title: 'Individual Case Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/deli-cases/Deli_Cases_All_2.webp',
+                  alt: 'Deli display case monitoring',
+                  title: 'Display Case Array',
+                },
+                {
+                  src: '/images/applications/retail/deli-cases/Deli_Cases_All_3.webp',
+                  alt: 'Prepared foods temperature control',
+                  title: 'Prepared Foods Safety',
                 },
               ].map((image, idx) => (
                 <div
@@ -608,6 +658,31 @@ export default function WAMPage() {
                   src: '/images/applications/retail/convenience/Mini-Mart_Overhead_1.webp',
                   alt: 'Mini-mart sensor deployment',
                   title: 'Multi-Zone Store Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/convenience/Mini-Mart_Overhead_2.webp',
+                  alt: 'Convenience store overhead view',
+                  title: 'Comprehensive Coverage',
+                },
+                {
+                  src: '/images/applications/retail/convenience/Mini-Mart_Overhead_3.webp',
+                  alt: 'Mini-mart temperature zones',
+                  title: 'Zone-Based Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/convenience/DoorSwitch_1_Blue.webp',
+                  alt: 'Blue door sensor installation',
+                  title: 'Door Alert System',
+                },
+                {
+                  src: '/images/applications/retail/convenience/DoorSwitch_2.webp',
+                  alt: 'Door switch variant installation',
+                  title: 'Alternate Door Sensor',
+                },
+                {
+                  src: '/images/applications/retail/convenience/DoorSwitch_3.webp',
+                  alt: 'Door monitoring configuration',
+                  title: 'Advanced Door Control',
                 },
               ].map((image, idx) => (
                 <div
@@ -679,6 +754,30 @@ export default function WAMPage() {
                 alt: 'Temperature trend graph',
                 title: 'Historical Trending',
                 description: 'Analyze patterns and prove compliance with detailed reports',
+              },
+              {
+                src: '/images/wam/dashboards/WAM_Graphic2.webp',
+                alt: 'WAM system overview dashboard',
+                title: 'System Overview',
+                description: 'Monitor entire facility status from a single screen',
+              },
+              {
+                src: '/images/wam/dashboards/WAM_Graphic3.webp',
+                alt: 'WAM alert management interface',
+                title: 'Alert Management',
+                description: 'Configure and manage temperature alerts and notifications',
+              },
+              {
+                src: '/images/wam/dashboards/Trays_2.webp',
+                alt: 'Multiple serving tray monitoring',
+                title: 'Zone Comparison',
+                description: 'Compare temperatures across different zones or assets',
+              },
+              {
+                src: '/images/wam/dashboards/Serving_Tray_Trend2.webp',
+                alt: 'Extended temperature trend analysis',
+                title: 'Long-Term Trends',
+                description: 'Track performance over days, weeks, or months',
               },
             ].map((dashboard, idx) => (
               <div

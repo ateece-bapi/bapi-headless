@@ -97,8 +97,11 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             
             {/* Product family caption */}
             <div className="mt-6 text-center">
-              <p className="text-sm lg:text-base font-semibold text-neutral-700">
+              <p className="text-base lg:text-lg font-bold text-neutral-900 tracking-wide">
                 Complete sensor solutions for building automation systems
+              </p>
+              <p className="text-sm text-neutral-600 mt-2 font-medium">
+                Trusted by engineers worldwide for precision monitoring and control
               </p>
             </div>
           </div>

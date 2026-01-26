@@ -2,7 +2,18 @@
 
 ## 🔄 In Progress
 
-_(No active phases - ready for Phase 14)_
+### Phase 14A: Complete WAM Product Pages (Jan 26, 2026)
+- [ ] Review existing `/wam` page structure
+- [ ] Create WAM installations gallery section with remaining 30 photos
+- [ ] Add software dashboard screenshots (7 images)
+- [ ] Add temperature trending graphics to features
+- [ ] Enhance hero section with real installation background
+- [ ] Add real-world use cases section
+- [ ] Optimize all new images to WebP format
+- [ ] Test responsive design and image loading
+- [ ] Commit and push to feature branch `feat/phase14a-wam-product-pages`
+- [ ] Create PR and deploy to staging
+- [ ] Merge to main and deploy to production
 
 ### Phase 13B: WAM Retail Installation Images (Jan 26, 2026) ✅ **COMPLETE**
 - [x] Extract 41 WAM convenience store installation images

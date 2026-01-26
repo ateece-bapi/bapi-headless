@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Radio,
   Wifi,
@@ -378,6 +379,368 @@ export default function WAMPage() {
               View All Wireless Products
               <ArrowRight className="w-5 h-5" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Real-World Installations Gallery */}
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 to-white">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+              Real-World Installations
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+              See WAM™ in action protecting food safety and valuable assets across convenience stores, 
+              grocery stores, and food service operations
+            </p>
+          </div>
+
+          {/* Walk-In Coolers */}
+          <div className="mb-16">
+            <div className="mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 text-center mb-2">
+                Walk-In Coolers
+              </h3>
+              <div className="h-1 w-20 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto rounded-full" />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  src: '/images/applications/retail/coolers/Cooler_Front_4.webp',
+                  alt: 'Walk-in cooler door monitoring',
+                  title: 'Cooler Door Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/coolers/Cooler_Back_1.webp',
+                  alt: 'Interior cooler sensor placement',
+                  title: 'Interior Temperature Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/coolers/Cooler_Buffer_1.webp',
+                  alt: 'Cooler buffer zone sensor',
+                  title: 'Buffer Zone Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/coolers/Cooler_Room_Buffer_1.webp',
+                  alt: 'Multi-zone cooler monitoring',
+                  title: 'Multi-Zone Monitoring',
+                },
+              ].map((image, idx) => (
+                <div
+                  key={idx}
+                  className="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="text-sm font-bold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
+                      {image.title}
+                    </h4>
+                  </div>
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Walk-In Freezers */}
+          <div className="mb-16">
+            <div className="mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 text-center mb-2">
+                Walk-In Freezers
+              </h3>
+              <div className="h-1 w-20 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto rounded-full" />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Door_1.webp',
+                  alt: 'Freezer door temperature sensor',
+                  title: 'Freezer Door Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Buffer_1.webp',
+                  alt: 'Freezer buffer zone monitoring',
+                  title: 'Buffer Zone Temperature',
+                },
+                {
+                  src: '/images/applications/retail/freezers/FrozenFoods_1.webp',
+                  alt: 'Frozen food storage monitoring',
+                  title: 'Frozen Food Storage',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Case_7.webp',
+                  alt: 'Freezer case temperature control',
+                  title: 'Freezer Case Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Slim_2.webp',
+                  alt: 'Slim sensor in freezer',
+                  title: 'Compact Sensor Installation',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Door_2.webp',
+                  alt: 'Multiple freezer door sensors',
+                  title: 'Multi-Door Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Buffer_3.webp',
+                  alt: 'Large freezer buffer monitoring',
+                  title: 'Large Freezer Rooms',
+                },
+                {
+                  src: '/images/applications/retail/freezers/Freezer_Slim_4.webp',
+                  alt: 'Freezer slim sensor placement',
+                  title: 'Space-Saving Sensors',
+                },
+              ].map((image, idx) => (
+                <div
+                  key={idx}
+                  className="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="text-sm font-bold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
+                      {image.title}
+                    </h4>
+                  </div>
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Deli Cases & Prepared Foods */}
+          <div className="mb-16">
+            <div className="mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 text-center mb-2">
+                Deli Cases & Prepared Foods
+              </h3>
+              <div className="h-1 w-20 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto rounded-full" />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  src: '/images/applications/retail/deli-cases/Deli_Cases_All_1.webp',
+                  alt: 'Multiple deli case monitoring',
+                  title: 'Multi-Case Deli Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/deli-cases/Deli_Cases_All_4.webp',
+                  alt: 'Deli case temperature array',
+                  title: 'Comprehensive Temperature Control',
+                },
+                {
+                  src: '/images/applications/retail/deli-cases/Deli_Case_1.webp',
+                  alt: 'Single deli case sensor',
+                  title: 'Individual Case Monitoring',
+                },
+              ].map((image, idx) => (
+                <div
+                  key={idx}
+                  className="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="text-sm font-bold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
+                      {image.title}
+                    </h4>
+                  </div>
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Convenience Stores */}
+          <div className="mb-12">
+            <div className="mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 text-center mb-2">
+                Convenience Stores & Mini-Marts
+              </h3>
+              <div className="h-1 w-20 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto rounded-full" />
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  src: '/images/applications/retail/convenience/Mini-Mart_Overhead_4.webp',
+                  alt: 'Convenience store overhead sensors',
+                  title: 'Store-Wide Climate Control',
+                },
+                {
+                  src: '/images/applications/retail/convenience/DoorSwitch_1.webp',
+                  alt: 'Door switch on refrigerator',
+                  title: 'Door Open/Close Alerts',
+                },
+                {
+                  src: '/images/applications/retail/convenience/Island 1.webp',
+                  alt: 'Island cooler monitoring',
+                  title: 'Island Cooler Monitoring',
+                },
+                {
+                  src: '/images/applications/retail/convenience/Mini-Mart_Overhead_1.webp',
+                  alt: 'Mini-mart sensor deployment',
+                  title: 'Multi-Zone Store Monitoring',
+                },
+              ].map((image, idx) => (
+                <div
+                  key={idx}
+                  className="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="text-sm font-bold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
+                      {image.title}
+                    </h4>
+                  </div>
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA to Installations Page */}
+          <div className="text-center mt-12">
+            <Link
+              href="/installations#wam"
+              className="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-xl"
+            >
+              View All Installation Examples
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* WAM Dashboard & Software */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+              Powerful Cloud Dashboard
+            </h2>
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+              Monitor temperatures, view trends, and receive alerts from anywhere with our intuitive web-based dashboard
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {[
+              {
+                src: '/images/wam/dashboards/WAM_Graphic.webp',
+                alt: 'WAM dashboard interface',
+                title: 'Real-Time Monitoring Dashboard',
+                description: 'View all sensor data at a glance with customizable views',
+              },
+              {
+                src: '/images/wam/dashboards/Trays_1.webp',
+                alt: 'Food serving tray temperature monitoring',
+                title: 'Multi-Asset Monitoring',
+                description: 'Track multiple locations and equipment simultaneously',
+              },
+              {
+                src: '/images/wam/dashboards/Serving_Tray_Trend.webp',
+                alt: 'Temperature trend graph',
+                title: 'Historical Trending',
+                description: 'Analyze patterns and prove compliance with detailed reports',
+              },
+            ].map((dashboard, idx) => (
+              <div
+                key={idx}
+                className="group bg-neutral-50 rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500"
+              >
+                <div className="relative aspect-video overflow-hidden bg-neutral-100">
+                  <Image
+                    src={dashboard.src}
+                    alt={dashboard.alt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
+                    {dashboard.title}
+                  </h3>
+                  <p className="text-neutral-600 text-sm leading-relaxed">
+                    {dashboard.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Dashboard Features Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: LineChart,
+                title: 'Temperature Trends',
+                description: 'Visualize temperature patterns over time',
+              },
+              {
+                icon: Bell,
+                title: 'Custom Alerts',
+                description: 'Set thresholds for instant notifications',
+              },
+              {
+                icon: Smartphone,
+                title: 'Mobile Access',
+                description: 'Monitor from any device, anywhere',
+              },
+              {
+                icon: TrendingUp,
+                title: 'Compliance Reports',
+                description: 'Export data for audits and compliance',
+              },
+            ].map((feature) => (
+              <div
+                key={feature.title}
+                className="bg-neutral-50 rounded-lg p-6 text-center hover:bg-white hover:shadow-lg transition-all duration-300"
+              >
+                <div className="bg-gradient-to-br from-primary-500 to-primary-600 w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <feature.icon className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="font-bold text-neutral-900 mb-2">{feature.title}</h4>
+                <p className="text-sm text-neutral-600">{feature.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

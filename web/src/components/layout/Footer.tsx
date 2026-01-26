@@ -136,7 +136,7 @@ const Footer: React.FC = () => (
       </div>
 
       {/* Bottom Section - Contact & Legal */}
-      <div className="pt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 pb-8 border-b border-neutral-200">
+      <div className="pt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pb-8 border-b border-neutral-200">
         {/* Contact Information */}
         <div className="flex flex-col gap-2">
           <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
@@ -158,6 +158,36 @@ const Footer: React.FC = () => (
               sales@bapihvac.com
             </a>
           </address>
+        </div>
+
+        {/* Awards & Recognition */}
+        <div className="flex flex-col gap-3">
+          <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
+            Awards & Recognition
+          </h4>
+          <div className="flex flex-wrap items-center gap-4">
+            <img 
+              src="/images/awards/AHR_2012_Innovation_Award.webp" 
+              alt="AHR 2012 Innovation Award" 
+              className="h-16 w-auto hover:scale-110 transition-transform duration-300 cursor-pointer"
+              title="AHR Expo 2012 Innovation Award"
+            />
+            <img 
+              src="/images/awards/AHR_Award_07_08.webp" 
+              alt="AHR Expo Awards 2007-2008" 
+              className="h-14 w-auto hover:scale-110 transition-transform duration-300 cursor-pointer"
+              title="AHR Expo Innovation Awards 2007-2008"
+            />
+            <img 
+              src="/images/awards/AHR_Expo_Innovation_Award.webp" 
+              alt="AHR Expo Innovation Award" 
+              className="h-14 w-auto hover:scale-110 transition-transform duration-300 cursor-pointer"
+              title="AHR Expo Innovation Award Winner"
+            />
+          </div>
+          <p className="text-xs text-neutral-600 mt-2 font-medium">
+            Recognized for innovation and excellence in building automation technology
+          </p>
         </div>
 
         {/* Certifications */}

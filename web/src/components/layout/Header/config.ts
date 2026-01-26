@@ -146,8 +146,41 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
     megaMenu: {
       columns: [
         {
-          title: 'Building Automation',
+          title: 'By Industry',
           icon: Building2,
+          links: [
+            { 
+              label: 'Building Automation', 
+              href: '/applications/landing/building-automation',
+              description: '30% energy savings for commercial buildings',
+              badge: 'Popular'
+            },
+            { 
+              label: 'Data Centers', 
+              href: '/applications/landing/data-centers',
+              description: '99.99% uptime for critical infrastructure'
+            },
+            { 
+              label: 'Healthcare Facilities', 
+              href: '/applications/landing/healthcare',
+              description: 'Joint Commission compliance solutions'
+            },
+            { 
+              label: 'Industrial & Manufacturing', 
+              href: '/applications/landing/industrial',
+              description: 'Harsh environment monitoring solutions'
+            },
+            { 
+              label: 'Wireless Monitoring', 
+              href: '/applications/landing/wireless-monitoring',
+              description: '5-minute setup, 5-year battery life',
+              badge: 'Premium'
+            },
+          ],
+        },
+        {
+          title: 'By Use Case',
+          icon: '/images/icons/Temperature_Icon.webp',
           links: [
             { 
               label: 'Room & Space Monitoring', 
@@ -160,52 +193,19 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
               description: 'Supply, return, mixed air sensing'
             },
             { 
-              label: 'Outdoor & Weather Stations', 
-              href: '/applications/building-automation',
-              description: 'Building weather monitoring'
-            },
-            { 
-              label: 'Critical Spaces', 
-              href: '/applications/building-automation',
-              description: 'Data centers, server rooms, labs',
-              badge: 'Popular'
-            },
-            { 
               label: 'Indoor Air Quality', 
               href: '/applications/building-automation',
               description: 'CO₂, VOC monitoring'
-            },
-          ],
-        },
-        {
-          title: 'Industrial & Wireless',
-          icon: '/images/icons/Wireless_Icon.webp',
-          links: [
-            { 
-              label: 'Manufacturing Process', 
-              href: '/applications',
-              description: 'Industrial temperature & pressure'
             },
             { 
               label: 'Industrial Refrigeration', 
               href: '/applications',
               description: 'Cold storage monitoring'
             },
-            { 
-              label: 'Wireless Monitoring', 
-              href: '/wam',
-              description: 'Battery-powered remote sensors',
-              badge: 'Premium'
-            },
-            { 
-              label: 'Wireless Pressure', 
-              href: '/wam',
-              description: 'Filter differential pressure'
-            },
           ],
         },
         {
-          title: 'Retrofit & Support',
+          title: 'Resources',
           icon: Wrench,
           links: [
             { 
@@ -215,14 +215,9 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
               badge: 'New'
             },
             { 
-              label: 'BACnet Upgrades', 
+              label: 'Browse All Applications', 
               href: '/applications',
-              description: 'Modernize legacy systems'
-            },
-            { 
-              label: 'Pneumatic Replacement', 
-              href: '/applications',
-              description: 'Convert to electronic sensors'
+              description: 'Complete application directory'
             },
             { 
               label: 'Installation Support', 
@@ -233,8 +228,8 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
         },
       ],
       featured: {
-        title: 'Find Sensors by Application',
-        description: 'Browse products organized by your specific use case. Discover sensors optimized for your industry, environment, and mounting requirements.',
+        title: 'Find Solutions by Application',
+        description: 'Explore how BAPI sensors solve real-world challenges in your industry. See measurable results from organizations like yours.',
         cta: 'Explore Applications',
         href: '/applications',
       },

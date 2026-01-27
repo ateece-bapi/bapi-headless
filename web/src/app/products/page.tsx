@@ -16,23 +16,15 @@ import {
   Award
 } from 'lucide-react';
 
-// Mock data for product categories
+// Mock data for product categories - BRAND STANDARD ORDER
+// Per BAPI Brand Guide: Temperature, Humidity, Pressure, Air Quality, Wireless, Accessories, Test Instruments
 const productCategories = [
-  {
-    name: 'Test Instruments',
-    slug: 'test-instruments',
-    count: 8,
-    image: '/products/test_products.webp',
-    icon: FlaskConical,
-    description: 'Professional calibration and testing equipment',
-    gradient: 'from-cyan-500 to-blue-600',
-  },
   {
     name: 'Temperature Sensors',
     slug: 'temperature-sensors',
     count: 119,
     image: '/products/temp_sensors.webp',
-    icon: Thermometer,
+    icon: '/images/icons/Temperature_Icon.webp',
     description: 'High-accuracy temperature measurement solutions',
     gradient: 'from-red-500 to-orange-500',
   },
@@ -41,7 +33,7 @@ const productCategories = [
     slug: 'humidity-sensors',
     count: 33,
     image: '/products/humidity_sensors.webp',
-    icon: Droplets,
+    icon: '/images/icons/Humidity_Icon.webp',
     description: 'Precise relative humidity monitoring',
     gradient: 'from-blue-500 to-cyan-500',
   },
@@ -50,27 +42,45 @@ const productCategories = [
     slug: 'pressure-sensors',
     count: 39,
     image: '/products/pressure_sensors.webp',
-    icon: Gauge,
+    icon: '/images/icons/Pressure_Icon.webp',
     description: 'Differential and static pressure transmitters',
     gradient: 'from-purple-500 to-pink-500',
-  },
-  {
-    name: 'Wireless Sensors',
-    slug: 'wireless-sensors',
-    count: 24,
-    image: '/products/wireless_sensors.webp',
-    icon: Wifi,
-    description: 'Battery-powered and energy harvesting solutions',
-    gradient: 'from-green-500 to-emerald-600',
   },
   {
     name: 'Air Quality Sensors',
     slug: 'air-quality-sensors',
     count: 32,
     image: '/products/air_quality_sensors.webp',
-    icon: Wind,
+    icon: '/images/icons/AirQuality_Icon.webp',
     description: 'CO₂, VOC, and particulate matter monitoring',
     gradient: 'from-teal-500 to-cyan-600',
+  },
+  {
+    name: 'Wireless Sensors',
+    slug: 'wireless-sensors',
+    count: 24,
+    image: '/products/wireless_sensors.webp',
+    icon: '/images/icons/Wireless_Icon.webp',
+    description: 'Battery-powered and energy harvesting solutions',
+    gradient: 'from-green-500 to-emerald-600',
+  },
+  {
+    name: 'Accessories',
+    slug: 'accessories',
+    count: 45,
+    image: '/images/products/families/Accessories_Family_2025_US.webp',
+    icon: '/images/icons/Accessories_Icon.webp',
+    description: 'Mounting hardware, enclosures, and cables',
+    gradient: 'from-gray-500 to-neutral-600',
+  },
+  {
+    name: 'Test Instruments',
+    slug: 'test-instruments',
+    count: 8,
+    image: '/products/test_products.webp',
+    icon: '/images/icons/Test_Instruments_Icon.webp',
+    description: 'Professional calibration and testing equipment',
+    gradient: 'from-cyan-500 to-blue-600',
   },
   {
     name: 'ETA Line',
@@ -79,15 +89,6 @@ const productCategories = [
     image: '/products/eta_modules_products.webp',
     icon: Layers,
     description: 'Modular I/O and control solutions',
-    gradient: 'from-indigo-500 to-purple-600',
-  },
-  {
-    name: 'Accessories',
-    slug: 'accessories',
-    count: 74,
-    image: '/products/accessories_products.webp',
-    icon: Package,
-    description: 'Mounting hardware and installation accessories',
     gradient: 'from-amber-500 to-orange-600',
   },
 ];
@@ -164,7 +165,6 @@ export default function MainProductPage() {
       <section className="relative -mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-20">
           {productCategories.map((cat, i) => {
-            const Icon = cat.icon;
             return (
               <Link
                 key={cat.slug}
@@ -193,9 +193,19 @@ export default function MainProductPage() {
                     priority={i === 0}
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
-                  {/* Icon Badge */}
+                  {/* Icon Badge - BAPI Brand Icons */}
                   <div className={`absolute top-4 right-4 w-16 h-16 rounded-2xl bg-gradient-to-br ${cat.gradient} shadow-xl ring-4 ring-white/50 flex items-center justify-center group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300`}>
-                    <Icon className="w-8 h-8 text-white drop-shadow-sm" />
+                    {typeof cat.icon === 'string' ? (
+                      <Image
+                        src={cat.icon}
+                        alt={`${cat.name} icon`}
+                        width={32}
+                        height={32}
+                        className="object-contain drop-shadow-sm"
+                      />
+                    ) : (
+                      <cat.icon className="w-8 h-8 text-white drop-shadow-sm" />
+                    )}
                   </div>
                 </div>
 

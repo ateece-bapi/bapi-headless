@@ -23,110 +23,161 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
             { 
               label: 'Room & Wall Sensors', 
               href: '/products',
-              description: 'High-accuracy temperature sensing for HVAC control'
+              description: 'High-accuracy temperature sensing'
             },
             { 
               label: 'Duct Sensors', 
               href: '/products',
-              description: 'Duct-mounted temperature transmitters'
+              description: 'Duct-mounted transmitters'
             },
             { 
               label: 'Immersion & Well', 
               href: '/products',
-              description: 'Liquid temperature measurement solutions'
+              description: 'Liquid temperature measurement'
             },
             { 
               label: 'Outdoor Sensors', 
               href: '/products',
-              description: 'Weather-resistant temperature sensing'
+              description: 'Weather-resistant sensing'
             },
           ],
         },
         {
-          title: 'Humidity & Air Quality',
-          icon: '/images/icons/AirQuality_Icon.webp',
+          title: 'Humidity',
+          icon: '/images/icons/Humidity_Icon.webp',
           links: [
             { 
-              label: 'RH Sensors', 
+              label: 'Room Humidity', 
               href: '/products',
-              description: 'Relative humidity measurement'
+              description: 'Wall-mount RH sensors'
             },
             { 
-              label: 'CO₂ Sensors', 
+              label: 'Duct Humidity', 
               href: '/products',
-              description: 'Carbon dioxide monitoring for IAQ'
+              description: 'Supply & return air RH'
             },
             { 
-              label: 'VOC Sensors', 
+              label: 'Outdoor Humidity', 
               href: '/products',
-              description: 'Volatile organic compound detection'
+              description: 'Weather-resistant RH'
             },
             { 
-              label: 'Particulate Matter', 
+              label: 'Combo Sensors', 
               href: '/products',
-              description: 'PM2.5 and PM10 monitoring'
+              description: 'Temperature + humidity'
             },
           ],
         },
         {
-          title: 'Pressure & Controllers',
+          title: 'Pressure',
           icon: '/images/icons/Pressure_Icon.webp',
           links: [
             { 
               label: 'Differential Pressure', 
               href: '/products',
-              description: 'Room pressurization and filter monitoring'
+              description: 'Room & filter monitoring'
             },
             { 
               label: 'Static Pressure', 
               href: '/products',
-              description: 'Duct static pressure transmitters'
+              description: 'Duct static transmitters'
             },
             { 
-              label: 'Zone Controllers', 
+              label: 'Barometric', 
               href: '/products',
-              description: 'VAV and FCU control solutions'
-            },
-            { 
-              label: 'I/O Modules', 
-              href: '/products',
-              description: 'Expandable input/output modules'
+              description: 'Atmospheric pressure'
             },
           ],
         },
         {
-          title: 'Product Families',
-          icon: '/images/icons/Temperature_Icon.webp',
+          title: 'Air Quality',
+          icon: '/images/icons/AirQuality_Icon.webp',
           links: [
             { 
-              label: 'Sensors', 
-              href: '/sensors',
-              description: 'Temperature, Humidity & Pressure',
-              badge: 'New'
+              label: 'CO₂ Sensors', 
+              href: '/products',
+              description: 'Carbon dioxide monitoring'
             },
             { 
-              label: 'Wireless Monitoring', 
+              label: 'VOC Sensors', 
+              href: '/products',
+              description: 'Volatile organic compounds'
+            },
+            { 
+              label: 'Particulate Matter', 
+              href: '/products',
+              description: 'PM2.5 and PM10'
+            },
+          ],
+        },
+        {
+          title: 'Wireless',
+          icon: '/images/icons/Wireless_Icon.webp',
+          links: [
+            { 
+              label: 'WAM Temperature', 
               href: '/wireless',
-              description: 'WAM cloud-based solutions',
-              badge: 'New'
+              description: 'Wireless temp sensors',
+              badge: 'Popular'
             },
             { 
-              label: 'Test Instruments', 
-              href: '/test-instruments',
-              description: 'Blu-Test diagnostic tools',
-              badge: 'New'
+              label: 'WAM Humidity', 
+              href: '/wireless',
+              description: 'Wireless RH sensors'
             },
             { 
-              label: 'Air Quality', 
-              href: '/air-quality',
-              description: 'CO₂, VOC & IAQ sensors',
-              badge: 'New'
+              label: 'WAM Door Sensors', 
+              href: '/wireless',
+              description: 'Open/close monitoring'
             },
             { 
-              label: 'Accessories', 
+              label: 'Cloud Platform', 
+              href: '/wam',
+              description: '24/7 remote monitoring',
+              badge: 'Premium'
+            },
+          ],
+        },
+        {
+          title: 'Accessories',
+          icon: '/images/icons/Accessories_Icon.webp',
+          links: [
+            { 
+              label: 'Mounting Hardware', 
               href: '/accessories',
-              description: 'Mounting hardware & cables',
+              description: 'Plates, boxes, brackets'
+            },
+            { 
+              label: 'Enclosures', 
+              href: '/accessories',
+              description: 'BAPI-Box & covers'
+            },
+            { 
+              label: 'Cables & Connectors', 
+              href: '/accessories',
+              description: 'Wiring accessories'
+            },
+          ],
+        },
+        {
+          title: 'Test Instruments',
+          icon: '/images/icons/Test_Instruments_Icon.webp',
+          links: [
+            { 
+              label: 'Blu-Test Temperature', 
+              href: '/test-instruments',
+              description: 'NIST-traceable reference',
               badge: 'New'
+            },
+            { 
+              label: 'Blu-Test Humidity', 
+              href: '/test-instruments',
+              description: 'Temp + RH reference'
+            },
+            { 
+              label: 'Blu-Test Pressure', 
+              href: '/test-instruments',
+              description: 'Digital manometer'
             },
           ],
         },

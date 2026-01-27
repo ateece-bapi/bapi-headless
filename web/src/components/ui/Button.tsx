@@ -27,10 +27,10 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: [
-          'bg-primary-600 hover:bg-primary-700',
-          'text-white',
-          'shadow-primary-600/30 hover:shadow-primary-600/40 shadow-lg hover:shadow-xl',
-          'focus:ring-primary-600/50',
+          'bg-accent-500 hover:bg-accent-600',
+          'text-neutral-900',
+          'shadow-accent-500/30 hover:shadow-accent-500/40 shadow-lg hover:shadow-xl',
+          'focus:ring-accent-500/50',
         ],
         accent: [
           'bg-accent-500 hover:bg-accent-600',

@@ -2,6 +2,18 @@
 import '../src/app/globals.css';
 
 import type { Preview } from '@storybook/nextjs-vite';
+import { initialize, mswLoader } from 'msw-storybook-addon';
+import { handlers } from './mocks/handlers';
+
+/**
+ * Initialize MSW for Storybook
+ * 
+ * This enables mocking of GraphQL/REST API requests in stories.
+ * Useful for testing components without a live backend.
+ */
+initialize({
+  onUnhandledRequest: 'bypass', // Allow unhandled requests (Next.js internal, images, etc.)
+});
 
 const preview: Preview = {
   parameters: {
@@ -15,7 +27,11 @@ const preview: Preview = {
     nextjs: {
       appDirectory: true,
     },
+    msw: {
+      handlers,
+    },
   },
+  loaders: [mswLoader], // Enable MSW for all stories
 };
 
 export default preview;

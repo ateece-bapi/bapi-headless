@@ -91,6 +91,7 @@ function ToastDemo() {
  * Click buttons to trigger different toast types and test functionality.
  */
 export const Interactive: Story = {
+  args: { children: null },
   render: () => (
     <ToastProvider>
       <ToastDemo />
@@ -102,6 +103,7 @@ export const Interactive: Story = {
  * Success toast (5s auto-dismiss)
  */
 export const Success: Story = {
+  args: { children: null },
   render: () => {
     const Demo = () => {
       const { showToast } = useToast();
@@ -128,6 +130,7 @@ export const Success: Story = {
  * Error toast (6s auto-dismiss)
  */
 export const Error: Story = {
+  args: { children: null },
   render: () => {
     const Demo = () => {
       const { showToast } = useToast();
@@ -154,6 +157,7 @@ export const Error: Story = {
  * Warning toast (5s auto-dismiss)
  */
 export const Warning: Story = {
+  args: { children: null },
   render: () => {
     const Demo = () => {
       const { showToast } = useToast();
@@ -180,6 +184,7 @@ export const Warning: Story = {
  * Info toast (4s auto-dismiss)
  */
 export const InfoToast: Story = {
+  args: { children: null },
   render: () => {
     const Demo = () => {
       const { showToast } = useToast();
@@ -206,6 +211,7 @@ export const InfoToast: Story = {
  * Long message toast (tests text wrapping)
  */
 export const LongMessage: Story = {
+  args: { children: null },
   render: () => {
     const Demo = () => {
       const { showToast } = useToast();
@@ -237,6 +243,7 @@ export const LongMessage: Story = {
  * Persistent toast (no auto-dismiss, must close manually)
  */
 export const Persistent: Story = {
+  args: { children: null },
   render: () => {
     const Demo = () => {
       const { showToast } = useToast();

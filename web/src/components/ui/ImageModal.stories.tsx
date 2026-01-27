@@ -62,6 +62,7 @@ function ImageModalDemo({ imageSrc, imageAlt }: { imageSrc: string; imageAlt: st
  * Click "Open Image Modal" to view full-screen image with zoom controls.
  */
 export const Default: Story = {
+  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
   render: () => (
     <ImageModalDemo
       imageSrc="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg"
@@ -74,6 +75,7 @@ export const Default: Story = {
  * Wide landscape image (tests layout)
  */
 export const LandscapeImage: Story = {
+  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
   render: () => (
     <ImageModalDemo
       imageSrc="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BAPI-Campus-Aerial-1-scaled.jpg"
@@ -86,6 +88,7 @@ export const LandscapeImage: Story = {
  * Portrait image (tests vertical layout)
  */
 export const PortraitImage: Story = {
+  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
   render: () => (
     <ImageModalDemo
       imageSrc="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg"
@@ -98,6 +101,7 @@ export const PortraitImage: Story = {
  * High resolution image (tests zoom quality)
  */
 export const HighResolution: Story = {
+  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
   render: () => (
     <ImageModalDemo
       imageSrc="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BAPI-Campus-Aerial-1-scaled.jpg"
@@ -110,6 +114,7 @@ export const HighResolution: Story = {
  * Multiple images demo (tests modal reopening)
  */
 export const MultipleImages: Story = {
+  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
     const [currentImage, setCurrentImage] = useState({
@@ -172,6 +177,7 @@ export const MultipleImages: Story = {
  * Already open modal (for testing initial state)
  */
 export const InitiallyOpen: Story = {
+  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
   render: () => {
     const [isOpen] = useState(true);
 

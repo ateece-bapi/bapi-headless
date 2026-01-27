@@ -40,23 +40,23 @@ const meta: Meta<typeof ProductGallery> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Mock images for stories - using actual BAPI product images
+// Mock images for stories - using local product images from /public/products
 const mockImages: GalleryImage[] = [
   {
-    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-12.webp',
-    altText: 'BA/10K-3-O-12 Temperature Sensor - front view',
+    sourceUrl: '/products/temp_sensors.webp',
+    altText: 'Temperature Sensors - front view',
   },
   {
-    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-18.webp',
-    altText: 'BA/10K-3-O-18 Temperature Sensor - side view',
+    sourceUrl: '/products/humidity_sensors.webp',
+    altText: 'Humidity Sensors - side view',
   },
   {
-    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-24.webp',
-    altText: 'BA/10K-3-O-24 Temperature Sensor - detail view',
+    sourceUrl: '/products/pressure_sensors.webp',
+    altText: 'Pressure Sensors - detail view',
   },
   {
-    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA1.8K-R2.webp',
-    altText: 'BA/1.8K-R2 Temperature Sensor - installation',
+    sourceUrl: '/products/wireless_sensors.webp',
+    altText: 'Wireless Sensors - installation',
   },
 ];
 
@@ -111,12 +111,12 @@ export const ManyImages: Story = {
     images: [
       ...mockImages,
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA1K-R3.webp',
-        altText: 'BA/1K-R3 Additional view',
+        sourceUrl: '/products/air_quality_sensors.webp',
+        altText: 'Air Quality Sensors',
       },
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA3K-R1.webp',
-        altText: 'BA/3K-R1 Additional view',
+        sourceUrl: '/products/test_products.webp',
+        altText: 'Test Instruments',
       },
     ],
     productName: 'BA/10K-3-O-24 Multi-View Product',
@@ -150,11 +150,11 @@ export const PortraitImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-12.webp',
+        sourceUrl: '/products/temp_sensors.webp',
         altText: 'Portrait orientation - view 1',
       },
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-18.webp',
+        sourceUrl: '/products/humidity_sensors.webp',
         altText: 'Portrait orientation - view 2',
       },
     ],
@@ -172,11 +172,11 @@ export const LandscapeImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-24.webp',
+        sourceUrl: '/products/pressure_sensors.webp',
         altText: 'Landscape orientation - view 1',
       },
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA1.8K-R2.webp',
+        sourceUrl: '/products/wireless_sensors.webp',
         altText: 'Landscape orientation - view 2',
       },
     ],
@@ -207,11 +207,11 @@ export const HighResolution: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-12.webp',
+        sourceUrl: '/products/temp_sensors.webp',
         altText: 'High resolution image 1',
       },
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-18.webp',
+        sourceUrl: '/products/humidity_sensors.webp',
         altText: 'High resolution image 2',
       },
     ],
@@ -229,15 +229,15 @@ export const MixedAspectRatios: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-12.webp',
+        sourceUrl: '/products/temp_sensors.webp',
         altText: 'Square image',
       },
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-18.webp',
+        sourceUrl: '/products/humidity_sensors.webp',
         altText: 'Portrait image',
       },
       {
-        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA1.8K-R2.webp',
+        sourceUrl: '/products/wireless_sensors.webp',
         altText: 'Landscape image',
       },
     ],

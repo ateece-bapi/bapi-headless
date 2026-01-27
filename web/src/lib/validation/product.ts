@@ -55,6 +55,7 @@ export const productSchema = z.object({
   description: z.string().nullable().optional(),
   __typename: z.string().optional(),
   price: z.string(),
+  stockStatus: z.string().optional(),
   image: imageSchema.nullable().optional(),
   galleryImages: galleryImagesSchema,
   variations: variationsSchema,

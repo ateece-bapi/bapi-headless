@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* Fade/slide animation for premium product cards */
 .opacity-0 {
   opacity: 0 !important;
@@ -11,8 +13,6 @@
 .translate-y-0 {
   transform: translateY(0) !important;
 }
-
-@import "tailwindcss";
 
 /**
  * BAPI Brand Color System

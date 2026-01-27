@@ -46,3 +46,6 @@ next-env.d.ts
 # user data (quotes, uploads)
 /data/
 /public/uploads/
+
+*storybook.log
+storybook-static

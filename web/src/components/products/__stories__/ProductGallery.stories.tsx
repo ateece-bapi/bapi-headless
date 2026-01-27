@@ -40,23 +40,23 @@ const meta: Meta<typeof ProductGallery> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Mock images for stories - using placeholder.com which works well in Storybook
+// Mock images for stories - using actual BAPI product images
 const mockImages: GalleryImage[] = [
   {
-    sourceUrl: 'https://via.placeholder.com/800x800/1479BC/FFFFFF?text=Front+View',
-    altText: 'Industrial sensor - front view',
+    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-12.webp',
+    altText: 'BA/10K-3-O-12 Temperature Sensor - front view',
   },
   {
-    sourceUrl: 'https://via.placeholder.com/800x800/3397CF/FFFFFF?text=Side+View',
-    altText: 'Industrial sensor - side view',
+    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-18.webp',
+    altText: 'BA/10K-3-O-18 Temperature Sensor - side view',
   },
   {
-    sourceUrl: 'https://via.placeholder.com/800x800/106196/FFFFFF?text=Detail+View',
-    altText: 'Industrial sensor - detail view',
+    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-24.webp',
+    altText: 'BA/10K-3-O-24 Temperature Sensor - detail view',
   },
   {
-    sourceUrl: 'https://via.placeholder.com/800x800/FFC843/000000?text=Installation',
-    altText: 'Industrial sensor - installation',
+    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA1.8K-R2.webp',
+    altText: 'BA/1.8K-R2 Temperature Sensor - installation',
   },
 ];
 
@@ -111,12 +111,12 @@ export const ManyImages: Story = {
     images: [
       ...mockImages,
       {
-        sourceUrl: 'https://via.placeholder.com/800x800/97999B/FFFFFF?text=View+5',
-        altText: 'Additional view 1',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA1K-R3.webp',
+        altText: 'BA/1K-R3 Additional view',
       },
       {
-        sourceUrl: 'https://via.placeholder.com/800x800/66B1DB/FFFFFF?text=View+6',
-        altText: 'Additional view 2',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA3K-R1.webp',
+        altText: 'BA/3K-R1 Additional view',
       },
     ],
     productName: 'BA/10K-3-O-24 Multi-View Product',
@@ -150,11 +150,11 @@ export const PortraitImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://via.placeholder.com/600x900/1479BC/FFFFFF?text=Portrait+1',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-12.webp',
         altText: 'Portrait orientation - view 1',
       },
       {
-        sourceUrl: 'https://via.placeholder.com/600x900/3397CF/FFFFFF?text=Portrait+2',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-18.webp',
         altText: 'Portrait orientation - view 2',
       },
     ],
@@ -172,11 +172,11 @@ export const LandscapeImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://via.placeholder.com/900x600/106196/FFFFFF?text=Landscape+1',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-24.webp',
         altText: 'Landscape orientation - view 1',
       },
       {
-        sourceUrl: 'https://via.placeholder.com/900x600/FFC843/000000?text=Landscape+2',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA1.8K-R2.webp',
         altText: 'Landscape orientation - view 2',
       },
     ],
@@ -207,11 +207,11 @@ export const HighResolution: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://via.placeholder.com/2000x2000/1479BC/FFFFFF?text=High+Res+1',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-12.webp',
         altText: 'High resolution image 1',
       },
       {
-        sourceUrl: 'https://via.placeholder.com/2000x2000/3397CF/FFFFFF?text=High+Res+2',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-18.webp',
         altText: 'High resolution image 2',
       },
     ],
@@ -229,15 +229,15 @@ export const MixedAspectRatios: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://via.placeholder.com/800x800/1479BC/FFFFFF?text=Square',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-12.webp',
         altText: 'Square image',
       },
       {
-        sourceUrl: 'https://via.placeholder.com/600x900/3397CF/FFFFFF?text=Portrait',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA10K-3-O-18.webp',
         altText: 'Portrait image',
       },
       {
-        sourceUrl: 'https://via.placeholder.com/900x600/106196/FFFFFF?text=Landscape',
+        sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/09/BA1.8K-R2.webp',
         altText: 'Landscape image',
       },
     ],

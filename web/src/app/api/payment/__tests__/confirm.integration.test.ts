@@ -151,7 +151,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
     it('should return 400 if payment intent not found', async () => {
       // Arrange
       const Stripe = (await import('stripe')).default;
-      const stripeInstance = new Stripe('test', { apiVersion: '2024-11-20.acacia' });
+      const stripeInstance = new Stripe('test', { apiVersion: '2025-12-15.clover' });
       
       vi.mocked(stripeInstance.paymentIntents.retrieve).mockRejectedValue(
         new Error('Payment intent not found')
@@ -177,7 +177,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
     it('should return 400 if payment not succeeded', async () => {
       // Arrange
       const Stripe = (await import('stripe')).default;
-      const stripeInstance = new Stripe('test', { apiVersion: '2024-11-20.acacia' });
+      const stripeInstance = new Stripe('test', { apiVersion: '2025-12-15.clover' });
       
       vi.mocked(stripeInstance.paymentIntents.retrieve).mockResolvedValue({
         id: 'pi_test123',

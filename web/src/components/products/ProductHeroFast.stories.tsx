@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ProductHeroFast } from './ProductHeroFast';
 import type { GetProductBySlugQuery } from '@/lib/graphql';
+import { StockStatusEnum } from '@/lib/graphql/generated';
 
 /**
  * ProductHeroFast Component Stories
@@ -46,7 +47,7 @@ const mockProductDefault: NonNullable<GetProductBySlugQuery['product']> = {
   regularPrice: '$89.00',
   salePrice: null,
   onSale: false,
-  stockStatus: 'IN_STOCK' as const,
+  stockStatus: StockStatusEnum.InStock,
   sku: 'BA/10K-3-O-12',
   __typename: 'SimpleProduct',
 };
@@ -126,7 +127,7 @@ export const OutOfStock: Story = {
       databaseId: 1111,
       name: 'CO2 Sensor - Out of Stock',
       slug: 'co2-sensor-out-of-stock',
-      stockStatus: 'OUT_OF_STOCK' as const,
+      stockStatus: StockStatusEnum.OutOfStock,
     },
   },
 };

@@ -74,6 +74,8 @@ describe('PaymentStep', () => {
       id: '',
       title: '',
     },
+    shippingMethod: 'standard',
+    orderNotes: '',
   };
 
   beforeEach(() => {

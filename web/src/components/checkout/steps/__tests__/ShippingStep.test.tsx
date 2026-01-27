@@ -53,7 +53,9 @@ describe('ShippingStep', () => {
       email: 'john@example.com',
       sameAsShipping: true,
     },
-    paymentMethod: '',
+    paymentMethod: null,
+    shippingMethod: 'standard',
+    orderNotes: '',
   };
 
   beforeEach(() => {
@@ -491,7 +493,9 @@ describe('ShippingStep', () => {
           email: '',
           sameAsShipping: true,
         },
-        paymentMethod: '',
+        paymentMethod: null,
+        shippingMethod: 'standard',
+        orderNotes: '',
       };
       render(<ShippingStep data={emptyData} onNext={mockOnNext} onUpdateData={mockOnUpdateData} />);
       expect(screen.getByLabelText(/First Name \*/)).toBeInTheDocument();

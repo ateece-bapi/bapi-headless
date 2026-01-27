@@ -58,6 +58,7 @@ describe('ReviewStep', () => {
       id: 'credit_card',
       title: 'Credit Card',
     },
+    shippingMethod: 'standard',
     orderNotes: '',
   };
 
@@ -329,7 +330,7 @@ describe('ReviewStep', () => {
     it('shows "Not selected" when payment method missing', () => {
       const dataNoPayment: CheckoutData = {
         ...mockData,
-        paymentMethod: undefined,
+        paymentMethod: null,
       };
       render(
         <ReviewStep

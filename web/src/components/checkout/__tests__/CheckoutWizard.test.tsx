@@ -63,6 +63,7 @@ const mockCheckoutData: CheckoutData = {
     country: 'US',
     phone: '555-1234',
     email: 'john@example.com',
+    sameAsShipping: true,
   },
   paymentMethod: {
     id: 'credit_card',

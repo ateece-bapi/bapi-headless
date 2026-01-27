@@ -10,6 +10,7 @@ import {
   type SimpleProduct,
   type VariableProduct,
 } from '../types';
+import { StockStatusEnum } from '../generated';
 
 describe('GraphQL Type Utilities', () => {
   describe('Type Guards', () => {
@@ -197,7 +198,7 @@ describe('GraphQL Type Utilities', () => {
         id: '1',
         databaseId: 1,
         name: 'Test Product',
-        stockStatus: 'IN_STOCK',
+        stockStatus: StockStatusEnum.InStock,
       };
       expect(getProductStockStatus(product)).toBe('IN_STOCK');
     });
@@ -208,7 +209,7 @@ describe('GraphQL Type Utilities', () => {
         id: '1',
         databaseId: 1,
         name: 'Test Product',
-        stockStatus: 'OUT_OF_STOCK',
+        stockStatus: StockStatusEnum.OutOfStock,
       };
       expect(getProductStockStatus(product)).toBe('OUT_OF_STOCK');
     });
@@ -219,7 +220,7 @@ describe('GraphQL Type Utilities', () => {
         id: '1',
         databaseId: 1,
         name: 'Test Product',
-        stockStatus: 'ON_BACKORDER',
+        stockStatus: StockStatusEnum.OnBackorder,
       };
       expect(getProductStockStatus(product)).toBe('ON_BACKORDER');
     });

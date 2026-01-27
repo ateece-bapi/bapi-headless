@@ -1,10 +1,12 @@
 import '@testing-library/jest-dom';
-import type { ProductForClient, Variation } from '../ProductPage/ProductDetailClient';
 import type { useCart as useCartType, useCartDrawer as useCartDrawerType } from '@/store';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { ProductDetailClient } from '@/components/products';
 import { ToastProvider } from '@/components/ui/Toast';
+
+type ProductForClient = React.ComponentProps<typeof ProductDetailClient>['product'];
+type Variation = any; // Component uses any for variations
 
 const baseProduct: ProductForClient = {
   id: 'prod-1',
@@ -158,7 +160,7 @@ describe('ProductDetailClient', () => {
       const outOfStockProduct = { 
         ...baseProduct, 
         stockStatus: 'OUT_OF_STOCK',
-        variations: baseProduct.variations.map(v => ({
+        variations: baseProduct.variations.map((v: any) => ({
           ...v,
           stockStatus: 'OUT_OF_STOCK'
         }))

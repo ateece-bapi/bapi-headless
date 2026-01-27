@@ -16,7 +16,9 @@
     "codegen": "graphql-codegen --config codegen.ts",
     "codegen:watch": "graphql-codegen --config codegen.ts --watch",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "optimize:families": "node scripts/optimize-images.mjs families"
+    "optimize:families": "node scripts/optimize-images.mjs families",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.23",
@@ -72,7 +74,17 @@
     "typescript": "5.9.3",
     "vite": "^7.2.6",
     "vitest": "^4.0.15",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "storybook": "^10.2.1",
+    "@storybook/nextjs-vite": "^10.2.1",
+    "@chromatic-com/storybook": "^5.0.0",
+    "@storybook/addon-vitest": "^10.2.1",
+    "@storybook/addon-a11y": "^10.2.1",
+    "@storybook/addon-docs": "^10.2.1",
+    "@storybook/addon-onboarding": "^10.2.1",
+    "eslint-plugin-storybook": "^10.2.1",
+    "playwright": "^1.58.0",
+    "@vitest/browser-playwright": "4.0.17"
   },
   "volta": {
     "node": "20.20.0"

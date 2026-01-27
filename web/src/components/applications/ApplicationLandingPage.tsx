@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { CheckCircle, ChevronRight, Package, Users } from 'lucide-react';
+import { CheckCircle, ChevronRight, Package, Users, Home } from 'lucide-react';
 import type { ApplicationLandingPageData } from '@/types/applications';
 
 /**
@@ -31,7 +31,7 @@ export default function ApplicationLandingPage({
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <HeroSection hero={data.hero} />
+      <HeroSection hero={data.hero} appName={data.name} />
 
       {/* Challenges Section */}
       <ChallengesSection challenges={data.challenges} />
@@ -57,9 +57,12 @@ export default function ApplicationLandingPage({
 /**
  * Hero section with image, title, tagline, and statistics
  */
-function HeroSection({ hero }: { hero: ApplicationLandingPageData['hero'] }) {
+function HeroSection({ hero, appName }: { hero: ApplicationLandingPageData['hero']; appName: string }) {
   return (
-    <section className="relative bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white overflow-hidden">
+    <section className="relative bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 text-white pt-12 pb-20 lg:pt-16 lg:pb-32 overflow-hidden">
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
+      
       {/* Background Image */}
       <div className="absolute inset-0 opacity-20">
         <Image
@@ -72,10 +75,23 @@ function HeroSection({ hero }: { hero: ApplicationLandingPageData['hero'] }) {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/90 via-neutral-900/70 to-neutral-900/90" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-700/90 via-primary-500/70 to-primary-700/90" />
 
       {/* Content */}
-      <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-20 lg:py-32">
+      <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-2 text-sm text-primary-100 mb-6" aria-label="Breadcrumb">
+          <Link href="/" className="hover:text-white transition-colors">
+            Home
+          </Link>
+          <ChevronRight className="w-4 h-4" />
+          <Link href="/applications" className="hover:text-white transition-colors">
+            Applications
+          </Link>
+          <ChevronRight className="w-4 h-4" />
+          <span className="text-white font-medium">{appName}</span>
+        </nav>
+
         <div className="max-w-4xl">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-balance">
             {hero.title}
@@ -84,17 +100,20 @@ function HeroSection({ hero }: { hero: ApplicationLandingPageData['hero'] }) {
             {hero.tagline}
           </p>
 
-          {/* Statistics */}
+          {/* Statistics - Interactive */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
             {hero.stats.map((stat, index) => (
               <div
                 key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
+                className="group relative cursor-default"
               >
-                <div className="text-3xl lg:text-4xl font-bold text-accent-400 mb-2">
-                  {stat.value}
+                <div className="absolute inset-0 bg-accent-500/10 rounded-xl border-2 border-accent-500/20 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105" />
+                <div className="relative bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                  <div className="text-3xl lg:text-4xl font-bold text-accent-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-neutral-300">{stat.label}</div>
                 </div>
-                <div className="text-sm text-neutral-300">{stat.label}</div>
               </div>
             ))}
           </div>

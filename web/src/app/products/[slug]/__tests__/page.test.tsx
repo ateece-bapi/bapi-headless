@@ -8,6 +8,21 @@ type ProductForClient = React.ComponentProps<typeof ProductDetailClient>['produc
 
 import { mockProductForClient, makeProductForClient } from '../../../../../test/msw/fixtures';
 
+// Mock the cart hooks
+const mockUseCart = () => ({
+  items: [],
+  totalItems: 0,
+  addItem: (product: any, quantity: number) => {
+    useCartStore.getState().addItem(product, quantity);
+  },
+});
+
+const mockUseCartDrawer = () => ({
+  isOpen: false,
+  open: () => {},
+  close: () => {},
+});
+
 const productShape: ProductForClient = makeProductForClient();
 
 describe('ProductDetailClient', () => {
@@ -19,7 +34,11 @@ describe('ProductDetailClient', () => {
   it('renders and adds product to cart', async () => {
     render(
       <ToastProvider>
-        <ProductDetailClient product={productShape} />
+        <ProductDetailClient 
+          product={productShape}
+          useCart={mockUseCart}
+          useCartDrawer={mockUseCartDrawer}
+        />
       </ToastProvider>
     );
 

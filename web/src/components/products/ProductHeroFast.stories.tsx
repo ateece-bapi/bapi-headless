@@ -32,8 +32,15 @@ const mockProductDefault: NonNullable<GetProductBySlugQuery['product']> = {
   description: '<p>Professional building automation temperature sensor with 10K Type III thermistor. Precision accuracy for HVAC applications.</p>',
   shortDescription: '<p>10K Type III thermistor, outdoor rated, 12" leads</p>',
   image: {
+    __typename: 'MediaItem',
+    id: 'cG9zdDo1Njc4',
     sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg',
     altText: 'BAPI Temperature Sensor',
+    mediaDetails: {
+      __typename: 'MediaDetails',
+      height: 800,
+      width: 800,
+    },
   },
   price: '$89.00',
   regularPrice: '$89.00',

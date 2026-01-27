@@ -39,6 +39,8 @@ const preview: Preview = {
             hostname: '**.wordpress.org',
           },
         ],
+        // Disable image optimization in Storybook for better compatibility
+        unoptimized: true,
       },
     },
     msw: {

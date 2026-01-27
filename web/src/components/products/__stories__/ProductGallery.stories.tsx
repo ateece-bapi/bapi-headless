@@ -40,22 +40,22 @@ const meta: Meta<typeof ProductGallery> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Mock images for stories
+// Mock images for stories - using placeholder.com which works well in Storybook
 const mockImages: GalleryImage[] = [
   {
-    sourceUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=800&fit=crop',
+    sourceUrl: 'https://via.placeholder.com/800x800/1479BC/FFFFFF?text=Front+View',
     altText: 'Industrial sensor - front view',
   },
   {
-    sourceUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=800&fit=crop',
+    sourceUrl: 'https://via.placeholder.com/800x800/3397CF/FFFFFF?text=Side+View',
     altText: 'Industrial sensor - side view',
   },
   {
-    sourceUrl: 'https://images.unsplash.com/photo-1581092583537-20d51876f822?w=800&h=800&fit=crop',
+    sourceUrl: 'https://via.placeholder.com/800x800/106196/FFFFFF?text=Detail+View',
     altText: 'Industrial sensor - detail view',
   },
   {
-    sourceUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=800&fit=crop',
+    sourceUrl: 'https://via.placeholder.com/800x800/FFC843/000000?text=Installation',
     altText: 'Industrial sensor - installation',
   },
 ];
@@ -111,11 +111,11 @@ export const ManyImages: Story = {
     images: [
       ...mockImages,
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&h=800&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/800x800/97999B/FFFFFF?text=View+5',
         altText: 'Additional view 1',
       },
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=800&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/800x800/66B1DB/FFFFFF?text=View+6',
         altText: 'Additional view 2',
       },
     ],
@@ -150,11 +150,11 @@ export const PortraitImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=900&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/600x900/1479BC/FFFFFF?text=Portrait+1',
         altText: 'Portrait orientation - view 1',
       },
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1581092583537-20d51876f822?w=600&h=900&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/600x900/3397CF/FFFFFF?text=Portrait+2',
         altText: 'Portrait orientation - view 2',
       },
     ],
@@ -172,11 +172,11 @@ export const LandscapeImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&h=600&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/900x600/106196/FFFFFF?text=Landscape+1',
         altText: 'Landscape orientation - view 1',
       },
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=900&h=600&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/900x600/FFC843/000000?text=Landscape+2',
         altText: 'Landscape orientation - view 2',
       },
     ],
@@ -207,11 +207,11 @@ export const HighResolution: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=2000&h=2000&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/2000x2000/1479BC/FFFFFF?text=High+Res+1',
         altText: 'High resolution image 1',
       },
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=2000&h=2000&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/2000x2000/3397CF/FFFFFF?text=High+Res+2',
         altText: 'High resolution image 2',
       },
     ],
@@ -229,15 +229,15 @@ export const MixedAspectRatios: Story = {
   args: {
     images: [
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=800&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/800x800/1479BC/FFFFFF?text=Square',
         altText: 'Square image',
       },
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=900&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/600x900/3397CF/FFFFFF?text=Portrait',
         altText: 'Portrait image',
       },
       {
-        sourceUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&h=600&fit=crop',
+        sourceUrl: 'https://via.placeholder.com/900x600/106196/FFFFFF?text=Landscape',
         altText: 'Landscape image',
       },
     ],

@@ -18,6 +18,7 @@ describe('GraphQL Type Utilities', () => {
         const product = {
           __typename: 'SimpleProduct' as const,
           id: '1',
+          databaseId: 1,
           name: 'Test Product',
         };
         expect(isSimpleProduct(product)).toBe(true);
@@ -27,6 +28,7 @@ describe('GraphQL Type Utilities', () => {
         const product = {
           __typename: 'VariableProduct' as const,
           id: '1',
+          databaseId: 1,
           name: 'Test Product',
         };
         expect(isSimpleProduct(product)).toBe(false);
@@ -46,6 +48,7 @@ describe('GraphQL Type Utilities', () => {
         const product = {
           __typename: 'VariableProduct' as const,
           id: '1',
+          databaseId: 1,
           name: 'Test Product',
         };
         expect(isVariableProduct(product)).toBe(true);
@@ -55,6 +58,7 @@ describe('GraphQL Type Utilities', () => {
         const product = {
           __typename: 'SimpleProduct' as const,
           id: '1',
+          databaseId: 1,
           name: 'Test Product',
         };
         expect(isVariableProduct(product)).toBe(false);
@@ -74,6 +78,7 @@ describe('GraphQL Type Utilities', () => {
         const product = {
           __typename: 'ExternalProduct' as const,
           id: '1',
+          databaseId: 1,
           name: 'Test Product',
         };
         expect(isExternalProduct(product)).toBe(true);
@@ -83,6 +88,7 @@ describe('GraphQL Type Utilities', () => {
         const product = {
           __typename: 'SimpleProduct' as const,
           id: '1',
+          databaseId: 1,
           name: 'Test Product',
         };
         expect(isExternalProduct(product)).toBe(false);
@@ -98,6 +104,7 @@ describe('GraphQL Type Utilities', () => {
         const product = {
           __typename: 'GroupProduct' as const,
           id: '1',
+          databaseId: 1,
           name: 'Test Product',
         };
         expect(isGroupProduct(product)).toBe(true);
@@ -107,6 +114,7 @@ describe('GraphQL Type Utilities', () => {
         const product = {
           __typename: 'SimpleProduct' as const,
           id: '1',
+          databaseId: 1,
           name: 'Test Product',
         };
         expect(isGroupProduct(product)).toBe(false);
@@ -123,6 +131,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
         price: '$19.99',
       };
@@ -133,6 +142,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
         price: '$1,234.56',
       };
@@ -143,6 +153,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'VariableProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
         price: '$10.00 - $25.00',
       };
@@ -153,6 +164,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
       };
       expect(getProductPrice(product as any)).toBe(null);
@@ -170,6 +182,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
         price: '',
       };
@@ -182,6 +195,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
         stockStatus: 'IN_STOCK',
       };
@@ -192,6 +206,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
         stockStatus: 'OUT_OF_STOCK',
       };
@@ -202,6 +217,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
         stockStatus: 'ON_BACKORDER',
       };
@@ -212,6 +228,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
       };
       expect(getProductStockStatus(product as any)).toBe(null);
@@ -229,8 +246,9 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
-        stockStatus: '',
+        stockStatus: '' as any,
       };
       expect(getProductStockStatus(product)).toBe(null);
     });
@@ -241,6 +259,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
         onSale: true,
       };
@@ -251,6 +270,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
         onSale: false,
       };
@@ -261,6 +281,7 @@ describe('GraphQL Type Utilities', () => {
       const product = {
         __typename: 'SimpleProduct' as const,
         id: '1',
+        databaseId: 1,
         name: 'Test Product',
       };
       expect(isProductOnSale(product as any)).toBe(false);

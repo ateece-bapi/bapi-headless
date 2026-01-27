@@ -46,7 +46,7 @@ const mockProductDefault: NonNullable<GetProductBySlugQuery['product']> = {
   regularPrice: '$89.00',
   salePrice: null,
   onSale: false,
-  stockStatus: 'IN_STOCK',
+  stockStatus: 'IN_STOCK' as const,
   sku: 'BA/10K-3-O-12',
   __typename: 'SimpleProduct',
 };
@@ -126,7 +126,7 @@ export const OutOfStock: Story = {
       databaseId: 1111,
       name: 'CO2 Sensor - Out of Stock',
       slug: 'co2-sensor-out-of-stock',
-      stockStatus: 'OUT_OF_STOCK',
+      stockStatus: 'OUT_OF_STOCK' as const,
     },
   },
 };

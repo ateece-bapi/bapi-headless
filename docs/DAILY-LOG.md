@@ -1,5 +1,96 @@
 # BAPI Headless Development Log
 
+## January 27, 2026 - Phase 19: BAPI Brand Icon Standards + Storybook Planning 📚
+
+### Storybook Implementation Planning - **IN PROGRESS** 🔄
+
+**Goal:** Implement Storybook for component development, testing, and documentation  
+**Context:** Planning phase after GitHub Copilot discussion about Storybook benefits for headless WordPress + React Native future
+
+**Key Decisions:**
+
+**Why Storybook for BAPI Headless:**
+1. **Component Migration Support** - Managing transition from `BapiButton.tsx` to `Button.tsx` with CVA
+2. **Headless CMS Decoupling** - Mock WordPress GraphQL data for efficient UI development
+3. **Visual Regression Testing** - Catch style regressions during Tailwind/global style updates
+4. **React Native Preparation** - Build platform-agnostic primitives for future iOS/Android app
+5. **Design System Documentation** - Centralize BAPI brand standards (colors, icons, components)
+
+**Technical Challenges (React 19 + Next.js 16 + Tailwind 4):**
+- React 19 peer dependency warnings (use `--legacy-peer-deps`)
+- ESLint 9 flat config requires manual `eslint-plugin-storybook` setup
+- Tailwind 4 CSS-first configuration needs PostCSS integration
+- MSW (Mock Service Worker) won't intercept server-side fetches (need prop mocking for async components)
+
+**Phased Implementation Plan:**
+- **Phase 1** (2-3h): Core setup + Button migration stories
+- **Phase 2** (2-3h): MSW + ProductHeroFast with GraphQL mocks
+- **Phase 3** (1-2h): Interactive components (Toast, ImageModal)
+- **Phase 4** (future): Chromatic visual regression CI
+
+**Documentation Created:**
+- [STORYBOOK-IMPLEMENTATION-GUIDE.md](./STORYBOOK-IMPLEMENTATION-GUIDE.md) - Comprehensive setup guide
+- GitHub Copilot chat export saved for reference
+
+**Next Steps:**
+1. Create `feat/storybook-setup` branch
+2. Run Storybook init in `web/` directory
+3. Configure Tailwind 4 integration
+4. Create first 3 stories (Button, ProductHero, Toast)
+
+---
+
+### Phase 19: BAPI Brand Icon Standards - **COMPLETE** ✅
+
+**Branch:** `feat/phase19-product-category-icons` (merged)  
+**Goal:** Replace generic Lucide icons with official BAPI brand icons per brand guide standards  
+**Time Actual:** 1 hour (icon replacement, bug fixes, image optimization)
+
+**User Request:** Brand guide screenshot showing standard order and styling for product category icons: Temperature, Humidity, Pressure, Air Quality, Wireless, Accessories, Test Instruments. Icons should be equidistant, can be blue or white on blue background.
+
+**Changes Implemented:**
+
+**Commit - Brand Icon Standards (e08f7ca):**
+- Replaced 7 Lucide icon components with BAPI brand image assets
+- Icon mapping:
+  - Temperature: `Thermometer` → `/images/icons/Temperature_Icon.webp`
+  - Humidity: `Droplets` → `/images/icons/Humidity_Icon.webp`
+  - Pressure: `Gauge` → `/images/icons/Pressure_Icon.webp`
+  - Air Quality: `Wind` → `/images/icons/AirQuality_Icon.webp`
+  - Wireless: `Wifi` → `/images/icons/Wireless_Icon.webp`
+  - Accessories: `Package` → `/images/icons/Accessories_Icon.webp`
+  - Test Instruments: `FlaskConical` → `/images/icons/Test_Instruments_Icon.webp`
+- Updated icon rendering logic:
+  - Conditional rendering: `typeof cat.icon === 'string'` check
+  - Supports both image paths (BAPI) and React components (Lucide for ETA Line)
+  - Next.js Image component for optimized loading
+- Fixed Accessories product image path:
+  - Changed from missing `/products/accessories.webp`
+  - To: `/images/products/families/Accessories_Family_2025_US.webp`
+- Updated Header mega menu to use BAPI icons for consistency
+- Created [ICON-USAGE.md](./ICON-USAGE.md) documentation
+
+**Bug Fixes:**
+- React key duplication: Removed duplicate Accessories entry
+- TypeScript error: Fixed duplicate `gradient` property in ETA Line category
+
+**Files Changed:**
+- Modified: `web/src/app/products/page.tsx` (icon implementation)
+- Modified: `web/src/components/layout/Header/config.ts` (mega menu icons)
+- Created: `docs/ICON-USAGE.md` (brand standards documentation)
+- Total: 47 files changed, 315 insertions(+), 73 deletions(-)
+
+**Image Optimization:**
+- 104.40 MiB of optimized brand icons and product images
+- WebP format with proper sizing (32x32 for icons)
+- White icons on colored gradient backgrounds per brand guide
+
+**Repository Cleanup:**
+- Added `web/2026-approved-images/` to `.gitignore` (3000+ source files)
+- Kept locally for future use, excluded from version control
+
+---
+
 ## January 27, 2026 - Phase 18: Application Landing Pages UX Consistency 🎨
 
 ### Phase 18: Application Pages UX Polish - **COMPLETE** ✅

@@ -69,8 +69,8 @@ const mockCheckoutData: CheckoutData = {
     id: 'credit_card',
     title: 'Credit Card',
   },
+  shippingMethod: 'standard',
   orderNotes: '',
-  sameAsBilling: true,
 };
 
 describe('CheckoutWizard', () => {

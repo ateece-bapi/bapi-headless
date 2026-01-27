@@ -164,14 +164,17 @@ describe('getProductBySlug', () => {
     expect(Array.isArray(p.variations?.nodes)).toBe(true);
     const v = p.variations?.nodes?.[0];
     expect(v).toBeDefined();
+    if (!v) throw new Error('Variation should be defined');
+    
     // attributes should be normalized to { nodes: [...] }
-    expect(Array.isArray(v.attributes?.nodes)).toBe(true);
-    expect(v.attributes.nodes[0].name).toBe('Size');
-    expect(v.attributes.nodes[0].value).toBe('M');
+    // Note: These are normalized fields that may not be in the GraphQL type
+    expect(Array.isArray((v as any).attributes?.nodes)).toBe(true);
+    expect((v as any).attributes.nodes[0].name).toBe('Size');
+    expect((v as any).attributes.nodes[0].value).toBe('M');
     // variation image should be normalized to have sourceUrl and altText
-    expect(v.image).toBeDefined();
-    expect(v.image.sourceUrl).toBe('https://example.test/var-a.png');
-    expect(v.image.altText).toBe('Variant A');
+    expect((v as any).image).toBeDefined();
+    expect((v as any).image.sourceUrl).toBe('https://example.test/var-a.png');
+    expect((v as any).image.altText).toBe('Variant A');
 
     spy.mockRestore();
   });

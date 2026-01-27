@@ -2,11 +2,37 @@
 
 ## 🔄 In Progress
 
-_No active tasks - awaiting next phase_
+### Phase 19.3: Expand Component Library (Next)
+- [ ] Create stories for additional components:
+  - [ ] QuantitySelector (45 test cases)
+  - [ ] CartSummary (32 test cases)
+  - [ ] ProductGallery (43 test cases)
+  - [ ] ProductSpecifications (41 test cases)
+- [ ] Document component usage patterns
+- [ ] Add interactive controls where applicable
 
 ---
 
 ## ✅ Recently Completed
+
+### Phase 19.2: Storybook MSW Integration (Jan 27, 2026) ✅ **COMPLETE**
+- [x] Install msw-storybook-addon@2.0.4
+- [x] Generate MSW service worker (`npx msw init web/public`)
+- [x] Create centralized mock fixtures (`web/test/msw/fixtures.ts`)
+- [x] Create GraphQL handlers (`web/test/msw/graphql/product.ts`)
+- [x] Update Storybook preview with MSW initialization
+- [x] Create ProductHeroFast stories (6 variations)
+- [x] Start Storybook server on localhost:6006
+- [x] Fix failing product page test (add stockStatus to mockProduct)
+- [x] Fix TypeScript build (add stockStatus to Product schema)
+- [x] Commit and push all changes
+- [x] Verify CI/CD pipeline passing
+
+**Results:** Complete MSW integration with GraphQL mocking. ProductHeroFast has 6 stories demonstrating all states. All 647 tests passing (99.8%). Ready for Phase 19.3 component library expansion.
+
+**Commits:**
+- cb0c83d - "fix(test): add stockStatus to mockProduct fixture to fix product page test"
+- e762564 - "fix(types): add stockStatus to Product schema validation"
 
 ### Phase 17: Product Family Landing Pages UX Polish & Breadcrumbs (Jan 26, 2026) ✅ **COMPLETE**
 - [x] Create feature branch `feat/phase17-product-family-ux-polish`

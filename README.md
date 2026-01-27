@@ -176,7 +176,11 @@ bapi-headless/
   - ✅ 125 unit tests (utilities, formatters, type guards)
   - ✅ 309 integration tests (products, cart, components)
   - ✅ 214 checkout tests (wizard, summary, steps)
-- 🔧 **Git Hooks** - Husky + lint-staged for code quality
+- � **Storybook** - Component library with MSW GraphQL mocking
+  - ✅ Interactive component development and documentation
+  - ✅ Visual regression testing ready (Chromatic integration)
+  - ✅ 60+ stories across UI components
+- �🔧 **Git Hooks** - Husky + lint-staged for code quality
 - 📦 **Monorepo** - WordPress and Next.js in single repository
 - ⚡ **React cache()** - Automatic query deduplication across server components
 - 🎯 **Static Generation** - Pre-build 30 most popular pages for instant loads
@@ -279,6 +283,8 @@ pnpm run build        # Build for production (includes GraphQL codegen)
 pnpm run start        # Start production server
 pnpm run lint         # Run ESLint
 pnpm run test         # Run Vitest tests
+pnpm run storybook    # Start Storybook component library (localhost:6006)
+pnpm run build-storybook # Build static Storybook for deployment
 pnpm run codegen      # Generate GraphQL types from WordPress
 pnpm run codegen:watch # Watch mode for type generation
 ```
@@ -309,8 +315,9 @@ import type { GetProductsQuery } from '@/lib/graphql/generated';
 const product: GetProductsQuery['products']['nodes'][0];
 ```
 
-## 🧪 Testing
+## 🧪 Testing & Development
 
+### Unit & Integration Tests
 ```bash
 # Run all tests
 pnpm test
@@ -321,6 +328,21 @@ pnpm test -- --watch
 # Run tests with coverage
 pnpm test -- --coverage
 ```
+
+### Storybook Component Library
+```bash
+# Start Storybook dev server
+pnpm run storybook
+
+# Build static Storybook
+pnpm run build-storybook
+```
+
+Access Storybook at [http://localhost:6006](http://localhost:6006) to:
+- Browse and interact with UI components
+- Test component variations and edge cases
+- View component documentation and usage examples
+- Test with mocked GraphQL data via MSW
 
 ## 📦 Deployment
 

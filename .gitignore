@@ -49,6 +49,9 @@ cookies.txt
 
 # local cookie dumps from testing / browser exports
 cookies.txt
+
+# Approved product images (source files - may use in future)
+web/2026-approved-images/
 web/cookies.txt
 artifacts*/
 ci-preview-integration-*/

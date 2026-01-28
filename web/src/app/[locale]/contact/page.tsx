@@ -269,7 +269,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 text-white py-12 lg:py-16">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-3xl lg:text-4xl font-bold mb-3">Contact Us</h1>
             <p className="text-lg text-primary-50 max-w-2xl mx-auto">
@@ -281,7 +281,7 @@ export default function ContactPage() {
 
       {/* Contact Form + Info Section */}
       <section className="py-12 lg:py-16 bg-neutral-50">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Contact Form */}
             <div className="lg:col-span-2">
@@ -467,7 +467,7 @@ export default function ContactPage() {
 
       {/* Sales Team Section */}
       <section className="py-12 lg:py-16 bg-white">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-2xl lg:text-3xl font-bold text-neutral-900 mb-2">
               Meet Our Global Sales Team
@@ -973,7 +973,7 @@ export default function ContactPage() {
 
       {/* Map Section */}
       <section className="py-12 lg:py-16 bg-neutral-50">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-neutral-900 mb-2">Visit Our Facility</h2>
             <p className="text-base text-neutral-600">

@@ -91,13 +91,13 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             <img
               src="/images/products/families/BAPI_Full_Family_11K_Wide_2025_noWAM_US.webp"
               alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
-              className="relative w-full h-auto rounded-xl shadow-lg"
+              className="relative w-full h-auto rounded-xl shadow-lg max-w-5xl mx-auto"
               loading="eager"
             />
             
             {/* Product family caption */}
-            <div className="mt-6 text-center">
-              <p className="text-base lg:text-lg font-bold text-neutral-900 tracking-wide">
+            <div className="mt-6 text-center max-w-3xl mx-auto">
+              <p className="text-base font-bold text-neutral-900 tracking-wide">
                 Complete sensor solutions for building automation systems
               </p>
               <p className="text-sm text-neutral-600 mt-2 font-medium">

@@ -26,6 +26,11 @@ const isPublicRoute = createRouteMatcher([
 
 // Combine Clerk and next-intl middleware
 export default clerkMiddleware(async (auth, req: NextRequest) => {
+  // Skip internationalization for API routes
+  if (req.nextUrl.pathname.startsWith('/api')) {
+    return;
+  }
+
   // Handle authentication for protected routes
   if (!isPublicRoute(req)) {
     await auth.protect();
@@ -37,9 +42,7 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
 
 export const config = {
   matcher: [
-    // Match all pathnames except for static files and API routes
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
-    '/(api|trpc)(.*)',
+    // Match all pathnames except for static files
+    '/((?!_next|api|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
   ],
 };

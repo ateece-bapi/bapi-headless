@@ -22,6 +22,7 @@
     "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.2",
     "@clerk/clerk-sdk-node": "^4.13.23",
     "@clerk/nextjs": "^6.36.5",
     "@stripe/react-stripe-js": "^5.4.1",

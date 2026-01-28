@@ -23,7 +23,8 @@ const RegionSelector: React.FC = () => {
     // Smart suggestion: Suggest matching language if different
     const suggestedLanguage = getSuggestedLanguage(regionCode);
     
-    if (suggestedLanguage !== currentLocale) {
+    // Only suggest if language is different AND exists in LANGUAGES
+    if (suggestedLanguage !== currentLocale && LANGUAGES[suggestedLanguage]) {
       const languageName = LANGUAGES[suggestedLanguage].nativeName;
       const message = getLanguageSuggestionMessage(regionCode, languageName);
       

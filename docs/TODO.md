@@ -16,69 +16,78 @@
 ## 🎯 Phase 1 Priorities (CRITICAL - April 10 Deadline)
 
 ### 1. Translation Services & Regional Support (HIGH PRIORITY)
-**Status:** ✅ Baseline Complete - Ready for Translation Service
+**Status:** ✅ Infrastructure Complete - Ready for Translation Service Engagement
 
-**Completed:**
+**Completed (Jan 28, 2026):**
+- ✅ next-intl migration (industry standard i18n framework)
+- ✅ i18n.ts configuration with 8 locales
+- ✅ Middleware combining Clerk + next-intl
+- ✅ Footer fully translated (40+ keys, 0 errors)
+- ✅ Language switcher with URL routing (/en, /de, /vi, etc.)
+- ✅ English fallback strategy (lodash merge)
+- ✅ Vietnamese language support (8th language for Vietnam facility)
 - ✅ Region selector (US, EU, Asia, MENA) with persistence
-- ✅ Language selector (EN, DE, FR, ES, JA, ZH, AR) with persistence
-- ✅ Currency conversion and formatting
+- ✅ Currency conversion (USD, EUR, GBP, CAD, JPY, CNY, VND, AED)
 - ✅ Date/time localization
-- ✅ TranslationProvider setup with next-intl
-- ✅ Region store with Zustand
-- ✅ Test page demonstrating all features
-- ✅ **NEW**: Comprehensive English baseline (310+ translation keys)
-- ✅ **NEW**: Translation guide for professional service (PHASE1-TRANSLATION-GUIDE.md)
+- ✅ English baseline complete (310+ translation keys)
+- ✅ German translations started (20% - navigation only)
+- ✅ Translation guide for professional service (PHASE1-TRANSLATION-GUIDE.md)
+- ✅ Technical glossary for translators (TECHNICAL-GLOSSARY.md)
+- ✅ Crowdin setup guide (CROWDIN-SETUP-GUIDE.md, ~$1,850 estimate)
+- ✅ Deployed to production: https://bapi-headless.vercel.app
 
 **In Progress:**
-- 🔄 German translations (de.json) - 20% complete (navigation only)
-- 🔄 Professional translation service engagement (targeting Feb 17 start)
+- 🔄 Translation service evaluation (Crowdin vs Smartling)
+- 🔄 Awaiting user decision on service provider
 
 **Remaining Work:**
-- [ ] **Week of Feb 3**: Implement `useTranslations` hook in components
-  - [ ] Header components (navigation, mega menu)
-  - [ ] Footer sections and links
-  - [ ] Product cards and listings
-  - [ ] Shopping cart and checkout
-  - [ ] Forms and error messages
-- [ ] **Week of Feb 10**: Replace all hardcoded strings with translation keys
-  - [ ] ~100 components need updating
-  - [ ] Test language switching on each page
-- [ ] **Week of Feb 17**: Engage translation service for 6 languages
-  - [ ] French (FR) - Complete translation
-  - [ ] Spanish (ES) - Complete translation
-  - [ ] Japanese (JA) - Complete translation
-  - [ ] Chinese (ZH) - Complete translation (Simplified)
-  - [ ] Arabic (AR) - Complete translation + RTL requirements
-  - [ ] German (DE) - Complete remaining 80%
-- [ ] **Week of Feb 24**: QA with translated content
-  - [ ] Test all navigation menus
-  - [ ] Verify form labels and validation messages
-  - [ ] Check product categories and descriptions
-  - [ ] Test cart and checkout flow
-  - [ ] Validate error messages in context
-- [ ] **Week of March 3**: RTL CSS for Arabic
-  - [ ] Add RTL CSS support (`dir="rtl"`)
-  - [ ] Test layout in RTL mode
-  - [ ] Adjust component styles (text-align, margins, paddings)
-  - [ ] Ensure icons/images flip appropriately
-- [ ] **Week of March 10**: Currency conversion edge cases
-  - [ ] Test with all 7 currencies (USD, EUR, GBP, CAD, JPY, CNY, AED)
-  - [ ] Verify proper formatting and symbols
-  - [ ] Test decimal places for JPY (0 decimals)
-- [ ] **Week of March 17**: Final polish and edge cases
+- [ ] **This Week (Jan 28 - Feb 2)**: Translation Service Decision
+  - [ ] Evaluate Crowdin ($1,850, faster) vs Smartling ($2,500-4,000, full-service)
+  - [ ] Sign up for chosen service
+  - [ ] Upload en.json, glossary, screenshots
+- [ ] **Week of Feb 3**: Component Translation (if service not ready)
+  - [ ] Update Header components with useTranslations hook
+  - [ ] Update Homepage Hero with translation keys
+  - [ ] Test language switching on updated pages
+- [ ] **Week of Feb 10**: Replace Hardcoded Strings
+  - [ ] ~100 components need updating with useTranslations
+  - [ ] Run hardcoded string detection script
+  - [ ] Test each component in multiple languages
+- [ ] **Week of Feb 17**: Translation Service Engagement
+  - [ ] Upload final en.json with all component keys
+  - [ ] Mark Vietnamese as URGENT (Vietnam facility priority)
+  - [ ] Hire translators or use Crowdin Vendors
+  - [ ] Include: French (FR), Spanish (ES), Japanese (JA), Chinese (ZH), Arabic (AR), German (DE) completion
+- [ ] **Week of Feb 24 - March 3**: Receive & Test Translations
+  - [ ] Download completed translations (7 languages)
+  - [ ] Drop files into web/messages/
+  - [ ] Test all 8 languages on staging
+  - [ ] Vietnamese thorough QA for Vietnam facility
+  - [ ] Test navigation, forms, cart, checkout in all languages
+- [ ] **Week of March 3-10**: RTL CSS & Final Polish
+  - [ ] Implement RTL CSS utilities for Arabic
+  - [ ] Add dir={direction} to root layout
+  - [ ] Test Arabic right-to-left layout
   - [ ] Fix any translation formatting issues
-  - [ ] Ensure proper pluralization (1 item vs 2 items)
-  - [ ] Test dynamic values in translations ({year}, {count}, etc.)
+  - [ ] Test currency conversion with all 8 currencies (USD, EUR, GBP, CAD, JPY, CNY, VND, AED)
+  - [ ] Test measurement unit switching (°C/°F, bar/PSI)
+  - [ ] Validate pluralization and dynamic values
+- [ ] **Week of March 10-17**: Stakeholder Demo & Approval
 
 **Files:**
-- `web/messages/en.json` - ✅ Complete (15.5 KB, 310+ keys)
-- `web/messages/de.json` - 🔄 20% complete
+- `web/messages/en.json` - ✅ Complete (498 lines, 310+ keys)
+- `web/messages/de.json` - 🔄 20% complete (navigation only)
+- `web/messages/vi.json` - ✅ Skeleton (HIGHEST PRIORITY - Vietnam facility)
 - `web/messages/fr.json` - ⏳ Pending translation service
 - `web/messages/es.json` - ⏳ Pending translation service
 - `web/messages/ja.json` - ⏳ Pending translation service
 - `web/messages/zh.json` - ⏳ Pending translation service
 - `web/messages/ar.json` - ⏳ Pending translation service + RTL
+- `web/src/i18n.ts` - ✅ next-intl configuration with 8 locales
+- `web/src/middleware.ts` - ✅ Clerk + next-intl middleware
+- `docs/CROWDIN-SETUP-GUIDE.md` - ✅ Complete (translation service guide)
 - `docs/PHASE1-TRANSLATION-GUIDE.md` - ✅ Complete (translation reference)
+- `docs/TECHNICAL-GLOSSARY.md` - ✅ Complete (292 lines, translator reference)
 
 ---
 

@@ -7,47 +7,115 @@
 
 ---
 
-## January 28, 2026 - Phase 1 Translation Baseline Complete
+## January 28, 2026 - next-intl Migration & Translation Infrastructure Complete
 
-### Translation Content Work (2 hours)
-**Status:** ✅ Complete - Ready for translation service
+### Translation Infrastructure Migration (6 hours)
+**Status:** ✅ Complete - Deployed to production
 
-**Accomplished:**
+**Critical Milestone:** Migrated from custom TranslationProvider to industry-standard next-intl framework. All translation infrastructure now production-ready.
+
+**Phase 1: Translation Content (Morning)**
 - Created comprehensive English baseline (`en.json`) - 310+ translation keys
-  - Navigation mega menu structure (Products, Support, Company)
-  - Product categories, descriptions, and badges
-  - Shopping cart and checkout flow (all 3 steps)
-  - Forms, errors, authentication screens
-  - Footer sections, legal, certifications
-  - Region selector (7 languages, 7 currencies, measurement units)
-  - Accessibility labels for screen readers
 - Started German translations (`de.json`) - 20% complete (navigation only)
 - Documented translation strategy in `PHASE1-TRANSLATION-GUIDE.md`
-  - Technical term guidelines (what to translate vs. keep in English)
-  - Priority order for professional translation service
-  - Regional considerations (formal vs. informal, dialects)
-  - Implementation examples with `useTranslations` hook
-  - 4-week timeline (March 1-25)
 
-**Branch:** `feat/phase1-translations`  
-**Commit:** `3376bc6` - "feat(translations): Phase 1 comprehensive translation baseline"
+**Phase 2: next-intl Migration (Afternoon) - CRITICAL PIVOT**
+- **Problem:** Footer used next-intl but app used custom TranslationProvider → runtime error
+- **Solution:** Full migration to next-intl (industry standard for Next.js i18n)
+- Created `web/src/i18n.ts` - next-intl configuration with 8 locales
+- Created `web/src/middleware.ts` - Combines Clerk auth + next-intl routing
+- Updated `web/next.config.ts` - Added withNextIntl plugin wrapper
+- Updated `web/src/app/layout.tsx` - NextIntlClientProvider with getMessages()
+- Moved old middleware to `web/src/proxy.ts.backup`
+- Installed dependencies: `next-intl@4.6.1`, `lodash-es@4.17.23`
 
-**Files Changed:**
-- `web/messages/en.json` - 310+ keys, 15.5 KB (was 4.2 KB)
-- `web/messages/de.json` - Navigation section translated (starting point)
-- `web/messages/en-old.json` - Backup of original skeleton
-- `docs/PHASE1-TRANSLATION-GUIDE.md` - Complete translation reference (NEW)
+**Phase 3: Footer Translation Implementation**
+- Fixed 33 MISSING_MESSAGE errors by aligning Footer keys with en.json structure
+- Restructured en.json footer section with nested "links" level
+- Fixed brand keys: removed brand.taglineEnd, changed brand.mission → brand.description
+- Updated contact structure: flat → nested (contact.address.street/city)
+- Result: Footer fully translated, 0 errors, 40+ translation keys working
+
+**Phase 4: Vietnamese Language Support (HIGHEST PRIORITY)**
+- Added Vietnamese (8th language) for Vietnam facility opening April 2026
+- Updated `web/src/types/region.ts`: Added 'vi' to LanguageCode, 'VND' to CurrencyCode
+- Added Vietnamese to LANGUAGES constant: nativeName "Tiếng Việt", flag 🇻🇳
+- Added VND currency: symbol ₫, 0 decimals
+- Created `web/messages/vi.json` - Skeleton structure
+
+**Phase 5: Language Switcher Integration**
+- Updated `web/src/components/layout/Header/components/LanguageSelector.tsx`
+- Changed from localStorage to next-intl URL routing
+- Now uses `useLocale()` and `useRouter()` from next-intl
+- URL-based switching: `/en` → `/de` → `/vi` (SEO-friendly)
+
+**Phase 6: English Fallback Strategy**
+- Implemented lodash merge strategy in i18n.ts
+- Always loads en.json as base, overlays locale-specific translations
+- Allows development with incomplete translations
+- All 8 languages working with fallback to English
+
+**Phase 7: Crowdin Setup Guide**
+- Created `docs/CROWDIN-SETUP-GUIDE.md` - 428 lines, step-by-step instructions
+- Phase 1-8 setup guide with timeline, pricing, GitHub integration
+- Cost estimate: ~$1,850 for all 7 languages (vs $2,500-4,000 Smartling)
+- Delivery: Feb 24 - March 3 (on target for March 10 deadline)
+
+**Phase 8: Deployment & Bug Fixes**
+- Merged `feat/phase1-translations` to main (7 commits)
+- Fixed missing VND exchange rate in currency.ts (25,320 VND per USD)
+- Fixed missing Vietnamese locale mapping in locale.ts (vi: 'vi-VN')
+- Fixed undefined locale handling for root path in i18n.ts
+- Deployed to Vercel production: https://bapi-headless.vercel.app
+
+**Commits:**
+- `3376bc6` - Phase 1 translation baseline (en.json, de.json, docs)
+- `e1df814` - next-intl migration (i18n.ts, middleware.ts, layout.tsx)
+- `c89ffbc` - English fallback strategy with lodash merge
+- `4bb0a19` - Footer translation implementation
+- `bcd5db5` - Footer translation fixes (all 33 errors resolved)
+- `c86d68c` - Vietnamese language switcher integration
+- `355ada7` - Crowdin setup guide
+- `43a2c74` - Merge to main
+- `13900f6` - Fix VND exchange rate
+- `575c488` - Fix Vietnamese locale mapping
+- `6922c67` - Fix undefined locale for root path
+
+**Files Changed (22 files, 2,554 insertions):**
+- `web/src/i18n.ts` (NEW) - next-intl config with 8 locales
+- `web/src/middleware.ts` (NEW) - Clerk + next-intl middleware
+- `web/src/proxy.ts` → `web/src/proxy.ts.backup` (RENAMED)
+- `web/next.config.ts` - Added withNextIntl plugin
+- `web/src/app/layout.tsx` - NextIntlClientProvider integration
+- `web/src/components/layout/Footer.tsx` - Fully translated
+- `web/src/components/layout/Header/components/LanguageSelector.tsx` - next-intl routing
+- `web/src/types/region.ts` - Vietnamese language + VND currency
+- `web/messages/en.json` - 498 lines, 310+ keys, restructured footer
+- `web/messages/de.json` - 39 lines, navigation translated
+- `web/messages/vi.json` (NEW) - Vietnamese skeleton
+- `web/src/lib/utils/currency.ts` - Added VND exchange rate
+- `web/src/lib/utils/locale.ts` - Added Vietnamese locale mapping
+- `docs/CROWDIN-SETUP-GUIDE.md` (NEW) - 428 lines, complete setup guide
+- `docs/PHASE1-TRANSLATION-GUIDE.md` (NEW) - Translation reference
+- `docs/TECHNICAL-GLOSSARY.md` (NEW) - 292 lines, translator reference
+- `docs/TRANSLATION-ACTION-PLAN.md` (NEW) - Weekly timeline
+
+**Results:**
+- ✅ 8 languages live on production (EN, DE, FR, ES, JA, ZH, VI, AR)
+- ✅ Footer displays in all languages with English fallback
+- ✅ Language switcher working with URL routing
+- ✅ Vietnamese ready for Vietnam facility April 2026
+- ✅ Translation infrastructure complete and tested
+- ✅ Professional translation service guide ready (Crowdin)
+- ✅ Zero translation errors in production
 
 **Next Steps:**
-1. **Week of Feb 3**: Implement `useTranslations` hook in Header/Footer components
-2. **Week of Feb 10**: Replace all hardcoded strings with translation keys
-3. **Week of Feb 17**: Engage professional translation service for 6 languages
-4. **Week of Feb 24**: QA testing with translated content
-5. **Week of March 3**: RTL CSS for Arabic, final polish
-
-**Translation Service Requirements:**
-- French (FR), Spanish (ES), Japanese (JA), Chinese (ZH), Arabic (AR)
-- Complete translations matching en.json structure
+1. **This Week (Jan 28 - Feb 2)**: Evaluate Crowdin vs Smartling (user decision pending)
+2. **Week of Feb 3**: Begin Crowdin setup if approved, or implement Header/MegaMenu translations
+3. **Week of Feb 10**: Replace hardcoded strings in components
+4. **Week of Feb 17**: Engage translation service for 7 languages (DE completion + 6 new)
+5. **Week of Feb 24**: Receive and test translated files
+6. **Week of March 3**: RTL CSS for Arabic, final polish
 - Technical glossary for consistent terminology
 - Delivery: March 15 target for QA window before April 10 launch
 

@@ -153,6 +153,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-contain transition-transform duration-300 group-hover:scale-105"
+              priority
             />
             
             {/* Zoom overlay hint */}

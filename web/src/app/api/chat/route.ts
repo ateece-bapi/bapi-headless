@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
       system: systemPrompt,
       tools,
       messages: messages.map((msg: { role: string; content: string }) => ({
-        role: msg.role === 'user' ? 'user' : 'assistant',
+        role: (msg.role === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
         content: msg.content,
       })),
     });
@@ -150,15 +150,15 @@ export async function POST(request: NextRequest) {
         tools,
         messages: [
           ...messages.map((msg: { role: string; content: string }) => ({
-            role: msg.role === 'user' ? 'user' : 'assistant',
+            role: (msg.role === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
             content: msg.content,
           })),
           {
-            role: 'assistant',
+            role: 'assistant' as const,
             content: response.content,
           },
           {
-            role: 'user',
+            role: 'user' as const,
             content: [toolResult],
           },
         ],

@@ -351,6 +351,7 @@
       "es": "Español (Spanish)",
       "ja": "日本語 (Japanese)",
       "zh": "中文 (Chinese)",
+      "vi": "Tiếng Việt (Vietnamese)",
       "ar": "العربية (Arabic)"
     },
     "currencies": {
@@ -360,6 +361,7 @@
       "cad": "CAD ($)",
       "jpy": "JPY (¥)",
       "cny": "CNY (¥)",
+      "vnd": "VND (₫)",
       "aed": "AED (د.إ)"
     }
   },

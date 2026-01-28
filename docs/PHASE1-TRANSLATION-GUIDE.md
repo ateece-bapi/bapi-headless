@@ -8,6 +8,7 @@ This document contains all English strings from the BAPI e-commerce platform tha
 - **Spanish (ES)** - ⏳ Pending
 - **Japanese (JA)** - ⏳ Pending
 - **Chinese (ZH)** - ⏳ Pending
+- **Vietnamese (VI)** - ⏳ Pending (Vietnam facility opening April 2026)
 - **Arabic (AR)** - ⏳ Pending (requires RTL CSS)
 
 ## Base Language File: `en.json` (15,496 bytes)
@@ -34,6 +35,7 @@ This document contains all English strings from the BAPI e-commerce platform tha
 ```
 
 **Total: 310+ translation keys**
+**Languages: 8** (EN, DE, FR, ES, JA, ZH, VI, AR)
 
 ---
 
@@ -128,6 +130,14 @@ Products (Produkte)
 - Professional terminology for engineering
 - Numeric separators: 1,000 → 1,000 (keep Western)
 
+#### Vietnamese (VI)
+- Modern Vietnamese with diacritics (á, à, ả, ã, ạ, etc.)
+- Formal business language for B2B context
+- Technical terms often borrow from English or French
+- Date format: DD/MM/YYYY (e.g., 10/04/2026)
+- Currency: Vietnamese Dong (₫) - consider adding VND to currency list
+- Measurement: Metric system (°C, bar, mm)
+
 #### Arabic (AR)
 - Modern Standard Arabic (MSA)
 - Technical terms may use English
@@ -156,7 +166,7 @@ Products (Produkte)
 11. `region.*` - 30 keys
 12. `accessibility.*` - 10 keys
 
-### Phase 1D (March 22-25) - QA & Polish
+### Phase 1D (March 22-25) - QA & Polish (Priority: Vietnamese for April facility)
 - Test all translations in-context
 - Fix formatting issues
 - Verify technical term consistency
@@ -208,7 +218,8 @@ Arabic: "أضف إلى السلة"
   - `/web/messages/fr.json` (French)
   - `/web/messages/es.json` (Spanish)
   - `/web/messages/ja.json` (Japanese)
-  - `/web/messages/zh.json` (Chinese)
+  - `/web/messages/zh.json` (Chinese - Simplified)
+  - `/web/messages/vi.json` (Vietnamese) **← NEW for Vietnam facility**
   - `/web/messages/ar.json` (Arabic)
 
 ---
@@ -285,10 +296,11 @@ const t = useTranslations('footer');
 ## Translation Service Requirements
 
 ### Deliverables
-1. **7 Complete JSON Files** matching `en.json` structure
+1. **8 Complete JSON Files** matching `en.json` structure (DE, FR, ES, JA, ZH, VI, AR)
 2. **Translation Memory (TM)** for consistent terminology
 3. **Glossary** of approved technical terms
 4. **QA Report** with context screenshots
+5. **Priority: Vietnamese** - Expedited delivery for Vietnam facility launch (April 2026)
 
 ### Format
 - JSON format (UTF-8 encoding)

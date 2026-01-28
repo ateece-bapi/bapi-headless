@@ -5,17 +5,29 @@ import { X, CheckCircle, AlertCircle, AlertTriangle, Info } from 'lucide-react';
 
 type ToastType = 'success' | 'error' | 'warning' | 'info';
 
+interface ToastAction {
+  label: string;
+  onClick: () => void;
+}
+
 interface Toast {
   id: string;
   type: ToastType;
   message: string;
   description?: string;
   duration?: number;
+  action?: ToastAction;
 }
 
 interface ToastContextValue {
   toasts: Toast[];
-  showToast: (type: ToastType, message: string, description?: string, duration?: number) => void;
+  showToast: (
+    type: ToastType, 
+    message: string, 
+    description?: string, 
+    duration?: number,
+    options?: { action?: ToastAction }
+  ) => void;
   removeToast: (id: string) => void;
 }
 
@@ -28,10 +40,18 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     type: ToastType,
     message: string,
     description?: string,
-    duration: number = 5000
+    duration: number = 5000,
+    options?: { action?: ToastAction }
   ) => {
     const id = Math.random().toString(36).substring(7);
-    const toast: Toast = { id, type, message, description, duration };
+    const toast: Toast = { 
+      id, 
+      type, 
+      message, 
+      description, 
+      duration,
+      action: options?.action 
+    };
     
     setToasts((prev) => [...prev, toast]);
 
@@ -109,6 +129,17 @@ function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
         <p className="font-semibold text-sm">{toast.message}</p>
         {toast.description && (
           <p className="text-xs mt-1 opacity-90">{toast.description}</p>
+        )}
+        {toast.action && (
+          <button
+            onClick={() => {
+              toast.action!.onClick();
+              onClose();
+            }}
+            className="mt-2 px-3 py-1.5 bg-primary-500 hover:bg-primary-600 text-white text-xs font-semibold rounded-md transition-colors"
+          >
+            {toast.action.label}
+          </button>
         )}
       </div>
       <button

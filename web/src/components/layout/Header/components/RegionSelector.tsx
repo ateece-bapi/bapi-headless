@@ -1,17 +1,56 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { useRegion, useSetRegion } from '@/store/regionStore';
-import { REGIONS } from '@/types/region';
-import type { RegionCode } from '@/types/region';
+import { useToast } from '@/components/ui/Toast';
+import { REGIONS, LANGUAGES } from '@/types/region';
+import type { RegionCode, LanguageCode } from '@/types/region';
+import { getSuggestedLanguage, getLanguageSuggestionMessage } from '@/lib/utils/regionLanguageMapping';
 
 const RegionSelector: React.FC = () => {
   const currentRegion = useRegion();
   const setRegion = useSetRegion();
+  const currentLocale = useLocale() as LanguageCode;
+  const router = useRouter();
+  const { showToast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const regionCode = e.target.value as RegionCode;
     setRegion(regionCode);
+
+    // Smart suggestion: Suggest matching language if different
+    const suggestedLanguage = getSuggestedLanguage(regionCode);
+    
+    if (suggestedLanguage !== currentLocale) {
+      const languageName = LANGUAGES[suggestedLanguage].nativeName;
+      const message = getLanguageSuggestionMessage(regionCode, languageName);
+      
+      // Show toast with action button
+      showToast(
+        'info',
+        'Language Suggestion',
+        message,
+        7000,
+        {
+          action: {
+            label: 'Switch',
+            onClick: () => {
+              // Change language by navigating to new locale
+              const pathname = window.location.pathname;
+              const pathnameWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
+              const newPath = pathnameWithoutLocale === '/' || pathnameWithoutLocale === '' 
+                ? `/${suggestedLanguage}` 
+                : `/${suggestedLanguage}${pathnameWithoutLocale}`;
+              
+              router.push(newPath);
+              router.refresh();
+            }
+          }
+        }
+      );
+    }
   };
 
   return (

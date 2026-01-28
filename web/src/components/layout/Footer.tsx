@@ -14,16 +14,18 @@ const footerSections = [
       { label: 'Browse Catalog', href: '/products' },
     ],
   },
-  {
-    title: 'Solutions',
-    links: [
-      { label: 'Healthcare', href: '/solutions/healthcare' },
-      { label: 'Data Centers', href: '/solutions/data-centers' },
-      { label: 'Commercial Buildings', href: '/solutions/commercial' },
-      { label: 'Manufacturing', href: '/solutions/manufacturing' },
-      { label: 'BACnet Integration', href: '/solutions/bacnet' },
-    ],
-  },
+  // PHASE 2: Solutions section deferred to Phase 2 (April 10, 2026 deadline)
+  // Awaiting content creation from marketing team
+  // {
+  //   title: 'Solutions',
+  //   links: [
+  //     { label: 'Healthcare', href: '/solutions/healthcare' },
+  //     { label: 'Data Centers', href: '/solutions/data-centers' },
+  //     { label: 'Commercial Buildings', href: '/solutions/commercial' },
+  //     { label: 'Manufacturing', href: '/solutions/manufacturing' },
+  //     { label: 'BACnet Integration', href: '/solutions/bacnet' },
+  //   ],
+  // },
   {
     title: 'Resources',
     links: [

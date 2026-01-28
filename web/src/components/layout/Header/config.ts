@@ -191,101 +191,103 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
       },
     },
   },
-  {
-    label: 'Applications',
-    href: '/applications',
-    megaMenu: {
-      columns: [
-        {
-          title: 'By Industry',
-          icon: Building2,
-          links: [
-            { 
-              label: 'Building Automation', 
-              href: '/applications/landing/building-automation',
-              description: '30% energy savings for commercial buildings',
-              badge: 'Popular'
-            },
-            { 
-              label: 'Data Centers', 
-              href: '/applications/landing/data-centers',
-              description: '99.99% uptime for critical infrastructure'
-            },
-            { 
-              label: 'Healthcare Facilities', 
-              href: '/applications/landing/healthcare',
-              description: 'Joint Commission compliance solutions'
-            },
-            { 
-              label: 'Industrial & Manufacturing', 
-              href: '/applications/landing/industrial',
-              description: 'Harsh environment monitoring solutions'
-            },
-            { 
-              label: 'Wireless Monitoring', 
-              href: '/applications/landing/wireless-monitoring',
-              description: '5-minute setup, 5-year battery life',
-              badge: 'Premium'
-            },
-          ],
-        },
-        {
-          title: 'By Use Case',
-          icon: '/images/icons/Temperature_Icon.webp',
-          links: [
-            { 
-              label: 'Room & Space Monitoring', 
-              href: '/applications/building-automation',
-              description: 'Offices, classrooms, healthcare spaces'
-            },
-            { 
-              label: 'HVAC Duct & Air Handler', 
-              href: '/applications/building-automation',
-              description: 'Supply, return, mixed air sensing'
-            },
-            { 
-              label: 'Indoor Air Quality', 
-              href: '/applications/building-automation',
-              description: 'CO₂, VOC monitoring'
-            },
-            { 
-              label: 'Industrial Refrigeration', 
-              href: '/applications',
-              description: 'Cold storage monitoring'
-            },
-          ],
-        },
-        {
-          title: 'Resources',
-          icon: Wrench,
-          links: [
-            { 
-              label: 'Real-World Installations', 
-              href: '/installations',
-              description: 'See BAPI sensors in action',
-              badge: 'New'
-            },
-            { 
-              label: 'Browse All Applications', 
-              href: '/applications',
-              description: 'Complete application directory'
-            },
-            { 
-              label: 'Installation Support', 
-              href: '/contact',
-              description: 'Talk to our technical team'
-            },
-          ],
-        },
-      ],
-      featured: {
-        title: 'Find Solutions by Application',
-        description: 'Explore how BAPI sensors solve real-world challenges in your industry. See measurable results from organizations like yours.',
-        cta: 'Explore Applications',
-        href: '/applications',
-      },
-    },
-  },
+  // PHASE 2: Applications section deferred to Phase 2 (April 10, 2026 deadline)
+  // Awaiting content creation from marketing team
+  // {
+  //   label: 'Applications',
+  //   href: '/applications',
+  //   megaMenu: {
+  //     columns: [
+  //       {
+  //         title: 'By Industry',
+  //         icon: Building2,
+  //         links: [
+  //           { 
+  //             label: 'Building Automation', 
+  //             href: '/applications/landing/building-automation',
+  //             description: '30% energy savings for commercial buildings',
+  //             badge: 'Popular'
+  //           },
+  //           { 
+  //             label: 'Data Centers', 
+  //             href: '/applications/landing/data-centers',
+  //             description: '99.99% uptime for critical infrastructure'
+  //           },
+  //           { 
+  //             label: 'Healthcare Facilities', 
+  //             href: '/applications/landing/healthcare',
+  //             description: 'Joint Commission compliance solutions'
+  //           },
+  //           { 
+  //             label: 'Industrial & Manufacturing', 
+  //             href: '/applications/landing/industrial',
+  //             description: 'Harsh environment monitoring solutions'
+  //           },
+  //           { 
+  //             label: 'Wireless Monitoring', 
+  //             href: '/applications/landing/wireless-monitoring',
+  //             description: '5-minute setup, 5-year battery life',
+  //             badge: 'Premium'
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         title: 'By Use Case',
+  //         icon: '/images/icons/Temperature_Icon.webp',
+  //         links: [
+  //           { 
+  //             label: 'Room & Space Monitoring', 
+  //             href: '/applications/building-automation',
+  //             description: 'Offices, classrooms, healthcare spaces'
+  //           },
+  //           { 
+  //             label: 'HVAC Duct & Air Handler', 
+  //             href: '/applications/building-automation',
+  //             description: 'Supply, return, mixed air sensing'
+  //           },
+  //           { 
+  //             label: 'Indoor Air Quality', 
+  //             href: '/applications/building-automation',
+  //             description: 'CO₂, VOC monitoring'
+  //           },
+  //           { 
+  //             label: 'Industrial Refrigeration', 
+  //             href: '/applications',
+  //             description: 'Cold storage monitoring'
+  //           },
+  //         ],
+  //       },
+  //       {
+  //         title: 'Resources',
+  //         icon: Wrench,
+  //         links: [
+  //           { 
+  //             label: 'Real-World Installations', 
+  //             href: '/installations',
+  //             description: 'See BAPI sensors in action',
+  //             badge: 'New'
+  //           },
+  //           { 
+  //             label: 'Browse All Applications', 
+  //             href: '/applications',
+  //             description: 'Complete application directory'
+  //           },
+  //           { 
+  //             label: 'Installation Support', 
+  //             href: '/contact',
+  //             description: 'Talk to our technical team'
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //     featured: {
+  //       title: 'Find Solutions by Application',
+  //       description: 'Explore how BAPI sensors solve real-world challenges in your industry. See measurable results from organizations like yours.',
+  //       cta: 'Explore Applications',
+  //       href: '/applications',
+  //     },
+  //   },
+  // },
   {
     label: 'Support',
     href: '/contact',

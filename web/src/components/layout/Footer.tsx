@@ -96,10 +96,10 @@ const Footer: React.FC = () => {
             />
           </Link>
           <p className="text-sm lg:text-base text-neutral-900 font-semibold leading-relaxed max-w-sm">
-            <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">{t('brand.tagline')}</span> {t('brand.taglineEnd')}
+            <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">{t('brand.tagline')}</span>
           </p>
           <p className="text-sm text-neutral-600 max-w-sm leading-relaxed">
-            {t('brand.mission')}
+            {t('brand.description')}
           </p>
           
           {/* Social Links */}

@@ -268,57 +268,76 @@
     "sections": {
       "products": {
         "title": "Products",
-        "allSensors": "All Sensors",
-        "wirelessMonitoring": "Wireless Monitoring",
-        "testInstruments": "Test Instruments",
-        "airQuality": "Air Quality Sensors",
-        "accessories": "Accessories",
-        "browseCatalog": "Browse Catalog"
+        "links": {
+          "allSensors": "All Sensors",
+          "wireless": "Wireless Monitoring",
+          "testInstruments": "Test Instruments",
+          "airQuality": "Air Quality Sensors",
+          "accessories": "Accessories",
+          "browseCatalog": "Browse Catalog"
+        }
       },
       "resources": {
         "title": "Resources",
-        "datasheets": "Technical Datasheets",
-        "installation": "Installation Guides",
-        "appNotes": "Application Notes",
-        "videos": "Video Library",
-        "caseStudies": "Case Studies"
+        "links": {
+          "datasheets": "Technical Datasheets",
+          "installation": "Installation Guides",
+          "applicationNotes": "Application Notes",
+          "videos": "Video Library",
+          "caseStudies": "Case Studies"
+        }
       },
       "company": {
         "title": "Company",
-        "mission": "Mission & Values",
-        "whyBapi": "Why BAPI",
-        "news": "News",
-        "careers": "Careers",
-        "contact": "Contact Us"
+        "links": {
+          "mission": "Mission & Values",
+          "whyBapi": "Why BAPI",
+          "news": "News",
+          "careers": "Careers",
+          "contact": "Contact Us"
+        }
       },
       "support": {
         "title": "Support",
-        "technical": "Technical Support",
-        "selector": "Product Selector",
-        "crossReference": "Cross Reference",
-        "distributors": "Distributor Network"
+        "links": {
+          "technical": "Technical Support",
+          "selector": "Product Selector",
+          "crossReference": "Cross Reference",
+          "distributorNetwork": "Distributor Network"
+        }
       }
     },
     "contact": {
       "title": "Contact",
-      "address": "750 N Royal Ave",
-      "city": "Gays Mills, WI 54631",
-      "phone": "Tel: (715) 647-BAPI (2274)",
-      "email": "support@bapihvac.com"
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
     },
-    "legal": {
-      "title": "Legal",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service",
-      "shipping": "Shipping & Returns",
-      "warranty": "Warranty Information"
+    "awards": {
+      "title": "Awards & Recognition",
+      "description": "Recognized for innovation and excellence in building automation technology"
     },
     "certifications": {
-      "title": "Certifications & Compliance",
-      "iso": "ISO 9001:2015 Certified",
-      "madeInUsa": "Proudly Made in USA"
+      "title": "Certifications",
+      "bacnet": "BACnet B-ASC Certified",
+      "iso": "ISO 9001:2015",
+      "ul": "UL Listed",
+      "madeInUsa": "Made in USA"
     },
-    "copyright": "© {year} Building Automation Products, Inc. All rights reserved.",
+    "quickActions": {
+      "title": "Quick Actions",
+      "requestQuote": "Request Quote",
+      "findDistributor": "Find Distributor"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. All rights reserved.",
+      "trademark": "BAPI® is a registered trademark of Building Automation Products, Inc.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    },
     "social": {
       "linkedin": "LinkedIn",
       "youtube": "YouTube",

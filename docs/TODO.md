@@ -1154,12 +1154,15 @@
 - [ ] TypeScript strict mode improvements
 - [ ] Accessibility audit and fixes
 - [ ] Browser compatibility testing
-- [ ] **Chromatic Visual Regression Testing** - Re-enable after fixing buildCommand issue
-  - Issue: Malformed buildCommand with invalid `--test` flags causing builds to fail
-  - Current Status: Workflow disabled (`.github/workflows/chromatic.yml.disabled`)
-  - Fix Required: Reset Chromatic project configuration or clear cached build command
-  - Priority: Low (not critical for April 10 launch)
-  - Reference: See DAILY-LOG.md for details
+- [ ] **Chromatic Visual Regression Testing** - Re-enable post-launch
+  - Issue: Malformed buildCommand with invalid `--test fromCSS --test htmlConst=true` flags
+  - Root Cause: Cached buildCommand in Chromatic project settings (not accessible via UI)
+  - Current Status: ✅ Workflow disabled (`.github/workflows/chromatic.yml.disabled`) - Jan 28, 2026
+  - Fix Required: Reset Chromatic project configuration or delete/recreate project
+  - Priority: Low (not critical for April 10 launch, functionality unaffected)
+  - Resolution Plan: Address in post-launch Phase 2 cleanup
+  - Reference: DAILY-LOG.md (Jan 28, 2026) for full debugging details
+  - Note: All Storybook stories working locally, only Chromatic CI builds affected
 
 ---
 
@@ -1189,4 +1192,4 @@
 
 ---
 
-Last Updated: January 6, 2026
+Last Updated: January 28, 2026

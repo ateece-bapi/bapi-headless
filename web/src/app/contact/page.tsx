@@ -87,15 +87,6 @@ const northAmericaTeam: SalesRep[] = [
     photo: '/images/team/brian-thaldorf.png',
   },
   {
-    name: 'Jacob Melgosa',
-    title: 'WAM Sales',
-    region: 'North America',
-    email: 'jmelgosa@bapihvac.com',
-    phone: '(800) 553-3027',
-    photo: '/images/team/Jacob-Melgosa.webp',
-    video: 'https://www.youtube.com/embed/riEBii0LG3s',
-  },
-  {
     name: 'Reggie Saucke',
     title: 'HVAC Sensor Sales',
     region: 'North America',
@@ -218,6 +209,14 @@ const technicalTeam: SalesRep[] = [
     email: 'jhillebrand@bapihvac.com',
     phone: '(800) 553-3027',
     photo: '/images/team/jonathan-hillebrand.png',
+  },
+  {
+    name: 'Don Clark',
+    title: 'RMA & Technical Server Manager',
+    region: 'Technical Support',
+    email: 'dclark@bapihvac.com',
+    phone: '(800) 553-3027',
+    photo: '/images/team/donald-clark.png',
   },
 ];
 

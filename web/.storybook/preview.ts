@@ -26,6 +26,22 @@ const preview: Preview = {
     // Next.js App Router support
     nextjs: {
       appDirectory: true,
+      // Configure Next.js Image for Storybook
+      images: {
+        domains: ['bapiheadlessstaging.kinsta.cloud'],
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: '**.kinsta.cloud',
+          },
+          {
+            protocol: 'https',
+            hostname: '**.wordpress.org',
+          },
+        ],
+        // Disable image optimization in Storybook for better compatibility
+        unoptimized: true,
+      },
     },
     msw: {
       handlers,

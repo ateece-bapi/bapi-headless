@@ -1,16 +1,23 @@
 'use client';
 
-import { useLanguageCode, useSetLanguage } from '@/store/regionStore';
+import { useRouter, usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import { LANGUAGES } from '@/types/region';
 import type { LanguageCode } from '@/types/region';
 
 export function LanguageSelector() {
-  const currentLanguage = useLanguageCode();
-  const setLanguage = useSetLanguage();
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentLocale = useLocale() as LanguageCode;
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLanguage = e.target.value as LanguageCode;
-    setLanguage(newLanguage);
+    const newLocale = e.target.value;
+    
+    // Remove current locale from pathname
+    const pathnameWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
+    
+    // Navigate to new locale
+    router.push(`/${newLocale}${pathnameWithoutLocale}`);
   };
 
   return (
@@ -37,7 +44,7 @@ export function LanguageSelector() {
         </svg>
         <select
           id="language-select"
-          value={currentLanguage}
+          value={currentLocale}
           onChange={handleLanguageChange}
           className="appearance-none pl-9 lg:pl-10 pr-9 py-1.5 lg:py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent cursor-pointer transition-colors"
         >

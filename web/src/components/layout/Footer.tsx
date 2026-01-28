@@ -3,10 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { Linkedin, Youtube } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/components/providers/TranslationProvider';
 
 // Footer sections now use translation keys
-const getFooterSections = (t: ReturnType<typeof useTranslations<'footer'>>) => [
+const getFooterSections = (t: (key: string, values?: Record<string, string | number>) => string) => [
   {
     titleKey: 'sections.products.title' as const,
     links: [

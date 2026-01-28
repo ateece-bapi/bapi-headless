@@ -12,6 +12,7 @@ import frMessages from '../../../messages/fr.json';
 import esMessages from '../../../messages/es.json';
 import jaMessages from '../../../messages/ja.json';
 import zhMessages from '../../../messages/zh.json';
+import viMessages from '../../../messages/vi.json';
 
 type Messages = Record<string, any>;
 type TranslationContextType = {
@@ -27,6 +28,7 @@ const allMessages: Record<LanguageCode, Messages> = {
   es: esMessages,
   ja: jaMessages,
   zh: zhMessages,
+  vi: viMessages,
 };
 
 const TranslationContext = createContext<TranslationContextType | null>(null);

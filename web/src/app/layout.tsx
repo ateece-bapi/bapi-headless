@@ -51,17 +51,22 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale?: string }>;
 }>) {
-  // Get messages for next-intl
-  const messages = await getMessages();
+  // Get locale from params (next-intl provides this)
+  const { locale } = await params;
+  
+  // Get messages for next-intl (will use locale from middleware)
+  const messages = await getMessages({ locale });
 
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang={locale || 'en'}>
         <body className="antialiased">
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider messages={messages} locale={locale || 'en'}>
             <ToastProvider>
               <Header />
               {children}

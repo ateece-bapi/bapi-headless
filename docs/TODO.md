@@ -125,11 +125,22 @@
 - ✅ Conversation ID attribution for feedback
 - ✅ Real-time dashboard visualization
 
+**Phase 12.3: Human Handoff (Jan 28, 2026) ✅ COMPLETE**
+- ✅ "Talk to Human" button in chat header
+- ✅ In-chat contact form modal (name, email, phone, topic, message)
+- ✅ Topic-based team routing (technical→support@, sales→sales@, quote→sales@, other→info@)
+- ✅ Automatic conversation context capture (last 4 messages)
+- ✅ Multilingual form labels and messages (EN, DE, ES, FR)
+- ✅ JSON storage for handoff requests (data/chat-handoffs.json)
+- ✅ Success confirmation with 3-second auto-close
+- ✅ API endpoint: POST /api/chat/handoff (submit), GET (admin view)
+
 **Implementation:**
 - `/api/chat` endpoint with Claude function calling + analytics logging
 - `/api/chat/analytics` endpoint for dashboard metrics
 - `/api/chat/feedback` endpoint for user feedback submission
-- `ChatWidget.tsx` component with feedback buttons (355 lines)
+- `/api/chat/handoff` endpoint for human escalation (POST/GET)
+- `ChatWidget.tsx` component with feedback + handoff form (670 lines)
 - `productSearch.ts` for GraphQL product catalog integration
 - `analytics.ts` for metrics tracking and aggregation
 - `ChatAnalyticsDashboard.tsx` admin UI component
@@ -138,11 +149,12 @@
 
 **Files:**
 - `web/src/app/api/chat/route.ts` - Claude API + analytics (245 lines)
-- `web/src/components/chat/ChatWidget.tsx` - Chat UI + feedback (355 lines)
-- `web/src/lib/chat/productSearch.ts` - Product search (139 lines)
-- `web/src/lib/chat/analytics.ts` - Analytics system (231 lines)
 - `web/src/app/api/chat/analytics/route.ts` - Metrics API (54 lines)
 - `web/src/app/api/chat/feedback/route.ts` - Feedback API (35 lines)
+- `web/src/app/api/chat/handoff/route.ts` - Human handoff API (201 lines) ✅ NEW
+- `web/src/components/chat/ChatWidget.tsx` - Chat UI + feedback + handoff (670 lines) ✅ UPDATED
+- `web/src/lib/chat/productSearch.ts` - Product search (139 lines)
+- `web/src/lib/chat/analytics.ts` - Analytics system (231 lines)
 - `web/src/app/[locale]/admin/chat-analytics/page.tsx` - Admin page (57 lines)
 - `web/src/app/[locale]/admin/chat-analytics/ChatAnalyticsDashboard.tsx` - Dashboard UI (281 lines)
 

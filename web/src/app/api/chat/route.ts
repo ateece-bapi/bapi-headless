@@ -1,6 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { NextRequest, NextResponse } from 'next/server';
 import { searchProducts, formatProductsForAI } from '@/lib/chat/productSearch';
+import { logChatAnalytics, type ChatAnalytics } from '@/lib/chat/analytics';
+import { randomUUID } from 'crypto';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -82,6 +84,11 @@ const tools: Anthropic.Tool[] = [
 ];
 
 export async function POST(request: NextRequest) {
+  const startTime = Date.now();
+  const conversationId = randomUUID();
+  const toolsUsed: string[] = [];
+  const productsRecommended: string[] = [];
+  
   try {
     // Check if API key is configured
     if (!process.env.ANTHROPIC_API_KEY) {
@@ -103,6 +110,9 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    
+    // Get user's message (last message in array)
+    const userMessage = messages[messages.length - 1]?.content || '';
 
     // Add locale hint to system prompt if provided
     const systemPrompt = locale
@@ -131,9 +141,18 @@ export async function POST(request: NextRequest) {
 
       // Execute the tool
       if (toolUse.name === 'search_products') {
+        toolsUsed.push('search_products');
+        
         const { query, limit = 5 } = toolUse.input;
         const products = await searchProducts(query, limit);
         const formattedProducts = formatProductsForAI(products);
+        
+        // Track recommended products
+        products.forEach(product => {
+          if (product.slug) {
+            productsRecommended.push(product.slug);
+          }
+        });
 
         toolResult = {
           type: 'tool_result',
@@ -168,9 +187,32 @@ export async function POST(request: NextRequest) {
     // Extract final text response
     const assistantMessage = response.content.find((block) => block.type === 'text');
     const text = assistantMessage?.type === 'text' ? assistantMessage.text : '';
+    
+    // Calculate metrics
+    const responseTimeMs = Date.now() - startTime;
+    const tokensUsed = response.usage.input_tokens + response.usage.output_tokens;
+    
+    // Log analytics (non-blocking)
+    const analytics: ChatAnalytics = {
+      conversationId,
+      timestamp: new Date().toISOString(),
+      language: locale || 'en',
+      userMessage,
+      assistantResponse: text,
+      productsRecommended: productsRecommended.length > 0 ? productsRecommended : undefined,
+      toolsUsed: toolsUsed.length > 0 ? toolsUsed : undefined,
+      tokensUsed,
+      responseTimeMs,
+    };
+    
+    // Log without awaiting (don't block response)
+    logChatAnalytics(analytics).catch(err => 
+      console.error('Failed to log analytics:', err)
+    );
 
     return NextResponse.json({
       message: text,
+      conversationId, // Return ID so client can submit feedback later
       usage: {
         input_tokens: response.usage.input_tokens,
         output_tokens: response.usage.output_tokens,

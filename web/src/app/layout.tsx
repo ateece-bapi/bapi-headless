@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs';
-import { TranslationProvider } from "@/components/providers/TranslationProvider";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import { Toaster } from 'sonner';
 import "./globals.css";
 import Header from "@/components/layout/Header";
@@ -49,16 +49,19 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Get messages for next-intl
+  const messages = await getMessages();
+
   return (
     <ClerkProvider>
       <html lang="en">
         <body className="antialiased">
-          <TranslationProvider>
+          <NextIntlClientProvider messages={messages}>
             <ToastProvider>
               <Header />
               {children}
@@ -75,7 +78,7 @@ export default function RootLayout({
                 }}
               />
             </ToastProvider>
-          </TranslationProvider>
+          </NextIntlClientProvider>
           <BackToTop />
         </body>
       </html>

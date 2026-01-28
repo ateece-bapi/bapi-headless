@@ -3,10 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { Linkedin, Youtube } from 'lucide-react';
-import { useTranslations } from '@/components/providers/TranslationProvider';
+import { useTranslations } from 'next-intl';
 
-// Footer sections now use translation keys
-const getFooterSections = (t: (key: string, values?: Record<string, string | number>) => string) => [
+// Footer sections now use translation keys - next-intl format
+const getFooterSections = (t: any) => [
   {
     titleKey: 'sections.products.title' as const,
     links: [

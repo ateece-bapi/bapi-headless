@@ -2,12 +2,14 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useLocale } from 'next-intl';
-import { X, Send, MessageCircle, Loader2 } from 'lucide-react';
+import { X, Send, MessageCircle, Loader2, ThumbsUp, ThumbsDown } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  conversationId?: string; // For tracking feedback
+  feedbackGiven?: 'positive' | 'negative';
 }
 
 export default function ChatWidget() {
@@ -112,6 +114,7 @@ export default function ChatWidget() {
         role: 'assistant',
         content: data.message,
         timestamp: new Date(),
+        conversationId: data.conversationId, // Store for feedback
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
@@ -139,6 +142,36 @@ export default function ChatWidget() {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
+    }
+  };
+
+  // Submit feedback for a message
+  const submitFeedback = async (
+    message: Message,
+    feedback: 'positive' | 'negative'
+  ) => {
+    if (!message.conversationId) return;
+
+    try {
+      await fetch('/api/chat/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          conversationId: message.conversationId,
+          feedback,
+        }),
+      });
+
+      // Update message to show feedback was given
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.conversationId === message.conversationId
+            ? { ...msg, feedbackGiven: feedback }
+            : msg
+        )
+      );
+    } catch (error) {
+      console.error('Failed to submit feedback:', error);
     }
   };
 
@@ -194,7 +227,7 @@ export default function ChatWidget() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex flex-col ${message.role === 'user' ? 'items-end' : 'items-start'}`}
               >
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-3 ${
@@ -217,6 +250,49 @@ export default function ChatWidget() {
                     })}
                   </p>
                 </div>
+
+                {/* Feedback buttons for assistant messages */}
+                {message.role === 'assistant' && message.conversationId && (
+                  <div className="flex items-center gap-2 mt-2 px-2">
+                    <button
+                      onClick={() => submitFeedback(message, 'positive')}
+                      disabled={!!message.feedbackGiven}
+                      className={`p-1.5 rounded-lg transition-colors ${
+                        message.feedbackGiven === 'positive'
+                          ? 'bg-green-100 text-green-600'
+                          : 'hover:bg-neutral-200 text-neutral-500 hover:text-green-600'
+                      } disabled:opacity-50`}
+                      aria-label="Helpful"
+                      title="This was helpful"
+                    >
+                      <ThumbsUp className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => submitFeedback(message, 'negative')}
+                      disabled={!!message.feedbackGiven}
+                      className={`p-1.5 rounded-lg transition-colors ${
+                        message.feedbackGiven === 'negative'
+                          ? 'bg-red-100 text-red-600'
+                          : 'hover:bg-neutral-200 text-neutral-500 hover:text-red-600'
+                      } disabled:opacity-50`}
+                      aria-label="Not helpful"
+                      title="This wasn't helpful"
+                    >
+                      <ThumbsDown className="w-4 h-4" />
+                    </button>
+                    {message.feedbackGiven && (
+                      <span className="text-xs text-neutral-500 ml-1">
+                        {locale === 'de'
+                          ? 'Danke für Ihr Feedback!'
+                          : locale === 'es'
+                            ? '¡Gracias por tu opinión!'
+                            : locale === 'fr'
+                              ? 'Merci pour votre avis!'
+                              : 'Thanks for your feedback!'}
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
 

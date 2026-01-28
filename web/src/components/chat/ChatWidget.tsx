@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useLocale } from 'next-intl';
-import { X, Send, MessageCircle, Loader2, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { X, Send, MessageCircle, Loader2, ThumbsUp, ThumbsDown, UserCircle } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -17,6 +17,9 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showHandoffForm, setShowHandoffForm] = useState(false);
+  const [handoffSubmitting, setHandoffSubmitting] = useState(false);
+  const [handoffSuccess, setHandoffSuccess] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const locale = useLocale();
@@ -175,6 +178,55 @@ export default function ChatWidget() {
     }
   };
 
+  // Submit handoff request
+  const submitHandoff = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setHandoffSubmitting(true);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const conversationContext = messages
+        .slice(-4) // Last 4 messages for context
+        .map((m) => `${m.role}: ${m.content}`)
+        .join('\n\n');
+
+      const response = await fetch('/api/chat/handoff', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone') || undefined,
+          topic: formData.get('topic'),
+          message: formData.get('message'),
+          conversationContext,
+          language: locale,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit handoff');
+      }
+
+      setHandoffSuccess(true);
+      setTimeout(() => {
+        setShowHandoffForm(false);
+        setHandoffSuccess(false);
+      }, 3000);
+    } catch (error) {
+      console.error('Failed to submit handoff:', error);
+      alert(
+        locale === 'de'
+          ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.'
+          : locale === 'es'
+            ? 'Error al enviar. Por favor, inténtelo de nuevo.'
+            : 'Failed to submit. Please try again.'
+      );
+    } finally {
+      setHandoffSubmitting(false);
+    }
+  };
+
   return (
     <>
       {/* Floating Button */}
@@ -213,13 +265,29 @@ export default function ChatWidget() {
                 <p className="text-sm text-white/80">Technical Support</p>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="hover:bg-white/20 rounded-lg p-1.5 transition-colors"
-              aria-label="Close chat"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowHandoffForm(true)}
+                className="hover:bg-white/20 rounded-lg p-1.5 transition-colors"
+                aria-label="Talk to human"
+                title={
+                  locale === 'de'
+                    ? 'Mit einem Menschen sprechen'
+                    : locale === 'es'
+                      ? 'Hablar con un humano'
+                      : 'Talk to human'
+                }
+              >
+                <UserCircle className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="hover:bg-white/20 rounded-lg p-1.5 transition-colors"
+                aria-label="Close chat"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
@@ -340,6 +408,262 @@ export default function ChatWidget() {
               >
                 <Send className="w-5 h-5" />
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Handoff Form Modal */}
+      {showHandoffForm && (
+        <div className="fixed inset-0 z-[1100] flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+            {/* Form Header */}
+            <div className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white p-6 rounded-t-2xl">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <UserCircle className="w-8 h-8" />
+                  <div>
+                    <h3 className="font-bold text-xl">
+                      {locale === 'de'
+                        ? 'Mit einem Menschen sprechen'
+                        : locale === 'es'
+                          ? 'Hablar con un humano'
+                          : 'Talk to a Human'}
+                    </h3>
+                    <p className="text-sm text-white/80">
+                      {locale === 'de'
+                        ? 'Wir melden uns bald bei Ihnen'
+                        : locale === 'es'
+                          ? 'Nos pondremos en contacto pronto'
+                          : "We'll get back to you soon"}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowHandoffForm(false)}
+                  className="hover:bg-white/20 rounded-lg p-1.5 transition-colors"
+                  aria-label="Close form"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Form Content */}
+            <div className="p-6">
+              {handoffSuccess ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-success-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg
+                      className="w-8 h-8 text-success-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-bold text-neutral-900 mb-2">
+                    {locale === 'de'
+                      ? 'Anfrage gesendet!'
+                      : locale === 'es'
+                        ? '¡Solicitud enviada!'
+                        : 'Request Sent!'}
+                  </h4>
+                  <p className="text-neutral-600">
+                    {locale === 'de'
+                      ? 'Unser Team wird sich in Kürze bei Ihnen melden.'
+                      : locale === 'es'
+                        ? 'Nuestro equipo se pondrá en contacto con usted pronto.'
+                        : 'Our team will contact you shortly.'}
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={submitHandoff} className="space-y-4">
+                  {/* Name */}
+                  <div>
+                    <label htmlFor="handoff-name" className="block text-sm font-semibold text-neutral-700 mb-2">
+                      {locale === 'de' ? 'Name' : locale === 'es' ? 'Nombre' : 'Name'}{' '}
+                      <span className="text-error-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="handoff-name"
+                      name="name"
+                      required
+                      disabled={handoffSubmitting}
+                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
+                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+                        disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                      placeholder={
+                        locale === 'de'
+                          ? 'Ihr Name'
+                          : locale === 'es'
+                            ? 'Su nombre'
+                            : 'Your name'
+                      }
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label htmlFor="handoff-email" className="block text-sm font-semibold text-neutral-700 mb-2">
+                      {locale === 'de' ? 'E-Mail' : locale === 'es' ? 'Correo electrónico' : 'Email'}{' '}
+                      <span className="text-error-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="handoff-email"
+                      name="email"
+                      required
+                      disabled={handoffSubmitting}
+                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
+                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+                        disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                      placeholder={
+                        locale === 'de'
+                          ? 'ihre.email@beispiel.de'
+                          : locale === 'es'
+                            ? 'su.correo@ejemplo.com'
+                            : 'your.email@example.com'
+                      }
+                    />
+                  </div>
+
+                  {/* Phone (Optional) */}
+                  <div>
+                    <label htmlFor="handoff-phone" className="block text-sm font-semibold text-neutral-700 mb-2">
+                      {locale === 'de' ? 'Telefon' : locale === 'es' ? 'Teléfono' : 'Phone'}{' '}
+                      <span className="text-neutral-400 text-xs">
+                        ({locale === 'de' ? 'optional' : locale === 'es' ? 'opcional' : 'optional'})
+                      </span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="handoff-phone"
+                      name="phone"
+                      disabled={handoffSubmitting}
+                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
+                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+                        disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                      placeholder="+1 (555) 123-4567"
+                    />
+                  </div>
+
+                  {/* Topic */}
+                  <div>
+                    <label htmlFor="handoff-topic" className="block text-sm font-semibold text-neutral-700 mb-2">
+                      {locale === 'de' ? 'Thema' : locale === 'es' ? 'Tema' : 'Topic'}{' '}
+                      <span className="text-error-500">*</span>
+                    </label>
+                    <select
+                      id="handoff-topic"
+                      name="topic"
+                      required
+                      disabled={handoffSubmitting}
+                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
+                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+                        disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                    >
+                      <option value="">
+                        {locale === 'de'
+                          ? 'Wählen Sie ein Thema'
+                          : locale === 'es'
+                            ? 'Seleccione un tema'
+                            : 'Select a topic'}
+                      </option>
+                      <option value="technical">
+                        {locale === 'de'
+                          ? 'Technische Unterstützung'
+                          : locale === 'es'
+                            ? 'Soporte técnico'
+                            : 'Technical Support'}
+                      </option>
+                      <option value="sales">
+                        {locale === 'de'
+                          ? 'Verkaufsanfrage'
+                          : locale === 'es'
+                            ? 'Consulta de ventas'
+                            : 'Sales Inquiry'}
+                      </option>
+                      <option value="quote">
+                        {locale === 'de'
+                          ? 'Angebotsanfrage'
+                          : locale === 'es'
+                            ? 'Solicitud de cotización'
+                            : 'Quote Request'}
+                      </option>
+                      <option value="other">
+                        {locale === 'de' ? 'Andere' : locale === 'es' ? 'Otro' : 'Other'}
+                      </option>
+                    </select>
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label htmlFor="handoff-message" className="block text-sm font-semibold text-neutral-700 mb-2">
+                      {locale === 'de' ? 'Nachricht' : locale === 'es' ? 'Mensaje' : 'Message'}{' '}
+                      <span className="text-error-500">*</span>
+                    </label>
+                    <textarea
+                      id="handoff-message"
+                      name="message"
+                      required
+                      rows={4}
+                      disabled={handoffSubmitting}
+                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
+                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+                        resize-none disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                      placeholder={
+                        locale === 'de'
+                          ? 'Wie können wir Ihnen helfen?'
+                          : locale === 'es'
+                            ? '¿Cómo podemos ayudarle?'
+                            : 'How can we help you?'
+                      }
+                    />
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="flex gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowHandoffForm(false)}
+                      disabled={handoffSubmitting}
+                      className="flex-1 px-6 py-3 rounded-xl border-2 border-neutral-300 
+                        text-neutral-700 font-semibold hover:bg-neutral-50 
+                        transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {locale === 'de' ? 'Abbrechen' : locale === 'es' ? 'Cancelar' : 'Cancel'}
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={handoffSubmitting}
+                      className="flex-1 px-6 py-3 rounded-xl bg-primary-500 hover:bg-primary-600 
+                        text-white font-semibold transition-colors disabled:opacity-50 
+                        disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                      {handoffSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span>
+                            {locale === 'de' ? 'Senden...' : locale === 'es' ? 'Enviando...' : 'Sending...'}
+                          </span>
+                        </>
+                      ) : (
+                        <span>
+                          {locale === 'de' ? 'Senden' : locale === 'es' ? 'Enviar' : 'Send'}
+                        </span>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>

@@ -15,22 +15,44 @@ const PRODUCT_SEARCH_QUERY = gql`
         name
         slug
         shortDescription
-        ... on SimpleProduct {
-          price
-          regularPrice
-          sku
-        }
-        ... on VariableProduct {
-          price
-          regularPrice
-        }
         image {
           sourceUrl
           altText
         }
-        productCategories {
-          nodes {
-            name
+        ... on SimpleProduct {
+          price
+          regularPrice
+          sku
+          productCategories {
+            nodes {
+              name
+            }
+          }
+        }
+        ... on VariableProduct {
+          price
+          regularPrice
+          productCategories {
+            nodes {
+              name
+            }
+          }
+        }
+        ... on ExternalProduct {
+          price
+          regularPrice
+          productCategories {
+            nodes {
+              name
+            }
+          }
+        }
+        ... on GroupProduct {
+          price
+          productCategories {
+            nodes {
+              name
+            }
           }
         }
       }

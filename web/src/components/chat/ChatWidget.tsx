@@ -19,6 +19,17 @@ export default function ChatWidget() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const locale = useLocale();
 
+  // Convert markdown links to HTML
+  const renderMessageContent = (content: string) => {
+    // Convert markdown links [text](url) to HTML links
+    const withLinks = content.replace(
+      /\[([^\]]+)\]\(([^)]+)\)/g,
+      '<a href="$2" class="text-primary-500 hover:text-primary-600 underline font-medium" target="_blank" rel="noopener noreferrer">$1</a>'
+    );
+    
+    return <span dangerouslySetInnerHTML={{ __html: withLinks }} />;
+  };
+
   // Auto-scroll to bottom
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -192,7 +203,9 @@ export default function ChatWidget() {
                       : 'bg-white text-neutral-900 border border-neutral-200'
                   }`}
                 >
-                  <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
+                  <div className="text-sm whitespace-pre-wrap break-words">
+                    {renderMessageContent(message.content)}
+                  </div>
                   <p
                     className={`text-xs mt-1 ${
                       message.role === 'user' ? 'text-white/70' : 'text-neutral-500'

@@ -13,6 +13,7 @@ const EXCHANGE_RATES: Record<CurrencyCode, number> = {
   CNY: 7.24,
   SGD: 1.34,
   AED: 3.67,
+  VND: 25320, // Vietnamese Dong (1 USD ≈ 25,320 VND)
 };
 
 /**

@@ -1,5 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { NextRequest, NextResponse } from 'next/server';
+import { searchProducts, formatProductsForAI } from '@/lib/chat/productSearch';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -42,9 +43,37 @@ BAPI (Building Automation Products, Inc.) manufactures 600+ precision sensors fo
 **Safety-Critical Context:**
 BAPI products are used in mission-critical environments (hospitals, cleanrooms, data centers). Always prioritize accuracy and safety in recommendations.
 
+**Product Search:**
+When users ask about specific products or need recommendations, use the search_products tool to find real BAPI products from the catalog. Always provide product links so users can view full specifications.
+
 **Languages:**
 You can respond in: English, German, French, Spanish, Japanese, Chinese, Vietnamese, Arabic.
 Detect the user's language and respond in the same language.`;
+
+// Define tools for Claude to use
+const tools: Anthropic.Tool[] = [
+  {
+    name: 'search_products',
+    description:
+      'Search BAPI product catalog for sensors and building automation products. Use this when users ask about specific product types, applications, or need recommendations.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        query: {
+          type: 'string',
+          description:
+            'Search query (e.g., "temperature sensor", "CO2", "humidity", "cleanroom", "pressure transducer")',
+        },
+        limit: {
+          type: 'number',
+          description: 'Maximum number of products to return (default: 5)',
+          default: 5,
+        },
+      },
+      required: ['query'],
+    },
+  },
+];
 
 export async function POST(request: NextRequest) {
   try {
@@ -74,18 +103,63 @@ export async function POST(request: NextRequest) {
       ? `${SYSTEM_PROMPT}\n\n**User's Language:** ${locale.toUpperCase()} - Respond in this language.`
       : SYSTEM_PROMPT;
 
-    // Call Claude API
-    const response = await anthropic.messages.create({
+    // Initial API call to Claude
+    let response = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',
       max_tokens: 1024,
       system: systemPrompt,
+      tools,
       messages: messages.map((msg: { role: string; content: string }) => ({
         role: msg.role === 'user' ? 'user' : 'assistant',
         content: msg.content,
       })),
     });
 
-    // Extract text response
+    // Handle tool use (function calling)
+    while (response.stop_reason === 'tool_use') {
+      const toolUse = response.content.find((block) => block.type === 'tool_use') as any;
+
+      if (!toolUse) break;
+
+      let toolResult: any;
+
+      // Execute the tool
+      if (toolUse.name === 'search_products') {
+        const { query, limit = 5 } = toolUse.input;
+        const products = await searchProducts(query, limit);
+        const formattedProducts = formatProductsForAI(products);
+
+        toolResult = {
+          type: 'tool_result',
+          tool_use_id: toolUse.id,
+          content: formattedProducts,
+        };
+      }
+
+      // Continue conversation with tool result
+      response = await anthropic.messages.create({
+        model: 'claude-3-haiku-20240307',
+        max_tokens: 1024,
+        system: systemPrompt,
+        tools,
+        messages: [
+          ...messages.map((msg: { role: string; content: string }) => ({
+            role: msg.role === 'user' ? 'user' : 'assistant',
+            content: msg.content,
+          })),
+          {
+            role: 'assistant',
+            content: response.content,
+          },
+          {
+            role: 'user',
+            content: [toolResult],
+          },
+        ],
+      });
+    }
+
+    // Extract final text response
     const assistantMessage = response.content.find((block) => block.type === 'text');
     const text = assistantMessage?.type === 'text' ? assistantMessage.text : '';
 

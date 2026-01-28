@@ -100,7 +100,7 @@
 ### 2. Live Chat Integration (HIGH PRIORITY)
 **Status:** ✅ Complete & Deployed - January 28, 2026
 
-**Completed:**
+**Phase 12.1: Core Chatbot (Jan 28, 2026) ✅ COMPLETE**
 - ✅ Custom AI chatbot with Claude 3 Haiku (Anthropic)
 - ✅ Real-time product search via GraphQL (600+ products)
 - ✅ Clickable product links in chat responses
@@ -113,17 +113,40 @@
 - ✅ Error handling and loading states
 - ✅ Deployed to production on Vercel
 
+**Phase 12.2: Analytics & Feedback (Jan 28, 2026) ✅ COMPLETE**
+- ✅ Comprehensive analytics logging (JSONL storage)
+- ✅ User feedback system (thumbs up/down on responses)
+- ✅ Admin dashboard at `/admin/chat-analytics`
+- ✅ Metrics tracking: conversations, response time, tokens, costs
+- ✅ Language distribution analytics
+- ✅ Top product recommendations tracking
+- ✅ Tool usage statistics (search_products)
+- ✅ Satisfaction rate calculation
+- ✅ Conversation ID attribution for feedback
+- ✅ Real-time dashboard visualization
+
 **Implementation:**
-- `/api/chat` endpoint with Claude function calling
-- `ChatWidget.tsx` component with floating button and drawer
+- `/api/chat` endpoint with Claude function calling + analytics logging
+- `/api/chat/analytics` endpoint for dashboard metrics
+- `/api/chat/feedback` endpoint for user feedback submission
+- `ChatWidget.tsx` component with feedback buttons (355 lines)
 - `productSearch.ts` for GraphQL product catalog integration
+- `analytics.ts` for metrics tracking and aggregation
+- `ChatAnalyticsDashboard.tsx` admin UI component
 - Markdown link rendering for clickable product recommendations
 - System prompt trained on BAPI technical context
 
 **Files:**
-- `web/src/app/api/chat/route.ts` - Claude API integration (203 lines)
-- `web/src/components/chat/ChatWidget.tsx` - Chat UI (273 lines)
+- `web/src/app/api/chat/route.ts` - Claude API + analytics (245 lines)
+- `web/src/components/chat/ChatWidget.tsx` - Chat UI + feedback (355 lines)
 - `web/src/lib/chat/productSearch.ts` - Product search (139 lines)
+- `web/src/lib/chat/analytics.ts` - Analytics system (231 lines)
+- `web/src/app/api/chat/analytics/route.ts` - Metrics API (54 lines)
+- `web/src/app/api/chat/feedback/route.ts` - Feedback API (35 lines)
+- `web/src/app/[locale]/admin/chat-analytics/page.tsx` - Admin page (57 lines)
+- `web/src/app/[locale]/admin/chat-analytics/ChatAnalyticsDashboard.tsx` - Dashboard UI (281 lines)
+
+**Dashboard URL:** https://bapi-headless.vercel.app/admin/chat-analytics (requires authentication)
 
 ---
 

@@ -9,10 +9,10 @@
 
 ## January 28, 2026 - next-intl Migration & Translation Infrastructure Complete
 
-### Translation Infrastructure Migration (6 hours)
-**Status:** ✅ Complete - Deployed to production
+### Translation Infrastructure Migration (8 hours)
+**Status:** ✅ Complete - Deployed and working on production
 
-**Critical Milestone:** Migrated from custom TranslationProvider to industry-standard next-intl framework. All translation infrastructure now production-ready.
+**Critical Milestone:** Migrated from custom TranslationProvider to industry-standard next-intl framework. All translation infrastructure now production-ready and tested.
 
 **Phase 1: Translation Content (Morning)**
 - Created comprehensive English baseline (`en.json`) - 310+ translation keys
@@ -61,14 +61,20 @@
 - Cost estimate: ~$1,850 for all 7 languages (vs $2,500-4,000 Smartling)
 - Delivery: Feb 24 - March 3 (on target for March 10 deadline)
 
-**Phase 8: Deployment & Bug Fixes**
-- Merged `feat/phase1-translations` to main (7 commits)
+**Phase 8: Deployment Debugging & Fixes (Evening)**
+- **Initial deployment failed** - Site showed 404 on production
+- **Root cause**: next-intl middleware requires proper app structure with `[locale]` folder
 - Fixed missing VND exchange rate in currency.ts (25,320 VND per USD)
 - Fixed missing Vietnamese locale mapping in locale.ts (vi: 'vi-VN')
 - Fixed undefined locale handling for root path in i18n.ts
-- Deployed to Vercel production: https://bapi-headless.vercel.app
+- **Major restructure**: Moved homepage from `app/page.tsx` to `app/[locale]/page.tsx`
+- Fixed import paths: `./components` → `../components`
+- Changed to `localePrefix: 'always'` - all URLs now include locale
+- Fixed LanguageSelector to handle locale-prefixed URLs correctly
+- Added `router.refresh()` for immediate language switching
+- **Result**: Site working perfectly on production at `/en`, `/de`, `/vi`, etc.
 
-**Commits:**
+**Commits (14 total):**
 - `3376bc6` - Phase 1 translation baseline (en.json, de.json, docs)
 - `e1df814` - next-intl migration (i18n.ts, middleware.ts, layout.tsx)
 - `c89ffbc` - English fallback strategy with lodash merge
@@ -80,13 +86,17 @@
 - `13900f6` - Fix VND exchange rate
 - `575c488` - Fix Vietnamese locale mapping
 - `6922c67` - Fix undefined locale for root path
+- `043c631` - Fix layout to receive locale params
+- `c5d18b4` - Update DAILY-LOG and TODO
+- `ea70c69` - Restructure for next-intl with [locale] folder (FINAL FIX)
 
 **Files Changed (22 files, 2,554 insertions):**
 - `web/src/i18n.ts` (NEW) - next-intl config with 8 locales
 - `web/src/middleware.ts` (NEW) - Clerk + next-intl middleware
 - `web/src/proxy.ts` → `web/src/proxy.ts.backup` (RENAMED)
 - `web/next.config.ts` - Added withNextIntl plugin
-- `web/src/app/layout.tsx` - NextIntlClientProvider integration
+- `web/src/app/layout.tsx` - NextIntlClientProvider with getLocale()
+- `web/src/app/page.tsx` → `web/src/app/[locale]/page.tsx` (MOVED)
 - `web/src/components/layout/Footer.tsx` - Fully translated
 - `web/src/components/layout/Header/components/LanguageSelector.tsx` - next-intl routing
 - `web/src/types/region.ts` - Vietnamese language + VND currency
@@ -100,14 +110,23 @@
 - `docs/TECHNICAL-GLOSSARY.md` (NEW) - 292 lines, translator reference
 - `docs/TRANSLATION-ACTION-PLAN.md` (NEW) - Weekly timeline
 
-**Results:**
-- ✅ 8 languages live on production (EN, DE, FR, ES, JA, ZH, VI, AR)
+**Production Results:**
+- ✅ Site live and working: https://bapi-headless.vercel.app/en
+- ✅ 8 languages accessible: /en, /de, /fr, /es, /ja, /zh, /vi, /ar
 - ✅ Footer displays in all languages with English fallback
-- ✅ Language switcher working with URL routing
+- ✅ Language switcher working with URL routing and refresh
 - ✅ Vietnamese ready for Vietnam facility April 2026
 - ✅ Translation infrastructure complete and tested
 - ✅ Professional translation service guide ready (Crowdin)
 - ✅ Zero translation errors in production
+- ✅ All pages route correctly through [locale] folder structure
+
+**Lessons Learned:**
+- next-intl with middleware routing requires `[locale]` folder structure in app directory
+- `localePrefix: 'always'` is simpler than 'as-needed' for initial setup
+- Must use `getLocale()` from 'next-intl/server' in server components
+- Import paths change when moving files between app directory levels
+- Testing locally before production deployment critical for i18n routing
 
 **Next Steps:**
 1. **This Week (Jan 28 - Feb 2)**: Evaluate Crowdin vs Smartling (user decision pending)

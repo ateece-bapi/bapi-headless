@@ -14,10 +14,17 @@ export function LanguageSelector() {
     const newLocale = e.target.value;
     
     // Remove current locale from pathname
+    // Handle both /en/products and /en paths
     const pathnameWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
     
+    // Build new path
+    const newPath = pathnameWithoutLocale === '/' || pathnameWithoutLocale === '' 
+      ? `/${newLocale}` 
+      : `/${newLocale}${pathnameWithoutLocale}`;
+    
     // Navigate to new locale
-    router.push(`/${newLocale}${pathnameWithoutLocale}`);
+    router.push(newPath);
+    router.refresh();
   };
 
   return (

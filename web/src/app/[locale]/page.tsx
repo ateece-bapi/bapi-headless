@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Hero } from './components';
+import { Hero } from '../components';
 import { 
   Thermometer, 
   Gauge, 

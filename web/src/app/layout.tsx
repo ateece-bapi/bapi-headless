@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from '@clerk/nextjs';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getLocale } from 'next-intl/server';
 import { Toaster } from 'sonner';
 import "./globals.css";
 import Header from "@/components/layout/Header";
@@ -51,22 +51,20 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale?: string }>;
 }>) {
-  // Get locale from params (next-intl provides this)
-  const { locale } = await params;
+  // Get locale from next-intl middleware
+  const locale = await getLocale();
   
-  // Get messages for next-intl (will use locale from middleware)
-  const messages = await getMessages({ locale });
+  // Get messages for the current locale
+  const messages = await getMessages();
 
   return (
     <ClerkProvider>
-      <html lang={locale || 'en'}>
+      <html lang={locale}>
         <body className="antialiased">
-          <NextIntlClientProvider messages={messages} locale={locale || 'en'}>
+          <NextIntlClientProvider messages={messages} locale={locale}>
             <ToastProvider>
               <Header />
               {children}

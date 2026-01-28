@@ -7,7 +7,7 @@ import { locales, defaultLocale } from './i18n';
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'as-needed', // Don't add /en prefix for default locale
+  localePrefix: 'always', // Always show locale in URL (can change to 'as-needed' later)
 });
 
 // Define public routes (no authentication required)

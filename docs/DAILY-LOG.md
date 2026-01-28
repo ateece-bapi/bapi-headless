@@ -97,7 +97,12 @@
 - `web/next.config.ts` - Added withNextIntl plugin
 - `web/src/app/layout.tsx` - NextIntlClientProvider with getLocale()
 - `web/src/app/page.tsx` → `web/src/app/[locale]/page.tsx` (MOVED)
-- `web/src/components/layout/Footer.tsx` - Fully translated
+- `web/src/components/layout/Footer.tsx` - Fully translated + Link import fixed
+- `web/src/components/layout/Header/components/Logo.tsx` - Link import fixed
+- `web/src/components/layout/Header/components/Navigation.tsx` - Link import fixed
+- `web/src/components/layout/Header/components/CartButton.tsx` - Link import fixed
+- `web/src/components/layout/Header/components/MobileMenu.tsx` - Link import fixed
+- `web/src/components/layout/Header/components/MegaMenuItem.tsx` - Link import fixed
 - `web/src/components/layout/Header/components/LanguageSelector.tsx` - next-intl routing
 - `web/src/types/region.ts` - Vietnamese language + VND currency
 - `web/messages/en.json` - 498 lines, 310+ keys, restructured footer
@@ -105,28 +110,38 @@
 - `web/messages/vi.json` (NEW) - Vietnamese skeleton
 - `web/src/lib/utils/currency.ts` - Added VND exchange rate
 - `web/src/lib/utils/locale.ts` - Added Vietnamese locale mapping
+- `web/src/lib/navigation.ts` (NEW) - Typed next-intl navigation helpers
+- **60 files moved:** All page routes from `app/*/` to `app/[locale]/*/`
+- `web/src/app/[locale]/products/[slug]/__tests__/page.test.tsx` - Fixed import depth
 - `docs/CROWDIN-SETUP-GUIDE.md` (NEW) - 428 lines, complete setup guide
 - `docs/PHASE1-TRANSLATION-GUIDE.md` (NEW) - Translation reference
 - `docs/TECHNICAL-GLOSSARY.md` (NEW) - 292 lines, translator reference
 - `docs/TRANSLATION-ACTION-PLAN.md` (NEW) - Weekly timeline
 
 **Production Results:**
-- ✅ Site live and working: https://bapi-headless.vercel.app/en
-- ✅ 8 languages accessible: /en, /de, /fr, /es, /ja, /zh, /vi, /ar
+- ✅ Site live and working: https://bapi-headless.vercel.app
+- ✅ Clean English URLs: `/products`, `/contact`, `/company` (no locale prefix)
+- ✅ Locale URLs for other languages: `/de/products`, `/vi/contact`, `/ar/company`
+- ✅ All navigation links working with automatic locale handling
+- ✅ 8 languages accessible with proper routing
 - ✅ Footer displays in all languages with English fallback
 - ✅ Language switcher working with URL routing and refresh
 - ✅ Vietnamese ready for Vietnam facility April 2026
 - ✅ Translation infrastructure complete and tested
 - ✅ Professional translation service guide ready (Crowdin)
 - ✅ Zero translation errors in production
-- ✅ All pages route correctly through [locale] folder structure
+- ✅ Proper next-intl architecture with `[locale]` folder structure
 
 **Lessons Learned:**
-- next-intl with middleware routing requires `[locale]` folder structure in app directory
-- `localePrefix: 'always'` is simpler than 'as-needed' for initial setup
+- next-intl REQUIRES `[locale]` folder structure regardless of `localePrefix` setting
+- `localePrefix: 'as-needed'` provides clean URLs for default locale (English)
+- `localePrefix: 'always'` would force /en for all English pages (not desired)
+- Must use configured navigation from `createNavigation()`, not raw imports
+- Import path: `@/lib/navigation` exports Link, redirect, usePathname, useRouter
 - Must use `getLocale()` from 'next-intl/server' in server components
 - Import paths change when moving files between app directory levels
 - Testing locally before production deployment critical for i18n routing
+- Using `git mv` preserves commit history when restructuring (60 files moved)
 
 **Next Steps:**
 1. **This Week (Jan 28 - Feb 2)**: Evaluate Crowdin vs Smartling (user decision pending)

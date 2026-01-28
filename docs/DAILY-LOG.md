@@ -74,7 +74,7 @@
 - Added `router.refresh()` for immediate language switching
 - **Result**: Site working perfectly on production at `/en`, `/de`, `/vi`, etc.
 
-**Commits (14 total):**
+**Commits (19 total):**
 - `3376bc6` - Phase 1 translation baseline (en.json, de.json, docs)
 - `e1df814` - next-intl migration (i18n.ts, middleware.ts, layout.tsx)
 - `c89ffbc` - English fallback strategy with lodash merge
@@ -89,8 +89,13 @@
 - `043c631` - Fix layout to receive locale params
 - `c5d18b4` - Update DAILY-LOG and TODO
 - `ea70c69` - Restructure for next-intl with [locale] folder (FINAL FIX)
+- `faf1ffe` - Smart region-language integration implementation
+- `0e9ce03` - Fix region code case mismatch and safety checks
+- `d0af843` - Merge feat/smart-region-language-integration to main
+- `[PENDING]` - Update DAILY-LOG with Phase 9 completion
+- `[NEXT]` - Push to production
 
-**Files Changed (22 files, 2,554 insertions):**
+**Files Changed (25 files, 2,666 insertions):**
 - `web/src/i18n.ts` (NEW) - next-intl config with 8 locales
 - `web/src/middleware.ts` (NEW) - Clerk + next-intl middleware
 - `web/src/proxy.ts` → `web/src/proxy.ts.backup` (RENAMED)
@@ -104,6 +109,9 @@
 - `web/src/components/layout/Header/components/MobileMenu.tsx` - Link import fixed
 - `web/src/components/layout/Header/components/MegaMenuItem.tsx` - Link import fixed
 - `web/src/components/layout/Header/components/LanguageSelector.tsx` - next-intl routing
+- `web/src/components/layout/Header/components/RegionSelector.tsx` - Smart language suggestions
+- `web/src/components/ui/Toast.tsx` - Action button support
+- `web/src/lib/utils/regionLanguageMapping.ts` (NEW) - Region-language mapping utility
 - `web/src/types/region.ts` - Vietnamese language + VND currency
 - `web/messages/en.json` - 498 lines, 310+ keys, restructured footer
 - `web/messages/de.json` - 39 lines, navigation translated
@@ -118,6 +126,17 @@
 - `docs/TECHNICAL-GLOSSARY.md` (NEW) - 292 lines, translator reference
 - `docs/TRANSLATION-ACTION-PLAN.md` (NEW) - Weekly timeline
 
+**Phase 9: Smart Region-Language Integration (Late Evening)**
+- Created `web/src/lib/utils/regionLanguageMapping.ts` - Language suggestion utility
+- Enhanced RegionSelector with smart language suggestion logic
+- Updated Toast component to support action buttons with click handlers
+- Conservative mapping: English universal (US/EU/Asia), Arabic for MENA only
+- Toast notification shows "Switch" action button for immediate language change
+- Only displays suggestion when suggested language differs from current locale
+- **Rationale**: Conservative approach respects B2B context where English is standard
+- **UX**: User maintains control - can dismiss or accept suggestion with one click
+- Feature branch: feat/smart-region-language-integration (2 commits) → merged to main
+
 **Production Results:**
 - ✅ Site live and working: https://bapi-headless.vercel.app
 - ✅ Clean English URLs: `/products`, `/contact`, `/company` (no locale prefix)
@@ -131,6 +150,7 @@
 - ✅ Professional translation service guide ready (Crowdin)
 - ✅ Zero translation errors in production
 - ✅ Proper next-intl architecture with `[locale]` folder structure
+- ✅ Smart region-language integration with toast notifications
 
 **Lessons Learned:**
 - next-intl REQUIRES `[locale]` folder structure regardless of `localePrefix` setting

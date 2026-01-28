@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ChevronDown, Radio } from 'lucide-react';
 import clsx from 'clsx';
 import type { MegaMenuItem } from '../types';

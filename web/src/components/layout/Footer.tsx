@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { Linkedin, Youtube } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 

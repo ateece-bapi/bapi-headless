@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ChevronRight, Globe, Languages } from 'lucide-react';
 import clsx from 'clsx';
 import { MEGA_MENU_ITEMS } from '../config';

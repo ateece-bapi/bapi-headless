@@ -1,5 +1,30 @@
 # BAPI Headless E-Commerce - AI Agent Instructions
 
+## Project Timeline & Current Phase
+
+**Current Phase:** Phase 1 (January - April 2026)  
+**Go-Live Target:** April 10, 2026
+
+### Timeline
+- **Early March 2026**: Testing begins
+- **March 25, 2026**: Testing concludes
+- **April 6, 2026**: Stakeholder presentation for final approval
+- **April 10, 2026**: Production release
+
+### Phase 1 Priorities (Current Focus)
+1. **Translation Services & Regional Support** - i18n, currency conversion, measurement units
+2. **Live Chat Integration** - Customer support chat system
+3. **User/Customer Migration** - Migrate 5,438 WordPress users with full order history
+4. **Product Navigation** - Categories, subcategories, breadcrumb navigation, mega-menu integration
+
+### Phase 2 (Post-Launch)
+- **Applications Section** - New content (currently in main nav, defer to Phase 2)
+- **Solutions Section** - New content (currently in footer, defer to Phase 2)
+
+**Note:** Focus all development efforts on Phase 1 priorities. Applications and Solutions sections require new content creation that may not be ready by April deadline.
+
+---
+
 ## Architecture Overview
 
 This is a headless WordPress + Next.js e-commerce platform for building automation products:
@@ -17,19 +42,26 @@ This is a headless WordPress + Next.js e-commerce platform for building automati
 ## Critical Commands
 
 ```bash
-# Development (run from web/)
-npm run dev                    # Start Next.js dev server
-npm run codegen               # Generate TypeScript types from GraphQL schema
-npm run codegen:watch         # Watch mode for GraphQL codegen
+# Development (run from web/ - uses PNPM, not NPM!)
+pnpm install                  # Install dependencies (5.6x faster than npm)
+pnpm run dev                  # Start Next.js dev server with Turbopack
+pnpm run codegen              # Generate TypeScript types from GraphQL schema
+pnpm run codegen:watch        # Watch mode for GraphQL codegen
 
-# Testing
-npm test                      # Run Vitest tests
-npm run lint                  # ESLint check
-npm run format:check          # Prettier check
+# Testing & Quality
+pnpm test                     # Run Vitest tests (648 tests, 80%+ coverage)
+pnpm test:ci                  # CI mode (no watch)
+pnpm run lint                 # ESLint check
+pnpm run format:check         # Prettier check
+
+# Component Development
+pnpm run storybook            # Start Storybook on localhost:6006 (58 stories)
+pnpm run build-storybook      # Build static Storybook
+pnpm run chromatic            # Run visual regression tests
 
 # Build & Deploy
-npm run build                 # Production build
-npm run build:analyze         # Bundle analysis
+pnpm run build                # Production build (includes codegen)
+pnpm run build:analyze        # Bundle analysis with @next/bundle-analyzer
 ```
 
 ## Project-Specific Conventions
@@ -97,9 +129,23 @@ const { addItem, items, totalItems } = useCartStore();
 
 ## Testing Approach
 - **Framework**: Vitest with jsdom environment
-- **Setup**: `web/test/setupTests.ts` configures globals
+- **Setup**: `web/test/setupTests.ts` configures globals + MSW
 - **MSW**: Mock Service Worker for API mocking (`web/test/msw/`)
-- **Run**: `npm test` (watch mode) or `npm run test:ci` (CI mode)
+  - GraphQL handlers: `web/test/msw/graphql/product.ts`
+  - Mock fixtures: `web/test/msw/fixtures.ts` (reusable across tests + Storybook)
+- **Run**: `pnpm test` (watch mode) or `pnpm test:ci` (CI mode)
+- **Coverage**: 648 tests passing (80%+ coverage)
+  - 125 unit tests (utilities, formatters, type guards)
+  - 309 integration tests (products, cart, components)
+  - 214 checkout tests (wizard, summary, steps)
+
+### Storybook Testing
+- **Location**: `web/src/stories/*.stories.tsx` (58 stories across 8 components)
+- **MSW Integration**: Shares fixtures from `web/test/msw/fixtures.ts`
+- **Visual Regression**: Chromatic integration for automated screenshot testing
+- **Components Covered**: Button, Toast, ImageModal, TaglineRotator, ProductHeroFast
+- **Run**: `pnpm run storybook` → localhost:6006
+- **Purpose**: Component isolation, visual QA, design system docs
 
 ## Key Files Reference
 
@@ -132,20 +178,24 @@ const { addItem, items, totalItems } = useCartStore();
 
 ## Special Considerations
 
-1. **Product `partNumber` Field**: Sparsely populated (only ~20 of 608 products). Always fallback to SKU in UI. Stored in `wp_postmeta` as `part_number`.
-2. **B2B Customer Pricing**: Products support customer group multipliers (`multiplier_buyresell`, `multiplier_humidpres`, `multiplier_mfg`) and customer segmentation (`customer_group1/2/3`). Must handle in GraphQL queries.
-3. **Custom Product Media**: Products have `compliancy_logos`, `product_documents`, and `product_videos` fields beyond standard WooCommerce schema.
-4. **Large User Base**: 5,438 WordPress users require careful Clerk migration planning. See `web/scripts/bulk-import-users.mjs`.
-5. **Clerk Development Keys**: Safe for staging/preview environments, update for production.
-6. **GraphQL Performance**: Use split queries (light/deferred) for product pages to reduce initial load.
-7. **Image Optimization**: Configure Next.js image domains in `next.config.ts` (Kinsta, WordPress.org).
-8. **Bundle Analysis**: `npm run build:analyze` to check bundle size.
+1. **Phase 1 Navigation Scope**: Only implement Products, Support, and Company in main navigation. Applications (main nav) and Solutions (footer) are deferred to Phase 2 due to content creation timeline.
+2. **Product Categories**: Must match current website structure with correct breadcrumb navigation and mega-menu integration (Phase 1 priority).
+3. **Translation & Regional Support**: Phase 1 requires i18n implementation with currency conversion and measurement unit localization.
+4. **Live Chat**: Integration required for Phase 1 launch (customer support priority).
+5. **Product `partNumber` Field**: Sparsely populated (only ~20 of 608 products). Always fallback to SKU in UI. Stored in `wp_postmeta` as `part_number`.
+6. **B2B Customer Pricing**: Products support customer group multipliers (`multiplier_buyresell`, `multiplier_humidpres`, `multiplier_mfg`) and customer segmentation (`customer_group1/2/3`). Must handle in GraphQL queries.
+7. **Custom Product Media**: Products have `compliancy_logos`, `product_documents`, and `product_videos` fields beyond standard WooCommerce schema.
+8. **User Migration**: 5,438 WordPress users with full order history must be migrated to Clerk before April 10 launch (Phase 1 priority). See `web/scripts/bulk-import-users.mjs`.
+9. **Clerk Development Keys**: Safe for staging/preview environments, update to production keys before April 10 launch.
+10. **GraphQL Performance**: Use split queries (light/deferred) for product pages to reduce initial load.
+11. **Image Optimization**: Configure Next.js image domains in `next.config.ts` (Kinsta, WordPress.org).
+12. **Bundle Analysis**: `pnpm run build:analyze` to check bundle size.
 
 ## Common Workflows
 
 ### Adding a New GraphQL Query
 1. Create `.graphql` file in `web/src/lib/graphql/queries/`
-2. Run `npm run codegen` to generate types
+2. Run `pnpm run codegen` to generate types
 3. Import generated types from `web/src/lib/graphql/generated.ts`
 4. Use with `getGraphQLClient(['cache-tag'])`
 
@@ -158,6 +208,14 @@ const { addItem, items, totalItems } = useCartStore();
 2. Verify GET method usage: `getGraphQLClient(tags, true)`
 3. Ensure cache-control headers are present
 4. Use GraphiQL IDE at `{WORDPRESS_URL}/graphql` for query testing
+
+### Creating Storybook Stories
+1. Create `ComponentName.stories.tsx` in `web/src/stories/`
+2. Import component + mock fixtures from `web/test/msw/fixtures.ts`
+3. Use MSW handlers from `web/test/msw/graphql/` for GraphQL data
+4. Test variants: Default, Loading, Error, Empty, Edge cases
+5. Run `pnpm run storybook` to verify
+6. Visual regression: `pnpm run chromatic` (requires CHROMATIC_PROJECT_TOKEN)
 
 ## Documentation
 

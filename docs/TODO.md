@@ -1,4 +1,159 @@
-# ---
+# BAPI Headless - Project Roadmap & TODO
+
+## 📋 Project Timeline & Phasing Strategy
+
+**Updated:** January 28, 2026  
+**Current Phase:** Phase 1 - April 10, 2026 Go-Live
+
+### Production Launch Timeline
+- **Early March 2026**: Testing begins
+- **March 25, 2026**: Testing concludes  
+- **April 6, 2026**: Stakeholder presentation for final approval
+- **April 10, 2026**: Production release (HARD DEADLINE)
+
+---
+
+## 🎯 Phase 1 Priorities (CRITICAL - April 10 Deadline)
+
+### 1. Translation Services & Regional Support (HIGH PRIORITY)
+**Status:** Infrastructure complete, content translation needed
+
+**Completed:**
+- ✅ Region selector (US, EU, Asia, MENA) with persistence
+- ✅ Language selector (EN, DE, FR, ES, JA, ZH, AR) with persistence
+- ✅ Currency conversion and formatting
+- ✅ Date/time localization
+- ✅ TranslationProvider setup with next-intl
+- ✅ Region store with Zustand
+- ✅ Test page demonstrating all features
+
+**Remaining Work:**
+- [ ] Complete translation files for all 7 languages
+  - [ ] Current: Only skeleton/sample translations exist
+  - [ ] Need: Full translations for all UI strings, error messages, labels
+  - [ ] Files: `messages/en.json`, `ar.json`, `de.json`, `fr.json`, `es.json`, `ja.json`, `zh.json`
+- [ ] Add `t()` function calls throughout the app
+  - [ ] Header/Footer components
+  - [ ] Product pages and category pages
+  - [ ] Forms and buttons
+  - [ ] Error messages and notifications
+- [ ] RTL Support for Arabic
+  - [ ] Add RTL CSS support
+  - [ ] Test layout in RTL mode
+  - [ ] Adjust component styles (text-align, margins, paddings)
+  - [ ] Ensure icons/images flip appropriately
+- [ ] Test language switching across all pages
+- [ ] Currency conversion testing for all supported currencies
+- [ ] Measurement unit conversion (temperature, pressure, flow)
+
+---
+
+### 2. Live Chat Integration (HIGH PRIORITY)
+**Status:** Not started
+
+**Requirements:**
+- [ ] Research and select live chat provider
+  - [ ] Options: Intercom, Zendesk Chat, LiveChat, Drift, Tawk.to
+  - [ ] Considerations: Cost, features, integration ease, mobile support
+- [ ] Install and configure chat widget
+- [ ] Integrate with support team workflow
+- [ ] Test on mobile and desktop
+- [ ] Configure business hours and offline messages
+- [ ] Add chat triggers (time on page, exit intent, etc.)
+- [ ] Train support team on chat platform
+
+---
+
+### 3. User/Customer Migration (HIGH PRIORITY)
+**Status:** Ready to execute, awaiting production trigger
+
+**Completed:**
+- ✅ WP-CLI export script for 5,438 WordPress users
+- ✅ Bulk import script with safety controls (`web/scripts/bulk-import-users.mjs`)
+- ✅ Test script for safe testing (`web/scripts/test-user-import.sh`)
+- ✅ Comprehensive documentation (`docs/BULK-USER-MIGRATION.md`)
+- ✅ Staging test successful (98 users imported)
+- ✅ Order history integration with WooCommerce GraphQL
+- ✅ Account dashboard showing customer orders
+
+**Remaining Work:**
+- [ ] Add environment variables to Vercel production
+  - [ ] `WORDPRESS_API_USER` - WordPress username for authenticated GraphQL
+  - [ ] `WORDPRESS_API_PASSWORD` - WordPress application password
+- [ ] Execute production migration (when stakeholders approve)
+  - [ ] Run bulk import for all 5,438 users
+  - [ ] Monitor for errors and failed imports
+  - [ ] Verify order history displays correctly
+  - [ ] Send password reset emails to all users (optional)
+- [ ] Communicate migration to customers
+  - [ ] Email notification about new site and account access
+  - [ ] Instructions for first login
+  - [ ] Support contact information
+
+---
+
+### 4. Product Navigation Enhancement (HIGH PRIORITY)
+**Status:** Partially complete, needs category verification
+
+**Completed:**
+- ✅ Category pages with product grids
+- ✅ Product detail breadcrumbs with hierarchy
+- ✅ Mega menu with category organization
+- ✅ Mobile menu with categories
+
+**Remaining Work:**
+- [ ] Audit current WordPress product categories
+  - [ ] Document existing category structure
+  - [ ] Identify any missing categories or subcategories
+  - [ ] Map to new site navigation
+- [ ] Verify breadcrumb navigation matches old site
+  - [ ] Test all product pages
+  - [ ] Ensure correct parent > child hierarchy
+  - [ ] Fix any mismatched category paths
+- [ ] Test mega menu category links
+  - [ ] Verify all categories are clickable
+  - [ ] Check subcategory organization
+  - [ ] Ensure mega menu matches category structure
+- [ ] Test on mobile devices
+  - [ ] Verify mobile menu categories expand correctly
+  - [ ] Test breadcrumb display on small screens
+  - [ ] Check mega menu mobile behavior
+
+---
+
+## 🚀 Phase 2 - Post-Launch (After April 10, 2026)
+
+### Applications Section (Deferred)
+**Status:** Infrastructure ready, awaiting content
+
+**Context:** Application landing pages already built (Phase 16), but new "Applications" main navigation section requires additional content currently being developed by content team.
+
+**Existing Work:**
+- ✅ 5 Application landing pages complete (Building Automation, Data Centers, Healthcare, Industrial, Wireless)
+- ✅ ApplicationLandingPage reusable component
+- ✅ Mega menu "By Industry" section ready
+
+**Phase 2 Work:**
+- [ ] Finalize Applications main navigation structure
+- [ ] Create additional application content pages
+- [ ] Integrate with mega menu
+- [ ] SEO optimization for new pages
+
+---
+
+### Solutions Section (Deferred)
+**Status:** Not started, awaiting content
+
+**Context:** Solutions section in footer requires new content currently being developed. Technical implementation straightforward once content is ready.
+
+**Phase 2 Work:**
+- [ ] Define Solutions section structure
+- [ ] Create Solutions landing page
+- [ ] Build individual solution pages
+- [ ] Update footer navigation
+- [ ] SEO optimization
+
+---
 
 ## 🔄 In Progress
 
@@ -236,7 +391,7 @@
 
 # BAPI Headless - TODO & Next Steps
 
-## ✅ Completed
+## ✅ Completed - Infrastructure Ready for Phase 1
 
 ### Region & Language Infrastructure
 - [x] Region selector (US, EU, Asia, MENA) with persistence
@@ -366,25 +521,7 @@
 
 ---
 
-## 🚧 In Progress / Next Steps
-
-### Translations (High Priority)
-- [ ] Complete translation files for all 7 languages
-  - [ ] Current: Only skeleton/sample translations exist
-  - [ ] Need: Full translations for all UI strings
-  - [ ] Files: `messages/en.json`, `ar.json`, `de.json`, `fr.json`, `es.json`, `ja.json`, `zh.json`
-- [ ] Add `t()` function calls throughout the app
-  - [ ] Header/Footer components
-  - [ ] Product pages
-  - [ ] Company pages
-  - [ ] Forms and buttons
-- [ ] Test language switching across all pages
-
-### RTL Support (High Priority)
-- [ ] Add RTL CSS support for Arabic language
-- [ ] Test layout in RTL mode
-- [ ] Adjust component styles for RTL (text-align, margins, paddings)
-- [ ] Ensure icons/images flip appropriately
+## 🚧 Other In Progress / Next Steps
 
 ### Product Pages Polish
 - [x] **Product Page Performance Optimization (Dec 31, 2025)**

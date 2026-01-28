@@ -52,6 +52,8 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: web
           buildScriptName: build-storybook
+          storybookBuildDir: storybook-static  # Explicit output directory
           onlyChanged: true  # Only test changed stories
           exitZeroOnChanges: true  # Don't fail build on UI changes
           exitOnceUploaded: true  # Exit immediately after upload
+          skip: '@(renovate/**|dependabot/**)'  # Skip bot branches

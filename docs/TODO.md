@@ -1154,6 +1154,12 @@
 - [ ] TypeScript strict mode improvements
 - [ ] Accessibility audit and fixes
 - [ ] Browser compatibility testing
+- [ ] **Chromatic Visual Regression Testing** - Re-enable after fixing buildCommand issue
+  - Issue: Malformed buildCommand with invalid `--test` flags causing builds to fail
+  - Current Status: Workflow disabled (`.github/workflows/chromatic.yml.disabled`)
+  - Fix Required: Reset Chromatic project configuration or clear cached build command
+  - Priority: Low (not critical for April 10 launch)
+  - Reference: See DAILY-LOG.md for details
 
 ---
 

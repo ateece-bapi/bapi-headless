@@ -135,8 +135,7 @@ bapi-headless/
 - �️ **WebP Image Optimization** - 60% size reduction (88.52 MB → 35.44 MB) across 26 images, hero image alone reduced from 60 MB to 9.4 MB
 - �🔐 **Clerk Authentication** - Google OAuth, user profiles, protected routes
 - 👤 **Complete User Dashboard** - 6-page account system (dashboard, profile, orders, favorites, quotes, settings)
-- 🛍️ **Real Order History** - Display WooCommerce orders via authenticated GraphQL
-- 💬 **Quote Request System** - Custom quote forms with file uploads
+- 🛍️ **Real Order History** - Display WooCommerce orders via authenticated GraphQL- 🤖 **AI Chatbot** - Claude-powered technical support with product search, multilingual support (8 languages), and human handoff capability- 💬 **Quote Request System** - Custom quote forms with file uploads
 - ⭐ **Favorites System** - Save and manage favorite products
 - 🔄 **WordPress User Migration** - Bulk import system for existing customers
 - 🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)

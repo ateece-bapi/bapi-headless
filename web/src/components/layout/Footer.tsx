@@ -1,58 +1,62 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { Linkedin, Youtube } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-const footerSections = [
+// Footer sections now use translation keys - next-intl format
+const getFooterSections = (t: any) => [
   {
-    title: 'Products',
+    titleKey: 'sections.products.title' as const,
     links: [
-      { label: 'All Sensors', href: '/sensors' },
-      { label: 'Wireless Monitoring', href: '/wireless' },
-      { label: 'Test Instruments', href: '/test-instruments' },
-      { label: 'Air Quality Sensors', href: '/air-quality' },
-      { label: 'Accessories', href: '/accessories' },
-      { label: 'Browse Catalog', href: '/products' },
+      { labelKey: 'sections.products.links.allSensors' as const, href: '/sensors' },
+      { labelKey: 'sections.products.links.wireless' as const, href: '/wireless' },
+      { labelKey: 'sections.products.links.testInstruments' as const, href: '/test-instruments' },
+      { labelKey: 'sections.products.links.airQuality' as const, href: '/air-quality' },
+      { labelKey: 'sections.products.links.accessories' as const, href: '/accessories' },
+      { labelKey: 'sections.products.links.browseCatalog' as const, href: '/products' },
     ],
   },
   // PHASE 2: Solutions section deferred to Phase 2 (April 10, 2026 deadline)
   // Awaiting content creation from marketing team
   // {
-  //   title: 'Solutions',
+  //   titleKey: 'sections.solutions.title' as const,
   //   links: [
-  //     { label: 'Healthcare', href: '/solutions/healthcare' },
-  //     { label: 'Data Centers', href: '/solutions/data-centers' },
-  //     { label: 'Commercial Buildings', href: '/solutions/commercial' },
-  //     { label: 'Manufacturing', href: '/solutions/manufacturing' },
-  //     { label: 'BACnet Integration', href: '/solutions/bacnet' },
+  //     { labelKey: 'sections.solutions.links.healthcare' as const, href: '/solutions/healthcare' },
+  //     { labelKey: 'sections.solutions.links.datacenters' as const, href: '/solutions/data-centers' },
+  //     { labelKey: 'sections.solutions.links.commercial' as const, href: '/solutions/commercial' },
+  //     { labelKey: 'sections.solutions.links.manufacturing' as const, href: '/solutions/manufacturing' },
+  //     { labelKey: 'sections.solutions.links.bacnet' as const, href: '/solutions/bacnet' },
   //   ],
   // },
   {
-    title: 'Resources',
+    titleKey: 'sections.resources.title' as const,
     links: [
-      { label: 'Technical Datasheets', href: '/resources/datasheets' },
-      { label: 'Installation Guides', href: '/resources/installation' },
-      { label: 'Application Notes', href: '/resources/application-notes' },
-      { label: 'Video Library', href: '/resources/videos' },
-      { label: 'Case Studies', href: '/resources/case-studies' },
+      { labelKey: 'sections.resources.links.datasheets' as const, href: '/resources/datasheets' },
+      { labelKey: 'sections.resources.links.installation' as const, href: '/resources/installation' },
+      { labelKey: 'sections.resources.links.applicationNotes' as const, href: '/resources/application-notes' },
+      { labelKey: 'sections.resources.links.videos' as const, href: '/resources/videos' },
+      { labelKey: 'sections.resources.links.caseStudies' as const, href: '/resources/case-studies' },
     ],
   },
   {
-    title: 'Company',
+    titleKey: 'sections.company.title' as const,
     links: [
-      { label: 'Mission & Values', href: '/company/mission-values' },
-      { label: 'Why BAPI', href: '/company/why-bapi' },
-      { label: 'News', href: '/company/news' },
-      { label: 'Careers', href: '/company/careers' },
-      { label: 'Contact Us', href: '/company/contact-us' },
+      { labelKey: 'sections.company.links.mission' as const, href: '/company/mission-values' },
+      { labelKey: 'sections.company.links.whyBapi' as const, href: '/company/why-bapi' },
+      { labelKey: 'sections.company.links.news' as const, href: '/company/news' },
+      { labelKey: 'sections.company.links.careers' as const, href: '/company/careers' },
+      { labelKey: 'sections.company.links.contact' as const, href: '/company/contact-us' },
     ],
   },
   {
-    title: 'Support',
+    titleKey: 'sections.support.title' as const,
     links: [
-      { label: 'Technical Support', href: '/support' },
-      { label: 'Product Selector', href: '/resources/selector' },
-      { label: 'Cross Reference', href: '/resources/cross-reference' },
-      { label: 'Distributor Network', href: '/where-to-buy' },
+      { labelKey: 'sections.support.links.technical' as const, href: '/support' },
+      { labelKey: 'sections.support.links.selector' as const, href: '/resources/selector' },
+      { labelKey: 'sections.support.links.crossReference' as const, href: '/resources/cross-reference' },
+      { labelKey: 'sections.support.links.distributorNetwork' as const, href: '/where-to-buy' },
     ],
   },
 ];
@@ -70,7 +74,11 @@ const social = [
   },
 ];
 
-const Footer: React.FC = () => (
+const Footer: React.FC = () => {
+  const t = useTranslations('footer');
+  const footerSections = getFooterSections(t);
+  
+  return (
   <footer className="w-full bg-neutral-50 border-t border-neutral-200 mt-16 relative">
     {/* Gradient Accent Line */}
     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500"></div>
@@ -88,10 +96,10 @@ const Footer: React.FC = () => (
             />
           </Link>
           <p className="text-sm lg:text-base text-neutral-900 font-semibold leading-relaxed max-w-sm">
-            <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">Precision Sensor Solutions</span> for Building Automation.
+            <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">{t('brand.tagline')}</span>
           </p>
           <p className="text-sm text-neutral-600 max-w-sm leading-relaxed">
-            Trusted by engineers worldwide for mission-critical facilities since 1993.
+            {t('brand.description')}
           </p>
           
           {/* Social Links */}
@@ -116,9 +124,9 @@ const Footer: React.FC = () => (
 
         {/* Navigation Sections */}
         {footerSections.map((section) => (
-          <nav key={section.title} className="flex flex-col gap-3 group">
+          <nav key={section.titleKey} className="flex flex-col gap-3 group">
             <h3 className="font-extrabold text-sm lg:text-base text-primary-600 uppercase tracking-wide mb-2 relative pb-2">
-              {section.title}
+              {t(section.titleKey)}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 group-hover:w-full transition-all duration-500"></span>
             </h3>
             <ul className="space-y-2.5">
@@ -128,7 +136,7 @@ const Footer: React.FC = () => (
                     href={link.href}
                     className="text-sm text-neutral-700 hover:text-primary-600 hover:translate-x-1 transition-all duration-300 inline-block font-medium"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 </li>
               ))}
@@ -142,11 +150,11 @@ const Footer: React.FC = () => (
         {/* Contact Information */}
         <div className="flex flex-col gap-2">
           <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
-            Contact
+            {t('contact.title')}
           </h4>
           <address className="not-italic text-sm text-neutral-700 space-y-2 font-medium">
-            <p className="text-neutral-900">750 N Royal Ave</p>
-            <p className="text-neutral-900">Gays Mills, WI 54631</p>
+            <p className="text-neutral-900">{t('contact.address.street')}</p>
+            <p className="text-neutral-900">{t('contact.address.city')}</p>
             <a
               href="tel:6087354800"
               className="block hover:text-primary-600 transition-all duration-300 hover:translate-x-1 font-semibold"
@@ -165,7 +173,7 @@ const Footer: React.FC = () => (
         {/* Awards & Recognition */}
         <div className="flex flex-col gap-3">
           <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
-            Awards & Recognition
+            {t('awards.title')}
           </h4>
           <div className="flex flex-wrap items-center gap-4">
             <img 
@@ -188,14 +196,14 @@ const Footer: React.FC = () => (
             />
           </div>
           <p className="text-xs text-neutral-600 mt-2 font-medium">
-            Recognized for innovation and excellence in building automation technology
+            {t('awards.description')}
           </p>
         </div>
 
         {/* Certifications */}
         <div className="flex flex-col gap-3">
           <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
-            Certifications
+            {t('certifications.title')}
           </h4>
           
           {/* Certification Logos */}
@@ -221,10 +229,10 @@ const Footer: React.FC = () => (
             
             {/* Text Certifications */}
             <div className="text-sm text-neutral-700 space-y-1.5 font-medium">
-              <p className="text-neutral-900 font-semibold">BACnet B-ASC Certified</p>
-              <p className="text-neutral-900 font-semibold">ISO 9001:2015</p>
-              <p className="text-neutral-900 font-semibold">UL Listed</p>
-              <p className="text-neutral-700">Made in USA</p>
+              <p className="text-neutral-900 font-semibold">{t('certifications.bacnet')}</p>
+              <p className="text-neutral-900 font-semibold">{t('certifications.iso')}</p>
+              <p className="text-neutral-900 font-semibold">{t('certifications.ul')}</p>
+              <p className="text-neutral-700">{t('certifications.madeInUsa')}</p>
             </div>
           </div>
         </div>
@@ -232,19 +240,19 @@ const Footer: React.FC = () => (
         {/* Quick Actions */}
         <div className="flex flex-col gap-3">
           <h4 className="font-extrabold text-sm text-primary-600 uppercase tracking-wide mb-2">
-            Quick Actions
+            {t('quickActions.title')}
           </h4>
           <Link
             href="/quote"
             className="inline-flex items-center justify-center px-5 py-3 bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-neutral-900 font-bold text-sm rounded-lg transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105 border-2 border-accent-600"
           >
-            Request Quote
+            {t('quickActions.requestQuote')}
           </Link>
           <Link
             href="/where-to-buy"
             className="inline-flex items-center justify-center px-5 py-3 bg-white border-2 border-neutral-300 text-neutral-700 hover:border-primary-600 hover:bg-primary-50 hover:text-primary-600 font-bold text-sm rounded-lg transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105"
           >
-            Find Distributor
+            {t('quickActions.findDistributor')}
           </Link>
         </div>
       </div>
@@ -252,20 +260,21 @@ const Footer: React.FC = () => (
       {/* Copyright & Legal */}
       <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-neutral-600">
         <div className="space-y-1.5 font-medium">
-          <p>© {new Date().getFullYear()} Building Automation Products, Inc. All rights reserved.</p>
-          <p className="text-neutral-500">BAPI® is a registered trademark of Building Automation Products, Inc.</p>
+          <p>{t('legal.copyright', { year: new Date().getFullYear() })}</p>
+          <p className="text-neutral-500">{t('legal.trademark')}</p>
         </div>
         <div className="flex gap-6">
           <Link href="/privacy" className="hover:text-primary-600 transition-all duration-300 font-semibold hover:translate-x-1">
-            Privacy Policy
+            {t('legal.privacy')}
           </Link>
           <Link href="/terms" className="hover:text-primary-600 transition-all duration-300 font-semibold hover:translate-x-1">
-            Terms of Use
+            {t('legal.terms')}
           </Link>
         </div>
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;

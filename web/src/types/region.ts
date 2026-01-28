@@ -3,8 +3,8 @@
  */
 
 export type RegionCode = 'us' | 'eu' | 'asia' | 'mena';
-export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED';
-export type LanguageCode = 'en' | 'de' | 'fr' | 'es' | 'ja' | 'zh' | 'ar';
+export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED' | 'VND';
+export type LanguageCode = 'en' | 'de' | 'fr' | 'es' | 'ja' | 'zh' | 'vi' | 'ar';
 
 export interface Region {
   code: RegionCode;
@@ -117,6 +117,13 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     decimals: 2,
     position: 'after',
   },
+  VND: {
+    code: 'VND',
+    symbol: '₫',
+    name: 'Vietnamese Dong',
+    decimals: 0,
+    position: 'after',
+  },
 };
 
 export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
@@ -166,6 +173,14 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     nativeName: '中文',
     flag: '🇨🇳',
     dateFormat: 'YYYY-MM-DD',
+    timeFormat: '24h',
+  },
+  vi: {
+    code: 'vi',
+    name: 'Vietnamese',
+    nativeName: 'Tiếng Việt',
+    flag: '🇻🇳',
+    dateFormat: 'DD/MM/YYYY',
     timeFormat: '24h',
   },
   ar: {

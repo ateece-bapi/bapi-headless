@@ -12,6 +12,7 @@ import frMessages from '../../../messages/fr.json';
 import esMessages from '../../../messages/es.json';
 import jaMessages from '../../../messages/ja.json';
 import zhMessages from '../../../messages/zh.json';
+import viMessages from '../../../messages/vi.json';
 
 type Messages = Record<string, any>;
 type TranslationContextType = {
@@ -27,6 +28,7 @@ const allMessages: Record<LanguageCode, Messages> = {
   es: esMessages,
   ja: jaMessages,
   zh: zhMessages,
+  vi: viMessages,
 };
 
 const TranslationContext = createContext<TranslationContextType | null>(null);
@@ -52,10 +54,27 @@ export function useTranslations(namespace?: string) {
   const namespaceMessages = namespace ? messages[namespace] || {} : messages;
 
   return (key: string, values?: Record<string, string | number>) => {
-    let text = namespaceMessages[key] || key;
+    // Handle nested keys like "sections.products.title"
+    const keyParts = key.split('.');
+    let text: any = namespaceMessages;
+    
+    for (const part of keyParts) {
+      if (text && typeof text === 'object' && part in text) {
+        text = text[part];
+      } else {
+        // Key not found, return the full key as fallback
+        text = key;
+        break;
+      }
+    }
+    
+    // Ensure text is a string
+    if (typeof text !== 'string') {
+      text = key;
+    }
     
     // Simple variable substitution
-    if (values) {
+    if (values && typeof text === 'string') {
       Object.entries(values).forEach(([k, v]) => {
         text = text.replace(`{${k}}`, String(v));
       });

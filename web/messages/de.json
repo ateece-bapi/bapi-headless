@@ -1,39 +1,38 @@
 {
   "common": {
-    "language": "Deutsch",
-    "region": "Region",
-    "currency": "Währung",
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "tryAgain": "Erneut versuchen",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "submit": "Absenden",
+    "confirm": "Bestätigen",
+    "learnMore": "Mehr erfahren",
+    "viewAll": "Alle anzeigen",
+    "readMore": "Weiterlesen",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
     "search": "Suchen",
-    "cart": "Warenkorb",
-    "signIn": "Anmelden",
-    "signOut": "Abmelden",
-    "backToTop": "Nach oben"
+    "filter": "Filtern",
+    "sort": "Sortieren",
+    "clearAll": "Alle löschen",
+    "apply": "Anwenden",
+    "reset": "Zurücksetzen"
   },
   "nav": {
     "products": "Produkte",
-    "solutions": "Lösungen",
-    "resources": "Ressourcen",
+    "applications": "Anwendungen",
+    "support": "Support",
     "company": "Unternehmen",
-    "support": "Support"
-  },
-  "products": {
-    "title": "Produkte",
-    "viewAll": "Alle Produkte ansehen"
-  },
-  "home": {
-    "hero": {
-      "title": "Präzise Sensorlösungen für die Gebäudeautomation",
-      "subtitle": "Von Ingenieuren weltweit für zuverlässige HVAC/R-Sensorik geschätzt",
-      "cta": "Produkte erkunden"
-    }
-  },
-  "footer": {
-    "copyright": "© {year} BAPI. Alle Rechte vorbehalten."
-  },
-  "region": {
-    "us": "Vereinigte Staaten",
-    "eu": "Europa",
-    "asia": "Asien-Pazifik",
-    "mena": "Naher Osten"
+    "cart": "Warenkorb",
+    "account": "Konto",
+    "signIn": "Benutzer Anmelden"
   }
 }

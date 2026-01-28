@@ -1,0 +1,78 @@
+{
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "tryAgain": "Thử lại",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "close": "Đóng",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước",
+    "submit": "Gửi",
+    "confirm": "Xác nhận",
+    "learnMore": "Tìm hiểu thêm",
+    "viewAll": "Xem tất cả",
+    "readMore": "Đọc thêm",
+    "showMore": "Hiển thị thêm",
+    "showLess": "Hiển thị ít hơn",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "sort": "Sắp xếp",
+    "clearAll": "Xóa tất cả",
+    "apply": "Áp dụng",
+    "reset": "Đặt lại"
+  },
+  "nav": {
+    "products": "Sản phẩm",
+    "applications": "Ứng dụng",
+    "support": "Hỗ trợ",
+    "company": "Công ty",
+    "cart": "Giỏ hàng",
+    "account": "Tài khoản",
+    "signIn": "Đăng nhập"
+  },
+  "region": {
+    "selectLanguage": "Chọn ngôn ngữ",
+    "selectRegion": "Chọn khu vực",
+    "currency": "Tiền tệ",
+    "measurements": "Đơn vị đo",
+    "temperature": "Nhiệt độ",
+    "pressure": "Áp suất",
+    "unitSystem": {
+      "metric": "Hệ mét (°C, bar)",
+      "imperial": "Hệ Anh (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "Bắc Mỹ",
+      "europe": "Châu Âu",
+      "asia": "Châu Á",
+      "middleEast": "Trung Đông",
+      "latinAmerica": "Mỹ Latinh",
+      "australia": "Úc & Thái Bình Dương"
+    },
+    "languages": {
+      "en": "English",
+      "de": "Deutsch (German)",
+      "fr": "Français (French)",
+      "es": "Español (Spanish)",
+      "ja": "日本語 (Japanese)",
+      "zh": "中文 (Chinese)",
+      "vi": "Tiếng Việt (Vietnamese)",
+      "ar": "العربية (Arabic)"
+    },
+    "currencies": {
+      "usd": "USD ($)",
+      "eur": "EUR (€)",
+      "gbp": "GBP (£)",
+      "cad": "CAD ($)",
+      "jpy": "JPY (¥)",
+      "cny": "CNY (¥)",
+      "vnd": "VND (₫)",
+      "aed": "AED (د.إ)"
+    }
+  }
+}

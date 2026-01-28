@@ -1,0 +1,110 @@
+{
+  "common": {
+    "language": "English",
+    "region": "Region",
+    "currency": "Currency",
+    "search": "Search",
+    "cart": "Cart",
+    "signIn": "User Sign In",
+    "signOut": "Sign Out",
+    "backToTop": "Back to top"
+  },
+  "nav": {
+    "products": "Products",
+    "solutions": "Solutions",
+    "resources": "Resources",
+    "company": "Company",
+    "support": "Support"
+  },
+  "products": {
+    "title": "Products",
+    "viewAll": "View All Products",
+    "categories": {
+      "temperature": "Temperature",
+      "humidity": "Humidity & Air Quality",
+      "pressure": "Pressure & Flow",
+      "controllers": "Controllers & I/O"
+    },
+    "temperature": {
+      "roomWall": "Room & Wall Sensors",
+      "roomWallDesc": "High-accuracy temperature sensing for HVAC control",
+      "duct": "Duct Sensors",
+      "ductDesc": "Duct-mounted temperature transmitters",
+      "immersion": "Immersion & Well",
+      "immersionDesc": "Liquid temperature measurement solutions",
+      "outdoor": "Outdoor Sensors",
+      "outdoorDesc": "Weather-resistant temperature sensing"
+    },
+    "humidity": {
+      "rh": "RH Sensors",
+      "rhDesc": "Relative humidity measurement",
+      "co2": "CO₂ Sensors",
+      "co2Desc": "Carbon dioxide monitoring for IAQ",
+      "voc": "VOC Sensors",
+      "vocDesc": "Volatile organic compound detection",
+      "particulate": "Particulate Matter",
+      "particulateDesc": "PM2.5 and PM10 monitoring"
+    },
+    "pressure": {
+      "differential": "Differential Pressure",
+      "differentialDesc": "Room pressurization and filter monitoring",
+      "static": "Static Pressure",
+      "staticDesc": "Duct static pressure transmitters",
+      "airflow": "Airflow Stations",
+      "airflowDesc": "Air velocity and volume measurement"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Precision Sensor Solutions for Building Automation",
+      "subtitle": "Trusted by engineers worldwide for reliable HVAC/R sensing",
+      "cta": "Explore Products"
+    },
+    "features": {
+      "quality": "Premium Quality",
+      "qualityDesc": "Built to last with rigorous testing",
+      "support": "Expert Support",
+      "supportDesc": "Technical assistance when you need it",
+      "innovation": "Proven Innovation",
+      "innovationDesc": "40+ years of sensor expertise"
+    }
+  },
+  "footer": {
+    "tagline": "Precision Sensor Solutions for Building Automation",
+    "taglineDesc": "Trusted by engineers worldwide for reliable HVAC/R sensors",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "address": "750 N Royal Ave, Gays Mills, WI 54631",
+    "phone": "(608) 735-4800",
+    "copyright": "© {year} BAPI. All rights reserved."
+  },
+  "region": {
+    "demo": {
+      "title": "Region & Localization Demo",
+      "subtitle": "Select a region from the header dropdown to see automatic currency conversion, date formatting, unit conversion, and number localization in action.",
+      "productPrice": "Product Price",
+      "priceRange": "Price Range",
+      "todayDate": "Today's Date",
+      "temperatureRange": "Temperature Range",
+      "dimensions": "Dimensions",
+      "largeNumbers": "Large Numbers",
+      "tip": "Tip: Change the region selector in the header to see different formats",
+      "howItWorks": "How It Works",
+      "regionSelection": "Region Selection",
+      "regionSelectionDesc": "Use the region selector in the header (globe icon) to choose your region. Your selection is saved in localStorage and persists across sessions.",
+      "currencyPricing": "Currency & Pricing",
+      "currencyPricingDesc": "All prices are automatically converted from the base USD price using current exchange rates. Symbol positioning and decimal places adjust per currency.",
+      "dateTimeFormatting": "Date & Time Formatting",
+      "unitConversion": "Unit Conversion",
+      "numberFormatting": "Number Formatting",
+      "numberFormattingDesc": "Large numbers are formatted according to regional conventions (e.g., 1,234.56 vs 1.234,56).",
+      "forDevelopers": "For Developers",
+      "forDevelopersDesc": "Use the provided utilities in your components:",
+      "original": "Original"
+    },
+    "us": "United States",
+    "eu": "Europe",
+    "asia": "Asia Pacific",
+    "mena": "Middle East"
+  }
+}

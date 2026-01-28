@@ -212,7 +212,7 @@ const technicalTeam: SalesRep[] = [
   },
   {
     name: 'Don Clark',
-    title: 'RMA & Technical Server Manager',
+    title: 'RMA & Technical Service Manager',
     region: 'Technical Support',
     email: 'dclark@bapihvac.com',
     phone: '(800) 553-3027',

@@ -123,6 +123,7 @@ function getLocaleFromLanguage(language: LanguageCode): string {
     es: 'es-ES',
     ja: 'ja-JP',
     zh: 'zh-CN',
+    vi: 'vi-VN',
     ar: 'ar-AE',
   };
   return localeMap[language];

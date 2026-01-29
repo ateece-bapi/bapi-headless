@@ -23,6 +23,14 @@ interface ButtonAsLink extends BaseButtonProps {
 
 type BapiButtonProps = ButtonAsButton | ButtonAsLink;
 
+/**
+ * BapiButton - Official BAPI brand button component
+ * 
+ * Implements 2026 BAPI Brand Guide specifications:
+ * - Yellow buttons: Black text, NO text shadow, gradient background with drop shadow
+ * - Blue buttons: White text WITH slight text shadow, gradient background with drop shadow
+ * - Official gradients: #f89623 → #ffc843 (yellow), #044976 → #1479bc (blue)
+ */
 const BapiButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, BapiButtonProps>(
   ({ children, color = 'blue', className, ...props }, ref) => {
     const baseStyles = clsx(
@@ -33,8 +41,7 @@ const BapiButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, BapiB
       'transition-all duration-300 ease-out',
       'focus:outline-none focus:ring-4 focus:ring-offset-2',
       'active:scale-95',
-      'shadow-lg hover:shadow-xl',
-      'transform hover:-translate-y-0.5',
+      'transform',
       // Font smoothing for crisp text
       'antialiased',
       className
@@ -42,16 +49,12 @@ const BapiButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, BapiB
 
     const colorStyles = {
       blue: clsx(
-        'bg-primary-600 hover:bg-primary-700',
-        'text-white',
-        'focus:ring-primary-600/50',
-        'shadow-primary-600/30 hover:shadow-primary-600/40'
+        'btn-bapi-primary', // Uses official gradient + text shadow
+        'focus:ring-primary-600/50'
       ),
       yellow: clsx(
-        'bg-accent-500 hover:bg-accent-600',
-        'text-gray-900',
-        'focus:ring-accent-500/50',
-        'shadow-accent-500/30 hover:shadow-accent-500/40'
+        'btn-bapi-accent', // Uses official gradient + NO text shadow
+        'focus:ring-accent-500/50'
       ),
     };
 

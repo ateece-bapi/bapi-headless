@@ -222,7 +222,7 @@ export default function CartSummary({
         <button
           onClick={handleCheckout}
           disabled={isUpdating}
-          className="w-full bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold py-4 rounded-xl transition-colors shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full btn-bapi-accent py-4 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           Proceed to Checkout
           <ArrowRight className="w-5 h-5" />

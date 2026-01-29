@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the BAPI brand color system implemented in Tailwind CSS. The system is based on the **2024 BAPI Brand Standards** using actual **web colors** (not Pantone - Pantone is for print media only).
+This document describes the BAPI brand color system implemented in Tailwind CSS. The system is based on the **2026 BAPI Brand Standards** using actual **web colors** (not Pantone - Pantone is for print media only).
 
 ## Official BAPI Web Colors
 
@@ -11,6 +11,53 @@ BAPI Blue:   #1479BC  (Primary - 30% usage)
 BAPI Yellow: #FFC843  (Accent - 10% usage)  
 BAPI Gray:   #97999B  (Neutral - with white, 60% usage)
 BAPI White:  #FFFFFF  (Background - with gray, 60% usage)
+```
+
+## Official BAPI Gradients (2026 Brand Guide)
+
+**Yellow/Orange Gradient (Accent)**
+```
+Gradient: #f89623 → #ffc843 (135deg)
+Hover:    #e6872c → #e6b43c (darker)
+```
+
+**Blue Gradient (Primary)**
+```
+Gradient: #044976 → #1479bc (135deg)
+Hover:    #033a5f → #106196 (darker)
+```
+
+**Usage in Code:**
+```css
+/* CSS Variables */
+background: var(--gradient-accent);
+background: var(--gradient-primary);
+
+/* Utility Classes */
+.bg-bapi-accent-gradient
+.bg-bapi-primary-gradient
+```
+
+## Button Specifications (2026 Brand Guide)
+
+**Yellow Buttons (Primary CTAs):**
+- Background: Official yellow gradient
+- Text: Black (#000000)
+- Text Shadow: **NONE** (per brand guide)
+- Drop Shadow: Yes (on button)
+- Use for: Add to Cart, Primary CTAs
+
+**Blue Buttons (Secondary CTAs):**
+- Background: Official blue gradient
+- Text: White (#FFFFFF)
+- Text Shadow: **WITH slight drop shadow** (0 1px 2px rgba(0,0,0,0.25))
+- Drop Shadow: Yes (on button)
+- Use for: View Details, Continue, Secondary actions
+
+**Usage in Code:**
+```tsx
+<button className="btn-bapi-accent">Add to Cart</button>
+<button className="btn-bapi-primary">Continue</button>
 ```
 
 ## Color Distribution Guidelines
@@ -30,6 +77,7 @@ A senior developer approach to color tokens includes:
 3. **Accessibility** - Color combinations meet WCAG contrast requirements
 4. **Flexibility** - CSS custom properties allow theme switching
 5. **Brand alignment** - Matches existing BAPI website color scheme
+6. **Official gradients** - 2026 Brand Guide specifications for buttons and graphical elements
 
 ## Color Families
 

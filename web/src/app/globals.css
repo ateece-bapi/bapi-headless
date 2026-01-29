@@ -119,6 +119,16 @@
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* BAPI Official Brand Gradients (2026 Brand Guide) */
+  --gradient-accent: linear-gradient(135deg, #f89623 0%, #ffc843 100%);
+  --gradient-accent-hover: linear-gradient(135deg, #e6872c 0%, #e6b43c 100%);
+  --gradient-primary: linear-gradient(135deg, #044976 0%, #1479bc 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #033a5f 0%, #106196 100%);
+  
+  /* Additional gradient utilities */
+  --gradient-subtle-accent: linear-gradient(135deg, #fffbf0 0%, #fff7e1 50%, #ffefc3 100%);
+  --gradient-subtle-primary: linear-gradient(135deg, #e6f2f9 0%, #cce5f3 50%, #99cbe7 100%);
 }
 
 :root {
@@ -241,6 +251,73 @@ body {
   /* Micro-interactions: Smooth opacity transitions */
   .transition-opacity-smooth {
     transition: opacity var(--duration-normal) var(--ease-out);
+  }
+
+  /* ============================================
+     BAPI Official Button Styles (2026 Brand Guide)
+     ============================================ */
+  
+  /* Accent (Yellow) Buttons - Primary CTAs */
+  .btn-bapi-accent {
+    background: var(--gradient-accent);
+    color: #000000;
+    font-weight: 700;
+    text-shadow: none; /* Yellow buttons: NO text shadow per brand guide */
+    box-shadow: 0 4px 6px -1px rgba(248, 150, 35, 0.3), 
+                0 2px 4px -2px rgba(248, 150, 35, 0.2);
+    transition: all var(--duration-base) var(--ease-out);
+  }
+
+  .btn-bapi-accent:hover {
+    background: var(--gradient-accent-hover);
+    box-shadow: 0 10px 15px -3px rgba(248, 150, 35, 0.4), 
+                0 4px 6px -4px rgba(248, 150, 35, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-bapi-accent:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px -1px rgba(248, 150, 35, 0.3);
+  }
+
+  /* Primary (Blue) Buttons - Secondary CTAs */
+  .btn-bapi-primary {
+    background: var(--gradient-primary);
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); /* Blue buttons: WITH slight drop shadow per brand guide */
+    box-shadow: 0 4px 6px -1px rgba(4, 73, 118, 0.3), 
+                0 2px 4px -2px rgba(4, 73, 118, 0.2);
+    transition: all var(--duration-base) var(--ease-out);
+  }
+
+  .btn-bapi-primary:hover {
+    background: var(--gradient-primary-hover);
+    box-shadow: 0 10px 15px -3px rgba(4, 73, 118, 0.4), 
+                0 4px 6px -4px rgba(4, 73, 118, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-bapi-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px -1px rgba(4, 73, 118, 0.3);
+  }
+
+  /* Gradient Background Utilities */
+  .bg-bapi-accent-gradient {
+    background: var(--gradient-accent);
+  }
+
+  .bg-bapi-primary-gradient {
+    background: var(--gradient-primary);
+  }
+
+  .bg-bapi-accent-gradient-hover:hover {
+    background: var(--gradient-accent-hover);
+  }
+
+  .bg-bapi-primary-gradient-hover:hover {
+    background: var(--gradient-primary-hover);
   }
 }
 /* Product Description Styling - Override WordPress inline styles */

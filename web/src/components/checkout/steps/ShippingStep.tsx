@@ -342,7 +342,7 @@ export default function ShippingStep({
       <div className="flex justify-end pt-6 border-t border-neutral-200">
         <button
           type="submit"
-          className="px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-xl transition-colors shadow-md hover:shadow-lg flex items-center gap-2"
+          className="btn-bapi-primary px-8 py-4 rounded-xl flex items-center gap-2"
         >
           Continue to Payment
           <ArrowRight className="w-5 h-5" />

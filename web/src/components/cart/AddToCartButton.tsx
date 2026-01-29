@@ -186,13 +186,12 @@ const AddToCartButton = ({
     flex items-center justify-center gap-2
     font-semibold py-3 px-6 rounded-xl
     transition-all duration-300
-    shadow-sm hover:shadow-md
     disabled:opacity-50 disabled:cursor-not-allowed
     ${showSuccess 
-      ? 'bg-success-500 hover:bg-success-600 text-white' 
+      ? 'bg-success-500 hover:bg-success-600 text-white shadow-sm hover:shadow-md' 
       : disabled
-        ? 'bg-neutral-300 text-neutral-500'
-        : 'bg-accent-500 hover:bg-accent-600 text-neutral-900'
+        ? 'bg-neutral-300 text-neutral-500 shadow-sm'
+        : 'btn-bapi-accent'
     }
     ${className}
   `;

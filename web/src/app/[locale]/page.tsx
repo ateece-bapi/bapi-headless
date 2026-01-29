@@ -1,28 +1,23 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Hero } from '../components';
+import { getPosts } from '@/lib/wordpress';
 import { 
-  Thermometer, 
-  Gauge, 
-  Wind, 
   CheckCircle,
   ArrowRight,
-  Zap,
   Award,
   Globe,
-  Fan,
-  Server,
-  Utensils,
-  Truck,
-  Heart,
-  ShoppingCart,
-  Beef,
-  Snowflake,
   TrendingUp,
   Package,
-  ShieldCheck
+  ShieldCheck,
+  Zap,
+  Newspaper,
+  Calendar
 } from 'lucide-react';
 
-export default function Home() {
+export default async function Home() {
+  // Fetch latest 3 news posts
+  const posts = await getPosts({ perPage: 3 });
   return (
     <main className="min-h-screen">
       {/* Hero Section - Simplified with ONE primary CTA */}
@@ -84,96 +79,117 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Browse by Industry - 8 Industries */}
+      {/* Product Categories - 8 Main Product Lines */}
       <section className="bg-white py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-              Innovative sensor solutions for the global market
+              Explore Our Product Catalog
             </h2>
-            <div className="flex items-center justify-center gap-4 mt-6">
-              <span className="text-neutral-600 font-medium">Browse by:</span>
-              <div className="flex gap-2">
-                <button className="px-4 py-2 bg-accent-500 text-neutral-900 rounded-lg font-semibold text-sm">
-                  Industry
-                </button>
-                <Link 
-                  href="/products"
-                  className="px-4 py-2 bg-white border border-neutral-300 text-neutral-700 hover:border-primary-500 hover:text-primary-600 rounded-lg font-semibold text-sm transition-colors"
-                >
-                  Sensor Type
-                </Link>
-              </div>
-            </div>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              Browse by sensor type to find the perfect solution for your building automation project
+            </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
             {[
               {
-                name: 'HVAC/R',
-                icon: Fan,
-                href: '/applications/building-automation',
-                description: 'Commercial HVAC and refrigeration'
+                name: 'Temperature Sensors',
+                icon: '/images/icons/Temperature_Icon.webp',
+                href: '/products',
+                count: 119,
+                description: 'High-accuracy temperature measurement'
               },
               {
-                name: 'Data Centers',
-                icon: Server,
-                href: '/applications/building-automation',
-                description: 'Critical temperature and humidity control'
+                name: 'Humidity Sensors',
+                icon: '/images/icons/Humidity_Icon.webp',
+                href: '/products',
+                count: 33,
+                description: 'Precise relative humidity monitoring'
               },
               {
-                name: 'Food Service',
-                icon: Utensils,
-                href: '/applications/building-automation',
-                description: 'Commercial kitchens and restaurants'
+                name: 'Pressure Sensors',
+                icon: '/images/icons/Pressure_Icon.webp',
+                href: '/products',
+                count: 39,
+                description: 'Differential and static pressure'
               },
               {
-                name: 'Transportation',
-                icon: Truck,
-                href: '/applications/building-automation',
-                description: 'Fleet monitoring and logistics'
+                name: 'Air Quality',
+                icon: '/images/icons/AirQuality_Icon.webp',
+                href: '/products',
+                count: 32,
+                description: 'CO₂, VOC, and particulate monitoring'
               },
               {
-                name: 'Healthcare',
-                icon: Heart,
-                href: '/applications/building-automation',
-                description: 'Hospitals and medical facilities'
+                name: 'Wireless Sensors',
+                icon: '/images/icons/Wireless_Icon.webp',
+                href: '/products',
+                count: 24,
+                description: 'Battery-powered solutions'
               },
               {
-                name: 'Grocery',
-                icon: ShoppingCart,
-                href: '/applications/building-automation',
-                description: 'Supermarkets and retail food'
+                name: 'Accessories',
+                icon: '/images/icons/Accessories_Icon.webp',
+                href: '/products',
+                count: 45,
+                description: 'Mounting hardware and cables'
               },
               {
-                name: 'Meat Processing',
-                icon: Beef,
-                href: '/applications/industrial-process',
-                description: 'Food processing and safety'
+                name: 'Test Instruments',
+                icon: '/images/icons/Test_Instruments_Icon.webp',
+                href: '/products',
+                count: 8,
+                description: 'Calibration and testing equipment'
               },
               {
-                name: 'Cold Chain',
-                icon: Snowflake,
-                href: '/applications/building-automation',
-                description: 'Temperature-controlled logistics'
+                name: 'ETA Line',
+                icon: '/images/icons/Sensors_Icon.webp',
+                href: '/products',
+                count: 70,
+                description: 'Modular I/O and control'
               }
-            ].map((industry) => {
-              const IconComponent = industry.icon;
+            ].map((category) => {
               return (
                 <Link
-                  key={industry.name}
-                  href={industry.href}
-                  className="group bg-white border border-neutral-200 rounded-xl p-6 hover:border-primary-400 hover:shadow-lg transition-all duration-300"
+                  key={category.name}
+                  href={category.href}
+                  className="group relative bg-white border-2 border-neutral-200 rounded-2xl p-6 hover:border-primary-500 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                 >
-                  <div className="w-14 h-14 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl mb-4 flex items-center justify-center">
-                    <IconComponent className="w-7 h-7 text-primary-600" strokeWidth={2} />
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Icon container with enhanced styling */}
+                  <div className="relative w-20 h-20 bg-gradient-to-br from-primary-100 via-primary-50 to-accent-50 rounded-2xl mb-4 flex items-center justify-center p-3 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300 border border-primary-200">
+                    <Image
+                      src={category.icon}
+                      alt={`${category.name} icon`}
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain drop-shadow-md"
+                    />
                   </div>
-                  <h3 className="text-lg font-bold text-primary-600 mb-2">
-                    {industry.name}
-                  </h3>
-                  <p className="text-sm text-neutral-600 leading-relaxed">
-                    {industry.description}
+                  
+                  {/* Title and count badge */}
+                  <div className="relative flex items-start justify-between mb-3">
+                    <h3 className="text-base font-bold text-neutral-900 group-hover:text-primary-600 transition-colors leading-tight pr-2">
+                      {category.name}
+                    </h3>
+                    <span className="flex-shrink-0 text-xs font-bold text-primary-600 bg-primary-50 px-2.5 py-1 rounded-full border border-primary-200 group-hover:bg-primary-100 group-hover:border-primary-300 transition-all">
+                      {category.count}
+                    </span>
+                  </div>
+                  
+                  {/* Description */}
+                  <p className="relative text-sm text-neutral-600 leading-relaxed group-hover:text-neutral-900 transition-colors">
+                    {category.description}
                   </p>
+                  
+                  {/* Arrow indicator on hover */}
+                  <div className="relative mt-3 flex items-center gap-1 text-sm font-semibold text-primary-500 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                    View Products
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
                 </Link>
               );
             })}
@@ -181,10 +197,10 @@ export default function Home() {
 
           <div className="text-center mt-8">
             <Link 
-              href="/applications"
+              href="/products"
               className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors"
             >
-              View All Applications
+              View All Products
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -211,7 +227,7 @@ export default function Home() {
                 description: '±0.2°C accuracy, wall-mount design for commercial spaces',
                 price: 'Contact for pricing',
                 features: ['10K-3 Thermistor', 'Wall Mount', 'BACnet/Modbus'],
-                icon: Thermometer
+                icon: '/images/icons/Temperature_Icon.webp'
               },
               {
                 name: 'BA/RH-WD4 Room Humidity',
@@ -219,7 +235,7 @@ export default function Home() {
                 description: 'Combined temp/humidity for IAQ monitoring',
                 price: 'Contact for pricing',
                 features: ['±2% RH Accuracy', 'LCD Display', 'Multi-Protocol'],
-                icon: Wind
+                icon: '/images/icons/Humidity_Icon.webp'
               },
               {
                 name: 'BA-DPT Differential Pressure',
@@ -227,45 +243,61 @@ export default function Home() {
                 description: 'Room pressurization and filter monitoring',
                 price: 'Contact for pricing',
                 features: ['0-10" WC Range', 'Hospital Grade', 'ASHRAE 170'],
-                icon: Gauge
+                icon: '/images/icons/Pressure_Icon.webp'
               }
             ].map((product) => {
-              const IconComponent = product.icon;
               return (
                 <div 
                   key={product.name}
-                  className="bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                  className="group relative bg-white rounded-2xl border-2 border-neutral-200 overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
                 >
-                  {/* Product Image Placeholder */}
-                  <div className="bg-gradient-to-br from-primary-50 to-primary-100 h-48 flex items-center justify-center">
-                    <IconComponent className="w-16 h-16 text-primary-500" strokeWidth={1.5} />
+                  {/* Hover gradient overlay on image */}
+                  <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                  
+                  {/* Product Image Placeholder with enhanced styling */}
+                  <div className="relative bg-gradient-to-br from-primary-100 via-accent-50 to-primary-50 h-48 flex items-center justify-center p-8 border-b-2 border-neutral-100">
+                    <Image
+                      src={product.icon}
+                      alt={`${product.category} icon`}
+                      width={128}
+                      height={128}
+                      className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-300"
+                    />
                   </div>
                   
                   <div className="p-6">
-                    <div className="text-xs font-semibold text-primary-600 uppercase tracking-wide mb-2">
+                    {/* Category badge with BAPI accent color */}
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-accent-500 text-neutral-900 rounded-full text-xs font-bold uppercase tracking-wide mb-3">
+                      <span className="w-1.5 h-1.5 bg-neutral-900 rounded-full" />
                       {product.category}
                     </div>
+                    
+                    {/* Product name */}
                     <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
                       {product.name}
                     </h3>
-                    <p className="text-sm text-neutral-600 mb-4">
+                    
+                    {/* Description */}
+                    <p className="text-sm text-neutral-600 mb-4 leading-relaxed">
                       {product.description}
                     </p>
                     
-                    <ul className="space-y-2 mb-4">
+                    {/* Features list with enhanced styling */}
+                    <ul className="space-y-2 mb-4 pb-4 border-b border-neutral-100">
                       {product.features.map((feature) => (
                         <li key={feature} className="text-xs text-neutral-700 flex items-center gap-2">
-                          <CheckCircle className="w-3.5 h-3.5 text-primary-500 shrink-0" />
-                          {feature}
+                          <CheckCircle className="w-4 h-4 text-primary-500 shrink-0" strokeWidth={2.5} />
+                          <span className="font-medium">{feature}</span>
                         </li>
                       ))}
                     </ul>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-neutral-100">
-                      <span className="text-sm font-semibold text-neutral-900">{product.price}</span>
+                    {/* Price and CTA with enhanced styling */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-neutral-900">{product.price}</span>
                       <Link 
                         href="/products"
-                        className="text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors inline-flex items-center gap-1"
+                        className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 hover:text-primary-700 transition-colors group-hover:gap-2"
                       >
                         View Details
                         <ArrowRight className="w-4 h-4" />
@@ -289,98 +321,226 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why BAPI - 3 Key Differentiators */}
-      <section className="bg-white py-12 lg:py-16">
+      {/* Why BAPI - Based on original website */}
+      <section className="bg-gradient-to-br from-neutral-50 via-white to-neutral-50 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-              Why Choose BAPI?
+          {/* Header with facility image */}
+          <div className="mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary-500 mb-6 text-center">
+              WHY BAPI?
             </h2>
+            <div className="max-w-4xl mx-auto mb-8">
+              <p className="text-base text-neutral-700 leading-relaxed">
+                BAPI has been changing the way you think about sensors since 1993. We believe sensors are not just simple commodities. They are integral to a building automation controls system and critical to the mission of saving energy. Our commitment to innovation and quality has helped transform BAPI into a leading global manufacturer of sensor solutions with a tremendous focus on quality, reliability and value.
+              </p>
+            </div>
+            {/* Facility Image */}
+            <div className="relative w-full h-80 lg:h-[450px] rounded-2xl overflow-hidden shadow-xl border-2 border-neutral-200">
+              <Image
+                src="/images/bapi-facility-solar.webp"
+                alt="BAPI Manufacturing Facility with Solar Panels"
+                fill
+                className="object-cover object-center"
+                sizes="(min-width: 1024px) 1200px, 100vw"
+                priority
+              />
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Award,
-                title: 'Precision Engineering',
-                description: 'Every sensor individually calibrated to NIST-traceable standards with ±0.2°C accuracy and multi-point factory testing.'
-              },
-              {
-                icon: Zap,
-                title: 'Rapid Delivery',
-                description: 'Same-day shipping on stock items from our Wisconsin manufacturing facility. Global distributor network for local support.'
-              },
-              {
-                icon: Globe,
-                title: 'Expert Support',
-                description: 'Dedicated application engineers with decades of HVAC experience provide free technical consulting and design review.'
-              }
-            ].map((reason) => {
-              const IconComponent = reason.icon;
-              return (
-                <div key={reason.title} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-primary-500/20">
-                    <IconComponent className="w-8 h-8 text-white" strokeWidth={2} />
-                  </div>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-3">{reason.title}</h3>
-                  <p className="text-neutral-600 leading-relaxed">{reason.description}</p>
-                </div>
-              );
-            })}
+          {/* Three Pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {/* Warranty */}
+            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+              <div className="w-32 h-32 mx-auto mb-6 relative bg-gradient-to-br from-primary-50 via-white to-accent-50 rounded-2xl p-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 border border-primary-200">
+                <Image
+                  src="/images/icons/5-year-warranty-icon.webp"
+                  alt="5 Year Lifetime Limited Warranty"
+                  fill
+                  className="object-contain p-2"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">Warranty</h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Our products are designed and manufactured to last. We back up that claim by offering a 5-year warranty across all of our products.
+              </p>
+              <p className="text-sm text-neutral-600 leading-relaxed mt-3">
+                A lifetime limited warranty is also available on many of our single point, room and duct room temperature sensors.*
+              </p>
+            </div>
+
+            {/* BAPI-Backed */}
+            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+              <div className="w-32 h-32 mx-auto mb-6 relative bg-gradient-to-br from-primary-50 via-white to-accent-50 rounded-2xl p-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 border border-primary-200">
+                <Image
+                  src="/images/icons/bapi-backed-logo.webp"
+                  alt="BAPI Backed"
+                  fill
+                  className="object-contain p-2"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">BAPI-Backed</h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Most sensor manufacturers will replace their defective products, but only BAPI has the confidence to go beyond the industry standard.
+              </p>
+              <p className="text-sm text-neutral-600 leading-relaxed mt-3">
+                'BAPI-Backed' means we stand behind everything we sell, so be confident in the quality of our products that if one fails within the warranty period, we will not only repair or replace it, but we'll provide a product expert to offset your incurred cost.*
+              </p>
+            </div>
+
+            {/* BAPI Original */}
+            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+              <div className="w-32 h-32 mx-auto mb-6 relative bg-gradient-to-br from-primary-50 via-white to-accent-50 rounded-2xl p-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 border border-primary-200">
+                <Image
+                  src="/images/icons/certified-original-stamp.webp"
+                  alt="BAPI Certified Original"
+                  fill
+                  className="object-contain p-2"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">BAPI Original</h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                At BAPI, we strive to be leaders in our industry by providing innovative, high quality products and services designed with you in mind.
+              </p>
+              <p className="text-sm text-neutral-600 leading-relaxed mt-3">
+                Products displaying the "Another Original" stamp are unique to BAPI and the inspiration for these designs come from our valuable customers, talented employees and respected vendors. Those three ingredients combined create industry-leading, original solutions created to solve common HVACR problems.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Social Proof - Customer Testimonial */}
-      <section className="bg-gradient-to-br from-primary-50 via-white to-primary-50/30 py-12 lg:py-16 border-y border-neutral-200">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-6">
-            <div className="flex justify-center gap-1 mb-4">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-6 h-6 text-accent-500 fill-current" viewBox="0 0 20 20">
-                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                </svg>
+      {/* Latest News Section */}
+      <section className="bg-white py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-full text-primary-600 font-semibold text-sm mb-4">
+                <Newspaper className="w-4 h-4" />
+                Latest News
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900">
+                Stay Informed
+              </h2>
+              <p className="text-lg text-neutral-600 mt-2">
+                Latest updates, product announcements, and industry insights
+              </p>
+            </div>
+            <Link
+              href="/company/news"
+              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              View All News
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+
+          {posts.length === 0 ? (
+            <div className="bg-neutral-50 rounded-2xl p-12 text-center border-2 border-dashed border-neutral-300">
+              <Newspaper className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
+              <p className="text-lg text-neutral-600">No news articles available yet</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {posts.map((post) => (
+                <article
+                  key={post.id}
+                  className="group relative bg-white border-2 border-neutral-200 rounded-2xl overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                >
+                  {/* Featured Image */}
+                  {post.featuredImage && (
+                    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-200">
+                      <Image
+                        src={post.featuredImage}
+                        alt={post.title || 'News article'}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      {/* Overlay gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    </div>
+                  )}
+
+                  {/* Content */}
+                  <div className="p-6">
+                    {/* Date Badge */}
+                    <div className="flex items-center gap-2 text-sm text-neutral-600 mb-3">
+                      <Calendar className="w-4 h-4 text-primary-500" />
+                      <time dateTime={post.date || ''}>
+                        {post.date ? new Date(post.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                        }) : 'Date unavailable'}
+                      </time>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    {post.excerpt && (
+                      <p className="text-sm text-neutral-600 mb-4 line-clamp-3"
+                         dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                      />
+                    )}
+
+                    {/* Read More Link */}
+                    <Link
+                      href={`/company/news/${post.slug}`}
+                      className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 hover:text-primary-700 transition-colors group-hover:gap-2"
+                    >
+                      Read More
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </article>
               ))}
             </div>
-          </div>
-          <blockquote className="text-xl lg:text-2xl font-medium text-neutral-900 mb-6 italic">
-            "BAPI sensors have been the cornerstone of our building automation projects for over a decade. The accuracy and reliability are unmatched, and their technical support team is exceptional."
-          </blockquote>
-          <div className="text-neutral-600">
-            <div className="font-semibold text-neutral-900">Michael Chen</div>
-            <div className="text-sm">Senior Controls Engineer, Johnson Controls</div>
+          )}
+
+          {/* Mobile View All Button */}
+          <div className="mt-8 text-center md:hidden">
+            <Link
+              href="/company/news"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              View All News
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Final CTA - Single Focus on Product Discovery */}
-      <section className="bg-primary-500 py-12 lg:py-16">
+      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 drop-shadow-md">
             Ready to Find Your Solution?
           </h2>
-          <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto drop-shadow-sm">
             Browse our complete catalog or talk to an application engineer for expert guidance
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/applications"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent-500 hover:bg-accent-600 text-neutral-900 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              href="/products"
+              className="btn-bapi-accent inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg"
             >
-              Browse by Application
+              Browse Products
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-50 text-primary-500 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-50 text-primary-500 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-white hover:border-accent-500"
             >
               Talk to an Engineer
             </Link>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-primary-400 text-primary-100">
-            <p className="text-sm">
+          <div className="mt-8 pt-8 border-t border-primary-400/50 text-primary-100">
+            <p className="text-sm drop-shadow-sm">
               <strong>Made in USA</strong> • Same-Day Shipping • ISO 9001:2015 Certified • 30+ Years of Excellence
             </p>
           </div>

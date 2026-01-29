@@ -113,14 +113,14 @@ const CartDrawer = () => {
             <Link 
               href="/cart"
               onClick={closeCart}
-              className="block w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-xl text-center transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.98]"
+              className="block w-full btn-bapi-primary py-3 rounded-xl text-center active:scale-[0.98]"
             >
               View Cart
             </Link>
             <Link
               href="/checkout"
               onClick={closeCart}
-              className="block w-full bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold py-3 rounded-xl text-center transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.98]"
+              className="block w-full btn-bapi-accent py-3 rounded-xl text-center active:scale-[0.98]"
             >
               Proceed to Checkout
             </Link>

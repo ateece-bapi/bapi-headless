@@ -665,7 +665,7 @@ describe('ReviewStep', () => {
         />
       );
       const button = screen.getByText('Place Order').closest('button');
-      expect(button).toHaveClass('bg-accent-500', 'hover:bg-accent-600');
+      expect(button).toHaveClass('btn-bapi-accent');
     });
 
     it('applies neutral background to sections', () => {

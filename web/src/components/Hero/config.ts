@@ -5,7 +5,7 @@ export const HERO_CONFIG = {
   subtitle: 'Engineered for Mission-Critical Performance',
   description: 'NIST-traceable sensors and BACnet-certified controllers trusted by engineers worldwide for healthcare, data centers, and critical facilities.',
   actions: [
-    { label: 'Explore Solutions', href: '/solutions', variant: 'blue' },
-    { label: 'Talk to an Engineer', href: '/contact', variant: 'yellow' },
+    { label: 'Explore Products', href: '/products', variant: 'blue' },
+    { label: 'Talk to Sales', href: '/contact', variant: 'yellow' },
   ] as HeroAction[],
 } as const;

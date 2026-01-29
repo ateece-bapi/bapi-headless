@@ -450,7 +450,7 @@ describe('ShippingStep', () => {
     it('applies primary color to submit button', () => {
       render(<ShippingStep data={mockData} onNext={mockOnNext} onUpdateData={mockOnUpdateData} />);
       const button = screen.getByText('Continue to Payment');
-      expect(button).toHaveClass('bg-primary-500', 'hover:bg-primary-600');
+      expect(button).toHaveClass('btn-bapi-primary');
     });
 
     it('applies border dividers between sections', () => {

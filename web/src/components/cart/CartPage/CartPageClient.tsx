@@ -288,7 +288,7 @@ export default function CartPageClient() {
         </p>
         <Link
           href="/products"
-          className="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold px-8 py-4 rounded-xl transition-colors"
+          className="inline-flex items-center gap-2 btn-bapi-primary font-semibold px-8 py-4 rounded-xl"
         >
           <ArrowLeft className="w-5 h-5" />
           Continue Shopping

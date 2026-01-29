@@ -227,7 +227,7 @@ export default function ReviewStep({
           type="button"
           onClick={handlePlaceOrder}
           disabled={isProcessing}
-          className="px-8 py-4 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold rounded-xl transition-colors shadow-md hover:shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-bapi-accent px-8 py-4 rounded-xl flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isProcessing ? (
             <>

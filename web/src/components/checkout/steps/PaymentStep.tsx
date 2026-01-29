@@ -301,7 +301,7 @@ export default function PaymentStep({
           <button
             type="button"
             onClick={handlePayPalNext}
-            className="w-full px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2"
+            className="w-full btn-bapi-primary px-6 py-3 rounded-xl flex items-center justify-center gap-2"
           >
             Continue to Review
             <ArrowRight className="w-5 h-5" />

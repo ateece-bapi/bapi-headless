@@ -8,8 +8,8 @@ import { HeroContent, HeroActions } from './components';
 
 const BACKGROUND_IMAGES = [
   {
-    url: '/images/brand/People_Building_Sensors1.webp',
-    alt: 'Professional building automation monitoring',
+    url: '/images/bapi-facility-solar.webp',
+    alt: 'BAPI headquarters facility with solar panels',
   },
   {
     url: '/images/brand/BAS_BMS_Software.webp',
@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
           />
         ))}
         {/* Professional overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/90 to-white/85" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/75 to-white/70" />
       </div>
 
       {/* Subtle accent gradients */}

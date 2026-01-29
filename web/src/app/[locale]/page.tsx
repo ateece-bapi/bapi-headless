@@ -520,7 +520,7 @@ export default async function Home() {
             Ready to Find Your Solution?
           </h2>
           <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto drop-shadow-sm">
-            Browse our complete catalog or talk to an application engineer for expert guidance
+            Explore our complete catalog or connect with our sales team for expert guidance
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -528,14 +528,14 @@ export default async function Home() {
               href="/products"
               className="btn-bapi-accent inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg"
             >
-              Browse Products
+              Explore Products
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-50 text-primary-500 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-white hover:border-accent-500"
             >
-              Talk to an Engineer
+              Talk to Sales
             </Link>
           </div>
 

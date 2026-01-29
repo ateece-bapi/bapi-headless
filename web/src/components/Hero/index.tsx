@@ -10,14 +10,17 @@ const BACKGROUND_IMAGES = [
   {
     url: '/images/bapi-facility-solar.webp',
     alt: 'BAPI headquarters facility with solar panels',
+    priority: true,
   },
   {
     url: '/images/brand/BAS_BMS_Software.webp',
     alt: 'Building management system software interface',
+    priority: false,
   },
   {
     url: '/images/applications/data-centers/Server_Room_HotAisle_2.webp',
     alt: 'Data center temperature monitoring',
+    priority: false,
   },
 ];
 
@@ -93,6 +96,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
               alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
               className="relative w-full h-auto rounded-xl shadow-lg max-w-5xl mx-auto"
               loading="eager"
+              fetchPriority="high"
             />
             
             {/* Product family caption */}

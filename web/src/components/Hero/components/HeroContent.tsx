@@ -9,13 +9,13 @@ interface HeroContentProps {
 
 const HeroContent: React.FC<HeroContentProps> = ({ title, subtitle, description }) => (
   <div className="text-center max-w-6xl mx-auto mb-14">
-    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-10 leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-10 leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
       {title}
     </h1>
     
-    {/* Dynamic Tagline Rotator - back with style */}
+    {/* Dynamic Tagline Rotator - lighter styling for better hierarchy */}
     <div className="inline-block mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-      <div className="text-3xl sm:text-4xl lg:text-5xl max-w-4xl mx-auto font-extrabold bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 bg-clip-text text-transparent mb-6 pb-2 px-4">
+      <div className="text-2xl sm:text-3xl lg:text-4xl max-w-4xl mx-auto font-bold text-neutral-600 mb-6 pb-2 px-4">
         <TaglineRotator />
       </div>
       <div className="h-2 w-4/5 mx-auto bg-gradient-to-r from-transparent via-accent-500 to-transparent rounded-full shadow-lg shadow-accent-500/50" />

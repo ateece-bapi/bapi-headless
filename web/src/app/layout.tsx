@@ -9,6 +9,7 @@ import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import ChatWidget from "@/components/chat/ChatWidget";
 import { ToastProvider } from "@/components/ui/Toast";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 // Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
 
@@ -67,6 +68,7 @@ export default async function RootLayout({
         <body className="antialiased">
           <NextIntlClientProvider messages={messages} locale={locale}>
             <ToastProvider>
+              <PageTransition />
               <Header />
               {children}
               <Footer />

@@ -26,11 +26,11 @@ export default async function Home() {
       {/* Quick Stats Bar */}
       <section className="bg-neutral-50 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-600 rounded-2xl p-8 shadow-2xl overflow-hidden">
+          <div className="relative bg-gradient-to-br from-primary-600/90 via-primary-500/85 to-primary-600/90 rounded-2xl p-8 shadow-xl overflow-hidden">
             {/* Decorative background elements */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20"></div>
             
-            <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <div className="relative grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {/* 30+ Years */}
               <div className="group text-center">
                 <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
@@ -82,7 +82,7 @@ export default async function Home() {
       {/* Product Categories - 8 Main Product Lines */}
       <section className="bg-white py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
+          <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
               Explore Our Product Catalog
             </h2>
@@ -91,7 +91,7 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               {
                 name: 'Temperature Sensors',
@@ -154,41 +154,48 @@ export default async function Home() {
                 <Link
                   key={category.name}
                   href={category.href}
-                  className="group relative bg-white border-2 border-neutral-200 rounded-2xl p-6 hover:border-primary-500 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                  className="group relative bg-white rounded-2xl border-2 border-neutral-200 overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 ease-in-out will-change-transform focus:outline-none focus:ring-4 focus:ring-primary-500/50 focus:border-primary-500"
+                  style={{ transform: 'translateZ(0)' }}
                 >
                   {/* Hover gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out z-10" />
                   
-                  {/* Icon container with enhanced styling */}
-                  <div className="relative w-20 h-20 bg-gradient-to-br from-primary-100 via-primary-50 to-accent-50 rounded-2xl mb-4 flex items-center justify-center p-3 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300 border border-primary-200">
+                  {/* Icon container with enhanced styling - matches popular products */}
+                  <div className="relative bg-gradient-to-br from-primary-200 via-accent-100 to-primary-100 h-48 flex items-center justify-center p-8 border-b-2 border-neutral-100 will-change-transform">
                     <Image
                       src={category.icon}
                       alt={`${category.name} icon`}
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-contain drop-shadow-md"
+                      width={128}
+                      height={128}
+                      className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-300 ease-in-out will-change-transform"
+                      style={{ transform: 'translateZ(0)' }}
                     />
                   </div>
                   
-                  {/* Title and count badge */}
-                  <div className="relative flex items-start justify-between mb-3">
-                    <h3 className="text-base font-bold text-neutral-900 group-hover:text-primary-600 transition-colors leading-tight pr-2">
+                  <div className="p-6">
+                    {/* Category count badge with BAPI accent color */}
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-accent-500 text-neutral-900 rounded-full text-xs font-bold uppercase tracking-wide mb-3">
+                      <span className="w-1.5 h-1.5 bg-neutral-900 rounded-full" />
+                      {category.count} Products
+                    </div>
+                    
+                    {/* Category name */}
+                    <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
                       {category.name}
                     </h3>
-                    <span className="flex-shrink-0 text-xs font-bold text-primary-600 bg-primary-50 px-2.5 py-1 rounded-full border border-primary-200 group-hover:bg-primary-100 group-hover:border-primary-300 transition-all">
-                      {category.count}
-                    </span>
-                  </div>
-                  
-                  {/* Description */}
-                  <p className="relative text-sm text-neutral-600 leading-relaxed group-hover:text-neutral-900 transition-colors">
-                    {category.description}
-                  </p>
-                  
-                  {/* Arrow indicator on hover */}
-                  <div className="relative mt-3 flex items-center gap-1 text-sm font-semibold text-primary-500 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
-                    View Products
-                    <ArrowRight className="w-4 h-4" />
+                    
+                    {/* Description */}
+                    <p className="text-sm text-neutral-600 mb-4 leading-relaxed">
+                      {category.description}
+                    </p>
+                    
+                    {/* View Products CTA */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-primary-600 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                        View Products
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </div>
                   </div>
                 </Link>
               );
@@ -196,120 +203,6 @@ export default async function Home() {
           </div>
 
           <div className="text-center mt-8">
-            <Link 
-              href="/products"
-              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors"
-            >
-              View All Products
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products Section */}
-      <section className="bg-neutral-50 py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-              Popular Products
-            </h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              Industry-leading sensors trusted by thousands of projects worldwide
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {[
-              {
-                name: 'BA/10K-3 Room Sensor',
-                category: 'Temperature',
-                description: '±0.2°C accuracy, wall-mount design for commercial spaces',
-                price: 'Contact for pricing',
-                features: ['10K-3 Thermistor', 'Wall Mount', 'BACnet/Modbus'],
-                icon: '/images/icons/Temperature_Icon.webp'
-              },
-              {
-                name: 'BA/RH-WD4 Room Humidity',
-                category: 'Humidity',
-                description: 'Combined temp/humidity for IAQ monitoring',
-                price: 'Contact for pricing',
-                features: ['±2% RH Accuracy', 'LCD Display', 'Multi-Protocol'],
-                icon: '/images/icons/Humidity_Icon.webp'
-              },
-              {
-                name: 'BA-DPT Differential Pressure',
-                category: 'Pressure',
-                description: 'Room pressurization and filter monitoring',
-                price: 'Contact for pricing',
-                features: ['0-10" WC Range', 'Hospital Grade', 'ASHRAE 170'],
-                icon: '/images/icons/Pressure_Icon.webp'
-              }
-            ].map((product) => {
-              return (
-                <div 
-                  key={product.name}
-                  className="group relative bg-white rounded-2xl border-2 border-neutral-200 overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  {/* Hover gradient overlay on image */}
-                  <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                  
-                  {/* Product Image Placeholder with enhanced styling */}
-                  <div className="relative bg-gradient-to-br from-primary-100 via-accent-50 to-primary-50 h-48 flex items-center justify-center p-8 border-b-2 border-neutral-100">
-                    <Image
-                      src={product.icon}
-                      alt={`${product.category} icon`}
-                      width={128}
-                      height={128}
-                      className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </div>
-                  
-                  <div className="p-6">
-                    {/* Category badge with BAPI accent color */}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-accent-500 text-neutral-900 rounded-full text-xs font-bold uppercase tracking-wide mb-3">
-                      <span className="w-1.5 h-1.5 bg-neutral-900 rounded-full" />
-                      {product.category}
-                    </div>
-                    
-                    {/* Product name */}
-                    <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
-                      {product.name}
-                    </h3>
-                    
-                    {/* Description */}
-                    <p className="text-sm text-neutral-600 mb-4 leading-relaxed">
-                      {product.description}
-                    </p>
-                    
-                    {/* Features list with enhanced styling */}
-                    <ul className="space-y-2 mb-4 pb-4 border-b border-neutral-100">
-                      {product.features.map((feature) => (
-                        <li key={feature} className="text-xs text-neutral-700 flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4 text-primary-500 shrink-0" strokeWidth={2.5} />
-                          <span className="font-medium">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Price and CTA with enhanced styling */}
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold text-neutral-900">{product.price}</span>
-                      <Link 
-                        href="/products"
-                        className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 hover:text-primary-700 transition-colors group-hover:gap-2"
-                      >
-                        View Details
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center">
             <Link
               href="/products"
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -322,8 +215,11 @@ export default async function Home() {
       </section>
 
       {/* Why BAPI - Based on original website */}
-      <section className="bg-gradient-to-br from-neutral-50 via-white to-neutral-50 py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-primary-50 via-white to-accent-50 py-12 lg:py-16 overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header with facility image */}
           <div className="mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-primary-500 mb-6 text-center">
@@ -350,7 +246,7 @@ export default async function Home() {
           {/* Three Pillars */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {/* Warranty */}
-            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:ring-4 focus-within:ring-primary-500/50">
               <div className="w-32 h-32 mx-auto mb-6 relative bg-gradient-to-br from-primary-50 via-white to-accent-50 rounded-2xl p-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 border border-primary-200">
                 <Image
                   src="/images/icons/5-year-warranty-icon.webp"
@@ -369,7 +265,7 @@ export default async function Home() {
             </div>
 
             {/* BAPI-Backed */}
-            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:ring-4 focus-within:ring-primary-500/50">
               <div className="w-32 h-32 mx-auto mb-6 relative bg-gradient-to-br from-primary-50 via-white to-accent-50 rounded-2xl p-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 border border-primary-200">
                 <Image
                   src="/images/icons/bapi-backed-logo.webp"
@@ -388,7 +284,7 @@ export default async function Home() {
             </div>
 
             {/* BAPI Original */}
-            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:ring-4 focus-within:ring-primary-500/50">
               <div className="w-32 h-32 mx-auto mb-6 relative bg-gradient-to-br from-primary-50 via-white to-accent-50 rounded-2xl p-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 border border-primary-200">
                 <Image
                   src="/images/icons/certified-original-stamp.webp"
@@ -444,7 +340,7 @@ export default async function Home() {
               {posts.map((post) => (
                 <article
                   key={post.id}
-                  className="group relative bg-white border-2 border-neutral-200 rounded-2xl overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                  className="group relative bg-white border-2 border-neutral-200 rounded-2xl overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 focus-within:ring-4 focus-within:ring-primary-500/50"
                 >
                   {/* Featured Image */}
                   {post.featuredImage && (

@@ -6,6 +6,8 @@ import {
   LifeBuoy,
   Phone,
   BookOpen,
+  GraduationCap,
+  Users,
 } from 'lucide-react';
 
 export const NAV_LINKS: NavLink[] = [];
@@ -289,8 +291,94 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
   //   },
   // },
   {
+    label: 'Resources',
+    href: '/resources',
+    megaMenu: {
+      columns: [
+        {
+          title: 'Technical Documentation',
+          icon: BookOpen,
+          links: [
+            { 
+              label: 'Application Notes', 
+              href: '/application-notes',
+              description: 'Installation guides & best practices',
+              badge: 'Popular'
+            },
+            { 
+              label: 'Service Bulletins', 
+              href: '/service-bulletin/',
+              description: 'Product updates & technical fixes'
+            },
+            { 
+              label: 'Product Datasheets', 
+              href: '/resources/datasheets',
+              description: 'Specifications & performance data'
+            },
+            { 
+              label: 'BAPI Sensors Overview', 
+              href: '/sensor-specs/',
+              description: 'Quick reference selection guide'
+            },
+          ],
+        },
+        {
+          title: 'Tools & Guides',
+          icon: Wrench,
+          links: [
+            { 
+              label: 'Product Catalog', 
+              href: '/catalogpricebook/',
+              description: 'Download complete catalog PDF',
+              badge: 'Download'
+            },
+            { 
+              label: 'Wireless Site Verification', 
+              href: '/wireless-site-verification/',
+              description: 'Verify signal coverage'
+            },
+            { 
+              label: 'Product Selector', 
+              href: '/resources/selector',
+              description: 'Find the right sensor'
+            },
+          ],
+        },
+        {
+          title: 'Learning Center',
+          icon: GraduationCap,
+          links: [
+            { 
+              label: 'Installation Videos', 
+              href: '/resources/videos',
+              description: 'Step-by-step tutorials',
+              badge: 'Phase 2'
+            },
+            { 
+              label: 'Case Studies', 
+              href: '/resources/case-studies',
+              description: 'Real-world applications'
+            },
+            { 
+              label: 'Webinars', 
+              href: '/resources/webinars',
+              description: 'Training & certification',
+              badge: 'Phase 2'
+            },
+          ],
+        },
+      ],
+      featured: {
+        title: 'Engineering Resources',
+        description: 'Access technical documentation, application guides, and tools to specify and install BAPI sensors correctly.',
+        cta: 'Browse All Resources',
+        href: '/resources',
+      },
+    },
+  },
+  {
     label: 'Support',
-    href: '/contact',
+    href: '/support',
     megaMenu: {
       columns: [
         {
@@ -300,67 +388,47 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
             { 
               label: 'Contact Support', 
               href: '/contact',
-              description: 'Phone, email, and sales team',
+              description: 'Technical assistance',
               badge: 'Popular'
             },
             { 
-              label: 'Technical Support', 
-              href: '/contact',
-              description: 'Product troubleshooting and configuration'
+              label: 'RMA Request', 
+              href: '/rma-request/',
+              description: 'Return authorization'
+            },
+            { 
+              label: 'Where to Buy', 
+              href: '/where-to-buy/',
+              description: 'Find distributors',
+              badge: 'Popular'
+            },
+          ],
+        },
+        {
+          title: 'For Existing Customers',
+          icon: Users,
+          links: [
+            { 
+              label: 'My Account', 
+              href: '/account',
+              description: 'Orders & quotes'
+            },
+            { 
+              label: 'Order Status', 
+              href: '/account/orders',
+              description: 'Track shipments'
             },
             { 
               label: 'Request a Quote', 
               href: '/request-quote',
-              description: 'Custom pricing for your project'
-            },
-          ],
-        },
-        {
-          title: 'Documentation',
-          icon: BookOpen,
-          links: [
-            { 
-              label: 'Application Notes', 
-              href: '/application-notes',
-              description: 'Technical guides and best practices'
-            },
-            { 
-              label: 'All Resources', 
-              href: '/resources',
-              description: 'Installation guides and specs'
-            },
-            { 
-              label: 'Product Search', 
-              href: '/products',
-              description: 'Find the right sensor'
-            },
-          ],
-        },
-        {
-          title: 'Tools & Resources',
-          icon: Wrench,
-          links: [
-            { 
-              label: 'Product Catalog', 
-              href: '/products',
-              description: 'Browse all products',
-            },
-            { 
-              label: 'Applications Guide', 
-              href: '/applications',
-              description: 'Find sensors by use case'
-            },
-            { 
-              label: 'Contact Sales Team', 
-              href: '/contact',
-              description: 'Talk to a product expert'
+              description: 'Custom pricing'
             },
           ],
         },
       ],
       featured: {
         title: 'Need Technical Help?',
-        description: 'Our support team is ready to help with product selection, installation, and troubleshooting. Average response time: 2 hours.',
+        description: 'Our team is ready to assist with product selection, installation, and troubleshooting.',
         cta: 'Contact Support',
         href: '/contact',
       },
@@ -398,27 +466,6 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
           ],
         },
         {
-          title: 'Resources',
-          icon: BookOpen,
-          links: [
-            { 
-              label: 'Application Notes', 
-              href: '/application-notes',
-              description: 'Technical documentation'
-            },
-            { 
-              label: 'All Resources', 
-              href: '/resources',
-              description: 'Guides and white papers'
-            },
-            { 
-              label: 'Product Solutions', 
-              href: '/solutions/building-automation',
-              description: 'Industry-specific solutions'
-            },
-          ],
-        },
-        {
           title: 'Get in Touch',
           icon: Phone,
           links: [
@@ -427,6 +474,11 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
               href: '/contact',
               description: 'Phone, email, and global team',
               badge: 'Popular'
+            },
+            { 
+              label: 'Where to Buy', 
+              href: '/where-to-buy/',
+              description: 'Find authorized distributors'
             },
             { 
               label: 'Request a Quote', 

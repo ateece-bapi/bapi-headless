@@ -29,9 +29,9 @@ const TaglineRotator: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-[4rem] flex items-center justify-center">
+    <div className="h-[6rem] sm:h-[5rem] lg:h-[6rem] flex items-center justify-center">
       <p
-        className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold transition-opacity duration-500 ${
+        className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold transition-opacity duration-500 text-center max-w-4xl ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
         style={{

@@ -7,7 +7,7 @@ import { gql } from 'graphql-request';
  */
 
 const PRODUCT_SEARCH_QUERY = gql`
-  query SearchProducts($search: String!, $first: Int = 5) {
+  query ChatProductSearch($search: String!, $first: Int = 5) {
     products(where: { search: $search }, first: $first) {
       nodes {
         id

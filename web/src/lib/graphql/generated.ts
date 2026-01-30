@@ -39197,6 +39197,128 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
+/** One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string. */
+export type __EnumValue = {
+  __typename?: '__EnumValue';
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
+};
+
+/** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
+export type __Field = {
+  __typename?: '__Field';
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  args: Array<__InputValue>;
+  type: __Type;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
+export type __FieldArgsArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value. */
+export type __InputValue = {
+  __typename?: '__InputValue';
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  type: __Type;
+  /** A GraphQL-formatted string representing the default value for this input value. */
+  defaultValue?: Maybe<Scalars['String']['output']>;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
+};
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __Type = {
+  __typename?: '__Type';
+  kind: __TypeKind;
+  name?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  specifiedByURL?: Maybe<Scalars['String']['output']>;
+  fields?: Maybe<Array<__Field>>;
+  interfaces?: Maybe<Array<__Type>>;
+  possibleTypes?: Maybe<Array<__Type>>;
+  enumValues?: Maybe<Array<__EnumValue>>;
+  inputFields?: Maybe<Array<__InputValue>>;
+  ofType?: Maybe<__Type>;
+  isOneOf?: Maybe<Scalars['Boolean']['output']>;
+};
+
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __TypeFieldsArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __TypeEnumValuesArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __TypeInputFieldsArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** An enum describing what kind of type a given `__Type` is. */
+export enum __TypeKind {
+  /** Indicates this type is a scalar. */
+  Scalar = 'SCALAR',
+  /** Indicates this type is an object. `fields` and `interfaces` are valid fields. */
+  Object = 'OBJECT',
+  /** Indicates this type is an interface. `fields`, `interfaces`, and `possibleTypes` are valid fields. */
+  Interface = 'INTERFACE',
+  /** Indicates this type is a union. `possibleTypes` is a valid field. */
+  Union = 'UNION',
+  /** Indicates this type is an enum. `enumValues` is a valid field. */
+  Enum = 'ENUM',
+  /** Indicates this type is an input object. `inputFields` is a valid field. */
+  InputObject = 'INPUT_OBJECT',
+  /** Indicates this type is a list. `ofType` is a valid field. */
+  List = 'LIST',
+  /** Indicates this type is a non-null. `ofType` is a valid field. */
+  NonNull = 'NON_NULL'
+}
+
+export type ChatProductSearchQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type ChatProductSearchQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', nodes: Array<
+      | { __typename?: 'ExternalProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+      | { __typename?: 'GroupProduct', price?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+      | { __typename?: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+      | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+      | { __typename?: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+    > } | null | undefined };
+
 export type GetApplicationNotesQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
@@ -39540,6 +39662,38 @@ export type GetProductsByCategoryQuery = { __typename?: 'RootQuery', products?: 
       | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
     > } | null | undefined };
 
+export type GetProductCategoryWithChildrenQueryVariables = Exact<{
+  slug: Scalars['ID']['input'];
+}>;
+
+
+export type GetProductCategoryWithChildrenQuery = { __typename?: 'RootQuery', productCategory?: { __typename?: 'ProductCategory', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined, description?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined, children?: { __typename?: 'ProductCategoryToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined, description?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }> } | null | undefined, ancestors?: { __typename?: 'ProductCategoryToAncestorsProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined } | null | undefined };
+
+export type GetProductAttributesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetProductAttributesQuery = { __typename?: 'RootQuery', paApplications?: { __typename?: 'RootQueryToPaApplicationConnection', nodes: Array<{ __typename?: 'PaApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paRoomEnclosureStyles?: { __typename?: 'RootQueryToPaRoomEnclosureStyleConnection', nodes: Array<{ __typename?: 'PaRoomEnclosureStyle', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paTemperatureSensorOutputs?: { __typename?: 'RootQueryToPaTemperatureSensorOutputConnection', nodes: Array<{ __typename?: 'PaTemperatureSensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paDisplays?: { __typename?: 'RootQueryToPaDisplayConnection', nodes: Array<{ __typename?: 'PaDisplay', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumidityApplications?: { __typename?: 'RootQueryToPaHumidityApplicationConnection', nodes: Array<{ __typename?: 'PaHumidityApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumiditySensorOutputs?: { __typename?: 'RootQueryToPaHumiditySensorOutputConnection', nodes: Array<{ __typename?: 'PaHumiditySensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paPressureApplications?: { __typename?: 'RootQueryToPaPressureApplicationConnection', nodes: Array<{ __typename?: 'PaPressureApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paAirQualitySensorTypes?: { __typename?: 'RootQueryToPaAirQualitySensorTypeConnection', nodes: Array<{ __typename?: 'PaAirQualitySensorType', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined };
+
+export type GetProductsWithFiltersQueryVariables = Exact<{
+  categorySlug: Scalars['String']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type GetProductsWithFiltersQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', pageInfo: { __typename?: 'RootQueryToProductUnionConnectionPageInfo', hasNextPage: boolean, hasPreviousPage: boolean, endCursor?: string | null | undefined, startCursor?: string | null | undefined }, nodes: Array<
+      | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined }
+      | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined }
+      | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, onSale?: boolean | null | undefined, sku?: string | null | undefined, shortDescription?: string | null | undefined, databaseId: number, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaApplication?: { __typename?: 'ProductToPaApplicationConnection', nodes: Array<{ __typename?: 'PaApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaRoomEnclosureStyle?: { __typename?: 'ProductToPaRoomEnclosureStyleConnection', nodes: Array<{ __typename?: 'PaRoomEnclosureStyle', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaTemperatureSensorOutput?: { __typename?: 'ProductToPaTemperatureSensorOutputConnection', nodes: Array<{ __typename?: 'PaTemperatureSensorOutput', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaDisplay?: { __typename?: 'ProductToPaDisplayConnection', nodes: Array<{ __typename?: 'PaDisplay', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaTempSetpointAndOverride?: { __typename?: 'ProductToPaTempSetpointAndOverrideConnection', nodes: Array<{ __typename?: 'PaTempSetpointAndOverride', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaOptionalTempHumidity?: { __typename?: 'ProductToPaOptionalTempHumidityConnection', nodes: Array<{ __typename?: 'PaOptionalTempHumidity', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaOptionalTempSensorOutput?: { __typename?: 'ProductToPaOptionalTempSensorOutputConnection', nodes: Array<{ __typename?: 'PaOptionalTempSensorOutput', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaHumidityApplication?: { __typename?: 'ProductToPaHumidityApplicationConnection', nodes: Array<{ __typename?: 'PaHumidityApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaHumidityRoomEnclosure?: { __typename?: 'ProductToPaHumidityRoomEnclosureConnection', nodes: Array<{ __typename?: 'PaHumidityRoomEnclosure', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaHumiditySensorOutput?: { __typename?: 'ProductToPaHumiditySensorOutputConnection', nodes: Array<{ __typename?: 'PaHumiditySensorOutput', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaPressureApplication?: { __typename?: 'ProductToPaPressureApplicationConnection', nodes: Array<{ __typename?: 'PaPressureApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaPressureSensorStyle?: { __typename?: 'ProductToPaPressureSensorStyleConnection', nodes: Array<{ __typename?: 'PaPressureSensorStyle', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaAirQualityApplication?: { __typename?: 'ProductToPaAirQualityApplicationConnection', nodes: Array<{ __typename?: 'PaAirQualityApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaAirQualitySensorType?: { __typename?: 'ProductToPaAirQualitySensorTypeConnection', nodes: Array<{ __typename?: 'PaAirQualitySensorType', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaWirelessApplication?: { __typename?: 'ProductToPaWirelessApplicationConnection', nodes: Array<{ __typename?: 'PaWirelessApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
+      | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined }
+      | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, onSale?: boolean | null | undefined, sku?: string | null | undefined, shortDescription?: string | null | undefined, databaseId: number, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaApplication?: { __typename?: 'ProductToPaApplicationConnection', nodes: Array<{ __typename?: 'PaApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaRoomEnclosureStyle?: { __typename?: 'ProductToPaRoomEnclosureStyleConnection', nodes: Array<{ __typename?: 'PaRoomEnclosureStyle', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaTemperatureSensorOutput?: { __typename?: 'ProductToPaTemperatureSensorOutputConnection', nodes: Array<{ __typename?: 'PaTemperatureSensorOutput', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaDisplay?: { __typename?: 'ProductToPaDisplayConnection', nodes: Array<{ __typename?: 'PaDisplay', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaTempSetpointAndOverride?: { __typename?: 'ProductToPaTempSetpointAndOverrideConnection', nodes: Array<{ __typename?: 'PaTempSetpointAndOverride', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaOptionalTempHumidity?: { __typename?: 'ProductToPaOptionalTempHumidityConnection', nodes: Array<{ __typename?: 'PaOptionalTempHumidity', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaOptionalTempSensorOutput?: { __typename?: 'ProductToPaOptionalTempSensorOutputConnection', nodes: Array<{ __typename?: 'PaOptionalTempSensorOutput', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaHumidityApplication?: { __typename?: 'ProductToPaHumidityApplicationConnection', nodes: Array<{ __typename?: 'PaHumidityApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaHumidityRoomEnclosure?: { __typename?: 'ProductToPaHumidityRoomEnclosureConnection', nodes: Array<{ __typename?: 'PaHumidityRoomEnclosure', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaHumiditySensorOutput?: { __typename?: 'ProductToPaHumiditySensorOutputConnection', nodes: Array<{ __typename?: 'PaHumiditySensorOutput', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaPressureApplication?: { __typename?: 'ProductToPaPressureApplicationConnection', nodes: Array<{ __typename?: 'PaPressureApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaPressureSensorStyle?: { __typename?: 'ProductToPaPressureSensorStyleConnection', nodes: Array<{ __typename?: 'PaPressureSensorStyle', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaAirQualityApplication?: { __typename?: 'ProductToPaAirQualityApplicationConnection', nodes: Array<{ __typename?: 'PaAirQualityApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaAirQualitySensorType?: { __typename?: 'ProductToPaAirQualitySensorTypeConnection', nodes: Array<{ __typename?: 'PaAirQualitySensorType', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaWirelessApplication?: { __typename?: 'ProductToPaWirelessApplicationConnection', nodes: Array<{ __typename?: 'PaWirelessApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
+    > } | null | undefined };
+
+export type GetAllProductTaxonomiesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllProductTaxonomiesQuery = { __typename?: 'RootQuery', __type?: { __typename?: '__Type', fields?: Array<{ __typename?: '__Field', name: string, description?: string | null | undefined, type: { __typename?: '__Type', name?: string | null | undefined, kind: __TypeKind } }> | null | undefined } | null | undefined };
+
 export type GetResourcesQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
@@ -39578,6 +39732,59 @@ export type SearchProductsQuery = { __typename?: 'RootQuery', products?: { __typ
     > } | null | undefined };
 
 
+export const ChatProductSearchDocument = gql`
+    query ChatProductSearch($search: String!, $first: Int = 5) {
+  products(where: {search: $search}, first: $first) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      shortDescription
+      image {
+        sourceUrl
+        altText
+      }
+      ... on SimpleProduct {
+        price
+        regularPrice
+        sku
+        productCategories {
+          nodes {
+            name
+          }
+        }
+      }
+      ... on VariableProduct {
+        price
+        regularPrice
+        productCategories {
+          nodes {
+            name
+          }
+        }
+      }
+      ... on ExternalProduct {
+        price
+        regularPrice
+        productCategories {
+          nodes {
+            name
+          }
+        }
+      }
+      ... on GroupProduct {
+        price
+        productCategories {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+  }
+}
+    `;
 export const GetApplicationNotesDocument = gql`
     query GetApplicationNotes($first: Int = 100, $after: String) {
   applicationNotes(
@@ -41041,6 +41248,450 @@ export const GetProductsByCategoryDocument = gql`
   }
 }
     `;
+export const GetProductCategoryWithChildrenDocument = gql`
+    query GetProductCategoryWithChildren($slug: ID!) {
+  productCategory(id: $slug, idType: SLUG) {
+    id
+    databaseId
+    name
+    slug
+    count
+    description
+    image {
+      id
+      sourceUrl
+      altText
+    }
+    parent {
+      node {
+        id
+        databaseId
+        name
+        slug
+      }
+    }
+    children {
+      nodes {
+        id
+        databaseId
+        name
+        slug
+        count
+        description
+        image {
+          id
+          sourceUrl
+          altText
+        }
+      }
+    }
+    ancestors {
+      nodes {
+        id
+        databaseId
+        name
+        slug
+      }
+    }
+  }
+}
+    `;
+export const GetProductAttributesDocument = gql`
+    query GetProductAttributes {
+  paApplications: allPaApplication(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paRoomEnclosureStyles: allPaRoomEnclosureStyle(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paTemperatureSensorOutputs: allPaTemperatureSensorOutput(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paDisplays: allPaDisplay(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paHumidityApplications: allPaHumidityApplication(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paHumiditySensorOutputs: allPaHumiditySensorOutput(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paPressureApplications: allPaPressureApplication(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paAirQualitySensorTypes: allPaAirQualitySensorType(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+}
+    `;
+export const GetProductsWithFiltersDocument = gql`
+    query GetProductsWithFilters($categorySlug: String!, $first: Int = 24, $after: String) {
+  products(where: {category: $categorySlug}, first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      endCursor
+      startCursor
+    }
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      type
+      ... on SimpleProduct {
+        id
+        name
+        price
+        regularPrice
+        salePrice
+        stockStatus
+        stockQuantity
+        onSale
+        sku
+        shortDescription
+        featuredImage {
+          node {
+            id
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
+        image {
+          id
+          sourceUrl
+          altText
+          mediaDetails {
+            height
+            width
+          }
+        }
+        productCategories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaRoomEnclosureStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaTemperatureSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaDisplay {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaTempSetpointAndOverride {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempHumidity {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityRoomEnclosure {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumiditySensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureSensorStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualitySensorType {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaWirelessApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+      }
+      ... on VariableProduct {
+        id
+        name
+        price
+        regularPrice
+        salePrice
+        stockStatus
+        onSale
+        sku
+        shortDescription
+        featuredImage {
+          node {
+            id
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
+        image {
+          id
+          sourceUrl
+          altText
+          mediaDetails {
+            height
+            width
+          }
+        }
+        productCategories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaRoomEnclosureStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaTemperatureSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaDisplay {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaTempSetpointAndOverride {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempHumidity {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityRoomEnclosure {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumiditySensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureSensorStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualitySensorType {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaWirelessApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetAllProductTaxonomiesDocument = gql`
+    query GetAllProductTaxonomies {
+  __type(name: "RootQuery") {
+    fields {
+      name
+      description
+      type {
+        name
+        kind
+      }
+    }
+  }
+}
+    `;
 export const GetResourcesDocument = gql`
     query GetResources($first: Int = 100, $after: String) {
   mediaItems(
@@ -41159,6 +41810,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    ChatProductSearch(variables: ChatProductSearchQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ChatProductSearchQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ChatProductSearchQuery>({ document: ChatProductSearchDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ChatProductSearch', 'query', variables);
+    },
     GetApplicationNotes(variables?: GetApplicationNotesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetApplicationNotesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetApplicationNotesQuery>({ document: GetApplicationNotesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetApplicationNotes', 'query', variables);
     },
@@ -41245,6 +41899,18 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     GetProductsByCategory(variables: GetProductsByCategoryQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetProductsByCategoryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductsByCategoryQuery>({ document: GetProductsByCategoryDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetProductsByCategory', 'query', variables);
+    },
+    GetProductCategoryWithChildren(variables: GetProductCategoryWithChildrenQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetProductCategoryWithChildrenQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetProductCategoryWithChildrenQuery>({ document: GetProductCategoryWithChildrenDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetProductCategoryWithChildren', 'query', variables);
+    },
+    GetProductAttributes(variables?: GetProductAttributesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetProductAttributesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetProductAttributesQuery>({ document: GetProductAttributesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetProductAttributes', 'query', variables);
+    },
+    GetProductsWithFilters(variables: GetProductsWithFiltersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetProductsWithFiltersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetProductsWithFiltersQuery>({ document: GetProductsWithFiltersDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetProductsWithFilters', 'query', variables);
+    },
+    GetAllProductTaxonomies(variables?: GetAllProductTaxonomiesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetAllProductTaxonomiesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductTaxonomiesQuery>({ document: GetAllProductTaxonomiesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetAllProductTaxonomies', 'query', variables);
     },
     GetResources(variables?: GetResourcesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetResourcesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetResourcesQuery>({ document: GetResourcesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetResources', 'query', variables);

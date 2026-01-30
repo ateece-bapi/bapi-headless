@@ -168,7 +168,7 @@ export default function MainProductPage() {
             return (
               <Link
                 key={cat.slug}
-                href={`/products/${cat.slug}`}
+                href={`/categories/${cat.slug}`}
                 className={`group block bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-transparent relative focus:outline-none focus:ring-2 focus:ring-primary-500
                   ${showCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
                 `}

@@ -419,3 +419,456 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 10, $after: St
     }
   }
 }
+
+# Modern Product Category Queries with Hierarchy and Filters
+
+query GetProductCategoryWithChildren($slug: ID!) {
+  productCategory(id: $slug, idType: SLUG) {
+    id
+    databaseId
+    name
+    slug
+    count
+    description
+    image {
+      id
+      sourceUrl
+      altText
+    }
+    parent {
+      node {
+        id
+        databaseId
+        name
+        slug
+      }
+    }
+    children {
+      nodes {
+        id
+        databaseId
+        name
+        slug
+        count
+        description
+        image {
+          id
+          sourceUrl
+          altText
+        }
+      }
+    }
+    ancestors {
+      nodes {
+        id
+        databaseId
+        name
+        slug
+      }
+    }
+  }
+}
+
+query GetProductAttributes {
+  paApplications: allPaApplication(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paRoomEnclosureStyles: allPaRoomEnclosureStyle(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paTemperatureSensorOutputs: allPaTemperatureSensorOutput(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paDisplays: allPaDisplay(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paHumidityApplications: allPaHumidityApplication(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paHumiditySensorOutputs: allPaHumiditySensorOutput(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paPressureApplications: allPaPressureApplication(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paAirQualitySensorTypes: allPaAirQualitySensorType(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+}
+
+query GetProductsWithFilters(
+  $categorySlug: String!
+  $first: Int = 24
+  $after: String
+) {
+  products(
+    where: { 
+      category: $categorySlug
+    }
+    first: $first
+    after: $after
+  ) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      endCursor
+      startCursor
+    }
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      type
+      ... on SimpleProduct {
+        id
+        name
+        price
+        regularPrice
+        salePrice
+        stockStatus
+        stockQuantity
+        onSale
+        sku
+        shortDescription
+        featuredImage {
+          node {
+            id
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
+        image {
+          id
+          sourceUrl
+          altText
+          mediaDetails {
+            height
+            width
+          }
+        }
+        productCategories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaRoomEnclosureStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaTemperatureSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaDisplay {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaTempSetpointAndOverride {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempHumidity {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityRoomEnclosure {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumiditySensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureSensorStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualitySensorType {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaWirelessApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+      }
+      ... on VariableProduct {
+        id
+        name
+        price
+        regularPrice
+        salePrice
+        stockStatus
+        onSale
+        sku
+        shortDescription
+        featuredImage {
+          node {
+            id
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
+        }
+        image {
+          id
+          sourceUrl
+          altText
+          mediaDetails {
+            height
+            width
+          }
+        }
+        productCategories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaRoomEnclosureStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaTemperatureSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaDisplay {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaTempSetpointAndOverride {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempHumidity {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityRoomEnclosure {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumiditySensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureSensorStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualitySensorType {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaWirelessApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+
+# Query to discover all available product attribute taxonomies
+query GetAllProductTaxonomies {
+  __type(name: "RootQuery") {
+    fields {
+      name
+      description
+      type {
+        name
+        kind
+      }
+    }
+  }
+}

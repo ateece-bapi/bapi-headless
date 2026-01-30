@@ -4,9 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { ProductDetailClient } from '@/components/products';
 import { useCartStore } from '@/store';
 import { ToastProvider } from '@/components/ui/Toast';
-type ProductForClient = React.ComponentProps<typeof ProductDetailClient>['product'];
+import { mockProductForClient, makeProductForClient } from '../../../../../test/msw/fixtures';
 
-import { mockProductForClient, makeProductForClient } from '../../../../../../test/msw/fixtures';
+type ProductForClient = React.ComponentProps<typeof ProductDetailClient>['product'];
 
 // Mock the cart hooks
 const mockUseCart = () => ({

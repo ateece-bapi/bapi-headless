@@ -1,6 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { ProductGrid } from './ProductGrid';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
 
@@ -14,14 +15,16 @@ interface FilteredProductGridProps {
 /**
  * Client component that filters products based on URL search params
  * 
- * Filters products by:
- * - application (pa_application taxonomy)
- * - enclosure (pa_room_enclosure_style taxonomy)
- * - output (pa_temperature_sensor_output taxonomy)
- * - display (pa_display taxonomy)
+ * Features:
+ * - Filters by 15 product attribute taxonomies
+ * - Skeleton loading state during filter changes
+ * - Screen reader announcements via aria-live
+ * - Debounced filter updates (300ms)
  */
 export default function FilteredProductGrid({ products, locale }: FilteredProductGridProps) {
   const searchParams = useSearchParams();
+  const [isFiltering, setIsFiltering] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState(products);
   
   // Define all possible filter keys and their corresponding GraphQL fields
   const filterFieldMap: Record<string, string> = {
@@ -54,38 +57,62 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   // Check if any filters are active
   const hasActiveFilters = Object.keys(activeFilters).length > 0;
 
-  // Filter products based on active filters
-  const filteredProducts = hasActiveFilters
-    ? products.filter((product) => {
-        const p = product as any;
+  // Debounced filtering with loading state
+  useEffect(() => {
+    setIsFiltering(true);
+    
+    const timer = setTimeout(() => {
+      // Filter products based on active filters
+      const filtered = hasActiveFilters
+        ? products.filter((product) => {
+            const p = product as any;
 
-        // Check each filter category
-        for (const [filterKey, selectedValues] of Object.entries(activeFilters)) {
-          if (selectedValues.length === 0) continue;
+            // Check each filter category
+            for (const [filterKey, selectedValues] of Object.entries(activeFilters)) {
+              if (selectedValues.length === 0) continue;
 
-          // Get the GraphQL field name for this filter
-          const fieldName = filterFieldMap[filterKey];
-          if (!fieldName) continue;
+              // Get the GraphQL field name for this filter
+              const fieldName = filterFieldMap[filterKey];
+              if (!fieldName) continue;
 
-          // Get the product's attributes for this filter type
-          const productAttributes = (p[fieldName]?.nodes || [])
-            .map((attr: any) => attr?.slug)
-            .filter((slug: any): slug is string => slug !== null && slug !== undefined);
+              // Get the product's attributes for this filter type
+              const productAttributes = (p[fieldName]?.nodes || [])
+                .map((attr: any) => attr?.slug)
+                .filter((slug: any): slug is string => slug !== null && slug !== undefined);
 
-          // Check if product has ANY of the selected values for this filter
-          const hasMatch = selectedValues.some(value => productAttributes.includes(value));
-          
-          // If no match for this filter category, exclude the product
-          if (!hasMatch) return false;
-        }
+              // Check if product has ANY of the selected values for this filter
+              const hasMatch = selectedValues.some(value => productAttributes.includes(value));
+              
+              // If no match for this filter category, exclude the product
+              if (!hasMatch) return false;
+            }
 
-        // Product matches all active filter categories
-        return true;
-      })
-    : products;
+            // Product matches all active filter categories
+            return true;
+          })
+        : products;
+
+      setFilteredProducts(filtered);
+      setIsFiltering(false);
+    }, 300); // 300ms debounce
+
+    return () => clearTimeout(timer);
+  }, [searchParams, products, hasActiveFilters]);
 
   return (
     <div>
+      {/* Screen reader announcement */}
+      <div
+        className="sr-only"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {isFiltering
+          ? 'Updating product results...'
+          : `Showing ${filteredProducts.length} ${filteredProducts.length === 1 ? 'product' : 'products'}`
+        }
+      </div>
       {/* Active Filter Pills */}
       {hasActiveFilters && (
         <div className="mb-6 flex flex-wrap items-center gap-2">
@@ -109,8 +136,26 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
         </div>
       )}
 
-      {/* Product Grid */}
-      <ProductGrid products={filteredProducts} locale={locale} />
+      {/* Product Grid with loading overlay */}
+      {isFiltering ? (
+        <div className="relative">
+          {/* Semi-transparent overlay */}
+          <div className="absolute inset-0 bg-white/70 z-10 animate-[fade-in_150ms_ease-out]" />
+          
+          {/* Skeleton loading grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="bg-white rounded-xl border border-neutral-200 p-6 animate-pulse">
+                <div className="aspect-square bg-neutral-200 rounded-lg mb-4" />
+                <div className="h-4 bg-neutral-200 rounded w-3/4 mb-2" />
+                <div className="h-4 bg-neutral-200 rounded w-1/2" />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <ProductGrid products={filteredProducts} locale={locale} />
+      )}
 
       {/* No Results Message */}
       {hasActiveFilters && filteredProducts.length === 0 && (

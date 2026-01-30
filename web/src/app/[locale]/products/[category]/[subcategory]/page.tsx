@@ -10,6 +10,7 @@ import {
   GetProductsWithFiltersQuery,
 } from '@/lib/graphql/generated';
 import { ProductFilters } from '@/components/products/ProductFilters';
+import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 
 interface SubcategoryPageProps {
@@ -202,13 +203,12 @@ export default async function SubcategoryPage({
       </div>
 
       {/* Mobile Filter Button (Fixed Bottom) */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 p-4 z-dropdown">
-        <button
-          type="button"
-          className="w-full bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
-        >
-          Filters & Sort
-        </button>
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 p-4 z-dropdown shadow-lg">
+        <MobileFilterButton
+          categorySlug={subcategory}
+          products={products}
+          currentFilters={filters}
+        />
       </div>
     </div>
   );

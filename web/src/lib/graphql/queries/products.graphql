@@ -634,6 +634,83 @@ query GetProductsWithFilters(
             slug
           }
         }
+        allPaTempSetpointAndOverride {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempHumidity {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityRoomEnclosure {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumiditySensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureSensorStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualitySensorType {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaWirelessApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
       }
       ... on VariableProduct {
         id
@@ -700,6 +777,97 @@ query GetProductsWithFilters(
             slug
           }
         }
+        allPaTempSetpointAndOverride {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempHumidity {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaOptionalTempSensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumidityRoomEnclosure {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaHumiditySensorOutput {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaPressureSensorStyle {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualityApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaAirQualitySensorType {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        allPaWirelessApplication {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+}
+
+# Query to discover all available product attribute taxonomies
+query GetAllProductTaxonomies {
+  __type(name: "RootQuery") {
+    fields {
+      name
+      description
+      type {
+        name
+        kind
       }
     }
   }

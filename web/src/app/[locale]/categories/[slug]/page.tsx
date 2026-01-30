@@ -114,54 +114,81 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
       {/* Subcategories Grid */}
       {hasSubcategories && (
-        <div className="max-w-content mx-auto px-4 py-12">
+        <div className="max-w-container mx-auto px-4 py-12">
           <h2 className="text-2xl font-bold text-neutral-900 mb-8">
             Browse by Category
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {subcategories.map((subcategory) => (
               <Link
                 key={subcategory.id}
                 href={`/${locale}/products/${slug}/${subcategory.slug}`}
-                className="group relative bg-white rounded-xl border-2 border-neutral-200 hover:border-primary-500 hover:shadow-lg transition-all duration-normal overflow-hidden"
+                className="group relative bg-white rounded-2xl border-2 border-neutral-200 hover:border-primary-500 hover:shadow-2xl transition-all duration-normal overflow-hidden"
               >
-                {/* Subcategory Image */}
-                {subcategory.image?.sourceUrl && (
-                  <div className="aspect-video relative bg-neutral-100">
+                {/* Subcategory Image - Larger, square aspect */}
+                {subcategory.image?.sourceUrl ? (
+                  <div className="aspect-[4/3] relative bg-neutral-50">
                     <Image
                       src={subcategory.image.sourceUrl}
                       alt={subcategory.image.altText || subcategory.name || ''}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-normal"
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-contain p-8 group-hover:scale-105 transition-transform duration-normal"
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      priority
                     />
+                  </div>
+                ) : (
+                  <div className="aspect-[4/3] relative bg-gradient-to-br from-neutral-100 to-neutral-200 flex items-center justify-center">
+                    <span className="text-neutral-400 text-lg font-medium">
+                      {subcategory.name}
+                    </span>
                   </div>
                 )}
 
                 {/* Subcategory Info */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary-500 transition-colors">
-                    {subcategory.name}
-                  </h3>
+                <div className="p-8 bg-white">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-1 group-hover:text-primary-500 transition-colors">
+                        {subcategory.name}
+                      </h3>
+                      {subcategory.count !== null && (
+                        <p className="text-neutral-500 text-base">
+                          {subcategory.count} product{subcategory.count !== 1 ? 's' : ''}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
                   {subcategory.description && (
-                    <p className="text-neutral-600 text-sm mb-4 line-clamp-2">
+                    <p className="text-neutral-600 text-base mb-6 line-clamp-3 leading-relaxed">
                       {subcategory.description}
                     </p>
                   )}
-                  {subcategory.count !== null && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-neutral-500">
-                        {subcategory.count} products
-                      </span>
-                      <span className="text-primary-500 font-medium text-sm group-hover:translate-x-1 transition-transform">
-                        Browse →
-                      </span>
-                    </div>
-                  )}
+
+                  {/* Browse Button */}
+                  <div className="flex items-center text-primary-500 font-semibold text-base group-hover:text-primary-600">
+                    <span className="group-hover:translate-x-2 transition-transform duration-normal">
+                      Browse Products
+                    </span>
+                    <svg
+                      className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-normal"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
                 </div>
 
-                {/* Hover Accent */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-primary-700 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {/* Hover Border Accent */}
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
             ))}
           </div>

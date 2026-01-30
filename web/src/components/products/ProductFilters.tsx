@@ -38,12 +38,10 @@ export function ProductFilters({
   const filterOptions = extractFilterOptions(products);
 
   // Parse active filters from URL
-  const activeFilters = {
-    application: currentFilters.application?.split(',') || [],
-    enclosure: currentFilters.enclosure?.split(',') || [],
-    output: currentFilters.output?.split(',') || [],
-    display: currentFilters.display?.split(',') || [],
-  };
+  const activeFilters: Record<string, string[]> = {};
+  Object.keys(filterOptions).forEach(key => {
+    activeFilters[key] = currentFilters[key as keyof typeof currentFilters]?.split(',') || [];
+  });
 
   const hasActiveFilters = Object.values(activeFilters).some((arr) => arr.length > 0);
 
@@ -96,49 +94,16 @@ export function ProductFilters({
 
       {/* Filter Groups */}
       <div className="space-y-6">
-        {/* Application Filter */}
-        {filterOptions.application.length > 0 && (
+        {Object.entries(filterOptions).map(([filterKey, options]) => (
           <FilterGroup
-            title="Application"
-            options={filterOptions.application}
-            activeValues={activeFilters.application}
-            filterType="application"
+            key={filterKey}
+            title={options[0]?.title || filterKey}
+            options={options}
+            activeValues={activeFilters[filterKey] || []}
+            filterType={filterKey}
             onChange={handleFilterChange}
           />
-        )}
-
-        {/* Enclosure Filter */}
-        {filterOptions.enclosure.length > 0 && (
-          <FilterGroup
-            title="Enclosure Style"
-            options={filterOptions.enclosure}
-            activeValues={activeFilters.enclosure}
-            filterType="enclosure"
-            onChange={handleFilterChange}
-          />
-        )}
-
-        {/* Output Filter */}
-        {filterOptions.output.length > 0 && (
-          <FilterGroup
-            title="Sensor Output"
-            options={filterOptions.output}
-            activeValues={activeFilters.output}
-            filterType="output"
-            onChange={handleFilterChange}
-          />
-        )}
-
-        {/* Display Filter */}
-        {filterOptions.display.length > 0 && (
-          <FilterGroup
-            title="Display"
-            options={filterOptions.display}
-            activeValues={activeFilters.display}
-            filterType="display"
-            onChange={handleFilterChange}
-          />
-        )}
+        ))}
       </div>
     </div>
   );
@@ -220,53 +185,61 @@ function FilterGroup({
  * Extract unique filter options from products with counts
  */
 function extractFilterOptions(products: Product[]) {
-  const applicationMap = new Map<string, { name: string; count: number }>();
-  const enclosureMap = new Map<string, { name: string; count: number }>();
-  const outputMap = new Map<string, { name: string; count: number }>();
-  const displayMap = new Map<string, { name: string; count: number }>();
+  // Define all available filters with their GraphQL field names and display names
+  const filterDefinitions = [
+    { key: 'application', field: 'allPaApplication', title: 'Application' },
+    { key: 'roomEnclosure', field: 'allPaRoomEnclosureStyle', title: 'Temperature Room Enclosure Style' },
+    { key: 'sensorOutput', field: 'allPaTemperatureSensorOutput', title: 'Sensor Output' },
+    { key: 'display', field: 'allPaDisplay', title: 'Display' },
+    { key: 'setpointOverride', field: 'allPaTempSetpointAndOverride', title: 'Temp Setpoint and Override' },
+    { key: 'optionalTempHumidity', field: 'allPaOptionalTempHumidity', title: 'Optional Temp & Humidity' },
+    { key: 'optionalSensorOutput', field: 'allPaOptionalTempSensorOutput', title: 'Optional Input Sensor & Output' },
+    { key: 'humidityApplication', field: 'allPaHumidityApplication', title: 'Humidity Application' },
+    { key: 'humidityRoomEnclosure', field: 'allPaHumidityRoomEnclosure', title: 'Humidity Room Enclosure' },
+    { key: 'humiditySensorOutput', field: 'allPaHumiditySensorOutput', title: 'Humidity Sensor Output' },
+    { key: 'pressureApplication', field: 'allPaPressureApplication', title: 'Pressure Application' },
+    { key: 'pressureSensorStyle', field: 'allPaPressureSensorStyle', title: 'Pressure Sensor Style' },
+    { key: 'airQualityApplication', field: 'allPaAirQualityApplication', title: 'Air Quality Application' },
+    { key: 'airQualitySensorType', field: 'allPaAirQualitySensorType', title: 'Air Quality Sensor Type' },
+    { key: 'wirelessApplication', field: 'allPaWirelessApplication', title: 'Wireless Application' },
+  ];
 
+  const filterMaps = new Map<string, Map<string, { name: string; count: number }>>();
+  
+  // Initialize maps for each filter
+  filterDefinitions.forEach(def => {
+    filterMaps.set(def.key, new Map());
+  });
+
+  // Extract attributes from all products
   products.forEach((product) => {
-    if (product.__typename === 'SimpleProduct' || product.__typename === 'VariableProduct') {
-      const p = product as any;
+    const p = product as any;
 
-      // Application
-      p.allPaApplication?.nodes?.forEach((attr: any) => {
-        const current = applicationMap.get(attr.slug) || { name: attr.name, count: 0 };
-        applicationMap.set(attr.slug, { name: attr.name, count: current.count + 1 });
-      });
+    filterDefinitions.forEach(({ key, field }) => {
+      const nodes = p[field]?.nodes;
+      if (nodes && Array.isArray(nodes)) {
+        nodes.forEach((attr: any) => {
+          if (attr && attr.slug && attr.name) {
+            const map = filterMaps.get(key)!;
+            const current = map.get(attr.slug) || { name: attr.name, count: 0 };
+            map.set(attr.slug, { name: attr.name, count: current.count + 1 });
+          }
+        });
+      }
+    });
+  });
 
-      // Enclosure
-      p.allPaRoomEnclosureStyle?.nodes?.forEach((attr: any) => {
-        const current = enclosureMap.get(attr.slug) || { name: attr.name, count: 0 };
-        enclosureMap.set(attr.slug, { name: attr.name, count: current.count + 1 });
-      });
-
-      // Output
-      p.allPaTemperatureSensorOutput?.nodes?.forEach((attr: any) => {
-        const current = outputMap.get(attr.slug) || { name: attr.name, count: 0 };
-        outputMap.set(attr.slug, { name: attr.name, count: current.count + 1 });
-      });
-
-      // Display
-      p.allPaDisplay?.nodes?.forEach((attr: any) => {
-        const current = displayMap.get(attr.slug) || { name: attr.name, count: 0 };
-        displayMap.set(attr.slug, { name: attr.name, count: current.count + 1 });
-      });
+  // Convert maps to sorted arrays and build result object
+  const result: Record<string, Array<{ slug: string; name: string; count: number; title: string }>> = {};
+  
+  filterDefinitions.forEach(({ key, title }) => {
+    const map = filterMaps.get(key)!;
+    if (map.size > 0) {
+      result[key] = Array.from(map.entries())
+        .map(([slug, data]) => ({ slug, ...data, title }))
+        .sort((a, b) => b.count - a.count);
     }
   });
 
-  return {
-    application: Array.from(applicationMap.entries())
-      .map(([slug, data]) => ({ slug, ...data }))
-      .sort((a, b) => b.count - a.count),
-    enclosure: Array.from(enclosureMap.entries())
-      .map(([slug, data]) => ({ slug, ...data }))
-      .sort((a, b) => b.count - a.count),
-    output: Array.from(outputMap.entries())
-      .map(([slug, data]) => ({ slug, ...data }))
-      .sort((a, b) => b.count - a.count),
-    display: Array.from(displayMap.entries())
-      .map(([slug, data]) => ({ slug, ...data }))
-      .sort((a, b) => b.count - a.count),
-  };
+  return result;
 }

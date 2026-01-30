@@ -9,8 +9,8 @@ import {
   GetProductsWithFiltersDocument,
   GetProductsWithFiltersQuery,
 } from '@/lib/graphql/generated';
-import { ProductGrid } from '@/components/products/ProductGrid';
 import { ProductFilters } from '@/components/products/ProductFilters';
+import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 
 interface SubcategoryPageProps {
   params: Promise<{
@@ -168,22 +168,14 @@ export default async function SubcategoryPage({
 
           {/* Products Grid */}
           <div className="flex-1 min-w-0">
-            {/* Product Count & Sort */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-neutral-200">
-              <div className="text-sm text-neutral-600">
-                <span className="font-semibold text-neutral-900">
-                  {products.length}
-                </span>{' '}
-                products found
-              </div>
-
-              {/* Sort (Coming soon) */}
+            {/* Sort (Coming soon) */}
+            <div className="flex items-center justify-end mb-6 pb-4 border-b border-neutral-200">
               <div className="text-sm text-neutral-500">
                 {/* TODO: Add sort dropdown */}
               </div>
             </div>
 
-            {/* Product Grid */}
+            {/* Product Grid with Client-Side Filtering */}
             <Suspense
               fallback={
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -196,7 +188,7 @@ export default async function SubcategoryPage({
                 </div>
               }
             >
-              <ProductGrid products={products} locale={locale} />
+              <FilteredProductGrid products={products} locale={locale} />
             </Suspense>
 
             {/* Pagination (Coming soon) */}

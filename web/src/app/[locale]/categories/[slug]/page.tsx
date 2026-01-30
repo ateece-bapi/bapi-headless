@@ -11,20 +11,20 @@ import {
 interface CategoryPageProps {
   params: Promise<{
     locale: string;
-    category: string;
+    slug: string;
   }>;
 }
 
 export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
-  const { category } = await params;
+  const { slug } = await params;
   const client = getGraphQLClient(['product-categories'], true);
 
   try {
     const data = await client.request<GetProductCategoryWithChildrenQuery>(
       GetProductCategoryWithChildrenDocument,
-      { slug: category }
+      { slug }
     );
 
     const categoryData = data.productCategory;
@@ -48,12 +48,12 @@ export async function generateMetadata({
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { category, locale } = await params;
+  const { slug, locale } = await params;
   const client = getGraphQLClient(['product-categories'], true);
 
   const data = await client.request<GetProductCategoryWithChildrenQuery>(
     GetProductCategoryWithChildrenDocument,
-    { slug: category }
+    { slug }
   );
 
   const categoryData = data.productCategory;
@@ -122,7 +122,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             {subcategories.map((subcategory) => (
               <Link
                 key={subcategory.id}
-                href={`/${locale}/products/${category}/${subcategory.slug}`}
+                href={`/${locale}/products/${slug}/${subcategory.slug}`}
                 className="group relative bg-white rounded-xl border-2 border-neutral-200 hover:border-primary-500 hover:shadow-lg transition-all duration-normal overflow-hidden"
               >
                 {/* Subcategory Image */}

@@ -103,7 +103,7 @@ export default async function SubcategoryPage({
   if (parentCategory) {
     breadcrumbs.push({
       label: parentCategory.name || '',
-      href: `/${locale}/products/${parentCategory.slug}`,
+      href: `/${locale}/categories/${parentCategory.slug}`,
     });
   }
 

@@ -66,7 +66,7 @@ function ProductCard({ product, locale }: ProductCardProps) {
 
   return (
     <Link
-      href={`/${locale}/products/${product.slug}`}
+      href={`/${locale}/product/${product.slug}`}
       className="group bg-white rounded-xl border border-neutral-200 hover:border-primary-500 hover:shadow-lg transition-all duration-normal overflow-hidden flex flex-col"
     >
       {/* Product Image */}

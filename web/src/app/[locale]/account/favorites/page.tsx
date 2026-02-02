@@ -157,7 +157,7 @@ export default function FavoritesPage() {
                     key={favorite.id}
                     className="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition-shadow"
                   >
-                    <Link href={`/products/${favorite.productSlug}`}>
+                    <Link href={`/en/products/${favorite.productSlug}`}>
                       {favorite.productImage ? (
                         <div className="aspect-square bg-neutral-100 overflow-hidden">
                           <img
@@ -173,7 +173,7 @@ export default function FavoritesPage() {
                       )}
                     </Link>
                     <div className="p-4">
-                      <Link href={`/products/${favorite.productSlug}`}>
+                      <Link href={`/en/products/${favorite.productSlug}`}>
                         <h3 className="font-bold text-neutral-900 mb-2 hover:text-primary-600 transition-colors">
                           {favorite.productName}
                         </h3>
@@ -188,7 +188,7 @@ export default function FavoritesPage() {
                       )}
                       <div className="flex gap-2">
                         <Link
-                          href={`/products/${favorite.productSlug}`}
+                          href={`/en/products/${favorite.productSlug}`}
                           className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-sm rounded-lg transition-colors"
                         >
                           View Product

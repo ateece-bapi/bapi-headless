@@ -107,7 +107,7 @@ export default function CartItems({
             >
               {/* Product Image */}
               <Link
-                href={`/products/${product.slug}`}
+                href={`/en/products/${product.slug}`}
                 className="flex-shrink-0 w-24 h-24 sm:w-32 sm:h-32 bg-neutral-100 rounded-lg overflow-hidden hover:opacity-80 transition-opacity"
               >
                 {image ? (
@@ -128,7 +128,7 @@ export default function CartItems({
               {/* Product Details */}
               <div className="flex-1 min-w-0">
                 <Link
-                  href={`/products/${product.slug}`}
+                  href={`/en/products/${product.slug}`}
                   className="block group"
                 >
                   <h3 className="text-lg font-semibold text-neutral-900 group-hover:text-primary-500 transition-colors line-clamp-2">

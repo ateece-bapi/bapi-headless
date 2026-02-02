@@ -32,7 +32,7 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({ related }) => {
               <div className="text-xs font-semibold text-primary-700 mb-2">{product.price}</div>
             )}
             <div className="mt-auto flex gap-2">
-              <a href={`/products/${product.slug}`} className="bg-neutral-100 text-primary-700 px-3 py-1 rounded text-xs font-semibold hover:bg-primary-50 transition" aria-label={`View ${product.name}`}>View</a>
+              <a href={`/en/products/${product.slug}`} className="bg-neutral-100 text-primary-700 px-3 py-1 rounded text-xs font-semibold hover:bg-primary-50 transition" aria-label={`View ${product.name}`}>View</a>
               <button className="bg-primary-700 text-white px-3 py-1 rounded text-xs font-semibold hover:bg-primary-800 transition" aria-label={`Add ${product.name} to Job Estimate`}>Add to Job Estimate</button>
             </div>
           </div>

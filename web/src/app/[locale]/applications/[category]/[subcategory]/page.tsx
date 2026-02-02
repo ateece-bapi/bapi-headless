@@ -134,7 +134,7 @@ export default async function ApplicationSubcategoryPage({
             {products.map((product) => (
               <Link
                 key={product.id}
-                href={`/products/${product.slug}`}
+                href={`/en/products/${product.slug}`}
                 className="group bg-white border-2 border-neutral-200 rounded-xl overflow-hidden hover:border-primary-500 hover:shadow-lg transition-all duration-base"
               >
                 {/* Product Image */}

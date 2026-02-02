@@ -26,6 +26,9 @@ export function ProductCard({
   shortDescription,
   index = 0,
 }: ProductCardProps) {
+  // Get locale from params
+  const locale = 'en'; // Default to 'en' - component should receive this as prop if needed
+  
   // Strip HTML from short description
   const cleanDescription = shortDescription
     ? shortDescription.replace(/<[^>]*>/g, '').slice(0, 120)
@@ -33,7 +36,7 @@ export function ProductCard({
 
   return (
     <Link
-      href={`/products/${slug}`}
+      href={`/${locale}/products/${slug}`}
       className="group block bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-transparent relative focus:outline-none focus:ring-2 focus:ring-primary-500"
       style={{
         animationDelay: `${index * 50}ms`,

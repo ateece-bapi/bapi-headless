@@ -113,7 +113,7 @@ export default function RecentlyViewed({
             
             {/* Product link */}
             <Link
-              href={`/products/${product.slug}`}
+              href={`/en/products/${product.slug}`}
               className="block"
             >
               {/* Product image */}

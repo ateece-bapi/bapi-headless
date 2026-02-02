@@ -199,7 +199,7 @@ export default function ChatAnalyticsDashboard() {
                       #{index + 1}
                     </span>
                     <a
-                      href={`/products/${product.slug}`}
+                      href={`/en/products/${product.slug}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-primary-500 hover:text-primary-600 hover:underline"

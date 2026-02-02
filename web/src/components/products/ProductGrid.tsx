@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 import type {
   GetProductsWithFiltersQuery,
   SimpleProduct,
@@ -101,6 +102,7 @@ interface ProductCardProps {
 }
 
 function ProductCard({ product, locale }: ProductCardProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
   const isSimpleProduct = product.__typename === 'SimpleProduct';
   const isVariableProduct = product.__typename === 'VariableProduct';
 
@@ -133,15 +135,26 @@ function ProductCard({ product, locale }: ProductCardProps) {
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/0 to-accent-50/0 group-hover:from-primary-50/30 group-hover:to-accent-50/20 transition-all duration-300 pointer-events-none" />
       
       {/* Product Image */}
-      <div className="aspect-square relative bg-gradient-to-br from-neutral-50 to-neutral-100">
+      <div className="aspect-square relative bg-gradient-to-br from-neutral-50 to-neutral-100 overflow-hidden">
         {image?.sourceUrl ? (
-          <Image
-            src={image.sourceUrl}
-            alt={image.altText || product.name || 'Product'}
-            fill
-            className="object-contain p-4 group-hover:scale-110 transition-transform duration-500 ease-out"
-            sizes="(min-width: 1280px) 25vw, (min-width: 640px) 33vw, 50vw"
-          />
+          <>
+            {/* Loading shimmer effect */}
+            {!imageLoaded && (
+              <div className="absolute inset-0 bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-200 animate-[shimmer_2s_ease-in-out_infinite]" />
+            )}
+            
+            <Image
+              src={image.sourceUrl}
+              alt={image.altText || product.name || 'Product'}
+              fill
+              className={`object-contain p-4 group-hover:scale-110 transition-all duration-500 ease-out ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              sizes="(min-width: 1280px) 25vw, (min-width: 640px) 33vw, 50vw"
+              onLoad={() => setImageLoaded(true)}
+              loading="lazy"
+            />
+          </>
         ) : (
           <div className="w-full h-full flex items-center justify-center text-neutral-400">
             <div className="text-center">

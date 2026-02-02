@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { ProductGrid } from './ProductGrid';
+import { ProductGridSkeleton } from './ProductGridSkeleton';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
@@ -113,49 +114,85 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
           : `Showing ${filteredProducts.length} ${filteredProducts.length === 1 ? 'product' : 'products'}`
         }
       </div>
-      {/* Active Filter Pills */}
+      {/* Active Filter Pills with animations */}
       {hasActiveFilters && (
-        <div className="mb-6 flex flex-wrap items-center gap-2">
-          <span className="text-sm font-medium text-neutral-600">Active Filters:</span>
-          
-          {Object.entries(activeFilters).map(([type, values]) =>
-            values.map((value) => (
-              <div
-                key={`${type}-${value}`}
-                className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-100 text-primary-700 rounded-lg text-sm font-medium"
+        <div className="mb-8 animate-[fade-in_300ms_ease-out]">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-100 to-accent-100 px-4 py-2 rounded-full">
+              <svg
+                className="w-4 h-4 text-primary-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <span className="capitalize">{type}:</span>
-                <span className="font-semibold">{value.replace(/-/g, ' ')}</span>
-              </div>
-            ))
-          )}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                />
+              </svg>
+              <span className="text-sm font-semibold text-primary-700">
+                {Object.values(activeFilters).flat().length} Active Filters
+              </span>
+            </div>
+            
+            {Object.entries(activeFilters).map(([type, values]) =>
+              values.map((value, index) => (
+                <div
+                  key={`${type}-${value}`}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-primary-500 text-primary-700 rounded-full text-sm font-medium shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 animate-[fade-in_300ms_ease-out]"
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                  }}
+                >
+                  <span className="font-semibold capitalize">
+                    {type.replace(/([A-Z])/g, ' $1').trim()}:
+                  </span>
+                  <span className="text-neutral-900">{value.replace(/-/g, ' ')}</span>
+                </div>
+              ))
+            )}
+          </div>
           
-          <span className="text-sm text-neutral-500 ml-2">
-            ({filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'} found)
-          </span>
+          {/* Product count with animated number transition */}
+          <div className="mt-4 inline-flex items-center gap-2 text-sm text-neutral-600">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+              />
+            </svg>
+            <span className="font-medium">
+              Showing{' '}
+              <span className="text-primary-600 font-bold tabular-nums">
+                {filteredProducts.length}
+              </span>{' '}
+              {filteredProducts.length === 1 ? 'product' : 'products'}
+            </span>
+          </div>
         </div>
       )}
 
-      {/* Product Grid with loading overlay */}
-      {isFiltering ? (
-        <div className="relative">
-          {/* Semi-transparent overlay */}
-          <div className="absolute inset-0 bg-white/70 z-10 animate-[fade-in_150ms_ease-out]" />
-          
-          {/* Skeleton loading grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="bg-white rounded-xl border border-neutral-200 p-6 animate-pulse">
-                <div className="aspect-square bg-neutral-200 rounded-lg mb-4" />
-                <div className="h-4 bg-neutral-200 rounded w-3/4 mb-2" />
-                <div className="h-4 bg-neutral-200 rounded w-1/2" />
-              </div>
-            ))}
+      {/* Product Grid with smooth loading transition */}
+      <div className="relative">
+        {isFiltering && (
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 animate-[fade-in_200ms_ease-out]">
+            <ProductGridSkeleton count={9} />
           </div>
+        )}
+        
+        <div className={isFiltering ? 'opacity-50' : 'opacity-100 transition-opacity duration-300'}>
+          <ProductGrid products={filteredProducts} locale={locale} />
         </div>
-      ) : (
-        <ProductGrid products={filteredProducts} locale={locale} />
-      )}
+      </div>
 
       {/* No Results Message */}
       {hasActiveFilters && filteredProducts.length === 0 && (

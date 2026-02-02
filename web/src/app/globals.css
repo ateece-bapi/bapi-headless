@@ -112,6 +112,19 @@ body {
   animation-delay: 300ms;
 }
 
+/* 11. Shimmer loading animation for images */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
 /* Fade/slide animation for premium product cards */
 .opacity-0 {
   opacity: 0 !important;

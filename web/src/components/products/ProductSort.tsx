@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
+import type { ReactNode } from 'react';
 
 interface ProductSortProps {
   totalProducts: number;
@@ -9,7 +10,7 @@ interface ProductSortProps {
 type SortOption = {
   value: string;
   label: string;
-  icon: JSX.Element;
+  icon: ReactNode;
 };
 
 const sortOptions: SortOption[] = [

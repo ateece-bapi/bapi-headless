@@ -3,9 +3,11 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Product } from '@/lib/graphql/types';
-import { getProductPrice, getProductStockStatus, isSimpleProduct } from '@/lib/graphql/types';
+import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
+import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
 import { X, ExternalLink, Package, DollarSign } from 'lucide-react';
+
+type Product = SimpleProduct | VariableProduct;
 
 interface QuickViewModalProps {
   product: Product;
@@ -30,6 +32,8 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   const price = getProductPrice(product);
   const stockStatus = getProductStockStatus(product);
   const inStock = stockStatus === 'IN_STOCK';
+  const isSimple = product.__typename === 'SimpleProduct';
+  const sku = isSimple ? (product as SimpleProduct).sku : null;
 
   // ESC key to close
   useEffect(() => {
@@ -106,10 +110,10 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
 
             {/* SKU and Stock Status */}
             <div className="flex items-center gap-3 mb-4">
-              {product.sku && (
+              {sku && (
                 <div className="flex items-center gap-1.5 text-sm text-neutral-600">
                   <Package className="w-4 h-4" />
-                  <span>SKU: {product.sku}</span>
+                  <span>SKU: {sku}</span>
                 </div>
               )}
               {inStock ? (
@@ -142,7 +146,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             )}
 
             {/* Product Type Badge */}
-            {isSimpleProduct(product) && (
+            {isSimple && (
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-50 border border-primary-200 w-fit mb-6">
                 <span className="text-xs font-medium text-primary-700">
                   Simple Product

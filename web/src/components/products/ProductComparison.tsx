@@ -4,8 +4,10 @@ import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { X, Package, DollarSign, CheckCircle, XCircle } from 'lucide-react';
-import type { Product } from '@/lib/graphql/types';
-import { getProductPrice, getProductStockStatus, isSimpleProduct } from '@/lib/graphql/types';
+import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
+import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
+
+type Product = SimpleProduct | VariableProduct;
 
 interface ProductComparisonProps {
   products: Product[];
@@ -159,11 +161,14 @@ export default function ProductComparison({
                     SKU
                   </div>
                 </td>
-                {products.map((product) => (
-                  <td key={product.id} className="p-4 border-b border-neutral-200 text-center text-neutral-600">
-                    {product.sku || 'N/A'}
-                  </td>
-                ))}
+                {products.map((product) => {
+                  const sku = product.__typename === 'SimpleProduct' ? (product as SimpleProduct).sku : null;
+                  return (
+                    <td key={product.id} className="p-4 border-b border-neutral-200 text-center text-neutral-600">
+                      {sku || 'N/A'}
+                    </td>
+                  );
+                })}
               </tr>
 
               {/* Stock Status Row */}
@@ -207,7 +212,7 @@ export default function ProductComparison({
                 </td>
                 {products.map((product) => (
                   <td key={product.id} className="p-4 border-b border-neutral-200 text-center text-neutral-600">
-                    {isSimpleProduct(product) ? 'Simple Product' : 'Variable Product'}
+                    {product.__typename === 'SimpleProduct' ? 'Simple Product' : 'Variable Product'}
                   </td>
                 ))}
               </tr>

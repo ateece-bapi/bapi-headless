@@ -1,9 +1,14 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ProductGrid } from './ProductGrid';
+import { ProductGridSkeleton } from './ProductGridSkeleton';
+import { ProductSort } from './ProductSort';
+import { Pagination } from './Pagination';
+import ComparisonButton from './ComparisonButton';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
+import { getProductPrice } from '@/lib/graphql/types';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -12,11 +17,15 @@ interface FilteredProductGridProps {
   locale: string;
 }
 
+const PRODUCTS_PER_PAGE = 18;
+
 /**
- * Client component that filters products based on URL search params
+ * Client component that filters, sorts, and paginates products
  * 
  * Features:
  * - Filters by 15 product attribute taxonomies
+ * - Sort by name (A-Z, Z-A) and price (Low-High, High-Low)
+ * - Pagination (18 products per page)
  * - Skeleton loading state during filter changes
  * - Screen reader announcements via aria-live
  * - Debounced filter updates (300ms)
@@ -25,6 +34,8 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   const searchParams = useSearchParams();
   const [isFiltering, setIsFiltering] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState(products);
+  const sortBy = searchParams.get('sort') || 'default';
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
   
   // Define all possible filter keys and their corresponding GraphQL fields
   const filterFieldMap: Record<string, string> = {
@@ -99,6 +110,46 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
     return () => clearTimeout(timer);
   }, [searchParams, products, hasActiveFilters]);
 
+  // Sort products
+  const sortedProducts = useMemo(() => {
+    const sorted = [...filteredProducts];
+
+    switch (sortBy) {
+      case 'name-asc':
+        sorted.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+        break;
+      case 'name-desc':
+        sorted.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
+        break;
+      case 'price-asc':
+        sorted.sort((a, b) => {
+          const priceA = parseFloat(getProductPrice(a as any)?.replace(/[^0-9.]/g, '') || '0');
+          const priceB = parseFloat(getProductPrice(b as any)?.replace(/[^0-9.]/g, '') || '0');
+          return priceA - priceB;
+        });
+        break;
+      case 'price-desc':
+        sorted.sort((a, b) => {
+          const priceA = parseFloat(getProductPrice(a as any)?.replace(/[^0-9.]/g, '') || '0');
+          const priceB = parseFloat(getProductPrice(b as any)?.replace(/[^0-9.]/g, '') || '0');
+          return priceB - priceA;
+        });
+        break;
+      default:
+        // Keep original order
+        break;
+    }
+
+    return sorted;
+  }, [filteredProducts, sortBy]);
+
+  // Paginate products
+  const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_PER_PAGE);
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    return sortedProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+  }, [sortedProducts, currentPage]);
+
   return (
     <div>
       {/* Screen reader announcement */}
@@ -110,51 +161,128 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
       >
         {isFiltering
           ? 'Updating product results...'
-          : `Showing ${filteredProducts.length} ${filteredProducts.length === 1 ? 'product' : 'products'}`
+          : `Showing ${paginatedProducts.length} of ${sortedProducts.length} products. Page ${currentPage} of ${totalPages}.`
         }
       </div>
-      {/* Active Filter Pills */}
+
+      {/* Sort Controls (always visible) */}
+      <ProductSort totalProducts={sortedProducts.length} />
+      {/* Active Filter Pills with animations */}
       {hasActiveFilters && (
-        <div className="mb-6 flex flex-wrap items-center gap-2">
-          <span className="text-sm font-medium text-neutral-600">Active Filters:</span>
-          
-          {Object.entries(activeFilters).map(([type, values]) =>
-            values.map((value) => (
-              <div
-                key={`${type}-${value}`}
-                className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-100 text-primary-700 rounded-lg text-sm font-medium"
+        <div className="mb-8 animate-[fade-in_300ms_ease-out]">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-100 to-accent-100 px-4 py-2 rounded-full">
+              <svg
+                className="w-4 h-4 text-primary-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <span className="capitalize">{type}:</span>
-                <span className="font-semibold">{value.replace(/-/g, ' ')}</span>
-              </div>
-            ))
-          )}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                />
+              </svg>
+              <span className="text-sm font-semibold text-primary-700">
+                {Object.values(activeFilters).flat().length} Active Filters
+              </span>
+            </div>
+            
+            {Object.entries(activeFilters).map(([type, values]) =>
+              values.map((value, index) => (
+                <button
+                  key={`${type}-${value}`}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-primary-500 text-primary-700 rounded-full text-sm font-medium shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 animate-[fade-in_300ms_ease-out] focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:border-primary-600"
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                  }}
+                  onClick={() => {
+                    const params = new URLSearchParams(searchParams.toString());
+                    params.delete(type);
+                    window.history.pushState({}, '', `?${params.toString()}`);
+                    window.dispatchEvent(new Event('popstate'));
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      const params = new URLSearchParams(searchParams.toString());
+                      params.delete(type);
+                      window.history.pushState({}, '', `?${params.toString()}`);
+                      window.dispatchEvent(new Event('popstate'));
+                    }
+                  }}
+                  aria-label={`Remove filter: ${type} - ${value}`}
+                >
+                  <span className="font-semibold capitalize">
+                    {type.replace(/([A-Z])/g, ' $1').trim()}:
+                  </span>
+                  <span className="text-neutral-900">{value.replace(/-/g, ' ')}</span>
+                  <svg
+                    className="w-4 h-4 text-primary-600 hover:text-error-600 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              ))
+            )}
+          </div>
           
-          <span className="text-sm text-neutral-500 ml-2">
-            ({filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'} found)
-          </span>
+          {/* Product count with animated number transition */}
+          <div className="mt-4 inline-flex items-center gap-2 text-sm text-neutral-600">
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+              />
+            </svg>
+            <span className="font-medium">
+              Showing{' '}
+              <span className="text-primary-600 font-bold tabular-nums">
+                {filteredProducts.length}
+              </span>{' '}
+              {filteredProducts.length === 1 ? 'product' : 'products'}
+            </span>
+          </div>
         </div>
       )}
 
-      {/* Product Grid with loading overlay */}
-      {isFiltering ? (
-        <div className="relative">
-          {/* Semi-transparent overlay */}
-          <div className="absolute inset-0 bg-white/70 z-10 animate-[fade-in_150ms_ease-out]" />
-          
-          {/* Skeleton loading grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="bg-white rounded-xl border border-neutral-200 p-6 animate-pulse">
-                <div className="aspect-square bg-neutral-200 rounded-lg mb-4" />
-                <div className="h-4 bg-neutral-200 rounded w-3/4 mb-2" />
-                <div className="h-4 bg-neutral-200 rounded w-1/2" />
-              </div>
-            ))}
+      {/* Product Grid with smooth loading transition */}
+      <div className="relative">
+        {isFiltering && (
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 animate-[fade-in_200ms_ease-out]">
+            <ProductGridSkeleton count={9} />
           </div>
+        )}
+        
+        <div className={isFiltering ? 'opacity-50' : 'opacity-100 transition-opacity duration-300'}>
+          <ProductGrid products={paginatedProducts} locale={locale} />
         </div>
-      ) : (
-        <ProductGrid products={filteredProducts} locale={locale} />
+      </div>
+
+      {/* Pagination Controls */}
+      {sortedProducts.length > PRODUCTS_PER_PAGE && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalProducts={sortedProducts.length}
+        />
       )}
 
       {/* No Results Message */}
@@ -169,6 +297,9 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
           </p>
         </div>
       )}
+
+      {/* Floating Comparison Button */}
+      <ComparisonButton locale={locale} />
     </div>
   );
 }

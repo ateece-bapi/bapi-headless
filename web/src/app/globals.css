@@ -112,6 +112,44 @@ body {
   animation-delay: 300ms;
 }
 
+/* 11. Shimmer loading animation for images */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Scale in animation for modals */
+@keyframes scale-in {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Slide in from right animation for sidebar */
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
 /* Fade/slide animation for premium product cards */
 .opacity-0 {
   opacity: 0 !important;

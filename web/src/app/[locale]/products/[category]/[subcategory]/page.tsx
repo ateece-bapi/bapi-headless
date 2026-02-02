@@ -137,17 +137,63 @@ export default async function SubcategoryPage({
         </div>
       </div>
 
-      {/* Category Header */}
-      <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 border-b border-neutral-200">
-        <div className="max-w-container mx-auto px-4 py-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-2">
-            {subcategoryData.name}
-          </h1>
-          {subcategoryData.description && (
-            <p className="text-neutral-600 max-w-3xl">
-              {subcategoryData.description}
-            </p>
-          )}
+      {/* Category Header with BAPI Gradient */}
+      <div className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 border-b-4 border-accent-500">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        <div className="max-w-container mx-auto px-4 py-12 relative">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+              {subcategoryData.name}
+            </h1>
+            {subcategoryData.description && (
+              <p className="text-lg text-white/95 leading-relaxed drop-shadow-md max-w-2xl">
+                {subcategoryData.description}
+              </p>
+            )}
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5 border border-white/20">
+                <svg
+                  className="w-5 h-5 text-accent-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                  />
+                </svg>
+                <span className="text-white font-semibold">
+                  {subcategoryData.count || products.length} products
+                </span>
+              </div>
+              {parentCategory && (
+                <Link
+                  href={`/${locale}/categories/${parentCategory.slug}`}
+                  className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5 border border-white/20 hover:bg-white/20 transition-all"
+                >
+                  <svg
+                    className="w-4 h-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    />
+                  </svg>
+                  <span className="text-white font-medium">
+                    Back to {parentCategory.name}
+                  </span>
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 

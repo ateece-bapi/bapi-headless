@@ -77,15 +77,15 @@ export function ProductFilters({
   }, [pathname, router]);
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200 p-6">
+    <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-sm">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-bold text-neutral-900">Filters</h2>
+      <div className="flex items-center justify-between mb-6 pb-4 border-b border-neutral-100">
+        <h2 className="text-xl font-bold text-neutral-900">Filters</h2>
         {hasActiveFilters && (
           <button
             type="button"
             onClick={clearAllFilters}
-            className="text-sm text-primary-500 hover:text-primary-600 font-medium"
+            className="text-sm text-primary-500 hover:text-primary-600 font-medium transition-colors duration-200 hover:underline"
           >
             Clear All
           </button>
@@ -132,13 +132,13 @@ function FilterGroup({
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center justify-between w-full text-left mb-3"
+        className="flex items-center justify-between w-full text-left mb-4 group"
       >
-        <h3 className="font-semibold text-neutral-900 text-sm uppercase tracking-wide">
+        <h3 className="font-semibold text-neutral-900 text-sm uppercase tracking-wider group-hover:text-primary-600 transition-colors duration-200">
           {title}
         </h3>
         <svg
-          className={`w-5 h-5 text-neutral-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+          className={`w-5 h-5 text-neutral-500 transition-all duration-300 ease-out group-hover:text-primary-600 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -154,24 +154,26 @@ function FilterGroup({
 
       {/* Options */}
       {isExpanded && (
-        <div className="space-y-2">
+        <div className="space-y-3 animate-[fade-in_200ms_ease-out]">
           {options.map((option) => {
             const isActive = activeValues.includes(option.slug);
             return (
               <label
                 key={option.slug}
-                className="flex items-center gap-3 cursor-pointer group"
+                className="flex items-center gap-3 cursor-pointer group px-2 py-1.5 -mx-2 rounded-lg hover:bg-neutral-50 transition-all duration-200"
               >
                 <input
                   type="checkbox"
                   checked={isActive}
                   onChange={(e) => onChange(filterType, option.slug, e.target.checked)}
-                  className="w-4 h-4 rounded border-neutral-300 text-primary-500 focus:ring-primary-500 focus:ring-offset-0 cursor-pointer"
+                  className="w-4 h-4 rounded border-neutral-300 text-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 cursor-pointer transition-colors duration-150"
                 />
-                <span className="flex-1 text-sm text-neutral-700 group-hover:text-neutral-900">
+                <span className={`flex-1 text-sm transition-colors duration-200 ${isActive ? 'text-neutral-900 font-medium' : 'text-neutral-600 group-hover:text-neutral-900'}`}>
                   {option.name}
                 </span>
-                <span className="text-xs text-neutral-400">({option.count})</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full transition-colors duration-200 ${isActive ? 'bg-primary-100 text-primary-700' : 'bg-neutral-100 text-neutral-500 group-hover:bg-neutral-200'}`}>
+                  {option.count}
+                </span>
               </label>
             );
           })}

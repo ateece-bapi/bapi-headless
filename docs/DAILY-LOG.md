@@ -7,6 +7,78 @@
 
 ---
 
+## February 2, 2026 - Product Routing Fix & WooCommerce URL Convention
+
+### Critical Bug Fix: Product Detail Page 404 Errors (Morning)
+**Status:** ✅ Complete - Merged to main & deployed to production
+
+**Critical Issue:** All product detail page links returning 404 errors due to Next.js routing conflict.
+
+**Root Cause Analysis:**
+- Next.js cannot differentiate between dynamic segments at the same path level
+- Conflict: `/products/[category]/[subcategory]` vs `/products/[slug]`
+- When clicking a product, Next.js matched the category route instead of product detail
+- Params destructured with wrong names: `productCategory`, `productSubcategory` instead of `category`, `subcategory`
+
+**Solution Implemented:**
+- Chose **WooCommerce best practice (Option A)**: Singular `/product/` for individual items
+- Industry standard: WordPress/WooCommerce, Magento, BigCommerce all use singular for products
+- Follows REST API convention: singular for single resource, plural for collections
+- Benefits:
+  - ✅ Semantic clarity (singular = one item, plural = collection)
+  - ✅ No Next.js routing conflicts
+  - ✅ SEO-friendly taxonomy
+  - ✅ Matches e-commerce industry standards
+
+**Files Modified (13 components/pages):**
+1. `ProductGrid.tsx` - Changed all product links to `/product/${slug}`
+2. `ProductCard.tsx` - Updated to use singular route with locale
+3. `RelatedProductsAsync.tsx` - Changed to `/product/`
+4. `RelatedProducts.tsx` - Changed to `/product/`
+5. `RecentlyViewed.tsx` - Changed to `/product/`
+6. `CartItems.tsx` - 2 links updated (image + name)
+7. `Favorites page` - 3 links updated (thumbnail, title, view button)
+8. `Admin chat analytics` - Product recommendation links
+9. `Applications page` - Product links
+10. `Search page` - Search result links
+11. `QuickViewModal.tsx` - Quick View links
+12. `ProductComparison.tsx` - Comparison links
+13. `CartItems.test.tsx` - Test assertions updated
+
+**Critical TypeScript Fix:**
+- Fixed subcategory page param destructuring
+- Changed interface from `productCategory: string; productSubcategory: string;`
+- To correct Next.js params: `category: string; subcategory: string;`
+- Fixed GraphQL query variables to use correct param names
+- Turbopack cache issue required full cache clear and restart
+
+**Final Route Structure:**
+```
+/product/[slug]                    → Individual products (singular) ✅
+/products/[category]/[subcategory] → Category browsing (plural) ✅
+```
+
+**Testing & Quality:**
+- ✅ All 647 tests passing (100% pass rate maintained)
+- ✅ Production build successful (TypeScript compilation passed)
+- ✅ All product links working correctly
+- ✅ Subcategory pages loading with correct params
+- ✅ No routing conflicts
+
+**Pull Request:**
+- Branch: `fix/product-route-conflict` → `main`
+- Commit: `6a2d746` - "fix: implement WooCommerce URL convention"
+- 13 files changed, 16 insertions, 16 deletions
+- Merged via GitHub PR and deployed to production
+
+**Production Status:**
+- ✅ Deployed to production: https://bapi-headless.vercel.app
+- ✅ All product detail pages accessible at `/product/{slug}`
+- ✅ Category browsing still at `/products/{category}/{subcategory}`
+- ✅ Cart, favorites, search, admin all using correct links
+
+---
+
 ## February 2, 2026 - Product Pages Senior-Level Polish
 
 ### Advanced Product Features & Performance Optimization (Full Day)

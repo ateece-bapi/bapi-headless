@@ -166,7 +166,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
 
               {/* View Full Details Link */}
               <Link
-                href={`/${locale}/products/${product.slug}`}
+                href={`/${locale}/product/${product.slug}`}
                 className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl font-semibold text-primary-600 bg-primary-50 hover:bg-primary-100 transition-all duration-200"
                 onClick={onClose}
               >

@@ -151,7 +151,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               return (
                 <Link
                   key={product.id}
-                  href={`/en/products/${product.slug}`}
+                  href={`/en/product/${product.slug}`}
                   className="bg-white rounded-xl p-6 border border-neutral-200 hover:border-primary-500 hover:shadow-lg transition-all duration-300 group"
                 >
                   {product.image && (

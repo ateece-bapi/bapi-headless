@@ -185,7 +185,7 @@ function ProductCard({
   return (
     <Link
       ref={ref}
-      href={`/${locale}/products/${product.slug}`}
+      href={`/${locale}/product/${product.slug}`}
       className={`group bg-white rounded-xl border-2 border-neutral-200 hover:border-primary-500 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden flex flex-col relative ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}

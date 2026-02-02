@@ -1,10 +1,13 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ProductGrid } from './ProductGrid';
 import { ProductGridSkeleton } from './ProductGridSkeleton';
+import { ProductSort } from './ProductSort';
+import { Pagination } from './Pagination';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
+import { getProductPrice } from '@/lib/graphql/types';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -13,11 +16,15 @@ interface FilteredProductGridProps {
   locale: string;
 }
 
+const PRODUCTS_PER_PAGE = 18;
+
 /**
- * Client component that filters products based on URL search params
+ * Client component that filters, sorts, and paginates products
  * 
  * Features:
  * - Filters by 15 product attribute taxonomies
+ * - Sort by name (A-Z, Z-A) and price (Low-High, High-Low)
+ * - Pagination (18 products per page)
  * - Skeleton loading state during filter changes
  * - Screen reader announcements via aria-live
  * - Debounced filter updates (300ms)
@@ -26,6 +33,8 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   const searchParams = useSearchParams();
   const [isFiltering, setIsFiltering] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState(products);
+  const sortBy = searchParams.get('sort') || 'default';
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
   
   // Define all possible filter keys and their corresponding GraphQL fields
   const filterFieldMap: Record<string, string> = {
@@ -100,6 +109,46 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
     return () => clearTimeout(timer);
   }, [searchParams, products, hasActiveFilters]);
 
+  // Sort products
+  const sortedProducts = useMemo(() => {
+    const sorted = [...filteredProducts];
+
+    switch (sortBy) {
+      case 'name-asc':
+        sorted.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+        break;
+      case 'name-desc':
+        sorted.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
+        break;
+      case 'price-asc':
+        sorted.sort((a, b) => {
+          const priceA = parseFloat(getProductPrice(a as any)?.replace(/[^0-9.]/g, '') || '0');
+          const priceB = parseFloat(getProductPrice(b as any)?.replace(/[^0-9.]/g, '') || '0');
+          return priceA - priceB;
+        });
+        break;
+      case 'price-desc':
+        sorted.sort((a, b) => {
+          const priceA = parseFloat(getProductPrice(a as any)?.replace(/[^0-9.]/g, '') || '0');
+          const priceB = parseFloat(getProductPrice(b as any)?.replace(/[^0-9.]/g, '') || '0');
+          return priceB - priceA;
+        });
+        break;
+      default:
+        // Keep original order
+        break;
+    }
+
+    return sorted;
+  }, [filteredProducts, sortBy]);
+
+  // Paginate products
+  const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_PER_PAGE);
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    return sortedProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+  }, [sortedProducts, currentPage]);
+
   return (
     <div>
       {/* Screen reader announcement */}
@@ -111,9 +160,12 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
       >
         {isFiltering
           ? 'Updating product results...'
-          : `Showing ${filteredProducts.length} ${filteredProducts.length === 1 ? 'product' : 'products'}`
+          : `Showing ${paginatedProducts.length} of ${sortedProducts.length} products. Page ${currentPage} of ${totalPages}.`
         }
       </div>
+
+      {/* Sort Controls (always visible) */}
+      <ProductSort totalProducts={sortedProducts.length} />
       {/* Active Filter Pills with animations */}
       {hasActiveFilters && (
         <div className="mb-8 animate-[fade-in_300ms_ease-out]">
@@ -190,9 +242,18 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
         )}
         
         <div className={isFiltering ? 'opacity-50' : 'opacity-100 transition-opacity duration-300'}>
-          <ProductGrid products={filteredProducts} locale={locale} />
+          <ProductGrid products={paginatedProducts} locale={locale} />
         </div>
       </div>
+
+      {/* Pagination Controls */}
+      {sortedProducts.length > PRODUCTS_PER_PAGE && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalProducts={sortedProducts.length}
+        />
+      )}
 
       {/* No Results Message */}
       {hasActiveFilters && filteredProducts.length === 0 && (

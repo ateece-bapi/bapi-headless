@@ -98,7 +98,7 @@ describe('CartItems Component', () => {
       const links = screen.getAllByRole('link');
       // Each product has 2 links (image + name)
       expect(links.filter(link => 
-        link.getAttribute('href') === '/products/test-product-1'
+        link.getAttribute('href') === '/en/products/test-product-1'
       )).toHaveLength(2);
     });
 

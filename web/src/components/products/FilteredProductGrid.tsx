@@ -192,18 +192,47 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
             
             {Object.entries(activeFilters).map(([type, values]) =>
               values.map((value, index) => (
-                <div
+                <button
                   key={`${type}-${value}`}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-primary-500 text-primary-700 rounded-full text-sm font-medium shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 animate-[fade-in_300ms_ease-out]"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-primary-500 text-primary-700 rounded-full text-sm font-medium shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 animate-[fade-in_300ms_ease-out] focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:border-primary-600"
                   style={{
                     animationDelay: `${index * 50}ms`,
                   }}
+                  onClick={() => {
+                    const params = new URLSearchParams(searchParams.toString());
+                    params.delete(type);
+                    window.history.pushState({}, '', `?${params.toString()}`);
+                    window.dispatchEvent(new Event('popstate'));
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      const params = new URLSearchParams(searchParams.toString());
+                      params.delete(type);
+                      window.history.pushState({}, '', `?${params.toString()}`);
+                      window.dispatchEvent(new Event('popstate'));
+                    }
+                  }}
+                  aria-label={`Remove filter: ${type} - ${value}`}
                 >
                   <span className="font-semibold capitalize">
                     {type.replace(/([A-Z])/g, ' $1').trim()}:
                   </span>
                   <span className="text-neutral-900">{value.replace(/-/g, ' ')}</span>
-                </div>
+                  <svg
+                    className="w-4 h-4 text-primary-600 hover:text-error-600 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
               ))
             )}
           </div>

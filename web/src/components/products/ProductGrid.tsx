@@ -12,6 +12,7 @@ import type {
 import { getProductPrice } from '@/lib/graphql/types';
 import QuickViewModal from './QuickViewModal';
 import { useProductComparison } from '@/hooks/useProductComparison';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -152,6 +153,12 @@ function ProductCard({
   canAddToComparison,
 }: ProductCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { ref, isVisible } = useIntersectionObserver<HTMLAnchorElement>({
+    threshold: 0.1,
+    rootMargin: '100px',
+    freezeOnceVisible: true,
+  });
+  
   const isSimpleProduct = product.__typename === 'SimpleProduct';
   const isVariableProduct = product.__typename === 'VariableProduct';
 
@@ -177,8 +184,12 @@ function ProductCard({
 
   return (
     <Link
+      ref={ref}
       href={`/${locale}/product/${product.slug}`}
-      className="group bg-white rounded-xl border-2 border-neutral-200 hover:border-primary-500 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden flex flex-col relative"
+      className={`group bg-white rounded-xl border-2 border-neutral-200 hover:border-primary-500 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden flex flex-col relative ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+      style={{ transitionDuration: '500ms' }}
     >
       {/* Subtle gradient accent on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/0 to-accent-50/0 group-hover:from-primary-50/30 group-hover:to-accent-50/20 transition-all duration-300 pointer-events-none" />
@@ -194,7 +205,7 @@ function ProductCard({
               onToggleComparison();
             }
           }}
-          className={`p-2 rounded-lg backdrop-blur-sm shadow-lg transition-all duration-200 hover:scale-110 ${
+          className={`p-2 rounded-lg backdrop-blur-sm shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:border-2 focus-visible:border-primary-600 ${
             canAddToComparison
               ? 'bg-white/90 hover:bg-white cursor-pointer'
               : 'bg-neutral-100/90 cursor-not-allowed opacity-50'
@@ -216,7 +227,7 @@ function ProductCard({
             e.stopPropagation();
             onQuickView();
           }}
-          className="p-2 rounded-lg bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg transition-all duration-200 hover:scale-110"
+          className="p-2 rounded-lg bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:border-2 focus-visible:border-primary-600"
           aria-label="Quick view"
         >
           <Eye className="w-5 h-5 text-primary-600" />

@@ -36,7 +36,7 @@ export function ProductCard({
 
   return (
     <Link
-      href={`/${locale}/products/${slug}`}
+      href={`/${locale}/product/${slug}`}
       className="group block bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-transparent relative focus:outline-none focus:ring-2 focus:ring-primary-500"
       style={{
         animationDelay: `${index * 50}ms`,

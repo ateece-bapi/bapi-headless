@@ -36,7 +36,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
           {relatedProducts.slice(0, 4).map((product: any) => (
             <Link 
               key={product.id} 
-              href={`/en/products/${product.slug}`}
+              href={`/en/product/${product.slug}`}
               className="
                 group relative bg-white rounded-xl border-2 border-neutral-200 
                 hover:border-primary-500 hover:shadow-xl

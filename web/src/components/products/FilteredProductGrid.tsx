@@ -6,6 +6,7 @@ import { ProductGrid } from './ProductGrid';
 import { ProductGridSkeleton } from './ProductGridSkeleton';
 import { ProductSort } from './ProductSort';
 import { Pagination } from './Pagination';
+import ComparisonButton from './ComparisonButton';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
 import { getProductPrice } from '@/lib/graphql/types';
 
@@ -267,6 +268,9 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
           </p>
         </div>
       )}
+
+      {/* Floating Comparison Button */}
+      <ComparisonButton locale={locale} />
     </div>
   );
 }

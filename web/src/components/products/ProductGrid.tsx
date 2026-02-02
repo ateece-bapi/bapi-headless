@@ -1,12 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { Eye, Square, CheckSquare } from 'lucide-react';
 import type {
   GetProductsWithFiltersQuery,
   SimpleProduct,
   VariableProduct,
 } from '@/lib/graphql/generated';
 import { getProductPrice } from '@/lib/graphql/types';
+import QuickViewModal from './QuickViewModal';
+import { useProductComparison } from '@/hooks/useProductComparison';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -16,6 +21,14 @@ interface ProductGridProps {
 }
 
 export function ProductGrid({ products, locale }: ProductGridProps) {
+  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+  const {
+    isInComparison,
+    addToComparison,
+    removeFromComparison,
+    canAddMore,
+  } = useProductComparison();
+
   if (products.length === 0) {
     return (
       <div className="text-center py-16 px-4">
@@ -88,20 +101,56 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} locale={locale} />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            locale={locale}
+            onQuickView={() => setQuickViewProduct(product)}
+            isInComparison={isInComparison(product.id)}
+            onToggleComparison={() => {
+              if (isInComparison(product.id)) {
+                removeFromComparison(product.id);
+              } else if (canAddMore) {
+                addToComparison(product as any);
+              }
+            }}
+            canAddToComparison={canAddMore || isInComparison(product.id)}
+          />
+        ))}
+      </div>
+
+      {/* Quick View Modal */}
+      {quickViewProduct && (
+        <QuickViewModal
+          product={quickViewProduct as any}
+          onClose={() => setQuickViewProduct(null)}
+          locale={locale}
+        />
+      )}
+    </>
   );
 }
 
 interface ProductCardProps {
   product: Product;
   locale: string;
+  onQuickView: () => void;
+  isInComparison: boolean;
+  onToggleComparison: () => void;
+  canAddToComparison: boolean;
 }
 
-function ProductCard({ product, locale }: ProductCardProps) {
+function ProductCard({
+  product,
+  locale,
+  onQuickView,
+  isInComparison,
+  onToggleComparison,
+  canAddToComparison,
+}: ProductCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const isSimpleProduct = product.__typename === 'SimpleProduct';
   const isVariableProduct = product.__typename === 'VariableProduct';
@@ -133,6 +182,46 @@ function ProductCard({ product, locale }: ProductCardProps) {
     >
       {/* Subtle gradient accent on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/0 to-accent-50/0 group-hover:from-primary-50/30 group-hover:to-accent-50/20 transition-all duration-300 pointer-events-none" />
+      
+      {/* Quick View & Comparison Buttons */}
+      <div className="absolute top-3 right-3 z-10 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {/* Comparison Checkbox */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (canAddToComparison) {
+              onToggleComparison();
+            }
+          }}
+          className={`p-2 rounded-lg backdrop-blur-sm shadow-lg transition-all duration-200 hover:scale-110 ${
+            canAddToComparison
+              ? 'bg-white/90 hover:bg-white cursor-pointer'
+              : 'bg-neutral-100/90 cursor-not-allowed opacity-50'
+          }`}
+          aria-label={isInComparison ? 'Remove from comparison' : 'Add to comparison'}
+          disabled={!canAddToComparison}
+        >
+          {isInComparison ? (
+            <CheckSquare className="w-5 h-5 text-primary-600" />
+          ) : (
+            <Square className="w-5 h-5 text-neutral-600" />
+          )}
+        </button>
+
+        {/* Quick View Button */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onQuickView();
+          }}
+          className="p-2 rounded-lg bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg transition-all duration-200 hover:scale-110"
+          aria-label="Quick view"
+        >
+          <Eye className="w-5 h-5 text-primary-600" />
+        </button>
+      </div>
       
       {/* Product Image */}
       <div className="aspect-square relative bg-gradient-to-br from-neutral-50 to-neutral-100 overflow-hidden">

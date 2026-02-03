@@ -2,8 +2,135 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** February 2, 2026  
+**Updated:** February 3, 2026  
 **Status:** Phase 1 Development - April 10, 2026 Go-Live
+
+---
+
+## February 3, 2026 - Crowdin Translation Service Setup
+
+### Crowdin Project Configuration & GitHub Integration (Full Day)
+**Status:** ⏳ Awaiting Crowdin Specialist Call - Account billing clarification needed
+
+**Critical Progress:** Completed full Crowdin project setup including Team account subscription, project configuration with 7 target languages, GitHub integration, glossary upload, and AI Pipeline configuration. Encountered billing issue with AI Pipeline credits requiring Crowdin specialist consultation.
+
+**Crowdin Account Setup:**
+- ✅ Signed up for Crowdin Team plan ($99/month, 14-day free trial)
+- ✅ Project created: "BAPI Headless E-Commerce"
+- ✅ Project type: File-based (JSON i18next format)
+- ✅ Visibility: Private (B2B confidential content)
+- ✅ Source language: English (382 translation strings)
+- ✅ Target languages: 7 (Arabic, Chinese Simplified, French, German, Japanese, Spanish, Vietnamese)
+- ✅ Vietnamese marked as HIGHEST PRIORITY (Vietnam facility April 2026)
+
+**Project Configuration:**
+1. **Source File:** `web/messages/en.json` uploaded successfully
+   - 382 translation keys detected
+   - 14 namespaces (navigation, footer, products, cart, checkout, etc.)
+2. **Export Pattern:** `%two_letters_code%.json`
+   - Generates: de.json, fr.json, es.json, ja.json, zh.json, vi.json, ar.json
+3. **Onboarding Wizard:** Completed
+   - Initially selected "Linguists Only" approach
+   - Crowdin support recommended AI Pipeline instead (faster/cheaper)
+
+**Translation Strategy (Per Crowdin Support):**
+- **Original Plan:** Professional translators ($1,500-1,800, 7-10 days)
+- **Crowdin Recommendation:** AI Pipeline with custom instructions
+- **Cost Comparison:** AI ~$100-200 vs Professional ~$1,500-1,800
+- **Timeline:** AI minutes vs Professional 7-10 days
+- **Quality Strategy:** Test AI with German first, review before scaling
+
+**Custom Translation Instructions (12-Point Guidelines):**
+Added to AI prompt template for B2B quality control:
+```markdown
+12.1 Project Overview: B2B building automation e-commerce
+12.2 Tone & Style: Professional, technical, formal (Sie/usted/keigo)
+12.3 HIGHEST PRIORITY: Vietnamese (Vietnam facility April 2026)
+12.4 Do NOT Translate: BAPI, WAM™, BACnet, Modbus, LON, NIST, units, SKUs
+12.5 Context-Dependent: "Made in USA", "Premium" - adapt culturally
+12.6 Placeholders: Preserve {year}, {count}, {product}
+12.7 Technical Terms: Refer to glossary for HVAC terms
+```
+
+**Technical Glossary:**
+- ✅ Created `docs/bapi-crowdin-glossary.csv`
+- ✅ Uploaded to Crowdin project
+- ✅ Terms: HVAC protocols, brand names, standards, measurement units
+- ✅ Purpose: Ensure consistent terminology across all 7 languages
+
+**AI Pipeline Configuration:**
+- ✅ Installed AI Pipeline app from Crowdin Store
+- ✅ Prompt type: Pre-translation & AI Suggestion
+- ✅ Model: Crowdin (Basic template recommended for structured JSON)
+- ✅ Custom instructions: Integrated 12-point B2B guidelines
+- ✅ Visibility: All Projects
+- ✅ Default for AI Suggestions: Enabled
+
+**GitHub Integration:**
+- ✅ Navigated to Integrations → GitHub
+- ✅ Repository: `ateece-bapi/bapi-headless` connected
+- ✅ Branch Configuration:
+  - Source: `web/messages/en.json`
+  - Translation pattern: `web/messages/%two_letters_code%.json`
+- ✅ Initial sync completed
+- ✅ Two-way sync enabled (future en.json changes auto-sync to Crowdin)
+- ✅ Auto-PR creation configured (translations create PR when approved)
+
+**CRITICAL BLOCKER: 402 Insufficient Balance Error**
+
+**Problem:** AI Pipeline pre-translation failed with HTTP 402 error:
+```json
+{
+  "message": "Unable to load messages. Reason: All batches failed.
+  First error: Batch pipeline step 1 failed: 402 Insufficient balance",
+  "aiPromptId": 370582,
+  "aiPromptTitle": "Pre-translate",
+  "job_identifier": "419c8d4b-5d31-472f-8ee6-85e2e83ac545"
+}
+```
+
+**Issue Analysis:**
+- Team subscription ($99/month) purchased and active
+- Team plan includes: Unlimited projects, GitHub integration, Translation Memory, Glossary
+- Team plan DOES NOT include: AI Pipeline credits (separate purchase required)
+- Professional translator orders charged per word (included in subscription billing)
+- AI Pipeline requires additional credit purchase beyond subscription
+
+**Next Steps (Scheduled):**
+- 📞 **Tomorrow (Feb 4):** Call with Crowdin account specialist
+- Questions to ask:
+  1. Why AI credits separate from Team subscription?
+  2. Cost estimate for AI Pipeline: 382 strings × 7 languages?
+  3. Trial credits available for testing AI quality?
+  4. Compare AI vs Professional translator pricing?
+  5. Vietnamese priority handling (URGENT for April 2026)?
+  6. Recommendation: AI quality sufficient for B2B technical content?
+
+**Decision After Crowdin Call:**
+- **Option A:** Purchase AI credits, test German quality, scale if good
+- **Option B:** Order professional translations (better for B2B, meets March 10 deadline)
+- **Option C:** Mix approach - AI for simple strings, professional for critical content
+
+**Timeline Impact:**
+- ✅ No delay yet - still 5 weeks until March 10 deadline
+- ✅ Professional translations: 7-10 days (fits timeline)
+- ✅ AI translations: Minutes (if credits purchased)
+- ⏰ Must decide by Feb 5 to maintain schedule
+
+**Files Modified:**
+- `docs/bapi-crowdin-glossary.csv` - Created (technical glossary for translators)
+- Crowdin Project: "BAPI Headless E-Commerce" - Configured
+
+**Production Status:**
+- ✅ GitHub integration live (auto-sync working)
+- ⏳ Translations pending billing resolution
+- ✅ Infrastructure complete and ready (no code changes needed)
+- ✅ Vietnamese flagged as HIGHEST PRIORITY
+
+**Resources:**
+- Crowdin Project: https://crowdin.com/project/bapi-headless-e-commerce
+- Crowdin Support: Chat support used (responsive team)
+- Account Specialist: Call scheduled for February 4, 2026
 
 ---
 

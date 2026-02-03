@@ -1,0 +1,26 @@
+Term [en],Concept Definition,Part of Speech [en],Translatable,Concept Note
+BAPI,Company name - brand identity. NEVER translate,Proper Noun,false,bapi-company
+WAM,Wireless Asset Manager trademark. Keep WAM™ intact,Trademark,false,wam-trademark
+BACnet,Building automation protocol standard,Standard,false,bacnet-protocol
+Modbus,Industrial communication protocol,Standard,false,modbus-protocol
+LON,Local Operating Network protocol,Standard,false,lon-protocol
+ISO 9001:2015,International quality management standard,Standard,false,iso-standard
+NIST,National Institute of Standards and Technology,Standard,false,nist-standard
+CO₂,Carbon dioxide chemical formula,Chemical Formula,false,co2-formula
+VOC,Volatile Organic Compounds,Abbreviation,false,voc-abbreviation
+PM2.5,Particulate Matter 2.5 microns,Scientific Term,false,pm25-term
+PM10,Particulate Matter 10 microns,Scientific Term,false,pm10-term
+RH,Relative Humidity,Abbreviation,false,rh-abbreviation
+°C,Celsius temperature unit,Unit,false,celsius-unit
+°F,Fahrenheit temperature unit,Unit,false,fahrenheit-unit
+PSI,Pounds per square inch pressure unit,Unit,false,psi-unit
+bar,Metric pressure unit,Unit,false,bar-unit
+SKU,Stock Keeping Unit - product identifier,Business Term,false,sku-term
+Temperature Sensor,Thermal measurement device - translate appropriately,Product Category,true,temp-sensor
+Humidity Sensor,Moisture measurement device - translate appropriately,Product Category,true,humidity-sensor
+Pressure Sensor,Force measurement device - translate appropriately,Product Category,true,pressure-sensor
+Air Quality Sensor,Indoor air monitoring device - translate appropriately,Product Category,true,airquality-sensor
+Room Sensor,Wall-mounted indoor sensor - translate appropriately,Product Type,true,room-sensor
+Duct Sensor,HVAC duct-mounted sensor - translate appropriately,Product Type,true,duct-sensor
+Outdoor Sensor,Weather-resistant exterior sensor - translate appropriately,Product Type,true,outdoor-sensor
+Made in USA,Country of origin statement - adapt per market preference,Marketing Term,true,made-usa

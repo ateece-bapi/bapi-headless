@@ -16,7 +16,7 @@
 ## 🎯 Phase 1 Priorities (CRITICAL - April 10 Deadline)
 
 ### 1. Translation Services & Regional Support (HIGH PRIORITY)
-**Status:** ✅ Infrastructure Complete & Deployed - Navigation Fixed - Ready for Translation Service
+**Status:** 🔄 Crowdin Setup Complete - Awaiting Billing Clarification (Feb 4 Call)
 
 **Completed (Jan 28, 2026):**
 - ✅ next-intl migration (industry standard i18n framework)
@@ -40,15 +40,36 @@
 - ✅ Deployed to production: https://bapi-headless.vercel.app
 - ✅ All navigation links working with automatic locale handling
 
+**Completed (Feb 3, 2026) - Crowdin Setup:**
+- ✅ Crowdin Team account created ($99/month subscription active)
+- ✅ Project "BAPI Headless E-Commerce" created (Private, File-based JSON)
+- ✅ 7 target languages configured (AR, ZH-Simplified, FR, DE, JA, ES, VI)
+- ✅ en.json uploaded (382 strings, 14 namespaces detected)
+- ✅ GitHub integration configured (ateece-bapi/bapi-headless)
+- ✅ Branch sync: web/messages/en.json → web/messages/%two_letters_code%.json
+- ✅ Auto-PR creation enabled (translations create PR when approved)
+- ✅ Technical glossary uploaded (bapi-crowdin-glossary.csv)
+- ✅ AI Pipeline app installed and configured
+- ✅ Custom 12-point B2B translation instructions added to AI prompt
+- ✅ Vietnamese marked as HIGHEST PRIORITY (Vietnam facility April 2026)
+
+**BLOCKER (Feb 3, 2026):**
+- ❌ AI Pipeline 402 error: "Insufficient balance"
+- Issue: Team subscription ($99/month) ≠ AI Pipeline credits (separate purchase)
+- Team plan includes: Professional translators (pay per word), NOT AI credits
+- 📞 **Feb 4 Call Scheduled:** Crowdin account specialist
+
 **In Progress:**
-- 🔄 Translation service evaluation (Crowdin vs Smartling)
-- 🔄 Awaiting user decision on service provider
+- 🔄 Awaiting Crowdin specialist call (Feb 4) for billing clarification
+- 🔄 Decision: AI credits vs Professional translators vs Mixed approach
 
 **Remaining Work:**
-- [ ] **This Week (Jan 28 - Feb 2)**: Translation Service Decision
-  - [ ] Evaluate Crowdin ($1,850, faster) vs Smartling ($2,500-4,000, full-service)
-  - [ ] Sign up for chosen service
-  - [ ] Upload en.json, glossary, screenshots
+- [ ] **Feb 4**: Crowdin Account Specialist Call
+  - [ ] Clarify AI Pipeline credit pricing (382 strings × 7 languages)
+  - [ ] Get professional translator quote comparison
+  - [ ] Confirm Vietnamese priority handling (URGENT)
+  - [ ] Decide: AI vs Professional vs Mixed approach
+  - [ ] Purchase AI credits OR order professional translations
 - [ ] **Week of Feb 3**: Component Translation (if service not ready)
   - [ ] Update Header components with useTranslations hook
   - [ ] Update Homepage Hero with translation keys

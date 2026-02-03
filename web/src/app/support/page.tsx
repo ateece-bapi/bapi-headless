@@ -11,6 +11,7 @@ import {
   Mail,
   Phone
 } from 'lucide-react';
+import PageContainer from '@/components/layout/PageContainer';
 
 export const metadata: Metadata = {
   title: 'Support | BAPI',
@@ -22,23 +23,23 @@ export default function SupportPage() {
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white py-16">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <PageContainer size="content">
           <div className="text-center">
             <LifeBuoy className="w-16 h-16 mx-auto mb-4 transition-transform duration-normal hover:scale-110 hover:rotate-12" />
             <h1 className="text-4xl sm:text-5xl font-bold mb-4">
               BAPI Support Center
             </h1>
-            <p className="text-xl max-w-content mx-auto text-primary-50">
+            <p className="text-xl max-w-3xl mx-auto text-primary-50">
               Expert technical support for building automation professionals
             </p>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Quick Actions */}
       <section className="py-12 bg-neutral-50">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <PageContainer size="content">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
               href="/contact"
               className="bg-white p-6 rounded-xl border-2 border-neutral-200 hover:border-primary-500 transition-all duration-normal hover:shadow-lg hover:-translate-y-1 group"
@@ -72,12 +73,12 @@ export default function SupportPage() {
               </p>
             </Link>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Support Resources */}
       <section className="py-16">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <PageContainer size="content">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
             Support Resources
           </h2>
@@ -168,12 +169,12 @@ export default function SupportPage() {
               </ul>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
       {/* Contact Section */}
       <section className="py-16 bg-neutral-50">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <PageContainer size="content">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-neutral-900 mb-4">
               Need Direct Support?
@@ -219,7 +220,7 @@ export default function SupportPage() {
               </Link>
             </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
     </main>
   );

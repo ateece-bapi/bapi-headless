@@ -377,8 +377,9 @@ export default async function Home() {
 
                     {/* Excerpt */}
                     {post.excerpt && (
-                      <p className="text-sm text-neutral-600 mb-4 line-clamp-3"
-                         dangerouslySetInnerHTML={{ __html: post.excerpt }}
+                      <div
+                        className="text-sm text-neutral-600 mb-4 line-clamp-3"
+                        dangerouslySetInnerHTML={{ __html: post.excerpt }}
                       />
                     )}
 

@@ -1,0 +1,3 @@
+files:
+  - source: web/messages/en.json
+    translation: web/messages/%two_letters_code%.json

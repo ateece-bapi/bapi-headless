@@ -255,6 +255,11 @@ body {
   --width-container: 1600px;
   --width-content: 1200px;
   --width-narrow: 800px;
+  
+  /* Tailwind v4 sizing - Required for max-w-* utilities */
+  --size-container: 1600px;
+  --size-content: 1200px;
+  --size-narrow: 800px;
 
   /* Animation Durations - Consistent timing across UI */
   --duration-fast: 150ms;

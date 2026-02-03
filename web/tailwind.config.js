@@ -60,6 +60,11 @@ module.exports = {
           },
         },
       },
+      maxWidth: {
+        container: '1600px',
+        content: '1200px',
+        narrow: '800px',
+      },
       colors: {
         primary: {
           50: '#e6f2f9',

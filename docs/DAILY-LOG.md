@@ -7,9 +7,128 @@
 
 ---
 
-## February 3, 2026 - Crowdin Translation Service Setup
+## February 3, 2026 - Layout Consistency & Crowdin Translation Setup
 
-### Crowdin Project Configuration & GitHub Integration (Full Day)
+### Company & Support Page Layout Polish (Afternoon)
+**Status:** ✅ Complete - Merged to main & deployed to production
+
+**Critical Achievement:** Implemented site-wide layout consistency by creating shared PageContainer component and fixing Company/Support page width issues. Applied senior-level visual polish to Company page and resolved React hydration error on homepage.
+
+**Problem Analysis:**
+- Company and Support pages significantly wider than homepage/products/resources
+- Multiple attempts to fix widths failed due to grid layouts expanding beyond containers
+- Grid breakpoints (md:grid-cols-4, lg:grid-cols-3) overriding container max-width constraints
+- Homepage showing React hydration mismatch error (invalid HTML nesting)
+
+**Solution Implemented:**
+
+**1. Shared PageContainer Component**
+- Created reusable layout component: `web/src/components/layout/PageContainer.tsx`
+- Three semantic size options:
+  - `container` (1600px) - Full-width pages
+  - `content` (1200px) - Standard content width
+  - `narrow` (800px) - Focused content (Company page)
+- Consistent padding: `px-4 sm:px-6 lg:px-8 xl:px-12`
+- Responsive design with mobile-first approach
+
+**2. Company Page Updates** (narrow width - 800px)
+- Applied PageContainer with `size="narrow"` throughout
+- Reduced grid layouts to fit within constraints:
+  - Stats grid: 4-col → 2-col responsive
+  - Values grid: 3-col → 2-col responsive
+- Visual polish applied:
+  - Cards: Changed from `bg-neutral-50` to `bg-white border border-neutral-200 shadow-sm`
+  - Typography: Added `text-balance`, improved tracking, font weights
+  - Spacing: Consistent gaps (gap-6, gap-8), better padding
+  - Dividers: Added subtle separators between sections
+  - Hover states: Smooth transitions on interactive elements
+- Applied to both `/app/company/page.tsx` and `/app/[locale]/company/page.tsx`
+
+**3. Support Page Updates** (content width - 1200px)
+- Applied PageContainer with `size="content"` (wider for resource grids)
+- Reduced grid layouts:
+  - 4-col → 2-col on tablet
+  - 3-col → 2-col responsive
+- Applied to both `/app/support/page.tsx` and `/app/[locale]/support/page.tsx`
+
+**4. Homepage Hydration Fix**
+- Root cause: WordPress excerpts contain `<p>` tags
+- Invalid HTML: Wrapping excerpt in `<p>` created nested `<p><p>` (HTML spec violation)
+- Solution: Changed wrapper from `<p>` to `<div>` at line 381
+- File: `web/src/app/[locale]/page.tsx`
+- Result: React hydration mismatch resolved, clean SSR
+
+**5. Tailwind Configuration Updates**
+- Added Tailwind v4 size tokens to `globals.css`:
+  ```css
+  --size-container: 1600px;
+  --size-content: 1200px;
+  --size-narrow: 800px;
+  ```
+- Added maxWidth config to `tailwind.config.js`:
+  ```js
+  maxWidth: {
+    container: '1600px',
+    content: '1200px',
+    narrow: '800px',
+  }
+  ```
+
+**6. Middleware Refactor**
+- Moved `web/src/middleware.ts` → `web/src/proxy.ts` (better naming)
+- Removed old middleware file from git
+
+**Pull Request:**
+- Branch: `feat/company-support-layout-polish` → `main`
+- 2 commits:
+  - Commit 1: Layout fixes, PageContainer component, page updates
+  - Commit 2: Tailwind tokens, config updates, middleware cleanup
+- 10 files changed, 192 insertions, 139 deletions
+- Merged via GitHub PR
+- Deployed to production
+
+**Files Changed:**
+- **New:** `web/src/components/layout/PageContainer.tsx` (36 lines)
+- **New:** `web/src/proxy.ts` (renamed from middleware.ts)
+- **Modified:** `web/src/app/company/page.tsx` (Company page with narrow layout)
+- **Modified:** `web/src/app/[locale]/company/page.tsx` (Locale variant)
+- **Modified:** `web/src/app/support/page.tsx` (Support page with content layout)
+- **Modified:** `web/src/app/[locale]/support/page.tsx` (Locale variant)
+- **Modified:** `web/src/app/[locale]/page.tsx` (Homepage hydration fix)
+- **Modified:** `web/src/app/globals.css` (Tailwind size tokens)
+- **Modified:** `web/tailwind.config.js` (maxWidth config)
+- **Deleted:** `web/src/middleware.ts` (replaced by proxy.ts)
+
+**Testing & Quality:**
+- ✅ All 648 tests passing (100% pass rate maintained)
+- ✅ Production build successful (TypeScript compilation passed)
+- ✅ No hydration errors in console
+- ✅ Responsive on all screen sizes (mobile, tablet, desktop)
+- ✅ All navigation links working correctly
+
+**Strategic Benefits:**
+- ✅ **Consistent UX** - All pages now use same container widths
+- ✅ **Reusable architecture** - PageContainer can be applied site-wide
+- ✅ **Senior-level polish** - Company page meets high visual standards
+- ✅ **Maintainable** - Semantic size props (container/content/narrow)
+- ✅ **Type-safe** - TypeScript interfaces for all components
+- ✅ **Accessible** - Responsive design works on all devices
+
+**Production Status:**
+- ✅ Deployed to production: https://bapi-headless.vercel.app
+- ✅ Company page: Centered with narrow width (800px)
+- ✅ Support page: Centered with content width (1200px)
+- ✅ Homepage: No hydration errors
+- ✅ Git cleanup: Branch deleted locally and remotely
+
+**Next Steps:**
+- Consider applying visual polish to Support page (Company received it, Support didn't yet)
+- Consider broader PageContainer rollout to other pages for full site consistency
+- Monitor production for any layout issues
+
+---
+
+### Crowdin Project Configuration & GitHub Integration (Morning)
 **Status:** ⏳ Awaiting Crowdin Specialist Call - Account billing clarification needed
 
 **Critical Progress:** Completed full Crowdin project setup including Team account subscription, project configuration with 7 target languages, GitHub integration, glossary upload, and AI Pipeline configuration. Encountered billing issue with AI Pipeline credits requiring Crowdin specialist consultation.

@@ -285,6 +285,53 @@
 - All 647 tests passing
 - Production build successful
 
+---
+
+### 4C. Company & Support Page Layout Consistency ✅ COMPLETE (Feb 3, 2026)
+
+**Status:** ✅ Pull Request #[merged] - Successfully Merged and Deployed
+- Branch: `feat/company-support-layout-polish` → `main`
+- 2 commits, 10 files changed
+- All 648 tests passing
+- Production build successful
+
+**Problem Solved:**
+- Company and Support pages were significantly wider than homepage/products/resources pages
+- Inconsistent layout patterns across site
+- Grid layouts with responsive breakpoints expanding beyond container constraints
+
+**Solution Implemented:**
+- Created shared `PageContainer` component with semantic size options (container/content/narrow)
+- Applied consistent width constraints to Company and Support pages
+- Reduced grid column counts to prevent overflow (4-col→2-col, 3-col→2-col)
+- Fixed homepage hydration error (invalid `<p>` nesting in WordPress excerpts)
+
+**Files Created:**
+- `web/src/components/layout/PageContainer.tsx` - Reusable container with semantic sizing
+- `web/src/proxy.ts` - Middleware refactor (replaced old middleware.ts)
+
+**Files Modified:**
+- `web/src/app/company/page.tsx` - Applied narrow width (800px) + visual polish
+- `web/src/app/[locale]/company/page.tsx` - Locale variant with matching updates
+- `web/src/app/support/page.tsx` - Applied content width (1200px)
+- `web/src/app/[locale]/support/page.tsx` - Locale variant with matching updates
+- `web/src/app/[locale]/page.tsx` - Fixed hydration error (excerpt wrapper: `<p>` → `<div>`)
+- `web/src/app/globals.css` - Added Tailwind v4 size tokens (--size-container/content/narrow)
+- `web/tailwind.config.js` - Added maxWidth config for semantic classes
+
+**Visual Polish Applied to Company Page:**
+- Refined card design: white bg with borders, shadows, hover states
+- Improved typography: text-balance, better tracking, font weights
+- Enhanced spacing: consistent gaps, padding, margins
+- Added subtle dividers between sections
+
+**Production Status:**
+- ✅ Deployed to production: https://bapi-headless.vercel.app
+- ✅ Company and Support pages now match homepage width consistency
+- ✅ All navigation links working correctly
+- ✅ No hydration errors in console
+- ✅ Responsive on all screen sizes
+
 **Phase 5: Advanced Product Features (Completed)**
 - ✅ Quick View Modal - Product preview without leaving page
   - Component: `QuickViewModal.tsx` (179 lines)

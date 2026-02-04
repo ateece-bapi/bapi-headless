@@ -94,6 +94,83 @@
 
 ---
 
+## February 4, 2026 - Performance Crisis & Clerk Authentication Removal (Evening)
+
+### Critical Performance Discovery
+**Status:** 🚨 CRITICAL - PageSpeed Performance Degraded Despite Optimizations
+
+**Performance Journey:**
+- **Baseline (Pre-optimization):** Desktop 43, LCP 0.8s
+- **After 6 optimization rounds:** Desktop 47, LCP 10.2s (WORSE!)
+- **Root Cause Identified:** Clerk authentication forcing dynamic rendering on EVERY page
+
+**Optimization Attempts (All Failed):**
+1. Round 1: Added priority prop to hero image → Performance 33 ❌ (WORSE)
+2. Round 2: Aggressive optimizations (deferred analytics, simplified animations) → Performance 36 ❌
+3. Round 3: Reduced hero image size (13MB → smaller dimensions) → Performance 53 ⚠️
+4. Round 4: Created optimized WebP images (96-99% size reduction) → Performance 63 ⚠️
+5. Round 5: Native img with fetchPriority="high" → Performance 63 (no change)
+6. Round 6: Removed Toaster, PageTransition, NProgress → Performance 59 ❌ (WORSE!)
+7. Round 7: Created (public) route group to bypass Clerk → Performance 47 ❌ (WORSE!)
+
+**Critical Headers Discovered:**
+```
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+x-vercel-cache: MISS (on EVERY request)
+x-clerk-auth-reason: dev-browser-missing
+```
+
+**Root Cause Analysis:**
+- Clerk middleware (`clerkMiddleware`) runs on EVERY request BEFORE Next.js routing
+- Even "public" routes go through authentication check
+- Authentication check prevents static generation
+- CDN cannot cache pages with `cache-control: no-store`
+- 6.5s server delay before images even start loading
+- All optimization attempts treated SYMPTOMS, not ROOT CAUSE
+
+**Strategic Decision: Remove Clerk Entirely**
+
+**Rationale:**
+1. **Already have 5,438 users in WordPress** - Why duplicate?
+2. **Clerk forces dynamic rendering** - Prevents static optimization
+3. **Third-party dependency** - Another point of failure
+4. **Monthly costs** - Per active user pricing
+5. **Complex architecture** - Middleware, providers, route groups
+6. **Performance killer** - Fighting it for days with no success
+
+**Alternative: WordPress Authentication**
+- ✅ Single source of truth (WordPress has all user data)
+- ✅ No monthly fees (already paying for WordPress)
+- ✅ Simpler code (no ClerkProvider, no middleware complexity)
+- ✅ Static generation works immediately
+- ✅ JWT tokens from WordPress REST API
+- ✅ Custom login page with better UX control
+
+**Clerk Usage Found (8 files only):**
+- SignInButton.tsx (Header component)
+- FavoriteButton.tsx (useUser hook)
+- account/favorites/page.tsx (useUser hook)
+- account/layout.tsx (ClerkProvider wrapper)
+- checkout/layout.tsx (ClerkProvider wrapper)
+- order-confirmation/layout.tsx (ClerkProvider wrapper)
+- proxy.ts (clerkMiddleware)
+- (public)/layout.tsx (comments only)
+
+**Implementation Plan:**
+1. Create `/api/auth/login` - POST credentials → WordPress JWT
+2. Create `/api/auth/me` - GET current user from WordPress
+3. Replace `useUser()` - Custom hook calling `/api/auth/me`
+4. Update SignInButton - Link to custom login page
+5. Protected pages - Middleware checks JWT instead of Clerk
+6. Remove all Clerk dependencies and configuration
+
+**Time Estimate:** 2-3 hours to implement, test, deploy
+**Performance Gain:** Immediate - homepage becomes fully static
+
+**Status:** 🔄 In Progress - Documentation updated, ready to implement
+
+---
+
 ## February 4, 2026 - Comprehensive Codebase Review & Quality Assessment (Morning)
 
 ### Senior-Level Code Review (Morning)

@@ -139,6 +139,138 @@
 
 ---
 
+### Logger Wrapper & Sentry Integration (Afternoon/Evening)
+**Status:** ✅ Complete - Production-Ready Error Monitoring
+
+**Critical Achievement:** Implemented enterprise-grade logging and error monitoring system with Sentry integration. Created centralized logger wrapper with environment-aware logging, automatic error tracking, and session replay capabilities.
+
+**Phase 1: Logger Wrapper Creation**
+- ✅ Created `web/src/lib/logger.ts` (189 lines)
+- ✅ Environment-aware logging:
+  - Development: All levels (debug, info, warn, error)
+  - Production: Warn and error only (no log spam)
+- ✅ Auto-sends errors to Sentry in production
+- ✅ Performance timing utilities (`logger.time()` / `timer.end()`)
+- ✅ Log grouping for related messages
+- ✅ Full TypeScript + JSDoc documentation
+- ✅ Ready to replace 50+ console.log calls
+
+**Phase 2: Sentry Integration**
+- ✅ Created Sentry account (organization: bapi-gv)
+- ✅ Ran Sentry wizard (`npx @sentry/wizard@latest -i nextjs`)
+- ✅ Configuration choices:
+  - **Routing:** YES - Route through Next.js tunnel (bypass ad blockers)
+  - **Session Replay:** YES - Privacy-safe, 10% normal sessions, 100% on errors
+  - **Logs:** NO - Using custom logger wrapper instead (better control)
+  - **CI/CD:** Added to Vercel (not repository)
+  - **MCP Server:** NO - Not needed for core functionality
+  - **Prettier:** YES - Auto-format generated files
+- ✅ Files created by wizard:
+  - `sentry.server.config.ts` - Server-side error tracking
+  - `sentry.edge.config.ts` - Edge runtime error tracking
+  - `src/instrumentation.ts` - Sentry initialization
+  - `src/instrumentation-client.ts` - Client-side initialization
+  - `.env.sentry-build-plugin` - Auth token (gitignored)
+  - `/sentry-example-page` - Test page for validation
+- ✅ Updated `global-error.tsx` with Sentry.captureException
+- ✅ Fixed example page route (moved to `[locale]/sentry-example-page`)
+
+**Phase 3: Configuration & Testing**
+- ✅ Environment variables added:
+  - `SENTRY_AUTH_TOKEN` - Source map uploads (Vercel only)
+  - `NEXT_PUBLIC_SENTRY_DSN` - Error submission endpoint
+  - `NEXT_PUBLIC_SENTRY_ENVIRONMENT` - Environment tracking
+- ✅ Sentry project configured:
+  - DSN: `https://9ccef63fa5c...@o4510828355518464.ingest.us.sentry.io/4510828357091328`
+  - Organization: bapi-gv
+  - Project: bapi-headless
+  - Sample rate: 100% (adjust to 10% for production)
+- ✅ Session Replay settings:
+  - `replaysSessionSampleRate: 0.1` (10% of normal sessions)
+  - `replaysOnErrorSampleRate: 1.0` (100% when errors occur)
+  - Privacy: Masks all text, blocks all media
+- ✅ Testing completed:
+  - Visited `/en/sentry-example-page`
+  - Clicked "Throw Sample Error" button
+  - Verified error appeared in Sentry dashboard
+  - Confirmed stack traces with source maps
+  - Session replay configured and ready
+
+**Sentry Dashboard Verified:**
+- ✅ Error captured: "SentryExampleFrontendError"
+- ✅ Stack trace showing TypeScript source (line 9)
+- ✅ Breadcrumbs tracking user actions
+- ✅ Environment data (development, browser info)
+- ✅ HTTP request details
+- ✅ User context ready for Clerk integration
+
+**Documentation Created:**
+- ✅ `docs/SENTRY-INTEGRATION.md` (309 lines)
+  - Installation instructions
+  - Configuration examples (client, server, edge)
+  - Cost breakdown (Free: 5k errors/month, Team: $26/month)
+  - Best practices and testing guide
+  - User context integration with Clerk
+  - Performance tracking setup
+
+**Production Deployment:**
+- ✅ Branch: `feat/logger-wrapper-sentry` → merged to `main`
+- ✅ 3 commits:
+  - Commit 1: Logger wrapper + Sentry docs
+  - Commit 2: Sentry wizard configuration
+  - Commit 3: Example page route fix
+- ✅ Vercel environment variables configured
+- ✅ All 648 tests passing
+- ✅ Production build successful
+
+**Files Created:**
+- `web/src/lib/logger.ts` (189 lines)
+- `web/sentry.server.config.ts` (17 lines)
+- `web/sentry.edge.config.ts` (17 lines)
+- `web/src/instrumentation.ts` (13 lines)
+- `web/src/instrumentation-client.ts` (29 lines)
+- `web/src/app/api/sentry-example-api/route.ts` (15 lines)
+- `web/src/app/[locale]/sentry-example-page/page.tsx` (235 lines)
+- `docs/SENTRY-INTEGRATION.md` (309 lines)
+- `web/.env.sentry-build-plugin` (5 lines, gitignored)
+
+**Files Modified:**
+- `web/src/app/global-error.tsx` - Added Sentry.captureException
+- `web/.gitignore` - Added Sentry build plugin exclusions
+- `web/next.config.ts` - Added Sentry webpack plugin
+- `web/package.json` - Added @sentry/nextjs dependency
+- `web/pnpm-lock.yaml` - Dependency updates
+
+**Strategic Benefits:**
+- ✅ **Production-ready error tracking** - Catch and fix bugs before customers report
+- ✅ **Session replay** - See exact user actions leading to errors
+- ✅ **Ad-blocker bypass** - Tunnel routing ensures 100% error capture
+- ✅ **Cost-effective** - Free tier sufficient for launch (5k errors/month)
+- ✅ **Type-safe logging** - Centralized logger with TypeScript support
+- ✅ **Performance insights** - Track slow queries and API calls
+- ✅ **User context** - Ready for Clerk user ID integration
+
+**Next Steps (Feb 5):**
+- [ ] Replace 50+ console.log calls with logger wrapper (2-3 hours)
+- [ ] Configure production sample rates (0.1 recommended)
+- [ ] Add Clerk user context to Sentry events
+- [ ] Set up Sentry alerts (email/Slack on critical errors)
+- [ ] Remove `/sentry-example-page` before production launch
+
+**Week 1 Progress:**
+- ✅ **Feb 4 Complete:** Logger wrapper + Sentry (3 hours total)
+- 🔄 **Feb 5 Next:** Console.log cleanup (2-3 hours)
+- ⏳ **Feb 6:** Email notifications (AWS SES)
+- ⏳ **Feb 7:** Admin authentication (Clerk roles)
+
+**Production Status:**
+- ✅ Sentry dashboard: https://sentry.io/organizations/bapi-gv/issues/
+- ✅ Error tracking working perfectly
+- ✅ Source maps uploading on build
+- ✅ Ready for production error monitoring
+
+---
+
 ## February 3, 2026 - Layout Consistency & Crowdin Translation Setup
 
 ### Company & Support Page Layout Polish (Afternoon)

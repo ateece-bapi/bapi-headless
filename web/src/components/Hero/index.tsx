@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import clsx from 'clsx';
 import { HeroProps } from './types';
 import { HERO_CONFIG } from './config';
@@ -91,12 +92,14 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-transparent rounded-br-full"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-accent-500/10 to-transparent rounded-tl-full"></div>
             
-            <img
+            <Image
               src="/images/products/families/BAPI_Full_Family_11K_Wide_2025_noWAM_US.webp"
               alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
+              width={5000}
+              height={1500}
+              priority
+              quality={90}
               className="relative w-full h-auto rounded-xl shadow-lg max-w-5xl mx-auto"
-              loading="eager"
-              fetchPriority="high"
             />
             
             {/* Product family caption */}

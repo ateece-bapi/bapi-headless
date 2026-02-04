@@ -9,7 +9,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
-import ChatWidget from "@/components/chat/ChatWidget";
+import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
 import { ToastProvider } from "@/components/ui/Toast";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { WebVitals } from "@/components/analytics/WebVitals";
@@ -86,7 +86,7 @@ export default async function RootLayout({
                   },
                 }}
               />
-              <ChatWidget />
+              <ChatWidgetClient />
             </ToastProvider>
           </NextIntlClientProvider>
           <BackToTop />

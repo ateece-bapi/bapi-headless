@@ -8,6 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import logger from '@/lib/logger';
 import { ERROR_MESSAGES, logError } from '@/lib/errors';
 
 // WooCommerce REST API credentials
@@ -76,8 +77,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('[Payment Confirm] Creating WooCommerce order via REST API');
-    console.log('[Payment Confirm] Cart items:', cartItems.length);
+    logger.debug('[Payment Confirm] Creating WooCommerce order via REST API', { 
+      itemCount: cartItems.length 
+    });
     
     // Create order using WooCommerce REST API
     const wcOrderData = {
@@ -140,12 +142,12 @@ export async function POST(request: NextRequest) {
 
     if (!wcResponse.ok) {
       const errorText = await wcResponse.text();
-      console.error('[Payment Confirm] WooCommerce API error:', errorText);
+      logger.error('[Payment Confirm] WooCommerce API error', { error: errorText });
       throw new Error(`WooCommerce order creation failed: ${wcResponse.status}`);
     }
 
     const order = await wcResponse.json();
-    console.log('[Payment Confirm] Order created:', order.id);
+    logger.info('[Payment Confirm] Order created successfully', { orderId: order.id });
 
     // Return order details with clearCart flag
     return NextResponse.json({

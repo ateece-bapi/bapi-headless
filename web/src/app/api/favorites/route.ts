@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
+import logger from '@/lib/logger';
 import { writeFile, mkdir } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
@@ -60,7 +61,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ favorites: userFavorites });
 
   } catch (error) {
-    console.error('Error fetching favorites:', error);
+    logger.error('Error fetching favorites', error);
     return NextResponse.json(
       { error: 'Failed to fetch favorites' },
       { status: 500 }
@@ -126,7 +127,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error adding to favorites:', error);
+    logger.error('Error adding to favorites', error);
     return NextResponse.json(
       { error: 'Failed to add to favorites' },
       { status: 500 }
@@ -179,7 +180,7 @@ export async function DELETE(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error removing from favorites:', error);
+    logger.error('Error removing from favorites', error);
     return NextResponse.json(
       { error: 'Failed to remove from favorites' },
       { status: 500 }

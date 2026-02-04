@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
+import logger from '@/lib/logger';
 
 /**
  * Chat Human Handoff API
@@ -36,7 +37,7 @@ async function ensureHandoffFile() {
       await fs.writeFile(HANDOFF_FILE, JSON.stringify({ handoffs: [] }, null, 2));
     }
   } catch (error) {
-    console.error('Failed to ensure handoff file:', error);
+    logger.error('Failed to ensure handoff file', error);
   }
 }
 
@@ -50,7 +51,7 @@ async function readHandoffs(): Promise<HandoffRequest[]> {
     const data = JSON.parse(content);
     return data.handoffs || [];
   } catch (error) {
-    console.error('Failed to read handoffs:', error);
+    logger.error('Failed to read handoffs', error);
     return [];
   }
 }
@@ -67,7 +68,7 @@ async function writeHandoffs(handoffs: HandoffRequest[]): Promise<void> {
       'utf8'
     );
   } catch (error) {
-    console.error('Failed to write handoffs:', error);
+    logger.error('Failed to write handoffs', error);
     throw error;
   }
 }
@@ -79,7 +80,7 @@ async function writeHandoffs(handoffs: HandoffRequest[]): Promise<void> {
 async function notifyTeam(handoff: HandoffRequest): Promise<void> {
   // TODO: Implement email notification
   // For now, just log
-  console.log('Handoff notification:', {
+  logger.info('Handoff notification', {
     to: getTeamEmail(handoff.topic),
     subject: `Chat Handoff: ${handoff.topic}`,
     from: handoff.email,
@@ -163,7 +164,7 @@ export async function POST(request: NextRequest) {
       message: 'Your request has been submitted. A team member will contact you within 24 hours.',
     });
   } catch (error) {
-    console.error('Handoff API Error:', error);
+    logger.error('Handoff API Error', error);
     return NextResponse.json(
       { error: 'Failed to submit handoff request' },
       { status: 500 }
@@ -192,7 +193,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ handoffs: sorted });
   } catch (error) {
-    console.error('Handoff GET Error:', error);
+    logger.error('Handoff GET Error', error);
     return NextResponse.json(
       { error: 'Failed to retrieve handoffs' },
       { status: 500 }

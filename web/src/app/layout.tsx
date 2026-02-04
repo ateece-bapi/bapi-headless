@@ -68,6 +68,15 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang={locale}>
         <head>
+          {/* Preload LCP image for fastest loading */}
+          <link
+            rel="preload"
+            as="image"
+            href="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
+            type="image/webp"
+            imageSrcSet="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp 768w, /images/products/families/BAPI_Full_Family_Hero_Desktop.webp 1920w"
+            imageSizes="(max-width: 768px) 768px, 1920px"
+          />
           {/* Resource hints for external domains */}
           <link rel="preconnect" href="https://bapiheadlessstaging.kinsta.cloud" crossOrigin="anonymous" />
           <link rel="dns-prefetch" href="https://bapiheadlessstaging.kinsta.cloud" />

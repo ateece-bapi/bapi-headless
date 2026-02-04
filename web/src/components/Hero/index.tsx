@@ -9,19 +9,9 @@ import { HeroContent, HeroActions } from './components';
 
 const BACKGROUND_IMAGES = [
   {
-    url: '/images/bapi-facility-solar.webp',
+    url: '/images/bapi-facility-solar-optimized.webp',
     alt: 'BAPI headquarters facility with solar panels',
     priority: true,
-  },
-  {
-    url: '/images/brand/BAS_BMS_Software.webp',
-    alt: 'Building management system software interface',
-    priority: false,
-  },
-  {
-    url: '/images/applications/data-centers/Server_Room_HotAisle_2.webp',
-    alt: 'Data center temperature monitoring',
-    priority: false,
   },
 ];
 
@@ -77,18 +67,27 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-transparent rounded-br-full"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-accent-500/10 to-transparent rounded-tl-full"></div>
             
-            <Image
-              src="/images/products/families/BAPI_Full_Family_11K_Wide_2025_noWAM_US.webp"
-              alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
-              width={2400}
-              height={720}
-              priority
-              quality={60}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
-              placeholder="blur"
-              blurDataURL="data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA="
-              className="relative w-full h-auto rounded-xl shadow-lg max-w-5xl mx-auto"
-            />
+            {/* Optimized hero image with responsive variants */}
+            <picture>
+              <source
+                media="(max-width: 768px)"
+                srcSet="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp"
+              />
+              <source
+                media="(min-width: 769px)"
+                srcSet="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
+              />
+              <Image
+                src="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
+                alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
+                width={1920}
+                height={1235}
+                priority
+                quality={85}
+                sizes="(max-width: 768px) 768px, 1920px"
+                className="relative w-full h-auto rounded-xl shadow-lg max-w-5xl mx-auto"
+              />
+            </picture>
             
             {/* Product family caption */}
             <div className="mt-6 text-center max-w-3xl mx-auto">

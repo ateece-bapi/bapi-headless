@@ -26,28 +26,14 @@
   transform: rotate(3deg) translate(0px, -4px);
 }
 
-/* Smooth page transitions */
+/* Smooth page transitions - simplified for performance */
 @view-transition {
   navigation: auto;
 }
 
-/* Page load fade-in */
-@keyframes pageLoadFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Removed page load animation - blocking performance */
 
-body {
-  animation: pageLoadFadeIn 0.4s ease-out;
-}
-
-/* View Transitions API styles */
+/* View Transitions API styles - simplified */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 0.3s;

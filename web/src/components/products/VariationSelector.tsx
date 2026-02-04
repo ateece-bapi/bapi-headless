@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Package, TrendingUp, Clock, RotateCcw, Share2, Check } from 'lucide-react';
+import logger from '@/lib/logger';
 import type { 
   ProductAttribute, 
   ProductVariation, 
@@ -183,7 +184,7 @@ export default function VariationSelector({
         }
       } catch (error) {
         // Silent fail - user might have cancelled
-        console.log('Share cancelled or failed');
+        logger.debug('Share cancelled or failed');
       }
     }
   };

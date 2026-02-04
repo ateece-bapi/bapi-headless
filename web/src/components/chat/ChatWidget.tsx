@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { X, Send, MessageCircle, Loader2, ThumbsUp, ThumbsDown, UserCircle } from 'lucide-react';
+import logger from '@/lib/logger';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -107,7 +108,7 @@ export default function ChatWidget() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        console.error('API Error:', response.status, errorData);
+        logger.error('Chat API Error', { status: response.status, error: errorData });
         throw new Error(errorData.message || 'Failed to get response');
       }
 
@@ -122,7 +123,7 @@ export default function ChatWidget() {
 
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Chat error:', error);
+      logger.error('Chat error', error);
       const errorMessage: Message = {
         role: 'assistant',
         content:
@@ -174,7 +175,7 @@ export default function ChatWidget() {
         )
       );
     } catch (error) {
-      console.error('Failed to submit feedback:', error);
+      logger.error('Failed to submit feedback', error);
     }
   };
 
@@ -214,7 +215,7 @@ export default function ChatWidget() {
         setHandoffSuccess(false);
       }, 3000);
     } catch (error) {
-      console.error('Failed to submit handoff:', error);
+      logger.error('Failed to submit handoff', error);
       alert(
         locale === 'de'
           ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.'

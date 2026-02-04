@@ -1,6 +1,7 @@
 'use client';
 
 import { Share2, Printer } from 'lucide-react';
+import logger from '@/lib/logger';
 
 interface ArticleActionsProps {
   title: string;
@@ -20,7 +21,7 @@ export function ArticleActions({ title }: ArticleActionsProps) {
         });
       } catch (error) {
         // User cancelled share or share failed
-        console.log('Share cancelled or failed');
+        logger.debug('Share cancelled or failed');
       }
     } else {
       // Fallback: copy to clipboard
@@ -28,7 +29,7 @@ export function ArticleActions({ title }: ArticleActionsProps) {
         await navigator.clipboard.writeText(window.location.href);
         alert('Link copied to clipboard!');
       } catch (error) {
-        console.error('Failed to copy link');
+        logger.error('Failed to copy link', error);
       }
     }
   };

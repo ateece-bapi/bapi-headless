@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import Image from 'next/image';
 import { getProductDetailsDeferred } from '@/lib/graphql';
+import logger from '@/lib/logger';
 
 interface ProductGalleryAsyncProps {
   productId: string;
@@ -39,7 +40,7 @@ async function ProductGalleryContent({ productId, productName }: ProductGalleryA
     </div>
   );
   } catch (error) {
-    console.error('[ProductGalleryAsync] Error fetching gallery:', error);
+    logger.error('[ProductGalleryAsync] Error fetching gallery', error);
     return null;
   }
 }

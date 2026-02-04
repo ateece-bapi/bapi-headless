@@ -9,6 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { CartService } from '@/lib/services/cart';
 import { ERROR_MESSAGES, logError } from '@/lib/errors';
+import logger from '@/lib/logger';
 
 export async function GET(request: NextRequest) {
   try {
@@ -16,12 +17,14 @@ export async function GET(request: NextRequest) {
     const sessionToken = request.cookies.get('woo-session')?.value || 
                         request.cookies.get('woocommerce-session')?.value;
     
-    console.log('[API /cart GET] Session token:', sessionToken ? 'Present' : 'Missing');
+    logger.debug('[API /cart GET] Session token status', { hasToken: !!sessionToken });
     
     // Fetch cart from WooCommerce
     const result = await CartService.getCart(sessionToken);
     
-    console.log('[API /cart GET] Cart:', JSON.stringify(result.cart, null, 2));
+    logger.debug('[API /cart GET] Cart fetched', { 
+      itemCount: result.cart?.contents?.nodes?.length || 0 
+    });
     
     return NextResponse.json({
       success: true,

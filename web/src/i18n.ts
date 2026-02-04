@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
 import { merge } from 'lodash-es';
+import logger from '@/lib/logger';
 
 // All supported locales - 8 languages for Phase 1
 export const locales = ['en', 'de', 'fr', 'es', 'ja', 'zh', 'vi', 'ar'] as const;
@@ -34,7 +35,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       // Merge: locale-specific overrides English
       messages = merge({}, englishMessages, localeMessages);
     } catch (error) {
-      console.warn(`Failed to load messages for locale ${locale}, using English fallback`);
+      logger.warn(`Failed to load messages for locale ${locale}, using English fallback`);
     }
   }
 

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { updateChatFeedback } from '@/lib/chat/analytics';
+import logger from '@/lib/logger';
 
 /**
  * API endpoint for submitting chat feedback (thumbs up/down)
@@ -26,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Feedback API Error:', error);
+    logger.error('Feedback API Error', error);
     return NextResponse.json(
       { error: 'Failed to submit feedback' },
       { status: 500 }

@@ -18,6 +18,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import logger from '@/lib/logger';
 import CheckoutWizard from './CheckoutWizard';
 import CheckoutSummary from './CheckoutSummary';
 import { useToast } from '@/components/ui/Toast';
@@ -112,7 +113,7 @@ export default function CheckoutPageClient() {
     
     // Redirect to cart if empty (e.g., after clearing or manual removal)
     if (totalItems() === 0) {
-      console.log('[Checkout] Cart became empty, redirecting to cart page');
+      logger.debug('[Checkout] Cart became empty, redirecting to cart page');
       showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
       router.push('/cart');
     }
@@ -125,10 +126,10 @@ export default function CheckoutPageClient() {
       // Get cart from local storage (Zustand store)
       const localCartData = localStorage.getItem('bapi-cart-storage');
       
-      console.log('[Checkout] LocalStorage data:', localCartData ? 'Present' : 'Missing');
+      logger.debug('[Checkout] LocalStorage data check', { hasData: !!localCartData });
       
       if (!localCartData) {
-        console.log('[Checkout] No cart data found');
+        logger.debug('[Checkout] No cart data found');
         setIsLoadingCart(false);
         showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
         setTimeout(() => router.push('/cart'), 1000);
@@ -138,10 +139,10 @@ export default function CheckoutPageClient() {
       const parsed = JSON.parse(localCartData);
       const items = parsed.state?.items || [];
       
-      console.log('[Checkout] Cart items:', items.length);
+      logger.debug('[Checkout] Cart items loaded', { itemCount: items.length });
       
       if (items.length === 0) {
-        console.log('[Checkout] Cart is empty');
+        logger.debug('[Checkout] Cart is empty');
         setIsLoadingCart(false);
         showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
         setTimeout(() => router.push('/cart'), 1000);
@@ -154,7 +155,7 @@ export default function CheckoutPageClient() {
         return sum + (price * item.quantity);
       }, 0);
       
-      console.log('[Checkout] Setting cart data with', items.length, 'items, subtotal:', subtotal);
+      logger.debug('[Checkout] Setting cart data', { itemCount: items.length, subtotal });
       
       // Convert to WooCommerce cart format expected by CheckoutSummary
       setCart({
@@ -185,7 +186,7 @@ export default function CheckoutPageClient() {
       
       setIsLoadingCart(false);
     } catch (error) {
-      console.error('[Checkout] Error loading local cart:', error);
+      logger.error('[Checkout] Error loading local cart', error);
       showToast('error', 'Error', 'Unable to load cart.');
       setIsLoadingCart(false);
     }
@@ -271,7 +272,7 @@ export default function CheckoutPageClient() {
         // Clear cart after successful order
         if (result.clearCart) {
           clearCart();
-          console.log('[Checkout] Cart cleared after successful order');
+          logger.info('[Checkout] Cart cleared after successful order');
         }
 
         // Redirect to order confirmation with actual order ID

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
+import logger from '@/lib/logger';
 import { writeFile, mkdir } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
@@ -139,7 +140,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error submitting quote request:', error);
+    logger.error('Error submitting quote request', error);
     return NextResponse.json(
       { error: 'Failed to submit quote request' },
       { status: 500 }
@@ -181,7 +182,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ quotes: userQuotes });
 
   } catch (error) {
-    console.error('Error fetching quotes:', error);
+    logger.error('Error fetching quotes', error);
     return NextResponse.json(
       { error: 'Failed to fetch quotes' },
       { status: 500 }

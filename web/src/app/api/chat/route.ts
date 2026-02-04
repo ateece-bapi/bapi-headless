@@ -1,5 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { NextRequest, NextResponse } from 'next/server';
+import logger from '@/lib/logger';
 import { searchProducts, formatProductsForAI } from '@/lib/chat/productSearch';
 import { logChatAnalytics, type ChatAnalytics } from '@/lib/chat/analytics';
 import { randomUUID } from 'crypto';
@@ -92,7 +93,7 @@ export async function POST(request: NextRequest) {
   try {
     // Check if API key is configured
     if (!process.env.ANTHROPIC_API_KEY) {
-      console.error('ANTHROPIC_API_KEY not found in environment variables');
+      logger.error('ANTHROPIC_API_KEY not found in environment variables');
       return NextResponse.json(
         {
           error: 'Configuration error',
@@ -207,7 +208,7 @@ export async function POST(request: NextRequest) {
     
     // Log without awaiting (don't block response)
     logChatAnalytics(analytics).catch(err => 
-      console.error('Failed to log analytics:', err)
+      logger.error('Failed to log analytics', err)
     );
 
     return NextResponse.json({
@@ -219,7 +220,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Chat API Error:', error);
+    logger.error('Chat API Error', error);
 
     // Handle Anthropic API errors
     if (error instanceof Anthropic.APIError) {

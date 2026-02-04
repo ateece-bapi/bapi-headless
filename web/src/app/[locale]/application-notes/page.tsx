@@ -3,6 +3,7 @@ import { ApplicationNoteList } from '@/components/application-notes/ApplicationN
 import { GetApplicationNotesQuery, GetApplicationNotesDocument } from '@/lib/graphql/generated';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import { BookOpen, Lightbulb } from 'lucide-react';
+import logger from '@/lib/logger';
 
 interface ApplicationNote {
   id: string;
@@ -33,7 +34,7 @@ async function fetchApplicationNotes(): Promise<ApplicationNote[]> {
 
     return (data.applicationNotes?.nodes || []) as ApplicationNote[];
   } catch (error) {
-    console.error('Error fetching application notes:', error);
+    logger.error('Error fetching application notes', error);
     return [];
   }
 }

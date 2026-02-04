@@ -1,5 +1,6 @@
 import { getGraphQLClient } from '@/lib/graphql/client';
 import { GetProductVariationsDocument } from '@/lib/graphql/generated';
+import logger from '@/lib/logger';
 import type { GetProductVariationsQuery } from '@/lib/graphql/generated';
 
 interface VariationsAsyncProps {
@@ -31,7 +32,7 @@ export async function VariationsAsync({ productId }: VariationsAsyncProps) {
     // Return the variation data - will be null if not a VariableProduct
     return data.product || null;
   } catch (error) {
-    console.error('[VariationsAsync] Failed to fetch variations:', error);
+    logger.error('[VariationsAsync] Failed to fetch variations', error);
     return null;
   }
 }

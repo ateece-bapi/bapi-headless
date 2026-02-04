@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import logger from '@/lib/logger';
 
 const SEARCH_QUERY = `
   query SearchProducts($search: String!) {
@@ -52,7 +53,7 @@ export async function POST(request: NextRequest) {
     const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL;
 
     if (!GRAPHQL_ENDPOINT) {
-      console.error('NEXT_PUBLIC_WORDPRESS_GRAPHQL is not configured');
+      logger.error('NEXT_PUBLIC_WORDPRESS_GRAPHQL not configured');
       return NextResponse.json(
         { error: 'GraphQL endpoint not configured' },
         { status: 500 }
@@ -72,7 +73,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      console.error('WordPress GraphQL error:', response.statusText);
+      logger.error('WordPress GraphQL search failed', { 
+        status: response.status,
+        statusText: response.statusText 
+      });
       return NextResponse.json(
         { error: 'Failed to fetch search results' },
         { status: response.status }
@@ -82,7 +86,7 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
 
     if (data.errors) {
-      console.error('GraphQL errors:', data.errors);
+      logger.error('GraphQL search query failed', { errors: data.errors });
       return NextResponse.json(
         { error: 'GraphQL query failed', details: data.errors },
         { status: 500 }
@@ -91,7 +95,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(data.data);
   } catch (error) {
-    console.error('Search API error:', error);
+    logger.error('Search API error', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

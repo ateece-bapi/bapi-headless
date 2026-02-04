@@ -11,6 +11,7 @@
 
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import logger from '@/lib/logger';
 import { ArrowRight, ArrowLeft, CreditCard, Banknote, Loader2 } from 'lucide-react';
 import type { CheckoutData } from '../CheckoutPageClient';
 import { useToast } from '@/components/ui/Toast';
@@ -84,7 +85,7 @@ export default function PaymentStep({
         // Get cart from local storage (Zustand store)
         const localCartData = localStorage.getItem('bapi-cart-storage');
         if (!localCartData) {
-          console.log('[PaymentStep] No cart data found');
+          logger.debug('[PaymentStep] No cart data found');
           return;
         }
         
@@ -92,7 +93,7 @@ export default function PaymentStep({
         const items = parsed.state?.items || [];
         
         if (items.length === 0) {
-          console.log('[PaymentStep] Cart is empty');
+          logger.debug('[PaymentStep] Cart is empty');
           return;
         }
         
@@ -102,10 +103,10 @@ export default function PaymentStep({
           return sum + (price * item.quantity);
         }, 0);
         
-        console.log('[PaymentStep] Cart total:', subtotal);
+        logger.debug('[PaymentStep] Cart total calculated', { subtotal });
         setCartTotal(subtotal);
       } catch (error) {
-        console.error('[PaymentStep] Failed to fetch cart total:', error);
+        logger.error('[PaymentStep] Failed to fetch cart total', error);
       }
     };
 

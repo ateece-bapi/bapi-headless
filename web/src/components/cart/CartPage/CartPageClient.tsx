@@ -9,6 +9,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import logger from '@/lib/logger';
 import { ShoppingCart, ArrowLeft } from 'lucide-react';
 import CartItems from './CartItems';
 import CartSummary from './CartSummary';
@@ -158,7 +159,7 @@ export default function CartPageClient() {
       setCart(mockCart as any);
       setIsLoading(false);
     } catch (error) {
-      console.error('[CartPage] Error loading local cart:', error);
+      logger.error('[CartPage] Error loading local cart', error);
       setIsLoading(false);
     }
   };

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import logger from '@/lib/logger';
 
 interface SearchProduct {
   id: string;
@@ -71,7 +72,7 @@ export function useSearch(options: UseSearchOptions = {}) {
       }
     } catch (error: unknown) {
       if (error instanceof Error && error.name !== 'AbortError') {
-        console.error('Search error:', error);
+        logger.error('Search error', error);
         setResults([]);
       }
     } finally {

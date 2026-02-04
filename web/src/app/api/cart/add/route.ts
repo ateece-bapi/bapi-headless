@@ -9,6 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { CartService } from '@/lib/services/cart';
 import { ERROR_MESSAGES, logError } from '@/lib/errors';
+import logger from '@/lib/logger';
 import { z } from 'zod';
 
 // Request validation schema
@@ -23,18 +24,18 @@ export async function POST(request: NextRequest) {
     // Parse request body
     const body = await request.json();
     
-    console.log('[API /cart/add] Request:', body);
+    logger.debug('[API /cart/add] Request received', { body });
     
     // Validate input
     const validatedData = addToCartSchema.parse(body);
     
-    console.log('[API /cart/add] Validated:', validatedData);
+    logger.debug('[API /cart/add] Validation passed', { validatedData });
     
     // Get WooCommerce session token from cookies (try multiple names)
     const sessionToken = request.cookies.get('woo-session')?.value ||
                         request.cookies.get('woocommerce-session')?.value;
     
-    console.log('[API /cart/add] Session token:', sessionToken ? 'Present' : 'Missing');
+    logger.debug('[API /cart/add] Session token status', { hasToken: !!sessionToken });
     
     // Add to cart via WooCommerce GraphQL
     const result = await CartService.addToCart(
@@ -44,7 +45,10 @@ export async function POST(request: NextRequest) {
       sessionToken
     );
     
-    console.log('[API /cart/add] Result:', JSON.stringify(result, null, 2));
+    logger.debug('[API /cart/add] Cart service result', { 
+      success: !!result.addToCart,
+      itemCount: result.addToCart?.cart?.contents?.nodes?.length || 0
+    });
     
     // Extract cart key if available (WooCommerce sometimes returns this)
     const cartKey = result.addToCart?.cartItem?.key;
@@ -66,10 +70,10 @@ export async function POST(request: NextRequest) {
         path: '/',
         maxAge: 60 * 60 * 24 * 7, // 7 days
       });
-      console.log('[API /cart/add] Cart key stored:', cartKey);
+      logger.debug('[API /cart/add] Cart key stored in cookie', { cartKey });
     }
     
-    console.log('[API /cart/add] Success');
+    logger.debug('[API /cart/add] Successfully added item to cart');
     
     return response;
     

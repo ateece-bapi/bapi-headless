@@ -1,5 +1,6 @@
 import { getGraphQLClient } from '@/lib/graphql/client';
 import { gql } from 'graphql-request';
+import logger from '@/lib/logger';
 
 /**
  * Product search for AI chatbot integration
@@ -106,7 +107,7 @@ export async function searchProducts(
       url: `/products/${product.slug}`,
     }));
   } catch (error) {
-    console.error('Product search error:', error);
+    logger.error('Product search error', error);
     return [];
   }
 }

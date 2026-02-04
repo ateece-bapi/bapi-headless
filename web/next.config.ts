@@ -30,7 +30,11 @@ const nextConfig: NextConfig = {
   // Optimize preloading behavior
   experimental: {
     optimizePackageImports: ['@/components'],
+    
+    // Enable webpack build worker for better performance
+    webpackBuildWorker: true,
   },
+  
   // other Next options (keep whatever you already need here)...
   // Example: uncomment if you want a custom distDir explicitly inside the project:
   // distDir: path.join(path.resolve(__dirname), '.next'),

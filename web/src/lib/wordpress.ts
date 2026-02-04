@@ -5,6 +5,7 @@
 
 import { graphqlClient } from './graphql/client';
 import { GetPageBySlugDocument, GetPagesDocument, GetPostsDocument, GetPostBySlugDocument } from './graphql/generated';
+import logger from './logger';
 
 export interface Page {
   id: string;
@@ -56,7 +57,7 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
       featuredImage: page.featuredImage?.node?.sourceUrl,
     };
   } catch (error) {
-    console.error(`Error fetching page "${slug}":`, error);
+    logger.error('Error fetching page', { slug, error });
     return null;
   }
 }
@@ -82,7 +83,7 @@ export async function getPages(first = 100): Promise<Page[]> {
       featuredImage: page.featuredImage?.node?.sourceUrl,
     }));
   } catch (error) {
-    console.error('Error fetching pages:', error);
+    logger.error('Error fetching pages', error);
     return [];
   }
 }
@@ -120,7 +121,7 @@ export async function getPosts(options: { perPage?: number; after?: string } = {
       featuredImage: post.featuredImage?.node?.sourceUrl,
     }));
   } catch (error) {
-    console.error('Error fetching posts:', error);
+    logger.error('Error fetching posts', error);
     return [];
   }
 }
@@ -161,7 +162,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       featuredImage: post.featuredImage?.node?.sourceUrl,
     };
   } catch (error) {
-    console.error(`Error fetching post "${slug}":`, error);
+    logger.error('Error fetching post', { slug, error });
     return null;
   }
 }

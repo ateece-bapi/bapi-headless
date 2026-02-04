@@ -5,6 +5,7 @@ import { Heart } from 'lucide-react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import logger from '@/lib/logger';
 
 interface FavoriteButtonProps {
   productId: string;
@@ -47,7 +48,7 @@ export default function FavoriteButton({
           setIsFavorited(favorited);
         }
       } catch (error) {
-        console.error('Error checking favorite status:', error);
+        logger.error('Error checking favorite status', error);
       }
     };
 
@@ -113,7 +114,7 @@ export default function FavoriteButton({
         onToggle?.(true);
       }
     } catch (error) {
-      console.error('Error toggling favorite:', error);
+      logger.error('Error toggling favorite', error);
       
       // Rollback on error
       setIsFavorited(previousState);

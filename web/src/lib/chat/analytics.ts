@@ -7,6 +7,7 @@
 
 import { promises as fs } from 'fs';
 import path from 'path';
+import logger from '@/lib/logger';
 
 export interface ChatAnalytics {
   conversationId: string;
@@ -45,7 +46,7 @@ async function ensureAnalyticsDir() {
   try {
     await fs.mkdir(ANALYTICS_DIR, { recursive: true });
   } catch (error) {
-    console.error('Failed to create analytics directory:', error);
+    logger.error('Failed to create analytics directory', error);
   }
 }
 
@@ -58,7 +59,7 @@ export async function logChatAnalytics(analytics: ChatAnalytics): Promise<void> 
     const logLine = JSON.stringify(analytics) + '\n';
     await fs.appendFile(ANALYTICS_FILE, logLine, 'utf8');
   } catch (error) {
-    console.error('Failed to log chat analytics:', error);
+    logger.error('Failed to log chat analytics', error);
     // Don't throw - analytics failure shouldn't break chat
   }
 }
@@ -91,7 +92,7 @@ export async function updateChatFeedback(
     // Write back
     await fs.writeFile(ANALYTICS_FILE, updatedLines.join('\n') + '\n', 'utf8');
   } catch (error) {
-    console.error('Failed to update feedback:', error);
+    logger.error('Failed to update feedback', error);
   }
 }
 
@@ -176,7 +177,7 @@ export async function getChatMetrics(
       toolUsage,
     };
   } catch (error) {
-    console.error('Failed to get chat metrics:', error);
+    logger.error('Failed to get chat metrics', error);
     // Return empty metrics on error
     return {
       totalConversations: 0,
@@ -207,7 +208,7 @@ export async function getRecentConversations(limit: number = 50): Promise<ChatAn
     const recentLines = lines.slice(-limit);
     return recentLines.map(line => JSON.parse(line) as ChatAnalytics).reverse();
   } catch (error) {
-    console.error('Failed to get recent conversations:', error);
+    logger.error('Failed to get recent conversations', error);
     return [];
   }
 }
@@ -225,7 +226,7 @@ export async function getNegativeFeedbackConversations(): Promise<ChatAnalytics[
     const conversations = lines.map(line => JSON.parse(line) as ChatAnalytics);
     return conversations.filter(conv => conv.feedback === 'negative').reverse();
   } catch (error) {
-    console.error('Failed to get negative feedback:', error);
+    logger.error('Failed to get negative feedback', error);
     return [];
   }
 }

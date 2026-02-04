@@ -71,8 +71,6 @@ export default async function RootLayout({
           {/* Resource hints for external domains */}
           <link rel="preconnect" href="https://bapiheadlessstaging.kinsta.cloud" crossOrigin="anonymous" />
           <link rel="dns-prefetch" href="https://bapiheadlessstaging.kinsta.cloud" />
-          <link rel="preconnect" href="https://clerk.bapi-headless.vercel.app" crossOrigin="anonymous" />
-          <link rel="dns-prefetch" href="https://clerk.bapi-headless.vercel.app" />
         </head>
         <body className="antialiased">
           <NextIntlClientProvider messages={messages} locale={locale}>

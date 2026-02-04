@@ -80,10 +80,13 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             <Image
               src="/images/products/families/BAPI_Full_Family_11K_Wide_2025_noWAM_US.webp"
               alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
-              width={5000}
-              height={1500}
+              width={2400}
+              height={720}
               priority
-              quality={90}
+              quality={60}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+              placeholder="blur"
+              blurDataURL="data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA="
               className="relative w-full h-auto rounded-xl shadow-lg max-w-5xl mx-auto"
             />
             

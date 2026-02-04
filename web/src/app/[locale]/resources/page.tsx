@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
 import { ResourceList } from '@/components/resources/ResourceList';
+import logger from '@/lib/logger';
 
 interface MediaItemNode {
   id: string;
@@ -24,7 +25,7 @@ async function fetchResources(): Promise<MediaItemNode[]> {
   const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL;
   
   if (!GRAPHQL_ENDPOINT) {
-    console.warn('NEXT_PUBLIC_WORDPRESS_GRAPHQL not set, returning empty resources');
+    logger.warn('NEXT_PUBLIC_WORDPRESS_GRAPHQL not set, returning empty resources');
     return [];
   }
 
@@ -61,7 +62,7 @@ async function fetchResources(): Promise<MediaItemNode[]> {
   });
 
   if (!response.ok) {
-    console.error('GraphQL fetch failed:', response.statusText);
+    logger.error('GraphQL fetch failed', { statusText: response.statusText });
     return [];
   }
 

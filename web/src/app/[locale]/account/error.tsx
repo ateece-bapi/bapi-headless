@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { AlertTriangle, Home, RefreshCw } from 'lucide-react';
+import logger from '@/lib/logger';
 
 export default function AccountError({
   error,
@@ -12,8 +13,8 @@ export default function AccountError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log error to console for debugging
-    console.error('Account Dashboard Error:', error);
+    // Log error for debugging
+    logger.error('Account Dashboard Error', error);
   }, [error]);
 
   return (

@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import logger from '@/lib/logger';
 import { 
   getProductBySlug,
   getProductBySlugLight,
@@ -137,11 +138,11 @@ export async function generateStaticParams() {
       ?.filter(p => p?.slug)
       .map(p => ({ slug: p.slug })) || [];
 
-    console.log(`[generateStaticParams] Pre-generating ${productSlugs.length} product pages (categories on-demand)`);
+    logger.info('[generateStaticParams] Pre-generating product pages', { count: productSlugs.length });
     
     return productSlugs;
   } catch (error) {
-    console.error('[generateStaticParams] Failed to fetch params:', error);
+    logger.error('[generateStaticParams] Failed to fetch params', error);
     // Return empty array to continue build without static generation
     return [];
   }
@@ -192,13 +193,10 @@ export default async function ProductPage({ params }: { params: { slug: string }
       const product = data.product as GetProductBySlugLightQuery['product'] | null;
 
       // DEBUG: Log galleryImages to verify images from backend
-      if (
-        product &&
-        'galleryImages' in product &&
-        product.galleryImages
-      ) {
+      if (product && 'galleryImages' in product) {
         // eslint-disable-next-line no-console
-        console.log('[ProductPage] galleryImages:', product.galleryImages);
+        const count = (product.galleryImages as any)?.nodes?.length || 0;
+        logger.debug('[ProductPage] galleryImages loaded', { count });
       }
 
       if (!product) {
@@ -218,7 +216,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           );
           variationData = variationsResult.product;
         } catch (error) {
-          console.error('[ProductPage] Failed to fetch variations:', error);
+          logger.error('[ProductPage] Failed to fetch variations', error);
         }
       }
 
@@ -331,7 +329,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       );
     } catch (error) {
       // Product data invalid
-      console.error('[ProductPage] Error:', error);
+      logger.error('[ProductPage] Error', error);
       notFound();
     }
   }

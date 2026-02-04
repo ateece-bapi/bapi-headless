@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { AlertTriangle, ArrowLeft, RefreshCw } from 'lucide-react';
+import logger from '@/lib/logger';
 
 export default function OrdersError({
   error,
@@ -12,7 +13,7 @@ export default function OrdersError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Orders Page Error:', error);
+    logger.error('Orders Page Error', error);
   }, [error]);
 
   return (

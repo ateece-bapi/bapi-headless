@@ -2,6 +2,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Package, Eye, Download, AlertCircle } from 'lucide-react';
+import logger from '@/lib/logger';
 import { authenticatedGraphqlClient } from '@/lib/graphql/authenticated-client';
 import { GET_CUSTOMER_ORDERS } from '@/lib/graphql/queries/customer-orders';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
@@ -76,7 +77,7 @@ export default async function OrdersPage() {
       });
       orders = data.customer?.orders?.nodes || [];
     } catch (err) {
-      console.error('Error fetching orders:', err);
+      logger.error('Error fetching orders', err);
       error = 'Failed to load order history';
     }
   }

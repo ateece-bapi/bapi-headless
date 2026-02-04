@@ -2,8 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { AlertTriangle, ArrowLeft, RefreshCw } from 'lucide-react';
-
+import { AlertTriangle, ArrowLeft, RefreshCw } from 'lucide-react';import logger from '@/lib/logger';
 export default function ProfileError({
   error,
   reset,
@@ -12,7 +11,7 @@ export default function ProfileError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Profile Page Error:', error);
+    logger.error('Profile Page Error', error);
   }, [error]);
 
   return (

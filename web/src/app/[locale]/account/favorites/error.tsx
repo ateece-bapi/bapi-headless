@@ -2,8 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { AlertTriangle, ArrowLeft, RefreshCw } from 'lucide-react';
-
+import { AlertTriangle, ArrowLeft, RefreshCw } from 'lucide-react';import logger from '@/lib/logger';
 export default function FavoritesError({
   error,
   reset,
@@ -12,7 +11,7 @@ export default function FavoritesError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Favorites Page Error:', error);
+    logger.error('Favorites Page Error', error);
   }, [error]);
 
   return (

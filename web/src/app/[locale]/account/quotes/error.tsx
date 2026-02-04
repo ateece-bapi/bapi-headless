@@ -2,8 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { AlertTriangle, ArrowLeft, RefreshCw } from 'lucide-react';
-
+import { AlertTriangle, ArrowLeft, RefreshCw } from 'lucide-react';import logger from '@/lib/logger';
 export default function QuotesError({
   error,
   reset,
@@ -12,7 +11,7 @@ export default function QuotesError({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Quotes Page Error:', error);
+    logger.error('Quotes Page Error', error);
   }, [error]);
 
   return (

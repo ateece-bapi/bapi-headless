@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { GetApplicationNoteBySlugQuery, GetApplicationNoteBySlugDocument } from '@/lib/graphql/generated';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import { ArrowLeft, Calendar, Clock, BookOpen, FileDown } from 'lucide-react';
+import logger from '@/lib/logger';
 import { ArticleActions } from '@/components/application-notes/ArticleActions';
 import { ReadingProgress } from '@/components/application-notes/ReadingProgress';
 
@@ -45,7 +46,7 @@ async function fetchApplicationNote(slug: string) {
 
     return data.applicationNote;
   } catch (error) {
-    console.error('Error fetching application note:', error);
+    logger.error('Error fetching application note', error);
     return null;
   }
 }

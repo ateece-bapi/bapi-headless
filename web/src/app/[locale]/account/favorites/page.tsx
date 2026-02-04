@@ -5,6 +5,7 @@ import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Heart } from 'lucide-react';
+import logger from '@/lib/logger';
 import FavoriteButton from '@/components/FavoriteButton';
 import { ProductCardSkeleton } from '@/components/skeletons';
 
@@ -44,7 +45,7 @@ export default function FavoritesPage() {
         setFavorites(data.favorites || []);
       }
     } catch (error) {
-      console.error('Error fetching favorites:', error);
+      logger.error('Error fetching favorites', error);
     } finally {
       setIsLoading(false);
     }

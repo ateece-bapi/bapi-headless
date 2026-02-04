@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, Upload, X, CheckCircle, Loader2 } from 'lucide-react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import logger from '@/lib/logger';
 
 export default function RequestQuotePage() {
   const { user, isLoaded } = useUser();
@@ -85,7 +86,7 @@ export default function RequestQuotePage() {
         router.push('/account/quotes');
       }, 3000);
     } catch (error) {
-      console.error('Error submitting quote:', error);
+      logger.error('Error submitting quote', error);
       setIsSubmitting(false);
       alert('Failed to submit quote request. Please try again.');
     }

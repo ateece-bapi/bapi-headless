@@ -1,5 +1,6 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import storybook from "eslint-plugin-storybook";
+import jsdoc from "eslint-plugin-jsdoc";
 
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
@@ -39,7 +40,9 @@ const eslintConfig = defineConfig([...nextVitals, ...nextTs, {
     'jsdoc/require-returns-type': 'off', // TypeScript handles this
     'jsdoc/check-indentation': 'off', // Prettier handles this
   },
-  plugins: ['jsdoc'],
+  plugins: {
+    jsdoc: jsdoc,
+  },
 }, // Override default ignores of eslint-config-next.
 globalIgnores([
   // Default ignores of eslint-config-next:

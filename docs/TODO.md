@@ -2,14 +2,31 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** January 28, 2026  
-**Current Phase:** Phase 1 - April 10, 2026 Go-Live
+**Updated:** February 4, 2026  
+**Current Phase:** Phase 1 - April 10, 2026 Go-Live (65 days remaining)
 
 ### Production Launch Timeline
-- **Early March 2026**: Testing begins
-- **March 25, 2026**: Testing concludes  
-- **April 6, 2026**: Stakeholder presentation for final approval
-- **April 10, 2026**: Production release (HARD DEADLINE)
+- **Early March 2026**: Testing begins (25 days)
+- **March 25, 2026**: Testing concludes (49 days)
+- **April 6, 2026**: Stakeholder presentation for final approval (61 days)
+- **April 10, 2026**: Production release (HARD DEADLINE - 65 days)
+
+### Launch Readiness Status (Feb 4, 2026)
+**Overall:** 78% Complete (Target: 95% by March 25)
+
+**Scorecard:**
+- ✅ Frontend Code: 95% (Excellent)
+- ✅ Testing: 80%+ coverage (648 tests passing)
+- ⚠️ Authentication: 85% (Admin roles needed)
+- 🔄 Internationalization: 60% (Translation service in progress)
+- ❌ Email Notifications: 0% (**BLOCKER**)
+- ✅ User Migration: 100% (Ready)
+- ✅ Navigation: 100% (Complete)
+- ✅ Product Pages: 100% (Complete)
+- ✅ Cart & Checkout: 100% (Complete)
+- ✅ Payment Integration: 100% (Complete)
+- ⚠️ Production Logging: 40% (Needs cleanup)
+- ✅ Documentation: 95% (Excellent)
 
 ---
 
@@ -58,6 +75,14 @@
 - Issue: Team subscription ($99/month) ≠ AI Pipeline credits (separate purchase)
 - Team plan includes: Professional translators (pay per word), NOT AI credits
 - 📞 **Feb 4 Call Scheduled:** Crowdin account specialist
+
+**Updated (Feb 4, 2026) - Codebase Review:**
+- ✅ ESLint configuration fixed (flat config migration complete)
+- ✅ 648 tests passing, 80%+ coverage maintained
+- ⚠️ **NEW BLOCKER:** Email notifications not implemented (chat handoff, quotes)
+- ⚠️ **NEW HIGH PRIORITY:** Production logging cleanup (50+ console.log statements)
+- ⚠️ **NEW HIGH PRIORITY:** Admin authentication missing (security gap)
+- ⚠️ 20+ TODO comments in code requiring decisions before launch
 
 **In Progress:**
 - 🔄 Awaiting Crowdin specialist call (Feb 4) for billing clarification
@@ -155,6 +180,16 @@
 - ✅ JSON storage for handoff requests (data/chat-handoffs.json)
 - ✅ Success confirmation with 3-second auto-close
 - ✅ API endpoint: POST /api/chat/handoff (submit), GET (admin view)
+
+**⚠️ BLOCKER IDENTIFIED (Feb 4, 2026):**
+- ❌ **Email notifications NOT implemented** (TODO comment at line 77-80)
+- Sales team NOT notified of handoff requests (only JSON storage)
+- No email confirmation sent to users
+- **Impact:** Lost leads, poor customer experience
+- **Priority:** CRITICAL (must fix before April 10)
+- **Recommendation:** AWS SES or SendGrid integration
+- **Effort:** 3-4 hours
+- **Deadline:** February 10, 2026
 
 **Implementation:**
 - `/api/chat` endpoint with Claude function calling + analytics logging
@@ -405,7 +440,246 @@
 
 ---
 
-## 🚀 Phase 2 - Post-Launch (After April 10, 2026)
+## � **CRITICAL PRE-LAUNCH TASKS (Feb 4 - Mar 25, 2026)**
+
+### **Week 1: February 4-10 (Foundation Fixes)**
+**Goal:** Resolve critical blockers and technical debt
+
+**Monday, February 4:**
+- ✅ Codebase review completed (340 files, 648 tests analyzed)
+- ✅ ESLint configuration fixed (flat config migration)
+- [ ] Crowdin specialist call (resolve AI vs Professional translation pricing)
+- [ ] Create logger wrapper (`web/src/lib/logger.ts`)
+  - Debug, info, warn, error methods
+  - Environment-aware logging
+  - Production monitoring integration placeholder
+  - **Effort:** 1 hour
+
+**Tuesday, February 5:**
+- [ ] Production logging cleanup
+  - Replace all `console.log` → `logger.debug` (20+ API routes)
+  - Replace all `console.error` → `logger.error` (15+ error handlers)
+  - Remove debug logs from test pages
+  - **Effort:** 2-3 hours
+- [ ] Set up email provider (AWS SES or SendGrid)
+  - Create account and verify domain
+  - Generate SMTP credentials
+  - Add environment variables to Vercel
+  - **Effort:** 1-2 hours
+
+**Wednesday, February 6:**
+- [ ] Implement email notifications
+  - **Quote request emails** (sales team + user confirmation)
+    - Template: Quote #, products, customer details
+    - Send to: sales@bapihvac.com
+    - User confirmation with quote details
+  - **Chat handoff emails** (sales team notification)
+    - Template: Name, email, topic, conversation context
+    - Route to appropriate team email
+    - User confirmation of handoff
+  - Test email delivery (staging environment)
+  - **Effort:** 3-4 hours
+  - **Files:** `web/src/lib/email.ts`, `/api/quotes/route.ts`, `/api/chat/handoff/route.ts`
+
+**Thursday, February 7:**
+- [ ] Configure Clerk admin roles
+  - Add `publicMetadata.role` field to admin users
+  - Update middleware with role checks
+  - Protect `/admin/*` routes
+  - Test access control (admin user + regular user)
+  - **Effort:** 2 hours
+  - **Files:** `web/src/proxy.ts`, `/app/[locale]/admin/*/page.tsx`
+
+**Friday, February 8:**
+- [ ] Fix CRITICAL TODO items
+  - ✅ Remove authentication TODOs (fixed with role implementation)
+  - ✅ Remove email notification TODOs (fixed with SES)
+  - [ ] Fix product filtering by WordPress categories
+  - [ ] Remove debug logging comments
+  - **Effort:** 2-3 hours
+- [ ] Run full test suite
+  - Verify 648 tests still passing
+  - Check production build
+  - Test all API routes with new changes
+
+---
+
+### **Week 2: February 10-17 (Translation & Testing)**
+
+**Monday, February 10:**
+- [ ] Component translation updates (Part 1)
+  - Update Header components with `useTranslations` hook
+  - Update Homepage Hero with translation keys
+  - Update Footer links (if hardcoded strings remain)
+  - **Effort:** 4 hours
+  - **Files:** 30-40 components
+
+**Tuesday, February 11:**
+- [ ] Component translation updates (Part 2)
+  - Update Product components (ProductCard, ProductGrid, etc.)
+  - Update Cart/Checkout components
+  - Update Account dashboard components
+  - **Effort:** 4 hours
+  - **Files:** 30-40 components
+
+**Wednesday, February 12:**
+- [ ] Component translation updates (Part 3)
+  - Update Contact/Support pages
+  - Update Company pages
+  - Update Resources pages
+  - Run hardcoded string detection script
+  - **Effort:** 4 hours
+  - **Files:** 20-30 components
+
+**Thursday, February 13:**
+- [ ] Finalize translation preparation
+  - Upload complete en.json to Crowdin (all component keys)
+  - Mark Vietnamese as HIGHEST PRIORITY
+  - Order professional translations (or start AI pipeline)
+  - Estimated delivery: 7-10 business days
+  - **Effort:** 2 hours
+
+**Friday, February 14:**
+- [ ] User migration testing
+  - Set up Vercel production environment variables
+  - Test migration with 100 WordPress users
+  - Verify order history displays correctly
+  - Document any migration issues
+  - Prepare rollback plan
+  - **Effort:** 4 hours
+
+---
+
+### **Week 3: February 17-24 (Translation Service & Polish)**
+
+**Monday-Wednesday, February 17-19:**
+- [ ] Wait for translation delivery (7-10 business days from Feb 13)
+- [ ] Meanwhile: Fix HIGH PRIORITY TODOs
+  - [ ] Add sort dropdown to product grids
+  - [ ] Enhance product search functionality
+  - [ ] Remove remaining debug code
+  - **Effort:** 6-8 hours
+
+**Thursday, February 20:**
+- [ ] Receive translations from Crowdin
+- [ ] Download all 7 language files (DE, FR, ES, JA, ZH, AR, VI)
+- [ ] Drop files into `web/messages/`
+- [ ] Test language switching on staging
+- [ ] Vietnamese QA (PRIORITY - Vietnam facility)
+- [ ] **Effort:** 3-4 hours
+
+**Friday, February 21:**
+- [ ] Test all languages thoroughly
+  - Navigation in all 8 languages
+  - Forms (contact, quote) in all languages
+  - Cart and checkout flow in all languages
+  - Account dashboard in all languages
+  - Error messages and validation
+  - **Effort:** 4-6 hours
+
+---
+
+### **Week 4: February 24 - March 3 (RTL & Final Testing)**
+
+**Monday, February 24:**
+- [ ] Implement RTL CSS for Arabic
+  - Add `dir={direction}` to root layout
+  - Test RTL utility classes
+  - Fix any layout issues with Arabic text
+  - **Effort:** 3-4 hours
+
+**Tuesday, February 25:**
+- [ ] Currency and measurement testing
+  - Test all 8 currencies (USD, EUR, GBP, CAD, JPY, CNY, VND, AED)
+  - Test measurement units (°C/°F, bar/PSI)
+  - Verify conversion accuracy
+  - Test in checkout flow
+  - **Effort:** 2-3 hours
+
+**Wednesday, February 26:**
+- [ ] Execute full user migration (5,438 users)
+  - Run bulk import script in production
+  - Monitor for errors
+  - Verify order history for sample users
+  - Send password reset emails (optional)
+  - **Effort:** 2-3 hours + monitoring
+
+**Thursday-Friday, February 27-28:**
+- [ ] Stakeholder testing preparation
+  - Create demo accounts for stakeholders
+  - Prepare presentation materials
+  - Document all new features
+  - Create testing checklist
+  - **Effort:** 6-8 hours
+
+---
+
+### **Week 5-6: March 3-17 (Testing Phase)**
+
+**March 3-10:**
+- [ ] Internal testing with team
+- [ ] Fix any critical bugs found
+- [ ] Performance testing under load
+- [ ] Security audit
+
+**March 10-17:**
+- [ ] Stakeholder demo and testing
+- [ ] Collect feedback
+- [ ] Make final adjustments
+- [ ] Prepare for production deployment
+
+---
+
+## ⚠️ **CRITICAL RISKS & MITIGATION STRATEGIES**
+
+### **Risk 1: Translation Service Delays**
+- **Impact:** Cannot launch internationally (Vietnam facility critical)
+- **Probability:** Medium
+- **Mitigation:**
+  - Professional translators faster than AI (3-5 days vs 2 weeks)
+  - Vietnamese marked HIGHEST PRIORITY
+  - Fallback: English-only launch if absolutely necessary
+  - Buffer time: 2 weeks between delivery (Feb 20) and testing (Mar 3)
+
+### **Risk 2: Email Integration Issues**
+- **Impact:** Lost sales leads, poor customer experience
+- **Probability:** Low (AWS SES is production-grade)
+- **Mitigation:**
+  - Thorough testing in staging environment
+  - Fallback to manual sales team notification
+  - Monitor email delivery logs closely
+  - Have SMTP alternative ready (SendGrid)
+
+### **Risk 3: User Migration Failures**
+- **Impact:** Customer complaints, lost order history
+- **Probability:** Medium (5,438 users is significant)
+- **Mitigation:**
+  - Test with 100 users first (Feb 14)
+  - Documented rollback plan
+  - Customer communication prepared
+  - Verify order history integration before full migration
+
+### **Risk 4: Performance Under Production Load**
+- **Impact:** Slow site, poor user experience at launch
+- **Probability:** Low (optimizations in place)
+- **Mitigation:**
+  - WordPress Smart Cache installed
+  - Vercel edge caching configured
+  - Load testing before launch (March 10)
+  - Monitoring and alerts set up
+
+### **Risk 5: Admin Authentication Security**
+- **Impact:** Unauthorized access to sensitive data
+- **Probability:** Low (Clerk is robust)
+- **Mitigation:**
+  - Implement role-based access control (Feb 7)
+  - Test with multiple user types
+  - Audit all protected routes
+  - Monitor access logs
+
+---
+
+## �🚀 Phase 2 - Post-Launch (After April 10, 2026)
 
 ### Applications Section (Deferred)
 **Status:** Infrastructure ready, awaiting content

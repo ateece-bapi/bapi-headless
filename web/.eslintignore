@@ -1,5 +1,0 @@
-# Ignore generated GraphQL file
-src/lib/graphql/generated.ts
-
-# Ignore tooling script with CommonJS requires
-scripts/preview_sanity.js

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Hero } from '../components';
+import Hero from '@/components/Hero';
 import { getPosts } from '@/lib/wordpress';
+import { locales } from '@/i18n';
 import { 
   CheckCircle,
   ArrowRight,
@@ -14,6 +15,22 @@ import {
   Newspaper,
   Calendar
 } from 'lucide-react';
+
+/**
+ * Generate static pages for all supported locales
+ * This enables full static generation and CDN caching
+ */
+export function generateStaticParams() {
+  return locales.map((locale) => ({
+    locale,
+  }));
+}
+
+/**
+ * Revalidate every 1 hour
+ * Pages will be regenerated in the background with fresh data
+ */
+export const revalidate = 3600;
 
 export default async function Home() {
   // Fetch latest 3 news posts

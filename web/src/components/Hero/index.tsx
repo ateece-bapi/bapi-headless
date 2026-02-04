@@ -1,26 +1,15 @@
-'use client';
-
 import React from 'react';
 import clsx from 'clsx';
 import { HeroProps } from './types';
 import { HERO_CONFIG } from './config';
 import { HeroContent, HeroActions } from './components';
 
-const BACKGROUND_IMAGES = [
-  {
-    url: '/images/bapi-facility-solar-optimized.webp',
-    alt: 'BAPI headquarters facility with solar panels',
-    priority: true,
-  },
-];
-
-const ROTATION_INTERVAL = 8000; // 8 seconds per image
+const heroImage = {
+  url: '/images/bapi-facility-solar-optimized.webp',
+  alt: 'BAPI headquarters facility with solar panels',
+};
 
 export const Hero: React.FC<HeroProps> = ({ className }) => {
-  // Simplified - removed image rotation for performance
-  // Static background with first image only
-  const heroImage = BACKGROUND_IMAGES[0];
-
   return (
     <section 
       className={clsx(
@@ -28,7 +17,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
         className
       )}
     >
-      {/* Static Background Image with Overlay - No rotation for performance */}
+      {/* Static Background Image - No client-side JavaScript */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0"
@@ -66,30 +55,21 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-transparent rounded-br-full"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-accent-500/10 to-transparent rounded-tl-full"></div>
             
-            {/* Optimized hero image with responsive variants - using native img for picture element compatibility */}
-            <picture>
-              <source
-                media="(max-width: 768px)"
-                srcSet="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp"
-                width="768"
-                height="494"
-              />
-              <source
-                media="(min-width: 769px)"
-                srcSet="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
-                width="1920"
-                height="1235"
-              />
+            {/* Optimized hero image - loads immediately in initial HTML */}
+            <div className="hero-image-container">
               <img
                 src="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
+                srcSet="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp 768w, /images/products/families/BAPI_Full_Family_Hero_Desktop.webp 1920w"
+                sizes="(max-width: 768px) 768px, 1920px"
                 alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
                 width="1920"
                 height="1235"
+                loading="eager"
                 fetchPriority="high"
-                decoding="async"
-                className="relative w-full h-auto rounded-xl shadow-lg max-w-5xl mx-auto"
+                decoding="sync"
+                className="hero-image"
               />
-            </picture>
+            </div>
             
             {/* Product family caption */}
             <div className="mt-6 text-center max-w-3xl mx-auto">

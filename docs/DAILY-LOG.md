@@ -9,6 +9,70 @@
 
 ## February 4, 2026 - Comprehensive Codebase Review & Quality Assessment
 
+### Console Log Replacement - Batch 1 & 2 Complete (Afternoon)
+**Status:** 🔄 In Progress - 18 of ~46 files updated (39% complete)
+
+**Achievement:** Systematic replacement of 50+ console.log statements with environment-aware logger wrapper across critical production code.
+
+**Batch 1: API Routes (✅ Complete - 10 files)**
+- **Files Updated:** cart/add, cart/route, search, payment/confirm, chat (main, handoff, analytics, feedback), favorites, quotes
+- **Console Calls Replaced:** 26 instances (log → debug, error → error with context)
+- **TypeScript Issues Fixed:** 
+  - cart GraphQL type issue: `itemCount` property → `contents.nodes.length`
+  - payment/confirm import ordering (after JSDoc comment)
+- **Build Status:** ✅ Successful compilation
+- **Commit:** `feat: replace console calls with logger in API routes (batch 1)`
+- **Result:** ALL production API routes now use logger ✅
+
+**Batch 2: User-Facing Components (✅ Complete - 8 files)**
+- **Components Updated:**
+  - checkout/CheckoutPageClient.tsx (8 console → logger.debug/info/error)
+  - checkout/steps/PaymentStep.tsx (4 console → logger.debug/error)  
+  - cart/CartPage/CartPageClient.tsx (1 console.error → logger.error)
+  - FavoriteButton.tsx (2 console.error → logger.error)
+  - chat/ChatWidget.tsx (4 console.error → logger.error)
+- **Lib Utilities Updated:**
+  - lib/chat/analytics.ts (6 console.error → logger.error)
+  - lib/chat/productSearch.ts (1 console.error → logger.error)
+  - lib/wordpress.ts (4 console.error → logger.error with context)
+- **Console Calls Replaced:** 30 instances
+- **Build Status:** ✅ Successful compilation
+- **Commit:** `feat: replace console calls with logger in user-facing components (batch 2)`
+- **Result:** All critical checkout, cart, chat, and favorites code using logger ✅
+
+**Remaining Work (~28 files, ~50-60 console calls):**
+
+**App Pages (12 files):**
+- account error boundaries (5 files: error.tsx, favorites/error.tsx, orders/error.tsx, profile/error.tsx, quotes/error.tsx)
+- application-notes pages (2 files: [slug]/page.tsx, page.tsx)
+- product/[slug]/page.tsx, request-quote/page.tsx, resources/page.tsx
+- Test pages (SKIP: product-components-test, variation-test - debug only)
+
+**Product Components (6 files, ~10 calls):**
+- ProductGalleryAsync.tsx, VariationSelector.tsx, VariationsAsync.tsx
+- ProductTabsAsync.tsx, ProductPage/ProductTabs.tsx, RelatedProductsAsync.tsx
+
+**Hooks (3 files):**
+- useSearch.ts, useProductComparison.ts, useRecentlyViewed.ts
+
+**Lib Utilities (4 files):**
+- graphql/types.ts, monitoring/performance.ts, validation/product.ts
+- errors.ts (1 console in logError - **KEEP**, it's the logger implementation)
+
+**Other (3 files):**
+- components/application-notes/ArticleActions.tsx, i18n.ts
+
+**Next Steps (Feb 5):**
+- [ ] Batch 3: Product components + hooks (9 files, ~15 calls)
+- [ ] Batch 4: App pages (error boundaries, resource pages) (10 files, ~30 calls)
+- [ ] Batch 5: Remaining lib utilities (3 files, ~5 calls)
+- [ ] Final build test and merge to main
+- [ ] Update scorecard: Production Logging 85% → 100%
+
+---
+
+## February 4, 2026 - Comprehensive Codebase Review & Quality Assessment (Morning)
+
 ### Senior-Level Code Review (Morning)
 **Status:** ✅ Complete - Action Plan Created
 

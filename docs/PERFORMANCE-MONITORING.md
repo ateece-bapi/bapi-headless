@@ -80,8 +80,23 @@ export function WebVitals() {
 **Run locally:**
 ```bash
 cd web
-pnpm run lighthouse
+
+# Build first (required)
+pnpm run build
+
+# Option 1: Use Lighthouse CLI directly (recommended for local testing)
+npx lighthouse http://localhost:3000 --view
+
+# Option 2: Use LHCI (requires running server)
+pnpm run start  # In one terminal
+pnpm run lighthouse  # In another terminal (uses staticDistDir)
+
+# Option 3: Test against live site
+npx lighthouse https://bapi-headless.vercel.app --view
 ```
+
+**Note for WSL/Linux users:**  
+Lighthouse CI may have issues launching Chrome in WSL environments. Use Option 1 (direct Lighthouse CLI) or Option 3 (test live site) instead. The GitHub Actions workflow will run successfully in CI.
 
 **Automated on PRs:**
 - GitHub Actions workflow: `.github/workflows/lighthouse.yml`

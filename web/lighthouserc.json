@@ -1,9 +1,7 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "pnpm run start",
-      "startServerReadyPattern": "Local:|ready",
-      "startServerReadyTimeout": 30000,
+      "staticDistDir": "./.next",
       "url": [
         "http://localhost:3000/",
         "http://localhost:3000/products",

@@ -20,8 +20,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",
-    "lighthouse": "pnpm run build && lhci autorun",
-    "lighthouse:ci": "lhci autorun --config=lighthouserc.json"
+    "lighthouse": "lhci autorun --config=lighthouserc.json",
+    "lighthouse:build": "pnpm run build && lhci autorun --config=lighthouserc.json"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",

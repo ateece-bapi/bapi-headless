@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { ClerkProvider } from '@clerk/nextjs';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getLocale } from 'next-intl/server';
-import { Toaster } from 'sonner';
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -11,7 +10,6 @@ import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
 import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient";
 import { WebVitalsClient } from "@/components/analytics/WebVitalsClient";
 import { ToastProvider } from "@/components/ui/Toast";
-import { PageTransition } from "@/components/layout/PageTransition";
 
 // Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
 
@@ -68,14 +66,13 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang={locale}>
         <head>
-          {/* Preload LCP image for fastest loading */}
+          {/* Preload LCP image with highest priority */}
           <link
             rel="preload"
             as="image"
             href="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
             type="image/webp"
-            imageSrcSet="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp 768w, /images/products/families/BAPI_Full_Family_Hero_Desktop.webp 1920w"
-            imageSizes="(max-width: 768px) 768px, 1920px"
+            fetchPriority="high"
           />
           {/* Resource hints for external domains */}
           <link rel="preconnect" href="https://bapiheadlessstaging.kinsta.cloud" crossOrigin="anonymous" />
@@ -84,21 +81,9 @@ export default async function RootLayout({
         <body className="antialiased">
           <NextIntlClientProvider messages={messages} locale={locale}>
             <ToastProvider>
-              <PageTransition />
               <Header />
               {children}
               <Footer />
-              <Toaster 
-                position="top-right" 
-                richColors 
-                closeButton
-                toastOptions={{
-                  className: 'font-roboto',
-                  style: {
-                    fontFamily: 'Roboto, sans-serif',
-                  },
-                }}
-              />
               <ChatWidgetClient />
             </ToastProvider>
           </NextIntlClientProvider>

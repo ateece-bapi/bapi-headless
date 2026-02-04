@@ -1,0 +1,1 @@
+{"preset":"desktop","throttling":{"rttMs":40,"throughputKbps":10240,"cpuSlowdownMultiplier":1},"onlyCategories":["performance","accessibility","best-practices","seo"],"chromeFlags":" --headless=new"}

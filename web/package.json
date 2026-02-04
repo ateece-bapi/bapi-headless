@@ -20,7 +20,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",
-    "lighthouse": "lhci autorun",
+    "lighthouse": "pnpm run build && lhci autorun",
     "lighthouse:ci": "lhci autorun --config=lighthouserc.json"
   },
   "dependencies": {

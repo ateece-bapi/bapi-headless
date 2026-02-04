@@ -1,7 +1,9 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "pnpm run build && pnpm run start",
+      "startServerCommand": "pnpm run start",
+      "startServerReadyPattern": "Local:|ready",
+      "startServerReadyTimeout": 30000,
       "url": [
         "http://localhost:3000/",
         "http://localhost:3000/products",
@@ -15,7 +17,8 @@
           "rttMs": 40,
           "throughputKbps": 10240,
           "cpuSlowdownMultiplier": 1
-        }
+        },
+        "onlyCategories": ["performance", "accessibility", "best-practices", "seo"]
       }
     },
     "assert": {

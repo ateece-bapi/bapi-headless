@@ -3,16 +3,15 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getLocale } from 'next-intl/server';
 import { Toaster } from 'sonner';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
+import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient";
+import { WebVitalsClient } from "@/components/analytics/WebVitalsClient";
 import { ToastProvider } from "@/components/ui/Toast";
 import { PageTransition } from "@/components/layout/PageTransition";
-import { WebVitals } from "@/components/analytics/WebVitals";
 
 // Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
 
@@ -68,6 +67,13 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <html lang={locale}>
+        <head>
+          {/* Resource hints for external domains */}
+          <link rel="preconnect" href="https://bapiheadlessstaging.kinsta.cloud" crossOrigin="anonymous" />
+          <link rel="dns-prefetch" href="https://bapiheadlessstaging.kinsta.cloud" />
+          <link rel="preconnect" href="https://clerk.bapi-headless.vercel.app" crossOrigin="anonymous" />
+          <link rel="dns-prefetch" href="https://clerk.bapi-headless.vercel.app" />
+        </head>
         <body className="antialiased">
           <NextIntlClientProvider messages={messages} locale={locale}>
             <ToastProvider>
@@ -90,9 +96,9 @@ export default async function RootLayout({
             </ToastProvider>
           </NextIntlClientProvider>
           <BackToTop />
-          <WebVitals />
-          <Analytics />
-          <SpeedInsights />
+          <WebVitalsClient />
+          <AnalyticsClient />
+          <SpeedInsightsClient />
         </body>
       </html>
     </ClerkProvider>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { HeroProps } from './types';
@@ -28,15 +28,9 @@ const BACKGROUND_IMAGES = [
 const ROTATION_INTERVAL = 8000; // 8 seconds per image
 
 export const Hero: React.FC<HeroProps> = ({ className }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % BACKGROUND_IMAGES.length);
-    }, ROTATION_INTERVAL);
-
-    return () => clearInterval(interval);
-  }, []);
+  // Simplified - removed image rotation for performance
+  // Static background with first image only
+  const heroImage = BACKGROUND_IMAGES[0];
 
   return (
     <section 
@@ -45,26 +39,19 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
         className
       )}
     >
-      {/* Rotating Background Images with Overlay */}
+      {/* Static Background Image with Overlay - No rotation for performance */}
       <div className="absolute inset-0">
-        {BACKGROUND_IMAGES.map((image, index) => (
-          <div
-            key={image.url}
-            className={clsx(
-              'absolute inset-0 ease-in-out',
-              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-            )}
-            style={{
-              backgroundImage: `url(${image.url})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              transition: 'opacity var(--duration-hero-transition) ease-in-out',
-            }}
-            role="img"
-            aria-label={image.alt}
-          />
-        ))}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${heroImage.url})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+          role="img"
+          aria-label={heroImage.alt}
+        />
         {/* Professional overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/75 to-white/70" />
       </div>
@@ -73,9 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(20,121,188,0.08)_0%,transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,200,67,0.08)_0%,transparent_50%)]" />
       
-      {/* Floating decorative elements - subtle animation */}
-      <div className="absolute top-20 right-10 w-32 h-32 bg-primary-500 rounded-full opacity-5 blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
-      <div className="absolute bottom-40 left-10 w-40 h-40 bg-accent-500 rounded-full opacity-5 blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
+      {/* Removed decorative floating elements for performance */}
       
       <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <HeroContent

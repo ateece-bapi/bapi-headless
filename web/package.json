@@ -25,6 +25,7 @@
     "@anthropic-ai/sdk": "^0.71.2",
     "@clerk/clerk-sdk-node": "^4.13.23",
     "@clerk/nextjs": "^6.36.5",
+    "@sentry/nextjs": "^10.38.0",
     "@stripe/react-stripe-js": "^5.4.1",
     "@stripe/stripe-js": "^8.6.1",
     "class-variance-authority": "^0.7.1",

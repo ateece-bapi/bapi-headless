@@ -26,17 +26,18 @@ const isPublicRoute = createRouteMatcher([
 
 // Combine Clerk and next-intl middleware
 export default clerkMiddleware(async (auth, req: NextRequest) => {
-  // Skip internationalization for API routes
+  // Skip ALL middleware processing for API routes
   if (req.nextUrl.pathname.startsWith('/api')) {
     return;
   }
 
-  // Handle authentication for protected routes
-  if (!isPublicRoute(req)) {
-    await auth.protect();
+  // For public routes: skip Clerk auth entirely, only apply intl
+  if (isPublicRoute(req)) {
+    return intlMiddleware(req);
   }
 
-  // Apply internationalization
+  // For protected routes: apply Clerk auth protection THEN intl
+  await auth.protect();
   return intlMiddleware(req);
 });
 

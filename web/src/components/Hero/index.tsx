@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import clsx from 'clsx';
 import { HeroProps } from './types';
 import { HERO_CONFIG } from './config';
@@ -67,24 +66,27 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-transparent rounded-br-full"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-accent-500/10 to-transparent rounded-tl-full"></div>
             
-            {/* Optimized hero image with responsive variants */}
+            {/* Optimized hero image with responsive variants - using native img for picture element compatibility */}
             <picture>
               <source
                 media="(max-width: 768px)"
                 srcSet="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp"
+                width="768"
+                height="494"
               />
               <source
                 media="(min-width: 769px)"
                 srcSet="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
+                width="1920"
+                height="1235"
               />
-              <Image
+              <img
                 src="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
                 alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
-                width={1920}
-                height={1235}
-                priority
-                quality={85}
-                sizes="(max-width: 768px) 768px, 1920px"
+                width="1920"
+                height="1235"
+                fetchPriority="high"
+                decoding="async"
                 className="relative w-full h-auto rounded-xl shadow-lg max-w-5xl mx-auto"
               />
             </picture>

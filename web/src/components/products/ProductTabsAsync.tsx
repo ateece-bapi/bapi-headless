@@ -1,4 +1,5 @@
 import { getProductDetailsDeferred } from '@/lib/graphql';
+import logger from '@/lib/logger';
 
 type ProductTabsAsyncProps = {
   productId: string;
@@ -35,7 +36,7 @@ export async function ProductTabsAsync({ productId }: ProductTabsAsyncProps) {
     </div>
   );
   } catch (error) {
-    console.error('[ProductTabsAsync] Error fetching product details:', error);
+    logger.error('[ProductTabsAsync] Error fetching product details', error);
     return null;
   }
 }

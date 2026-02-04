@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import logger from '@/lib/logger';
 import type { Product } from '@/lib/graphql/types';
 
 const STORAGE_KEY = 'bapi-recently-viewed';
@@ -28,7 +29,7 @@ export function useRecentlyViewed() {
         const parsed = JSON.parse(stored);
         setRecentlyViewed(parsed);
       } catch (error) {
-        console.error('Failed to parse recently viewed:', error);
+        logger.error('Failed to parse recently viewed', error);
         localStorage.removeItem(STORAGE_KEY);
       }
     }

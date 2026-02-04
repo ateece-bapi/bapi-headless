@@ -2,6 +2,7 @@
 "use client";
 import React, { useState } from 'react';
 import { FileText, Video, BookOpen, Download, ExternalLink } from 'lucide-react';
+import logger from '@/lib/logger';
 import { sanitizeDescription } from '@/lib/sanitizeDescription';
 
 interface ProductTabsProps {
@@ -26,7 +27,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
 
   // Debug: Log what data we're receiving
   React.useEffect(() => {
-    console.log('[ProductTabs] Received product data:', {
+    logger.debug('[ProductTabs] Received product data', {
       hasDescription: !!product.description,
       descriptionLength: product.description?.length || 0,
       documentsCount: product.documents?.length || 0,

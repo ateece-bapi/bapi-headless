@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import logger from '@/lib/logger';
 import type { Product } from '@/lib/graphql/types';
 
 const STORAGE_KEY = 'bapi-product-comparison';
@@ -28,7 +29,7 @@ export function useProductComparison() {
         const parsed = JSON.parse(stored);
         setComparisonProducts(parsed);
       } catch (error) {
-        console.error('Failed to parse comparison products:', error);
+        logger.error('Failed to parse comparison products', error);
         localStorage.removeItem(STORAGE_KEY);
       }
     }

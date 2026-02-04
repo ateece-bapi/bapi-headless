@@ -1,6 +1,7 @@
 import { getProductRelated } from '@/lib/graphql';
 import Link from 'next/link';
 import Image from 'next/image';
+import logger from '@/lib/logger';
 import { ArrowRight, Package } from 'lucide-react';
 
 type RelatedProductsAsyncProps = {
@@ -104,7 +105,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
     </section>
   );
   } catch (error) {
-    console.error('[RelatedProductsAsync] Error fetching related products:', error);
+    logger.error('[RelatedProductsAsync] Error fetching related products', error);
     return null; // Silently fail during build
   }
 }

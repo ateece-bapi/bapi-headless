@@ -1,46 +1,21 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import { Loader2 } from 'lucide-react';
-
-// Dynamic import for Clerk UserProfile (reduces bundle size)
-const UserProfile = dynamic(
-  () => import('@clerk/nextjs').then(mod => ({ default: mod.UserProfile })),
-  {
-    loading: () => (
-      <div className="flex items-center justify-center py-12">
-        <Loader2 className="w-8 h-8 animate-spin text-primary-500" />
-        <span className="ml-3 text-neutral-600">Loading settings...</span>
-      </div>
-    ),
-    ssr: false
-  }
-);
-
 /**
- * Client component wrapper for Clerk UserProfile
+ * User profile settings component
  * 
- * This wrapper allows dynamic loading of UserProfile to reduce
- * initial bundle size while maintaining server-side auth in parent.
+ * TODO: Implement custom profile editor after Clerk removal.
+ * For now, shows placeholder message.
  */
 export default function UserProfileClient() {
   return (
-    <UserProfile
-      appearance={{
-        elements: {
-          rootBox: 'w-full',
-          card: 'shadow-none border-0',
-          navbar: 'bg-neutral-50',
-          navbarButton: 'text-neutral-700 hover:bg-white hover:text-primary-600',
-          navbarButtonActive: 'bg-white text-primary-600 font-semibold',
-          pageScrollBox: 'p-6 lg:p-8',
-          profileSectionPrimaryButton: 'bg-primary-600 hover:bg-primary-700 text-white',
-          formButtonPrimary: 'bg-primary-600 hover:bg-primary-700',
-          formFieldInput: 'border-neutral-300 focus:border-primary-500 focus:ring-primary-500',
-          identityPreviewEditButton: 'text-primary-600 hover:text-primary-700',
-          badge: 'bg-primary-100 text-primary-700',
-        },
-      }}
-    />
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
+      <h2 className="text-2xl font-bold text-neutral-900 mb-4">Profile Settings</h2>
+      <p className="text-neutral-600">
+        Profile settings page is being rebuilt after Clerk removal.
+      </p>
+      <p className="text-neutral-600 mt-2">
+        For now, please contact support to update your profile.
+      </p>
+    </div>
   );
 }

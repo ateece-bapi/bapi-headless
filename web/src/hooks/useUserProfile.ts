@@ -1,4 +1,4 @@
-import { useUser } from '@clerk/nextjs';
+import { useAuth } from '@/hooks/useAuth';
 import { getMockUserData, isMockDataEnabled, type MockUserProfile } from '@/lib/mock-user-data';
 
 /**
@@ -6,7 +6,7 @@ import { getMockUserData, isMockDataEnabled, type MockUserProfile } from '@/lib/
  * Returns mock data in development, real data in production
  */
 export function useUserProfile() {
-  const { user, isLoaded, isSignedIn } = useUser();
+  const { user, isLoaded, isSignedIn } = useAuth();
   
   // If mock data is enabled and user has mock data, return it
   if (isSignedIn && user && isMockDataEnabled()) {

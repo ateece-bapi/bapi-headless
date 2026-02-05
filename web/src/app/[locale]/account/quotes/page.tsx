@@ -1,11 +1,11 @@
-import { currentUser } from '@clerk/nextjs/server';
+import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, FileText, Clock, CheckCircle, XCircle, Plus, AlertCircle } from 'lucide-react';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 
 export default async function QuotesPage() {
-  const user = await currentUser();
+  const { user } = await getServerAuth();
 
   if (!user) {
     redirect('/sign-in');

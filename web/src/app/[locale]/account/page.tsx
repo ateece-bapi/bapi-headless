@@ -1,4 +1,4 @@
-import { currentUser } from '@clerk/nextjs/server';
+import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import { 
   User, 
@@ -16,17 +16,16 @@ import Link from 'next/link';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 
 export default async function AccountPage() {
-  const user = await currentUser();
+  const { user } = await getServerAuth();
 
   if (!user) {
     redirect('/sign-in');
   }
 
-  // Get user's display name from Clerk or WordPress metadata
-  const displayName = user.firstName || 
-                     user.lastName ||
-                     (user.username as string) ||
-                     user.emailAddresses[0]?.emailAddress?.split('@')[0] ||
+  // Get user's display name from WordPress
+  const displayName = user.displayName || 
+                     user.username ||
+                     user.email?.split('@')[0] ||
                      'there';
 
   // Get mock data if enabled

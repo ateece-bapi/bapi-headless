@@ -1,10 +1,10 @@
-import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import FavoriteButton from '@/components/FavoriteButton';
+import { getServerAuth } from '@/lib/auth/server';
 
 export default async function FavoritesTestPage() {
-  const user = await currentUser();
+  const { user } = await getServerAuth();
 
   if (!user) {
     redirect('/sign-in');

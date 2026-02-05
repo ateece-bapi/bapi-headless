@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
-import { useUser } from '@clerk/nextjs';
+import { useAuth } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import logger from '@/lib/logger';
@@ -28,7 +28,7 @@ export default function FavoriteButton({
   variant = 'icon',
   onToggle,
 }: FavoriteButtonProps) {
-  const { user, isLoaded } = useUser();
+  const { user, isLoaded } = useAuth();
   const router = useRouter();
   const [isFavorited, setIsFavorited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -61,6 +61,7 @@ export default function FavoriteButton({
 
     // Redirect to sign-in if not authenticated
     if (!isLoaded || !user) {
+      toast.info('Please sign in to save favorites');
       router.push('/sign-in');
       return;
     }

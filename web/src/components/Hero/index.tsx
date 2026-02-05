@@ -5,7 +5,8 @@ import { HERO_CONFIG } from './config';
 import { HeroContent, HeroActions } from './components';
 
 const heroImage = {
-  url: '/images/bapi-facility-solar-optimized.webp',
+  desktop: '/images/bapi-facility-solar-optimized.webp',
+  mobile: '/images/bapi-facility-solar-optimized.webp', // Same file, but we'll optimize it differently
   alt: 'BAPI headquarters facility with solar panels',
 };
 
@@ -17,12 +18,16 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
         className
       )}
     >
-      {/* Static Background Image - No client-side JavaScript */}
+      {/* Responsive Background Image - Mobile optimized */}
       <div className="absolute inset-0">
+        {/* Mobile: Solid color background instead of large image */}
+        <div className="absolute inset-0 bg-neutral-100 md:hidden" />
+        
+        {/* Desktop: Background image */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden md:block"
           style={{
-            backgroundImage: `url(${heroImage.url})`,
+            backgroundImage: `url(${heroImage.desktop})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',

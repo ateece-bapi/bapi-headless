@@ -60,15 +60,15 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-primary-500/10 to-transparent rounded-br-full"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-accent-500/10 to-transparent rounded-tl-full"></div>
             
-            {/* Optimized hero image - loads immediately in initial HTML */}
+            {/* Optimized hero image - responsive with proper mobile support */}
             <div className="hero-image-container">
               <img
-                src="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
+                src="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp"
                 srcSet="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp 768w, /images/products/families/BAPI_Full_Family_Hero_Desktop.webp 1920w"
-                sizes="(max-width: 768px) 768px, 1920px"
+                sizes="(max-width: 768px) 100vw, 1920px"
                 alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
-                width="1920"
-                height="1235"
+                width="768"
+                height="495"
                 loading="eager"
                 fetchPriority="high"
                 decoding="sync"

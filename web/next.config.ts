@@ -27,6 +27,22 @@ const nextConfig: NextConfig = {
     ],
     qualities: [75, 85],
   },
+  
+  // Cache headers for static pages
+  async headers() {
+    return [
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, stale-while-revalidate=86400',
+          },
+        ],
+      },
+    ];
+  },
+  
   // Optimize preloading behavior
   experimental: {
     optimizePackageImports: ['@/components'],

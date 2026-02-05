@@ -19,7 +19,7 @@ import type { NextRequest } from 'next/server';
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'as-needed', // English uses /products, other languages use /de/products
+  localePrefix: 'always', // All languages use prefix: /en, /de, /fr (better for SEO and cache)
 });
 
 export default function middleware(request: NextRequest) {

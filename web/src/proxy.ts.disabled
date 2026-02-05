@@ -1,0 +1,28 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+/**
+ * MIDDLEWARE DISABLED FOR PERFORMANCE
+ * 
+ * Previously: next-intl middleware ran on every request, forcing cache-control: no-cache
+ * Problem: Even pre-generated pages couldn't be CDN cached
+ * Solution: Removed middleware logic, using route-based locale handling instead
+ * 
+ * Locale handling now done via:
+ * - [locale] directory structure in app/
+ * - generateStaticParams() to pre-generate all locale variants
+ * - Client-side locale switcher
+ * 
+ * Result: All pages can be CDN cached with proper cache-control headers
+ * 
+ * This middleware is a pass-through - it does nothing but Next.js requires it to exist.
+ */
+export default function middleware(request: NextRequest) {
+  // Pass through - no middleware logic
+  // All pages can be statically generated and CDN cached
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: [],  // Don't match any routes - middleware disabled
+};

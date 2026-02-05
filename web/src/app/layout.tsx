@@ -50,6 +50,13 @@ export const metadata: Metadata = {
   }
 };
 
+/**
+ * Force static generation for root layout
+ * This prevents dynamic rendering and enables CDN caching
+ */
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
+
 export default async function RootLayout({
   children,
 }: Readonly<{

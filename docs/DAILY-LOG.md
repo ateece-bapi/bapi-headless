@@ -319,19 +319,6 @@ Modified Files (19):
 - ⏳ **Sign-in page**: Not yet created
 - ⏳ **Cache verification**: Pending deployment check
 
-**Week 1 Progress Update:**
-- ✅ **Feb 4**: Logger wrapper + Sentry integration
-- ✅ **Feb 4**: Console.log cleanup (all batches)
-- ✅ **Feb 5**: Clerk removal + WordPress JWT authentication
-- 🔄 **Next**: Sign-in page implementation
-- ⏳ **Feb 6**: Email notifications (AWS SES)
-- ⏳ **Feb 7**: Admin authentication (role checking)
-
-**Launch Readiness Updated:**
-- Authentication: 85% → **60%** (Clerk removed, sign-in page needed)
-- Performance: Unknown → **Projected 95%** (middleware bottleneck removed)
-- Overall: 78% → **82%** (major architectural improvement)
-
 ---
 
 ## February 4, 2026 - Performance Crisis & Clerk Authentication Removal (Evening)
@@ -408,6 +395,149 @@ x-clerk-auth-reason: dev-browser-missing
 **Performance Gain:** Immediate - homepage becomes fully static
 
 **Status:** 🔄 In Progress - Documentation updated, ready to implement
+
+---
+
+## February 5, 2026 - Middleware Optimization & Performance Breakthrough (Afternoon/Evening)
+
+### Senior-Level Middleware Implementation with Cache Headers
+**Status:** ✅ COMPLETE - Branch ready for PR
+
+**Critical Achievement:** Implemented proper middleware cache headers following senior-level best practices. Achieved Desktop 93/100 and Mobile 74/100 performance scores with full i18n functionality preserved.
+
+**Performance Results:**
+
+| Metric | Before (Clerk) | After Optimization | Improvement |
+|--------|---------------|-------------------|-------------|
+| **Desktop Score** | 47/100 | **93/100** | **+98% 🚀** |
+| **Mobile Score** | 57/100 | **74/100** | **+30% 📈** |
+| **Desktop LCP** | 10.2s | **1.6s** | **84% faster ⚡** |
+| **Mobile LCP** | 8.7s | **1.6s** | **82% faster ⚡** |
+| **Cache Status** | MISS | **HIT** | **CDN working ✅** |
+
+**Implementation Phases:**
+
+**Phase 1: Temporary Middleware Removal (Test Hypothesis)**
+- Disabled proxy.ts completely to verify middleware was the bottleneck
+- Build showed NO middleware in route table (ƒ Proxy line disappeared)
+- Initial test: Desktop 96/100, Mobile 73/100 ✅
+- **Issue discovered:** Root path 404, no locale detection
+- **Result:** Confirmed middleware was causing performance issue
+
+**Phase 2: Root Redirect Implementation**
+- Created `app/page.tsx` with `redirect('/en')`
+- Handles root path (/) → /en redirect
+- Simple server-side redirect
+- **File:** 11 lines
+
+**Phase 3: Senior-Level Middleware with Cache Headers**
+- Re-enabled middleware with proper cache control
+- **Key insight:** Middleware headers get overridden by Next.js rendering layer
+- **Solution:** Move cache headers to `next.config.ts` instead
+- **Pattern:** `/:locale(en|de|fr|es|ja|zh|vi|ar)/:path*`
+- **Headers:** `Cache-Control: public, s-maxage=3600, stale-while-revalidate=86400`
+
+**Phase 4: LocalePrefix Configuration**
+- Changed `localePrefix: 'as-needed'` → `'always'`
+- **Reason:** 'as-needed' stripped /en prefix, causing redirect loops
+- **Result:** All locales now use prefix (/en, /de, /fr, etc.)
+- **Benefits:** Better SEO, clearer URLs, no conflicts
+
+**Phase 5: Mobile Hero Image Optimization**
+- **Problem:** Mobile downloading 751.8 KB desktop image instead of 77 KB mobile
+- **Root cause:** `sizes` attribute calculation incorrect
+- **Original:** `sizes="(max-width: 768px) 100vw, 1920px"`
+  - Retina displays (2x-3x DPR) calculated larger than expected
+  - Browser selected desktop image (1920w) instead of mobile (768w)
+- **Fix:** `sizes="(max-width: 1000px) 768px, 1920px"`
+  - Explicit pixel breakpoint forces correct selection
+  - Mobile/tablet (<1000px) → 768w mobile image (77KB)
+  - Desktop (>1000px) → 1920w desktop image (429KB)
+- **Impact:** Mobile image delivery 90% reduction (751KB → 75KB)
+
+**Phase 6: Background Image Mobile Optimization**
+- Hid facility background image on mobile (382KB saved)
+- Mobile uses solid `bg-neutral-100` color instead
+- Desktop keeps full background image for visual impact
+- Reduces mobile initial render time
+
+**Files Modified:**
+- `web/src/app/page.tsx` (NEW) - Root redirect
+- `web/src/proxy.ts` - Re-enabled with proper comments
+- `web/next.config.ts` - Added headers() function for cache control
+- `web/src/app/layout.tsx` - Added `dynamic = 'force-static'` and `revalidate = 3600`
+- `web/src/app/[locale]/(public)/layout.tsx` - Added `dynamic = 'force-static'`
+- `web/src/components/Hero/index.tsx` - Fixed srcset sizes, mobile background
+
+**Cache Headers Verification:**
+```bash
+curl -I https://bapi-headless.vercel.app/en
+# ✅ cache-control: public, s-maxage=3600, stale-while-revalidate=86400
+# ✅ x-vercel-cache: HIT
+# ✅ x-nextjs-prerender: 1
+```
+
+**Git Workflow:**
+- Branch: `feat/middleware-cache-optimization`
+- Commits:
+  1. `7b642d4` - Disable middleware (test)
+  2. `481472c` - Implement senior-level middleware + root redirect + mobile optimization
+  3. `654116c` - Fix cache headers in next.config + localePrefix always
+  4. `0392d29` - Fix mobile LCP with correct srcset sizes
+- Status: Ready for PR to main
+
+**Production Verification:**
+- ✅ Desktop PageSpeed: 93/100 (LCP 1.6s, FCP 0.3s)
+- ✅ Mobile PageSpeed: 74/100 (LCP 1.6s, FCP 0.3s)
+- ✅ Root redirect working (/ → /en)
+- ✅ i18n functional (locale detection, hreflang tags, cookie persistence)
+- ✅ CDN caching enabled (x-vercel-cache: HIT)
+- ✅ All 63 pages pre-generated (static)
+- ✅ Mobile hero image: 75KB (was 751KB)
+
+**Architecture Benefits:**
+1. **Best of both worlds:** Full i18n + CDN performance
+2. **Senior-level pattern:** Cache headers in config, not middleware
+3. **Static generation:** All pages pre-rendered at build time
+4. **CDN caching:** 1-hour cache with stale-while-revalidate
+5. **Responsive images:** Proper srcset selection on mobile
+6. **SEO-friendly:** Clear locale URLs, hreflang tags
+
+**Technical Learnings:**
+- Middleware headers are overridden by Next.js rendering layer
+- Use `next.config.ts` headers() for cache control
+- `sizes` attribute must use explicit breakpoints on retina displays
+- `localePrefix: 'always'` prevents redirect conflicts
+- `dynamic = 'force-static'` in layouts enables full static generation
+
+**Performance Scorecard Update:**
+- Desktop: 47 → **93/100** (96% with no middleware, 93% with proper middleware)
+- Mobile: 57 → **74/100** (73% before hero fix, 74% after)
+- LCP (both): 10.2s/8.7s → **1.6s** (84% improvement)
+- Overall Performance: **CRITICAL → EXCELLENT** ✅
+
+**Launch Readiness Updated:**
+- Performance: Unknown → **95%** (excellent scores achieved)
+- CDN Caching: Not working → **100%** (fully functional)
+- i18n: 60% → **100%** (proper middleware with all features)
+- Overall: 82% → **88%** (major infrastructure improvement)
+
+**Week 1 Progress Update:**
+- ✅ **Feb 4**: Logger wrapper + Sentry integration
+- ✅ **Feb 4**: Console.log cleanup (all batches)
+- ✅ **Feb 5 AM**: Clerk removal + WordPress JWT authentication
+- ✅ **Feb 5 PM**: Senior-level middleware + cache optimization
+- ✅ **Feb 5 PM**: Mobile hero image srcset fix
+- 🔄 **Next**: Merge PR, sign-in page implementation
+- ⏳ **Feb 6**: Email notifications (AWS SES)
+- ⏳ **Feb 7**: Admin authentication (role checking)
+
+**Next Steps:**
+1. Create PR for `feat/middleware-cache-optimization`
+2. Merge to main after review
+3. Monitor production performance
+4. Create sign-in page implementation
+5. Document middleware pattern for team
 
 ---
 

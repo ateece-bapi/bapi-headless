@@ -1,6 +1,75 @@
 # BAPI Headless - Project Roadmap & TODO
 
-## 📋 Project Timeline & Phasing Strategy
+## � CRITICAL ISSUES (February 4, 2026)
+
+### Performance Crisis - Clerk Authentication Removal (URGENT)
+**Status:** 🔄 In Progress - Removing Clerk, implementing WordPress auth
+**Priority:** CRITICAL (blocking static generation and CDN caching)
+
+**Problem:** PageSpeed performance DEGRADED from 43 → 47 despite 7 optimization attempts
+- Root Cause: Clerk middleware forces dynamic rendering on ALL pages
+- Cache headers: `cache-control: private, no-cache, no-store` (uncacheable)
+- Result: 6.5s server delay, LCP 10.2s (13x worse than baseline)
+- Every optimization attempt failed because architecture was the problem
+
+**Performance Journey:**
+1. Baseline: Desktop 43, LCP 0.8s ✅
+2. Priority prop: Desktop 33, LCP 14.2s ❌ (WORSE)
+3. Deferred analytics: Desktop 36, LCP 14.2s ❌
+4. Image optimization (13MB → 429KB): Desktop 53, LCP 5.8s ⚠️
+5. Optimized WebP files: Desktop 63, LCP 8.3s ⚠️
+6. Native img element: Desktop 63, LCP 8.9s (no change)
+7. Removed features (Toaster, NProgress): Desktop 59, LCP 10.6s ❌ (WORSE)
+8. Created (public) route group: Desktop 47, LCP 10.2s ❌ (WORSE)
+
+**Decision:** Remove Clerk entirely, use WordPress authentication
+
+**Rationale:**
+- ✅ Already have 5,438 users in WordPress (single source of truth)
+- ✅ No monthly Clerk fees (~$100+/month saved)
+- ✅ Simpler code (no ClerkProvider, no complex middleware)
+- ✅ Static generation works immediately
+- ✅ Better performance (homepage fully static, CDN cacheable)
+- ✅ More control over login UX
+
+**Implementation Plan:**
+- [ ] Create `/api/auth/login` - WordPress JWT authentication
+- [ ] Create `/api/auth/logout` - Clear session cookie
+- [ ] Create `/api/auth/me` - Get current user from WordPress
+- [ ] Create custom `useAuth()` hook - Replace `useUser()`
+- [ ] Create custom login page - Better UX than Clerk modal
+- [ ] Update SignInButton - Link to custom login page
+- [ ] Update protected pages - Check JWT in middleware
+- [ ] Remove Clerk dependencies (8 files affected)
+- [ ] Test authentication flow end-to-end
+- [ ] Verify static generation working (check cache headers)
+- [ ] Run PageSpeed test - Should jump to 70-80+ range
+
+**Expected Performance Gain:**
+- Desktop: 47 → 75+ (estimated)
+- LCP: 10.2s → <2s (10x improvement)
+- Cache: MISS → HIT (CDN caching enabled)
+- Response time: 12s → <1s (static generation)
+
+**Time Estimate:** 2-3 hours implementation + 1 hour testing
+**Deadline:** February 5, 2026 (URGENT)
+**Branch:** `feat/performance-optimizations` (already created)
+
+**Files to Update:**
+1. `src/components/layout/Header/components/SignInButton.tsx`
+2. `src/components/FavoriteButton.tsx`
+3. `src/app/[locale]/account/favorites/page.tsx`
+4. `src/app/[locale]/account/layout.tsx` (remove)
+5. `src/app/[locale]/checkout/layout.tsx` (remove)
+6. `src/app/[locale]/order-confirmation/layout.tsx` (remove)
+7. `src/proxy.ts` (simplify middleware)
+8. Create new: `src/app/[locale]/sign-in/page.tsx`
+9. Create new: `src/lib/auth/wordpress.ts`
+10. Create new: `src/hooks/useAuth.ts`
+
+---
+
+## �📋 Project Timeline & Phasing Strategy
 
 **Updated:** February 4, 2026  
 **Current Phase:** Phase 1 - April 10, 2026 Go-Live (65 days remaining)
@@ -12,14 +81,15 @@
 - **April 10, 2026**: Production release (HARD DEADLINE - 65 days)
 
 ### Launch Readiness Status (Feb 4, 2026)
-**Overall:** 81% Complete (Target: 95% by March 25)
+**Overall:** 79% Complete (Target: 95% by March 25) - **DOWN 2% due to Clerk removal**
 
 **Scorecard:**
 - ✅ Frontend Code: 95% (Excellent)
 - ✅ Testing: 80%+ coverage (648 tests passing)
-- ⚠️ Authentication: 85% (Admin roles needed)
+- 🔄 Authentication: 60% (**REGRESSION** - Removing Clerk, implementing WordPress auth)
 - 🔄 Internationalization: 60% (Translation service in progress)
 - ❌ Email Notifications: 0% (**BLOCKER**)
+- ❌ Performance: 47/100 (**CRITICAL** - Down from baseline 43, fixing with Clerk removal)
 - ✅ User Migration: 100% (Ready)
 - ✅ Navigation: 100% (Complete)
 - ✅ Product Pages: 100% (Complete)

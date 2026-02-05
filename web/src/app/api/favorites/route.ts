@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
+import { getServerAuth } from '@/lib/auth/server';
 import logger from '@/lib/logger';
 import { writeFile, mkdir } from 'fs/promises';
 import { existsSync } from 'fs';
@@ -41,7 +41,7 @@ async function writeFavorites(favorites: Favorite[]): Promise<void> {
 // GET - Fetch user's favorites
 export async function GET(request: NextRequest) {
   try {
-    const { userId } = await auth();
+    const { userId } = await getServerAuth();
     
     if (!userId) {
       return NextResponse.json(
@@ -72,7 +72,7 @@ export async function GET(request: NextRequest) {
 // POST - Add to favorites
 export async function POST(request: NextRequest) {
   try {
-    const { userId } = await auth();
+    const { userId } = await getServerAuth();
     
     if (!userId) {
       return NextResponse.json(
@@ -138,7 +138,7 @@ export async function POST(request: NextRequest) {
 // DELETE - Remove from favorites
 export async function DELETE(request: NextRequest) {
   try {
-    const { userId } = await auth();
+    const { userId } = await getServerAuth();
     
     if (!userId) {
       return NextResponse.json(

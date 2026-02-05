@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from '@clerk/nextjs';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getLocale } from 'next-intl/server';
 import "./globals.css";
@@ -63,8 +62,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <ClerkProvider>
-      <html lang={locale}>
+    <html lang={locale}>
         <head>
           {/* Inline critical CSS for hero image container */}
           <style dangerouslySetInnerHTML={{ __html: `
@@ -89,7 +87,6 @@ export default async function RootLayout({
           <AnalyticsClient />
           <SpeedInsightsClient />
         </body>
-      </html>
-    </ClerkProvider>
+    </html>
   );
 }

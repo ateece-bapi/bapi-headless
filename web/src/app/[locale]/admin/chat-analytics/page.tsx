@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
-import { auth } from '@clerk/nextjs/server';
+import { getServerAuth } from '@/lib/auth/server';
 import ChatAnalyticsDashboard from './ChatAnalyticsDashboard';
 
 /**
@@ -11,7 +11,7 @@ import ChatAnalyticsDashboard from './ChatAnalyticsDashboard';
  * TODO: Implement proper admin role checking (currently only checks authentication)
  */
 export default async function ChatAnalyticsPage() {
-  const { userId } = await auth();
+  const { userId } = await getServerAuth();
 
   // Require authentication
   if (!userId) {

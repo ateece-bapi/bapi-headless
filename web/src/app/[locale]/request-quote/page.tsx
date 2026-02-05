@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Upload, X, CheckCircle, Loader2 } from 'lucide-react';
-import { useUser } from '@clerk/nextjs';
+import { useAuth } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import logger from '@/lib/logger';
 
 export default function RequestQuotePage() {
-  const { user, isLoaded } = useUser();
+  const { user, isLoaded } = useAuth();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -61,7 +61,7 @@ export default function RequestQuotePage() {
       data.append('details', formData.details);
       data.append('companyName', formData.companyName);
       data.append('phoneNumber', formData.phoneNumber);
-      data.append('userEmail', user?.emailAddresses[0]?.emailAddress || '');
+      data.append('userEmail', user?.email || '');
 
       // Append files
       files.forEach((file) => {

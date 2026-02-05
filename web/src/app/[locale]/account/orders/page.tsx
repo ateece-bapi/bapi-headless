@@ -1,4 +1,4 @@
-import { currentUser } from '@clerk/nextjs/server';
+import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Package, Eye, Download, AlertCircle } from 'lucide-react';
@@ -30,7 +30,7 @@ interface Order {
 }
 
 export default async function OrdersPage() {
-  const user = await currentUser();
+  const { user } = await getServerAuth();
 
   if (!user) {
     redirect('/sign-in');
@@ -40,8 +40,8 @@ export default async function OrdersPage() {
   const mockEnabled = isMockDataEnabled();
   const profile = mockEnabled ? getMockUserData(user.id) : null;
 
-  // Get WordPress customer ID from Clerk metadata
-  const wpCustomerId = user.publicMetadata?.wordpressCustomerId as number | undefined;
+  // WordPress customer ID is the user's database ID from WordPress
+  const wpCustomerId = parseInt(user.id);
 
   let orders: Order[] = [];
   let error = null;

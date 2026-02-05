@@ -4,16 +4,30 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 /**
- * Senior-level middleware implementation with proper cache headers
+ * Senior-level middleware with authentication and cache headers
  * 
- * Problem: next-intl middleware by default sets cache-control: no-cache
- * Solution: Keep i18n functionality but override cache headers for static pages
- * 
- * Benefits:
- * - Automatic locale detection and redirects (i18n works)
- * - CDN caching enabled for static pages (performance preserved)
- * - Best of both worlds: functionality + performance
+ * Features:
+ * - Protected routes require authentication (JWT token in cookie)
+ * - Automatic locale detection and redirects (next-intl)
+ * - CDN caching for static pages (performance)
+ * - Redirect to sign-in with preserved destination
  */
+
+// Protected routes that require authentication
+const protectedRoutes = [
+  '/account',
+  '/account/profile',
+  '/account/orders',
+  '/account/favorites',
+  '/account/quotes',
+  '/account/settings',
+];
+
+// Admin-only routes (for future implementation)
+const adminRoutes = [
+  '/admin',
+  '/admin/chat-analytics',
+];
 
 // Create next-intl middleware
 const intlMiddleware = createMiddleware({
@@ -23,13 +37,38 @@ const intlMiddleware = createMiddleware({
 });
 
 export default function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  
+  // Check if route needs authentication
+  const isProtectedRoute = protectedRoutes.some(route => 
+    pathname.includes(route)
+  );
+  
+  const isAdminRoute = adminRoutes.some(route => 
+    pathname.includes(route)
+  );
+
+  // Check for auth token in cookies
+  const authToken = request.cookies.get('auth_token')?.value;
+
+  // Redirect to sign-in if accessing protected route without auth
+  if ((isProtectedRoute || isAdminRoute) && !authToken) {
+    const signInUrl = new URL('/sign-in', request.url);
+    // Preserve intended destination for post-login redirect
+    signInUrl.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(signInUrl);
+  }
+
+  // If accessing sign-in page while already authenticated, redirect to account
+  if (pathname.includes('/sign-in') && authToken) {
+    return NextResponse.redirect(new URL('/account', request.url));
+  }
+
   // Run next-intl middleware for locale detection
   const response = intlMiddleware(request);
   
   // Override cache headers for static pages (GET requests only)
   if (request.method === 'GET') {
-    const pathname = request.nextUrl.pathname;
-    
     // Static routes that should be CDN cached
     const isStaticRoute = 
       pathname === '/' ||

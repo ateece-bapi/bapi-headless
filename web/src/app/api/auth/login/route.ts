@@ -63,22 +63,25 @@ export async function POST(request: NextRequest) {
 
     const { authToken, refreshToken, user } = data.login;
     
+    // Enhanced cookie options with BFF pattern security
+    const isProd = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
+      httpOnly: true,           // Prevent XSS attacks
+      secure: isProd,            // HTTPS only in production
+      sameSite: 'lax' as const, // CSRF protection
+      path: '/',
+    };
+    
     // Set httpOnly cookies with JWT tokens
     const cookieStore = await cookies();
     cookieStore.set('auth_token', authToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      ...cookieOptions,
       maxAge: 60 * 60 * 24 * 7, // 7 days
-      path: '/',
     });
 
     cookieStore.set('refresh_token', refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      ...cookieOptions,
       maxAge: 60 * 60 * 24 * 30, // 30 days
-      path: '/',
     });
 
     logger.debug('User authenticated successfully', { 

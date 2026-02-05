@@ -1,78 +1,56 @@
 # BAPI Headless - Project Roadmap & TODO
 
-## � CRITICAL ISSUES (February 4, 2026)
+## 🎯 CRITICAL ISSUES (February 5, 2026)
 
-### Performance Crisis - Clerk Authentication Removal (COMPLETE)
-**Status:** ✅ COMPLETE - WordPress JWT authentication deployed to production
-**Priority:** RESOLVED - Static generation and CDN caching now enabled
+### ✅ Performance Crisis - RESOLVED (February 5, 2026)
+**Status:** ✅ COMPLETE - Senior-level middleware optimization deployed
+**Priority:** RESOLVED - Desktop 93/100, Mobile 74/100
 
-**Problem:** PageSpeed performance DEGRADED from 43 → 47 despite 7 optimization attempts
-- Root Cause: Clerk middleware forces dynamic rendering on ALL pages
-- Cache headers: `cache-control: private, no-cache, no-store` (uncacheable)
-- Result: 6.5s server delay, LCP 10.2s (13x worse than baseline)
-- Every optimization attempt failed because architecture was the problem
+**Final Results:**
+- **Desktop: 47 → 93/100** (+98% improvement) 🚀
+- **Mobile: 57 → 74/100** (+30% improvement) 📈
+- **Desktop LCP: 10.2s → 1.6s** (84% faster) ⚡
+- **Mobile LCP: 8.7s → 1.6s** (82% faster) ⚡
+- **CDN Caching: Working** (x-vercel-cache: HIT) ✅
+- **Static Generation: All 63 pages** pre-rendered ✅
 
-**Performance Journey:**
-1. Baseline: Desktop 43, LCP 0.8s ✅
-2. Priority prop: Desktop 33, LCP 14.2s ❌ (WORSE)
-3. Deferred analytics: Desktop 36, LCP 14.2s ❌
-4. Image optimization (13MB → 429KB): Desktop 53, LCP 5.8s ⚠️
-5. Optimized WebP files: Desktop 63, LCP 8.3s ⚠️
-6. Native img element: Desktop 63, LCP 8.9s (no change)
-7. Removed features (Toaster, NProgress): Desktop 59, LCP 10.6s ❌ (WORSE)
-8. Created (public) route group: Desktop 47, LCP 10.2s ❌ (WORSE)
+**Solutions Implemented:**
 
-**Decision:** Remove Clerk entirely, use WordPress authentication
+**Phase 1: Clerk Removal (Feb 5 AM)**
+- ✅ Replaced Clerk with WordPress JWT authentication
+- ✅ Created /api/auth/login, /api/auth/me, /api/auth/logout
+- ✅ Custom useAuth() hook replacing useUser()
+- ✅ Simplified middleware (85% smaller)
+- ✅ 27 files changed: 560 insertions, 400 deletions
+- ✅ Build successful, 648 tests passing
 
-**Rationale:**
-- ✅ Already have 5,438 users in WordPress (single source of truth)
-- ✅ No monthly Clerk fees (~$100+/month saved)
-- ✅ Simpler code (no ClerkProvider, no complex middleware)
-- ✅ Static generation works immediately
-- ✅ Better performance (homepage fully static, CDN cacheable)
-- ✅ More control over login UX
+**Phase 2: Senior-Level Middleware (Feb 5 PM)**
+- ✅ Re-enabled middleware for i18n functionality
+- ✅ Cache headers in next.config.ts (proper Next.js pattern)
+- ✅ LocalePrefix: 'always' (prevents redirect loops)
+- ✅ Root redirect (/ → /en) for default locale
+- ✅ Static generation: dynamic = 'force-static' in layouts
+- ✅ Mobile hero image: Fixed srcset sizes (751KB → 75KB)
+- ✅ Background optimization: Hidden on mobile (saves 382KB)
 
-**Implementation Plan:**
-- [ ] Create `/api/auth/login` - WordPress JWT authentication
-- [ ] Create `/api/auth/logout` - Clear session cookie
-- [ ] Create `/api/auth/me` - Get current user from WordPress
-- [ ] Create custom `useAuth()` hook - Replace `useUser()`
-- [ ] Create custom login page - Better UX than Clerk modal
-- [ ] Update SignInButton - Link to custom login page
-- [ ] Update protected pages - Check JWT in middleware
-- [ ] Remove Clerk dependencies (8 files affected)
-- [ ] Test authentication flow end-to-end
-- [ ] Verify static generation working (check cache headers)
-- [ ] Run PageSpeed test - Should jump to 70-80+ range
+**Architecture Benefits:**
+- Middleware: i18n routing only (no auth overhead)
+- Cache headers: Set via config (not overridden by Next.js)
+- Static generation: All pages pre-rendered at build time
+- CDN caching: 1-hour cache with stale-while-revalidate
+- Responsive images: Proper srcset selection on mobile
+- SEO-friendly: Clear locale URLs, hreflang tags
 
-**Expected Performance Gain:**
-- Desktop: 47 → 75+ (estimated)
-- LCP: 10.2s → <2s (10x improvement)
-- Cache: MISS → HIT (CDN caching enabled)
-- Response time: 12s → <1s (static generation)
-
-**Time Estimate:** 2-3 hours implementation + 1 hour testing
-**Deadline:** February 5, 2026 (URGENT)
-**Branch:** `feat/performance-optimizations` (already created)
-
-**Files to Update:**
-1. `src/components/layout/Header/components/SignInButton.tsx`
-2. `src/components/FavoriteButton.tsx`
-3. `src/app/[locale]/account/favorites/page.tsx`
-4. `src/app/[locale]/account/layout.tsx` (remove)
-5. `src/app/[locale]/checkout/layout.tsx` (remove)
-6. `src/app/[locale]/order-confirmation/layout.tsx` (remove)
-7. `src/proxy.ts` (simplify middleware)
-8. Create new: `src/app/[locale]/sign-in/page.tsx`
-9. Create new: `src/lib/auth/wordpress.ts`
-10. Create new: `src/hooks/useAuth.ts`
+**Branch:** `feat/middleware-cache-optimization`  
+**Status:** Ready for PR to main  
+**Commits:** 4 commits (middleware test, implementation, cache fix, srcset fix)
 
 ---
 
-## �📋 Project Timeline & Phasing Strategy
+## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** February 4, 2026  
-**Current Phase:** Phase 1 - April 10, 2026 Go-Live (65 days remaining)
+**Updated:** February 5, 2026  
+**Current Phase:** Phase 1 - April 10, 2026 Go-Live (64 days remaining)
 
 ### Production Launch Timeline
 - **Early March 2026**: Testing begins (25 days)
@@ -81,15 +59,15 @@
 - **April 10, 2026**: Production release (HARD DEADLINE - 65 days)
 
 ### Launch Readiness Status (Feb 5, 2026)
-**Overall:** 82% Complete (Target: 95% by March 25) - **UP 3% from Clerk removal**
+**Overall:** 88% Complete (Target: 95% by March 25) - **UP 9% from performance optimization**
 
 **Scorecard:**
 - ✅ Frontend Code: 95% (Excellent)
 - ✅ Testing: 80%+ coverage (648 tests passing)
-- 🔄 Authentication: 60% (Clerk removed, WordPress JWT deployed, sign-in page needed)
+- ⚠️ Authentication: 70% (WordPress JWT deployed, sign-in page needed)
 - 🔄 Internationalization: 60% (Translation service in progress)
 - ❌ Email Notifications: 0% (**BLOCKER**)
-- ⏳ Performance: Projected 75+ (**IMPROVED** - Clerk middleware bottleneck removed, awaiting verification)
+- ✅ **Performance: 93/100 Desktop, 74/100 Mobile** (**EXCELLENT** - middleware optimized, CDN caching enabled)
 - ✅ User Migration: 100% (WordPress users authenticate directly, no migration needed)
 - ✅ Navigation: 100% (Complete)
 - ✅ Product Pages: 100% (Complete)

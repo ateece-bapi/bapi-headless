@@ -1,5 +1,22 @@
 # BAPI Headless - Project Roadmap & TODO
 
+## ✅ CSS Best Practices & Homepage Hero Image Fix (Feb 6, 2026)
+**Status:** COMPLETE & PUSHED (feat/css-best-practices-cleanup)
+**Summary:**
+  - Removed all inline styles from homepage, Hero, and error boundaries.
+  - Standardized z-index usage (semantic tokens only).
+  - Tailwind v4 migration: all gradients use `bg-linear-to-*`.
+  - Added global font smoothing, utility classes for error/hero.
+  - Fixed homepage hero background image not rendering on desktop (non-self-closing div bug).
+  - All CSS now follows senior-level best practices (see TAILWIND_GUIDELINES.md).
+**Testing:**
+  - Homepage and all error boundaries visually QA’d.
+  - No inline styles remain except for dynamic animation/progress (acceptable per policy).
+  - All z-indexes are semantic or overlay-specific.
+**Next Steps:**
+  - Merge PR after review.
+  - Continue i18n hardcoded string replacement and translation QA.
+
 ## 🎯 CRITICAL ISSUES (February 5, 2026)
 
 ### ✅ Performance Crisis - RESOLVED (February 5, 2026)

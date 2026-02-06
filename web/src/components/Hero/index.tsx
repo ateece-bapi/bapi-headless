@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
           className="absolute inset-0 hidden md:block hero-bg-image"
           role="img"
           aria-label={heroImage.alt}
-        />
+        ></div>
         {/* Professional overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/75 to-white/70" />
       </div>

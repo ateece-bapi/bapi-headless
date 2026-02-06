@@ -7,6 +7,7 @@ import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
 import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient";
 import { WebVitalsClient } from "@/components/analytics/WebVitalsClient";
 import { ToastProvider } from "@/components/ui/Toast";
+import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from "@/lib/schema";
 
 // Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
 
@@ -64,6 +65,11 @@ export default async function RootLayout({
   // Get messages for the current locale
   const messages = await getMessages();
 
+  // Generate site-wide structured data for SEO
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';
+  const organizationSchema = generateOrganizationSchema(siteUrl);
+  const websiteSchema = generateWebSiteSchema(siteUrl, 'BAPI - Building Automation Products Inc.');
+
   return (
     <html lang={locale}>
         <head>
@@ -77,6 +83,9 @@ export default async function RootLayout({
           {/* Resource hints for external domains */}
           <link rel="preconnect" href="https://bapiheadlessstaging.kinsta.cloud" crossOrigin="anonymous" />
           <link rel="dns-prefetch" href="https://bapiheadlessstaging.kinsta.cloud" />
+          
+          {/* Structured Data for  SEO */}
+          <StructuredData schema={[organizationSchema, websiteSchema]} />
         </head>
         <body className="antialiased">
           <NextIntlClientProvider messages={messages} locale={locale}>

@@ -40,6 +40,7 @@ import {
 import { RelatedProductsAsync } from '@/components/products/RelatedProductsAsync';
 import dynamic from 'next/dynamic';
 import { PerformanceTimer } from '@/lib/monitoring/performance';
+import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 function stripHtml(html?: string | null) {
   if (!html) return '';
@@ -317,8 +318,52 @@ export default async function ProductPage({ params }: { params: { slug: string }
       
       const productDbId = product.databaseId?.toString() || product.id;
       
+      // Generate structured data for SEO
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';
+      const productUrl = `${siteUrl}/product/${slug}`;
+      
+      const productSchema = generateProductSchema(
+        {
+          name: product.name || '',
+          description: stripHtml(product.shortDescription || product.description),
+          image: product.image?.sourceUrl || '',
+          sku: (product as any).sku || '',
+          partNumber: (product as any).partNumber || undefined,
+          price: (product as any).price ? parseFloat((product as any).price) : undefined,
+          regularPrice: (product as any).regularPrice ? parseFloat((product as any).regularPrice) : undefined,
+          salePrice: (product as any).salePrice ? parseFloat((product as any).salePrice) : undefined,
+          inStock: (product as any).stockStatus === 'IN_STOCK',
+          category: product.productCategories?.nodes?.[0]?.name || undefined,
+        },
+        productUrl,
+        siteUrl
+      );
+      
+      // Generate breadcrumb schema
+      const breadcrumbs = [
+        { name: 'Home', url: '/' },
+        { name: 'Products', url: '/products' },
+      ];
+      
+      // Add category if available
+      if (product.productCategories?.nodes?.[0]) {
+        const category = product.productCategories.nodes[0];
+        breadcrumbs.push({
+          name: category.name || '',
+          url: `/products/${category.slug}`
+        });
+      }
+      
+      // Add product (no URL for last item)
+      breadcrumbs.push({ name: product.name || '' });
+      
+      const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, siteUrl);
+      
       return (
         <>
+          {/* Structured Data for SEO */}
+          <StructuredData schema={[productSchema, breadcrumbSchema]} />
+          
           <ProductDetailClient product={productForClient} productId={productDbId} />
           
           {/* Deferred content loaded in separate Suspense boundaries on client */}

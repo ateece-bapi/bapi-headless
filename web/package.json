@@ -17,6 +17,7 @@
     "codegen:watch": "graphql-codegen --config codegen.ts --watch",
     "optimize:images": "node scripts/optimize-images.mjs",
     "optimize:families": "node scripts/optimize-images.mjs families",
+    "audit:images": "node scripts/audit-images.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",

@@ -61,7 +61,10 @@ export default function middleware(request: NextRequest) {
 
   // If accessing sign-in page while already authenticated, redirect to account
   if (pathname.includes('/sign-in') && authToken) {
-    return NextResponse.redirect(new URL('/account', request.url));
+    // Extract locale from pathname or use default
+    const localeMatch = pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar)/);
+    const locale = localeMatch ? localeMatch[1] : defaultLocale;
+    return NextResponse.redirect(new URL(`/${locale}/account`, request.url));
   }
 
   // Run next-intl middleware for locale detection

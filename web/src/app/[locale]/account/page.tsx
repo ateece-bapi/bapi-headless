@@ -16,9 +16,33 @@ import Link from 'next/link';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 
 export default async function AccountPage() {
-  const { user } = await getServerAuth();
+  // DEBUG: Check authentication
+  let authResult;
+  try {
+    authResult = await getServerAuth();
+    console.log('[ACCOUNT PAGE] Auth result:', { 
+      hasUser: !!authResult.user, 
+      userId: authResult.userId 
+    });
+  } catch (error) {
+    console.error('[ACCOUNT PAGE] Auth error:', error);
+    // Show error instead of redirecting to debug
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-neutral-50">
+        <div className="text-center p-8 bg-white rounded-lg shadow">
+          <h1 className="text-2xl font-bold text-red-600 mb-4">Authentication Error</h1>
+          <pre className="text-left text-sm bg-neutral-100 p-4 rounded">
+            {JSON.stringify(error, null, 2)}
+          </pre>
+        </div>
+      </div>
+    );
+  }
+
+  const { user } = authResult;
 
   if (!user) {
+    console.log('[ACCOUNT PAGE] No user, redirecting to sign-in');
     redirect('/sign-in');
   }
 

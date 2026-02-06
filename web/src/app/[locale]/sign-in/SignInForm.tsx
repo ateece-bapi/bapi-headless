@@ -43,17 +43,30 @@ export function SignInForm() {
         // Redirect to intended page or account dashboard
         const redirect = searchParams.get('redirect') || '/account';
         
-        // Small delay for toast to show
+        // Force full page reload to ensure cookies are sent to server
+        // Client-side navigation (router.push) doesn't send httpOnly cookies
+        // to Server Components, causing authentication to fail
         setTimeout(() => {
-          router.push(redirect);
-          router.refresh(); // Refresh to update auth state
+          window.location.href = redirect;
         }, 500);
       } else {
         logger.warn('Sign in failed', { username, error: data.message });
+        
+        // Decode HTML entities from WordPress error messages
+        const errorMessage = data.message || 'Invalid username or password';
+        const decodedMessage = errorMessage
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&')
+          .replace(/&quot;/g, '"')
+          .replace(/&#039;/g, "'")
+          // Strip HTML tags for clean error message
+          .replace(/<[^>]*>/g, '');
+        
         showToast(
           'error',
           'Sign In Failed',
-          data.message || 'Invalid username or password'
+          decodedMessage
         );
       }
     } catch (error) {

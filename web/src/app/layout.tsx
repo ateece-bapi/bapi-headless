@@ -5,9 +5,9 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
-import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
-import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient";
-import { WebVitalsClient } from "@/components/analytics/WebVitalsClient";
+// import ChatWidgetClient from "@/components/chat/ChatWidgetClient"; // Temporarily disabled
+// import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient"; // Temporarily disabled
+// import { WebVitalsClient } from "@/components/analytics/WebVitalsClient"; // Temporarily disabled
 import { ToastProvider } from "@/components/ui/Toast";
 
 // Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
@@ -51,11 +51,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Force static generation for root layout
- * This prevents dynamic rendering and enables CDN caching
+ * Root layout - must be dynamic to support cookies and authentication
  */
-export const dynamic = 'force-static';
-export const revalidate = 3600; // Revalidate every hour
+export const dynamic = 'force-dynamic'; // Required for cookie reading
 
 export default async function RootLayout({
   children,
@@ -83,16 +81,13 @@ export default async function RootLayout({
         <body className="antialiased">
           <NextIntlClientProvider messages={messages} locale={locale}>
             <ToastProvider>
-              <Header />
               {children}
-              <Footer />
-              <ChatWidgetClient />
             </ToastProvider>
           </NextIntlClientProvider>
           <BackToTop />
-          <WebVitalsClient />
-          <AnalyticsClient />
-          <SpeedInsightsClient />
+          {/* <WebVitalsClient /> */}
+          {/* <AnalyticsClient /> */}
+          {/* <SpeedInsightsClient /> */}
         </body>
     </html>
   );

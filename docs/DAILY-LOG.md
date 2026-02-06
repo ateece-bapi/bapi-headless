@@ -7,6 +7,32 @@
 
 ---
 
+
+## February 6, 2026 — CSS Best Practices Cleanup & Homepage Hero Image Fix
+
+**Branch:** `feat/css-best-practices-cleanup`  
+**Status:** Pushed, ready for PR/merge
+
+**Key Achievements:**
+- ✅ Removed 50+ inline style instances from homepage, Hero, and error boundaries.
+- ✅ Standardized all z-index usage to semantic tokens (`z-10`, `z-20`, etc.).
+- ✅ Tailwind v4 migration: all gradients now use `bg-linear-to-*` syntax.
+- ✅ Added global font smoothing and new utility classes for error/hero.
+- ✅ Fixed homepage hero background image not rendering on desktop (div was self-closing; now renders as intended).
+- ✅ All CSS now follows senior-level best practices (see TAILWIND_GUIDELINES.md).
+- ✅ Manual and automated QA: homepage, error boundaries, and Hero visually verified.
+
+**Technical Notes:**
+- Inline styles remain only for dynamic animation/progress (per policy).
+- No `@apply` or arbitrary z-indexes in codebase.
+- All production code now uses logger wrapper (no console.log).
+
+**Next Steps:**
+- Merge PR after review.
+- Continue i18n hardcoded string replacement and translation QA.
+- Monitor for any visual regressions post-merge.
+
+---
 ## February 6, 2026 - WordPress JWT Authentication Complete with Senior-Level Polish
 
 ### Authentication System Implementation - COMPLETE ✅

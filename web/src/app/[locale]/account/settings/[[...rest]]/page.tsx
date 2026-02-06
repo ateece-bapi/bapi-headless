@@ -44,7 +44,7 @@ export default async function SettingsPage() {
           <div className="mt-8 bg-primary-50 border border-primary-200 rounded-lg p-6">
             <h3 className="font-bold text-primary-900 mb-2">Need Help?</h3>
             <p className="text-sm text-primary-800 mb-4">
-              If you're having trouble with your account settings, our support team is here to help.
+              If you&apos;re having trouble with your account settings, our support team is here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link

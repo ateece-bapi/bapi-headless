@@ -8,46 +8,15 @@ import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/Ana
 import { WebVitalsClient } from "@/components/analytics/WebVitalsClient";
 import { ToastProvider } from "@/components/ui/Toast";
 import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from "@/lib/schema";
+import { generateDefaultMetadata } from "@/lib/metadata";
 
 // Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
 
-export const metadata: Metadata = {
-  title: {
-    default: "BAPI | Precision Sensor Solutions for Building Automation",
-    template: "%s | BAPI"
-  },
-  description: "Engineered sensor solutions for mission-critical facilities. NIST-traceable accuracy, BACnet-certified controllers, trusted by engineers worldwide for healthcare, data centers, and critical infrastructure.",
-  openGraph: {
-    title: "BAPI | Precision Sensor Solutions for Building Automation",
-    description: "Engineered sensor solutions for mission-critical facilities. NIST-traceable accuracy, BACnet-certified controllers, trusted by engineers worldwide.",
-    type: "website",
-    url: "https://bapi-headless.vercel.app/",
-    siteName: "BAPI",
-    images: [
-      {
-        url: "https://bapi-headless.vercel.app/og-default.jpg",
-        width: 1200,
-        height: 630,
-        alt: "BAPI - Building Automation Products"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@bapi",
-    title: "BAPI | Precision Sensor Solutions for Building Automation",
-    description: "Engineered sensor solutions for mission-critical facilities. NIST-traceable accuracy, BACnet-certified controllers, trusted by engineers worldwide.",
-    images: ["https://bapi-headless.vercel.app/og-default.jpg"]
-  },
-  metadataBase: new URL("https://bapi-headless.vercel.app/"),
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-US": "/en",
-      "es-ES": "/es"
-    }
-  }
-};
+/**
+ * Root metadata - Optimized for AI discovery and search visibility
+ * Uses centralized metadata generator for consistency
+ */
+export const metadata: Metadata = generateDefaultMetadata('en');
 
 /**
  * Root layout - must be dynamic to support cookies and authentication

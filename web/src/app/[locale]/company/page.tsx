@@ -2,11 +2,29 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Building2, Users, Target, Award, MapPin, Phone, Mail } from 'lucide-react';
 import PageContainer from '@/components/layout/PageContainer';
+import { generatePageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Company | BAPI',
-  description: 'Learn about BAPI - Building Automation Products Inc. Leading manufacturer of building automation sensors and controls since 1984.',
-};
+/**
+ * AI-optimized metadata for company page
+ * Enhanced for search visibility and brand discovery
+ */
+export const metadata: Metadata = generatePageMetadata({
+  title: 'About BAPI - Building Automation Sensors Manufacturer Since 1984',
+  description: 'Building Automation Products Inc. (BAPI) - Over 40 years manufacturing precision sensors and controls in the USA. Trusted by engineers worldwide for HVAC, IAQ, and building automation. 600+ products, NIST-traceable accuracy, Made in USA.',
+  path: 'company',
+  keywords: [
+    'building automation manufacturer',
+    'HVAC sensor company',
+    'building automation products',
+    'BAPI company history',
+    'made in USA sensors',
+    'building controls manufacturer',
+    'sensor manufacturer',
+    'BACnet manufacturer',
+    'NIST traceable sensors',
+  ],
+  type: 'website',
+});
 
 export default function CompanyPage() {
   return (

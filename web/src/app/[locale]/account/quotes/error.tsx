@@ -48,7 +48,7 @@ export default function QuotesError({
               </h2>
               
               <p className="text-neutral-600 mb-2">
-                We couldn't retrieve your quote requests. This might be a temporary issue.
+                We couldn&apos;t retrieve your quote requests. This might be a temporary issue.
               </p>
               
               {process.env.NODE_ENV === 'development' && (

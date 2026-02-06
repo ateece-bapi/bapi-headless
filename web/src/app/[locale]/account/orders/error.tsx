@@ -48,7 +48,7 @@ export default function OrdersError({
               </h2>
               
               <p className="text-neutral-600 mb-2">
-                We couldn't retrieve your order history. This might be due to a connection issue.
+                We couldn&apos;t retrieve your order history. This might be due to a connection issue.
               </p>
               
               {process.env.NODE_ENV === 'development' && (

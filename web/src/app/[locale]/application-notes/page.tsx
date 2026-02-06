@@ -108,7 +108,7 @@ export default async function ApplicationNotesPage() {
                 Expert Guidance from Industry Leaders
               </h2>
               <p className="text-neutral-600">
-                Our application notes are written by BAPI's engineering team with decades of
+                Our application notes are written by BAPI&apos;s engineering team with decades of
                 combined experience. Each article provides practical, field-tested solutions to
                 common challenges in sensor installation, calibration, and maintenance.
               </p>

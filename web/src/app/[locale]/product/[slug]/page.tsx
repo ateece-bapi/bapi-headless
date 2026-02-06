@@ -41,18 +41,18 @@ import { RelatedProductsAsync } from '@/components/products/RelatedProductsAsync
 import dynamic from 'next/dynamic';
 import { PerformanceTimer } from '@/lib/monitoring/performance';
 import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
-
-function stripHtml(html?: string | null) {
-  if (!html) return '';
-  return html.replace(/<[^>]*>/g, '').slice(0, 160);
-}
-
+import { generateProductMetadata, generateCategoryMetadata } from '@/lib/metadata';
 import type { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { slug: string } | Promise<{ slug: string }> }): Promise<Metadata> {
+/**
+ * Generate AI-optimized metadata for products and categories
+ * Uses enterprise metadata generators with rich snippets support
+ */
+export async function generateMetadata({ params }: { params: { slug: string; locale: string } | Promise<{ slug: string; locale: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   if (!resolvedParams?.slug) return {};
   const slug = String(resolvedParams.slug);
+  const locale = resolvedParams.locale || 'en';
   
   // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
   const [categoryResult, productResult] = await Promise.allSettled([
@@ -63,21 +63,20 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
   // Check if it's a category
   if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
     const category = categoryResult.value.productCategory;
-    const description = category.description 
-      ? category.description.replace(/<[^>]*>/g, '').slice(0, 160)
-      : `Browse ${category.name} products from BAPI`;
-    
-    return {
-      title: `${category.name} | BAPI Products`,
-      description,
-      openGraph: {
-        title: `${category.name} | BAPI Products`,
-        description,
-        type: "website",
-        url: `https://yourdomain.com/products/${slug}`,
-        images: category.image?.sourceUrl ? [category.image.sourceUrl] : [],
+    return generateCategoryMetadata(
+      {
+        name: category.name || '',
+        slug: category.slug || slug,
+        description: category.description,
+        image: category.image,
+        count: category.count,
+        parent: category.parent?.node ? {
+          name: category.parent.node.name,
+          slug: category.parent.node.slug,
+        } : undefined,
       },
-    };
+      locale
+    );
   }
   
   // Check if it's a product
@@ -86,33 +85,27 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
     if (parsed.success) {
       const product = productResult.value.product as GetProductBySlugQuery['product'] | null;
       if (product) {
-        const ogImage = product.image?.sourceUrl || (product.galleryImages?.nodes?.[0]?.sourceUrl ?? "");
-        const ogDescription = stripHtml(product.shortDescription || product.description);
-        
-        return {
-          title: `${product.name} | BAPI`,
-          description: ogDescription,
-          openGraph: {
-            title: `${product.name} | BAPI`,
-            description: ogDescription,
-            type: "article",
-            url: `https://yourdomain.com/products/${slug}`,
-            images: ogImage ? [ogImage] : [],
+        return generateProductMetadata(
+          {
+            name: product.name || '',
+            slug: product.slug || slug,
+            description: product.description,
+            shortDescription: product.shortDescription,
+            price: product.price,
+            regularPrice: product.regularPrice,
+            salePrice: product.salePrice,
+            sku: product.sku,
+            partNumber: product.partNumber,
+            image: product.image,
+            galleryImages: product.galleryImages?.nodes,
+            categories: product.productCategories?.nodes,
+            averageRating: product.averageRating,
+            reviewCount: product.reviewCount,
+            stockStatus: product.stockStatus,
+            featured: product.featured,
           },
-          twitter: {
-            card: "summary_large_image",
-            title: `${product.name} | BAPI`,
-            description: ogDescription,
-            images: ogImage ? [ogImage] : [],
-          },
-          alternates: {
-            canonical: `/products/${slug}`,
-            languages: {
-              'en-US': `/en/products/${slug}`,
-              'es-ES': `/es/products/${slug}`
-            }
-          }
-        };
+          locale
+        );
       }
     }
   }

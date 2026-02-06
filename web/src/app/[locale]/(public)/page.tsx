@@ -296,7 +296,7 @@ export default async function Home() {
                 Most sensor manufacturers will replace their defective products, but only BAPI has the confidence to go beyond the industry standard.
               </p>
               <p className="text-sm text-neutral-600 leading-relaxed mt-3">
-                'BAPI-Backed' means we stand behind everything we sell, so be confident in the quality of our products that if one fails within the warranty period, we will not only repair or replace it, but we'll provide a product expert to offset your incurred cost.*
+                &apos;BAPI-Backed&apos; means we stand behind everything we sell, so be confident in the quality of our products that if one fails within the warranty period, we will not only repair or replace it, but we&apos;ll provide a product expert to offset your incurred cost.*
               </p>
             </div>
 
@@ -315,7 +315,7 @@ export default async function Home() {
                 At BAPI, we strive to be leaders in our industry by providing innovative, high quality products and services designed with you in mind.
               </p>
               <p className="text-sm text-neutral-600 leading-relaxed mt-3">
-                Products displaying the "Another Original" stamp are unique to BAPI and the inspiration for these designs come from our valuable customers, talented employees and respected vendors. Those three ingredients combined create industry-leading, original solutions created to solve common HVACR problems.
+                Products displaying the &quot;Another Original&quot; stamp are unique to BAPI and the inspiration for these designs come from our valuable customers, talented employees and respected vendors. Those three ingredients combined create industry-leading, original solutions created to solve common HVACR problems.
               </p>
             </div>
           </div>

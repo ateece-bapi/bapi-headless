@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getLocale } from 'next-intl/server';
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
-// import ChatWidgetClient from "@/components/chat/ChatWidgetClient"; // Temporarily disabled
-// import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient"; // Temporarily disabled
-// import { WebVitalsClient } from "@/components/analytics/WebVitalsClient"; // Temporarily disabled
+import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
+import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient";
+import { WebVitalsClient } from "@/components/analytics/WebVitalsClient";
 import { ToastProvider } from "@/components/ui/Toast";
 
 // Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
@@ -82,12 +80,13 @@ export default async function RootLayout({
           <NextIntlClientProvider messages={messages} locale={locale}>
             <ToastProvider>
               {children}
+              <ChatWidgetClient />
             </ToastProvider>
           </NextIntlClientProvider>
           <BackToTop />
-          {/* <WebVitalsClient /> */}
-          {/* <AnalyticsClient /> */}
-          {/* <SpeedInsightsClient /> */}
+          <WebVitalsClient />
+          <AnalyticsClient />
+          <SpeedInsightsClient />
         </body>
     </html>
   );

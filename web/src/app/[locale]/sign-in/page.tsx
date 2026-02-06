@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { SignInForm } from './SignInForm';
+import { Building2 } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Sign In - BAPI',
@@ -8,39 +9,36 @@ export const metadata: Metadata = {
 
 export default function SignInPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 via-white to-neutral-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 via-primary-50/30 to-neutral-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         {/* BAPI Logo and Header */}
         <div className="text-center">
           <div className="flex justify-center">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center shadow-lg">
-              <span className="text-3xl font-bold text-white">B</span>
+            <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center shadow-xl ring-4 ring-primary-500/20">
+              <Building2 className="w-10 h-10 text-white" strokeWidth={2.5} />
             </div>
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold text-neutral-900">
-            Sign in to your account
-          </h2>
-          <p className="mt-2 text-sm text-neutral-600">
-            Access your orders, favorites, and quote requests
+          <h1 className="mt-6 text-4xl font-extrabold text-neutral-900 tracking-tight">
+            Welcome Back
+          </h1>
+          <p className="mt-3 text-base text-neutral-600 max-w-sm mx-auto">
+            Sign in to access your orders, saved products, and quote requests
           </p>
         </div>
 
         {/* Sign In Form Component */}
         <SignInForm />
 
-        {/* Help Links */}
-        <div className="text-center space-y-2">
+        {/* Help Text */}
+        <div className="text-center space-y-3 pt-4 border-t border-neutral-200">
           <p className="text-sm text-neutral-600">
-            Need help?{' '}
+            Don&apos;t have an account?{' '}
             <a
               href="/contact"
-              className="font-medium text-primary-500 hover:text-primary-600 transition-colors"
+              className="font-semibold text-primary-500 hover:text-primary-600 transition-colors focus:outline-none focus:underline"
             >
-              Contact Support
+              Contact your sales representative
             </a>
-          </p>
-          <p className="text-xs text-neutral-500">
-            Don&apos;t have an account? Contact your sales representative.
           </p>
         </div>
       </div>

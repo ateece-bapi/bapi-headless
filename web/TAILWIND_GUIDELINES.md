@@ -4,9 +4,85 @@
 
 1. **Utility-First**: Compose styles with utility classes in JSX
 2. **No @apply**: Keep styles co-located with components
-3. **Semantic Tokens**: Use theme tokens (`primary-500`) not arbitrary values
-4. **Responsive Mobile-First**: Start with base, add `sm:`, `md:`, `lg:`, `xl:`
-5. **Accessibility**: Always include focus states
+3. **No Inline Styles**: Use CSS classes or Tailwind utilities instead
+4. **Semantic Tokens**: Use theme tokens (`primary-500`) not arbitrary values
+5. **Responsive Mobile-First**: Start with base, add `sm:`, `md:`, `lg:`, `xl:`
+6. **Accessibility**: Always include focus states
+
+## Why No Inline Styles?
+
+Inline styles are **anti-pattern** in modern React/Next.js applications:
+
+❌ **Problems with Inline Styles:**
+- Cannot be cached by the browser
+- Increase bundle size (repeated in every component)
+- Hard to maintain (changes require editing JSX)
+- Don't support pseudo-states (`:hover`, `:focus`)
+- Don't support media queries (responsive design)
+- Poor for performance (no optimization)
+- Bad for CSP (Content Security Policy)
+
+✅ **Use Instead:**
+- **Tailwind utilities**: `bg-primary-500 hover:bg-primary-600`
+- **CSS classes**: Define in `globals.css` with semantic names
+- **CSS variables**: For dynamic values via `var(--color-primary-500)`
+
+### Example Refactoring
+
+```tsx
+// ❌ BAD - Inline styles
+<div style={{
+  backgroundImage: 'url(/image.jpg)',
+  backgroundSize: 'cover',
+  transform: 'translateZ(0)'
+}}>
+
+// ✅ GOOD - CSS class
+<div className="hero-bg-image will-change-transform-safe">
+
+// In globals.css:
+.hero-bg-image {
+  background-image: url('/image.jpg');
+  background-size: cover;
+  background-position: center;
+}
+```
+
+### When Inline Styles ARE Acceptable
+
+**Only use inline styles for truly dynamic, runtime-computed values:**
+
+✅ **Acceptable Cases:**
+```tsx
+// 1. Dynamic color from user/API data
+<div style={{ backgroundColor: product.colorHex }}>
+
+// 2. Progress indicators with dynamic percentages
+<div style={{ width: `${progress}%` }}>
+
+// 3. Animation delays in loops (until CSS has calc support)
+<div style={{ animationDelay: `${index * 50}ms` }}>
+
+// 4. Canvas/chart libraries that require inline positioning
+<div style={{ left: `${x}px`, top: `${y}px` }}>
+```
+
+❌ **NOT Acceptable:**
+```tsx
+// Static colors - use Tailwind or CSS classes
+<div style={{ color: 'var(--color-primary-600)' }}>  // ❌
+<div className="text-primary-600">                   // ✅
+
+// Fixed backgrounds - use CSS classes
+<div style={{ backgroundImage: 'url(...)' }}>        // ❌
+<div className="hero-bg-image">                      // ✅
+
+// Hover states - use CSS pseudo-classes
+<button onMouseOver={e => e.style.bg = '...'}> // ❌
+<button className="hover:bg-primary-600">      // ✅
+```
+
+**Rule of Thumb:** If the value doesn't change based on props, state, or API data, it belongs in CSS/Tailwind, not inline styles.
 
 ## Class Order (Recommended)
 

@@ -282,7 +282,7 @@ body {
   font-display: swap;
   /* Enable OpenType font features */
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
-  /* Smooth font rendering */
+  /* Smooth font rendering - Applied globally instead of per-component */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Removed transform: translateZ(0) - it breaks position: fixed */
@@ -434,6 +434,112 @@ body {
 
   .bg-bapi-primary-gradient-hover:hover {
     background: var(--gradient-primary-hover);
+  }
+
+  /* ============================================
+     Error Page Utilities
+     ============================================ */
+  
+  /**
+   * Error page button styles
+   * Proper hover states via CSS pseudo-classes instead of JS event handlers
+   */
+  .error-btn-primary {
+    background: var(--color-primary-600);
+    color: white;
+    transition: background-color var(--duration-base) var(--ease-out);
+  }
+
+  .error-btn-primary:hover {
+    background: var(--color-primary-700);
+  }
+
+  .error-btn-secondary {
+    border-color: var(--color-neutral-300);
+    color: var(--color-neutral-700);
+    transition: background-color var(--duration-base) var(--ease-out);
+  }
+
+  .error-btn-secondary:hover {
+    background: var(--color-neutral-100);
+  }
+
+  /* ============================================
+     Hero Section Styles
+     ============================================ */
+  
+  /**
+   * Hero background image - Desktop only
+   * 
+   * Uses CSS class instead of inline styles for better performance:
+   * - Enables browser to optimize background loading
+   * - Allows proper caching and reuse across components
+   * - Follows separation of concerns (styles in CSS, not JSX)
+   */
+  .hero-bg-image {
+    background-image: url('/images/bapi-facility-solar-optimized.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /**
+   * Hero product family image container
+   * 
+   * Wrapper for responsive product showcase images
+   * Provides consistent aspect ratio and overflow handling
+   */
+  .hero-image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  /**
+   * Hero product family image
+   * 
+   * Ensures images scale properly within container
+   * Uses object-fit for best rendering across devices
+   */
+  .hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /**
+   * GPU-accelerated transforms for cards
+   * 
+   * Creates new compositing layer for smooth animations:
+   * - will-change hints browser to optimize
+   * - translateZ(0) triggers GPU acceleration
+   * - Use sparingly - only on animated elements
+   * 
+   * Best Practice: Apply to parent containers, not every element
+   */
+  .will-change-transform-safe {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /**
+   * Grid pattern background (replaces data URI inline style)
+   * 
+   * Decorative grid overlay for stat sections
+   * Uses base64 SVG for optimal performance vs external file
+   * 
+   * Why CSS class vs inline:
+   * - Reusable across components
+   * - Easier to update (one place vs many)
+   * - Better for CSP (Content Security Policy)
+   * - Cleaner JSX markup
+   */
+  .bg-grid-pattern {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=');
+    opacity: 0.2;
   }
 }
 /* Product Description Styling - Override WordPress inline styles */

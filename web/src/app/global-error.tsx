@@ -17,20 +17,17 @@ export default function GlobalError({
     <html>
       <body>
         <div 
-          className="min-h-screen flex items-center justify-center px-6"
-          style={{ background: 'var(--color-neutral-50)' }}
+          className="min-h-screen flex items-center justify-center px-6 bg-neutral-50"
         >
           <div className="max-w-md text-center">
             <div 
-              className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center"
-              style={{ background: 'var(--color-primary-50)' }}
+              className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center bg-primary-50"
             >
               <svg 
-                className="w-8 h-8" 
+                className="w-8 h-8 text-primary-600" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
-                style={{ color: 'var(--color-primary-600)' }}
               >
                 <path 
                   strokeLinecap="round" 
@@ -42,15 +39,13 @@ export default function GlobalError({
             </div>
             
             <h2 
-              className="text-2xl font-bold mb-3"
-              style={{ color: 'var(--color-neutral-900)' }}
+              className="text-2xl font-bold mb-3 text-neutral-900"
             >
               Critical Error
             </h2>
             
             <p 
-              className="text-base mb-6"
-              style={{ color: 'var(--color-neutral-700)' }}
+              className="text-base mb-6 text-neutral-700"
             >
               A critical error occurred in the application. Please refresh the page or contact support if the issue persists.
             </p>
@@ -58,22 +53,14 @@ export default function GlobalError({
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button 
                 onClick={reset}
-                className="px-6 py-3 rounded-lg font-semibold"
-                style={{ 
-                  background: 'var(--color-primary-500)',
-                  color: 'white'
-                }}
+                className="px-6 py-3 rounded-lg font-semibold error-btn-primary"
               >
                 Try again
               </button>
               
               <a 
                 href="/"
-                className="px-6 py-3 rounded-lg font-semibold border"
-                style={{ 
-                  borderColor: 'var(--color-neutral-300)',
-                  color: 'var(--color-neutral-700)'
-                }}
+                className="px-6 py-3 rounded-lg font-semibold border error-btn-secondary"
               >
                 Go to homepage
               </a>
@@ -81,8 +68,7 @@ export default function GlobalError({
             
             {error.digest && (
               <p 
-                className="text-xs mt-6"
-                style={{ color: 'var(--color-neutral-400)' }}
+                className="text-xs mt-6 text-neutral-400"
               >
                 Error ID: {error.digest}
               </p>

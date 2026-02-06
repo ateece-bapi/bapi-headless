@@ -138,7 +138,7 @@ export default function SalesTeamCard({
       {/* Video Modal */}
       {video && showVideoModal && (
         <div
-          className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-[9999] p-4 animate-in fade-in duration-300"
+          className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-modal p-4 animate-in fade-in duration-300"
           onClick={closeVideo}
         >
           <div

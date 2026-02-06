@@ -17,6 +17,24 @@ import {
 } from 'lucide-react';
 
 /**
+ * Homepage - Main landing page for BAPI Headless E-Commerce
+ * 
+ * Performance & Best Practices:
+ * - All inline styles removed (Feb 2026 refactor)
+ * - CSS classes defined in globals.css for reusability
+ * - GPU-accelerated transforms via .will-change-transform-safe
+ * - Background images loaded via CSS classes, not inline styles
+ * - SVG patterns as CSS classes for better CSP compliance
+ * - Full static generation with ISR (revalidate: 3600)
+ * 
+ * Architecture:
+ * - Server Component (async data fetching)
+ * - Static params generation for all locales
+ * - Tailwind utility-first approach
+ * - BAPI brand color system (60% Gray/White, 30% Blue, 10% Yellow)
+ */
+
+/**
  * Generate static pages for all supported locales
  * This enables full static generation and CDN caching
  */
@@ -45,7 +63,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative bg-gradient-to-br from-primary-600/90 via-primary-500/85 to-primary-600/90 rounded-2xl p-8 shadow-xl overflow-hidden">
             {/* Decorative background elements */}
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20"></div>
+            <div className="absolute inset-0 bg-grid-pattern"></div>
             
             <div className="relative grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {/* 30+ Years */}
@@ -171,21 +189,19 @@ export default async function Home() {
                 <Link
                   key={category.name}
                   href={category.href}
-                  className="group relative bg-white rounded-2xl border-2 border-neutral-200 overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 ease-in-out will-change-transform focus:outline-none focus:ring-4 focus:ring-primary-500/50 focus:border-primary-500"
-                  style={{ transform: 'translateZ(0)' }}
+                  className="group relative bg-white rounded-2xl border-2 border-neutral-200 overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 ease-in-out will-change-transform-safe focus:outline-none focus:ring-4 focus:ring-primary-500/50 focus:border-primary-500"
                 >
                   {/* Hover gradient overlay */}
                   <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out z-10" />
                   
                   {/* Icon container with enhanced styling - matches popular products */}
-                  <div className="relative bg-gradient-to-br from-primary-200 via-accent-100 to-primary-100 h-48 flex items-center justify-center p-8 border-b-2 border-neutral-100 will-change-transform">
+                  <div className="relative bg-gradient-to-br from-primary-200 via-accent-100 to-primary-100 h-48 flex items-center justify-center p-8 border-b-2 border-neutral-100">
                     <Image
                       src={category.icon}
                       alt={`${category.name} icon`}
                       width={128}
                       height={128}
-                      className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-300 ease-in-out will-change-transform"
-                      style={{ transform: 'translateZ(0)' }}
+                      className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-300 ease-in-out will-change-transform-safe"
                     />
                   </div>
                   

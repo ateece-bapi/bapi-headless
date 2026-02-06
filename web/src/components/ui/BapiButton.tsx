@@ -67,10 +67,6 @@ const BapiButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, BapiB
           ref={ref as React.Ref<HTMLAnchorElement>}
           href={href}
           className={combinedStyles}
-          style={{
-            WebkitFontSmoothing: 'antialiased',
-            MozOsxFontSmoothing: 'grayscale',
-          }}
         >
           {children}
         </a>
@@ -84,10 +80,6 @@ const BapiButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, BapiB
         type={type}
         onClick={onClick}
         className={combinedStyles}
-        style={{
-          WebkitFontSmoothing: 'antialiased',
-          MozOsxFontSmoothing: 'grayscale',
-        }}
       >
         {children}
       </button>

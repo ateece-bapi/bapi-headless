@@ -4,6 +4,23 @@ import { HeroProps } from './types';
 import { HERO_CONFIG } from './config';
 import { HeroContent, HeroActions } from './components';
 
+/**
+ * Hero Component - Homepage hero section
+ * 
+ * Performance Optimizations (Feb 2026):
+ * - Inline styles removed, using CSS classes from globals.css
+ * - Background image via .hero-bg-image class (better caching)
+ * - Mobile-first: solid color on mobile, image on desktop
+ * - Product family image uses proper <img> with srcSet for responsiveness
+ * - GPU acceleration via CSS classes, not inline transforms
+ * 
+ * Best Practices:
+ * - Semantic HTML with proper ARIA labels
+ * - Responsive design with Tailwind breakpoints
+ * - Accessible gradients for text contrast
+ * - Professional wave divider for visual flow
+ */
+
 const heroImage = {
   desktop: '/images/bapi-facility-solar-optimized.webp',
   mobile: '/images/bapi-facility-solar-optimized.webp', // Same file, but we'll optimize it differently
@@ -25,13 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
         
         {/* Desktop: Background image */}
         <div
-          className="absolute inset-0 hidden md:block"
-          style={{
-            backgroundImage: `url(${heroImage.desktop})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
+          className="absolute inset-0 hidden md:block hero-bg-image"
           role="img"
           aria-label={heroImage.alt}
         />

@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getLocale } from 'next-intl/server';
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
 import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient";
@@ -51,11 +49,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * Force static generation for root layout
- * This prevents dynamic rendering and enables CDN caching
+ * Root layout - must be dynamic to support cookies and authentication
  */
-export const dynamic = 'force-static';
-export const revalidate = 3600; // Revalidate every hour
+export const dynamic = 'force-dynamic'; // Required for cookie reading
 
 export default async function RootLayout({
   children,
@@ -83,9 +79,7 @@ export default async function RootLayout({
         <body className="antialiased">
           <NextIntlClientProvider messages={messages} locale={locale}>
             <ToastProvider>
-              <Header />
               {children}
-              <Footer />
               <ChatWidgetClient />
             </ToastProvider>
           </NextIntlClientProvider>

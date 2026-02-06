@@ -12,6 +12,8 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.resolve(__dirname),
+  // Re-enabled React Strict Mode now that auth is stable
+  reactStrictMode: true,
   // Use an absolute path for turbopack.root (resolve from this file's directory)
   turbopack: {
     root: path.join(__dirname),

@@ -46,7 +46,7 @@ export default function ProfileError({
               </h2>
               
               <p className="text-neutral-600 mb-2">
-                We couldn't retrieve your profile information. This might be an authentication issue.
+                We couldn&apos;t retrieve your profile information. This might be an authentication issue.
               </p>
               
               {process.env.NODE_ENV === 'development' && (

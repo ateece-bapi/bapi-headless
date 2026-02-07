@@ -27,7 +27,16 @@ const nextConfig: NextConfig = {
       // Add your CDN hostname(s) here if needed
       // { protocol: 'https', hostname: 'cdn.example.com' },
     ],
-    qualities: [75, 85],
+    // Image optimization configuration
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Quality settings for different sizes
+    // Next.js will use 75 by default, we set explicit qualities in components
   },
   
   // Cache headers for static pages

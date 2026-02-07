@@ -10,7 +10,6 @@ export function formatDate(
   options: Intl.DateTimeFormatOptions = {}
 ): string {
   const dateObj = typeof date === 'string' || typeof date === 'number' ? new Date(date) : date;
-  const config = LANGUAGES[language];
   
   const defaultOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',

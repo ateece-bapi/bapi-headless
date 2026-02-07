@@ -2,8 +2,13 @@
 
 "use client";
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { ZoomIn } from 'lucide-react';
-import ImageModal from '@/components/ui/ImageModal';
+
+// Lazy load ImageModal for better initial page load performance
+const ImageModal = dynamic(() => import('@/components/ui/ImageModal'), {
+  ssr: false, // Modal only renders client-side
+});
 
 interface GalleryImage {
   sourceUrl: string;

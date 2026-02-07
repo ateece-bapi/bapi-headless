@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
 import { ResourceList } from '@/components/resources/ResourceList';
 import logger from '@/lib/logger';
+import { generatePageMetadata } from '@/lib/metadata';
 
 interface MediaItemNode {
   id: string;
@@ -70,19 +71,31 @@ async function fetchResources(): Promise<MediaItemNode[]> {
   return data.data.mediaItems.nodes;
 }
 
-export const metadata: Metadata = {
-  title: 'Technical Resources | BAPI',
+/**
+ * AI-optimized metadata for technical resources
+ * Enhanced for technical documentation discovery
+ */
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Technical Resources - Installation Guides, Datasheets & Documentation',
   description:
-    'Download installation guides, datasheets, application notes, and technical documentation for BAPI building automation sensors and controls.',
+    'Free technical documentation for BAPI building automation products. Download installation guides, datasheets, application notes, CAD drawings, and BACnet PICS. Comprehensive resources for engineers, contractors, and facility managers.',
+  path: 'resources',
   keywords: [
     'BAPI documentation',
     'installation guides',
-    'datasheets',
+    'sensor datasheets',
     'technical specifications',
     'application notes',
+    'BACnet PICS',
+    'CAD drawings',
+    'wiring diagrams',
     'building automation resources',
-  ].join(', '),
-};
+    'HVAC documentation',
+    'controller manuals',
+    'sensor specs',
+  ],
+  type: 'website',
+});
 
 export default async function ResourcesPage() {
   const resources = await fetchResources();

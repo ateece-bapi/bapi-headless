@@ -12,8 +12,18 @@ export default function LocaleLayout({
 }) {
   return (
     <>
+      {/* Skip to main content link for keyboard users */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-6 focus:py-3 focus:bg-primary-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:font-semibold focus:ring-4 focus:ring-primary-300"
+      >
+        Skip to main content
+      </a>
+      
       <Header />
-      {children}
+      <main id="main-content">
+        {children}
+      </main>
       <Footer />
     </>
   );

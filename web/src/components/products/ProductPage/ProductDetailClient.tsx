@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from 'next/dynamic';
 import { Package } from 'lucide-react';
 import ProductHero from "@/components/products/ProductPage/ProductHero";
 import ProductSummaryCard from "@/components/products/ProductPage/ProductSummaryCard";
@@ -11,9 +12,19 @@ import Breadcrumbs from "@/components/products/ProductPage/Breadcrumbs";
 import TrustBadges from "@/components/products/ProductPage/TrustBadges";
 import HelpCTA from "@/components/products/ProductPage/HelpCTA";
 import { CartDrawer } from "@/components/cart";
-import { ProductVariationSelector, ProductGallery, RecentlyViewed } from "@/components/products";
+import { ProductVariationSelector, RecentlyViewed } from "@/components/products";
 import VariationComparisonTool from "@/components/products/VariationComparisonTool";
 import { useRecentlyViewed } from "@/store";
+import { ProductGallerySkeleton } from "@/components/products/ProductGallerySkeleton";
+
+// Lazy load ProductGallery for better initial page load performance
+const ProductGallery = dynamic(
+  () => import("@/components/products").then(mod => ({ default: mod.ProductGallery })),
+  {
+    loading: () => <ProductGallerySkeleton />,
+    ssr: false, // Gallery requires client-side interaction (zoom, lightbox)
+  }
+);
 
 interface ProductDetailClientProps {
   product: any;

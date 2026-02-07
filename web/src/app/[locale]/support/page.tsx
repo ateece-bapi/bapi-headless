@@ -12,11 +12,30 @@ import {
   Phone
 } from 'lucide-react';
 import PageContainer from '@/components/layout/PageContainer';
+import { generatePageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Support | BAPI',
-  description: 'Get expert technical support for BAPI building automation products. Access resources, contact our team, and find solutions.',
-};
+/**
+ * AI-optimized metadata for support center
+ * Enhanced for technical resource discovery
+ */
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Technical Support - Expert Help for Building Automation Products',
+  description: 'Expert technical support for BAPI building automation products. Access installation docs, troubleshooting guides, RMA requests, and live chat with engineers. Free technical assistance for all BAPI sensors, controllers, and wireless systems.',
+  path: 'support',
+  keywords: [
+    'building automation support',
+    'HVAC sensor technical support',
+    'BACnet controller help',
+    'sensor installation guide',
+    'technical documentation',
+    'troubleshooting guide',
+    'RMA request',
+    'warranty support',
+    'sensor calibration',
+    'installation assistance',
+  ],
+  type: 'website',
+});
 
 export default function SupportPage() {
   return (

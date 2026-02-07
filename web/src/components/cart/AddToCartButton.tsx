@@ -197,22 +197,31 @@ const AddToCartButton = ({
   `;
 
   return (
-    <button
-      onClick={handleAddToCart}
-      className={buttonClasses}
-      disabled={disabled || loading || showSuccess}
-      aria-label={
-        loading 
-          ? 'Adding to cart...' 
-          : showSuccess 
-            ? 'Added to cart' 
-            : disabled 
-              ? 'Out of stock' 
-              : `Add ${product.name} to cart`
-      }
-    >
-      {getButtonContent()}
-    </button>
+    <>
+      {/* ARIA live region for screen reader announcements */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {loading && `Adding ${product.name} to cart...`}
+        {showSuccess && `${product.name} added to cart successfully`}
+      </div>
+      
+      <button
+        onClick={handleAddToCart}
+        className={buttonClasses}
+        disabled={disabled || loading || showSuccess}
+        aria-busy={loading}
+        aria-label={
+          loading 
+            ? 'Adding to cart...' 
+            : showSuccess 
+              ? 'Added to cart' 
+              : disabled 
+                ? 'Out of stock' 
+                : `Add ${product.name} to cart`
+        }
+      >
+        {getButtonContent()}
+      </button>
+    </>
   );
 }
 

@@ -40,18 +40,19 @@ import {
 import { RelatedProductsAsync } from '@/components/products/RelatedProductsAsync';
 import dynamic from 'next/dynamic';
 import { PerformanceTimer } from '@/lib/monitoring/performance';
-
-function stripHtml(html?: string | null) {
-  if (!html) return '';
-  return html.replace(/<[^>]*>/g, '').slice(0, 160);
-}
-
+import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
+import { generateProductMetadata, generateCategoryMetadata } from '@/lib/metadata';
 import type { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { slug: string } | Promise<{ slug: string }> }): Promise<Metadata> {
+/**
+ * Generate AI-optimized metadata for products and categories
+ * Uses enterprise metadata generators with rich snippets support
+ */
+export async function generateMetadata({ params }: { params: { slug: string; locale: string } | Promise<{ slug: string; locale: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   if (!resolvedParams?.slug) return {};
   const slug = String(resolvedParams.slug);
+  const locale = resolvedParams.locale || 'en';
   
   // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
   const [categoryResult, productResult] = await Promise.allSettled([
@@ -62,21 +63,18 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
   // Check if it's a category
   if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
     const category = categoryResult.value.productCategory;
-    const description = category.description 
-      ? category.description.replace(/<[^>]*>/g, '').slice(0, 160)
-      : `Browse ${category.name} products from BAPI`;
-    
-    return {
-      title: `${category.name} | BAPI Products`,
-      description,
-      openGraph: {
-        title: `${category.name} | BAPI Products`,
-        description,
-        type: "website",
-        url: `https://yourdomain.com/products/${slug}`,
-        images: category.image?.sourceUrl ? [category.image.sourceUrl] : [],
+    return generateCategoryMetadata(
+      {
+        name: category.name || '',
+        slug: category.slug || slug,
+        description: category.description,
+        image: category.image,
+        count: category.count,
+        // Parent field not available in GetProductCategory query
+        parent: undefined,
       },
-    };
+      locale
+    );
   }
   
   // Check if it's a product
@@ -85,33 +83,27 @@ export async function generateMetadata({ params }: { params: { slug: string } | 
     if (parsed.success) {
       const product = productResult.value.product as GetProductBySlugQuery['product'] | null;
       if (product) {
-        const ogImage = product.image?.sourceUrl || (product.galleryImages?.nodes?.[0]?.sourceUrl ?? "");
-        const ogDescription = stripHtml(product.shortDescription || product.description);
-        
-        return {
-          title: `${product.name} | BAPI`,
-          description: ogDescription,
-          openGraph: {
-            title: `${product.name} | BAPI`,
-            description: ogDescription,
-            type: "article",
-            url: `https://yourdomain.com/products/${slug}`,
-            images: ogImage ? [ogImage] : [],
+        return generateProductMetadata(
+          {
+            name: product.name || '',
+            slug: product.slug || slug,
+            description: product.description,
+            shortDescription: product.shortDescription,
+            price: 'price' in product ? product.price : null,
+            regularPrice: 'regularPrice' in product ? product.regularPrice : null,
+            salePrice: 'salePrice' in product ? product.salePrice : null,
+            sku: 'sku' in product ? product.sku : null,
+            partNumber: 'partNumber' in product ? product.partNumber : null,
+            image: product.image,
+            galleryImages: ('galleryImages' in product ? product.galleryImages?.nodes : null) as any,
+            categories: ('productCategories' in product ? product.productCategories?.nodes : null) as any,
+            averageRating: ('averageRating' in product ? product.averageRating : null) as number | null,
+            reviewCount: ('reviewCount' in product ? product.reviewCount : null) as number | null,
+            stockStatus: ('stockStatus' in product ? product.stockStatus : null) as string | null,
+            featured: ('featured' in product ? product.featured : null) as boolean | null,
           },
-          twitter: {
-            card: "summary_large_image",
-            title: `${product.name} | BAPI`,
-            description: ogDescription,
-            images: ogImage ? [ogImage] : [],
-          },
-          alternates: {
-            canonical: `/products/${slug}`,
-            languages: {
-              'en-US': `/en/products/${slug}`,
-              'es-ES': `/es/products/${slug}`
-            }
-          }
-        };
+          locale
+        );
       }
     }
   }
@@ -194,7 +186,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
       // DEBUG: Log galleryImages to verify images from backend
       if (product && 'galleryImages' in product) {
-        // eslint-disable-next-line no-console
+         
         const count = (product.galleryImages as any)?.nodes?.length || 0;
         logger.debug('[ProductPage] galleryImages loaded', { count });
       }
@@ -317,8 +309,52 @@ export default async function ProductPage({ params }: { params: { slug: string }
       
       const productDbId = product.databaseId?.toString() || product.id;
       
+      // Generate structured data for SEO
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';
+      const productUrl = `${siteUrl}/product/${slug}`;
+      
+      const productSchema = generateProductSchema(
+        {
+          name: product.name || '',
+          description: (product.shortDescription || product.description || '').replace(/<[^>]*>/g, '').trim(),
+          image: product.image?.sourceUrl || '',
+          sku: (product as any).sku || '',
+          partNumber: (product as any).partNumber || undefined,
+          price: (product as any).price ? parseFloat((product as any).price) : undefined,
+          regularPrice: (product as any).regularPrice ? parseFloat((product as any).regularPrice) : undefined,
+          salePrice: (product as any).salePrice ? parseFloat((product as any).salePrice) : undefined,
+          inStock: (product as any).stockStatus === 'IN_STOCK',
+          category: product.productCategories?.nodes?.[0]?.name || undefined,
+        },
+        productUrl,
+        siteUrl
+      );
+      
+      // Generate breadcrumb schema
+      const breadcrumbs: Array<{ name: string; url?: string }> = [
+        { name: 'Home', url: '/' },
+        { name: 'Products', url: '/products' },
+      ];
+      
+      // Add category if available
+      if (product.productCategories?.nodes?.[0]) {
+        const category = product.productCategories.nodes[0];
+        breadcrumbs.push({
+          name: category.name || '',
+          url: `/products/${category.slug}`
+        });
+      }
+      
+      // Add product (no URL for last item)
+      breadcrumbs.push({ name: product.name || '', url: undefined });
+      
+      const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, siteUrl);
+      
       return (
         <>
+          {/* Structured Data for SEO */}
+          <StructuredData schema={[productSchema, breadcrumbSchema]} />
+          
           <ProductDetailClient product={productForClient} productId={productDbId} />
           
           {/* Deferred content loaded in separate Suspense boundaries on client */}

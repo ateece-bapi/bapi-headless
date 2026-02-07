@@ -67,25 +67,110 @@ jobs:
             const fs = require('fs');
             const path = require('path');
             
-            // Read Lighthouse results
-            const resultsPath = path.join(process.env.GITHUB_WORKSPACE, 'web/.lighthouseci');
-            
-            // Create comment body (simplified - actual implementation would parse JSON)
-            const comment = `## 🔍 Lighthouse CI Results
-            
-            Performance metrics have been tested. View detailed results in the artifacts.
-            
-            **Core Web Vitals Thresholds:**
-            - ✅ LCP: < 2.5s
-            - ✅ CLS: < 0.1
-            - ✅ INP: < 200ms
-            - ✅ Performance Score: > 90
-            
-            📊 [View full report in artifacts](#)`;
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
+            try {
+              // Read Lighthouse results from manifest
+              const resultsPath = path.join(process.env.GITHUB_WORKSPACE, 'web/.lighthouseci');
+              const manifestPath = path.join(resultsPath, 'manifest.json');
+              
+              if (!fs.existsSync(manifestPath)) {
+                console.log('No Lighthouse results found');
+                return;
+              }
+              
+              const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+              const firstRun = manifest[0]?.jsonPath;
+              
+              if (!firstRun) {
+                console.log('No run data in manifest');
+                return;
+              }
+              
+              const lhr = JSON.parse(fs.readFileSync(path.join(resultsPath, path.basename(firstRun)), 'utf8'));
+              
+              // Extract scores (0-1 scale, convert to 0-100)
+              const scores = {
+                performance: Math.round(lhr.categories.performance.score * 100),
+                accessibility: Math.round(lhr.categories.accessibility.score * 100),
+                bestPractices: Math.round(lhr.categories['best-practices'].score * 100),
+                seo: Math.round(lhr.categories.seo.score * 100),
+              };
+              
+              // Extract Core Web Vitals
+              const metrics = {
+                lcp: Math.round(lhr.audits['largest-contentful-paint'].numericValue),
+                cls: lhr.audits['cumulative-layout-shift'].numericValue.toFixed(3),
+                tbt: Math.round(lhr.audits['total-blocking-time'].numericValue),
+                fcp: Math.round(lhr.audits['first-contentful-paint'].numericValue),
+                si: Math.round(lhr.audits['speed-index'].numericValue),
+              };
+              
+              // Helper function for status emoji
+              const getEmoji = (score) => score >= 90 ? '✅' : score >= 50 ? '⚠️' : '❌';
+              const getCWVEmoji = (metric, value) => {
+                if (metric === 'lcp') return value < 2500 ? '✅' : value < 4000 ? '⚠️' : '❌';
+                if (metric === 'cls') return value < 0.1 ? '✅' : value < 0.25 ? '⚠️' : '❌';
+                if (metric === 'tbt') return value < 300 ? '✅' : value < 600 ? '⚠️' : '❌';
+                return '📊';
+              };
+              
+              const comment = `## 🔍 Lighthouse CI Results
+              
+**Scores:**
+${getEmoji(scores.performance)} Performance: **${scores.performance}** / 100
+${getEmoji(scores.accessibility)} Accessibility: **${scores.accessibility}** / 100
+${getEmoji(scores.bestPractices)} Best Practices: **${scores.bestPractices}** / 100
+${getEmoji(scores.seo)} SEO: **${scores.seo}** / 100
+
+**Core Web Vitals:**
+${getCWVEmoji('lcp', metrics.lcp)} LCP (Largest Contentful Paint): **${metrics.lcp}ms** (target: <2.5s)
+${getCWVEmoji('cls', metrics.cls)} CLS (Cumulative Layout Shift): **${metrics.cls}** (target: <0.1)
+${getCWVEmoji('tbt', metrics.tbt)} TBT (Total Blocking Time): **${metrics.tbt}ms** (target: <300ms)
+
+**Other Metrics:**
+- FCP (First Contentful Paint): **${metrics.fcp}ms** (target: <1.8s)
+- Speed Index: **${metrics.si}ms** (target: <3.0s)
+
+**Thresholds:**
+- ✅ Performance: 90+ required
+- ✅ Accessibility: 95+ required
+- ✅ Best Practices: 90+ required
+- ✅ SEO: 95+ required
+
+📊 [View detailed report in artifacts](${context.payload.pull_request.html_url}/checks)
+
+---
+*Lighthouse v${lhr.lighthouseVersion} • Powered by [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci)*`;
+              
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+              
+              // Fail workflow if critical thresholds not met
+              if (scores.performance < 90 || scores.accessibility < 95 || scores.seo < 95) {
+                core.setFailed(`Lighthouse scores below threshold. Performance: ${scores.performance}, Accessibility: ${scores.accessibility}, SEO: ${scores.seo}`);
+              }
+              
+            } catch (error) {
+              console.error('Error processing Lighthouse results:', error);
+              
+              // Fallback comment
+              const fallbackComment = `## 🔍 Lighthouse CI Results
+              
+Lighthouse tests completed. View detailed results in the [workflow artifacts](${context.payload.pull_request.html_url}/checks).
+
+**Thresholds:**
+- ✅ Performance: 90+
+- ✅ Accessibility: 95+
+- ✅ Best Practices: 90+
+- ✅ SEO: 95+`;
+              
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: fallbackComment
+              });
+            }

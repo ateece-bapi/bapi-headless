@@ -8,6 +8,9 @@ import nextTs from "eslint-config-next/typescript";
 
 const eslintConfig = defineConfig([...nextVitals, ...nextTs, {
   rules: {
+    // Relax some rules for better DX while maintaining quality
+    '@typescript-eslint/no-explicit-any': 'warn', // Warn instead of error - gradual migration
+    
     // Enforce JSDoc comments on public API functions
     // Only warns for exported function declarations and classes
     'jsdoc/require-jsdoc': [
@@ -43,7 +46,17 @@ const eslintConfig = defineConfig([...nextVitals, ...nextTs, {
   plugins: {
     jsdoc: jsdoc,
   },
-}, // Override default ignores of eslint-config-next.
+},
+// Relax rules for test and script files
+{
+  files: ['**/*.test.{js,ts,jsx,tsx}', '**/*.spec.{js,ts,jsx,tsx}', 'scripts/**/*.{js,mjs}', '__tests__/**/*.js'],
+  rules: {
+    'jsdoc/require-jsdoc': 'off', // Don't require JSDoc in tests/scripts
+    '@typescript-eslint/no-unused-vars': 'off', // Allow unused vars in tests (fixtures, mocks)
+    '@typescript-eslint/no-explicit-any': 'off', // Allow any in test mocks
+  },
+},
+// Override default ignores of eslint-config-next.
 globalIgnores([
   // Default ignores of eslint-config-next:
   ".next/**",

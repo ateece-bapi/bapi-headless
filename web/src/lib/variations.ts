@@ -40,7 +40,7 @@ export function findMatchingVariation(
 /**
  * Checks if all required attributes have been selected
  * 
- * @param attributes - Array of product attributes
+ * @param attributeNames - Array of attribute names to check
  * @param selectedAttributes - Object mapping attribute names to selected values
  * @returns True if all attributes that are used for variations have been selected
  */

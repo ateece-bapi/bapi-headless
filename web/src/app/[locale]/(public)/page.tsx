@@ -4,14 +4,11 @@ import Hero from '@/components/Hero';
 import { getPosts } from '@/lib/wordpress';
 import { locales } from '@/i18n';
 import { 
-  CheckCircle,
   ArrowRight,
-  Award,
   Globe,
   TrendingUp,
   Package,
   ShieldCheck,
-  Zap,
   Newspaper,
   Calendar
 } from 'lucide-react';

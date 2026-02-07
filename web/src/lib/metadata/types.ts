@@ -5,8 +5,6 @@
  * across the entire site, optimized for search engines and AI systems.
  */
 
-import type { Metadata } from 'next';
-
 /**
  * Product-specific metadata configuration
  */

@@ -64,7 +64,7 @@ export interface PageMetadataInput {
   description: string;
   path: string;
   image?: string;
-  type?: 'website' | 'article' | 'product';
+  type?: 'website' | 'article'; // Next.js only supports these Open Graph types
   keywords?: string[];
   author?: string;
   publishedTime?: string;

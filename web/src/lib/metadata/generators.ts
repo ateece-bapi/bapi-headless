@@ -136,7 +136,7 @@ export function generateProductMetadata(
     description: aiDescription.slice(0, 160), // Meta description limit
     keywords: keywords.join(', '),
     openGraph: {
-      type: 'product',
+      type: 'website', // Use 'website' for product pages (Next.js doesn't support 'product' type)
       title,
       description: aiDescription.slice(0, 160),
       url: getAbsoluteUrl(canonicalUrl),
@@ -302,7 +302,7 @@ export function generatePageMetadata(
 ): Metadata {
   const title = `${page.title} | ${SITE_CONFIG.siteName}`;
   const image = page.image || SITE_CONFIG.defaultImage;
-  const type = page.type || 'website';
+  const type: 'website' | 'article' = page.type || 'website';
 
   return {
     title,

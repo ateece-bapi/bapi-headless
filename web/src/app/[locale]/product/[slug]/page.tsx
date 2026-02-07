@@ -70,10 +70,8 @@ export async function generateMetadata({ params }: { params: { slug: string; loc
         description: category.description,
         image: category.image,
         count: category.count,
-        parent: category.parent?.node ? {
-          name: category.parent.node.name,
-          slug: category.parent.node.slug,
-        } : undefined,
+        // Parent field not available in GetProductCategory query
+        parent: undefined,
       },
       locale
     );
@@ -91,18 +89,18 @@ export async function generateMetadata({ params }: { params: { slug: string; loc
             slug: product.slug || slug,
             description: product.description,
             shortDescription: product.shortDescription,
-            price: product.price,
-            regularPrice: product.regularPrice,
-            salePrice: product.salePrice,
-            sku: product.sku,
-            partNumber: product.partNumber,
+            price: 'price' in product ? product.price : null,
+            regularPrice: 'regularPrice' in product ? product.regularPrice : null,
+            salePrice: 'salePrice' in product ? product.salePrice : null,
+            sku: 'sku' in product ? product.sku : null,
+            partNumber: 'partNumber' in product ? product.partNumber : null,
             image: product.image,
-            galleryImages: product.galleryImages?.nodes,
-            categories: product.productCategories?.nodes,
-            averageRating: product.averageRating,
-            reviewCount: product.reviewCount,
-            stockStatus: product.stockStatus,
-            featured: product.featured,
+            galleryImages: ('galleryImages' in product ? product.galleryImages?.nodes : null) as any,
+            categories: ('productCategories' in product ? product.productCategories?.nodes : null) as any,
+            averageRating: ('averageRating' in product ? product.averageRating : null) as number | null,
+            reviewCount: ('reviewCount' in product ? product.reviewCount : null) as number | null,
+            stockStatus: ('stockStatus' in product ? product.stockStatus : null) as string | null,
+            featured: ('featured' in product ? product.featured : null) as boolean | null,
           },
           locale
         );
@@ -318,7 +316,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       const productSchema = generateProductSchema(
         {
           name: product.name || '',
-          description: stripHtml(product.shortDescription || product.description),
+          description: (product.shortDescription || product.description || '').replace(/<[^>]*>/g, '').trim(),
           image: product.image?.sourceUrl || '',
           sku: (product as any).sku || '',
           partNumber: (product as any).partNumber || undefined,
@@ -333,7 +331,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       );
       
       // Generate breadcrumb schema
-      const breadcrumbs = [
+      const breadcrumbs: Array<{ name: string; url?: string }> = [
         { name: 'Home', url: '/' },
         { name: 'Products', url: '/products' },
       ];
@@ -348,7 +346,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       }
       
       // Add product (no URL for last item)
-      breadcrumbs.push({ name: product.name || '' });
+      breadcrumbs.push({ name: product.name || '', url: undefined });
       
       const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, siteUrl);
       

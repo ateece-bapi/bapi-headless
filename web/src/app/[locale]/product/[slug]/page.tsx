@@ -186,7 +186,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
       // DEBUG: Log galleryImages to verify images from backend
       if (product && 'galleryImages' in product) {
-        // eslint-disable-next-line no-console
+         
         const count = (product.galleryImages as any)?.nodes?.length || 0;
         logger.debug('[ProductPage] galleryImages loaded', { count });
       }

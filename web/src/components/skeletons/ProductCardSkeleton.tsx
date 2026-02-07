@@ -1,6 +1,12 @@
 export default function ProductCardSkeleton() {
   return (
-    <div className="bg-white border border-neutral-200 rounded-lg overflow-hidden animate-pulse">
+    <div 
+      className="bg-white border border-neutral-200 rounded-lg overflow-hidden animate-pulse"
+      role="status"
+      aria-label="Loading product information"
+    >
+      <span className="sr-only">Loading...</span>
+      
       {/* Image */}
       <div className="aspect-square bg-neutral-200"></div>
       

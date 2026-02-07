@@ -155,7 +155,7 @@ export function generateProductMetadata(
       ],
       ...(product.price && {
         // Open Graph product-specific tags
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         
         product: {
           price: {
             amount: parseFloat(product.price.replace(/[^0-9.]/g, '')),

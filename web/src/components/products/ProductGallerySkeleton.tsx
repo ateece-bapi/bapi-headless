@@ -6,7 +6,9 @@
  */
 export function ProductGallerySkeleton() {
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto" role="status" aria-label="Loading product gallery">
+      <span className="sr-only">Loading product images...</span>
+      
       {/* Main image skeleton */}
       <div className="aspect-square bg-neutral-100 rounded-2xl mb-4 relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">

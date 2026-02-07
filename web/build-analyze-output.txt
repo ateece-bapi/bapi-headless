@@ -1,0 +1,160 @@
+
+> web@0.1.0 build /home/ateece/bapi-headless/web
+> next build
+
+The Next Bundle Analyzer is not compatible with Turbopack builds, no report will be generated.
+
+Consider trying the new Turbopack analyzer via `next experimental-analyze`.
+
+See https://nextjs.org/docs/app/guides/package-bundling for more information
+
+To run this analysis pass the `--webpack` flag to `next build`
+▲ Next.js 16.1.2 (Turbopack)
+- Environments: .env
+- Experiments (use with caution):
+  · clientTraceMetadata
+  · optimizePackageImports
+  ✓ webpackBuildWorker
+
+  Creating an optimized production build ...
+The Next Bundle Analyzer is not compatible with Turbopack builds, no report will be generated.
+
+Consider trying the new Turbopack analyzer via `next experimental-analyze`.
+
+See https://nextjs.org/docs/app/guides/package-bundling for more information
+
+To run this analysis pass the `--webpack` flag to `next build`
+✓ Compiled successfully in 6.5s
+  Running next.config.js provided runAfterProductionCompile ...
+✓ Completed runAfterProductionCompile in 6623ms
+  Running TypeScript ...
+  Collecting page data using 21 workers ...
+  Generating static pages using 21 workers (0/32) ...
+  Generating static pages using 21 workers (8/32) 
+  Generating static pages using 21 workers (16/32) 
+  Generating static pages using 21 workers (24/32) 
+✓ Generating static pages using 21 workers (32/32) in 92.7ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /[locale]
+├ ƒ /[locale]/accessories
+├ ƒ /[locale]/account
+├ ƒ /[locale]/account/favorites
+├ ƒ /[locale]/account/orders
+├ ƒ /[locale]/account/profile
+├ ƒ /[locale]/account/quotes
+├ ƒ /[locale]/account/settings/[[...rest]]
+├ ƒ /[locale]/admin/chat-analytics
+├ ƒ /[locale]/air-quality
+├ ƒ /[locale]/application-notes
+├ ƒ /[locale]/application-notes/[slug]
+├ ƒ /[locale]/applications
+├ ● /[locale]/applications/[category]
+├ ƒ /[locale]/applications/[category]/[subcategory]
+├ ● /[locale]/applications/landing/[slug]
+├ ƒ /[locale]/cart
+├ ƒ /[locale]/catalogpricebook
+├ ƒ /[locale]/categories/[slug]
+├ ƒ /[locale]/checkout
+├ ƒ /[locale]/company
+├ ƒ /[locale]/company/careers
+├ ƒ /[locale]/company/contact-us
+├ ƒ /[locale]/company/mission-values
+├ ƒ /[locale]/company/news
+├ ƒ /[locale]/company/why-bapi
+├ ƒ /[locale]/contact
+├ ƒ /[locale]/installations
+├ ƒ /[locale]/order-confirmation/[orderId]
+├ ƒ /[locale]/privacy
+├ ● /[locale]/product/[slug]
+├ ƒ /[locale]/products
+├ ƒ /[locale]/products/[category]/[subcategory]
+├ ƒ /[locale]/request-quote
+├ ƒ /[locale]/resources
+├ ƒ /[locale]/resources/case-studies
+├ ƒ /[locale]/resources/cross-reference
+├ ƒ /[locale]/resources/datasheets
+├ ƒ /[locale]/resources/installation
+├ ƒ /[locale]/resources/selector
+├ ƒ /[locale]/resources/videos
+├ ƒ /[locale]/resources/webinars
+├ ƒ /[locale]/rma-request
+├ ƒ /[locale]/search
+├ ƒ /[locale]/sensor-specs
+├ ƒ /[locale]/sensors
+├ ƒ /[locale]/sentry-example-page
+├ ƒ /[locale]/service-bulletin
+├ ƒ /[locale]/sign-in
+├ ● /[locale]/solutions/[slug]
+├ ƒ /[locale]/support
+├ ƒ /[locale]/terms
+├ ƒ /[locale]/test-instruments
+├ ƒ /[locale]/wam
+├ ƒ /[locale]/where-to-buy
+├ ƒ /[locale]/wireless
+├ ƒ /[locale]/wireless-site-verification
+├ ƒ /air-quality
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/auth/refresh
+├ ƒ /api/cart
+├ ƒ /api/cart/add
+├ ƒ /api/cart/clear
+├ ƒ /api/cart/remove
+├ ƒ /api/cart/update
+├ ƒ /api/chat
+├ ƒ /api/chat/analytics
+├ ƒ /api/chat/feedback
+├ ƒ /api/chat/handoff
+├ ƒ /api/favorites
+├ ƒ /api/orders/[orderId]
+├ ƒ /api/payment/confirm
+├ ƒ /api/payment/create-intent
+├ ƒ /api/preview
+├ ƒ /api/preview-proxy
+├ ƒ /api/preview-proxy/health
+├ ƒ /api/quotes
+├ ƒ /api/revalidate
+├ ƒ /api/search
+├ ƒ /api/sentry-example-api
+├ ƒ /cart-test
+├ ƒ /catalogpricebook
+├ ƒ /company
+├ ƒ /company/careers
+├ ƒ /company/mission-values
+├ ƒ /company/news
+├ ƒ /company/why-bapi
+├ ƒ /privacy
+├ ƒ /product-components-test
+├ ƒ /products-test
+├ ƒ /recently-viewed-test
+├ ƒ /region-test
+├ ƒ /request-quote
+├ ƒ /resources/case-studies
+├ ƒ /resources/cross-reference
+├ ƒ /resources/datasheets
+├ ƒ /resources/installation
+├ ƒ /resources/selector
+├ ƒ /resources/videos
+├ ƒ /resources/webinars
+├ ƒ /rma-request
+├ ƒ /sensor-specs
+├ ƒ /service-bulletin
+├ ƒ /support
+├ ƒ /terms
+├ ƒ /test
+├ ƒ /test-favorites
+├ ƒ /variation-test
+├ ƒ /wam
+└ ƒ /wireless-site-verification
+
+
+ƒ Proxy (Middleware)
+
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -149,6 +149,8 @@ export default function FavoriteButton({
         type="button"
         onClick={handleToggle}
         disabled={isLoading}
+        aria-label={isFavorited ? `Remove ${productName} from favorites` : `Add ${productName} to favorites`}
+        aria-pressed={isFavorited}
         className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
           isFavorited
             ? 'bg-red-50 text-red-600 border-2 border-red-200 hover:bg-red-100'
@@ -170,6 +172,8 @@ export default function FavoriteButton({
       type="button"
       onClick={handleToggle}
       disabled={isLoading}
+      aria-label={isFavorited ? `Remove ${productName} from favorites` : `Add ${productName} to favorites`}
+      aria-pressed={isFavorited}
       className={`${sizeClasses[size]} rounded-full flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
         isFavorited
           ? 'bg-red-50 text-red-600 border-2 border-red-200 hover:bg-red-100'

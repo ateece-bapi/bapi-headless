@@ -77,7 +77,10 @@ export const getServerAuth = cache(async (): Promise<{ userId: string | null; us
       },
     };
   } catch (error) {
-    console.error('Server auth error:', error);
+    // Only log in development
+    if (process.env.NODE_ENV !== 'production') {
+      console.error('Server auth error:', error);
+    }
     return { userId: null, user: null };
   }
 });

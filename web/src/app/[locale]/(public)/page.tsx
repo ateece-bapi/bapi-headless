@@ -283,6 +283,7 @@ export default async function Home() {
                   alt="5 Year Lifetime Limited Warranty"
                   fill
                   className="object-contain p-2"
+                  loading="lazy"
                 />
               </div>
               <h3 className="text-xl font-bold text-neutral-900 mb-4">Warranty</h3>
@@ -302,6 +303,7 @@ export default async function Home() {
                   alt="BAPI Backed"
                   fill
                   className="object-contain p-2"
+                  loading="lazy"
                 />
               </div>
               <h3 className="text-xl font-bold text-neutral-900 mb-4">BAPI-Backed</h3>
@@ -321,6 +323,7 @@ export default async function Home() {
                   alt="BAPI Certified Original"
                   fill
                   className="object-contain p-2"
+                  loading="lazy"
                 />
               </div>
               <h3 className="text-xl font-bold text-neutral-900 mb-4">BAPI Original</h3>
@@ -380,6 +383,7 @@ export default async function Home() {
                         alt={post.title || 'News article'}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
                       />
                       {/* Overlay gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />

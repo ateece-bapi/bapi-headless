@@ -139,5 +139,8 @@ export function logError(context: string, error: unknown, metadata?: Record<stri
     // Example: window.Sentry?.captureException(error, { extra: metadata });
   }
 
-  console.error(`[${context}]`, errorData);
+  // Only log in development (suppressed in production)
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(`[${context}]`, errorData);
+  }
 }

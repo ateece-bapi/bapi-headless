@@ -39,7 +39,7 @@ const nextConfig: NextConfig = {
     // Next.js will use 75 by default, we set explicit qualities in components
   },
   
-  // Cache headers for static pages
+  // Cache headers for static pages + Security headers
   async headers() {
     return [
       {
@@ -48,6 +48,22 @@ const nextConfig: NextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, s-maxage=3600, stale-while-revalidate=86400',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
           },
         ],
       },

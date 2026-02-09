@@ -10,7 +10,8 @@ import { ToastProvider } from "@/components/ui/Toast";
 import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from "@/lib/schema";
 import { generateDefaultMetadata } from "@/lib/metadata";
 
-// Removed Geist font imports and variables. Only Acumin and Roboto should be used (see globals.css)
+// Using Roboto font family. Acumin commented out for now (see globals.css)
+// Font preloaded below for optimal performance
 
 /**
  * Root metadata - Optimized for AI discovery and search visibility
@@ -42,6 +43,19 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
         <head>
+          {/* Font optimization - Preload Roboto for better performance */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+          />
+          
           {/* Inline critical CSS for hero image container */}
           <style dangerouslySetInnerHTML={{ __html: `
             .hero-image-container { position: relative; width: 100%; max-width: 80rem; margin: 0 auto; }

@@ -34,8 +34,8 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   const searchParams = useSearchParams();
   const [isFiltering, setIsFiltering] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const sortBy = searchParams.get('sort') || 'default';
-  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const sortBy = searchParams?.get('sort') || 'default';
+  const currentPage = parseInt(searchParams?.get('page') || '1', 10);
   
   // Define all possible filter keys and their corresponding GraphQL fields
   const filterFieldMap: Record<string, string> = {
@@ -59,7 +59,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   // Get active filters from URL (comma-separated values)
   const activeFilters: Record<string, string[]> = {};
   Object.keys(filterFieldMap).forEach(filterKey => {
-    const values = searchParams.get(filterKey)?.split(',').filter(Boolean) || [];
+    const values = searchParams?.get(filterKey)?.split(',').filter(Boolean) || [];
     if (values.length > 0) {
       activeFilters[filterKey] = values;
     }
@@ -199,7 +199,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
                     animationDelay: `${index * 50}ms`,
                   }}
                   onClick={() => {
-                    const params = new URLSearchParams(searchParams.toString());
+                    const params = new URLSearchParams(searchParams?.toString() || '');
                     params.delete(type);
                     window.history.pushState({}, '', `?${params.toString()}`);
                     window.dispatchEvent(new Event('popstate'));
@@ -207,7 +207,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      const params = new URLSearchParams(searchParams.toString());
+                      const params = new URLSearchParams(searchParams?.toString() || '');
                       params.delete(type);
                       window.history.pushState({}, '', `?${params.toString()}`);
                       window.dispatchEvent(new Event('popstate'));

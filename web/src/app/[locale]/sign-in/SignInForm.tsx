@@ -43,7 +43,7 @@ export function SignInForm() {
         showToast('success', 'Welcome Back!', 'Successfully signed in');
         
         // Redirect to intended page or account dashboard
-        const redirect = searchParams.get('redirect') || '/account';
+        const redirect = searchParams?.get('redirect') || '/account';
         
         // Force full page reload to ensure cookies are sent to server
         // Client-side navigation (router.push) doesn't send httpOnly cookies

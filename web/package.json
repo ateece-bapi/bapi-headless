@@ -26,12 +26,14 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",
+    "@aws-sdk/client-ses": "^3.985.0",
     "@clerk/clerk-sdk-node": "^4.13.23",
     "@sentry/nextjs": "^10.38.0",
     "@stripe/react-stripe-js": "^5.4.1",
     "@stripe/stripe-js": "^8.6.1",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
+    "cd": "^0.3.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.3",
@@ -47,6 +49,7 @@
     "react-dom": "19.2.0",
     "sonner": "^2.0.7",
     "stripe": "^20.1.2",
+    "web": "^0.0.2",
     "web-vitals": "^5.1.0",
     "zustand": "^5.0.8"
   },

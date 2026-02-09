@@ -20,9 +20,10 @@ import { generateDefaultMetadata } from "@/lib/metadata";
 export const metadata: Metadata = generateDefaultMetadata('en');
 
 /**
- * Root layout - must be dynamic to support cookies and authentication
+ * Root layout - uses 'auto' for optimal caching while allowing dynamic features
+ * Specific routes that need cookies can override with force-dynamic
  */
-export const dynamic = 'force-dynamic'; // Required for cookie reading
+// Removed force-dynamic to enable back/forward cache - auth routes handle their own dynamic needs
 
 export default async function RootLayout({
   children,

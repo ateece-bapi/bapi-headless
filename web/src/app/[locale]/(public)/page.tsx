@@ -421,6 +421,7 @@ export default async function Home() {
                     <Link
                       href={`/company/news/${post.slug}`}
                       className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 hover:text-primary-700 transition-colors group-hover:gap-2"
+                      aria-label={`Read more about ${post.title}`}
                     >
                       Read More
                       <ArrowRight className="w-4 h-4" />

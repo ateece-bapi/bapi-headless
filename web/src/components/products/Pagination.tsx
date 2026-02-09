@@ -13,7 +13,7 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
   const searchParams = useSearchParams();
 
   const goToPage = (page: number) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams?.toString() || '');
     
     if (page === 1) {
       params.delete('page');

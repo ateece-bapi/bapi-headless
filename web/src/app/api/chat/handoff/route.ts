@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import logger from '@/lib/logger';
+import { sendChatHandoffNotification } from '@/lib/email';
 
 /**
  * Chat Human Handoff API
@@ -75,24 +76,81 @@ async function writeHandoffs(handoffs: HandoffRequest[]): Promise<void> {
 
 /**
  * Sends email notification to appropriate team member
- * TODO: Implement actual email sending (SMTP/SES)
  */
-async function notifyTeam(handoff: HandoffRequest): Promise<void> {
-  // TODO: Implement email notification
-  // For now, just log
-  logger.info('Handoff notification', {
-    to: getTeamEmail(handoff.topic),
-    subject: `Chat Handoff: ${handoff.topic}`,
-    from: handoff.email,
-    name: handoff.name,
-  });
-  
-  // Future: Use existing email service
-  // await sendEmail({
-  //   to: getTeamEmail(handoff.topic),
-  //   subject: `Chat Handoff Request - ${handoff.topic}`,
-  //   html: generateHandoffEmail(handoff),
-  // });
+async function notifyTeam(handoff: HandoffRequest, testRecipient?: string): Promise<void> {
+  try {
+    // Determine urgency based on topic
+    const urgency = handoff.topic === 'sales' || handoff.topic === 'quote' 
+      ? 'high' 
+      : handoff.topic === 'technical' 
+        ? 'medium' 
+        : 'low';
+
+    // Parse conversation context into chat messages
+    // Expecting format like: "User: Hello\nAssistant: Hi there\n..." or JSON array
+    let chatMessages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: string }> = [];
+    
+    if (handoff.conversationContext) {
+      try {
+        // Try parsing as JSON first
+        const parsed = JSON.parse(handoff.conversationContext);
+        if (Array.isArray(parsed)) {
+          chatMessages = parsed.map(msg => ({
+            role: msg.role as 'user' | 'assistant',
+            content: msg.content,
+            timestamp: msg.timestamp || new Date().toISOString(),
+          }));
+        }
+      } catch {
+        // Fall back to plain text parsing
+        const lines = handoff.conversationContext.split('\n').filter(line => line.trim());
+        const now = new Date();
+        chatMessages = lines.map((line, index) => {
+          const match = line.match(/^(User|Assistant|AI):\s*(.+)$/);
+          if (match) {
+            return {
+              role: (match[1].toLowerCase() === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
+              content: match[2],
+              timestamp: new Date(now.getTime() - (lines.length - index) * 60000).toISOString(),
+            };
+          }
+          return { 
+            role: 'user' as const, 
+            content: line,
+            timestamp: new Date(now.getTime() - (lines.length - index) * 60000).toISOString(),
+          };
+        });
+      }
+    }
+
+    // Send email notification
+    const result = await sendChatHandoffNotification({
+      recipientEmail: testRecipient || getTeamEmail(handoff.topic),
+      customerName: handoff.name,
+      customerEmail: handoff.email,
+      customerPhone: handoff.phone,
+      requestedTopic: handoff.topic,
+      urgency,
+      chatTranscript: chatMessages,
+    });
+
+    if (result.success) {
+      logger.info('Chat handoff email sent', {
+        handoffId: handoff.id,
+        messageId: result.messageId,
+        to: getTeamEmail(handoff.topic),
+        topic: handoff.topic,
+      });
+    } else {
+      logger.error('Chat handoff email failed', {
+        handoffId: handoff.id,
+        error: result.error,
+      });
+    }
+  } catch (error) {
+    logger.error('Failed to send handoff notification', error);
+    // Don't throw - we don't want email failure to block handoff storage
+  }
 }
 
 /**
@@ -117,7 +175,7 @@ function getTeamEmail(topic: string): string {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, topic, message, conversationContext, language } = body;
+    const { name, email, phone, topic, message, conversationContext, language, _testRecipient } = body;
 
     // Validation
     if (!name || !email || !topic || !message) {
@@ -155,8 +213,8 @@ export async function POST(request: NextRequest) {
     handoffs.push(handoff);
     await writeHandoffs(handoffs);
 
-    // Send notification to team
-    await notifyTeam(handoff);
+    // Send notification to team (use test recipient if provided)
+    await notifyTeam(handoff, _testRecipient);
 
     return NextResponse.json({
       success: true,

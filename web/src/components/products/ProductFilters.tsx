@@ -47,7 +47,7 @@ export function ProductFilters({
 
   const handleFilterChange = useCallback(
     (filterType: string, value: string, checked: boolean) => {
-      const params = new URLSearchParams(searchParams.toString());
+      const params = new URLSearchParams(searchParams?.toString() || '');
       const current = params.get(filterType)?.split(',').filter(Boolean) || [];
 
       let updated: string[];
@@ -67,13 +67,13 @@ export function ProductFilters({
       params.delete('page');
 
       // Update URL without scroll
-      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+      router.push(`${pathname || ''}?${params.toString()}`, { scroll: false });
     },
     [searchParams, pathname, router]
   );
 
   const clearAllFilters = useCallback(() => {
-    router.push(pathname, { scroll: false });
+    router.push(pathname || '/', { scroll: false });
   }, [pathname, router]);
 
   return (

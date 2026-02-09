@@ -16,7 +16,7 @@ const Navigation: React.FC<NavigationProps> = ({ links, className = '' }) => {
   return (
     <nav className={className} aria-label="Main navigation">
       {links.map((link) => {
-        const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+        const isActive = pathname ? (pathname === link.href || pathname.startsWith(`${link.href}/`)) : false;
         
         return (
           <Link

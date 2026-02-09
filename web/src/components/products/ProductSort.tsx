@@ -89,10 +89,10 @@ const sortOptions: SortOption[] = [
 export function ProductSort({ totalProducts }: ProductSortProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentSort = searchParams.get('sort') || 'default';
+  const currentSort = searchParams?.get('sort') || 'default';
 
   const handleSortChange = (value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams?.toString() || '');
     
     if (value === 'default') {
       params.delete('sort');

@@ -15,7 +15,7 @@ export function LanguageSelector() {
     
     // Remove current locale from pathname
     // Handle both /en/products and /en paths
-    const pathnameWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
+    const pathnameWithoutLocale = pathname?.replace(/^\/[a-z]{2}(\/|$)/, '/') || '/';
     
     // Build new path
     const newPath = pathnameWithoutLocale === '/' || pathnameWithoutLocale === '' 

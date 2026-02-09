@@ -399,7 +399,7 @@ export function generateDefaultMetadata(locale: string = 'en'): Metadata {
       images: [getAbsoluteUrl(SITE_CONFIG.defaultImage)],
     },
     alternates: {
-      canonical: '/',
+      canonical: `/${locale}`,
       languages: {
         'en-US': '/en',
         'es-ES': '/es',

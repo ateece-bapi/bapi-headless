@@ -39,6 +39,59 @@ const nextConfig: NextConfig = {
     // Next.js will use 75 by default, we set explicit qualities in components
   },
   
+  // Redirects for legacy/misplaced URLs
+  async redirects() {
+    return [
+      // Product navigation links that should redirect to proper sections
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/technical-documentation',
+        destination: '/:locale/resources',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/tools-guides',
+        destination: '/:locale/resources/selector',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/learning-center',
+        destination: '/:locale/resources',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/get-help',
+        destination: '/:locale/support',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/for-existing-customers',
+        destination: '/:locale/support',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/about-bapi',
+        destination: '/:locale/company',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/get-in-touch',
+        destination: '/:locale/contact',
+        permanent: true,
+      },
+      // Resources routes consolidation
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/resources/application-notes',
+        destination: '/:locale/application-notes',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/en/quote',
+        destination: '/:locale/request-quote',
+        permanent: true,
+      },
+    ];
+  },
+  
   // Cache headers for static pages + Security headers
   async headers() {
     return [

@@ -49,66 +49,97 @@ import type { Metadata } from "next";
  * Uses enterprise metadata generators with rich snippets support
  */
 export async function generateMetadata({ params }: { params: { slug: string; locale: string } | Promise<{ slug: string; locale: string }> }): Promise<Metadata> {
-  const resolvedParams = await params;
-  if (!resolvedParams?.slug) return {};
-  const slug = String(resolvedParams.slug);
-  const locale = resolvedParams.locale || 'en';
-  
-  // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
-  const [categoryResult, productResult] = await Promise.allSettled([
-    getProductCategory(slug),
-    getProductBySlug(slug)
-  ]);
-  
-  // Check if it's a category
-  if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
-    const category = categoryResult.value.productCategory;
-    return generateCategoryMetadata(
-      {
-        name: category.name || '',
-        slug: category.slug || slug,
-        description: category.description,
-        image: category.image,
-        count: category.count,
-        // Parent field not available in GetProductCategory query
-        parent: undefined,
-      },
-      locale
-    );
-  }
-  
-  // Check if it's a product
-  if (productResult.status === 'fulfilled') {
-    const parsed = getProductQuerySchema.safeParse(productResult.value);
-    if (parsed.success) {
-      const product = productResult.value.product as GetProductBySlugQuery['product'] | null;
-      if (product) {
-        return generateProductMetadata(
-          {
-            name: product.name || '',
-            slug: product.slug || slug,
-            description: product.description,
-            shortDescription: product.shortDescription,
-            price: 'price' in product ? product.price : null,
-            regularPrice: 'regularPrice' in product ? product.regularPrice : null,
-            salePrice: 'salePrice' in product ? product.salePrice : null,
-            sku: 'sku' in product ? product.sku : null,
-            partNumber: 'partNumber' in product ? product.partNumber : null,
-            image: product.image,
-            galleryImages: ('galleryImages' in product ? product.galleryImages?.nodes : null) as any,
-            categories: ('productCategories' in product ? product.productCategories?.nodes : null) as any,
-            averageRating: ('averageRating' in product ? product.averageRating : null) as number | null,
-            reviewCount: ('reviewCount' in product ? product.reviewCount : null) as number | null,
-            stockStatus: ('stockStatus' in product ? product.stockStatus : null) as string | null,
-            featured: ('featured' in product ? product.featured : null) as boolean | null,
-          },
-          locale
-        );
+  try {
+    const resolvedParams = await params;
+    if (!resolvedParams?.slug) {
+      logger.warn('[generateMetadata] Missing slug');
+      return {};
+    }
+    const slug = String(resolvedParams.slug);
+    const locale = resolvedParams.locale || 'en';
+    
+    logger.debug('[generateMetadata] Generating metadata', { slug, locale });
+    
+    // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
+    const [categoryResult, productResult] = await Promise.allSettled([
+      getProductCategory(slug),
+      getProductBySlug(slug)
+    ]);
+    
+    // Check if it's a category
+    if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
+      const category = categoryResult.value.productCategory;
+      logger.debug('[generateMetadata] Category found', { slug, name: category.name });
+      return generateCategoryMetadata(
+        {
+          name: category.name || '',
+          slug: category.slug || slug,
+          description: category.description,
+          image: category.image,
+          count: category.count,
+          // Parent field not available in GetProductCategory query
+          parent: undefined,
+        },
+        locale
+      );
+    }
+    
+    // Check if it's a product
+    if (productResult.status === 'fulfilled') {
+      const parsed = getProductQuerySchema.safeParse(productResult.value);
+      if (parsed.success) {
+        const product = productResult.value.product as GetProductBySlugQuery['product'] | null;
+        if (product) {
+          logger.debug('[generateMetadata] Product found', { slug, name: product.name });
+          return generateProductMetadata(
+            {
+              name: product.name || '',
+              slug: product.slug || slug,
+              description: product.description,
+              shortDescription: product.shortDescription,
+              price: 'price' in product ? product.price : null,
+              regularPrice: 'regularPrice' in product ? product.regularPrice : null,
+              salePrice: 'salePrice' in product ? product.salePrice : null,
+              sku: 'sku' in product ? product.sku : null,
+              partNumber: 'partNumber' in product ? product.partNumber : null,
+              image: product.image,
+              galleryImages: ('galleryImages' in product ? product.galleryImages?.nodes : null) as any,
+              categories: ('productCategories' in product ? product.productCategories?.nodes : null) as any,
+              averageRating: ('averageRating' in product ? product.averageRating : null) as number | null,
+              reviewCount: ('reviewCount' in product ? product.reviewCount : null) as number | null,
+              stockStatus: ('stockStatus' in product ? product.stockStatus : null) as string | null,
+              featured: ('featured' in product ? product.featured : null) as boolean | null,
+            },
+            locale
+          );
+        }
+      } else {
+        logger.warn('[generateMetadata] Product validation failed', { 
+          slug, 
+          errors: parsed.error.errors 
+        });
       }
     }
+    
+    // Log if both failed
+    if (categoryResult.status === 'rejected' && productResult.status === 'rejected') {
+      logger.error('[generateMetadata] Both queries failed', {
+        slug,
+        categoryError: categoryResult.reason instanceof Error ? categoryResult.reason.message : 'Unknown',
+        productError: productResult.reason instanceof Error ? productResult.reason.message : 'Unknown'
+      });
+    }
+    
+    logger.warn('[generateMetadata] No metadata generated', { slug });
+    return {};
+    
+  } catch (error) {
+    logger.error('[generateMetadata] Unhandled error', { 
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    });
+    return {}; // Return empty metadata instead of throwing
   }
-  
-  return {};
 }
 
 // ISR revalidation - 1 hour for both categories and products
@@ -143,72 +174,90 @@ export async function generateStaticParams() {
 export default async function ProductPage({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
   const timer = new PerformanceTimer('ProductPage');
   
-  if (!process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
-    notFound();
-  }
-  const resolvedParams = await params;
-  if (!resolvedParams?.slug) {
-    notFound();
-  }
-  const slug = String(resolvedParams.slug);
-  
-  timer.mark('params-resolved');
-  
-  // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
-  // Use LIGHT query for product to reduce initial payload by ~70%
-  const [categoryResult, productResult] = await Promise.allSettled([
-    getProductCategory(slug),
-    getProductBySlugLight(slug)
-  ]);
-  
-  timer.mark('data-fetched');
-  
-  // Check if it's a category
-  if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
-    // Fetch products for this category (10 products for better performance)
-    const productsData = await getProductsByCategory(slug, 10);
+  try {
+    if (!process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
+      logger.error('[ProductPage] Missing NEXT_PUBLIC_WORDPRESS_GRAPHQL');
+      notFound();
+    }
     
-    return (
-      <CategoryPage 
-        category={categoryResult.value.productCategory} 
-        products={productsData.products} 
-      />
-    );
-  }
-  
-  // Check if it's a product
-  if (productResult.status === 'fulfilled') {
+    const resolvedParams = await params;
+    if (!resolvedParams?.slug) {
+      logger.error('[ProductPage] Missing slug parameter');
+      notFound();
+    }
+    const slug = String(resolvedParams.slug);
+    
+    logger.info('[ProductPage] Loading product', { slug });
+    timer.mark('params-resolved');
+    
+    // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
+    // Use LIGHT query for product to reduce initial payload by ~70%
+    const [categoryResult, productResult] = await Promise.allSettled([
+      getProductCategory(slug),
+      getProductBySlugLight(slug)
+    ]);
+    
+    timer.mark('data-fetched');
+    
+    // Check if it's a category
+    if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
+      logger.info('[ProductPage] Rendering as category', { slug });
+      // Fetch products for this category (10 products for better performance)
+      const productsData = await getProductsByCategory(slug, 10);
+      
+      return (
+        <CategoryPage 
+          category={categoryResult.value.productCategory} 
+          products={productsData.products} 
+        />
+      );
+    }
+    
+    // Check if it's a product
+    if (productResult.status === 'fulfilled') {
+      try {
+        const data = productResult.value;
+        // Light query validation - only essential fields
+        const product = data.product as GetProductBySlugLightQuery['product'] | null;
 
-    try {
-      const data = productResult.value;
-      // Light query validation - only essential fields
-      const product = data.product as GetProductBySlugLightQuery['product'] | null;
+        // DEBUG: Log galleryImages to verify images from backend
+        if (product && 'galleryImages' in product) {
+          const count = (product.galleryImages as any)?.nodes?.length || 0;
+          logger.debug('[ProductPage] galleryImages loaded', { count });
+        }
 
-      // DEBUG: Log galleryImages to verify images from backend
-      if (product && 'galleryImages' in product) {
-         
-        const count = (product.galleryImages as any)?.nodes?.length || 0;
-        logger.debug('[ProductPage] galleryImages loaded', { count });
-      }
+        if (!product) {
+          logger.warn('[ProductPage] Product not found', { slug });
+          notFound();
+        }
+        
+        logger.info('[ProductPage] Product loaded successfully', { 
+          slug, 
+          databaseId: product.databaseId,
+          type: product.__typename 
+        });
 
-      if (!product) {
-        notFound();
-      }
-
-      timer.mark('validation-complete');
+        timer.mark('validation-complete');
 
       // Fetch variations if this is a VariableProduct
       let variationData = null;
       if (product.__typename === 'VariableProduct') {
         try {
+          logger.debug('[ProductPage] Fetching variations', { databaseId: product.databaseId });
           const client = getGraphQLClient(['product-variations', `product-${product.databaseId}`], true);
           const variationsResult = await client.request<GetProductVariationsQuery>(
             GetProductVariationsDocument,
             { id: product.databaseId?.toString() || product.id }
           );
           variationData = variationsResult.product;
+          logger.debug('[ProductPage] Variations loaded', { 
+            count: (variationData as any)?.variations?.nodes?.length || 0 
+          });
         } catch (error) {
-          logger.error('[ProductPage] Failed to fetch variations', error);
+          logger.error('[ProductPage] Failed to fetch variations', { 
+            error: error instanceof Error ? error.message : 'Unknown error',
+            databaseId: product.databaseId 
+          });
         }
       }
 
@@ -310,8 +359,14 @@ export default async function ProductPage({ params }: { params: { slug: string }
       const productDbId = product.databaseId?.toString() || product.id;
       
       // Generate structured data for SEO
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';
+      // Use Vercel URL if available, otherwise fallback to custom domain or localhost
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 
+                     process.env.NEXT_PUBLIC_APP_URL || 
+                     process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 
+                     'https://bapi-headless.vercel.app';
       const productUrl = `${siteUrl}/product/${slug}`;
+      
+      logger.debug('[ProductPage] Generating structured data', { siteUrl, productUrl });
       
       const productSchema = generateProductSchema(
         {
@@ -365,11 +420,34 @@ export default async function ProductPage({ params }: { params: { slug: string }
       );
     } catch (error) {
       // Product data invalid
-      logger.error('[ProductPage] Error', error);
+      logger.error('[ProductPage] Error processing product data', { 
+        error: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined,
+        slug 
+      });
       notFound();
     }
   }
   
-  // Neither category nor product found
-  notFound();
+    // Log if both queries failed
+    if (categoryResult.status === 'rejected' && productResult.status === 'rejected') {
+      logger.error('[ProductPage] Both category and product queries failed', {
+        slug,
+        categoryError: categoryResult.reason,
+        productError: productResult.reason
+      });
+    }
+    
+    // Neither category nor product found
+    logger.warn('[ProductPage] Not found', { slug });
+    notFound();
+    
+  } catch (error) {
+    // Top-level error handler
+    logger.error('[ProductPage] Unhandled error', { 
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    });
+    throw error; // Re-throw to let Next.js error boundary handle it
+  }
 }

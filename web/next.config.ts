@@ -54,7 +54,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/sign-up',
-        destination: '/en/sign-up',
+        destination: '/en/sign-in',
+        permanent: false,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/sign-up',
+        destination: '/:locale/sign-in',
         permanent: false,
       },
       // Product navigation links that should redirect to proper sections

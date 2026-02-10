@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wordpress';
+import { GlobalPresence } from '@/components/company/GlobalPresence';
 import Link from 'next/link';
 import { 
   Mail, 
@@ -219,7 +220,12 @@ export default async function ContactUsPage() {
             })}
           </div>
         </div>
+      </section>
 
+      {/* Global Presence Map */}
+      <GlobalPresence />
+
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         {/* International Office */}
         <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-10 lg:p-16 shadow-lg mb-20">
           <div className="max-w-3xl mx-auto">

@@ -28,7 +28,7 @@ export default function ComparisonButton({ locale }: ComparisonButtonProps) {
   return (
     <>
       {/* Floating Button */}
-      <div className="fixed bottom-6 right-6 z-[800] animate-[scale-in_300ms_ease-out]">
+      <div className="fixed bottom-6 right-6 z-dropdown animate-[scale-in_300ms_ease-out]">
         <div className="relative">
           {/* Clear All Badge */}
           <button

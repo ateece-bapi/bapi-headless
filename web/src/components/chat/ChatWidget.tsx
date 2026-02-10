@@ -416,7 +416,7 @@ export default function ChatWidget() {
 
       {/* Handoff Form Modal */}
       {showHandoffForm && (
-        <div className="fixed inset-0 z-[1100] flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm">
+        <div className="fixed inset-0 z-chat-widget flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
             {/* Form Header */}
             <div className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white p-6 rounded-t-2xl">

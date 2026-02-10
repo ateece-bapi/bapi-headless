@@ -50,7 +50,10 @@ import type { Metadata } from "next";
  */
 export async function generateMetadata({ params }: { params: { slug: string; locale: string } | Promise<{ slug: string; locale: string }> }): Promise<Metadata> {
   try {
+    logger.info('[generateMetadata] START');
     const resolvedParams = await params;
+    logger.info('[generateMetadata] Params resolved', { hasParams: !!resolvedParams });
+    
     if (!resolvedParams?.slug) {
       logger.warn('[generateMetadata] Missing slug');
       return {};
@@ -61,15 +64,21 @@ export async function generateMetadata({ params }: { params: { slug: string; loc
     logger.debug('[generateMetadata] Generating metadata', { slug, locale });
     
     // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
+    logger.info('[generateMetadata] Starting parallel fetch...', { slug });
     const [categoryResult, productResult] = await Promise.allSettled([
       getProductCategory(slug),
       getProductBySlug(slug)
     ]);
+    logger.info('[generateMetadata] Parallel fetch complete', {
+      categoryStatus: categoryResult.status,
+      productStatus: productResult.status
+    });
     
     // Check if it's a category
     if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
       const category = categoryResult.value.productCategory;
       logger.debug('[generateMetadata] Category found', { slug, name: category.name });
+      logger.info('[generateMetadata] Returning category metadata');
       return generateCategoryMetadata(
         {
           name: category.name || '',
@@ -83,6 +92,7 @@ export async function generateMetadata({ params }: { params: { slug: string; loc
         locale
       );
     }
+    logger.info('[generateMetadata] Not a category, checking product...');
     
     // Check if it's a product
     if (productResult.status === 'fulfilled') {
@@ -91,6 +101,7 @@ export async function generateMetadata({ params }: { params: { slug: string; loc
         const product = productResult.value.product as GetProductBySlugQuery['product'] | null;
         if (product) {
           logger.debug('[generateMetadata] Product found', { slug, name: product.name });
+          logger.info('[generateMetadata] Returning product metadata');
           return generateProductMetadata(
             {
               name: product.name || '',
@@ -131,10 +142,11 @@ export async function generateMetadata({ params }: { params: { slug: string; loc
     }
     
     logger.warn('[generateMetadata] No metadata generated', { slug });
+    logger.info('[generateMetadata] END - Returning empty metadata');
     return {};
     
   } catch (error) {
-    logger.error('[generateMetadata] Unhandled error', { 
+    logger.error('[generateMetadata] Unhandled error in catch block', { 
       error: error instanceof Error ? error.message : 'Unknown error',
       stack: error instanceof Error ? error.stack : undefined
     });
@@ -175,12 +187,18 @@ export default async function ProductPage({ params }: { params: { slug: string }
   const timer = new PerformanceTimer('ProductPage');
   
   try {
+    logger.info('[ProductPage] START - Function entry');
+    
     if (!process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL) {
       logger.error('[ProductPage] Missing NEXT_PUBLIC_WORDPRESS_GRAPHQL');
       notFound();
     }
+    logger.info('[ProductPage] GraphQL endpoint verified');
     
+    logger.info('[ProductPage] Awaiting params...');
     const resolvedParams = await params;
+    logger.info('[ProductPage] Params resolved', { resolved: !!resolvedParams });
+    
     if (!resolvedParams?.slug) {
       logger.error('[ProductPage] Missing slug parameter');
       notFound();
@@ -192,10 +210,15 @@ export default async function ProductPage({ params }: { params: { slug: string }
     
     // PARALLEL fetch: Try both category and product simultaneously to eliminate waterfall
     // Use LIGHT query for product to reduce initial payload by ~70%
+    logger.info('[ProductPage] Starting parallel fetch...', { slug });
     const [categoryResult, productResult] = await Promise.allSettled([
       getProductCategory(slug),
       getProductBySlugLight(slug)
     ]);
+    logger.info('[ProductPage] Parallel fetch complete', { 
+      categoryStatus: categoryResult.status,
+      productStatus: productResult.status 
+    });
     
     timer.mark('data-fetched');
     
@@ -203,7 +226,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
     if (categoryResult.status === 'fulfilled' && categoryResult.value.productCategory) {
       logger.info('[ProductPage] Rendering as category', { slug });
       // Fetch products for this category (10 products for better performance)
+      logger.info('[ProductPage] Fetching category products...');
       const productsData = await getProductsByCategory(slug, 10);
+      logger.info('[ProductPage] Category products fetched', { count: productsData.products?.nodes?.length || 0 });
       
       return (
         <CategoryPage 
@@ -212,6 +237,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
         />
       );
     }
+    logger.info('[ProductPage] Not a category, checking product...');
     
     // Check if it's a product
     if (productResult.status === 'fulfilled') {
@@ -364,9 +390,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
       timer.end();
       
       const productDbId = product.databaseId?.toString() || product.id;
+      logger.info('[ProductPage] Product transformed', { productDbId, hasVariations: productForClient.variations.length > 0 });
       
       // Generate structured data for SEO
       // Use Vercel URL if available, otherwise fallback to custom domain or localhost
+      logger.info('[ProductPage] Generating structured data...');
       const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 
                      process.env.NEXT_PUBLIC_APP_URL || 
                      process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 
@@ -416,6 +444,14 @@ export default async function ProductPage({ params }: { params: { slug: string }
       breadcrumbs.push({ name: product.name || '', url: undefined });
       
       const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, siteUrl);
+      logger.info('[ProductPage] Schemas generated, preparing return...');
+      
+      logger.info('[ProductPage] BEFORE RETURN - About to render ProductDetailClient', { 
+        productId: productDbId,
+        hasImage: !!productForClient.image,
+        hasVariations: productForClient.variations.length > 0,
+        hasAttributes: productForClient.attributes.length > 0
+      });
       
       return (
         <>
@@ -451,15 +487,18 @@ export default async function ProductPage({ params }: { params: { slug: string }
     }
     
     // Neither category nor product found
-    logger.warn('[ProductPage] Not found', { slug });
+    logger.warn('[ProductPage] Not found, calling notFound()', { slug });
     notFound();
     
   } catch (error) {
     // Top-level error handler
-    logger.error('[ProductPage] Unhandled error', { 
+    logger.error('[ProductPage] Unhandled error in catch block', { 
       error: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined
+      stack: error instanceof Error ? error.stack : undefined,
+      name: error instanceof Error ? error.name : undefined,
+      cause: error instanceof Error ? (error as any).cause : undefined
     });
+    logger.error('[ProductPage] THROWING ERROR TO NEXT.JS');
     throw error; // Re-throw to let Next.js error boundary handle it
   }
 }

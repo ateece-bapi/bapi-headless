@@ -158,30 +158,15 @@ export async function generateMetadata({ params }: { params: { slug: string; loc
 export const revalidate = 3600;
 
 /**
- * Pre-generate static pages at build time for top products ONLY
- * Categories render on-demand with ISR (faster builds, better performance)
+ * Force dynamic rendering to support next-intl's getLocale() in root layout
  * 
- * Strategy: Only pre-render high-value product pages for SEO
- * Categories get cached on first visit and revalidate every hour
+ * The root layout uses getLocale() which requires request context (cookies/headers).
+ * Static generation at build time doesn't have this context, causing DYNAMIC_SERVER_USAGE errors.
+ * 
+ * With ISR (revalidate: 3600), pages are still cached and regenerated every hour,
+ * but rendering happens on-demand with full request context.
  */
-export async function generateStaticParams() {
-  try {
-    // Only pre-render top 5 product detail pages
-    // Categories are skipped to avoid 60s+ build timeouts
-    const productsData = await getProducts(5);
-    const productSlugs = productsData.products?.nodes
-      ?.filter(p => p?.slug)
-      .map(p => ({ slug: p.slug })) || [];
-
-    logger.info('[generateStaticParams] Pre-generating product pages', { count: productSlugs.length });
-    
-    return productSlugs;
-  } catch (error) {
-    logger.error('[generateStaticParams] Failed to fetch params', error);
-    // Return empty array to continue build without static generation
-    return [];
-  }
-}
+export const dynamic = 'force-dynamic';
 
 export default async function ProductPage({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
   const timer = new PerformanceTimer('ProductPage');

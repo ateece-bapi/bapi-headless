@@ -203,6 +203,249 @@ import clsx from 'clsx';
 <div className="transition-all duration-[250ms]">
 ```
 
+## Z-Index Best Practices
+
+### Why Semantic Z-Index Matters
+
+Managing z-index is one of the most challenging aspects of CSS at scale. Random z-index values (like `z-[9999]`) create **z-index wars** where developers keep adding higher numbers without understanding the stacking order.
+
+**Our Solution**: A semantic z-index system with named layers.
+
+### The Z-Index Scale
+
+All z-index values are defined as **CSS variables** in `globals.css`:
+
+```css
+/* @theme inline in globals.css */
+--z-base: 0;              /* Default stacking */
+--z-dropdown: 1000;       /* Dropdown menus */
+--z-sticky: 1020;         /* Sticky headers/footers */
+--z-fixed: 1030;          /* Fixed positioning */
+--z-modal-backdrop: 1040; /* Modal overlay backgrounds */
+--z-modal: 1050;          /* Modal dialogs */
+--z-popover: 1060;        /* Popovers & tooltips */
+--z-tooltip: 1070;        /* Pure tooltips */
+--z-toast: 1080;          /* Toast notifications (highest) */
+```
+
+### Using Z-Index Utilities
+
+Always use the **semantic utility classes** that reference these variables:
+
+```tsx
+// ✅ CORRECT: Semantic utility classes
+<div className="fixed top-4 right-4 z-toast">
+  {/* Toast notification - highest layer */}
+</div>
+
+<div className="fixed inset-0 z-modal-backdrop">
+  {/* Modal backdrop */}
+</div>
+
+<div className="fixed inset-0 z-modal flex items-center justify-center">
+  {/* Modal dialog */}
+</div>
+
+<div className="sticky top-0 z-sticky">
+  {/* Sticky header */}
+</div>
+
+<div className="relative z-dropdown">
+  {/* Dropdown menu */}
+</div>
+```
+
+```tsx
+// ❌ WRONG: Arbitrary z-index values
+<div className="z-[9999]">           /* Creates z-index wars */
+<div className="z-[1000]">           /* Not part of system */
+<div style={{ zIndex: 99999 }}>     /* Inline styles + arbitrary */
+```
+
+### Z-Index Hierarchy (Lowest to Highest)
+
+| Layer | z-index | Utility Class | Use Case |
+|-------|---------|---------------|----------|
+| **Base** | 0 | `.z-base` | Default stacking |
+| **Dropdown** | 1000 | `.z-dropdown` | Dropdown menus, autocomplete |
+| **Sticky** | 1020 | `.z-sticky` | Sticky headers, navigation |
+| **Fixed** | 1030 | `.z-fixed` | Fixed positioning |
+| **Modal Backdrop** | 1040 | `.z-modal-backdrop` | Modal overlay backgrounds |
+| **Modal** | 1050 | `.z-modal` | Modal dialogs, image galleries |
+| **Popover** | 1060 | `.z-popover` | Popovers (with backdrop) |
+| **Tooltip** | 1070 | `.z-tooltip` | Pure tooltips (no backdrop) |
+| **Toast** | 1080 | `.z-toast` | Toast notifications (highest) |
+
+### Component Examples
+
+**Toast Notification System:**
+```tsx
+// ToastContainer (web/src/components/ui/Toast.tsx)
+function ToastContainer({ toasts, removeToast }) {
+  return (
+    <div className="fixed top-4 right-4 z-toast flex flex-col gap-2 max-w-md">
+      {toasts.map((toast) => (
+        <ToastItem key={toast.id} toast={toast} onClose={() => removeToast(toast.id)} />
+      ))}
+    </div>
+  );
+}
+```
+
+**Modal Dialog:**
+```tsx
+// ImageModal (web/src/components/ui/ImageModal.tsx)
+function ImageModal({ isOpen }) {
+  if (!isOpen) return null;
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div className="fixed inset-0 z-modal-backdrop bg-black/90 backdrop-blur-sm" />
+      
+      {/* Modal content */}
+      <div className="fixed inset-0 z-modal flex items-center justify-center p-4">
+        <div className="relative max-w-5xl">
+          <img src="..." alt="..." />
+        </div>
+      </div>
+    </>
+  );
+}
+```
+
+**Sticky Header:**
+```tsx
+function Header() {
+  return (
+    <header className="sticky top-0 z-sticky bg-white border-b border-neutral-200">
+      <nav className="max-w-container mx-auto px-4">
+        {/* Navigation content */}
+      </nav>
+    </header>
+  );
+}
+```
+
+**Dropdown Menu:**
+```tsx
+function DropdownMenu() {
+  return (
+    <div className="relative">
+      <button>Menu</button>
+      <div className="absolute top-full left-0 z-dropdown bg-white shadow-lg rounded-lg">
+        {/* Dropdown items */}
+      </div>
+    </div>
+  );
+}
+```
+
+### When to Add New Z-Index Layers
+
+**Only add new layers if:**
+1. The component truly needs a unique stacking position
+2. No existing layer fits the use case
+3. You've documented the new layer in this guide
+
+**Process for adding new layers:**
+1. Update `globals.css` with new CSS variable in `@theme`
+2. Add utility class in `@layer utilities`
+3. Document in this guide
+4. Update [COLOR_SYSTEM.md](./COLOR_SYSTEM.md) if needed
+
+Example:
+```css
+/* globals.css - @theme inline */
+--z-my-new-layer: 1090;
+
+/* globals.css - @layer utilities */
+.z-my-new-layer {
+  z-index: var(--z-my-new-layer);
+}
+```
+
+### Debugging Z-Index Issues
+
+**Common Problems:**
+
+1. **Element not appearing above others**
+   - Check if parent has lower z-index (creates new stacking context)
+   - Verify you're using semantic utility class (`.z-toast`, not `.z-[1080]`)
+   - Ensure element has `position: relative/absolute/fixed` (z-index requires positioning)
+
+2. **Multiple layers overlapping incorrectly**
+   - Review hierarchy table above
+   - Check if backdrop and content use correct classes (`.z-modal-backdrop` + `.z-modal`)
+
+3. **Tooltip hidden behind modal**
+   - Tooltips (`.z-tooltip` = 1070) < Modals (`.z-modal` = 1050)
+   - Expected behavior: tooltips should appear inside modals, not above them
+
+**Debugging Tips:**
+```tsx
+// Temporarily add borders to see stacking
+<div className="z-modal border-4 border-red-500">
+  {/* If you see this border, z-index is working */}
+</div>
+
+// Check in DevTools
+// Elements → Computed → z-index (should show numeric value, not "auto")
+```
+
+### Migration Notes
+
+**If you see arbitrary z-index values:**
+```tsx
+// ❌ OLD (before Tailwind v4 migration)
+<div className="z-[9999]">
+<div className="z-50">
+<div style={{ zIndex: 1000 }}>
+
+// ✅ NEW (semantic utilities)
+<div className="z-toast">    /* Replace z-[9999] with highest layer */
+<div className="z-modal">    /* Replace z-50 with appropriate layer */
+<div className="z-dropdown"> /* Remove inline styles */
+```
+
+**Reference Table for Common Values:**
+- `z-[9999]` or `z-[99999]` → `.z-toast` (1080)
+- `z-50` → Check context: modal = `.z-modal`, dropdown = `.z-dropdown`
+- `z-40` → `.z-sticky` (1020)
+- `z-30` → `.z-fixed` (1030)
+- `z-20` → `.z-dropdown` (1000)
+- `z-10` → `.z-base` (0) or remove entirely
+
+### Benefits of This Approach
+
+✅ **Self-Documenting**: `.z-toast` tells you it's a toast notification  
+✅ **Maintainable**: Change `--z-toast` once, updates everywhere  
+✅ **Prevents Wars**: No more `z-[99999]` battles  
+✅ **Type-Safe**: Matches design system (like `bg-primary-500`)  
+✅ **Scalable**: Easy to add new layers when needed
+
+### Real-World Example: Toast Fix (Feb 10, 2026)
+
+**Problem**: Toast notifications stopped working after Lighthouse optimizations.
+
+**Root Cause**: CSS variables defined (`--z-toast: 1080`) but utility classes never created.
+
+**Solution**: Added semantic utilities in `globals.css`:
+```css
+@layer utilities {
+  .z-toast {
+    z-index: var(--z-toast);
+  }
+  /* ... other z-index utilities */
+}
+```
+
+**Result**: All components using `className="z-toast"` now have proper stacking order.
+
+**Lesson**: Always create utility classes for design tokens, not just the variables.
+
+---
+
 ## Anti-Patterns (Avoid)
 
 ### ❌ Using @apply in CSS

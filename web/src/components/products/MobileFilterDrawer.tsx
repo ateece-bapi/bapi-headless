@@ -100,7 +100,7 @@ export function MobileFilterDrawer({
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 z-[1000] transition-opacity duration-300"
+        className="fixed inset-0 bg-black/50 z-modal-backdrop transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -108,7 +108,7 @@ export function MobileFilterDrawer({
       {/* Drawer */}
       <div
         ref={drawerRef}
-        className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-[1001] max-h-[90vh] flex flex-col animate-slide-up"
+        className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-modal max-h-[90vh] flex flex-col animate-slide-up"
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-filters-title"

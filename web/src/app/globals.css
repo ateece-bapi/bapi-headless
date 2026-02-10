@@ -413,6 +413,14 @@ body {
     z-index: var(--z-toast);
   }
 
+  .z-chat-widget {
+    z-index: 1090; /* Chat widget - between modal and toast */
+  }
+
+  .z-skip-link {
+    z-index: 9999; /* Skip to content - always on top for accessibility */
+  }
+
   /* ============================================
      BAPI Official Button Styles (2026 Brand Guide)
      ============================================ */

@@ -222,7 +222,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
       
       {/* Lightbox Modal */}
       {isLightboxOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-95 z-[1090] flex items-center justify-center">
+        <div className="fixed inset-0 bg-black bg-opacity-95 z-modal flex items-center justify-center">
           {/* Close button */}
           <button
             onClick={closeLightbox}

@@ -375,18 +375,23 @@ export default async function ProductPage({ params }: { params: { slug: string }
       
       logger.debug('[ProductPage] Generating structured data', { siteUrl, productUrl });
       
+      // Get image from raw product data (before transformation)
+      const rawProduct = data.product as any;
+      const productImageUrl = rawProduct.image?.sourceUrl || '';
+      const productCategoryName = rawProduct.productCategories?.nodes?.[0]?.name || undefined;
+      
       const productSchema = generateProductSchema(
         {
           name: product.name || '',
           description: (product.shortDescription || product.description || '').replace(/<[^>]*>/g, '').trim(),
-          image: product.image?.sourceUrl || '',
+          image: productImageUrl,
           sku: (product as any).sku || '',
           partNumber: (product as any).partNumber || undefined,
           price: (product as any).price ? parseFloat((product as any).price) : undefined,
           regularPrice: (product as any).regularPrice ? parseFloat((product as any).regularPrice) : undefined,
           salePrice: (product as any).salePrice ? parseFloat((product as any).salePrice) : undefined,
           inStock: (product as any).stockStatus === 'IN_STOCK',
-          category: product.productCategories?.nodes?.[0]?.name || undefined,
+          category: productCategoryName,
         },
         productUrl,
         siteUrl
@@ -398,9 +403,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
         { name: 'Products', url: '/products' },
       ];
       
-      // Add category if available
-      if (product.productCategories?.nodes?.[0]) {
-        const category = product.productCategories.nodes[0];
+      // Add category if available (use raw product data before transformation)
+      if (rawProduct.productCategories?.nodes?.[0]) {
+        const category = rawProduct.productCategories.nodes[0];
         breadcrumbs.push({
           name: category.name || '',
           url: `/products/${category.slug}`

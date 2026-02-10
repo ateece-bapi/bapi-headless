@@ -105,6 +105,12 @@ const nextConfig: NextConfig = {
         destination: '/:locale/company/why-bapi',
         permanent: true,
       },
+      // Company news article slugs - redirect to main news page until article pages implemented
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/company/news/:slug*',
+        destination: '/:locale/company/news',
+        permanent: false, // Temporary redirect until article detail pages are implemented
+      },
     ];
   },
   

@@ -48,6 +48,9 @@ next-env.d.ts
 /public/uploads/
 
 *storybook.log
+
+# 404 checker results
+check-404s-results.txt
 storybook-static
 
 # Sentry Config File

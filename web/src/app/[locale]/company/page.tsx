@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Building2, Users, Target, Award, MapPin, Phone, Mail } from 'lucide-react';
 import PageContainer from '@/components/layout/PageContainer';
+import { GlobalPresence } from '@/components/company/GlobalPresence';
 import { generatePageMetadata } from '@/lib/metadata';
 
 /**
@@ -124,6 +125,9 @@ export default function CompanyPage() {
           </div>
         </PageContainer>
       </section>
+
+      {/* Global Presence */}
+      <GlobalPresence />
 
       {/* Location & Contact */}
       <section className="py-16 bg-neutral-50">

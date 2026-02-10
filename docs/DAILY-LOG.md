@@ -7,6 +7,140 @@
 
 ---
 
+## February 10, 2026 — Z-Index Utility Class Cleanup
+
+**Branch:** `audit/missing-utility-classes` (ready for PR)  
+**Status:** ✅ COMPLETE - All arbitrary z-index values replaced with semantic utilities
+
+**Achievement:** Completed comprehensive audit and cleanup of arbitrary z-index values throughout codebase. Replaced 7 instances with semantic utility classes, improving maintainability and preventing future z-index conflicts.
+
+### Implementation Summary
+
+**Files Changed:** 8 (1 CSS, 7 components)  
+**Changes:** 15 insertions, 7 deletions  
+**Build Status:** ✅ TypeScript compilation successful (14.7s)  
+**Commits:** 2 (audit doc + implementation)
+
+### New Z-Index Utilities Added
+
+```css
+.z-chat-widget {
+  z-index: 1090; /* Chat widget - between modal and toast */
+}
+
+.z-skip-link {
+  z-index: 9999; /* Skip to content - always on top for accessibility */
+}
+```
+
+### Components Updated
+
+| Component | Before | After | Z-Index Value |
+|-----------|--------|-------|---------------|
+| **ChatWidget.tsx** | `z-[1100]` | `.z-chat-widget` | 1090 |
+| **ReadingProgress.tsx** | `z-[60]` | `.z-sticky` | 1020 |
+| **ProductGallery.tsx** | `z-[1090]` | `.z-modal` | 1050 |
+| **ComparisonButton.tsx** | `z-[800]` | `.z-dropdown` | 1000 |
+| **MobileFilterDrawer.tsx** (backdrop) | `z-[1000]` | `.z-modal-backdrop` | 1040 |
+| **MobileFilterDrawer.tsx** (drawer) | `z-[1001]` | `.z-modal` | 1050 |
+| **Skip-to-content link** | `z-[9999]` | `.z-skip-link` | 9999 |
+
+### Context: Full Audit Results
+
+**Audit Document:** [UTILITY-CLASS-AUDIT-FEB10.md](./UTILITY-CLASS-AUDIT-FEB10.md)
+
+**Findings:**
+- ✅ All 9 CSS variables have corresponding utility classes
+- ✅ Shadow values are intentional BAPI brand colors (acceptable)
+- ✅ Background arbitrary values are component-specific (acceptable)
+- 🔧 7 arbitrary z-index values needed cleanup (now fixed)
+
+**No Additional Issues Found:**
+- Radial gradients in Hero: Component-specific design (keep as-is)
+- Brand colors in GlobalPresence: Semantic color coding (keep as-is)
+- Grid patterns: Some already extracted to `.bg-grid-pattern` utility
+
+### Benefits Delivered
+
+✅ **Consistency:** All z-index values now use semantic utilities  
+✅ **Maintainability:** Changes to z-index scale update all components automatically  
+✅ **Self-Documenting:** Class names clearly indicate stacking order  
+✅ **Conflict Prevention:** Reduces risk of z-index wars during development  
+✅ **Team Velocity:** New developers understand stacking from class names  
+✅ **Best Practices:** Follows Tailwind v4 and BAPI design system standards
+
+### Testing Checklist
+
+**Manual Verification Needed:**
+- [ ] ChatWidget opens correctly above other content
+- [ ] ReadingProgress visible on long articles (e.g., application notes)
+- [ ] ProductGallery modal displays above backdrop and other content
+- [ ] ComparisonButton doesn't conflict with dropdowns
+- [ ] MobileFilterDrawer backdrop and drawer stack correctly (mobile view)
+- [ ] Skip-to-content link appears on top when focused (Tab key)
+
+**Automated Verification:**
+- ✅ TypeScript compilation successful
+- ✅ No ESLint errors
+- ✅ Production build succeeds (608MB, 120+ routes)
+
+### Git Workflow
+
+**Commit 1: `2b46874` - Audit Documentation**
+- Created comprehensive audit document
+- Identified 7 z-index issues
+- Documented implementation plan
+- Files: 1 (docs/UTILITY-CLASS-AUDIT-FEB10.md), 331 insertions
+
+**Commit 2: `7a4e9a1` - Implementation**
+- Added 2 new z-index utilities to globals.css
+- Updated 7 components with semantic classes
+- All changes follow implementation plan exactly
+- Files: 7 changed, 15 insertions, 7 deletions
+
+**Push:** Successfully pushed to `origin/audit/missing-utility-classes`  
+**PR URL:** https://github.com/ateece-bapi/bapi-headless/pull/new/audit/missing-utility-classes
+
+### Related Work
+
+**Preceded by:** [Toast Z-Index Fix](https://github.com/ateece-bapi/bapi-headless/pull/new/fix/toast-z-index-utilities) (Feb 10)
+- Root cause: Missing `.z-toast` utility class after Tailwind v4 migration
+- Solution: Added 9 semantic z-index utilities to globals.css
+- Documentation: [Z-Index Best Practices](../web/TAILWIND_GUIDELINES.md#L180-L423)
+
+**Audit Scope Validation:**
+- ✅ Confirmed all CSS variables have utility classes
+- ✅ No other missing utilities discovered
+- ✅ Toast fix pattern applied consistently across codebase
+
+### Timeline
+
+**9:30 AM** - Toast notification fix merged to main (fix/toast-z-index-utilities)  
+**9:35 AM** - User requested full component audit for similar issues  
+**9:40 AM** - Branch created, comprehensive audit completed  
+**9:45 AM** - Implementation completed, build verified  
+**9:50 AM** - Changes committed and pushed to remote  
+**Total Time:** 20 minutes (10 min audit + 10 min implementation)
+
+### Next Steps
+
+**Immediate:**
+1. Merge PR after review
+2. Manual testing of all 6 affected components
+3. Delete branch after successful merge
+
+**Future Maintenance:**
+- Monitor for new arbitrary z-index values in PRs
+- Update [TAILWIND_GUIDELINES.md](../web/TAILWIND_GUIDELINES.md) if new layers needed
+- Consider adding ESLint rule to prevent arbitrary z-index values
+
+**Phase 1 Priorities (Still on Track):**
+- Translation services: Crowdin integration
+- Live chat: Email notifications ✅ (completed Feb 9)
+- User/Customer migration: 5,438 WordPress users
+
+---
+
 ## February 10, 2026 — Global Presence World Map Implementation
 
 **Branch:** `feat/global-presence-map` (merged to main, deleted)  

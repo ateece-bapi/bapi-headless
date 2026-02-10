@@ -38,7 +38,6 @@ import {
   CategoryPage
 } from '@/components/products';
 import { RelatedProductsAsync } from '@/components/products/RelatedProductsAsync';
-import dynamic from 'next/dynamic';
 import { PerformanceTimer } from '@/lib/monitoring/performance';
 import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import { generateProductMetadata, generateCategoryMetadata } from '@/lib/metadata';

@@ -1,5 +1,31 @@
 # BAPI Headless - Project Roadmap & TODO
 
+## 🧹 Code Cleanup Tasks
+
+### Product Page Debug Logging Cleanup (Feb 10, 2026)
+**Status:** TODO
+**Priority:** Low
+**Context:** Added comprehensive debug logging to track down DYNAMIC_SERVER_USAGE error in production. Now that the issue is resolved, the granular logging can be reduced.
+
+**Files to Clean:**
+- `web/src/app/[locale]/product/[slug]/page.tsx`
+  - Remove `[ProductPage] START`, `[ProductPage] GraphQL endpoint verified`, etc.
+  - Remove `[generateMetadata] START`, `[generateMetadata] Params resolved`, etc.
+  - Keep essential error logging and major lifecycle events
+
+**Reason to Keep for Now:**
+- Helpful for production monitoring
+- Can identify performance bottlenecks
+- Useful for debugging similar issues
+- Low impact on performance/Sentry quota
+
+**When to Remove:**
+- After a few weeks of stable production operation
+- If Sentry logs become too noisy
+- When confidence is high that DYNAMIC_SERVER_USAGE issues won't recur
+
+---
+
 ## ✅ CSS Best Practices & Homepage Hero Image Fix (Feb 6, 2026)
 **Status:** COMPLETE & PUSHED (feat/css-best-practices-cleanup)
 **Summary:**

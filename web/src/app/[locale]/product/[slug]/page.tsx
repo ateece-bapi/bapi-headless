@@ -276,7 +276,10 @@ export default async function ProductPage({ params }: { params: { slug: string }
         onSale: (product as any).onSale || false,
         stockStatus: (product as any).stockStatus || null,
         sku: (product as any).sku || null,
-        image: product.image || null,
+        image: product.image ? {
+          sourceUrl: product.image.sourceUrl || '',
+          altText: product.image.altText || ''
+        } : null,
         gallery: ((product as any).galleryImages?.nodes || []).map((img: any) => ({
           sourceUrl: img.sourceUrl,
           altText: img.altText
@@ -302,7 +305,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 url: video.url || ''
               }))
           ),
-        productCategories: product.productCategories?.nodes || [],
+        productCategories: (product.productCategories?.nodes || []).map((cat: any) => ({
+          id: cat.id,
+          name: cat.name || '',
+          slug: cat.slug || ''
+        })),
         tags: [], // Will be loaded deferred
         multiplierGroups: [], // Will be loaded deferred
         attributes: variationData?.__typename === 'VariableProduct' ? 

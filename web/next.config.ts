@@ -89,6 +89,22 @@ const nextConfig: NextConfig = {
         destination: '/:locale/request-quote',
         permanent: true,
       },
+      // Locale routing - legacy URLs without locale prefix
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/categories',
+        destination: '/:locale/products',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/support/contact',
+        destination: '/:locale/contact',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/company/about',
+        destination: '/:locale/company/why-bapi',
+        permanent: true,
+      },
     ];
   },
   

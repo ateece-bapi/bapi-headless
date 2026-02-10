@@ -42,77 +42,169 @@ const nextConfig: NextConfig = {
   // Redirects for legacy/misplaced URLs
   async redirects() {
     return [
+      {
+        source: '/company/contact',
+        destination: '/en/company/contact-us',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/company/contact',
+        destination: '/:locale/company/contact-us',
+        permanent: true,
+      },
+      {
+        source: '/sign-up',
+        destination: '/en/sign-up',
+        permanent: false,
+      },
       // Product navigation links that should redirect to proper sections
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/technical-documentation',
+        source: '/products/technical-documentation',
+        destination: '/en/resources',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/technical-documentation',
         destination: '/:locale/resources',
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/tools-guides',
+        source: '/products/tools-guides',
+        destination: '/en/resources/selector',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/tools-guides',
         destination: '/:locale/resources/selector',
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/learning-center',
+        source: '/products/learning-center',
+        destination: '/en/resources',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/learning-center',
         destination: '/:locale/resources',
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/get-help',
+        source: '/products/get-help',
+        destination: '/en/support',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/get-help',
         destination: '/:locale/support',
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/for-existing-customers',
+        source: '/products/for-existing-customers',
+        destination: '/en/support',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/for-existing-customers',
         destination: '/:locale/support',
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/about-bapi',
+        source: '/products/about-bapi',
+        destination: '/en/company',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/about-bapi',
         destination: '/:locale/company',
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/get-in-touch',
+        source: '/products/get-in-touch',
+        destination: '/en/contact',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/get-in-touch',
         destination: '/:locale/contact',
         permanent: true,
       },
       // Resources routes consolidation
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/resources/application-notes',
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/resources/application-notes',
         destination: '/:locale/application-notes',
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/en/quote',
+        source: '/resources/application-notes',
+        destination: '/en/application-notes',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/quote',
         destination: '/:locale/request-quote',
+        permanent: true,
+      },
+      {
+        source: '/quote',
+        destination: '/en/request-quote',
         permanent: true,
       },
       // Locale routing - legacy URLs without locale prefix
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/products/categories',
+        source: '/products/categories',
+        destination: '/en/products',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/products/categories',
         destination: '/:locale/products',
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/support/contact',
+        source: '/support/contact',
+        destination: '/en/contact',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/support/contact',
         destination: '/:locale/contact',
         permanent: true,
       },
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/company/about',
+        source: '/company/about',
+        destination: '/en/company/why-bapi',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/company/about',
         destination: '/:locale/company/why-bapi',
         permanent: true,
-      },      {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/contact-sales',
+      },
+      {
+        source: '/contact-sales',
+        destination: '/en/contact',
+        permanent: true,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/contact-sales',
         destination: '/:locale/contact',
         permanent: true,
-      },      // Company news article slugs - redirect to main news page until article pages implemented
+      },
+      // Company news article slugs - redirect to main news page
       {
-        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)?/company/news/:slug*',
+        source: '/company/news',
+        destination: '/en/company/news',
+        permanent: true,
+      },
+      {
+        source: '/company/news/:slug+',
+        destination: '/en/company/news',
+        permanent: false,
+      },
+      {
+        source: '/:locale(en|de|fr|es|ja|zh|vi|ar)/company/news/:slug+',
         destination: '/:locale/company/news',
-        permanent: false, // Temporary redirect until article detail pages are implemented
+        permanent: false,
       },
     ];
   },

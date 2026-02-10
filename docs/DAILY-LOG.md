@@ -2,8 +2,114 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** February 7, 2026  
-**Status:** Phase 1 Development - April 10, 2026 Go-Live (62 days remaining)
+**Updated:** February 10, 2026  
+**Status:** Phase 1 Development - April 10, 2026 Go-Live (61 days remaining)
+
+---
+
+## February 10, 2026 — Production Bug Fix: Product Page 500 Errors
+
+**Branch:** `fix/product-page-500-error` (merged to main, deleted)  
+**Status:** ✅ COMPLETE - Production 500 errors resolved, pages working correctly
+
+**Critical Fix:** Resolved production 500 errors on product and category pages caused by `DYNAMIC_SERVER_USAGE` conflict between `next-intl`'s locale detection and static page generation. Product pages now render correctly with ISR caching while maintaining performance.
+
+### Problem Investigation
+- **Issue:** Product pages worked on localhost but returned 500 errors in production/preview
+- **URL:** `/en/product/pendant-temperature-and-humidity-sensor` and other product pages
+- **Initial Clues:** Sentry showed obfuscated error message with `DYNAMIC_SERVER_USAGE` digest
+- **Debugging Challenge:** Next.js hides actual error messages in production builds for security
+
+### Root Cause Analysis
+- **Root Cause:** `next-intl`'s `getLocale()` in root layout requires request context (cookies/headers)
+- **Conflict:** `generateStaticParams` attempted build-time static generation without request context
+- **Result:** Missing cookies/headers at build time triggered `DYNAMIC_SERVER_USAGE` error
+- **Why Localhost Worked:** Dev server always has request context; production builds optimize with static generation
+
+### Solution Implementation
+
+**Phase 1: Enhanced Error Handling & Logging**
+- Added comprehensive try-catch blocks throughout page lifecycle
+- Enhanced error logging with stack traces and context
+- Files: `web/src/app/[locale]/product/[slug]/page.tsx`
+- Result: Better visibility but error still obfuscated in production
+
+**Phase 2: GraphQL Serialization Fixes**
+- Sanitized `productCategories` and `image` objects
+- Removed GraphQL `__typename` metadata for serialization
+- Fixed property access after object transformation
+- Result: Improved data handling but 500 error persisted
+
+**Phase 3: Error Boundary Creation**
+- Created client component error boundary at `web/src/app/[locale]/product/[slug]/error.tsx`
+- Logs full error details: message, digest, stack, cause
+- Shows developer-friendly errors in development
+- User-friendly error page in production with retry functionality
+- Result: Enhanced error visibility but server-side errors occur before boundary
+
+**Phase 4: Granular Lifecycle Logging**
+- Added detailed logging to track execution flow
+- `[generateMetadata]` and `[ProductPage]` lifecycle tracking
+- Logs before every major operation to pinpoint failure location
+- Result: Revealed no logs appearing (error happens before page code runs)
+
+**Phase 5: Root Cause Fix**
+- **Solution:** Removed `generateStaticParams` function (no build-time generation)
+- Added `export const dynamic = 'force-dynamic'` to ensure request context
+- Kept `revalidate: 3600` for ISR caching (1-hour cache)
+- Fixed conflicting `import dynamic from 'next/dynamic'` (removed unused import)
+- **Result:** ✅ Pages working in production with full request context
+
+### Technical Details
+
+**Files Changed:**
+- `web/src/app/[locale]/product/[slug]/page.tsx` (373 insertions, 141 deletions)
+  - Removed static generation at build time
+  - Forced dynamic rendering for request context
+  - Enhanced error handling and logging
+  - Sanitized GraphQL objects
+- `web/src/app/[locale]/product/[slug]/error.tsx` (93 lines, NEW)
+  - Client component error boundary
+  - Comprehensive error logging to Sentry
+  - User-friendly error UI
+- `docs/TODO.md` (26 insertions)
+  - Documented debug logging cleanup task for future
+
+**Performance Impact:**
+- First request: Dynamic render (~100-300ms) then cached
+- Subsequent requests: Instant (served from ISR cache)
+- Cache duration: 1 hour (3600s)
+- Expected Lighthouse impact: Minimal (<5 points), acceptable trade-off for working pages
+- Real users: No perceptible difference (warm cache)
+
+### Testing & Verification
+- ✅ Product pages loading correctly in production
+- ✅ Category pages working (same route, same fix applies)
+- ✅ Multiple products tested and verified
+- ✅ Error logging active for production monitoring
+- ✅ No more 500 errors in Sentry
+
+### Commits (8 total)
+1. `e663f0e` - Comprehensive error handling & logging
+2. `069cabc` - GraphQL object sanitization  
+3. `f576f1d` - Fixed property access after sanitization
+4. `84d515f` - Error boundary with digest logging
+5. `e5408c2` - Granular lifecycle logging
+6. `e7718af` - **FIX: Force dynamic rendering** (resolves DYNAMIC_SERVER_USAGE)
+7. `841f964` - Removed conflicting dynamic import
+8. `e6306eb` - TODO documentation for logging cleanup
+
+### Lessons Learned
+- Next.js production builds hide error messages by design (security feature)
+- `next-intl` locale detection requires request context (incompatible with SSG)
+- Error boundaries don't catch server-side rendering errors before client hydration
+- Granular logging is essential for debugging production-only issues
+- ISR (`force-dynamic` + `revalidate`) balances performance with dynamic requirements
+
+### Future Maintenance
+- **TODO:** Clean up granular debug logging after stable production period
+- **Monitor:** Sentry logs for performance and error patterns
+- **Consider:** Pre-warming cache after deployments for optimal first-visit performance
 
 ---
 
@@ -14,19 +120,19 @@
 
 **Critical Achievement:** Achieved world-class performance ratings through comprehensive optimization—desktop 98/100 (top 2% globally), mobile 94/100 (top 6% globally). Speed Index breakthrough: 7.8s → 1.8s (77% improvement, 100/100 score). SEO improved from 83 → 92/100 (+9 points) on both platforms.
 
-### Morning: Post-Quick-Wins Testing (9:10 AM - 9:21 AM)
+### Morning: Post-Quick-Wins Testing
 - Merged `feat/performance-quick-wins` to main
 - Desktop Lighthouse: 90/100 (excellent)
 - Mobile Lighthouse: 91/100 (+4 from 87 baseline)
 - SEO dropped: 83/100 (3 issues identified)
 
-### Decision: Push for World-Class (9:21 AM)
+### Decision: Push for World-Class
 **User directive:** "Let get these numbers up and let do Option B and C. We already here and might as well finish it up get the world class scores we want!"
 - Option B: Fix SEO (83 → target 92+)
 - Option C: Optimize Speed Index (7.8s → target <3.4s)
 - Created branch: `feat/lighthouse-world-class`
 
-### Implementation Phase (9:21 AM - 10:30 AM)
+### Implementation Phase
 
 **Step 1: SEO Fix - Link Accessibility**
 - Added aria-label to "Read More" links with article titles
@@ -65,7 +171,7 @@
 - Routes: 120+ successfully generated
 - Homepage: ● SSG with 1h revalidation (confirmed)
 
-### Git Workflow (10:30 AM)
+### Git Workflow
 - Commit: `0318e7f - feat: world-class Lighthouse optimizations for 91→95+ score`
 - Files changed: 7 (4 source files, 3 JSON baselines)
 - Diff: +44,651 insertions, -6 deletions (mostly JSON baseline data)
@@ -74,9 +180,9 @@
 - Merged to main
 - Vercel auto-deployment triggered
 
-### Production Testing (10:44 AM - 10:49 AM)
+### Production Testing
 
-**Mobile Results (10:44 AM) - WORLD-CLASS ⭐:**
+**Mobile Results - WORLD-CLASS ⭐:**
 | Category | Score | Change |
 |----------|-------|--------|
 | **Performance** | **94/100** | **+3** (was 91) |
@@ -92,7 +198,7 @@
 - **CLS:** 0.031 (100/100) - Perfect maintenance
 - **TTFB:** 60ms (100/100) - Redis cache excellent
 
-**Desktop Results (10:49 AM) - OUTSTANDING ⭐:**
+**Desktop Results - OUTSTANDING ⭐:**
 | Category | Score | Change |
 |----------|-------|--------|
 | **Performance** | **98/100** | **+8** (was 90) |
@@ -190,7 +296,7 @@
 
 **Critical Achievement:** Implemented complete AWS SES email notification system for chat handoff feature. Sales team now automatically notified when customers request human assistance. Successfully tested with Gmail delivery, featuring professional HTML/text templates with urgency levels, customer information, and full chat transcripts.
 
-### Evening: Email Notification Implementation (10:50 PM - 11:30 PM)
+### Evening: Email Notification Implementation
 
 **Problem Statement:**
 - Chat handoff API had TODO placeholder for email notifications (lines 77-80)
@@ -264,32 +370,32 @@
   - Validates full email pipeline
   - Test recipient override for Gmail delivery verification
 
-### Implementation Timeline (10:50 PM - 11:30 PM)
+### Implementation Timeline
 
-**10:50 PM - Initial Setup:**
+**Initial Setup:**
 - Environment variables verified (AWS SES credentials from production)
 - Sender email configured: no-reply@bapisensors.com (verified domain)
 - Recipients verified: bapihvac.com and bapisensors.com domains
 
-**11:00 PM - Email Templates Created:**
+**Email Templates Created:**
 - Generated chatHandoff.ts with full HTML/text templates
 - Created sendChatHandoffNotification utility wrapper
 - Set up library index exports
 
-**11:10 PM - Integration Issues:**
+**Integration Issues:**
 - ❌ Initial error: `chatTranscript.map()` undefined
 - Root cause: Parameter name mismatch (chatMessages vs chatTranscript)
 - ❌ Second error: Still undefined
 - Root cause: `sendChatHandoffNotification` using `fetch('/api/send-email')` from server-side
 - Problem: Relative URLs don't work in Node.js server context
 
-**11:15 PM - Architectural Refactor:**
+**Architectural Refactor:**
 - ✅ Created shared `sendEmail()` function for direct SES calls
 - ✅ Updated `sendChatHandoffNotification` to use sendEmail() directly
 - ✅ Fixed parameter naming inconsistencies
 - ✅ Updated API endpoint to use shared function
 
-**11:20 PM - Testing & Validation:**
+**Testing & Validation:**
 - ✅ Dev server started successfully
 - ✅ Test script executed: handoff-1770678911752-1bsjpuhnd
 - ✅ Email sent to sales@bapihvac.com (MessageId: 010f019c44b00452...)
@@ -297,7 +403,7 @@
 - ✅ Added _testRecipient parameter to handoff API
 - ✅ Final test: Email delivered to andrewteece@gmail.com successfully! 🎉
 
-**11:30 PM - Git Workflow:**
+**Git Workflow:**
 - ✅ Staged all changes (7 files: 4 new, 3 modified)
 - ✅ Commit: fd6c871 - "feat(phase1): Complete chat handoff email notification system"
 - ✅ Pushed to origin/phase1-email-notification

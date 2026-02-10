@@ -370,6 +370,50 @@ body {
   }
 
   /* ============================================
+     Z-Index Utilities - Stacking order
+     ============================================ */
+  
+  /**
+   * Semantic z-index utilities for consistent stacking
+   * Based on --z-* CSS variables defined in @theme
+   */
+  .z-base {
+    z-index: var(--z-base);
+  }
+  
+  .z-dropdown {
+    z-index: var(--z-dropdown);
+  }
+  
+  .z-sticky {
+    z-index: var(--z-sticky);
+  }
+  
+  .z-fixed {
+    z-index: var(--z-fixed);
+  }
+  
+  .z-modal-backdrop {
+    z-index: var(--z-modal-backdrop);
+  }
+  
+  .z-modal {
+    z-index: var(--z-modal);
+  }
+  
+  .z-popover {
+    z-index: var(--z-popover);
+  }
+  
+  .z-tooltip {
+    z-index: var(--z-tooltip);
+  }
+  
+  .z-toast {
+    z-index: var(--z-toast);
+  }
+
+  /* ============================================
      BAPI Official Button Styles (2026 Brand Guide)
      ============================================ */
   

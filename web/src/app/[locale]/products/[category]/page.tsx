@@ -95,7 +95,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   );
 
   const products = productsData.products?.nodes || [];
-  const productCount = productsData.products?.pageInfo.total || 0;
+  // Use category count if available, otherwise products length
+  const productCount = categoryInfo.count ?? products.length;
 
   return (
     <main className="min-h-screen bg-neutral-50">
@@ -212,16 +213,20 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               )}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {products.map((product) => (
+              {products.map((product) => {
+                // Type guard for products with image property
+                const hasImage = 'image' in product && product.image?.sourceUrl;
+                
+                return (
                 <Link
                   key={product.id}
                   href={`/${locale}/products/${product.slug}`}
                   className="group bg-neutral-50 rounded-xl overflow-hidden border border-neutral-200 hover:border-primary-500 hover:shadow-lg transition-all duration-300"
                 >
-                  {product.image?.sourceUrl && (
+                  {hasImage && (
                     <div className="relative w-full h-48 bg-white">
                       <Image
-                        src={product.image.sourceUrl}
+                        src={product.image!.sourceUrl!}
                         alt={product.name || 'Product image'}
                         fill
                         className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
@@ -232,7 +237,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     <h3 className="font-bold text-neutral-900 mb-1 group-hover:text-primary-600 transition-colors line-clamp-2">
                       {product.name}
                     </h3>
-                    {product.shortDescription && (
+                    {'shortDescription' in product && product.shortDescription && (
                       <p
                         className="text-sm text-neutral-600 line-clamp-2"
                         dangerouslySetInnerHTML={{
@@ -242,7 +247,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     )}
                   </div>
                 </Link>
-              ))}
+              )})}
             </div>
           </div>
         </section>

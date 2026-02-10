@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Hero from '@/components/Hero';
+import { GlobalPresence } from '@/components/company/GlobalPresence';
 import { getPosts } from '@/lib/wordpress';
 import { locales } from '@/i18n';
 import { 
@@ -337,6 +338,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* Global Presence Map */}
+      <GlobalPresence />
 
       {/* Latest News Section */}
       <section className="bg-white py-12 lg:py-16">

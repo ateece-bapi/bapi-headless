@@ -35,7 +35,7 @@ const getFooterSections = (t: any) => [
     links: [
       { labelKey: 'sections.resources.links.datasheets' as const, href: '/resources/datasheets' },
       { labelKey: 'sections.resources.links.installation' as const, href: '/resources/installation' },
-      { labelKey: 'sections.resources.links.applicationNotes' as const, href: '/resources/application-notes' },
+      { labelKey: 'sections.resources.links.applicationNotes' as const, href: '/application-notes' },
       { labelKey: 'sections.resources.links.videos' as const, href: '/resources/videos' },
       { labelKey: 'sections.resources.links.caseStudies' as const, href: '/resources/case-studies' },
     ],

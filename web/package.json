@@ -22,7 +22,8 @@
     "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",
     "lighthouse": "lhci autorun --config=lighthouserc.json",
-    "lighthouse:build": "pnpm run build && lhci autorun --config=lighthouserc.json"
+    "lighthouse:build": "pnpm run build && lhci autorun --config=lighthouserc.json",
+    "check:404": "node scripts/check-404s.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",

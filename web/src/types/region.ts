@@ -4,7 +4,7 @@
 
 export type RegionCode = 'us' | 'eu' | 'asia' | 'mena';
 export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED' | 'VND';
-export type LanguageCode = 'en' | 'de' | 'fr' | 'es' | 'ja' | 'zh' | 'vi' | 'ar';
+export type LanguageCode = 'en' | 'de' | 'fr' | 'es' | 'ja' | 'zh' | 'vi' | 'ar' | 'th' | 'pl';
 
 export interface Region {
   code: RegionCode;
@@ -190,5 +190,21 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     flag: '🇸🇦',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '12h',
+  },
+  th: {
+    code: 'th',
+    name: 'Thai',
+    nativeName: 'ไทย',
+    flag: '🇹🇭',
+    dateFormat: 'DD/MM/YYYY',
+    timeFormat: '24h',
+  },
+  pl: {
+    code: 'pl',
+    name: 'Polish',
+    nativeName: 'Polski',
+    flag: '🇵🇱',
+    dateFormat: 'DD.MM.YYYY',
+    timeFormat: '24h',
   },
 };

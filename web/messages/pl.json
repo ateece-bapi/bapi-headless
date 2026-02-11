@@ -121,71 +121,93 @@
     },
     "support": {
       "label": "Wsparcie",
-      "technical": {
-        "title": "Wsparcie techniczne",
-        "phone": "Wsparcie telefoniczne",
-        "phoneDesc": "Porozmawiaj z naszymi inżynierami",
-        "email": "Wsparcie e-mailowe",
-        "emailDesc": "Uzyskaj szczegółową pomoc",
-        "chat": "Czat na żywo",
-        "chatDesc": "Natychmiastowe odpowiedzi"
+      "getHelp": {
+        "title": "Uzyskaj pomoc",
+        "contactSupport": "Skontaktuj się z pomocą techniczną",
+        "contactSupportDesc": "Porozmawiaj z naszymi inżynierami",
+        "rmaRequest": "Wniosek RMA",
+        "rmaRequestDesc": "Autoryzacja zwrotu towaru",
+        "whereToBuy": "Gdzie kupić",
+        "whereToBuyDesc": "Znajdź dystrybutora w pobliżu"
       },
-      "resources": {
-        "title": "Zasoby",
-        "datasheets": "Karty katalogowe",
-        "datasheetsDesc": "Specyfikacje techniczne",
-        "installGuides": "Instrukcje instalacji",
-        "installGuidesDesc": "Instrukcje krok po kroku",
-        "appNotes": "Notatki aplikacyjne",
-        "appNotesDesc": "Wskazówki projektowe",
-        "videos": "Biblioteka wideo",
-        "videosDesc": "Filmy instruktażowe"
+      "existingCustomers": {
+        "title": "Dla istniejących klientów",
+        "myAccount": "Moje konto",
+        "myAccountDesc": "Wyświetl zamówienia i oferty",
+        "orderStatus": "Status zamówienia",
+        "orderStatusDesc": "Śledź swoje przesyłki",
+        "requestQuote": "Poproś o wycenę",
+        "requestQuoteDesc": "Uzyskaj cenę dla swojego projektu"
       },
-      "tools": {
-        "title": "Narzędzia i pliki do pobrania",
-        "selector": "Selektor produktów",
-        "selectorDesc": "Znajdź odpowiedni czujnik",
-        "crossRef": "Odniesienie krzyżowe",
-        "crossRefDesc": "Znajdź odpowiedniki BAPI",
-        "software": "Oprogramowanie konfiguracyjne",
-        "softwareDesc": "Pobierz narzędzia instalacyjne"
+      "featured": {
+        "title": "Potrzebujesz pomocy technicznej?",
+        "description": "Nasz doświadczony zespół inżynierów jest gotowy pomóc w wyborze produktu, specyfikacjach i rozwiązywaniu problemów.",
+        "cta": "Skontaktuj się z pomocą techniczną"
       }
     },
     "company": {
       "label": "Firma",
-      "about": {
-        "title": "O BAPI",
-        "mission": "Misja i wartości",
-        "missionDesc": "Co nami kieruje",
+      "aboutBapi": {
+        "title": "O firmie BAPI",
         "whyBapi": "Dlaczego BAPI",
-        "whyBapiDesc": "Dlaczego wybrać BAPI",
-        "history": "Nasza historia",
-        "historyDesc": "Ponad 30 lat innowacji",
-        "team": "Zespół kierowniczy",
-        "teamDesc": "Poznaj naszych liderów"
+        "whyBapiDesc": "Dlaczego wybrać czujniki BAPI",
+        "missionValues": "Misja i wartości",
+        "missionValuesDesc": "Co nami kieruje",
+        "news": "Aktualności i wydarzenia",
+        "newsDesc": "Najnowsze ogłoszenia",
+        "careers": "Kariera",
+        "careersDesc": "Dołącz do naszego zespołu"
       },
-      "news": {
-        "title": "Aktualności i wydarzenia",
-        "pressReleases": "Komunikaty prasowe",
-        "pressReleasesDesc": "Najnowsze ogłoszenia",
-        "events": "Targi branżowe",
-        "eventsDesc": "Spotkaj się z nami osobiście",
-        "blog": "Blog techniczny",
-        "blogDesc": "Spostrzeżenia branżowe"
-      },
-      "careers": {
-        "title": "Kariera",
-        "openings": "Otwarte stanowiska",
-        "openingsDesc": "Dołącz do naszego zespołu",
-        "culture": "Kultura firmy",
-        "cultureDesc": "Życie w BAPI"
-      },
-      "contact": {
+      "getInTouch": {
         "title": "Skontaktuj się z nami",
-        "sales": "Zespół sprzedaży",
-        "salesDesc": "Porozmawiaj z przedstawicielem",
-        "locations": "Lokalizacje",
-        "locationsDesc": "Znajdź nas w pobliżu"
+        "contactSales": "Skontaktuj się z działem sprzedaży",
+        "contactSalesDesc": "Porozmawiaj z przedstawicielem",
+        "whereToBuy": "Gdzie kupić",
+        "whereToBuyDesc": "Znajdź dystrybutora",
+        "requestQuote": "Poproś o wycenę",
+        "requestQuoteDesc": "Uzyskaj cenę"
+      },
+      "featured": {
+        "title": "Gotowy, aby przekształcić swoją automatykę budynkową?",
+        "description": "Skontaktuj się z naszym zespołem, aby omówić wymagania Twojego projektu i odkryć idealne rozwiązanie czujnikowe.",
+        "cta": "Skontaktuj się z naszym zespołem"
+      }
+    },
+    "resources": {
+      "label": "Zasoby",
+      "technicalDocumentation": {
+        "title": "Dokumentacja techniczna",
+        "applicationNotes": "Notatki aplikacyjne",
+        "applicationNotesDesc": "Wskazówki projektowe i najlepsze praktyki",
+        "serviceBulletins": "Biuletyny serwisowe",
+        "serviceBulletinsDesc": "Aktualizacje i ogłoszenia produktowe",
+        "datasheets": "Karty katalogowe",
+        "datasheetsDesc": "Pełne specyfikacje produktów",
+        "sensorsOverview": "Przegląd czujników",
+        "sensorsOverviewDesc": "Porównanie specyfikacji czujników"
+      },
+      "toolsGuides": {
+        "title": "Narzędzia i przewodniki",
+        "catalog": "Katalog produktów",
+        "catalogDesc": "Pełny katalog z cenami",
+        "siteVerification": "Narzędzie weryfikacji miejsca",
+        "siteVerificationDesc": "Testowanie siły sygnału bezprzewodowego",
+        "productSelector": "Selektor produktów",
+        "productSelectorDesc": "Znajdź odpowiedni czujnik"
+      },
+      "learningCenter": {
+        "title": "Centrum edukacyjne",
+        "videos": "Biblioteka wideo",
+        "videosDesc": "Filmy instruktażowe i samouczki",
+        "caseStudies": "Studia przypadków",
+        "caseStudiesDesc": "Prawdziwe historie sukcesów",
+        "webinars": "Webinary",
+        "webinarsDesc": "Sesje szkoleniowe na żywo"
+      },
+      "featured": {
+        "title": "Potrzebujesz dokumentacji technicznej?",
+        "description": "Uzyskaj dostęp do naszej pełnej biblioteki notatek aplikacyjnych, kart katalogowych i zasobów technicznych, aby pomóc Ci zaprojektować i określić idealne rozwiązanie.",
+        "cta": "Przeglądaj zasoby"
       }
     }
   },

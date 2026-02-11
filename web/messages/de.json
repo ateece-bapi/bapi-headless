@@ -34,5 +34,98 @@
     "cart": "Warenkorb",
     "account": "Konto",
     "signIn": "Benutzer Anmelden"
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "Ressourcen",
+      "technicalDocumentation": {
+        "title": "Technische Dokumentation",
+        "applicationNotes": "Anwendungshinweise",
+        "applicationNotesDesc": "Auslegungsrichtlinien & bewährte Verfahren",
+        "serviceBulletins": "Servicemitteilungen",
+        "serviceBulletinsDesc": "Produktaktualisierungen & Ankündigungen",
+        "datasheets": "Datenblätter",
+        "datasheetsDesc": "Vollständige Produktspezifikationen",
+        "sensorsOverview": "Sensorübersicht",
+        "sensorsOverviewDesc": "Vergleichen Sie Sensorspezifikationen"
+      },
+      "toolsGuides": {
+        "title": "Tools & Anleitungen",
+        "catalog": "Produktkatalog",
+        "catalogDesc": "Vollständiger Katalog mit Preisen",
+        "siteVerification": "Standortverifizierungstool",
+        "siteVerificationDesc": "Prüfung der Funksignalstärke",
+        "productSelector": "Produktauswahl",
+        "productSelectorDesc": "Finden Sie den richtigen Sensor"
+      },
+      "learningCenter": {
+        "title": "Lernzentrum",
+        "videos": "Videobibliothek",
+        "videosDesc": "Anleitungsvideos & Tutorials",
+        "caseStudies": "Fallstudien",
+        "caseStudiesDesc": "Praxiserfolgsgeschichten",
+        "webinars": "Webinare",
+        "webinarsDesc": "Live-Schulungen"
+      },
+      "featured": {
+        "title": "Benötigen Sie technische Dokumentation?",
+        "description": "Greifen Sie auf unsere vollständige Bibliothek an Anwendungshinweisen, Datenblättern und technischen Ressourcen zu, um die perfekte Lösung zu entwerfen und zu spezifizieren.",
+        "cta": "Durchsuchen Sie die Ressourcen"
+      }
+    },
+    "support": {
+      "label": "Hilfe erhalten",
+      "getHelp": {
+        "title": "Hilfe erhalten",
+        "contactSupport": "Kontaktieren Sie den Support",
+        "contactSupportDesc": "Sprechen Sie mit unseren Ingenieuren",
+        "rmaRequest": "RMA-Anfrage",
+        "rmaRequestDesc": "Rückgabeberechtigungsanfrage",
+        "whereToBuy": "Wo kaufen",
+        "whereToBuyDesc": "Finden Sie einen Händler in Ihrer Nähe"
+      },
+      "existingCustomers": {
+        "title": "Für bestehende Kunden",
+        "myAccount": "Mein Konto",
+        "myAccountDesc": "Zeigen Sie Bestellungen und Angebote an",
+        "orderStatus": "Auftragsstatus",
+        "orderStatusDesc": "Verfolgen Sie Ihre Sendungen",
+        "requestQuote": "Angebot anfordern",
+        "requestQuoteDesc": "Holen Sie sich Preise für Ihr Projekt"
+      },
+      "featured": {
+        "title": "Benötigen Sie technische Unterstützung?",
+        "description": "Unser erfahrenes Ingenieurs-Team ist bereit, Ihnen bei der Produktauswahl, Spezifikationen und Fehlerbehebung zu helfen.",
+        "cta": "Kontaktieren Sie den Support"
+      }
+    },
+    "company": {
+      "label": "Über BAPI",
+      "aboutBapi": {
+        "title": "Über BAPI",
+        "whyBapi": "Warum BAPI",
+        "whyBapiDesc": "Warum BAPI-Sensoren wählen",
+        "missionValues": "Mission & Werte",
+        "missionValuesDesc": "Was uns antreibt",
+        "news": "Nachrichten & Veranstaltungen",
+        "newsDesc": "Neueste Ankündigungen",
+        "careers": "Karriere",
+        "careersDesc": "Treten Sie unserem Team bei"
+      },
+      "getInTouch": {
+        "title": "Kontaktieren Sie uns",
+        "contactSales": "Kontaktieren Sie den Vertrieb",
+        "contactSalesDesc": "Sprechen Sie mit einem Vertreter",
+        "whereToBuy": "Wo kaufen",
+        "whereToBuyDesc": "Finden Sie einen Händler",
+        "requestQuote": "Fordern Sie ein Angebot an",
+        "requestQuoteDesc": "Erhalten Sie Preise"
+      },
+      "featured": {
+        "title": "Bereit, Ihre Gebäudeautomation zu transformieren?",
+        "description": "Sprechen Sie mit unserem Team, um Ihre Projektanforderungen zu besprechen und die perfekte Sensorlösung zu finden.",
+        "cta": "Kontaktieren Sie unser Team"
+      }
+    }
   }
 }

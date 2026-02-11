@@ -35,5 +35,98 @@
     "eu": "ヨーロッパ",
     "asia": "アジア太平洋",
     "mena": "中東"
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "リソース",
+      "technicalDocumentation": {
+        "title": "テクニカルドキュメンテーション",
+        "applicationNotes": "アプリケーションノート",
+        "applicationNotesDesc": "設計ガイダンスとベストプラクティス",
+        "serviceBulletins": "サービスブリテン",
+        "serviceBulletinsDesc": "製品アップデートとお知らせ",
+        "datasheets": "データシート",
+        "datasheetsDesc": "完全な製品仕様",
+        "sensorsOverview": "センサー概要",
+        "sensorsOverviewDesc": "センサー仕様の比較"
+      },
+      "toolsGuides": {
+        "title": "ツールとガイド",
+        "catalog": "製品カタログ",
+        "catalogDesc": "価格情報付きの完全なカタログ",
+        "siteVerification": "サイト検証ツール",
+        "siteVerificationDesc": "ワイヤレス信号強度のテスト",
+        "productSelector": "製品セレクター",
+        "productSelectorDesc": "適切なセンサーを見つける"
+      },
+      "learningCenter": {
+        "title": "ラーニングセンター",
+        "videos": "ビデオライブラリ",
+        "videosDesc": "ハウツービデオとチュートリアル",
+        "caseStudies": "事例研究",
+        "caseStudiesDesc": "実際の成功事例",
+        "webinars": "ウェビナー",
+        "webinarsDesc": "ライブトレーニングセッション"
+      },
+      "featured": {
+        "title": "テクニカルドキュメンテーションが必要ですか?",
+        "description": "アプリケーションノート、データシート、テクニカルリソースの完全なライブラリにアクセスして、完璧なソリューションを設計し、仕様を定めることができます。",
+        "cta": "リソースを閲覧"
+      }
+    },
+    "support": {
+      "label": "ヘルプを受ける",
+      "getHelp": {
+        "title": "ヘルプを受ける",
+        "contactSupport": "サポートに連絡する",
+        "contactSupportDesc": "エンジニアと話す",
+        "rmaRequest": "RMA リクエスト",
+        "rmaRequestDesc": "返品許可申請",
+        "whereToBuy": "購入先を探す",
+        "whereToBuyDesc": "最寄りの販売店を見つける"
+      },
+      "existingCustomers": {
+        "title": "既存のお客様向け",
+        "myAccount": "マイアカウント",
+        "myAccountDesc": "注文履歴とクォートを表示する",
+        "orderStatus": "注文状況",
+        "orderStatusDesc": "出荷状況を追跡する",
+        "requestQuote": "見積もりをリクエストする",
+        "requestQuoteDesc": "プロジェクトの価格を取得する"
+      },
+      "featured": {
+        "title": "テクニカルサポートが必要ですか?",
+        "description": "経験豊富なエンジニアチームが、製品選択、仕様、トラブルシューティングのサポートを行います。",
+        "cta": "サポートに連絡する"
+      }
+    },
+    "company": {
+      "label": "BAPIについて",
+      "aboutBapi": {
+        "title": "BAPIについて",
+        "whyBapi": "なぜBAPIか",
+        "whyBapiDesc": "BAPIセンサーを選ぶ理由",
+        "missionValues": "ミッションと価値観",
+        "missionValuesDesc": "私たちを動機づけるもの",
+        "news": "ニュースとイベント",
+        "newsDesc": "最新のお知らせ",
+        "careers": "キャリア",
+        "careersDesc": "私たちのチームに参加する"
+      },
+      "getInTouch": {
+        "title": "お問い合わせ",
+        "contactSales": "営業に連絡する",
+        "contactSalesDesc": "担当者に話す",
+        "whereToBuy": "購入先を探す",
+        "whereToBuyDesc": "販売店を見つける",
+        "requestQuote": "見積もりを依頼する",
+        "requestQuoteDesc": "価格を確認する"
+      },
+      "featured": {
+        "title": "建築オートメーションを変革する準備はできていますか?",
+        "description": "プロジェクトの要件について私たちのチームに相談し、最適なセンサーソリューションを見つけてください。",
+        "cta": "私たちのチームに連絡する"
+      }
+    }
   }
 }

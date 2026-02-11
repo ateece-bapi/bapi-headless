@@ -1,7 +1,99 @@
 {
   "common": {},
   "nav": {},
-  "megaMenu": {},
+  "megaMenu": {
+    "resources": {
+      "label": "ทรัพยากร",
+      "technicalDocumentation": {
+        "title": "เอกสารทางเทคนิค",
+        "applicationNotes": "บันทึกการประยุกต์ใช้",
+        "applicationNotesDesc": "คำแนะนำในการออกแบบและแนวปฏิบัติที่ดีที่สุด",
+        "serviceBulletins": "จดหมายข่าวบริการ",
+        "serviceBulletinsDesc": "การอัปเดตและประกาศผลิตภัณฑ์",
+        "datasheets": "แผ่นข้อมูล",
+        "datasheetsDesc": "รายละเอียดผลิตภัณฑ์โดยสมบูรณ์",
+        "sensorsOverview": "ภาพรวมเซ็นเซอร์",
+        "sensorsOverviewDesc": "เปรียบเทียบข้อมูลจำเพาะของเซ็นเซอร์"
+      },
+      "toolsGuides": {
+        "title": "เครื่องมือและคู่มือ",
+        "catalog": "แคตตาล็อกผลิตภัณฑ์",
+        "catalogDesc": "แคตตาล็อกที่สมบูรณ์พร้อมราคา",
+        "siteVerification": "เครื่องมือตรวจสอบไซต์",
+        "siteVerificationDesc": "การทดสอบความแรงของสัญญาณไร้สาย",
+        "productSelector": "ตัวเลือกผลิตภัณฑ์",
+        "productSelectorDesc": "หาเซ็นเซอร์ที่เหมาะสม"
+      },
+      "learningCenter": {
+        "title": "ศูนย์การเรียนรู้",
+        "videos": "ห้องสมุดวิดีโอ",
+        "videosDesc": "วิดีโอแนะนำและบทเรียน",
+        "caseStudies": "กรณีศึกษา",
+        "caseStudiesDesc": "เรื่องราวความสำเร็จในโลกแห่งความเป็นจริง",
+        "webinars": "เวบินาร์",
+        "webinarsDesc": "การฝึกอบรมสดๆ"
+      },
+      "featured": {
+        "title": "ต้องการเอกสารทางเทคนิค?",
+        "description": "เข้าถึงห้องสมุดที่สมบูรณ์ของเรา ซึ่งประกอบด้วยบันทึกการประยุกต์ใช้ แผ่นข้อมูล และทรัพยากรทางเทคนิคเพื่อช่วยให้คุณออกแบบและระบุโซลูชันที่สมบูรณ์แบบ",
+        "cta": "เรียกดูทรัพยากร"
+      }
+    },
+    "support": {
+      "label": "รับความช่วยเหลือ",
+      "getHelp": {
+        "title": "รับความช่วยเหลือ",
+        "contactSupport": "ติดต่อฝ่ายสนับสนุน",
+        "contactSupportDesc": "พูดคุยกับวิศวกรของเรา",
+        "rmaRequest": "คำขอ RMA",
+        "rmaRequestDesc": "การขอคืนสินค้า",
+        "whereToBuy": "ซื้อที่ไหน",
+        "whereToBuyDesc": "หาตัวแทนจำหน่ายใกล้คุณ"
+      },
+      "existingCustomers": {
+        "title": "สำหรับลูกค้าปัจจุบัน",
+        "myAccount": "บัญชีของฉัน",
+        "myAccountDesc": "ดูคำสั่งซื้อและใบเสนอราคา",
+        "orderStatus": "สถานะคำสั่งซื้อ",
+        "orderStatusDesc": "ติดตามการจัดส่งของคุณ",
+        "requestQuote": "ขอใบเสนอราคา",
+        "requestQuoteDesc": "รับราคาสำหรับโครงการของคุณ"
+      },
+      "featured": {
+        "title": "ต้องการการสนับสนุนทางเทคนิค?",
+        "description": "ทีมวิศวกรที่มีประสบการณ์ของเราพร้อมให้ความช่วยเหลือในการเลือกผลิตภัณฑ์ รายละเอียดจำเพาะ และการแก้ไขปัญหา",
+        "cta": "ติดต่อฝ่ายสนับสนุน"
+      }
+    },
+    "company": {
+      "label": "เกี่ยวกับ BAPI",
+      "aboutBapi": {
+        "title": "เกี่ยวกับ BAPI",
+        "whyBapi": "ทำไมต้อง BAPI",
+        "whyBapiDesc": "ทำไมต้องเลือกเซ็นเซอร์ BAPI",
+        "missionValues": "ภารกิจและค่านิยม",
+        "missionValuesDesc": "สิ่งที่ผลักดันเรา",
+        "news": "ข่าวสารและกิจกรรม",
+        "newsDesc": "ประกาศล่าสุด",
+        "careers": "ตำแหน่งงาน",
+        "careersDesc": "เข้าร่วมทีมของเรา"
+      },
+      "getInTouch": {
+        "title": "ติดต่อเรา",
+        "contactSales": "ติดต่อฝ่ายขาย",
+        "contactSalesDesc": "พูดคุยกับตัวแทน",
+        "whereToBuy": "ซื้อที่ไหน",
+        "whereToBuyDesc": "หาตัวแทนจำหน่าย",
+        "requestQuote": "ขอใบเสนอราคา",
+        "requestQuoteDesc": "รับราคา"
+      },
+      "featured": {
+        "title": "พร้อมที่จะเปลี่ยนแปลงระบบอัตโนมัติอาคารของคุณหรือไม่?",
+        "description": "ติดต่อทีมของเราเพื่อหารือข้อกำหนดโครงการของคุณและค้นพบโซลูชันเซ็นเซอร์ที่เหมาะสมที่สุด",
+        "cta": "ติดต่อทีมของเรา"
+      }
+    }
+  },
   "products": {},
   "home": {},
   "footer": {},

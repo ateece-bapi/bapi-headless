@@ -78,5 +78,98 @@
     "eu": "أوروبا",
     "asia": "آسيا والمحيط الهادئ",
     "mena": "الشرق الأوسط"
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "الموارد",
+      "technicalDocumentation": {
+        "title": "الوثائق الفنية",
+        "applicationNotes": "ملاحظات التطبيق",
+        "applicationNotesDesc": "إرشادات التصميم وأفضل الممارسات",
+        "serviceBulletins": "نشرات الخدمة",
+        "serviceBulletinsDesc": "تحديثات المنتج والإعلانات",
+        "datasheets": "أوراق البيانات",
+        "datasheetsDesc": "المواصفات الكاملة للمنتج",
+        "sensorsOverview": "نظرة عامة على المستشعرات",
+        "sensorsOverviewDesc": "مقارنة مواصفات المستشعرات"
+      },
+      "toolsGuides": {
+        "title": "الأدوات والأدلة",
+        "catalog": "كتالوج المنتجات",
+        "catalogDesc": "الكتالوج الكامل مع الأسعار",
+        "siteVerification": "أداة التحقق من الموقع",
+        "siteVerificationDesc": "اختبار قوة الإشارة اللاسلكية",
+        "productSelector": "منتج الناخب",
+        "productSelectorDesc": "ابحث عن المستشعر المناسب"
+      },
+      "learningCenter": {
+        "title": "مركز التعلم",
+        "videos": "مكتبة الفيديو",
+        "videosDesc": "مقاطع فيديو للشرح والتعليمات",
+        "caseStudies": "دراسات الحالة",
+        "caseStudiesDesc": "قصص نجاح في العالم الحقيقي",
+        "webinars": "الندوات",
+        "webinarsDesc": "جلسات تدريب مباشرة"
+      },
+      "featured": {
+        "title": "هل تحتاج إلى وثائق فنية؟",
+        "description": "قم بالوصول إلى مكتبتنا الكاملة من ملاحظات التطبيق وأوراق البيانات والموارد الفنية لمساعدتك في تصميم وتحديد الحل المثالي.",
+        "cta": "تصفح الموارد"
+      }
+    },
+    "support": {
+      "label": "الحصول على المساعدة",
+      "getHelp": {
+        "title": "الحصول على المساعدة",
+        "contactSupport": "اتصل بالدعم الفني",
+        "contactSupportDesc": "تحدث إلى مهندسينا",
+        "rmaRequest": "طلب RMA",
+        "rmaRequestDesc": "تفويض إرجاع البضاعة",
+        "whereToBuy": "أين يمكنني الشراء",
+        "whereToBuyDesc": "ابحث عن موزع قريب منك"
+      },
+      "existingCustomers": {
+        "title": "للعملاء الحاليين",
+        "myAccount": "حسابي",
+        "myAccountDesc": "عرض الطلبات والعروض",
+        "orderStatus": "حالة الطلب",
+        "orderStatusDesc": "تتبع شحناتك",
+        "requestQuote": "اطلب عرض سعر",
+        "requestQuoteDesc": "احصل على تسعير لمشروعك"
+      },
+      "featured": {
+        "title": "هل تحتاج إلى الدعم الفني؟",
+        "description": "فريق الهندسة المتمرس لدينا جاهز للمساعدة في اختيار المنتج والمواصفات وإصلاح الأعطال.",
+        "cta": "اتصل بالدعم الفني"
+      }
+    },
+    "company": {
+      "label": "عن BAPI",
+      "aboutBapi": {
+        "title": "عن BAPI",
+        "whyBapi": "لماذا BAPI",
+        "whyBapiDesc": "لماذا اختيار أجهزة استشعار BAPI",
+        "missionValues": "المهمة والقيم",
+        "missionValuesDesc": "ما الذي يدفعنا",
+        "news": "الأخبار والأحداث",
+        "newsDesc": "آخر الإعلانات",
+        "careers": "الوظائف",
+        "careersDesc": "انضم إلى فريقنا"
+      },
+      "getInTouch": {
+        "title": "تواصل معنا",
+        "contactSales": "اتصل بالمبيعات",
+        "contactSalesDesc": "تحدث إلى ممثل",
+        "whereToBuy": "أين يمكن الشراء",
+        "whereToBuyDesc": "ابحث عن موزع",
+        "requestQuote": "اطلب عرض سعر",
+        "requestQuoteDesc": "احصل على التسعير"
+      },
+      "featured": {
+        "title": "هل أنت مستعد لتحويل نظام التحكم التلقائي في مبنائك؟",
+        "description": "تواصل مع فريقنا لمناقشة متطلبات مشروعك واكتشاف الحل الأمثل لأجهزة الاستشعار.",
+        "cta": "اتصل بفريقنا"
+      }
+    }
   }
 }

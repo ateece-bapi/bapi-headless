@@ -100,14 +100,17 @@
       },
       "testInstruments": {
         "title": "Test Instruments",
-        "bluTestTemp": "Blu-Test Temperature",
-        "bluTestTempDesc": "NIST-traceable reference",
+        "bluTestTemperature": "Blu-Test Temperature",
+        "bluTestTemperatureDesc": "NIST-traceable reference",
         "bluTestHumidity": "Blu-Test Humidity",
         "bluTestHumidityDesc": "Temp + RH reference",
         "bluTestPressure": "Blu-Test Pressure",
         "bluTestPressureDesc": "Digital manometer"
       },
       "featured": {
+        "title": "WAM™ Wireless Asset Monitoring",
+        "description": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
+        "cta": "Learn More",
         "wamTitle": "WAM™ Wireless Asset Monitoring",
         "wamDescription": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
         "wamCta": "Learn More",
@@ -117,6 +120,43 @@
         "popular": "Popular",
         "new": "New",
         "premium": "Premium"
+      }
+    },
+    "resources": {
+      "label": "Resources",
+      "technicalDocumentation": {
+        "title": "Technical Documentation",
+        "applicationNotes": "Application Notes",
+        "applicationNotesDesc": "Design guidance & best practices",
+        "serviceBulletins": "Service Bulletins",
+        "serviceBulletinsDesc": "Product updates & announcements",
+        "datasheets": "Datasheets",
+        "datasheetsDesc": "Complete product specifications",
+        "sensorsOverview": "Sensors Overview",
+        "sensorsOverviewDesc": "Compare sensor specifications"
+      },
+      "toolsGuides": {
+        "title": "Tools & Guides",
+        "catalog": "Product Catalog",
+        "catalogDesc": "Complete catalog with pricing",
+        "siteVerification": "Site Verification Tool",
+        "siteVerificationDesc": "Wireless signal strength testing",
+        "productSelector": "Product Selector",
+        "productSelectorDesc": "Find the right sensor"
+      },
+      "learningCenter": {
+        "title": "Learning Center",
+        "videos": "Video Library",
+        "videosDesc": "How-to videos & tutorials",
+        "caseStudies": "Case Studies",
+        "caseStudiesDesc": "Real-world success stories",
+        "webinars": "Webinars",
+        "webinarsDesc": "Live training sessions"
+      },
+      "featured": {
+        "title": "Need Technical Documentation?",
+        "description": "Access our complete library of application notes, datasheets, and technical resources to help you design and specify the perfect solution.",
+        "cta": "Browse Resources"
       }
     },
     "support": {

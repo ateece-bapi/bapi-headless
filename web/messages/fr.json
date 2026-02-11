@@ -35,5 +35,98 @@
     "eu": "Europe",
     "asia": "Asie-Pacifique",
     "mena": "Moyen-Orient"
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "Ressources",
+      "technicalDocumentation": {
+        "title": "Documentation technique",
+        "applicationNotes": "Notes d'application",
+        "applicationNotesDesc": "Conseils de conception et meilleures pratiques",
+        "serviceBulletins": "Bulletins de service",
+        "serviceBulletinsDesc": "Mises à jour et annonces de produits",
+        "datasheets": "Fiches techniques",
+        "datasheetsDesc": "Spécifications complètes du produit",
+        "sensorsOverview": "Présentation des capteurs",
+        "sensorsOverviewDesc": "Comparer les spécifications des capteurs"
+      },
+      "toolsGuides": {
+        "title": "Outils et guides",
+        "catalog": "Catalogue de produits",
+        "catalogDesc": "Catalogue complet avec tarifs",
+        "siteVerification": "Outil de vérification du site",
+        "siteVerificationDesc": "Test de la force du signal sans fil",
+        "productSelector": "Sélecteur de produits",
+        "productSelectorDesc": "Trouvez le bon capteur"
+      },
+      "learningCenter": {
+        "title": "Centre d'apprentissage",
+        "videos": "Bibliothèque de vidéos",
+        "videosDesc": "Vidéos et tutoriels pratiques",
+        "caseStudies": "Études de cas",
+        "caseStudiesDesc": "Histoires de réussite concrètes",
+        "webinars": "Webinaires",
+        "webinarsDesc": "Sessions de formation en direct"
+      },
+      "featured": {
+        "title": "Besoin de documentation technique ?",
+        "description": "Accédez à notre bibliothèque complète de notes d'application, de fiches techniques et de ressources techniques pour vous aider à concevoir et à spécifier la solution parfaite.",
+        "cta": "Parcourir les ressources"
+      }
+    },
+    "support": {
+      "label": "Obtenir de l'aide",
+      "getHelp": {
+        "title": "Obtenir de l'aide",
+        "contactSupport": "Contacter le support",
+        "contactSupportDesc": "Parlez à nos ingénieurs",
+        "rmaRequest": "Demande de RMA",
+        "rmaRequestDesc": "Autorisation de retour de marchandise",
+        "whereToBuy": "Où acheter",
+        "whereToBuyDesc": "Trouvez un distributeur près de chez vous"
+      },
+      "existingCustomers": {
+        "title": "Pour les clients existants",
+        "myAccount": "Mon compte",
+        "myAccountDesc": "Voir les commandes et les devis",
+        "orderStatus": "Statut de la commande",
+        "orderStatusDesc": "Suivez vos expéditions",
+        "requestQuote": "Demander un devis",
+        "requestQuoteDesc": "Obtenez des prix pour votre projet"
+      },
+      "featured": {
+        "title": "Besoin d'assistance technique ?",
+        "description": "Notre équipe d'ingénieurs expérimentés est prête à vous aider avec la sélection de produits, les spécifications et le dépannage.",
+        "cta": "Contacter le support"
+      }
+    },
+    "company": {
+      "label": "À propos de BAPI",
+      "aboutBapi": {
+        "title": "À propos de BAPI",
+        "whyBapi": "Pourquoi BAPI",
+        "whyBapiDesc": "Pourquoi choisir les capteurs BAPI",
+        "missionValues": "Mission et valeurs",
+        "missionValuesDesc": "Ce qui nous anime",
+        "news": "Actualités et événements",
+        "newsDesc": "Dernières annonces",
+        "careers": "Carrières",
+        "careersDesc": "Rejoignez notre équipe"
+      },
+      "getInTouch": {
+        "title": "Entrez en contact",
+        "contactSales": "Contacter les ventes",
+        "contactSalesDesc": "Parlez à un représentant",
+        "whereToBuy": "Où acheter",
+        "whereToBuyDesc": "Trouver un distributeur",
+        "requestQuote": "Demander un devis",
+        "requestQuoteDesc": "Obtenir les tarifs"
+      },
+      "featured": {
+        "title": "Prêt à transformer votre automatisation du bâtiment ?",
+        "description": "Connectez-vous avec notre équipe pour discuter de vos exigences de projet et découvrir la solution de capteur parfaite.",
+        "cta": "Contactez notre équipe"
+      }
+    }
   }
 }

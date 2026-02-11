@@ -35,5 +35,98 @@
     "eu": "Europa",
     "asia": "Asia-Pacífico",
     "mena": "Medio Oriente"
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "Recursos",
+      "technicalDocumentation": {
+        "title": "Documentación Técnica",
+        "applicationNotes": "Notas de Aplicación",
+        "applicationNotesDesc": "Guía de diseño y mejores prácticas",
+        "serviceBulletins": "Boletines de Servicio",
+        "serviceBulletinsDesc": "Actualizaciones y anuncios de productos",
+        "datasheets": "Hojas de Datos",
+        "datasheetsDesc": "Especificaciones completas del producto",
+        "sensorsOverview": "Resumen de Sensores",
+        "sensorsOverviewDesc": "Comparar especificaciones de sensores"
+      },
+      "toolsGuides": {
+        "title": "Herramientas y Guías",
+        "catalog": "Catálogo de Productos",
+        "catalogDesc": "Catálogo completo con precios",
+        "siteVerification": "Herramienta de Verificación del Sitio",
+        "siteVerificationDesc": "Prueba de fuerza de la señal inalámbrica",
+        "productSelector": "Selector de Productos",
+        "productSelectorDesc": "Encuentra el sensor adecuado"
+      },
+      "learningCenter": {
+        "title": "Centro de Aprendizaje",
+        "videos": "Biblioteca de Videos",
+        "videosDesc": "Videos instructivos y tutoriales",
+        "caseStudies": "Estudios de Caso",
+        "caseStudiesDesc": "Historias de éxito del mundo real",
+        "webinars": "Webinars",
+        "webinarsDesc": "Sesiones de capacitación en vivo"
+      },
+      "featured": {
+        "title": "¿Necesita Documentación Técnica?",
+        "description": "Acceda a nuestra biblioteca completa de notas de aplicación, hojas de datos y recursos técnicos para ayudarlo a diseñar y especificar la solución perfecta.",
+        "cta": "Navegar por los Recursos"
+      }
+    },
+    "support": {
+      "label": "Obtener ayuda",
+      "getHelp": {
+        "title": "Obtener ayuda",
+        "contactSupport": "Contactar con el soporte",
+        "contactSupportDesc": "Habla con nuestros ingenieros",
+        "rmaRequest": "Solicitud de RMA",
+        "rmaRequestDesc": "Autorización de devolución de mercancía",
+        "whereToBuy": "Dónde comprar",
+        "whereToBuyDesc": "Encuentra un distribuidor cerca de ti"
+      },
+      "existingCustomers": {
+        "title": "Para clientes existentes",
+        "myAccount": "Mi cuenta",
+        "myAccountDesc": "Ver pedidos y cotizaciones",
+        "orderStatus": "Estado del pedido",
+        "orderStatusDesc": "Realiza un seguimiento de tus envíos",
+        "requestQuote": "Solicitar una cotización",
+        "requestQuoteDesc": "Obtén precios para tu proyecto"
+      },
+      "featured": {
+        "title": "¿Necesitas soporte técnico?",
+        "description": "Nuestro experimentado equipo de ingeniería está listo para ayudarte con la selección de productos, especificaciones y resolución de problemas.",
+        "cta": "Contactar con el soporte"
+      }
+    },
+    "company": {
+      "label": "Sobre BAPI",
+      "aboutBapi": {
+        "title": "Sobre BAPI",
+        "whyBapi": "Por qué BAPI",
+        "whyBapiDesc": "Por qué elegir los sensores BAPI",
+        "missionValues": "Misión y Valores",
+        "missionValuesDesc": "Lo que nos mueve",
+        "news": "Noticias y Eventos",
+        "newsDesc": "Últimos anuncios",
+        "careers": "Carreras",
+        "careersDesc": "Únete a nuestro equipo"
+      },
+      "getInTouch": {
+        "title": "Ponte en Contacto",
+        "contactSales": "Contactar Ventas",
+        "contactSalesDesc": "Habla con un representante",
+        "whereToBuy": "Dónde Comprar",
+        "whereToBuyDesc": "Encuentra un distribuidor",
+        "requestQuote": "Solicitar Cotización",
+        "requestQuoteDesc": "Obtener precios"
+      },
+      "featured": {
+        "title": "¿Listo para Transformar tu Automatización de Edificios?",
+        "description": "Conéctate con nuestro equipo para discutir los requisitos de tu proyecto y descubrir la solución de sensor perfecta.",
+        "cta": "Contacta a Nuestro Equipo"
+      }
+    }
   }
 }

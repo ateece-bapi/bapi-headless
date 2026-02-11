@@ -74,5 +74,98 @@
       "vnd": "VND (₫)",
       "aed": "AED (د.إ)"
     }
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "Tài nguyên",
+      "technicalDocumentation": {
+        "title": "Tài liệu kỹ thuật",
+        "applicationNotes": "Ghi chú ứng dụng",
+        "applicationNotesDesc": "Hướng dẫn thiết kế và các thực hành tốt nhất",
+        "serviceBulletins": "Thông báo dịch vụ",
+        "serviceBulletinsDesc": "Cập nhật và thông báo sản phẩm",
+        "datasheets": "Tài liệu kỹ thuật",
+        "datasheetsDesc": "Thông số kỹ thuật sản phẩm đầy đủ",
+        "sensorsOverview": "Tổng quan về cảm biến",
+        "sensorsOverviewDesc": "So sánh thông số kỹ thuật cảm biến"
+      },
+      "toolsGuides": {
+        "title": "Công cụ & Hướng dẫn",
+        "catalog": "Danh mục sản phẩm",
+        "catalogDesc": "Danh mục đầy đủ với giá cả",
+        "siteVerification": "Công cụ xác minh trang web",
+        "siteVerificationDesc": "Kiểm tra cường độ tín hiệu không dây",
+        "productSelector": "Trình chọn sản phẩm",
+        "productSelectorDesc": "Tìm cảm biến phù hợp"
+      },
+      "learningCenter": {
+        "title": "Trung tâm học tập",
+        "videos": "Thư viện video",
+        "videosDesc": "Video hướng dẫn và hướng dẫn",
+        "caseStudies": "Nghiên cứu trường hợp",
+        "caseStudiesDesc": "Câu chuyện thành công trong thực tế",
+        "webinars": "Webinar",
+        "webinarsDesc": "Các buổi đào tạo trực tiếp"
+      },
+      "featured": {
+        "title": "Cần tài liệu kỹ thuật?",
+        "description": "Truy cập thư viện đầy đủ của chúng tôi về ghi chú ứng dụng, tài liệu kỹ thuật và tài nguyên kỹ thuật để giúp bạn thiết kế và chỉ định giải pháp hoàn hảo.",
+        "cta": "Duyệt Tài nguyên"
+      }
+    },
+    "support": {
+      "label": "Nhận Trợ Giúp",
+      "getHelp": {
+        "title": "Nhận Trợ Giúp",
+        "contactSupport": "Liên Hệ Hỗ Trợ",
+        "contactSupportDesc": "Nói chuyện với các kỹ sư của chúng tôi",
+        "rmaRequest": "Yêu Cầu RMA",
+        "rmaRequestDesc": "Ủy quyền trả hàng",
+        "whereToBuy": "Nơi Mua Hàng",
+        "whereToBuyDesc": "Tìm nhà phân phối gần bạn"
+      },
+      "existingCustomers": {
+        "title": "Dành Cho Khách Hàng Hiện Tại",
+        "myAccount": "Tài Khoản Của Tôi",
+        "myAccountDesc": "Xem đơn đặt hàng và báo giá",
+        "orderStatus": "Tình Trạng Đơn Hàng",
+        "orderStatusDesc": "Theo dõi lô hàng của bạn",
+        "requestQuote": "Yêu Cầu Báo Giá",
+        "requestQuoteDesc": "Nhận giá cho dự án của bạn"
+      },
+      "featured": {
+        "title": "Cần Hỗ Trợ Kỹ Thuật?",
+        "description": "Đội ngũ kỹ sư giàu kinh nghiệm của chúng tôi sẵn sàng giúp đỡ bạn trong việc lựa chọn sản phẩm, thông số kỹ thuật và xử lý sự cố.",
+        "cta": "Liên Hệ Hỗ Trợ"
+      }
+    },
+    "company": {
+      "label": "Về BAPI",
+      "aboutBapi": {
+        "title": "Về BAPI",
+        "whyBapi": "Tại sao chọn BAPI",
+        "whyBapiDesc": "Tại sao chọn cảm biến BAPI",
+        "missionValues": "Sứ mệnh & Giá trị",
+        "missionValuesDesc": "Những gì thúc đẩy chúng tôi",
+        "news": "Tin tức & Sự kiện",
+        "newsDesc": "Các thông báo mới nhất",
+        "careers": "Cơ hội nghề nghiệp",
+        "careersDesc": "Tham gia đội ngũ của chúng tôi"
+      },
+      "getInTouch": {
+        "title": "Liên hệ với chúng tôi",
+        "contactSales": "Liên hệ Bộ phận Kinh doanh",
+        "contactSalesDesc": "Nói chuyện với đại diện",
+        "whereToBuy": "Nơi mua sản phẩm",
+        "whereToBuyDesc": "Tìm nhà phân phối",
+        "requestQuote": "Yêu cầu báo giá",
+        "requestQuoteDesc": "Nhận báo giá"
+      },
+      "featured": {
+        "title": "Sẵn sàng biến đổi Tự động hóa Tòa nhà của bạn?",
+        "description": "Liên hệ với đội ngũ của chúng tôi để thảo luận về yêu cầu dự án của bạn và tìm ra giải pháp cảm biến hoàn hảo.",
+        "cta": "Liên hệ Đội ngũ của chúng tôi"
+      }
+    }
   }
 }

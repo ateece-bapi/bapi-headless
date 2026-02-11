@@ -1,17 +1,23 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { TranslationTest } from "@/components/debug/TranslationTest";
+import { setRequestLocale } from 'next-intl/server';
 
 /**
  * Locale layout - wraps all localized pages with Header/Footer
  * This prevents duplicate headers in root layout
  */
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
+  // Await params and set request locale
+  const { locale } = await params;
+  setRequestLocale(locale);
+  
   return (
     <>
       {/* Skip to main content link for keyboard users */}
@@ -27,6 +33,7 @@ export default function LocaleLayout({
         {children}
       </main>
       <Footer />
+      <TranslationTest />
     </>
   );
 }

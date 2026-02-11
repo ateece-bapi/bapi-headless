@@ -1,7 +1,7 @@
 # Crowdin Translation Setup Guide - BAPI Headless
 
 **Project:** BAPI Headless E-Commerce Translation  
-**Deadline:** March 10, 2026 (deliver all 7 languages)  
+**Deadline:** March 10, 2026 (deliver all 8 languages)  
 **Highest Priority:** Vietnamese (Vietnam facility opening April 2026)
 
 ---
@@ -24,7 +24,7 @@
 1. Click **"Create Project"**
 2. **Project Name:** `BAPI Headless E-Commerce`
 3. **Source Language:** English
-4. **Target Languages:** Select all 7:
+4. **Target Languages:** Select all 8:
    - 🇩🇪 German (Deutsch)
    - 🇫🇷 French (Français)
    - 🇪🇸 Spanish (Español)
@@ -32,6 +32,7 @@
    - 🇨🇳 Chinese Simplified (中文)
    - 🇻🇳 Vietnamese (Tiếng Việt) - **HIGHEST PRIORITY**
    - 🇸🇦 Arabic (العربية)
+   - 🇹🇭 Thai (ไทย)
 
 5. **Project Type:** Web Application (JSON)
 6. Click **"Create"**
@@ -158,7 +159,7 @@ We are opening a facility in Vietnam in April 2026. Vietnamese translations are 
    - **Specialization:** Technical, Software, E-commerce
    - **Price:** $0.08-0.15/word
 4. Mark **Vietnamese as URGENT** (fast-track)
-5. Estimated cost: ~$1,500-1,800 for all 7 languages
+5. Estimated cost: ~$1,800-2,100 for all 8 languages
 6. Delivery: 7-10 business days
 
 ### Option B: Your Own Translators
@@ -341,7 +342,7 @@ Crowdin automatically builds Translation Memory:
 ## Success Metrics
 
 **By March 10, 2026:**
-- ✅ All 7 languages 100% translated
+- ✅ All 8 languages 100% translated
 - ✅ Vietnamese completed FIRST (Vietnam facility priority)
 - ✅ Translation quality: 95%+ accuracy
 - ✅ No missing keys or errors
@@ -349,7 +350,7 @@ Crowdin automatically builds Translation Memory:
 - ✅ All technical terms correct
 
 **Go-Live April 10:**
-- ✅ 8 languages live (EN + 7 translations)
+- ✅ 9 languages live (EN + 8 translations)
 - ✅ Language switcher working
 - ✅ Fallback system tested
 - ✅ Vietnam facility launch ready 🇻🇳
@@ -416,10 +417,10 @@ Enable built-in QA:
 - Review and approve translations
 
 **By March 3:**
-- Download and test all 7 languages
+- Download and test all 8 languages
 
 **April 10:**
-- 🚀 Go live with 8 languages!
+- 🚀 Go live with 9 languages!
 
 ---
 

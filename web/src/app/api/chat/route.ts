@@ -56,7 +56,7 @@ When users ask about specific products or need recommendations, use the search_p
 - Format as: [Product Name](URL) - NOT just "view at URL"
 
 **Languages:**
-You can respond in: English, German, French, Spanish, Japanese, Chinese, Vietnamese, Arabic.
+You can respond in: English, German, French, Spanish, Japanese, Chinese, Vietnamese, Arabic, Thai.
 Detect the user's language and respond in the same language.`;
 
 // Define tools for Claude to use

@@ -10,6 +10,7 @@ This document contains all English strings from the BAPI e-commerce platform tha
 - **Chinese (ZH)** - ⏳ Pending
 - **Vietnamese (VI)** - ⏳ Pending (Vietnam facility opening April 2026)
 - **Arabic (AR)** - ⏳ Pending (requires RTL CSS)
+- **Thai (TH)** - ⏳ Pending
 
 ## Base Language File: `en.json` (15,496 bytes)
 
@@ -35,7 +36,7 @@ This document contains all English strings from the BAPI e-commerce platform tha
 ```
 
 **Total: 310+ translation keys**
-**Languages: 8** (EN, DE, FR, ES, JA, ZH, VI, AR)
+**Languages: 9** (EN, DE, FR, ES, JA, ZH, VI, AR, TH)
 
 ---
 

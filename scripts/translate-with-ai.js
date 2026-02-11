@@ -51,7 +51,7 @@ async function translateFile(targetLang) {
   console.log(`\n🌐 Translating to ${targetLang.toUpperCase()}...`);
   
   // Read source file
-  const sourcePath = path.join(__dirname, '../web/messages/en.json');
+  const sourcePath = path.join(__dirname, 'en.json');
   const source = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
   
   // Create translation prompt
@@ -110,7 +110,7 @@ Translate now:`;
     const translated = JSON.parse(translatedText);
     
     // Write to file
-    const outputPath = path.join(__dirname, `../web/messages/${targetLang}.json`);
+    const outputPath = path.join(__dirname, `${targetLang}.json`);
     fs.writeFileSync(outputPath, JSON.stringify(translated, null, 2) + '\n');
     
     // Calculate stats
@@ -118,7 +118,7 @@ Translate now:`;
     const translatedKeys = JSON.stringify(translated).split(',').length;
     
     console.log(`✅ Translation complete!`);
-    console.log(`   Output: web/messages/${targetLang}.json`);
+    console.log(`   Output: ${targetLang}.json`);
     console.log(`   Keys: ${translatedKeys} (source: ${sourceKeys})`);
     console.log(`   Cost: ~$${(message.usage.input_tokens * 0.000003 + message.usage.output_tokens * 0.000015).toFixed(2)}`);
     

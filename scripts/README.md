@@ -6,32 +6,36 @@ Translate all 8 languages for **$5-20** instead of paying Crowdin $250-500 for A
 
 ### Quick Start
 
+**You already have Claude set up for your chatbot!** Just reuse the same API key:
+
 ```bash
-# 1. Get Claude API key
-# Sign up at https://console.anthropic.com
-# Add $20 credit (you'll only use ~$10-15)
+# 1. Copy en.json to scripts directory
+cd /home/ateece/bapi-headless/web/messages
+cp en.json ../../scripts/
 
-# 2. Set API key
-export ANTHROPIC_API_KEY="sk-ant-your-key-here"
+# 2. Run translation (your ANTHROPIC_API_KEY from .env will be used)
+cd ../../scripts
+source ../web/.env  # Load your existing API key
+node translate-with-ai.js vi  # Vietnamese first
 
-# 3. Install dependencies
-cd /home/ateece/bapi-headless/scripts
-npm install @anthropic-ai/sdk
-
-# 4. Translate Vietnamese first (URGENT)
-node translate-with-ai.js vi
-
-# 5. Translate all other languages
+# 3. Translate all languages
 node translate-with-ai.js all
+
+# 4. Copy translated files back
+cp *.json ../web/messages/
+cd ../web/messages
+ls -l *.json  # Verify all 9 language files
 ```
+
+**That's it!** No new API key needed - uses your existing chatbot credentials.
 
 ### What It Does
 
-1. ✅ Reads `web/messages/en.json` (310+ translation keys)
-2. ✅ Sends to Claude 3.5 Sonnet with translation instructions
+1. ✅ Reads `en.json` from scripts directory
+2. ✅ Sends to Claude 3.5 Sonnet (same API as your chatbot)
 3. ✅ Preserves brand names (BAPI, WAM™) and technical terms
 4. ✅ Uses professional B2B tone for engineers
-5. ✅ Writes to `web/messages/{lang}.json`
+5. ✅ Writes to `{lang}.json` in scripts directory
 6. ✅ Validates JSON structure
 
 ### Cost Comparison

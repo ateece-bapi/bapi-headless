@@ -124,6 +124,8 @@ function getLocaleFromLanguage(language: LanguageCode): string {
     zh: 'zh-CN',
     vi: 'vi-VN',
     ar: 'ar-AE',
+    th: 'th-TH',
+    pl: 'pl-PL',
   };
   return localeMap[language];
 }

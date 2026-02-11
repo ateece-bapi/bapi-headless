@@ -62,7 +62,7 @@ export default function middleware(request: NextRequest) {
   // If accessing sign-in page while already authenticated, redirect to account
   if (pathname.includes('/sign-in') && authToken) {
     // Extract locale from pathname or use default
-    const localeMatch = pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar)/);
+    const localeMatch = pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)/);
     const locale = localeMatch ? localeMatch[1] : defaultLocale;
     return NextResponse.redirect(new URL(`/${locale}/account`, request.url));
   }
@@ -75,7 +75,7 @@ export default function middleware(request: NextRequest) {
     // Static routes that should be CDN cached
     const isStaticRoute = 
       pathname === '/' ||
-      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar)(\/.*)?$/) ||
+      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)(\/.*)?$/) ||
       pathname.startsWith('/products') ||
       pathname.startsWith('/company') ||
       pathname.startsWith('/support') ||

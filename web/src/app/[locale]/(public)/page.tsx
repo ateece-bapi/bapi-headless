@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import { GlobalPresence } from '@/components/company/GlobalPresence';
 import { getPosts } from '@/lib/wordpress';
 import { locales } from '@/i18n';
+import { setRequestLocale } from 'next-intl/server';
 import { 
   ArrowRight,
   Globe,
@@ -48,7 +49,15 @@ export function generateStaticParams() {
  */
 export const revalidate = 3600;
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  // Await params and set request locale for next-intl
+  const { locale } = await params;
+  setRequestLocale(locale);
+  
   // Fetch latest 3 news posts
   const posts = await getPosts({ perPage: 3 });
   return (

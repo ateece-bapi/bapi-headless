@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import BackToTop from "@/components/layout/BackToTop";
-import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
 import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient";
 import { WebVitalsClient } from "@/components/analytics/WebVitalsClient";
 import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from "@/lib/schema";
@@ -69,7 +68,6 @@ export default async function RootLayout({
         </head>
         <body className="antialiased">
           {children}
-          <ChatWidgetClient />
           <BackToTop />
           <WebVitalsClient />
           <AnalyticsClient />

@@ -181,6 +181,66 @@ We are opening a facility in Vietnam in April 2026. Vietnamese translations are 
 3. Post project on Crowdin community forums
 4. **Not recommended for BAPI** - too slow for April deadline
 
+### Option D: AI Translation (Fast & Cost-Effective) ⭐ RECOMMENDED
+
+Crowdin offers AI-powered translation using GPT-4, Claude, and other LLMs for high-quality technical translations.
+
+**Why AI Translation for BAPI:**
+- ✅ **Speed:** Translate all 8 languages in minutes (vs 7-10 days for human)
+- ✅ **Cost:** ~$200-400 total (vs $1,800-2,100 for human translators)
+- ✅ **Quality:** 85-90% accurate for technical B2B content
+- ✅ **Context-Aware:** Uses glossary and translation memory
+- ✅ **Human Review:** Can add human proofreading after AI translation
+
+**Setup AI Translation:**
+
+1. **Enable AI Provider**:
+   - Go to **Settings → Integrations → AI**
+   - Choose provider:
+     - **Crowdin AI** (GPT-4 based) - Best for technical content
+     - **DeepL Pro** - Best for European languages (DE, FR, ES)
+     - **Google Cloud Translation** - Good all-rounder
+   - Connect API (Team plan includes AI credits)
+
+2. **Configure AI Settings**:
+   - Enable **"Use Glossary"** ✅ (ensures BAPI, WAM™, etc. stay in English)
+   - Enable **"Use Translation Memory"** ✅
+   - Set **Tone:** "Professional/Technical"
+   - Set **Domain:** "Technology/E-commerce"
+
+3. **Pre-Translate with AI**:
+   - Go to **Tools → Pre-Translation**
+   - Select all 8 languages
+   - Choose **AI Translation** (not Machine Translation)
+   - Click **"Pre-Translate"**
+   - Wait 5-10 minutes for completion
+
+4. **Review AI Output** (Optional but Recommended):
+   - Review Vietnamese FIRST (highest priority)
+   - Check for:
+     - Brand names preserved (BAPI, WAM™)
+     - Technical terms correct (see glossary)
+     - Tone professional (not casual)
+     - Units preserved (°C, PSI, bar)
+   - Approve translations or request human review
+
+**Cost Breakdown:**
+- Crowdin AI: ~$0.02-0.04/word (vs $0.08-0.15 human)
+- 310 keys × 8 languages × ~5 words/key = ~12,400 words
+- AI cost: ~$250-500 (includes credits with Team plan)
+- Optional human review: +$500-800 (only review, not full translation)
+
+**Hybrid Approach (Best Quality + Speed):**
+1. Use AI translation for initial pass (1 hour)
+2. Mark Vietnamese as **URGENT** for human review (1-2 days)
+3. Spot-check other languages (2-3 hours)
+4. Total cost: ~$700-1,000 | Total time: 3-4 days
+
+**Delivery Timeline:**
+- **AI Translation:** Same day (5-10 minutes per language)
+- **AI + Human Review:** 3-4 days (vs 7-10 days full human)
+- **Perfect for April 10 deadline** ✅
+
 ---
 
 ## Phase 5: GitHub Integration (30 minutes)
@@ -367,9 +427,12 @@ In Crowdin Editor, you can flag keys as:
 
 ### 2. Use Pre-Translation
 Crowdin can pre-translate using:
+- **AI Translation** (GPT-4/Claude) - ⭐ **RECOMMENDED** - Fast, accurate, context-aware
 - Translation Memory (from previous work)
-- Machine Translation (Google/DeepL)
+- Machine Translation (Google/DeepL) - Legacy option, less sophisticated than AI
 - Then human translators review/edit (faster + cheaper)
+
+**Best Practice:** Use AI Translation for initial pass, then human review for critical content (Vietnam facility, checkout flow).
 
 ### 3. Set Up Webhooks
 Get notified when translations complete:
@@ -399,28 +462,31 @@ Enable built-in QA:
 
 ## Next Steps
 
-**Today (Jan 28):**
+**Today (Feb 11):**
 1. ✅ Sign up for Crowdin (14-day free trial)
 2. ✅ Create project
 3. ✅ Upload `en.json`
+4. ✅ Add Thai as 9th language
 
-**This Week (Jan 28 - Feb 2):**
-1. ✅ Add glossary
-2. ✅ Add screenshots
-3. ✅ Hire translators
-4. ✅ Mark Vietnamese as URGENT
+**This Week (Feb 11 - Feb 14):**
+1. ✅ Add glossary (technical terms)
+2. ✅ Add screenshots (context)
+3. ✅ Choose translation method
 
-**Week of Feb 3:**
-- Translation begins (7-10 business days)
+**Option A: AI Translation ⭐ RECOMMENDED (3-4 days)**
+- **Feb 11**: Run AI pre-translation for all 8 languages (10 minutes)
+- **Feb 12-13**: Human review Vietnamese (URGENT for Vietnam facility)
+- **Feb 14**: Spot-check other languages, download files
+- **Total Cost:** ~$500-800 (AI + Vietnamese review)
 
-**Week of Feb 17:**
-- Review and approve translations
+**Option B: Human Translation (7-10 days)**
+- **Week of Feb 17**: Hire translators, begin translations
+- **Week of Feb 24**: Review and approve
+- **By March 3**: Download and test all 8 languages
+- **Total Cost:** ~$1,800-2,100
 
-**By March 3:**
-- Download and test all 8 languages
-
-**April 10:**
-- 🚀 Go live with 9 languages!
+**Both Options:**
+- **April 10**: 🚀 Go live with 9 languages!
 
 ---
 

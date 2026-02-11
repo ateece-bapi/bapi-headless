@@ -1,7 +1,9 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { TranslationTest } from "@/components/debug/TranslationTest";
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
+import { ToastProvider } from "@/components/ui/Toast";
 
 /**
  * Locale layout - wraps all localized pages with Header/Footer
@@ -18,8 +20,13 @@ export default async function LocaleLayout({
   const { locale } = await params;
   setRequestLocale(locale);
   
+  // Get messages for the current locale
+  const messages = await getMessages();
+  
   return (
-    <>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <ToastProvider>
+      <>
       {/* Skip to main content link for keyboard users */}
       <a 
         href="#main-content" 
@@ -34,6 +41,8 @@ export default async function LocaleLayout({
       </main>
       <Footer />
       <TranslationTest />
-    </>
+      </>
+      </ToastProvider>
+    </NextIntlClientProvider>
   );
 }

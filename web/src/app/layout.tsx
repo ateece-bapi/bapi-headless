@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getLocale } from 'next-intl/server';
 import "./globals.css";
 import BackToTop from "@/components/layout/BackToTop";
 import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
 import { AnalyticsClient, SpeedInsightsClient } from "@/components/analytics/AnalyticsClient";
 import { WebVitalsClient } from "@/components/analytics/WebVitalsClient";
-import { ToastProvider } from "@/components/ui/Toast";
 import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from "@/lib/schema";
 import { generateDefaultMetadata } from "@/lib/metadata";
 
@@ -27,14 +24,13 @@ export const metadata: Metadata = generateDefaultMetadata('en');
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
-  // Get locale from next-intl middleware
-  const locale = await getLocale();
-  
-  // Get messages for the current locale
-  const messages = await getMessages();
+  // Get locale from params
+  const { locale } = await params;
 
   // Generate site-wide structured data for SEO
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';
@@ -42,7 +38,7 @@ export default async function RootLayout({
   const websiteSchema = generateWebSiteSchema(siteUrl, 'BAPI - Building Automation Products Inc.');
 
   return (
-    <html lang={locale}>
+    <html lang={locale || 'en'}>
         <head>
           {/* Font optimization - Preload Roboto for better performance */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,12 +68,8 @@ export default async function RootLayout({
           <StructuredData schema={[organizationSchema, websiteSchema]} />
         </head>
         <body className="antialiased">
-          <NextIntlClientProvider messages={messages} locale={locale}>
-            <ToastProvider>
-              {children}
-              <ChatWidgetClient />
-            </ToastProvider>
-          </NextIntlClientProvider>
+          {children}
+          <ChatWidgetClient />
           <BackToTop />
           <WebVitalsClient />
           <AnalyticsClient />

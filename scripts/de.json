@@ -1,0 +1,516 @@
+{
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "tryAgain": "Erneut versuchen",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "submit": "Absenden",
+    "confirm": "Bestätigen",
+    "learnMore": "Weitere Informationen",
+    "viewAll": "Alle anzeigen",
+    "readMore": "Mehr lesen",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
+    "search": "Suchen",
+    "filter": "Filter",
+    "sort": "Sortieren",
+    "clearAll": "Alles löschen",
+    "apply": "Anwenden",
+    "reset": "Zurücksetzen"
+  },
+  "nav": {
+    "products": "Produkte",
+    "applications": "Anwendungen",
+    "support": "Unterstützung",
+    "company": "Unternehmen",
+    "cart": "Warenkorb",
+    "account": "Konto",
+    "signIn": "Benutzeranmeldung"
+  },
+  "megaMenu": {
+    "products": {
+      "label": "Produkte",
+      "temperature": {
+        "title": "Temperatur",
+        "roomWallSensors": "Raum- und Wandsensoren",
+        "roomWallSensorsDesc": "Hochgenaue Temperaturerfassung",
+        "ductSensors": "Kanalsensoren",
+        "ductSensorsDesc": "Kanalgebundene Transmitter",
+        "immersionWell": "Eintauch- und Tauchsensoren",
+        "immersionWellDesc": "Flüssigkeitstemperaturmessung",
+        "outdoorSensors": "Außensensoren",
+        "outdoorSensorsDesc": "Witterungsbeständige Erfassung"
+      },
+      "humidity": {
+        "title": "Luftfeuchtigkeit",
+        "roomHumidity": "Raumluftfeuchtigkeit",
+        "roomHumidityDesc": "Wandmontierte Feuchtigkeitssensoren",
+        "ductHumidity": "Kanalluftfeuchtigkeit",
+        "ductHumidityDesc": "Zu- und Abluftfeuchtigkeit",
+        "outdoorHumidity": "Außenluftfeuchtigkeit",
+        "outdoorHumidityDesc": "Witterungsbeständige Feuchtigkeitsmessung",
+        "comboSensors": "Kombisensoren",
+        "comboSensorsDesc": "Temperatur + Luftfeuchtigkeit"
+      },
+      "pressure": {
+        "title": "Druck",
+        "differential": "Differenzdruck",
+        "differentialDesc": "Raum- und Filterkontrolle",
+        "static": "Statischer Druck",
+        "staticDesc": "Kanalstatiktransmitter",
+        "barometric": "Barometrisch",
+        "barometricDesc": "Atmosphärischer Druck"
+      },
+      "airQuality": {
+        "title": "Luftqualität",
+        "co2": "CO₂-Sensoren",
+        "co2Desc": "Kohlendioxidüberwachung",
+        "voc": "VOC-Sensoren",
+        "vocDesc": "Flüchtige organische Verbindungen",
+        "particulate": "Partikelbelastung",
+        "particulateDesc": "PM2,5 und PM10"
+      },
+      "wireless": {
+        "title": "Drahtlos",
+        "wamTemperature": "WAM Temperatur",
+        "wamTemperatureDesc": "Drahtlose Temperatursensoren",
+        "wamHumidity": "WAM Luftfeuchtigkeit",
+        "wamHumidityDesc": "Drahtlose Feuchtigkeitssensoren",
+        "wamDoorSensors": "WAM Türsensoren",
+        "wamDoorSensorsDesc": "Öffnungs-/Schließungsüberwachung",
+        "cloudPlatform": "Cloud-Plattform",
+        "cloudPlatformDesc": "Rundum-die-Uhr-Fernüberwachung"
+      },
+      "accessories": {
+        "title": "Zubehör",
+        "mounting": "Montagezubehör",
+        "mountingDesc": "Platten, Gehäuse, Halterungen",
+        "enclosures": "Gehäuse",
+        "enclosuresDesc": "BAPI-Box & Abdeckungen",
+        "cables": "Kabel & Steckverbinder",
+        "cablesDesc": "Verkabelungszubehör"
+      },
+      "testInstruments": {
+        "title": "Testinstrumente",
+        "bluTestTemp": "Blu-Test Temperatur",
+        "bluTestTempDesc": "NIST-rückführbare Referenz",
+        "bluTestHumidity": "Blu-Test Luftfeuchtigkeit",
+        "bluTestHumidityDesc": "Temperatur- + Feuchtigkeitsreferenz",
+        "bluTestPressure": "Blu-Test Druck",
+        "bluTestPressureDesc": "Digitales Manometer"
+      },
+      "featured": {
+        "wamTitle": "WAM™ Drahtlose Anlagenüberwachung",
+        "wamDescription": "Rundum-die-Uhr-Fernüberwachung mit sofortigen Warnmeldungen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Gerätestörungen. Keine Verkabelung erforderlich - in Minuten einsatzbereit.",
+        "wamCta": "Mehr erfahren",
+        "wamBadge": "Premium-Lösung"
+      },
+      "badges": {
+        "popular": "Beliebt",
+        "new": "Neu",
+        "premium": "Premium"
+      }
+    },
+    "support": {
+      "label": "Support",
+      "technical": {
+        "title": "Technischer Support",
+        "phone": "Telefonischer Support",
+        "phoneDesc": "Sprechen Sie mit unseren Ingenieuren",
+        "email": "E-Mail-Support",
+        "emailDesc": "Detaillierte Hilfe erhalten",
+        "chat": "Live-Chat",
+        "chatDesc": "Sofortige Antworten"
+      },
+      "resources": {
+        "title": "Ressourcen",
+        "datasheets": "Datenblätter",
+        "datasheetsDesc": "Technische Spezifikationen",
+        "installGuides": "Installationsanleitungen",
+        "installGuidesDesc": "Schritt-für-Schritt-Anweisungen",
+        "appNotes": "Anwendungshinweise",
+        "appNotesDesc": "Konstruktionsrichtlinien",
+        "videos": "Videobibliothek",
+        "videosDesc": "Anleitungsvideos"
+      },
+      "tools": {
+        "title": "Tools & Downloads",
+        "selector": "Produktauswahl",
+        "selectorDesc": "Finden Sie den richtigen Sensor",
+        "crossRef": "Kreuzreferenz",
+        "crossRefDesc": "Finden Sie BAPI-Äquivalente",
+        "software": "Konfigurationssoftware",
+        "softwareDesc": "Laden Sie Einrichtungstools herunter"
+      }
+    },
+    "company": {
+      "label": "Unternehmen",
+      "about": {
+        "title": "Über BAPI",
+        "mission": "Mission & Werte",
+        "missionDesc": "Was uns antreibt",
+        "whyBapi": "Warum BAPI",
+        "whyBapiDesc": "Warum BAPI wählen",
+        "history": "Unsere Geschichte",
+        "historyDesc": "Über 30 Jahre Innovation",
+        "team": "Führungsteam",
+        "teamDesc": "Lernen Sie unsere Führungskräfte kennen"
+      },
+      "news": {
+        "title": "Nachrichten & Veranstaltungen",
+        "pressReleases": "Pressemitteilungen",
+        "pressReleasesDesc": "Neueste Ankündigungen",
+        "events": "Fachmessen",
+        "eventsDesc": "Treffen Sie uns persönlich",
+        "blog": "Technischer Blog",
+        "blogDesc": "Brancheneinblicke"
+      },
+      "careers": {
+        "title": "Karriere",
+        "openings": "Offene Stellen",
+        "openingsDesc": "Werden Sie Teil unseres Teams",
+        "culture": "Unternehmenskultur",
+        "cultureDesc": "Leben bei BAPI"
+      },
+      "contact": {
+        "title": "Kontaktieren Sie uns",
+        "sales": "Vertriebsteam",
+        "salesDesc": "Sprechen Sie mit einem Vertriebsmitarbeiter",
+        "locations": "Standorte",
+        "locationsDesc": "Finden Sie uns in Ihrer Nähe"
+      }
+    }
+  },
+  "products": {
+    "title": "Produkte",
+    "description": "Durchsuchen Sie unser komplettes Sortiment",
+    "addToCart": "In den Warenkorb",
+    "addedToCart": "Zum Warenkorb hinzugefügt!",
+    "outOfStock": "Nicht auf Lager",
+    "backInStock": "Wieder auf Lager",
+    "price": "Preis",
+    "sku": "Artikelnummer",
+    "partNumber": "Teilenummer",
+    "availability": "Verfügbarkeit",
+    "inStock": "Auf Lager",
+    "quantity": "Menge",
+    "specifications": "Spezifikationen",
+    "features": "Merkmale",
+    "documentation": "Dokumentation",
+    "relatedProducts": "Ähnliche Produkte",
+    "viewDetails": "Details anzeigen",
+    "compareProducts": "Produkte vergleichen",
+    "requestQuote": "Angebot anfordern",
+    "downloadDatasheet": "Datenblatt herunterladen",
+    "technicalSupport": "Technischer Support",
+    "filters": {
+      "title": "Filter",
+      "category": "Kategorie",
+      "priceRange": "Preisbereich",
+      "inStockOnly": "Nur auf Lager",
+      "clearFilters": "Filter zurücksetzen"
+    },
+    "sort": {
+      "title": "Sortieren nach",
+      "featured": "Empfohlene Produkte",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "priceLowHigh": "Preis: Niedrig nach Hoch",
+      "priceHighLow": "Preis: Hoch nach Niedrig",
+      "newest": "Neueste zuerst"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Präzisionssensorlösungen für die Gebäudeautomation",
+      "subtitle": "Seit 1993 von Ingenieuren weltweit für kritische Einrichtungen vertraut",
+      "cta": "Produkte durchsuchen",
+      "secondaryCta": "Vertrieb kontaktieren"
+    },
+    "taglines": [
+      "Präzision, der Sie vertrauen können",
+      "Gebaut, um zu halten",
+      "Technische Exzellenz",
+      "Hergestellt in den USA"
+    ],
+    "features": {
+      "quality": {
+        "title": "Unübertroffene Qualität",
+        "description": "NIST-rückführbare Kalibrierung für jeden Sensor"
+      },
+      "support": {
+        "title": "Fachliche Unterstützung",
+        "description": "Ingenieure, die Ihnen zum Erfolg verhelfen"
+      },
+      "delivery": {
+        "title": "Schnelle Lieferung",
+        "description": "Versand am selben Tag für Lagerware"
+      },
+      "warranty": {
+        "title": "5-Jahres-Garantie",
+        "description": "Branchenführender Garantieschutz"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "Präzisionssensorlösungen für die Gebäudeautomation",
+      "description": "Seit 1993 von Ingenieuren weltweit für lebenswichtige Einrichtungen vertraut"
+    },
+    "sections": {
+      "products": {
+        "title": "Produkte",
+        "links": {
+          "allSensors": "Alle Sensoren",
+          "wireless": "Drahtlose Überwachung",
+          "testInstruments": "Testinstrumente",
+          "airQuality": "Luftqualitätssensoren",
+          "accessories": "Zubehör",
+          "browseCatalog": "Katalog durchsuchen"
+        }
+      },
+      "resources": {
+        "title": "Ressourcen",
+        "links": {
+          "datasheets": "Technische Datenblätter",
+          "installation": "Installationsanleitungen",
+          "applicationNotes": "Anwendungshinweise",
+          "videos": "Videobibliothek",
+          "caseStudies": "Fallstudien"
+        }
+      },
+      "company": {
+        "title": "Unternehmen",
+        "links": {
+          "mission": "Mission & Werte",
+          "whyBapi": "Warum BAPI",
+          "news": "Nachrichten",
+          "careers": "Karriere",
+          "contact": "Kontaktieren Sie uns"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "links": {
+          "technical": "Technischer Support",
+          "selector": "Produktauswahl",
+          "crossReference": "Kreuzreferenz",
+          "distributorNetwork": "Händlernetzwerk"
+        }
+      }
+    },
+    "contact": {
+      "title": "Kontakt",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "Auszeichnungen & Anerkennung",
+      "description": "Anerkannt für Innovation und Exzellenz in der Gebäudeautomationstechnologie"
+    },
+    "certifications": {
+      "title": "Zertifizierungen",
+      "bacnet": "BACnet B-ASC zertifiziert",
+      "iso": "ISO 9001:2015",
+      "ul": "UL gelistet",
+      "madeInUsa": "Hergestellt in den USA"
+    },
+    "quickActions": {
+      "title": "Schnelle Aktionen",
+      "requestQuote": "Angebot anfordern",
+      "findDistributor": "Händler finden"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. Alle Rechte vorbehalten.",
+      "trademark": "BAPI® ist eine eingetragene Marke von Building Automation Products, Inc.",
+      "privacy": "Datenschutzrichtlinie",
+      "terms": "Nutzungsbedingungen"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "Folgen Sie uns"
+    }
+  },
+  "region": {
+    "selectLanguage": "Sprache auswählen",
+    "selectRegion": "Region auswählen",
+    "currency": "Währung",
+    "measurements": "Messungen",
+    "temperature": "Temperatur",
+    "pressure": "Druck",
+    "unitSystem": {
+      "metric": "Metrisch (°C, bar)",
+      "imperial": "Imperial (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "Nordamerika",
+      "europe": "Europa",
+      "asia": "Asien",
+      "middleEast": "Naher Osten",
+      "latinAmerica": "Lateinamerika",
+      "australia": "Australien & Pazifik"
+    },
+    "languages": {
+      "en": "Englisch",
+      "de": "Deutsch",
+      "fr": "Französisch",
+      "es": "Spanisch",
+      "ja": "Japanisch",
+      "zh": "Chinesisch",
+      "vi": "Vietnamesisch",
+      "ar": "Arabisch"
+    },
+    "currencies": {
+      "usd": "USD ($)",
+      "eur": "EUR (€)",
+      "gbp": "GBP (£)",
+      "cad": "CAD ($)",
+      "jpy": "JPY (¥)",
+      "cny": "CNY (¥)",
+      "vnd": "VND (₫)",
+      "aed": "AED (د.إ)"
+    }
+  },
+  "units": {
+    "temperatur": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kelvin": "K"
+    },
+    "druck": {
+      "bar": "bar",
+      "psi": "PSI",
+      "pa": "Pa",
+      "kpa": "kPa",
+      "inWc": "inWC"
+    },
+    "länge": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "inch": "inch",
+      "ft": "ft"
+    }
+  },
+  "errors": {
+    "generic": "Es ist ein Fehler aufgetreten",
+    "network": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
+    "notFound": "Seite nicht gefunden",
+    "unauthorized": "Sie müssen angemeldet sein, um auf diese Seite zuzugreifen",
+    "serverError": "Serverfehler. Bitte versuchen Sie es später erneut.",
+    "validationError": "Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut",
+    "addToCartFailed": "Fehler beim Hinzufügen des Artikels zum Warenkorb",
+    "productNotFound": "Produkt nicht gefunden",
+    "cartEmpty": "Ihr Warenkorb ist leer",
+    "checkoutFailed": "Checkout fehlgeschlagen. Bitte versuchen Sie es erneut."
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "signUp": "Registrieren",
+    "profile": "Profil",
+    "account": "Mein Konto",
+    "dashboard": "Dashboard",
+    "settings": "Einstellungen",
+    "orders": "Bestellungen",
+    "favorites": "Favoriten",
+    "quotes": "Angebote",
+    "addresses": "Adressen",
+    "paymentMethods": "Zahlungsmethoden",
+    "welcome": "Willkommen",
+    "welcomeBack": "Willkommen zurück",
+    "loginRequired": "Bitte melden Sie sich an, um fortzufahren",
+    "logout": "Abmelden",
+    "myProfile": "Mein Profil"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Ihr Warenkorb ist leer",
+    "emptyDescription": "Durchsuchen Sie unsere Produkte, um Artikel in Ihren Warenkorb zu legen",
+    "checkout": "Zur Kasse gehen",
+    "continueShopping": "Einkaufen fortsetzen",
+    "subtotal": "Zwischensumme",
+    "tax": "Steuern",
+    "shipping": "Versand",
+    "total": "Gesamtbetrag",
+    "itemCount": "{count} {count, plural, =1 {Artikel} other {Artikel}}",
+    "removeItem": "Artikel entfernen",
+    "updateQuantity": "Menge aktualisieren",
+    "applyCoupon": "Gutschein anwenden",
+    "couponCode": "Gutscheincode",
+    "couponApplied": "Gutschein erfolgreich angewendet",
+    "couponInvalid": "Ungültiger Gutscheincode",
+    "cartUpdated": "Warenkorb aktualisiert"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "shipping": "Versandinformationen",
+    "payment": "Zahlungsinformationen",
+    "review": "Bestellung überprüfen",
+    "placeOrder": "Bestellung aufgeben",
+    "orderSummary": "Bestellübersicht",
+    "billingAddress": "Rechnungsadresse",
+    "shippingAddress": "Lieferadresse",
+    "sameAsBilling": "Wie Rechnungsadresse",
+    "paymentMethod": "Zahlungsmethode",
+    "creditCard": "Kreditkarte",
+    "cardNumber": "Kartennummer",
+    "expiryDate": "Ablaufdatum",
+    "cvv": "CVV",
+    "nameOnCard": "Name auf der Karte",
+    "orderTotal": "Gesamtbetrag",
+    "terms": "Allgemeine Geschäftsbedingungen",
+    "acceptTerms": "Ich akzeptiere die Allgemeinen Geschäftsbedingungen",
+    "processing": "Ihre Bestellung wird bearbeitet...",
+    "orderComplete": "Bestellung abgeschlossen!",
+    "orderNumber": "Bestellnummer",
+    "thankYou": "Vielen Dank für Ihre Bestellung"
+  },
+  "forms": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "company": "Firmenname",
+    "address": "Straßenadresse",
+    "address2": "Wohnung, Suite usw. (optional)",
+    "city": "Stadt",
+    "state": "Bundesland / Provinz",
+    "zipCode": "Postleitzahl",
+    "country": "Land",
+    "message": "Nachricht",
+    "subject": "Betreff",
+    "required": "Erforderlich",
+    "optional": "Optional",
+    "invalidEmail": "Ungültige E-Mail-Adresse",
+    "invalidPhone": "Ungültige Telefonnummer",
+    "fieldRequired": "Dieses Feld ist erforderlich",
+    "selectOption": "Wählen Sie eine Option",
+    "enterValue": "Geben Sie einen Wert ein"
+  },
+  "accessibility": {
+    "skipToContent": "Zum Hauptinhalt springen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "openCart": "Einkaufswagen öffnen",
+    "closeCart": "Einkaufswagen schließen",
+    "previousSlide": "Vorheriger Slide",
+    "nextSlide": "Nächster Slide",
+    "pageNavigation": "Seitennavigation",
+    "loading": "Inhalt wird geladen",
+    "searchResults": "Suchergebnisse"
+  }
+}

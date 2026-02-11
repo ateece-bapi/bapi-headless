@@ -3,8 +3,8 @@ import { getRequestConfig } from 'next-intl/server';
 import { merge } from 'lodash-es';
 import logger from '@/lib/logger';
 
-// All supported locales - 9 languages for Phase 1
-export const locales = ['en', 'de', 'fr', 'es', 'ja', 'zh', 'vi', 'ar', 'th'] as const;
+// All supported locales - 10 languages for Phase 1
+export const locales = ['en', 'de', 'fr', 'es', 'ja', 'zh', 'vi', 'ar', 'th', 'pl'] as const;
 export type Locale = (typeof locales)[number];
 
 // Default locale

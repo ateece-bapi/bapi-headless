@@ -16,6 +16,7 @@ fi
 # Load API key from web/.env
 echo "📋 Loading ANTHROPIC_API_KEY from web/.env..."
 source ../web/.env
+export ANTHROPIC_API_KEY
 
 if [ -z "$ANTHROPIC_API_KEY" ]; then
   echo "❌ ANTHROPIC_API_KEY not found in web/.env"
@@ -32,9 +33,11 @@ if [ ! -f "en.json" ]; then
 fi
 
 # Check if @anthropic-ai/sdk is installed
-if [ ! -d "node_modules/@anthropic-ai" ]; then
-  echo "📦 Installing @anthropic-ai/sdk..."
+if [ ! -d "../web/node_modules/@anthropic-ai" ]; then
+  echo "📦 Installing @anthropic-ai/sdk in web directory..."
+  cd ../web
   npm install @anthropic-ai/sdk
+  cd ../scripts
   echo ""
 fi
 

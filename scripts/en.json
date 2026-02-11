@@ -1,0 +1,516 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "tryAgain": "Try again",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clearAll": "Clear All",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  "nav": {
+    "products": "Products",
+    "applications": "Applications",
+    "support": "Support",
+    "company": "Company",
+    "cart": "Cart",
+    "account": "Account",
+    "signIn": "User Sign In"
+  },
+  "megaMenu": {
+    "products": {
+      "label": "Products",
+      "temperature": {
+        "title": "Temperature",
+        "roomWallSensors": "Room & Wall Sensors",
+        "roomWallSensorsDesc": "High-accuracy temperature sensing",
+        "ductSensors": "Duct Sensors",
+        "ductSensorsDesc": "Duct-mounted transmitters",
+        "immersionWell": "Immersion & Well",
+        "immersionWellDesc": "Liquid temperature measurement",
+        "outdoorSensors": "Outdoor Sensors",
+        "outdoorSensorsDesc": "Weather-resistant sensing"
+      },
+      "humidity": {
+        "title": "Humidity",
+        "roomHumidity": "Room Humidity",
+        "roomHumidityDesc": "Wall-mount RH sensors",
+        "ductHumidity": "Duct Humidity",
+        "ductHumidityDesc": "Supply & return air RH",
+        "outdoorHumidity": "Outdoor Humidity",
+        "outdoorHumidityDesc": "Weather-resistant RH",
+        "comboSensors": "Combo Sensors",
+        "comboSensorsDesc": "Temperature + humidity"
+      },
+      "pressure": {
+        "title": "Pressure",
+        "differential": "Differential Pressure",
+        "differentialDesc": "Room & filter monitoring",
+        "static": "Static Pressure",
+        "staticDesc": "Duct static transmitters",
+        "barometric": "Barometric",
+        "barometricDesc": "Atmospheric pressure"
+      },
+      "airQuality": {
+        "title": "Air Quality",
+        "co2": "CO₂ Sensors",
+        "co2Desc": "Carbon dioxide monitoring",
+        "voc": "VOC Sensors",
+        "vocDesc": "Volatile organic compounds",
+        "particulate": "Particulate Matter",
+        "particulateDesc": "PM2.5 and PM10"
+      },
+      "wireless": {
+        "title": "Wireless",
+        "wamTemperature": "WAM Temperature",
+        "wamTemperatureDesc": "Wireless temp sensors",
+        "wamHumidity": "WAM Humidity",
+        "wamHumidityDesc": "Wireless RH sensors",
+        "wamDoorSensors": "WAM Door Sensors",
+        "wamDoorSensorsDesc": "Open/close monitoring",
+        "cloudPlatform": "Cloud Platform",
+        "cloudPlatformDesc": "24/7 remote monitoring"
+      },
+      "accessories": {
+        "title": "Accessories",
+        "mounting": "Mounting Hardware",
+        "mountingDesc": "Plates, boxes, brackets",
+        "enclosures": "Enclosures",
+        "enclosuresDesc": "BAPI-Box & covers",
+        "cables": "Cables & Connectors",
+        "cablesDesc": "Wiring accessories"
+      },
+      "testInstruments": {
+        "title": "Test Instruments",
+        "bluTestTemp": "Blu-Test Temperature",
+        "bluTestTempDesc": "NIST-traceable reference",
+        "bluTestHumidity": "Blu-Test Humidity",
+        "bluTestHumidityDesc": "Temp + RH reference",
+        "bluTestPressure": "Blu-Test Pressure",
+        "bluTestPressureDesc": "Digital manometer"
+      },
+      "featured": {
+        "wamTitle": "WAM™ Wireless Asset Monitoring",
+        "wamDescription": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
+        "wamCta": "Learn More",
+        "wamBadge": "Premium Solution"
+      },
+      "badges": {
+        "popular": "Popular",
+        "new": "New",
+        "premium": "Premium"
+      }
+    },
+    "support": {
+      "label": "Support",
+      "technical": {
+        "title": "Technical Support",
+        "phone": "Phone Support",
+        "phoneDesc": "Talk to our engineers",
+        "email": "Email Support",
+        "emailDesc": "Get detailed help",
+        "chat": "Live Chat",
+        "chatDesc": "Instant answers"
+      },
+      "resources": {
+        "title": "Resources",
+        "datasheets": "Datasheets",
+        "datasheetsDesc": "Technical specifications",
+        "installGuides": "Installation Guides",
+        "installGuidesDesc": "Step-by-step instructions",
+        "appNotes": "Application Notes",
+        "appNotesDesc": "Design guidance",
+        "videos": "Video Library",
+        "videosDesc": "How-to videos"
+      },
+      "tools": {
+        "title": "Tools & Downloads",
+        "selector": "Product Selector",
+        "selectorDesc": "Find the right sensor",
+        "crossRef": "Cross Reference",
+        "crossRefDesc": "Find BAPI equivalents",
+        "software": "Configuration Software",
+        "softwareDesc": "Download setup tools"
+      }
+    },
+    "company": {
+      "label": "Company",
+      "about": {
+        "title": "About BAPI",
+        "mission": "Mission & Values",
+        "missionDesc": "What drives us",
+        "whyBapi": "Why BAPI",
+        "whyBapiDesc": "Why choose BAPI",
+        "history": "Our Story",
+        "historyDesc": "30+ years of innovation",
+        "team": "Leadership Team",
+        "teamDesc": "Meet our leaders"
+      },
+      "news": {
+        "title": "News & Events",
+        "pressReleases": "Press Releases",
+        "pressReleasesDesc": "Latest announcements",
+        "events": "Trade Shows",
+        "eventsDesc": "Meet us in person",
+        "blog": "Technical Blog",
+        "blogDesc": "Industry insights"
+      },
+      "careers": {
+        "title": "Careers",
+        "openings": "Open Positions",
+        "openingsDesc": "Join our team",
+        "culture": "Company Culture",
+        "cultureDesc": "Life at BAPI"
+      },
+      "contact": {
+        "title": "Contact Us",
+        "sales": "Sales Team",
+        "salesDesc": "Talk to a rep",
+        "locations": "Locations",
+        "locationsDesc": "Find us near you"
+      }
+    }
+  },
+  "products": {
+    "title": "Products",
+    "description": "Browse our complete catalog",
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added to Cart!",
+    "outOfStock": "Out of Stock",
+    "backInStock": "Back in Stock",
+    "price": "Price",
+    "sku": "SKU",
+    "partNumber": "Part Number",
+    "availability": "Availability",
+    "inStock": "In Stock",
+    "quantity": "Quantity",
+    "specifications": "Specifications",
+    "features": "Features",
+    "documentation": "Documentation",
+    "relatedProducts": "Related Products",
+    "viewDetails": "View Details",
+    "compareProducts": "Compare Products",
+    "requestQuote": "Request Quote",
+    "downloadDatasheet": "Download Datasheet",
+    "technicalSupport": "Technical Support",
+    "filters": {
+      "title": "Filters",
+      "category": "Category",
+      "priceRange": "Price Range",
+      "inStockOnly": "In Stock Only",
+      "clearFilters": "Clear Filters"
+    },
+    "sort": {
+      "title": "Sort By",
+      "featured": "Featured",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "priceLowHigh": "Price: Low to High",
+      "priceHighLow": "Price: High to Low",
+      "newest": "Newest First"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Precision Sensor Solutions for Building Automation",
+      "subtitle": "Trusted by engineers worldwide for mission-critical facilities since 1993",
+      "cta": "Browse Products",
+      "secondaryCta": "Contact Sales"
+    },
+    "taglines": [
+      "Precision You Can Trust",
+      "Built to Last",
+      "Engineering Excellence",
+      "Made in USA"
+    ],
+    "features": {
+      "quality": {
+        "title": "Unmatched Quality",
+        "description": "NIST-traceable calibration on every sensor"
+      },
+      "support": {
+        "title": "Expert Support",
+        "description": "Engineers ready to help you succeed"
+      },
+      "delivery": {
+        "title": "Fast Delivery",
+        "description": "Same-day shipping on stock items"
+      },
+      "warranty": {
+        "title": "5-Year Warranty",
+        "description": "Industry-leading warranty protection"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "Precision Sensor Solutions for Building Automation",
+      "description": "Trusted by engineers worldwide for mission-critical facilities since 1993"
+    },
+    "sections": {
+      "products": {
+        "title": "Products",
+        "links": {
+          "allSensors": "All Sensors",
+          "wireless": "Wireless Monitoring",
+          "testInstruments": "Test Instruments",
+          "airQuality": "Air Quality Sensors",
+          "accessories": "Accessories",
+          "browseCatalog": "Browse Catalog"
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "links": {
+          "datasheets": "Technical Datasheets",
+          "installation": "Installation Guides",
+          "applicationNotes": "Application Notes",
+          "videos": "Video Library",
+          "caseStudies": "Case Studies"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "links": {
+          "mission": "Mission & Values",
+          "whyBapi": "Why BAPI",
+          "news": "News",
+          "careers": "Careers",
+          "contact": "Contact Us"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "links": {
+          "technical": "Technical Support",
+          "selector": "Product Selector",
+          "crossReference": "Cross Reference",
+          "distributorNetwork": "Distributor Network"
+        }
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "Awards & Recognition",
+      "description": "Recognized for innovation and excellence in building automation technology"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "bacnet": "BACnet B-ASC Certified",
+      "iso": "ISO 9001:2015",
+      "ul": "UL Listed",
+      "madeInUsa": "Made in USA"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "requestQuote": "Request Quote",
+      "findDistributor": "Find Distributor"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. All rights reserved.",
+      "trademark": "BAPI® is a registered trademark of Building Automation Products, Inc.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "Follow Us"
+    }
+  },
+  "region": {
+    "selectLanguage": "Select Language",
+    "selectRegion": "Select Region",
+    "currency": "Currency",
+    "measurements": "Measurements",
+    "temperature": "Temperature",
+    "pressure": "Pressure",
+    "unitSystem": {
+      "metric": "Metric (°C, bar)",
+      "imperial": "Imperial (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "North America",
+      "europe": "Europe",
+      "asia": "Asia",
+      "middleEast": "Middle East",
+      "latinAmerica": "Latin America",
+      "australia": "Australia & Pacific"
+    },
+    "languages": {
+      "en": "English",
+      "de": "Deutsch (German)",
+      "fr": "Français (French)",
+      "es": "Español (Spanish)",
+      "ja": "日本語 (Japanese)",
+      "zh": "中文 (Chinese)",
+      "vi": "Tiếng Việt (Vietnamese)",
+      "ar": "العربية (Arabic)"
+    },
+    "currencies": {
+      "usd": "USD ($)",
+      "eur": "EUR (€)",
+      "gbp": "GBP (£)",
+      "cad": "CAD ($)",
+      "jpy": "JPY (¥)",
+      "cny": "CNY (¥)",
+      "vnd": "VND (₫)",
+      "aed": "AED (د.إ)"
+    }
+  },
+  "units": {
+    "temperature": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kelvin": "K"
+    },
+    "pressure": {
+      "bar": "bar",
+      "psi": "PSI",
+      "pa": "Pa",
+      "kpa": "kPa",
+      "inWc": "inWC"
+    },
+    "length": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "inch": "inch",
+      "ft": "ft"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "network": "Network error. Please check your connection.",
+    "notFound": "Page not found",
+    "unauthorized": "You must be signed in to access this page",
+    "serverError": "Server error. Please try again later.",
+    "validationError": "Please check your input and try again",
+    "addToCartFailed": "Failed to add item to cart",
+    "productNotFound": "Product not found",
+    "cartEmpty": "Your cart is empty",
+    "checkoutFailed": "Checkout failed. Please try again."
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign Up",
+    "profile": "Profile",
+    "account": "My Account",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "orders": "Orders",
+    "favorites": "Favorites",
+    "quotes": "Quotes",
+    "addresses": "Addresses",
+    "paymentMethods": "Payment Methods",
+    "welcome": "Welcome",
+    "welcomeBack": "Welcome back",
+    "loginRequired": "Please sign in to continue",
+    "logout": "Sign Out",
+    "myProfile": "My Profile"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "emptyDescription": "Browse our products to add items to your cart",
+    "checkout": "Proceed to Checkout",
+    "continueShopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "total": "Total",
+    "itemCount": "{count} {count, plural, =1 {item} other {items}}",
+    "removeItem": "Remove item",
+    "updateQuantity": "Update quantity",
+    "applyCoupon": "Apply Coupon",
+    "couponCode": "Coupon Code",
+    "couponApplied": "Coupon applied successfully",
+    "couponInvalid": "Invalid coupon code",
+    "cartUpdated": "Cart updated"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping": "Shipping Information",
+    "payment": "Payment Information",
+    "review": "Review Order",
+    "placeOrder": "Place Order",
+    "orderSummary": "Order Summary",
+    "billingAddress": "Billing Address",
+    "shippingAddress": "Shipping Address",
+    "sameAsBilling": "Same as billing address",
+    "paymentMethod": "Payment Method",
+    "creditCard": "Credit Card",
+    "cardNumber": "Card Number",
+    "expiryDate": "Expiry Date",
+    "cvv": "CVV",
+    "nameOnCard": "Name on Card",
+    "orderTotal": "Order Total",
+    "terms": "Terms & Conditions",
+    "acceptTerms": "I accept the terms and conditions",
+    "processing": "Processing your order...",
+    "orderComplete": "Order Complete!",
+    "orderNumber": "Order Number",
+    "thankYou": "Thank you for your order"
+  },
+  "forms": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "company": "Company Name",
+    "address": "Street Address",
+    "address2": "Apartment, suite, etc. (optional)",
+    "city": "City",
+    "state": "State / Province",
+    "zipCode": "ZIP / Postal Code",
+    "country": "Country",
+    "message": "Message",
+    "subject": "Subject",
+    "required": "Required",
+    "optional": "Optional",
+    "invalidEmail": "Invalid email address",
+    "invalidPhone": "Invalid phone number",
+    "fieldRequired": "This field is required",
+    "selectOption": "Select an option",
+    "enterValue": "Enter a value"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "openCart": "Open shopping cart",
+    "closeCart": "Close shopping cart",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "pageNavigation": "Page navigation",
+    "loading": "Loading content",
+    "searchResults": "Search results"
+  }
+}

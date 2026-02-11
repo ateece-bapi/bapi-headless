@@ -1,8 +1,8 @@
 # BAPI Technical Glossary for Translation Services
 
 **Purpose**: Reference document for translators working on BAPI e-commerce platform  
-**Languages**: German (DE), French (FR), Spanish (ES), Japanese (JA), Chinese (ZH), Vietnamese (VI), Arabic (AR), Thai (TH)  
-**Version**: 1.1  
+**Languages**: German (DE), French (FR), Spanish (ES), Japanese (JA), Chinese (ZH), Vietnamese (VI), Arabic (AR), Thai (TH), Polish (PL)  
+**Version**: 1.2  
 **Date**: February 11, 2026  
 **Priority**: Vietnamese for Vietnam facility opening (April 2026)
 

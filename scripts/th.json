@@ -1,0 +1,516 @@
+{
+  "common": {
+    "loading": "กำลังโหลด...",
+    "error": "เกิดข้อผิดพลาด",
+    "success": "สำเร็จ",
+    "tryAgain": "ลองอีกครั้ง",
+    "cancel": "ยกเลิก",
+    "save": "บันทึก",
+    "delete": "ลบ",
+    "edit": "แก้ไข",
+    "close": "ปิด",
+    "back": "ย้อนกลับ",
+    "next": "ถัดไป",
+    "previous": "ก่อนหน้า",
+    "submit": "ส่ง",
+    "confirm": "ยืนยัน",
+    "learnMore": "เรียนรู้เพิ่มเติม",
+    "viewAll": "ดูทั้งหมด",
+    "readMore": "อ่านเพิ่มเติม",
+    "showMore": "แสดงเพิ่มเติม",
+    "showLess": "แสดงน้อยลง",
+    "search": "ค้นหา",
+    "filter": "กรอง",
+    "sort": "เรียงลำดับ",
+    "clearAll": "ล้างทั้งหมด",
+    "apply": "ใช้",
+    "reset": "รีเซ็ต"
+  },
+  "nav": {
+    "products": "ผลิตภัณฑ์",
+    "applications": "แอปพลิเคชัน",
+    "support": "การสนับสนุน",
+    "company": "บริษัท",
+    "cart": "ตะกร้าสินค้า",
+    "account": "บัญชี",
+    "signIn": "ลงชื่อเข้าใช้"
+  },
+  "megaMenu": {
+    "products": {
+      "label": "ผลิตภัณฑ์",
+      "temperature": {
+        "title": "อุณหภูมิ",
+        "roomWallSensors": "เซ็นเซอร์ห้องและผนัง",
+        "roomWallSensorsDesc": "การตรวจจับอุณหภูมิความแม่นยำสูง",
+        "ductSensors": "เซ็นเซอร์ท่อลม",
+        "ductSensorsDesc": "ตัวส่งสัญญาณติดตั้งในท่อลม",
+        "immersionWell": "การแช่และการวัด",
+        "immersionWellDesc": "การวัดอุณหภูมิของของเหลว",
+        "outdoorSensors": "เซ็นเซอร์ภายนอก",
+        "outdoorSensorsDesc": "การตรวจจับที่ทนทานต่อสภาพอากาศ"
+      },
+      "humidity": {
+        "title": "ความชื้น",
+        "roomHumidity": "ความชื้นในห้อง",
+        "roomHumidityDesc": "เซ็นเซอร์ความชื้นติดผนัง",
+        "ductHumidity": "ความชื้นในท่อลม",
+        "ductHumidityDesc": "ความชื้นในอากาศจ่ายและอากาศกลับ",
+        "outdoorHumidity": "ความชื้นภายนอก",
+        "outdoorHumidityDesc": "ความชื้นที่ทนทานต่อสภาพอากาศ",
+        "comboSensors": "เซ็นเซอร์แบบผสม",
+        "comboSensorsDesc": "อุณหภูมิ + ความชื้น"
+      },
+      "pressure": {
+        "title": "ความดัน",
+        "differential": "ความดันต่างระดับ",
+        "differentialDesc": "การตรวจสอบห้องและตัวกรอง",
+        "static": "ความดันสถิต",
+        "staticDesc": "ตัวส่งสัญญาณความดันในท่อลม",
+        "barometric": "บารอมิเตอร์",
+        "barometricDesc": "ความดันบรรยากาศ"
+      },
+      "airQuality": {
+        "title": "คุณภาพอากาศ",
+        "co2": "เซ็นเซอร์ CO₂",
+        "co2Desc": "การตรวจสอบคาร์บอนไดออกไซด์",
+        "voc": "เซ็นเซอร์ VOC",
+        "vocDesc": "สารประกอบอินทรีย์ระเหย",
+        "particulate": "สารแขวนลอย",
+        "particulateDesc": "PM2.5 และ PM10"
+      },
+      "wireless": {
+        "title": "ไร้สาย",
+        "wamTemperature": "อุณหภูมิ WAM",
+        "wamTemperatureDesc": "เซ็นเซอร์อุณหภูมิไร้สาย",
+        "wamHumidity": "ความชื้น WAM",
+        "wamHumidityDesc": "เซ็นเซอร์ความชื้นไร้สาย",
+        "wamDoorSensors": "เซ็นเซอร์ประตู WAM",
+        "wamDoorSensorsDesc": "การตรวจสอบการเปิด/ปิด",
+        "cloudPlatform": "แพลตฟอร์มคลาวด์",
+        "cloudPlatformDesc": "การตรวจสอบระยะไกลตลอด 24 ชั่วโมง"
+      },
+      "accessories": {
+        "title": "อุปกรณ์เสริม",
+        "mounting": "อุปกรณ์ยึดติดตั้ง",
+        "mountingDesc": "แผ่นยึด กล่อง และขาแขวน",
+        "enclosures": "ตัวเคลือบ",
+        "enclosuresDesc": "BAPI-Box และฝาครอบ",
+        "cables": "สายเคเบิลและตัวเชื่อมต่อ",
+        "cablesDesc": "อุปกรณ์เสริมสำหรับการเดินสาย"
+      },
+      "testInstruments": {
+        "title": "เครื่องมือทดสอบ",
+        "bluTestTemp": "Blu-Test อุณหภูมิ",
+        "bluTestTempDesc": "อ้างอิงตามมาตรฐาน NIST",
+        "bluTestHumidity": "Blu-Test ความชื้น",
+        "bluTestHumidityDesc": "อ้างอิงอุณหภูมิ + ความชื้น",
+        "bluTestPressure": "Blu-Test ความดัน",
+        "bluTestPressureDesc": "มานอมิเตอร์ดิจิทัล"
+      },
+      "featured": {
+        "wamTitle": "WAM™ การตรวจสอบสินทรัพย์ไร้สาย",
+        "wamDescription": "การตรวจสอบระยะไกลตลอด 24 ชั่วโมงพร้อมการแจ้งเตือนทันที ปกป้องสินทรัพย์ที่มีค่าของคุณจากการขัดข้องของไฟฟ้าและความล้มเหลวของอุปกรณ์ ไม่ต้องเดินสายไฟ - เริ่มใช้งานได้ภายในไม่กี่นาที",
+        "wamCta": "เรียนรู้เพิ่มเติม",
+        "wamBadge": "โซลูชันระดับพรีเมียม"
+      },
+      "badges": {
+        "popular": "ยอดนิยม",
+        "new": "ใหม่",
+        "premium": "พรีเมียม"
+      }
+    },
+    "support": {
+      "label": "การสนับสนุน",
+      "technical": {
+        "title": "การสนับสนุนทางเทคนิค",
+        "phone": "การสนับสนุนทางโทรศัพท์",
+        "phoneDesc": "พูดคุยกับวิศวกรของเรา",
+        "email": "การสนับสนุนทางอีเมล",
+        "emailDesc": "รับความช่วยเหลือโดยละเอียด",
+        "chat": "แชทสด",
+        "chatDesc": "คำตอบทันที"
+      },
+      "resources": {
+        "title": "ทรัพยากร",
+        "datasheets": "แผ่นข้อมูลจำเพาะ",
+        "datasheetsDesc": "รายละเอียดทางเทคนิค",
+        "installGuides": "คู่มือการติดตั้ง",
+        "installGuidesDesc": "คำแนะนำขั้นตอนต่อขั้นตอน",
+        "appNotes": "บันทึกการประยุกต์ใช้",
+        "appNotesDesc": "คำแนะนำการออกแบบ",
+        "videos": "ห้องสมุดวิดีโอ",
+        "videosDesc": "วิดีโอแนะนำการใช้งาน"
+      },
+      "tools": {
+        "title": "เครื่องมือและการดาวน์โหลด",
+        "selector": "ตัวเลือกผลิตภัณฑ์",
+        "selectorDesc": "หาเซ็นเซอร์ที่เหมาะสม",
+        "crossRef": "การอ้างอิงข้าม",
+        "crossRefDesc": "หารุ่นที่เทียบเท่า BAPI",
+        "software": "ซอฟต์แวร์การกำหนดค่า",
+        "softwareDesc": "ดาวน์โหลดเครื่องมือการตั้งค่า"
+      }
+    },
+    "company": {
+      "label": "บริษัท",
+      "about": {
+        "title": "เกี่ยวกับ BAPI",
+        "mission": "ภารกิจและค่านิยม",
+        "missionDesc": "สิ่งที่ผลักดันเรา",
+        "whyBapi": "ทำไมต้อง BAPI",
+        "whyBapiDesc": "เหตุผลที่เลือก BAPI",
+        "history": "เรื่องราวของเรา",
+        "historyDesc": "นวัตกรรมมากกว่า 30 ปี",
+        "team": "ทีมผู้นำ",
+        "teamDesc": "พบกับผู้นำของเรา"
+      },
+      "news": {
+        "title": "ข่าวสารและกิจกรรม",
+        "pressReleases": "ข่าวประชาสัมพันธ์",
+        "pressReleasesDesc": "ประกาศล่าสุด",
+        "events": "งานแสดงสินค้า",
+        "eventsDesc": "พบเราในงานต่างๆ",
+        "blog": "บล็อกทางเทคนิค",
+        "blogDesc": "ข้อมูลอุตสาหกรรม"
+      },
+      "careers": {
+        "title": "อาชีพ",
+        "openings": "ตำแหน่งงานว่าง",
+        "openingsDesc": "เข้าร่วมทีมของเรา",
+        "culture": "วัฒนธรรมองค์กร",
+        "cultureDesc": "ชีวิตที่ BAPI"
+      },
+      "contact": {
+        "title": "ติดต่อเรา",
+        "sales": "ทีมขาย",
+        "salesDesc": "พูดคุยกับตัวแทน",
+        "locations": "สถานที่ตั้ง",
+        "locationsDesc": "หาเราใกล้คุณ"
+      }
+    }
+  },
+  "products": {
+    "title": "ผลิตภัณฑ์",
+    "description": "เรียกดูแคตตาล็อกสินค้าของเราอย่างครบถ้วน",
+    "addToCart": "เพิ่มลงในตะกร้า",
+    "addedToCart": "เพิ่มลงในตะกร้าแล้ว!",
+    "outOfStock": "สินค้าหมด",
+    "backInStock": "มีสินค้าเข้ามาใหม่",
+    "price": "ราคา",
+    "sku": "รหัสสินค้า",
+    "partNumber": "หมายเลขชิ้นส่วน",
+    "availability": "สถานะสินค้า",
+    "inStock": "มีสินค้าในสต็อก",
+    "quantity": "จำนวน",
+    "specifications": "รายละเอียดทางเทคนิค",
+    "features": "คุณสมบัติ",
+    "documentation": "เอกสารข้อมูล",
+    "relatedProducts": "สินค้าที่เกี่ยวข้อง",
+    "viewDetails": "ดูรายละเอียด",
+    "compareProducts": "เปรียบเทียบสินค้า",
+    "requestQuote": "ขอใบเสนอราคา",
+    "downloadDatasheet": "ดาวน์โหลดข้อมูลจำเพาะ",
+    "technicalSupport": "การสนับสนุนทางเทคนิค",
+    "filters": {
+      "title": "ตัวกรอง",
+      "category": "หมวดหมู่",
+      "priceRange": "ช่วงราคา",
+      "inStockOnly": "มีสินค้าในสต็อกเท่านั้น",
+      "clearFilters": "ล้างตัวกรอง"
+    },
+    "sort": {
+      "title": "จัดเรียงตาม",
+      "featured": "สินค้าแนะนำ",
+      "nameAsc": "ชื่อ (A-Z)",
+      "nameDesc": "ชื่อ (Z-A)",
+      "priceLowHigh": "ราคา: ต่ำไปสูง",
+      "priceHighLow": "ราคา: สูงไปต่ำ",
+      "newest": "ใหม่ล่าสุด"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "ระบบเซ็นเซอร์ความแม่นยำสำหรับระบบอัตโนมัติอาคาร",
+      "subtitle": "ได้รับความไว้วางใจจากวิศวกรทั่วโลกสำหรับสถานที่สำคัญตั้งแต่ปี 1993",
+      "cta": "เรียกดูผลิตภัณฑ์",
+      "secondaryCta": "ติดต่อฝ่ายขาย"
+    },
+    "taglines": [
+      "ความแม่นยำที่คุณไว้วางใจได้",
+      "สร้างมาเพื่อความทนทาน",
+      "ความเป็นเลิศทางวิศวกรรม",
+      "ผลิตในสหรัฐอเมริกา"
+    ],
+    "features": {
+      "quality": {
+        "title": "คุณภาพที่ไม่มีใครเทียบได้",
+        "description": "การสอบเทียบที่สามารถตรวจสอบย้อนกลับไปยัง NIST ในทุกเซ็นเซอร์"
+      },
+      "support": {
+        "title": "การสนับสนุนจากผู้เชี่ยวชาญ",
+        "description": "วิศวกรพร้อมช่วยให้คุณประสบความสำเร็จ"
+      },
+      "delivery": {
+        "title": "การจัดส่งที่รวดเร็ว",
+        "description": "จัดส่งในวันเดียวสำหรับรายการสินค้าที่มีในสต็อก"
+      },
+      "warranty": {
+        "title": "รับประกัน 5 ปี",
+        "description": "การคุ้มครองการรับประกันชั้นนำในอุตสาหกรรม"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "ผลิตภัณฑ์เซ็นเซอร์ความแม่นยำสำหรับระบบอัตโนมัติอาคาร",
+      "description": "ได้รับความไว้วางใจจากวิศวกรทั่วโลกสำหรับสถานที่สำคัญตั้งแต่ปี 1993"
+    },
+    "sections": {
+      "products": {
+        "title": "ผลิตภัณฑ์",
+        "links": {
+          "allSensors": "เซ็นเซอร์ทั้งหมด",
+          "wireless": "การตรวจสอบแบบไร้สาย",
+          "testInstruments": "เครื่องมือทดสอบ",
+          "airQuality": "เซ็นเซอร์คุณภาพอากาศ",
+          "accessories": "อุปกรณ์เสริม",
+          "browseCatalog": "เรียกดูแคตตาล็อก"
+        }
+      },
+      "resources": {
+        "title": "ทรัพยากร",
+        "links": {
+          "datasheets": "แผ่นข้อมูลทางเทคนิค",
+          "installation": "คู่มือการติดตั้ง",
+          "applicationNotes": "บันทึกการประยุกต์ใช้",
+          "videos": "ห้องสมุดวิดีโอ",
+          "caseStudies": "กรณีศึกษา"
+        }
+      },
+      "company": {
+        "title": "บริษัท",
+        "links": {
+          "mission": "ภารกิจและค่านิยม",
+          "whyBapi": "ทำไมต้อง BAPI",
+          "news": "ข่าว",
+          "careers": "งาน",
+          "contact": "ติดต่อเรา"
+        }
+      },
+      "support": {
+        "title": "การสนับสนุน",
+        "links": {
+          "technical": "การสนับสนุนทางเทคนิค",
+          "selector": "เครื่องมือเลือกผลิตภัณฑ์",
+          "crossReference": "การอ้างอิงข้าม",
+          "distributorNetwork": "เครือข่ายตัวแทนจำหน่าย"
+        }
+      }
+    },
+    "contact": {
+      "title": "ติดต่อ",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "รางวัลและการยอมรับ",
+      "description": "ได้รับการยอมรับในด้านนวัตกรรมและความเป็นเลิศในเทคโนโลยีระบบอัตโนมัติอาคาร"
+    },
+    "certifications": {
+      "title": "การรับรอง",
+      "bacnet": "ได้รับการรับรอง BACnet B-ASC",
+      "iso": "ISO 9001:2015",
+      "ul": "ได้รับการรับรอง UL",
+      "madeInUsa": "ผลิตในสหรัฐอเมริกา"
+    },
+    "quickActions": {
+      "title": "การดำเนินการอย่างรวดเร็ว",
+      "requestQuote": "ขอใบเสนอราคา",
+      "findDistributor": "ค้นหาตัวแทนจำหน่าย"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. สงวนลิขสิทธิ์",
+      "trademark": "BAPI® เป็นเครื่องหมายการค้าจดทะเบียนของ Building Automation Products, Inc.",
+      "privacy": "นโยบายความเป็นส่วนตัว",
+      "terms": "ข้อกำหนดการใช้งาน"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "ติดตามเรา"
+    }
+  },
+  "region": {
+    "selectLanguage": "เลือกภาษา",
+    "selectRegion": "เลือกภูมิภาค",
+    "currency": "สกุลเงิน",
+    "measurements": "การวัด",
+    "temperature": "อุณหภูมิ",
+    "pressure": "ความดัน",
+    "unitSystem": {
+      "metric": "ระบบเมตริก (°C, bar)",
+      "imperial": "ระบบอังกฤษ (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "อเมริกาเหนือ",
+      "europe": "ยุโรป",
+      "asia": "เอเชีย",
+      "middleEast": "ตะวันออกกลาง",
+      "latinAmerica": "ละตินอเมริกา",
+      "australia": "ออสเตรเลียและแปซิฟิก"
+    },
+    "languages": {
+      "en": "ภาษาอังกฤษ",
+      "de": "ภาษาเยอรมัน (Deutsch)",
+      "fr": "ภาษาฝรั่งเศส (Français)",
+      "es": "ภาษาสเปน (Español)",
+      "ja": "ภาษาญี่ปุ่น (日本語)",
+      "zh": "ภาษาจีน (中文)",
+      "vi": "ภาษาเวียดนาม (Tiếng Việt)",
+      "ar": "ภาษาอาหรับ (العربية)"
+    },
+    "currencies": {
+      "usd": "ดอลลาร์สหรัฐ (USD $)",
+      "eur": "ยูโร (EUR €)",
+      "gbp": "ปอนด์สเตอร์ลิง (GBP £)",
+      "cad": "ดอลลาร์แคนาดา (CAD $)",
+      "jpy": "เยน (JPY ¥)",
+      "cny": "หยวน (CNY ¥)",
+      "vnd": "ดองเวียดนาม (VND ₫)",
+      "aed": "ดิรฮัมอาหรับเอมิเรตส์ (AED د.إ)"
+    }
+  },
+  "units": {
+    "อุณหภูมิ": {
+      "เซลเซียส": "°C",
+      "ฟาเรนไฮต์": "°F",
+      "เคลวิน": "K"
+    },
+    "ความดัน": {
+      "บาร์": "bar",
+      "ปอนด์ต่อตารางนิ้ว": "PSI",
+      "พาสคาล": "Pa",
+      "กิโลพาสคาล": "kPa",
+      "นิ้วน้ำ": "inWC"
+    },
+    "ความยาว": {
+      "มิลลิเมตร": "mm",
+      "เซนติเมตร": "cm",
+      "เมตร": "m",
+      "นิ้ว": "inch",
+      "ฟุต": "ft"
+    }
+  },
+  "errors": {
+    "generic": "เกิดข้อผิดพลาดบางอย่าง",
+    "network": "เกิดข้อผิดพลาดทางเครือข่าย โปรดตรวจสอบการเชื่อมต่อของคุณ",
+    "notFound": "ไม่พบหน้าที่ระบุ",
+    "unauthorized": "คุณต้องเข้าสู่ระบบเพื่อเข้าถึงหน้านี้",
+    "serverError": "เกิดข้อผิดพลาดทางเซิร์ฟเวอร์ โปรดลองอีกครั้งในภายหลัง",
+    "validationError": "โปรดตรวจสอบข้อมูลของคุณและลองอีกครั้ง",
+    "addToCartFailed": "ไม่สามารถเพิ่มสินค้าลงในตะกร้าได้",
+    "productNotFound": "ไม่พบสินค้า",
+    "cartEmpty": "ตะกร้าของคุณว่างเปล่า",
+    "checkoutFailed": "การชำระเงินล้มเหลว โปรดลองอีกครั้ง"
+  },
+  "auth": {
+    "signIn": "เข้าสู่ระบบ",
+    "signOut": "ออกจากระบบ",
+    "signUp": "ลงทะเบียน",
+    "profile": "ข้อมูลส่วนตัว",
+    "account": "บัญชีของฉัน",
+    "dashboard": "แดชบอร์ด",
+    "settings": "การตั้งค่า",
+    "orders": "คำสั่งซื้อ",
+    "favorites": "รายการโปรด",
+    "quotes": "ใบเสนอราคา",
+    "addresses": "ที่อยู่",
+    "paymentMethods": "วิธีการชำระเงิน",
+    "welcome": "ยินดีต้อนรับ",
+    "welcomeBack": "ยินดีต้อนรับกลับ",
+    "loginRequired": "โปรดเข้าสู่ระบบเพื่อดำเนินการต่อ",
+    "logout": "ออกจากระบบ",
+    "myProfile": "ข้อมูลส่วนตัวของฉัน"
+  },
+  "cart": {
+    "title": "ตะกร้าสินค้า",
+    "empty": "ตะกร้าของคุณว่างเปล่า",
+    "emptyDescription": "เรียกดูสินค้าของเราเพื่อเพิ่มรายการลงในตะกร้า",
+    "checkout": "ดำเนินการชำระเงิน",
+    "continueShopping": "เลือกซื้อสินค้าต่อ",
+    "subtotal": "ยอดรวม",
+    "tax": "ภาษี",
+    "shipping": "ค่าจัดส่ง",
+    "total": "ยอดรวมทั้งหมด",
+    "itemCount": "{count} {count, plural, =1 {รายการ} other {รายการ}}",
+    "removeItem": "ลบรายการ",
+    "updateQuantity": "อัปเดตจำนวน",
+    "applyCoupon": "ใช้คูปอง",
+    "couponCode": "รหัสคูปอง",
+    "couponApplied": "ใช้คูปองสำเร็จ",
+    "couponInvalid": "รหัสคูปองไม่ถูกต้อง",
+    "cartUpdated": "ตะกร้าได้รับการอัปเดต"
+  },
+  "checkout": {
+    "title": "การตรวจสอบ",
+    "shipping": "ข้อมูลการจัดส่ง",
+    "payment": "ข้อมูลการชำระเงิน",
+    "review": "ตรวจสอบคำสั่งซื้อ",
+    "placeOrder": "วางคำสั่งซื้อ",
+    "orderSummary": "สรุปคำสั่งซื้อ",
+    "billingAddress": "ที่อยู่เรียกเก็บเงิน",
+    "shippingAddress": "ที่อยู่จัดส่ง",
+    "sameAsBilling": "เหมือนกับที่อยู่เรียกเก็บเงิน",
+    "paymentMethod": "วิธีการชำระเงิน",
+    "creditCard": "บัตรเครดิต",
+    "cardNumber": "หมายเลขบัตร",
+    "expiryDate": "วันหมดอายุ",
+    "cvv": "CVV",
+    "nameOnCard": "ชื่อบนบัตร",
+    "orderTotal": "ยอดรวมคำสั่งซื้อ",
+    "terms": "ข้อกำหนดและเงื่อนไข",
+    "acceptTerms": "ฉันยอมรับข้อกำหนดและเงื่อนไข",
+    "processing": "กำลังดำเนินการคำสั่งซื้อของคุณ...",
+    "orderComplete": "คำสั่งซื้อเสร็จสมบูรณ์!",
+    "orderNumber": "หมายเลขคำสั่งซื้อ",
+    "thankYou": "ขอบคุณสำหรับคำสั่งซื้อของคุณ"
+  },
+  "forms": {
+    "firstName": "ชื่อ",
+    "lastName": "นามสกุล",
+    "email": "ที่อยู่อีเมล",
+    "phone": "หมายเลขโทรศัพท์",
+    "company": "ชื่อบริษัท",
+    "address": "ที่อยู่",
+    "address2": "อพาร์ทเมนต์, ห้อง ฯลฯ (ตัวเลือก)",
+    "city": "เมือง",
+    "state": "รัฐ / จังหวัด",
+    "zipCode": "รหัสไปรษณีย์",
+    "country": "ประเทศ",
+    "message": "ข้อความ",
+    "subject": "หัวข้อ",
+    "required": "จำเป็น",
+    "optional": "ตัวเลือก",
+    "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
+    "invalidPhone": "หมายเลขโทรศัพท์ไม่ถูกต้อง",
+    "fieldRequired": "ฟิลด์นี้จำเป็นต้องกรอก",
+    "selectOption": "เลือกตัวเลือก",
+    "enterValue": "ป้อนค่า"
+  },
+  "accessibility": {
+    "skipToContent": "ข้ามไปยังเนื้อหาหลัก",
+    "openMenu": "เปิดเมนู",
+    "closeMenu": "ปิดเมนู",
+    "openCart": "เปิดตะกร้าสินค้า",
+    "closeCart": "ปิดตะกร้าสินค้า",
+    "previousSlide": "สไลด์ก่อนหน้า",
+    "nextSlide": "สไลด์ถัดไป",
+    "pageNavigation": "การนำทางหน้าเว็บ",
+    "loading": "กำลังโหลดเนื้อหา",
+    "searchResults": "ผลการค้นหา"
+  }
+}

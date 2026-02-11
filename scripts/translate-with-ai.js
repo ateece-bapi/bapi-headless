@@ -20,7 +20,7 @@
  * node translate-with-ai.js all # All 8 languages
  */
 
-const Anthropic = require('@anthropic-ai/sdk');
+const Anthropic = require('../web/node_modules/@anthropic-ai/sdk');
 const fs = require('fs');
 const path = require('path');
 
@@ -91,8 +91,8 @@ Translate now:`;
     console.log('⏳ Calling Claude API...');
     
     const message = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 16000,
+      model: 'claude-3-opus-20240229', // Most capable model for complex translations
+      max_tokens: 4096, // Opus max output tokens
       temperature: 0.3, // Lower temperature for consistency
       messages: [{ 
         role: 'user', 

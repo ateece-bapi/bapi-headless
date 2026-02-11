@@ -181,26 +181,31 @@ We are opening a facility in Vietnam in April 2026. Vietnamese translations are 
 3. Post project on Crowdin community forums
 4. **Not recommended for BAPI** - too slow for April deadline
 
-### Option D: AI Translation (Fast & Cost-Effective) ⭐ RECOMMENDED
+### Option D: AI Translation (Fast but Extra Cost)
 
 Crowdin offers AI-powered translation using GPT-4, Claude, and other LLMs for high-quality technical translations.
 
+**⚠️ IMPORTANT:** AI translation in Crowdin is **pay-per-use** (separate from Pro plan subscription).
+
 **Why AI Translation for BAPI:**
 - ✅ **Speed:** Translate all 8 languages in minutes (vs 7-10 days for human)
-- ✅ **Cost:** ~$200-400 total (vs $1,800-2,100 for human translators)
+- ⚠️ **Cost:** ~$350-600 total (Pro subscription + AI credits)
 - ✅ **Quality:** 85-90% accurate for technical B2B content
 - ✅ **Context-Aware:** Uses glossary and translation memory
 - ✅ **Human Review:** Can add human proofreading after AI translation
 
+**Alternative:** See Option E below for free AI translation using Claude API directly.
+
 **Setup AI Translation:**
 
-1. **Enable AI Provider**:
+1. **Enable AI Provider** (Requires Payment):
    - Go to **Settings → Integrations → AI**
    - Choose provider:
      - **Crowdin AI** (GPT-4 based) - Best for technical content
      - **DeepL Pro** - Best for European languages (DE, FR, ES)
      - **Google Cloud Translation** - Good all-rounder
-   - Connect API (Team plan includes AI credits)
+   - **NOTE:** AI translation is pay-per-use, separate from Pro plan subscription
+   - You'll need to add payment method and purchase AI credits
 
 2. **Configure AI Settings**:
    - Enable **"Use Glossary"** ✅ (ensures BAPI, WAM™, etc. stay in English)
@@ -225,10 +230,12 @@ Crowdin offers AI-powered translation using GPT-4, Claude, and other LLMs for hi
    - Approve translations or request human review
 
 **Cost Breakdown:**
-- Crowdin AI: ~$0.02-0.04/word (vs $0.08-0.15 human)
+- **Crowdin Pro Plan:** $99/month (subscription - does NOT include AI credits)
+- **AI Translation:** ~$0.02-0.04/word (pay-per-use, separate charge)
 - 310 keys × 8 languages × ~5 words/key = ~12,400 words
-- AI cost: ~$250-500 (includes credits with Team plan)
+- **AI credits needed:** ~$250-500 (purchased separately from Crowdin)
 - Optional human review: +$500-800 (only review, not full translation)
+- **Total First Month:** $99 (Pro) + $250-500 (AI) + optional review = ~$350-1,400
 
 **Hybrid Approach (Best Quality + Speed):**
 1. Use AI translation for initial pass (1 hour)
@@ -240,6 +247,94 @@ Crowdin offers AI-powered translation using GPT-4, Claude, and other LLMs for hi
 - **AI Translation:** Same day (5-10 minutes per language)
 - **AI + Human Review:** 3-4 days (vs 7-10 days full human)
 - **Perfect for April 10 deadline** ✅
+
+### Option E: DIY AI Translation (Cheapest) ⭐ RECOMMENDED
+
+Use Claude API or ChatGPT directly to translate your `en.json` file, then upload to Crowdin.
+
+**Why DIY AI:**
+- ✅ **Cost:** ~$5-20 total (Claude API charges)
+- ✅ **Control:** Full control over prompts and glossary
+- ✅ **Speed:** 5-10 minutes per language
+- ✅ **Quality:** Same 85-90% as Crowdin AI (uses same models)
+- ✅ **No Vendor Lock-in:** Own your translation workflow
+
+**How to Do It:**
+
+1. **Get API Access:**
+   - Sign up at [console.anthropic.com](https://console.anthropic.com) (Claude)
+   - Or [platform.openai.com](https://platform.openai.com) (ChatGPT)
+   - Add $20 credit (will only use ~$5-20 total)
+
+2. **Create Translation Script:**
+```bash
+cd /home/ateece/bapi-headless/web/messages
+# Create translate.js script (see below)
+node translate.js en.json vi
+```
+
+3. **Translation Script Example:**
+```javascript
+// translate.js - Simple AI translation script
+const Anthropic = require('@anthropic-ai/sdk');
+const fs = require('fs');
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
+
+async function translateFile(sourceFile, targetLang) {
+  const source = JSON.parse(fs.readFileSync(sourceFile, 'utf8'));
+  
+  const prompt = `Translate this JSON file to ${targetLang}.
+RULES:
+- Keep these in English: BAPI, WAM™, BACnet, CO₂, VOC, PM2.5, PM10, ISO 9001:2015
+- Keep units: °C, °F, PSI, bar, RH%
+- Professional B2B tone for engineers
+- Preserve JSON structure and placeholders like {year}, {count}
+
+${JSON.stringify(source, null, 2)}
+
+Return ONLY valid JSON, no explanations.`;
+
+  const message = await anthropic.messages.create({
+    model: 'claude-3-5-sonnet-20241022',
+    max_tokens: 8000,
+    messages: [{ role: 'user', content: prompt }],
+  });
+
+  const translated = JSON.parse(message.content[0].text);
+  fs.writeFileSync(`${targetLang}.json`, JSON.stringify(translated, null, 2));
+  console.log(`✅ Translated to ${targetLang}.json`);
+}
+
+// Usage: node translate.js en.json vi
+translateFile(process.argv[2], process.argv[3]);
+```
+
+4. **Translate All Languages:**
+```bash
+node translate.js en.json vi  # Vietnamese first
+node translate.js en.json de  # German
+node translate.js en.json fr  # French
+node translate.js en.json es  # Spanish
+node translate.js en.json ja  # Japanese
+node translate.js en.json zh  # Chinese
+node translate.js en.json ar  # Arabic
+node translate.js en.json th  # Thai
+```
+
+5. **Upload to Crowdin:**
+   - Go to Crowdin project
+   - Upload each translated file manually
+   - Or use Crowdin CLI to sync automatically
+
+**Cost Comparison:**
+- **Crowdin AI:** $99/month + $250-500 AI credits = **$350-600**
+- **DIY Claude:** $0/month + $5-20 API usage = **$5-20** ✅
+- **Savings:** ~$330-580 (98% cheaper!)
+
+**Pro Tip:** You can still use Crowdin for free features (Translation Memory, GitHub sync, download) and just skip the AI payment.
 
 ---
 
@@ -473,13 +568,21 @@ Enable built-in QA:
 2. ✅ Add screenshots (context)
 3. ✅ Choose translation method
 
-**Option A: AI Translation ⭐ RECOMMENDED (3-4 days)**
-- **Feb 11**: Run AI pre-translation for all 8 languages (10 minutes)
+**Option A: DIY AI Translation ⭐ CHEAPEST (1 day)**
+- **Feb 11 Evening**: Set up Claude API (~30 min)
+- **Feb 11 Night**: Run translation script for all 8 languages (~1 hour)
+- **Feb 12**: Upload to Crowdin, spot-check quality
+- **Feb 13**: Human review Vietnamese if needed
+- **Total Cost:** ~$5-20 (Claude API only)
+
+**Option B: Crowdin AI Translation (3-4 days)**
+- **Feb 11**: Purchase AI credits (~$250-500)
+- **Feb 11 Evening**: Run AI pre-translation (10 minutes)
 - **Feb 12-13**: Human review Vietnamese (URGENT for Vietnam facility)
 - **Feb 14**: Spot-check other languages, download files
-- **Total Cost:** ~$500-800 (AI + Vietnamese review)
+- **Total Cost:** ~$350-600 (Pro + AI credits)
 
-**Option B: Human Translation (7-10 days)**
+**Option C: Human Translation (7-10 days)**
 - **Week of Feb 17**: Hire translators, begin translations
 - **Week of Feb 24**: Review and approve
 - **By March 3**: Download and test all 8 languages

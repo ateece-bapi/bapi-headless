@@ -1,29 +1,43 @@
 import { Suspense } from 'react';
 import { redirect } from 'next/navigation';
 import { getServerAuth } from '@/lib/auth/server';
+import { isAdmin } from '@/lib/auth/roles';
 import ChatAnalyticsDashboard from './ChatAnalyticsDashboard';
 
 /**
  * Admin Dashboard for Chat Analytics
  * 
  * Shows conversation metrics, popular products, user feedback, and recent chats.
- * 
- * TODO: Implement proper admin role checking (currently only checks authentication)
+ * Requires administrator or shop_manager role.
  */
 export default async function ChatAnalyticsPage() {
-  const { userId } = await getServerAuth();
+  const { userId, user } = await getServerAuth();
 
   // Require authentication
   if (!userId) {
     redirect('/sign-in?redirect_url=/admin/chat-analytics');
   }
 
-  // TODO: Add admin role check
-  // const user = await clerkClient.users.getUser(userId);
-  // const isAdmin = user.publicMetadata.role === 'admin';
-  // if (!isAdmin) {
-  //   return <div>Unauthorized</div>;
-  // }
+  // Require admin role
+  if (!isAdmin(user)) {
+    return (
+      <div className="min-h-screen bg-neutral-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-8 text-center">
+            <h1 className="text-2xl font-bold text-red-900 mb-4">
+              Access Denied
+            </h1>
+            <p className="text-red-700 mb-4">
+              You do not have permission to access this page. Admin privileges are required.
+            </p>
+            <p className="text-sm text-red-600">
+              Current role: {user?.roles?.join(', ') || 'No roles assigned'}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-neutral-50 py-12">
@@ -35,9 +49,6 @@ export default async function ChatAnalyticsPage() {
           </h1>
           <p className="text-neutral-600 mt-2">
             Monitor chatbot performance, user engagement, and product recommendations
-          </p>
-          <p className="text-sm text-amber-600 mt-2 bg-amber-50 border border-amber-200 rounded-lg px-4 py-2 inline-block">
-            ⚠️ Note: Admin role checking not yet implemented. All authenticated users can access.
           </p>
         </div>
 

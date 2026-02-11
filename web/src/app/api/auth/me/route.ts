@@ -38,6 +38,11 @@ export async function GET(request: NextRequest) {
               email
               name
               username
+              roles {
+                nodes {
+                  name
+                }
+              }
             }
           }
         `,
@@ -61,12 +66,16 @@ export async function GET(request: NextRequest) {
 
     const { viewer } = data;
 
+    // Extract role names from the GraphQL response
+    const roles = viewer.roles?.nodes?.map((role: { name: string }) => role.name) || [];
+
     return NextResponse.json({
       user: {
         id: String(viewer.databaseId),
         email: viewer.email,
         displayName: viewer.name,
         username: viewer.username,
+        roles,
       },
     });
   } catch (error) {

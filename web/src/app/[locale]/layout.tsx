@@ -1,6 +1,5 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { TranslationTest } from "@/components/debug/TranslationTest";
 import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
@@ -42,7 +41,6 @@ export default async function LocaleLayout({
       </main>
       <Footer />
       <ChatWidgetClient />
-      <TranslationTest />
       </>
       </ToastProvider>
     </NextIntlClientProvider>

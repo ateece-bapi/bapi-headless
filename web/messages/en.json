@@ -537,5 +537,54 @@
     "pageNavigation": "Page navigation",
     "loading": "Loading content",
     "searchResults": "Search results"
+  },
+  "home": {
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Years of Excellence",
+      "productsValue": "608",
+      "productsLabel": "Product Models",
+      "globalValue": "Global",
+      "globalLabel": "Reach & Support",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Certified Quality"
+    },
+    "categories": {
+      "title": "Explore Our Product Catalog",
+      "subtitle": "Browse by sensor type to find the perfect solution for your building automation project",
+      "temperature": {
+        "name": "Temperature Sensors",
+        "description": "High-accuracy temperature measurement"
+      },
+      "humidity": {
+        "name": "Humidity Sensors",
+        "description": "Precise relative humidity monitoring"
+      },
+      "pressure": {
+        "name": "Pressure Sensors",
+        "description": "Differential & static pressure"
+      },
+      "airQuality": {
+        "name": "Air Quality Sensors",
+        "description": "CO₂, VOC, and particulate monitoring"
+      },
+      "wireless": {
+        "name": "Wireless Sensors",
+        "description": "WAM™ cloud-connected monitoring"
+      },
+      "accessories": {
+        "name": "Accessories",
+        "description": "Mounting hardware & enclosures"
+      },
+      "testInstruments": {
+        "name": "Test Instruments",
+        "description": "Calibration & verification tools"
+      },
+      "etaLine": {
+        "name": "ETA Line",
+        "description": "Modular I/O and control"
+      },
+      "viewAll": "View All Products"
+    }
   }
 }

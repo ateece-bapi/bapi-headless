@@ -280,8 +280,8 @@ export default function CheckoutPageClient() {
         showToast('success', 'Order Placed!', 'Your order has been placed successfully.');
       } else {
         // PayPal or other payment methods
-        // TODO: Implement PayPal order creation
-        // For now, create mock order
+        // Phase 2: Implement PayPal order creation via WooCommerce API
+        // For now, create mock order (Stripe is primary payment method for launch)
         await new Promise((resolve) => setTimeout(resolve, 2000));
         
         const mockOrderId = Math.floor(Math.random() * 100000);

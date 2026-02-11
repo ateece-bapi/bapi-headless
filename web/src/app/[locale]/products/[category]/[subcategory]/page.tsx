@@ -12,6 +12,7 @@ import {
 import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 import FilteredProductGrid from '@/components/products/FilteredProductGrid';
+import ProductSortDropdown from '@/components/products/ProductSortDropdown';
 
 interface SubcategoryPageProps {
   params: Promise<{
@@ -215,11 +216,12 @@ export default async function SubcategoryPage({
 
           {/* Products Grid */}
           <div className="flex-1 min-w-0">
-            {/* Sort (Coming soon) */}
-            <div className="flex items-center justify-end mb-6 pb-4 border-b border-neutral-200">
-              <div className="text-sm text-neutral-500">
-                {/* TODO: Add sort dropdown */}
-              </div>
+            {/* Sort Controls */}
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-neutral-200">
+              <p className="text-sm text-neutral-600">
+                {products.length} {products.length === 1 ? 'product' : 'products'}
+              </p>
+              <ProductSortDropdown />
             </div>
 
             {/* Product Grid with Client-Side Filtering */}

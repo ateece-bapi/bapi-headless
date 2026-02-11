@@ -4,7 +4,6 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
 import { ProductGrid } from './ProductGrid';
 import { ProductGridSkeleton } from './ProductGridSkeleton';
-import { ProductSort } from './ProductSort';
 import { Pagination } from './Pagination';
 import ComparisonButton from './ComparisonButton';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
@@ -165,8 +164,6 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
         }
       </div>
 
-      {/* Sort Controls (always visible) */}
-      <ProductSort totalProducts={sortedProducts.length} />
       {/* Active Filter Pills with animations */}
       {hasActiveFilters && (
         <div className="mb-8 animate-[fade-in_300ms_ease-out]">

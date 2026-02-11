@@ -4,6 +4,7 @@ import logger from '@/lib/logger';
 import { writeFile, mkdir } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
+import { sendEmail, generateQuoteSalesEmail, generateQuoteCustomerEmail } from '@/lib/email';
 
 // Type definitions
 interface QuoteRequestData {
@@ -130,13 +131,63 @@ export async function POST(request: NextRequest) {
     quotes.push(quoteRequest);
     await writeFile(quotesFile, JSON.stringify(quotes, null, 2));
 
-    // TODO: Send email notification to sales team
-    // TODO: Send confirmation email to user
+    // Send email notifications
+    const emailData = {
+      quoteId,
+      customerName: companyName || userEmail.split('@')[0],
+      customerEmail: userEmail,
+      customerPhone: phoneNumber,
+      companyName,
+      products: [{
+        name: productName,
+        quantity: parseInt(quantity) || 1,
+        partNumber,
+      }],
+      notes: `Subject: ${subject}\n\nApplication: ${application}\nTimeline: ${timeline}\n\nDetails:\n${details}`,
+      requestDate: now,
+    };
+
+    // Send notification to sales team
+    const salesEmail = generateQuoteSalesEmail(emailData);
+    const salesRecipient = process.env.NEXT_PUBLIC_SALES_EMAIL || 'customerservice@bapisensors.com';
+    
+    const salesResult = await sendEmail({
+      to: salesRecipient,
+      subject: salesEmail.subject,
+      html: salesEmail.html,
+      text: salesEmail.text,
+    });
+
+    if (!salesResult.success) {
+      logger.error('Failed to send sales team quote notification', { error: salesResult.error, quoteId });
+    } else {
+      logger.info('Quote notification sent to sales team', { quoteId, messageId: salesResult.messageId });
+    }
+
+    // Send confirmation to customer
+    const customerEmail = generateQuoteCustomerEmail(emailData);
+    
+    const customerResult = await sendEmail({
+      to: userEmail,
+      subject: customerEmail.subject,
+      html: customerEmail.html,
+      text: customerEmail.text,
+    });
+
+    if (!customerResult.success) {
+      logger.error('Failed to send customer quote confirmation', { error: customerResult.error, quoteId });
+    } else {
+      logger.info('Quote confirmation sent to customer', { quoteId, messageId: customerResult.messageId });
+    }
 
     return NextResponse.json({
       success: true,
       quoteId,
       message: 'Quote request submitted successfully',
+      emailsSent: {
+        sales: salesResult.success,
+        customer: customerResult.success,
+      },
     });
 
   } catch (error) {

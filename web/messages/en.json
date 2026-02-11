@@ -121,71 +121,56 @@
     },
     "support": {
       "label": "Support",
-      "technical": {
-        "title": "Technical Support",
-        "phone": "Phone Support",
-        "phoneDesc": "Talk to our engineers",
-        "email": "Email Support",
-        "emailDesc": "Get detailed help",
-        "chat": "Live Chat",
-        "chatDesc": "Instant answers"
+      "getHelp": {
+        "title": "Get Help",
+        "contactSupport": "Contact Support",
+        "contactSupportDesc": "Talk to our engineers",
+        "rmaRequest": "RMA Request",
+        "rmaRequestDesc": "Return merchandise authorization",
+        "whereToBuy": "Where to Buy",
+        "whereToBuyDesc": "Find a distributor near you"
       },
-      "resources": {
-        "title": "Resources",
-        "datasheets": "Datasheets",
-        "datasheetsDesc": "Technical specifications",
-        "installGuides": "Installation Guides",
-        "installGuidesDesc": "Step-by-step instructions",
-        "appNotes": "Application Notes",
-        "appNotesDesc": "Design guidance",
-        "videos": "Video Library",
-        "videosDesc": "How-to videos"
+      "existingCustomers": {
+        "title": "For Existing Customers",
+        "myAccount": "My Account",
+        "myAccountDesc": "View orders & quotes",
+        "orderStatus": "Order Status",
+        "orderStatusDesc": "Track your shipments",
+        "requestQuote": "Request a Quote",
+        "requestQuoteDesc": "Get pricing for your project"
       },
-      "tools": {
-        "title": "Tools & Downloads",
-        "selector": "Product Selector",
-        "selectorDesc": "Find the right sensor",
-        "crossRef": "Cross Reference",
-        "crossRefDesc": "Find BAPI equivalents",
-        "software": "Configuration Software",
-        "softwareDesc": "Download setup tools"
+      "featured": {
+        "title": "Need Technical Support?",
+        "description": "Our experienced engineering team is ready to help with product selection, specifications, and troubleshooting.",
+        "cta": "Contact Support"
       }
     },
     "company": {
       "label": "Company",
-      "about": {
+      "aboutBapi": {
         "title": "About BAPI",
-        "mission": "Mission & Values",
-        "missionDesc": "What drives us",
         "whyBapi": "Why BAPI",
-        "whyBapiDesc": "Why choose BAPI",
-        "history": "Our Story",
-        "historyDesc": "30+ years of innovation",
-        "team": "Leadership Team",
-        "teamDesc": "Meet our leaders"
+        "whyBapiDesc": "Why choose BAPI sensors",
+        "missionValues": "Mission & Values",
+        "missionValuesDesc": "What drives us",
+        "news": "News & Events",
+        "newsDesc": "Latest announcements",
+        "careers": "Careers",
+        "careersDesc": "Join our team"
       },
-      "news": {
-        "title": "News & Events",
-        "pressReleases": "Press Releases",
-        "pressReleasesDesc": "Latest announcements",
-        "events": "Trade Shows",
-        "eventsDesc": "Meet us in person",
-        "blog": "Technical Blog",
-        "blogDesc": "Industry insights"
+      "getInTouch": {
+        "title": "Get In Touch",
+        "contactSales": "Contact Sales",
+        "contactSalesDesc": "Talk to a rep",
+        "whereToBuy": "Where to Buy",
+        "whereToBuyDesc": "Find a distributor",
+        "requestQuote": "Request a Quote",
+        "requestQuoteDesc": "Get pricing"
       },
-      "careers": {
-        "title": "Careers",
-        "openings": "Open Positions",
-        "openingsDesc": "Join our team",
-        "culture": "Company Culture",
-        "cultureDesc": "Life at BAPI"
-      },
-      "contact": {
-        "title": "Contact Us",
-        "sales": "Sales Team",
-        "salesDesc": "Talk to a rep",
-        "locations": "Locations",
-        "locationsDesc": "Find us near you"
+      "featured": {
+        "title": "Ready to Transform Your Building Automation?",
+        "description": "Connect with our team to discuss your project requirements and discover the perfect sensor solution.",
+        "cta": "Contact Our Team"
       }
     }
   },

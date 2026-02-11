@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { Link } from '@/lib/navigation';
 import { ChevronRight, Globe, Languages } from 'lucide-react';
 import clsx from 'clsx';
-import { MEGA_MENU_ITEMS } from '../config';
+import { useTranslations } from 'next-intl';
+import { getMegaMenuItems } from '../config';
 import RegionSelector from './RegionSelector';
 import { LanguageSelector } from './LanguageSelector';
 
@@ -15,6 +16,10 @@ interface MobileMenuProps {
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const t = useTranslations('megaMenu');
+  
+  // Generate menu items with translations
+  const menuItems = getMegaMenuItems(t);
 
   if (!isOpen) return null;
 
@@ -50,7 +55,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {MEGA_MENU_ITEMS.map((item, index) => (
+          {menuItems.map((item, index) => (
             <div key={item.label} className="border-b border-neutral-100 last:border-0">
               {/* Top-level item */}
               {item.megaMenu ? (

@@ -3,6 +3,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import logger from '@/lib/logger';
 import { sendChatHandoffNotification } from '@/lib/email';
+import { requireAdmin } from '@/lib/auth/server';
 
 /**
  * Chat Human Handoff API
@@ -232,15 +233,12 @@ export async function POST(request: NextRequest) {
 
 /**
  * GET - Retrieve handoff requests (admin only)
- * TODO: Add authentication
+ * Requires admin role (administrator or shop_manager)
  */
 export async function GET(request: NextRequest) {
   try {
-    // TODO: Add auth check
-    // const { userId } = auth();
-    // if (!userId || !isAdmin(userId)) {
-    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    // }
+    // Verify admin access
+    await requireAdmin();
 
     const handoffs = await readHandoffs();
     
@@ -251,6 +249,23 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ handoffs: sorted });
   } catch (error) {
+    // Handle authorization errors
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    
+    if (errorMessage.includes('Unauthorized')) {
+      return NextResponse.json(
+        { error: 'Authentication required' },
+        { status: 401 }
+      );
+    }
+    
+    if (errorMessage.includes('Forbidden')) {
+      return NextResponse.json(
+        { error: 'Admin access required' },
+        { status: 403 }
+      );
+    }
+    
     logger.error('Handoff GET Error', error);
     return NextResponse.json(
       { error: 'Failed to retrieve handoffs' },

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import logger from '@/lib/logger';
+import { requireAdmin } from '@/lib/auth/server';
 import {
   getChatMetrics,
   getRecentConversations,
@@ -8,19 +9,15 @@ import {
 
 /**
  * API endpoint for admin dashboard - chat analytics
- * 
- * TODO: Add authentication check for production
+ * Requires admin role (administrator or shop_manager)
  */
 export async function GET(request: NextRequest) {
   try {
+    // Verify admin access
+    await requireAdmin();
+
     const { searchParams } = new URL(request.url);
     const view = searchParams.get('view') || 'metrics';
-
-    // TODO: Add auth check
-    // const { userId } = auth();
-    // if (!userId || !isAdmin(userId)) {
-    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    // }
 
     switch (view) {
       case 'metrics': {
@@ -46,6 +43,23 @@ export async function GET(request: NextRequest) {
         );
     }
   } catch (error) {
+    // Handle authorization errors
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    
+    if (errorMessage.includes('Unauthorized')) {
+      return NextResponse.json(
+        { error: 'Authentication required' },
+        { status: 401 }
+      );
+    }
+    
+    if (errorMessage.includes('Forbidden')) {
+      return NextResponse.json(
+        { error: 'Admin access required' },
+        { status: 403 }
+      );
+    }
+    
     logger.error('Analytics API Error', error);
     return NextResponse.json(
       { error: 'Failed to fetch analytics' },

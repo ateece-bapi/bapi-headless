@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale } from 'next-intl';
 import { LANGUAGES } from '@/types/region';
 import type { LanguageCode } from '@/types/region';
@@ -11,20 +11,11 @@ export function LanguageSelector() {
   const currentLocale = useLocale() as LanguageCode;
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = e.target.value;
+    const newLocale = e.target.value as LanguageCode;
     
-    // Remove current locale from pathname
-    // Handle both /en/products and /en paths
-    const pathnameWithoutLocale = pathname?.replace(/^\/[a-z]{2}(\/|$)/, '/') || '/';
-    
-    // Build new path
-    const newPath = pathnameWithoutLocale === '/' || pathnameWithoutLocale === '' 
-      ? `/${newLocale}` 
-      : `/${newLocale}${pathnameWithoutLocale}`;
-    
-    // Navigate to new locale
-    router.push(newPath);
-    router.refresh();
+    // Use next-intl's router which handles locale switching automatically
+    // Just push the current pathname - the router will add the new locale prefix
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (

@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
-import { locales, defaultLocale } from './src/i18n';
+import { routing } from './src/i18n';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -29,12 +29,8 @@ const adminRoutes = [
   '/admin/chat-analytics',
 ];
 
-// Create next-intl middleware
-const intlMiddleware = createMiddleware({
-  locales,
-  defaultLocale,
-  localePrefix: 'always', // All languages use prefix: /en, /de, /fr (better for SEO and cache)
-});
+// Create next-intl middleware with routing config
+const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -59,11 +55,11 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(signInUrl);
   }
 
-  // If accessing sign-in page while already authenticated, redirect to account
+  //If accessing sign-in page while already authenticated, redirect to account
   if (pathname.includes('/sign-in') && authToken) {
     // Extract locale from pathname or use default
     const localeMatch = pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)/);
-    const locale = localeMatch ? localeMatch[1] : defaultLocale;
+    const locale = localeMatch ? localeMatch[1] : routing.defaultLocale;
     return NextResponse.redirect(new URL(`/${locale}/account`, request.url));
   }
 

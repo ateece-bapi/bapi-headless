@@ -1,9 +1,6 @@
 import { createNavigation } from 'next-intl/navigation';
-import { locales } from '@/i18n';
+import { routing } from '@/i18n';
 
-// Create typed navigation helpers with all supported locales
+// Create typed navigation helpers using routing config
 export const { Link, redirect, usePathname, useRouter } =
-  createNavigation({ 
-    locales,
-    localePrefix: 'always' // Must match middleware config
-  });
+  createNavigation(routing);

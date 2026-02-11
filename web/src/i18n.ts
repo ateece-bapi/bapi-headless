@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
+import { defineRouting } from 'next-intl/routing';
 import { merge } from 'lodash-es';
 import logger from '@/lib/logger';
 
@@ -9,6 +10,13 @@ export type Locale = (typeof locales)[number];
 
 // Default locale
 export const defaultLocale: Locale = 'en';
+
+// Routing configuration for next-intl
+export const routing = defineRouting({
+  locales,
+  defaultLocale,
+  localePrefix: 'always'
+});
 
 export default getRequestConfig(async ({ requestLocale }) => {
   // Get the locale from the request, fallback to default if undefined

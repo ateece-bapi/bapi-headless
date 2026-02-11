@@ -14,8 +14,7 @@
 ### Phase 1 Priorities (Current Focus)
 1. **Translation Services & Regional Support** - i18n, currency conversion, measurement units
 2. **Live Chat Integration** - Customer support chat system
-3. **User/Customer Migration** - Migrate 5,438 WordPress users with full order history
-4. **Product Navigation** - Categories, subcategories, breadcrumb navigation, mega-menu integration
+3. **Product Navigation** - Categories, subcategories, breadcrumb navigation, mega-menu integration
 
 ### Phase 2 (Post-Launch)
 - **Applications Section** - New content (currently in main nav, defer to Phase 2)
@@ -31,7 +30,7 @@ This is a headless WordPress + Next.js e-commerce platform for building automati
 - **Backend**: WordPress 6.8.2 + WooCommerce 10.3.5 on Kinsta (`cms/`)
 - **Frontend**: Next.js 16.0.7 + TypeScript + Tailwind CSS 4 on Vercel (`web/`)
 - **API Layer**: GraphQL via WPGraphQL (endpoint: `NEXT_PUBLIC_WORDPRESS_GRAPHQL`)
-- **Auth**: Clerk with Google OAuth, synced with WordPress users
+- **Auth**: WordPress WPGraphQL JWT Authentication (native WordPress users)
 - **State**: Zustand for client state (cart in `web/src/store/cart.ts`)
 
 ### Key Integrations
@@ -101,11 +100,12 @@ showToast('error', title, message);
 - **Tailwind**: Utility-first, NO `@apply`, semantic tokens only (see [web/TAILWIND_GUIDELINES.md](../web/TAILWIND_GUIDELINES.md))
 - **Responsive**: Mobile-first (`sm:`, `md:`, `lg:`, `xl:`)
 
-### Authentication (Clerk)
-- **Protected Routes**: Handled in `web/src/proxy.ts` via `clerkMiddleware`
-- **Public Routes**: `/`, `/products/*`, `/api/preview`, `/api/revalidate`, `/sign-in/*`, `/sign-up/*`
-- **Migration**: WordPress users synced to Clerk via `web/scripts/bulk-import-users.mjs`
-- **Environment**: Development keys (`pk_test_`, `sk_test_`) safe for staging
+### Authentication (WordPress JWT)
+- **Protected Routes**: Handled in `web/src/proxy.ts` via JWT token in cookies
+- **Public Routes**: `/`, `/products/*`, `/api/preview`, `/api/revalidate`
+- **Auth Hook**: `useAuth()` from `web/src/hooks/useAuth.ts` (checks `/api/auth/me`)
+- **WordPress Plugin**: WPGraphQL JWT Authentication (wp-graphql-jwt-authentication)
+- **Token Storage**: HTTP-only cookie (`auth_token`) for security
 
 ### State Management (Zustand)
 - **Cart Store**: `web/src/store/cart.ts` with localStorage persistence
@@ -165,16 +165,16 @@ const { addItem, items, totalItems } = useCartStore();
 **Critical Plugins** (see [docs/WORDPRESS-BACKEND-SETUP.md](../docs/WORDPRESS-BACKEND-SETUP.md)):
 - ✅ WPGraphQL (core)
 - ✅ WPGraphQL for WooCommerce
-- 🔴 **WPGraphQL Smart Cache** (NOT INSTALLED - 80-90% performance gain missing)
-- 🔴 **WPGraphQL CORS** (enables GET requests for CDN caching)
-- 🔴 **Redis Object Cache** (recommended for sub-second queries)
+- ✅ **WPGraphQL Smart Cache** (INSTALLED on staging)
+- ✅ **WPGraphQL CORS** (enables GET requests for CDN caching)
+- ✅ **Redis Object Cache** (INSTALLED on staging with $100 addon)
+- ✅ **WPGraphQL JWT Authentication** (native WordPress auth)
 
 **Database Schema Notes**:
 - **608 products** with extensive custom metadata
-- **5,438 WordPress users** requiring Clerk migration
+- **5,438 WordPress users** with native authentication (no migration required)
 - **Custom B2B fields**: `customer_group1/2/3`, pricing multipliers (`multiplier_buyresell/humidpres/mfg`)
 - **Custom product fields**: `compliancy_logos`, `product_documents`, `product_videos`, `part_number`
-- **No GraphQL cache tables** - confirms Smart Cache not installed
 
 ## Special Considerations
 
@@ -185,11 +185,10 @@ const { addItem, items, totalItems } = useCartStore();
 5. **Product `partNumber` Field**: Sparsely populated (only ~20 of 608 products). Always fallback to SKU in UI. Stored in `wp_postmeta` as `part_number`.
 6. **B2B Customer Pricing**: Products support customer group multipliers (`multiplier_buyresell`, `multiplier_humidpres`, `multiplier_mfg`) and customer segmentation (`customer_group1/2/3`). Must handle in GraphQL queries.
 7. **Custom Product Media**: Products have `compliancy_logos`, `product_documents`, and `product_videos` fields beyond standard WooCommerce schema.
-8. **User Migration**: 5,438 WordPress users with full order history must be migrated to Clerk before April 10 launch (Phase 1 priority). See `web/scripts/bulk-import-users.mjs`.
-9. **Clerk Development Keys**: Safe for staging/preview environments, update to production keys before April 10 launch.
-10. **GraphQL Performance**: Use split queries (light/deferred) for product pages to reduce initial load.
-11. **Image Optimization**: Configure Next.js image domains in `next.config.ts` (Kinsta, WordPress.org).
-12. **Bundle Analysis**: `pnpm run build:analyze` to check bundle size.
+8. **WordPress Authentication**: Uses native WordPress users + WPGraphQL JWT Authentication plugin (no third-party auth service). JWT tokens stored in HTTP-only cookies for security.
+9. **GraphQL Performance**: Use split queries (light/deferred) for product pages to reduce initial load.
+10. **Image Optimization**: Configure Next.js image domains in `next.config.ts` (Kinsta, WordPress.org).
+11. **Bundle Analysis**: `pnpm run build:analyze` to check bundle size.
 
 ## Common Workflows
 
@@ -200,8 +199,8 @@ const { addItem, items, totalItems } = useCartStore();
 4. Use with `getGraphQLClient(['cache-tag'])`
 
 ### Adding a New Protected Route
-1. Update `publicRoutes` matcher in `web/src/proxy.ts`
-2. If public, add to the `createRouteMatcher()` array
+1. Add route to `protectedRoutes` array in `web/src/proxy.ts`
+2. Middleware will check for `auth_token` cookie and redirect to `/sign-in` if missing
 
 ### Debugging GraphQL Performance
 1. Check WordPress Smart Cache installation status
@@ -225,7 +224,6 @@ const { addItem, items, totalItems } = useCartStore();
 - **Error Handling**: [web/ERROR_HANDLING.md](../web/ERROR_HANDLING.md)
 - **Tailwind Guidelines**: [web/TAILWIND_GUIDELINES.md](../web/TAILWIND_GUIDELINES.md)
 - **Color System**: [web/COLOR_SYSTEM.md](../web/COLOR_SYSTEM.md)
-- **Clerk Auth**: [web/CLERK_SETUP.md](../web/CLERK_SETUP.md)
 - **Preview System**: [web/PREVIEW.md](../web/PREVIEW.md)
 - **WordPress Setup**: [docs/WORDPRESS-BACKEND-SETUP.md](../docs/WORDPRESS-BACKEND-SETUP.md)
 - **Performance**: [docs/WORDPRESS-GRAPHQL-OPTIMIZATION.md](../docs/WORDPRESS-GRAPHQL-OPTIMIZATION.md)

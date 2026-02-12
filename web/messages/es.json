@@ -168,7 +168,88 @@
     }
   },
   "footer": {
-    "copyright": "© {year} BAPI. Todos los derechos reservados."
+    "brand": {
+      "tagline": "Soluciones de sensores de precisión para la automatización de edificios",
+      "description": "Confiado por ingenieros de todo el mundo para instalaciones críticas desde 1993"
+    },
+    "sections": {
+      "products": {
+        "title": "Productos",
+        "links": {
+          "allSensors": "Todos los sensores",
+          "wireless": "Monitoreo inalámbrico",
+          "testInstruments": "Instrumentos de prueba",
+          "airQuality": "Sensores de calidad del aire",
+          "accessories": "Accesorios",
+          "browseCatalog": "Explorar catálogo"
+        }
+      },
+      "resources": {
+        "title": "Recursos",
+        "links": {
+          "datasheets": "Fichas técnicas",
+          "installation": "Guías de instalación",
+          "applicationNotes": "Notas de aplicación",
+          "videos": "Biblioteca de videos",
+          "caseStudies": "Estudios de caso"
+        }
+      },
+      "company": {
+        "title": "Empresa",
+        "links": {
+          "mission": "Misión y valores",
+          "whyBapi": "Por qué BAPI",
+          "news": "Noticias",
+          "careers": "Carreras",
+          "contact": "Contáctenos"
+        }
+      },
+      "support": {
+        "title": "Soporte",
+        "links": {
+          "technical": "Soporte técnico",
+          "selector": "Selector de productos",
+          "crossReference": "Referencia cruzada",
+          "distributorNetwork": "Red de distribuidores"
+        }
+      }
+    },
+    "contact": {
+      "title": "Contacto",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "Premios y reconocimientos",
+      "description": "Reconocido por la innovación y la excelencia en la tecnología de automatización de edificios"
+    },
+    "certifications": {
+      "title": "Certificaciones",
+      "bacnet": "Certificado BACnet B-ASC",
+      "iso": "ISO 9001:2015",
+      "ul": "Listado UL",
+      "madeInUsa": "Hecho en EE. UU."
+    },
+    "quickActions": {
+      "title": "Acciones rápidas",
+      "requestQuote": "Solicitar cotización",
+      "findDistributor": "Encontrar distribuidor"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. Todos los derechos reservados.",
+      "trademark": "BAPI® es una marca registrada de Building Automation Products, Inc.",
+      "privacy": "Política de privacidad",
+      "terms": "Términos de uso"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "Síguenos"
+    }
   },
   "region": {
     "us": "Estados Unidos",

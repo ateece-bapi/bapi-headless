@@ -113,7 +113,10 @@
       "title": "保持关注",
       "subtitle": "最新更新、产品公告和行业洞见",
       "viewAll": "查看所有新闻",
-      "noArticles": "目前还没有可用的新闻文章"
+      "noArticles": "目前还没有可用的新闻文章",
+      "dateUnavailable": "日期不可用",
+      "readMore": "阅读更多",
+      "readMoreAriaLabel": "阅读更多关于{title}"
     },
     "locations": {
       "mapLegend": {

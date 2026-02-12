@@ -347,7 +347,10 @@
       "title": "Luôn Cập nhật",
       "subtitle": "Cập nhật mới nhất, thông báo sản phẩm và hiểu biết về ngành",
       "viewAll": "Xem Tất cả Tin tức",
-      "noArticles": "Hiện chưa có bài viết tin tức nào"
+      "noArticles": "Hiện chưa có bài viết tin tức nào",
+      "dateUnavailable": "Ngày không có sẵn",
+      "readMore": "Đọc thêm",
+      "readMoreAriaLabel": "Đọc thêm về {title}"
     },
     "locations": {
       "mapLegend": {

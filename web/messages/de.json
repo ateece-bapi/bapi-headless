@@ -307,7 +307,10 @@
       "title": "Auf dem Laufenden bleiben",
       "subtitle": "Neueste Updates, Produktankündigungen und Brancheneinblicke",
       "viewAll": "Alle Nachrichten anzeigen",
-      "noArticles": "Noch keine Nachrichtenartikel verfügbar"
+      "noArticles": "Noch keine Nachrichtenartikel verfügbar",
+      "dateUnavailable": "Datum nicht verfügbar",
+      "readMore": "Mehr lesen",
+      "readMoreAriaLabel": "Mehr lesen über {title}"
     },
     "locations": {
       "mapLegend": {

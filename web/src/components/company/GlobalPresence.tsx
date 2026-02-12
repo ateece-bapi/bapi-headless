@@ -162,7 +162,7 @@ export function GlobalPresence({
                 const translation = locationTranslations?.facilities[tooltip.location.id];
                 return (
                   <div
-                    className="min-w-70 absolute left-1/2 top-4 z-50 -translate-x-1/2 rounded-lg border-2 border-primary-500 bg-white p-4 shadow-xl"
+                    className="absolute left-1/2 top-4 z-50 min-w-[17.5rem] -translate-x-1/2 rounded-lg border-2 border-primary-500 bg-white p-4 shadow-xl"
                     style={{ pointerEvents: 'none' }}
                   >
                     <div className="flex items-start gap-3">
@@ -175,7 +175,7 @@ export function GlobalPresence({
                           {translation?.name || tooltip.location.name}
                         </div>
                         <div className="mb-2 text-sm text-neutral-600">
-                          {translation?.city || tooltip.location.city}, {tooltip.location.region}
+                          {translation?.city || tooltip.location.city}
                           <br />
                           {translation?.country || tooltip.location.country}
                         </div>

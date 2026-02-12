@@ -23,20 +23,20 @@
   "home": {
     "hero": {
       "title": "Soluciones de sensores de precisión para la automatización de edificios",
-      "description": "Sensores trazables a NIST y controladores certificados por BACnet en los que confían los ingenieros de todo el mundo para la asistencia médica, los centros de datos y las instalaciones críticas.",
+      "description": "Sensores trazables a NIST y controladores certificados por BACnet confiados por ingenieros de todo el mundo para centros de datos, atención médica e instalaciones críticas.",
       "cta": "Explorar productos",
       "secondaryCta": "Hablar con ventas",
       "productFamilyTitle": "Soluciones de sensores completas para sistemas de automatización de edificios",
-      "productFamilySubtitle": "Confianza de los ingenieros de todo el mundo para el monitoreo y el control de precisión"
+      "productFamilySubtitle": "Confiados por ingenieros de todo el mundo para el monitoreo y control de precisión"
     },
     "taglines": [
       "Sensores líderes en la industria",
       "Cambiando la forma en que piensa sobre los sensores desde 1993",
-      "Integración inalámbrica fluida para su sistema BAS existente",
+      "Integración inalámbrica fluida para su sistema de automatización de edificios existente",
       "Ingeniería de precisión",
       "Construyendo el futuro",
       "...Está en los detalles",
-      "Gente. Edificio. Sensores"
+      "Personas. Edificio. Sensores"
     ],
     "stats": {
       "yearsValue": "30+",
@@ -49,15 +49,15 @@
       "isoLabel": "Calidad certificada"
     },
     "categories": {
-      "title": "Explora nuestro catálogo de productos",
-      "subtitle": "Navega por tipo de sensor para encontrar la solución perfecta para tu proyecto de automatización de edificios",
+      "title": "Explore nuestro catálogo de productos",
+      "subtitle": "Navegue por tipo de sensor para encontrar la solución perfecta para su proyecto de automatización de edificios",
       "temperature": {
         "name": "Sensores de temperatura",
         "description": "Medición de temperatura de alta precisión"
       },
       "humidity": {
         "name": "Sensores de humedad",
-        "description": "Monitoreo preciso de la humedad relativa"
+        "description": "Monitoreo preciso de humedad relativa"
       },
       "pressure": {
         "name": "Sensores de presión",
@@ -73,7 +73,7 @@
       },
       "accessories": {
         "name": "Accesorios",
-        "description": "Accesorios de montaje y carcasas"
+        "description": "Herrajes de montaje y gabinetes"
       },
       "testInstruments": {
         "name": "Instrumentos de prueba",
@@ -85,23 +85,23 @@
       },
       "viewAll": "Ver todos los productos",
       "viewProducts": "Ver productos",
-      "browseAll": "Navegar por todos los productos"
+      "browseAll": "Explorar todos los productos"
     },
     "whyBapi": {
       "title": "¿POR QUÉ BAPI?",
-      "description": "BAPI ha estado cambiando la forma en que piensa sobre los sensores desde 1993. Creemos que los sensores no son solo artículos de consumo simples. Son una parte integral de un sistema de control de automatización de edificios y son fundamentales para la misión de ahorrar energía. Nuestro compromiso con la innovación y la calidad ha ayudado a transformar a BAPI en un fabricante líder mundial de soluciones de sensores con un tremendo enfoque en la calidad, la confiabilidad y el valor.",
+      "description": "BAPI ha estado cambiando la forma en que piensa sobre los sensores desde 1993. Creemos que los sensores no son simples commodities. Son parte integral de un sistema de control de automatización de edificios y fundamentales para la misión de ahorrar energía. Nuestro compromiso con la innovación y la calidad ha ayudado a transformar a BAPI en un fabricante global líder de soluciones de sensores con un tremendo enfoque en calidad, confiabilidad y valor.",
       "warranty": {
         "title": "Garantía",
         "description": "Nuestros productos están diseñados y fabricados para durar. Respaldamos esa afirmación ofreciendo una garantía de 5 años en todos nuestros productos.",
-        "footnote": "También está disponible una garantía limitada de por vida para muchos de nuestros sensores de temperatura ambiente y de conducto de un solo punto.*"
+        "footnote": "También se ofrece una garantía limitada de por vida en muchos de nuestros sensores de temperatura ambiente y de conducto de un solo punto."
       },
       "bapiBackedTitle": "Respaldado por BAPI",
       "bapiBackedDescription": "La mayoría de los fabricantes de sensores reemplazarán sus productos defectuosos, pero solo BAPI tiene la confianza para ir más allá del estándar de la industria.",
-      "bapiBackedFootnote": "'Respaldado por BAPI' significa que respaldamos todo lo que vendemos, por lo que puedes confiar en la calidad de nuestros productos, de modo que si uno falla dentro del período de garantía, no solo lo repararemos o reemplazaremos, sino que proporcionaremos un experto en productos para compensar tu costo incurrido.*",
+      "bapiBackedFootnote": "'Respaldado por BAPI' significa que respaldamos todo lo que vendemos, así que confíe en la calidad de nuestros productos: si uno falla dentro del período de garantía, no solo lo repararemos o reemplazaremos, sino que proporcionaremos un experto en productos para compensar su costo incurrido.*",
       "bapiOriginal": {
-        "title": "Original de BAPI",
-        "description": "En BAPI, nos esforzamos por ser líderes en nuestra industria al brindar productos y servicios innovadores y de alta calidad diseñados pensando en usted.",
-        "footnote": "Los productos que muestran el sello 'Otro original' son únicos de BAPI y la inspiración para estos diseños proviene de nuestros valiosos clientes, empleados talentosos y proveedores respetados. Esos tres ingredientes combinados crean soluciones originales líderes en la industria diseñadas para resolver problemas comunes de HVACR."
+        "title": "BAPI Original",
+        "description": "En BAPI, nos esforzamos por ser líderes en nuestra industria al proporcionar productos y servicios innovadores y de alta calidad diseñados pensando en usted.",
+        "footnote": "Los productos que muestran el sello \"Otro original\" son únicos de BAPI y la inspiración para estos diseños proviene de nuestros valiosos clientes, talentosos empleados y proveedores respetados. Esos tres ingredientes combinados crean soluciones originales líderes en la industria diseñadas para resolver problemas comunes de HVACR."
       }
     },
     "globalPresence": {
@@ -111,9 +111,60 @@
     "news": {
       "badge": "Últimas noticias",
       "title": "Mantente informado",
-      "subtitle": "Últimas actualizaciones, anuncios de productos e información del sector",
+      "subtitle": "Últimas actualizaciones, anuncios de productos e insights de la industria",
       "viewAll": "Ver todas las noticias",
       "noArticles": "Aún no hay artículos de noticias disponibles"
+    },
+    "locations": {
+      "mapLegend": {
+        "headquarters": "Sede principal",
+        "distribution": "Distribución",
+        "production": "Producción",
+        "productionService": "Producción y servicio"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "Sede mundial",
+          "city": "Gays Mills",
+          "country": "EE. UU.",
+          "description": "Sede corporativa e instalación de fabricación principal",
+          "type": "Sede principal",
+          "established": "Est. 1993"
+        },
+        "distributionUk": {
+          "name": "Centro de distribución del Reino Unido",
+          "city": "Aldershot",
+          "country": "Reino Unido",
+          "description": "Centro de distribución y logística europeo",
+          "type": "Centro de distribución"
+        },
+        "productionPoland": {
+          "name": "Instalación de producción y servicio al cliente",
+          "city": "Nowa Wola",
+          "country": "Polonia",
+          "description": "Instalación de producción europea y centro de servicio al cliente",
+          "type": "Producción y servicio"
+        },
+        "productionVietnam": {
+          "name": "Instalación de producción de Asia-Pacífico",
+          "city": "Da Nang",
+          "country": "Vietnam",
+          "description": "Nueva instalación de fabricación que atiende a los mercados asiáticos",
+          "type": "Producción",
+          "status": "Próxima apertura"
+        }
+      },
+      "cta": {
+        "text": "¿Buscas soporte local u oportunidades de asociación?",
+        "button": "Contáctanos"
+      }
+    },
+    "finalCta": {
+      "title": "¿Listo para encontrar tu solución?",
+      "subtitle": "Explora nuestro catálogo completo o conéctate con nuestro equipo de ventas para obtener orientación experta",
+      "exploreProducts": "Explorar productos",
+      "talkToSales": "Hablar con ventas",
+      "footer": "Hecho en EE. UU. • Envío el mismo día • Certificado ISO 9001:2015 • Más de 30 años de excelencia"
     }
   },
   "footer": {

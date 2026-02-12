@@ -23,16 +23,16 @@
   "home": {
     "hero": {
       "title": "Solutions de capteurs de précision pour l'automatisation des bâtiments",
-      "description": "Les capteurs traçables NIST et les contrôleurs certifiés BACnet font confiance aux ingénieurs du monde entier pour les soins de santé, les centres de données et les installations critiques.",
-      "cta": "Explorer les produits",
-      "secondaryCta": "Parler aux ventes",
+      "description": "Capteurs traçables NIST et contrôleurs certifiés BACnet, approuvés par des ingénieurs du monde entier pour les soins de santé, les centres de données et les installations critiques.",
+      "cta": "Explorez les produits",
+      "secondaryCta": "Parlez à des commerciaux",
       "productFamilyTitle": "Solutions de capteurs complètes pour les systèmes d'automatisation des bâtiments",
-      "productFamilySubtitle": "Approuvés par les ingénieurs du monde entier pour la surveillance et le contrôle de précision"
+      "productFamilySubtitle": "Approuvés par des ingénieurs du monde entier pour une surveillance et un contrôle de précision"
     },
     "taglines": [
       "Capteurs de premier plan",
-      "Changer votre façon de penser aux capteurs depuis 1993",
-      "Intégration sans fil transparente pour votre système BAS existant",
+      "Changer la façon dont vous pensez aux capteurs depuis 1993",
+      "Intégration sans fil transparente pour votre système de gestion des bâtiments existant",
       "Ingénierie de précision",
       "Construire l'avenir",
       "...C'est dans les détails",
@@ -40,11 +40,11 @@
     ],
     "stats": {
       "yearsValue": "30+",
-      "yearsLabel": "Années d'Excellence",
+      "yearsLabel": "Années d'excellence",
       "productsValue": "608",
       "productsLabel": "Modèles de produits",
       "globalValue": "Mondial",
-      "globalLabel": "Portée et support",
+      "globalLabel": "Portée et soutien",
       "isoValue": "ISO 9001",
       "isoLabel": "Qualité certifiée"
     },
@@ -73,7 +73,7 @@
       },
       "accessories": {
         "name": "Accessoires",
-        "description": "Matériel de montage et boîtiers"
+        "description": "Quincaillerie de montage et boîtiers"
       },
       "testInstruments": {
         "name": "Instruments de test",
@@ -81,7 +81,7 @@
       },
       "etaLine": {
         "name": "Ligne ETA",
-        "description": "E/S modulaires et contrôle"
+        "description": "E/S et contrôle modulaires"
       },
       "viewAll": "Voir tous les produits",
       "viewProducts": "Voir les produits",
@@ -89,31 +89,82 @@
     },
     "whyBapi": {
       "title": "POURQUOI BAPI ?",
-      "description": "BAPI transforme la façon dont vous pensez aux capteurs depuis 1993. Nous pensons que les capteurs ne sont pas de simples produits de base. Ils font partie intégrante d'un système de contrôle d'automatisation des bâtiments et sont essentiels à la mission d'économie d'énergie. Notre engagement envers l'innovation et la qualité a aidé à transformer BAPI en un fabricant mondial de solutions de capteurs de premier plan, avec un accent mis sur la qualité, la fiabilité et la valeur.",
+      "description": "BAPI change la façon dont vous pensez aux capteurs depuis 1993. Nous pensons que les capteurs ne sont pas de simples produits de base. Ils font partie intégrante d'un système de contrôle de l'automatisation des bâtiments et sont essentiels pour économiser l'énergie. Notre engagement envers l'innovation et la qualité a aidé BAPI à devenir un fabricant mondial de premier plan de solutions de capteurs, avec un accent mis sur la qualité, la fiabilité et la valeur.",
       "warranty": {
         "title": "Garantie",
         "description": "Nos produits sont conçus et fabriqués pour durer. Nous soutenons cette affirmation en offrant une garantie de 5 ans sur tous nos produits.",
-        "footnote": "Une garantie à vie limitée est également disponible sur de nombreux capteurs de température ambiante et de gaine simples.*"
+        "footnote": "Une garantie à vie limitée est également disponible sur de nombreux de nos capteurs de température ambiante et de conduit à point unique.*"
       },
       "bapiBackedTitle": "Soutenu par BAPI",
       "bapiBackedDescription": "La plupart des fabricants de capteurs remplaceront leurs produits défectueux, mais seul BAPI a la confiance d'aller au-delà de la norme de l'industrie.",
-      "bapiBackedFootnote": "'Soutenu par BAPI' signifie que nous nous tenons derrière tout ce que nous vendons, alors soyez confiant dans la qualité de nos produits, car si l'un d'eux tombe en panne dans la période de garantie, non seulement nous le réparerons ou le remplacerons, mais nous fournirons également un expert du produit pour compenser vos coûts engagés.*",
+      "bapiBackedFootnote": "« Soutenu par BAPI » signifie que nous nous tenons derrière tout ce que nous vendons, alors ayez confiance dans la qualité de nos produits, car si l'un d'entre eux tombe en panne dans la période de garantie, non seulement nous le réparerons ou le remplacerons, mais nous fournirons un expert du produit pour compenser vos frais engagés.*",
       "bapiOriginal": {
-        "title": "Origine BAPI",
-        "description": "Chez BAPI, nous aspirons à être des leaders dans notre industrie en fournissant des produits et services innovants et de haute qualité conçus pour vous.",
-        "footnote": "Les produits portant le cachet \"Autre original\" sont uniques à BAPI et l'inspiration de ces conceptions provient de nos précieux clients, de nos talentueux employés et de nos fournisseurs respectés. Cette combinaison de trois ingrédients crée des solutions originales de premier plan, conçues pour résoudre les problèmes courants de CVC."
+        "title": "Original BAPI",
+        "description": "Chez BAPI, nous nous efforçons d'être des leaders dans notre industrie en fournissant des produits et services innovants et de haute qualité conçus avec vous à l'esprit.",
+        "footnote": "Les produits arborant le sceau « Another Original » sont uniques à BAPI et l'inspiration de ces conceptions provient de nos précieux clients, de nos employés talentueux et de nos fournisseurs respectés. Ces trois ingrédients combinés créent des solutions originales de premier plan conçues pour résoudre les problèmes courants de la CVCA."
       }
     },
     "globalPresence": {
       "title": "Notre présence mondiale",
-      "subtitle": "Depuis notre siège social dans le Wisconsin jusqu'à nos installations sur trois continents, BAPI sert les clients du monde entier avec une expertise locale et une portée mondiale."
+      "subtitle": "De notre siège social dans le Wisconsin à nos installations sur trois continents, BAPI sert les clients du monde entier avec une expertise locale et une portée mondiale."
     },
     "news": {
       "badge": "Dernières nouvelles",
       "title": "Restez informé",
-      "subtitle": "Dernières mises à jour, annonces de produits et informations sectorielles",
+      "subtitle": "Dernières mises à jour, annonces de produits et informations sur l'industrie",
       "viewAll": "Voir toutes les nouvelles",
-      "noArticles": "Aucun article de presse disponible pour le moment"
+      "noArticles": "Aucun article d'actualité disponible pour le moment"
+    },
+    "locations": {
+      "mapLegend": {
+        "headquarters": "Siège social",
+        "distribution": "Distribution",
+        "production": "Production",
+        "productionService": "Production et service"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "Siège social mondial",
+          "city": "Gays Mills",
+          "country": "États-Unis",
+          "description": "Siège social de l'entreprise et principal site de fabrication",
+          "type": "Siège social",
+          "established": "Fondé en 1993"
+        },
+        "distributionUk": {
+          "name": "Centre de distribution au Royaume-Uni",
+          "city": "Aldershot",
+          "country": "Royaume-Uni",
+          "description": "Centre de distribution et de logistique européen",
+          "type": "Centre de distribution"
+        },
+        "productionPoland": {
+          "name": "Installation de production et de service client",
+          "city": "Nowa Wola",
+          "country": "Pologne",
+          "description": "Installation de production européenne et centre de service client",
+          "type": "Production et service"
+        },
+        "productionVietnam": {
+          "name": "Installation de production Asie-Pacifique",
+          "city": "Da Nang",
+          "country": "Vietnam",
+          "description": "Nouvelle installation de fabrication desservant les marchés asiatiques",
+          "type": "Production",
+          "status": "Ouverture prochaine"
+        }
+      },
+      "cta": {
+        "text": "Vous cherchez un soutien local ou des opportunités de partenariat ?",
+        "button": "Contactez-nous"
+      }
+    },
+    "finalCta": {
+      "title": "Prêt à trouver votre solution ?",
+      "subtitle": "Explorez notre catalogue complet ou connectez-vous avec notre équipe commerciale pour obtenir des conseils d'expert",
+      "exploreProducts": "Explorez les produits",
+      "talkToSales": "Parlez à des commerciaux",
+      "footer": "Fabriqué aux États-Unis • Expédition le jour même • Certifié ISO 9001:2015 • Plus de 30 ans d'excellence"
     }
   },
   "footer": {

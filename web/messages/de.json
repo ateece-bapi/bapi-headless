@@ -131,19 +131,19 @@
   "home": {
     "hero": {
       "title": "Präzisionssensorlösungen für die Gebäudeautomation",
-      "description": "NIST-rückverfolgte Sensoren und BACnet-zertifizierte Regler, denen Ingenieure weltweit in Gesundheitswesen, Rechenzentren und kritischen Einrichtungen vertrauen.",
-      "cta": "Produkte entdecken",
+      "description": "NIST-rückverfolg bare Sensoren und BACnet-zertifizierte Regler, denen Ingenieure weltweit in der Gesundheitsversorgung, in Rechenzentren und in kritischen Einrichtungen vertrauen.",
+      "cta": "Produkte erkunden",
       "secondaryCta": "Mit Vertrieb sprechen",
       "productFamilyTitle": "Komplette Sensorlösungen für Gebäudeautomationssysteme",
-      "productFamilySubtitle": "Von Ingenieuren weltweit für genaue Überwachung und Steuerung geschätzt"
+      "productFamilySubtitle": "Von Ingenieuren weltweit für genaue Überwachung und Steuerung vertraut"
     },
     "taglines": [
-      "Führende Industriesensoren",
-      "Verändern, wie Sie seit 1993 über Sensoren denken",
-      "Nahtlose Funkintegration für Ihr bestehendes GBS",
+      "Branchenführende Sensoren",
+      "Die Art, wie Sie über Sensoren denken, seit 1993 verändernd",
+      "Nahtlose Wireless-Integration für Ihr bestehendes BAS",
       "Präzisionstechnik",
-      "Die Zukunft gestalten",
-      "...Es steckt im Detail",
+      "Die Zukunft bauen",
+      "...Es liegt im Detail",
       "Menschen. Gebäude. Sensoren"
     ],
     "stats": {
@@ -152,20 +152,20 @@
       "productsValue": "608",
       "productsLabel": "Produktmodelle",
       "globalValue": "Global",
-      "globalLabel": "Reichweite & Support",
+      "globalLabel": "Reichweite und Unterstützung",
       "isoValue": "ISO 9001",
       "isoLabel": "Zertifizierte Qualität"
     },
     "categories": {
       "title": "Erkunden Sie unseren Produktkatalog",
-      "subtitle": "Durchsuchen Sie die Kategorien nach Sensortyp, um die perfekte Lösung für Ihr Gebäudeautomationsprojekt zu finden",
+      "subtitle": "Suchen Sie nach Sensortyp, um die perfekte Lösung für Ihr Gebäudeautomationsprojekt zu finden",
       "temperature": {
         "name": "Temperatursensoren",
         "description": "Hochgenaue Temperaturmessung"
       },
       "humidity": {
         "name": "Feuchtigkeitssensoren",
-        "description": "Genaue Überwachung der relativen Luftfeuchtigkeit"
+        "description": "Präzise Überwachung der relativen Luftfeuchtigkeit"
       },
       "pressure": {
         "name": "Drucksensoren",
@@ -173,22 +173,22 @@
       },
       "airQuality": {
         "name": "Luftqualitätssensoren",
-        "description": "CO₂-, VOC- und Partikelüberwachung"
+        "description": "CO₂-, VOC- und Feinstaubüberwachung"
       },
       "wireless": {
         "name": "Drahtlose Sensoren",
-        "description": "WAM™ cloudbasierte Überwachung"
+        "description": "WAM™ cloud-verbundene Überwachung"
       },
       "accessories": {
         "name": "Zubehör",
-        "description": "Montagezubehör und Gehäuse"
+        "description": "Montagehardware und Gehäuse"
       },
       "testInstruments": {
-        "name": "Testinstrumente",
-        "description": "Kalibrierungs- und Überprüfungswerkzeuge"
+        "name": "Messgeräte",
+        "description": "Kalibrier- und Verifizierungswerkzeuge"
       },
       "etaLine": {
-        "name": "ETA-Linie",
+        "name": "ETA Line",
         "description": "Modulare E/A und Steuerung"
       },
       "viewAll": "Alle Produkte anzeigen",
@@ -197,31 +197,82 @@
     },
     "whyBapi": {
       "title": "WARUM BAPI?",
-      "description": "BAPI verändert seit 1993, wie Sie über Sensoren denken. Wir glauben, dass Sensoren keine einfachen Standardartikel sind. Sie sind integraler Bestandteil eines Gebäudeautomations-Leitsystems und entscheidend für die Mission der Energieeinsparung. Unser Engagement für Innovation und Qualität hat BAPI zu einem führenden globalen Hersteller von Sensorlösungen mit einem enormen Fokus auf Qualität, Zuverlässigkeit und Wert gemacht.",
+      "description": "BAPI verändert seit 1993 die Art, wie Sie über Sensoren denken. Wir glauben, dass Sensoren nicht nur einfache Waren sind. Sie sind integraler Bestandteil eines Gebäudeautomations-Steuerungssystems und entscheidend für die Aufgabe, Energie zu sparen. Unser Engagement für Innovation und Qualität hat BAPI zu einem führenden globalen Hersteller von Sensorlösungen mit einem enormen Fokus auf Qualität, Zuverlässigkeit und Wert gemacht.",
       "warranty": {
         "title": "Garantie",
-        "description": "Unsere Produkte sind so konzipiert und hergestellt, dass sie lange halten. Wir unterstützen diesen Anspruch, indem wir auf all unsere Produkte eine 5-Jahres-Garantie gewähren.",
-        "footnote": "Auf viele unserer Einzelpunkt-, Raum- und Kanaltemperatursensoren gibt es auch eine lebenslange beschränkte Garantie.*"
+        "description": "Unsere Produkte sind so konzipiert und hergestellt, dass sie lange halten. Wir untermauern diese Aussage mit einer 5-Jahres-Garantie auf all unsere Produkte.",
+        "footnote": "Auf viele unserer Einzelpunkt-, Raum- und Kanalraumtemperatursensoren ist auch eine lebenslange eingeschränkte Garantie verfügbar.*"
       },
-      "bapiBackedTitle": "BAPI-unterstützt",
-      "bapiBackedDescription": "Die meisten Sensorhersteller ersetzen ihre defekten Produkte, aber nur BAPI hat das Vertrauen, über den Branchenstandard hinauszugehen.",
-      "bapiBackedFootnote": "'BAPI-unterstützt' bedeutet, dass wir für alles einstehen, was wir verkaufen. Seien Sie also sicher in der Qualität unserer Produkte, denn wenn eines innerhalb der Garantiezeit ausfällt, werden wir es nicht nur reparieren oder ersetzen, sondern auch einen Produktexperten zur Kompensation Ihrer entstandenen Kosten stellen.*",
+      "bapiBackedTitle": "BAPI-Unterstützt",
+      "bapiBackedDescription": "Die meisten Sensorhersteller ersetzen ihre defekten Produkte, aber nur BAPI hat das Selbstvertrauen, über den Branchenstandard hinaus zu gehen.",
+      "bapiBackedFootnote": "'BAPI-Unterstützt' bedeutet, dass wir für alles einstehen, was wir verkaufen, damit Sie sicher sein können, dass unsere Produkte von hoher Qualität sind. Wenn innerhalb der Garantiezeit etwas ausfällt, reparieren oder ersetzen wir es nicht nur, sondern stellen Ihnen auch einen Produktexperten zur Verfügung, um Ihre entstandenen Kosten aufzufangen.*",
       "bapiOriginal": {
         "title": "BAPI Original",
-        "description": "Bei BAPI streben wir danach, Branchenführer zu sein, indem wir innovative, hochwertige Produkte und Dienstleistungen entwickeln, die auf Ihre Bedürfnisse ausgerichtet sind.",
-        "footnote": "Produkte mit dem Stempel \"Another Original\" sind einzigartig bei BAPI, und die Inspiration für diese Designs stammt von unseren wertvollen Kunden, talentierten Mitarbeitern und respektierten Lieferanten. Diese drei Zutaten zusammen ergeben branchenführende, originelle Lösungen, die entwickelt wurden, um gängige HVACR-Probleme zu lösen."
+        "description": "Bei BAPI streben wir danach, Branchenführer zu sein, indem wir innovative, hochwertige Produkte und Dienstleistungen anbieten, die mit Ihnen im Sinn entwickelt wurden.",
+        "footnote": "Produkte, die den Stempel \"Another Original\" tragen, sind einzigartig bei BAPI, und die Inspiration für diese Designs stammt von unseren wertvollen Kunden, talentierten Mitarbeitern und respektierten Lieferanten. Diese drei Zutaten zusammen schaffen branchenführende, originelle Lösungen, die entwickelt wurden, um gängige HVACR-Probleme zu lösen."
       }
     },
     "globalPresence": {
       "title": "Unsere globale Präsenz",
-      "subtitle": "Von unserem Hauptsitz in Wisconsin bis hin zu Standorten auf drei Kontinenten bedient BAPI Kunden weltweit mit lokaler Expertise und globaler Reichweite."
+      "subtitle": "Von unserem Hauptsitz in Wisconsin bis hin zu Einrichtungen auf drei Kontinenten bedient BAPI Kunden weltweit mit lokaler Expertise und globaler Reichweite."
     },
     "news": {
-      "badge": "Neueste Nachrichten",
-      "title": "Bleiben Sie informiert",
+      "badge": "Letzte Nachrichten",
+      "title": "Auf dem Laufenden bleiben",
       "subtitle": "Neueste Updates, Produktankündigungen und Brancheneinblicke",
       "viewAll": "Alle Nachrichten anzeigen",
-      "noArticles": "Zur Zeit sind keine Nachrichtenartikel verfügbar"
+      "noArticles": "Noch keine Nachrichtenartikel verfügbar"
+    },
+    "locations": {
+      "mapLegend": {
+        "headquarters": "Hauptsitz",
+        "distribution": "Vertrieb",
+        "production": "Produktion",
+        "productionService": "Produktion und Service"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "Globaler Hauptsitz",
+          "city": "Gays Mills",
+          "country": "USA",
+          "description": "Unternehmenszentrale und Hauptproduktionsstandort",
+          "type": "Hauptsitz",
+          "established": "Gegründet 1993"
+        },
+        "distributionUk": {
+          "name": "Vertriebszentrum Großbritannien",
+          "city": "Aldershot",
+          "country": "Vereinigtes Königreich",
+          "description": "Europäisches Vertriebs- und Logistikzentrum",
+          "type": "Vertriebszentrum"
+        },
+        "productionPoland": {
+          "name": "Produktions- und Kundendiensteinrichtung",
+          "city": "Nowa Wola",
+          "country": "Polen",
+          "description": "Europäische Produktionsanlage und Kundendienst zentrum",
+          "type": "Produktion und Service"
+        },
+        "productionVietnam": {
+          "name": "Produktionseinrichtung Asien-Pazifik",
+          "city": "Da Nang",
+          "country": "Vietnam",
+          "description": "Neue Produktionsanlage für die asiatischen Märkte",
+          "type": "Produktion",
+          "status": "Eröffnung demnächst"
+        }
+      },
+      "cta": {
+        "text": "Suchen Sie nach lokaler Unterstützung oder Partnerschaftsmöglichkeiten?",
+        "button": "Kontaktieren Sie uns"
+      }
+    },
+    "finalCta": {
+      "title": "Bereit, Ihre Lösung zu finden?",
+      "subtitle": "Durchsuchen Sie unseren vollständigen Katalog oder wenden Sie sich an unser Vertriebsteam für fachliche Beratung",
+      "exploreProducts": "Produkte erkunden",
+      "talkToSales": "Mit Vertrieb sprechen",
+      "footer": "Hergestellt in den USA • Versand am selben Tag • ISO 9001:2015 zertifiziert • 30+ Jahre Exzellenz"
     }
   }
 }

@@ -170,38 +170,38 @@
   },
   "home": {
     "hero": {
-      "title": "Giải pháp cảm biến chính xác cho Tự động hóa Tòa nhà",
-      "description": "Các cảm biến được theo dõi NIST và bộ điều khiển được chứng nhận BACnet được các kỹ sư trên toàn thế giới tin tưởng cho y tế, trung tâm dữ liệu và cơ sở quan trọng.",
+      "title": "Các giải pháp cảm biến chính xác cho tòa nhà tự động hóa",
+      "description": "Các cảm biến có tham chiếu NIST và bộ điều khiển được chứng nhận BACnet được các kỹ sư trên toàn thế giới tin cậy sử dụng cho các cơ sở y tế, trung tâm dữ liệu và cơ sở quan trọng.",
       "cta": "Khám phá Sản phẩm",
-      "secondaryCta": "Nói chuyện với Bộ phận Bán hàng",
-      "productFamilyTitle": "Giải pháp cảm biến hoàn chỉnh cho hệ thống tự động hóa tòa nhà",
-      "productFamilySubtitle": "Được các kỹ sư trên toàn thế giới tin tưởng cho giám sát và điều khiển chính xác"
+      "secondaryCta": "Liên hệ Kinh doanh",
+      "productFamilyTitle": "Các giải pháp cảm biến hoàn chỉnh cho hệ thống tòa nhà tự động hóa",
+      "productFamilySubtitle": "Được các kỹ sư trên toàn thế giới tin cậy sử dụng cho giám sát và kiểm soát chính xác"
     },
     "taglines": [
-      "Các Cảm biến Dẫn đầu Ngành",
+      "Cảm biến Dẫn đầu Ngành",
       "Thay đổi cách bạn nghĩ về cảm biến kể từ năm 1993",
-      "Tích hợp không dây liền mạch cho Hệ thống Tự động hóa Tòa nhà hiện có của bạn",
-      "Kỹ thuật Chính xác",
+      "Tích hợp không dây hoàn hảo cho hệ thống BAS hiện có của bạn",
+      "Kỹ thuật chính xác",
       "Xây dựng Tương lai",
-      "...Nằm ở các chi tiết",
+      "...Nằm trong những chi tiết nhỏ",
       "Con người. Tòa nhà. Cảm biến"
     ],
     "stats": {
       "yearsValue": "30+",
       "yearsLabel": "Năm Xuất sắc",
       "productsValue": "608",
-      "productsLabel": "Mẫu Sản phẩm",
+      "productsLabel": "Các Mẫu Sản phẩm",
       "globalValue": "Toàn cầu",
       "globalLabel": "Phạm vi & Hỗ trợ",
       "isoValue": "ISO 9001",
       "isoLabel": "Chất lượng được Chứng nhận"
     },
     "categories": {
-      "title": "Khám phá Danh mục Sản phẩm của chúng tôi",
-      "subtitle": "Duyệt theo loại cảm biến để tìm giải pháp hoàn hảo cho dự án tự động hóa tòa nhà của bạn",
+      "title": "Khám phá Danh mục Sản phẩm của Chúng tôi",
+      "subtitle": "Duyệt theo loại cảm biến để tìm ra giải pháp hoàn hảo cho dự án tòa nhà tự động hóa của bạn",
       "temperature": {
         "name": "Cảm biến Nhiệt độ",
-        "description": "Đo nhiệt độ chính xác cao"
+        "description": "Đo lường nhiệt độ với độ chính xác cao"
       },
       "humidity": {
         "name": "Cảm biến Độ ẩm",
@@ -209,11 +209,11 @@
       },
       "pressure": {
         "name": "Cảm biến Áp suất",
-        "description": "Áp suất vi sai & tĩnh"
+        "description": "Áp suất tĩnh và chênh lệch"
       },
       "airQuality": {
         "name": "Cảm biến Chất lượng Không khí",
-        "description": "Giám sát CO₂, VOC và bụi"
+        "description": "Giám sát CO₂, VOC và hạt bụi"
       },
       "wireless": {
         "name": "Cảm biến Không dây",
@@ -221,47 +221,98 @@
       },
       "accessories": {
         "name": "Phụ kiện",
-        "description": "Phần cứng lắp đặt & vỏ bọc"
+        "description": "Phụ kiện lắp đặt & vỏ ngoài"
       },
       "testInstruments": {
-        "name": "Thiết bị Kiểm tra",
-        "description": "Công cụ hiệu chuẩn & xác nhận"
+        "name": "Dụng cụ Kiểm tra",
+        "description": "Công cụ hiệu chuẩn và xác minh"
       },
       "etaLine": {
         "name": "Dòng ETA",
-        "description": "I/O và điều khiển Mô-đun"
+        "description": "Mô-đun I/O và điều khiển"
       },
       "viewAll": "Xem Tất cả Sản phẩm",
       "viewProducts": "Xem Sản phẩm",
       "browseAll": "Duyệt Tất cả Sản phẩm"
     },
     "whyBapi": {
-      "title": "TẠI SAO LÀ BAPI?",
-      "description": "BAPI đã thay đổi cách bạn nghĩ về cảm biến kể từ năm 1993. Chúng tôi tin rằng các cảm biến không chỉ là những mặt hàng tiêu dùng đơn giản. Chúng là một bộ phận không thể thiếu của hệ thống điều khiển tự động hóa tòa nhà và rất quan trọng để tiết kiệm năng lượng. Cam kết của chúng tôi với đổi mới và chất lượng đã giúp BAPI trở thành một nhà sản xuất cảm biến hàng đầu toàn cầu với sự tập trung đáng kể vào chất lượng, độ tin cậy và giá trị.",
+      "title": "TẠI SAO BAPI?",
+      "description": "BAPI đã thay đổi cách bạn nghĩ về cảm biến kể từ năm 1993. Chúng tôi tin rằng các cảm biến không chỉ là những mặt hàng đơn giản. Chúng là một phần không thể thiếu của hệ thống điều khiển tự động hóa tòa nhà và rất quan trọng trong việc tiết kiệm năng lượng. Cam kết của chúng tôi đối với đổi mới và chất lượng đã giúp BAPI trở thành nhà sản xuất cảm biến hàng đầu toàn cầu với sự tập trung vào chất lượng, độ tin cậy và giá trị.",
       "warranty": {
         "title": "Bảo hành",
-        "description": "Các sản phẩm của chúng tôi được thiết kế và sản xuất để tồn tại lâu dài. Chúng tôi cam kết điều này bằng cách cung cấp bảo hành 5 năm cho tất cả các sản phẩm của mình.",
-        "footnote": "Bảo hành trọn đời hạn chế cũng có sẵn cho nhiều cảm biến nhiệt độ phòng và ống gió.*"
+        "description": "Sản phẩm của chúng tôi được thiết kế và sản xuất để sử dụng lâu dài. Chúng tôi khẳng định điều này bằng cách cung cấp bảo hành 5 năm cho tất cả các sản phẩm của mình.",
+        "footnote": "Bảo hành hạn chế suốt đời cũng được cung cấp cho nhiều cảm biến nhiệt độ phòng và ống gió.*"
       },
-      "bapiBackedTitle": "Được BAPI Bảo trợ",
-      "bapiBackedDescription": "Hầu hết các nhà sản xuất cảm biến sẽ thay thế các sản phẩm lỗi của họ, nhưng chỉ BAPI có đủ tự tin để vượt xa tiêu chuẩn của ngành.",
-      "bapiBackedFootnote": "'Được BAPI Bảo trợ' có nghĩa là chúng tôi sẽ hỗ trợ mọi thứ chúng tôi bán, vì vậy hãy tự tin vào chất lượng của các sản phẩm của chúng tôi rằng nếu một sản phẩm bị hỏng trong thời gian bảo hành, chúng tôi sẽ không chỉ sửa chữa hoặc thay thế, mà còn cung cấp một chuyên gia sản phẩm để bù đắp chi phí phát sinh của bạn.*",
+      "bapiBackedTitle": "Được BAPI Bảo chứng",
+      "bapiBackedDescription": "Hầu hết các nhà sản xuất cảm biến sẽ thay thế sản phẩm bị lỗi của họ, nhưng chỉ có BAPI đủ tự tin để vượt ra ngoài tiêu chuẩn của ngành.",
+      "bapiBackedFootnote": "'Được BAPI Bảo chứng' có nghĩa là chúng tôi đứng sau mọi thứ chúng tôi bán, vì vậy hãy tin tưởng vào chất lượng của sản phẩm của chúng tôi, nếu một sản phẩm bị lỗi trong thời gian bảo hành, không chỉ chúng tôi sẽ sửa chữa hoặc thay thế nó, mà còn cung cấp một chuyên gia về sản phẩm để bù đắp chi phí phát sinh của bạn.*",
       "bapiOriginal": {
-        "title": "Sản phẩm Gốc BAPI",
-        "description": "Tại BAPI, chúng tôi luôn cố gắng trở thành những người dẫn đầu trong ngành của chúng tôi bằng cách cung cấp các sản phẩm và dịch vụ sáng tạo, chất lượng cao được thiết kế với bạn trong tâm trí.",
-        "footnote": "Các sản phẩm có dấu hiệu \"Another Original\" (Sản phẩm Gốc khác) là độc đáo của BAPI và những thiết kế này đến từ các khách hàng quý báu, nhân viên tài năng và các nhà cung cấp được tôn trọng của chúng tôi. Ba thành phần này kết hợp tạo ra các giải pháp gốc dẫn đầu ngành để giải quyết các vấn đề thông thường trong HVACR."
+        "title": "Bản Gốc BAPI",
+        "description": "Tại BAPI, chúng tôi luôn cố gắng trở thành những người dẫn đầu trong ngành của mình bằng cách cung cấp các sản phẩm và dịch vụ sáng tạo, chất lượng cao được thiết kế với bạn trong tâm trí.",
+        "footnote": "Các sản phẩm có dấu 'Bản Gốc Khác' là độc đáo của BAPI và những thiết kế này được truyền cảm hứng từ các khách hàng quý giá, nhân viên tài năng và các nhà cung cấp được tôn trọng của chúng tôi. Ba yếu tố này kết hợp tạo ra các giải pháp sáng tạo, độc đáo, dẫn đầu ngành để giải quyết các vấn đề thông thường của HVACR."
       }
     },
     "globalPresence": {
-      "title": "Sự Hiện diện Toàn cầu của chúng tôi",
-      "subtitle": "Từ trụ sở chính ở Wisconsin đến các cơ sở trên ba lục địa, BAPI phục vụ khách hàng trên toàn thế giới với chuyên môn địa phương và phạm vi toàn cầu."
+      "title": "Sự Hiện diện Toàn cầu của Chúng tôi",
+      "subtitle": "Từ trụ sở chính tại Wisconsin đến các cơ sở trên ba châu lục, BAPI phục vụ khách hàng trên toàn thế giới với chuyên môn địa phương và tầm ảnh hưởng toàn cầu."
     },
     "news": {
       "badge": "Tin tức Mới nhất",
-      "title": "Luôn được Thông báo",
+      "title": "Luôn Cập nhật",
       "subtitle": "Cập nhật mới nhất, thông báo sản phẩm và hiểu biết về ngành",
       "viewAll": "Xem Tất cả Tin tức",
-      "noArticles": "Chưa có bài viết tin tức nào"
+      "noArticles": "Hiện chưa có bài viết tin tức nào"
+    },
+    "locations": {
+      "mapLegend": {
+        "headquarters": "Trụ sở chính",
+        "distribution": "Phân phối",
+        "production": "Sản xuất",
+        "productionService": "Sản xuất & Dịch vụ"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "Trụ sở Toàn cầu",
+          "city": "Gays Mills",
+          "country": "Hoa Kỳ",
+          "description": "Trụ sở chính và cơ sở sản xuất chính",
+          "type": "Trụ sở chính",
+          "established": "Thành lập năm 1993"
+        },
+        "distributionUk": {
+          "name": "Trung tâm Phân phối Vương quốc Anh",
+          "city": "Aldershot",
+          "country": "Vương quốc Anh",
+          "description": "Trung tâm phân phối và logistics châu Âu",
+          "type": "Trung tâm Phân phối"
+        },
+        "productionPoland": {
+          "name": "Cơ sở Sản xuất & Dịch vụ Khách hàng",
+          "city": "Nowa Wola",
+          "country": "Ba Lan",
+          "description": "Cơ sở sản xuất châu Âu và trung tâm dịch vụ khách hàng",
+          "type": "Sản xuất & Dịch vụ"
+        },
+        "productionVietnam": {
+          "name": "Cơ sở Sản xuất Khu vực châu Á-Thái Bình Dương",
+          "city": "Đà Nẵng",
+          "country": "Việt Nam",
+          "description": "Cơ sở sản xuất mới phục vụ thị trường châu Á",
+          "type": "Sản xuất",
+          "status": "Sắp Khai trương"
+        }
+      },
+      "cta": {
+        "text": "Đang tìm kiếm hỗ trợ địa phương hoặc cơ hội hợp tác?",
+        "button": "Liên hệ Chúng tôi"
+      }
+    },
+    "finalCta": {
+      "title": "Sẵn sàng Tìm Giải pháp của Bạn?",
+      "subtitle": "Khám phá danh mục đầy đủ của chúng tôi hoặc kết nối với đội ngũ bán hàng của chúng tôi để được hướng dẫn chuyên gia",
+      "exploreProducts": "Khám phá Sản phẩm",
+      "talkToSales": "Liên hệ Kinh doanh",
+      "footer": "Sản xuất tại Hoa Kỳ • Giao hàng Cùng ngày • Chứng nhận ISO 9001:2015 • 30+ Năm Xuất sắc"
     }
   }
 }

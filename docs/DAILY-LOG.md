@@ -9,8 +9,8 @@
 
 ## February 12, 2026 (Late Night) — Mega Menu Navigation & CDN Caching i18n Fixes
 
-**Branch:** `fix/mega-menu-url-and-cache-i18n` → `main` (pending merge)  
-**Status:** ✅ COMPLETE - PR review follow-up fixes for navigation and performance
+**Branch:** `fix/mega-menu-url-and-cache-i18n` → `main` (merged)  
+**Status:** ✅ COMPLETE & MERGED - PR review follow-up fixes for navigation and performance
 
 **Critical Achievement:** Fixed 2 bugs discovered in PR review of the just-merged security/bug fixes. Restored proper navigation for Resources/Support/Company sections (9 broken links) and CDN caching for all 10 non-English locales.
 

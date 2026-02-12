@@ -85,7 +85,7 @@
 ---
 
 ### ✅ Mega Menu Navigation & CDN Caching i18n Fixes (Feb 12, 2026)
-**Status:** COMPLETE (fix/mega-menu-url-and-cache-i18n) — Pending PR merge
+**Status:** COMPLETE & MERGED (fix/mega-menu-url-and-cache-i18n)
 **Summary:**
   - Fixed 2 bugs discovered in PR review of the just-merged security/bug fixes
   - Restored proper navigation for Resources/Support/Company sections (9 broken links)

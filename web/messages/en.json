@@ -347,6 +347,57 @@
       "subtitle": "Latest updates, product announcements, and industry insights",
       "viewAll": "View All News",
       "noArticles": "No news articles available yet"
+    },
+    "locations": {
+      "mapLegend": {
+        "headquarters": "Headquarters",
+        "distribution": "Distribution",
+        "production": "Production",
+        "productionService": "Production & Service"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "Global Headquarters",
+          "city": "Gays Mills",
+          "country": "USA",
+          "description": "Corporate headquarters and primary manufacturing facility",
+          "type": "Headquarters",
+          "established": "Est. 1993"
+        },
+        "distributionUk": {
+          "name": "UK Distribution Centre",
+          "city": "Aldershot",
+          "country": "United Kingdom",
+          "description": "European distribution and logistics hub",
+          "type": "Distribution Centre"
+        },
+        "productionPoland": {
+          "name": "Production & Customer Service Facility",
+          "city": "Nowa Wola",
+          "country": "Poland",
+          "description": "European production facility and customer service center",
+          "type": "Production & Service"
+        },
+        "productionVietnam": {
+          "name": "Asia-Pacific Production Facility",
+          "city": "Da Nang",
+          "country": "Vietnam",
+          "description": "New manufacturing facility serving Asian markets",
+          "type": "Production",
+          "status": "Opening Soon"
+        }
+      },
+      "cta": {
+        "text": "Looking for local support or partnership opportunities?",
+        "button": "Contact Us"
+      }
+    },
+    "finalCta": {
+      "title": "Ready to Find Your Solution?",
+      "subtitle": "Explore our complete catalog or connect with our sales team for expert guidance",
+      "exploreProducts": "Explore Products",
+      "talkToSales": "Talk to Sales",
+      "footer": "Made in USA • Same-Day Shipping • ISO 9001:2015 Certified • 30+ Years of Excellence"
     }
   },
   "footer": {

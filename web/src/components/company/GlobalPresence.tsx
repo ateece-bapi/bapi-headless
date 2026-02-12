@@ -17,9 +17,34 @@ type GeoFeature = {
   properties: Record<string, unknown>;
 };
 
+interface LocationTranslations {
+  mapLegend: {
+    headquarters: string;
+    distribution: string;
+    production: string;
+    productionService: string;
+  };
+  facilities: {
+    [key: string]: {
+      name: string;
+      city: string;
+      country: string;
+      description: string;
+      type: string;
+      established?: string;
+      status?: string;
+    };
+  };
+  cta: {
+    text: string;
+    button: string;
+  };
+}
+
 interface GlobalPresenceProps {
   title?: string;
   subtitle?: string;
+  locationTranslations?: LocationTranslations;
 }
 
 /**
@@ -34,7 +59,7 @@ interface GlobalPresenceProps {
  * 
  * @returns {JSX.Element} Global presence section with map and location details
  */
-export function GlobalPresence({ title, subtitle }: GlobalPresenceProps = {}) {
+export function GlobalPresence({ title, subtitle, locationTranslations }: GlobalPresenceProps = {}) {
   const [tooltip, setTooltip] = useState<{ location: Location; visible: boolean } | null>(null);
 
   return (
@@ -160,19 +185,19 @@ export function GlobalPresence({ title, subtitle }: GlobalPresenceProps = {}) {
             <div className="flex flex-wrap gap-6 justify-center text-sm">
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-[#1479BC]" />
-                <span className="text-neutral-700">Headquarters</span>
+                <span className="text-neutral-700">{locationTranslations?.mapLegend.headquarters || 'Headquarters'}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-[#FFC843]" />
-                <span className="text-neutral-700">Distribution</span>
+                <span className="text-neutral-700">{locationTranslations?.mapLegend.distribution || 'Distribution'}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-[#3B82F6]" />
-                <span className="text-neutral-700">Production</span>
+                <span className="text-neutral-700">{locationTranslations?.mapLegend.production || 'Production'}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 rounded-full bg-[#10B981]" />
-                <span className="text-neutral-700">Production & Service</span>
+                <span className="text-neutral-700">{locationTranslations?.mapLegend.productionService || 'Production & Service'}</span>
               </div>
             </div>
           </div>
@@ -180,60 +205,63 @@ export function GlobalPresence({ title, subtitle }: GlobalPresenceProps = {}) {
 
         {/* Location Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {BAPI_LOCATIONS.map((location) => (
-            <div
-              key={location.id}
-              className="bg-white rounded-xl border-2 border-neutral-200 p-6 hover:border-primary-500 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="flex items-start gap-3 mb-4">
-                <div 
-                  className="w-3 h-3 rounded-full mt-1 shrink-0"
-                  style={{ backgroundColor: FACILITY_TYPE_COLORS[location.type] }}
-                />
-                <div className="flex-1">
-                  <h3 className="font-bold text-neutral-900 mb-1">
-                    {location.name}
-                  </h3>
-                  <div className="flex items-center gap-1 text-sm text-neutral-600">
-                    <MapPin className="w-4 h-4" />
-                    <span>{location.city}, {location.country}</span>
+          {BAPI_LOCATIONS.map((location) => {
+            const translation = locationTranslations?.facilities[location.id];
+            return (
+              <div
+                key={location.id}
+                className="bg-white rounded-xl border-2 border-neutral-200 p-6 hover:border-primary-500 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex items-start gap-3 mb-4">
+                  <div 
+                    className="w-3 h-3 rounded-full mt-1 shrink-0"
+                    style={{ backgroundColor: FACILITY_TYPE_COLORS[location.type] }}
+                  />
+                  <div className="flex-1">
+                    <h3 className="font-bold text-neutral-900 mb-1">
+                      {translation?.name || location.name}
+                    </h3>
+                    <div className="flex items-center gap-1 text-sm text-neutral-600">
+                      <MapPin className="w-4 h-4" />
+                      <span>{translation?.city || location.city}, {translation?.country || location.country}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <p className="text-sm text-neutral-600 mb-3">
-                {location.description}
-              </p>
+                
+                <p className="text-sm text-neutral-600 mb-3">
+                  {translation?.description || location.description}
+                </p>
 
-              <div className="flex items-center gap-2 text-xs">
-                <span className="px-2 py-1 bg-primary-50 text-primary-700 font-medium rounded">
-                  {FACILITY_TYPE_LABELS[location.type]}
-                </span>
-                {location.status === 'opening-soon' && (
-                  <span className="px-2 py-1 bg-accent-50 text-accent-700 font-medium rounded">
-                    Opening Soon
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="px-2 py-1 bg-primary-50 text-primary-700 font-medium rounded">
+                    {translation?.type || FACILITY_TYPE_LABELS[location.type]}
                   </span>
-                )}
-                {location.established && (
-                  <span className="text-neutral-500 ml-auto">
-                    Est. {location.established}
-                  </span>
-                )}
+                  {location.status === 'opening-soon' && (
+                    <span className="px-2 py-1 bg-accent-50 text-accent-700 font-medium rounded">
+                      {translation?.status || 'Opening Soon'}
+                    </span>
+                  )}
+                  {location.established && (
+                    <span className="text-neutral-500 ml-auto">
+                      {translation?.established || `Est. ${location.established}`}
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Call to Action */}
         <div className="mt-12 text-center">
           <p className="text-neutral-600 mb-4">
-            Looking for local support or partnership opportunities?
+            {locationTranslations?.cta.text || 'Looking for local support or partnership opportunities?'}
           </p>
           <Link
             href="/company/contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors duration-200"
           >
-            Contact Us
+            {locationTranslations?.cta.button || 'Contact Us'}
           </Link>
         </div>
       </div>

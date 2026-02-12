@@ -373,8 +373,50 @@ export default async function Home({
       {/* Global Presence Map */}
       <GlobalPresence 
         title={t('globalPresence.title')}
-        subtitle={t('globalPresence.subtitle')}
-      />
+        subtitle={t('globalPresence.subtitle')}        locationTranslations={{
+          mapLegend: {
+            headquarters: t('locations.mapLegend.headquarters'),
+            distribution: t('locations.mapLegend.distribution'),
+            production: t('locations.mapLegend.production'),
+            productionService: t('locations.mapLegend.productionService')
+          },
+          facilities: {
+            'headquarters-usa': {
+              name: t('locations.facilities.headquartersUsa.name'),
+              city: t('locations.facilities.headquartersUsa.city'),
+              country: t('locations.facilities.headquartersUsa.country'),
+              description: t('locations.facilities.headquartersUsa.description'),
+              type: t('locations.facilities.headquartersUsa.type'),
+              established: t('locations.facilities.headquartersUsa.established')
+            },
+            'distribution-uk': {
+              name: t('locations.facilities.distributionUk.name'),
+              city: t('locations.facilities.distributionUk.city'),
+              country: t('locations.facilities.distributionUk.country'),
+              description: t('locations.facilities.distributionUk.description'),
+              type: t('locations.facilities.distributionUk.type')
+            },
+            'production-poland': {
+              name: t('locations.facilities.productionPoland.name'),
+              city: t('locations.facilities.productionPoland.city'),
+              country: t('locations.facilities.productionPoland.country'),
+              description: t('locations.facilities.productionPoland.description'),
+              type: t('locations.facilities.productionPoland.type')
+            },
+            'production-vietnam': {
+              name: t('locations.facilities.productionVietnam.name'),
+              city: t('locations.facilities.productionVietnam.city'),
+              country: t('locations.facilities.productionVietnam.country'),
+              description: t('locations.facilities.productionVietnam.description'),
+              type: t('locations.facilities.productionVietnam.type'),
+              status: t('locations.facilities.productionVietnam.status')
+            }
+          },
+          cta: {
+            text: t('locations.cta.text'),
+            button: t('locations.cta.button')
+          }
+        }}      />
 
       {/* Latest News Section */}
       <section className="bg-white py-12 lg:py-16">
@@ -487,10 +529,10 @@ export default async function Home({
       <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 drop-shadow-md">
-            Ready to Find Your Solution?
+            {t('finalCta.title')}
           </h2>
           <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto drop-shadow-sm">
-            Explore our complete catalog or connect with our sales team for expert guidance
+            {t('finalCta.subtitle')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -498,20 +540,20 @@ export default async function Home({
               href="/products"
               className="btn-bapi-accent inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg"
             >
-              Explore Products
+              {t('finalCta.exploreProducts')}
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-50 text-primary-500 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-white hover:border-accent-500"
             >
-              Talk to Sales
+              {t('finalCta.talkToSales')}
             </Link>
           </div>
 
           <div className="mt-8 pt-8 border-t border-primary-400/50 text-primary-100">
             <p className="text-sm drop-shadow-sm">
-              <strong>Made in USA</strong> • Same-Day Shipping • ISO 9001:2015 Certified • 30+ Years of Excellence
+              {t('finalCta.footer')}
             </p>
           </div>
         </div>

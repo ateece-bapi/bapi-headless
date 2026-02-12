@@ -75,7 +75,7 @@
         "co2Desc": "कार्बन डाइऑक्साइड मॉनिटरिंग",
         "voc": "VOC सेंसर",
         "vocDesc": "उद्गमित कार्बनिक यौगिक",
-        "particulate": "कण्ण पदार्थ",
+        "particulate": "कण पदार्थ",
         "particulateDesc": "PM2.5 और PM10"
       },
       "wireless": {

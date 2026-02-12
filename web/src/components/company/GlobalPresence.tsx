@@ -1,7 +1,11 @@
 'use client';
 
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
-import { BAPI_LOCATIONS, FACILITY_TYPE_LABELS, FACILITY_TYPE_COLORS } from '@/lib/constants/locations';
+import {
+  BAPI_LOCATIONS,
+  FACILITY_TYPE_LABELS,
+  FACILITY_TYPE_COLORS,
+} from '@/lib/constants/locations';
 import type { Location } from '@/lib/constants/locations';
 import { Building2, MapPin } from 'lucide-react';
 import { useState } from 'react';
@@ -49,45 +53,50 @@ interface GlobalPresenceProps {
 
 /**
  * GlobalPresence component displays BAPI's worldwide facilities on an interactive map
- * 
+ *
  * Features:
  * - Interactive SVG world map with location markers
  * - Hover tooltips showing facility details
  * - Color-coded markers by facility type
  * - Responsive layout with location cards
  * - Zero runtime cost (no API calls)
- * 
+ *
  * @returns {JSX.Element} Global presence section with map and location details
  */
-export function GlobalPresence({ title, subtitle, locationTranslations }: GlobalPresenceProps = {}) {
+export function GlobalPresence({
+  title,
+  subtitle,
+  locationTranslations,
+}: GlobalPresenceProps = {}) {
   const [tooltip, setTooltip] = useState<{ location: Location; visible: boolean } | null>(null);
 
   return (
-    <section className="py-16 bg-linear-to-b from-white to-neutral-50">
+    <section className="bg-linear-to-b from-white to-neutral-50 py-16">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-2xl mb-6">
-            <Building2 className="w-8 h-8 text-primary-600" />
+        <div className="mb-12 text-center">
+          <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-100">
+            <Building2 className="h-8 w-8 text-primary-600" />
           </div>
-          <h2 className="text-4xl font-bold text-neutral-900 mb-4">
+          <h2 className="mb-4 text-4xl font-bold text-neutral-900">
             {title || 'Our Global Presence'}
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            {subtitle || 'From our headquarters in Wisconsin to facilities across three continents, BAPI serves customers worldwide with local expertise and global reach.'}
+          <p className="mx-auto max-w-2xl text-lg text-neutral-600">
+            {subtitle ||
+              'From our headquarters in Wisconsin to facilities across three continents, BAPI serves customers worldwide with local expertise and global reach.'}
           </p>
         </div>
 
         {/* Interactive World Map */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-12 relative">
+        <div className="relative mb-12 rounded-2xl bg-white p-6 shadow-lg">
           <div className="relative" style={{ height: '500px' }}>
             <ComposableMap
               projection="geoMercator"
               projectionConfig={{
                 scale: 140,
-                center: [15, 30]
+                center: [15, 30],
               }}
-              className="w-full h-full"
+              className="h-full w-full"
             >
               <ZoomableGroup center={[15, 30]} zoom={1}>
                 <Geographies geography={geoUrl}>
@@ -102,7 +111,7 @@ export function GlobalPresence({ title, subtitle, locationTranslations }: Global
                         style={{
                           default: { outline: 'none' },
                           hover: { outline: 'none', fill: '#D1D5DB' },
-                          pressed: { outline: 'none' }
+                          pressed: { outline: 'none' },
                         }}
                       />
                     ))
@@ -125,9 +134,10 @@ export function GlobalPresence({ title, subtitle, locationTranslations }: Global
                       strokeWidth={2}
                       className="cursor-pointer transition-all duration-200 hover:scale-125"
                       style={{
-                        filter: location.type === 'headquarters' 
-                          ? 'drop-shadow(0 4px 6px rgba(20, 121, 188, 0.4))' 
-                          : 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))'
+                        filter:
+                          location.type === 'headquarters'
+                            ? 'drop-shadow(0 4px 6px rgba(20, 121, 188, 0.4))'
+                            : 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))',
                       }}
                     />
                     {/* Pulse Animation for Headquarters */}
@@ -147,102 +157,117 @@ export function GlobalPresence({ title, subtitle, locationTranslations }: Global
             </ComposableMap>
 
             {/* Tooltip */}
-            {tooltip?.visible && (
-              <div 
-                className="absolute top-4 left-1/2 -translate-x-1/2 bg-white rounded-lg shadow-xl p-4 border-2 border-primary-500 z-50 min-w-70"
-                style={{ pointerEvents: 'none' }}
-              >
-                <div className="flex items-start gap-3">
-                  <div 
-                    className="w-3 h-3 rounded-full mt-1 shrink-0"
-                    style={{ backgroundColor: FACILITY_TYPE_COLORS[tooltip.location.type] }}
-                  />
-                  <div>
-                    <div className="font-semibold text-neutral-900 mb-1">
-                      {tooltip.location.name}
-                    </div>
-                    <div className="text-sm text-neutral-600 mb-2">
-                      {tooltip.location.city}, {tooltip.location.region}
-                      <br />
-                      {tooltip.location.country}
-                    </div>
-                    <div className="text-xs font-medium text-primary-600">
-                      {FACILITY_TYPE_LABELS[tooltip.location.type]}
-                    </div>
-                    {tooltip.location.status === 'opening-soon' && (
-                      <div className="text-xs font-medium text-accent-600 mt-1">
-                        Opening Soon
+            {tooltip?.visible &&
+              (() => {
+                const translation = locationTranslations?.facilities[tooltip.location.id];
+                return (
+                  <div
+                    className="min-w-70 absolute left-1/2 top-4 z-50 -translate-x-1/2 rounded-lg border-2 border-primary-500 bg-white p-4 shadow-xl"
+                    style={{ pointerEvents: 'none' }}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div
+                        className="mt-1 h-3 w-3 shrink-0 rounded-full"
+                        style={{ backgroundColor: FACILITY_TYPE_COLORS[tooltip.location.type] }}
+                      />
+                      <div>
+                        <div className="mb-1 font-semibold text-neutral-900">
+                          {translation?.name || tooltip.location.name}
+                        </div>
+                        <div className="mb-2 text-sm text-neutral-600">
+                          {translation?.city || tooltip.location.city}, {tooltip.location.region}
+                          <br />
+                          {translation?.country || tooltip.location.country}
+                        </div>
+                        <div className="text-xs font-medium text-primary-600">
+                          {translation?.type || FACILITY_TYPE_LABELS[tooltip.location.type]}
+                        </div>
+                        {tooltip.location.status === 'opening-soon' && (
+                          <div className="mt-1 text-xs font-medium text-accent-600">
+                            {translation?.status || 'Opening Soon'}
+                          </div>
+                        )}
                       </div>
-                    )}
+                    </div>
                   </div>
-                </div>
-              </div>
-            )}
+                );
+              })()}
           </div>
 
           {/* Map Legend */}
-          <div className="mt-6 pt-6 border-t border-neutral-200">
-            <div className="flex flex-wrap gap-6 justify-center text-sm">
+          <div className="mt-6 border-t border-neutral-200 pt-6">
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-[#1479BC]" />
-                <span className="text-neutral-700">{locationTranslations?.mapLegend.headquarters || 'Headquarters'}</span>
+                <div className="h-4 w-4 rounded-full bg-[#1479BC]" />
+                <span className="text-neutral-700">
+                  {locationTranslations?.mapLegend.headquarters || 'Headquarters'}
+                </span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-[#FFC843]" />
-                <span className="text-neutral-700">{locationTranslations?.mapLegend.distribution || 'Distribution'}</span>
+                <div className="h-4 w-4 rounded-full bg-[#FFC843]" />
+                <span className="text-neutral-700">
+                  {locationTranslations?.mapLegend.distribution || 'Distribution'}
+                </span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-[#3B82F6]" />
-                <span className="text-neutral-700">{locationTranslations?.mapLegend.production || 'Production'}</span>
+                <div className="h-4 w-4 rounded-full bg-[#3B82F6]" />
+                <span className="text-neutral-700">
+                  {locationTranslations?.mapLegend.production || 'Production'}
+                </span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-[#10B981]" />
-                <span className="text-neutral-700">{locationTranslations?.mapLegend.productionService || 'Production & Service'}</span>
+                <div className="h-4 w-4 rounded-full bg-[#10B981]" />
+                <span className="text-neutral-700">
+                  {locationTranslations?.mapLegend.productionService || 'Production & Service'}
+                </span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Location Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {BAPI_LOCATIONS.map((location) => {
             const translation = locationTranslations?.facilities[location.id];
             return (
               <div
                 key={location.id}
-                className="bg-white rounded-xl border-2 border-neutral-200 p-6 hover:border-primary-500 hover:shadow-lg transition-all duration-300"
+                className="rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
               >
-                <div className="flex items-start gap-3 mb-4">
-                  <div 
-                    className="w-3 h-3 rounded-full mt-1 shrink-0"
+                <div className="mb-4 flex items-start gap-3">
+                  <div
+                    className="mt-1 h-3 w-3 shrink-0 rounded-full"
                     style={{ backgroundColor: FACILITY_TYPE_COLORS[location.type] }}
                   />
                   <div className="flex-1">
-                    <h3 className="font-bold text-neutral-900 mb-1">
+                    <h3 className="mb-1 font-bold text-neutral-900">
                       {translation?.name || location.name}
                     </h3>
                     <div className="flex items-center gap-1 text-sm text-neutral-600">
-                      <MapPin className="w-4 h-4" />
-                      <span>{translation?.city || location.city}, {translation?.country || location.country}</span>
+                      <MapPin className="h-4 w-4" />
+                      <span>
+                        {translation?.city || location.city},{' '}
+                        {translation?.country || location.country}
+                      </span>
                     </div>
                   </div>
                 </div>
-                
-                <p className="text-sm text-neutral-600 mb-3">
+
+                <p className="mb-3 text-sm text-neutral-600">
                   {translation?.description || location.description}
                 </p>
 
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="px-2 py-1 bg-primary-50 text-primary-700 font-medium rounded">
+                  <span className="rounded bg-primary-50 px-2 py-1 font-medium text-primary-700">
                     {translation?.type || FACILITY_TYPE_LABELS[location.type]}
                   </span>
                   {location.status === 'opening-soon' && (
-                    <span className="px-2 py-1 bg-accent-50 text-accent-700 font-medium rounded">
+                    <span className="rounded bg-accent-50 px-2 py-1 font-medium text-accent-700">
                       {translation?.status || 'Opening Soon'}
                     </span>
                   )}
                   {location.established && (
-                    <span className="text-neutral-500 ml-auto">
+                    <span className="ml-auto text-neutral-500">
                       {translation?.established || `Est. ${location.established}`}
                     </span>
                   )}
@@ -254,12 +279,13 @@ export function GlobalPresence({ title, subtitle, locationTranslations }: Global
 
         {/* Call to Action */}
         <div className="mt-12 text-center">
-          <p className="text-neutral-600 mb-4">
-            {locationTranslations?.cta.text || 'Looking for local support or partnership opportunities?'}
+          <p className="mb-4 text-neutral-600">
+            {locationTranslations?.cta.text ||
+              'Looking for local support or partnership opportunities?'}
           </p>
           <Link
             href="/company/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors duration-200"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-primary-700"
           >
             {locationTranslations?.cta.button || 'Contact Us'}
           </Link>

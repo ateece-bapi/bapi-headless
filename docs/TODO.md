@@ -2,6 +2,32 @@
 
 ## 🧹 Code Cleanup Tasks
 
+### ✅ Prettier Formatting Standardization (Feb 12, 2026)
+**Status:** COMPLETE & MERGED (chore/prettier-formatting)
+**Summary:**
+  - Applied Prettier v3 formatting across entire codebase (355 files)
+  - Ensures consistent code style and prevents future formatting-related diffs
+  - No functional changes, formatting only (spacing, line breaks, quotes, trailing commas)
+**Changes:**
+  - 355 files modified: +32,053 insertions, -25,106 deletions
+  - Files affected: src/app, src/components, src/lib, src/store, src/types, __tests__
+**Result:** Codebase now has consistent formatting, passes pnpm run format:check
+
+---
+
+### ✅ GlobalPresence Map Tooltip Localization (Feb 12, 2026)
+**Status:** COMPLETE & MERGED (fix/global-presence-i18n-improvements)
+**Summary:**
+  - Fixed map tooltips showing English text on localized pages
+  - Applied locationTranslations to tooltip rendering (matching location cards pattern)
+  - Fixed GlobalPresence props formatting for Prettier compliance
+**Changes:**
+  - web/src/components/company/GlobalPresence.tsx: Updated tooltip to use translations
+  - web/src/app/[locale]/(public)/page.tsx: Fixed props formatting (each prop on separate line)
+**Result:** Map tooltips now display in user's selected language (facility names, cities, countries, types, status)
+
+---
+
 ### ✅ All Languages Products Translation Completion (Feb 12, 2026)
 **Status:** COMPLETE & MERGED (fix/add-products-translations-all-languages)
 **Summary:**

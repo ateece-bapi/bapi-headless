@@ -138,8 +138,9 @@ ${sourceText}`,
     console.log('✅ Translation complete!\n');
 
     // Remove markdown code blocks if present (Claude sometimes wraps responses)
-    translatedText = translatedText.replace(/^```json\n/g, '').replace(/\n```$/g, '');
-    translatedText = translatedText.replace(/^```\n/g, '').replace(/\n```$/g, '');
+    translatedText = translatedText.replace(/^```json\s*\n?/gm, '').replace(/\n```$/g, '');
+    translatedText = translatedText.replace(/^```\s*\n?/gm, '').replace(/\n```$/g, '');
+    translatedText = translatedText.trim();
 
     console.log(translatedText);
 

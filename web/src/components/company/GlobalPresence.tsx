@@ -17,6 +17,11 @@ type GeoFeature = {
   properties: Record<string, unknown>;
 };
 
+interface GlobalPresenceProps {
+  title?: string;
+  subtitle?: string;
+}
+
 /**
  * GlobalPresence component displays BAPI's worldwide facilities on an interactive map
  * 
@@ -29,7 +34,7 @@ type GeoFeature = {
  * 
  * @returns {JSX.Element} Global presence section with map and location details
  */
-export function GlobalPresence() {
+export function GlobalPresence({ title, subtitle }: GlobalPresenceProps = {}) {
   const [tooltip, setTooltip] = useState<{ location: Location; visible: boolean } | null>(null);
 
   return (
@@ -41,11 +46,10 @@ export function GlobalPresence() {
             <Building2 className="w-8 h-8 text-primary-600" />
           </div>
           <h2 className="text-4xl font-bold text-neutral-900 mb-4">
-            Our Global Presence
+            {title || 'Our Global Presence'}
           </h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-            From our headquarters in Wisconsin to facilities across three continents, 
-            BAPI serves customers worldwide with local expertise and global reach.
+            {subtitle || 'From our headquarters in Wisconsin to facilities across three continents, BAPI serves customers worldwide with local expertise and global reach.'}
           </p>
         </div>
 

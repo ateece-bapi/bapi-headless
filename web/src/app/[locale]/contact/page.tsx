@@ -245,10 +245,18 @@ export default function ContactPage() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
-        'north-america', 'uk', 'europe', 'middle-east', 'india',
-        'south-america', 'africa', 'asia', 'australia', 'technical'
+        'north-america',
+        'uk',
+        'europe',
+        'middle-east',
+        'india',
+        'south-america',
+        'africa',
+        'asia',
+        'australia',
+        'technical',
       ];
-      
+
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -268,29 +276,33 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 text-white py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-3xl lg:text-4xl font-bold mb-3">Contact Us</h1>
-            <p className="text-lg text-primary-50 max-w-2xl mx-auto">
-              Connect with our expert sales team for building automation solutions, technical support, and product information.
+            <h1 className="mb-3 text-3xl font-bold lg:text-4xl">Contact Us</h1>
+            <p className="mx-auto max-w-2xl text-lg text-primary-50">
+              Connect with our expert sales team for building automation solutions, technical
+              support, and product information.
             </p>
           </div>
         </div>
       </section>
 
       {/* Contact Form + Info Section */}
-      <section className="py-12 lg:py-16 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-8">
+      <section className="bg-neutral-50 py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-3">
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 lg:p-8">
-                <h2 className="text-2xl font-bold text-neutral-900 mb-6">Send Us a Message</h2>
+              <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm lg:p-8">
+                <h2 className="mb-6 text-2xl font-bold text-neutral-900">Send Us a Message</h2>
                 <form className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="grid gap-5 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-1.5">
+                      <label
+                        htmlFor="name"
+                        className="mb-1.5 block text-sm font-medium text-neutral-700"
+                      >
                         Name *
                       </label>
                       <input
@@ -298,27 +310,33 @@ export default function ContactPage() {
                         id="name"
                         name="name"
                         required
-                        className="w-full px-3.5 py-2.5 border border-neutral-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                        className="w-full rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-neutral-700 mb-1.5">
+                      <label
+                        htmlFor="company"
+                        className="mb-1.5 block text-sm font-medium text-neutral-700"
+                      >
                         Company
                       </label>
                       <input
                         type="text"
                         id="company"
                         name="company"
-                        className="w-full px-3.5 py-2.5 border border-neutral-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                        className="w-full rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                         placeholder="Company name"
                       />
                     </div>
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="grid gap-5 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1.5">
+                      <label
+                        htmlFor="email"
+                        className="mb-1.5 block text-sm font-medium text-neutral-700"
+                      >
                         Email *
                       </label>
                       <input
@@ -326,26 +344,32 @@ export default function ContactPage() {
                         id="email"
                         name="email"
                         required
-                        className="w-full px-3.5 py-2.5 border border-neutral-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                        className="w-full rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                         placeholder="your@email.com"
                       />
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-1.5">
+                      <label
+                        htmlFor="phone"
+                        className="mb-1.5 block text-sm font-medium text-neutral-700"
+                      >
                         Phone
                       </label>
                       <input
                         type="tel"
                         id="phone"
                         name="phone"
-                        className="w-full px-3.5 py-2.5 border border-neutral-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                        className="w-full rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                         placeholder="(555) 123-4567"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-1.5">
+                    <label
+                      htmlFor="subject"
+                      className="mb-1.5 block text-sm font-medium text-neutral-700"
+                    >
                       Subject *
                     </label>
                     <input
@@ -353,13 +377,16 @@ export default function ContactPage() {
                       id="subject"
                       name="subject"
                       required
-                      className="w-full px-3.5 py-2.5 border border-neutral-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                      className="w-full rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                       placeholder="How can we help?"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-1.5">
+                    <label
+                      htmlFor="message"
+                      className="mb-1.5 block text-sm font-medium text-neutral-700"
+                    >
                       Message *
                     </label>
                     <textarea
@@ -367,7 +394,7 @@ export default function ContactPage() {
                       name="message"
                       rows={5}
                       required
-                      className="w-full px-3.5 py-2.5 border border-neutral-300 rounded-lg text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
+                      className="w-full resize-none rounded-lg border border-neutral-300 px-3.5 py-2.5 text-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                       placeholder="Tell us about your project or question..."
                     />
                   </div>
@@ -375,14 +402,12 @@ export default function ContactPage() {
                   <div className="flex items-center justify-between pt-2">
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-200 hover:shadow-md"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-2.5 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:bg-accent-600 hover:shadow-md"
                     >
-                      <Send className="w-4 h-4" />
+                      <Send className="h-4 w-4" />
                       Send Message
                     </button>
-                    <p className="text-xs text-neutral-500">
-                      * Required fields
-                    </p>
+                    <p className="text-xs text-neutral-500">* Required fields</p>
                   </div>
                 </form>
               </div>
@@ -391,36 +416,36 @@ export default function ContactPage() {
             {/* Contact Information Sidebar */}
             <div className="space-y-4">
               {/* Phone */}
-              <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-5">
+              <div className="rounded-lg border border-neutral-200 bg-white p-5 shadow-sm">
                 <div className="flex items-start gap-3">
-                  <div className="bg-primary-50 p-2.5 rounded-lg">
-                    <Phone className="w-5 h-5 text-primary-600" />
+                  <div className="rounded-lg bg-primary-50 p-2.5">
+                    <Phone className="h-5 w-5 text-primary-600" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-neutral-900 text-sm mb-1">Phone</h3>
-                    <p className="text-neutral-500 text-xs mb-1">Toll Free</p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="mb-1 text-sm font-semibold text-neutral-900">Phone</h3>
+                    <p className="mb-1 text-xs text-neutral-500">Toll Free</p>
                     <a
                       href="tel:+18005533027"
-                      className="text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors"
+                      className="text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
                     >
                       (800) 553-3027
                     </a>
-                    <p className="text-neutral-500 text-xs mt-2">Fax: (715) 254-0720</p>
+                    <p className="mt-2 text-xs text-neutral-500">Fax: (715) 254-0720</p>
                   </div>
                 </div>
               </div>
 
               {/* Email */}
-              <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-5">
+              <div className="rounded-lg border border-neutral-200 bg-white p-5 shadow-sm">
                 <div className="flex items-start gap-3">
-                  <div className="bg-primary-50 p-2.5 rounded-lg">
-                    <Mail className="w-5 h-5 text-primary-600" />
+                  <div className="rounded-lg bg-primary-50 p-2.5">
+                    <Mail className="h-5 w-5 text-primary-600" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-neutral-900 text-sm mb-1">Email</h3>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="mb-1 text-sm font-semibold text-neutral-900">Email</h3>
                     <a
                       href="mailto:info@bapihvac.com"
-                      className="text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors break-all"
+                      className="break-all text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
                     >
                       info@bapihvac.com
                     </a>
@@ -429,28 +454,28 @@ export default function ContactPage() {
               </div>
 
               {/* Hours */}
-              <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-5">
+              <div className="rounded-lg border border-neutral-200 bg-white p-5 shadow-sm">
                 <div className="flex items-start gap-3">
-                  <div className="bg-primary-50 p-2.5 rounded-lg">
-                    <Clock className="w-5 h-5 text-primary-600" />
+                  <div className="rounded-lg bg-primary-50 p-2.5">
+                    <Clock className="h-5 w-5 text-primary-600" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-neutral-900 text-sm mb-1">Business Hours</h3>
-                    <p className="text-neutral-600 text-xs">Monday - Friday</p>
-                    <p className="text-neutral-900 font-medium text-sm">8:00 AM - 5:00 PM CST</p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="mb-1 text-sm font-semibold text-neutral-900">Business Hours</h3>
+                    <p className="text-xs text-neutral-600">Monday - Friday</p>
+                    <p className="text-sm font-medium text-neutral-900">8:00 AM - 5:00 PM CST</p>
                   </div>
                 </div>
               </div>
 
               {/* Address */}
-              <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-5">
+              <div className="rounded-lg border border-neutral-200 bg-white p-5 shadow-sm">
                 <div className="flex items-start gap-3">
-                  <div className="bg-primary-50 p-2.5 rounded-lg">
-                    <MapPin className="w-5 h-5 text-primary-600" />
+                  <div className="rounded-lg bg-primary-50 p-2.5">
+                    <MapPin className="h-5 w-5 text-primary-600" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-neutral-900 text-sm mb-1">Address</h3>
-                    <p className="text-neutral-600 text-xs leading-relaxed">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="mb-1 text-sm font-semibold text-neutral-900">Address</h3>
+                    <p className="text-xs leading-relaxed text-neutral-600">
                       750 North Royal Avenue
                       <br />
                       Gays Mills, WI 54631
@@ -466,29 +491,30 @@ export default function ContactPage() {
       </section>
 
       {/* Sales Team Section */}
-      <section className="py-12 lg:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl lg:text-3xl font-bold text-neutral-900 mb-2">
+      <section className="bg-white py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <h2 className="mb-2 text-2xl font-bold text-neutral-900 lg:text-3xl">
               Meet Our Global Sales Team
             </h2>
-            <p className="text-base text-neutral-600 max-w-2xl mx-auto">
-              Our experienced team is ready to help you find the right building automation solutions for your project worldwide.
+            <p className="mx-auto max-w-2xl text-base text-neutral-600">
+              Our experienced team is ready to help you find the right building automation solutions
+              for your project worldwide.
             </p>
           </div>
 
           {/* Statistics Bar */}
-          <div className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-600 rounded-2xl p-8 mb-10 shadow-2xl overflow-hidden">
+          <div className="relative mb-10 overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 via-primary-500 to-primary-600 p-8 shadow-2xl">
             {/* Decorative background elements */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20"></div>
-            
-            <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+            <div className="relative grid grid-cols-2 gap-6 lg:grid-cols-4 lg:gap-8">
               {/* Team Members */}
               <div className="group text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                  <Users className="w-7 h-7 text-white" strokeWidth={2.5} />
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <Users className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   20
                 </div>
                 <div className="text-sm font-medium text-white/90">Team Members</div>
@@ -496,10 +522,10 @@ export default function ContactPage() {
 
               {/* Global Regions */}
               <div className="group text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                  <Globe className="w-7 h-7 text-white" strokeWidth={2.5} />
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <Globe className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   10
                 </div>
                 <div className="text-sm font-medium text-white/90">Global Regions</div>
@@ -507,10 +533,10 @@ export default function ContactPage() {
 
               {/* Countries Served */}
               <div className="group text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                  <Award className="w-7 h-7 text-white" strokeWidth={2.5} />
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <Award className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   50+
                 </div>
                 <div className="text-sm font-medium text-white/90">Countries Served</div>
@@ -518,10 +544,10 @@ export default function ContactPage() {
 
               {/* Support Available */}
               <div className="group text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                  <HeadphonesIcon className="w-7 h-7 text-white" strokeWidth={2.5} />
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <HeadphonesIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   24/7
                 </div>
                 <div className="text-sm font-medium text-white/90">Support Available</div>
@@ -530,142 +556,148 @@ export default function ContactPage() {
           </div>
 
           {/* Quick Jump Navigation */}
-          <div className="sticky top-20 z-40 bg-gradient-to-r from-white via-neutral-50 to-white backdrop-blur-sm border border-neutral-200/60 rounded-2xl shadow-lg mb-8 p-5">
-            <div className="flex flex-wrap gap-2 justify-center">
-              <a 
-                href="#north-america" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'north-america' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+          <div className="sticky top-20 z-40 mb-8 rounded-2xl border border-neutral-200/60 bg-gradient-to-r from-white via-neutral-50 to-white p-5 shadow-lg backdrop-blur-sm">
+            <div className="flex flex-wrap justify-center gap-2">
+              <a
+                href="#north-america"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'north-america'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="h-4 w-4" />
                 <span className="hidden sm:inline">North America</span>
                 <span className="sm:hidden">N. America</span>
               </a>
-              <a 
-                href="#uk" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'uk' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+              <a
+                href="#uk"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'uk'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Building2 className="w-4 h-4" />
+                <Building2 className="h-4 w-4" />
                 UK
               </a>
-              <a 
-                href="#europe" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'europe' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+              <a
+                href="#europe"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'europe'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Building2 className="w-4 h-4" />
+                <Building2 className="h-4 w-4" />
                 Europe
               </a>
-              <a 
-                href="#middle-east" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'middle-east' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+              <a
+                href="#middle-east"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'middle-east'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="h-4 w-4" />
                 <span className="hidden sm:inline">Middle East</span>
                 <span className="sm:hidden">M. East</span>
               </a>
-              <a 
-                href="#india" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'india' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+              <a
+                href="#india"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'india'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Building2 className="w-4 h-4" />
+                <Building2 className="h-4 w-4" />
                 India
               </a>
-              <a 
-                href="#south-america" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'south-america' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+              <a
+                href="#south-america"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'south-america'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="h-4 w-4" />
                 <span className="hidden sm:inline">S. America</span>
                 <span className="sm:hidden">S. Amer</span>
               </a>
-              <a 
-                href="#africa" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'africa' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+              <a
+                href="#africa"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'africa'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="h-4 w-4" />
                 Africa
               </a>
-              <a 
-                href="#asia" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'asia' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+              <a
+                href="#asia"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'asia'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="h-4 w-4" />
                 Asia
               </a>
-              <a 
-                href="#australia" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'australia' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+              <a
+                href="#australia"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'australia'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Building2 className="w-4 h-4" />
+                <Building2 className="h-4 w-4" />
                 <span className="hidden sm:inline">Australia & NZ</span>
                 <span className="sm:hidden">AU/NZ</span>
               </a>
-              <a 
-                href="#technical" 
-                className={`group flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
-                  activeSection === 'technical' 
-                    ? 'bg-primary-500 text-white shadow-md' 
-                    : 'bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600 border border-neutral-200'
+              <a
+                href="#technical"
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95 ${
+                  activeSection === 'technical'
+                    ? 'bg-primary-500 text-white shadow-md'
+                    : 'border border-neutral-200 bg-white text-neutral-700 hover:bg-primary-50 hover:text-primary-600'
                 }`}
               >
-                <Wrench className="w-4 h-4" />
+                <Wrench className="h-4 w-4" />
                 Technical
               </a>
             </div>
           </div>
 
           {/* North American Sales */}
-          <div id="north-america" className="bg-white py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-8 scroll-mt-32">
+          <div
+            id="north-america"
+            className="-mx-4 mb-8 scroll-mt-32 bg-white px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('north-america')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('north-america')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🌎</span>North America <span className="text-neutral-500 font-normal text-lg">(10)</span>
+                  <span className="mr-2">🌎</span>North America{' '}
+                  <span className="text-lg font-normal text-neutral-500">(10)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('north-america') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('north-america') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('north-america') ? '' : 'hidden lg:grid'}`}
+            >
               {northAmericaTeam.map((member) => (
                 <SalesTeamCard
                   key={member.email}
@@ -682,22 +714,28 @@ export default function ContactPage() {
           </div>
 
           {/* UK Sales */}
-          <div id="uk" className="bg-neutral-50 py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-8 scroll-mt-32">
+          <div
+            id="uk"
+            className="-mx-4 mb-8 scroll-mt-32 bg-neutral-50 px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('uk')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('uk')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🇬🇧</span>United Kingdom <span className="text-neutral-500 font-normal text-lg">(1)</span>
+                  <span className="mr-2">🇬🇧</span>United Kingdom{' '}
+                  <span className="text-lg font-normal text-neutral-500">(1)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('uk') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('uk') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('uk') ? '' : 'hidden lg:grid'}`}
+            >
               {ukTeam.map((member) => (
                 <SalesTeamCard
                   key={member.email}
@@ -714,22 +752,28 @@ export default function ContactPage() {
           </div>
 
           {/* Europe Sales */}
-          <div id="europe" className="bg-white py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-8 scroll-mt-32">
+          <div
+            id="europe"
+            className="-mx-4 mb-8 scroll-mt-32 bg-white px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('europe')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('europe')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🇪🇺</span>Europe <span className="text-neutral-500 font-normal text-lg">(1)</span>
+                  <span className="mr-2">🇪🇺</span>Europe{' '}
+                  <span className="text-lg font-normal text-neutral-500">(1)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('europe') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('europe') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('europe') ? '' : 'hidden lg:grid'}`}
+            >
               {europeTeam.map((member) => (
                 <SalesTeamCard
                   key={member.email}
@@ -746,22 +790,28 @@ export default function ContactPage() {
           </div>
 
           {/* Middle East Sales */}
-          <div id="middle-east" className="bg-neutral-50 py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-8 scroll-mt-32">
+          <div
+            id="middle-east"
+            className="-mx-4 mb-8 scroll-mt-32 bg-neutral-50 px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('middle-east')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('middle-east')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🌍</span>Middle East <span className="text-neutral-500 font-normal text-lg">(1)</span>
+                  <span className="mr-2">🌍</span>Middle East{' '}
+                  <span className="text-lg font-normal text-neutral-500">(1)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('middle-east') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('middle-east') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('middle-east') ? '' : 'hidden lg:grid'}`}
+            >
               {middleEastTeam.map((member) => (
                 <SalesTeamCard
                   key={member.email}
@@ -778,22 +828,28 @@ export default function ContactPage() {
           </div>
 
           {/* India Sales */}
-          <div id="india" className="bg-white py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-8 scroll-mt-32">
+          <div
+            id="india"
+            className="-mx-4 mb-8 scroll-mt-32 bg-white px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('india')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('india')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🇮🇳</span>India <span className="text-neutral-500 font-normal text-lg">(2)</span>
+                  <span className="mr-2">🇮🇳</span>India{' '}
+                  <span className="text-lg font-normal text-neutral-500">(2)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('india') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('india') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('india') ? '' : 'hidden lg:grid'}`}
+            >
               {indiaTeam.map((member) => (
                 <SalesTeamCard
                   key={member.email}
@@ -810,22 +866,28 @@ export default function ContactPage() {
           </div>
 
           {/* South America Sales */}
-          <div id="south-america" className="bg-neutral-50 py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-8 scroll-mt-32">
+          <div
+            id="south-america"
+            className="-mx-4 mb-8 scroll-mt-32 bg-neutral-50 px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('south-america')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('south-america')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🌎</span>South America <span className="text-neutral-500 font-normal text-lg">(1)</span>
+                  <span className="mr-2">🌎</span>South America{' '}
+                  <span className="text-lg font-normal text-neutral-500">(1)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('south-america') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('south-america') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('south-america') ? '' : 'hidden lg:grid'}`}
+            >
               {southAmericaTeam.map((member) => (
                 <SalesTeamCard
                   key={`${member.email}-sa`}
@@ -842,22 +904,28 @@ export default function ContactPage() {
           </div>
 
           {/* Africa Sales */}
-          <div id="africa" className="bg-white py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-8 scroll-mt-32">
+          <div
+            id="africa"
+            className="-mx-4 mb-8 scroll-mt-32 bg-white px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('africa')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('africa')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🌍</span>Africa <span className="text-neutral-500 font-normal text-lg">(1)</span>
+                  <span className="mr-2">🌍</span>Africa{' '}
+                  <span className="text-lg font-normal text-neutral-500">(1)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('africa') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('africa') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('africa') ? '' : 'hidden lg:grid'}`}
+            >
               {africaTeam.map((member) => (
                 <SalesTeamCard
                   key={`${member.email}-africa`}
@@ -874,22 +942,28 @@ export default function ContactPage() {
           </div>
 
           {/* Asia Sales */}
-          <div id="asia" className="bg-neutral-50 py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-8 scroll-mt-32">
+          <div
+            id="asia"
+            className="-mx-4 mb-8 scroll-mt-32 bg-neutral-50 px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('asia')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('asia')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🌏</span>Asia <span className="text-neutral-500 font-normal text-lg">(1)</span>
+                  <span className="mr-2">🌏</span>Asia{' '}
+                  <span className="text-lg font-normal text-neutral-500">(1)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('asia') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('asia') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('asia') ? '' : 'hidden lg:grid'}`}
+            >
               {asiaTeam.map((member) => (
                 <SalesTeamCard
                   key={member.email}
@@ -906,22 +980,28 @@ export default function ContactPage() {
           </div>
 
           {/* Australia & New Zealand Sales */}
-          <div id="australia" className="bg-white py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 mb-8 scroll-mt-32">
+          <div
+            id="australia"
+            className="-mx-4 mb-8 scroll-mt-32 bg-white px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('australia')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('australia')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🇦🇺</span>Australia & New Zealand <span className="text-neutral-500 font-normal text-lg">(1)</span>
+                  <span className="mr-2">🇦🇺</span>Australia & New Zealand{' '}
+                  <span className="text-lg font-normal text-neutral-500">(1)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('australia') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('australia') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('australia') ? '' : 'hidden lg:grid'}`}
+            >
               {australiaTeam.map((member) => (
                 <SalesTeamCard
                   key={member.email}
@@ -938,22 +1018,28 @@ export default function ContactPage() {
           </div>
 
           {/* Technical Support */}
-          <div id="technical" className="bg-neutral-50 py-8 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 scroll-mt-32">
+          <div
+            id="technical"
+            className="-mx-4 scroll-mt-32 bg-neutral-50 px-4 py-8 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+          >
             <button
               onClick={() => toggleSection('technical')}
               className="w-full text-left lg:cursor-default"
               aria-expanded={expandedSections.has('technical')}
             >
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6 pb-3 border-b-2 border-primary-500 flex items-center justify-between">
+              <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
-                  <span className="mr-2">🛠️</span>Technical Support <span className="text-neutral-500 font-normal text-lg">(2)</span>
+                  <span className="mr-2">🛠️</span>Technical Support{' '}
+                  <span className="text-lg font-normal text-neutral-500">(2)</span>
                 </span>
-                <span className="lg:hidden text-primary-500">
+                <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('technical') ? '▼' : '▶'}
                 </span>
               </h3>
             </button>
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto ${expandedSections.has('technical') ? '' : 'hidden lg:grid'}`}>
+            <div
+              className={`mx-auto grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 ${expandedSections.has('technical') ? '' : 'hidden lg:grid'}`}
+            >
               {technicalTeam.map((member) => (
                 <SalesTeamCard
                   key={member.email}
@@ -972,37 +1058,43 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-12 lg:py-16 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-neutral-900 mb-2">Visit Our Facility</h2>
+      <section className="bg-neutral-50 py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <h2 className="mb-2 text-2xl font-bold text-neutral-900">Visit Our Facility</h2>
             <p className="text-base text-neutral-600">
               Located in Gays Mills, Wisconsin - Made in USA since 1993
             </p>
           </div>
 
           {/* Google Maps Embed */}
-          <div className="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden">
-            <div className="aspect-video bg-neutral-100 flex items-center justify-center">
-              <div className="text-center p-8">
-                <div className="bg-neutral-200 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <MapPin className="w-7 h-7 text-neutral-500" />
+          <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
+            <div className="flex aspect-video items-center justify-center bg-neutral-100">
+              <div className="p-8 text-center">
+                <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-neutral-200">
+                  <MapPin className="h-7 w-7 text-neutral-500" />
                 </div>
-                <p className="text-neutral-700 font-medium text-sm mb-1">
-                  750 North Royal Avenue
-                </p>
-                <p className="text-neutral-600 text-sm mb-4">
-                  Gays Mills, WI 54631
-                </p>
+                <p className="mb-1 text-sm font-medium text-neutral-700">750 North Royal Avenue</p>
+                <p className="mb-4 text-sm text-neutral-600">Gays Mills, WI 54631</p>
                 <a
                   href="https://maps.google.com/?q=750+North+Royal+Avenue+Gays+Mills+WI+54631"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
                 >
                   Open in Google Maps
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <svg
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
                   </svg>
                 </a>
               </div>

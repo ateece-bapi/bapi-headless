@@ -24,18 +24,18 @@ export const graphqlClient = new GraphQLClient(endpoint || 'https://placeholder.
 
 /**
  * GraphQL client for server-side requests with caching and GET method support
- * 
+ *
  * Performance optimizations:
  * - Uses GET requests for read queries (CDN cacheable)
  * - Adds cache-control headers for WordPress Smart Cache
  * - Next.js 15+ caching with ISR
- * 
+ *
  * @param tags - Cache tags for on-demand revalidation
  * @param useGetMethod - Use GET instead of POST for CDN caching (default: true for read queries)
  * @param customHeaders - Additional headers (e.g., WooCommerce session token)
  */
 export const getGraphQLClient = (
-  tags?: string[], 
+  tags?: string[],
   useGetMethod: boolean = true,
   customHeaders?: Record<string, string>
 ) => {
@@ -61,8 +61,11 @@ export const getGraphQLClient = (
 /**
  * GraphQL client for client-side requests
  */
-export const clientGraphQLClient = new GraphQLClient(endpoint || 'https://placeholder.local/graphql', {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+export const clientGraphQLClient = new GraphQLClient(
+  endpoint || 'https://placeholder.local/graphql',
+  {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+);

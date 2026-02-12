@@ -9,10 +9,10 @@ interface VariationsAsyncProps {
 
 /**
  * Server component that fetches product variations asynchronously
- * 
+ *
  * Only loads variation data when needed for VariableProduct types.
  * Uses separate Suspense boundary to avoid blocking initial page render.
- * 
+ *
  * @param productId - Database ID of the product
  * @returns Variation data or null if not a variable product
  */
@@ -24,10 +24,9 @@ export async function VariationsAsync({ productId }: VariationsAsyncProps) {
   const client = getGraphQLClient(['product-variations', `product-${productId}`], true);
 
   try {
-    const data = await client.request<GetProductVariationsQuery>(
-      GetProductVariationsDocument,
-      { id: productId }
-    );
+    const data = await client.request<GetProductVariationsQuery>(GetProductVariationsDocument, {
+      id: productId,
+    });
 
     // Return the variation data - will be null if not a VariableProduct
     return data.product || null;

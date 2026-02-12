@@ -17,9 +17,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (result.success) {
     return res.status(200).json({ success: true, messageId: result.messageId });
   } else {
-    return res.status(500).json({ 
-      error: 'Email delivery failed', 
-      details: result.error 
+    return res.status(500).json({
+      error: 'Email delivery failed',
+      details: result.error,
     });
   }
 }

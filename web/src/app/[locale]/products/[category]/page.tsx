@@ -31,9 +31,7 @@ interface CategoryPageProps {
   }>;
 }
 
-export async function generateMetadata({
-  params,
-}: CategoryPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { category } = await params;
   const fullSlug = CATEGORY_SLUG_MAP[category] || category;
   const client = getGraphQLClient(['product-categories'], true);
@@ -101,46 +99,32 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   return (
     <main className="min-h-screen bg-neutral-50">
       {/* Breadcrumbs */}
-      <div className="bg-white border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="border-b border-neutral-200 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <nav className="flex items-center space-x-2 text-sm">
-            <Link
-              href={`/${locale}`}
-              className="text-neutral-600 hover:text-primary-500"
-            >
+            <Link href={`/${locale}`} className="text-neutral-600 hover:text-primary-500">
               Home
             </Link>
-            <ChevronRight className="w-4 h-4 text-neutral-400" />
-            <Link
-              href={`/${locale}/products`}
-              className="text-neutral-600 hover:text-primary-500"
-            >
+            <ChevronRight className="h-4 w-4 text-neutral-400" />
+            <Link href={`/${locale}/products`} className="text-neutral-600 hover:text-primary-500">
               Products
             </Link>
-            <ChevronRight className="w-4 h-4 text-neutral-400" />
-            <span className="text-neutral-900 font-medium">
-              {categoryInfo.name}
-            </span>
+            <ChevronRight className="h-4 w-4 text-neutral-400" />
+            <span className="font-medium text-neutral-900">{categoryInfo.name}</span>
           </nav>
         </div>
       </div>
 
       {/* Category Hero */}
-      <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 py-12 text-white lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-              {categoryInfo.name}
-            </h1>
+            <h1 className="mb-4 text-4xl font-bold lg:text-5xl">{categoryInfo.name}</h1>
             {categoryInfo.description && (
-              <p className="text-xl text-primary-100">
-                {categoryInfo.description}
-              </p>
+              <p className="text-xl text-primary-100">{categoryInfo.description}</p>
             )}
             {productCount > 0 && (
-              <p className="mt-4 text-lg text-primary-200">
-                {productCount} products available
-              </p>
+              <p className="mt-4 text-lg text-primary-200">{productCount} products available</p>
             )}
           </div>
         </div>
@@ -149,43 +133,39 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       {/* Subcategories Grid */}
       {subcategories.length > 0 && (
         <section className="py-12 lg:py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl lg:text-3xl font-bold text-neutral-900 mb-8">
-              Browse by Type
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-8 text-2xl font-bold text-neutral-900 lg:text-3xl">Browse by Type</h2>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {subcategories.map((subcat) => (
                 <Link
                   key={subcat.id}
                   href={`/${locale}/products/${category}/${subcat.slug}`}
-                  className="group bg-white rounded-xl p-6 border-2 border-neutral-200 hover:border-primary-500 hover:shadow-xl transition-all duration-300"
+                  className="group rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-xl"
                 >
                   {subcat.image?.sourceUrl && (
-                    <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden bg-neutral-100">
+                    <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg bg-neutral-100">
                       <Image
                         src={subcat.image.sourceUrl}
                         alt={subcat.name || 'Category image'}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                   )}
-                  <h3 className="text-xl font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
+                  <h3 className="mb-2 text-xl font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                     {subcat.name}
                   </h3>
                   {subcat.description && (
-                    <p className="text-neutral-600 text-sm mb-4 line-clamp-2">
+                    <p className="mb-4 line-clamp-2 text-sm text-neutral-600">
                       {subcat.description}
                     </p>
                   )}
                   {subcat.count !== null && (
-                    <p className="text-sm text-neutral-500 mb-4">
-                      {subcat.count} products
-                    </p>
+                    <p className="mb-4 text-sm text-neutral-500">{subcat.count} products</p>
                   )}
-                  <span className="inline-flex items-center text-primary-500 font-semibold group-hover:gap-2 transition-all">
+                  <span className="inline-flex items-center font-semibold text-primary-500 transition-all group-hover:gap-2">
                     View Products
-                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
               ))}
@@ -196,84 +176,84 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
       {/* Featured Products */}
       {products.length > 0 && (
-        <section className="py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl lg:text-3xl font-bold text-neutral-900">
+        <section className="bg-white py-12 lg:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-neutral-900 lg:text-3xl">
                 {subcategories.length > 0 ? 'Featured Products' : 'All Products'}
               </h2>
               {productCount > products.length && subcategories.length === 0 && (
                 <Link
                   href={`/${locale}/products/${category}/all`}
-                  className="text-primary-500 hover:text-primary-600 font-semibold inline-flex items-center gap-2"
+                  className="inline-flex items-center gap-2 font-semibold text-primary-500 hover:text-primary-600"
                 >
                   View All
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               )}
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {products.map((product) => {
                 // Type guard for products with image property
                 const hasImage = 'image' in product && product.image?.sourceUrl;
-                
+
                 return (
-                <Link
-                  key={product.id}
-                  href={`/${locale}/products/${product.slug}`}
-                  className="group bg-neutral-50 rounded-xl overflow-hidden border border-neutral-200 hover:border-primary-500 hover:shadow-lg transition-all duration-300"
-                >
-                  {hasImage && (
-                    <div className="relative w-full h-48 bg-white">
-                      <Image
-                        src={product.image!.sourceUrl!}
-                        alt={product.name || 'Product image'}
-                        fill
-                        className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  )}
-                  <div className="p-4">
-                    <h3 className="font-bold text-neutral-900 mb-1 group-hover:text-primary-600 transition-colors line-clamp-2">
-                      {product.name}
-                    </h3>
-                    {'shortDescription' in product && product.shortDescription && (
-                      <p
-                        className="text-sm text-neutral-600 line-clamp-2"
-                        dangerouslySetInnerHTML={{
-                          __html: product.shortDescription,
-                        }}
-                      />
+                  <Link
+                    key={product.id}
+                    href={`/${locale}/products/${product.slug}`}
+                    className="group overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
+                  >
+                    {hasImage && (
+                      <div className="relative h-48 w-full bg-white">
+                        <Image
+                          src={product.image!.sourceUrl!}
+                          alt={product.name || 'Product image'}
+                          fill
+                          className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
                     )}
-                  </div>
-                </Link>
-              )})}
+                    <div className="p-4">
+                      <h3 className="mb-1 line-clamp-2 font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
+                        {product.name}
+                      </h3>
+                      {'shortDescription' in product && product.shortDescription && (
+                        <p
+                          className="line-clamp-2 text-sm text-neutral-600"
+                          dangerouslySetInnerHTML={{
+                            __html: product.shortDescription,
+                          }}
+                        />
+                      )}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
       )}
 
       {/* CTA Section */}
-      <section className="py-12 lg:py-16 bg-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold text-neutral-900 mb-4">
+      <section className="bg-neutral-100 py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-4 text-2xl font-bold text-neutral-900 lg:text-3xl">
             Need Help Finding the Right Product?
           </h2>
-          <p className="text-lg text-neutral-600 mb-8 max-w-2xl mx-auto">
-            Our technical team can help you select the perfect sensor for your
-            application.
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-neutral-600">
+            Our technical team can help you select the perfect sensor for your application.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-xl"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               Contact Sales
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
               href={`/${locale}/request-quote`}
-              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-neutral-50 text-neutral-900 border-2 border-neutral-300 hover:border-primary-500 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-neutral-300 bg-white px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:border-primary-500 hover:bg-neutral-50"
             >
               Request Quote
             </Link>

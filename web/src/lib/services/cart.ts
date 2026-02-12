@@ -1,9 +1,9 @@
 /**
  * WooCommerce Cart Service
- * 
+ *
  * Handles all cart operations with WooCommerce GraphQL backend.
  * Manages session persistence, stock validation, and cart synchronization.
- * 
+ *
  * Features:
  * - Server-side cart persistence with WooCommerce sessions
  * - Real-time stock validation
@@ -32,13 +32,7 @@ import { gql } from 'graphql-request';
 // Re-export cart queries for use in API routes
 export const ADD_TO_CART_MUTATION = gql`
   mutation AddToCart($productId: Int!, $quantity: Int = 1, $variationId: Int) {
-    addToCart(
-      input: {
-        productId: $productId
-        quantity: $quantity
-        variationId: $variationId
-      }
-    ) {
+    addToCart(input: { productId: $productId, quantity: $quantity, variationId: $variationId }) {
       cart {
         isEmpty
         total
@@ -172,11 +166,7 @@ export const GET_CART_QUERY = gql`
 
 export const UPDATE_CART_ITEM_MUTATION = gql`
   mutation UpdateCartItemQuantity($key: ID!, $quantity: Int!) {
-    updateItemQuantities(
-      input: {
-        items: [{ key: $key, quantity: $quantity }]
-      }
-    ) {
+    updateItemQuantities(input: { items: [{ key: $key, quantity: $quantity }] }) {
       cart {
         isEmpty
         total
@@ -228,11 +218,7 @@ export const UPDATE_CART_ITEM_MUTATION = gql`
 
 export const REMOVE_FROM_CART_MUTATION = gql`
   mutation RemoveItemsFromCart($key: ID!) {
-    removeItemsFromCart(
-      input: {
-        keys: [$key]
-      }
-    ) {
+    removeItemsFromCart(input: { keys: [$key] }) {
       cart {
         isEmpty
         total
@@ -275,11 +261,7 @@ export const REMOVE_FROM_CART_MUTATION = gql`
 
 export const EMPTY_CART_MUTATION = gql`
   mutation EmptyCart {
-    emptyCart(
-      input: {
-        clearPersistentCart: true
-      }
-    ) {
+    emptyCart(input: { clearPersistentCart: true }) {
       cart {
         isEmpty
         total
@@ -290,11 +272,7 @@ export const EMPTY_CART_MUTATION = gql`
 
 export const APPLY_COUPON_MUTATION = gql`
   mutation ApplyCoupon($code: String!) {
-    applyCoupon(
-      input: {
-        code: $code
-      }
-    ) {
+    applyCoupon(input: { code: $code }) {
       cart {
         total
         subtotal
@@ -311,11 +289,7 @@ export const APPLY_COUPON_MUTATION = gql`
 
 export const REMOVE_COUPON_MUTATION = gql`
   mutation RemoveCoupon($codes: [String!]!) {
-    removeCoupons(
-      input: {
-        codes: $codes
-      }
-    ) {
+    removeCoupons(input: { codes: $codes }) {
       cart {
         total
         subtotal
@@ -335,7 +309,7 @@ export const REMOVE_COUPON_MUTATION = gql`
 export class CartService {
   /**
    * Get current cart from WooCommerce
-   * 
+   *
    * @param sessionToken - WooCommerce session token (from cookies)
    * @returns Cart data with items, totals, shipping, and tax
    */
@@ -351,7 +325,7 @@ export class CartService {
 
   /**
    * Add item to cart
-   * 
+   *
    * @param productId - WooCommerce product database ID
    * @param quantity - Quantity to add
    * @param variationId - Optional variation ID for variable products
@@ -370,15 +344,16 @@ export class CartService {
       sessionToken ? { 'woocommerce-session': `Session ${sessionToken}` } : undefined
     );
 
-    return client.request<AddToCartMutation, AddToCartMutationVariables>(
-      ADD_TO_CART_MUTATION,
-      { productId, quantity, variationId }
-    );
+    return client.request<AddToCartMutation, AddToCartMutationVariables>(ADD_TO_CART_MUTATION, {
+      productId,
+      quantity,
+      variationId,
+    });
   }
 
   /**
    * Update cart item quantity
-   * 
+   *
    * @param key - Cart item key from WooCommerce
    * @param quantity - New quantity (0 to remove)
    * @param sessionToken - WooCommerce session token
@@ -403,7 +378,7 @@ export class CartService {
 
   /**
    * Remove item from cart
-   * 
+   *
    * @param key - Cart item key from WooCommerce
    * @param sessionToken - WooCommerce session token
    * @returns Updated cart data
@@ -426,7 +401,7 @@ export class CartService {
 
   /**
    * Clear all items from cart
-   * 
+   *
    * @param sessionToken - WooCommerce session token
    * @returns Empty cart data
    */
@@ -442,15 +417,12 @@ export class CartService {
 
   /**
    * Apply coupon code to cart
-   * 
+   *
    * @param code - Coupon code
    * @param sessionToken - WooCommerce session token
    * @returns Updated cart with discount applied
    */
-  static async applyCoupon(
-    code: string,
-    sessionToken?: string
-  ): Promise<ApplyCouponMutation> {
+  static async applyCoupon(code: string, sessionToken?: string): Promise<ApplyCouponMutation> {
     const client = getGraphQLClient(
       ['cart'],
       false,
@@ -465,15 +437,12 @@ export class CartService {
 
   /**
    * Remove coupon from cart
-   * 
+   *
    * @param codes - Array of coupon codes to remove
    * @param sessionToken - WooCommerce session token
    * @returns Updated cart without coupons
    */
-  static async removeCoupon(
-    codes: string[],
-    sessionToken?: string
-  ): Promise<RemoveCouponMutation> {
+  static async removeCoupon(codes: string[], sessionToken?: string): Promise<RemoveCouponMutation> {
     const client = getGraphQLClient(
       ['cart'],
       false,

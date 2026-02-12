@@ -1,9 +1,9 @@
 /**
  * Metadata Generators for Enterprise SEO
- * 
+ *
  * Generates comprehensive, AI-friendly metadata for search engines,
  * social platforms, and LLMs (ChatGPT, Gemini, Perplexity).
- * 
+ *
  * Features:
  * - Dynamic title/description optimization
  * - Open Graph and Twitter Card support
@@ -60,7 +60,10 @@ export const SITE_CONFIG: SiteMetadataConfig = {
  */
 function stripHtml(html?: string | null, maxLength = 160): string {
   if (!html) return '';
-  return html.replace(/<[^>]*>/g, '').trim().slice(0, maxLength);
+  return html
+    .replace(/<[^>]*>/g, '')
+    .trim()
+    .slice(0, maxLength);
 }
 
 /**
@@ -78,13 +81,13 @@ function getAbsoluteUrl(path: string): string {
 
 /**
  * Generate metadata for product pages
- * 
+ *
  * Optimized for:
  * - E-commerce rich snippets (price, availability, ratings)
  * - AI understanding (natural language descriptions)
  * - Social sharing (attractive Open Graph cards)
  * - Technical accuracy (part numbers, specifications)
- * 
+ *
  * @param product - Product data from WordPress/WooCommerce
  * @param locale - Current locale (en, es, etc.)
  * @returns Complete Next.js Metadata object
@@ -95,12 +98,8 @@ export function generateProductMetadata(
 ): Metadata {
   // Primary image (product image or first gallery image)
   const primaryImage =
-    product.image?.sourceUrl ||
-    product.galleryImages?.[0]?.sourceUrl ||
-    SITE_CONFIG.defaultImage;
-  const imageAlt =
-    product.image?.altText ||
-    `${product.name} - ${SITE_CONFIG.organizationName}`;
+    product.image?.sourceUrl || product.galleryImages?.[0]?.sourceUrl || SITE_CONFIG.defaultImage;
+  const imageAlt = product.image?.altText || `${product.name} - ${SITE_CONFIG.organizationName}`;
 
   // Description: Use short description first, fallback to full description
   const rawDescription = product.shortDescription || product.description;
@@ -124,8 +123,7 @@ export function generateProductMetadata(
   const title = `${product.name}${titleSuffix} | BAPI`;
 
   // Keywords: Combine product categories with site keywords
-  const categoryKeywords =
-    product.categories?.map((cat) => cat.name).filter(Boolean) || [];
+  const categoryKeywords = product.categories?.map((cat) => cat.name).filter(Boolean) || [];
   const keywords = [...categoryKeywords, ...SITE_CONFIG.keywords.slice(0, 10)];
 
   // Canonical URL
@@ -144,9 +142,7 @@ export function generateProductMetadata(
       locale: locale === 'es' ? 'es_ES' : 'en_US',
       images: [
         {
-          url: primaryImage.startsWith('http')
-            ? primaryImage
-            : getAbsoluteUrl(primaryImage),
+          url: primaryImage.startsWith('http') ? primaryImage : getAbsoluteUrl(primaryImage),
           width: 1200,
           height: 630,
           alt: imageAlt,
@@ -155,14 +151,13 @@ export function generateProductMetadata(
       ],
       ...(product.price && {
         // Open Graph product-specific tags
-         
+
         product: {
           price: {
             amount: parseFloat(product.price.replace(/[^0-9.]/g, '')),
             currency: 'USD',
           },
-          availability:
-            product.stockStatus === 'IN_STOCK' ? 'in stock' : 'out of stock',
+          availability: product.stockStatus === 'IN_STOCK' ? 'in stock' : 'out of stock',
           condition: 'new',
           retailer: SITE_CONFIG.organizationName,
         } as any,
@@ -174,11 +169,7 @@ export function generateProductMetadata(
       creator: SITE_CONFIG.twitterHandle,
       title,
       description: description,
-      images: [
-        primaryImage.startsWith('http')
-          ? primaryImage
-          : getAbsoluteUrl(primaryImage),
-      ],
+      images: [primaryImage.startsWith('http') ? primaryImage : getAbsoluteUrl(primaryImage)],
     },
     alternates: {
       canonical: `/${locale}/${canonicalUrl}`,
@@ -213,12 +204,12 @@ export function generateProductMetadata(
 
 /**
  * Generate metadata for category pages
- * 
+ *
  * Optimized for:
  * - Category browsing (clear navigation signals)
  * - Product discovery (category-level keywords)
  * - Hierarchy understanding (breadcrumb context)
- * 
+ *
  * @param category - Category data from WordPress
  * @param locale - Current locale
  * @returns Complete Next.js Metadata object
@@ -232,11 +223,8 @@ export function generateCategoryMetadata(
     `Browse ${category.name} products from ${SITE_CONFIG.organizationName}. Precision-engineered sensors and controllers for building automation, HVAC systems, and critical facility monitoring.`;
 
   const title = `${category.name} | ${SITE_CONFIG.siteName} Products`;
-  const image =
-    category.image?.sourceUrl ||
-    SITE_CONFIG.defaultImage;
-  const imageAlt =
-    category.image?.altText || `${category.name} - ${SITE_CONFIG.siteName}`;
+  const image = category.image?.sourceUrl || SITE_CONFIG.defaultImage;
+  const imageAlt = category.image?.altText || `${category.name} - ${SITE_CONFIG.siteName}`;
 
   // AI-friendly context
   const aiDescription = `${category.name} category featuring ${category.count || 'multiple'} products from ${SITE_CONFIG.organizationName}. ${description}`;
@@ -291,15 +279,12 @@ export function generateCategoryMetadata(
 
 /**
  * Generate metadata for static pages (About, Contact, Resources, etc.)
- * 
+ *
  * @param page - Page configuration
  * @param locale - Current locale
  * @returns Complete Next.js Metadata object
  */
-export function generatePageMetadata(
-  page: PageMetadataInput,
-  locale: string = 'en'
-): Metadata {
+export function generatePageMetadata(page: PageMetadataInput, locale: string = 'en'): Metadata {
   const title = `${page.title} | ${SITE_CONFIG.siteName}`;
   const image = page.image || SITE_CONFIG.defaultImage;
   const type: 'website' | 'article' = page.type || 'website';
@@ -358,7 +343,7 @@ export function generatePageMetadata(
 
 /**
  * Generate default site metadata (for homepage and fallback)
- * 
+ *
  * @param locale - Current locale
  * @returns Complete Next.js Metadata object
  */

@@ -4,7 +4,14 @@
  */
 
 // Client-side role checking
-export { isAdmin, isCustomer, hasRole, isAuthenticated, getPrimaryRole, hasPermission } from './roles';
+export {
+  isAdmin,
+  isCustomer,
+  hasRole,
+  isAuthenticated,
+  getPrimaryRole,
+  hasPermission,
+} from './roles';
 export type { User } from './roles';
 
 // Server-side auth

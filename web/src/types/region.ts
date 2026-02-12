@@ -4,7 +4,18 @@
 
 export type RegionCode = 'us' | 'eu' | 'asia' | 'mena';
 export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED' | 'VND';
-export type LanguageCode = 'en' | 'de' | 'fr' | 'es' | 'ja' | 'zh' | 'vi' | 'ar' | 'th' | 'pl' | 'hi';
+export type LanguageCode =
+  | 'en'
+  | 'de'
+  | 'fr'
+  | 'es'
+  | 'ja'
+  | 'zh'
+  | 'vi'
+  | 'ar'
+  | 'th'
+  | 'pl'
+  | 'hi';
 
 export interface Region {
   code: RegionCode;

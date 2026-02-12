@@ -30,7 +30,7 @@ export const BAPI_LOCATIONS: Location[] = [
     type: 'headquarters',
     status: 'operational',
     description: 'Corporate headquarters and primary manufacturing facility',
-    established: '1993'
+    established: '1993',
   },
   {
     id: 'distribution-uk',
@@ -41,7 +41,7 @@ export const BAPI_LOCATIONS: Location[] = [
     coordinates: [-0.7629, 51.2485],
     type: 'distribution',
     status: 'operational',
-    description: 'European distribution and logistics hub'
+    description: 'European distribution and logistics hub',
   },
   {
     id: 'production-poland',
@@ -52,7 +52,7 @@ export const BAPI_LOCATIONS: Location[] = [
     coordinates: [21.0333, 50.5833],
     type: 'production-service',
     status: 'operational',
-    description: 'European production facility and customer service center'
+    description: 'European production facility and customer service center',
   },
   {
     id: 'production-vietnam',
@@ -63,20 +63,20 @@ export const BAPI_LOCATIONS: Location[] = [
     coordinates: [108.2022, 16.0544],
     type: 'production',
     status: 'opening-soon',
-    description: 'New manufacturing facility serving Asian markets'
-  }
+    description: 'New manufacturing facility serving Asian markets',
+  },
 ];
 
 export const FACILITY_TYPE_LABELS: Record<FacilityType, string> = {
   headquarters: 'Headquarters',
   distribution: 'Distribution Centre',
   production: 'Production',
-  'production-service': 'Production & Service'
+  'production-service': 'Production & Service',
 };
 
 export const FACILITY_TYPE_COLORS: Record<FacilityType, string> = {
   headquarters: '#1479BC', // BAPI Blue - primary facility
   distribution: '#FFC843', // BAPI Yellow - logistics
   production: '#3B82F6', // Blue-500 - manufacturing
-  'production-service': '#10B981' // Green-500 - multi-function
+  'production-service': '#10B981', // Green-500 - multi-function
 };

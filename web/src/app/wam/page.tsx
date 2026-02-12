@@ -30,35 +30,35 @@ export default function WAMPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 text-white">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="mx-auto max-w-container px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             {/* Left Column - Content */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                <Radio className="w-4 h-4" />
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm">
+                <Radio className="h-4 w-4" />
                 <span className="text-sm font-semibold">WAM™ Wireless Asset Monitoring</span>
               </div>
-              
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
+
+              <h1 className="mb-6 text-4xl font-bold leading-tight lg:text-5xl xl:text-6xl">
                 Protect your valuable assets with real-time monitoring
               </h1>
-              
-              <p className="text-xl text-primary-50 mb-8 leading-relaxed">
-                24/7 monitoring with instant alerts to avoid costly equipment failures. 
-                Monitor temperature, humidity, and more from anywhere with BAPI's proven wireless solutions.
+
+              <p className="mb-8 text-xl leading-relaxed text-primary-50">
+                24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor
+                temperature, humidity, and more from anywhere with BAPI's proven wireless solutions.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <a
                   href="#demo"
-                  className="inline-flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-xl"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-xl"
                 >
                   Request Demo
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="h-5 w-5" />
                 </a>
                 <a
                   href="#how-it-works"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
                 >
                   How It Works
                 </a>
@@ -67,15 +67,15 @@ export default function WAMPage() {
               {/* Trust Badges */}
               <div className="mt-12 flex flex-wrap gap-6 text-sm text-primary-100">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
+                  <CheckCircle className="h-5 w-5" />
                   <span>Made in USA</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
+                  <CheckCircle className="h-5 w-5" />
                   <span>ISO 9001 Certified</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
+                  <CheckCircle className="h-5 w-5" />
                   <span>30+ Years Experience</span>
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function WAMPage() {
 
             {/* Right Column - Visual */}
             <div className="relative">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+              <div className="rounded-2xl border border-white/20 bg-white/10 p-8 backdrop-blur-lg">
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     { icon: Wifi, label: 'Real-time Data', value: '24/7' },
@@ -93,10 +93,10 @@ export default function WAMPage() {
                   ].map((stat) => (
                     <div
                       key={stat.label}
-                      className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10"
+                      className="rounded-xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm"
                     >
-                      <stat.icon className="w-8 h-8 mb-2 text-accent-500" />
-                      <div className="text-2xl font-bold mb-1">{stat.value}</div>
+                      <stat.icon className="mb-2 h-8 w-8 text-accent-500" />
+                      <div className="mb-1 text-2xl font-bold">{stat.value}</div>
                       <div className="text-sm text-primary-100">{stat.label}</div>
                     </div>
                   ))}
@@ -108,19 +108,17 @@ export default function WAMPage() {
       </section>
 
       {/* What is WAM Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-              What is WAM?
-            </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              WAM™ (Wireless Asset Monitoring) is BAPI's complete solution for protecting 
+      <section className="bg-white py-16 lg:py-24">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">What is WAM?</h2>
+            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+              WAM™ (Wireless Asset Monitoring) is BAPI's complete solution for protecting
               temperature-sensitive equipment and inventory from costly failures.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-3">
             {[
               {
                 icon: Radio,
@@ -143,13 +141,13 @@ export default function WAMPage() {
             ].map((feature) => (
               <div
                 key={feature.title}
-                className="bg-neutral-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300"
+                className="rounded-xl bg-neutral-50 p-8 transition-shadow duration-300 hover:shadow-lg"
               >
-                <div className="bg-gradient-to-br from-primary-500 to-primary-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                  <feature.icon className="w-8 h-8 text-white" />
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600">
+                  <feature.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-neutral-900 mb-3">{feature.title}</h3>
-                <p className="text-neutral-600 leading-relaxed">{feature.description}</p>
+                <h3 className="mb-3 text-xl font-bold text-neutral-900">{feature.title}</h3>
+                <p className="leading-relaxed text-neutral-600">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -157,18 +155,17 @@ export default function WAMPage() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-16 lg:py-24 bg-neutral-50">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-              How It Works
-            </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy steps.
+      <section id="how-it-works" className="bg-neutral-50 py-16 lg:py-24">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">How It Works</h2>
+            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+              Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy
+              steps.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 step: '1',
@@ -196,15 +193,15 @@ export default function WAMPage() {
               },
             ].map((step) => (
               <div key={step.step} className="relative">
-                <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <div className="absolute -top-4 -left-4 bg-accent-500 text-neutral-900 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+                <div className="rounded-xl bg-white p-6 shadow-md transition-shadow duration-300 hover:shadow-xl">
+                  <div className="absolute -left-4 -top-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent-500 text-xl font-bold text-neutral-900 shadow-lg">
                     {step.step}
                   </div>
-                  <div className="bg-gradient-to-br from-primary-500 to-primary-600 w-14 h-14 rounded-full flex items-center justify-center mb-4 mt-2">
-                    <step.icon className="w-7 h-7 text-white" />
+                  <div className="mb-4 mt-2 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600">
+                    <step.icon className="h-7 w-7 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-neutral-900 mb-2">{step.title}</h3>
-                  <p className="text-neutral-600 text-sm leading-relaxed">{step.description}</p>
+                  <h3 className="mb-2 text-lg font-bold text-neutral-900">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-neutral-600">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -214,29 +211,31 @@ export default function WAMPage() {
 
       {/* Alert Banner */}
       <section className="bg-accent-500 py-6">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-4 text-neutral-900">
-            <AlertTriangle className="w-6 h-6 flex-shrink-0" />
-            <p className="text-lg font-semibold text-center">
-              Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring from BAPI.
+            <AlertTriangle className="h-6 w-6 flex-shrink-0" />
+            <p className="text-center text-lg font-semibold">
+              Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring
+              from BAPI.
             </p>
           </div>
         </div>
       </section>
 
       {/* Why WAM Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+      <section className="bg-white py-16 lg:py-24">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Why Choose WAM?
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              Trusted by enterprises, healthcare facilities, and data centers worldwide for mission-critical monitoring.
+            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+              Trusted by enterprises, healthcare facilities, and data centers worldwide for
+              mission-critical monitoring.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 icon: DollarSign,
@@ -277,13 +276,13 @@ export default function WAMPage() {
             ].map((benefit) => (
               <div
                 key={benefit.title}
-                className="group bg-neutral-50 rounded-xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary-200"
+                className="group rounded-xl border border-transparent bg-neutral-50 p-6 transition-all duration-300 hover:border-primary-200 hover:bg-white hover:shadow-xl"
               >
-                <div className="bg-gradient-to-br from-primary-500 to-primary-600 w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <benefit.icon className="w-7 h-7 text-white" />
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600 transition-transform duration-300 group-hover:scale-110">
+                  <benefit.icon className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-2">{benefit.title}</h3>
-                <p className="text-neutral-600 text-sm leading-relaxed">{benefit.description}</p>
+                <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
+                <p className="text-sm leading-relaxed text-neutral-600">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -291,10 +290,10 @@ export default function WAMPage() {
       </section>
 
       {/* Industries Section */}
-      <section className="py-16 lg:py-24 bg-neutral-50">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+      <section className="bg-neutral-50 py-16 lg:py-24">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Industries We Serve
             </h2>
             <p className="text-xl text-neutral-600">
@@ -302,7 +301,7 @@ export default function WAMPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               'Healthcare & Pharmaceuticals',
               'Food Service & Restaurants',
@@ -315,9 +314,9 @@ export default function WAMPage() {
             ].map((industry) => (
               <div
                 key={industry}
-                className="bg-white rounded-lg p-4 border border-neutral-200 hover:border-primary-500 hover:shadow-md transition-all duration-300 text-center"
+                className="rounded-lg border border-neutral-200 bg-white p-4 text-center transition-all duration-300 hover:border-primary-500 hover:shadow-md"
               >
-                <p className="text-neutral-700 font-medium">{industry}</p>
+                <p className="font-medium text-neutral-700">{industry}</p>
               </div>
             ))}
           </div>
@@ -325,47 +324,50 @@ export default function WAMPage() {
       </section>
 
       {/* Wireless Products Section */}
-      <section id="products" className="py-16 lg:py-24 bg-white">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+      <section id="products" className="bg-white py-16 lg:py-24">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Wireless Products
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
               Complete range of wireless sensors for temperature, humidity, pressure, and more
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="mb-12 grid gap-8 md:grid-cols-3">
             {[
               {
                 title: 'Temperature Sensors',
-                description: 'Wireless temperature monitoring for refrigeration, freezers, and critical spaces',
+                description:
+                  'Wireless temperature monitoring for refrigeration, freezers, and critical spaces',
                 link: '/products/wireless/temperature',
               },
               {
                 title: 'Humidity Sensors',
-                description: 'Monitor relative humidity in warehouses, data centers, and clean rooms',
+                description:
+                  'Monitor relative humidity in warehouses, data centers, and clean rooms',
                 link: '/products/wireless/humidity',
               },
               {
                 title: 'Pressure Sensors',
-                description: 'Differential pressure monitoring for filter status and room pressurization',
+                description:
+                  'Differential pressure monitoring for filter status and room pressurization',
                 link: '/products/wireless/pressure',
               },
             ].map((product) => (
               <Link
                 key={product.title}
                 href={product.link}
-                className="group bg-neutral-50 rounded-xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-primary-500"
+                className="group rounded-xl border border-transparent bg-neutral-50 p-6 transition-all duration-300 hover:border-primary-500 hover:bg-white hover:shadow-xl"
               >
-                <h3 className="text-xl font-bold text-neutral-900 mb-3 group-hover:text-primary-500 transition-colors">
+                <h3 className="mb-3 text-xl font-bold text-neutral-900 transition-colors group-hover:text-primary-500">
                   {product.title}
                 </h3>
-                <p className="text-neutral-600 mb-4">{product.description}</p>
-                <div className="flex items-center gap-2 text-primary-500 font-semibold">
+                <p className="mb-4 text-neutral-600">{product.description}</p>
+                <div className="flex items-center gap-2 font-semibold text-primary-500">
                   Learn More
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
             ))}
@@ -374,37 +376,37 @@ export default function WAMPage() {
           <div className="text-center">
             <Link
               href="/products/wireless"
-              className="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-xl"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               View All Wireless Products
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* Real-World Installations Gallery */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-neutral-50 to-white">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+      <section className="bg-gradient-to-br from-neutral-50 to-white py-16 lg:py-24">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Real-World Installations
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              See WAM™ in action protecting food safety and valuable assets across convenience stores, 
-              grocery stores, and food service operations
+            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+              See WAM™ in action protecting food safety and valuable assets across convenience
+              stores, grocery stores, and food service operations
             </p>
           </div>
 
           {/* Walk-In Coolers */}
           <div className="mb-16">
             <div className="mb-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 text-center mb-2">
+              <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                 Walk-In Coolers
               </h3>
-              <div className="h-1 w-20 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto rounded-full" />
+              <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-accent-500 to-primary-500" />
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   src: '/images/applications/retail/coolers/Cooler_Front_4.webp',
@@ -444,7 +446,7 @@ export default function WAMPage() {
               ].map((image, idx) => (
                 <div
                   key={idx}
-                  className="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
                     <Image
@@ -452,16 +454,16 @@ export default function WAMPage() {
                       alt={image.alt}
                       fill
                       sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                   <div className="p-4">
-                    <h4 className="text-sm font-bold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
+                    <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                       {image.title}
                     </h4>
                   </div>
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
                 </div>
               ))}
             </div>
@@ -470,12 +472,12 @@ export default function WAMPage() {
           {/* Walk-In Freezers */}
           <div className="mb-16">
             <div className="mb-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 text-center mb-2">
+              <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                 Walk-In Freezers
               </h3>
-              <div className="h-1 w-20 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto rounded-full" />
+              <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-accent-500 to-primary-500" />
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   src: '/images/applications/retail/freezers/Freezer_Door_1.webp',
@@ -545,7 +547,7 @@ export default function WAMPage() {
               ].map((image, idx) => (
                 <div
                   key={idx}
-                  className="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
                     <Image
@@ -553,16 +555,16 @@ export default function WAMPage() {
                       alt={image.alt}
                       fill
                       sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                   <div className="p-4">
-                    <h4 className="text-sm font-bold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
+                    <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                       {image.title}
                     </h4>
                   </div>
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
                 </div>
               ))}
             </div>
@@ -571,12 +573,12 @@ export default function WAMPage() {
           {/* Deli Cases & Prepared Foods */}
           <div className="mb-16">
             <div className="mb-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 text-center mb-2">
+              <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                 Deli Cases & Prepared Foods
               </h3>
-              <div className="h-1 w-20 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto rounded-full" />
+              <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-accent-500 to-primary-500" />
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   src: '/images/applications/retail/deli-cases/Deli_Cases_All_1.webp',
@@ -606,7 +608,7 @@ export default function WAMPage() {
               ].map((image, idx) => (
                 <div
                   key={idx}
-                  className="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
                     <Image
@@ -614,16 +616,16 @@ export default function WAMPage() {
                       alt={image.alt}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                   <div className="p-4">
-                    <h4 className="text-sm font-bold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
+                    <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                       {image.title}
                     </h4>
                   </div>
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
                 </div>
               ))}
             </div>
@@ -632,12 +634,12 @@ export default function WAMPage() {
           {/* Convenience Stores */}
           <div className="mb-12">
             <div className="mb-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 text-center mb-2">
+              <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                 Convenience Stores & Mini-Marts
               </h3>
-              <div className="h-1 w-20 bg-gradient-to-r from-accent-500 to-primary-500 mx-auto rounded-full" />
+              <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-accent-500 to-primary-500" />
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
                 {
                   src: '/images/applications/retail/convenience/Mini-Mart_Overhead_4.webp',
@@ -687,7 +689,7 @@ export default function WAMPage() {
               ].map((image, idx) => (
                 <div
                   key={idx}
-                  className="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
                     <Image
@@ -695,47 +697,48 @@ export default function WAMPage() {
                       alt={image.alt}
                       fill
                       sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                   <div className="p-4">
-                    <h4 className="text-sm font-bold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
+                    <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                       {image.title}
                     </h4>
                   </div>
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
                 </div>
               ))}
             </div>
           </div>
 
           {/* CTA to Installations Page */}
-          <div className="text-center mt-12">
+          <div className="mt-12 text-center">
             <Link
               href="/installations#wam"
-              className="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-xl"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               View All Installation Examples
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* WAM Dashboard & Software */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+      <section className="bg-white py-16 lg:py-24">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Powerful Cloud Dashboard
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              Monitor temperatures, view trends, and receive alerts from anywhere with our intuitive web-based dashboard
+            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+              Monitor temperatures, view trends, and receive alerts from anywhere with our intuitive
+              web-based dashboard
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 src: '/images/wam/dashboards/WAM_Graphic.webp',
@@ -782,7 +785,7 @@ export default function WAMPage() {
             ].map((dashboard, idx) => (
               <div
                 key={idx}
-                className="group bg-neutral-50 rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500"
+                className="group overflow-hidden rounded-xl bg-neutral-50 transition-all duration-500 hover:shadow-2xl"
               >
                 <div className="relative aspect-video overflow-hidden bg-neutral-100">
                   <Image
@@ -790,14 +793,14 @@ export default function WAMPage() {
                     alt={dashboard.alt}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
+                  <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                     {dashboard.title}
                   </h3>
-                  <p className="text-neutral-600 text-sm leading-relaxed">
+                  <p className="text-sm leading-relaxed text-neutral-600">
                     {dashboard.description}
                   </p>
                 </div>
@@ -806,7 +809,7 @@ export default function WAMPage() {
           </div>
 
           {/* Dashboard Features Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 icon: LineChart,
@@ -831,12 +834,12 @@ export default function WAMPage() {
             ].map((feature) => (
               <div
                 key={feature.title}
-                className="bg-neutral-50 rounded-lg p-6 text-center hover:bg-white hover:shadow-lg transition-all duration-300"
+                className="rounded-lg bg-neutral-50 p-6 text-center transition-all duration-300 hover:bg-white hover:shadow-lg"
               >
-                <div className="bg-gradient-to-br from-primary-500 to-primary-600 w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto">
-                  <feature.icon className="w-6 h-6 text-white" />
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600">
+                  <feature.icon className="h-6 w-6 text-white" />
                 </div>
-                <h4 className="font-bold text-neutral-900 mb-2">{feature.title}</h4>
+                <h4 className="mb-2 font-bold text-neutral-900">{feature.title}</h4>
                 <p className="text-sm text-neutral-600">{feature.description}</p>
               </div>
             ))}
@@ -845,44 +848,47 @@ export default function WAMPage() {
       </section>
 
       {/* Demo Request Section */}
-      <section id="demo" className="py-16 lg:py-24 bg-gradient-to-br from-primary-50 to-primary-100">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 lg:p-12">
-            <div className="grid lg:grid-cols-2 gap-12">
+      <section
+        id="demo"
+        className="bg-gradient-to-br from-primary-50 to-primary-100 py-16 lg:py-24"
+      >
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-white p-8 shadow-2xl lg:p-12">
+            <div className="grid gap-12 lg:grid-cols-2">
               {/* Left - Content */}
               <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+                <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
                   Ready to Get Started?
                 </h2>
-                <p className="text-lg text-neutral-600 mb-6">
-                  Let us show you how WAM™ can protect your assets and prevent costly failures. 
-                  Fill out the form and we'll contact you to schedule a personalized demo.
+                <p className="mb-6 text-lg text-neutral-600">
+                  Let us show you how WAM™ can protect your assets and prevent costly failures. Fill
+                  out the form and we'll contact you to schedule a personalized demo.
                 </p>
 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-6 h-6 text-primary-500 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
                       <h4 className="font-bold text-neutral-900">Free Consultation</h4>
-                      <p className="text-neutral-600 text-sm">
+                      <p className="text-sm text-neutral-600">
                         Talk to our monitoring experts about your specific needs
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-6 h-6 text-primary-500 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
                       <h4 className="font-bold text-neutral-900">Custom Pricing</h4>
-                      <p className="text-neutral-600 text-sm">
+                      <p className="text-sm text-neutral-600">
                         Flexible plans based on your monitoring requirements
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-6 h-6 text-primary-500 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
                       <h4 className="font-bold text-neutral-900">Fast Implementation</h4>
-                      <p className="text-neutral-600 text-sm">
+                      <p className="text-sm text-neutral-600">
                         Be up and running in days, not weeks
                       </p>
                     </div>
@@ -893,9 +899,12 @@ export default function WAMPage() {
               {/* Right - Form */}
               <div>
                 <form className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-semibold text-neutral-700 mb-2">
+                      <label
+                        htmlFor="firstName"
+                        className="mb-2 block text-sm font-semibold text-neutral-700"
+                      >
                         First Name *
                       </label>
                       <input
@@ -903,11 +912,14 @@ export default function WAMPage() {
                         id="firstName"
                         name="firstName"
                         required
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                        className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-primary-500"
                       />
                     </div>
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-semibold text-neutral-700 mb-2">
+                      <label
+                        htmlFor="lastName"
+                        className="mb-2 block text-sm font-semibold text-neutral-700"
+                      >
                         Last Name *
                       </label>
                       <input
@@ -915,13 +927,16 @@ export default function WAMPage() {
                         id="lastName"
                         name="lastName"
                         required
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                        className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-primary-500"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-neutral-700 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
                       Email *
                     </label>
                     <input
@@ -929,12 +944,15 @@ export default function WAMPage() {
                       id="email"
                       name="email"
                       required
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-neutral-700 mb-2">
+                    <label
+                      htmlFor="phone"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
                       Phone *
                     </label>
                     <input
@@ -942,30 +960,36 @@ export default function WAMPage() {
                       id="phone"
                       name="phone"
                       required
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="company" className="block text-sm font-semibold text-neutral-700 mb-2">
+                    <label
+                      htmlFor="company"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
                       Company
                     </label>
                     <input
                       type="text"
                       id="company"
                       name="company"
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="industry" className="block text-sm font-semibold text-neutral-700 mb-2">
+                    <label
+                      htmlFor="industry"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
                       Industry
                     </label>
                     <select
                       id="industry"
                       name="industry"
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-primary-500"
                     >
                       <option value="">Select Industry</option>
                       <option value="healthcare">Healthcare & Pharmaceuticals</option>
@@ -981,26 +1005,29 @@ export default function WAMPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-neutral-700 mb-2">
+                    <label
+                      htmlFor="message"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
                       What would you like to monitor?
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       rows={4}
-                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-primary-500"
                       placeholder="Tell us about your monitoring needs..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full bg-accent-500 hover:bg-accent-600 text-neutral-900 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-xl"
+                    className="w-full rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-xl"
                   >
                     Request Demo
                   </button>
 
-                  <p className="text-xs text-neutral-500 text-center">
+                  <p className="text-center text-xs text-neutral-500">
                     By submitting this form, you agree to our privacy policy and terms of service.
                   </p>
                 </form>
@@ -1011,24 +1038,24 @@ export default function WAMPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="bg-primary-600 text-white py-12">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-4">
+      <section className="bg-primary-600 py-12 text-white">
+        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-4 text-2xl font-bold lg:text-3xl">
             Have questions about wireless monitoring?
           </h2>
-          <p className="text-primary-100 mb-6">
+          <p className="mb-6 text-primary-100">
             Talk to one of our technical experts. We're here to help you find the right solution.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/support/contact"
-              className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-3 rounded-xl font-bold hover:bg-primary-50 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-3 font-bold text-primary-600 transition-all duration-300 hover:bg-primary-50"
             >
               Contact Support
             </Link>
             <Link
               href="/products/wireless"
-              className="inline-flex items-center justify-center gap-2 bg-primary-500 hover:bg-primary-700 text-white border-2 border-white px-8 py-3 rounded-xl font-bold transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white bg-primary-500 px-8 py-3 font-bold text-white transition-all duration-300 hover:bg-primary-700"
             >
               Browse Wireless Products
             </Link>

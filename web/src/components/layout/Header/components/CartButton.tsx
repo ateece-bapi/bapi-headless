@@ -8,13 +8,13 @@ interface CartButtonProps {
 const CartButton: React.FC<CartButtonProps> = ({ itemCount = 0 }) => (
   <Link
     href="/cart"
-    className="group relative flex items-center justify-center w-10 h-10 hover:bg-neutral-50 hover:shadow-md rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 active:scale-[0.98]"
+    className="group relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-200 hover:bg-neutral-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 active:scale-[0.98]"
     aria-label={`View shopping cart${itemCount > 0 ? ` with ${itemCount} items` : ''}`}
     suppressHydrationWarning
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5 text-gray-600 group-hover:text-primary-600 transition-colors duration-200"
+      className="h-5 w-5 text-gray-600 transition-colors duration-200 group-hover:text-primary-600"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -28,8 +28,8 @@ const CartButton: React.FC<CartButtonProps> = ({ itemCount = 0 }) => (
       />
     </svg>
     {itemCount > 0 && (
-      <span 
-        className="absolute -top-1 -right-1 bg-gradient-to-br from-red-500 to-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-md animate-pulse"
+      <span
+        className="absolute -right-1 -top-1 flex h-5 w-5 animate-pulse items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-red-600 text-xs font-bold text-white shadow-md"
         suppressHydrationWarning
       >
         {itemCount > 9 ? '9+' : itemCount}

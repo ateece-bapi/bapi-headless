@@ -21,66 +21,62 @@ export default function ColorSwatchSelector({
   options,
   value,
   onChange,
-  className = ''
+  className = '',
 }: ColorSwatchSelectorProps) {
   return (
     <div className={className}>
-      <label className="block text-sm font-semibold text-neutral-700 uppercase tracking-wide mb-3">
+      <label className="mb-3 block text-sm font-semibold uppercase tracking-wide text-neutral-700">
         {label}
       </label>
-      
+
       <div className="flex flex-wrap gap-3">
         {options.map((option) => {
           const isSelected = value === option;
           const colorHex = getColorHex(option);
           const isLightColor = ['#FFFFFF', '#F5F5DC', '#F0F0F0'].includes(colorHex);
-          
+
           return (
             <button
               key={option}
               onClick={() => onChange(option)}
-              className={`
-                group relative flex items-center gap-3 px-4 py-3 rounded-lg border-2 transition-all
-                ${isSelected 
-                  ? 'border-primary-600 bg-primary-50' 
-                  : 'border-neutral-300 hover:border-primary-400 bg-white hover:bg-neutral-50'
-                }
-              `}
+              className={`group relative flex items-center gap-3 rounded-lg border-2 px-4 py-3 transition-all ${
+                isSelected
+                  ? 'border-primary-600 bg-primary-50'
+                  : 'border-neutral-300 bg-white hover:border-primary-400 hover:bg-neutral-50'
+              } `}
               aria-label={`Select ${option}`}
               aria-pressed={isSelected}
             >
               {/* Color Swatch */}
               <div className="relative">
-                <div 
-                  className={`
-                    w-8 h-8 rounded-full border-2 transition-all
-                    ${isSelected ? 'border-primary-600 scale-110' : 'border-neutral-300 group-hover:border-neutral-400'}
-                    ${isLightColor ? 'shadow-md' : ''}
-                  `}
+                <div
+                  className={`h-8 w-8 rounded-full border-2 transition-all ${isSelected ? 'scale-110 border-primary-600' : 'border-neutral-300 group-hover:border-neutral-400'} ${isLightColor ? 'shadow-md' : ''} `}
                   style={{ backgroundColor: colorHex }}
                   aria-hidden="true"
                 />
-                
+
                 {/* Check mark for selected */}
                 {isSelected && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Check 
-                      className={`w-5 h-5 ${isLightColor ? 'text-primary-600' : 'text-white'}`}
+                    <Check
+                      className={`h-5 w-5 ${isLightColor ? 'text-primary-600' : 'text-white'}`}
                       strokeWidth={3}
                     />
                   </div>
                 )}
               </div>
-              
+
               {/* Color Name */}
-              <span className={`text-sm font-medium ${isSelected ? 'text-primary-900' : 'text-neutral-700'}`}>
+              <span
+                className={`text-sm font-medium ${isSelected ? 'text-primary-900' : 'text-neutral-700'}`}
+              >
                 {option}
               </span>
             </button>
           );
         })}
       </div>
-      
+
       {/* Selected indicator */}
       {value && (
         <div className="mt-2 text-xs text-neutral-600">

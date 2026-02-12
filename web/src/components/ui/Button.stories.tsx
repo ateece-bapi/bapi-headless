@@ -4,10 +4,10 @@ import { MousePointerClick, ShoppingCart, Download, Trash2 } from 'lucide-react'
 
 /**
  * Modern Button component using Class Variance Authority (CVA)
- * 
+ *
  * This replaces the legacy BapiButton with a more maintainable,
  * type-safe approach to variant-based styling.
- * 
+ *
  * ## BAPI Brand Guidelines
  * - **Primary (Blue)**: Main actions, navigation (~30% usage)
  * - **Accent (Yellow)**: High-priority CTAs like "Add to Cart" (~10% usage)
@@ -21,7 +21,8 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A flexible button component with multiple variants, sizes, and states. Built with CVA for type-safe variant management.',
+        component:
+          'A flexible button component with multiple variants, sizes, and states. Built with CVA for type-safe variant management.',
       },
     },
   },
@@ -176,7 +177,7 @@ export const WithLeadingIcon: Story = {
     size: 'lg',
     children: (
       <>
-        <ShoppingCart className="w-5 h-5" />
+        <ShoppingCart className="h-5 w-5" />
         <span>Add to Cart</span>
       </>
     ),
@@ -193,7 +194,7 @@ export const WithTrailingIcon: Story = {
     children: (
       <>
         <span>Download Specs</span>
-        <Download className="w-5 h-5" />
+        <Download className="h-5 w-5" />
       </>
     ),
     className: 'gap-2',
@@ -207,7 +208,7 @@ export const IconOnly: Story = {
   args: {
     variant: 'ghost',
     size: 'md',
-    children: <MousePointerClick className="w-5 h-5" />,
+    children: <MousePointerClick className="h-5 w-5" />,
     'aria-label': 'Click action',
   },
 };
@@ -220,7 +221,7 @@ export const DangerWithIcon: Story = {
     variant: 'danger',
     children: (
       <>
-        <Trash2 className="w-4 h-4" />
+        <Trash2 className="h-4 w-4" />
         <span>Remove Item</span>
       </>
     ),
@@ -263,7 +264,7 @@ export const Loading: Story = {
     disabled: true,
     children: (
       <>
-        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+        <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
         <span>Processing...</span>
       </>
     ),
@@ -317,7 +318,7 @@ export const ProductAddToCart: Story = {
     size: 'lg',
     children: (
       <>
-        <ShoppingCart className="w-5 h-5" />
+        <ShoppingCart className="h-5 w-5" />
         <span>Add to Cart</span>
       </>
     ),
@@ -326,7 +327,8 @@ export const ProductAddToCart: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Primary CTA for product pages. BAPI Yellow accent draws attention to conversion action.',
+        story:
+          'Primary CTA for product pages. BAPI Yellow accent draws attention to conversion action.',
       },
     },
   },
@@ -364,7 +366,7 @@ export const SecondaryAction: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Secondary action that doesn\'t compete with primary CTAs.',
+        story: "Secondary action that doesn't compete with primary CTAs.",
       },
     },
   },
@@ -380,7 +382,7 @@ export const SecondaryAction: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="space-y-4">
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex flex-wrap gap-4">
         <Button variant="primary">Primary</Button>
         <Button variant="accent">Accent</Button>
         <Button variant="outline">Outline</Button>
@@ -388,11 +390,21 @@ export const AllVariants: Story = {
         <Button variant="danger">Danger</Button>
       </div>
       <div className="text-sm text-neutral-600">
-        <p><strong>Primary:</strong> BAPI Blue - main actions</p>
-        <p><strong>Accent:</strong> BAPI Yellow - high-priority CTAs</p>
-        <p><strong>Outline:</strong> Secondary actions</p>
-        <p><strong>Ghost:</strong> Tertiary actions</p>
-        <p><strong>Danger:</strong> Destructive actions</p>
+        <p>
+          <strong>Primary:</strong> BAPI Blue - main actions
+        </p>
+        <p>
+          <strong>Accent:</strong> BAPI Yellow - high-priority CTAs
+        </p>
+        <p>
+          <strong>Outline:</strong> Secondary actions
+        </p>
+        <p>
+          <strong>Ghost:</strong> Tertiary actions
+        </p>
+        <p>
+          <strong>Danger:</strong> Destructive actions
+        </p>
       </div>
     </div>
   ),
@@ -406,7 +418,7 @@ export const AllVariants: Story = {
  */
 export const AllSizes: Story = {
   render: () => (
-    <div className="flex items-end gap-4 flex-wrap">
+    <div className="flex flex-wrap items-end gap-4">
       <Button size="sm">Small</Button>
       <Button size="md">Medium</Button>
       <Button size="lg">Large</Button>

@@ -29,17 +29,17 @@ const buttonVariants = cva(
         primary: [
           'bg-primary-600 hover:bg-primary-700',
           'text-white',
-          'shadow-primary-600/30 hover:shadow-primary-600/40 shadow-lg hover:shadow-xl',
+          'shadow-lg shadow-primary-600/30 hover:shadow-xl hover:shadow-primary-600/40',
           'focus:ring-primary-600/50',
         ],
         accent: [
           'bg-accent-500 hover:bg-accent-600',
           'text-neutral-900',
-          'shadow-accent-500/30 hover:shadow-accent-500/40 shadow-lg hover:shadow-xl',
+          'shadow-lg shadow-accent-500/30 hover:shadow-xl hover:shadow-accent-500/40',
           'focus:ring-accent-500/50',
         ],
         outline: [
-          'border-primary-600 border-2',
+          'border-2 border-primary-600',
           'text-primary-600 hover:text-white',
           'hover:bg-primary-600',
           'focus:ring-primary-600/50',
@@ -52,7 +52,7 @@ const buttonVariants = cva(
         danger: [
           'bg-error-500 hover:bg-error-600',
           'text-white',
-          'shadow-error-500/30 hover:shadow-error-500/40 shadow-lg hover:shadow-xl',
+          'shadow-lg shadow-error-500/30 hover:shadow-xl hover:shadow-error-500/40',
           'focus:ring-error-500/50',
         ],
       },

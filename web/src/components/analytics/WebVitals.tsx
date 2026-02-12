@@ -21,19 +21,19 @@ declare global {
 
 /**
  * Web Vitals tracking component for Core Web Vitals monitoring
- * 
+ *
  * Tracks:
  * - LCP (Largest Contentful Paint) - Loading performance
  * - CLS (Cumulative Layout Shift) - Visual stability
  * - INP (Interaction to Next Paint) - Responsiveness (replaces FID)
  * - FCP (First Contentful Paint) - Initial render
  * - TTFB (Time to First Byte) - Server response time
- * 
+ *
  * Google's Core Web Vitals thresholds:
  * - LCP: < 2.5s (good), < 4s (needs improvement), >= 4s (poor)
  * - CLS: < 0.1 (good), < 0.25 (needs improvement), >= 0.25 (poor)
  * - INP: < 200ms (good), < 500ms (needs improvement), >= 500ms (poor)
- * 
+ *
  * @see https://web.dev/vitals/
  */
 export function WebVitals() {
@@ -49,7 +49,7 @@ export function WebVitals() {
     // In production, send to analytics
     if (process.env.NODE_ENV === 'production') {
       // Send to Vercel Analytics (automatic with @vercel/speed-insights)
-      
+
       // You can also send to custom analytics here
       // Example: Google Analytics 4
       if (typeof window !== 'undefined' && window.gtag) {

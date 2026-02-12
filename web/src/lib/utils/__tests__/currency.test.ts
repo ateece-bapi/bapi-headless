@@ -102,7 +102,7 @@ describe('Currency Utilities', () => {
     });
 
     it('handles decimals', () => {
-      const result = convertPrice(10.50, 'EUR');
+      const result = convertPrice(10.5, 'EUR');
       expect(result).toBeCloseTo(9.66, 2); // 10.5 * 0.92
     });
   });
@@ -126,9 +126,7 @@ describe('Currency Utilities', () => {
     });
 
     it('applies custom formatting options', () => {
-      expect(formatConvertedPrice(100, 'EUR', { showCode: true })).toBe(
-        '92.00€ EUR'
-      );
+      expect(formatConvertedPrice(100, 'EUR', { showCode: true })).toBe('92.00€ EUR');
     });
 
     it('handles decimals correctly', () => {

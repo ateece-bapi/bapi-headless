@@ -44,14 +44,14 @@ export function isGroupProduct(product: Product | null | undefined): product is 
 
 /**
  * Extracts formatted price from WooCommerce product
- * 
+ *
  * Handles various product types (Simple, Variable, Group) which may
  * have different price field structures. Returns pre-formatted string
  * from WooCommerce (e.g., "$19.99", "$10.00 - $25.00").
- * 
+ *
  * @param product - Product from GraphQL query (nullable for safe type guards)
  * @returns Formatted price string with currency symbol, or null if unavailable
- * 
+ *
  * @example
  * ```ts
  * const price = getProductPrice(product);
@@ -62,25 +62,25 @@ export function isGroupProduct(product: Product | null | undefined): product is 
  */
 export function getProductPrice(product: Product | null | undefined): string | null {
   if (!product) return null;
-  
+
   if ('price' in product && product.price) {
     return product.price;
   }
-  
+
   return null;
 }
 
 /**
  * Extracts stock status from WooCommerce product
- * 
+ *
  * Returns WooCommerce stock status enum value. Common values:
  * - "IN_STOCK" - Available for purchase
  * - "OUT_OF_STOCK" - Not available
  * - "ON_BACKORDER" - Can order but will ship later
- * 
+ *
  * @param product - Product from GraphQL query
  * @returns Stock status string or null if unavailable
- * 
+ *
  * @example
  * ```ts
  * const status = getProductStockStatus(product);
@@ -89,23 +89,23 @@ export function getProductPrice(product: Product | null | undefined): string | n
  */
 export function getProductStockStatus(product: Product | null | undefined): string | null {
   if (!product) return null;
-  
+
   if ('stockStatus' in product && product.stockStatus) {
     return product.stockStatus;
   }
-  
+
   return null;
 }
 
 /**
  * Checks if WooCommerce product is currently on sale
- * 
+ *
  * Sale status is set in WooCommerce admin when sale price is active.
  * Use this to show "SALE" badges or calculate discounts.
- * 
+ *
  * @param product - Product from GraphQL query
  * @returns true if product has active sale, false otherwise
- * 
+ *
  * @example
  * ```tsx
  * {isProductOnSale(product) && (
@@ -115,11 +115,10 @@ export function getProductStockStatus(product: Product | null | undefined): stri
  */
 export function isProductOnSale(product: Product | null | undefined): boolean {
   if (!product) return false;
-  
+
   if ('onSale' in product) {
     return Boolean(product.onSale);
   }
-  
+
   return false;
 }
-

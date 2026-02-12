@@ -14,15 +14,12 @@ interface MegaMenuProps {
 const MegaMenu: React.FC<MegaMenuProps> = ({ className }) => {
   const t = useTranslations('megaMenu');
   const menu = useMegaMenu();
-  
+
   // Generate menu items with translations
   const menuItems = getMegaMenuItems(t);
 
   return (
-    <nav
-      aria-label="Primary navigation"
-      className={clsx('flex items-center gap-1', className)}
-    >
+    <nav aria-label="Primary navigation" className={clsx('flex items-center gap-1', className)}>
       {menuItems.map((item, index) => (
         <MegaMenuItemComponent
           key={item.label}

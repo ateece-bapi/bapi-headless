@@ -9,7 +9,7 @@ interface TrustBadgesProps {
 
 /**
  * Trust and credibility badges for product pages
- * 
+ *
  * Displays key trust signals to improve conversion:
  * - Made in USA
  * - Certifications (UL Listed)
@@ -52,17 +52,17 @@ export default function TrustBadges({ className = '' }: TrustBadgesProps) {
   ];
 
   return (
-    <div className={`bg-neutral-50 border border-neutral-200 rounded-xl p-6 ${className}`}>
-      <h3 className="text-sm font-semibold text-neutral-700 uppercase tracking-wide mb-4">
+    <div className={`rounded-xl border border-neutral-200 bg-neutral-50 p-6 ${className}`}>
+      <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-700">
         Why Buy From BAPI
       </h3>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {badges.map((badge) => {
           const Icon = badge.icon;
           return (
             <div key={badge.label} className="flex flex-col items-center text-center">
               <div className={`mb-2 ${badge.color}`}>
-                <Icon className="w-8 h-8" strokeWidth={1.5} />
+                <Icon className="h-8 w-8" strokeWidth={1.5} />
               </div>
               <div className="text-sm font-semibold text-neutral-900">{badge.label}</div>
               <div className="text-xs text-neutral-600">{badge.description}</div>

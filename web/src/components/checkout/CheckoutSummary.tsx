@@ -2,7 +2,7 @@
 
 /**
  * Checkout Summary Component
- * 
+ *
  * Displays order summary in checkout sidebar:
  * - Cart items with images and prices
  * - Subtotal, tax, shipping, total
@@ -34,22 +34,20 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
   const total = parsePrice(cart.total);
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200 overflow-hidden sticky top-4">
+    <div className="sticky top-4 overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-neutral-200 bg-neutral-50 flex items-center gap-2">
-        <ShoppingCart className="w-5 h-5 text-neutral-600" />
-        <h2 className="text-lg font-semibold text-neutral-900">
-          Order Summary
-        </h2>
+      <div className="flex items-center gap-2 border-b border-neutral-200 bg-neutral-50 px-6 py-4">
+        <ShoppingCart className="h-5 w-5 text-neutral-600" />
+        <h2 className="text-lg font-semibold text-neutral-900">Order Summary</h2>
       </div>
 
-      <div className="p-6 space-y-6">
+      <div className="space-y-6 p-6">
         {/* Cart Items */}
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-neutral-700 uppercase tracking-wide">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-neutral-700">
             Items ({cart.contents?.itemCount || 0})
           </h3>
-          <div className="space-y-3 max-h-64 overflow-y-auto">
+          <div className="max-h-64 space-y-3 overflow-y-auto">
             {cart.contents?.nodes?.map((item: any) => {
               const product = item.product.node;
               const variation = item.variation?.node;
@@ -59,39 +57,33 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
               return (
                 <div key={item.key} className="flex gap-3">
                   {/* Product Image */}
-                  <div className="flex-shrink-0 w-16 h-16 bg-neutral-100 rounded-lg overflow-hidden">
+                  <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-100">
                     {image ? (
                       <Image
                         src={image.sourceUrl}
                         alt={image.altText || product.name}
                         width={64}
                         height={64}
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-neutral-400 text-xs">
+                      <div className="flex h-full w-full items-center justify-center text-xs text-neutral-400">
                         No Image
                       </div>
                     )}
                   </div>
 
                   {/* Product Details */}
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-medium text-neutral-900 line-clamp-2">
+                  <div className="min-w-0 flex-1">
+                    <h4 className="line-clamp-2 text-sm font-medium text-neutral-900">
                       {product.name}
                     </h4>
                     {variation && (
-                      <p className="text-xs text-neutral-600 mt-0.5">
-                        {variation.name}
-                      </p>
+                      <p className="mt-0.5 text-xs text-neutral-600">{variation.name}</p>
                     )}
-                    <div className="flex items-center justify-between mt-1">
-                      <span className="text-xs text-neutral-500">
-                        Qty: {item.quantity}
-                      </span>
-                      <span className="text-sm font-semibold text-neutral-900">
-                        {item.total}
-                      </span>
+                    <div className="mt-1 flex items-center justify-between">
+                      <span className="text-xs text-neutral-500">Qty: {item.quantity}</span>
+                      <span className="text-sm font-semibold text-neutral-900">{item.total}</span>
                     </div>
                   </div>
                 </div>
@@ -102,14 +94,14 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
           {/* Edit Cart Link */}
           <Link
             href="/cart"
-            className="text-sm text-primary-500 hover:text-primary-600 font-medium transition-colors"
+            className="text-sm font-medium text-primary-500 transition-colors hover:text-primary-600"
           >
             ← Edit Cart
           </Link>
         </div>
 
         {/* Totals */}
-        <div className="space-y-3 pt-4 border-t border-neutral-200">
+        <div className="space-y-3 border-t border-neutral-200 pt-4">
           <div className="flex justify-between text-sm text-neutral-600">
             <span>Subtotal</span>
             <span className="font-medium">${subtotal.toFixed(2)}</span>
@@ -136,7 +128,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
             </span>
           </div>
 
-          <div className="pt-3 border-t border-neutral-200">
+          <div className="border-t border-neutral-200 pt-3">
             <div className="flex justify-between text-lg font-bold text-neutral-900">
               <span>Total</span>
               <span>${total.toFixed(2)}</span>
@@ -145,7 +137,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
         </div>
 
         {/* Security Badge */}
-        <div className="pt-4 border-t border-neutral-200">
+        <div className="border-t border-neutral-200 pt-4">
           <div className="flex items-center justify-center gap-2 text-sm text-neutral-500">
             <span className="text-xl">🔒</span>
             <span>Secure Checkout</span>

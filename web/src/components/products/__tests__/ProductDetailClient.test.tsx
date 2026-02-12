@@ -75,11 +75,7 @@ function renderProductDetail(
   const { useCart, useCartDrawer } = opts;
   return render(
     <ToastProvider>
-      <ProductDetailClient
-        product={product}
-        useCart={useCart}
-        useCartDrawer={useCartDrawer}
-      />
+      <ProductDetailClient product={product} useCart={useCart} useCartDrawer={useCartDrawer} />
     </ToastProvider>
   );
 }
@@ -94,7 +90,7 @@ function renderProductDetail(
  */
 async function selectAttributes({ size, color }: { size?: string; color?: string }) {
   const { act } = await import('@testing-library/react');
-  
+
   if (size) {
     // Size is rendered as radio group (2-4 options: M, L, XL)
     // Radio inputs have the size value as their accessible name from label
@@ -144,7 +140,7 @@ describe('ProductDetailClient', () => {
 
       // Select attributes to match Variant B
       await selectAttributes({ size: 'L', color: 'Blue' });
-      
+
       // The variation should be identified and passed to parent
       // Image update logic is handled by parent component
       await waitFor(() => {
@@ -157,19 +153,19 @@ describe('ProductDetailClient', () => {
   describe('Edge cases', () => {
     it('disables Add to Cart when out of stock', async () => {
       // Make all variations out of stock
-      const outOfStockProduct = { 
-        ...baseProduct, 
+      const outOfStockProduct = {
+        ...baseProduct,
         stockStatus: 'OUT_OF_STOCK',
         variations: baseProduct.variations.map((v: any) => ({
           ...v,
-          stockStatus: 'OUT_OF_STOCK'
-        }))
+          stockStatus: 'OUT_OF_STOCK',
+        })),
       };
       renderProductDetail(outOfStockProduct);
-      
+
       // Select a variation to show the Add to Cart button
       await selectAttributes({ size: 'M', color: 'Red' });
-      
+
       // Button should appear with "Out of Stock" text and be disabled
       const addToCartBtn = await screen.findByRole('button', { name: /Out of Stock/i });
       expect(addToCartBtn).toBeDisabled();
@@ -187,7 +183,7 @@ describe('ProductDetailClient', () => {
       renderProductDetail();
       // Main product image shows initially (no auto-selection)
       expect(screen.getByAltText('Main')).toBeInTheDocument();
-      
+
       // Even after selection, main image remains (image switching handled by parent)
       await selectAttributes({ size: 'M', color: 'Blue' });
       expect(screen.getByAltText('Main')).toBeInTheDocument();
@@ -221,28 +217,31 @@ describe('ProductDetailClient', () => {
         useCart: mockUseCart,
         useCartDrawer: mockUseCartDrawer,
       });
-      
+
       // Select both attributes to match Variant B
       await selectAttributes({ size: 'L', color: 'Blue' });
-      
+
       // Wait for variation to be set by checking for the configuration summary
       // (appears when all attributes are selected)
-      await waitFor(() => {
-        // Look for price update or part number in summary
-        const priceText = screen.getByText(/\$10\.99/i);
-        expect(priceText).toBeInTheDocument();
-      }, { timeout: 2000 });
-      
+      await waitFor(
+        () => {
+          // Look for price update or part number in summary
+          const priceText = screen.getByText(/\$10\.99/i);
+          expect(priceText).toBeInTheDocument();
+        },
+        { timeout: 2000 }
+      );
+
       // Click Add to Cart - use queryByRole to find the specific button
       const addToCartBtn = await screen.findByRole('button', { name: /^Add .* to cart$/i });
       expect(addToCartBtn).toBeInTheDocument();
       fireEvent.click(addToCartBtn);
-      
+
       // Wait for async operation in AddToCartButton
       await waitFor(() => {
         expect(addItemMock).toHaveBeenCalled();
       });
-      
+
       const callArgs = addItemMock.mock.calls[0][0];
       expect(callArgs.variationId).toBe(102);
       expect(callArgs.variationName).toBe('Variant B');
@@ -253,15 +252,15 @@ describe('ProductDetailClient', () => {
 describe('Keyboard navigation and robustness', () => {
   it('allows tabbing to all interactive elements', async () => {
     renderProductDetail();
-    
+
     // For variable products, select a variation first to show Add to Cart button
     await selectAttributes({ size: 'M', color: 'Red' });
-    
+
     // Wait for variation to be applied
     await waitFor(() => {
       expect(screen.queryByRole('button', { name: /^Add .* to cart$/i })).toBeInTheDocument();
     });
-    
+
     const userTabOrder = [
       screen.getByRole('radio', { name: /M Selected/i }),
       screen.getByRole('button', { name: /Select Red/i }),
@@ -331,10 +330,10 @@ describe('Accessibility', () => {
 
   it('Add to Cart button is accessible', async () => {
     renderProductDetail();
-    
+
     // For variable products, must select a variation first
     await selectAttributes({ size: 'L', color: 'Blue' });
-    
+
     // Wait for variation to be applied and button to render
     await waitFor(() => {
       // Use queryByRole to avoid throwing, then check if it exists
@@ -350,7 +349,7 @@ describe('Accessibility', () => {
     renderProductDetail();
     // Main product image renders initially (no auto-selection)
     expect(screen.getByAltText('Main')).toBeInTheDocument();
-    
+
     // After selecting all attributes, variation image should appear
     await selectAttributes({ size: 'L', color: 'Blue' });
     await waitFor(() => {

@@ -21,16 +21,13 @@ export function getSuggestedLanguage(regionCode: RegionCode): LanguageCode {
 /**
  * Get user-friendly message for language suggestion
  */
-export function getLanguageSuggestionMessage(
-  regionCode: RegionCode,
-  languageName: string
-): string {
+export function getLanguageSuggestionMessage(regionCode: RegionCode, languageName: string): string {
   const suggestions: Record<RegionCode, string> = {
     us: `Switch to ${languageName}?`,
     eu: `Switch to ${languageName}?`,
     asia: `Switch to ${languageName}?`,
     mena: `Switch to ${languageName} for this region?`,
   };
-  
+
   return suggestions[regionCode] || `Switch to ${languageName}?`;
 }

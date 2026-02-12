@@ -1,6 +1,6 @@
 /**
  * Cart Page Components
- * 
+ *
  * Full-page shopping cart with item management and checkout
  */
 

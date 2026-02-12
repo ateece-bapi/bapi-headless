@@ -1,6 +1,6 @@
 /**
  * Integration Tests for Payment Confirmation API
- * 
+ *
  * Tests the complete payment → order creation flow
  * Critical for revenue generation - any bugs block sales
  */
@@ -152,7 +152,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
       // Arrange
       const Stripe = (await import('stripe')).default;
       const stripeInstance = new Stripe('test', { apiVersion: '2025-12-15.clover' });
-      
+
       vi.mocked(stripeInstance.paymentIntents.retrieve).mockRejectedValue(
         new Error('Payment intent not found')
       );
@@ -178,7 +178,7 @@ describe('Payment Confirmation API - Integration Tests', () => {
       // Arrange
       const Stripe = (await import('stripe')).default;
       const stripeInstance = new Stripe('test', { apiVersion: '2025-12-15.clover' });
-      
+
       vi.mocked(stripeInstance.paymentIntents.retrieve).mockResolvedValue({
         id: 'pi_test123',
         status: 'requires_payment_method',

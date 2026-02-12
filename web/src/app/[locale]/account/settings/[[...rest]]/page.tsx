@@ -14,19 +14,17 @@ export default async function SettingsPage() {
   return (
     <main className="min-h-screen bg-neutral-50">
       {/* Header */}
-      <section className="w-full bg-white border-b border-neutral-200">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8">
+      <section className="w-full border-b border-neutral-200 bg-white">
+        <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
           <Link
             href="/account"
-            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors mb-6"
+            className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
-            <ArrowLeft className="w-4 h-4" strokeWidth={2.5} />
+            <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
             Back to Dashboard
           </Link>
-          <h1 className="text-3xl lg:text-4xl font-bold text-neutral-900">
-            Account Settings
-          </h1>
-          <p className="text-neutral-600 mt-2">
+          <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">Account Settings</h1>
+          <p className="mt-2 text-neutral-600">
             Manage your profile, security, and account preferences
           </p>
         </div>
@@ -34,28 +32,29 @@ export default async function SettingsPage() {
 
       {/* Settings Content */}
       <section className="w-full py-12">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
             {/* Clerk UserProfile Component (dynamically loaded) */}
             <UserProfileClient />
           </div>
 
           {/* Help Section */}
-          <div className="mt-8 bg-primary-50 border border-primary-200 rounded-lg p-6">
-            <h3 className="font-bold text-primary-900 mb-2">Need Help?</h3>
-            <p className="text-sm text-primary-800 mb-4">
-              If you&apos;re having trouble with your account settings, our support team is here to help.
+          <div className="mt-8 rounded-lg border border-primary-200 bg-primary-50 p-6">
+            <h3 className="mb-2 font-bold text-primary-900">Need Help?</h3>
+            <p className="mb-4 text-sm text-primary-800">
+              If you&apos;re having trouble with your account settings, our support team is here to
+              help.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/support"
-                className="inline-flex items-center justify-center px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-sm rounded-lg transition-colors"
+                className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
               >
                 Contact Support
               </Link>
               <Link
                 href="/resources"
-                className="inline-flex items-center justify-center px-4 py-2 border border-primary-300 text-primary-700 hover:bg-white font-semibold text-sm rounded-lg transition-colors"
+                className="inline-flex items-center justify-center rounded-lg border border-primary-300 px-4 py-2 text-sm font-semibold text-primary-700 transition-colors hover:bg-white"
               >
                 Help Center
               </Link>

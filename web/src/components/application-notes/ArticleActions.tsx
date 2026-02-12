@@ -38,19 +38,19 @@ export function ArticleActions({ title }: ArticleActionsProps) {
     <div className="flex items-center gap-2">
       <button
         onClick={handlePrint}
-        className="p-2 text-neutral-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+        className="rounded-lg p-2 text-neutral-600 transition-colors hover:bg-primary-50 hover:text-primary-600"
         aria-label="Print article"
         title="Print"
       >
-        <Printer className="w-4 h-4" />
+        <Printer className="h-4 w-4" />
       </button>
       <button
         onClick={handleShare}
-        className="p-2 text-neutral-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+        className="rounded-lg p-2 text-neutral-600 transition-colors hover:bg-primary-50 hover:text-primary-600"
         aria-label="Share article"
         title="Share"
       >
-        <Share2 className="w-4 h-4" />
+        <Share2 className="h-4 w-4" />
       </button>
     </div>
   );

@@ -1,10 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import {
-  AppError,
-  ERROR_MESSAGES,
-  getUserErrorMessage,
-  logError,
-} from '../errors';
+import { AppError, ERROR_MESSAGES, getUserErrorMessage, logError } from '../errors';
 
 describe('Error Handling Utilities', () => {
   describe('AppError', () => {
@@ -24,21 +19,13 @@ describe('Error Handling Utilities', () => {
     });
 
     it('defaults to 500 status code', () => {
-      const error = new AppError(
-        'Technical message',
-        'User message'
-      );
+      const error = new AppError('Technical message', 'User message');
 
       expect(error.statusCode).toBe(500);
     });
 
     it('allows optional code', () => {
-      const error = new AppError(
-        'Technical message',
-        'User message',
-        undefined,
-        404
-      );
+      const error = new AppError('Technical message', 'User message', undefined, 404);
 
       expect(error.code).toBeUndefined();
       expect(error.statusCode).toBe(404);
@@ -78,12 +65,7 @@ describe('Error Handling Utilities', () => {
   describe('getUserErrorMessage', () => {
     describe('AppError handling', () => {
       it('extracts message from AppError', () => {
-        const error = new AppError(
-          'Technical error',
-          'User-friendly message',
-          'CODE',
-          404
-        );
+        const error = new AppError('Technical error', 'User-friendly message', 'CODE', 404);
 
         const result = getUserErrorMessage(error);
 
@@ -230,12 +212,7 @@ describe('Error Handling Utilities', () => {
     });
 
     it('logs AppError with all details', () => {
-      const error = new AppError(
-        'Technical message',
-        'User message',
-        'ERROR_CODE',
-        404
-      );
+      const error = new AppError('Technical message', 'User message', 'ERROR_CODE', 404);
       logError('app.error', error);
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
@@ -300,10 +277,7 @@ describe('Error Handling Utilities', () => {
       const error = new Error('Test');
       logError('payment.confirm_failed', error);
 
-      expect(consoleErrorSpy).toHaveBeenCalledWith(
-        '[payment.confirm_failed]',
-        expect.any(Object)
-      );
+      expect(consoleErrorSpy).toHaveBeenCalledWith('[payment.confirm_failed]', expect.any(Object));
     });
 
     it('handles errors without stack trace', () => {

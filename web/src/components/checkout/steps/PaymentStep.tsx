@@ -2,7 +2,7 @@
 
 /**
  * Payment Step Component
- * 
+ *
  * Step 2 of checkout: Select payment method and process payment
  * - Payment method selection (Credit Card via Stripe, PayPal)
  * - Integrated Stripe Elements for card payment
@@ -18,27 +18,27 @@ import { useToast } from '@/components/ui/Toast';
 
 // Dynamic imports for Stripe components (reduces bundle size by ~95KB)
 const StripeProvider = dynamic(
-  () => import('@/components/payment').then(mod => ({ default: mod.StripeProvider })),
+  () => import('@/components/payment').then((mod) => ({ default: mod.StripeProvider })),
   {
     loading: () => (
       <div className="flex items-center justify-center py-8">
-        <Loader2 className="w-6 h-6 animate-spin text-primary-500" />
+        <Loader2 className="h-6 w-6 animate-spin text-primary-500" />
         <span className="ml-2 text-neutral-600">Loading payment form...</span>
       </div>
     ),
-    ssr: false
+    ssr: false,
   }
 );
 
 const StripePaymentForm = dynamic(
-  () => import('@/components/payment').then(mod => ({ default: mod.StripePaymentForm })),
+  () => import('@/components/payment').then((mod) => ({ default: mod.StripePaymentForm })),
   {
     loading: () => (
       <div className="flex items-center justify-center py-4">
-        <Loader2 className="w-5 h-5 animate-spin text-primary-500" />
+        <Loader2 className="h-5 w-5 animate-spin text-primary-500" />
       </div>
     ),
-    ssr: false
+    ssr: false,
   }
 );
 
@@ -64,16 +64,9 @@ const paymentMethods = [
   },
 ];
 
-export default function PaymentStep({
-  data,
-  onNext,
-  onBack,
-  onUpdateData,
-}: PaymentStepProps) {
+export default function PaymentStep({ data, onNext, onBack, onUpdateData }: PaymentStepProps) {
   const { showToast } = useToast();
-  const [selectedMethod, setSelectedMethod] = useState<string>(
-    data.paymentMethod?.id || ''
-  );
+  const [selectedMethod, setSelectedMethod] = useState<string>(data.paymentMethod?.id || '');
   const [clientSecret, setClientSecret] = useState<string>('');
   const [isLoadingIntent, setIsLoadingIntent] = useState(false);
   const [cartTotal, setCartTotal] = useState<number>(0);
@@ -88,21 +81,21 @@ export default function PaymentStep({
           logger.debug('[PaymentStep] No cart data found');
           return;
         }
-        
+
         const parsed = JSON.parse(localCartData);
         const items = parsed.state?.items || [];
-        
+
         if (items.length === 0) {
           logger.debug('[PaymentStep] Cart is empty');
           return;
         }
-        
+
         // Calculate total from items
         const subtotal = items.reduce((sum: number, item: any) => {
           const price = parseFloat(item.price.replace('$', '').replace(',', ''));
-          return sum + (price * item.quantity);
+          return sum + price * item.quantity;
         }, 0);
-        
+
         logger.debug('[PaymentStep] Cart total calculated', { subtotal });
         setCartTotal(subtotal);
       } catch (error) {
@@ -122,7 +115,7 @@ export default function PaymentStep({
 
   const createPaymentIntent = async () => {
     setIsLoadingIntent(true);
-    
+
     try {
       const response = await fetch('/api/payment/create-intent', {
         method: 'POST',
@@ -141,7 +134,11 @@ export default function PaymentStep({
       if (result.success && result.clientSecret) {
         setClientSecret(result.clientSecret);
       } else {
-        showToast('error', 'Payment Setup Failed', result.message || 'Unable to initialize payment');
+        showToast(
+          'error',
+          'Payment Setup Failed',
+          result.message || 'Unable to initialize payment'
+        );
       }
     } catch (error) {
       showToast('error', 'Error', 'Failed to set up payment. Please try again.');
@@ -168,7 +165,7 @@ export default function PaymentStep({
     onUpdateData({
       paymentIntentId,
     });
-    
+
     showToast('success', 'Payment Confirmed', 'Proceeding to order review');
     onNext();
   };
@@ -179,11 +176,7 @@ export default function PaymentStep({
 
   const handlePayPalNext = () => {
     if (!selectedMethod) {
-      showToast(
-        'warning',
-        'Select Payment Method',
-        'Please select a payment method'
-      );
+      showToast('warning', 'Select Payment Method', 'Please select a payment method');
       return;
     }
 
@@ -195,11 +188,9 @@ export default function PaymentStep({
     <div className="space-y-8">
       {/* Payment Method Selection */}
       <div>
-        <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-          Payment Method
-        </h2>
+        <h2 className="mb-6 text-2xl font-bold text-neutral-900">Payment Method</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {paymentMethods.map((method) => {
             const Icon = method.icon;
             return (
@@ -207,20 +198,17 @@ export default function PaymentStep({
                 key={method.id}
                 type="button"
                 onClick={() => handleMethodSelect(method.id)}
-                className={`
-                  relative p-6 border-2 rounded-xl text-left transition-all
-                  ${
-                    selectedMethod === method.id
-                      ? 'border-primary-500 bg-primary-50'
-                      : 'border-neutral-200 hover:border-neutral-300 bg-white'
-                  }
-                `}
+                className={`relative rounded-xl border-2 p-6 text-left transition-all ${
+                  selectedMethod === method.id
+                    ? 'border-primary-500 bg-primary-50'
+                    : 'border-neutral-200 bg-white hover:border-neutral-300'
+                } `}
               >
                 {/* Selected Indicator */}
                 {selectedMethod === method.id && (
-                  <div className="absolute top-4 right-4 w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
+                  <div className="absolute right-4 top-4 flex h-6 w-6 items-center justify-center rounded-full bg-primary-500">
                     <svg
-                      className="w-4 h-4 text-white"
+                      className="h-4 w-4 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -236,15 +224,11 @@ export default function PaymentStep({
                 )}
 
                 <Icon
-                  className={`w-8 h-8 mb-3 ${
-                    selectedMethod === method.id
-                      ? 'text-primary-500'
-                      : 'text-neutral-400'
+                  className={`mb-3 h-8 w-8 ${
+                    selectedMethod === method.id ? 'text-primary-500' : 'text-neutral-400'
                   }`}
                 />
-                <h3 className="text-lg font-semibold text-neutral-900 mb-1">
-                  {method.title}
-                </h3>
+                <h3 className="mb-1 text-lg font-semibold text-neutral-900">{method.title}</h3>
                 <p className="text-sm text-neutral-600">{method.description}</p>
               </button>
             );
@@ -254,22 +238,17 @@ export default function PaymentStep({
 
       {/* Stripe Credit Card Form */}
       {selectedMethod === 'credit_card' && (
-        <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-6">
-          <h3 className="text-lg font-semibold text-neutral-900 mb-4">
-            Card Details
-          </h3>
+        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
+          <h3 className="mb-4 text-lg font-semibold text-neutral-900">Card Details</h3>
 
           {isLoadingIntent ? (
             <div className="flex items-center justify-center py-8">
-              <Loader2 className="w-8 h-8 animate-spin text-primary-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-primary-500" />
               <span className="ml-3 text-neutral-600">Setting up payment...</span>
             </div>
           ) : clientSecret ? (
             <StripeProvider clientSecret={clientSecret}>
-              <StripePaymentForm
-                onSuccess={handleStripeSuccess}
-                onError={handleStripeError}
-              />
+              <StripePaymentForm onSuccess={handleStripeSuccess} onError={handleStripeError} />
             </StripeProvider>
           ) : (
             <div className="py-8 text-center text-neutral-600">
@@ -278,13 +257,11 @@ export default function PaymentStep({
           )}
 
           {/* Security Note */}
-          <div className="flex items-start gap-2 bg-primary-50 border border-primary-200 rounded-lg p-4 mt-6">
+          <div className="mt-6 flex items-start gap-2 rounded-lg border border-primary-200 bg-primary-50 p-4">
             <span className="text-xl">🔒</span>
             <div>
-              <p className="text-sm font-medium text-primary-900">
-                Your payment is secure
-              </p>
-              <p className="text-xs text-primary-700 mt-1">
+              <p className="text-sm font-medium text-primary-900">Your payment is secure</p>
+              <p className="mt-1 text-xs text-primary-700">
                 Powered by Stripe with 256-bit SSL encryption
               </p>
             </div>
@@ -294,31 +271,32 @@ export default function PaymentStep({
 
       {/* PayPal Info */}
       {selectedMethod === 'paypal' && (
-        <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-6 space-y-4">
+        <div className="space-y-4 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
           <p className="text-sm text-neutral-600">
-            You will be redirected to PayPal to complete your purchase securely after reviewing your order.
+            You will be redirected to PayPal to complete your purchase securely after reviewing your
+            order.
           </p>
-          
+
           <button
             type="button"
             onClick={handlePayPalNext}
-            className="w-full btn-bapi-primary px-6 py-3 rounded-xl flex items-center justify-center gap-2"
+            className="btn-bapi-primary flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3"
           >
             Continue to Review
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="h-5 w-5" />
           </button>
         </div>
       )}
 
       {/* Back Button (only show if not in Stripe payment) */}
       {selectedMethod !== 'credit_card' && (
-        <div className="flex justify-between pt-6 border-t border-neutral-200">
+        <div className="flex justify-between border-t border-neutral-200 pt-6">
           <button
             type="button"
             onClick={onBack}
-            className="px-8 py-4 bg-neutral-200 hover:bg-neutral-300 text-neutral-900 font-bold rounded-xl transition-colors flex items-center gap-2"
+            className="flex items-center gap-2 rounded-xl bg-neutral-200 px-8 py-4 font-bold text-neutral-900 transition-colors hover:bg-neutral-300"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="h-5 w-5" />
             Back
           </button>
         </div>

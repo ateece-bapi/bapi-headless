@@ -9,7 +9,7 @@ const MAX_ITEMS = 5;
 
 /**
  * Hook for tracking recently viewed products
- * 
+ *
  * Features:
  * - Add product to recently viewed
  * - Max 5 products (FIFO)
@@ -46,10 +46,10 @@ export function useRecentlyViewed() {
     setRecentlyViewed((prev) => {
       // Remove if already exists (will add to front)
       const filtered = prev.filter((p) => p.id !== product.id);
-      
+
       // Add to front, limit to MAX_ITEMS
       const updated = [product, ...filtered].slice(0, MAX_ITEMS);
-      
+
       return updated;
     });
   };

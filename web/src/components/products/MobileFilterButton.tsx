@@ -15,7 +15,7 @@ interface MobileFilterButtonProps {
 
 /**
  * Mobile filter button with drawer control
- * 
+ *
  * Counts active filters and displays badge
  * Opens mobile filter drawer on click
  */
@@ -36,13 +36,13 @@ export function MobileFilterButton({
       <button
         type="button"
         onClick={() => setIsDrawerOpen(true)}
-        className="w-full bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-lg"
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-primary-600"
         aria-label={`Open filters${activeFilterCount > 0 ? ` (${activeFilterCount} active)` : ''}`}
       >
-        <SlidersHorizontal className="w-5 h-5" />
+        <SlidersHorizontal className="h-5 w-5" />
         <span>Filters</span>
         {activeFilterCount > 0 && (
-          <span className="inline-flex items-center justify-center min-w-[24px] h-6 px-2 rounded-full bg-white text-primary-600 text-sm font-bold">
+          <span className="inline-flex h-6 min-w-[24px] items-center justify-center rounded-full bg-white px-2 text-sm font-bold text-primary-600">
             {activeFilterCount}
           </span>
         )}

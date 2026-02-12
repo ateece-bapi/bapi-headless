@@ -3,7 +3,8 @@ import { FileText, Building2, Award, TrendingUp } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Case Studies | BAPI Resources',
-  description: 'Real-world success stories and case studies featuring BAPI building automation solutions.',
+  description:
+    'Real-world success stories and case studies featuring BAPI building automation solutions.',
 };
 
 export default function CaseStudiesPage() {
@@ -36,14 +37,12 @@ export default function CaseStudiesPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <FileText className="w-16 h-16 mx-auto mb-4" />
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-              Case Studies
-            </h1>
-            <p className="text-xl max-w-content mx-auto text-primary-50">
+            <FileText className="mx-auto mb-4 h-16 w-16" />
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Case Studies</h1>
+            <p className="mx-auto max-w-content text-xl text-primary-50">
               Real-world success stories with BAPI solutions
             </p>
           </div>
@@ -51,41 +50,39 @@ export default function CaseStudiesPage() {
       </section>
 
       <section className="py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8">
             {caseStudies.map((study) => (
               <article
                 key={study.title}
-                className="bg-white border-2 border-neutral-200 rounded-xl p-8 hover:border-primary-500 transition-all"
+                className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all hover:border-primary-500"
               >
                 <div className="flex items-start gap-6">
-                  <div className="bg-primary-50 p-4 rounded-xl flex-shrink-0">
-                    <study.icon className="w-10 h-10 text-primary-500" />
+                  <div className="flex-shrink-0 rounded-xl bg-primary-50 p-4">
+                    <study.icon className="h-10 w-10 text-primary-500" />
                   </div>
                   <div className="flex-1">
                     <div className="mb-2">
-                      <span className="inline-block bg-accent-500 text-neutral-900 px-3 py-1 rounded-lg text-sm font-semibold">
+                      <span className="inline-block rounded-lg bg-accent-500 px-3 py-1 text-sm font-semibold text-neutral-900">
                         {study.industry}
                       </span>
                     </div>
-                    <h2 className="text-2xl font-bold text-neutral-900 mb-4">
-                      {study.title}
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <h2 className="mb-4 text-2xl font-bold text-neutral-900">{study.title}</h2>
+                    <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
                       <div>
-                        <h3 className="font-bold text-neutral-900 mb-2">Challenge</h3>
-                        <p className="text-neutral-600 text-sm">{study.challenge}</p>
+                        <h3 className="mb-2 font-bold text-neutral-900">Challenge</h3>
+                        <p className="text-sm text-neutral-600">{study.challenge}</p>
                       </div>
                       <div>
-                        <h3 className="font-bold text-neutral-900 mb-2">Solution</h3>
-                        <p className="text-neutral-600 text-sm">{study.solution}</p>
+                        <h3 className="mb-2 font-bold text-neutral-900">Solution</h3>
+                        <p className="text-sm text-neutral-600">{study.solution}</p>
                       </div>
                       <div>
-                        <h3 className="font-bold text-neutral-900 mb-2">Results</h3>
-                        <p className="text-neutral-600 text-sm">{study.results}</p>
+                        <h3 className="mb-2 font-bold text-neutral-900">Results</h3>
+                        <p className="text-sm text-neutral-600">{study.results}</p>
                       </div>
                     </div>
-                    <button className="text-primary-500 hover:text-primary-600 font-semibold">
+                    <button className="font-semibold text-primary-500 hover:text-primary-600">
                       Read Full Case Study →
                     </button>
                   </div>
@@ -97,16 +94,14 @@ export default function CaseStudiesPage() {
       </section>
 
       <section className="bg-neutral-50 py-12">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">
-            Ready to Start Your Project?
-          </h2>
-          <p className="text-neutral-600 mb-6">
+        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-4 text-2xl font-bold text-neutral-900">Ready to Start Your Project?</h2>
+          <p className="mb-6 text-neutral-600">
             Let us help you design a solution for your building
           </p>
           <a
             href="/request-quote"
-            className="inline-block bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold px-8 py-3 rounded-xl transition-colors"
+            className="inline-block rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"
           >
             Request a Quote
           </a>

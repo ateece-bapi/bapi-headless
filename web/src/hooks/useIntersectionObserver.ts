@@ -10,17 +10,17 @@ interface UseIntersectionObserverOptions {
 
 /**
  * Hook for Intersection Observer API
- * 
+ *
  * Observes when an element enters the viewport
  * Useful for lazy loading, animations, analytics
- * 
+ *
  * @param options - IntersectionObserver options
  * @returns ref to attach to element and isVisible state
- * 
+ *
  * @example
  * ```tsx
  * const { ref, isVisible } = useIntersectionObserver();
- * 
+ *
  * <div ref={ref}>
  *   {isVisible && <ExpensiveComponent />}
  * </div>
@@ -29,11 +29,7 @@ interface UseIntersectionObserverOptions {
 export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
   options: UseIntersectionObserverOptions = {}
 ) {
-  const {
-    threshold = 0,
-    rootMargin = '50px',
-    freezeOnceVisible = false,
-  } = options;
+  const { threshold = 0, rootMargin = '50px', freezeOnceVisible = false } = options;
 
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<T>(null);

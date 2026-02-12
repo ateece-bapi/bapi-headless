@@ -18,7 +18,7 @@ const sortOptions: SortOption[] = [
     value: 'default',
     label: 'Default',
     icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -32,7 +32,7 @@ const sortOptions: SortOption[] = [
     value: 'name-asc',
     label: 'Name: A-Z',
     icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -46,7 +46,7 @@ const sortOptions: SortOption[] = [
     value: 'name-desc',
     label: 'Name: Z-A',
     icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -60,7 +60,7 @@ const sortOptions: SortOption[] = [
     value: 'price-asc',
     label: 'Price: Low to High',
     icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -74,7 +74,7 @@ const sortOptions: SortOption[] = [
     value: 'price-desc',
     label: 'Price: High to Low',
     icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -93,25 +93,25 @@ export function ProductSort({ totalProducts }: ProductSortProps) {
 
   const handleSortChange = (value: string) => {
     const params = new URLSearchParams(searchParams?.toString() || '');
-    
+
     if (value === 'default') {
       params.delete('sort');
     } else {
       params.set('sort', value);
     }
-    
+
     // Reset to page 1 when sorting changes
     params.delete('page');
-    
+
     router.push(`?${params.toString()}`, { scroll: false });
   };
 
   return (
-    <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
+    <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
       {/* Product Count */}
       <div className="flex items-center gap-2 text-sm text-neutral-600">
         <svg
-          className="w-5 h-5 text-primary-500"
+          className="h-5 w-5 text-primary-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -124,7 +124,7 @@ export function ProductSort({ totalProducts }: ProductSortProps) {
           />
         </svg>
         <span className="font-medium">
-          Showing <span className="text-primary-600 font-bold">{totalProducts}</span>{' '}
+          Showing <span className="font-bold text-primary-600">{totalProducts}</span>{' '}
           {totalProducts === 1 ? 'product' : 'products'}
         </span>
       </div>
@@ -138,7 +138,7 @@ export function ProductSort({ totalProducts }: ProductSortProps) {
           id="sort"
           value={currentSort}
           onChange={(e) => handleSortChange(e.target.value)}
-          className="px-4 py-2 pr-10 bg-white border-2 border-neutral-200 hover:border-primary-500 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 rounded-lg text-sm font-medium text-neutral-900 cursor-pointer transition-all duration-200"
+          className="cursor-pointer rounded-lg border-2 border-neutral-200 bg-white px-4 py-2 pr-10 text-sm font-medium text-neutral-900 transition-all duration-200 hover:border-primary-500 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
         >
           {sortOptions.map((option) => (
             <option key={option.value} value={option.value}>

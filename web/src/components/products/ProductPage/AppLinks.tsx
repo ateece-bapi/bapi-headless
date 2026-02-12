@@ -13,7 +13,7 @@ export default function AppLinks({ product }: AppLinksProps) {
           href={product.iosAppUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 transition"
+          className="inline-block rounded bg-primary-600 px-4 py-2 text-white transition hover:bg-primary-700"
         >
           Download iOS App
         </a>
@@ -23,7 +23,7 @@ export default function AppLinks({ product }: AppLinksProps) {
           href={product.androidAppUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+          className="inline-block rounded bg-green-600 px-4 py-2 text-white transition hover:bg-green-700"
         >
           Download Android App
         </a>

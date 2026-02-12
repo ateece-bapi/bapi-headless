@@ -22,7 +22,7 @@ interface QuantitySelectorProps {
 
 /**
  * Quantity selector with +/- buttons and manual input
- * 
+ *
  * Features:
  * - Increment/decrement buttons
  * - Manual input with validation
@@ -30,7 +30,7 @@ interface QuantitySelectorProps {
  * - Min/max limits
  * - Disabled and loading states
  * - Accessible with keyboard
- * 
+ *
  * @param initialQuantity - Starting quantity (default: 1)
  * @param min - Minimum quantity allowed (default: 1)
  * @param max - Maximum quantity allowed (based on stock)
@@ -51,15 +51,15 @@ export default function QuantitySelector({
   const [quantity, setQuantity] = useState(initialQuantity);
   const [inputValue, setInputValue] = useState(String(initialQuantity));
   const [error, setError] = useState<string | null>(null);
-  
+
   const isOutOfStock = stockStatus === 'outofstock';
   const effectiveMax = max ?? 999;
   const effectiveMin = min < 1 ? 1 : min;
-  
+
   // Update quantity and notify parent
   const updateQuantity = (newQuantity: number) => {
     let validQuantity = newQuantity;
-    
+
     // Validate against min/max
     if (validQuantity < effectiveMin) {
       validQuantity = effectiveMin;
@@ -70,43 +70,43 @@ export default function QuantitySelector({
     } else {
       setError(null);
     }
-    
+
     setQuantity(validQuantity);
     setInputValue(String(validQuantity));
     onChange(validQuantity);
-    
+
     // Clear error after 3 seconds
     if (error) {
       setTimeout(() => setError(null), 3000);
     }
   };
-  
+
   // Handle increment
   const handleIncrement = () => {
     if (quantity < effectiveMax && !disabled && !loading && !isOutOfStock) {
       updateQuantity(quantity + 1);
     }
   };
-  
+
   // Handle decrement
   const handleDecrement = () => {
     if (quantity > effectiveMin && !disabled && !loading && !isOutOfStock) {
       updateQuantity(quantity - 1);
     }
   };
-  
+
   // Handle manual input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
-    
+
     // Only update if valid number
     const num = parseInt(value, 10);
     if (!isNaN(num) && num > 0) {
       updateQuantity(num);
     }
   };
-  
+
   // Handle input blur (validate and correct)
   const handleInputBlur = () => {
     const num = parseInt(inputValue, 10);
@@ -118,7 +118,7 @@ export default function QuantitySelector({
       updateQuantity(num);
     }
   };
-  
+
   // Keyboard shortcuts
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'ArrowUp') {
@@ -129,7 +129,7 @@ export default function QuantitySelector({
       handleDecrement();
     }
   };
-  
+
   // Reset when stock status changes
   useEffect(() => {
     if (isOutOfStock) {
@@ -137,7 +137,7 @@ export default function QuantitySelector({
       setInputValue('0');
     }
   }, [isOutOfStock]);
-  
+
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-2">
@@ -145,18 +145,16 @@ export default function QuantitySelector({
         <button
           onClick={handleDecrement}
           disabled={disabled || loading || quantity <= effectiveMin || isOutOfStock}
-          className={`
-            w-10 h-10 rounded-lg border-2 flex items-center justify-center transition-all
-            ${disabled || loading || quantity <= effectiveMin || isOutOfStock
-              ? 'border-neutral-200 bg-neutral-50 text-neutral-300 cursor-not-allowed'
-              : 'border-neutral-300 bg-white hover:border-primary-500 hover:bg-primary-50 text-neutral-700'
-            }
-          `}
+          className={`flex h-10 w-10 items-center justify-center rounded-lg border-2 transition-all ${
+            disabled || loading || quantity <= effectiveMin || isOutOfStock
+              ? 'cursor-not-allowed border-neutral-200 bg-neutral-50 text-neutral-300'
+              : 'border-neutral-300 bg-white text-neutral-700 hover:border-primary-500 hover:bg-primary-50'
+          } `}
           aria-label="Decrease quantity"
         >
-          <Minus className="w-4 h-4" />
+          <Minus className="h-4 w-4" />
         </button>
-        
+
         {/* Quantity input */}
         <input
           type="number"
@@ -167,61 +165,47 @@ export default function QuantitySelector({
           onBlur={handleInputBlur}
           onKeyDown={handleKeyDown}
           disabled={disabled || loading || isOutOfStock}
-          className={`
-            w-16 h-10 text-center text-lg font-semibold rounded-lg border-2 transition-all
-            ${disabled || loading || isOutOfStock
-              ? 'border-neutral-200 bg-neutral-50 text-neutral-400 cursor-not-allowed'
-              : 'border-neutral-300 bg-white text-neutral-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500'
-            }
-            /* Hide spinner arrows */
-            [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none
-          `}
+          className={`h-10 w-16 rounded-lg border-2 text-center text-lg font-semibold transition-all ${
+            disabled || loading || isOutOfStock
+              ? 'cursor-not-allowed border-neutral-200 bg-neutral-50 text-neutral-400'
+              : 'border-neutral-300 bg-white text-neutral-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500'
+          } /* Hide spinner arrows */ [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
           aria-label="Quantity"
         />
-        
+
         {/* Increment button */}
         <button
           onClick={handleIncrement}
           disabled={disabled || loading || quantity >= effectiveMax || isOutOfStock}
-          className={`
-            w-10 h-10 rounded-lg border-2 flex items-center justify-center transition-all
-            ${disabled || loading || quantity >= effectiveMax || isOutOfStock
-              ? 'border-neutral-200 bg-neutral-50 text-neutral-300 cursor-not-allowed'
-              : 'border-neutral-300 bg-white hover:border-primary-500 hover:bg-primary-50 text-neutral-700'
-            }
-          `}
+          className={`flex h-10 w-10 items-center justify-center rounded-lg border-2 transition-all ${
+            disabled || loading || quantity >= effectiveMax || isOutOfStock
+              ? 'cursor-not-allowed border-neutral-200 bg-neutral-50 text-neutral-300'
+              : 'border-neutral-300 bg-white text-neutral-700 hover:border-primary-500 hover:bg-primary-50'
+          } `}
           aria-label="Increase quantity"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="h-4 w-4" />
         </button>
-        
+
         {/* Loading spinner */}
         {loading && (
           <div className="ml-2">
-            <div className="animate-spin rounded-full h-5 w-5 border-2 border-primary-500 border-t-transparent" />
+            <div className="h-5 w-5 animate-spin rounded-full border-2 border-primary-500 border-t-transparent" />
           </div>
         )}
       </div>
-      
+
       {/* Stock limit indicator */}
       {max && quantity >= max && (
-        <p className="text-sm text-warning-600">
-          Maximum available: {max}
-        </p>
+        <p className="text-sm text-warning-600">Maximum available: {max}</p>
       )}
-      
+
       {/* Error message */}
-      {error && (
-        <p className="text-sm text-error-600">
-          {error}
-        </p>
-      )}
-      
+      {error && <p className="text-sm text-error-600">{error}</p>}
+
       {/* Out of stock message */}
       {isOutOfStock && (
-        <p className="text-sm text-error-600 font-medium">
-          This product is currently out of stock
-        </p>
+        <p className="text-sm font-medium text-error-600">This product is currently out of stock</p>
       )}
     </div>
   );

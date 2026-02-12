@@ -1,31 +1,31 @@
 export default function ProductDetailLoading() {
   return (
-    <div className="container mx-auto px-4 py-8 animate-pulse">
+    <div className="container mx-auto animate-pulse px-4 py-8">
       {/* Breadcrumb skeleton */}
-      <div className="h-4 w-64 bg-gray-200 rounded mb-8" />
-      
+      <div className="mb-8 h-4 w-64 rounded bg-gray-200" />
+
       {/* Product hero skeleton */}
-      <div className="grid md:grid-cols-2 gap-12">
+      <div className="grid gap-12 md:grid-cols-2">
         {/* Image skeleton */}
-        <div className="aspect-square bg-gray-200 rounded-2xl" />
-        
+        <div className="aspect-square rounded-2xl bg-gray-200" />
+
         {/* Details skeleton */}
         <div className="space-y-4">
-          <div className="h-10 bg-gray-200 rounded w-3/4" />
-          <div className="h-8 bg-gray-300 rounded w-32" />
-          <div className="h-24 bg-gray-200 rounded" />
-          <div className="h-12 bg-primary-200 rounded w-40" />
+          <div className="h-10 w-3/4 rounded bg-gray-200" />
+          <div className="h-8 w-32 rounded bg-gray-300" />
+          <div className="h-24 rounded bg-gray-200" />
+          <div className="h-12 w-40 rounded bg-primary-200" />
         </div>
       </div>
-      
+
       {/* Tabs skeleton */}
       <div className="mt-12">
-        <div className="flex gap-4 mb-4">
-          <div className="h-10 w-32 bg-gray-200 rounded" />
-          <div className="h-10 w-32 bg-gray-200 rounded" />
-          <div className="h-10 w-32 bg-gray-200 rounded" />
+        <div className="mb-4 flex gap-4">
+          <div className="h-10 w-32 rounded bg-gray-200" />
+          <div className="h-10 w-32 rounded bg-gray-200" />
+          <div className="h-10 w-32 rounded bg-gray-200" />
         </div>
-        <div className="h-64 bg-gray-200 rounded" />
+        <div className="h-64 rounded bg-gray-200" />
       </div>
     </div>
   );

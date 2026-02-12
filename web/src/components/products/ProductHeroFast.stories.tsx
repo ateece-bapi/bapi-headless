@@ -5,7 +5,7 @@ import { StockStatusEnum } from '@/lib/graphql/generated';
 
 /**
  * ProductHeroFast Component Stories
- * 
+ *
  * Displays the main product hero section with image, title, price, and description.
  * Uses MSW to mock WordPress GraphQL responses for isolated component testing.
  */
@@ -30,12 +30,14 @@ const mockProductDefault: NonNullable<GetProductBySlugQuery['product']> = {
   databaseId: 1234,
   name: 'Temperature Sensor - BA/10K-3-O-12',
   slug: 'temperature-sensor-ba-10k-3-o-12',
-  description: '<p>Professional building automation temperature sensor with 10K Type III thermistor. Precision accuracy for HVAC applications.</p>',
+  description:
+    '<p>Professional building automation temperature sensor with 10K Type III thermistor. Precision accuracy for HVAC applications.</p>',
   shortDescription: '<p>10K Type III thermistor, outdoor rated, 12" leads</p>',
   image: {
     __typename: 'MediaItem',
     id: 'cG9zdDo1Njc4',
-    sourceUrl: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg',
+    sourceUrl:
+      'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg',
     altText: 'BAPI Temperature Sensor',
     mediaDetails: {
       __typename: 'MediaDetails',
@@ -63,7 +65,7 @@ export const Default: Story = {
 
 /**
  * Product with missing image (edge case)
- * 
+ *
  * Tests fallback UI when no product image is available.
  */
 export const NoImage: Story = {
@@ -81,7 +83,7 @@ export const NoImage: Story = {
 
 /**
  * Product with very long title (edge case)
- * 
+ *
  * Tests text wrapping and layout stability with lengthy product names.
  */
 export const LongTitle: Story = {
@@ -98,7 +100,7 @@ export const LongTitle: Story = {
 
 /**
  * Product without short description (edge case)
- * 
+ *
  * Tests layout when short description is missing from WordPress.
  */
 export const NoDescription: Story = {
@@ -116,7 +118,7 @@ export const NoDescription: Story = {
 
 /**
  * Out of stock product (edge case)
- * 
+ *
  * Tests display when product is unavailable for purchase.
  */
 export const OutOfStock: Story = {
@@ -134,7 +136,7 @@ export const OutOfStock: Story = {
 
 /**
  * Product on sale (price highlighting)
- * 
+ *
  * Tests display with sale price and regular price strikethrough.
  */
 export const OnSale: Story = {
@@ -155,7 +157,7 @@ export const OnSale: Story = {
 
 /**
  * Product with HTML in description (sanitization test)
- * 
+ *
  * Tests XSS protection and HTML sanitization from WordPress content.
  */
 export const HtmlInDescription: Story = {
@@ -166,7 +168,8 @@ export const HtmlInDescription: Story = {
       databaseId: 3333,
       name: 'Air Quality Sensor with Rich Content',
       slug: 'air-quality-sensor-html',
-      shortDescription: '<p>Features <strong>bold text</strong>, <em>italic text</em>, and <a href="#">safe links</a>. <script>alert("XSS")</script> should be removed.</p>',
+      shortDescription:
+        '<p>Features <strong>bold text</strong>, <em>italic text</em>, and <a href="#">safe links</a>. <script>alert("XSS")</script> should be removed.</p>',
     },
   },
 };

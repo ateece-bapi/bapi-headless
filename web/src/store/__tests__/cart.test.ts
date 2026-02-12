@@ -1,12 +1,12 @@
 /**
  * Integration Tests for Cart Store (Zustand State Management)
- * 
+ *
  * Tests the cart state management logic including:
  * - Add/remove/update operations
  * - Multiple operations in sequence
  * - Edge cases and error handling
  * - Computed values (totalItems, subtotal)
- * 
+ *
  * NOTE: localStorage persistence is tested separately in E2E tests (Playwright)
  * Zustand's persist middleware requires real localStorage API (browser environment)
  * These tests focus on the core state management logic in Node/jsdom environment
@@ -160,7 +160,7 @@ describe('Cart Store - State Management Tests', () => {
       // Add multiple items
       addItem(sampleProduct, 2);
       addItem(sampleProduct2, 3);
-      
+
       // Clear cart
       clearCart();
 
@@ -225,7 +225,7 @@ describe('Cart Store - State Management Tests', () => {
 
       closeCart(); // Ensure it's closed first
       openCart();
-      
+
       expect(useCartStore.getState().isOpen).toBe(true);
     });
 
@@ -234,7 +234,7 @@ describe('Cart Store - State Management Tests', () => {
 
       openCart(); // Ensure it's open first
       closeCart();
-      
+
       expect(useCartStore.getState().isOpen).toBe(false);
     });
   });

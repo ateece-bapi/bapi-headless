@@ -25,11 +25,7 @@ interface FilterOption {
   count: number;
 }
 
-export function ProductFilters({
-  categorySlug,
-  products,
-  currentFilters,
-}: ProductFiltersProps) {
+export function ProductFilters({ categorySlug, products, currentFilters }: ProductFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -39,7 +35,7 @@ export function ProductFilters({
 
   // Parse active filters from URL
   const activeFilters: Record<string, string[]> = {};
-  Object.keys(filterOptions).forEach(key => {
+  Object.keys(filterOptions).forEach((key) => {
     activeFilters[key] = currentFilters[key as keyof typeof currentFilters]?.split(',') || [];
   });
 
@@ -77,15 +73,15 @@ export function ProductFilters({
   }, [pathname, router]);
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-sm">
+    <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6 pb-4 border-b border-neutral-100">
+      <div className="mb-6 flex items-center justify-between border-b border-neutral-100 pb-4">
         <h2 className="text-xl font-bold text-neutral-900">Filters</h2>
         {hasActiveFilters && (
           <button
             type="button"
             onClick={clearAllFilters}
-            className="text-sm text-primary-500 hover:text-primary-600 font-medium transition-colors duration-200 hover:underline"
+            className="text-sm font-medium text-primary-500 transition-colors duration-200 hover:text-primary-600 hover:underline"
           >
             Clear All
           </button>
@@ -117,13 +113,7 @@ interface FilterGroupProps {
   onChange: (filterType: string, value: string, checked: boolean) => void;
 }
 
-function FilterGroup({
-  title,
-  options,
-  activeValues,
-  filterType,
-  onChange,
-}: FilterGroupProps) {
+function FilterGroup({ title, options, activeValues, filterType, onChange }: FilterGroupProps) {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
@@ -132,46 +122,45 @@ function FilterGroup({
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center justify-between w-full text-left mb-4 group"
+        className="group mb-4 flex w-full items-center justify-between text-left"
       >
-        <h3 className="font-semibold text-neutral-900 text-sm uppercase tracking-wider group-hover:text-primary-600 transition-colors duration-200">
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-900 transition-colors duration-200 group-hover:text-primary-600">
           {title}
         </h3>
         <svg
-          className={`w-5 h-5 text-neutral-500 transition-all duration-300 ease-out group-hover:text-primary-600 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
+          className={`h-5 w-5 text-neutral-500 transition-all duration-300 ease-out group-hover:text-primary-600 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
 
       {/* Options */}
       {isExpanded && (
-        <div className="space-y-3 animate-[fade-in_200ms_ease-out]">
+        <div className="animate-[fade-in_200ms_ease-out] space-y-3">
           {options.map((option) => {
             const isActive = activeValues.includes(option.slug);
             return (
               <label
                 key={option.slug}
-                className="flex items-center gap-3 cursor-pointer group px-2 py-1.5 -mx-2 rounded-lg hover:bg-neutral-50 transition-all duration-200"
+                className="group -mx-2 flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 transition-all duration-200 hover:bg-neutral-50"
               >
                 <input
                   type="checkbox"
                   checked={isActive}
                   onChange={(e) => onChange(filterType, option.slug, e.target.checked)}
-                  className="w-4 h-4 rounded border-neutral-300 text-primary-500 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 cursor-pointer transition-colors duration-150"
+                  className="h-4 w-4 cursor-pointer rounded border-neutral-300 text-primary-500 transition-colors duration-150 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 />
-                <span className={`flex-1 text-sm transition-colors duration-200 ${isActive ? 'text-neutral-900 font-medium' : 'text-neutral-600 group-hover:text-neutral-900'}`}>
+                <span
+                  className={`flex-1 text-sm transition-colors duration-200 ${isActive ? 'font-medium text-neutral-900' : 'text-neutral-600 group-hover:text-neutral-900'}`}
+                >
                   {option.name}
                 </span>
-                <span className={`text-xs px-2 py-0.5 rounded-full transition-colors duration-200 ${isActive ? 'bg-primary-100 text-primary-700' : 'bg-neutral-100 text-neutral-500 group-hover:bg-neutral-200'}`}>
+                <span
+                  className={`rounded-full px-2 py-0.5 text-xs transition-colors duration-200 ${isActive ? 'bg-primary-100 text-primary-700' : 'bg-neutral-100 text-neutral-500 group-hover:bg-neutral-200'}`}
+                >
                   {option.count}
                 </span>
               </label>
@@ -190,26 +179,74 @@ function extractFilterOptions(products: Product[]) {
   // Define all available filters with their GraphQL field names and display names
   const filterDefinitions = [
     { key: 'application', field: 'allPaApplication', title: 'Application' },
-    { key: 'roomEnclosure', field: 'allPaRoomEnclosureStyle', title: 'Temperature Room Enclosure Style' },
+    {
+      key: 'roomEnclosure',
+      field: 'allPaRoomEnclosureStyle',
+      title: 'Temperature Room Enclosure Style',
+    },
     { key: 'sensorOutput', field: 'allPaTemperatureSensorOutput', title: 'Sensor Output' },
     { key: 'display', field: 'allPaDisplay', title: 'Display' },
-    { key: 'setpointOverride', field: 'allPaTempSetpointAndOverride', title: 'Temp Setpoint and Override' },
-    { key: 'optionalTempHumidity', field: 'allPaOptionalTempHumidity', title: 'Optional Temp & Humidity' },
-    { key: 'optionalSensorOutput', field: 'allPaOptionalTempSensorOutput', title: 'Optional Input Sensor & Output' },
-    { key: 'humidityApplication', field: 'allPaHumidityApplication', title: 'Humidity Application' },
-    { key: 'humidityRoomEnclosure', field: 'allPaHumidityRoomEnclosure', title: 'Humidity Room Enclosure' },
-    { key: 'humiditySensorOutput', field: 'allPaHumiditySensorOutput', title: 'Humidity Sensor Output' },
-    { key: 'pressureApplication', field: 'allPaPressureApplication', title: 'Pressure Application' },
-    { key: 'pressureSensorStyle', field: 'allPaPressureSensorStyle', title: 'Pressure Sensor Style' },
-    { key: 'airQualityApplication', field: 'allPaAirQualityApplication', title: 'Air Quality Application' },
-    { key: 'airQualitySensorType', field: 'allPaAirQualitySensorType', title: 'Air Quality Sensor Type' },
-    { key: 'wirelessApplication', field: 'allPaWirelessApplication', title: 'Wireless Application' },
+    {
+      key: 'setpointOverride',
+      field: 'allPaTempSetpointAndOverride',
+      title: 'Temp Setpoint and Override',
+    },
+    {
+      key: 'optionalTempHumidity',
+      field: 'allPaOptionalTempHumidity',
+      title: 'Optional Temp & Humidity',
+    },
+    {
+      key: 'optionalSensorOutput',
+      field: 'allPaOptionalTempSensorOutput',
+      title: 'Optional Input Sensor & Output',
+    },
+    {
+      key: 'humidityApplication',
+      field: 'allPaHumidityApplication',
+      title: 'Humidity Application',
+    },
+    {
+      key: 'humidityRoomEnclosure',
+      field: 'allPaHumidityRoomEnclosure',
+      title: 'Humidity Room Enclosure',
+    },
+    {
+      key: 'humiditySensorOutput',
+      field: 'allPaHumiditySensorOutput',
+      title: 'Humidity Sensor Output',
+    },
+    {
+      key: 'pressureApplication',
+      field: 'allPaPressureApplication',
+      title: 'Pressure Application',
+    },
+    {
+      key: 'pressureSensorStyle',
+      field: 'allPaPressureSensorStyle',
+      title: 'Pressure Sensor Style',
+    },
+    {
+      key: 'airQualityApplication',
+      field: 'allPaAirQualityApplication',
+      title: 'Air Quality Application',
+    },
+    {
+      key: 'airQualitySensorType',
+      field: 'allPaAirQualitySensorType',
+      title: 'Air Quality Sensor Type',
+    },
+    {
+      key: 'wirelessApplication',
+      field: 'allPaWirelessApplication',
+      title: 'Wireless Application',
+    },
   ];
 
   const filterMaps = new Map<string, Map<string, { name: string; count: number }>>();
-  
+
   // Initialize maps for each filter
-  filterDefinitions.forEach(def => {
+  filterDefinitions.forEach((def) => {
     filterMaps.set(def.key, new Map());
   });
 
@@ -232,8 +269,11 @@ function extractFilterOptions(products: Product[]) {
   });
 
   // Convert maps to sorted arrays and build result object
-  const result: Record<string, Array<{ slug: string; name: string; count: number; title: string }>> = {};
-  
+  const result: Record<
+    string,
+    Array<{ slug: string; name: string; count: number; title: string }>
+  > = {};
+
   filterDefinitions.forEach(({ key, title }) => {
     const map = filterMaps.get(key)!;
     if (map.size > 0) {

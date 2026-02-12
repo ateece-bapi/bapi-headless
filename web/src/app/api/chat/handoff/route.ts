@@ -7,7 +7,7 @@ import { requireAdmin } from '@/lib/auth/server';
 
 /**
  * Chat Human Handoff API
- * 
+ *
  * Handles requests to connect users with BAPI team members when AI can't help.
  * Stores handoff requests and sends notifications to appropriate team members.
  */
@@ -64,11 +64,7 @@ async function readHandoffs(): Promise<HandoffRequest[]> {
 async function writeHandoffs(handoffs: HandoffRequest[]): Promise<void> {
   try {
     await ensureHandoffFile();
-    await fs.writeFile(
-      HANDOFF_FILE,
-      JSON.stringify({ handoffs }, null, 2),
-      'utf8'
-    );
+    await fs.writeFile(HANDOFF_FILE, JSON.stringify({ handoffs }, null, 2), 'utf8');
   } catch (error) {
     logger.error('Failed to write handoffs', error);
     throw error;
@@ -81,22 +77,24 @@ async function writeHandoffs(handoffs: HandoffRequest[]): Promise<void> {
 async function notifyTeam(handoff: HandoffRequest, testRecipient?: string): Promise<void> {
   try {
     // Determine urgency based on topic
-    const urgency = handoff.topic === 'sales' || handoff.topic === 'quote' 
-      ? 'high' 
-      : handoff.topic === 'technical' 
-        ? 'medium' 
-        : 'low';
+    const urgency =
+      handoff.topic === 'sales' || handoff.topic === 'quote'
+        ? 'high'
+        : handoff.topic === 'technical'
+          ? 'medium'
+          : 'low';
 
     // Parse conversation context into chat messages
     // Expecting format like: "User: Hello\nAssistant: Hi there\n..." or JSON array
-    let chatMessages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: string }> = [];
-    
+    let chatMessages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: string }> =
+      [];
+
     if (handoff.conversationContext) {
       try {
         // Try parsing as JSON first
         const parsed = JSON.parse(handoff.conversationContext);
         if (Array.isArray(parsed)) {
-          chatMessages = parsed.map(msg => ({
+          chatMessages = parsed.map((msg) => ({
             role: msg.role as 'user' | 'assistant',
             content: msg.content,
             timestamp: msg.timestamp || new Date().toISOString(),
@@ -104,19 +102,21 @@ async function notifyTeam(handoff: HandoffRequest, testRecipient?: string): Prom
         }
       } catch {
         // Fall back to plain text parsing
-        const lines = handoff.conversationContext.split('\n').filter(line => line.trim());
+        const lines = handoff.conversationContext.split('\n').filter((line) => line.trim());
         const now = new Date();
         chatMessages = lines.map((line, index) => {
           const match = line.match(/^(User|Assistant|AI):\s*(.+)$/);
           if (match) {
             return {
-              role: (match[1].toLowerCase() === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
+              role: (match[1].toLowerCase() === 'user' ? 'user' : 'assistant') as
+                | 'user'
+                | 'assistant',
               content: match[2],
               timestamp: new Date(now.getTime() - (lines.length - index) * 60000).toISOString(),
             };
           }
-          return { 
-            role: 'user' as const, 
+          return {
+            role: 'user' as const,
             content: line,
             timestamp: new Date(now.getTime() - (lines.length - index) * 60000).toISOString(),
           };
@@ -176,7 +176,8 @@ function getTeamEmail(topic: string): string {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, topic, message, conversationContext, language, _testRecipient } = body;
+    const { name, email, phone, topic, message, conversationContext, language, _testRecipient } =
+      body;
 
     // Validation
     if (!name || !email || !topic || !message) {
@@ -189,10 +190,7 @@ export async function POST(request: NextRequest) {
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email address' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
     }
 
     // Create handoff request
@@ -224,10 +222,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     logger.error('Handoff API Error', error);
-    return NextResponse.json(
-      { error: 'Failed to submit handoff request' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to submit handoff request' }, { status: 500 });
   }
 }
 
@@ -241,35 +236,26 @@ export async function GET(request: NextRequest) {
     await requireAdmin();
 
     const handoffs = await readHandoffs();
-    
+
     // Sort by timestamp (newest first)
-    const sorted = handoffs.sort((a, b) => 
-      new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+    const sorted = handoffs.sort(
+      (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
     );
 
     return NextResponse.json({ handoffs: sorted });
   } catch (error) {
     // Handle authorization errors
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    
+
     if (errorMessage.includes('Unauthorized')) {
-      return NextResponse.json(
-        { error: 'Authentication required' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }
-    
+
     if (errorMessage.includes('Forbidden')) {
-      return NextResponse.json(
-        { error: 'Admin access required' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: 'Admin access required' }, { status: 403 });
     }
-    
+
     logger.error('Handoff GET Error', error);
-    return NextResponse.json(
-      { error: 'Failed to retrieve handoffs' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to retrieve handoffs' }, { status: 500 });
   }
 }

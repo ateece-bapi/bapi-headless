@@ -1,11 +1,10 @@
-"use client";
+'use client';
 /**
  * Custom hook for managing product attribute selection and matching variations.
  * @param attributes Product attributes array
  * @param variations Product variations array
  */
 import { useState, useMemo } from 'react';
-
 
 export function useProductAttributes(
   attributes: Array<{ name: string; options: string[] }> = [],
@@ -17,7 +16,8 @@ export function useProductAttributes(
     return acc;
   }, {});
 
-  const [attributeSelection, setAttributeSelection] = useState<Record<string, string>>(initialSelection);
+  const [attributeSelection, setAttributeSelection] =
+    useState<Record<string, string>>(initialSelection);
 
   // Find matching variation based on current selection
   const selectedVariation = useMemo(() => {

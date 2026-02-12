@@ -70,7 +70,7 @@ export function useMegaMenu() {
       window.clearTimeout(hoverTimerRef.current);
       hoverTimerRef.current = null;
     }
-    setOpenIndex(prev => prev === index ? null : index);
+    setOpenIndex((prev) => (prev === index ? null : index));
   }, []);
 
   /**

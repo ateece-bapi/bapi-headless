@@ -18,7 +18,7 @@ interface MobileFilterDrawerProps {
 
 /**
  * Mobile filter drawer that slides up from bottom
- * 
+ *
  * Features:
  * - Slides up from bottom with smooth animation
  * - Backdrop overlay with click-to-close
@@ -100,7 +100,7 @@ export function MobileFilterDrawer({
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 z-modal-backdrop transition-opacity duration-300"
+        className="z-modal-backdrop fixed inset-0 bg-black/50 transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -108,20 +108,20 @@ export function MobileFilterDrawer({
       {/* Drawer */}
       <div
         ref={drawerRef}
-        className="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-modal max-h-[90vh] flex flex-col animate-slide-up"
+        className="z-modal animate-slide-up fixed bottom-0 left-0 right-0 flex max-h-[90vh] flex-col rounded-t-2xl bg-white shadow-2xl"
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-filters-title"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-neutral-200 flex-shrink-0">
+        <div className="flex flex-shrink-0 items-center justify-between border-b border-neutral-200 p-4">
           <div className="flex items-center gap-2">
-            <SlidersHorizontal className="w-5 h-5 text-primary-500" />
+            <SlidersHorizontal className="h-5 w-5 text-primary-500" />
             <h2 id="mobile-filters-title" className="text-lg font-bold text-neutral-900">
               Filters
             </h2>
             {activeFilterCount > 0 && (
-              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-500 text-white text-xs font-bold">
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-500 text-xs font-bold text-white">
                 {activeFilterCount}
               </span>
             )}
@@ -129,10 +129,10 @@ export function MobileFilterDrawer({
           <button
             type="button"
             onClick={onClose}
-            className="p-2 rounded-lg hover:bg-neutral-100 transition-colors"
+            className="rounded-lg p-2 transition-colors hover:bg-neutral-100"
             aria-label="Close filters"
           >
-            <X className="w-6 h-6 text-neutral-600" />
+            <X className="h-6 w-6 text-neutral-600" />
           </button>
         </div>
 
@@ -146,16 +146,14 @@ export function MobileFilterDrawer({
         </div>
 
         {/* Footer with Apply Button */}
-        <div className="p-4 border-t border-neutral-200 flex-shrink-0 bg-neutral-50">
+        <div className="flex-shrink-0 border-t border-neutral-200 bg-neutral-50 p-4">
           <button
             type="button"
             onClick={onClose}
-            className="w-full py-3 px-6 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl transition-colors shadow-lg"
+            className="w-full rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-primary-600"
           >
             Apply Filters
-            {activeFilterCount > 0 && (
-              <span className="ml-2">({activeFilterCount})</span>
-            )}
+            {activeFilterCount > 0 && <span className="ml-2">({activeFilterCount})</span>}
           </button>
         </div>
       </div>

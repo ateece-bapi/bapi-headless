@@ -68,7 +68,7 @@ export default function FavoriteButton({
 
     // Store previous state for rollback
     const previousState = isFavorited;
-    
+
     // Optimistic update - update UI immediately
     setIsFavorited(!isFavorited);
     setIsLoading(true);
@@ -116,13 +116,13 @@ export default function FavoriteButton({
       }
     } catch (error) {
       logger.error('Error toggling favorite', error);
-      
+
       // Rollback on error
       setIsFavorited(previousState);
-      
+
       toast.error(
-        previousState 
-          ? 'Failed to remove from favorites. Please try again.' 
+        previousState
+          ? 'Failed to remove from favorites. Please try again.'
           : 'Failed to add to favorites. Please try again.',
         { id: toastId }
       );
@@ -149,12 +149,14 @@ export default function FavoriteButton({
         type="button"
         onClick={handleToggle}
         disabled={isLoading}
-        aria-label={isFavorited ? `Remove ${productName} from favorites` : `Add ${productName} to favorites`}
+        aria-label={
+          isFavorited ? `Remove ${productName} from favorites` : `Add ${productName} to favorites`
+        }
         aria-pressed={isFavorited}
-        className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+        className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
           isFavorited
-            ? 'bg-red-50 text-red-600 border-2 border-red-200 hover:bg-red-100'
-            : 'bg-white text-neutral-600 border-2 border-neutral-300 hover:border-red-300 hover:text-red-600'
+            ? 'border-2 border-red-200 bg-red-50 text-red-600 hover:bg-red-100'
+            : 'border-2 border-neutral-300 bg-white text-neutral-600 hover:border-red-300 hover:text-red-600'
         }`}
       >
         <Heart
@@ -172,12 +174,14 @@ export default function FavoriteButton({
       type="button"
       onClick={handleToggle}
       disabled={isLoading}
-      aria-label={isFavorited ? `Remove ${productName} from favorites` : `Add ${productName} to favorites`}
+      aria-label={
+        isFavorited ? `Remove ${productName} from favorites` : `Add ${productName} to favorites`
+      }
       aria-pressed={isFavorited}
-      className={`${sizeClasses[size]} rounded-full flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+      className={`${sizeClasses[size]} flex items-center justify-center rounded-full transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
         isFavorited
-          ? 'bg-red-50 text-red-600 border-2 border-red-200 hover:bg-red-100'
-          : 'bg-white text-neutral-400 border-2 border-neutral-300 hover:border-red-300 hover:text-red-600'
+          ? 'border-2 border-red-200 bg-red-50 text-red-600 hover:bg-red-100'
+          : 'border-2 border-neutral-300 bg-white text-neutral-400 hover:border-red-300 hover:text-red-600'
       }`}
       title={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
     >

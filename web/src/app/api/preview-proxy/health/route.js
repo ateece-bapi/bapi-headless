@@ -25,7 +25,10 @@ function createAgent() {
 export async function GET() {
   const wpEndpoint = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL;
   if (!wpEndpoint) {
-    return NextResponse.json({ ok: false, error: 'Missing NEXT_PUBLIC_WORDPRESS_GRAPHQL' }, { status: 503 });
+    return NextResponse.json(
+      { ok: false, error: 'Missing NEXT_PUBLIC_WORDPRESS_GRAPHQL' },
+      { status: 503 }
+    );
   }
 
   const agent = createAgent();
@@ -43,13 +46,29 @@ export async function GET() {
       return NextResponse.json({ ok: true, upstream: wpEndpoint }, { status: 200 });
     }
     const text = await res.text();
-    return NextResponse.json({ ok: false, upstream: wpEndpoint, status: res.status, body: text }, { status: 502 });
+    return NextResponse.json(
+      { ok: false, upstream: wpEndpoint, status: res.status, body: text },
+      { status: 502 }
+    );
   } catch (err) {
     const message = String(err?.message || err);
     // Provide a friendly hint for local mkcert/TLS issues without exposing secrets
-    if (message.includes('unable to verify the first certificate') || message.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')) {
-      return NextResponse.json({ ok: false, error: 'Upstream TLS verification failed. Consider setting PREVIEW_CA_PATH or PREVIEW_ALLOW_INSECURE for local dev.' }, { status: 502 });
+    if (
+      message.includes('unable to verify the first certificate') ||
+      message.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')
+    ) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            'Upstream TLS verification failed. Consider setting PREVIEW_CA_PATH or PREVIEW_ALLOW_INSECURE for local dev.',
+        },
+        { status: 502 }
+      );
     }
-    return NextResponse.json({ ok: false, error: 'Upstream fetch failed', message }, { status: 502 });
+    return NextResponse.json(
+      { ok: false, error: 'Upstream fetch failed', message },
+      { status: 502 }
+    );
   }
 }

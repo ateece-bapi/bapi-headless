@@ -1,15 +1,15 @@
 export default function DashboardCardSkeleton() {
   return (
-    <div className="bg-white border border-neutral-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-200 animate-pulse">
+    <div className="animate-pulse rounded-lg border border-neutral-200 bg-white p-6 transition-shadow duration-200 hover:shadow-lg">
       <div className="flex items-start gap-4">
         {/* Icon */}
-        <div className="w-12 h-12 bg-neutral-200 rounded-lg flex-shrink-0"></div>
-        
+        <div className="h-12 w-12 flex-shrink-0 rounded-lg bg-neutral-200"></div>
+
         {/* Content */}
-        <div className="flex-1 min-w-0">
-          <div className="h-5 bg-neutral-200 rounded w-32 mb-3"></div>
-          <div className="h-4 bg-neutral-200 rounded w-full mb-2"></div>
-          <div className="h-4 bg-neutral-200 rounded w-3/4"></div>
+        <div className="min-w-0 flex-1">
+          <div className="mb-3 h-5 w-32 rounded bg-neutral-200"></div>
+          <div className="mb-2 h-4 w-full rounded bg-neutral-200"></div>
+          <div className="h-4 w-3/4 rounded bg-neutral-200"></div>
         </div>
       </div>
     </div>

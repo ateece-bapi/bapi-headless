@@ -1,8 +1,8 @@
 /**
  * Stripe Payment Confirmation API Route
- * 
+ *
  * POST /api/payment/confirm
- * 
+ *
  * Confirms payment and creates WooCommerce order via GraphQL checkout mutation
  */
 
@@ -18,11 +18,11 @@ const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.replace('/graph
 
 function getStripeInstance() {
   const secretKey = process.env.STRIPE_SECRET_KEY;
-  
+
   if (!secretKey) {
     throw new Error('STRIPE_SECRET_KEY is not configured');
   }
-  
+
   return new Stripe(secretKey, {
     apiVersion: '2025-12-15.clover',
   });
@@ -77,10 +77,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    logger.debug('[Payment Confirm] Creating WooCommerce order via REST API', { 
-      itemCount: cartItems.length 
+    logger.debug('[Payment Confirm] Creating WooCommerce order via REST API', {
+      itemCount: cartItems.length,
     });
-    
+
     // Create order using WooCommerce REST API
     const wcOrderData = {
       payment_method: 'stripe',
@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
         },
         {
           key: '_stripe_charge_id',
-          value: paymentIntent.latest_charge as string || '',
+          value: (paymentIntent.latest_charge as string) || '',
         },
       ],
     };
@@ -135,7 +135,7 @@ export async function POST(request: NextRequest) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${auth}`,
+        Authorization: `Basic ${auth}`,
       },
       body: JSON.stringify(wcOrderData),
     });
@@ -163,13 +163,15 @@ export async function POST(request: NextRequest) {
         transactionId: order.transaction_id,
       },
     });
-
   } catch (error) {
     logError('payment.confirm_failed', error);
-    
-    return NextResponse.json({
-      error: ERROR_MESSAGES.SERVER_ERROR.title,
-      message: 'Unable to confirm payment and create order. Please contact support.',
-    }, { status: 500 });
+
+    return NextResponse.json(
+      {
+        error: ERROR_MESSAGES.SERVER_ERROR.title,
+        message: 'Unable to confirm payment and create order. Please contact support.',
+      },
+      { status: 500 }
+    );
   }
 }

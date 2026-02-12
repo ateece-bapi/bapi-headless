@@ -12,16 +12,16 @@ const sampleProduct = {
   attributes: [
     {
       name: 'Sensor Type',
-      options: ['Thermistor', 'RTD', 'Thermocouple']
+      options: ['Thermistor', 'RTD', 'Thermocouple'],
     },
     {
       name: 'Output Signal',
-      options: ['4-20mA', '0-10V', 'Digital']
+      options: ['4-20mA', '0-10V', 'Digital'],
     },
     {
       name: 'Housing',
-      options: ['Standard', 'Weatherproof', 'Explosion Proof']
-    }
+      options: ['Standard', 'Weatherproof', 'Explosion Proof'],
+    },
   ],
   variations: [
     // Thermistor variations
@@ -36,10 +36,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'Thermistor',
         'Output Signal': '4-20mA',
-        'Housing': 'Standard'
+        Housing: 'Standard',
       },
       partNumber: 'BA-TS-T-420-STD',
-      sku: 'BA-TS-T-420-STD'
+      sku: 'BA-TS-T-420-STD',
     },
     {
       id: 'var-2',
@@ -52,10 +52,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'Thermistor',
         'Output Signal': '4-20mA',
-        'Housing': 'Weatherproof'
+        Housing: 'Weatherproof',
       },
       partNumber: 'BA-TS-T-420-WP',
-      sku: 'BA-TS-T-420-WP'
+      sku: 'BA-TS-T-420-WP',
     },
     {
       id: 'var-3',
@@ -68,10 +68,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'Thermistor',
         'Output Signal': '4-20mA',
-        'Housing': 'Explosion Proof'
+        Housing: 'Explosion Proof',
       },
       partNumber: 'BA-TS-T-420-EP',
-      sku: 'BA-TS-T-420-EP'
+      sku: 'BA-TS-T-420-EP',
     },
     {
       id: 'var-4',
@@ -84,10 +84,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'Thermistor',
         'Output Signal': '0-10V',
-        'Housing': 'Standard'
+        Housing: 'Standard',
       },
       partNumber: 'BA-TS-T-010-STD',
-      sku: 'BA-TS-T-010-STD'
+      sku: 'BA-TS-T-010-STD',
     },
     {
       id: 'var-5',
@@ -100,10 +100,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'Thermistor',
         'Output Signal': '0-10V',
-        'Housing': 'Weatherproof'
+        Housing: 'Weatherproof',
       },
       partNumber: 'BA-TS-T-010-WP',
-      sku: 'BA-TS-T-010-WP'
+      sku: 'BA-TS-T-010-WP',
     },
     {
       id: 'var-6',
@@ -116,10 +116,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'Thermistor',
         'Output Signal': 'Digital',
-        'Housing': 'Standard'
+        Housing: 'Standard',
       },
       partNumber: 'BA-TS-T-DIG-STD',
-      sku: 'BA-TS-T-DIG-STD'
+      sku: 'BA-TS-T-DIG-STD',
     },
     // RTD variations
     {
@@ -133,10 +133,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'RTD',
         'Output Signal': '4-20mA',
-        'Housing': 'Standard'
+        Housing: 'Standard',
       },
       partNumber: 'BA-TS-R-420-STD',
-      sku: 'BA-TS-R-420-STD'
+      sku: 'BA-TS-R-420-STD',
     },
     {
       id: 'var-8',
@@ -149,10 +149,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'RTD',
         'Output Signal': '4-20mA',
-        'Housing': 'Weatherproof'
+        Housing: 'Weatherproof',
       },
       partNumber: 'BA-TS-R-420-WP',
-      sku: 'BA-TS-R-420-WP'
+      sku: 'BA-TS-R-420-WP',
     },
     {
       id: 'var-9',
@@ -165,10 +165,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'RTD',
         'Output Signal': '0-10V',
-        'Housing': 'Standard'
+        Housing: 'Standard',
       },
       partNumber: 'BA-TS-R-010-STD',
-      sku: 'BA-TS-R-010-STD'
+      sku: 'BA-TS-R-010-STD',
     },
     // Thermocouple variations (limited stock)
     {
@@ -182,10 +182,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'Thermocouple',
         'Output Signal': '4-20mA',
-        'Housing': 'Standard'
+        Housing: 'Standard',
       },
       partNumber: 'BA-TS-TC-420-STD',
-      sku: 'BA-TS-TC-420-STD'
+      sku: 'BA-TS-TC-420-STD',
     },
     {
       id: 'var-11',
@@ -198,10 +198,10 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'Thermocouple',
         'Output Signal': '0-10V',
-        'Housing': 'Standard'
+        Housing: 'Standard',
       },
       partNumber: 'BA-TS-TC-010-STD',
-      sku: 'BA-TS-TC-010-STD'
+      sku: 'BA-TS-TC-010-STD',
     },
     {
       id: 'var-12',
@@ -214,12 +214,12 @@ const sampleProduct = {
       attributes: {
         'Sensor Type': 'Thermocouple',
         'Output Signal': 'Digital',
-        'Housing': 'Weatherproof'
+        Housing: 'Weatherproof',
       },
       partNumber: 'BA-TS-TC-DIG-WP',
-      sku: 'BA-TS-TC-DIG-WP'
-    }
-  ]
+      sku: 'BA-TS-TC-DIG-WP',
+    },
+  ],
 };
 
 export default function ProductVariationTestPage() {
@@ -229,115 +229,134 @@ export default function ProductVariationTestPage() {
 
   return (
     <div className="min-h-screen bg-neutral-50 py-12">
-      <div className="max-w-content mx-auto px-4">
+      <div className="mx-auto max-w-content px-4">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-neutral-900 mb-2">
+          <h1 className="mb-2 text-4xl font-bold text-neutral-900">
             Product Variation Selector Test
           </h1>
           <p className="text-neutral-600">
-            Enhanced UI for selecting product variations with visual feedback,
-            stock status indicators, and dynamic price updates.
+            Enhanced UI for selecting product variations with visual feedback, stock status
+            indicators, and dynamic price updates.
           </p>
         </div>
 
         {/* Main Demo */}
-        <div className="bg-white rounded-xl shadow-lg border border-neutral-200 p-8 mb-8">
-          <h2 className="text-2xl font-semibold text-neutral-900 mb-6">
-            {sampleProduct.name}
-          </h2>
-          
+        <div className="mb-8 rounded-xl border border-neutral-200 bg-white p-8 shadow-lg">
+          <h2 className="mb-6 text-2xl font-semibold text-neutral-900">{sampleProduct.name}</h2>
+
           <ProductVariationSelector
             product={sampleProduct}
             onVariationChange={handleVariationChange}
           />
 
-          <div className="mt-8 p-6 bg-neutral-50 rounded-xl border border-neutral-200">
-            <h3 className="text-lg font-semibold text-neutral-900 mb-4">Features Demonstrated:</h3>
+          <div className="mt-8 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
+            <h3 className="mb-4 text-lg font-semibold text-neutral-900">Features Demonstrated:</h3>
             <ul className="space-y-2 text-neutral-700">
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 font-bold">✓</span>
-                <span><strong>Visual Button Selection:</strong> Click buttons instead of dropdowns for better UX</span>
+                <span className="font-bold text-primary-500">✓</span>
+                <span>
+                  <strong>Visual Button Selection:</strong> Click buttons instead of dropdowns for
+                  better UX
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 font-bold">✓</span>
-                <span><strong>Stock Status Indicators:</strong> See what's in stock, backordered, or unavailable</span>
+                <span className="font-bold text-primary-500">✓</span>
+                <span>
+                  <strong>Stock Status Indicators:</strong> See what's in stock, backordered, or
+                  unavailable
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 font-bold">✓</span>
-                <span><strong>Dynamic Price Updates:</strong> Prices change as you select different options</span>
+                <span className="font-bold text-primary-500">✓</span>
+                <span>
+                  <strong>Dynamic Price Updates:</strong> Prices change as you select different
+                  options
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 font-bold">✓</span>
-                <span><strong>Disabled State:</strong> Out-of-stock options are clearly marked and disabled</span>
+                <span className="font-bold text-primary-500">✓</span>
+                <span>
+                  <strong>Disabled State:</strong> Out-of-stock options are clearly marked and
+                  disabled
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 font-bold">✓</span>
-                <span><strong>Selected Variation Details:</strong> Part number, price, and availability displayed</span>
+                <span className="font-bold text-primary-500">✓</span>
+                <span>
+                  <strong>Selected Variation Details:</strong> Part number, price, and availability
+                  displayed
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 font-bold">✓</span>
-                <span><strong>Keyboard Accessible:</strong> Full keyboard navigation and screen reader support</span>
+                <span className="font-bold text-primary-500">✓</span>
+                <span>
+                  <strong>Keyboard Accessible:</strong> Full keyboard navigation and screen reader
+                  support
+                </span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Variation Matrix Table */}
-        <div className="bg-white rounded-xl shadow-lg border border-neutral-200 p-8">
-          <h2 className="text-2xl font-semibold text-neutral-900 mb-6">
+        <div className="rounded-xl border border-neutral-200 bg-white p-8 shadow-lg">
+          <h2 className="mb-6 text-2xl font-semibold text-neutral-900">
             Variation Matrix ({sampleProduct.variations.length} total)
           </h2>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-neutral-200">
-                  <th className="text-left py-3 px-4 font-semibold text-neutral-900">Part Number</th>
-                  <th className="text-left py-3 px-4 font-semibold text-neutral-900">Sensor Type</th>
-                  <th className="text-left py-3 px-4 font-semibold text-neutral-900">Output</th>
-                  <th className="text-left py-3 px-4 font-semibold text-neutral-900">Housing</th>
-                  <th className="text-left py-3 px-4 font-semibold text-neutral-900">Price</th>
-                  <th className="text-left py-3 px-4 font-semibold text-neutral-900">Stock</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">
+                    Part Number
+                  </th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">
+                    Sensor Type
+                  </th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">Output</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">Housing</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">Price</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">Stock</th>
                 </tr>
               </thead>
               <tbody>
                 {sampleProduct.variations.map((variation, index) => (
-                  <tr 
-                    key={variation.id} 
+                  <tr
+                    key={variation.id}
                     className={`border-b border-neutral-100 ${
                       index % 2 === 0 ? 'bg-neutral-50' : 'bg-white'
                     }`}
                   >
-                    <td className="py-3 px-4 font-mono text-xs">{variation.partNumber}</td>
-                    <td className="py-3 px-4">{variation.attributes['Sensor Type']}</td>
-                    <td className="py-3 px-4">{variation.attributes['Output Signal']}</td>
-                    <td className="py-3 px-4">{variation.attributes['Housing']}</td>
-                    <td className="py-3 px-4 font-semibold text-primary-700">{variation.price}</td>
-                    <td className="py-3 px-4">
-                      <span className={`
-                        inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-medium
-                        ${variation.stockStatus === 'IN_STOCK' 
-                          ? 'bg-success-100 text-success-700' 
-                          : variation.stockStatus === 'ON_BACKORDER'
-                          ? 'bg-warning-100 text-warning-700'
-                          : 'bg-error-100 text-error-700'
-                        }
-                      `}>
-                        <span className={`
-                          w-1.5 h-1.5 rounded-full
-                          ${variation.stockStatus === 'IN_STOCK' 
-                            ? 'bg-success-500' 
+                    <td className="px-4 py-3 font-mono text-xs">{variation.partNumber}</td>
+                    <td className="px-4 py-3">{variation.attributes['Sensor Type']}</td>
+                    <td className="px-4 py-3">{variation.attributes['Output Signal']}</td>
+                    <td className="px-4 py-3">{variation.attributes['Housing']}</td>
+                    <td className="px-4 py-3 font-semibold text-primary-700">{variation.price}</td>
+                    <td className="px-4 py-3">
+                      <span
+                        className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium ${
+                          variation.stockStatus === 'IN_STOCK'
+                            ? 'bg-success-100 text-success-700'
                             : variation.stockStatus === 'ON_BACKORDER'
-                            ? 'bg-warning-500'
-                            : 'bg-error-500'
-                          }
-                        `} />
-                        {variation.stockStatus === 'IN_STOCK' 
-                          ? `${variation.stockQuantity} in stock` 
+                              ? 'bg-warning-100 text-warning-700'
+                              : 'bg-error-100 text-error-700'
+                        } `}
+                      >
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full ${
+                            variation.stockStatus === 'IN_STOCK'
+                              ? 'bg-success-500'
+                              : variation.stockStatus === 'ON_BACKORDER'
+                                ? 'bg-warning-500'
+                                : 'bg-error-500'
+                          } `}
+                        />
+                        {variation.stockStatus === 'IN_STOCK'
+                          ? `${variation.stockQuantity} in stock`
                           : variation.stockStatus === 'ON_BACKORDER'
-                          ? 'Backorder'
-                          : 'Out of Stock'
-                        }
+                            ? 'Backorder'
+                            : 'Out of Stock'}
                       </span>
                     </td>
                   </tr>
@@ -348,10 +367,10 @@ export default function ProductVariationTestPage() {
         </div>
 
         {/* Usage Example */}
-        <div className="mt-8 bg-neutral-900 rounded-xl shadow-lg p-8 text-white">
-          <h2 className="text-xl font-semibold mb-4">Usage Example</h2>
-          <pre className="bg-neutral-800 rounded-lg p-4 overflow-x-auto text-sm">
-{`import { ProductVariationSelector } from '@/components/products';
+        <div className="mt-8 rounded-xl bg-neutral-900 p-8 text-white shadow-lg">
+          <h2 className="mb-4 text-xl font-semibold">Usage Example</h2>
+          <pre className="overflow-x-auto rounded-lg bg-neutral-800 p-4 text-sm">
+            {`import { ProductVariationSelector } from '@/components/products';
 
 export default function ProductPage({ product }) {
   const handleVariationChange = (variation) => {

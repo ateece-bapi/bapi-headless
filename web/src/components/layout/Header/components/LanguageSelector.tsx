@@ -12,7 +12,7 @@ export function LanguageSelector() {
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value as LanguageCode;
-    
+
     // Use next-intl's router which handles locale switching automatically
     // Just push the current pathname - the router will add the new locale prefix
     router.replace(pathname, { locale: newLocale });
@@ -20,14 +20,16 @@ export function LanguageSelector() {
 
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-[10px] font-medium text-gray-500 uppercase tracking-wider px-1">Language</span>
-      <div className="relative group">
+      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-gray-500">
+        Language
+      </span>
+      <div className="group relative">
         <label htmlFor="language-select" className="sr-only">
           Select your language
         </label>
         {/* Language icon */}
         <svg
-          className="absolute left-3 lg:left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-hover:text-primary-600 transition-colors pointer-events-none"
+          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500 transition-colors group-hover:text-primary-600 lg:left-3.5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -44,9 +46,9 @@ export function LanguageSelector() {
           id="language-select"
           value={currentLocale}
           onChange={handleLanguageChange}
-          className="appearance-none pl-9 lg:pl-10 pr-9 py-1.5 lg:py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent cursor-pointer transition-colors"
+          className="cursor-pointer appearance-none rounded-lg border border-gray-300 bg-white py-1.5 pl-9 pr-9 text-sm font-medium text-gray-700 transition-colors hover:border-primary-500 hover:bg-gray-50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 lg:py-2 lg:pl-10"
         >
-          {(Object.entries(LANGUAGES) as [LanguageCode, typeof LANGUAGES[LanguageCode]][]).map(
+          {(Object.entries(LANGUAGES) as [LanguageCode, (typeof LANGUAGES)[LanguageCode]][]).map(
             ([code, config]) => (
               <option key={code} value={code}>
                 {config.nativeName}

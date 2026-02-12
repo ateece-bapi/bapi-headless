@@ -25,21 +25,20 @@ export default function InstallationPage() {
     },
     {
       title: 'Pressure Sensor Mounting',
-      description: 'Installation guidelines for pressure transducers and differential pressure sensors',
+      description:
+        'Installation guidelines for pressure transducers and differential pressure sensors',
       file: 'pressure-sensor-install.pdf',
     },
   ];
 
   return (
     <main className="min-h-screen bg-white">
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Wrench className="w-16 h-16 mx-auto mb-4" />
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-              Installation Guides
-            </h1>
-            <p className="text-xl max-w-content mx-auto text-primary-50">
+            <Wrench className="mx-auto mb-4 h-16 w-16" />
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Installation Guides</h1>
+            <p className="mx-auto max-w-content text-xl text-primary-50">
               Step-by-step installation instructions for all BAPI products
             </p>
           </div>
@@ -47,33 +46,31 @@ export default function InstallationPage() {
       </section>
 
       <section className="py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
-            <div className="max-w-md mx-auto">
+            <div className="mx-auto max-w-md">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
                 <input
                   type="text"
                   placeholder="Search installation guides..."
-                  className="w-full pl-12 pr-4 py-3 border-2 border-neutral-200 rounded-xl focus:border-primary-500 focus:outline-none"
+                  className="w-full rounded-xl border-2 border-neutral-200 py-3 pl-12 pr-4 focus:border-primary-500 focus:outline-none"
                 />
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {guides.map((guide) => (
               <div
                 key={guide.file}
-                className="bg-white border-2 border-neutral-200 rounded-xl p-6 hover:border-primary-500 transition-all"
+                className="rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:border-primary-500"
               >
-                <FileText className="w-10 h-10 text-primary-500 mb-4" />
-                <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                  {guide.title}
-                </h3>
-                <p className="text-neutral-600 mb-4">{guide.description}</p>
-                <button className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-semibold">
-                  <Download className="w-4 h-4" />
+                <FileText className="mb-4 h-10 w-10 text-primary-500" />
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">{guide.title}</h3>
+                <p className="mb-4 text-neutral-600">{guide.description}</p>
+                <button className="inline-flex items-center gap-2 font-semibold text-primary-500 hover:text-primary-600">
+                  <Download className="h-4 w-4" />
                   Download PDF
                 </button>
               </div>
@@ -83,16 +80,14 @@ export default function InstallationPage() {
       </section>
 
       <section className="bg-neutral-50 py-12">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">
-            Need Installation Support?
-          </h2>
-          <p className="text-neutral-600 mb-6">
+        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-4 text-2xl font-bold text-neutral-900">Need Installation Support?</h2>
+          <p className="mb-6 text-neutral-600">
             Our technical team is here to help with any installation questions
           </p>
           <a
             href="/support"
-            className="inline-block bg-primary-500 hover:bg-primary-600 text-white font-bold px-8 py-3 rounded-xl transition-colors"
+            className="inline-block rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600"
           >
             Contact Support
           </a>

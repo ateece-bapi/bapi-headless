@@ -20,32 +20,37 @@ export const transformProductForClient = cache((product: GetProductBySlugQuery['
     regularPrice: (product as any).regularPrice ?? '',
     stockStatus: getProductStockStatus(product) || null,
     stockQuantity: (product as any).stockQuantity ?? null,
-    
+
     // Basic fields
     image: product.image
-      ? { sourceUrl: product.image.sourceUrl || '', altText: product.image.altText || product.name || '' }
+      ? {
+          sourceUrl: product.image.sourceUrl || '',
+          altText: product.image.altText || product.name || '',
+        }
       : null,
-    
+
     // Short description only (full description loaded via Suspense)
     shortDescription: product.shortDescription || null,
-    
+
     // Categories
-    productCategories: Array.isArray((product as any).productCategories?.nodes) 
+    productCategories: Array.isArray((product as any).productCategories?.nodes)
       ? (product as any).productCategories.nodes.map((cat: any) => ({
           id: cat.id,
           name: cat.name,
           slug: cat.slug,
         }))
       : [],
-    
+
     // Gallery (limit to first 5 for initial render)
-    gallery: ((product.galleryImages?.nodes || []) as Array<{ sourceUrl?: string; altText?: string | null }>)
+    gallery: (
+      (product.galleryImages?.nodes || []) as Array<{ sourceUrl?: string; altText?: string | null }>
+    )
       .slice(0, 5)
       .map((node) => ({
         sourceUrl: node?.sourceUrl ?? '',
-        altText: node?.altText ?? ''
+        altText: node?.altText ?? '',
       })),
-    
+
     // Variations
     variations: Array.isArray((product as any).variations?.nodes)
       ? (product as any).variations.nodes.map((v: any) => ({
@@ -60,7 +65,9 @@ export const transformProductForClient = cache((product: GetProductBySlugQuery['
                 return acc;
               }, {})
             : {},
-          image: v.image ? { sourceUrl: v.image.sourceUrl ?? '', altText: v.image.altText ?? '' } : null,
+          image: v.image
+            ? { sourceUrl: v.image.sourceUrl ?? '', altText: v.image.altText ?? '' }
+            : null,
           partNumber: v.partNumber ?? null,
           sku: v.sku ?? null,
         }))

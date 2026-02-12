@@ -4,7 +4,7 @@ import OrderConfirmationClient from '@/components/order-confirmation/OrderConfir
 
 /**
  * Order Confirmation Page
- * 
+ *
  * Dynamic route for displaying order confirmation after successful checkout
  * Route: /order-confirmation/[orderId]
  */
@@ -15,11 +15,9 @@ interface OrderConfirmationPageProps {
   }>;
 }
 
-export async function generateMetadata({
-  params,
-}: OrderConfirmationPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: OrderConfirmationPageProps): Promise<Metadata> {
   const { orderId } = await params;
-  
+
   return {
     title: `Order Confirmation #${orderId} | BAPI`,
     description: 'Your order has been successfully placed. Thank you for your purchase!',
@@ -27,9 +25,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function OrderConfirmationPage({
-  params,
-}: OrderConfirmationPageProps) {
+export default async function OrderConfirmationPage({ params }: OrderConfirmationPageProps) {
   const { orderId } = await params;
 
   // Validate orderId is numeric

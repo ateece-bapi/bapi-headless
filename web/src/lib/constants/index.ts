@@ -1,6 +1,6 @@
 /**
  * Application constants
- * 
+ *
  * Centralized configuration values for caching, rate limiting,
  * and other tunable parameters.
  */

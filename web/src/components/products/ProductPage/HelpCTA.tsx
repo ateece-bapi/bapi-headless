@@ -9,42 +9,44 @@ interface HelpCTAProps {
 
 /**
  * Help and support call-to-action component
- * 
+ *
  * Provides prominent contact options for customers who need assistance.
  * Improves conversion by reducing purchase anxiety.
  */
 export default function HelpCTA({ className = '' }: HelpCTAProps) {
   return (
-    <div className={`bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-xl p-6 ${className}`}>
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+    <div
+      className={`rounded-xl border border-primary-200 bg-gradient-to-r from-primary-50 to-primary-100 p-6 ${className}`}
+    >
+      <div className="flex flex-col items-center gap-6 md:flex-row md:items-start">
         <div className="flex-1 text-center md:text-left">
-          <h3 className="text-xl font-bold text-neutral-900 mb-2">
+          <h3 className="mb-2 text-xl font-bold text-neutral-900">
             Need Help Choosing the Right Product?
           </h3>
-          <p className="text-neutral-700 mb-4">
-            Our technical experts are here to help you select the perfect sensor for your HVAC application.
-            Get personalized recommendations and answers to all your questions.
+          <p className="mb-4 text-neutral-700">
+            Our technical experts are here to help you select the perfect sensor for your HVAC
+            application. Get personalized recommendations and answers to all your questions.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+          <div className="flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
             <a
               href="tel:+16507354800"
-              className="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg shadow transition focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white shadow transition hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
             >
-              <Phone className="w-5 h-5" />
+              <Phone className="h-5 w-5" />
               Call +1 (650) 735-4800
             </a>
             <a
               href="mailto:info@bapihvac.com"
-              className="inline-flex items-center gap-2 bg-white border-2 border-primary-500 text-primary-600 hover:bg-primary-50 font-semibold px-6 py-3 rounded-lg shadow-sm transition focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+              className="inline-flex items-center gap-2 rounded-lg border-2 border-primary-500 bg-white px-6 py-3 font-semibold text-primary-600 shadow-sm transition hover:bg-primary-50 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="h-5 w-5" />
               Email Support
             </a>
           </div>
         </div>
         <div className="flex-shrink-0">
-          <div className="bg-white rounded-full p-6 shadow-lg">
-            <MessageCircle className="w-12 h-12 text-primary-600" strokeWidth={1.5} />
+          <div className="rounded-full bg-white p-6 shadow-lg">
+            <MessageCircle className="h-12 w-12 text-primary-600" strokeWidth={1.5} />
           </div>
         </div>
       </div>

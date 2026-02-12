@@ -1,6 +1,6 @@
 /**
  * Image Optimization Configuration
- * 
+ *
  * Centralized image optimization settings for Next.js Image component.
  * Optimized for performance, SEO, and user experience.
  */
@@ -18,27 +18,27 @@ export const IMAGE_SIZES = {
     large: { width: 800, height: 800 },
     hero: { width: 1200, height: 1200 },
   },
-  
+
   // Category/Feature images
   category: {
     card: { width: 400, height: 225 }, // 16:9 aspect ratio
     banner: { width: 1200, height: 400 }, // 3:1 aspect ratio
   },
-  
+
   // Hero/Banner images
   hero: {
     mobile: { width: 640, height: 400 },
     tablet: { width: 1024, height: 600 },
     desktop: { width: 1920, height: 800 },
   },
-  
+
   // Logo sizes
   logo: {
     small: { width: 120, height: 60 },
     medium: { width: 200, height: 100 },
     large: { width: 300, height: 150 },
   },
-  
+
   // Team/Profile photos
   profile: {
     thumbnail: { width: 100, height: 100 },
@@ -53,10 +53,10 @@ export const IMAGE_SIZES = {
  * Higher quality = better visual fidelity
  */
 export const IMAGE_QUALITY = {
-  thumbnail: 60,     // Small thumbnails don't need high quality
-  default: 75,       // Good balance for most images
-  high: 85,          // Product hero images, important visuals
-  lossless: 100,     // Logos, diagrams (avoid compression artifacts)
+  thumbnail: 60, // Small thumbnails don't need high quality
+  default: 75, // Good balance for most images
+  high: 85, // Product hero images, important visuals
+  lossless: 100, // Logos, diagrams (avoid compression artifacts)
 } as const;
 
 /**
@@ -65,7 +65,7 @@ export const IMAGE_QUALITY = {
 export const LOADING_STRATEGY = {
   // Above the fold - load immediately
   eager: 'eager' as const,
-  
+
   // Below the fold - lazy load
   lazy: 'lazy' as const,
 } as const;
@@ -77,7 +77,7 @@ export const LOADING_STRATEGY = {
 export const IMAGE_PRIORITY = {
   // Hero images, main product image
   highPriority: true,
-  
+
   // Related products, thumbnails, footer images
   lowPriority: false,
 } as const;
@@ -89,19 +89,19 @@ export const IMAGE_PRIORITY = {
 export const RESPONSIVE_SIZES = {
   // Full width on mobile, half width on desktop
   productCard: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
-  
+
   // Hero images - full width
   hero: '100vw',
-  
+
   // Product detail main image
   productHero: '(max-width: 768px) 100vw, 50vw',
-  
+
   // Thumbnails - fixed small size
   thumbnail: '100px',
-  
+
   // Category cards
   category: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px',
-  
+
   // Logo sizes
   logo: '(max-width: 640px) 150px, 200px',
 } as const;
@@ -148,7 +148,7 @@ export const getImageProps = (
       sizes: RESPONSIVE_SIZES.logo,
     },
   };
-  
+
   return configs[type];
 };
 
@@ -163,7 +163,7 @@ export const generatePlaceholder = (width: number, height: number): string => {
       <rect width="${width}" height="${height}" fill="#f3f4f6"/>
     </svg>
   `;
-  
+
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
 };
 
@@ -180,7 +180,7 @@ export function getImageDimensions(src: string): { width: number; height: number
       height: parseInt(match[2], 10),
     };
   }
-  
+
   return null;
 }
 
@@ -196,15 +196,15 @@ export function optimizeImageUrl(
 ): string {
   try {
     const urlObj = new URL(url);
-    
+
     // Add width/height params if provided
     if (width) urlObj.searchParams.set('w', width.toString());
     if (height) urlObj.searchParams.set('h', height.toString());
     if (quality) urlObj.searchParams.set('quality', quality.toString());
-    
+
     // Request WebP format if supported
     urlObj.searchParams.set('format', 'webp');
-    
+
     return urlObj.toString();
   } catch {
     // If URL is relative or invalid, return as-is
@@ -228,10 +228,10 @@ export function getOptimizedImagePath(originalPath: string): string {
   if (originalPath.endsWith('.webp')) {
     return originalPath;
   }
-  
+
   // Replace extension with .webp
   const webpPath = originalPath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-  
+
   // In production, assume WebP exists if we've generated it
   // In development, you might want to check file existence
   return webpPath;

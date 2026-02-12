@@ -1,13 +1,13 @@
 /**
  * Centralized logging utility with Sentry integration
- * 
+ *
  * Replaces direct console.log() calls with environment-aware logging.
  * Automatically sends errors to Sentry in production.
- * 
+ *
  * @example
  * ```ts
  * import logger from '@/lib/logger';
- * 
+ *
  * logger.debug('Product fetched', { productId: '123' });
  * logger.error('Failed to load product', error, { slug: 'abc' });
  * ```
@@ -25,7 +25,7 @@ class Logger {
 
   /**
    * Determine if a log level should be output
-   * 
+   *
    * Production: Only warn and error
    * Development: All levels
    */
@@ -42,11 +42,11 @@ class Logger {
   private formatMessage(level: LogLevel, message: string): string {
     const timestamp = new Date().toISOString();
     const levelUpper = level.toUpperCase();
-    
+
     if (this.isDevelopment) {
       return `[${levelUpper}] ${message}`;
     }
-    
+
     return `${timestamp} [${levelUpper}] ${message}`;
   }
 
@@ -67,9 +67,9 @@ class Logger {
 
   /**
    * Debug logging - development only
-   * 
+   *
    * Use for verbose debugging information that's not needed in production.
-   * 
+   *
    * @example
    * ```ts
    * logger.debug('Cart state updated', { itemCount: 3 });
@@ -83,9 +83,9 @@ class Logger {
 
   /**
    * Info logging - development only
-   * 
+   *
    * Use for general informational messages.
-   * 
+   *
    * @example
    * ```ts
    * logger.info('User signed in', { userId: '123' });
@@ -99,9 +99,9 @@ class Logger {
 
   /**
    * Warning logging - development and production
-   * 
+   *
    * Use for recoverable issues that need attention.
-   * 
+   *
    * @example
    * ```ts
    * logger.warn('Product missing image', { productId: '123' });
@@ -115,10 +115,10 @@ class Logger {
 
   /**
    * Error logging - development and production
-   * 
+   *
    * Automatically sends to Sentry in production.
    * Use for exceptions and critical failures.
-   * 
+   *
    * @example
    * ```ts
    * try {
@@ -131,7 +131,7 @@ class Logger {
   error(message: string, error?: unknown, context?: LogContext) {
     if (this.shouldLog('error')) {
       console.error(this.formatMessage('error', message), error || '', context || '');
-      
+
       // Send to Sentry in production
       if (error) {
         this.sendToSentry(error, {
@@ -144,7 +144,7 @@ class Logger {
 
   /**
    * Performance timing utility
-   * 
+   *
    * @example
    * ```ts
    * const timer = logger.time('GraphQL Query');
@@ -154,7 +154,7 @@ class Logger {
    */
   time(label: string) {
     const start = performance.now();
-    
+
     return {
       end: () => {
         const duration = performance.now() - start;
@@ -165,7 +165,7 @@ class Logger {
 
   /**
    * Group related log messages
-   * 
+   *
    * @example
    * ```ts
    * logger.group('Cart Operations', () => {

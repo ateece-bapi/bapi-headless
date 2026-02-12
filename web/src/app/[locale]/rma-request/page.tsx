@@ -3,21 +3,20 @@ import { Package, FileText, Clock, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'RMA Request | BAPI',
-  description: 'Request a Return Merchandise Authorization (RMA) for BAPI products. Fast processing and support for returns and repairs.',
+  description:
+    'Request a Return Merchandise Authorization (RMA) for BAPI products. Fast processing and support for returns and repairs.',
 };
 
 export default function RMARequestPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Package className="w-16 h-16 mx-auto mb-4" />
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-              RMA Request
-            </h1>
-            <p className="text-xl max-w-content mx-auto text-primary-50">
+            <Package className="mx-auto mb-4 h-16 w-16" />
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">RMA Request</h1>
+            <p className="mx-auto max-w-content text-xl text-primary-50">
               Return Merchandise Authorization for BAPI products
             </p>
           </div>
@@ -25,38 +24,36 @@ export default function RMARequestPage() {
       </section>
 
       {/* Process Overview */}
-      <section className="py-12 bg-neutral-50">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-8 text-center">
-            RMA Process
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <section className="bg-neutral-50 py-12">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl font-bold text-neutral-900">RMA Process</h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
             <div className="text-center">
-              <div className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 1
               </div>
-              <h3 className="font-bold text-neutral-900 mb-2">Submit Request</h3>
+              <h3 className="mb-2 font-bold text-neutral-900">Submit Request</h3>
               <p className="text-sm text-neutral-600">Fill out the RMA form below</p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 2
               </div>
-              <h3 className="font-bold text-neutral-900 mb-2">Receive RMA Number</h3>
+              <h3 className="mb-2 font-bold text-neutral-900">Receive RMA Number</h3>
               <p className="text-sm text-neutral-600">We&apos;ll email your RMA within 24 hours</p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 3
               </div>
-              <h3 className="font-bold text-neutral-900 mb-2">Ship Product</h3>
+              <h3 className="mb-2 font-bold text-neutral-900">Ship Product</h3>
               <p className="text-sm text-neutral-600">Return product with RMA number</p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 4
               </div>
-              <h3 className="font-bold text-neutral-900 mb-2">Resolution</h3>
+              <h3 className="mb-2 font-bold text-neutral-900">Resolution</h3>
               <p className="text-sm text-neutral-600">Repair, replace, or credit</p>
             </div>
           </div>
@@ -65,17 +62,19 @@ export default function RMARequestPage() {
 
       {/* Important Information */}
       <section className="py-12">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-6 mb-8">
-            <h3 className="text-lg font-bold text-amber-900 mb-3 flex items-center">
-              <FileText className="w-5 h-5 mr-2" />
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 rounded-xl border-2 border-amber-200 bg-amber-50 p-6">
+            <h3 className="mb-3 flex items-center text-lg font-bold text-amber-900">
+              <FileText className="mr-2 h-5 w-5" />
               Important Information
             </h3>
-            <ul className="space-y-2 text-amber-800 text-sm">
+            <ul className="space-y-2 text-sm text-amber-800">
               <li>• All returns must have an RMA number before shipping</li>
               <li>• Products must be returned within 30 days of receiving RMA authorization</li>
               <li>• Include a copy of the original invoice with returned products</li>
-              <li>• Customer is responsible for return shipping costs unless product is defective</li>
+              <li>
+                • Customer is responsible for return shipping costs unless product is defective
+              </li>
               <li>• Write RMA number clearly on outside of shipping box</li>
             </ul>
           </div>
@@ -84,22 +83,23 @@ export default function RMARequestPage() {
 
       {/* RMA Form */}
       <section className="py-16">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white border-2 border-neutral-200 rounded-xl p-8 shadow-lg">
-            <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-              RMA Request Form
-            </h2>
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 shadow-lg">
+            <h2 className="mb-6 text-2xl font-bold text-neutral-900">RMA Request Form</h2>
 
             <form className="space-y-6">
               {/* Contact Information */}
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-neutral-900 border-b border-neutral-200 pb-2">
+                <h3 className="border-b border-neutral-200 pb-2 text-lg font-bold text-neutral-900">
                   Contact Information
                 </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-semibold text-neutral-700 mb-1">
+                    <label
+                      htmlFor="firstName"
+                      className="mb-1 block text-sm font-semibold text-neutral-700"
+                    >
                       First Name *
                     </label>
                     <input
@@ -107,11 +107,14 @@ export default function RMARequestPage() {
                       id="firstName"
                       name="firstName"
                       required
-                      className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-semibold text-neutral-700 mb-1">
+                    <label
+                      htmlFor="lastName"
+                      className="mb-1 block text-sm font-semibold text-neutral-700"
+                    >
                       Last Name *
                     </label>
                     <input
@@ -119,14 +122,17 @@ export default function RMARequestPage() {
                       id="lastName"
                       name="lastName"
                       required
-                      className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-neutral-700 mb-1">
+                    <label
+                      htmlFor="email"
+                      className="mb-1 block text-sm font-semibold text-neutral-700"
+                    >
                       Email Address *
                     </label>
                     <input
@@ -134,11 +140,14 @@ export default function RMARequestPage() {
                       id="email"
                       name="email"
                       required
-                      className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-neutral-700 mb-1">
+                    <label
+                      htmlFor="phone"
+                      className="mb-1 block text-sm font-semibold text-neutral-700"
+                    >
                       Phone Number *
                     </label>
                     <input
@@ -146,13 +155,16 @@ export default function RMARequestPage() {
                       id="phone"
                       name="phone"
                       required
-                      className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-semibold text-neutral-700 mb-1">
+                  <label
+                    htmlFor="company"
+                    className="mb-1 block text-sm font-semibold text-neutral-700"
+                  >
                     Company Name *
                   </label>
                   <input
@@ -160,19 +172,22 @@ export default function RMARequestPage() {
                     id="company"
                     name="company"
                     required
-                    className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
               </div>
 
               {/* Product Information */}
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-neutral-900 border-b border-neutral-200 pb-2">
+                <h3 className="border-b border-neutral-200 pb-2 text-lg font-bold text-neutral-900">
                   Product Information
                 </h3>
-                
+
                 <div>
-                  <label htmlFor="productModel" className="block text-sm font-semibold text-neutral-700 mb-1">
+                  <label
+                    htmlFor="productModel"
+                    className="mb-1 block text-sm font-semibold text-neutral-700"
+                  >
                     Product Model Number *
                   </label>
                   <input
@@ -181,24 +196,30 @@ export default function RMARequestPage() {
                     name="productModel"
                     required
                     placeholder="e.g., BA/10K-2-O"
-                    className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="serialNumber" className="block text-sm font-semibold text-neutral-700 mb-1">
+                  <label
+                    htmlFor="serialNumber"
+                    className="mb-1 block text-sm font-semibold text-neutral-700"
+                  >
                     Serial Number (if available)
                   </label>
                   <input
                     type="text"
                     id="serialNumber"
                     name="serialNumber"
-                    className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="purchaseDate" className="block text-sm font-semibold text-neutral-700 mb-1">
+                  <label
+                    htmlFor="purchaseDate"
+                    className="mb-1 block text-sm font-semibold text-neutral-700"
+                  >
                     Purchase Date *
                   </label>
                   <input
@@ -206,24 +227,30 @@ export default function RMARequestPage() {
                     id="purchaseDate"
                     name="purchaseDate"
                     required
-                    className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="invoiceNumber" className="block text-sm font-semibold text-neutral-700 mb-1">
+                  <label
+                    htmlFor="invoiceNumber"
+                    className="mb-1 block text-sm font-semibold text-neutral-700"
+                  >
                     Invoice/PO Number
                   </label>
                   <input
                     type="text"
                     id="invoiceNumber"
                     name="invoiceNumber"
-                    className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="quantity" className="block text-sm font-semibold text-neutral-700 mb-1">
+                  <label
+                    htmlFor="quantity"
+                    className="mb-1 block text-sm font-semibold text-neutral-700"
+                  >
                     Quantity Being Returned *
                   </label>
                   <input
@@ -232,26 +259,29 @@ export default function RMARequestPage() {
                     name="quantity"
                     min="1"
                     required
-                    className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
               </div>
 
               {/* Return Reason */}
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-neutral-900 border-b border-neutral-200 pb-2">
+                <h3 className="border-b border-neutral-200 pb-2 text-lg font-bold text-neutral-900">
                   Return Reason
                 </h3>
-                
+
                 <div>
-                  <label htmlFor="reason" className="block text-sm font-semibold text-neutral-700 mb-1">
+                  <label
+                    htmlFor="reason"
+                    className="mb-1 block text-sm font-semibold text-neutral-700"
+                  >
                     Reason for Return *
                   </label>
                   <select
                     id="reason"
                     name="reason"
                     required
-                    className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   >
                     <option value="">Select reason</option>
                     <option value="defective">Defective Product</option>
@@ -263,7 +293,10 @@ export default function RMARequestPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="description" className="block text-sm font-semibold text-neutral-700 mb-1">
+                  <label
+                    htmlFor="description"
+                    className="mb-1 block text-sm font-semibold text-neutral-700"
+                  >
                     Detailed Description *
                   </label>
                   <textarea
@@ -272,26 +305,29 @@ export default function RMARequestPage() {
                     rows={5}
                     required
                     placeholder="Please describe the issue or reason for return in detail..."
-                    className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
               </div>
 
               {/* Preferred Resolution */}
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-neutral-900 border-b border-neutral-200 pb-2">
+                <h3 className="border-b border-neutral-200 pb-2 text-lg font-bold text-neutral-900">
                   Preferred Resolution
                 </h3>
-                
+
                 <div>
-                  <label htmlFor="resolution" className="block text-sm font-semibold text-neutral-700 mb-1">
+                  <label
+                    htmlFor="resolution"
+                    className="mb-1 block text-sm font-semibold text-neutral-700"
+                  >
                     Requested Action *
                   </label>
                   <select
                     id="resolution"
                     name="resolution"
                     required
-                    className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   >
                     <option value="">Select preferred resolution</option>
                     <option value="repair">Repair Product</option>
@@ -306,11 +342,11 @@ export default function RMARequestPage() {
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="w-full bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold px-8 py-4 rounded-xl transition-colors duration-normal"
+                  className="duration-normal w-full rounded-xl bg-accent-500 px-8 py-4 font-bold text-neutral-900 transition-colors hover:bg-accent-600"
                 >
                   Submit RMA Request
                 </button>
-                <p className="text-sm text-neutral-600 mt-3 text-center">
+                <p className="mt-3 text-center text-sm text-neutral-600">
                   You will receive an RMA number within 24 business hours
                 </p>
               </div>
@@ -320,17 +356,13 @@ export default function RMARequestPage() {
       </section>
 
       {/* Return Shipping Address */}
-      <section className="py-12 bg-neutral-50">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-neutral-900 mb-2">
-              Return Shipping Address
-            </h3>
-            <p className="text-neutral-600">
-              Ship products with RMA number to:
-            </p>
+      <section className="bg-neutral-50 py-12">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <div className="mb-6 text-center">
+            <h3 className="mb-2 text-2xl font-bold text-neutral-900">Return Shipping Address</h3>
+            <p className="text-neutral-600">Ship products with RMA number to:</p>
           </div>
-          <div className="bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto text-center">
+          <div className="mx-auto max-w-md rounded-xl bg-white p-6 text-center shadow-lg">
             <p className="font-semibold text-neutral-900">Building Automation Products Inc.</p>
             <p className="text-neutral-600">750 North Royal Avenue</p>
             <p className="text-neutral-600">Gays Mills, WI 54631</p>
@@ -344,24 +376,20 @@ export default function RMARequestPage() {
 
       {/* Contact Support */}
       <section className="py-12">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-xl font-bold text-neutral-900 mb-3">
-            Questions About Returns?
-          </h3>
-          <p className="text-neutral-600 mb-4">
-            Contact our customer service team for assistance
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="tel:+17158561203" 
-              className="text-primary-500 hover:text-primary-600 font-bold"
+        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+          <h3 className="mb-3 text-xl font-bold text-neutral-900">Questions About Returns?</h3>
+          <p className="mb-4 text-neutral-600">Contact our customer service team for assistance</p>
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <a
+              href="tel:+17158561203"
+              className="font-bold text-primary-500 hover:text-primary-600"
             >
               (715) 856-1203
             </a>
-            <span className="hidden sm:inline text-neutral-300">|</span>
-            <a 
-              href="mailto:sales@bapihvac.com" 
-              className="text-primary-500 hover:text-primary-600 font-bold"
+            <span className="hidden text-neutral-300 sm:inline">|</span>
+            <a
+              href="mailto:sales@bapihvac.com"
+              className="font-bold text-primary-500 hover:text-primary-600"
             >
               sales@bapihvac.com
             </a>

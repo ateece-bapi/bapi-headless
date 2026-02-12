@@ -23,21 +23,17 @@ interface ProductGridProps {
 
 export function ProductGrid({ products, locale }: ProductGridProps) {
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
-  const {
-    isInComparison,
-    addToComparison,
-    removeFromComparison,
-    canAddMore,
-  } = useProductComparison();
+  const { isInComparison, addToComparison, removeFromComparison, canAddMore } =
+    useProductComparison();
 
   if (products.length === 0) {
     return (
-      <div className="text-center py-16 px-4">
-        <div className="max-w-md mx-auto">
+      <div className="px-4 py-16 text-center">
+        <div className="mx-auto max-w-md">
           {/* Icon */}
-          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary-100 to-accent-100 flex items-center justify-center">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary-100 to-accent-100">
             <svg
-              className="w-10 h-10 text-primary-500"
+              className="h-10 w-10 text-primary-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -50,20 +46,18 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
               />
             </svg>
           </div>
-          
-          <h3 className="text-2xl font-bold text-neutral-900 mb-3">
-            No Products Found
-          </h3>
-          <p className="text-neutral-600 mb-6 leading-relaxed">
+
+          <h3 className="mb-3 text-2xl font-bold text-neutral-900">No Products Found</h3>
+          <p className="mb-6 leading-relaxed text-neutral-600">
             We couldn't find any products matching your current filters. Try adjusting your
             selection or browse all products.
           </p>
-          
+
           {/* Helpful suggestions */}
-          <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-6 text-left">
-            <h4 className="font-semibold text-neutral-900 mb-3 flex items-center gap-2">
+          <div className="rounded-xl bg-gradient-to-br from-primary-50 to-accent-50 p-6 text-left">
+            <h4 className="mb-3 flex items-center gap-2 font-semibold text-neutral-900">
               <svg
-                className="w-5 h-5 text-primary-500"
+                className="h-5 w-5 text-primary-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -79,19 +73,19 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
             </h4>
             <ul className="space-y-2 text-sm text-neutral-700">
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 mt-0.5">•</span>
+                <span className="mt-0.5 text-primary-500">•</span>
                 <span>Remove some filters to see more products</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 mt-0.5">•</span>
+                <span className="mt-0.5 text-primary-500">•</span>
                 <span>Try different filter combinations</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 mt-0.5">•</span>
+                <span className="mt-0.5 text-primary-500">•</span>
                 <span>Browse other categories that might have what you need</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary-500 mt-0.5">•</span>
+                <span className="mt-0.5 text-primary-500">•</span>
                 <span>Contact our sales team for specialized product recommendations</span>
               </li>
             </ul>
@@ -103,7 +97,7 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (
           <ProductCard
             key={product.id}
@@ -158,7 +152,7 @@ function ProductCard({
     rootMargin: '100px',
     freezeOnceVisible: true,
   });
-  
+
   const isSimpleProduct = product.__typename === 'SimpleProduct';
   const isVariableProduct = product.__typename === 'VariableProduct';
 
@@ -186,16 +180,16 @@ function ProductCard({
     <Link
       ref={ref}
       href={`/${locale}/product/${product.slug}`}
-      className={`group bg-white rounded-xl border-2 border-neutral-200 hover:border-primary-500 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden flex flex-col relative ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      className={`group relative flex flex-col overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl ${
+        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
       }`}
       style={{ transitionDuration: '500ms' }}
     >
       {/* Subtle gradient accent on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-50/0 to-accent-50/0 group-hover:from-primary-50/30 group-hover:to-accent-50/20 transition-all duration-300 pointer-events-none" />
-      
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary-50/0 to-accent-50/0 transition-all duration-300 group-hover:from-primary-50/30 group-hover:to-accent-50/20" />
+
       {/* Quick View & Comparison Buttons */}
-      <div className="absolute top-3 right-3 z-10 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="absolute right-3 top-3 z-10 flex gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         {/* Comparison Checkbox */}
         <button
           onClick={(e) => {
@@ -205,18 +199,18 @@ function ProductCard({
               onToggleComparison();
             }
           }}
-          className={`p-2 rounded-lg backdrop-blur-sm shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:border-2 focus-visible:border-primary-600 ${
+          className={`rounded-lg p-2 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 ${
             canAddToComparison
-              ? 'bg-white/90 hover:bg-white cursor-pointer'
-              : 'bg-neutral-100/90 cursor-not-allowed opacity-50'
+              ? 'cursor-pointer bg-white/90 hover:bg-white'
+              : 'cursor-not-allowed bg-neutral-100/90 opacity-50'
           }`}
           aria-label={isInComparison ? 'Remove from comparison' : 'Add to comparison'}
           disabled={!canAddToComparison}
         >
           {isInComparison ? (
-            <CheckSquare className="w-5 h-5 text-primary-600" />
+            <CheckSquare className="h-5 w-5 text-primary-600" />
           ) : (
-            <Square className="w-5 h-5 text-neutral-600" />
+            <Square className="h-5 w-5 text-neutral-600" />
           )}
         </button>
 
@@ -227,27 +221,27 @@ function ProductCard({
             e.stopPropagation();
             onQuickView();
           }}
-          className="p-2 rounded-lg bg-white/90 hover:bg-white backdrop-blur-sm shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:border-2 focus-visible:border-primary-600"
+          className="rounded-lg bg-white/90 p-2 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50"
           aria-label="Quick view"
         >
-          <Eye className="w-5 h-5 text-primary-600" />
+          <Eye className="h-5 w-5 text-primary-600" />
         </button>
       </div>
-      
+
       {/* Product Image */}
-      <div className="aspect-square relative bg-gradient-to-br from-neutral-50 to-neutral-100 overflow-hidden">
+      <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100">
         {image?.sourceUrl ? (
           <>
             {/* Loading shimmer effect */}
             {!imageLoaded && (
-              <div className="absolute inset-0 bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-200 animate-[shimmer_2s_ease-in-out_infinite]" />
+              <div className="absolute inset-0 animate-[shimmer_2s_ease-in-out_infinite] bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-200" />
             )}
-            
+
             <Image
               src={image.sourceUrl}
               alt={image.altText || product.name || 'Product'}
               fill
-              className={`object-contain p-4 group-hover:scale-110 transition-all duration-500 ease-out ${
+              className={`object-contain p-4 transition-all duration-500 ease-out group-hover:scale-110 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               sizes="(min-width: 1280px) 25vw, (min-width: 640px) 33vw, 50vw"
@@ -256,11 +250,11 @@ function ProductCard({
             />
           </>
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-neutral-400">
+          <div className="flex h-full w-full items-center justify-center text-neutral-400">
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-2 rounded-full bg-neutral-200 flex items-center justify-center">
+              <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-full bg-neutral-200">
                 <svg
-                  className="w-8 h-8 text-neutral-400"
+                  className="h-8 w-8 text-neutral-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -279,14 +273,14 @@ function ProductCard({
         )}
 
         {/* Badges with BAPI gradients */}
-        <div className="absolute top-3 left-3 flex flex-col gap-2 z-10">
+        <div className="absolute left-3 top-3 z-10 flex flex-col gap-2">
           {isOnSale && (
-            <span className="bg-bapi-accent-gradient text-neutral-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-md animate-[fade-in_0.3s_ease-out]">
+            <span className="bg-bapi-accent-gradient animate-[fade-in_0.3s_ease-out] rounded-full px-3 py-1.5 text-xs font-bold text-neutral-900 shadow-md">
               Sale
             </span>
           )}
           {isInStock && (
-            <span className="bg-gradient-to-r from-success-600 to-success-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">
+            <span className="rounded-full bg-gradient-to-r from-success-600 to-success-500 px-3 py-1.5 text-xs font-semibold text-white shadow-md">
               In Stock
             </span>
           )}
@@ -294,15 +288,15 @@ function ProductCard({
       </div>
 
       {/* Product Info */}
-      <div className="p-5 flex-1 flex flex-col relative z-10">
-        <h3 className="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors line-clamp-2 leading-snug">
+      <div className="relative z-10 flex flex-1 flex-col p-5">
+        <h3 className="mb-2 line-clamp-2 text-lg font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-primary-600">
           {product.name}
         </h3>
 
         {/* Short Description */}
         {isSimpleProduct && (product as SimpleProduct).shortDescription && (
           <div
-            className="text-sm text-neutral-600 mb-4 line-clamp-2 flex-1 leading-relaxed"
+            className="mb-4 line-clamp-2 flex-1 text-sm leading-relaxed text-neutral-600"
             dangerouslySetInnerHTML={{
               __html: (product as SimpleProduct).shortDescription || '',
             }}
@@ -310,10 +304,10 @@ function ProductCard({
         )}
 
         {/* Price */}
-        <div className="mt-auto pt-3 border-t border-neutral-100">
+        <div className="mt-auto border-t border-neutral-100 pt-3">
           {price ? (
-            <div className="flex items-baseline gap-2 mb-4">
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
+            <div className="mb-4 flex items-baseline gap-2">
+              <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-2xl font-bold text-transparent">
                 {price}
               </span>
               {isOnSale &&
@@ -330,17 +324,15 @@ function ProductCard({
                 )}
             </div>
           ) : (
-            <div className="mb-4 text-neutral-600 text-sm font-medium">
-              Contact for Pricing
-            </div>
+            <div className="mb-4 text-sm font-medium text-neutral-600">Contact for Pricing</div>
           )}
 
           {/* CTA Button with BAPI gradient */}
           <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-bapi-primary-gradient px-4 py-2 rounded-lg group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
+            <span className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
               View Details
               <svg
-                className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -354,7 +346,7 @@ function ProductCard({
               </svg>
             </span>
             {isSimpleProduct && (product as SimpleProduct).sku && (
-              <span className="text-neutral-400 text-xs font-mono">
+              <span className="font-mono text-xs text-neutral-400">
                 {(product as SimpleProduct).sku}
               </span>
             )}

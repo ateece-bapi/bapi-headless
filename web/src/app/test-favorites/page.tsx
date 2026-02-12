@@ -37,35 +37,33 @@ export default async function FavoritesTestPage() {
 
   return (
     <main className="min-h-screen bg-neutral-50 py-12">
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-neutral-900 mb-2">
-            Test Favorites Feature
-          </h1>
-          <p className="text-neutral-600 mb-4">
+          <h1 className="mb-2 text-3xl font-bold text-neutral-900">Test Favorites Feature</h1>
+          <p className="mb-4 text-neutral-600">
             Click the heart icons below to add/remove products from your favorites
           </p>
           <Link
             href="/account/favorites"
-            className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors"
+            className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
           >
             View My Favorites
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-3">
           {testProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden"
+              className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm"
             >
-              <div className="aspect-square bg-neutral-100 overflow-hidden relative">
+              <div className="relative aspect-square overflow-hidden bg-neutral-100">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
-                <div className="absolute top-3 right-3">
+                <div className="absolute right-3 top-3">
                   <FavoriteButton
                     productId={product.id}
                     productName={product.name}
@@ -78,8 +76,8 @@ export default async function FavoritesTestPage() {
                 </div>
               </div>
               <div className="p-4">
-                <h3 className="font-bold text-neutral-900 mb-2">{product.name}</h3>
-                <p className="text-lg font-bold text-primary-600 mb-4">{product.price}</p>
+                <h3 className="mb-2 font-bold text-neutral-900">{product.name}</h3>
+                <p className="mb-4 text-lg font-bold text-primary-600">{product.price}</p>
                 <FavoriteButton
                   productId={product.id}
                   productName={product.name}

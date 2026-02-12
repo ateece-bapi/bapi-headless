@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wordpress';
 import Link from 'next/link';
-import { 
-  Briefcase, 
-  Heart, 
-  Users, 
-  TrendingUp, 
-  Shield, 
+import {
+  Briefcase,
+  Heart,
+  Users,
+  TrendingUp,
+  Shield,
   Gift,
   Plane,
   GraduationCap,
@@ -16,7 +16,7 @@ import {
   Mail,
   ArrowRight,
   CheckCircle2,
-  Sparkles
+  Sparkles,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -104,114 +104,116 @@ export default async function CareersPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-3xl -translate-y-1/3" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl translate-y-1/3" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 translate-y-1/3 rounded-full bg-primary-400/20 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-primary-100 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <nav className="mb-8 flex items-center gap-2 text-sm text-primary-100">
+            <Link href="/" className="transition-colors hover:text-white">
+              Home
+            </Link>
             <span>/</span>
-            <Link href="/company" className="hover:text-white transition-colors">Company</Link>
+            <Link href="/company" className="transition-colors hover:text-white">
+              Company
+            </Link>
             <span>/</span>
-            <span className="text-white font-medium">Careers</span>
+            <span className="font-medium text-white">Careers</span>
           </nav>
 
           {/* Header */}
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white font-medium text-sm mb-6">
-              <Briefcase className="w-4 h-4" />
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+              <Briefcase className="h-4 w-4" />
               Join Our Team
             </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+
+            <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
               Build Your Career at BAPI
             </h1>
-            
-            <p className="text-xl md:text-2xl text-primary-50 leading-relaxed mb-8">
-              BAPI supports a culture of work-life balance with family oriented employee benefits 
-              such as company picnics & holiday parties, aesthetic wellness initiatives, exercise 
-              programs and much more. We are an Equal Opportunity Employer (EOP) and we are 
+
+            <p className="mb-8 text-xl leading-relaxed text-primary-50 md:text-2xl">
+              BAPI supports a culture of work-life balance with family oriented employee benefits
+              such as company picnics & holiday parties, aesthetic wellness initiatives, exercise
+              programs and much more. We are an Equal Opportunity Employer (EOP) and we are
               committed to creating an inclusive work environment for all employees.
             </p>
 
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
-              <Sparkles className="w-5 h-5 text-yellow-300" />
-              <span className="text-white font-medium">We're excited to meet you!</span>
+            <div className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 backdrop-blur-sm">
+              <Sparkles className="h-5 w-5 text-yellow-300" />
+              <span className="font-medium text-white">We're excited to meet you!</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Benefits Grid */}
-      <section className="relative -mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+      <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
               <div
                 key={benefit.title}
-                className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 border border-gray-100 hover:border-transparent relative overflow-hidden"
+                className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-xl transition-all duration-500 hover:border-transparent hover:shadow-2xl"
                 style={{ animationDelay: `${index * 75}ms` }}
               >
                 {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
+                />
+
                 {/* Icon */}
                 <div className="relative mb-6">
-                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${benefit.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-7 h-7 text-white" />
+                  <div
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${benefit.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                  >
+                    <Icon className="h-7 w-7 text-white" />
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    {benefit.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 leading-relaxed">
-                    {benefit.description}
-                  </p>
+                  <h3 className="mb-3 text-2xl font-bold text-gray-900">{benefit.title}</h3>
+
+                  <p className="leading-relaxed text-gray-600">{benefit.description}</p>
                 </div>
 
                 {/* Decorative corner */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gray-50 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-gradient-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
             );
           })}
         </div>
 
         {/* Culture & Benefits Details */}
-        <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-10 lg:p-16 shadow-lg mb-20">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-full text-primary-700 font-medium text-sm mb-4">
-              <Gift className="w-4 h-4" />
+        <div className="mb-20 rounded-2xl bg-gradient-to-br from-gray-50 to-white p-10 shadow-lg lg:p-16">
+          <div className="mb-12 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
+              <Gift className="h-4 w-4" />
               What We Offer
             </div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              More Than Just a Job
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <h2 className="mb-4 text-4xl font-bold text-gray-900">More Than Just a Job</h2>
+            <p className="mx-auto max-w-2xl text-lg text-gray-600">
               BAPI supports a culture of work-life balance with family oriented employee benefits.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-3">
             {cultureValues.map((category, categoryIndex) => (
               <div
                 key={category.title}
-                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="rounded-xl bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
                 style={{ animationDelay: `${categoryIndex * 100}ms` }}
               >
-                <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-primary-500 to-primary-600" />
+                <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-gray-900">
+                  <div className="h-2 w-2 rounded-full bg-gradient-to-r from-primary-500 to-primary-600" />
                   {category.title}
                 </h3>
                 <ul className="space-y-3">
                   {category.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-500" />
                       <span className="text-gray-700">{item}</span>
                     </li>
                   ))}
@@ -222,58 +224,58 @@ export default async function CareersPage() {
         </div>
 
         {/* How to Apply Section */}
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-10 lg:p-16 mb-20">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 rounded-full text-blue-700 font-medium text-sm mb-4">
-                <FileText className="w-4 h-4" />
+        <div className="mb-20 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-10 lg:p-16">
+          <div className="mx-auto max-w-3xl">
+            <div className="mb-10 text-center">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+                <FileText className="h-4 w-4" />
                 Application Process
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                How to Apply
-              </h2>
+              <h2 className="mb-4 text-4xl font-bold text-gray-900">How to Apply</h2>
               <p className="text-lg text-gray-700">
-                We ONLY accept and consider complete electronic applications submitted directly 
+                We ONLY accept and consider complete electronic applications submitted directly
                 through the <strong>www.bapihvac.com/careers</strong> webpage.
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-md mb-8">
+            <div className="mb-8 rounded-xl bg-white p-8 shadow-md">
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 font-bold text-white">
                     1
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Complete Application</h3>
+                    <h3 className="mb-2 font-bold text-gray-900">Complete Application</h3>
                     <p className="text-gray-600">
-                      Most positions will require a <strong>Resume</strong> and a separate <strong>Cover Letter</strong> 
+                      Most positions will require a <strong>Resume</strong> and a separate{' '}
+                      <strong>Cover Letter</strong>
                       to be considered a "complete" electronic application.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 font-bold text-white">
                     2
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Direct Submission</h3>
+                    <h3 className="mb-2 font-bold text-gray-900">Direct Submission</h3>
                     <p className="text-gray-600">
-                      Cover Letters must be uploaded directly as attachments via online application system.
+                      Cover Letters must be uploaded directly as attachments via online application
+                      system.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white font-bold">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-orange-500 font-bold text-white">
                     3
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Equal Opportunity</h3>
+                    <h3 className="mb-2 font-bold text-gray-900">Equal Opportunity</h3>
                     <p className="text-gray-600">
-                      BAPI is an Equal Opportunity Employer (EOP). If you are unable to apply online 
-                      or require alternative methods of application or screening, please identify 
+                      BAPI is an Equal Opportunity Employer (EOP). If you are unable to apply online
+                      or require alternative methods of application or screening, please identify
                       cultural origin, disability or veteran status.
                     </p>
                   </div>
@@ -281,22 +283,22 @@ export default async function CareersPage() {
               </div>
             </div>
 
-            <div className="bg-blue-600 text-white rounded-xl p-6 text-center">
+            <div className="rounded-xl bg-blue-600 p-6 text-center text-white">
               <p className="mb-4">
                 <strong>For questions or help with online applications:</strong>
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a 
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <a
                   href="mailto:careers@bapihvac.com"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
+                  className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition-all duration-300 hover:shadow-lg"
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="h-5 w-5" />
                   careers@bapihvac.com
                 </a>
                 <span className="text-blue-100">or call</span>
-                <a 
+                <a
                   href="tel:+16087534400"
-                  className="font-bold hover:text-blue-100 transition-colors"
+                  className="font-bold transition-colors hover:text-blue-100"
                 >
                   (800) 753-4400
                 </a>
@@ -306,27 +308,27 @@ export default async function CareersPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-10 lg:p-16 shadow-2xl relative overflow-hidden">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          
-          <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
+
+          <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">
             <div className="text-center lg:text-left">
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">
+              <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">
                 Ready to Join Our Mission?
               </h2>
-              <p className="text-primary-50 text-lg max-w-2xl">
-                Explore current openings and take the first step toward an exciting career at BAPI. 
+              <p className="max-w-2xl text-lg text-primary-50">
+                Explore current openings and take the first step toward an exciting career at BAPI.
                 We can't wait to hear from you!
               </p>
             </div>
-            
+
             <Link
               href="/company/contact-us"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-600 font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               Get in Touch
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>

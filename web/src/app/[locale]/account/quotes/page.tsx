@@ -14,54 +14,55 @@ export default async function QuotesPage() {
   // Get mock data if enabled
   const mockEnabled = isMockDataEnabled();
   const profile = mockEnabled ? getMockUserData(user.id) : null;
-  
+
   // Use mock quotes or empty array
-  const quotes = profile?.savedQuotes.map(q => ({
-    id: q.quoteId,
-    quoteId: q.quoteId,
-    date: q.date,
-    expiresAt: q.expiresAt,
-    status: 'pending' as const,
-    total: q.total,
-    itemCount: q.items,
-  })) || [];
+  const quotes =
+    profile?.savedQuotes.map((q) => ({
+      id: q.quoteId,
+      quoteId: q.quoteId,
+      date: q.date,
+      expiresAt: q.expiresAt,
+      status: 'pending' as const,
+      total: q.total,
+      itemCount: q.items,
+    })) || [];
 
   return (
     <main className="min-h-screen bg-neutral-50">
       {/* Mock Data Banner */}
       {mockEnabled && profile && (
-        <div className="w-full bg-yellow-50 border-b border-yellow-200">
-          <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-3">
+        <div className="w-full border-b border-yellow-200 bg-yellow-50">
+          <div className="mx-auto max-w-container px-4 py-3 sm:px-6 lg:px-8 xl:px-12">
             <div className="flex items-center gap-2 text-sm text-yellow-800">
-              <AlertCircle className="w-4 h-4" />
-              <span><strong>Development Mode:</strong> Showing mock quote data</span>
+              <AlertCircle className="h-4 w-4" />
+              <span>
+                <strong>Development Mode:</strong> Showing mock quote data
+              </span>
             </div>
           </div>
         </div>
       )}
-      
+
       {/* Header */}
-      <section className="w-full bg-linear-to-r from-primary-600 to-primary-700 text-white">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
+      <section className="bg-linear-to-r w-full from-primary-600 to-primary-700 text-white">
+        <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
           <Link
             href="/account"
-            className="inline-flex items-center gap-2 text-white/90 hover:text-white font-semibold transition-colors mb-6"
+            className="mb-6 inline-flex items-center gap-2 font-semibold text-white/90 transition-colors hover:text-white"
           >
-            <ArrowLeft className="w-4 h-4" strokeWidth={2.5} />
+            <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
             Back to Dashboard
           </Link>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-3xl lg:text-4xl font-bold">Quote Requests</h1>
-              <p className="text-white/90 mt-2">
-                Track and manage your custom quote requests
-              </p>
+              <h1 className="text-3xl font-bold lg:text-4xl">Quote Requests</h1>
+              <p className="mt-2 text-white/90">Track and manage your custom quote requests</p>
             </div>
             <Link
               href="/request-quote"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-primary-700 hover:bg-neutral-50 font-semibold rounded-lg transition-all shadow-lg hover:shadow-xl"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-primary-700 shadow-lg transition-all hover:bg-neutral-50 hover:shadow-xl"
             >
-              <Plus className="w-5 h-5" strokeWidth={2.5} />
+              <Plus className="h-5 w-5" strokeWidth={2.5} />
               New Quote Request
             </Link>
           </div>
@@ -70,54 +71,53 @@ export default async function QuotesPage() {
 
       {/* Quotes Content */}
       <section className="w-full py-12">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
           {quotes.length === 0 ? (
             /* Empty State */
-            <div className="bg-white rounded-xl shadow-sm border border-neutral-200 p-12 text-center">
-              <div className="flex justify-center mb-6">
-                <div className="w-20 h-20 rounded-full bg-primary-100 flex items-center justify-center">
-                  <FileText className="w-10 h-10 text-primary-600" strokeWidth={2} />
+            <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center shadow-sm">
+              <div className="mb-6 flex justify-center">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-100">
+                  <FileText className="h-10 w-10 text-primary-600" strokeWidth={2} />
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-neutral-900 mb-3">
-                No Quote Requests Yet
-              </h2>
-              <p className="text-neutral-600 mb-8 max-w-md mx-auto">
-                Request a custom quote for bulk orders, special configurations, or technical consultations.
+              <h2 className="mb-3 text-2xl font-bold text-neutral-900">No Quote Requests Yet</h2>
+              <p className="mx-auto mb-8 max-w-md text-neutral-600">
+                Request a custom quote for bulk orders, special configurations, or technical
+                consultations.
               </p>
               <Link
                 href="/request-quote"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-700 hover:shadow-lg"
               >
-                <Plus className="w-5 h-5" strokeWidth={2.5} />
+                <Plus className="h-5 w-5" strokeWidth={2.5} />
                 Submit Quote Request
               </Link>
 
               {/* Info Cards */}
-              <div className="mt-12 grid md:grid-cols-3 gap-6 text-left">
-                <div className="p-6 bg-neutral-50 rounded-lg border border-neutral-200">
-                  <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mb-4">
-                    <FileText className="w-6 h-6 text-primary-600" strokeWidth={2} />
+              <div className="mt-12 grid gap-6 text-left md:grid-cols-3">
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100">
+                    <FileText className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
-                  <h3 className="font-bold text-neutral-900 mb-2">Custom Solutions</h3>
+                  <h3 className="mb-2 font-bold text-neutral-900">Custom Solutions</h3>
                   <p className="text-sm text-neutral-600">
                     Get tailored pricing for your specific application requirements
                   </p>
                 </div>
-                <div className="p-6 bg-neutral-50 rounded-lg border border-neutral-200">
-                  <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mb-4">
-                    <Clock className="w-6 h-6 text-primary-600" strokeWidth={2} />
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100">
+                    <Clock className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
-                  <h3 className="font-bold text-neutral-900 mb-2">Fast Response</h3>
+                  <h3 className="mb-2 font-bold text-neutral-900">Fast Response</h3>
                   <p className="text-sm text-neutral-600">
                     Our team typically responds within 24 business hours
                   </p>
                 </div>
-                <div className="p-6 bg-neutral-50 rounded-lg border border-neutral-200">
-                  <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mb-4">
-                    <CheckCircle className="w-6 h-6 text-primary-600" strokeWidth={2} />
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100">
+                    <CheckCircle className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
-                  <h3 className="font-bold text-neutral-900 mb-2">Expert Support</h3>
+                  <h3 className="mb-2 font-bold text-neutral-900">Expert Support</h3>
                   <p className="text-sm text-neutral-600">
                     Work directly with our technical specialists
                   </p>
@@ -130,17 +130,15 @@ export default async function QuotesPage() {
               {quotes.map((quote) => (
                 <div
                   key={quote.id}
-                  className="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 hover:shadow-md transition-shadow"
+                  className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
                 >
-                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                  <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <h3 className="text-xl font-bold text-neutral-900">
-                          Quote #{quote.id}
-                        </h3>
+                      <div className="mb-3 flex items-center gap-3">
+                        <h3 className="text-xl font-bold text-neutral-900">Quote #{quote.id}</h3>
                         {getStatusBadge(quote.status)}
                       </div>
-                      <div className="flex flex-wrap gap-4 text-sm mb-4">
+                      <div className="mb-4 flex flex-wrap gap-4 text-sm">
                         <div>
                           <span className="text-neutral-500">Created:</span>{' '}
                           <span className="font-medium text-neutral-700">
@@ -169,17 +167,17 @@ export default async function QuotesPage() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-col sm:flex-row lg:flex-col gap-2">
+                    <div className="flex flex-col gap-2 sm:flex-row lg:flex-col">
                       <Link
                         href={`/account/quotes/${quote.id}`}
-                        className="inline-flex items-center justify-center px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-sm rounded-lg transition-colors"
+                        className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                       >
                         View Details
                       </Link>
                       {quote.status === 'pending' && (
                         <button
                           type="button"
-                          className="inline-flex items-center justify-center px-4 py-2 border border-neutral-300 text-neutral-700 hover:bg-neutral-50 font-semibold text-sm rounded-lg transition-colors"
+                          className="inline-flex items-center justify-center rounded-lg border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-50"
                         >
                           Cancel Request
                         </button>
@@ -206,15 +204,15 @@ function getStatusBadge(status: QuoteStatus) {
   };
 
   const icons = {
-    pending: <Clock className="w-3.5 h-3.5" strokeWidth={2.5} />,
-    reviewing: <FileText className="w-3.5 h-3.5" strokeWidth={2.5} />,
-    quoted: <CheckCircle className="w-3.5 h-3.5" strokeWidth={2.5} />,
-    declined: <XCircle className="w-3.5 h-3.5" strokeWidth={2.5} />,
+    pending: <Clock className="h-3.5 w-3.5" strokeWidth={2.5} />,
+    reviewing: <FileText className="h-3.5 w-3.5" strokeWidth={2.5} />,
+    quoted: <CheckCircle className="h-3.5 w-3.5" strokeWidth={2.5} />,
+    declined: <XCircle className="h-3.5 w-3.5" strokeWidth={2.5} />,
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${styles[status]}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold ${styles[status]}`}
     >
       {icons[status]}
       {status.charAt(0).toUpperCase() + status.slice(1)}

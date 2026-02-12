@@ -1,6 +1,6 @@
 /**
  * Shared Email Sending Function
- * 
+ *
  * Uses AWS SES to send emails. Can be called from API routes or server components.
  */
 
@@ -76,11 +76,8 @@ export async function sendEmail(params: SendEmailParams): Promise<{
     };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    
-    logError(
-      `Failed to send email: ${errorMessage}`,
-      'sendEmail'
-    );
+
+    logError(`Failed to send email: ${errorMessage}`, 'sendEmail');
 
     console.error('SES send error:', {
       error: errorMessage,

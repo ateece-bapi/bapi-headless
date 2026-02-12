@@ -6,7 +6,7 @@ const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
 /**
  * POST /api/auth/refresh
- * 
+ *
  * Refreshes JWT auth token using refresh token.
  * Implements silent refresh pattern for seamless user experience.
  */
@@ -44,22 +44,22 @@ export async function POST(request: NextRequest) {
 
     if (errors || !data?.refreshJwtAuthToken?.authToken) {
       logger.error('Token refresh failed', { errors });
-      
+
       // Clear invalid tokens
       cookieStore.delete('auth_token');
       cookieStore.delete('refresh_token');
-      
+
       return NextResponse.json(
-        { 
-          error: 'Token refresh failed', 
-          message: 'Session expired. Please sign in again.' 
+        {
+          error: 'Token refresh failed',
+          message: 'Session expired. Please sign in again.',
         },
         { status: 401 }
       );
     }
 
     const { authToken } = data.refreshJwtAuthToken;
-    
+
     // Update auth token cookie with new token
     cookieStore.set('auth_token', authToken, {
       httpOnly: true,

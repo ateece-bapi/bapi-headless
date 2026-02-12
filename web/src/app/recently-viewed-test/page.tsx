@@ -78,27 +78,27 @@ const sampleProducts: Omit<RecentlyViewedProduct, 'viewedAt'>[] = [
 export default function RecentlyViewedTestPage() {
   const { addProduct, products, clearHistory, count, isEmpty } = useRecentlyViewed();
   const [selectedProduct, setSelectedProduct] = useState<string | undefined>();
-  
+
   const handleAddProduct = (product: Omit<RecentlyViewedProduct, 'viewedAt'>) => {
     addProduct(product);
   };
-  
+
   return (
     <div className="min-h-screen bg-neutral-50 py-12">
-      <div className="max-w-container mx-auto px-4">
+      <div className="mx-auto max-w-container px-4">
         {/* Page header */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-neutral-900 mb-4">
+          <h1 className="mb-4 text-4xl font-bold text-neutral-900">
             Recently Viewed Products - Test Page
           </h1>
           <p className="text-lg text-neutral-600">
             Test the recently viewed products functionality with sample data
           </p>
         </div>
-        
+
         {/* Store stats */}
-        <div className="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 mb-8">
-          <h2 className="text-xl font-bold text-neutral-900 mb-4">Store Status</h2>
+        <div className="mb-8 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-bold text-neutral-900">Store Status</h2>
           <div className="grid grid-cols-3 gap-4">
             <div>
               <p className="text-sm text-neutral-600">Products in History</p>
@@ -106,9 +106,7 @@ export default function RecentlyViewedTestPage() {
             </div>
             <div>
               <p className="text-sm text-neutral-600">Status</p>
-              <p className="text-2xl font-bold text-neutral-900">
-                {isEmpty ? 'Empty' : 'Active'}
-              </p>
+              <p className="text-2xl font-bold text-neutral-900">{isEmpty ? 'Empty' : 'Active'}</p>
             </div>
             <div>
               <p className="text-sm text-neutral-600">Max Capacity</p>
@@ -116,38 +114,38 @@ export default function RecentlyViewedTestPage() {
             </div>
           </div>
         </div>
-        
+
         {/* Test buttons */}
-        <div className="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 mb-8">
-          <h2 className="text-xl font-bold text-neutral-900 mb-4">Test Actions</h2>
+        <div className="mb-8 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-bold text-neutral-900">Test Actions</h2>
           <div className="space-y-4">
             <div>
-              <p className="text-sm text-neutral-600 mb-2">Add Sample Products:</p>
+              <p className="mb-2 text-sm text-neutral-600">Add Sample Products:</p>
               <div className="flex flex-wrap gap-2">
                 {sampleProducts.map((product) => (
                   <button
                     key={product.id}
                     onClick={() => handleAddProduct(product)}
-                    className="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors text-sm"
+                    className="rounded-lg bg-primary-500 px-4 py-2 text-sm text-white transition-colors hover:bg-primary-600"
                   >
                     Add {product.name}
                   </button>
                 ))}
               </div>
             </div>
-            
+
             <div>
-              <p className="text-sm text-neutral-600 mb-2">Bulk Actions:</p>
+              <p className="mb-2 text-sm text-neutral-600">Bulk Actions:</p>
               <div className="flex gap-2">
                 <button
                   onClick={() => sampleProducts.forEach(handleAddProduct)}
-                  className="px-4 py-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-semibold rounded-lg transition-colors"
+                  className="rounded-lg bg-accent-500 px-4 py-2 font-semibold text-neutral-900 transition-colors hover:bg-accent-600"
                 >
                   Add All Products
                 </button>
                 <button
                   onClick={clearHistory}
-                  className="px-4 py-2 bg-error-500 hover:bg-error-600 text-white font-semibold rounded-lg transition-colors"
+                  className="rounded-lg bg-error-500 px-4 py-2 font-semibold text-white transition-colors hover:bg-error-600"
                 >
                   Clear All History
                 </button>
@@ -155,19 +153,18 @@ export default function RecentlyViewedTestPage() {
             </div>
           </div>
         </div>
-        
+
         {/* Exclude product test */}
-        <div className="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 mb-8">
-          <h2 className="text-xl font-bold text-neutral-900 mb-4">
-            Test Exclude Current Product
-          </h2>
-          <p className="text-neutral-600 mb-4">
-            Simulate viewing a product page where the current product should be excluded from the list:
+        <div className="mb-8 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-bold text-neutral-900">Test Exclude Current Product</h2>
+          <p className="mb-4 text-neutral-600">
+            Simulate viewing a product page where the current product should be excluded from the
+            list:
           </p>
-          <div className="flex gap-2 mb-4">
+          <div className="mb-4 flex gap-2">
             <button
               onClick={() => setSelectedProduct(undefined)}
-              className={`px-4 py-2 rounded-lg transition-colors ${
+              className={`rounded-lg px-4 py-2 transition-colors ${
                 !selectedProduct
                   ? 'bg-primary-500 text-white'
                   : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
@@ -179,7 +176,7 @@ export default function RecentlyViewedTestPage() {
               <button
                 key={product.id}
                 onClick={() => setSelectedProduct(product.id)}
-                className={`px-4 py-2 rounded-lg transition-colors ${
+                className={`rounded-lg px-4 py-2 transition-colors ${
                   selectedProduct === product.id
                     ? 'bg-primary-500 text-white'
                     : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
@@ -191,38 +188,32 @@ export default function RecentlyViewedTestPage() {
           </div>
           {selectedProduct && (
             <p className="text-sm text-neutral-600">
-              Currently excluding: <strong>{products.find(p => p.id === selectedProduct)?.name}</strong>
+              Currently excluding:{' '}
+              <strong>{products.find((p) => p.id === selectedProduct)?.name}</strong>
             </p>
           )}
         </div>
-        
+
         {/* Display modes */}
         <div className="space-y-8">
           {/* Full width display */}
-          <div className="bg-white rounded-xl shadow-sm border border-neutral-200 p-6">
-            <h2 className="text-xl font-bold text-neutral-900 mb-6">
+          <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+            <h2 className="mb-6 text-xl font-bold text-neutral-900">
               Default Display (Full Width)
             </h2>
-            <RecentlyViewed 
-              excludeProductId={selectedProduct}
-              maxDisplay={5}
-            />
+            <RecentlyViewed excludeProductId={selectedProduct} maxDisplay={5} />
           </div>
-          
+
           {/* Compact display */}
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2 bg-white rounded-xl shadow-sm border border-neutral-200 p-6">
-              <h2 className="text-xl font-bold text-neutral-900 mb-6">Main Content</h2>
-              <p className="text-neutral-600">
-                This would be the main product content area.
-              </p>
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm md:col-span-2">
+              <h2 className="mb-6 text-xl font-bold text-neutral-900">Main Content</h2>
+              <p className="text-neutral-600">This would be the main product content area.</p>
             </div>
-            
-            <div className="bg-white rounded-xl shadow-sm border border-neutral-200 p-6">
-              <h2 className="text-xl font-bold text-neutral-900 mb-6">
-                Compact Mode (Sidebar)
-              </h2>
-              <RecentlyViewed 
+
+            <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <h2 className="mb-6 text-xl font-bold text-neutral-900">Compact Mode (Sidebar)</h2>
+              <RecentlyViewed
                 excludeProductId={selectedProduct}
                 maxDisplay={3}
                 compact
@@ -231,13 +222,13 @@ export default function RecentlyViewedTestPage() {
             </div>
           </div>
         </div>
-        
+
         {/* Raw store data */}
-        <div className="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 mt-8">
-          <h2 className="text-xl font-bold text-neutral-900 mb-4">
+        <div className="mt-8 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-bold text-neutral-900">
             Raw Store Data (for debugging)
           </h2>
-          <pre className="bg-neutral-900 text-neutral-100 p-4 rounded-lg overflow-x-auto text-xs">
+          <pre className="overflow-x-auto rounded-lg bg-neutral-900 p-4 text-xs text-neutral-100">
             {JSON.stringify(products, null, 2)}
           </pre>
         </div>

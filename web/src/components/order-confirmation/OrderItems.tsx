@@ -1,6 +1,6 @@
 /**
  * Order Items Component
- * 
+ *
  * Displays list of items in the order
  */
 
@@ -20,33 +20,28 @@ interface OrderItemsProps {
 
 export default function OrderItems({ items }: OrderItemsProps) {
   return (
-    <div className="bg-white rounded-xl shadow p-6">
-      <h2 className="text-xl font-bold text-neutral-900 mb-6">Order Items</h2>
-      
+    <div className="rounded-xl bg-white p-6 shadow">
+      <h2 className="mb-6 text-xl font-bold text-neutral-900">Order Items</h2>
+
       <div className="space-y-4">
         {items.map((item) => (
           <div
             key={item.id}
-            className="flex gap-4 pb-4 border-b border-neutral-200 last:border-0 last:pb-0"
+            className="flex gap-4 border-b border-neutral-200 pb-4 last:border-0 last:pb-0"
           >
             {/* Product Image */}
-            <div className="flex-shrink-0 w-20 h-20 bg-neutral-100 rounded-lg overflow-hidden">
+            <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-100">
               {item.image ? (
                 <Image
                   src={item.image}
                   alt={item.name}
                   width={80}
                   height={80}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-neutral-400">
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                <div className="flex h-full w-full items-center justify-center text-neutral-400">
+                  <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -59,13 +54,9 @@ export default function OrderItems({ items }: OrderItemsProps) {
             </div>
 
             {/* Product Details */}
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-neutral-900 mb-1 line-clamp-2">
-                {item.name}
-              </h3>
-              <p className="text-sm text-neutral-600">
-                Quantity: {item.quantity}
-              </p>
+            <div className="min-w-0 flex-1">
+              <h3 className="mb-1 line-clamp-2 font-semibold text-neutral-900">{item.name}</h3>
+              <p className="text-sm text-neutral-600">Quantity: {item.quantity}</p>
             </div>
 
             {/* Price */}

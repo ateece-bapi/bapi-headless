@@ -1,9 +1,9 @@
 /**
  * Virtual Application-Based Navigation
- * 
+ *
  * Maps WordPress sensor-type categories to customer-facing application categories.
  * This is a presentation layer transformation - WordPress data structure stays unchanged.
- * 
+ *
  * Key Principle: WordPress = CMS (what we make), Next.js = UX (what customers need)
  */
 
@@ -35,7 +35,7 @@ export interface ApplicationCategory {
 
 /**
  * Application-based navigation structure
- * 
+ *
  * Primary navigation for B2B customers who think in applications/use cases,
  * not sensor types. This maps to underlying WordPress sensor categories.
  */
@@ -43,142 +43,113 @@ export const applicationCategories: Record<string, ApplicationCategory> = {
   'building-automation': {
     name: 'Building Automation Solutions',
     slug: 'building-automation',
-    description: 'Sensors and controls for commercial buildings, offices, schools, and healthcare facilities',
+    description:
+      'Sensors and controls for commercial buildings, offices, schools, and healthcare facilities',
     icon: 'Building2',
     subcategories: {
       'room-monitoring': {
         name: 'Room & Space Monitoring',
         slug: 'room-monitoring',
-        description: 'Monitor temperature, humidity, and air quality in offices, classrooms, conference rooms, and living spaces',
-        wpCategories: [
-          'room-sensors',
-          'room-humidity',
-          'room-co2',
-          'room-temperature'
-        ],
+        description:
+          'Monitor temperature, humidity, and air quality in offices, classrooms, conference rooms, and living spaces',
+        wpCategories: ['room-sensors', 'room-humidity', 'room-co2', 'room-temperature'],
         filters: {
           location: 'indoor',
-          mounting: 'wall'
+          mounting: 'wall',
         },
-        featuredProducts: ['BA/10K-3', 'BA/H-WD', 'BA/RH-WD-V4']
+        featuredProducts: ['BA/10K-3', 'BA/H-WD', 'BA/RH-WD-V4'],
       },
-      
+
       'hvac-duct': {
         name: 'HVAC Duct & Air Handler Monitoring',
         slug: 'hvac-duct',
-        description: 'Supply air, return air, mixed air sensing for air handling units and duct systems',
-        wpCategories: [
-          'duct-sensors',
-          'duct-humidity',
-          'duct-pressure',
-          'averaging-elements'
-        ],
+        description:
+          'Supply air, return air, mixed air sensing for air handling units and duct systems',
+        wpCategories: ['duct-sensors', 'duct-humidity', 'duct-pressure', 'averaging-elements'],
         filters: {
           location: 'duct',
-          mounting: 'probe'
+          mounting: 'probe',
         },
-        featuredProducts: ['BA/10K-D', 'BA/H-D', 'BA/P-D']
+        featuredProducts: ['BA/10K-D', 'BA/H-D', 'BA/P-D'],
       },
-      
+
       'outdoor-weather': {
         name: 'Outdoor & Weather Stations',
         slug: 'outdoor-weather',
         description: 'Building weather stations, enthalpy control, and outdoor air monitoring',
-        wpCategories: [
-          'outside-air-sensors',
-          'weather-stations',
-          'outdoor-temperature'
-        ],
+        wpCategories: ['outside-air-sensors', 'weather-stations', 'outdoor-temperature'],
         filters: {
-          location: 'outdoor'
+          location: 'outdoor',
         },
-        featuredProducts: ['BA/10K-O', 'BA/WS', 'BA/ENT']
+        featuredProducts: ['BA/10K-O', 'BA/WS', 'BA/ENT'],
       },
-      
+
       'critical-spaces': {
         name: 'Data Centers & Critical Spaces',
         slug: 'critical-spaces',
-        description: 'Precision monitoring for server rooms, labs, clean rooms, and mission-critical environments',
-        wpCategories: [
-          'room-sensors',
-          'room-humidity',
-          'room-co2',
-          'temperature-sensors'
-        ],
+        description:
+          'Precision monitoring for server rooms, labs, clean rooms, and mission-critical environments',
+        wpCategories: ['room-sensors', 'room-humidity', 'room-co2', 'temperature-sensors'],
         filters: {
           location: 'indoor',
-          industry: 'commercial'
+          industry: 'commercial',
         },
-        featuredProducts: ['BA/10K-3-R', 'BA/RH-WD-V4']
+        featuredProducts: ['BA/10K-3-R', 'BA/RH-WD-V4'],
       },
-      
+
       'indoor-air-quality': {
         name: 'Indoor Air Quality (IAQ)',
         slug: 'indoor-air-quality',
         description: 'CO2, VOC, and air quality monitoring for healthy indoor environments',
-        wpCategories: [
-          'air-quality-sensors',
-          'co2-sensors',
-          'voc-sensors'
-        ],
+        wpCategories: ['air-quality-sensors', 'co2-sensors', 'voc-sensors'],
         filters: {
-          location: 'indoor'
+          location: 'indoor',
         },
-        featuredProducts: ['BA/CO2', 'BA/VOC']
-      }
-    }
+        featuredProducts: ['BA/CO2', 'BA/VOC'],
+      },
+    },
   },
-  
+
   'industrial-process': {
     name: 'Industrial & Process Control',
     slug: 'industrial-process',
-    description: 'Sensors for manufacturing, industrial refrigeration, and process control applications',
+    description:
+      'Sensors for manufacturing, industrial refrigeration, and process control applications',
     icon: 'Factory',
     subcategories: {
-      'manufacturing': {
+      manufacturing: {
         name: 'Manufacturing Process Monitoring',
         slug: 'manufacturing',
         description: 'Temperature, pressure, and humidity sensors for industrial processes',
-        wpCategories: [
-          'industrial-pressure',
-          'process-temperature',
-          'immersion-sensors'
-        ],
+        wpCategories: ['industrial-pressure', 'process-temperature', 'immersion-sensors'],
         filters: {
           location: 'industrial',
-          industry: 'industrial'
-        }
+          industry: 'industrial',
+        },
       },
-      
-      'refrigeration': {
+
+      refrigeration: {
         name: 'Industrial Refrigeration',
         slug: 'refrigeration',
         description: 'Cold storage, food service, and refrigeration monitoring',
-        wpCategories: [
-          'temperature-sensors',
-          'pressure-sensors',
-          'immersion-sensors'
-        ],
+        wpCategories: ['temperature-sensors', 'pressure-sensors', 'immersion-sensors'],
         filters: {
-          industry: 'industrial'
-        }
+          industry: 'industrial',
+        },
       },
-      
+
       'compressed-air': {
         name: 'Compressed Air Systems',
         slug: 'compressed-air',
         description: 'Pressure and temperature monitoring for compressed air systems',
-        wpCategories: [
-          'pressure-sensors',
-          'industrial-pressure'
-        ],
+        wpCategories: ['pressure-sensors', 'industrial-pressure'],
         filters: {
-          industry: 'industrial'
-        }
-      }
-    }
+          industry: 'industrial',
+        },
+      },
+    },
   },
-  
+
   'wireless-remote': {
     name: 'Wireless & Remote Monitoring',
     slug: 'wireless-remote',
@@ -189,44 +160,34 @@ export const applicationCategories: Record<string, ApplicationCategory> = {
         name: 'Wireless Temperature & Humidity',
         slug: 'wireless-temp-humidity',
         description: 'Battery-powered wireless sensors for temperature and humidity monitoring',
-        wpCategories: [
-          'wireless-sensors',
-          'wireless-temperature',
-          'wireless-humidity'
-        ],
+        wpCategories: ['wireless-sensors', 'wireless-temperature', 'wireless-humidity'],
         filters: {
-          connectivity: 'wireless'
-        }
+          connectivity: 'wireless',
+        },
       },
-      
+
       'wireless-pressure': {
         name: 'Wireless Pressure',
         slug: 'wireless-pressure',
         description: 'Wireless differential pressure sensors for filter monitoring',
-        wpCategories: [
-          'wireless-sensors',
-          'wireless-pressure'
-        ],
+        wpCategories: ['wireless-sensors', 'wireless-pressure'],
         filters: {
-          connectivity: 'wireless'
-        }
+          connectivity: 'wireless',
+        },
       },
-      
+
       'wireless-iaq': {
         name: 'Wireless Indoor Air Quality',
         slug: 'wireless-iaq',
         description: 'Wireless CO2 and air quality monitoring',
-        wpCategories: [
-          'wireless-sensors',
-          'air-quality-sensors'
-        ],
+        wpCategories: ['wireless-sensors', 'air-quality-sensors'],
         filters: {
-          connectivity: 'wireless'
-        }
-      }
-    }
+          connectivity: 'wireless',
+        },
+      },
+    },
   },
-  
+
   'retrofit-replacement': {
     name: 'Retrofit & Replacement Solutions',
     slug: 'retrofit-replacement',
@@ -237,39 +198,28 @@ export const applicationCategories: Record<string, ApplicationCategory> = {
         name: 'BACnet-Compatible Upgrades',
         slug: 'bacnet-upgrades',
         description: 'Modernize pneumatic and analog systems with BACnet MS/TP sensors',
-        wpCategories: [
-          'temperature-sensors',
-          'humidity-sensors',
-          'pressure-sensors'
-        ],
+        wpCategories: ['temperature-sensors', 'humidity-sensors', 'pressure-sensors'],
         filters: {
           // Filter by products with BACnet in description/attributes
-        }
+        },
       },
-      
+
       'pneumatic-to-electronic': {
         name: 'Pneumatic-to-Electronic Conversions',
         slug: 'pneumatic-to-electronic',
         description: 'Replace pneumatic sensors with modern electronic equivalents',
-        wpCategories: [
-          'temperature-sensors',
-          'pressure-sensors'
-        ]
+        wpCategories: ['temperature-sensors', 'pressure-sensors'],
       },
-      
+
       'direct-replacements': {
         name: 'Direct Mount Replacements',
         slug: 'direct-replacements',
         description: 'Drop-in replacements for existing sensor mounting patterns',
-        wpCategories: [
-          'room-sensors',
-          'duct-sensors',
-          'outside-air-sensors'
-        ]
-      }
-    }
+        wpCategories: ['room-sensors', 'duct-sensors', 'outside-air-sensors'],
+      },
+    },
   },
-  
+
   'installation-support': {
     name: 'Installation & Support',
     slug: 'installation-support',
@@ -280,30 +230,24 @@ export const applicationCategories: Record<string, ApplicationCategory> = {
         name: 'Mounting Hardware & Accessories',
         slug: 'mounting-hardware',
         description: 'Mounting plates, brackets, enclosures, and installation accessories',
-        wpCategories: [
-          'accessories',
-          'mounting-hardware'
-        ]
+        wpCategories: ['accessories', 'mounting-hardware'],
       },
-      
+
       'test-equipment': {
         name: 'Test Equipment & Commissioning',
         slug: 'test-equipment',
         description: 'Calibration tools, test instruments, and commissioning equipment',
-        wpCategories: [
-          'test-instruments',
-          'calibration-tools'
-        ]
+        wpCategories: ['test-instruments', 'calibration-tools'],
       },
-      
+
       'technical-resources': {
         name: 'Technical Resources',
         slug: 'technical-resources',
         description: 'Documentation, spec sheets, CAD files, and technical support',
-        wpCategories: [] // Not product-based, content pages
-      }
-    }
-  }
+        wpCategories: [], // Not product-based, content pages
+      },
+    },
+  },
 };
 
 /**
@@ -371,14 +315,14 @@ export function getApplicationBreadcrumbs(
 ): Array<{ name: string; href: string }> {
   const breadcrumbs = [
     { name: 'Home', href: '/' },
-    { name: 'Applications', href: '/applications' }
+    { name: 'Applications', href: '/applications' },
   ];
 
   const category = applicationCategories[applicationSlug];
   if (category) {
     breadcrumbs.push({
       name: category.name,
-      href: `/applications/${applicationSlug}`
+      href: `/applications/${applicationSlug}`,
     });
 
     if (subcategorySlug) {
@@ -386,7 +330,7 @@ export function getApplicationBreadcrumbs(
       if (subcategory) {
         breadcrumbs.push({
           name: subcategory.name,
-          href: `/applications/${applicationSlug}/${subcategorySlug}`
+          href: `/applications/${applicationSlug}/${subcategorySlug}`,
         });
       }
     }

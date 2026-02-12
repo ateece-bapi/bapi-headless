@@ -5,7 +5,9 @@ import CartPageClient from '../CartPageClient';
 // Mock Next.js components
 vi.mock('next/link', () => ({
   default: ({ href, children, ...props }: any) => (
-    <a href={href} {...props}>{children}</a>
+    <a href={href} {...props}>
+      {children}
+    </a>
   ),
 }));
 
@@ -88,27 +90,27 @@ describe('CartPageClient Component', () => {
 
       // Loading state is synchronous and brief, so check for the skeleton elements
       const skeletonElement = container.querySelector('.animate-pulse');
-      
+
       // May transition quickly to empty state, so accept either
       await waitFor(() => {
-        expect(
-          screen.queryByText('Your Cart is Empty') || skeletonElement
-        ).toBeTruthy();
+        expect(screen.queryByText('Your Cart is Empty') || skeletonElement).toBeTruthy();
       });
     });
 
     it('transitions from loading to content state', async () => {
       mockLocalStorage['bapi-cart-storage'] = JSON.stringify({
         state: {
-          items: [{
-            id: '1',
-            databaseId: 1,
-            name: 'Test Product',
-            slug: 'test-product',
-            price: '$19.99',
-            quantity: 1,
-            image: { sourceUrl: 'test.jpg', altText: 'Test' },
-          }],
+          items: [
+            {
+              id: '1',
+              databaseId: 1,
+              name: 'Test Product',
+              slug: 'test-product',
+              price: '$19.99',
+              quantity: 1,
+              image: { sourceUrl: 'test.jpg', altText: 'Test' },
+            },
+          ],
         },
       });
 
@@ -263,14 +265,16 @@ describe('CartPageClient Component', () => {
     it('calls updateQuantity from Zustand store', async () => {
       mockLocalStorage['bapi-cart-storage'] = JSON.stringify({
         state: {
-          items: [{
-            id: '1',
-            databaseId: 1,
-            name: 'Test Product',
-            slug: 'test-product',
-            price: '$19.99',
-            quantity: 1,
-          }],
+          items: [
+            {
+              id: '1',
+              databaseId: 1,
+              name: 'Test Product',
+              slug: 'test-product',
+              price: '$19.99',
+              quantity: 1,
+            },
+          ],
         },
       });
 
@@ -290,14 +294,16 @@ describe('CartPageClient Component', () => {
     it('calls removeItem from Zustand store', async () => {
       mockLocalStorage['bapi-cart-storage'] = JSON.stringify({
         state: {
-          items: [{
-            id: '1',
-            databaseId: 1,
-            name: 'Test Product',
-            slug: 'test-product',
-            price: '$19.99',
-            quantity: 1,
-          }],
+          items: [
+            {
+              id: '1',
+              databaseId: 1,
+              name: 'Test Product',
+              slug: 'test-product',
+              price: '$19.99',
+              quantity: 1,
+            },
+          ],
         },
       });
 
@@ -315,14 +321,16 @@ describe('CartPageClient Component', () => {
     it('shows confirmation dialog before clearing cart', async () => {
       mockLocalStorage['bapi-cart-storage'] = JSON.stringify({
         state: {
-          items: [{
-            id: '1',
-            databaseId: 1,
-            name: 'Test Product',
-            slug: 'test-product',
-            price: '$19.99',
-            quantity: 1,
-          }],
+          items: [
+            {
+              id: '1',
+              databaseId: 1,
+              name: 'Test Product',
+              slug: 'test-product',
+              price: '$19.99',
+              quantity: 1,
+            },
+          ],
         },
       });
 
@@ -347,14 +355,16 @@ describe('CartPageClient Component', () => {
       global.confirm = vi.fn(() => false);
       mockLocalStorage['bapi-cart-storage'] = JSON.stringify({
         state: {
-          items: [{
-            id: '1',
-            databaseId: 1,
-            name: 'Test Product',
-            slug: 'test-product',
-            price: '$19.99',
-            quantity: 1,
-          }],
+          items: [
+            {
+              id: '1',
+              databaseId: 1,
+              name: 'Test Product',
+              slug: 'test-product',
+              price: '$19.99',
+              quantity: 1,
+            },
+          ],
         },
       });
 
@@ -378,14 +388,16 @@ describe('CartPageClient Component', () => {
     it('renders two-column grid on desktop', async () => {
       mockLocalStorage['bapi-cart-storage'] = JSON.stringify({
         state: {
-          items: [{
-            id: '1',
-            databaseId: 1,
-            name: 'Test Product',
-            slug: 'test-product',
-            price: '$19.99',
-            quantity: 1,
-          }],
+          items: [
+            {
+              id: '1',
+              databaseId: 1,
+              name: 'Test Product',
+              slug: 'test-product',
+              price: '$19.99',
+              quantity: 1,
+            },
+          ],
         },
       });
 
@@ -410,7 +422,9 @@ describe('CartPageClient Component', () => {
 
       await waitFor(() => {
         // Should not crash, show empty cart or error state
-        expect(screen.queryByText('Your Cart is Empty') || screen.queryByText('Shopping Cart')).toBeTruthy();
+        expect(
+          screen.queryByText('Your Cart is Empty') || screen.queryByText('Shopping Cart')
+        ).toBeTruthy();
       });
     });
 

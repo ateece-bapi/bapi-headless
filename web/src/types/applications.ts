@@ -1,7 +1,7 @@
 /**
  * TypeScript interfaces for Application Landing Pages
  * Phase 16: Applications Landing Pages
- * 
+ *
  * These types define the structure for high-level application landing pages
  * that sit between the applications hub and granular subcategory pages.
  */
@@ -119,7 +119,7 @@ export interface ApplicationSEO {
 
 /**
  * Complete application landing page data
- * 
+ *
  * This is the main interface that defines all content for an application landing page.
  * Senior approach: Data-driven pages instead of duplicated components.
  */
@@ -156,9 +156,9 @@ export interface ApplicationLandingPageData {
  */
 export function isValidApplicationData(data: unknown): data is ApplicationLandingPageData {
   if (typeof data !== 'object' || data === null) return false;
-  
+
   const app = data as ApplicationLandingPageData;
-  
+
   return (
     typeof app.slug === 'string' &&
     typeof app.name === 'string' &&

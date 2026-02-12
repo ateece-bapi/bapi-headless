@@ -1,6 +1,6 @@
 /**
  * Quote Request Email Templates
- * 
+ *
  * Sends notifications when customers submit quote requests
  */
 
@@ -24,8 +24,21 @@ interface QuoteRequestEmailData {
 /**
  * Generate email for sales team (internal notification)
  */
-export function generateQuoteSalesEmail(data: QuoteRequestEmailData): { subject: string; html: string; text: string } {
-  const { quoteId, customerName, customerEmail, customerPhone, companyName, products, notes, requestDate } = data;
+export function generateQuoteSalesEmail(data: QuoteRequestEmailData): {
+  subject: string;
+  html: string;
+  text: string;
+} {
+  const {
+    quoteId,
+    customerName,
+    customerEmail,
+    customerPhone,
+    companyName,
+    products,
+    notes,
+    requestDate,
+  } = data;
 
   const subject = `[New Quote] ${quoteId} - ${customerName}${companyName ? ` (${companyName})` : ''}`;
 
@@ -74,31 +87,41 @@ export function generateQuoteSalesEmail(data: QuoteRequestEmailData): { subject:
                     <a href="mailto:${customerEmail}" style="color: #1479BC; margin-left: 8px; text-decoration: none;">${customerEmail}</a>
                   </td>
                 </tr>
-                ${customerPhone ? `
+                ${
+                  customerPhone
+                    ? `
                 <tr>
                   <td style="padding: 10px; background-color: #f9fafb; border-radius: 6px;">
                     <strong style="color: #374151;">Phone:</strong>
                     <a href="tel:${customerPhone}" style="color: #1479BC; margin-left: 8px; text-decoration: none;">${customerPhone}</a>
                   </td>
                 </tr>
-                ` : ''}
-                ${companyName ? `
+                `
+                    : ''
+                }
+                ${
+                  companyName
+                    ? `
                 <tr>
                   <td style="padding: 10px;">
                     <strong style="color: #374151;">Company:</strong>
                     <span style="color: #1f2937; margin-left: 8px;">${companyName}</span>
                   </td>
                 </tr>
-                ` : ''}
+                `
+                    : ''
+                }
                 <tr>
                   <td style="padding: 10px; background-color: #f9fafb; border-radius: 6px;">
                     <strong style="color: #374151;">Request Date:</strong>
-                    <span style="color: #1f2937; margin-left: 8px;">${new Date(requestDate).toLocaleString('en-US', { 
-                      month: 'long', 
-                      day: 'numeric', 
+                    <span style="color: #1f2937; margin-left: 8px;">${new Date(
+                      requestDate
+                    ).toLocaleString('en-US', {
+                      month: 'long',
+                      day: 'numeric',
                       year: 'numeric',
-                      hour: '2-digit', 
-                      minute: '2-digit' 
+                      hour: '2-digit',
+                      minute: '2-digit',
                     })}</span>
                   </td>
                 </tr>
@@ -120,7 +143,9 @@ export function generateQuoteSalesEmail(data: QuoteRequestEmailData): { subject:
                   </tr>
                 </thead>
                 <tbody>
-                  ${products.map((product, index) => `
+                  ${products
+                    .map(
+                      (product, index) => `
                     <tr style="border-bottom: 1px solid #e5e7eb; ${index % 2 === 0 ? 'background-color: #ffffff;' : ''}">
                       <td style="padding: 12px;">
                         <strong style="color: #1f2937; font-size: 14px;">${product.name}</strong>
@@ -130,13 +155,17 @@ export function generateQuoteSalesEmail(data: QuoteRequestEmailData): { subject:
                         ${product.quantity}
                       </td>
                     </tr>
-                  `).join('')}
+                  `
+                    )
+                    .join('')}
                 </tbody>
               </table>
             </td>
           </tr>
 
-          ${notes ? `
+          ${
+            notes
+              ? `
           <!-- Notes -->
           <tr>
             <td style="padding: 0 30px 30px 30px;">
@@ -150,7 +179,9 @@ export function generateQuoteSalesEmail(data: QuoteRequestEmailData): { subject:
               </div>
             </td>
           </tr>
-          ` : ''}
+          `
+              : ''
+          }
 
           <!-- Action Button -->
           <tr>
@@ -190,7 +221,7 @@ ${companyName ? `- Company: ${companyName}` : ''}
 - Request Date: ${new Date(requestDate).toLocaleString()}
 
 Requested Products:
-${products.map(p => `- ${p.name}${p.partNumber ? ` (Part #: ${p.partNumber})` : ''} - Qty: ${p.quantity}`).join('\n')}
+${products.map((p) => `- ${p.name}${p.partNumber ? ` (Part #: ${p.partNumber})` : ''} - Qty: ${p.quantity}`).join('\n')}
 
 ${notes ? `Additional Notes:\n${notes}` : ''}
 
@@ -203,7 +234,11 @@ Reply to: ${customerEmail}
 /**
  * Generate confirmation email for customer
  */
-export function generateQuoteCustomerEmail(data: QuoteRequestEmailData): { subject: string; html: string; text: string } {
+export function generateQuoteCustomerEmail(data: QuoteRequestEmailData): {
+  subject: string;
+  html: string;
+  text: string;
+} {
   const { quoteId, customerName, products, requestDate } = data;
 
   const subject = `Quote Request Received - ${quoteId}`;
@@ -265,7 +300,9 @@ export function generateQuoteCustomerEmail(data: QuoteRequestEmailData): { subje
                   </tr>
                 </thead>
                 <tbody>
-                  ${products.map((product, index) => `
+                  ${products
+                    .map(
+                      (product, index) => `
                     <tr style="border-bottom: 1px solid #e5e7eb; ${index % 2 === 0 ? 'background-color: #ffffff;' : ''}">
                       <td style="padding: 12px;">
                         <span style="color: #1f2937; font-size: 14px;">${product.name}</span>
@@ -275,7 +312,9 @@ export function generateQuoteCustomerEmail(data: QuoteRequestEmailData): { subje
                         ${product.quantity}
                       </td>
                     </tr>
-                  `).join('')}
+                  `
+                    )
+                    .join('')}
                 </tbody>
               </table>
             </td>
@@ -346,7 +385,7 @@ Quote ID: ${quoteId}
 Reference this ID in all communications.
 
 YOUR REQUEST SUMMARY:
-${products.map(p => `- ${p.name}${p.partNumber ? ` (Part #: ${p.partNumber})` : ''} - Qty: ${p.quantity}`).join('\n')}
+${products.map((p) => `- ${p.name}${p.partNumber ? ` (Part #: ${p.partNumber})` : ''} - Qty: ${p.quantity}`).join('\n')}
 
 WHAT HAPPENS NEXT?
 1. Our sales team will review your request

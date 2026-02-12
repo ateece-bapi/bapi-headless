@@ -1,9 +1,9 @@
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import ChatWidgetClient from '@/components/chat/ChatWidgetClient';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
-import { ToastProvider } from "@/components/ui/Toast";
+import { ToastProvider } from '@/components/ui/Toast';
 
 /**
  * Locale layout - wraps all localized pages with Header/Footer
@@ -19,29 +19,27 @@ export default async function LocaleLayout({
   // Await params and set request locale
   const { locale } = await params;
   setRequestLocale(locale);
-  
+
   // Get messages for the current locale
   const messages = await getMessages();
-  
+
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
       <ToastProvider>
-      <>
-      {/* Skip to main content link for keyboard users */}
-      <a 
-        href="#main-content" 
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-skip-link focus:px-6 focus:py-3 focus:bg-primary-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:font-semibold focus:ring-4 focus:ring-primary-300"
-      >
-        Skip to main content
-      </a>
-      
-      <Header />
-      <main id="main-content">
-        {children}
-      </main>
-      <Footer />
-      <ChatWidgetClient />
-      </>
+        <>
+          {/* Skip to main content link for keyboard users */}
+          <a
+            href="#main-content"
+            className="focus:z-skip-link sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded-lg focus:bg-primary-600 focus:px-6 focus:py-3 focus:font-semibold focus:text-white focus:shadow-lg focus:ring-4 focus:ring-primary-300"
+          >
+            Skip to main content
+          </a>
+
+          <Header />
+          <main id="main-content">{children}</main>
+          <Footer />
+          <ChatWidgetClient />
+        </>
       </ToastProvider>
     </NextIntlClientProvider>
   );

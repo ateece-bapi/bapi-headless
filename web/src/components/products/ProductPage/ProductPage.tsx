@@ -15,11 +15,13 @@ interface ProductPageProps {
 // Main orchestrator for product detail page
 export default function ProductPage({ product, relatedProducts = [], appLinks }: ProductPageProps) {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-white">
       <ProductHero product={product} />
       <ProductConfigurator product={product} />
       <ProductTabs product={product} />
-      {appLinks && (appLinks.iosUrl || appLinks.androidUrl) && <AppLinks product={{ iosAppUrl: appLinks.iosUrl, androidAppUrl: appLinks.androidUrl }} />}
+      {appLinks && (appLinks.iosUrl || appLinks.androidUrl) && (
+        <AppLinks product={{ iosAppUrl: appLinks.iosUrl, androidAppUrl: appLinks.androidUrl }} />
+      )}
       <RelatedProducts related={relatedProducts} />
       <ContactInfo />
     </div>

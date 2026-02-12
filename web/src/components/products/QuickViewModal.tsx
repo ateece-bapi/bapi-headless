@@ -17,7 +17,7 @@ interface QuickViewModalProps {
 
 /**
  * Quick View Modal for product preview
- * 
+ *
  * Features:
  * - Backdrop blur with BAPI gradient overlay
  * - Product image, name, price, stock status
@@ -60,7 +60,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
 
   return (
     <div
-      className="fixed inset-0 z-modal flex items-center justify-center p-4 animate-[fade-in_200ms_ease-out]"
+      className="z-modal fixed inset-0 flex animate-[fade-in_200ms_ease-out] items-center justify-center p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -71,23 +71,23 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
 
       {/* Modal Content */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-[scale-in_300ms_ease-out]"
+        className="relative max-h-[90vh] w-full max-w-4xl animate-[scale-in_300ms_ease-out] overflow-y-auto rounded-2xl bg-white shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/90 hover:bg-white shadow-lg transition-all duration-200 hover:scale-110"
+          className="absolute right-4 top-4 z-10 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-200 hover:scale-110 hover:bg-white"
           aria-label="Close quick view"
         >
-          <X className="w-5 h-5 text-neutral-700" />
+          <X className="h-5 w-5 text-neutral-700" />
         </button>
 
-        <div className="grid md:grid-cols-2 gap-8 p-8">
+        <div className="grid gap-8 p-8 md:grid-cols-2">
           {/* Left: Product Image */}
-          <div className="relative aspect-square bg-neutral-50 rounded-xl overflow-hidden">
+          <div className="relative aspect-square overflow-hidden rounded-xl bg-neutral-50">
             {!imageLoaded && (
-              <div className="absolute inset-0 bg-gradient-to-r from-neutral-100 via-neutral-200 to-neutral-100 animate-[shimmer_2s_ease-in-out_infinite]" />
+              <div className="absolute inset-0 animate-[shimmer_2s_ease-in-out_infinite] bg-gradient-to-r from-neutral-100 via-neutral-200 to-neutral-100" />
             )}
             <Image
               src={imageUrl}
@@ -104,24 +104,24 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
           {/* Right: Product Details */}
           <div className="flex flex-col">
             {/* Product Name */}
-            <h2 id="quick-view-title" className="text-2xl font-bold text-neutral-900 mb-3">
+            <h2 id="quick-view-title" className="mb-3 text-2xl font-bold text-neutral-900">
               {product.name}
             </h2>
 
             {/* SKU and Stock Status */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="mb-4 flex items-center gap-3">
               {sku && (
                 <div className="flex items-center gap-1.5 text-sm text-neutral-600">
-                  <Package className="w-4 h-4" />
+                  <Package className="h-4 w-4" />
                   <span>SKU: {sku}</span>
                 </div>
               )}
               {inStock ? (
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-success-50 text-success-700 border border-success-200">
+                <span className="border-success-200 inline-flex items-center rounded-full border bg-success-50 px-2.5 py-1 text-xs font-medium text-success-700">
                   In Stock
                 </span>
               ) : (
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-700 border border-neutral-200">
+                <span className="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700">
                   Out of Stock
                 </span>
               )}
@@ -129,28 +129,24 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
 
             {/* Price */}
             {price && (
-              <div className="flex items-baseline gap-2 mb-6">
-                <DollarSign className="w-5 h-5 text-primary-500" />
-                <span className="text-3xl font-bold text-primary-600">
-                  {price}
-                </span>
+              <div className="mb-6 flex items-baseline gap-2">
+                <DollarSign className="h-5 w-5 text-primary-500" />
+                <span className="text-3xl font-bold text-primary-600">{price}</span>
               </div>
             )}
 
             {/* Short Description */}
             {product.shortDescription && (
               <div
-                className="text-neutral-600 mb-6 line-clamp-4"
+                className="mb-6 line-clamp-4 text-neutral-600"
                 dangerouslySetInnerHTML={{ __html: product.shortDescription }}
               />
             )}
 
             {/* Product Type Badge */}
             {isSimple && (
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-50 border border-primary-200 w-fit mb-6">
-                <span className="text-xs font-medium text-primary-700">
-                  Simple Product
-                </span>
+              <div className="mb-6 inline-flex w-fit items-center gap-1.5 rounded-lg border border-primary-200 bg-primary-50 px-3 py-1.5">
+                <span className="text-xs font-medium text-primary-700">Simple Product</span>
               </div>
             )}
 
@@ -158,7 +154,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             <div className="mt-auto space-y-3">
               {/* Add to Cart Button */}
               <button
-                className="w-full px-6 py-3 rounded-xl font-semibold text-white bg-bapi-accent-gradient hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-bapi-accent-gradient w-full rounded-xl px-6 py-3 font-semibold text-white transition-all duration-200 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
                 disabled={!inStock}
               >
                 {inStock ? 'Add to Cart' : 'Out of Stock'}
@@ -167,11 +163,11 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
               {/* View Full Details Link */}
               <Link
                 href={`/${locale}/product/${product.slug}`}
-                className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl font-semibold text-primary-600 bg-primary-50 hover:bg-primary-100 transition-all duration-200"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-50 px-6 py-3 font-semibold text-primary-600 transition-all duration-200 hover:bg-primary-100"
                 onClick={onClose}
               >
                 View Full Details
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="h-4 w-4" />
               </Link>
             </div>
           </div>

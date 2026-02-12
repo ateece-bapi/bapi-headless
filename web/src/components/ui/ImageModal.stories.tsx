@@ -5,7 +5,7 @@ import { ZoomIn } from 'lucide-react';
 
 /**
  * ImageModal Component
- * 
+ *
  * Full-screen image viewer with zoom and pan controls.
  * Features:
  * - Click outside/ESC to close
@@ -40,7 +40,7 @@ function ImageModalDemo({ imageSrc, imageAlt }: { imageSrc: string; imageAlt: st
     <div className="p-8">
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+        className="flex items-center gap-2 rounded-lg bg-primary-500 px-6 py-3 text-white transition-colors hover:bg-primary-600"
       >
         <ZoomIn size={20} />
         <span>Open Image Modal</span>
@@ -58,7 +58,7 @@ function ImageModalDemo({ imageSrc, imageAlt }: { imageSrc: string; imageAlt: st
 
 /**
  * Default product image
- * 
+ *
  * Click "Open Image Modal" to view full-screen image with zoom controls.
  */
 export const Default: Story = {
@@ -126,12 +126,14 @@ export const MultipleImages: Story = {
       {
         src: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg',
         alt: 'Temperature Sensor',
-        thumb: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg',
+        thumb:
+          'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg',
       },
       {
         src: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BAPI-Campus-Aerial-1-scaled.jpg',
         alt: 'BAPI Campus',
-        thumb: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BAPI-Campus-Aerial-1-scaled.jpg',
+        thumb:
+          'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BAPI-Campus-Aerial-1-scaled.jpg',
       },
     ];
 
@@ -142,21 +144,17 @@ export const MultipleImages: Story = {
 
     return (
       <div className="p-8">
-        <h3 className="text-xl font-bold mb-4">Click any thumbnail to view:</h3>
-        <div className="grid grid-cols-2 gap-4 max-w-xl">
+        <h3 className="mb-4 text-xl font-bold">Click any thumbnail to view:</h3>
+        <div className="grid max-w-xl grid-cols-2 gap-4">
           {images.map((img, idx) => (
             <button
               key={idx}
               onClick={() => openImage(img.src, img.alt)}
-              className="relative aspect-square bg-neutral-100 rounded-lg overflow-hidden hover:ring-4 hover:ring-primary-500 transition-all"
+              className="relative aspect-square overflow-hidden rounded-lg bg-neutral-100 transition-all hover:ring-4 hover:ring-primary-500"
             >
-              <img
-                src={img.thumb}
-                alt={img.alt}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/30 transition-colors">
-                <ZoomIn className="w-8 h-8 text-white opacity-0 hover:opacity-100 transition-opacity" />
+              <img src={img.thumb} alt={img.alt} className="h-full w-full object-cover" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors hover:bg-black/30">
+                <ZoomIn className="h-8 w-8 text-white opacity-0 transition-opacity hover:opacity-100" />
               </div>
             </button>
           ))}

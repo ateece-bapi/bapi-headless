@@ -1,6 +1,6 @@
 /**
  * Chat Handoff Email Template
- * 
+ *
  * Sends notification to sales team when a customer requests to speak with a human
  */
 
@@ -17,8 +17,19 @@ interface ChatHandoffEmailData {
   urgency?: 'low' | 'medium' | 'high';
 }
 
-export function generateChatHandoffEmail(data: ChatHandoffEmailData): { subject: string; html: string; text: string } {
-  const { customerName, customerEmail, chatTranscript, customerPhone, requestedTopic, urgency = 'medium' } = data;
+export function generateChatHandoffEmail(data: ChatHandoffEmailData): {
+  subject: string;
+  html: string;
+  text: string;
+} {
+  const {
+    customerName,
+    customerEmail,
+    chatTranscript,
+    customerPhone,
+    requestedTopic,
+    urgency = 'medium',
+  } = data;
 
   const urgencyColors = {
     low: '#10b981',
@@ -85,22 +96,30 @@ export function generateChatHandoffEmail(data: ChatHandoffEmailData): { subject:
                     <a href="mailto:${customerEmail}" style="color: #1479BC; margin-left: 8px; text-decoration: none;">${customerEmail}</a>
                   </td>
                 </tr>
-                ${customerPhone ? `
+                ${
+                  customerPhone
+                    ? `
                 <tr>
                   <td style="padding: 10px; background-color: #f9fafb; border-radius: 6px;">
                     <strong style="color: #374151;">Phone:</strong>
                     <a href="tel:${customerPhone}" style="color: #1479BC; margin-left: 8px; text-decoration: none;">${customerPhone}</a>
                   </td>
                 </tr>
-                ` : ''}
-                ${requestedTopic ? `
+                `
+                    : ''
+                }
+                ${
+                  requestedTopic
+                    ? `
                 <tr>
                   <td style="padding: 10px; background-color: #ffffff;">
                     <strong style="color: #374151;">Topic:</strong>
                     <span style="color: #1f2937; margin-left: 8px;">${requestedTopic}</span>
                   </td>
                 </tr>
-                ` : ''}
+                `
+                    : ''
+                }
               </table>
             </td>
           </tr>
@@ -112,7 +131,9 @@ export function generateChatHandoffEmail(data: ChatHandoffEmailData): { subject:
                 Chat Transcript
               </h2>
               <div style="background-color: #f9fafb; border-radius: 8px; padding: 20px; max-height: 400px; overflow-y: auto;">
-                ${chatTranscript.map(message => `
+                ${chatTranscript
+                  .map(
+                    (message) => `
                   <div style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #e5e7eb;">
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
                       <span style="display: inline-block; width: 32px; height: 32px; border-radius: 50%; background-color: ${message.role === 'user' ? '#1479BC' : '#FFC843'}; color: #ffffff; text-align: center; line-height: 32px; font-weight: bold; margin-right: 12px;">
@@ -123,11 +144,11 @@ export function generateChatHandoffEmail(data: ChatHandoffEmailData): { subject:
                           ${message.role === 'user' ? customerName : 'AI Assistant'}
                         </strong>
                         <span style="color: #6b7280; font-size: 12px; margin-left: 8px;">
-                          ${new Date(message.timestamp).toLocaleString('en-US', { 
-                            month: 'short', 
-                            day: 'numeric', 
-                            hour: '2-digit', 
-                            minute: '2-digit' 
+                          ${new Date(message.timestamp).toLocaleString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
                           })}
                         </span>
                       </div>
@@ -136,7 +157,9 @@ export function generateChatHandoffEmail(data: ChatHandoffEmailData): { subject:
                       ${message.content.replace(/\n/g, '<br>')}
                     </div>
                   </div>
-                `).join('')}
+                `
+                  )
+                  .join('')}
               </div>
             </td>
           </tr>
@@ -160,14 +183,14 @@ export function generateChatHandoffEmail(data: ChatHandoffEmailData): { subject:
                 <a href="https://bapihvac.com" style="color: #1479BC; text-decoration: none;">bapihvac.com</a>
               </p>
               <p style="margin: 12px 0 0 0; color: #9ca3af; font-size: 11px;">
-                Sent: ${new Date().toLocaleString('en-US', { 
-                  weekday: 'long', 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric', 
-                  hour: '2-digit', 
+                Sent: ${new Date().toLocaleString('en-US', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  hour: '2-digit',
                   minute: '2-digit',
-                  timeZoneName: 'short'
+                  timeZoneName: 'short',
                 })}
               </p>
             </td>
@@ -191,10 +214,14 @@ ${customerPhone ? `- Phone: ${customerPhone}` : ''}
 ${requestedTopic ? `- Topic: ${requestedTopic}` : ''}
 
 Chat Transcript:
-${chatTranscript.map(msg => `
+${chatTranscript
+  .map(
+    (msg) => `
 [${new Date(msg.timestamp).toLocaleString()}] ${msg.role === 'user' ? customerName : 'AI Assistant'}:
 ${msg.content}
-`).join('\n')}
+`
+  )
+  .join('\n')}
 
 ---
 Reply to customer: ${customerEmail}

@@ -34,7 +34,7 @@ describe('ProductDetailClient', () => {
   it('renders and adds product to cart', async () => {
     render(
       <ToastProvider>
-        <ProductDetailClient 
+        <ProductDetailClient
           product={productShape}
           useCart={mockUseCart}
           useCartDrawer={mockUseCartDrawer}
@@ -53,7 +53,7 @@ describe('ProductDetailClient', () => {
       const items = useCartStore.getState().items;
       expect(items.length).toBe(1);
     });
-    
+
     const items = useCartStore.getState().items;
     expect(items[0].slug).toBe(productShape.slug);
   });

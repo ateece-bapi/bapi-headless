@@ -110,34 +110,34 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
   return (
     <div className="space-y-6">
       {/* Search and Controls */}
-      <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-6">
+      <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm">
         {/* Search Input */}
         <div className="relative mb-4">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+          <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
           <input
             type="text"
             placeholder="Search application notes..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             aria-label="Search application notes"
-            className="w-full pl-12 pr-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-neutral-900 placeholder:text-neutral-400 transition-shadow"
+            className="w-full rounded-lg border border-neutral-300 py-3 pl-12 pr-4 text-neutral-900 transition-shadow placeholder:text-neutral-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
           />
           {searchQuery && (
             <button
               onClick={clearSearch}
               aria-label="Clear search"
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-neutral-100 rounded transition-colors"
+              className="absolute right-4 top-1/2 -translate-y-1/2 rounded p-1 transition-colors hover:bg-neutral-100"
             >
-              <X className="w-4 h-4 text-neutral-500" />
+              <X className="h-4 w-4 text-neutral-500" />
             </button>
           )}
         </div>
       </div>
 
       {/* Toolbar: Results Count, Sort, View Toggle */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white rounded-lg shadow-sm border border-neutral-200 p-4">
-        <div className="flex items-center gap-4 flex-wrap">
-          <p className="text-neutral-600 text-sm">
+      <div className="flex flex-col justify-between gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center">
+        <div className="flex flex-wrap items-center gap-4">
+          <p className="text-sm text-neutral-600">
             Showing{' '}
             <span className="font-semibold text-neutral-900">{filteredAndSortedNotes.length}</span>{' '}
             of <span className="font-semibold text-neutral-900">{applicationNotes.length}</span>{' '}
@@ -146,9 +146,9 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
           {searchQuery && (
             <button
               onClick={clearSearch}
-              className="flex items-center gap-1 text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors"
+              className="flex items-center gap-1 text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
             >
-              <X className="w-4 h-4" />
+              <X className="h-4 w-4" />
               Clear search
             </button>
           )}
@@ -164,7 +164,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
               id="sort-select"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortOption)}
-              className="appearance-none pl-10 pr-10 py-2 border border-neutral-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white text-neutral-700 cursor-pointer transition-shadow"
+              className="cursor-pointer appearance-none rounded-lg border border-neutral-300 bg-white py-2 pl-10 pr-10 text-sm text-neutral-700 transition-shadow focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
               {SORT_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -172,34 +172,34 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
                 </option>
               ))}
             </select>
-            <SortAsc className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 pointer-events-none" />
+            <SortAsc className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
           </div>
 
           {/* View Toggle */}
-          <div className="flex items-center gap-1 border border-neutral-300 rounded-lg p-1">
+          <div className="flex items-center gap-1 rounded-lg border border-neutral-300 p-1">
             <button
               onClick={() => setViewMode('grid')}
               aria-label="Grid view"
               aria-pressed={viewMode === 'grid'}
-              className={`p-2 rounded transition-colors ${
+              className={`rounded p-2 transition-colors ${
                 viewMode === 'grid'
                   ? 'bg-primary-600 text-white'
                   : 'text-neutral-600 hover:bg-neutral-100'
               }`}
             >
-              <Grid3x3 className="w-4 h-4" />
+              <Grid3x3 className="h-4 w-4" />
             </button>
             <button
               onClick={() => setViewMode('list')}
               aria-label="List view"
               aria-pressed={viewMode === 'list'}
-              className={`p-2 rounded transition-colors ${
+              className={`rounded p-2 transition-colors ${
                 viewMode === 'list'
                   ? 'bg-primary-600 text-white'
                   : 'text-neutral-600 hover:bg-neutral-100'
               }`}
             >
-              <List className="w-4 h-4" />
+              <List className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -207,25 +207,25 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
 
       {/* Application Notes Grid/List */}
       {filteredAndSortedNotes.length === 0 ? (
-        <div className="text-center py-20 bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-xl border-2 border-dashed border-neutral-300">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-sm mb-6">
-            <BookOpen className="w-10 h-10 text-neutral-400" />
+        <div className="rounded-xl border-2 border-dashed border-neutral-300 bg-gradient-to-br from-neutral-50 to-neutral-100 py-20 text-center">
+          <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-sm">
+            <BookOpen className="h-10 w-10 text-neutral-400" />
           </div>
-          <h3 className="text-xl font-bold text-neutral-900 mb-2">No articles found</h3>
-          <p className="text-neutral-600 mb-6 max-w-md mx-auto">
+          <h3 className="mb-2 text-xl font-bold text-neutral-900">No articles found</h3>
+          <p className="mx-auto mb-6 max-w-md text-neutral-600">
             {searchQuery
               ? `We couldn't find any articles matching "${searchQuery}". Try a different search term.`
               : 'No application notes match your criteria. Try clearing your search.'}
           </p>
           <button
             onClick={clearSearch}
-            className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold shadow-md hover:shadow-lg"
+            className="rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-700 hover:shadow-lg"
           >
             Clear search
           </button>
         </div>
       ) : viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredAndSortedNotes.map((note) => {
             const readingTime = getReadingTime(note.content);
 
@@ -233,39 +233,39 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
               <Link
                 key={note.id}
                 href={`/application-notes/${note.slug}`}
-                className="group bg-white rounded-lg shadow-sm border border-neutral-200 overflow-hidden hover:shadow-lg hover:border-primary-300 transition-[transform,shadow,border-color] duration-250 ease-in-out hover:scale-[1.01] will-change-transform focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                className="duration-250 group overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm transition-[transform,shadow,border-color] ease-in-out will-change-transform hover:scale-[1.01] hover:border-primary-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
               >
                 {/* Consistent Icon Header */}
-                <div className="h-48 bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center">
-                  <BookOpen className="w-16 h-16 text-primary-600 group-hover:scale-110 transition-transform duration-250" />
+                <div className="flex h-48 items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100">
+                  <BookOpen className="duration-250 h-16 w-16 text-primary-600 transition-transform group-hover:scale-110" />
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors line-clamp-2 min-h-[3.5rem]">
+                  <h3 className="mb-2 line-clamp-2 min-h-[3.5rem] text-lg font-semibold text-neutral-900 transition-colors group-hover:text-primary-600">
                     {note.title}
                   </h3>
 
                   {note.excerpt && (
                     <p
-                      className="text-sm text-neutral-600 mb-4 line-clamp-3"
+                      className="mb-4 line-clamp-3 text-sm text-neutral-600"
                       dangerouslySetInnerHTML={{ __html: note.excerpt }}
                     />
                   )}
 
                   {/* Metadata */}
-                  <div className="flex items-center justify-between text-xs text-neutral-500 pt-4 border-t border-neutral-100">
+                  <div className="flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-500">
                     <div className="flex items-center gap-1">
-                      <Calendar className="w-3.5 h-3.5" />
+                      <Calendar className="h-3.5 w-3.5" />
                       <span>{formatDate(note.date)}</span>
                     </div>
                     <span className="font-medium">{readingTime} min read</span>
                   </div>
 
                   {/* Read More Button */}
-                  <div className="flex items-center gap-2 mt-4 text-primary-600 font-medium text-sm group-hover:text-primary-700">
+                  <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary-600 group-hover:text-primary-700">
                     <span>Read Article</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-250" />
+                    <ArrowRight className="duration-250 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
@@ -281,27 +281,27 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
               <Link
                 key={note.id}
                 href={`/application-notes/${note.slug}`}
-                className="group flex gap-4 bg-white rounded-lg shadow-sm border border-neutral-200 p-4 hover:shadow-md hover:border-primary-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                className="group flex gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-primary-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
               >
                 {/* Icon Thumbnail */}
-                <div className="w-32 h-24 shrink-0 bg-gradient-to-br from-primary-50 to-primary-100 rounded-lg flex items-center justify-center">
-                  <BookOpen className="w-8 h-8 text-primary-600" />
+                <div className="flex h-24 w-32 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary-50 to-primary-100">
+                  <BookOpen className="h-8 w-8 text-primary-600" />
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors mb-2 line-clamp-2">
+                <div className="min-w-0 flex-1">
+                  <h3 className="mb-2 line-clamp-2 font-semibold text-neutral-900 transition-colors group-hover:text-primary-600">
                     {note.title}
                   </h3>
                   {note.excerpt && (
                     <p
-                      className="text-sm text-neutral-600 line-clamp-2 mb-2"
+                      className="mb-2 line-clamp-2 text-sm text-neutral-600"
                       dangerouslySetInnerHTML={{ __html: note.excerpt }}
                     />
                   )}
                   <div className="flex items-center gap-4 text-xs text-neutral-500">
                     <div className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
+                      <Calendar className="h-3 w-3" />
                       <span>{formatDate(note.date)}</span>
                     </div>
                     <span>{readingTime} min read</span>
@@ -309,8 +309,8 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
                 </div>
 
                 {/* Arrow */}
-                <div className="flex-shrink-0 flex items-center">
-                  <ArrowRight className="w-5 h-5 text-neutral-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all duration-200" />
+                <div className="flex flex-shrink-0 items-center">
+                  <ArrowRight className="h-5 w-5 text-neutral-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary-600" />
                 </div>
               </Link>
             );

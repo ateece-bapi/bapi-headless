@@ -21,53 +21,60 @@ export default async function NewsPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-3xl -translate-y-1/3" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl translate-y-1/3" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+        <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 translate-y-1/3 rounded-full bg-primary-400/20 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-primary-100 mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <nav className="mb-6 flex items-center gap-2 text-sm text-primary-100">
+            <Link href="/" className="transition-colors hover:text-white">
+              Home
+            </Link>
             <span>/</span>
-            <Link href="/company" className="hover:text-white transition-colors">Company</Link>
+            <Link href="/company" className="transition-colors hover:text-white">
+              Company
+            </Link>
             <span>/</span>
-            <span className="text-white font-medium">News</span>
+            <span className="font-medium text-white">News</span>
           </nav>
 
           {/* Header */}
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white font-medium text-sm mb-6">
-              <Newspaper className="w-4 h-4" />
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+              <Newspaper className="h-4 w-4" />
               Latest Updates
             </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+
+            <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
               News & Updates
             </h1>
-            
-            <p className="text-xl md:text-2xl text-primary-50 leading-relaxed">
-              Stay informed with the latest news, product announcements, and industry insights from BAPI.
+
+            <p className="text-xl leading-relaxed text-primary-50 md:text-2xl">
+              Stay informed with the latest news, product announcements, and industry insights from
+              BAPI.
             </p>
           </div>
         </div>
       </section>
 
       {/* News Grid */}
-      <section className="relative -mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28">
+      <section className="relative mx-auto -mt-8 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
         {posts.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
-              <Newspaper className="w-8 h-8 text-gray-400" />
+          <div className="rounded-2xl bg-white p-12 text-center shadow-xl">
+            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
+              <Newspaper className="h-8 w-8 text-gray-400" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">No News Articles Yet</h2>
-            <p className="text-lg text-gray-600">Check back soon for the latest updates from BAPI.</p>
+            <h2 className="mb-2 text-2xl font-bold text-gray-900">No News Articles Yet</h2>
+            <p className="text-lg text-gray-600">
+              Check back soon for the latest updates from BAPI.
+            </p>
           </div>
         ) : (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, index) => (
               <article
                 key={post.id}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-transparent flex flex-col"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 {/* Featured Image */}
@@ -76,18 +83,18 @@ export default async function NewsPage() {
                     <img
                       src={post.featuredImage}
                       alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     {/* Overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                 )}
-                
+
                 {/* Content */}
-                <div className="p-6 flex-1 flex flex-col">
+                <div className="flex flex-1 flex-col p-6">
                   {/* Date Badge */}
-                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                    <Calendar className="w-4 h-4 text-primary-500" />
+                  <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
+                    <Calendar className="h-4 w-4 text-primary-500" />
                     <time dateTime={post.date}>
                       {new Date(post.date).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -98,29 +105,29 @@ export default async function NewsPage() {
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-primary-600 transition-colors duration-300">
+                  <h2 className="mb-3 line-clamp-2 text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
                     <Link href={`/news/${post.slug}`} className="hover:underline">
                       {post.title}
                     </Link>
                   </h2>
 
                   {/* Excerpt */}
-                  <p className="text-gray-600 line-clamp-3 mb-4 flex-1 leading-relaxed">
+                  <p className="mb-4 line-clamp-3 flex-1 leading-relaxed text-gray-600">
                     {post.excerpt}
                   </p>
 
                   {/* Read More Link */}
                   <Link
                     href={`/news/${post.slug}`}
-                    className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:gap-3 transition-all duration-300 group/link"
+                    className="group/link inline-flex items-center gap-2 font-semibold text-primary-600 transition-all duration-300 hover:gap-3"
                   >
                     <span>Read more</span>
-                    <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
                 </div>
 
                 {/* Decorative corner element */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary-50 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-full bg-gradient-to-br from-primary-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </article>
             ))}
           </div>
@@ -128,31 +135,31 @@ export default async function NewsPage() {
 
         {/* Additional CTA - if there are posts */}
         {posts.length > 0 && (
-          <div className="mt-16 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-10 lg:p-12 shadow-2xl relative overflow-hidden">
+          <div className="relative mt-16 overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-12">
             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            
-            <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
+            <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
+
+            <div className="relative flex flex-col items-center justify-between gap-8 text-center lg:flex-row lg:text-left">
               <div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white font-medium text-sm mb-4">
-                  <TrendingUp className="w-4 h-4" />
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+                  <TrendingUp className="h-4 w-4" />
                   Stay Connected
                 </div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">
+                <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">
                   Never Miss an Update
                 </h2>
-                <p className="text-primary-50 text-lg max-w-2xl">
-                  Want to stay informed about our latest innovations, industry insights, and company news? 
-                  Get in touch with us today.
+                <p className="max-w-2xl text-lg text-primary-50">
+                  Want to stay informed about our latest innovations, industry insights, and company
+                  news? Get in touch with us today.
                 </p>
               </div>
-              
+
               <Link
                 href="/company/contact-us"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-600 font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap"
+                className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 Contact Us
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="h-5 w-5" />
               </Link>
             </div>
           </div>

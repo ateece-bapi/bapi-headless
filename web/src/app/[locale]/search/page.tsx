@@ -82,15 +82,15 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   if (!query) {
     return (
       <div className="min-h-screen bg-neutral-50 py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Search className="w-16 h-16 text-neutral-300 mx-auto mb-6" />
-          <h1 className="text-3xl font-bold text-neutral-900 mb-4">Search Products</h1>
-          <p className="text-lg text-neutral-600 mb-8">
+        <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
+          <Search className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
+          <h1 className="mb-4 text-3xl font-bold text-neutral-900">Search Products</h1>
+          <p className="mb-8 text-lg text-neutral-600">
             Use the search bar above to find sensors, controllers, and building automation products.
           </p>
           <Link
             href="/products"
-            className="inline-flex items-center justify-center px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-all"
+            className="inline-flex items-center justify-center rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
           >
             Browse All Products
           </Link>
@@ -103,90 +103,90 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   return (
     <div className="min-h-screen bg-neutral-50 py-8 lg:py-12">
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-4 transition-colors"
+            className="mb-4 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="h-4 w-4" />
             Back to Products
           </Link>
-          <h1 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-2">
-            Search Results
-          </h1>
+          <h1 className="mb-2 text-3xl font-bold text-neutral-900 lg:text-4xl">Search Results</h1>
           <p className="text-lg text-neutral-600">
-            {results.length} {results.length === 1 ? 'result' : 'results'} for <span className="font-semibold">"{query}"</span>
+            {results.length} {results.length === 1 ? 'result' : 'results'} for{' '}
+            <span className="font-semibold">"{query}"</span>
           </p>
         </div>
 
         {results.length === 0 ? (
-          <div className="bg-white rounded-xl p-12 text-center border border-neutral-200">
-            <Search className="w-16 h-16 text-neutral-300 mx-auto mb-6" />
-            <h2 className="text-2xl font-bold text-neutral-900 mb-3">No products found</h2>
-            <p className="text-neutral-600 mb-6">
-              We couldn't find any products matching "{query}". Try different keywords or browse our categories.
+          <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center">
+            <Search className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
+            <h2 className="mb-3 text-2xl font-bold text-neutral-900">No products found</h2>
+            <p className="mb-6 text-neutral-600">
+              We couldn't find any products matching "{query}". Try different keywords or browse our
+              categories.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-all"
+                className="inline-flex items-center justify-center rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
               >
                 Browse All Products
               </Link>
               <Link
                 href="/company/contact-us"
-                className="inline-flex items-center justify-center px-6 py-3 border-2 border-primary-500 text-primary-600 hover:bg-primary-50 font-semibold rounded-lg transition-all"
+                className="inline-flex items-center justify-center rounded-lg border-2 border-primary-500 px-6 py-3 font-semibold text-primary-600 transition-all hover:bg-primary-50"
               >
                 Contact Support
               </Link>
             </div>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {results.map((product: any) => {
               const category = product.productCategories?.nodes?.[0];
-              
+
               return (
                 <Link
                   key={product.id}
                   href={`/en/product/${product.slug}`}
-                  className="bg-white rounded-xl p-6 border border-neutral-200 hover:border-primary-500 hover:shadow-lg transition-all duration-300 group"
+                  className="group rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
                 >
                   {product.image && (
-                    <div className="relative w-full h-48 mb-4 bg-neutral-50 rounded-lg overflow-hidden">
+                    <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg bg-neutral-50">
                       <Image
                         src={product.image.sourceUrl}
                         alt={product.image.altText || product.name}
                         fill
-                        className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
                   )}
-                  
+
                   {category && (
-                    <span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-semibold rounded-full mb-3">
+                    <span className="mb-3 inline-block rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-700">
                       {category.name}
                     </span>
                   )}
-                  
-                  <h3 className="font-bold text-lg text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
+
+                  <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                     {product.name}
                   </h3>
-                  
+
                   {product.shortDescription && (
                     <div
-                      className="text-sm text-neutral-600 mb-3 line-clamp-2"
-                      dangerouslySetInnerHTML={{ __html: sanitizeWordPressContent(product.shortDescription) }}
+                      className="mb-3 line-clamp-2 text-sm text-neutral-600"
+                      dangerouslySetInnerHTML={{
+                        __html: sanitizeWordPressContent(product.shortDescription),
+                      }}
                     />
                   )}
-                  
+
                   {product.price && (
-                    <div className="text-xl font-bold text-primary-600 mt-4">
-                      {product.price}
-                    </div>
+                    <div className="mt-4 text-xl font-bold text-primary-600">{product.price}</div>
                   )}
                 </Link>
               );

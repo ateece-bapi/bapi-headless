@@ -1,9 +1,9 @@
 /**
  * StructuredData Component
- * 
+ *
  * Renders JSON-LD structured data for SEO
  * Use this component to inject schema.org markup into pages
- * 
+ *
  * @example
  * ```tsx
  * <StructuredData schema={productSchema} />

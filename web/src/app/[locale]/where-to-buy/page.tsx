@@ -425,27 +425,25 @@ export default function WhereToBuyPage() {
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 text-white py-16 lg:py-20">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-              Where to Buy BAPI Products
-            </h1>
-            <p className="text-xl text-primary-50 mb-6">
-              Connect with our trusted network of authorized distributors worldwide. 
-              Get expert support, local inventory, and fast delivery for your building automation projects.
+            <h1 className="mb-4 text-4xl font-bold lg:text-5xl">Where to Buy BAPI Products</h1>
+            <p className="mb-6 text-xl text-primary-50">
+              Connect with our trusted network of authorized distributors worldwide. Get expert
+              support, local inventory, and fast delivery for your building automation projects.
             </p>
             <div className="flex flex-wrap gap-4 text-sm">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-accent-500 rounded-full"></div>
+                <div className="h-2 w-2 rounded-full bg-accent-500"></div>
                 <span>50+ Authorized Distributors</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-accent-500 rounded-full"></div>
+                <div className="h-2 w-2 rounded-full bg-accent-500"></div>
                 <span>Global Coverage</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-accent-500 rounded-full"></div>
+                <div className="h-2 w-2 rounded-full bg-accent-500"></div>
                 <span>Same-Day Shipping Available</span>
               </div>
             </div>
@@ -454,19 +452,19 @@ export default function WhereToBuyPage() {
       </section>
 
       {/* Search & Filter Section */}
-      <section className="bg-white border-b border-neutral-200 sticky top-16 z-30 shadow-sm">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
+      <section className="sticky top-16 z-30 border-b border-neutral-200 bg-white shadow-sm">
+        <div className="mx-auto max-w-content px-4 py-6 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             {/* Search Bar */}
             <div className="w-full lg:w-96">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
                 <input
                   type="text"
                   placeholder="Search by name or location..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                  className="w-full rounded-lg border border-neutral-300 py-2.5 pl-10 pr-4 transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                 />
               </div>
             </div>
@@ -475,7 +473,7 @@ export default function WhereToBuyPage() {
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedRegion('all')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                className={`rounded-lg px-4 py-2 font-medium transition-all ${
                   selectedRegion === 'all'
                     ? 'bg-primary-500 text-white shadow-md'
                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
@@ -485,7 +483,7 @@ export default function WhereToBuyPage() {
               </button>
               <button
                 onClick={() => setSelectedRegion('usa')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                className={`rounded-lg px-4 py-2 font-medium transition-all ${
                   selectedRegion === 'usa'
                     ? 'bg-primary-500 text-white shadow-md'
                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
@@ -495,7 +493,7 @@ export default function WhereToBuyPage() {
               </button>
               <button
                 onClick={() => setSelectedRegion('europe')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                className={`rounded-lg px-4 py-2 font-medium transition-all ${
                   selectedRegion === 'europe'
                     ? 'bg-primary-500 text-white shadow-md'
                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
@@ -505,7 +503,7 @@ export default function WhereToBuyPage() {
               </button>
               <button
                 onClick={() => setSelectedRegion('international')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                className={`rounded-lg px-4 py-2 font-medium transition-all ${
                   selectedRegion === 'international'
                     ? 'bg-primary-500 text-white shadow-md'
                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
@@ -520,9 +518,9 @@ export default function WhereToBuyPage() {
 
       {/* Distributors Grid */}
       <section className="py-12 lg:py-16">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           {filteredDistributors.length === 0 ? (
-            <div className="text-center py-16">
+            <div className="py-16 text-center">
               <p className="text-xl text-neutral-600">
                 No distributors found matching your criteria.
               </p>
@@ -531,7 +529,7 @@ export default function WhereToBuyPage() {
                   setSelectedRegion('all');
                   setSearchQuery('');
                 }}
-                className="mt-4 text-primary-500 hover:text-primary-600 font-medium"
+                className="mt-4 font-medium text-primary-500 hover:text-primary-600"
               >
                 Clear filters
               </button>
@@ -540,40 +538,46 @@ export default function WhereToBuyPage() {
             <>
               <div className="mb-8">
                 <p className="text-neutral-600">
-                  Showing <span className="font-semibold text-neutral-900">{filteredDistributors.length}</span> authorized distributor{filteredDistributors.length !== 1 ? 's' : ''}
+                  Showing{' '}
+                  <span className="font-semibold text-neutral-900">
+                    {filteredDistributors.length}
+                  </span>{' '}
+                  authorized distributor{filteredDistributors.length !== 1 ? 's' : ''}
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredDistributors.map((distributor) => (
                   <div
                     key={distributor.id}
-                    className="group bg-white rounded-xl overflow-hidden shadow-md border-2 border-neutral-200 hover:shadow-2xl hover:border-primary-500 transition-all duration-300 hover:-translate-y-1"
+                    className="group overflow-hidden rounded-xl border-2 border-neutral-200 bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl"
                   >
                     {/* Tier Badge */}
                     <div className="relative">
                       {distributor.tier === 'platinum' && (
-                        <div className="absolute top-3 right-3 bg-gradient-to-r from-accent-500 to-accent-600 text-neutral-900 px-3 py-1.5 rounded-full text-xs font-bold uppercase shadow-lg z-10">
+                        <div className="absolute right-3 top-3 z-10 rounded-full bg-gradient-to-r from-accent-500 to-accent-600 px-3 py-1.5 text-xs font-bold uppercase text-neutral-900 shadow-lg">
                           Platinum Dealer
                         </div>
                       )}
                       {distributor.tier === 'gold' && (
-                        <div className="absolute top-3 right-3 bg-gradient-to-r from-accent-400 to-accent-500 text-neutral-900 px-3 py-1.5 rounded-full text-xs font-bold uppercase shadow-lg z-10">
+                        <div className="absolute right-3 top-3 z-10 rounded-full bg-gradient-to-r from-accent-400 to-accent-500 px-3 py-1.5 text-xs font-bold uppercase text-neutral-900 shadow-lg">
                           Gold Dealer
                         </div>
                       )}
-                      
+
                       {/* Logo Section */}
-                      <div className={`p-8 border-b border-neutral-200 flex items-center justify-center h-48 ${
-                        distributor.logo.endsWith('.svg') ? 'bg-white' : 'bg-neutral-50'
-                      }`}>
-                        <div className="relative w-full h-full">
+                      <div
+                        className={`flex h-48 items-center justify-center border-b border-neutral-200 p-8 ${
+                          distributor.logo.endsWith('.svg') ? 'bg-white' : 'bg-neutral-50'
+                        }`}
+                      >
+                        <div className="relative h-full w-full">
                           {distributor.logo.endsWith('.svg') ? (
                             // Use img tag for SVG files
                             <img
                               src={distributor.logo}
                               alt={`${distributor.name} logo`}
-                              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                              className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
                             />
                           ) : (
                             // Use Next.js Image for other formats
@@ -581,7 +585,7 @@ export default function WhereToBuyPage() {
                               src={distributor.logo}
                               alt={`${distributor.name} logo`}
                               fill
-                              className="object-contain group-hover:scale-105 transition-transform duration-500"
+                              className="object-contain transition-transform duration-500 group-hover:scale-105"
                             />
                           )}
                         </div>
@@ -590,30 +594,30 @@ export default function WhereToBuyPage() {
 
                     {/* Content Section */}
                     <div className="p-5">
-                      <h3 className="text-xl font-extrabold text-neutral-900 mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300">
+                      <h3 className="mb-3 text-xl font-extrabold leading-tight text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                         {distributor.name}
                       </h3>
 
                       {/* Divider */}
-                      <div className="h-px bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 mb-3 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                      <div className="mb-3 h-px origin-left scale-x-0 transform bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 transition-transform duration-500 group-hover:scale-x-100"></div>
 
-                      <div className="flex items-center gap-2 text-neutral-700 mb-4">
-                        <MapPin className="w-4 h-4 text-primary-500" />
+                      <div className="mb-4 flex items-center gap-2 text-neutral-700">
+                        <MapPin className="h-4 w-4 text-primary-500" />
                         <span className="text-sm font-medium">{distributor.location}</span>
                       </div>
 
                       {distributor.description && (
-                        <p className="text-sm text-neutral-600 mb-4 line-clamp-2">
+                        <p className="mb-4 line-clamp-2 text-sm text-neutral-600">
                           {distributor.description}
                         </p>
                       )}
 
                       {distributor.specialties && distributor.specialties.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mb-4">
+                        <div className="mb-4 flex flex-wrap gap-2">
                           {distributor.specialties.map((specialty) => (
                             <span
                               key={specialty}
-                              className="text-xs px-3 py-1 bg-gradient-to-r from-primary-50 to-accent-50 text-primary-700 rounded-full font-bold border border-primary-200"
+                              className="rounded-full border border-primary-200 bg-gradient-to-r from-primary-50 to-accent-50 px-3 py-1 text-xs font-bold text-primary-700"
                             >
                               {specialty}
                             </span>
@@ -627,9 +631,9 @@ export default function WhereToBuyPage() {
                           href={distributor.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-bold rounded-lg transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105"
+                          className="flex w-full transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-700 px-4 py-2.5 font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
                         >
-                          <Globe className="w-4 h-4" />
+                          <Globe className="h-4 w-4" />
                           Visit Website
                         </a>
 
@@ -637,18 +641,18 @@ export default function WhereToBuyPage() {
                           {distributor.phone && (
                             <a
                               href={`tel:${distributor.phone}`}
-                              className="flex items-center justify-center gap-2 px-3 py-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-xl border-2 border-accent-600 transform hover:scale-105 text-sm"
+                              className="flex transform items-center justify-center gap-2 rounded-lg border-2 border-accent-600 bg-accent-500 px-3 py-2 text-sm font-semibold text-neutral-900 shadow-md transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-xl"
                             >
-                              <Phone className="w-4 h-4" />
+                              <Phone className="h-4 w-4" />
                               Call
                             </a>
                           )}
                           {distributor.email && (
                             <a
                               href={`mailto:${distributor.email}`}
-                              className="flex items-center justify-center gap-2 px-3 py-2 bg-white hover:bg-neutral-50 text-neutral-700 hover:text-primary-600 font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-xl border-2 border-neutral-300 hover:border-primary-500 transform hover:scale-105 text-sm"
+                              className="flex transform items-center justify-center gap-2 rounded-lg border-2 border-neutral-300 bg-white px-3 py-2 text-sm font-semibold text-neutral-700 shadow-md transition-all duration-300 hover:scale-105 hover:border-primary-500 hover:bg-neutral-50 hover:text-primary-600 hover:shadow-xl"
                             >
-                              <Mail className="w-4 h-4" />
+                              <Mail className="h-4 w-4" />
                               Email
                             </a>
                           )}
@@ -664,24 +668,25 @@ export default function WhereToBuyPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-primary-700 to-primary-600 text-white py-12 lg:py-16">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+      <section className="bg-gradient-to-r from-primary-700 to-primary-600 py-12 text-white lg:py-16">
+        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
             Interested in Becoming a Distributor?
           </h2>
-          <p className="text-xl text-primary-50 mb-8 max-w-2xl mx-auto">
-            Join our global network of authorized distributors and bring BAPI's innovative building automation solutions to your customers.
+          <p className="mx-auto mb-8 max-w-2xl text-xl text-primary-50">
+            Join our global network of authorized distributors and bring BAPI's innovative building
+            automation solutions to your customers.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <a
               href="/contact"
-              className="px-8 py-4 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold rounded-xl transition-colors shadow-lg hover:shadow-xl"
+              className="rounded-xl bg-accent-500 px-8 py-4 font-bold text-neutral-900 shadow-lg transition-colors hover:bg-accent-600 hover:shadow-xl"
             >
               Apply for Distribution
             </a>
             <a
               href="/contact"
-              className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-xl transition-colors border-2 border-white/30"
+              className="rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
             >
               Contact Sales Team
             </a>

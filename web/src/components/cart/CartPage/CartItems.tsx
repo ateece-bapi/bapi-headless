@@ -2,7 +2,7 @@
 
 /**
  * CartItems Component
- * 
+ *
  * Displays list of cart items with:
  * - Product image, name, price
  * - Quantity selector
@@ -73,19 +73,17 @@ export default function CartItems({
   onClearCart,
 }: CartItemsProps) {
   return (
-    <div className="bg-white rounded-xl border border-neutral-200 overflow-hidden">
+    <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-neutral-50">
-        <h2 className="text-lg font-semibold text-neutral-900">
-          Cart Items ({items.length})
-        </h2>
+      <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50 px-6 py-4">
+        <h2 className="text-lg font-semibold text-neutral-900">Cart Items ({items.length})</h2>
         <button
           onClick={onClearCart}
           disabled={isUpdating}
-          className="flex items-center gap-2 text-sm text-error-600 hover:text-error-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 text-sm font-medium text-error-600 transition-colors hover:text-error-700 disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Clear cart"
         >
-          <Trash2 className="w-4 h-4" />
+          <Trash2 className="h-4 w-4" />
           Clear Cart
         </button>
       </div>
@@ -97,18 +95,18 @@ export default function CartItems({
           const variation = item.variation?.node;
           const displayProduct = variation || product;
           const image = displayProduct.image || product.image;
-          const isOnSale = displayProduct.salePrice && 
-            displayProduct.regularPrice !== displayProduct.salePrice;
-          
+          const isOnSale =
+            displayProduct.salePrice && displayProduct.regularPrice !== displayProduct.salePrice;
+
           return (
             <div
               key={item.key}
-              className="p-6 flex flex-col sm:flex-row gap-4 hover:bg-neutral-50 transition-colors"
+              className="flex flex-col gap-4 p-6 transition-colors hover:bg-neutral-50 sm:flex-row"
             >
               {/* Product Image */}
               <Link
                 href={`/en/product/${product.slug}`}
-                className="flex-shrink-0 w-24 h-24 sm:w-32 sm:h-32 bg-neutral-100 rounded-lg overflow-hidden hover:opacity-80 transition-opacity"
+                className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-100 transition-opacity hover:opacity-80 sm:h-32 sm:w-32"
               >
                 {image ? (
                   <Image
@@ -116,38 +114,31 @@ export default function CartItems({
                     alt={image.altText || product.name}
                     width={128}
                     height={128}
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-neutral-400">
+                  <div className="flex h-full w-full items-center justify-center text-neutral-400">
                     No Image
                   </div>
                 )}
               </Link>
 
               {/* Product Details */}
-              <div className="flex-1 min-w-0">
-                <Link
-                  href={`/en/product/${product.slug}`}
-                  className="block group"
-                >
-                  <h3 className="text-lg font-semibold text-neutral-900 group-hover:text-primary-500 transition-colors line-clamp-2">
+              <div className="min-w-0 flex-1">
+                <Link href={`/en/product/${product.slug}`} className="group block">
+                  <h3 className="line-clamp-2 text-lg font-semibold text-neutral-900 transition-colors group-hover:text-primary-500">
                     {product.name}
                   </h3>
                 </Link>
-                
+
                 {/* Variation Details */}
-                {variation && (
-                  <p className="text-sm text-neutral-600 mt-1">
-                    {variation.name}
-                  </p>
-                )}
+                {variation && <p className="mt-1 text-sm text-neutral-600">{variation.name}</p>}
 
                 {/* Stock Status */}
                 <div className="mt-2">
                   {displayProduct.stockStatus === 'IN_STOCK' ? (
-                    <span className="inline-flex items-center gap-1 text-sm text-success-600 font-medium">
-                      <span className="w-2 h-2 bg-success-600 rounded-full"></span>
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-success-600">
+                      <span className="h-2 w-2 rounded-full bg-success-600"></span>
                       In Stock
                       {displayProduct.stockQuantity && (
                         <span className="text-neutral-500">
@@ -156,68 +147,64 @@ export default function CartItems({
                       )}
                     </span>
                   ) : displayProduct.stockStatus === 'OUT_OF_STOCK' ? (
-                    <span className="inline-flex items-center gap-1 text-sm text-error-600 font-medium">
-                      <span className="w-2 h-2 bg-error-600 rounded-full"></span>
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-error-600">
+                      <span className="h-2 w-2 rounded-full bg-error-600"></span>
                       Out of Stock
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1 text-sm text-warning-600 font-medium">
-                      <span className="w-2 h-2 bg-warning-600 rounded-full"></span>
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-warning-600">
+                      <span className="h-2 w-2 rounded-full bg-warning-600"></span>
                       On Backorder
                     </span>
                   )}
                 </div>
 
                 {/* Quantity and Remove - Mobile */}
-                <div className="flex items-center gap-4 mt-4 sm:hidden">
+                <div className="mt-4 flex items-center gap-4 sm:hidden">
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => onUpdateQuantity(item.key, item.quantity - 1)}
                       disabled={isUpdating || item.quantity <= 1}
-                      className="w-9 h-9 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-neutral-100 disabled:hover:border-neutral-300 active:scale-95"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
                       aria-label="Decrease quantity"
                     >
-                      <Minus className="w-4 h-4" />
+                      <Minus className="h-4 w-4" />
                     </button>
-                    <span className="w-12 text-center font-bold text-neutral-900 text-base">
+                    <span className="w-12 text-center text-base font-bold text-neutral-900">
                       {item.quantity}
                     </span>
                     <button
                       onClick={() => onUpdateQuantity(item.key, item.quantity + 1)}
                       disabled={isUpdating}
-                      className="w-9 h-9 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-neutral-100 disabled:hover:border-neutral-300 active:scale-95"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
                       aria-label="Increase quantity"
                     >
-                      <Plus className="w-4 h-4" />
+                      <Plus className="h-4 w-4" />
                     </button>
                   </div>
-                  
+
                   <button
                     onClick={() => onRemoveItem(item.key)}
                     disabled={isUpdating}
-                    className="ml-auto text-error-600 hover:text-error-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="ml-auto font-medium text-error-600 transition-colors hover:text-error-700 disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    <X className="w-5 h-5" />
+                    <X className="h-5 w-5" />
                   </button>
                 </div>
               </div>
 
               {/* Price and Quantity - Desktop */}
-              <div className="hidden sm:flex flex-col items-end gap-4">
+              <div className="hidden flex-col items-end gap-4 sm:flex">
                 {/* Price */}
                 <div className="text-right">
-                  <div className="text-xl font-bold text-neutral-900">
-                    {item.total}
-                  </div>
+                  <div className="text-xl font-bold text-neutral-900">{item.total}</div>
                   {isOnSale && displayProduct.regularPrice && (
                     <div className="text-sm text-neutral-500 line-through">
                       {displayProduct.regularPrice}
                     </div>
                   )}
                   {item.quantity > 1 && (
-                    <div className="text-sm text-neutral-500">
-                      {displayProduct.price} each
-                    </div>
+                    <div className="text-sm text-neutral-500">{displayProduct.price} each</div>
                   )}
                 </div>
 
@@ -226,21 +213,21 @@ export default function CartItems({
                   <button
                     onClick={() => onUpdateQuantity(item.key, item.quantity - 1)}
                     disabled={isUpdating || item.quantity <= 1}
-                    className="w-9 h-9 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-neutral-100 disabled:hover:border-neutral-300 active:scale-95"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
                     aria-label="Decrease quantity"
                   >
-                    <Minus className="w-4 h-4" />
+                    <Minus className="h-4 w-4" />
                   </button>
-                  <span className="w-12 text-center font-bold text-neutral-900 text-base">
+                  <span className="w-12 text-center text-base font-bold text-neutral-900">
                     {item.quantity}
                   </span>
                   <button
                     onClick={() => onUpdateQuantity(item.key, item.quantity + 1)}
                     disabled={isUpdating}
-                    className="w-9 h-9 flex items-center justify-center bg-neutral-100 hover:bg-primary-50 border border-neutral-300 hover:border-primary-300 rounded-lg text-neutral-700 hover:text-primary-600 font-semibold transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-neutral-100 disabled:hover:border-neutral-300 active:scale-95"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
                     aria-label="Increase quantity"
                   >
-                    <Plus className="w-4 h-4" />
+                    <Plus className="h-4 w-4" />
                   </button>
                 </div>
 
@@ -248,27 +235,23 @@ export default function CartItems({
                 <button
                   onClick={() => onRemoveItem(item.key)}
                   disabled={isUpdating}
-                  className="text-error-600 hover:text-error-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
+                  className="flex items-center gap-1 font-medium text-error-600 transition-colors hover:text-error-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="h-4 w-4" />
                   Remove
                 </button>
               </div>
 
               {/* Price - Mobile */}
-              <div className="sm:hidden text-right">
-                <div className="text-xl font-bold text-neutral-900">
-                  {item.total}
-                </div>
+              <div className="text-right sm:hidden">
+                <div className="text-xl font-bold text-neutral-900">{item.total}</div>
                 {isOnSale && displayProduct.regularPrice && (
                   <div className="text-sm text-neutral-500 line-through">
                     {displayProduct.regularPrice}
                   </div>
                 )}
                 {item.quantity > 1 && (
-                  <div className="text-sm text-neutral-500">
-                    {displayProduct.price} each
-                  </div>
+                  <div className="text-sm text-neutral-500">{displayProduct.price} each</div>
                 )}
               </div>
             </div>

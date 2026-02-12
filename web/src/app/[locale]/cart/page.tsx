@@ -1,6 +1,6 @@
 /**
  * Shopping Cart Page
- * 
+ *
  * Full-page cart experience with:
  * - Item management (update quantity, remove items)
  * - Coupon code application

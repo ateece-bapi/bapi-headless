@@ -6,28 +6,24 @@ import type { ApplicationLandingPageData } from '@/types/applications';
 
 /**
  * Reusable application landing page component
- * 
+ *
  * Renders solution-focused landing pages for different application verticals.
  * Uses data-driven approach with TypeScript interfaces for type safety.
- * 
+ *
  * @param data - Complete application page data
- * 
+ *
  * @example
  * ```tsx
  * import { getApplicationBySlug } from '@/data/applications';
  * import ApplicationLandingPage from '@/components/applications/ApplicationLandingPage';
- * 
+ *
  * const data = getApplicationBySlug('building-automation');
  * if (!data) return <NotFound />;
- * 
+ *
  * return <ApplicationLandingPage data={data} />;
  * ```
  */
-export default function ApplicationLandingPage({
-  data,
-}: {
-  data: ApplicationLandingPageData;
-}) {
+export default function ApplicationLandingPage({ data }: { data: ApplicationLandingPageData }) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -57,59 +53,57 @@ export default function ApplicationLandingPage({
 /**
  * Hero section with image, title, tagline, and statistics
  */
-function HeroSection({ hero, appName }: { hero: ApplicationLandingPageData['hero']; appName: string }) {
+function HeroSection({
+  hero,
+  appName,
+}: {
+  hero: ApplicationLandingPageData['hero'];
+  appName: string;
+}) {
   return (
-    <section className="relative bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 text-white pt-12 pb-20 lg:pt-16 lg:pb-32 overflow-hidden">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 pb-20 pt-12 text-white lg:pb-32 lg:pt-16">
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
-      
+
       {/* Background Image */}
       <div className="absolute inset-0 opacity-20">
-        <Image
-          src={hero.image}
-          alt={hero.imageAlt}
-          fill
-          className="object-cover"
-          priority
-        />
+        <Image src={hero.image} alt={hero.imageAlt} fill className="object-cover" priority />
       </div>
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary-700/90 via-primary-500/70 to-primary-700/90" />
 
       {/* Content */}
-      <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="relative mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-primary-100 mb-6" aria-label="Breadcrumb">
-          <Link href="/" className="hover:text-white transition-colors">
+        <nav
+          className="mb-6 flex items-center gap-2 text-sm text-primary-100"
+          aria-label="Breadcrumb"
+        >
+          <Link href="/" className="transition-colors hover:text-white">
             Home
           </Link>
-          <ChevronRight className="w-4 h-4" />
-          <Link href="/applications" className="hover:text-white transition-colors">
+          <ChevronRight className="h-4 w-4" />
+          <Link href="/applications" className="transition-colors hover:text-white">
             Applications
           </Link>
-          <ChevronRight className="w-4 h-4" />
-          <span className="text-white font-medium">{appName}</span>
+          <ChevronRight className="h-4 w-4" />
+          <span className="font-medium text-white">{appName}</span>
         </nav>
 
         <div className="max-w-4xl">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+          <h1 className="mb-6 text-balance text-4xl font-bold sm:text-5xl lg:text-6xl">
             {hero.title}
           </h1>
-          <p className="text-xl sm:text-2xl text-neutral-200 mb-12 text-balance">
-            {hero.tagline}
-          </p>
+          <p className="mb-12 text-balance text-xl text-neutral-200 sm:text-2xl">{hero.tagline}</p>
 
           {/* Statistics - Interactive */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-8">
             {hero.stats.map((stat, index) => (
-              <div
-                key={index}
-                className="group relative cursor-default"
-              >
-                <div className="absolute inset-0 bg-accent-500/10 rounded-xl border-2 border-accent-500/20 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105" />
-                <div className="relative bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <div className="text-3xl lg:text-4xl font-bold text-accent-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div key={index} className="group relative cursor-default">
+                <div className="absolute inset-0 rounded-xl border-2 border-accent-500/20 bg-accent-500/10 opacity-0 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100" />
+                <div className="relative rounded-xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
+                  <div className="mb-2 text-3xl font-bold text-accent-400 transition-transform duration-300 group-hover:scale-110 lg:text-4xl">
                     {stat.value}
                   </div>
                   <div className="text-sm text-neutral-300">{stat.label}</div>
@@ -132,11 +126,11 @@ function ChallengesSection({
   challenges: ApplicationLandingPageData['challenges'];
 }) {
   return (
-    <section className="py-20 lg:py-24 bg-neutral-50">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-neutral-50 py-20 lg:py-24">
+      <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             Common Challenges
           </h2>
           <p className="text-lg text-neutral-600">
@@ -145,16 +139,16 @@ function ChallengesSection({
         </div>
 
         {/* Challenges Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {challenges.map((challenge, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-normal border border-neutral-200"
+              className="duration-normal rounded-xl border border-neutral-200 bg-white p-8 shadow-lg transition-shadow hover:shadow-xl"
             >
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-error-100 flex items-center justify-center">
+                <div className="bg-error-100 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg">
                   <svg
-                    className="w-6 h-6 text-error-600"
+                    className="h-6 w-6 text-error-600"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -168,12 +162,8 @@ function ChallengesSection({
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                    {challenge.title}
-                  </h3>
-                  <p className="text-neutral-600">
-                    {challenge.description}
-                  </p>
+                  <h3 className="mb-2 text-xl font-bold text-neutral-900">{challenge.title}</h3>
+                  <p className="text-neutral-600">{challenge.description}</p>
                 </div>
               </div>
             </div>
@@ -187,17 +177,13 @@ function ChallengesSection({
 /**
  * Solutions section - How BAPI solves the challenges
  */
-function SolutionsSection({
-  solutions,
-}: {
-  solutions: ApplicationLandingPageData['solutions'];
-}) {
+function SolutionsSection({ solutions }: { solutions: ApplicationLandingPageData['solutions'] }) {
   return (
-    <section className="py-20 lg:py-24 bg-white">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-20 lg:py-24">
+      <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             How BAPI Solves These Challenges
           </h2>
           <p className="text-lg text-neutral-600">
@@ -206,23 +192,19 @@ function SolutionsSection({
         </div>
 
         {/* Solutions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {solutions.map((solution, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-primary-50 to-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-normal border border-primary-200 hover:-translate-y-1"
+              className="duration-normal rounded-xl border border-primary-200 bg-gradient-to-br from-primary-50 to-white p-8 shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl"
             >
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-500 flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-white" />
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-500">
+                  <CheckCircle className="h-6 w-6 text-white" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                    {solution.title}
-                  </h3>
-                  <p className="text-neutral-700 mb-4">
-                    {solution.description}
-                  </p>
+                  <h3 className="mb-2 text-xl font-bold text-neutral-900">{solution.title}</h3>
+                  <p className="mb-4 text-neutral-700">{solution.description}</p>
                   {solution.features && solution.features.length > 0 && (
                     <ul className="space-y-2">
                       {solution.features.map((feature, fIndex) => (
@@ -230,7 +212,7 @@ function SolutionsSection({
                           key={fIndex}
                           className="flex items-start gap-2 text-sm text-neutral-600"
                         >
-                          <ChevronRight className="w-4 h-4 text-primary-500 flex-shrink-0 mt-0.5" />
+                          <ChevronRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-500" />
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -255,11 +237,11 @@ function ProductCategoriesSection({
   categories: ApplicationLandingPageData['productCategories'];
 }) {
   return (
-    <section className="py-20 lg:py-24 bg-neutral-50">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-neutral-50 py-20 lg:py-24">
+      <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             Recommended Products
           </h2>
           <p className="text-lg text-neutral-600">
@@ -268,26 +250,24 @@ function ProductCategoriesSection({
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {categories.map((category, index) => (
             <Link
               key={index}
               href={category.link}
-              className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-normal border border-neutral-200 hover:-translate-y-1 hover:border-primary-300"
+              className="duration-normal group rounded-xl border border-neutral-200 bg-white p-6 shadow-lg transition-all hover:-translate-y-1 hover:border-primary-300 hover:shadow-xl"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-primary-100 group-hover:bg-primary-500 transition-colors duration-normal flex items-center justify-center mb-4">
-                  <Package className="w-8 h-8 text-primary-500 group-hover:text-white transition-colors duration-normal" />
+                <div className="duration-normal mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 transition-colors group-hover:bg-primary-500">
+                  <Package className="duration-normal h-8 w-8 text-primary-500 transition-colors group-hover:text-white" />
                 </div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors duration-normal">
+                <h3 className="duration-normal mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                   {category.name}
                 </h3>
-                <p className="text-sm text-neutral-600 mb-4">
-                  {category.description}
-                </p>
-                <div className="mt-auto flex items-center gap-2 text-sm font-semibold text-primary-500 group-hover:text-primary-600 transition-colors duration-normal">
+                <p className="mb-4 text-sm text-neutral-600">{category.description}</p>
+                <div className="duration-normal mt-auto flex items-center gap-2 text-sm font-semibold text-primary-500 transition-colors group-hover:text-primary-600">
                   <span>Explore Products</span>
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="h-4 w-4" />
                 </div>
               </div>
             </Link>
@@ -301,17 +281,13 @@ function ProductCategoriesSection({
 /**
  * Benefits section
  */
-function BenefitsSection({
-  benefits,
-}: {
-  benefits: ApplicationLandingPageData['benefits'];
-}) {
+function BenefitsSection({ benefits }: { benefits: ApplicationLandingPageData['benefits'] }) {
   return (
-    <section className="py-20 lg:py-24 bg-white">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-20 lg:py-24">
+      <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             Benefits You'll See
           </h2>
           <p className="text-lg text-neutral-600">
@@ -320,21 +296,17 @@ function BenefitsSection({
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-accent-50 to-white rounded-xl p-6 shadow-lg border border-accent-200"
+              className="rounded-xl border border-accent-200 bg-gradient-to-br from-accent-50 to-white p-6 shadow-lg"
             >
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-accent-600 flex-shrink-0 mt-1" />
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent-600" />
                 <div>
-                  <h3 className="text-lg font-bold text-neutral-900 mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm text-neutral-600">
-                    {benefit.description}
-                  </p>
+                  <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
+                  <p className="text-sm text-neutral-600">{benefit.description}</p>
                 </div>
               </div>
             </div>
@@ -348,17 +320,13 @@ function BenefitsSection({
 /**
  * Real-world examples section (mini case studies)
  */
-function ExamplesSection({
-  examples,
-}: {
-  examples: ApplicationLandingPageData['examples'];
-}) {
+function ExamplesSection({ examples }: { examples: ApplicationLandingPageData['examples'] }) {
   return (
-    <section className="py-20 lg:py-24 bg-neutral-50">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-neutral-50 py-20 lg:py-24">
+      <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             Real-World Success Stories
           </h2>
           <p className="text-lg text-neutral-600">
@@ -367,11 +335,11 @@ function ExamplesSection({
         </div>
 
         {/* Examples Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {examples.map((example, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-normal border border-neutral-200"
+              className="duration-normal overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-lg transition-shadow hover:shadow-xl"
             >
               {/* Image (if provided) */}
               {example.image && (
@@ -387,18 +355,14 @@ function ExamplesSection({
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-neutral-900 mb-3">
-                  {example.title}
-                </h3>
+                <h3 className="mb-3 text-xl font-bold text-neutral-900">{example.title}</h3>
 
-                <p className="text-neutral-600 mb-4">{example.description}</p>
+                <p className="mb-4 text-neutral-600">{example.description}</p>
 
                 {/* Result */}
-                <div className="flex items-start gap-2 text-sm bg-success-50 border border-success-200 rounded-lg p-3">
-                  <CheckCircle className="w-4 h-4 text-success-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-neutral-700 font-semibold">
-                    {example.result}
-                  </span>
+                <div className="border-success-200 flex items-start gap-2 rounded-lg border bg-success-50 p-3 text-sm">
+                  <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-success-500" />
+                  <span className="font-semibold text-neutral-700">{example.result}</span>
                 </div>
               </div>
             </div>
@@ -414,26 +378,26 @@ function ExamplesSection({
  */
 function CTASection({ ctas }: { ctas: ApplicationLandingPageData['ctas'] }) {
   return (
-    <section className="py-20 lg:py-24 bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 text-white">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-balance">
+    <section className="bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 py-20 text-white lg:py-24">
+      <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+        <h2 className="mb-6 text-balance text-3xl font-bold lg:text-4xl">
           Ready to Solve Your Challenges?
         </h2>
-        <p className="text-xl text-primary-100 mb-10 max-w-2xl mx-auto text-balance">
+        <p className="mx-auto mb-10 max-w-2xl text-balance text-xl text-primary-100">
           Let our experts help you find the right solution for your facility
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href={ctas.primary.link}
-            className="px-8 py-4 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-normal hover:-translate-y-1 text-lg"
+            className="duration-normal rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 shadow-lg transition-all hover:-translate-y-1 hover:bg-accent-600 hover:shadow-xl"
           >
             {ctas.primary.text}
           </Link>
           <Link
             href={ctas.secondary.link}
-            className="px-8 py-4 bg-white hover:bg-neutral-50 text-primary-600 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-normal hover:-translate-y-1 text-lg"
+            className="duration-normal rounded-xl bg-white px-8 py-4 text-lg font-bold text-primary-600 shadow-lg transition-all hover:-translate-y-1 hover:bg-neutral-50 hover:shadow-xl"
           >
             {ctas.secondary.text}
           </Link>
@@ -446,11 +410,9 @@ function CTASection({ ctas }: { ctas: ApplicationLandingPageData['ctas'] }) {
 /**
  * Generate metadata for SEO
  */
-export function generateApplicationMetadata(
-  data: ApplicationLandingPageData
-): Metadata {
+export function generateApplicationMetadata(data: ApplicationLandingPageData): Metadata {
   const ogImage = data.seo.ogImage || data.hero.image;
-  
+
   return {
     title: data.seo.title,
     description: data.seo.description,

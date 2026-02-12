@@ -1,8 +1,8 @@
 /**
  * Order Details API Route
- * 
+ *
  * GET /api/orders/[orderId]
- * 
+ *
  * Fetches order details from WooCommerce by order ID
  */
 
@@ -30,7 +30,7 @@ export async function GET(
 
     // Convert to number for database ID query
     const databaseId = parseInt(orderId, 10);
-    
+
     if (isNaN(databaseId)) {
       return NextResponse.json(
         {
@@ -48,7 +48,7 @@ export async function GET(
 
     const wcResponse = await fetch(`${WORDPRESS_URL}/wp-json/wc/v3/orders/${databaseId}`, {
       headers: {
-        'Authorization': `Basic ${auth}`,
+        Authorization: `Basic ${auth}`,
       },
     });
 
@@ -74,7 +74,9 @@ export async function GET(
       status: wcOrder.status,
       date: wcOrder.date_created,
       total: wcOrder.total,
-      subtotal: wcOrder.line_items.reduce((sum: number, item: any) => sum + parseFloat(item.subtotal), 0).toString(),
+      subtotal: wcOrder.line_items
+        .reduce((sum: number, item: any) => sum + parseFloat(item.subtotal), 0)
+        .toString(),
       tax: wcOrder.total_tax,
       shipping: wcOrder.shipping_total,
       discount: wcOrder.discount_total,
@@ -129,13 +131,15 @@ export async function GET(
       success: true,
       order,
     });
-
   } catch (error) {
     logError('orders.fetch_failed', error);
-    
-    return NextResponse.json({
-      error: ERROR_MESSAGES.SERVER_ERROR.title,
-      message: 'Unable to fetch order details. Please try again later.',
-    }, { status: 500 });
+
+    return NextResponse.json(
+      {
+        error: ERROR_MESSAGES.SERVER_ERROR.title,
+        message: 'Unable to fetch order details. Please try again later.',
+      },
+      { status: 500 }
+    );
   }
 }

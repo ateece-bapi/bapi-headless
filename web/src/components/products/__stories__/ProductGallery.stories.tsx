@@ -4,9 +4,9 @@ import type { GalleryImage } from '../ProductGallery';
 
 /**
  * ProductGallery Component
- * 
+ *
  * Enhanced product gallery with lightbox, zoom, and keyboard navigation.
- * 
+ *
  * Features:
  * - Thumbnail navigation
  * - Lightbox modal for full-size viewing
@@ -22,7 +22,8 @@ const meta: Meta<typeof ProductGallery> = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'A feature-rich image gallery component with lightbox, zoom, and keyboard navigation. Supports multiple images with thumbnail preview and full-screen viewing.',
+        component:
+          'A feature-rich image gallery component with lightbox, zoom, and keyboard navigation. Supports multiple images with thumbnail preview and full-screen viewing.',
       },
     },
   },
@@ -62,7 +63,7 @@ const mockImages: GalleryImage[] = [
 
 /**
  * Default gallery with multiple images.
- * 
+ *
  * Click main image to open lightbox.
  * Use arrow keys for navigation in lightbox mode.
  * Press ESC to close lightbox.
@@ -76,7 +77,7 @@ export const Default: Story = {
 
 /**
  * Gallery with single image only.
- * 
+ *
  * No thumbnails or navigation arrows displayed.
  * Click to open lightbox for full-size viewing.
  */
@@ -89,7 +90,7 @@ export const SingleImage: Story = {
 
 /**
  * Gallery with two images.
- * 
+ *
  * Minimal thumbnail navigation.
  * Good for products with limited photography.
  */
@@ -102,7 +103,7 @@ export const TwoImages: Story = {
 
 /**
  * Gallery with many images (6+).
- * 
+ *
  * Tests thumbnail grid layout with more images.
  * Demonstrates responsive thumbnail sizing.
  */
@@ -125,7 +126,7 @@ export const ManyImages: Story = {
 
 /**
  * Gallery with images missing altText.
- * 
+ *
  * Falls back to productName for accessibility.
  * Ensures alt text is always present for screen readers.
  */
@@ -142,7 +143,7 @@ export const NoAltText: Story = {
 
 /**
  * Gallery with portrait-oriented images.
- * 
+ *
  * Tests layout with tall images.
  * Images maintain aspect ratio in square container.
  */
@@ -164,7 +165,7 @@ export const PortraitImages: Story = {
 
 /**
  * Gallery with landscape-oriented images.
- * 
+ *
  * Tests layout with wide images.
  * Images maintain aspect ratio in square container.
  */
@@ -186,7 +187,7 @@ export const LandscapeImages: Story = {
 
 /**
  * Empty gallery state.
- * 
+ *
  * Displays "No image available" message.
  * Handles gracefully when product has no images.
  */
@@ -199,7 +200,7 @@ export const NoImages: Story = {
 
 /**
  * Gallery with high-resolution images.
- * 
+ *
  * Tests loading and display of large images.
  * Demonstrates Next.js Image optimization.
  */
@@ -221,7 +222,7 @@ export const HighResolution: Story = {
 
 /**
  * Gallery with mixed aspect ratios.
- * 
+ *
  * Tests handling of various image dimensions.
  * All images fit within square containers with object-contain.
  */
@@ -247,7 +248,7 @@ export const MixedAspectRatios: Story = {
 
 /**
  * Interactive testing - Keyboard navigation.
- * 
+ *
  * Open lightbox and test keyboard controls:
  * - Arrow Left: Previous image
  * - Arrow Right: Next image
@@ -261,7 +262,8 @@ export const KeyboardNavigation: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Open the lightbox and use keyboard arrows to navigate between images. Press ESC to close.',
+        story:
+          'Open the lightbox and use keyboard arrows to navigate between images. Press ESC to close.',
       },
     },
   },
@@ -269,7 +271,7 @@ export const KeyboardNavigation: Story = {
 
 /**
  * Accessibility testing.
- * 
+ *
  * All images have proper alt text.
  * All buttons have aria-labels.
  * Keyboard navigation fully functional.
@@ -285,7 +287,8 @@ export const Accessibility: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Test with screen reader. All controls should be accessible via keyboard. Alt text should be descriptive.',
+        story:
+          'Test with screen reader. All controls should be accessible via keyboard. Alt text should be descriptive.',
       },
     },
   },

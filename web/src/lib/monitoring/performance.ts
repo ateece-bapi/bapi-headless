@@ -17,14 +17,14 @@ export class PerformanceTimer {
 
   end() {
     const totalTime = Date.now() - this.startTime;
-    
+
     if (process.env.NODE_ENV === 'development') {
       logger.debug(`[Performance] ${this.label} - Total: ${totalTime}ms`);
       this.timings.forEach((time, label) => {
         logger.debug(`  ${label}: ${time}ms`);
       });
     }
-    
+
     return { totalTime, timings: Object.fromEntries(this.timings) };
   }
 }

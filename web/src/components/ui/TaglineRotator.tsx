@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 interface TaglineRotatorProps {
   taglines: string[];
@@ -23,15 +23,15 @@ const TaglineRotator: React.FC<TaglineRotatorProps> = ({ taglines }) => {
   }, [taglines.length]);
 
   return (
-    <div className="h-[6rem] sm:h-[5rem] lg:h-[6rem] flex items-center justify-center">
+    <div className="flex h-[6rem] items-center justify-center sm:h-[5rem] lg:h-[6rem]">
       <p
-        className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold transition-opacity duration-500 text-center max-w-4xl ${
-          isVisible ? "opacity-100" : "opacity-0"
+        className={`max-w-4xl text-center text-3xl font-extrabold transition-opacity duration-500 sm:text-4xl lg:text-5xl ${
+          isVisible ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          fontSmooth: "always",
-          WebkitFontSmoothing: "antialiased",
-          MozOsxFontSmoothing: "grayscale",
+          fontSmooth: 'always',
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
         }}
       >
         {taglines[currentIndex]}

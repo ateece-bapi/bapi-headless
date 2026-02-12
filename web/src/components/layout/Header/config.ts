@@ -1,5 +1,5 @@
 import { NavLink, MegaMenuItem } from './types';
-import { 
+import {
   Building2,
   Factory,
   Wrench,
@@ -26,25 +26,25 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('products.temperature.title'),
           icon: '/images/icons/Temperature_Icon.webp',
           links: [
-            { 
-              label: t('products.temperature.roomWallSensors'), 
+            {
+              label: t('products.temperature.roomWallSensors'),
               href: '/products',
-              description: t('products.temperature.roomWallSensorsDesc')
+              description: t('products.temperature.roomWallSensorsDesc'),
             },
-            { 
-              label: t('products.temperature.ductSensors'), 
+            {
+              label: t('products.temperature.ductSensors'),
               href: '/products',
-              description: t('products.temperature.ductSensorsDesc')
+              description: t('products.temperature.ductSensorsDesc'),
             },
-            { 
-              label: t('products.temperature.immersionWell'), 
+            {
+              label: t('products.temperature.immersionWell'),
               href: '/products',
-              description: t('products.temperature.immersionWellDesc')
+              description: t('products.temperature.immersionWellDesc'),
             },
-            { 
-              label: t('products.temperature.outdoorSensors'), 
+            {
+              label: t('products.temperature.outdoorSensors'),
               href: '/products',
-              description: t('products.temperature.outdoorSensorsDesc')
+              description: t('products.temperature.outdoorSensorsDesc'),
             },
           ],
         },
@@ -52,25 +52,25 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('products.humidity.title'),
           icon: '/images/icons/Humidity_Icon.webp',
           links: [
-            { 
-              label: t('products.humidity.roomHumidity'), 
+            {
+              label: t('products.humidity.roomHumidity'),
               href: '/products',
-              description: t('products.humidity.roomHumidityDesc')
+              description: t('products.humidity.roomHumidityDesc'),
             },
-            { 
-              label: t('products.humidity.ductHumidity'), 
+            {
+              label: t('products.humidity.ductHumidity'),
               href: '/products',
-              description: t('products.humidity.ductHumidityDesc')
+              description: t('products.humidity.ductHumidityDesc'),
             },
-            { 
-              label: t('products.humidity.outdoorHumidity'), 
+            {
+              label: t('products.humidity.outdoorHumidity'),
               href: '/products',
-              description: t('products.humidity.outdoorHumidityDesc')
+              description: t('products.humidity.outdoorHumidityDesc'),
             },
-            { 
-              label: t('products.humidity.comboSensors'), 
+            {
+              label: t('products.humidity.comboSensors'),
               href: '/products',
-              description: t('products.humidity.comboSensorsDesc')
+              description: t('products.humidity.comboSensorsDesc'),
             },
           ],
         },
@@ -78,20 +78,20 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('products.pressure.title'),
           icon: '/images/icons/Pressure_Icon.webp',
           links: [
-            { 
-              label: t('products.pressure.differential'), 
+            {
+              label: t('products.pressure.differential'),
               href: '/products',
-              description: t('products.pressure.differentialDesc')
+              description: t('products.pressure.differentialDesc'),
             },
-            { 
-              label: t('products.pressure.static'), 
+            {
+              label: t('products.pressure.static'),
               href: '/products',
-              description: t('products.pressure.staticDesc')
+              description: t('products.pressure.staticDesc'),
             },
-            { 
-              label: t('products.pressure.barometric'), 
+            {
+              label: t('products.pressure.barometric'),
               href: '/products',
-              description: t('products.pressure.barometricDesc')
+              description: t('products.pressure.barometricDesc'),
             },
           ],
         },
@@ -99,20 +99,20 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('products.airQuality.title'),
           icon: '/images/icons/AirQuality_Icon.webp',
           links: [
-            { 
-              label: t('products.airQuality.co2'), 
+            {
+              label: t('products.airQuality.co2'),
               href: '/products',
-              description: t('products.airQuality.co2Desc')
+              description: t('products.airQuality.co2Desc'),
             },
-            { 
-              label: t('products.airQuality.voc'), 
+            {
+              label: t('products.airQuality.voc'),
               href: '/products',
-              description: t('products.airQuality.vocDesc')
+              description: t('products.airQuality.vocDesc'),
             },
-            { 
-              label: t('products.airQuality.particulate'), 
+            {
+              label: t('products.airQuality.particulate'),
               href: '/products',
-              description: t('products.airQuality.particulateDesc')
+              description: t('products.airQuality.particulateDesc'),
             },
           ],
         },
@@ -120,27 +120,27 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('products.wireless.title'),
           icon: '/images/icons/Wireless_Icon.webp',
           links: [
-            { 
-              label: t('products.wireless.wamTemperature'), 
+            {
+              label: t('products.wireless.wamTemperature'),
               href: '/wireless',
               description: t('products.wireless.wamTemperatureDesc'),
-              badge: 'Popular'
+              badge: 'Popular',
             },
-            { 
-              label: t('products.wireless.wamHumidity'), 
+            {
+              label: t('products.wireless.wamHumidity'),
               href: '/wireless',
-              description: t('products.wireless.wamHumidityDesc')
+              description: t('products.wireless.wamHumidityDesc'),
             },
-            { 
-              label: t('products.wireless.wamDoorSensors'), 
+            {
+              label: t('products.wireless.wamDoorSensors'),
               href: '/wireless',
-              description: t('products.wireless.wamDoorSensorsDesc')
+              description: t('products.wireless.wamDoorSensorsDesc'),
             },
-            { 
-              label: t('products.wireless.cloudPlatform'), 
+            {
+              label: t('products.wireless.cloudPlatform'),
               href: '/wam',
               description: t('products.wireless.cloudPlatformDesc'),
-              badge: 'Premium'
+              badge: 'Premium',
             },
           ],
         },
@@ -148,20 +148,20 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('products.accessories.title'),
           icon: '/images/icons/Accessories_Icon.webp',
           links: [
-            { 
-              label: t('products.accessories.mounting'), 
+            {
+              label: t('products.accessories.mounting'),
               href: '/accessories',
-              description: t('products.accessories.mountingDesc')
+              description: t('products.accessories.mountingDesc'),
             },
-            { 
-              label: t('products.accessories.enclosures'), 
+            {
+              label: t('products.accessories.enclosures'),
               href: '/accessories',
-              description: t('products.accessories.enclosuresDesc')
+              description: t('products.accessories.enclosuresDesc'),
             },
-            { 
-              label: t('products.accessories.cables'), 
+            {
+              label: t('products.accessories.cables'),
               href: '/accessories',
-              description: t('products.accessories.cablesDesc')
+              description: t('products.accessories.cablesDesc'),
             },
           ],
         },
@@ -169,21 +169,21 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('products.testInstruments.title'),
           icon: '/images/icons/Test_Instruments_Icon.webp',
           links: [
-            { 
-              label: t('products.testInstruments.bluTestTemperature'), 
+            {
+              label: t('products.testInstruments.bluTestTemperature'),
               href: '/test-instruments',
               description: t('products.testInstruments.bluTestTemperatureDesc'),
-              badge: 'New'
+              badge: 'New',
             },
-            { 
-              label: t('products.testInstruments.bluTestHumidity'), 
+            {
+              label: t('products.testInstruments.bluTestHumidity'),
               href: '/test-instruments',
-              description: t('products.testInstruments.bluTestHumidityDesc')
+              description: t('products.testInstruments.bluTestHumidityDesc'),
             },
-            { 
-              label: t('products.testInstruments.bluTestPressure'), 
+            {
+              label: t('products.testInstruments.bluTestPressure'),
               href: '/test-instruments',
-              description: t('products.testInstruments.bluTestPressureDesc')
+              description: t('products.testInstruments.bluTestPressureDesc'),
             },
           ],
         },
@@ -208,29 +208,29 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
   //         title: 'By Industry',
   //         icon: Building2,
   //         links: [
-  //           { 
-  //             label: 'Building Automation', 
+  //           {
+  //             label: 'Building Automation',
   //             href: '/applications/landing/building-automation',
   //             description: '30% energy savings for commercial buildings',
   //             badge: 'Popular'
   //           },
-  //           { 
-  //             label: 'Data Centers', 
+  //           {
+  //             label: 'Data Centers',
   //             href: '/applications/landing/data-centers',
   //             description: '99.99% uptime for critical infrastructure'
   //           },
-  //           { 
-  //             label: 'Healthcare Facilities', 
+  //           {
+  //             label: 'Healthcare Facilities',
   //             href: '/applications/landing/healthcare',
   //             description: 'Joint Commission compliance solutions'
   //           },
-  //           { 
-  //             label: 'Industrial & Manufacturing', 
+  //           {
+  //             label: 'Industrial & Manufacturing',
   //             href: '/applications/landing/industrial',
   //             description: 'Harsh environment monitoring solutions'
   //           },
-  //           { 
-  //             label: 'Wireless Monitoring', 
+  //           {
+  //             label: 'Wireless Monitoring',
   //             href: '/applications/landing/wireless-monitoring',
   //             description: '5-minute setup, 5-year battery life',
   //             badge: 'Premium'
@@ -241,23 +241,23 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
   //         title: 'By Use Case',
   //         icon: '/images/icons/Temperature_Icon.webp',
   //         links: [
-  //           { 
-  //             label: 'Room & Space Monitoring', 
+  //           {
+  //             label: 'Room & Space Monitoring',
   //             href: '/applications/building-automation',
   //             description: 'Offices, classrooms, healthcare spaces'
   //           },
-  //           { 
-  //             label: 'HVAC Duct & Air Handler', 
+  //           {
+  //             label: 'HVAC Duct & Air Handler',
   //             href: '/applications/building-automation',
   //             description: 'Supply, return, mixed air sensing'
   //           },
-  //           { 
-  //             label: 'Indoor Air Quality', 
+  //           {
+  //             label: 'Indoor Air Quality',
   //             href: '/applications/building-automation',
   //             description: 'CO₂, VOC monitoring'
   //           },
-  //           { 
-  //             label: 'Industrial Refrigeration', 
+  //           {
+  //             label: 'Industrial Refrigeration',
   //             href: '/applications',
   //             description: 'Cold storage monitoring'
   //           },
@@ -267,19 +267,19 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
   //         title: 'Resources',
   //         icon: Wrench,
   //         links: [
-  //           { 
-  //             label: 'Real-World Installations', 
+  //           {
+  //             label: 'Real-World Installations',
   //             href: '/installations',
   //             description: 'See BAPI sensors in action',
   //             badge: 'New'
   //           },
-  //           { 
-  //             label: 'Browse All Applications', 
+  //           {
+  //             label: 'Browse All Applications',
   //             href: '/applications',
   //             description: 'Complete application directory'
   //           },
-  //           { 
-  //             label: 'Installation Support', 
+  //           {
+  //             label: 'Installation Support',
   //             href: '/contact',
   //             description: 'Talk to our technical team'
   //           },
@@ -303,26 +303,26 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('resources.technicalDocumentation.title'),
           icon: BookOpen,
           links: [
-            { 
-              label: t('resources.technicalDocumentation.applicationNotes'), 
+            {
+              label: t('resources.technicalDocumentation.applicationNotes'),
               href: '/application-notes',
               description: t('resources.technicalDocumentation.applicationNotesDesc'),
-              badge: 'Popular'
+              badge: 'Popular',
             },
-            { 
-              label: t('resources.technicalDocumentation.serviceBulletins'), 
+            {
+              label: t('resources.technicalDocumentation.serviceBulletins'),
               href: '/service-bulletin/',
-              description: t('resources.technicalDocumentation.serviceBulletinsDesc')
+              description: t('resources.technicalDocumentation.serviceBulletinsDesc'),
             },
-            { 
-              label: t('resources.technicalDocumentation.datasheets'), 
+            {
+              label: t('resources.technicalDocumentation.datasheets'),
               href: '/resources/datasheets',
-              description: t('resources.technicalDocumentation.datasheetsDesc')
+              description: t('resources.technicalDocumentation.datasheetsDesc'),
             },
-            { 
-              label: t('resources.technicalDocumentation.sensorsOverview'), 
+            {
+              label: t('resources.technicalDocumentation.sensorsOverview'),
               href: '/sensor-specs/',
-              description: t('resources.technicalDocumentation.sensorsOverviewDesc')
+              description: t('resources.technicalDocumentation.sensorsOverviewDesc'),
             },
           ],
         },
@@ -330,21 +330,21 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('resources.toolsGuides.title'),
           icon: Wrench,
           links: [
-            { 
-              label: t('resources.toolsGuides.catalog'), 
+            {
+              label: t('resources.toolsGuides.catalog'),
               href: '/catalogpricebook/',
               description: t('resources.toolsGuides.catalogDesc'),
-              badge: 'Download'
+              badge: 'Download',
             },
-            { 
-              label: t('resources.toolsGuides.siteVerification'), 
+            {
+              label: t('resources.toolsGuides.siteVerification'),
               href: '/wireless-site-verification/',
-              description: t('resources.toolsGuides.siteVerificationDesc')
+              description: t('resources.toolsGuides.siteVerificationDesc'),
             },
-            { 
-              label: t('resources.toolsGuides.productSelector'), 
+            {
+              label: t('resources.toolsGuides.productSelector'),
               href: '/resources/selector',
-              description: t('resources.toolsGuides.productSelectorDesc')
+              description: t('resources.toolsGuides.productSelectorDesc'),
             },
           ],
         },
@@ -352,22 +352,22 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('resources.learningCenter.title'),
           icon: GraduationCap,
           links: [
-            { 
-              label: t('resources.learningCenter.videos'), 
+            {
+              label: t('resources.learningCenter.videos'),
               href: '/resources/videos',
               description: t('resources.learningCenter.videosDesc'),
-              badge: 'Phase 2'
+              badge: 'Phase 2',
             },
-            { 
-              label: t('resources.learningCenter.caseStudies'), 
+            {
+              label: t('resources.learningCenter.caseStudies'),
               href: '/resources/case-studies',
-              description: t('resources.learningCenter.caseStudiesDesc')
+              description: t('resources.learningCenter.caseStudiesDesc'),
             },
-            { 
-              label: t('resources.learningCenter.webinars'), 
+            {
+              label: t('resources.learningCenter.webinars'),
               href: '/resources/webinars',
               description: t('resources.learningCenter.webinarsDesc'),
-              badge: 'Phase 2'
+              badge: 'Phase 2',
             },
           ],
         },
@@ -389,22 +389,22 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('support.getHelp.title'),
           icon: LifeBuoy,
           links: [
-            { 
-              label: t('support.getHelp.contactSupport'), 
+            {
+              label: t('support.getHelp.contactSupport'),
               href: '/contact',
               description: t('support.getHelp.contactSupportDesc'),
-              badge: 'Popular'
+              badge: 'Popular',
             },
-            { 
-              label: t('support.getHelp.rmaRequest'), 
+            {
+              label: t('support.getHelp.rmaRequest'),
               href: '/rma-request/',
-              description: t('support.getHelp.rmaRequestDesc')
+              description: t('support.getHelp.rmaRequestDesc'),
             },
-            { 
-              label: t('support.getHelp.whereToBuy'), 
+            {
+              label: t('support.getHelp.whereToBuy'),
               href: '/where-to-buy/',
               description: t('support.getHelp.whereToBuyDesc'),
-              badge: 'Popular'
+              badge: 'Popular',
             },
           ],
         },
@@ -412,20 +412,20 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('support.existingCustomers.title'),
           icon: Users,
           links: [
-            { 
-              label: t('support.existingCustomers.myAccount'), 
+            {
+              label: t('support.existingCustomers.myAccount'),
               href: '/account',
-              description: t('support.existingCustomers.myAccountDesc')
+              description: t('support.existingCustomers.myAccountDesc'),
             },
-            { 
-              label: t('support.existingCustomers.orderStatus'), 
+            {
+              label: t('support.existingCustomers.orderStatus'),
               href: '/account/orders',
-              description: t('support.existingCustomers.orderStatusDesc')
+              description: t('support.existingCustomers.orderStatusDesc'),
             },
-            { 
-              label: t('support.existingCustomers.requestQuote'), 
+            {
+              label: t('support.existingCustomers.requestQuote'),
               href: '/request-quote',
-              description: t('support.existingCustomers.requestQuoteDesc')
+              description: t('support.existingCustomers.requestQuoteDesc'),
             },
           ],
         },
@@ -447,25 +447,25 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('company.aboutBapi.title'),
           icon: Building2,
           links: [
-            { 
-              label: t('company.aboutBapi.whyBapi'), 
+            {
+              label: t('company.aboutBapi.whyBapi'),
               href: '/company/why-bapi',
-              description: t('company.aboutBapi.whyBapiDesc')
+              description: t('company.aboutBapi.whyBapiDesc'),
             },
-            { 
-              label: t('company.aboutBapi.missionValues'), 
+            {
+              label: t('company.aboutBapi.missionValues'),
               href: '/company/mission-values',
-              description: t('company.aboutBapi.missionValuesDesc')
+              description: t('company.aboutBapi.missionValuesDesc'),
             },
-            { 
-              label: t('company.aboutBapi.news'), 
+            {
+              label: t('company.aboutBapi.news'),
               href: '/company/news',
-              description: t('company.aboutBapi.newsDesc')
+              description: t('company.aboutBapi.newsDesc'),
             },
-            { 
-              label: t('company.aboutBapi.careers'), 
+            {
+              label: t('company.aboutBapi.careers'),
               href: '/company/careers',
-              description: t('company.aboutBapi.careersDesc')
+              description: t('company.aboutBapi.careersDesc'),
             },
           ],
         },
@@ -473,21 +473,21 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           title: t('company.getInTouch.title'),
           icon: Phone,
           links: [
-            { 
-              label: t('company.getInTouch.contactSales'), 
+            {
+              label: t('company.getInTouch.contactSales'),
               href: '/contact',
               description: t('company.getInTouch.contactSalesDesc'),
-              badge: 'Popular'
+              badge: 'Popular',
             },
-            { 
-              label: t('company.getInTouch.whereToBuy'), 
+            {
+              label: t('company.getInTouch.whereToBuy'),
               href: '/where-to-buy/',
-              description: t('company.getInTouch.whereToBuyDesc')
+              description: t('company.getInTouch.whereToBuyDesc'),
             },
-            { 
-              label: t('company.getInTouch.requestQuote'), 
+            {
+              label: t('company.getInTouch.requestQuote'),
               href: '/request-quote',
-              description: t('company.getInTouch.requestQuoteDesc')
+              description: t('company.getInTouch.requestQuoteDesc'),
             },
           ],
         },

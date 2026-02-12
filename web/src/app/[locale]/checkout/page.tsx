@@ -1,6 +1,6 @@
 /**
  * Checkout Page
- * 
+ *
  * Multi-step checkout wizard:
  * 1. Shipping Information
  * 2. Payment Method

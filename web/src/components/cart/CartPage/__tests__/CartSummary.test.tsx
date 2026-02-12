@@ -116,7 +116,7 @@ describe('CartSummary Component', () => {
         discountTotal: '$15.00',
         total: '$84.98',
       };
-      
+
       render(<CartSummary {...defaultProps} cart={cartWithDiscount} />);
       expect(screen.getByText('Discount')).toBeInTheDocument();
       expect(screen.getByText('-$15.00')).toBeInTheDocument();
@@ -133,7 +133,7 @@ describe('CartSummary Component', () => {
         shippingTotal: '$12.50',
         total: '$112.48',
       };
-      
+
       render(<CartSummary {...defaultProps} cart={cartWithShipping} />);
       expect(screen.getByText('$12.50')).toBeInTheDocument();
     });
@@ -144,7 +144,7 @@ describe('CartSummary Component', () => {
         totalTax: '$8.50',
         total: '$108.48',
       };
-      
+
       render(<CartSummary {...defaultProps} cart={cartWithTax} />);
       expect(screen.getByText('$8.50')).toBeInTheDocument();
     });
@@ -160,7 +160,7 @@ describe('CartSummary Component', () => {
         discountTotal: '$15.00',
         discountTax: '$0.00',
       };
-      
+
       render(<CartSummary {...defaultProps} cart={fullCart} />);
       expect(screen.getByText('$103.50')).toBeInTheDocument();
     });
@@ -170,7 +170,7 @@ describe('CartSummary Component', () => {
     it('allows entering coupon code', () => {
       render(<CartSummary {...defaultProps} />);
       const input = screen.getByPlaceholderText('Enter code');
-      
+
       fireEvent.change(input, { target: { value: 'SAVE20' } });
       expect(input).toHaveValue('SAVE20');
     });
@@ -185,7 +185,7 @@ describe('CartSummary Component', () => {
       render(<CartSummary {...defaultProps} />);
       const input = screen.getByPlaceholderText('Enter code');
       const applyButton = screen.getByRole('button', { name: /apply/i });
-      
+
       fireEvent.change(input, { target: { value: 'SAVE20' } });
       expect(applyButton).not.toBeDisabled();
     });
@@ -193,10 +193,14 @@ describe('CartSummary Component', () => {
     it('shows warning when applying empty code', async () => {
       render(<CartSummary {...defaultProps} />);
       const form = screen.getByRole('button', { name: /apply/i }).closest('form');
-      
+
       fireEvent.submit(form!);
-      
-      expect(mockShowToast).toHaveBeenCalledWith('warning', 'Enter Code', 'Please enter a coupon code');
+
+      expect(mockShowToast).toHaveBeenCalledWith(
+        'warning',
+        'Enter Code',
+        'Please enter a coupon code'
+      );
     });
 
     it('applies coupon successfully', async () => {
@@ -208,10 +212,10 @@ describe('CartSummary Component', () => {
       render(<CartSummary {...defaultProps} />);
       const input = screen.getByPlaceholderText('Enter code');
       const applyButton = screen.getByRole('button', { name: /apply/i });
-      
+
       fireEvent.change(input, { target: { value: 'SAVE20' } });
       fireEvent.click(applyButton);
-      
+
       await waitFor(() => {
         expect(mockShowToast).toHaveBeenCalledWith(
           'success',
@@ -219,7 +223,7 @@ describe('CartSummary Component', () => {
           'Coupon "SAVE20" applied successfully'
         );
       });
-      
+
       expect(defaultProps.onApplyCoupon).toHaveBeenCalled();
     });
 
@@ -232,16 +236,12 @@ describe('CartSummary Component', () => {
       render(<CartSummary {...defaultProps} />);
       const input = screen.getByPlaceholderText('Enter code');
       const applyButton = screen.getByRole('button', { name: /apply/i });
-      
+
       fireEvent.change(input, { target: { value: 'INVALID' } });
       fireEvent.click(applyButton);
-      
+
       await waitFor(() => {
-        expect(mockShowToast).toHaveBeenCalledWith(
-          'error',
-          expect.any(String),
-          expect.any(String)
-        );
+        expect(mockShowToast).toHaveBeenCalledWith('error', expect.any(String), expect.any(String));
       });
     });
 
@@ -253,10 +253,10 @@ describe('CartSummary Component', () => {
 
       render(<CartSummary {...defaultProps} />);
       const input = screen.getByPlaceholderText('Enter code') as HTMLInputElement;
-      
+
       fireEvent.change(input, { target: { value: 'SAVE20' } });
       fireEvent.submit(input.closest('form')!);
-      
+
       await waitFor(() => {
         expect(input.value).toBe('');
       });
@@ -267,11 +267,9 @@ describe('CartSummary Component', () => {
     it('displays applied coupons', () => {
       const cartWithCoupons = {
         ...mockCart,
-        appliedCoupons: [
-          { code: 'SAVE20', discountAmount: '$20.00' },
-        ],
+        appliedCoupons: [{ code: 'SAVE20', discountAmount: '$20.00' }],
       };
-      
+
       render(<CartSummary {...defaultProps} cart={cartWithCoupons} />);
       expect(screen.getByText('Applied Coupons:')).toBeInTheDocument();
       expect(screen.getByText('SAVE20')).toBeInTheDocument();
@@ -286,7 +284,7 @@ describe('CartSummary Component', () => {
           { code: 'EXTRA10', discountAmount: '$10.00' },
         ],
       };
-      
+
       render(<CartSummary {...defaultProps} cart={cartWithCoupons} />);
       expect(screen.getByText('SAVE20')).toBeInTheDocument();
       expect(screen.getByText('EXTRA10')).toBeInTheDocument();
@@ -300,16 +298,14 @@ describe('CartSummary Component', () => {
 
       const cartWithCoupons = {
         ...mockCart,
-        appliedCoupons: [
-          { code: 'SAVE20', discountAmount: '$20.00' },
-        ],
+        appliedCoupons: [{ code: 'SAVE20', discountAmount: '$20.00' }],
       };
-      
+
       render(<CartSummary {...defaultProps} cart={cartWithCoupons} />);
       const removeButton = screen.getByLabelText('Remove coupon');
-      
+
       fireEvent.click(removeButton);
-      
+
       await waitFor(() => {
         expect(mockShowToast).toHaveBeenCalledWith(
           'success',
@@ -317,7 +313,7 @@ describe('CartSummary Component', () => {
           'Coupon "SAVE20" removed'
         );
       });
-      
+
       expect(defaultProps.onApplyCoupon).toHaveBeenCalled();
     });
   });
@@ -326,16 +322,16 @@ describe('CartSummary Component', () => {
     it('navigates to checkout when button clicked', () => {
       render(<CartSummary {...defaultProps} />);
       const checkoutButton = screen.getByRole('button', { name: /proceed to checkout/i });
-      
+
       fireEvent.click(checkoutButton);
-      
+
       expect(mockPush).toHaveBeenCalledWith('/checkout');
     });
 
     it('disables checkout button when updating', () => {
       render(<CartSummary {...defaultProps} isUpdating={true} />);
       const checkoutButton = screen.getByRole('button', { name: /proceed to checkout/i });
-      
+
       expect(checkoutButton).toBeDisabled();
     });
   });
@@ -344,28 +340,26 @@ describe('CartSummary Component', () => {
     it('disables coupon input when updating', () => {
       render(<CartSummary {...defaultProps} isUpdating={true} />);
       const input = screen.getByPlaceholderText('Enter code');
-      
+
       expect(input).toBeDisabled();
     });
 
     it('disables apply button when updating', () => {
       render(<CartSummary {...defaultProps} isUpdating={true} />);
       const applyButton = screen.getByRole('button', { name: /apply/i });
-      
+
       expect(applyButton).toBeDisabled();
     });
 
     it('disables remove coupon button when updating', () => {
       const cartWithCoupons = {
         ...mockCart,
-        appliedCoupons: [
-          { code: 'SAVE20', discountAmount: '$20.00' },
-        ],
+        appliedCoupons: [{ code: 'SAVE20', discountAmount: '$20.00' }],
       };
-      
+
       render(<CartSummary {...defaultProps} cart={cartWithCoupons} isUpdating={true} />);
       const removeButton = screen.getByLabelText('Remove coupon');
-      
+
       expect(removeButton).toBeDisabled();
     });
   });
@@ -374,7 +368,7 @@ describe('CartSummary Component', () => {
     it('applies sticky positioning class', () => {
       const { container } = render(<CartSummary {...defaultProps} />);
       const summaryCard = container.querySelector('.sticky');
-      
+
       expect(summaryCard).toBeTruthy();
       expect(summaryCard?.className).toContain('top-4');
     });

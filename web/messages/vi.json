@@ -76,6 +76,92 @@
     }
   },
   "megaMenu": {
+    "products": {
+      "label": "Sản phẩm",
+      "temperature": {
+        "title": "Nhiệt độ",
+        "roomWallSensors": "Cảm biến Phòng & Tường",
+        "roomWallSensorsDesc": "Cảm biến nhiệt độ độ chính xác cao",
+        "ductSensors": "Cảm biến Ống gió",
+        "ductSensorsDesc": "Bộ phát truyền ống gió",
+        "immersionWell": "Chìm & Giếng",
+        "immersionWellDesc": "Đo nhiệt độ chất lỏng",
+        "outdoorSensors": "Cảm biến Ngoài trời",
+        "outdoorSensorsDesc": "Cảm biến chống thời tiết"
+      },
+      "humidity": {
+        "title": "Độ ẩm",
+        "roomHumidity": "Độ ẩm Phòng",
+        "roomHumidityDesc": "Cảm biến độ ẩm gắn tường",
+        "ductHumidity": "Độ ẩm Ống gió",
+        "ductHumidityDesc": "Độ ẩm cấp & trả lại khí",
+        "outdoorHumidity": "Độ ẩm Ngoài trời",
+        "outdoorHumidityDesc": "Độ ẩm chống thời tiết",
+        "comboSensors": "Cảm biến Kết hợp",
+        "comboSensorsDesc": "Nhiệt độ + độ ẩm"
+      },
+      "pressure": {
+        "title": "Áp suất",
+        "differential": "Áp suất Chênh lệch",
+        "differentialDesc": "Theo dõi phòng & bộ lọc",
+        "static": "Áp suất Tĩnh",
+        "staticDesc": "Bộ phát truyền áp suất ống gió",
+        "barometric": "Áp suất Khí quyển",
+        "barometricDesc": "Áp suất khí quyển"
+      },
+      "airQuality": {
+        "title": "Chất lượng không khí",
+        "co2": "Cảm biến CO₂",
+        "co2Desc": "Theo dõi khí CO₂",
+        "voc": "Cảm biến VOC",
+        "vocDesc": "Hợp chất hữu cơ bay hơi",
+        "particulate": "Chất Hạt Lơ lửng",
+        "particulateDesc": "PM2.5 và PM10"
+      },
+      "wireless": {
+        "title": "Không dây",
+        "wamTemperature": "Nhiệt độ WAM",
+        "wamTemperatureDesc": "Cảm biến nhiệt độ không dây",
+        "wamHumidity": "Độ ẩm WAM",
+        "wamHumidityDesc": "Cảm biến độ ẩm không dây",
+        "wamDoorSensors": "Cảm biến Cửa WAM",
+        "wamDoorSensorsDesc": "Giám sát mở/đóng",
+        "cloudPlatform": "Nền tảng Đám mây",
+        "cloudPlatformDesc": "Giám sát từ xa 24/7"
+      },
+      "accessories": {
+        "title": "Phụ kiện",
+        "mounting": "Phụ kiện Lắp đặt",
+        "mountingDesc": "Tấm, hộp, giá đỡ",
+        "enclosures": "Vỏ hộp",
+        "enclosuresDesc": "BAPI-Box & vỏ bọc",
+        "cables": "Cáp & Đầu nối",
+        "cablesDesc": "Phụ kiện dây dẫn"
+      },
+      "testInstruments": {
+        "title": "Thiết bị Kiểm tra",
+        "bluTestTemperature": "Nhiệt độ Blu-Test",
+        "bluTestTemperatureDesc": "Tham chiếu NIST",
+        "bluTestHumidity": "Độ ẩm Blu-Test",
+        "bluTestHumidityDesc": "Tham chiếu nhiệt độ + độ ẩm",
+        "bluTestPressure": "Áp suất Blu-Test",
+        "bluTestPressureDesc": "Máy đo áp suất kỹ thuật số"
+      },
+      "featured": {
+        "title": "Giám sát Tài sản Không dây WAM™",
+        "description": "Giám sát từ xa 24/7 với cảnh báo ngay lập tức. Bảo vệ các tài sản có giá trị của bạn khỏi mất điện và sự cố thiết bị. Không yêu cầu dây dẫn - dễ dàng triển khai trong vài phút.",
+        "cta": "Tìm hiểu thêm",
+        "wamTitle": "Giám sát Tài sản Không dây WAM™",
+        "wamDescription": "Giám sát từ xa 24/7 với cảnh báo ngay lập tức. Bảo vệ các tài sản có giá trị của bạn khỏi mất điện và sự cố thiết bị. Không yêu cầu dây dẫn - dễ dàng triển khai trong vài phút.",
+        "wamCta": "Tìm hiểu thêm",
+        "wamBadge": "Giải Pháp Cao cấp"
+      },
+      "badges": {
+        "popular": "Phổ biến",
+        "new": "Mới",
+        "premium": "Cao cấp"
+      }
+    },
     "resources": {
       "label": "Tài nguyên",
       "technicalDocumentation": {

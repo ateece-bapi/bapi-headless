@@ -114,16 +114,16 @@ export const WideContainer: Story = {
  * Multiple instances (tests independence)
  */
 export const MultipleInstances: Story = {
-  render: () => (
+  render: (args) => (
     <div className="flex flex-col gap-8">
       <div className="bg-primary-500 text-white p-8 rounded-xl">
-        <TaglineRotator />
+        <TaglineRotator taglines={args.taglines} />
       </div>
       <div className="bg-accent-500 p-8 rounded-xl">
-        <TaglineRotator />
+        <TaglineRotator taglines={args.taglines} />
       </div>
       <div className="bg-neutral-900 text-white p-8 rounded-xl">
-        <TaglineRotator />
+        <TaglineRotator taglines={args.taglines} />
       </div>
     </div>
   ),

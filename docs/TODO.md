@@ -28,6 +28,31 @@
 
 ---
 
+### ✅ PR Feedback i18n Improvements (Feb 12, 2026)
+**Status:** COMPLETE & MERGED (fix/pr-feedback-i18n-improvements)
+**Summary:**
+  - Addressed 6 i18n issues identified in PR code review
+  - Fixed hardcoded date locale ('en-US' → dynamic locale parameter)
+  - Made all news section strings translatable (3 new keys × 11 languages = 33 translations)
+  - Fixed invalid Tailwind class (min-w-70 → min-w-[17.5rem])
+  - Removed English region names from GlobalPresence tooltips
+**Issues Fixed:**
+  1. Date locale hardcoded to 'en-US' (now uses dynamic locale for proper formatting)
+  2. "Date unavailable" fallback text (now translatable: news.dateUnavailable)
+  3. "Read More" CTA button (now translatable: news.readMore)
+  4. Read More aria-label (now translatable: news.readMoreAriaLabel with {title} placeholder)
+  5. Mobile "View All News" button (now uses existing t('news.viewAll'))
+  6. Invalid Tailwind class min-w-70 (now valid arbitrary value min-w-[17.5rem])
+  7. English region names in tooltips (removed, now shows city + country only)
+**Changes:**
+  - web/messages/*.json (11 files): +33 insertions (3 keys × 11 languages)
+  - web/src/app/[locale]/(public)/page.tsx: 4 hardcoded strings replaced with t() calls
+  - web/src/components/company/GlobalPresence.tsx: Tailwind class fix + region removed
+  - web/scripts/sync-news-translations.js: Translation automation script (created but unused)
+**Result:** All news section fully translatable, dates format correctly by locale, tooltips fully localized
+
+---
+
 ### ✅ All Languages Products Translation Completion (Feb 12, 2026)
 **Status:** COMPLETE & MERGED (fix/add-products-translations-all-languages)
 **Summary:**

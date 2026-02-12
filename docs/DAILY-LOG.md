@@ -78,6 +78,154 @@ Fixed Prettier compliance issue where props were concatenated:
 
 **Decision:** Commit all Prettier changes in separate PR to keep concerns separated:
 - PR #1: i18n fix (GlobalPresence tooltips)
+
+---
+
+## February 12, 2026 (Late Evening) — PR Feedback i18n Improvements
+
+**Branch:** `fix/pr-feedback-i18n-improvements` → `main` (merged)  
+**Status:** ✅ COMPLETE - All 6 PR code review issues addressed
+
+**Critical Achievement:** Addressed all i18n issues identified in GitHub Copilot PR code review. Fixed hardcoded English strings, invalid Tailwind classes, and locale handling across news section and global presence tooltips.
+
+### PR Feedback Issues Resolved
+
+**Issue 1: Hardcoded Date Locale**
+- **Problem:** Date formatting used hardcoded `'en-US'` instead of dynamic locale
+- **Impact:** Hindi users saw "Jan 15, 2026" instead of "15 जन 2026"
+- **Fix:** Changed to `.toLocaleDateString(locale, ...)` for dynamic formatting
+- **File:** `web/src/app/[locale]/(public)/page.tsx`
+
+**Issue 2: Untranslated Date Fallback**
+- **Problem:** `'Date unavailable'` hardcoded English string
+- **Impact:** Visible to non-English users when post has no date
+- **Fix:** Added `news.dateUnavailable` translation key, replaced with `t('news.dateUnavailable')`
+- **Translation:** Added to all 11 languages
+
+**Issue 3: Untranslated CTA Button**
+- **Problem:** `"Read More"` hardcoded in JSX
+- **Impact:** English button on all localized news articles
+- **Fix:** Added `news.readMore` key, replaced with `t('news.readMore')`
+- **Translation:** Added to all 11 languages
+
+**Issue 4: Untranslated Accessibility Label**
+- **Problem:** `aria-label` used template literal instead of translation
+- **Impact:** Screen readers announce English for non-English users
+- **Fix:** Added `news.readMoreAriaLabel` with `{title}` placeholder
+- **Implementation:** `t('news.readMoreAriaLabel', { title: post.title })`
+- **Translation:** Added to all 11 languages
+
+**Issue 5: Duplicate Mobile Button**
+- **Problem:** Desktop used `t('news.viewAll')`, mobile hardcoded "View All News"
+- **Impact:** Inconsistent translation coverage
+- **Fix:** Changed mobile button to use `t('news.viewAll')`
+
+**Issue 6: Invalid Tailwind Class**
+- **Problem:** `min-w-70` not defined in Tailwind v4 theme
+- **Impact:** Tooltip minimum width not applied (class ignored)
+- **Fix:** Changed to `min-w-[17.5rem]` (arbitrary value = 70 × 0.25rem)
+- **File:** `web/src/components/company/GlobalPresence.tsx`
+
+**Issue 7: English Regions in Tooltips**
+- **Problem:** Tooltips showed "Gays Mills, Wisconsin" even in Hindi
+- **Impact:** Partially English tooltips on fully localized pages
+- **Fix:** Removed region field from tooltip display
+- **Result:** Now shows "Gays Mills, USA" with translated city/country only
+
+### Translation Implementation
+
+**New Translation Keys Added (11 languages: en, de, fr, es, ja, zh, vi, ar, th, pl, hi):**
+
+```json
+"news": {
+  "dateUnavailable": "Date unavailable",
+  "readMore": "Read More",
+  "readMoreAriaLabel": "Read more about {title}"
+}
+```
+
+**Manual Translation Approach:**
+- Created automation script `sync-news-translations.js` using Claude Haiku API
+- Script failed due to missing ANTHROPIC_API_KEY
+- Manually translated 3 keys × 10 languages = 30 translations
+- All translations verified for cultural appropriateness
+
+**Sample Translations:**
+- **German:** "Datum nicht verfügbar", "Mehr lesen", "Mehr lesen über {title}"
+- **Japanese:** "日付不明", "続きを読む", "{title}について続きを読む"
+- **Arabic:** "التاريخ غير متوفر", "اقرأ المزيد", "اقرأ المزيد عن {title}"
+- **Hindi:** "तारीख उपलब्ध नहीं", "और पढ़ें", "{title} के बारे में और पढ़ें"
+
+### Files Modified
+
+**Translation Files (11 files):**
+- `web/messages/en.json` - Source English translations
+- `web/messages/de.json` - German
+- `web/messages/fr.json` - French
+- `web/messages/es.json` - Spanish
+- `web/messages/ja.json` - Japanese
+- `web/messages/zh.json` - Chinese
+- `web/messages/vi.json` - Vietnamese
+- `web/messages/ar.json` - Arabic
+- `web/messages/th.json` - Thai
+- `web/messages/pl.json` - Polish
+- `web/messages/hi.json` - Hindi
+
+**Component Files:**
+- `web/src/app/[locale]/(public)/page.tsx` - Date locale fix, 4 hardcoded strings replaced
+- `web/src/components/company/GlobalPresence.tsx` - Tailwind class fix, region removed
+
+### Testing & Verification
+
+**Build Verification:**
+- ✅ Production build successful (TypeScript 0 errors)
+- ✅ All 11 language files validated
+- ✅ Date formatting tested with dynamic locale
+- ✅ Tooltip width renders correctly with arbitrary Tailwind value
+
+**Accessibility Testing:**
+- ✅ Screen reader labels now translatable
+- ✅ `{title}` placeholder properly interpolated in aria-label
+
+### Technical Notes
+
+**Tailwind v4 Arbitrary Values:**
+- Invalid: `min-w-70` (not in theme)
+- Valid: `min-w-[17.5rem]` (arbitrary value)
+- Conversion: 70 × 0.25rem = 17.5rem
+
+**Date Locale Handling:**
+- Uses Next-intl's `locale` parameter from `useTranslations()`
+- Supports all IETF BCP 47 language tags
+- Fallback maintained for missing dates
+
+**Translation Key Patterns:**
+- Flat structure: `news.readMore`
+- Interpolation: `news.readMoreAriaLabel` with `{title}` placeholder
+- Fallback: English if translation missing
+
+### Impact & Results
+
+**Internationalization Quality:**
+- ✅ 100% news section strings now translatable
+- ✅ Date formatting respects user's selected language
+- ✅ Tooltips fully localized (no English regions)
+- ✅ Screen readers announce translated content
+
+**Code Quality:**
+- ✅ All PR feedback addressed
+- ✅ Valid Tailwind classes throughout
+- ✅ Consistent translation patterns
+
+**User Experience:**
+- ✅ Hindi users see dates in Hindi format
+- ✅ Japanese tooltips fully in Japanese
+- ✅ Arabic CTA buttons in Arabic
+- ✅ Accessible labels in user's language
+
+**Commit:** `8bf7660` - "fix: address PR feedback i18n issues"  
+**Pull Request:** Successfully merged and closed  
+**Branch Cleanup:** Local branch deleted after merge
 - PR #2: Formatting changes (Prettier)
 
 **Scope:** 355 files reformatted across entire codebase

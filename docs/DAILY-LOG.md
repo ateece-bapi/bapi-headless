@@ -226,6 +226,276 @@ Fixed Prettier compliance issue where props were concatenated:
 **Commit:** `8bf7660` - "fix: address PR feedback i18n issues"  
 **Pull Request:** Successfully merged and closed  
 **Branch Cleanup:** Local branch deleted after merge
+
+---
+
+## February 12, 2026 (Night) — GitHub Copilot PR Review Corrections
+
+**Branch:** `fix/pr-review-corrections` → `main` (merged)  
+**Status:** ✅ COMPLETE - All 7 PR code review issues addressed
+
+**Critical Achievement:** Addressed all issues identified in GitHub Copilot's automated PR code review. Fixed critical security vulnerability (CDN caching authenticated pages), breaking bugs (TaglineRotator NaN, broken i18n URLs), and completed full i18n coverage for mega menu badges.
+
+### 🔴 Critical Security Fix: CDN Caching Authenticated Pages
+
+**Problem:** Middleware was caching ALL locale-prefixed routes including `/en/account`, `/fr/account/orders`, etc. This created a critical security vulnerability where authenticated user data could be cached by CDN and served to other users.
+
+**Root Cause:** Regex pattern matched any locale-prefixed path:
+```typescript
+const isStaticRoute = 
+  pathname === '/' ||
+  pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)(\/.*)?$/) || // ❌ Matches /en/account
+```
+
+**Security Impact:**
+- User dashboard content could be cached and served to other users
+- Order history visible to wrong users via CDN cache
+- Personal information exposure risk
+- GDPR/privacy compliance violation
+
+**Fix:** Added three-layered protection in `web/middleware.ts`:
+```typescript
+// CRITICAL: Never cache authenticated/protected routes
+if (request.method === 'GET' && !isProtectedRoute && !isAdminRoute && !authToken) {
+  // Only cache truly public, non-personalized routes
+  const isPublicStaticRoute = 
+    pathname === '/' ||
+    pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)\/?$/) || // Homepage only
+    pathname.startsWith('/products') ||
+    pathname.startsWith('/company') ||
+    pathname.startsWith('/support') ||
+    pathname.startsWith('/resources');
+```
+
+**Protection Layers:**
+1. ✅ Exclude protected routes (`!isProtectedRoute`)
+2. ✅ Exclude admin routes (`!isAdminRoute`)
+3. ✅ Exclude authenticated requests (`!authToken`)
+4. ✅ Only cache public paths (products, company, support, resources)
+
+### 🐛 Bug Fix: TaglineRotator NaN Crash
+
+**Problem:** Component crashed when passed empty `taglines` array. Math calculation `(prevIndex + 1) % taglines.length` evaluates to NaN when length is 0, causing `taglines[NaN]` to render `undefined`.
+
+**Impact:**
+- Runtime crash on pages with no taglines configured
+- Poor error handling for edge cases
+- Unnecessary interval running for single/empty taglines
+
+**Fix:** Added guards in `web/src/components/ui/TaglineRotator.tsx`:
+```typescript
+// Guard: No rotation needed for empty array or single tagline
+if (taglines.length <= 1) {
+  return;
+}
+
+// Guard: Render safe fallback for empty array
+if (taglines.length === 0) {
+  return null;
+}
+```
+
+**Result:**
+- ✅ No crash with empty arrays
+- ✅ No unnecessary timers for single taglines
+- ✅ Clean null render for empty state
+
+### 🐛 Bug Fix: Mega Menu URLs Broken in Non-English Locales
+
+**Problem:** "View All" links in mega menu generated URLs from translated column titles using `.toLowerCase()`. In German, "Temperatur" became `/products/temperatur` instead of `/products/temperature`, resulting in 404 errors.
+
+**Root Cause:**
+```typescript
+// ❌ Generates broken URLs in non-English locales
+href={`/products/${column.title.toLowerCase().replace(/\s+/g, '-')}`}
+```
+
+**Impact:**
+- 404 errors for all mega menu "View All" links in German, French, Spanish, Japanese, etc.
+- Navigation completely broken in 10 of 11 locales
+- User experience severely degraded
+
+**Fix:** Added stable `slug` field to `MegaMenuColumn` type in `web/src/components/layout/Header/types.ts`:
+```typescript
+export interface MegaMenuColumn {
+  title: string;
+  slug: string; // Stable URL slug (not translated, e.g., 'temperature')
+  icon?: React.ComponentType<{ className?: string }> | string;
+  links: MegaMenuLink[];
+}
+```
+
+**Implementation:** Added slugs to all columns in `web/src/components/layout/Header/config.ts`:
+- Products: `temperature`, `humidity`, `pressure`, `air-quality`, `wireless`, `accessories`, `test-instruments`
+- Resources: `technical-documentation`, `tools-guides`, `learning-center`
+- Support: `get-help`, `existing-customers`
+- Company: `about-bapi`, `get-in-touch`
+
+**Updated MegaMenuItem Component:**
+```typescript
+// ✅ Uses stable English slug regardless of display language
+<Link href={`/products/${column.slug}`}>
+  View All {column.title}
+</Link>
+```
+
+**Result:**
+- ✅ URLs work in all 11 locales
+- ✅ Column titles translated for display
+- ✅ URLs remain stable and SEO-friendly
+
+### 🌍 I18n Completion: Translated Mega Menu Badges
+
+**Problem:** Badge labels were hardcoded English strings: `"Popular"`, `"Premium"`, `"New"`, `"Download"`, `"Phase 2"`. These appeared in English even on fully localized pages.
+
+**Impact:**
+- Inconsistent localization (translated menu text with English badges)
+- Poor user experience in non-English locales
+- Incomplete i18n coverage
+
+**Fix:** Added badge translations to all 11 locales in `web/messages/*.json`:
+```json
+"megaMenu": {
+  "badges": {
+    "popular": "Popular",
+    "premium": "Premium",
+    "premiumSolution": "Premium Solution",
+    "new": "New",
+    "download": "Download",
+    "phase2": "Phase 2"
+  },
+  ...
+}
+```
+
+**Sample Translations:**
+- **German:** Beliebt, Premium, Premium-Lösung, Neu, Herunterladen, Phase 2
+- **Japanese:** 人気, プレミアム, プレミアムソリューション, 新着, ダウンロード, フェーズ2
+- **Arabic:** شائع, متميز, حل متميز, جديد, تحميل, المرحلة 2
+- **Hindi:** लोकप्रिय, प्रीमियम, प्रीमियम समाधान, नया, डाउनलोड, चरण 2
+
+**Updated Config:** Changed all hardcoded badges to use translations:
+```typescript
+// Before: badge: 'Popular'
+// After:  badge: t('badges.popular')
+```
+
+**Badge Usage Across Site:**
+- **Popular** (6×): WAM Temperature, Application Notes, Contact Support, Where to Buy (×2), Contact Sales
+- **Premium** (2×): WAM Cloud Platform, WAM featured solution
+- **New** (1×): Blu-Test Temperature
+- **Download** (1×): Product Catalog
+- **Phase 2** (2×): Videos, Webinars
+
+**Result:**
+- ✅ All badges fully localized in 11 languages
+- ✅ Consistent i18n coverage across mega menu
+- ✅ Professional appearance in all locales
+
+### 🛠️ Technical Debt Cleanup
+
+**Issue 1: Polish Key Mismatch**
+- **Problem:** Polish locale used `bluTestTemp`/`bluTestTempDesc` while all other locales used `bluTestTemperature`/`bluTestTemperatureDesc`
+- **Impact:** Silent fallback to English for Polish users
+- **Fix:** Renamed keys in `web/messages/pl.json` to match other locales
+
+**Issue 2: Brittle SDK Import**
+- **Problem:** `scripts/translate-with-ai.js` used `require('../web/node_modules/@anthropic-ai/sdk')`
+- **Impact:** Breaks with pnpm layouts, clean installs, CI environments
+- **Fix:** Changed to `require('@anthropic-ai/sdk')` (standard Node.js resolution)
+
+**Issue 3: Missing Languages in Scripts**
+- **Problem:** Translation scripts only included 8 languages (missing Polish and Hindi)
+- **Impact:** New PRs wouldn't translate pl/hi automatically
+- **Fix:** Added `pl` and `hi` to `LANGUAGES` config in both scripts
+
+**Issue 4: npm vs pnpm Inconsistency**
+- **Problem:** `scripts/translate-all.sh` used `npm install` in pnpm repo
+- **Impact:** Creates conflicting package-lock.json, wrong dependency tree
+- **Fix:** Changed to `pnpm add @anthropic-ai/sdk`
+
+**Issue 5: Unused Backup File**
+- **Problem:** `web/src/proxy.ts.backup` file in source control
+- **Impact:** Confusion, drift risk, accidental edits
+- **Fix:** Deleted file from repository
+
+### Files Modified (18 total)
+
+**Core Fixes:**
+- `web/middleware.ts` - CDN caching security fix (3-layer protection)
+- `web/src/components/ui/TaglineRotator.tsx` - Empty array guards
+- `web/src/components/layout/Header/types.ts` - Added `slug` field
+- `web/src/components/layout/Header/config.ts` - Added slugs to all 14 columns + translated 11 badges
+- `web/src/components/layout/Header/components/MegaMenuItem.tsx` - Use `column.slug` for URLs
+
+**Translation Files (11 files):**
+- `web/messages/en.json` - Added badge section
+- `web/messages/de.json` - German badge translations
+- `web/messages/fr.json` - French badge translations
+- `web/messages/es.json` - Spanish badge translations
+- `web/messages/ja.json` - Japanese badge translations
+- `web/messages/zh.json` - Chinese badge translations
+- `web/messages/vi.json` - Vietnamese badge translations
+- `web/messages/ar.json` - Arabic badge translations
+- `web/messages/th.json` - Thai badge translations
+- `web/messages/pl.json` - Polish badge translations + key fix
+- `web/messages/hi.json` - Hindi badge translations
+
+**Script Fixes:**
+- `scripts/translate-with-ai.js` - SDK import + Polish/Hindi support
+- `scripts/translate-all.sh` - pnpm + Polish/Hindi support
+
+### Testing & Verification
+
+**Security Testing:**
+- ✅ Verified `/account` routes NOT cached (no Cache-Control header)
+- ✅ Verified authenticated requests NOT cached (authToken check)
+- ✅ Verified public routes ARE cached (products, company, support)
+- ✅ Admin routes properly excluded from caching
+
+**Functional Testing:**
+- ✅ Empty taglines array: renders null (no crash)
+- ✅ Single tagline: no rotation interval created
+- ✅ Multiple taglines: rotates properly
+- ✅ Mega menu URLs: work in all 11 locales
+- ✅ Badge translations: display correctly in all languages
+
+**Build Testing:**
+- ✅ Production build successful (TypeScript 0 errors)
+- ✅ All routes compiled successfully  
+- ✅ No runtime errors in dev mode
+
+### Impact & Results
+
+**Security:**
+- 🔴 **CRITICAL** vulnerability fixed (authenticated page caching)
+- ✅ User data no longer at risk of exposure via CDN
+- ✅ GDPR/privacy compliance restored
+
+**User Experience:**
+- ✅ Mega menu navigation works in all 11 locales (was 404 in 10 locales)
+- ✅ Fully localized badges (was English only)
+- ✅ No crashes with edge case data (empty taglines)
+
+**Code Quality:**
+- ✅ Consistent SDK imports (no more brittle node_modules paths)
+- ✅ Complete language coverage in automation scripts
+- ✅ Clean repository (no backup files)
+- ✅ Consistent key naming across locales
+
+**Developer Experience:**
+- ✅ Translation scripts now support all 11 languages
+- ✅ pnpm consistency across all scripts
+- ✅ Stable URLs with slug field (easier to maintain)
+
+**Commit:** `d8bf33c` - "fix: address all PR review issues from GitHub Copilot"  
+**Pull Request:** Successfully merged and closed  
+**Branch Cleanup:** Local branch deleted after merge
+
+---
+
+## Prettier Formatting Standardization
+
 - PR #2: Formatting changes (Prettier)
 
 **Scope:** 355 files reformatted across entire codebase

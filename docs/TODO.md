@@ -53,6 +53,37 @@
 
 ---
 
+### ✅ GitHub Copilot PR Review Corrections (Feb 12, 2026)
+**Status:** COMPLETE & MERGED (fix/pr-review-corrections)
+**Summary:**
+  - Fixed critical security vulnerability: CDN caching authenticated pages
+  - Fixed TaglineRotator NaN crash with empty arrays
+  - Fixed mega menu URL generation for i18n (added stable slug field)
+  - Translated all hardcoded badges (Popular, Premium, New, Download, Phase 2)
+  - Fixed Polish locale key mismatch (bluTestTemp → bluTestTemperature)
+  - Fixed brittle SDK imports and added Polish/Hindi to translation scripts
+  - Removed unused proxy.ts.backup file
+**Issues Fixed (7 total):**
+  1. **CRITICAL SECURITY**: CDN caching authenticated pages (user data exposure risk)
+  2. TaglineRotator crashes with empty taglines array (NaN error)
+  3. Mega menu "View All" links broken in 10/11 locales (translated titles → 404s)
+  4. Hardcoded English badges throughout mega menu
+  5. Polish locale key mismatch causing silent English fallbacks
+  6. Brittle SDK import path breaks with pnpm/CI
+  7. Translation scripts missing Polish and Hindi languages
+**Changes:**
+  - web/middleware.ts: 3-layer security fix (exclude protected/admin/authenticated from cache)
+  - web/src/components/ui/TaglineRotator.tsx: Empty array guards + early return
+  - web/src/components/layout/Header/types.ts: Added `slug` field to MegaMenuColumn
+  - web/src/components/layout/Header/config.ts: Added slugs to 14 columns + translated 11 badges
+  - web/src/components/layout/Header/components/MegaMenuItem.tsx: Use column.slug for URLs
+  - web/messages/*.json (11 files): Badge translations for all languages
+  - scripts/translate-with-ai.js: Fixed SDK import + added pl/hi
+  - scripts/translate-all.sh: Changed npm → pnpm + added pl/hi
+**Result:** Critical security fix deployed, all locales working, full i18n coverage for badges
+
+---
+
 ### ✅ All Languages Products Translation Completion (Feb 12, 2026)
 **Status:** COMPLETE & MERGED (fix/add-products-translations-all-languages)
 **Summary:**

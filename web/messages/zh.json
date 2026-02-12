@@ -22,35 +22,35 @@
   },
   "home": {
     "hero": {
-      "title": "建筑自动化精密传感器解决方案",
-      "description": "全球工程师信赖的NIST溯源传感器和BACnet认证控制器,适用于医疗保健、数据中心和关键设施。",
+      "title": "针对建筑自动化的精密传感器解决方案",
+      "description": "NIST可追溯的传感器和获得BACnet认证的控制器,受到全球工程师的信任,用于医疗保健、数据中心和关键设施。",
       "cta": "探索产品",
       "secondaryCta": "联系销售",
-      "productFamilyTitle": "建筑自动化系统完整的传感器解决方案",
-      "productFamilySubtitle": "全球工程师信赖的精密监测和控制"
+      "productFamilyTitle": "用于建筑自动化系统的完整传感器解决方案",
+      "productFamilySubtitle": "获得全球工程师信任的精确监测和控制"
     },
     "taglines": [
       "行业领先的传感器",
-      "自1993年以来改变您对传感器的看法",
-      "无缝的无线集成,适用于您现有的建筑自动化系统",
+      "自1993年以来改变你对传感器的思考",
+      "无缝集成您现有的建筑自动化系统",
       "精密工程",
-      "构建未来",
-      "...在细节之中",
+      "建筑未来",
+      "...细节决定成败",
       "人。建筑。传感器"
     ],
     "stats": {
       "yearsValue": "30+",
-      "yearsLabel": "卓越年数",
+      "yearsLabel": "卓越年华",
       "productsValue": "608",
       "productsLabel": "产品型号",
       "globalValue": "全球",
-      "globalLabel": "覆盖和支持",
+      "globalLabel": "辐射与支持",
       "isoValue": "ISO 9001",
       "isoLabel": "质量认证"
     },
     "categories": {
       "title": "探索我们的产品目录",
-      "subtitle": "根据传感器类型浏览,找到您建筑自动化项目的完美解决方案",
+      "subtitle": "按传感器类型浏览,找到适合您建筑自动化项目的完美解决方案",
       "temperature": {
         "name": "温度传感器",
         "description": "高精度温度测量"
@@ -61,7 +61,7 @@
       },
       "pressure": {
         "name": "压力传感器",
-        "description": "差压和静压"
+        "description": "压差和静压"
       },
       "airQuality": {
         "name": "空气质量传感器",
@@ -69,10 +69,10 @@
       },
       "wireless": {
         "name": "无线传感器",
-        "description": "WAM™云连接监测"
+        "description": "WAM™云端连接监测"
       },
       "accessories": {
-        "name": "附件",
+        "name": "配件",
         "description": "安装硬件和外壳"
       },
       "testInstruments": {
@@ -80,10 +80,91 @@
         "description": "校准和验证工具"
       },
       "etaLine": {
-        "name": "ETA系列",
-        "description": "模块化I/O和控制"
+        "name": "ETA线",
+        "description": "模块化 I/O 和控制"
       },
-      "viewAll": "查看所有产品"
+      "viewAll": "查看所有产品",
+      "viewProducts": "查看产品",
+      "browseAll": "浏览所有产品"
+    },
+    "whyBapi": {
+      "title": "为什么选择BAPI?",
+      "description": "BAPI自1993年以来一直在改变你对传感器的思考。我们认为传感器不仅仅是简单的商品,它们是建筑自动化控制系统的关键组成部分,对于节能至关重要。我们对创新和质量的承诺帮助BAPI成长为全球领先的传感器解决方案制造商,我们专注于质量、可靠性和价值。",
+      "warranty": {
+        "title": "保修",
+        "description": "我们的产品经过精心设计和制造,使用寿命很长。我们通过在所有产品上提供5年质保来支持这一承诺。",
+        "footnote": "许多单点、房间和管道温度传感器还提供终身有限保修。*"
+      },
+      "bapiBackedTitle": "BAPI背书",
+      "bapiBackedDescription": "大多数传感器制造商只会更换有缺陷的产品,但只有BAPI有信心超越行业标准。",
+      "bapiBackedFootnote": "'BAPI背书'意味着我们对所销售的一切负责,所以您可以放心我们产品的质量。如果在保修期内产品出现故障,我们不仅会修理或更换,还会提供产品专家来补偿您的成本。*",
+      "bapiOriginal": {
+        "title": "BAPI原创",
+        "description": "在BAPI,我们努力成为行业的领导者,提供创新、高质量的产品和服务,并以您为中心进行设计。",
+        "footnote": "带有'Another Original'标志的产品是BAPI独有的,这些设计灵感来自于我们宝贵的客户、才华横溢的员工和受人尊敬的供应商。这三个因素结合创造了行业领先的原创解决方案,旨在解决常见的暖通空调问题。"
+      }
+    },
+    "globalPresence": {
+      "title": "我们的全球影响力",
+      "subtitle": "从位于威斯康星州的总部到遍布三大洲的设施,BAPI以本地专业知识和全球覆盖为客户服务。"
+    },
+    "news": {
+      "badge": "最新新闻",
+      "title": "保持关注",
+      "subtitle": "最新更新、产品公告和行业洞见",
+      "viewAll": "查看所有新闻",
+      "noArticles": "目前还没有可用的新闻文章"
+    },
+    "locations": {
+      "mapLegend": {
+        "headquarters": "总部",
+        "distribution": "分销",
+        "production": "生产",
+        "productionService": "生产和服务"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "全球总部",
+          "city": "Gays Mills",
+          "country": "美国",
+          "description": "公司总部和主要生产设施",
+          "type": "总部",
+          "established": "成立于1993年"
+        },
+        "distributionUk": {
+          "name": "英国分销中心",
+          "city": "Aldershot",
+          "country": "英国",
+          "description": "欧洲分销和物流中心",
+          "type": "分销中心"
+        },
+        "productionPoland": {
+          "name": "生产和客户服务设施",
+          "city": "Nowa Wola",
+          "country": "波兰",
+          "description": "欧洲生产设施和客户服务中心",
+          "type": "生产和服务"
+        },
+        "productionVietnam": {
+          "name": "亚太区生产设施",
+          "city": "Da Nang",
+          "country": "越南",
+          "description": "新的制造设施,服务于亚洲市场",
+          "type": "生产",
+          "status": "即将开业"
+        }
+      },
+      "cta": {
+        "text": "寻找当地支持或合作机会?",
+        "button": "联系我们"
+      }
+    },
+    "finalCta": {
+      "title": "准备找到您的解决方案了吗?",
+      "subtitle": "探索我们的完整产品目录或联系销售团队寻求专业指导",
+      "exploreProducts": "探索产品",
+      "talkToSales": "联系销售",
+      "footer": "美国制造 • 当天发货 • ISO 9001:2015 认证 • 30 多年卓越历史"
     }
   },
   "footer": {

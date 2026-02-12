@@ -254,7 +254,7 @@ export default async function Home({
                     {/* View Products CTA */}
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-bold text-primary-600 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                        View Products
+                        {t('categories.viewProducts')}
                         <ArrowRight className="w-4 h-4" />
                       </span>
                     </div>
@@ -269,7 +269,7 @@ export default async function Home({
               href="/products"
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              Browse All Products
+              {t('categories.browseAll')}
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
@@ -285,11 +285,11 @@ export default async function Home({
           {/* Header with facility image */}
           <div className="mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-primary-500 mb-6 text-center">
-              WHY BAPI?
+              {t('whyBapi.title')}
             </h2>
             <div className="max-w-4xl mx-auto mb-8">
               <p className="text-base text-neutral-700 leading-relaxed">
-                BAPI has been changing the way you think about sensors since 1993. We believe sensors are not just simple commodities. They are integral to a building automation controls system and critical to the mission of saving energy. Our commitment to innovation and quality has helped transform BAPI into a leading global manufacturer of sensor solutions with a tremendous focus on quality, reliability and value.
+                {t('whyBapi.description')}
               </p>
             </div>
             {/* Facility Image */}
@@ -318,12 +318,12 @@ export default async function Home({
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">Warranty</h3>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">{t('whyBapi.warranty.title')}</h3>
               <p className="text-sm text-neutral-600 leading-relaxed">
-                Our products are designed and manufactured to last. We back up that claim by offering a 5-year warranty across all of our products.
+                {t('whyBapi.warranty.description')}
               </p>
               <p className="text-sm text-neutral-600 leading-relaxed mt-3">
-                A lifetime limited warranty is also available on many of our single point, room and duct room temperature sensors.*
+                {t('whyBapi.warranty.footnote')}
               </p>
             </div>
 
@@ -338,12 +338,12 @@ export default async function Home({
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">BAPI-Backed</h3>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">{t('whyBapi.bapiBackedTitle')}</h3>
               <p className="text-sm text-neutral-600 leading-relaxed">
-                Most sensor manufacturers will replace their defective products, but only BAPI has the confidence to go beyond the industry standard.
+                {t('whyBapi.bapiBackedDescription')}
               </p>
               <p className="text-sm text-neutral-600 leading-relaxed mt-3">
-                &apos;BAPI-Backed&apos; means we stand behind everything we sell, so be confident in the quality of our products that if one fails within the warranty period, we will not only repair or replace it, but we&apos;ll provide a product expert to offset your incurred cost.*
+                {t('whyBapi.bapiBackedFootnote')}
               </p>
             </div>
 
@@ -358,12 +358,12 @@ export default async function Home({
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">BAPI Original</h3>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4">{t('whyBapi.bapiOriginal.title')}</h3>
               <p className="text-sm text-neutral-600 leading-relaxed">
-                At BAPI, we strive to be leaders in our industry by providing innovative, high quality products and services designed with you in mind.
+                {t('whyBapi.bapiOriginal.description')}
               </p>
               <p className="text-sm text-neutral-600 leading-relaxed mt-3">
-                Products displaying the &quot;Another Original&quot; stamp are unique to BAPI and the inspiration for these designs come from our valuable customers, talented employees and respected vendors. Those three ingredients combined create industry-leading, original solutions created to solve common HVACR problems.
+                {t('whyBapi.bapiOriginal.footnote')}
               </p>
             </div>
           </div>
@@ -371,7 +371,52 @@ export default async function Home({
       </section>
 
       {/* Global Presence Map */}
-      <GlobalPresence />
+      <GlobalPresence 
+        title={t('globalPresence.title')}
+        subtitle={t('globalPresence.subtitle')}        locationTranslations={{
+          mapLegend: {
+            headquarters: t('locations.mapLegend.headquarters'),
+            distribution: t('locations.mapLegend.distribution'),
+            production: t('locations.mapLegend.production'),
+            productionService: t('locations.mapLegend.productionService')
+          },
+          facilities: {
+            'headquarters-usa': {
+              name: t('locations.facilities.headquartersUsa.name'),
+              city: t('locations.facilities.headquartersUsa.city'),
+              country: t('locations.facilities.headquartersUsa.country'),
+              description: t('locations.facilities.headquartersUsa.description'),
+              type: t('locations.facilities.headquartersUsa.type'),
+              established: t('locations.facilities.headquartersUsa.established')
+            },
+            'distribution-uk': {
+              name: t('locations.facilities.distributionUk.name'),
+              city: t('locations.facilities.distributionUk.city'),
+              country: t('locations.facilities.distributionUk.country'),
+              description: t('locations.facilities.distributionUk.description'),
+              type: t('locations.facilities.distributionUk.type')
+            },
+            'production-poland': {
+              name: t('locations.facilities.productionPoland.name'),
+              city: t('locations.facilities.productionPoland.city'),
+              country: t('locations.facilities.productionPoland.country'),
+              description: t('locations.facilities.productionPoland.description'),
+              type: t('locations.facilities.productionPoland.type')
+            },
+            'production-vietnam': {
+              name: t('locations.facilities.productionVietnam.name'),
+              city: t('locations.facilities.productionVietnam.city'),
+              country: t('locations.facilities.productionVietnam.country'),
+              description: t('locations.facilities.productionVietnam.description'),
+              type: t('locations.facilities.productionVietnam.type'),
+              status: t('locations.facilities.productionVietnam.status')
+            }
+          },
+          cta: {
+            text: t('locations.cta.text'),
+            button: t('locations.cta.button')
+          }
+        }}      />
 
       {/* Latest News Section */}
       <section className="bg-white py-12 lg:py-16">
@@ -380,20 +425,20 @@ export default async function Home({
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-full text-primary-600 font-semibold text-sm mb-4">
                 <Newspaper className="w-4 h-4" />
-                Latest News
+                {t('news.badge')}
               </div>
               <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900">
-                Stay Informed
+                {t('news.title')}
               </h2>
               <p className="text-lg text-neutral-600 mt-2">
-                Latest updates, product announcements, and industry insights
+                {t('news.subtitle')}
               </p>
             </div>
             <Link
               href="/company/news"
               className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              View All News
+              {t('news.viewAll')}
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
@@ -401,7 +446,7 @@ export default async function Home({
           {posts.length === 0 ? (
             <div className="bg-neutral-50 rounded-2xl p-12 text-center border-2 border-dashed border-neutral-300">
               <Newspaper className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
-              <p className="text-lg text-neutral-600">No news articles available yet</p>
+              <p className="text-lg text-neutral-600">{t('news.noArticles')}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -484,10 +529,10 @@ export default async function Home({
       <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 drop-shadow-md">
-            Ready to Find Your Solution?
+            {t('finalCta.title')}
           </h2>
           <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto drop-shadow-sm">
-            Explore our complete catalog or connect with our sales team for expert guidance
+            {t('finalCta.subtitle')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -495,20 +540,20 @@ export default async function Home({
               href="/products"
               className="btn-bapi-accent inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg"
             >
-              Explore Products
+              {t('finalCta.exploreProducts')}
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-50 text-primary-500 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-white hover:border-accent-500"
             >
-              Talk to Sales
+              {t('finalCta.talkToSales')}
             </Link>
           </div>
 
           <div className="mt-8 pt-8 border-t border-primary-400/50 text-primary-100">
             <p className="text-sm drop-shadow-sm">
-              <strong>Made in USA</strong> • Same-Day Shipping • ISO 9001:2015 Certified • 30+ Years of Excellence
+              {t('finalCta.footer')}
             </p>
           </div>
         </div>

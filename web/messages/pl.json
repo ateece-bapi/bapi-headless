@@ -253,41 +253,41 @@
   "home": {
     "hero": {
       "title": "Precyzyjne rozwiązania sensoryczne dla automatyki budynków",
-      "description": "Czujniki z certyfikatem NIST i kontrolery z certyfikatem BACnet, zaufane przez inżynierów na całym świecie do opieki zdrowotnej, centrów danych i obiektów krytycznych.",
-      "cta": "Przeglądaj produkty",
+      "description": "Czujniki śledzone przez NIST i kontrolery certyfikowane przez BACnet, którym zaufali inżynierowie na całym świecie w sektorze opieki zdrowotnej, centrów danych i obiektów krytycznych.",
+      "cta": "Poznaj produkty",
       "secondaryCta": "Porozmawiaj z działem sprzedaży",
-      "productFamilyTitle": "Kompletne rozwiązania sensoryczne dla systemów automatyki budynków",
-      "productFamilySubtitle": "Zaufane przez inżynierów na całym świecie do precyzyjnego monitorowania i sterowania"
+      "productFamilyTitle": "Kompletne rozwiązania sensoryczne dla systemów automatyki budynkowej",
+      "productFamilySubtitle": "Zaufane przez inżynierów na całym świecie do precyzyjnego monitorowania i kontroli"
     },
     "taglines": [
-      "Wiodące na rynku czujniki",
-      "Zmieniamy sposób, w jaki myślisz o czujnikach od 1993 roku",
-      "Bezproblemowa integracja bezprzewodowa z istniejącym systemem BAS",
-      "Precyzyjna inżynieria",
+      "Czujniki wiodące w branży",
+      "Zmieniamy sposób myślenia o czujnikach od 1993 roku",
+      "Bezszwowa integracja bezprzewodowa dla istniejącego systemu BAS",
+      "Precyzyjne inżynieria",
       "Budujemy przyszłość",
       "...To kwestia szczegółów",
-      "Ludzie. Budynki. Czujniki"
+      "Ludzie. Budynek. Czujniki"
     ],
     "stats": {
       "yearsValue": "30+",
       "yearsLabel": "Lat doskonałości",
       "productsValue": "608",
       "productsLabel": "Modeli produktów",
-      "globalValue": "Globalna",
+      "globalValue": "Globalny",
       "globalLabel": "Zasięg i wsparcie",
       "isoValue": "ISO 9001",
-      "isoLabel": "Certyfikat jakości"
+      "isoLabel": "Certyfikowana jakość"
     },
     "categories": {
-      "title": "Przeglądaj nasz katalog produktów",
-      "subtitle": "Przeglądaj według typu czujnika, aby znaleźć idealne rozwiązanie dla Twojego projektu automatyki budynków",
+      "title": "Poznaj nasz katalog produktów",
+      "subtitle": "Przeglądaj według typu czujnika, aby znaleźć idealne rozwiązanie dla swojego projektu automatyki budynkowej",
       "temperature": {
         "name": "Czujniki temperatury",
-        "description": "Pomiar wysokiej dokładności temperatury"
+        "description": "Pomiar temperatury o wysokiej dokładności"
       },
       "humidity": {
         "name": "Czujniki wilgotności",
-        "description": "Precyzyjny monitoring wilgotności względnej"
+        "description": "Precyzyjne monitorowanie wilgotności względnej"
       },
       "pressure": {
         "name": "Czujniki ciśnienia",
@@ -295,25 +295,106 @@
       },
       "airQuality": {
         "name": "Czujniki jakości powietrza",
-        "description": "Monitoring CO₂, LZO i cząstek stałych"
+        "description": "Monitorowanie CO₂, LZO i cząstek stałych"
       },
       "wireless": {
         "name": "Czujniki bezprzewodowe",
-        "description": "Monitoring w chmurze WAM™"
+        "description": "Monitorowanie w chmurze WAM™"
       },
       "accessories": {
         "name": "Akcesoria",
-        "description": "Elementy montażowe i obudowy"
+        "description": "Sprzęt montażowy i obudowy"
       },
       "testInstruments": {
-        "name": "Przyrządy testujące",
+        "name": "Przyrządy pomiarowe",
         "description": "Narzędzia do kalibracji i weryfikacji"
       },
       "etaLine": {
         "name": "Linia ETA",
-        "description": "Modułowa I/O i sterowanie"
+        "description": "Modułowe we/wy i sterowanie"
       },
-      "viewAll": "Wyświetl wszystkie produkty"
+      "viewAll": "Wyświetl wszystkie produkty",
+      "viewProducts": "Wyświetl produkty",
+      "browseAll": "Przeglądaj wszystkie produkty"
+    },
+    "whyBapi": {
+      "title": "DLACZEGO BAPI?",
+      "description": "BAPI zmienia sposób myślenia o czujnikach od 1993 roku. Wierzymy, że czujniki to nie tylko proste towary. Są one integralną częścią systemu sterowania automatyką budynków i mają kluczowe znaczenie dla misji oszczędzania energii. Nasze zaangażowanie w innowacje i jakość pomogło przekształcić BAPI w wiodącego na świecie producenta rozwiązań sensorycznych, koncentrującego się na jakości, niezawodności i wartości.",
+      "warranty": {
+        "title": "Gwarancja",
+        "description": "Nasze produkty są zaprojektowane i wyprodukowane, aby wytrzymać. Popieramy tę deklarację, oferując 5-letnią gwarancję na wszystkie nasze produkty.",
+        "footnote": "Dożywotnia ograniczona gwarancja jest również dostępna na wiele z naszych czujników temperatury w pojedynczym punkcie, pomieszczeniowych i kanałowych.*"
+      },
+      "bapiBackedTitle": "Wspierane przez BAPI",
+      "bapiBackedDescription": "Większość producentów czujników wymieni swoje wadliwe produkty, ale tylko BAPI ma wystarczającą pewność siebie, aby wykroczyć poza standard branżowy.",
+      "bapiBackedFootnote": "'Wspierane przez BAPI' oznacza, że stoimy za wszystkim, co sprzedajemy, więc możesz mieć pewność co do jakości naszych produktów - jeśli jeden z nich ulegnie awarii w okresie gwarancyjnym, nie tylko naprawimy lub wymienimy go, ale również zapewnimy specjalistę produktu, aby zrekompensować poniesione przez Ciebie koszty.*",
+      "bapiOriginal": {
+        "title": "Oryginał BAPI",
+        "description": "W BAPI dążymy do bycia liderem w naszej branży, dostarczając innowacyjne, wysokiej jakości produkty i usługi zaprojektowane z myślą o Tobie.",
+        "footnote": "Produkty opatrzone pieczęcią \"Another Original\" są unikalne dla BAPI, a inspiracja do tych projektów pochodzi od naszych cennych klientów, utalentowanych pracowników i szanowanych dostawców. Te trzy składniki łącznie tworzą wiodące w branży, oryginalne rozwiązania, opracowane w celu rozwiązania powszechnych problemów z HVACR."
+      }
+    },
+    "globalPresence": {
+      "title": "Nasza globalna obecność",
+      "subtitle": "Od naszej siedziby w Wisconsin po obiekty na trzech kontynentach, BAPI obsługuje klientów na całym świecie, zapewniając lokalną ekspertyzę i globalny zasięg."
+    },
+    "news": {
+      "badge": "Najnowsze wiadomości",
+      "title": "Pozostań na bieżąco",
+      "subtitle": "Najnowsze aktualizacje, ogłoszenia o produktach i informacje z branży",
+      "viewAll": "Wyświetl wszystkie wiadomości",
+      "noArticles": "Obecnie brak dostępnych artykułów prasowych"
+    },
+    "locations": {
+      "mapLegend": {
+        "headquarters": "Siedziba główna",
+        "distribution": "Dystrybucja",
+        "production": "Produkcja",
+        "productionService": "Produkcja i serwis"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "Globalna siedziba główna",
+          "city": "Gays Mills",
+          "country": "USA",
+          "description": "Siedziba korporacyjna i główny zakład produkcyjny",
+          "type": "Siedziba główna",
+          "established": "Est. 1993"
+        },
+        "distributionUk": {
+          "name": "Centrum Dystrybucji w Wielkiej Brytanii",
+          "city": "Aldershot",
+          "country": "Wielka Brytania",
+          "description": "Europejskie centrum dystrybucji i logistyki",
+          "type": "Centrum Dystrybucji"
+        },
+        "productionPoland": {
+          "name": "Zakład Produkcyjny i Obsługi Klienta",
+          "city": "Nowa Wola",
+          "country": "Polska",
+          "description": "Europejski zakład produkcyjny i centrum obsługi klienta",
+          "type": "Produkcja i Serwis"
+        },
+        "productionVietnam": {
+          "name": "Zakład Produkcyjny Azji i Pacyfiku",
+          "city": "Da Nang",
+          "country": "Wietnam",
+          "description": "Nowy zakład produkcyjny obsługujący rynki azjatyckie",
+          "type": "Produkcja",
+          "status": "Otwarcie wkrótce"
+        }
+      },
+      "cta": {
+        "text": "Szukasz lokalnego wsparcia lub możliwości współpracy?",
+        "button": "Skontaktuj się z nami"
+      }
+    },
+    "finalCta": {
+      "title": "Gotowy, aby znaleźć swoje rozwiązanie?",
+      "subtitle": "Przejrzyj nasz kompletny katalog lub skontaktuj się z naszym zespołem sprzedaży, aby uzyskać fachowe wskazówki",
+      "exploreProducts": "Poznaj produkty",
+      "talkToSales": "Porozmawiaj z działem sprzedaży",
+      "footer": "Wyprodukowano w USA • Wysyłka tego samego dnia • Certyfikat ISO 9001:2015 • 30+ lat doskonałości"
     }
   },
   "footer": {

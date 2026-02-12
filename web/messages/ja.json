@@ -22,42 +22,42 @@
   },
   "home": {
     "hero": {
-      "title": "建築自動化のための精密センサーソリューション",
-      "description": "ヘルスケア、データセンター、重要施設で、世界中のエンジニアから信頼されているNIST追跡可能なセンサーとBACnet認証コントローラー。",
-      "cta": "製品を探す",
-      "secondaryCta": "営業担当に話す",
-      "productFamilyTitle": "建築自動化システムのための完全なセンサーソリューション",
-      "productFamilySubtitle": "精密なモニタリングと制御のために、世界中のエンジニアから信頼されています"
+      "title": "建築オートメーション用の高精度センサーソリューション",
+      "description": "NIST追跡可能なセンサーとBACnet認証コントローラは、ヘルスケア、データセンター、重要施設で世界中のエンジニアから信頼されています。",
+      "cta": "製品を探索する",
+      "secondaryCta": "営業に連絡する",
+      "productFamilyTitle": "建築オートメーションシステム用の完全なセンサーソリューション",
+      "productFamilySubtitle": "精密な監視と制御のために世界中のエンジニアから信頼されています"
     },
     "taglines": [
       "業界をリードするセンサー",
-      "1993年から、センサーについての考え方を変えています",
-      "既存のBASにシームレスワイヤレス統合",
-      "精密な設計",
-      "未来を築く",
-      "...細部にこだわっています",
-      "人。建築。センサー"
+      "1993年以来、センサーの概念を変革しています",
+      "既存のBASへのシームレスなワイヤレス統合",
+      "精密工学",
+      "未来を構築する",
+      "...細部にこそ価値がある",
+      "人々。建物。センサー"
     ],
     "stats": {
       "yearsValue": "30年以上",
-      "yearsLabel": "卓越した年数",
+      "yearsLabel": "卓越した実績",
       "productsValue": "608",
       "productsLabel": "製品モデル",
       "globalValue": "グローバル",
       "globalLabel": "対応と支援",
       "isoValue": "ISO 9001",
-      "isoLabel": "品質認証"
+      "isoLabel": "認証された品質"
     },
     "categories": {
-      "title": "製品カタログを探る",
-      "subtitle": "センサータイプごとに閲覧して、建築自動化プロジェクトに最適なソリューションを見つけましょう",
+      "title": "製品カタログを探索する",
+      "subtitle": "センサータイプ別にブラウズして、建築オートメーションプロジェクトに最適なソリューションを見つける",
       "temperature": {
         "name": "温度センサー",
         "description": "高精度の温度測定"
       },
       "humidity": {
         "name": "湿度センサー",
-        "description": "正確な相対湿度モニタリング"
+        "description": "正確な相対湿度の監視"
       },
       "pressure": {
         "name": "圧力センサー",
@@ -65,25 +65,106 @@
       },
       "airQuality": {
         "name": "空気質センサー",
-        "description": "CO₂、VOC、粒子状物質のモニタリング"
+        "description": "CO₂、VOC、および粒子状物質の監視"
       },
       "wireless": {
         "name": "ワイヤレスセンサー",
-        "description": "WAM™クラウド接続モニタリング"
+        "description": "WAM™クラウド接続型監視"
       },
       "accessories": {
-        "name": "アクセサリー",
-        "description": "取付ハードウェアと筐体"
+        "name": "アクセサリ",
+        "description": "取り付け金具とエンクロージャ"
       },
       "testInstruments": {
-        "name": "試験機器",
+        "name": "計測器",
         "description": "校正と検証ツール"
       },
       "etaLine": {
         "name": "ETAライン",
         "description": "モジュラーI/Oおよび制御"
       },
-      "viewAll": "すべての製品を見る"
+      "viewAll": "すべての製品を表示する",
+      "viewProducts": "製品を表示する",
+      "browseAll": "すべての製品を閲覧する"
+    },
+    "whyBapi": {
+      "title": "なぜBAPIなのか?",
+      "description": "BAPIは1993年以来、センサーに対する考え方を変えてきました。センサーは単なる商品ではなく、建築オートメーションコントロールシステムの重要な要素であり、エネルギー節約の使命に不可欠です。当社のイノベーションと品質への取り組みにより、BAPIはセンサーソリューションの世界的なリーディングメーカーに成長し、品質、信頼性、価値にフォーカスしています。",
+      "warranty": {
+        "title": "保証",
+        "description": "当社の製品は耐久性を念頭に設計および製造されています。その主張を裏付けるため、当社の全製品に5年間の保証を提供しています。",
+        "footnote": "多くの単一点、ルーム、ダクトルーム温度センサーには、ライフタイム限定保証もあります。*"
+      },
+      "bapiBackedTitle": "BAPIが保証する",
+      "bapiBackedDescription": "多くのセンサーメーカーは不良品を交換しますが、BAPIだけが業界標準を超えるという自信を持っています。",
+      "bapiBackedFootnote": "「BAPIが保証する」とは、当社が販売するすべてのものを保証することを意味します。つまり、保証期間内に故障した場合、製品を修理または交換するだけでなく、発生したコストを相殺するためのプロダクトエキスパートを提供します。*",
+      "bapiOriginal": {
+        "title": "BAPIオリジナル",
+        "description": "BAPIは、顧客を念頭に置いて設計された革新的で高品質な製品とサービスを提供することで、業界をリードしようと努めています。",
+        "footnote": "「Another Original」のスタンプが付いた製品は、BAPIに固有のものです。これらのデザインのインスピレーションは、弊社の大切な顧客、才能溢れる従業員、そして尊敬するベンダーから生まれています。これら3つの要素を組み合わせることで、業界をリードする独創的なソリューションが生み出されます。それはHVACR分野の一般的な問題を解決するためのものです。"
+      }
+    },
+    "globalPresence": {
+      "title": "世界的な展開",
+      "subtitle": "ウィスコンシンのヘッドクォーターから3大陸にわたる施設まで、BAPIは世界中の顧客に地域の専門知識とグローバルな対応力を提供しています。"
+    },
+    "news": {
+      "badge": "最新のニュース",
+      "title": "最新情報を把握する",
+      "subtitle": "最新のアップデート、製品発表、業界の洞察",
+      "viewAll": "すべてのニュースを見る",
+      "noArticles": "まだニュース記事はありません"
+    },
+    "locations": {
+      "mapLegend": {
+        "headquarters": "本社",
+        "distribution": "流通",
+        "production": "生産",
+        "productionService": "生産と修理"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "グローバル本社",
+          "city": "Gays Mills",
+          "country": "アメリカ",
+          "description": "本社機能と主要な製造施設",
+          "type": "本社",
+          "established": "1993年設立"
+        },
+        "distributionUk": {
+          "name": "英国流通センター",
+          "city": "Aldershot",
+          "country": "イギリス",
+          "description": "ヨーロッパの流通とロジスティクスのハブ",
+          "type": "流通センター"
+        },
+        "productionPoland": {
+          "name": "生産・カスタマーサービス施設",
+          "city": "Nowa Wola",
+          "country": "ポーランド",
+          "description": "ヨーロッパの生産施設とカスタマーサービスセンター",
+          "type": "生産と修理"
+        },
+        "productionVietnam": {
+          "name": "アジア太平洋地域の生産施設",
+          "city": "Da Nang",
+          "country": "ベトナム",
+          "description": "アジア市場向けの新しい製造施設",
+          "type": "生産",
+          "status": "間もなく開設"
+        }
+      },
+      "cta": {
+        "text": "地域のサポートやパートナーシップの機会をお探しですか?",
+        "button": "お問い合わせ"
+      }
+    },
+    "finalCta": {
+      "title": "ご希望のソリューションを見つける準備ができましたか?",
+      "subtitle": "完全なカタログを探索するか、専門家のガイダンスのために営業チームに連絡してください",
+      "exploreProducts": "製品を探索する",
+      "talkToSales": "営業に連絡する",
+      "footer": "アメリカ製 • 当日出荷 • ISO 9001:2015認証 • 30年以上の実績"
     }
   },
   "footer": {

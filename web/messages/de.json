@@ -126,6 +126,92 @@
         "description": "Sprechen Sie mit unserem Team, um Ihre Projektanforderungen zu besprechen und die perfekte Sensorlösung zu finden.",
         "cta": "Kontaktieren Sie unser Team"
       }
+    },
+    "products": {
+      "label": "Produkte",
+      "temperature": {
+        "title": "Temperatur",
+        "roomWallSensors": "Raum- und Wandsensoren",
+        "roomWallSensorsDesc": "Hochgenaue Temperaturerfassung",
+        "ductSensors": "Kanalsensoren",
+        "ductSensorsDesc": "Kanalgebundene Transmitter",
+        "immersionWell": "Tauchen und Brunnen",
+        "immersionWellDesc": "Flüssigkeitstemperaturmessung",
+        "outdoorSensors": "Außensensoren",
+        "outdoorSensorsDesc": "Wetterfeste Erfassung"
+      },
+      "humidity": {
+        "title": "Feuchtigkeit",
+        "roomHumidity": "Raumluftfeuchtigkeit",
+        "roomHumidityDesc": "Wandmontierte rF-Sensoren",
+        "ductHumidity": "Kanalfeuchtigkeit",
+        "ductHumidityDesc": "Zuluft- und Abluft-rF",
+        "outdoorHumidity": "Außenluftfeuchtigkeit",
+        "outdoorHumidityDesc": "Wetterfeste rF",
+        "comboSensors": "Kombisensoren",
+        "comboSensorsDesc": "Temperatur + Feuchtigkeit"
+      },
+      "pressure": {
+        "title": "Druck",
+        "differential": "Differenzdruck",
+        "differentialDesc": "Raum- und Filterkontrolle",
+        "static": "Statischer Druck",
+        "staticDesc": "Kanaldruck-Transmitter",
+        "barometric": "Barometrisch",
+        "barometricDesc": "Atmosphärischer Druck"
+      },
+      "airQuality": {
+        "title": "Luftqualität",
+        "co2": "CO₂-Sensoren",
+        "co2Desc": "Kohlendioxid-Überwachung",
+        "voc": "VOC-Sensoren",
+        "vocDesc": "Flüchtige organische Verbindungen",
+        "particulate": "Partikel",
+        "particulateDesc": "PM2,5 und PM10"
+      },
+      "wireless": {
+        "title": "Drahtlos",
+        "wamTemperature": "WAM Temperatur",
+        "wamTemperatureDesc": "Drahtlose Temperatursensoren",
+        "wamHumidity": "WAM Feuchtigkeit",
+        "wamHumidityDesc": "Drahtlose rF-Sensoren",
+        "wamDoorSensors": "WAM Türsensoren",
+        "wamDoorSensorsDesc": "Überwachung von Öffnung/Schließung",
+        "cloudPlatform": "Cloud-Plattform",
+        "cloudPlatformDesc": "24/7 Fernüberwachung"
+      },
+      "accessories": {
+        "title": "Zubehör",
+        "mounting": "Montagezubehör",
+        "mountingDesc": "Platten, Kästen, Halterungen",
+        "enclosures": "Gehäuse",
+        "enclosuresDesc": "BAPI-Box & Abdeckungen",
+        "cables": "Kabel & Steckverbinder",
+        "cablesDesc": "Verkabelungszubehör"
+      },
+      "testInstruments": {
+        "title": "Testinstrumente",
+        "bluTestTemperature": "Blu-Test Temperatur",
+        "bluTestTemperatureDesc": "NIST-rückführbare Referenz",
+        "bluTestHumidity": "Blu-Test Feuchtigkeit",
+        "bluTestHumidityDesc": "Temperatur + rF-Referenz",
+        "bluTestPressure": "Blu-Test Druck",
+        "bluTestPressureDesc": "Digitales Manometer"
+      },
+      "featured": {
+        "title": "WAM™ Drahtlose Betriebsmittelüberwachung",
+        "description": "24/7 Fernüberwachung mit sofortigen Warnmeldungen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Ausfällen der Anlagen. Keine Verkabelung erforderlich - in Minuten einsatzbereit.",
+        "cta": "Mehr erfahren",
+        "wamTitle": "WAM™ Drahtlose Betriebsmittelüberwachung",
+        "wamDescription": "24/7 Fernüberwachung mit sofortigen Warnmeldungen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Ausfällen der Anlagen. Keine Verkabelung erforderlich - in Minuten einsatzbereit.",
+        "wamCta": "Mehr erfahren",
+        "wamBadge": "Premium-Lösung"
+      },
+      "badges": {
+        "popular": "Beliebt",
+        "new": "Neu",
+        "premium": "Premium"
+      }
     }
   },
   "home": {

@@ -348,6 +348,92 @@
         "description": "Conéctate con nuestro equipo para discutir los requisitos de tu proyecto y descubrir la solución de sensor perfecta.",
         "cta": "Contacta a Nuestro Equipo"
       }
+    },
+    "products": {
+      "label": "Productos",
+      "temperature": {
+        "title": "Temperatura",
+        "roomWallSensors": "Sensores de habitación y pared",
+        "roomWallSensorsDesc": "Detección de temperatura de alta precisión",
+        "ductSensors": "Sensores de conducto",
+        "ductSensorsDesc": "Transmisores montados en conductos",
+        "immersionWell": "Inmersión y pozo",
+        "immersionWellDesc": "Medición de temperatura de líquidos",
+        "outdoorSensors": "Sensores exteriores",
+        "outdoorSensorsDesc": "Detección resistente a la intemperie"
+      },
+      "humidity": {
+        "title": "Humedad",
+        "roomHumidity": "Humedad de la habitación",
+        "roomHumidityDesc": "Sensores de HR de montaje en pared",
+        "ductHumidity": "Humedad de conducto",
+        "ductHumidityDesc": "HR de suministro y retorno de aire",
+        "outdoorHumidity": "Humedad exterior",
+        "outdoorHumidityDesc": "HR resistente a la intemperie",
+        "comboSensors": "Sensores combinados",
+        "comboSensorsDesc": "Temperatura + humedad"
+      },
+      "pressure": {
+        "title": "Presión",
+        "differential": "Presión diferencial",
+        "differentialDesc": "Monitoreo de habitación y filtro",
+        "static": "Presión estática",
+        "staticDesc": "Transmisores estáticos de conducto",
+        "barometric": "Barométrica",
+        "barometricDesc": "Presión atmosférica"
+      },
+      "airQuality": {
+        "title": "Calidad del aire",
+        "co2": "Sensores de CO₂",
+        "co2Desc": "Monitoreo de dióxido de carbono",
+        "voc": "Sensores de COV",
+        "vocDesc": "Compuestos orgánicos volátiles",
+        "particulate": "Material particulado",
+        "particulateDesc": "PM2.5 y PM10"
+      },
+      "wireless": {
+        "title": "Inalámbrico",
+        "wamTemperature": "Temperatura WAM",
+        "wamTemperatureDesc": "Sensores de temperatura inalámbricos",
+        "wamHumidity": "Humedad WAM",
+        "wamHumidityDesc": "Sensores de HR inalámbricos",
+        "wamDoorSensors": "Sensores de puerta WAM",
+        "wamDoorSensorsDesc": "Monitoreo de apertura/cierre",
+        "cloudPlatform": "Plataforma en la nube",
+        "cloudPlatformDesc": "Monitoreo remoto 24/7"
+      },
+      "accessories": {
+        "title": "Accesorios",
+        "mounting": "Herrajes de montaje",
+        "mountingDesc": "Placas, cajas, soportes",
+        "enclosures": "Cajas de protección",
+        "enclosuresDesc": "BAPI-Box y cubiertas",
+        "cables": "Cables y conectores",
+        "cablesDesc": "Accesorios de cableado"
+      },
+      "testInstruments": {
+        "title": "Instrumentos de prueba",
+        "bluTestTemperature": "Blu-Test Temperatura",
+        "bluTestTemperatureDesc": "Referencia trazable a NIST",
+        "bluTestHumidity": "Blu-Test Humedad",
+        "bluTestHumidityDesc": "Referencia de temperatura + HR",
+        "bluTestPressure": "Blu-Test Presión",
+        "bluTestPressureDesc": "Manómetro digital"
+      },
+      "featured": {
+        "title": "Monitoreo de activos inalámbrico WAM™",
+        "description": "Monitoreo remoto 24/7 con alertas instantáneas. Protege tus valiosos activos contra cortes de energía y fallas de equipos. Sin cableado, puesto en marcha en minutos.",
+        "cta": "Más información",
+        "wamTitle": "Monitoreo de activos inalámbrico WAM™",
+        "wamDescription": "Monitoreo remoto 24/7 con alertas instantáneas. Protege tus valiosos activos contra cortes de energía y fallas de equipos. Sin cableado, puesto en marcha en minutos.",
+        "wamCta": "Más información",
+        "wamBadge": "Solución premium"
+      },
+      "badges": {
+        "popular": "Popular",
+        "new": "Nuevo",
+        "premium": "Premium"
+      }
     }
   }
 }

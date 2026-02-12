@@ -348,6 +348,92 @@
         "description": "Connectez-vous avec notre équipe pour discuter de vos exigences de projet et découvrir la solution de capteur parfaite.",
         "cta": "Contactez notre équipe"
       }
+    },
+    "products": {
+      "label": "Produits",
+      "temperature": {
+        "title": "Température",
+        "roomWallSensors": "Capteurs de pièce et de mur",
+        "roomWallSensorsDesc": "Détection de température haute précision",
+        "ductSensors": "Capteurs de gaine",
+        "ductSensorsDesc": "Émetteurs montés sur gaine",
+        "immersionWell": "Immersion et puits",
+        "immersionWellDesc": "Mesure de la température des liquides",
+        "outdoorSensors": "Capteurs extérieurs",
+        "outdoorSensorsDesc": "Détection résistante aux intempéries"
+      },
+      "humidity": {
+        "title": "Humidité",
+        "roomHumidity": "Humidité de pièce",
+        "roomHumidityDesc": "Capteurs d'HR muraux",
+        "ductHumidity": "Humidité de gaine",
+        "ductHumidityDesc": "HR d'air soufflé et repris",
+        "outdoorHumidity": "Humidité extérieure",
+        "outdoorHumidityDesc": "HR résistante aux intempéries",
+        "comboSensors": "Capteurs combinés",
+        "comboSensorsDesc": "Température + humidité"
+      },
+      "pressure": {
+        "title": "Pression",
+        "differential": "Pression différentielle",
+        "differentialDesc": "Surveillance de pièce et de filtre",
+        "static": "Pression statique",
+        "staticDesc": "Transmetteurs de pression statique de gaine",
+        "barometric": "Barométrique",
+        "barometricDesc": "Pression atmosphérique"
+      },
+      "airQuality": {
+        "title": "Qualité de l'air",
+        "co2": "Capteurs de CO₂",
+        "co2Desc": "Surveillance du dioxyde de carbone",
+        "voc": "Capteurs de COV",
+        "vocDesc": "Composés organiques volatils",
+        "particulate": "Matières particulaires",
+        "particulateDesc": "PM2,5 et PM10"
+      },
+      "wireless": {
+        "title": "Sans fil",
+        "wamTemperature": "Température WAM",
+        "wamTemperatureDesc": "Capteurs de température sans fil",
+        "wamHumidity": "Humidité WAM",
+        "wamHumidityDesc": "Capteurs d'HR sans fil",
+        "wamDoorSensors": "Capteurs de porte WAM",
+        "wamDoorSensorsDesc": "Surveillance d'ouverture/fermeture",
+        "cloudPlatform": "Plateforme cloud",
+        "cloudPlatformDesc": "Surveillance à distance 24/7"
+      },
+      "accessories": {
+        "title": "Accessoires",
+        "mounting": "Matériel de montage",
+        "mountingDesc": "Plaques, boîtiers, supports",
+        "enclosures": "Boîtiers",
+        "enclosuresDesc": "BAPI-Box et couvercles",
+        "cables": "Câbles et connecteurs",
+        "cablesDesc": "Accessoires de câblage"
+      },
+      "testInstruments": {
+        "title": "Instruments de test",
+        "bluTestTemperature": "Blu-Test Température",
+        "bluTestTemperatureDesc": "Référence traçable NIST",
+        "bluTestHumidity": "Blu-Test Humidité",
+        "bluTestHumidityDesc": "Référence Temp + HR",
+        "bluTestPressure": "Blu-Test Pression",
+        "bluTestPressureDesc": "Manomètre numérique"
+      },
+      "featured": {
+        "title": "Surveillance d'actifs sans fil WAM™",
+        "description": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos actifs précieux contre les pannes de courant et les défaillances d'équipements. Aucun câblage requis - démarrez en quelques minutes.",
+        "cta": "En savoir plus",
+        "wamTitle": "Surveillance d'actifs sans fil WAM™",
+        "wamDescription": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos actifs précieux contre les pannes de courant et les défaillances d'équipements. Aucun câblage requis - démarrez en quelques minutes.",
+        "wamCta": "En savoir plus",
+        "wamBadge": "Solution premium"
+      },
+      "badges": {
+        "popular": "Populaire",
+        "new": "Nouveau",
+        "premium": "Premium"
+      }
     }
   }
 }

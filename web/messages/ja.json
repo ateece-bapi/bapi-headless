@@ -348,6 +348,92 @@
         "description": "プロジェクトの要件について私たちのチームに相談し、最適なセンサーソリューションを見つけてください。",
         "cta": "私たちのチームに連絡する"
       }
+    },
+    "products": {
+      "label": "製品",
+      "temperature": {
+        "title": "温度",
+        "roomWallSensors": "ルーム & ウォールセンサー",
+        "roomWallSensorsDesc": "高精度の温度検知",
+        "ductSensors": "ダクトセンサー",
+        "ductSensorsDesc": "ダクト取り付け式トランスミッター",
+        "immersionWell": "浸漬 & ウェル",
+        "immersionWellDesc": "液体温度測定",
+        "outdoorSensors": "屋外センサー",
+        "outdoorSensorsDesc": "気象耐性のある検知"
+      },
+      "humidity": {
+        "title": "湿度",
+        "roomHumidity": "ルーム湿度",
+        "roomHumidityDesc": "壁取り付け式RHセンサー",
+        "ductHumidity": "ダクト湿度",
+        "ductHumidityDesc": "供給 & 戻り空気RH",
+        "outdoorHumidity": "屋外湿度",
+        "outdoorHumidityDesc": "気象耐性のあるRH",
+        "comboSensors": "コンボセンサー",
+        "comboSensorsDesc": "温度 + 湿度"
+      },
+      "pressure": {
+        "title": "圧力",
+        "differential": "差圧",
+        "differentialDesc": "ルーム & フィルター監視",
+        "static": "静圧",
+        "staticDesc": "ダクト静圧トランスミッター",
+        "barometric": "気圧",
+        "barometricDesc": "大気圧"
+      },
+      "airQuality": {
+        "title": "空気品質",
+        "co2": "CO₂センサー",
+        "co2Desc": "二酸化炭素の監視",
+        "voc": "VOCセンサー",
+        "vocDesc": "揮発性有機化合物",
+        "particulate": "微粒子",
+        "particulateDesc": "PM2.5 and PM10"
+      },
+      "wireless": {
+        "title": "ワイヤレス",
+        "wamTemperature": "WAM温度",
+        "wamTemperatureDesc": "ワイヤレス温度センサー",
+        "wamHumidity": "WAM湿度",
+        "wamHumidityDesc": "ワイヤレスRHセンサー",
+        "wamDoorSensors": "WAMドアセンサー",
+        "wamDoorSensorsDesc": "開閉監視",
+        "cloudPlatform": "クラウドプラットフォーム",
+        "cloudPlatformDesc": "24時間365日リモート監視"
+      },
+      "accessories": {
+        "title": "アクセサリー",
+        "mounting": "取り付けハードウェア",
+        "mountingDesc": "プレート、ボックス、ブラケット",
+        "enclosures": "エンクロージャ",
+        "enclosuresDesc": "BAPI-Box & カバー",
+        "cables": "ケーブル & コネクタ",
+        "cablesDesc": "配線アクセサリー"
+      },
+      "testInstruments": {
+        "title": "テスト機器",
+        "bluTestTemperature": "Blu-Test温度",
+        "bluTestTemperatureDesc": "NIST対応の基準",
+        "bluTestHumidity": "Blu-Test湿度",
+        "bluTestHumidityDesc": "温度 + RH基準",
+        "bluTestPressure": "Blu-Test圧力",
+        "bluTestPressureDesc": "デジタル微圧計"
+      },
+      "featured": {
+        "title": "WAM™ ワイヤレス資産監視",
+        "description": "即時アラートを伴う24時間365日リモート監視。電力障害や機器故障から貴重な資産を保護します。配線不要 - 数分でセットアップ完了。",
+        "cta": "詳細を見る",
+        "wamTitle": "WAM™ ワイヤレス資産監視",
+        "wamDescription": "即時アラートを伴う24時間365日リモート監視。電力障害や機器故障から貴重な資産を保護します。配線不要 - 数分でセットアップ完了。",
+        "wamCta": "詳細を見る",
+        "wamBadge": "プレミアムソリューション"
+      },
+      "badges": {
+        "popular": "人気",
+        "new": "新製品",
+        "premium": "プレミアム"
+      }
     }
   }
 }

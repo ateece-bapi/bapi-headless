@@ -130,20 +130,20 @@
   },
   "home": {
     "hero": {
-      "title": "Präzisions-Sensoren-Lösungen für die Gebäudeautomation",
-      "description": "NIST-rückverfolg bare Sensoren und BACnet-zertifizierte Regler, denen Ingenieure weltweit in Gesundheitswesen, Rechenzentren und kritischen Einrichtungen vertrauen.",
+      "title": "Präzisionssensorlösungen für die Gebäudeautomation",
+      "description": "NIST-rückverfolgte Sensoren und BACnet-zertifizierte Regler, denen Ingenieure weltweit in Gesundheitswesen, Rechenzentren und kritischen Einrichtungen vertrauen.",
       "cta": "Produkte entdecken",
       "secondaryCta": "Mit Vertrieb sprechen",
-      "productFamilyTitle": "Komplette Sensoren-Lösungen für Gebäudeautomatisierungssysteme",
-      "productFamilySubtitle": "Von Ingenieuren weltweit für präzise Überwachung und Steuerung vertraut"
+      "productFamilyTitle": "Komplette Sensorlösungen für Gebäudeautomationssysteme",
+      "productFamilySubtitle": "Von Ingenieuren weltweit für genaue Überwachung und Steuerung geschätzt"
     },
     "taglines": [
       "Führende Industriesensoren",
-      "Die Art, wie du Sensoren denkst, seit 1993 verändernd",
-      "Nahtlose Funkintegration für Ihr bestehendes Gebäudeautomatisierungssystem",
-      "Präzisionsentwicklung",
+      "Verändern, wie Sie seit 1993 über Sensoren denken",
+      "Nahtlose Funkintegration für Ihr bestehendes GBS",
+      "Präzisionstechnik",
       "Die Zukunft gestalten",
-      "...Es liegt im Detail",
+      "...Es steckt im Detail",
       "Menschen. Gebäude. Sensoren"
     ],
     "stats": {
@@ -158,18 +158,18 @@
     },
     "categories": {
       "title": "Erkunden Sie unseren Produktkatalog",
-      "subtitle": "Durchstöbern Sie nach Sensortyp, um die perfekte Lösung für Ihr Gebäudeautomationsprojekt zu finden",
+      "subtitle": "Durchsuchen Sie die Kategorien nach Sensortyp, um die perfekte Lösung für Ihr Gebäudeautomationsprojekt zu finden",
       "temperature": {
         "name": "Temperatursensoren",
         "description": "Hochgenaue Temperaturmessung"
       },
       "humidity": {
         "name": "Feuchtigkeitssensoren",
-        "description": "Präzise Relative-Feuchte-Überwachung"
+        "description": "Genaue Überwachung der relativen Luftfeuchtigkeit"
       },
       "pressure": {
         "name": "Drucksensoren",
-        "description": "Differenz- und Statischer Druck"
+        "description": "Differenz- und Statikdruck"
       },
       "airQuality": {
         "name": "Luftqualitätssensoren",
@@ -177,21 +177,51 @@
       },
       "wireless": {
         "name": "Drahtlose Sensoren",
-        "description": "WAM™ cloudverbundene Überwachung"
+        "description": "WAM™ cloudbasierte Überwachung"
       },
       "accessories": {
         "name": "Zubehör",
-        "description": "Montagehardware und Gehäuse"
+        "description": "Montagezubehör und Gehäuse"
       },
       "testInstruments": {
         "name": "Testinstrumente",
-        "description": "Kalibrier- und Verifizierungstools"
+        "description": "Kalibrierungs- und Überprüfungswerkzeuge"
       },
       "etaLine": {
         "name": "ETA-Linie",
         "description": "Modulare E/A und Steuerung"
       },
-      "viewAll": "Alle Produkte anzeigen"
+      "viewAll": "Alle Produkte anzeigen",
+      "viewProducts": "Produkte anzeigen",
+      "browseAll": "Alle Produkte durchsuchen"
+    },
+    "whyBapi": {
+      "title": "WARUM BAPI?",
+      "description": "BAPI verändert seit 1993, wie Sie über Sensoren denken. Wir glauben, dass Sensoren keine einfachen Standardartikel sind. Sie sind integraler Bestandteil eines Gebäudeautomations-Leitsystems und entscheidend für die Mission der Energieeinsparung. Unser Engagement für Innovation und Qualität hat BAPI zu einem führenden globalen Hersteller von Sensorlösungen mit einem enormen Fokus auf Qualität, Zuverlässigkeit und Wert gemacht.",
+      "warranty": {
+        "title": "Garantie",
+        "description": "Unsere Produkte sind so konzipiert und hergestellt, dass sie lange halten. Wir unterstützen diesen Anspruch, indem wir auf all unsere Produkte eine 5-Jahres-Garantie gewähren.",
+        "footnote": "Auf viele unserer Einzelpunkt-, Raum- und Kanaltemperatursensoren gibt es auch eine lebenslange beschränkte Garantie.*"
+      },
+      "bapiBackedTitle": "BAPI-unterstützt",
+      "bapiBackedDescription": "Die meisten Sensorhersteller ersetzen ihre defekten Produkte, aber nur BAPI hat das Vertrauen, über den Branchenstandard hinauszugehen.",
+      "bapiBackedFootnote": "'BAPI-unterstützt' bedeutet, dass wir für alles einstehen, was wir verkaufen. Seien Sie also sicher in der Qualität unserer Produkte, denn wenn eines innerhalb der Garantiezeit ausfällt, werden wir es nicht nur reparieren oder ersetzen, sondern auch einen Produktexperten zur Kompensation Ihrer entstandenen Kosten stellen.*",
+      "bapiOriginal": {
+        "title": "BAPI Original",
+        "description": "Bei BAPI streben wir danach, Branchenführer zu sein, indem wir innovative, hochwertige Produkte und Dienstleistungen entwickeln, die auf Ihre Bedürfnisse ausgerichtet sind.",
+        "footnote": "Produkte mit dem Stempel \"Another Original\" sind einzigartig bei BAPI, und die Inspiration für diese Designs stammt von unseren wertvollen Kunden, talentierten Mitarbeitern und respektierten Lieferanten. Diese drei Zutaten zusammen ergeben branchenführende, originelle Lösungen, die entwickelt wurden, um gängige HVACR-Probleme zu lösen."
+      }
+    },
+    "globalPresence": {
+      "title": "Unsere globale Präsenz",
+      "subtitle": "Von unserem Hauptsitz in Wisconsin bis hin zu Standorten auf drei Kontinenten bedient BAPI Kunden weltweit mit lokaler Expertise und globaler Reichweite."
+    },
+    "news": {
+      "badge": "Neueste Nachrichten",
+      "title": "Bleiben Sie informiert",
+      "subtitle": "Neueste Updates, Produktankündigungen und Brancheneinblicke",
+      "viewAll": "Alle Nachrichten anzeigen",
+      "noArticles": "Zur Zeit sind keine Nachrichtenartikel verfügbar"
     }
   }
 }

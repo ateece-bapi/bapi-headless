@@ -23,28 +23,28 @@
   "home": {
     "hero": {
       "title": "Solutions de capteurs de précision pour l'automatisation des bâtiments",
-      "description": "Des capteurs traçables NIST et des contrôleurs certifiés BACnet, approuvés par les ingénieurs du monde entier pour les soins de santé, les centres de données et les installations critiques.",
+      "description": "Les capteurs traçables NIST et les contrôleurs certifiés BACnet font confiance aux ingénieurs du monde entier pour les soins de santé, les centres de données et les installations critiques.",
       "cta": "Explorer les produits",
       "secondaryCta": "Parler aux ventes",
       "productFamilyTitle": "Solutions de capteurs complètes pour les systèmes d'automatisation des bâtiments",
-      "productFamilySubtitle": "Approuvés par les ingénieurs du monde entier pour une surveillance et un contrôle de précision"
+      "productFamilySubtitle": "Approuvés par les ingénieurs du monde entier pour la surveillance et le contrôle de précision"
     },
     "taglines": [
-      "Capteurs de premier plan de l'industrie",
-      "Changement de la façon dont vous pensez aux capteurs depuis 1993",
-      "Intégration sans fil transparente pour votre BAS existant",
+      "Capteurs de premier plan",
+      "Changer votre façon de penser aux capteurs depuis 1993",
+      "Intégration sans fil transparente pour votre système BAS existant",
       "Ingénierie de précision",
-      "Construction de l'avenir",
+      "Construire l'avenir",
       "...C'est dans les détails",
       "Personnes. Bâtiment. Capteurs"
     ],
     "stats": {
       "yearsValue": "30+",
-      "yearsLabel": "Années d'excellence",
+      "yearsLabel": "Années d'Excellence",
       "productsValue": "608",
       "productsLabel": "Modèles de produits",
       "globalValue": "Mondial",
-      "globalLabel": "Portée et soutien",
+      "globalLabel": "Portée et support",
       "isoValue": "ISO 9001",
       "isoLabel": "Qualité certifiée"
     },
@@ -81,9 +81,39 @@
       },
       "etaLine": {
         "name": "Ligne ETA",
-        "description": "E/S et contrôle modulaires"
+        "description": "E/S modulaires et contrôle"
       },
-      "viewAll": "Voir tous les produits"
+      "viewAll": "Voir tous les produits",
+      "viewProducts": "Voir les produits",
+      "browseAll": "Parcourir tous les produits"
+    },
+    "whyBapi": {
+      "title": "POURQUOI BAPI ?",
+      "description": "BAPI transforme la façon dont vous pensez aux capteurs depuis 1993. Nous pensons que les capteurs ne sont pas de simples produits de base. Ils font partie intégrante d'un système de contrôle d'automatisation des bâtiments et sont essentiels à la mission d'économie d'énergie. Notre engagement envers l'innovation et la qualité a aidé à transformer BAPI en un fabricant mondial de solutions de capteurs de premier plan, avec un accent mis sur la qualité, la fiabilité et la valeur.",
+      "warranty": {
+        "title": "Garantie",
+        "description": "Nos produits sont conçus et fabriqués pour durer. Nous soutenons cette affirmation en offrant une garantie de 5 ans sur tous nos produits.",
+        "footnote": "Une garantie à vie limitée est également disponible sur de nombreux capteurs de température ambiante et de gaine simples.*"
+      },
+      "bapiBackedTitle": "Soutenu par BAPI",
+      "bapiBackedDescription": "La plupart des fabricants de capteurs remplaceront leurs produits défectueux, mais seul BAPI a la confiance d'aller au-delà de la norme de l'industrie.",
+      "bapiBackedFootnote": "'Soutenu par BAPI' signifie que nous nous tenons derrière tout ce que nous vendons, alors soyez confiant dans la qualité de nos produits, car si l'un d'eux tombe en panne dans la période de garantie, non seulement nous le réparerons ou le remplacerons, mais nous fournirons également un expert du produit pour compenser vos coûts engagés.*",
+      "bapiOriginal": {
+        "title": "Origine BAPI",
+        "description": "Chez BAPI, nous aspirons à être des leaders dans notre industrie en fournissant des produits et services innovants et de haute qualité conçus pour vous.",
+        "footnote": "Les produits portant le cachet \"Autre original\" sont uniques à BAPI et l'inspiration de ces conceptions provient de nos précieux clients, de nos talentueux employés et de nos fournisseurs respectés. Cette combinaison de trois ingrédients crée des solutions originales de premier plan, conçues pour résoudre les problèmes courants de CVC."
+      }
+    },
+    "globalPresence": {
+      "title": "Notre présence mondiale",
+      "subtitle": "Depuis notre siège social dans le Wisconsin jusqu'à nos installations sur trois continents, BAPI sert les clients du monde entier avec une expertise locale et une portée mondiale."
+    },
+    "news": {
+      "badge": "Dernières nouvelles",
+      "title": "Restez informé",
+      "subtitle": "Dernières mises à jour, annonces de produits et informations sectorielles",
+      "viewAll": "Voir toutes les nouvelles",
+      "noArticles": "Aucun article de presse disponible pour le moment"
     }
   },
   "footer": {

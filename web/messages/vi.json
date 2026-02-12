@@ -170,20 +170,20 @@
   },
   "home": {
     "hero": {
-      "title": "Giải pháp cảm biến chính xác cho tòa nhà thông minh",
-      "description": "Cảm biến truy xuất được bởi NIST và bộ điều khiển được chứng nhận BACnet được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho các cơ sở chăm sóc sức khỏe, trung tâm dữ liệu và các cơ sở quan trọng.",
+      "title": "Giải pháp cảm biến chính xác cho Tự động hóa Tòa nhà",
+      "description": "Các cảm biến được theo dõi NIST và bộ điều khiển được chứng nhận BACnet được các kỹ sư trên toàn thế giới tin tưởng cho y tế, trung tâm dữ liệu và cơ sở quan trọng.",
       "cta": "Khám phá Sản phẩm",
-      "secondaryCta": "Liên hệ với Bộ phận Bán hàng",
-      "productFamilyTitle": "Các giải pháp cảm biến hoàn chỉnh cho các hệ thống tự động hóa tòa nhà",
-      "productFamilySubtitle": "Được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho việc giám sát và điều khiển chính xác"
+      "secondaryCta": "Nói chuyện với Bộ phận Bán hàng",
+      "productFamilyTitle": "Giải pháp cảm biến hoàn chỉnh cho hệ thống tự động hóa tòa nhà",
+      "productFamilySubtitle": "Được các kỹ sư trên toàn thế giới tin tưởng cho giám sát và điều khiển chính xác"
     },
     "taglines": [
-      "Cảm biến Dẫn đầu Ngành",
-      "Thay đổi cách bạn nghĩ về cảm biến từ năm 1993",
-      "Tích hợp không dây liền mạch cho hệ thống BAS hiện có của bạn",
+      "Các Cảm biến Dẫn đầu Ngành",
+      "Thay đổi cách bạn nghĩ về cảm biến kể từ năm 1993",
+      "Tích hợp không dây liền mạch cho Hệ thống Tự động hóa Tòa nhà hiện có của bạn",
       "Kỹ thuật Chính xác",
       "Xây dựng Tương lai",
-      "...Nằm trong những chi tiết nhỏ",
+      "...Nằm ở các chi tiết",
       "Con người. Tòa nhà. Cảm biến"
     ],
     "stats": {
@@ -194,11 +194,11 @@
       "globalValue": "Toàn cầu",
       "globalLabel": "Phạm vi & Hỗ trợ",
       "isoValue": "ISO 9001",
-      "isoLabel": "Chứng nhận Chất lượng"
+      "isoLabel": "Chất lượng được Chứng nhận"
     },
     "categories": {
       "title": "Khám phá Danh mục Sản phẩm của chúng tôi",
-      "subtitle": "Duyệt theo loại cảm biến để tìm ra giải pháp hoàn hảo cho dự án tự động hóa tòa nhà của bạn",
+      "subtitle": "Duyệt theo loại cảm biến để tìm giải pháp hoàn hảo cho dự án tự động hóa tòa nhà của bạn",
       "temperature": {
         "name": "Cảm biến Nhiệt độ",
         "description": "Đo nhiệt độ chính xác cao"
@@ -209,11 +209,11 @@
       },
       "pressure": {
         "name": "Cảm biến Áp suất",
-        "description": "Áp suất tĩnh và chênh lệch"
+        "description": "Áp suất vi sai & tĩnh"
       },
       "airQuality": {
-        "name": "Cảm biến Chất lượng không khí",
-        "description": "Giám sát CO₂, VOC và hạt bụi"
+        "name": "Cảm biến Chất lượng Không khí",
+        "description": "Giám sát CO₂, VOC và bụi"
       },
       "wireless": {
         "name": "Cảm biến Không dây",
@@ -225,13 +225,43 @@
       },
       "testInstruments": {
         "name": "Thiết bị Kiểm tra",
-        "description": "Công cụ hiệu chuẩn & xác minh"
+        "description": "Công cụ hiệu chuẩn & xác nhận"
       },
       "etaLine": {
         "name": "Dòng ETA",
-        "description": "Điều khiển & I/O mô-đun"
+        "description": "I/O và điều khiển Mô-đun"
       },
-      "viewAll": "Xem Tất cả Sản phẩm"
+      "viewAll": "Xem Tất cả Sản phẩm",
+      "viewProducts": "Xem Sản phẩm",
+      "browseAll": "Duyệt Tất cả Sản phẩm"
+    },
+    "whyBapi": {
+      "title": "TẠI SAO LÀ BAPI?",
+      "description": "BAPI đã thay đổi cách bạn nghĩ về cảm biến kể từ năm 1993. Chúng tôi tin rằng các cảm biến không chỉ là những mặt hàng tiêu dùng đơn giản. Chúng là một bộ phận không thể thiếu của hệ thống điều khiển tự động hóa tòa nhà và rất quan trọng để tiết kiệm năng lượng. Cam kết của chúng tôi với đổi mới và chất lượng đã giúp BAPI trở thành một nhà sản xuất cảm biến hàng đầu toàn cầu với sự tập trung đáng kể vào chất lượng, độ tin cậy và giá trị.",
+      "warranty": {
+        "title": "Bảo hành",
+        "description": "Các sản phẩm của chúng tôi được thiết kế và sản xuất để tồn tại lâu dài. Chúng tôi cam kết điều này bằng cách cung cấp bảo hành 5 năm cho tất cả các sản phẩm của mình.",
+        "footnote": "Bảo hành trọn đời hạn chế cũng có sẵn cho nhiều cảm biến nhiệt độ phòng và ống gió.*"
+      },
+      "bapiBackedTitle": "Được BAPI Bảo trợ",
+      "bapiBackedDescription": "Hầu hết các nhà sản xuất cảm biến sẽ thay thế các sản phẩm lỗi của họ, nhưng chỉ BAPI có đủ tự tin để vượt xa tiêu chuẩn của ngành.",
+      "bapiBackedFootnote": "'Được BAPI Bảo trợ' có nghĩa là chúng tôi sẽ hỗ trợ mọi thứ chúng tôi bán, vì vậy hãy tự tin vào chất lượng của các sản phẩm của chúng tôi rằng nếu một sản phẩm bị hỏng trong thời gian bảo hành, chúng tôi sẽ không chỉ sửa chữa hoặc thay thế, mà còn cung cấp một chuyên gia sản phẩm để bù đắp chi phí phát sinh của bạn.*",
+      "bapiOriginal": {
+        "title": "Sản phẩm Gốc BAPI",
+        "description": "Tại BAPI, chúng tôi luôn cố gắng trở thành những người dẫn đầu trong ngành của chúng tôi bằng cách cung cấp các sản phẩm và dịch vụ sáng tạo, chất lượng cao được thiết kế với bạn trong tâm trí.",
+        "footnote": "Các sản phẩm có dấu hiệu \"Another Original\" (Sản phẩm Gốc khác) là độc đáo của BAPI và những thiết kế này đến từ các khách hàng quý báu, nhân viên tài năng và các nhà cung cấp được tôn trọng của chúng tôi. Ba thành phần này kết hợp tạo ra các giải pháp gốc dẫn đầu ngành để giải quyết các vấn đề thông thường trong HVACR."
+      }
+    },
+    "globalPresence": {
+      "title": "Sự Hiện diện Toàn cầu của chúng tôi",
+      "subtitle": "Từ trụ sở chính ở Wisconsin đến các cơ sở trên ba lục địa, BAPI phục vụ khách hàng trên toàn thế giới với chuyên môn địa phương và phạm vi toàn cầu."
+    },
+    "news": {
+      "badge": "Tin tức Mới nhất",
+      "title": "Luôn được Thông báo",
+      "subtitle": "Cập nhật mới nhất, thông báo sản phẩm và hiểu biết về ngành",
+      "viewAll": "Xem Tất cả Tin tức",
+      "noArticles": "Chưa có bài viết tin tức nào"
     }
   }
 }

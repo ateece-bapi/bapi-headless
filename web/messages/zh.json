@@ -22,25 +22,25 @@
   },
   "home": {
     "hero": {
-      "title": "建筑自动化精密传感器解决方案",
-      "description": "全球工程师信赖的NIST溯源传感器和BACnet认证控制器,适用于医疗保健、数据中心和关键设施。",
+      "title": "用于建筑自动化的精密传感器解决方案",
+      "description": "全球工程师信赖的NIST可追溯传感器和BACnet认证控制器,适用于医疗保健、数据中心和关键设施。",
       "cta": "探索产品",
       "secondaryCta": "联系销售",
-      "productFamilyTitle": "建筑自动化系统完整的传感器解决方案",
-      "productFamilySubtitle": "全球工程师信赖的精密监测和控制"
+      "productFamilyTitle": "建筑自动化系统的完整传感器解决方案",
+      "productFamilySubtitle": "全球工程师信赖的精密监控和控制"
     },
     "taglines": [
       "行业领先的传感器",
       "自1993年以来改变您对传感器的看法",
-      "无缝的无线集成,适用于您现有的建筑自动化系统",
+      "无缝的无线集成到您现有的BAS",
       "精密工程",
       "构建未来",
-      "...在细节之中",
+      "...它在细节中",
       "人。建筑。传感器"
     ],
     "stats": {
       "yearsValue": "30+",
-      "yearsLabel": "卓越年数",
+      "yearsLabel": "卓越年华",
       "productsValue": "608",
       "productsLabel": "产品型号",
       "globalValue": "全球",
@@ -50,7 +50,7 @@
     },
     "categories": {
       "title": "探索我们的产品目录",
-      "subtitle": "根据传感器类型浏览,找到您建筑自动化项目的完美解决方案",
+      "subtitle": "按传感器类型浏览,找到适合您建筑自动化项目的完美解决方案",
       "temperature": {
         "name": "温度传感器",
         "description": "高精度温度测量"
@@ -69,10 +69,10 @@
       },
       "wireless": {
         "name": "无线传感器",
-        "description": "WAM™云连接监测"
+        "description": "WAM™云端连接监测"
       },
       "accessories": {
-        "name": "附件",
+        "name": "配件",
         "description": "安装硬件和外壳"
       },
       "testInstruments": {
@@ -83,7 +83,37 @@
         "name": "ETA系列",
         "description": "模块化I/O和控制"
       },
-      "viewAll": "查看所有产品"
+      "viewAll": "查看所有产品",
+      "viewProducts": "查看产品",
+      "browseAll": "浏览所有产品"
+    },
+    "whyBapi": {
+      "title": "为什么选择BAPI?",
+      "description": "BAPI自1993年以来一直在改变您对传感器的看法。我们认为传感器不仅仅是简单的商品。它们是建筑自动化控制系统的组成部分,对于节能至关重要。我们对创新和质量的承诺帮助BAPI成长为全球领先的传感器解决方案制造商,专注于质量、可靠性和价值。",
+      "warranty": {
+        "title": "保修",
+        "description": "我们的产品经过精心设计和制造,确保耐用。我们通过提供5年全产品保修来支持这一声明。",
+        "footnote": "我们的许多单点、室内和管道温度传感器还提供终身有限保修。*"
+      },
+      "bapiBackedTitle": "BAPI支持",
+      "bapiBackedDescription": "大多数传感器制造商只会更换其有缺陷的产品,但只有BAPI有信心超越行业标准。",
+      "bapiBackedFootnote": "'BAPI支持'意味着我们为我们销售的所有产品提供支持,因此您可以放心我们产品的质量。如果一个产品在保修期内出现故障,我们不仅会修理或更换它,还会提供产品专家来抵消您的相关成本。*",
+      "bapiOriginal": {
+        "title": "BAPI原创",
+        "description": "在BAPI,我们努力成为行业的领导者,为您提供创新、高质量的产品和服务。",
+        "footnote": "带有'原创'标志的产品是BAPI独有的,其设计灵感来自于我们宝贵的客户、才华横溢的员工和受人尊敬的供应商。这三种因素的结合造就了行业领先的原创解决方案,用于解决常见的HVACR问题。"
+      }
+    },
+    "globalPresence": {
+      "title": "我们的全球存在",
+      "subtitle": "从位于威斯康星州的总部到跨三大洲的设施,BAPI凭借本地专业知识和全球覆盖为全球客户提供服务。"
+    },
+    "news": {
+      "badge": "最新新闻",
+      "title": "保持关注",
+      "subtitle": "最新更新、产品公告和行业洞见",
+      "viewAll": "查看所有新闻",
+      "noArticles": "暂无可用新闻文章"
     }
   },
   "footer": {

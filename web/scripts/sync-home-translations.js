@@ -44,7 +44,7 @@ Return ONLY the translated JSON, nothing else.`;
   try {
     const message = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',
-      max_tokens: 2048,
+      max_tokens: 4096, // Increased from 2048 to handle larger translation payloads
       messages: [{
         role: 'user',
         content: prompt
@@ -79,16 +79,28 @@ async function updateLanguageFile(langCode, translatedHome) {
 async function main() {
   console.log('🚀 Starting homepage translation...\n');
   
+  const failed = [];
+  
   for (const lang of languages) {
-    console.log(`📝 Translating to ${lang.name} (${lang.code})...`);
-    const translatedHome = await translateHomeSection(lang.code, lang.name);
-    await updateLanguageFile(lang.code, translatedHome);
-    
-    // Small delay to avoid rate limits
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      console.log(`📝 Translating to ${lang.name} (${lang.code})...`);
+      const translatedHome = await translateHomeSection(lang.code, lang.name);
+      await updateLanguageFile(lang.code, translatedHome);
+      
+      // Small delay to avoid rate limits
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    } catch (error) {
+      console.error(`❌ Failed to translate ${lang.name}: ${error.message}`);
+      failed.push(lang.name);
+      // Continue with other languages
+    }
   }
   
-  console.log('\n✨ All translations completed!');
+  console.log('\n✨ Translation process completed!');
+  if (failed.length > 0) {
+    console.log(`⚠️  Failed languages: ${failed.join(', ')}`);
+    console.log('💡 Tip: Re-run the script to retry failed languages');
+  }
   console.log('💰 Estimated cost: ~$0.50-1.00 (9 languages × small JSON)');
 }
 

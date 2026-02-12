@@ -36,7 +36,7 @@ fi
 if [ ! -d "../web/node_modules/@anthropic-ai" ]; then
   echo "📦 Installing @anthropic-ai/sdk in web directory..."
   cd ../web
-  npm install @anthropic-ai/sdk
+  pnpm add @anthropic-ai/sdk
   cd ../scripts
   echo ""
 fi
@@ -45,7 +45,7 @@ fi
 echo "🚀 Starting translation..."
 echo ""
 
-languages=("vi" "de" "fr" "es" "ja" "zh" "ar" "th")
+languages=("vi" "de" "fr" "es" "ja" "zh" "ar" "th" "pl" "hi")
 
 for lang in "${languages[@]}"; do
   if [ -f "${lang}.json" ]; then

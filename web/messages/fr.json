@@ -261,6 +261,14 @@
     "mena": "Moyen-Orient"
   },
   "megaMenu": {
+    "badges": {
+      "popular": "Populaire",
+      "premium": "Premium",
+      "premiumSolution": "Solution Premium",
+      "new": "Nouveau",
+      "download": "Télécharger",
+      "phase2": "Phase 2"
+    },
     "resources": {
       "label": "Ressources",
       "technicalDocumentation": {

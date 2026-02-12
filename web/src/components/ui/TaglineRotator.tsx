@@ -11,6 +11,11 @@ const TaglineRotator: React.FC<TaglineRotatorProps> = ({ taglines }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    // Guard: No rotation needed for empty array or single tagline
+    if (taglines.length <= 1) {
+      return;
+    }
+
     const interval = setInterval(() => {
       setIsVisible(false);
       setTimeout(() => {
@@ -21,6 +26,11 @@ const TaglineRotator: React.FC<TaglineRotatorProps> = ({ taglines }) => {
 
     return () => clearInterval(interval);
   }, [taglines.length]);
+
+  // Guard: Render safe fallback for empty array
+  if (taglines.length === 0) {
+    return null;
+  }
 
   return (
     <div className="flex h-[6rem] items-center justify-center sm:h-[5rem] lg:h-[6rem]">

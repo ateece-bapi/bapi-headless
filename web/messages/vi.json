@@ -76,6 +76,14 @@
     }
   },
   "megaMenu": {
+    "badges": {
+      "popular": "Phổ biến",
+      "premium": "Cao cấp",
+      "premiumSolution": "Giải pháp cao cấp",
+      "new": "Mới",
+      "download": "Tải xuống",
+      "phase2": "Giai đoạn 2"
+    },
     "products": {
       "label": "Sản phẩm",
       "temperature": {

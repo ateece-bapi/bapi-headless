@@ -36,6 +36,14 @@
     "signIn": "Logowanie użytkownika"
   },
   "megaMenu": {
+    "badges": {
+      "popular": "Popularne",
+      "premium": "Premium",
+      "premiumSolution": "Rozwiązanie Premium",
+      "new": "Nowe",
+      "download": "Pobierz",
+      "phase2": "Faza 2"
+    },
     "products": {
       "label": "Produkty",
       "temperature": {
@@ -100,8 +108,8 @@
       },
       "testInstruments": {
         "title": "Przyrządy pomiarowe",
-        "bluTestTemp": "Blu-Test Temperatura",
-        "bluTestTempDesc": "Wzorcowanie NIST",
+        "bluTestTemperature": "Blu-Test Temperatura",
+        "bluTestTemperatureDesc": "Wzorcowanie NIST",
         "bluTestHumidity": "Blu-Test Wilgotność",
         "bluTestHumidityDesc": "Wzorcowanie temp. + RH",
         "bluTestPressure": "Blu-Test Ciśnienie",

@@ -36,6 +36,14 @@
     "signIn": "Benutzer Anmelden"
   },
   "megaMenu": {
+    "badges": {
+      "popular": "Beliebt",
+      "premium": "Premium",
+      "premiumSolution": "Premium-Lösung",
+      "new": "Neu",
+      "download": "Herunterladen",
+      "phase2": "Phase 2"
+    },
     "resources": {
       "label": "Ressourcen",
       "technicalDocumentation": {

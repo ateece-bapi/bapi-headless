@@ -67,17 +67,18 @@ export default function middleware(request: NextRequest) {
   const response = intlMiddleware(request);
   
   // Override cache headers for static pages (GET requests only)
-  if (request.method === 'GET') {
-    // Static routes that should be CDN cached
-    const isStaticRoute = 
+  // CRITICAL: Never cache authenticated/protected routes to prevent data leakage
+  if (request.method === 'GET' && !isProtectedRoute && !isAdminRoute && !authToken) {
+    // Only cache truly public, non-personalized routes
+    const isPublicStaticRoute = 
       pathname === '/' ||
-      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)(\/.*)?$/) ||
+      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)\/?$/) || // Locale homepage only
       pathname.startsWith('/products') ||
       pathname.startsWith('/company') ||
       pathname.startsWith('/support') ||
       pathname.startsWith('/resources');
     
-    if (isStaticRoute) {
+    if (isPublicStaticRoute) {
       // Set proper cache headers for CDN
       response.headers.set(
         'Cache-Control',

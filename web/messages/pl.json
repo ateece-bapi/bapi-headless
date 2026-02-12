@@ -399,8 +399,8 @@
   },
   "footer": {
     "brand": {
-      "tagline": "Precyzyjne rozwiązania sensoryczne dla automatyki budynkowej",
-      "description": "Zaufane przez inżynierów na całym świecie w obiektach o kluczowym znaczeniu od 1993 roku"
+      "tagline": "Precyzyjne rozwiązania sensorowe dla automatyki budynkowej",
+      "description": "Zaufane na całym świecie przez inżynierów obiektów o kluczowym znaczeniu od 1993 roku"
     },
     "sections": {
       "products": {
@@ -408,7 +408,7 @@
         "links": {
           "allSensors": "Wszystkie czujniki",
           "wireless": "Monitorowanie bezprzewodowe",
-          "testInstruments": "Przyrządy testowe",
+          "testInstruments": "Instrumenty testowe",
           "airQuality": "Czujniki jakości powietrza",
           "accessories": "Akcesoria",
           "browseCatalog": "Przeglądaj katalog"
@@ -418,7 +418,7 @@
         "title": "Zasoby",
         "links": {
           "datasheets": "Karty katalogowe",
-          "installation": "Instrukcje instalacji",
+          "installation": "Przewodniki instalacji",
           "applicationNotes": "Notatki aplikacyjne",
           "videos": "Biblioteka wideo",
           "caseStudies": "Studia przypadków"
@@ -439,7 +439,7 @@
         "links": {
           "technical": "Wsparcie techniczne",
           "selector": "Selektor produktów",
-          "crossReference": "Krzyżowe odniesienie",
+          "crossReference": "Odnośnik krzyżowy",
           "distributorNetwork": "Sieć dystrybutorów"
         }
       }
@@ -455,25 +455,25 @@
     },
     "awards": {
       "title": "Nagrody i wyróżnienia",
-      "description": "Uznawani za innowacyjność i doskonałość w technologii automatyki budynkowej"
+      "description": "Uznani za innowacyjność i doskonałość w technologii automatyki budynkowej"
     },
     "certifications": {
       "title": "Certyfikaty",
       "bacnet": "Certyfikat BACnet B-ASC",
       "iso": "ISO 9001:2015",
-      "ul": "Certyfikat UL",
+      "ul": "Lista UL",
       "madeInUsa": "Wyprodukowano w USA"
     },
     "quickActions": {
       "title": "Szybkie działania",
-      "requestQuote": "Poproś o wycenę",
+      "requestQuote": "Poproś o ofertę",
       "findDistributor": "Znajdź dystrybutora"
     },
     "legal": {
       "copyright": "© {year} Building Automation Products, Inc. Wszelkie prawa zastrzeżone.",
-      "trademark": "BAPI® jest zarejestrowanym znakiem towarowym firmy Building Automation Products, Inc.",
+      "trademark": "BAPI® jest zarejestrowanym znakiem towarowym Building Automation Products, Inc.",
       "privacy": "Polityka prywatności",
-      "terms": "Warunki użytkowania"
+      "terms": "Warunki korzystania"
     },
     "social": {
       "linkedin": "LinkedIn",

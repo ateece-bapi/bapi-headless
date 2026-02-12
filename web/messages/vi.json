@@ -314,5 +314,89 @@
       "talkToSales": "Liên hệ Kinh doanh",
       "footer": "Sản xuất tại Hoa Kỳ • Giao hàng Cùng ngày • Chứng nhận ISO 9001:2015 • 30+ Năm Xuất sắc"
     }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "Các giải pháp cảm biến chính xác cho Tự động hóa Tòa nhà",
+      "description": "Được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho các cơ sở quan trọng kể từ năm 1993"
+    },
+    "sections": {
+      "products": {
+        "title": "Sản phẩm",
+        "links": {
+          "allSensors": "Tất cả Cảm biến",
+          "wireless": "Giám sát Không dây",
+          "testInstruments": "Dụng cụ Kiểm tra",
+          "airQuality": "Cảm biến Chất lượng Không khí",
+          "accessories": "Phụ kiện",
+          "browseCatalog": "Xem Danh mục"
+        }
+      },
+      "resources": {
+        "title": "Tài nguyên",
+        "links": {
+          "datasheets": "Tài liệu Kỹ thuật",
+          "installation": "Hướng dẫn Lắp đặt",
+          "applicationNotes": "Ghi chú Ứng dụng",
+          "videos": "Thư viện Video",
+          "caseStudies": "Các Nghiên cứu Trường hợp"
+        }
+      },
+      "company": {
+        "title": "Công ty",
+        "links": {
+          "mission": "Sứ mệnh & Giá trị",
+          "whyBapi": "Tại sao lại BAPI",
+          "news": "Tin tức",
+          "careers": "Cơ hội nghề nghiệp",
+          "contact": "Liên hệ với chúng tôi"
+        }
+      },
+      "support": {
+        "title": "Hỗ trợ",
+        "links": {
+          "technical": "Hỗ trợ Kỹ thuật",
+          "selector": "Trình chọn Sản phẩm",
+          "crossReference": "Tham chiếu Chéo",
+          "distributorNetwork": "Mạng lưới Nhà phân phối"
+        }
+      }
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "Giải thưởng & Công nhận",
+      "description": "Được công nhận về sự sáng tạo và xuất sắc trong công nghệ tự động hóa tòa nhà"
+    },
+    "certifications": {
+      "title": "Chứng nhận",
+      "bacnet": "Chứng nhận BACnet B-ASC",
+      "iso": "ISO 9001:2015",
+      "ul": "Đăng ký UL",
+      "madeInUsa": "Sản xuất tại Hoa Kỳ"
+    },
+    "quickActions": {
+      "title": "Hành động Nhanh",
+      "requestQuote": "Yêu cầu Báo giá",
+      "findDistributor": "Tìm Nhà phân phối"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. Bảo lưu mọi quyền.",
+      "trademark": "BAPI® là thương hiệu đã đăng ký của Building Automation Products, Inc.",
+      "privacy": "Chính sách Quyền riêng tư",
+      "terms": "Điều khoản Sử dụng"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "Theo dõi Chúng tôi"
+    }
   }
 }

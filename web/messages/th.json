@@ -242,7 +242,90 @@
       "footer": "ผลิตในสหรัฐอเมริกา • จัดส่งในวันเดียวกัน • ได้รับการรับรอง ISO 9001:2015 • ความเป็นเลิศกว่า 30 ปี"
     }
   },
-  "footer": {},
+  "footer": {
+    "brand": {
+      "tagline": "ระบบอัตโนมัติอาคารด้วยเซ็นเซอร์แม่นยำ",
+      "description": "เชื่อถือได้จากวิศวกรทั่วโลกสำหรับสิ่งอำนวยความสะดวกที่สำคัญมาตั้งแต่ปี 1993"
+    },
+    "sections": {
+      "products": {
+        "title": "ผลิตภัณฑ์",
+        "links": {
+          "allSensors": "เซ็นเซอร์ทั้งหมด",
+          "wireless": "การตรวจสอบแบบไร้สาย",
+          "testInstruments": "เครื่องมือทดสอบ",
+          "airQuality": "เซ็นเซอร์คุณภาพอากาศ",
+          "accessories": "อุปกรณ์เสริม",
+          "browseCatalog": "เรียกดูแค็ตตาล็อก"
+        }
+      },
+      "resources": {
+        "title": "ทรัพยากร",
+        "links": {
+          "datasheets": "แผ่นข้อมูลทางเทคนิค",
+          "installation": "คู่มือการติดตั้ง",
+          "applicationNotes": "บันทึกการใช้งาน",
+          "videos": "ห้องสมุดวิดีโอ",
+          "caseStudies": "กรณีศึกษา"
+        }
+      },
+      "company": {
+        "title": "บริษัท",
+        "links": {
+          "mission": "ภารกิจและค่านิยม",
+          "whyBapi": "ทำไมถึงเลือก BAPI",
+          "news": "ข่าวสาร",
+          "careers": "ตำแหน่งงาน",
+          "contact": "ติดต่อเรา"
+        }
+      },
+      "support": {
+        "title": "การสนับสนุน",
+        "links": {
+          "technical": "การสนับสนุนทางเทคนิค",
+          "selector": "เครื่องมือเลือกผลิตภัณฑ์",
+          "crossReference": "การอ้างอิงข้าม",
+          "distributorNetwork": "เครือข่ายผู้จัดจำหน่าย"
+        }
+      }
+    },
+    "contact": {
+      "title": "ติดต่อ",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "รางวัลและการยอมรับ",
+      "description": "ได้รับการยอมรับในนวัตกรรมและความเป็นเลิศในเทคโนโลยีการควบคุมอาคาร"
+    },
+    "certifications": {
+      "title": "การรับรอง",
+      "bacnet": "ได้รับการรับรอง BACnet B-ASC",
+      "iso": "ISO 9001:2015",
+      "ul": "ได้รับการรับรอง UL",
+      "madeInUsa": "ผลิตในสหรัฐอเมริกา"
+    },
+    "quickActions": {
+      "title": "การดำเนินการด่วน",
+      "requestQuote": "ขอใบเสนอราคา",
+      "findDistributor": "ค้นหาตัวแทนจำหน่าย"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. สงวนลิขสิทธิ์.",
+      "trademark": "BAPI® เป็นเครื่องหมายการค้าจดทะเบียนของ Building Automation Products, Inc.",
+      "privacy": "นโยบายความเป็นส่วนตัว",
+      "terms": "ข้อกำหนดการใช้งาน"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "ติดตามเรา"
+    }
+  },
   "region": {},
   "units": {},
   "errors": {},

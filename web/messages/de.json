@@ -274,5 +274,89 @@
       "talkToSales": "Mit Vertrieb sprechen",
       "footer": "Hergestellt in den USA • Versand am selben Tag • ISO 9001:2015 zertifiziert • 30+ Jahre Exzellenz"
     }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "Präzisionssensorlösungen für die Gebäudeautomation",
+      "description": "Seit 1993 weltweit von Ingenieuren für lebensnotwendige Einrichtungen vertraut"
+    },
+    "sections": {
+      "products": {
+        "title": "Produkte",
+        "links": {
+          "allSensors": "Alle Sensoren",
+          "wireless": "Drahtlose Überwachung",
+          "testInstruments": "Prüfinstrumente",
+          "airQuality": "Luftqualitätssensoren",
+          "accessories": "Zubehör",
+          "browseCatalog": "Katalog durchsuchen"
+        }
+      },
+      "resources": {
+        "title": "Ressourcen",
+        "links": {
+          "datasheets": "Technische Datenblätter",
+          "installation": "Installationsanleitungen",
+          "applicationNotes": "Anwendungshinweise",
+          "videos": "Videobibliothek",
+          "caseStudies": "Fallstudien"
+        }
+      },
+      "company": {
+        "title": "Unternehmen",
+        "links": {
+          "mission": "Mission & Werte",
+          "whyBapi": "Warum BAPI",
+          "news": "Nachrichten",
+          "careers": "Karriere",
+          "contact": "Kontaktieren Sie uns"
+        }
+      },
+      "support": {
+        "title": "Unterstützung",
+        "links": {
+          "technical": "Technischer Support",
+          "selector": "Produktwähler",
+          "crossReference": "Kreuzreferenz",
+          "distributorNetwork": "Händlernetzwerk"
+        }
+      }
+    },
+    "contact": {
+      "title": "Kontakt",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "Auszeichnungen & Anerkennungen",
+      "description": "Für Innovation und Exzellenz in der Gebäudeautomationstechnologie ausgezeichnet"
+    },
+    "certifications": {
+      "title": "Zertifizierungen",
+      "bacnet": "BACnet B-ASC zertifiziert",
+      "iso": "ISO 9001:2015",
+      "ul": "UL aufgelistet",
+      "madeInUsa": "Hergestellt in den USA"
+    },
+    "quickActions": {
+      "title": "Schnellaktionen",
+      "requestQuote": "Preisangebot anfordern",
+      "findDistributor": "Händler finden"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. Alle Rechte vorbehalten.",
+      "trademark": "BAPI® ist ein eingetragenes Markenzeichen von Building Automation Products, Inc.",
+      "privacy": "Datenschutzrichtlinie",
+      "terms": "Nutzungsbedingungen"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "Folgen Sie uns"
+    }
   }
 }

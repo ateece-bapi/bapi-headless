@@ -174,13 +174,88 @@
     }
   },
   "footer": {
-    "tagline": "حلول استشعار دقيقة لأتمتة المباني",
-    "taglineDesc": "موثوق بها من قبل المهندسين في جميع أنحاء العالم لأجهزة استشعار HVAC/R الموثوقة",
-    "quickLinks": "روابط سريعة",
-    "contact": "اتصل بنا",
-    "address": "750 N Royal Ave, Gays Mills, WI 54631",
-    "phone": "(608) 735-4800",
-    "copyright": "© {year} BAPI. جميع الحقوق محفوظة."
+    "brand": {
+      "tagline": "حلول استشعار الدقة لأتمتة المباني",
+      "description": "يثق بها المهندسون في جميع أنحاء العالم للمرافق الحرجة منذ عام 1993"
+    },
+    "sections": {
+      "products": {
+        "title": "المنتجات",
+        "links": {
+          "allSensors": "جميع المستشعرات",
+          "wireless": "المراقبة اللاسلكية",
+          "testInstruments": "أجهزة الاختبار",
+          "airQuality": "مستشعرات جودة الهواء",
+          "accessories": "الملحقات",
+          "browseCatalog": "استعرض الكتالوج"
+        }
+      },
+      "resources": {
+        "title": "الموارد",
+        "links": {
+          "datasheets": "أوراق البيانات الفنية",
+          "installation": "أدلة التركيب",
+          "applicationNotes": "ملاحظات التطبيق",
+          "videos": "مكتبة الفيديو",
+          "caseStudies": "دراسات الحالة"
+        }
+      },
+      "company": {
+        "title": "الشركة",
+        "links": {
+          "mission": "الرسالة والقيم",
+          "whyBapi": "لماذا BAPI",
+          "news": "الأخبار",
+          "careers": "الوظائف",
+          "contact": "اتصل بنا"
+        }
+      },
+      "support": {
+        "title": "الدعم",
+        "links": {
+          "technical": "الدعم الفني",
+          "selector": "منتج المنتج",
+          "crossReference": "المرجع المتقاطع",
+          "distributorNetwork": "شبكة الموزعين"
+        }
+      }
+    },
+    "contact": {
+      "title": "الاتصال",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "الجوائز والاعتراف",
+      "description": "تم الاعتراف به من أجل الابتكار والتميز في تكنولوجيا أتمتة المباني"
+    },
+    "certifications": {
+      "title": "الشهادات",
+      "bacnet": "شهادة BACnet B-ASC",
+      "iso": "ISO 9001:2015",
+      "ul": "قائمة UL",
+      "madeInUsa": "صنع في الولايات المتحدة الأمريكية"
+    },
+    "quickActions": {
+      "title": "الإجراءات السريعة",
+      "requestQuote": "طلب عرض سعر",
+      "findDistributor": "ابحث عن موزع"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. جميع الحقوق محفوظة.",
+      "trademark": "BAPI® هي علامة تجارية مسجلة لـ Building Automation Products, Inc.",
+      "privacy": "سياسة الخصوصية",
+      "terms": "شروط الاستخدام"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "تابعنا"
+    }
   },
   "region": {
     "demo": {

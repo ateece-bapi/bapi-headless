@@ -168,7 +168,88 @@
     }
   },
   "footer": {
-    "copyright": "© {year} BAPI. 保留所有权利。"
+    "brand": {
+      "tagline": "建筑自动化精密传感器解决方案",
+      "description": "自1993年以来深受全球工程师信赖的关键设施"
+    },
+    "sections": {
+      "products": {
+        "title": "产品",
+        "links": {
+          "allSensors": "所有传感器",
+          "wireless": "无线监测",
+          "testInstruments": "测试仪器",
+          "airQuality": "空气质量传感器",
+          "accessories": "配件",
+          "browseCatalog": "浏览目录"
+        }
+      },
+      "resources": {
+        "title": "资源",
+        "links": {
+          "datasheets": "技术数据表",
+          "installation": "安装指南",
+          "applicationNotes": "应用说明",
+          "videos": "视频库",
+          "caseStudies": "案例研究"
+        }
+      },
+      "company": {
+        "title": "公司",
+        "links": {
+          "mission": "使命与价值观",
+          "whyBapi": "为什么选择BAPI",
+          "news": "新闻",
+          "careers": "职业机会",
+          "contact": "联系我们"
+        }
+      },
+      "support": {
+        "title": "支持",
+        "links": {
+          "technical": "技术支持",
+          "selector": "产品选择器",
+          "crossReference": "交叉参考",
+          "distributorNetwork": "经销商网络"
+        }
+      }
+    },
+    "contact": {
+      "title": "联系我们",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "奖项与认可",
+      "description": "因在建筑自动化技术方面的创新和卓越而获奖"
+    },
+    "certifications": {
+      "title": "认证",
+      "bacnet": "BACnet B-ASC认证",
+      "iso": "ISO 9001:2015",
+      "ul": "UL列表",
+      "madeInUsa": "美国制造"
+    },
+    "quickActions": {
+      "title": "快速操作",
+      "requestQuote": "请求报价",
+      "findDistributor": "找到经销商"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. 版权所有.",
+      "trademark": "BAPI®是Building Automation Products, Inc.的注册商标.",
+      "privacy": "隐私政策",
+      "terms": "使用条款"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "关注我们"
+    }
   },
   "region": {
     "us": "美国",

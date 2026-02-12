@@ -168,7 +168,88 @@
     }
   },
   "footer": {
-    "copyright": "© {year} BAPI. 全著作権所有。"
+    "brand": {
+      "tagline": "建築オートメーションのための精密センサーソリューション",
+      "description": "1993年以来、世界中のエンジニアに信頼されている重要施設向け"
+    },
+    "sections": {
+      "products": {
+        "title": "製品",
+        "links": {
+          "allSensors": "全センサー",
+          "wireless": "ワイヤレスモニタリング",
+          "testInstruments": "テスト機器",
+          "airQuality": "空気質センサー",
+          "accessories": "アクセサリー",
+          "browseCatalog": "カタログを閲覧"
+        }
+      },
+      "resources": {
+        "title": "リソース",
+        "links": {
+          "datasheets": "テクニカルデータシート",
+          "installation": "設置ガイド",
+          "applicationNotes": "アプリケーションノート",
+          "videos": "ビデオライブラリー",
+          "caseStudies": "事例研究"
+        }
+      },
+      "company": {
+        "title": "会社",
+        "links": {
+          "mission": "ミッションと価値観",
+          "whyBapi": "なぜBAPIか",
+          "news": "ニュース",
+          "careers": "採用情報",
+          "contact": "お問い合わせ"
+        }
+      },
+      "support": {
+        "title": "サポート",
+        "links": {
+          "technical": "テクニカルサポート",
+          "selector": "製品セレクター",
+          "crossReference": "クロスリファレンス",
+          "distributorNetwork": "販売店ネットワーク"
+        }
+      }
+    },
+    "contact": {
+      "title": "連絡先",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "賞と認定",
+      "description": "建築オートメーション技術における革新と卓越性が認められています"
+    },
+    "certifications": {
+      "title": "認証",
+      "bacnet": "BACnet B-ASC 認証",
+      "iso": "ISO 9001:2015",
+      "ul": "UL 認定",
+      "madeInUsa": "米国製"
+    },
+    "quickActions": {
+      "title": "クイックアクション",
+      "requestQuote": "見積もりリクエスト",
+      "findDistributor": "販売店を探す"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. All rights reserved.",
+      "trademark": "BAPI®は Building Automation Products, Inc.の登録商標です。",
+      "privacy": "プライバシーポリシー",
+      "terms": "利用規約"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "フォローする"
+    }
   },
   "region": {
     "us": "アメリカ合衆国",

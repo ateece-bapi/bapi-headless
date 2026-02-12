@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import { GlobalPresence } from '@/components/company/GlobalPresence';
 import { getPosts } from '@/lib/wordpress';
 import { locales } from '@/i18n';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { 
   ArrowRight,
   Globe,
@@ -48,13 +49,43 @@ export function generateStaticParams() {
  */
 export const revalidate = 3600;
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  // Await params and set request locale for next-intl
+  const { locale } = await params;
+  setRequestLocale(locale);
+  
+  // Get translations
+  const t = await getTranslations('home');
+  
+  // Prepare hero translations
+  const heroTranslations = {
+    title: t('hero.title'),
+    description: t('hero.description'),
+    cta: t('hero.cta'),
+    secondaryCta: t('hero.secondaryCta'),
+    productFamilyTitle: t('hero.productFamilyTitle'),
+    productFamilySubtitle: t('hero.productFamilySubtitle'),
+    taglines: [
+      t('taglines.0'),
+      t('taglines.1'),
+      t('taglines.2'),
+      t('taglines.3'),
+      t('taglines.4'),
+      t('taglines.5'),
+      t('taglines.6'),
+    ],
+  };
+  
   // Fetch latest 3 news posts
   const posts = await getPosts({ perPage: 3 });
   return (
     <main className="min-h-screen">
       {/* Hero Section - Simplified with ONE primary CTA */}
-      <Hero />
+      <Hero translations={heroTranslations} />
 
       {/* Quick Stats Bar */}
       <section className="bg-neutral-50 py-12 lg:py-16">
@@ -70,9 +101,9 @@ export default async function Home() {
                   <TrendingUp className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
-                  30+
+                  {t('stats.yearsValue')}
                 </div>
-                <div className="text-sm font-medium text-white/90">Years of Excellence</div>
+                <div className="text-sm font-medium text-white/90">{t('stats.yearsLabel')}</div>
               </div>
 
               {/* 608 Products */}
@@ -81,9 +112,9 @@ export default async function Home() {
                   <Package className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
-                  608
+                  {t('stats.productsValue')}
                 </div>
-                <div className="text-sm font-medium text-white/90">Product Models</div>
+                <div className="text-sm font-medium text-white/90">{t('stats.productsLabel')}</div>
               </div>
 
               {/* Global Reach */}
@@ -92,9 +123,9 @@ export default async function Home() {
                   <Globe className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
-                  Global
+                  {t('stats.globalValue')}
                 </div>
-                <div className="text-sm font-medium text-white/90">Reach & Support</div>
+                <div className="text-sm font-medium text-white/90">{t('stats.globalLabel')}</div>
               </div>
 
               {/* ISO 9001 */}
@@ -103,9 +134,9 @@ export default async function Home() {
                   <ShieldCheck className="w-7 h-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
-                  ISO 9001
+                  {t('stats.isoValue')}
                 </div>
-                <div className="text-sm font-medium text-white/90">Certified Quality</div>
+                <div className="text-sm font-medium text-white/90">{t('stats.isoLabel')}</div>
               </div>
             </div>
           </div>
@@ -117,70 +148,70 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-              Explore Our Product Catalog
+              {t('categories.title')}
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              Browse by sensor type to find the perfect solution for your building automation project
+              {t('categories.subtitle')}
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               {
-                name: 'Temperature Sensors',
+                name: t('categories.temperature.name'),
                 icon: '/images/icons/Temperature_Icon.webp',
                 href: '/products',
                 count: 119,
-                description: 'High-accuracy temperature measurement'
+                description: t('categories.temperature.description')
               },
               {
-                name: 'Humidity Sensors',
+                name: t('categories.humidity.name'),
                 icon: '/images/icons/Humidity_Icon.webp',
                 href: '/products',
                 count: 33,
-                description: 'Precise relative humidity monitoring'
+                description: t('categories.humidity.description')
               },
               {
-                name: 'Pressure Sensors',
+                name: t('categories.pressure.name'),
                 icon: '/images/icons/Pressure_Icon.webp',
                 href: '/products',
                 count: 39,
-                description: 'Differential and static pressure'
+                description: t('categories.pressure.description')
               },
               {
-                name: 'Air Quality',
+                name: t('categories.airQuality.name'),
                 icon: '/images/icons/AirQuality_Icon.webp',
                 href: '/products',
                 count: 32,
-                description: 'CO₂, VOC, and particulate monitoring'
+                description: t('categories.airQuality.description')
               },
               {
-                name: 'Wireless Sensors',
+                name: t('categories.wireless.name'),
                 icon: '/images/icons/Wireless_Icon.webp',
                 href: '/products',
                 count: 24,
-                description: 'Battery-powered solutions'
+                description: t('categories.wireless.description')
               },
               {
-                name: 'Accessories',
+                name: t('categories.accessories.name'),
                 icon: '/images/icons/Accessories_Icon.webp',
                 href: '/products',
                 count: 45,
-                description: 'Mounting hardware and cables'
+                description: t('categories.accessories.description')
               },
               {
-                name: 'Test Instruments',
+                name: t('categories.testInstruments.name'),
                 icon: '/images/icons/Test_Instruments_Icon.webp',
                 href: '/products',
                 count: 8,
-                description: 'Calibration and testing equipment'
+                description: t('categories.testInstruments.description')
               },
               {
-                name: 'ETA Line',
+                name: t('categories.etaLine.name'),
                 icon: '/images/icons/Sensors_Icon.webp',
                 href: '/products',
                 count: 70,
-                description: 'Modular I/O and control'
+                description: t('categories.etaLine.description')
               }
             ].map((category) => {
               return (

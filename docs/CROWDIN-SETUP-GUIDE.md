@@ -24,7 +24,7 @@
 1. Click **"Create Project"**
 2. **Project Name:** `BAPI Headless E-Commerce`
 3. **Source Language:** English
-4. **Target Languages:** Select all 8:
+4. **Target Languages:** Select all 9:
    - 🇩🇪 German (Deutsch)
    - 🇫🇷 French (Français)
    - 🇪🇸 Spanish (Español)
@@ -33,6 +33,7 @@
    - 🇻🇳 Vietnamese (Tiếng Việt) - **HIGHEST PRIORITY**
    - 🇸🇦 Arabic (العربية)
    - 🇹🇭 Thai (ไทย)
+   - 🇵🇱 Polish (Polski)
 
 5. **Project Type:** Web Application (JSON)
 6. Click **"Create"**

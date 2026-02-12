@@ -20,7 +20,7 @@
  * node translate-with-ai.js all # All 8 languages
  */
 
-const Anthropic = require('@anthropic-ai/sdk');
+const Anthropic = require('../web/node_modules/@anthropic-ai/sdk');
 const fs = require('fs');
 const path = require('path');
 
@@ -51,7 +51,7 @@ async function translateFile(targetLang) {
   console.log(`\n🌐 Translating to ${targetLang.toUpperCase()}...`);
   
   // Read source file
-  const sourcePath = path.join(__dirname, '../web/messages/en.json');
+  const sourcePath = path.join(__dirname, 'en.json');
   const source = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
   
   // Create translation prompt
@@ -91,8 +91,8 @@ Translate now:`;
     console.log('⏳ Calling Claude API...');
     
     const message = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 16000,
+      model: 'claude-3-opus-20240229', // Most capable model for complex translations
+      max_tokens: 4096, // Opus max output tokens
       temperature: 0.3, // Lower temperature for consistency
       messages: [{ 
         role: 'user', 
@@ -110,7 +110,7 @@ Translate now:`;
     const translated = JSON.parse(translatedText);
     
     // Write to file
-    const outputPath = path.join(__dirname, `../web/messages/${targetLang}.json`);
+    const outputPath = path.join(__dirname, `${targetLang}.json`);
     fs.writeFileSync(outputPath, JSON.stringify(translated, null, 2) + '\n');
     
     // Calculate stats
@@ -118,7 +118,7 @@ Translate now:`;
     const translatedKeys = JSON.stringify(translated).split(',').length;
     
     console.log(`✅ Translation complete!`);
-    console.log(`   Output: web/messages/${targetLang}.json`);
+    console.log(`   Output: ${targetLang}.json`);
     console.log(`   Keys: ${translatedKeys} (source: ${sourceKeys})`);
     console.log(`   Cost: ~$${(message.usage.input_tokens * 0.000003 + message.usage.output_tokens * 0.000015).toFixed(2)}`);
     

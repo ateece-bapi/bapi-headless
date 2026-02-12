@@ -22,9 +22,68 @@
   },
   "home": {
     "hero": {
-      "title": "Soluciones de sensores de precisión para automatización de edificios",
-      "subtitle": "Confiado por ingenieros de todo el mundo para detección HVAC/R confiable",
-      "cta": "Explorar productos"
+      "title": "Soluciones de Sensores de Precisión para la Automatización de Edificios",
+      "description": "Sensores trazables a NIST y controladores certificados por BACnet, confiables para ingenieros de todo el mundo en la atención médica, los centros de datos y las instalaciones críticas.",
+      "cta": "Explorar Productos",
+      "secondaryCta": "Hablar con Ventas",
+      "productFamilyTitle": "Soluciones de sensores completas para sistemas de automatización de edificios",
+      "productFamilySubtitle": "Confiables para ingenieros de todo el mundo para el monitoreo y control de precisión"
+    },
+    "taglines": [
+      "Sensores Líderes de la Industria",
+      "Cambiando la forma en que piensas sobre los sensores desde 1993",
+      "Integración inalámbrica sin problemas para tu sistema BAS existente",
+      "Ingeniería de Precisión",
+      "Construyendo el Futuro",
+      "...Está en los detalles",
+      "Personas. Edificio. Sensores"
+    ],
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Años de Excelencia",
+      "productsValue": "608",
+      "productsLabel": "Modelos de Productos",
+      "globalValue": "Global",
+      "globalLabel": "Alcance y Soporte",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Calidad Certificada"
+    },
+    "categories": {
+      "title": "Explora Nuestro Catálogo de Productos",
+      "subtitle": "Navega por tipo de sensor para encontrar la solución perfecta para tu proyecto de automatización de edificios",
+      "temperature": {
+        "name": "Sensores de Temperatura",
+        "description": "Medición de temperatura de alta precisión"
+      },
+      "humidity": {
+        "name": "Sensores de Humedad",
+        "description": "Monitoreo preciso de humedad relativa"
+      },
+      "pressure": {
+        "name": "Sensores de Presión",
+        "description": "Presión diferencial y estática"
+      },
+      "airQuality": {
+        "name": "Sensores de Calidad del Aire",
+        "description": "Monitoreo de CO₂, COV y partículas"
+      },
+      "wireless": {
+        "name": "Sensores Inalámbricos",
+        "description": "Monitoreo conectado a la nube WAM™"
+      },
+      "accessories": {
+        "name": "Accesorios",
+        "description": "Herrajes de montaje y gabinetes"
+      },
+      "testInstruments": {
+        "name": "Instrumentos de Prueba",
+        "description": "Herramientas de calibración y verificación"
+      },
+      "etaLine": {
+        "name": "Línea ETA",
+        "description": "E/S modular y control"
+      },
+      "viewAll": "Ver Todos los Productos"
     }
   },
   "footer": {
@@ -35,5 +94,98 @@
     "eu": "Europa",
     "asia": "Asia-Pacífico",
     "mena": "Medio Oriente"
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "Recursos",
+      "technicalDocumentation": {
+        "title": "Documentación Técnica",
+        "applicationNotes": "Notas de Aplicación",
+        "applicationNotesDesc": "Guía de diseño y mejores prácticas",
+        "serviceBulletins": "Boletines de Servicio",
+        "serviceBulletinsDesc": "Actualizaciones y anuncios de productos",
+        "datasheets": "Hojas de Datos",
+        "datasheetsDesc": "Especificaciones completas del producto",
+        "sensorsOverview": "Resumen de Sensores",
+        "sensorsOverviewDesc": "Comparar especificaciones de sensores"
+      },
+      "toolsGuides": {
+        "title": "Herramientas y Guías",
+        "catalog": "Catálogo de Productos",
+        "catalogDesc": "Catálogo completo con precios",
+        "siteVerification": "Herramienta de Verificación del Sitio",
+        "siteVerificationDesc": "Prueba de fuerza de la señal inalámbrica",
+        "productSelector": "Selector de Productos",
+        "productSelectorDesc": "Encuentra el sensor adecuado"
+      },
+      "learningCenter": {
+        "title": "Centro de Aprendizaje",
+        "videos": "Biblioteca de Videos",
+        "videosDesc": "Videos instructivos y tutoriales",
+        "caseStudies": "Estudios de Caso",
+        "caseStudiesDesc": "Historias de éxito del mundo real",
+        "webinars": "Webinars",
+        "webinarsDesc": "Sesiones de capacitación en vivo"
+      },
+      "featured": {
+        "title": "¿Necesita Documentación Técnica?",
+        "description": "Acceda a nuestra biblioteca completa de notas de aplicación, hojas de datos y recursos técnicos para ayudarlo a diseñar y especificar la solución perfecta.",
+        "cta": "Navegar por los Recursos"
+      }
+    },
+    "support": {
+      "label": "Obtener ayuda",
+      "getHelp": {
+        "title": "Obtener ayuda",
+        "contactSupport": "Contactar con el soporte",
+        "contactSupportDesc": "Habla con nuestros ingenieros",
+        "rmaRequest": "Solicitud de RMA",
+        "rmaRequestDesc": "Autorización de devolución de mercancía",
+        "whereToBuy": "Dónde comprar",
+        "whereToBuyDesc": "Encuentra un distribuidor cerca de ti"
+      },
+      "existingCustomers": {
+        "title": "Para clientes existentes",
+        "myAccount": "Mi cuenta",
+        "myAccountDesc": "Ver pedidos y cotizaciones",
+        "orderStatus": "Estado del pedido",
+        "orderStatusDesc": "Realiza un seguimiento de tus envíos",
+        "requestQuote": "Solicitar una cotización",
+        "requestQuoteDesc": "Obtén precios para tu proyecto"
+      },
+      "featured": {
+        "title": "¿Necesitas soporte técnico?",
+        "description": "Nuestro experimentado equipo de ingeniería está listo para ayudarte con la selección de productos, especificaciones y resolución de problemas.",
+        "cta": "Contactar con el soporte"
+      }
+    },
+    "company": {
+      "label": "Sobre BAPI",
+      "aboutBapi": {
+        "title": "Sobre BAPI",
+        "whyBapi": "Por qué BAPI",
+        "whyBapiDesc": "Por qué elegir los sensores BAPI",
+        "missionValues": "Misión y Valores",
+        "missionValuesDesc": "Lo que nos mueve",
+        "news": "Noticias y Eventos",
+        "newsDesc": "Últimos anuncios",
+        "careers": "Carreras",
+        "careersDesc": "Únete a nuestro equipo"
+      },
+      "getInTouch": {
+        "title": "Ponte en Contacto",
+        "contactSales": "Contactar Ventas",
+        "contactSalesDesc": "Habla con un representante",
+        "whereToBuy": "Dónde Comprar",
+        "whereToBuyDesc": "Encuentra un distribuidor",
+        "requestQuote": "Solicitar Cotización",
+        "requestQuoteDesc": "Obtener precios"
+      },
+      "featured": {
+        "title": "¿Listo para Transformar tu Automatización de Edificios?",
+        "description": "Conéctate con nuestro equipo para discutir los requisitos de tu proyecto y descubrir la solución de sensor perfecta.",
+        "cta": "Contacta a Nuestro Equipo"
+      }
+    }
   }
 }

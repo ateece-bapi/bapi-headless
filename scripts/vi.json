@@ -1,0 +1,516 @@
+{
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "tryAgain": "Thử lại",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "close": "Đóng",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước đó",
+    "submit": "Gửi",
+    "confirm": "Xác nhận",
+    "learnMore": "Tìm hiểu thêm",
+    "viewAll": "Xem tất cả",
+    "readMore": "Đọc thêm",
+    "showMore": "Hiển thị thêm",
+    "showLess": "Hiển thị ít hơn",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "sort": "Sắp xếp",
+    "clearAll": "Xóa tất cả",
+    "apply": "Áp dụng",
+    "reset": "Đặt lại"
+  },
+  "nav": {
+    "products": "Sản phẩm",
+    "applications": "Ứng dụng",
+    "support": "Hỗ trợ",
+    "company": "Công ty",
+    "cart": "Giỏ hàng",
+    "account": "Tài khoản",
+    "signIn": "Đăng nhập"
+  },
+  "megaMenu": {
+    "products": {
+      "label": "Sản phẩm",
+      "temperature": {
+        "title": "Nhiệt độ",
+        "roomWallSensors": "Cảm biến phòng & tường",
+        "roomWallSensorsDesc": "Cảm biến nhiệt độ độ chính xác cao",
+        "ductSensors": "Cảm biến ống dẫn",
+        "ductSensorsDesc": "Bộ phát tín hiệu lắp trên ống dẫn",
+        "immersionWell": "Ngâm & Giếng",
+        "immersionWellDesc": "Đo nhiệt độ chất lỏng",
+        "outdoorSensors": "Cảm biến ngoài trời",
+        "outdoorSensorsDesc": "Cảm biến chịu thời tiết"
+      },
+      "humidity": {
+        "title": "Độ ẩm",
+        "roomHumidity": "Độ ẩm phòng",
+        "roomHumidityDesc": "Cảm biến RH lắp tường",
+        "ductHumidity": "Độ ẩm ống dẫn",
+        "ductHumidityDesc": "Độ ẩm không khí cấp & trả",
+        "outdoorHumidity": "Độ ẩm ngoài trời",
+        "outdoorHumidityDesc": "Cảm biến RH chịu thời tiết",
+        "comboSensors": "Cảm biến kết hợp",
+        "comboSensorsDesc": "Nhiệt độ + độ ẩm"
+      },
+      "pressure": {
+        "title": "Áp suất",
+        "differential": "Áp suất chênh lệch",
+        "differentialDesc": "Giám sát phòng & bộ lọc",
+        "static": "Áp suất tĩnh",
+        "staticDesc": "Bộ phát tín hiệu áp suất ống dẫn",
+        "barometric": "Áp suất khí quyển",
+        "barometricDesc": "Áp suất khí quyển"
+      },
+      "airQuality": {
+        "title": "Chất lượng không khí",
+        "co2": "Cảm biến CO₂",
+        "co2Desc": "Giám sát khí carbon dioxide",
+        "voc": "Cảm biến VOC",
+        "vocDesc": "Hợp chất hữu cơ bay hơi",
+        "particulate": "Chất lơ lửng",
+        "particulateDesc": "PM2.5 và PM10"
+      },
+      "wireless": {
+        "title": "Không dây",
+        "wamTemperature": "WAM Nhiệt độ",
+        "wamTemperatureDesc": "Cảm biến nhiệt độ không dây",
+        "wamHumidity": "WAM Độ ẩm",
+        "wamHumidityDesc": "Cảm biến RH không dây",
+        "wamDoorSensors": "WAM Cảm biến cửa",
+        "wamDoorSensorsDesc": "Giám sát mở/đóng",
+        "cloudPlatform": "Nền tảng đám mây",
+        "cloudPlatformDesc": "Giám sát từ xa 24/7"
+      },
+      "accessories": {
+        "title": "Phụ kiện",
+        "mounting": "Phụ kiện lắp đặt",
+        "mountingDesc": "Tấm, hộp, giá đỡ",
+        "enclosures": "Vỏ bọc",
+        "enclosuresDesc": "BAPI-Box & nắp đậy",
+        "cables": "Cáp & Đầu nối",
+        "cablesDesc": "Phụ kiện dây điện"
+      },
+      "testInstruments": {
+        "title": "Thiết bị kiểm tra",
+        "bluTestTemp": "Blu-Test Nhiệt độ",
+        "bluTestTempDesc": "Tham chiếu NIST",
+        "bluTestHumidity": "Blu-Test Độ ẩm",
+        "bluTestHumidityDesc": "Tham chiếu nhiệt độ + RH",
+        "bluTestPressure": "Blu-Test Áp suất",
+        "bluTestPressureDesc": "Áp kế kỹ thuật số"
+      },
+      "featured": {
+        "wamTitle": "WAM™ Giám sát tài sản không dây",
+        "wamDescription": "Giám sát từ xa 24/7 với cảnh báo ngay lập tức. Bảo vệ các tài sản có giá trị của bạn khỏi mất điện và sự cố thiết bị. Không cần dây điện - bắt đầu sử dụng trong vài phút.",
+        "wamCta": "Tìm hiểu thêm",
+        "wamBadge": "Giải pháp cao cấp"
+      },
+      "badges": {
+        "popular": "Phổ biến",
+        "new": "Mới",
+        "premium": "Cao cấp"
+      }
+    },
+    "support": {
+      "label": "Hỗ trợ",
+      "technical": {
+        "title": "Hỗ trợ kỹ thuật",
+        "phone": "Hỗ trợ qua điện thoại",
+        "phoneDesc": "Trao đổi với các kỹ sư của chúng tôi",
+        "email": "Hỗ trợ qua email",
+        "emailDesc": "Nhận trợ giúp chi tiết",
+        "chat": "Trò chuyện trực tiếp",
+        "chatDesc": "Nhận câu trả lời ngay lập tức"
+      },
+      "resources": {
+        "title": "Tài nguyên",
+        "datasheets": "Tài liệu kỹ thuật",
+        "datasheetsDesc": "Thông số kỹ thuật",
+        "installGuides": "Hướng dẫn lắp đặt",
+        "installGuidesDesc": "Hướng dẫn từng bước",
+        "appNotes": "Ghi chú ứng dụng",
+        "appNotesDesc": "Hướng dẫn thiết kế",
+        "videos": "Thư viện video",
+        "videosDesc": "Video hướng dẫn"
+      },
+      "tools": {
+        "title": "Công cụ & Tải về",
+        "selector": "Trình chọn sản phẩm",
+        "selectorDesc": "Tìm cảm biến phù hợp",
+        "crossRef": "Tham chiếu chéo",
+        "crossRefDesc": "Tìm sản phẩm tương đương BAPI",
+        "software": "Phần mềm cấu hình",
+        "softwareDesc": "Tải công cụ cài đặt"
+      }
+    },
+    "company": {
+      "label": "Công ty",
+      "about": {
+        "title": "Về BAPI",
+        "mission": "Sứ mệnh & Giá trị",
+        "missionDesc": "Những gì thúc đẩy chúng tôi",
+        "whyBapi": "Tại sao chọn BAPI",
+        "whyBapiDesc": "Lý do chọn BAPI",
+        "history": "Câu chuyện của chúng tôi",
+        "historyDesc": "Hơn 30 năm đổi mới",
+        "team": "Đội ngũ lãnh đạo",
+        "teamDesc": "Gặp gỡ các nhà lãnh đạo của chúng tôi"
+      },
+      "news": {
+        "title": "Tin tức & Sự kiện",
+        "pressReleases": "Thông cáo báo chí",
+        "pressReleasesDesc": "Thông báo mới nhất",
+        "events": "Triển lãm thương mại",
+        "eventsDesc": "Gặp gỡ chúng tôi trực tiếp",
+        "blog": "Blog kỹ thuật",
+        "blogDesc": "Hiểu biết về ngành"
+      },
+      "careers": {
+        "title": "Nghề nghiệp",
+        "openings": "Vị trí đang tuyển",
+        "openingsDesc": "Tham gia đội ngũ của chúng tôi",
+        "culture": "Văn hóa công ty",
+        "cultureDesc": "Cuộc sống tại BAPI"
+      },
+      "contact": {
+        "title": "Liên hệ với chúng tôi",
+        "sales": "Đội ngũ bán hàng",
+        "salesDesc": "Trao đổi với đại diện",
+        "locations": "Địa điểm",
+        "locationsDesc": "Tìm chúng tôi gần bạn"
+      }
+    }
+  },
+  "products": {
+    "title": "Sản phẩm",
+    "description": "Duyệt qua danh mục sản phẩm của chúng tôi",
+    "addToCart": "Thêm vào giỏ hàng",
+    "addedToCart": "Đã thêm vào giỏ hàng!",
+    "outOfStock": "Hết hàng",
+    "backInStock": "Có hàng trở lại",
+    "price": "Giá",
+    "sku": "Mã sản phẩm",
+    "partNumber": "Số hiệu sản phẩm",
+    "availability": "Tình trạng hàng",
+    "inStock": "Còn hàng",
+    "quantity": "Số lượng",
+    "specifications": "Thông số kỹ thuật",
+    "features": "Tính năng",
+    "documentation": "Tài liệu",
+    "relatedProducts": "Sản phẩm liên quan",
+    "viewDetails": "Xem chi tiết",
+    "compareProducts": "So sánh sản phẩm",
+    "requestQuote": "Yêu cầu báo giá",
+    "downloadDatasheet": "Tải tài liệu kỹ thuật",
+    "technicalSupport": "Hỗ trợ kỹ thuật",
+    "filters": {
+      "title": "Bộ lọc",
+      "category": "Danh mục",
+      "priceRange": "Khoảng giá",
+      "inStockOnly": "Chỉ hiện sản phẩm còn hàng",
+      "clearFilters": "Xóa bộ lọc"
+    },
+    "sort": {
+      "title": "Sắp xếp theo",
+      "featured": "Nổi bật",
+      "nameAsc": "Tên (A-Z)",
+      "nameDesc": "Tên (Z-A)",
+      "priceLowHigh": "Giá: Thấp đến Cao",
+      "priceHighLow": "Giá: Cao đến Thấp",
+      "newest": "Mới nhất"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Giải pháp cảm biến chính xác cho Tự động hóa Tòa nhà",
+      "subtitle": "Được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho các cơ sở quan trọng kể từ năm 1993",
+      "cta": "Duyệt Sản phẩm",
+      "secondaryCta": "Liên hệ Bộ phận Bán hàng"
+    },
+    "taglines": [
+      "Độ chính xác Đáng tin cậy",
+      "Được Thiết kế Bền bỉ",
+      "Xuất sắc về Kỹ thuật",
+      "Sản xuất tại Hoa Kỳ"
+    ],
+    "features": {
+      "quality": {
+        "title": "Chất lượng Vượt trội",
+        "description": "Hiệu chuẩn truy nguyên NIST trên mỗi cảm biến"
+      },
+      "support": {
+        "title": "Hỗ trợ Chuyên nghiệp",
+        "description": "Các kỹ sư sẵn sàng giúp bạn thành công"
+      },
+      "delivery": {
+        "title": "Giao hàng Nhanh chóng",
+        "description": "Giao hàng trong ngày đối với các mặt hàng có sẵn"
+      },
+      "warranty": {
+        "title": "Bảo hành 5 Năm",
+        "description": "Bảo vệ bảo hành hàng đầu trong ngành"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "Giải pháp cảm biến chính xác cho Tự động hóa Tòa nhà",
+      "description": "Được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho các cơ sở quan trọng kể từ năm 1993"
+    },
+    "sections": {
+      "products": {
+        "title": "Sản phẩm",
+        "links": {
+          "allSensors": "Tất cả Cảm biến",
+          "wireless": "Giám sát Không dây",
+          "testInstruments": "Thiết bị Kiểm tra",
+          "airQuality": "Cảm biến Chất lượng Không khí",
+          "accessories": "Phụ kiện",
+          "browseCatalog": "Duyệt Danh mục"
+        }
+      },
+      "resources": {
+        "title": "Tài nguyên",
+        "links": {
+          "datasheets": "Bảng Thông số Kỹ thuật",
+          "installation": "Hướng dẫn Lắp đặt",
+          "applicationNotes": "Ghi chú Ứng dụng",
+          "videos": "Thư viện Video",
+          "caseStudies": "Nghiên cứu Tình huống"
+        }
+      },
+      "company": {
+        "title": "Công ty",
+        "links": {
+          "mission": "Sứ mệnh & Giá trị",
+          "whyBapi": "Tại sao BAPI",
+          "news": "Tin tức",
+          "careers": "Cơ hội Nghề nghiệp",
+          "contact": "Liên hệ với Chúng tôi"
+        }
+      },
+      "support": {
+        "title": "Hỗ trợ",
+        "links": {
+          "technical": "Hỗ trợ Kỹ thuật",
+          "selector": "Trình chọn Sản phẩm",
+          "crossReference": "Tham chiếu Chéo",
+          "distributorNetwork": "Mạng lưới Nhà phân phối"
+        }
+      }
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "Giải thưởng & Ghi nhận",
+      "description": "Được công nhận về đổi mới và xuất sắc trong công nghệ Tự động hóa Tòa nhà"
+    },
+    "certifications": {
+      "title": "Chứng nhận",
+      "bacnet": "Chứng nhận BACnet B-ASC",
+      "iso": "ISO 9001:2015",
+      "ul": "Danh sách UL",
+      "madeInUsa": "Sản xuất tại Hoa Kỳ"
+    },
+    "quickActions": {
+      "title": "Hành động Nhanh",
+      "requestQuote": "Yêu cầu Báo giá",
+      "findDistributor": "Tìm Nhà phân phối"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. Bảo lưu mọi quyền.",
+      "trademark": "BAPI® là thương hiệu đã đăng ký của Building Automation Products, Inc.",
+      "privacy": "Chính sách Bảo mật",
+      "terms": "Điều khoản Sử dụng"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "Theo dõi Chúng tôi"
+    }
+  },
+  "region": {
+    "selectLanguage": "Chọn Ngôn Ngữ",
+    "selectRegion": "Chọn Khu Vực",
+    "currency": "Tiền Tệ",
+    "measurements": "Đo Lường",
+    "temperature": "Nhiệt Độ",
+    "pressure": "Áp Suất",
+    "unitSystem": {
+      "metric": "Hệ Đơn Vị Mét (°C, bar)",
+      "imperial": "Hệ Đơn Vị Anh (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "Bắc Mỹ",
+      "europe": "Châu Âu",
+      "asia": "Châu Á",
+      "middleEast": "Trung Đông",
+      "latinAmerica": "Mỹ Latin",
+      "australia": "Úc & Thái Bình Dương"
+    },
+    "languages": {
+      "en": "Tiếng Anh",
+      "de": "Tiếng Đức (German)",
+      "fr": "Tiếng Pháp (French)",
+      "es": "Tiếng Tây Ban Nha (Spanish)",
+      "ja": "Tiếng Nhật (Japanese)",
+      "zh": "Tiếng Trung (Chinese)",
+      "vi": "Tiếng Việt",
+      "ar": "Tiếng Ả Rập (Arabic)"
+    },
+    "currencies": {
+      "usd": "USD ($)",
+      "eur": "EUR (€)",
+      "gbp": "GBP (£)",
+      "cad": "CAD ($)",
+      "jpy": "JPY (¥)",
+      "cny": "CNY (¥)",
+      "vnd": "VND (₫)",
+      "aed": "AED (د.إ)"
+    }
+  },
+  "units": {
+    "nhiệt độ": {
+      "độ Celsius": "°C",
+      "độ Fahrenheit": "°F",
+      "Kelvin": "K"
+    },
+    "áp suất": {
+      "bar": "bar",
+      "PSI": "PSI",
+      "Pa": "Pa",
+      "kPa": "kPa",
+      "inWC": "inWC"
+    },
+    "độ dài": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "inch": "inch",
+      "ft": "ft"
+    }
+  },
+  "errors": {
+    "generic": "Đã xảy ra lỗi",
+    "network": "Lỗi mạng. Vui lòng kiểm tra kết nối của bạn.",
+    "notFound": "Không tìm thấy trang",
+    "unauthorized": "Bạn phải đăng nhập để truy cập trang này",
+    "serverError": "Lỗi máy chủ. Vui lòng thử lại sau.",
+    "validationError": "Vui lòng kiểm tra dữ liệu nhập và thử lại",
+    "addToCartFailed": "Không thể thêm sản phẩm vào giỏ hàng",
+    "productNotFound": "Không tìm thấy sản phẩm",
+    "cartEmpty": "Giỏ hàng của bạn đang trống",
+    "checkoutFailed": "Thanh toán không thành công. Vui lòng thử lại."
+  },
+  "auth": {
+    "signIn": "Đăng nhập",
+    "signOut": "Đăng xuất",
+    "signUp": "Đăng ký",
+    "profile": "Hồ sơ",
+    "account": "Tài khoản của tôi",
+    "dashboard": "Bảng điều khiển",
+    "settings": "Cài đặt",
+    "orders": "Đơn hàng",
+    "favorites": "Yêu thích",
+    "quotes": "Báo giá",
+    "addresses": "Địa chỉ",
+    "paymentMethods": "Phương thức thanh toán",
+    "welcome": "Chào mừng",
+    "welcomeBack": "Chào mừng trở lại",
+    "loginRequired": "Vui lòng đăng nhập để tiếp tục",
+    "logout": "Đăng xuất",
+    "myProfile": "Hồ sơ của tôi"
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "empty": "Giỏ hàng của bạn trống",
+    "emptyDescription": "Duyệt qua các sản phẩm của chúng tôi để thêm vào giỏ hàng",
+    "checkout": "Tiến hành thanh toán",
+    "continueShopping": "Tiếp tục mua sắm",
+    "subtotal": "Tổng phụ",
+    "tax": "Thuế",
+    "shipping": "Phí vận chuyển",
+    "total": "Tổng cộng",
+    "itemCount": "{count} {count, plural, =1 {mặt hàng} other {mặt hàng}}",
+    "removeItem": "Xóa mặt hàng",
+    "updateQuantity": "Cập nhật số lượng",
+    "applyCoupon": "Áp dụng mã giảm giá",
+    "couponCode": "Mã giảm giá",
+    "couponApplied": "Mã giảm giá đã được áp dụng thành công",
+    "couponInvalid": "Mã giảm giá không hợp lệ",
+    "cartUpdated": "Giỏ hàng đã được cập nhật"
+  },
+  "checkout": {
+    "title": "Thanh toán",
+    "shipping": "Thông tin vận chuyển",
+    "payment": "Thông tin thanh toán",
+    "review": "Xem lại đơn hàng",
+    "placeOrder": "Đặt hàng",
+    "orderSummary": "Tóm tắt đơn hàng",
+    "billingAddress": "Địa chỉ thanh toán",
+    "shippingAddress": "Địa chỉ giao hàng",
+    "sameAsBilling": "Giống địa chỉ thanh toán",
+    "paymentMethod": "Phương thức thanh toán",
+    "creditCard": "Thẻ tín dụng",
+    "cardNumber": "Số thẻ",
+    "expiryDate": "Ngày hết hạn",
+    "cvv": "CVV",
+    "nameOnCard": "Tên trên thẻ",
+    "orderTotal": "Tổng đơn hàng",
+    "terms": "Điều khoản & Điều kiện",
+    "acceptTerms": "Tôi chấp nhận các điều khoản và điều kiện",
+    "processing": "Đang xử lý đơn hàng của bạn...",
+    "orderComplete": "Đơn hàng hoàn tất!",
+    "orderNumber": "Số đơn hàng",
+    "thankYou": "Cảm ơn bạn đã đặt hàng"
+  },
+  "forms": {
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "email": "Địa chỉ email",
+    "phone": "Số điện thoại",
+    "company": "Tên công ty",
+    "address": "Địa chỉ",
+    "address2": "Căn hộ, phòng, v.v. (tùy chọn)",
+    "city": "Thành phố",
+    "state": "Bang / Tỉnh",
+    "zipCode": "Mã ZIP / Bưu chính",
+    "country": "Quốc gia",
+    "message": "Tin nhắn",
+    "subject": "Chủ đề",
+    "required": "Bắt buộc",
+    "optional": "Tùy chọn",
+    "invalidEmail": "Địa chỉ email không hợp lệ",
+    "invalidPhone": "Số điện thoại không hợp lệ",
+    "fieldRequired": "Trường này là bắt buộc",
+    "selectOption": "Chọn một tùy chọn",
+    "enterValue": "Nhập một giá trị"
+  },
+  "accessibility": {
+    "skipToContent": "Chuyển đến nội dung chính",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "openCart": "Mở giỏ hàng",
+    "closeCart": "Đóng giỏ hàng",
+    "previousSlide": "Slide trước",
+    "nextSlide": "Slide tiếp theo",
+    "pageNavigation": "Điều hướng trang",
+    "loading": "Đang tải nội dung",
+    "searchResults": "Kết quả tìm kiếm"
+  }
+}

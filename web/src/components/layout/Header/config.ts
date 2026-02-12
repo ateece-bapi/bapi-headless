@@ -12,182 +12,186 @@ import {
 
 export const NAV_LINKS: NavLink[] = [];
 
-export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
+/**
+ * Generate mega menu items with translations
+ * @param t - Translation function from useTranslations('megaMenu')
+ */
+export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
   {
-    label: 'Products',
+    label: t('products.label'),
     href: '/products',
     megaMenu: {
       columns: [
         {
-          title: 'Temperature',
+          title: t('products.temperature.title'),
           icon: '/images/icons/Temperature_Icon.webp',
           links: [
             { 
-              label: 'Room & Wall Sensors', 
+              label: t('products.temperature.roomWallSensors'), 
               href: '/products',
-              description: 'High-accuracy temperature sensing'
+              description: t('products.temperature.roomWallSensorsDesc')
             },
             { 
-              label: 'Duct Sensors', 
+              label: t('products.temperature.ductSensors'), 
               href: '/products',
-              description: 'Duct-mounted transmitters'
+              description: t('products.temperature.ductSensorsDesc')
             },
             { 
-              label: 'Immersion & Well', 
+              label: t('products.temperature.immersionWell'), 
               href: '/products',
-              description: 'Liquid temperature measurement'
+              description: t('products.temperature.immersionWellDesc')
             },
             { 
-              label: 'Outdoor Sensors', 
+              label: t('products.temperature.outdoorSensors'), 
               href: '/products',
-              description: 'Weather-resistant sensing'
+              description: t('products.temperature.outdoorSensorsDesc')
             },
           ],
         },
         {
-          title: 'Humidity',
+          title: t('products.humidity.title'),
           icon: '/images/icons/Humidity_Icon.webp',
           links: [
             { 
-              label: 'Room Humidity', 
+              label: t('products.humidity.roomHumidity'), 
               href: '/products',
-              description: 'Wall-mount RH sensors'
+              description: t('products.humidity.roomHumidityDesc')
             },
             { 
-              label: 'Duct Humidity', 
+              label: t('products.humidity.ductHumidity'), 
               href: '/products',
-              description: 'Supply & return air RH'
+              description: t('products.humidity.ductHumidityDesc')
             },
             { 
-              label: 'Outdoor Humidity', 
+              label: t('products.humidity.outdoorHumidity'), 
               href: '/products',
-              description: 'Weather-resistant RH'
+              description: t('products.humidity.outdoorHumidityDesc')
             },
             { 
-              label: 'Combo Sensors', 
+              label: t('products.humidity.comboSensors'), 
               href: '/products',
-              description: 'Temperature + humidity'
+              description: t('products.humidity.comboSensorsDesc')
             },
           ],
         },
         {
-          title: 'Pressure',
+          title: t('products.pressure.title'),
           icon: '/images/icons/Pressure_Icon.webp',
           links: [
             { 
-              label: 'Differential Pressure', 
+              label: t('products.pressure.differential'), 
               href: '/products',
-              description: 'Room & filter monitoring'
+              description: t('products.pressure.differentialDesc')
             },
             { 
-              label: 'Static Pressure', 
+              label: t('products.pressure.static'), 
               href: '/products',
-              description: 'Duct static transmitters'
+              description: t('products.pressure.staticDesc')
             },
             { 
-              label: 'Barometric', 
+              label: t('products.pressure.barometric'), 
               href: '/products',
-              description: 'Atmospheric pressure'
+              description: t('products.pressure.barometricDesc')
             },
           ],
         },
         {
-          title: 'Air Quality',
+          title: t('products.airQuality.title'),
           icon: '/images/icons/AirQuality_Icon.webp',
           links: [
             { 
-              label: 'CO₂ Sensors', 
+              label: t('products.airQuality.co2'), 
               href: '/products',
-              description: 'Carbon dioxide monitoring'
+              description: t('products.airQuality.co2Desc')
             },
             { 
-              label: 'VOC Sensors', 
+              label: t('products.airQuality.voc'), 
               href: '/products',
-              description: 'Volatile organic compounds'
+              description: t('products.airQuality.vocDesc')
             },
             { 
-              label: 'Particulate Matter', 
+              label: t('products.airQuality.particulate'), 
               href: '/products',
-              description: 'PM2.5 and PM10'
+              description: t('products.airQuality.particulateDesc')
             },
           ],
         },
         {
-          title: 'Wireless',
+          title: t('products.wireless.title'),
           icon: '/images/icons/Wireless_Icon.webp',
           links: [
             { 
-              label: 'WAM Temperature', 
+              label: t('products.wireless.wamTemperature'), 
               href: '/wireless',
-              description: 'Wireless temp sensors',
+              description: t('products.wireless.wamTemperatureDesc'),
               badge: 'Popular'
             },
             { 
-              label: 'WAM Humidity', 
+              label: t('products.wireless.wamHumidity'), 
               href: '/wireless',
-              description: 'Wireless RH sensors'
+              description: t('products.wireless.wamHumidityDesc')
             },
             { 
-              label: 'WAM Door Sensors', 
+              label: t('products.wireless.wamDoorSensors'), 
               href: '/wireless',
-              description: 'Open/close monitoring'
+              description: t('products.wireless.wamDoorSensorsDesc')
             },
             { 
-              label: 'Cloud Platform', 
+              label: t('products.wireless.cloudPlatform'), 
               href: '/wam',
-              description: '24/7 remote monitoring',
+              description: t('products.wireless.cloudPlatformDesc'),
               badge: 'Premium'
             },
           ],
         },
         {
-          title: 'Accessories',
+          title: t('products.accessories.title'),
           icon: '/images/icons/Accessories_Icon.webp',
           links: [
             { 
-              label: 'Mounting Hardware', 
+              label: t('products.accessories.mounting'), 
               href: '/accessories',
-              description: 'Plates, boxes, brackets'
+              description: t('products.accessories.mountingDesc')
             },
             { 
-              label: 'Enclosures', 
+              label: t('products.accessories.enclosures'), 
               href: '/accessories',
-              description: 'BAPI-Box & covers'
+              description: t('products.accessories.enclosuresDesc')
             },
             { 
-              label: 'Cables & Connectors', 
+              label: t('products.accessories.cables'), 
               href: '/accessories',
-              description: 'Wiring accessories'
+              description: t('products.accessories.cablesDesc')
             },
           ],
         },
         {
-          title: 'Test Instruments',
+          title: t('products.testInstruments.title'),
           icon: '/images/icons/Test_Instruments_Icon.webp',
           links: [
             { 
-              label: 'Blu-Test Temperature', 
+              label: t('products.testInstruments.bluTestTemperature'), 
               href: '/test-instruments',
-              description: 'NIST-traceable reference',
+              description: t('products.testInstruments.bluTestTemperatureDesc'),
               badge: 'New'
             },
             { 
-              label: 'Blu-Test Humidity', 
+              label: t('products.testInstruments.bluTestHumidity'), 
               href: '/test-instruments',
-              description: 'Temp + RH reference'
+              description: t('products.testInstruments.bluTestHumidityDesc')
             },
             { 
-              label: 'Blu-Test Pressure', 
+              label: t('products.testInstruments.bluTestPressure'), 
               href: '/test-instruments',
-              description: 'Digital manometer'
+              description: t('products.testInstruments.bluTestPressureDesc')
             },
           ],
         },
       ],
       featured: {
-        title: 'WAM™ Wireless Asset Monitoring',
-        description: '24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.',
-        cta: 'Learn More',
+        title: t('products.featured.title'),
+        description: t('products.featured.description'),
+        cta: t('products.featured.cta'),
         href: '/wam',
         badge: 'Premium Solution',
       },
@@ -291,207 +295,207 @@ export const MEGA_MENU_ITEMS: MegaMenuItem[] = [
   //   },
   // },
   {
-    label: 'Resources',
+    label: t('resources.label'),
     href: '/resources',
     megaMenu: {
       columns: [
         {
-          title: 'Technical Documentation',
+          title: t('resources.technicalDocumentation.title'),
           icon: BookOpen,
           links: [
             { 
-              label: 'Application Notes', 
+              label: t('resources.technicalDocumentation.applicationNotes'), 
               href: '/application-notes',
-              description: 'Installation guides & best practices',
+              description: t('resources.technicalDocumentation.applicationNotesDesc'),
               badge: 'Popular'
             },
             { 
-              label: 'Service Bulletins', 
+              label: t('resources.technicalDocumentation.serviceBulletins'), 
               href: '/service-bulletin/',
-              description: 'Product updates & technical fixes'
+              description: t('resources.technicalDocumentation.serviceBulletinsDesc')
             },
             { 
-              label: 'Product Datasheets', 
+              label: t('resources.technicalDocumentation.datasheets'), 
               href: '/resources/datasheets',
-              description: 'Specifications & performance data'
+              description: t('resources.technicalDocumentation.datasheetsDesc')
             },
             { 
-              label: 'BAPI Sensors Overview', 
+              label: t('resources.technicalDocumentation.sensorsOverview'), 
               href: '/sensor-specs/',
-              description: 'Quick reference selection guide'
+              description: t('resources.technicalDocumentation.sensorsOverviewDesc')
             },
           ],
         },
         {
-          title: 'Tools & Guides',
+          title: t('resources.toolsGuides.title'),
           icon: Wrench,
           links: [
             { 
-              label: 'Product Catalog', 
+              label: t('resources.toolsGuides.catalog'), 
               href: '/catalogpricebook/',
-              description: 'Download complete catalog PDF',
+              description: t('resources.toolsGuides.catalogDesc'),
               badge: 'Download'
             },
             { 
-              label: 'Wireless Site Verification', 
+              label: t('resources.toolsGuides.siteVerification'), 
               href: '/wireless-site-verification/',
-              description: 'Verify signal coverage'
+              description: t('resources.toolsGuides.siteVerificationDesc')
             },
             { 
-              label: 'Product Selector', 
+              label: t('resources.toolsGuides.productSelector'), 
               href: '/resources/selector',
-              description: 'Find the right sensor'
+              description: t('resources.toolsGuides.productSelectorDesc')
             },
           ],
         },
         {
-          title: 'Learning Center',
+          title: t('resources.learningCenter.title'),
           icon: GraduationCap,
           links: [
             { 
-              label: 'Installation Videos', 
+              label: t('resources.learningCenter.videos'), 
               href: '/resources/videos',
-              description: 'Step-by-step tutorials',
+              description: t('resources.learningCenter.videosDesc'),
               badge: 'Phase 2'
             },
             { 
-              label: 'Case Studies', 
+              label: t('resources.learningCenter.caseStudies'), 
               href: '/resources/case-studies',
-              description: 'Real-world applications'
+              description: t('resources.learningCenter.caseStudiesDesc')
             },
             { 
-              label: 'Webinars', 
+              label: t('resources.learningCenter.webinars'), 
               href: '/resources/webinars',
-              description: 'Training & certification',
+              description: t('resources.learningCenter.webinarsDesc'),
               badge: 'Phase 2'
             },
           ],
         },
       ],
       featured: {
-        title: 'Engineering Resources',
-        description: 'Access technical documentation, application guides, and tools to specify and install BAPI sensors correctly.',
-        cta: 'Browse All Resources',
+        title: t('resources.featured.title'),
+        description: t('resources.featured.description'),
+        cta: t('resources.featured.cta'),
         href: '/resources',
       },
     },
   },
   {
-    label: 'Support',
+    label: t('support.label'),
     href: '/support',
     megaMenu: {
       columns: [
         {
-          title: 'Get Help',
+          title: t('support.getHelp.title'),
           icon: LifeBuoy,
           links: [
             { 
-              label: 'Contact Support', 
+              label: t('support.getHelp.contactSupport'), 
               href: '/contact',
-              description: 'Technical assistance',
+              description: t('support.getHelp.contactSupportDesc'),
               badge: 'Popular'
             },
             { 
-              label: 'RMA Request', 
+              label: t('support.getHelp.rmaRequest'), 
               href: '/rma-request/',
-              description: 'Return authorization'
+              description: t('support.getHelp.rmaRequestDesc')
             },
             { 
-              label: 'Where to Buy', 
+              label: t('support.getHelp.whereToBuy'), 
               href: '/where-to-buy/',
-              description: 'Find distributors',
+              description: t('support.getHelp.whereToBuyDesc'),
               badge: 'Popular'
             },
           ],
         },
         {
-          title: 'For Existing Customers',
+          title: t('support.existingCustomers.title'),
           icon: Users,
           links: [
             { 
-              label: 'My Account', 
+              label: t('support.existingCustomers.myAccount'), 
               href: '/account',
-              description: 'Orders & quotes'
+              description: t('support.existingCustomers.myAccountDesc')
             },
             { 
-              label: 'Order Status', 
+              label: t('support.existingCustomers.orderStatus'), 
               href: '/account/orders',
-              description: 'Track shipments'
+              description: t('support.existingCustomers.orderStatusDesc')
             },
             { 
-              label: 'Request a Quote', 
+              label: t('support.existingCustomers.requestQuote'), 
               href: '/request-quote',
-              description: 'Custom pricing'
+              description: t('support.existingCustomers.requestQuoteDesc')
             },
           ],
         },
       ],
       featured: {
-        title: 'Need Technical Help?',
-        description: 'Our team is ready to assist with product selection, installation, and troubleshooting.',
-        cta: 'Contact Support',
+        title: t('support.featured.title'),
+        description: t('support.featured.description'),
+        cta: t('support.featured.cta'),
         href: '/contact',
       },
     },
   },
   {
-    label: 'Company',
+    label: t('company.label'),
     href: '/company',
     megaMenu: {
       columns: [
         {
-          title: 'About BAPI',
+          title: t('company.aboutBapi.title'),
           icon: Building2,
           links: [
             { 
-              label: 'Why BAPI', 
+              label: t('company.aboutBapi.whyBapi'), 
               href: '/company/why-bapi',
-              description: 'What sets us apart'
+              description: t('company.aboutBapi.whyBapiDesc')
             },
             { 
-              label: 'Mission & Values', 
+              label: t('company.aboutBapi.missionValues'), 
               href: '/company/mission-values',
-              description: 'Our commitment to quality'
+              description: t('company.aboutBapi.missionValuesDesc')
             },
             { 
-              label: 'News & Updates', 
+              label: t('company.aboutBapi.news'), 
               href: '/company/news',
-              description: 'Latest announcements'
+              description: t('company.aboutBapi.newsDesc')
             },
             { 
-              label: 'Careers', 
+              label: t('company.aboutBapi.careers'), 
               href: '/company/careers',
-              description: 'Join our team'
+              description: t('company.aboutBapi.careersDesc')
             },
           ],
         },
         {
-          title: 'Get in Touch',
+          title: t('company.getInTouch.title'),
           icon: Phone,
           links: [
             { 
-              label: 'Contact & Sales Team', 
+              label: t('company.getInTouch.contactSales'), 
               href: '/contact',
-              description: 'Phone, email, and global team',
+              description: t('company.getInTouch.contactSalesDesc'),
               badge: 'Popular'
             },
             { 
-              label: 'Where to Buy', 
+              label: t('company.getInTouch.whereToBuy'), 
               href: '/where-to-buy/',
-              description: 'Find authorized distributors'
+              description: t('company.getInTouch.whereToBuyDesc')
             },
             { 
-              label: 'Request a Quote', 
+              label: t('company.getInTouch.requestQuote'), 
               href: '/request-quote',
-              description: 'Custom pricing for your project'
+              description: t('company.getInTouch.requestQuoteDesc')
             },
           ],
         },
       ],
       featured: {
-        title: 'Talk to Our Experts',
-        description: 'Our sales and technical team is ready to help with product selection, installation guidance, and custom solutions for your project.',
-        cta: 'Contact Us',
+        title: t('company.featured.title'),
+        description: t('company.featured.description'),
+        cta: t('company.featured.cta'),
         href: '/contact',
       },
     },

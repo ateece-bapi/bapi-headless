@@ -1,17 +1,32 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ChatWidgetClient from "@/components/chat/ChatWidgetClient";
+import { setRequestLocale, getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
+import { ToastProvider } from "@/components/ui/Toast";
 
 /**
  * Locale layout - wraps all localized pages with Header/Footer
  * This prevents duplicate headers in root layout
  */
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  // Await params and set request locale
+  const { locale } = await params;
+  setRequestLocale(locale);
+  
+  // Get messages for the current locale
+  const messages = await getMessages();
+  
   return (
-    <>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <ToastProvider>
+      <>
       {/* Skip to main content link for keyboard users */}
       <a 
         href="#main-content" 
@@ -25,6 +40,9 @@ export default function LocaleLayout({
         {children}
       </main>
       <Footer />
-    </>
+      <ChatWidgetClient />
+      </>
+      </ToastProvider>
+    </NextIntlClientProvider>
   );
 }

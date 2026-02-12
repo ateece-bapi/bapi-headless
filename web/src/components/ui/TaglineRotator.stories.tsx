@@ -14,6 +14,17 @@ import TaglineRotator from './TaglineRotator';
  * - Fixed height to prevent layout shift
  */
 
+// Default BAPI taglines (English)
+const defaultTaglines = [
+  "Industry Leading Sensors",
+  "Changing the way you think about sensors since 1993",
+  "Seamless wireless integration for your existing BAS",
+  "Precision Engineering",
+  "Building the Future",
+  "...It's in the details",
+  "People. Building. Sensors"
+];
+
 const meta = {
   title: 'UI/TaglineRotator',
   component: TaglineRotator,
@@ -21,6 +32,9 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  args: {
+    taglines: defaultTaglines,
+  },
 } satisfies Meta<typeof TaglineRotator>;
 
 export default meta;
@@ -100,16 +114,16 @@ export const WideContainer: Story = {
  * Multiple instances (tests independence)
  */
 export const MultipleInstances: Story = {
-  render: () => (
+  render: (args) => (
     <div className="flex flex-col gap-8">
       <div className="bg-primary-500 text-white p-8 rounded-xl">
-        <TaglineRotator />
+        <TaglineRotator taglines={args.taglines} />
       </div>
       <div className="bg-accent-500 p-8 rounded-xl">
-        <TaglineRotator />
+        <TaglineRotator taglines={args.taglines} />
       </div>
       <div className="bg-neutral-900 text-white p-8 rounded-xl">
-        <TaglineRotator />
+        <TaglineRotator taglines={args.taglines} />
       </div>
     </div>
   ),

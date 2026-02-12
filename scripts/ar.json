@@ -1,0 +1,516 @@
+{
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجاح",
+    "tryAgain": "حاول مرة أخرى",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تحرير",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "submit": "إرسال",
+    "confirm": "تأكيد",
+    "learnMore": "تعرف على المزيد",
+    "viewAll": "عرض الكل",
+    "readMore": "اقرأ المزيد",
+    "showMore": "إظهار المزيد",
+    "showLess": "إظهار أقل",
+    "search": "بحث",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "clearAll": "مسح الكل",
+    "apply": "تطبيق",
+    "reset": "إعادة تعيين"
+  },
+  "nav": {
+    "products": "المنتجات",
+    "applications": "التطبيقات",
+    "support": "الدعم",
+    "company": "الشركة",
+    "cart": "السلة",
+    "account": "الحساب",
+    "signIn": "تسجيل الدخول"
+  },
+  "megaMenu": {
+    "products": {
+      "label": "المنتجات",
+      "temperature": {
+        "title": "درجة الحرارة",
+        "roomWallSensors": "استشعارات الغرفة والحائط",
+        "roomWallSensorsDesc": "استشعار درجة الحرارة عالي الدقة",
+        "ductSensors": "استشعارات القنوات",
+        "ductSensorsDesc": "أجهزة إرسال مثبتة في القنوات",
+        "immersionWell": "الغمر والبئر",
+        "immersionWellDesc": "قياس درجة حرارة السوائل",
+        "outdoorSensors": "استشعارات الخارجية",
+        "outdoorSensorsDesc": "استشعار مقاوم للطقس"
+      },
+      "humidity": {
+        "title": "الرطوبة",
+        "roomHumidity": "رطوبة الغرفة",
+        "roomHumidityDesc": "استشعارات الرطوبة النسبية المثبتة على الحائط",
+        "ductHumidity": "رطوبة القنوات",
+        "ductHumidityDesc": "رطوبة نسبية للهواء الداخل والخارج",
+        "outdoorHumidity": "رطوبة الخارجية",
+        "outdoorHumidityDesc": "رطوبة نسبية مقاومة للطقس",
+        "comboSensors": "استشعارات مركبة",
+        "comboSensorsDesc": "درجة الحرارة + الرطوبة"
+      },
+      "pressure": {
+        "title": "الضغط",
+        "differential": "الضغط التفاضلي",
+        "differentialDesc": "مراقبة الغرفة والفلتر",
+        "static": "الضغط الساكن",
+        "staticDesc": "أجهزة إرسال ضغط ساكن للقنوات",
+        "barometric": "الضغط الجوي",
+        "barometricDesc": "الضغط الجوي"
+      },
+      "airQuality": {
+        "title": "جودة الهواء",
+        "co2": "استشعارات CO₂",
+        "co2Desc": "مراقبة ثاني أكسيد الكربون",
+        "voc": "استشعارات المركبات العضوية المتطايرة",
+        "vocDesc": "المركبات العضوية المتطايرة",
+        "particulate": "الجسيمات العالقة",
+        "particulateDesc": "PM2.5 و PM10"
+      },
+      "wireless": {
+        "title": "لاسلكي",
+        "wamTemperature": "درجة حرارة WAM",
+        "wamTemperatureDesc": "استشعارات درجة حرارة لاسلكية",
+        "wamHumidity": "رطوبة WAM",
+        "wamHumidityDesc": "استشعارات الرطوبة النسبية اللاسلكية",
+        "wamDoorSensors": "استشعارات الأبواب WAM",
+        "wamDoorSensorsDesc": "مراقبة الفتح/الإغلاق",
+        "cloudPlatform": "منصة السحابة",
+        "cloudPlatformDesc": "المراقبة عن بعد على مدار الساعة"
+      },
+      "accessories": {
+        "title": "الملحقات",
+        "mounting": "أجهزة التركيب",
+        "mountingDesc": "ألواح، صناديق، قوابس",
+        "enclosures": "الأغلفة",
+        "enclosuresDesc": "BAPI-Box وأغطية",
+        "cables": "الكابلات والموصلات",
+        "cablesDesc": "ملحقات التوصيل"
+      },
+      "testInstruments": {
+        "title": "أدوات الاختبار",
+        "bluTestTemp": "درجة حرارة Blu-Test",
+        "bluTestTempDesc": "مرجع قابل للتتبع من NIST",
+        "bluTestHumidity": "رطوبة Blu-Test",
+        "bluTestHumidityDesc": "مرجع درجة الحرارة + الرطوبة النسبية",
+        "bluTestPressure": "ضغط Blu-Test",
+        "bluTestPressureDesc": "مانومتر رقمي"
+      },
+      "featured": {
+        "wamTitle": "مراقبة الأصول اللاسلكية WAM™",
+        "wamDescription": "المراقبة عن بعد على مدار الساعة مع تنبيهات فورية. حماية الأصول الثمينة الخاصة بك من انقطاع التيار الكهربائي وأعطال المعدات. لا يتطلب أي أسلاك - البدء في التشغيل في دقائق.",
+        "wamCta": "تعرف على المزيد",
+        "wamBadge": "الحل المتميز"
+      },
+      "badges": {
+        "popular": "شائع",
+        "new": "جديد",
+        "premium": "متميز"
+      }
+    },
+    "support": {
+      "label": "الدعم",
+      "technical": {
+        "title": "الدعم الفني",
+        "phone": "الدعم الهاتفي",
+        "phoneDesc": "تحدث مع مهندسينا",
+        "email": "الدعم عبر البريد الإلكتروني",
+        "emailDesc": "احصل على مساعدة مفصلة",
+        "chat": "الدردشة المباشرة",
+        "chatDesc": "إجابات فورية"
+      },
+      "resources": {
+        "title": "الموارد",
+        "datasheets": "أوراق البيانات",
+        "datasheetsDesc": "المواصفات الفنية",
+        "installGuides": "دليل التركيب",
+        "installGuidesDesc": "تعليمات خطوة بخطوة",
+        "appNotes": "ملاحظات التطبيق",
+        "appNotesDesc": "إرشادات التصميم",
+        "videos": "مكتبة الفيديو",
+        "videosDesc": "مقاطع فيديو إرشادية"
+      },
+      "tools": {
+        "title": "الأدوات والتنزيلات",
+        "selector": "منتقي المنتج",
+        "selectorDesc": "ابحث عن الاستشعار المناسب",
+        "crossRef": "المرجع المتقاطع",
+        "crossRefDesc": "ابحث عن مكافئات BAPI",
+        "software": "برامج التكوين",
+        "softwareDesc": "قم بتنزيل أدوات الإعداد"
+      }
+    },
+    "company": {
+      "label": "الشركة",
+      "about": {
+        "title": "عن BAPI",
+        "mission": "المهمة والقيم",
+        "missionDesc": "ما الذي يدفعنا",
+        "whyBapi": "لماذا BAPI",
+        "whyBapiDesc": "لماذا اختيار BAPI",
+        "history": "قصتنا",
+        "historyDesc": "أكثر من 30 عامًا من الابتكار",
+        "team": "فريق القيادة",
+        "teamDesc": "التعرف على قادتنا"
+      },
+      "news": {
+        "title": "الأخبار والأحداث",
+        "pressReleases": "البيانات الصحفية",
+        "pressReleasesDesc": "آخر الإعلانات",
+        "events": "المعارض التجارية",
+        "eventsDesc": "التقاؤنا شخصيًا",
+        "blog": "المدونة الفنية",
+        "blogDesc": "رؤى الصناعة"
+      },
+      "careers": {
+        "title": "الوظائف",
+        "openings": "الوظائف المتاحة",
+        "openingsDesc": "انضم إلى فريقنا",
+        "culture": "ثقافة الشركة",
+        "cultureDesc": "الحياة في BAPI"
+      },
+      "contact": {
+        "title": "اتصل بنا",
+        "sales": "فريق المبيعات",
+        "salesDesc": "تحدث مع ممثل",
+        "locations": "المواقع",
+        "locationsDesc": "اعثر علينا بالقرب منك"
+      }
+    }
+  },
+  "products": {
+    "title": "المنتجات",
+    "description": "تصفح كتالوجنا الكامل",
+    "addToCart": "أضف إلى السلة",
+    "addedToCart": "تمت الإضافة إلى السلة!",
+    "outOfStock": "غير متوفر حالياً",
+    "backInStock": "متوفر مرة أخرى",
+    "price": "السعر",
+    "sku": "رقم المنتج",
+    "partNumber": "رقم الجزء",
+    "availability": "التوفر",
+    "inStock": "متوفر",
+    "quantity": "الكمية",
+    "specifications": "المواصفات",
+    "features": "الميزات",
+    "documentation": "الوثائق",
+    "relatedProducts": "منتجات ذات صلة",
+    "viewDetails": "عرض التفاصيل",
+    "compareProducts": "مقارنة المنتجات",
+    "requestQuote": "طلب عرض سعر",
+    "downloadDatasheet": "تنزيل ورقة البيانات",
+    "technicalSupport": "الدعم الفني",
+    "filters": {
+      "title": "الفلاتر",
+      "category": "الفئة",
+      "priceRange": "نطاق السعر",
+      "inStockOnly": "المتوفر فقط",
+      "clearFilters": "مسح الفلاتر"
+    },
+    "sort": {
+      "title": "الترتيب حسب",
+      "featured": "الأكثر تميزاً",
+      "nameAsc": "الاسم (أ-ي)",
+      "nameDesc": "الاسم (ي-أ)",
+      "priceLowHigh": "السعر: من الأقل إلى الأعلى",
+      "priceHighLow": "السعر: من الأعلى إلى الأقل",
+      "newest": "الأحدث أولاً"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "حلول استشعار الدقة لأتمتة المباني",
+      "subtitle": "موثوق بها من قبل المهندسين في جميع أنحاء العالم للمرافق الحرجة منذ عام 1993",
+      "cta": "تصفح المنتجات",
+      "secondaryCta": "اتصل بالمبيعات"
+    },
+    "taglines": [
+      "الدقة التي يمكن الوثوق بها",
+      "مصنوع ليدوم",
+      "التميز الهندسي",
+      "صنع في الولايات المتحدة الأمريكية"
+    ],
+    "features": {
+      "quality": {
+        "title": "جودة لا تضاهى",
+        "description": "معايرة قابلة للتتبع إلى NIST على كل جهاز استشعار"
+      },
+      "support": {
+        "title": "دعم خبير",
+        "description": "مهندسون على استعداد لمساعدتك على النجاح"
+      },
+      "delivery": {
+        "title": "توصيل سريع",
+        "description": "الشحن في نفس اليوم على العناصر المتوفرة في المخزون"
+      },
+      "warranty": {
+        "title": "ضمان لمدة 5 سنوات",
+        "description": "حماية ضمان رائدة في الصناعة"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "حلول استشعار الدقة لأتمتة المباني",
+      "description": "موثوق بها من قبل المهندسين في جميع أنحاء العالم للمرافق الحرجة منذ عام 1993"
+    },
+    "sections": {
+      "products": {
+        "title": "المنتجات",
+        "links": {
+          "allSensors": "جميع أجهزة الاستشعار",
+          "wireless": "المراقبة اللاسلكية",
+          "testInstruments": "أدوات الاختبار",
+          "airQuality": "أجهزة استشعار جودة الهواء",
+          "accessories": "الملحقات",
+          "browseCatalog": "تصفح الكتالوج"
+        }
+      },
+      "resources": {
+        "title": "الموارد",
+        "links": {
+          "datasheets": "المواصفات الفنية",
+          "installation": "أدلة التركيب",
+          "applicationNotes": "ملاحظات التطبيق",
+          "videos": "مكتبة الفيديو",
+          "caseStudies": "دراسات الحالة"
+        }
+      },
+      "company": {
+        "title": "الشركة",
+        "links": {
+          "mission": "المهمة والقيم",
+          "whyBapi": "لماذا BAPI",
+          "news": "الأخبار",
+          "careers": "الوظائف",
+          "contact": "اتصل بنا"
+        }
+      },
+      "support": {
+        "title": "الدعم",
+        "links": {
+          "technical": "الدعم الفني",
+          "selector": "منتج الانتقاء",
+          "crossReference": "المرجع المتقاطع",
+          "distributorNetwork": "شبكة الموزعين"
+        }
+      }
+    },
+    "contact": {
+      "title": "اتصل",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "الجوائز والاعتراف",
+      "description": "معترف بها من أجل الابتكار والتميز في تكنولوجيا أتمتة المباني"
+    },
+    "certifications": {
+      "title": "الشهادات",
+      "bacnet": "شهادة BACnet B-ASC",
+      "iso": "ISO 9001:2015",
+      "ul": "مدرج في UL",
+      "madeInUsa": "صنع في الولايات المتحدة الأمريكية"
+    },
+    "quickActions": {
+      "title": "إجراءات سريعة",
+      "requestQuote": "طلب عرض سعر",
+      "findDistributor": "ابحث عن موزع"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. جميع الحقوق محفوظة.",
+      "trademark": "BAPI® هي علامة تجارية مسجلة لشركة Building Automation Products, Inc.",
+      "privacy": "سياسة الخصوصية",
+      "terms": "شروط الاستخدام"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "تابعنا"
+    }
+  },
+  "region": {
+    "selectLanguage": "اختر اللغة",
+    "selectRegion": "اختر المنطقة",
+    "currency": "العملة",
+    "measurements": "القياسات",
+    "temperature": "درجة الحرارة",
+    "pressure": "الضغط",
+    "unitSystem": {
+      "metric": "النظام المتري (°C، بار)",
+      "imperial": "النظام الإمبراطوري (°F، رطل لكل بوصة مربعة)"
+    },
+    "regions": {
+      "northAmerica": "أمريكا الشمالية",
+      "europe": "أوروبا",
+      "asia": "آسيا",
+      "middleEast": "الشرق الأوسط",
+      "latinAmerica": "أمريكا اللاتينية",
+      "australia": "أستراليا والمحيط الهادئ"
+    },
+    "languages": {
+      "en": "الإنجليزية",
+      "de": "الألمانية",
+      "fr": "الفرنسية",
+      "es": "الإسبانية",
+      "ja": "اليابانية",
+      "zh": "الصينية",
+      "vi": "الفيتنامية",
+      "ar": "العربية"
+    },
+    "currencies": {
+      "usd": "دولار أمريكي ($)",
+      "eur": "يورو (€)",
+      "gbp": "جنيه إسترليني (£)",
+      "cad": "دولار كندي ($)",
+      "jpy": "ين ياباني (¥)",
+      "cny": "يوان صيني (¥)",
+      "vnd": "دونغ فيتنامي (₫)",
+      "aed": "درهم إماراتي (د.إ)"
+    }
+  },
+  "units": {
+    "درجة الحرارة": {
+      "درجة مئوية": "°C",
+      "درجة فهرنهايت": "°F",
+      "كلفن": "K"
+    },
+    "الضغط": {
+      "بار": "bar",
+      "رطل لكل بوصة مربعة": "PSI",
+      "باسكال": "Pa",
+      "كيلوباسكال": "kPa",
+      "بوصة من الماء": "inWC"
+    },
+    "الطول": {
+      "ملليمتر": "mm",
+      "سنتيمتر": "cm",
+      "متر": "m",
+      "بوصة": "inch",
+      "قدم": "ft"
+    }
+  },
+  "errors": {
+    "generic": "حدث خطأ ما",
+    "network": "خطأ في الشبكة. يرجى التحقق من اتصالك.",
+    "notFound": "الصفحة غير موجودة",
+    "unauthorized": "يجب أن تكون مسجلاً الدخول للوصول إلى هذه الصفحة",
+    "serverError": "خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقًا.",
+    "validationError": "يرجى التحقق من إدخالك وحاول مرة أخرى",
+    "addToCartFailed": "فشل في إضافة العنصر إلى السلة",
+    "productNotFound": "المنتج غير موجود",
+    "cartEmpty": "سلتك فارغة",
+    "checkoutFailed": "فشل الخروج من الشراء. يرجى المحاولة مرة أخرى."
+  },
+  "auth": {
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "signUp": "التسجيل",
+    "profile": "الملف الشخصي",
+    "account": "حسابي",
+    "dashboard": "لوحة القيادة",
+    "settings": "الإعدادات",
+    "orders": "الطلبات",
+    "favorites": "المفضلة",
+    "quotes": "العروض",
+    "addresses": "العناوين",
+    "paymentMethods": "طرق الدفع",
+    "welcome": "مرحبًا",
+    "welcomeBack": "مرحبًا بعودتك",
+    "loginRequired": "الرجاء تسجيل الدخول للمتابعة",
+    "logout": "تسجيل الخروج",
+    "myProfile": "ملفي الشخصي"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلتك فارغة",
+    "emptyDescription": "تصفح منتجاتنا لإضافة عناصر إلى سلتك",
+    "checkout": "الانتقال إلى الدفع",
+    "continueShopping": "متابعة التسوق",
+    "subtotal": "المجموع الفرعي",
+    "tax": "الضريبة",
+    "shipping": "الشحن",
+    "total": "المجموع الكلي",
+    "itemCount": "{count} {count, plural, =1 {عنصر} other {عناصر}}",
+    "removeItem": "إزالة العنصر",
+    "updateQuantity": "تحديث الكمية",
+    "applyCoupon": "تطبيق كوبون",
+    "couponCode": "رمز الكوبون",
+    "couponApplied": "تم تطبيق الكوبون بنجاح",
+    "couponInvalid": "رمز الكوبون غير صالح",
+    "cartUpdated": "تم تحديث السلة"
+  },
+  "checkout": {
+    "title": "الدفع",
+    "shipping": "معلومات الشحن",
+    "payment": "معلومات الدفع",
+    "review": "مراجعة الطلب",
+    "placeOrder": "إرسال الطلب",
+    "orderSummary": "ملخص الطلب",
+    "billingAddress": "عنوان الفوترة",
+    "shippingAddress": "عنوان الشحن",
+    "sameAsBilling": "نفس عنوان الفوترة",
+    "paymentMethod": "طريقة الدفع",
+    "creditCard": "بطاقة ائتمان",
+    "cardNumber": "رقم البطاقة",
+    "expiryDate": "تاريخ الانتهاء",
+    "cvv": "رمز CVV",
+    "nameOnCard": "الاسم على البطاقة",
+    "orderTotal": "إجمالي الطلب",
+    "terms": "الشروط والأحكام",
+    "acceptTerms": "أوافق على الشروط والأحكام",
+    "processing": "جاري معالجة طلبك...",
+    "orderComplete": "اكتمل الطلب!",
+    "orderNumber": "رقم الطلب",
+    "thankYou": "شكرًا لك على طلبك"
+  },
+  "forms": {
+    "firstName": "الاسم الأول",
+    "lastName": "الاسم الأخير",
+    "email": "عنوان البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "company": "اسم الشركة",
+    "address": "عنوان الشارع",
+    "address2": "الشقة، الجناح، إلخ. (اختياري)",
+    "city": "المدينة",
+    "state": "الولاية / المقاطعة",
+    "zipCode": "الرمز البريدي",
+    "country": "الدولة",
+    "message": "الرسالة",
+    "subject": "الموضوع",
+    "required": "مطلوب",
+    "optional": "اختياري",
+    "invalidEmail": "عنوان البريد الإلكتروني غير صالح",
+    "invalidPhone": "رقم الهاتف غير صالح",
+    "fieldRequired": "هذا الحقل مطلوب",
+    "selectOption": "حدد خيارًا",
+    "enterValue": "أدخل قيمة"
+  },
+  "accessibility": {
+    "skipToContent": "التخطي إلى المحتوى الرئيسي",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "openCart": "فتح سلة التسوق",
+    "closeCart": "إغلاق سلة التسوق",
+    "previousSlide": "الشريحة السابقة",
+    "nextSlide": "الشريحة التالية",
+    "pageNavigation": "التنقل بين الصفحات",
+    "loading": "جاري تحميل المحتوى",
+    "searchResults": "نتائج البحث"
+  }
+}

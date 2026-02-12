@@ -34,5 +34,164 @@
     "cart": "Warenkorb",
     "account": "Konto",
     "signIn": "Benutzer Anmelden"
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "Ressourcen",
+      "technicalDocumentation": {
+        "title": "Technische Dokumentation",
+        "applicationNotes": "Anwendungshinweise",
+        "applicationNotesDesc": "Auslegungsrichtlinien & bewährte Verfahren",
+        "serviceBulletins": "Servicemitteilungen",
+        "serviceBulletinsDesc": "Produktaktualisierungen & Ankündigungen",
+        "datasheets": "Datenblätter",
+        "datasheetsDesc": "Vollständige Produktspezifikationen",
+        "sensorsOverview": "Sensorübersicht",
+        "sensorsOverviewDesc": "Vergleichen Sie Sensorspezifikationen"
+      },
+      "toolsGuides": {
+        "title": "Tools & Anleitungen",
+        "catalog": "Produktkatalog",
+        "catalogDesc": "Vollständiger Katalog mit Preisen",
+        "siteVerification": "Standortverifizierungstool",
+        "siteVerificationDesc": "Prüfung der Funksignalstärke",
+        "productSelector": "Produktauswahl",
+        "productSelectorDesc": "Finden Sie den richtigen Sensor"
+      },
+      "learningCenter": {
+        "title": "Lernzentrum",
+        "videos": "Videobibliothek",
+        "videosDesc": "Anleitungsvideos & Tutorials",
+        "caseStudies": "Fallstudien",
+        "caseStudiesDesc": "Praxiserfolgsgeschichten",
+        "webinars": "Webinare",
+        "webinarsDesc": "Live-Schulungen"
+      },
+      "featured": {
+        "title": "Benötigen Sie technische Dokumentation?",
+        "description": "Greifen Sie auf unsere vollständige Bibliothek an Anwendungshinweisen, Datenblättern und technischen Ressourcen zu, um die perfekte Lösung zu entwerfen und zu spezifizieren.",
+        "cta": "Durchsuchen Sie die Ressourcen"
+      }
+    },
+    "support": {
+      "label": "Hilfe erhalten",
+      "getHelp": {
+        "title": "Hilfe erhalten",
+        "contactSupport": "Kontaktieren Sie den Support",
+        "contactSupportDesc": "Sprechen Sie mit unseren Ingenieuren",
+        "rmaRequest": "RMA-Anfrage",
+        "rmaRequestDesc": "Rückgabeberechtigungsanfrage",
+        "whereToBuy": "Wo kaufen",
+        "whereToBuyDesc": "Finden Sie einen Händler in Ihrer Nähe"
+      },
+      "existingCustomers": {
+        "title": "Für bestehende Kunden",
+        "myAccount": "Mein Konto",
+        "myAccountDesc": "Zeigen Sie Bestellungen und Angebote an",
+        "orderStatus": "Auftragsstatus",
+        "orderStatusDesc": "Verfolgen Sie Ihre Sendungen",
+        "requestQuote": "Angebot anfordern",
+        "requestQuoteDesc": "Holen Sie sich Preise für Ihr Projekt"
+      },
+      "featured": {
+        "title": "Benötigen Sie technische Unterstützung?",
+        "description": "Unser erfahrenes Ingenieurs-Team ist bereit, Ihnen bei der Produktauswahl, Spezifikationen und Fehlerbehebung zu helfen.",
+        "cta": "Kontaktieren Sie den Support"
+      }
+    },
+    "company": {
+      "label": "Über BAPI",
+      "aboutBapi": {
+        "title": "Über BAPI",
+        "whyBapi": "Warum BAPI",
+        "whyBapiDesc": "Warum BAPI-Sensoren wählen",
+        "missionValues": "Mission & Werte",
+        "missionValuesDesc": "Was uns antreibt",
+        "news": "Nachrichten & Veranstaltungen",
+        "newsDesc": "Neueste Ankündigungen",
+        "careers": "Karriere",
+        "careersDesc": "Treten Sie unserem Team bei"
+      },
+      "getInTouch": {
+        "title": "Kontaktieren Sie uns",
+        "contactSales": "Kontaktieren Sie den Vertrieb",
+        "contactSalesDesc": "Sprechen Sie mit einem Vertreter",
+        "whereToBuy": "Wo kaufen",
+        "whereToBuyDesc": "Finden Sie einen Händler",
+        "requestQuote": "Fordern Sie ein Angebot an",
+        "requestQuoteDesc": "Erhalten Sie Preise"
+      },
+      "featured": {
+        "title": "Bereit, Ihre Gebäudeautomation zu transformieren?",
+        "description": "Sprechen Sie mit unserem Team, um Ihre Projektanforderungen zu besprechen und die perfekte Sensorlösung zu finden.",
+        "cta": "Kontaktieren Sie unser Team"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Präzisions-Sensoren-Lösungen für die Gebäudeautomation",
+      "description": "NIST-rückverfolg bare Sensoren und BACnet-zertifizierte Regler, denen Ingenieure weltweit in Gesundheitswesen, Rechenzentren und kritischen Einrichtungen vertrauen.",
+      "cta": "Produkte entdecken",
+      "secondaryCta": "Mit Vertrieb sprechen",
+      "productFamilyTitle": "Komplette Sensoren-Lösungen für Gebäudeautomatisierungssysteme",
+      "productFamilySubtitle": "Von Ingenieuren weltweit für präzise Überwachung und Steuerung vertraut"
+    },
+    "taglines": [
+      "Führende Industriesensoren",
+      "Die Art, wie du Sensoren denkst, seit 1993 verändernd",
+      "Nahtlose Funkintegration für Ihr bestehendes Gebäudeautomatisierungssystem",
+      "Präzisionsentwicklung",
+      "Die Zukunft gestalten",
+      "...Es liegt im Detail",
+      "Menschen. Gebäude. Sensoren"
+    ],
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Jahre der Exzellenz",
+      "productsValue": "608",
+      "productsLabel": "Produktmodelle",
+      "globalValue": "Global",
+      "globalLabel": "Reichweite & Support",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Zertifizierte Qualität"
+    },
+    "categories": {
+      "title": "Erkunden Sie unseren Produktkatalog",
+      "subtitle": "Durchstöbern Sie nach Sensortyp, um die perfekte Lösung für Ihr Gebäudeautomationsprojekt zu finden",
+      "temperature": {
+        "name": "Temperatursensoren",
+        "description": "Hochgenaue Temperaturmessung"
+      },
+      "humidity": {
+        "name": "Feuchtigkeitssensoren",
+        "description": "Präzise Relative-Feuchte-Überwachung"
+      },
+      "pressure": {
+        "name": "Drucksensoren",
+        "description": "Differenz- und Statischer Druck"
+      },
+      "airQuality": {
+        "name": "Luftqualitätssensoren",
+        "description": "CO₂-, VOC- und Partikelüberwachung"
+      },
+      "wireless": {
+        "name": "Drahtlose Sensoren",
+        "description": "WAM™ cloudverbundene Überwachung"
+      },
+      "accessories": {
+        "name": "Zubehör",
+        "description": "Montagehardware und Gehäuse"
+      },
+      "testInstruments": {
+        "name": "Testinstrumente",
+        "description": "Kalibrier- und Verifizierungstools"
+      },
+      "etaLine": {
+        "name": "ETA-Linie",
+        "description": "Modulare E/A und Steuerung"
+      },
+      "viewAll": "Alle Produkte anzeigen"
+    }
   }
 }

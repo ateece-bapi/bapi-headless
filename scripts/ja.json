@@ -1,0 +1,516 @@
+{
+  "common": {
+    "loading": "ロード中...",
+    "error": "エラー",
+    "success": "成功",
+    "tryAgain": "再試行",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "close": "閉じる",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "submit": "送信",
+    "confirm": "確認",
+    "learnMore": "詳細を確認",
+    "viewAll": "すべて表示",
+    "readMore": "続きを読む",
+    "showMore": "さらに表示",
+    "showLess": "表示を減らす",
+    "search": "検索",
+    "filter": "フィルター",
+    "sort": "並べ替え",
+    "clearAll": "すべてクリア",
+    "apply": "適用",
+    "reset": "リセット"
+  },
+  "nav": {
+    "products": "製品",
+    "applications": "アプリケーション",
+    "support": "サポート",
+    "company": "会社概要",
+    "cart": "カート",
+    "account": "アカウント",
+    "signIn": "ユーザーサインイン"
+  },
+  "megaMenu": {
+    "products": {
+      "label": "製品",
+      "temperature": {
+        "title": "温度",
+        "roomWallSensors": "室内・壁面センサー",
+        "roomWallSensorsDesc": "高精度温度検知",
+        "ductSensors": "ダクトセンサー",
+        "ductSensorsDesc": "ダクト取り付け型トランスミッター",
+        "immersionWell": "浸漬・ウェル",
+        "immersionWellDesc": "液体温度測定",
+        "outdoorSensors": "屋外センサー",
+        "outdoorSensorsDesc": "耐候性検知"
+      },
+      "humidity": {
+        "title": "湿度",
+        "roomHumidity": "室内湿度",
+        "roomHumidityDesc": "壁掛け型RHセンサー",
+        "ductHumidity": "ダクト湿度",
+        "ductHumidityDesc": "供給・排気空気RH",
+        "outdoorHumidity": "屋外湿度",
+        "outdoorHumidityDesc": "耐候性RH",
+        "comboSensors": "複合センサー",
+        "comboSensorsDesc": "温度 + 湿度"
+      },
+      "pressure": {
+        "title": "圧力",
+        "differential": "差圧",
+        "differentialDesc": "室内・フィルター監視",
+        "static": "静圧",
+        "staticDesc": "ダクト静圧トランスミッター",
+        "barometric": "気圧",
+        "barometricDesc": "大気圧"
+      },
+      "airQuality": {
+        "title": "空気品質",
+        "co2": "CO₂センサー",
+        "co2Desc": "二酸化炭素監視",
+        "voc": "VOCセンサー",
+        "vocDesc": "揮発性有機化合物",
+        "particulate": "粒子状物質",
+        "particulateDesc": "PM2.5およびPM10"
+      },
+      "wireless": {
+        "title": "ワイヤレス",
+        "wamTemperature": "WAM温度",
+        "wamTemperatureDesc": "ワイヤレス温度センサー",
+        "wamHumidity": "WAM湿度",
+        "wamHumidityDesc": "ワイヤレスRHセンサー",
+        "wamDoorSensors": "WAMドアセンサー",
+        "wamDoorSensorsDesc": "開閉監視",
+        "cloudPlatform": "クラウドプラットフォーム",
+        "cloudPlatformDesc": "24/7リモート監視"
+      },
+      "accessories": {
+        "title": "アクセサリー",
+        "mounting": "取り付け金具",
+        "mountingDesc": "プレート、ボックス、ブラケット",
+        "enclosures": "エンクロージャー",
+        "enclosuresDesc": "BAPI-Box & カバー",
+        "cables": "ケーブル & コネクター",
+        "cablesDesc": "配線アクセサリー"
+      },
+      "testInstruments": {
+        "title": "テスト機器",
+        "bluTestTemp": "Blu-Test温度",
+        "bluTestTempDesc": "NIST対応基準",
+        "bluTestHumidity": "Blu-Test湿度",
+        "bluTestHumidityDesc": "温度 + RH基準",
+        "bluTestPressure": "Blu-Test圧力",
+        "bluTestPressureDesc": "デジタル微圧計"
+      },
+      "featured": {
+        "wamTitle": "WAM™ ワイヤレス資産監視",
+        "wamDescription": "停電や機器故障から大切な資産を24/7リモート監視。ワイヤリングは不要で、数分でセットアップできます。",
+        "wamCta": "詳細を確認",
+        "wamBadge": "プレミアムソリューション"
+      },
+      "badges": {
+        "popular": "人気",
+        "new": "新製品",
+        "premium": "プレミアム"
+      }
+    },
+    "support": {
+      "label": "サポート",
+      "technical": {
+        "title": "テクニカルサポート",
+        "phone": "電話サポート",
+        "phoneDesc": "エンジニアに直接相談",
+        "email": "メールサポート",
+        "emailDesc": "詳細なサポートを受けられる",
+        "chat": "ライブチャット",
+        "chatDesc": "即座に回答が得られる"
+      },
+      "resources": {
+        "title": "リソース",
+        "datasheets": "データシート",
+        "datasheetsDesc": "技術仕様",
+        "installGuides": "設置ガイド",
+        "installGuidesDesc": "ステップバイステップの手順",
+        "appNotes": "アプリケーションノート",
+        "appNotesDesc": "設計ガイダンス",
+        "videos": "ビデオライブラリ",
+        "videosDesc": "操作方法ビデオ"
+      },
+      "tools": {
+        "title": "ツール & ダウンロード",
+        "selector": "製品セレクター",
+        "selectorDesc": "適切なセンサーを見つける",
+        "crossRef": "クロスリファレンス",
+        "crossRefDesc": "BAPI同等品を見つける",
+        "software": "設定ソフトウェア",
+        "softwareDesc": "セットアップツールをダウンロード"
+      }
+    },
+    "company": {
+      "label": "会社情報",
+      "about": {
+        "title": "BAPIについて",
+        "mission": "ミッション & 価値観",
+        "missionDesc": "私たちを動機づけるもの",
+        "whyBapi": "BAPIを選ぶ理由",
+        "whyBapiDesc": "BAPIを選ぶ理由",
+        "history": "私たちの歩み",
+        "historyDesc": "30年以上の革新",
+        "team": "経営陣",
+        "teamDesc": "リーダーシップチームを紹介"
+      },
+      "news": {
+        "title": "ニュース & イベント",
+        "pressReleases": "プレスリリース",
+        "pressReleasesDesc": "最新のお知らせ",
+        "events": "展示会",
+        "eventsDesc": "直接お会いしましょう",
+        "blog": "テクニカルブログ",
+        "blogDesc": "業界インサイト"
+      },
+      "careers": {
+        "title": "採用情報",
+        "openings": "オープンポジション",
+        "openingsDesc": "私たちのチームに参加しましょう",
+        "culture": "企業文化",
+        "cultureDesc": "BAPIでの働き方"
+      },
+      "contact": {
+        "title": "お問い合わせ",
+        "sales": "営業チーム",
+        "salesDesc": "担当者に相談する",
+        "locations": "拠点",
+        "locationsDesc": "最寄りの場所を探す"
+      }
+    }
+  },
+  "products": {
+    "title": "製品",
+    "description": "完全なカタログを閲覧する",
+    "addToCart": "カートに追加",
+    "addedToCart": "カートに追加されました!",
+    "outOfStock": "在庫切れ",
+    "backInStock": "再入荷",
+    "price": "価格",
+    "sku": "SKU",
+    "partNumber": "部品番号",
+    "availability": "在庫状況",
+    "inStock": "在庫あり",
+    "quantity": "数量",
+    "specifications": "仕様",
+    "features": "特徴",
+    "documentation": "ドキュメンテーション",
+    "relatedProducts": "関連製品",
+    "viewDetails": "詳細を表示",
+    "compareProducts": "製品を比較",
+    "requestQuote": "見積もりを依頼",
+    "downloadDatasheet": "データシートをダウンロード",
+    "technicalSupport": "テクニカルサポート",
+    "filters": {
+      "title": "フィルター",
+      "category": "カテゴリー",
+      "priceRange": "価格範囲",
+      "inStockOnly": "在庫あり",
+      "clearFilters": "フィルターをクリア"
+    },
+    "sort": {
+      "title": "並べ替え",
+      "featured": "おすすめ",
+      "nameAsc": "名称 (昇順)",
+      "nameDesc": "名称 (降順)",
+      "priceLowHigh": "価格 (安い順)",
+      "priceHighLow": "価格 (高い順)",
+      "newest": "新着順"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "建築自動化のための高精度センサーソリューション",
+      "subtitle": "1993年以来、世界中のエンジニアから信頼されている重要施設向け",
+      "cta": "製品を見る",
+      "secondaryCta": "営業に連絡する"
+    },
+    "taglines": [
+      "信頼できる高精度",
+      "長期耐久性",
+      "卓越した技術",
+      "米国製造"
+    ],
+    "features": {
+      "quality": {
+        "title": "群を抜く品質",
+        "description": "全センサーがNIST追跡可能な校正を実施"
+      },
+      "support": {
+        "title": "専門家によるサポート",
+        "description": "お客様の成功をサポートするエンジニア"
+      },
+      "delivery": {
+        "title": "迅速な納品",
+        "description": "在庫商品は当日出荷"
+      },
+      "warranty": {
+        "title": "5年保証",
+        "description": "業界最高水準の保証"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "建築自動化のための精密センサーソリューション",
+      "description": "1993年以来、ミッションクリティカルな施設で世界中のエンジニアから信頼されています"
+    },
+    "sections": {
+      "products": {
+        "title": "製品",
+        "links": {
+          "allSensors": "すべてのセンサー",
+          "wireless": "ワイヤレスモニタリング",
+          "testInstruments": "テスト機器",
+          "airQuality": "空気質センサー",
+          "accessories": "アクセサリー",
+          "browseCatalog": "カタログを閲覧"
+        }
+      },
+      "resources": {
+        "title": "リソース",
+        "links": {
+          "datasheets": "テクニカルデータシート",
+          "installation": "設置ガイド",
+          "applicationNotes": "アプリケーションノート",
+          "videos": "ビデオライブラリ",
+          "caseStudies": "事例研究"
+        }
+      },
+      "company": {
+        "title": "会社",
+        "links": {
+          "mission": "ミッションと価値観",
+          "whyBapi": "BAPIを選ぶ理由",
+          "news": "ニュース",
+          "careers": "キャリア",
+          "contact": "お問い合わせ"
+        }
+      },
+      "support": {
+        "title": "サポート",
+        "links": {
+          "technical": "テクニカルサポート",
+          "selector": "製品セレクター",
+          "crossReference": "クロスリファレンス",
+          "distributorNetwork": "ディストリビューターネットワーク"
+        }
+      }
+    },
+    "contact": {
+      "title": "お問い合わせ",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "受賞歴と認定",
+      "description": "建築自動化技術における革新性と卓越性が認められています"
+    },
+    "certifications": {
+      "title": "認証",
+      "bacnet": "BACnet B-ASC認証",
+      "iso": "ISO 9001:2015",
+      "ul": "UL認定",
+      "madeInUsa": "米国製"
+    },
+    "quickActions": {
+      "title": "クイックアクション",
+      "requestQuote": "見積もりを依頼",
+      "findDistributor": "ディストリビューターを探す"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. All rights reserved.",
+      "trademark": "BAPI®はBuilding Automation Products, Inc.の登録商標です。",
+      "privacy": "プライバシーポリシー",
+      "terms": "利用規約"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "フォローする"
+    }
+  },
+  "region": {
+    "selectLanguage": "言語を選択してください",
+    "selectRegion": "地域を選択してください",
+    "currency": "通貨",
+    "measurements": "測定単位",
+    "temperature": "温度",
+    "pressure": "圧力",
+    "unitSystem": {
+      "metric": "メートル法 (°C, bar)",
+      "imperial": "ヤード・ポンド法 (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "北アメリカ",
+      "europe": "ヨーロッパ",
+      "asia": "アジア",
+      "middleEast": "中東",
+      "latinAmerica": "ラテンアメリカ",
+      "australia": "オーストラリア & 太平洋地域"
+    },
+    "languages": {
+      "en": "英語",
+      "de": "ドイツ語",
+      "fr": "フランス語",
+      "es": "スペイン語",
+      "ja": "日本語",
+      "zh": "中国語",
+      "vi": "ベトナム語",
+      "ar": "アラビア語"
+    },
+    "currencies": {
+      "usd": "米ドル ($)",
+      "eur": "ユーロ (€)",
+      "gbp": "英ポンド (£)",
+      "cad": "カナダドル ($)",
+      "jpy": "日本円 (¥)",
+      "cny": "人民元 (¥)",
+      "vnd": "ベトナムドン (₫)",
+      "aed": "アラブ首長国連邦ディルハム (د.إ)"
+    }
+  },
+  "units": {
+    "温度": {
+      "摂氏": "°C",
+      "華氏": "°F",
+      "ケルビン": "K"
+    },
+    "圧力": {
+      "バール": "bar",
+      "ポンド毎平方インチ": "PSI",
+      "パスカル": "Pa",
+      "キロパスカル": "kPa",
+      "インチ水柱": "inWC"
+    },
+    "長さ": {
+      "ミリメートル": "mm",
+      "センチメートル": "cm",
+      "メートル": "m",
+      "インチ": "inch",
+      "フィート": "ft"
+    }
+  },
+  "errors": {
+    "generic": "何か問題が発生しました。",
+    "network": "ネットワークエラーが発生しました。接続をご確認ください。",
+    "notFound": "ページが見つかりませんでした。",
+    "unauthorized": "このページにアクセスするには、サインインが必要です。",
+    "serverError": "サーバーエラーが発生しました。後ほどお試しください。",
+    "validationError": "入力内容をご確認の上、再度お試しください。",
+    "addToCartFailed": "アイテムをカートに追加できませんでした。",
+    "productNotFound": "商品が見つかりませんでした。",
+    "cartEmpty": "カートが空です。",
+    "checkoutFailed": "チェックアウトに失敗しました。再度お試しください。"
+  },
+  "auth": {
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "signUp": "新規登録",
+    "profile": "プロフィール",
+    "account": "アカウント",
+    "dashboard": "ダッシュボード",
+    "settings": "設定",
+    "orders": "注文履歴",
+    "favorites": "お気に入り",
+    "quotes": "見積もり",
+    "addresses": "住所",
+    "paymentMethods": "支払い方法",
+    "welcome": "ようこそ",
+    "welcomeBack": "お帰りなさいませ",
+    "loginRequired": "続行するにはログインしてください",
+    "logout": "ログアウト",
+    "myProfile": "マイプロフィール"
+  },
+  "cart": {
+    "title": "ショッピングカート",
+    "empty": "カートが空です",
+    "emptyDescription": "商品をご覧いただき、カートに追加してください",
+    "checkout": "チェックアウトに進む",
+    "continueShopping": "買い物を続ける",
+    "subtotal": "小計",
+    "tax": "税金",
+    "shipping": "配送料",
+    "total": "合計",
+    "itemCount": "{count} {count, plural, =1 {個} other {個}}",
+    "removeItem": "アイテムを削除する",
+    "updateQuantity": "数量を更新する",
+    "applyCoupon": "クーポンを適用する",
+    "couponCode": "クーポンコード",
+    "couponApplied": "クーポンが正常に適用されました",
+    "couponInvalid": "無効なクーポンコードです",
+    "cartUpdated": "カートが更新されました"
+  },
+  "checkout": {
+    "title": "ご注文",
+    "shipping": "配送情報",
+    "payment": "お支払い情報",
+    "review": "ご注文内容の確認",
+    "placeOrder": "ご注文確定",
+    "orderSummary": "ご注文概要",
+    "billingAddress": "請求先住所",
+    "shippingAddress": "配送先住所",
+    "sameAsBilling": "請求先住所と同じ",
+    "paymentMethod": "お支払い方法",
+    "creditCard": "クレジットカード",
+    "cardNumber": "カード番号",
+    "expiryDate": "有効期限",
+    "cvv": "セキュリティコード",
+    "nameOnCard": "カード名義人",
+    "orderTotal": "ご注文合計",
+    "terms": "利用規約",
+    "acceptTerms": "利用規約に同意します",
+    "processing": "ご注文を処理しております...",
+    "orderComplete": "ご注文完了",
+    "orderNumber": "ご注文番号",
+    "thankYou": "ご注文ありがとうございます"
+  },
+  "forms": {
+    "firstName": "名前",
+    "lastName": "姓",
+    "email": "メールアドレス",
+    "phone": "電話番号",
+    "company": "会社名",
+    "address": "住所",
+    "address2": "アパート、スイートなど(オプション)",
+    "city": "市区町村",
+    "state": "都道府県",
+    "zipCode": "郵便番号",
+    "country": "国",
+    "message": "メッセージ",
+    "subject": "件名",
+    "required": "必須",
+    "optional": "オプション",
+    "invalidEmail": "無効なメールアドレスです",
+    "invalidPhone": "無効な電話番号です",
+    "fieldRequired": "このフィールドは必須です",
+    "selectOption": "オプションを選択してください",
+    "enterValue": "値を入力してください"
+  },
+  "accessibility": {
+    "skipToContent": "メインコンテンツにスキップ",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "openCart": "ショッピングカートを開く",
+    "closeCart": "ショッピングカートを閉じる",
+    "previousSlide": "前のスライド",
+    "nextSlide": "次のスライド",
+    "pageNavigation": "ページナビゲーション",
+    "loading": "コンテンツを読み込み中",
+    "searchResults": "検索結果"
+  }
+}

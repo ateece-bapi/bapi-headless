@@ -100,17 +100,14 @@
       },
       "testInstruments": {
         "title": "Test Instruments",
-        "bluTestTemperature": "Blu-Test Temperature",
-        "bluTestTemperatureDesc": "NIST-traceable reference",
+        "bluTestTemp": "Blu-Test Temperature",
+        "bluTestTempDesc": "NIST-traceable reference",
         "bluTestHumidity": "Blu-Test Humidity",
         "bluTestHumidityDesc": "Temp + RH reference",
         "bluTestPressure": "Blu-Test Pressure",
         "bluTestPressureDesc": "Digital manometer"
       },
       "featured": {
-        "title": "WAM™ Wireless Asset Monitoring",
-        "description": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
-        "cta": "Learn More",
         "wamTitle": "WAM™ Wireless Asset Monitoring",
         "wamDescription": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
         "wamCta": "Learn More",
@@ -122,95 +119,73 @@
         "premium": "Premium"
       }
     },
-    "resources": {
-      "label": "Resources",
-      "technicalDocumentation": {
-        "title": "Technical Documentation",
-        "applicationNotes": "Application Notes",
-        "applicationNotesDesc": "Design guidance & best practices",
-        "serviceBulletins": "Service Bulletins",
-        "serviceBulletinsDesc": "Product updates & announcements",
-        "datasheets": "Datasheets",
-        "datasheetsDesc": "Complete product specifications",
-        "sensorsOverview": "Sensors Overview",
-        "sensorsOverviewDesc": "Compare sensor specifications"
-      },
-      "toolsGuides": {
-        "title": "Tools & Guides",
-        "catalog": "Product Catalog",
-        "catalogDesc": "Complete catalog with pricing",
-        "siteVerification": "Site Verification Tool",
-        "siteVerificationDesc": "Wireless signal strength testing",
-        "productSelector": "Product Selector",
-        "productSelectorDesc": "Find the right sensor"
-      },
-      "learningCenter": {
-        "title": "Learning Center",
-        "videos": "Video Library",
-        "videosDesc": "How-to videos & tutorials",
-        "caseStudies": "Case Studies",
-        "caseStudiesDesc": "Real-world success stories",
-        "webinars": "Webinars",
-        "webinarsDesc": "Live training sessions"
-      },
-      "featured": {
-        "title": "Need Technical Documentation?",
-        "description": "Access our complete library of application notes, datasheets, and technical resources to help you design and specify the perfect solution.",
-        "cta": "Browse Resources"
-      }
-    },
     "support": {
       "label": "Support",
-      "getHelp": {
-        "title": "Get Help",
-        "contactSupport": "Contact Support",
-        "contactSupportDesc": "Talk to our engineers",
-        "rmaRequest": "RMA Request",
-        "rmaRequestDesc": "Return merchandise authorization",
-        "whereToBuy": "Where to Buy",
-        "whereToBuyDesc": "Find a distributor near you"
+      "technical": {
+        "title": "Technical Support",
+        "phone": "Phone Support",
+        "phoneDesc": "Talk to our engineers",
+        "email": "Email Support",
+        "emailDesc": "Get detailed help",
+        "chat": "Live Chat",
+        "chatDesc": "Instant answers"
       },
-      "existingCustomers": {
-        "title": "For Existing Customers",
-        "myAccount": "My Account",
-        "myAccountDesc": "View orders & quotes",
-        "orderStatus": "Order Status",
-        "orderStatusDesc": "Track your shipments",
-        "requestQuote": "Request a Quote",
-        "requestQuoteDesc": "Get pricing for your project"
+      "resources": {
+        "title": "Resources",
+        "datasheets": "Datasheets",
+        "datasheetsDesc": "Technical specifications",
+        "installGuides": "Installation Guides",
+        "installGuidesDesc": "Step-by-step instructions",
+        "appNotes": "Application Notes",
+        "appNotesDesc": "Design guidance",
+        "videos": "Video Library",
+        "videosDesc": "How-to videos"
       },
-      "featured": {
-        "title": "Need Technical Support?",
-        "description": "Our experienced engineering team is ready to help with product selection, specifications, and troubleshooting.",
-        "cta": "Contact Support"
+      "tools": {
+        "title": "Tools & Downloads",
+        "selector": "Product Selector",
+        "selectorDesc": "Find the right sensor",
+        "crossRef": "Cross Reference",
+        "crossRefDesc": "Find BAPI equivalents",
+        "software": "Configuration Software",
+        "softwareDesc": "Download setup tools"
       }
     },
     "company": {
       "label": "Company",
-      "aboutBapi": {
+      "about": {
         "title": "About BAPI",
+        "mission": "Mission & Values",
+        "missionDesc": "What drives us",
         "whyBapi": "Why BAPI",
-        "whyBapiDesc": "Why choose BAPI sensors",
-        "missionValues": "Mission & Values",
-        "missionValuesDesc": "What drives us",
-        "news": "News & Events",
-        "newsDesc": "Latest announcements",
-        "careers": "Careers",
-        "careersDesc": "Join our team"
+        "whyBapiDesc": "Why choose BAPI",
+        "history": "Our Story",
+        "historyDesc": "30+ years of innovation",
+        "team": "Leadership Team",
+        "teamDesc": "Meet our leaders"
       },
-      "getInTouch": {
-        "title": "Get In Touch",
-        "contactSales": "Contact Sales",
-        "contactSalesDesc": "Talk to a rep",
-        "whereToBuy": "Where to Buy",
-        "whereToBuyDesc": "Find a distributor",
-        "requestQuote": "Request a Quote",
-        "requestQuoteDesc": "Get pricing"
+      "news": {
+        "title": "News & Events",
+        "pressReleases": "Press Releases",
+        "pressReleasesDesc": "Latest announcements",
+        "events": "Trade Shows",
+        "eventsDesc": "Meet us in person",
+        "blog": "Technical Blog",
+        "blogDesc": "Industry insights"
       },
-      "featured": {
-        "title": "Ready to Transform Your Building Automation?",
-        "description": "Connect with our team to discuss your project requirements and discover the perfect sensor solution.",
-        "cta": "Contact Our Team"
+      "careers": {
+        "title": "Careers",
+        "openings": "Open Positions",
+        "openingsDesc": "Join our team",
+        "culture": "Company Culture",
+        "cultureDesc": "Life at BAPI"
+      },
+      "contact": {
+        "title": "Contact Us",
+        "sales": "Sales Team",
+        "salesDesc": "Talk to a rep",
+        "locations": "Locations",
+        "locationsDesc": "Find us near you"
       }
     }
   },
@@ -256,67 +231,33 @@
   "home": {
     "hero": {
       "title": "Precision Sensor Solutions for Building Automation",
-      "description": "NIST-traceable sensors and BACnet-certified controllers trusted by engineers worldwide for healthcare, data centers, and critical facilities.",
-      "cta": "Explore Products",
-      "secondaryCta": "Talk to Sales",
-      "productFamilyTitle": "Complete sensor solutions for building automation systems",
-      "productFamilySubtitle": "Trusted by engineers worldwide for precision monitoring and control"
+      "subtitle": "Trusted by engineers worldwide for mission-critical facilities since 1993",
+      "cta": "Browse Products",
+      "secondaryCta": "Contact Sales"
     },
     "taglines": [
-      "Industry Leading Sensors",
-      "Changing the way you think about sensors since 1993",
-      "Seamless wireless integration for your existing BAS",
-      "Precision Engineering",
-      "Building the Future",
-      "...It's in the details",
-      "People. Building. Sensors"
+      "Precision You Can Trust",
+      "Built to Last",
+      "Engineering Excellence",
+      "Made in USA"
     ],
-    "stats": {
-      "yearsValue": "30+",
-      "yearsLabel": "Years of Excellence",
-      "productsValue": "608",
-      "productsLabel": "Product Models",
-      "globalValue": "Global",
-      "globalLabel": "Reach & Support",
-      "isoValue": "ISO 9001",
-      "isoLabel": "Certified Quality"
-    },
-    "categories": {
-      "title": "Explore Our Product Catalog",
-      "subtitle": "Browse by sensor type to find the perfect solution for your building automation project",
-      "temperature": {
-        "name": "Temperature Sensors",
-        "description": "High-accuracy temperature measurement"
+    "features": {
+      "quality": {
+        "title": "Unmatched Quality",
+        "description": "NIST-traceable calibration on every sensor"
       },
-      "humidity": {
-        "name": "Humidity Sensors",
-        "description": "Precise relative humidity monitoring"
+      "support": {
+        "title": "Expert Support",
+        "description": "Engineers ready to help you succeed"
       },
-      "pressure": {
-        "name": "Pressure Sensors",
-        "description": "Differential & static pressure"
+      "delivery": {
+        "title": "Fast Delivery",
+        "description": "Same-day shipping on stock items"
       },
-      "airQuality": {
-        "name": "Air Quality Sensors",
-        "description": "CO₂, VOC, and particulate monitoring"
-      },
-      "wireless": {
-        "name": "Wireless Sensors",
-        "description": "WAM™ cloud-connected monitoring"
-      },
-      "accessories": {
-        "name": "Accessories",
-        "description": "Mounting hardware & enclosures"
-      },
-      "testInstruments": {
-        "name": "Test Instruments",
-        "description": "Calibration & verification tools"
-      },
-      "etaLine": {
-        "name": "ETA Line",
-        "description": "Modular I/O and control"
-      },
-      "viewAll": "View All Products"
+      "warranty": {
+        "title": "5-Year Warranty",
+        "description": "Industry-leading warranty protection"
+      }
     }
   },
   "footer": {

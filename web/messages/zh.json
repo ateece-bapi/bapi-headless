@@ -22,9 +22,68 @@
   },
   "home": {
     "hero": {
-      "title": "楼宇自动化精密传感器解决方案",
-      "subtitle": "全球工程师信赖的可靠HVAC/R传感",
-      "cta": "探索产品"
+      "title": "建筑自动化精密传感器解决方案",
+      "description": "全球工程师信赖的NIST溯源传感器和BACnet认证控制器,适用于医疗保健、数据中心和关键设施。",
+      "cta": "探索产品",
+      "secondaryCta": "联系销售",
+      "productFamilyTitle": "建筑自动化系统完整的传感器解决方案",
+      "productFamilySubtitle": "全球工程师信赖的精密监测和控制"
+    },
+    "taglines": [
+      "行业领先的传感器",
+      "自1993年以来改变您对传感器的看法",
+      "无缝的无线集成,适用于您现有的建筑自动化系统",
+      "精密工程",
+      "构建未来",
+      "...在细节之中",
+      "人。建筑。传感器"
+    ],
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "卓越年数",
+      "productsValue": "608",
+      "productsLabel": "产品型号",
+      "globalValue": "全球",
+      "globalLabel": "覆盖和支持",
+      "isoValue": "ISO 9001",
+      "isoLabel": "质量认证"
+    },
+    "categories": {
+      "title": "探索我们的产品目录",
+      "subtitle": "根据传感器类型浏览,找到您建筑自动化项目的完美解决方案",
+      "temperature": {
+        "name": "温度传感器",
+        "description": "高精度温度测量"
+      },
+      "humidity": {
+        "name": "湿度传感器",
+        "description": "精确的相对湿度监测"
+      },
+      "pressure": {
+        "name": "压力传感器",
+        "description": "差压和静压"
+      },
+      "airQuality": {
+        "name": "空气质量传感器",
+        "description": "CO₂、VOC和颗粒物监测"
+      },
+      "wireless": {
+        "name": "无线传感器",
+        "description": "WAM™云连接监测"
+      },
+      "accessories": {
+        "name": "附件",
+        "description": "安装硬件和外壳"
+      },
+      "testInstruments": {
+        "name": "测试仪器",
+        "description": "校准和验证工具"
+      },
+      "etaLine": {
+        "name": "ETA系列",
+        "description": "模块化I/O和控制"
+      },
+      "viewAll": "查看所有产品"
     }
   },
   "footer": {
@@ -35,5 +94,98 @@
     "eu": "欧洲",
     "asia": "亚太地区",
     "mena": "中东"
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "资源",
+      "technicalDocumentation": {
+        "title": "技术文档",
+        "applicationNotes": "应用说明",
+        "applicationNotesDesc": "设计指南和最佳实践",
+        "serviceBulletins": "服务通告",
+        "serviceBulletinsDesc": "产品更新和公告",
+        "datasheets": "数据表",
+        "datasheetsDesc": "完整的产品规格",
+        "sensorsOverview": "传感器概览",
+        "sensorsOverviewDesc": "比较传感器规格"
+      },
+      "toolsGuides": {
+        "title": "工具和指南",
+        "catalog": "产品目录",
+        "catalogDesc": "带有价格的完整目录",
+        "siteVerification": "现场验证工具",
+        "siteVerificationDesc": "无线信号强度测试",
+        "productSelector": "产品选择器",
+        "productSelectorDesc": "找到合适的传感器"
+      },
+      "learningCenter": {
+        "title": "学习中心",
+        "videos": "视频库",
+        "videosDesc": "操作视频和教程",
+        "caseStudies": "案例研究",
+        "caseStudiesDesc": "实际成功案例",
+        "webinars": "网络研讨会",
+        "webinarsDesc": "现场培训课程"
+      },
+      "featured": {
+        "title": "需要技术文档?",
+        "description": "访问我们完整的应用说明、数据表和技术资源库,帮助您设计和指定完美的解决方案。",
+        "cta": "浏览资源"
+      }
+    },
+    "support": {
+      "label": "获取帮助",
+      "getHelp": {
+        "title": "获取帮助",
+        "contactSupport": "联系支持",
+        "contactSupportDesc": "与我们的工程师交谈",
+        "rmaRequest": "RMA 请求",
+        "rmaRequestDesc": "退货授权",
+        "whereToBuy": "在哪里购买",
+        "whereToBuyDesc": "找到附近的经销商"
+      },
+      "existingCustomers": {
+        "title": "针对现有客户",
+        "myAccount": "我的账户",
+        "myAccountDesc": "查看订单和报价",
+        "orderStatus": "订单状态",
+        "orderStatusDesc": "跟踪您的货物",
+        "requestQuote": "请求报价",
+        "requestQuoteDesc": "获取您项目的定价"
+      },
+      "featured": {
+        "title": "需要技术支持?",
+        "description": "我们经验丰富的工程团队随时准备提供产品选择、规格和故障排除方面的帮助。",
+        "cta": "联系支持"
+      }
+    },
+    "company": {
+      "label": "关于 BAPI",
+      "aboutBapi": {
+        "title": "关于 BAPI",
+        "whyBapi": "为什么选择 BAPI",
+        "whyBapiDesc": "为什么选择 BAPI 传感器",
+        "missionValues": "使命与价值观",
+        "missionValuesDesc": "推动我们前进的动力",
+        "news": "新闻与活动",
+        "newsDesc": "最新公告",
+        "careers": "职业机会",
+        "careersDesc": "加入我们的团队"
+      },
+      "getInTouch": {
+        "title": "与我们联系",
+        "contactSales": "联系销售",
+        "contactSalesDesc": "与销售代表交谈",
+        "whereToBuy": "购买渠道",
+        "whereToBuyDesc": "找到经销商",
+        "requestQuote": "获取报价",
+        "requestQuoteDesc": "获取价格信息"
+      },
+      "featured": {
+        "title": "准备好改造您的建筑自动化系统了吗?",
+        "description": "与我们的团队联系,讨论您的项目需求,找到合适的传感器解决方案。",
+        "cta": "联系我们的团队"
+      }
+    }
   }
 }

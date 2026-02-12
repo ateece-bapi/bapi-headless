@@ -7,9 +7,278 @@
 
 ---
 
+## February 11, 2026 (Evening) — Polish Translation Fix & Homepage i18n Prep
+
+**Branch:** `feat/ai-translation-thai` (17 commits, not pushed)  
+**Status:** ✅ CRITICAL BUG FIXED - Polish navigation working, homepage ready for translation
+
+**Critical Achievement:** Resolved critical locale detection bug preventing Polish translations from loading. Root cause was NextIntlClientProvider placed in wrong layout component. After systematic debugging, moved provider to [locale] layout where it can access locale parameter. Polish navigation now fully functional (verified by user). Prepared complete homepage translation infrastructure with automation script ready to sync 9 languages for ~$1.
+
+### Problem: Locale Detection Not Working
+
+**User Report:** "Still in english when at /pl. The language selector is not working as intended either."
+
+**Symptoms:**
+- URL shows `/pl` but content displays in English
+- Language selector navigation not working
+- Debug component showed "Current Locale: en" even on Polish route
+- setRequestLocale() calls not helping
+
+**Root Cause Investigation:**
+- next-intl v3 requires NextIntlClientProvider in [locale] layout, NOT root layout
+- Root layout has no access to [locale] URL parameter
+- Provider was calling `await getLocale()` which always returned 'en'
+- All child components using `useLocale()` received incorrect context
+
+### Solution: Provider Architecture Fix
+
+**Phase 1: Move NextIntlClientProvider** (b7c63a8)
+- **Removed from root layout:**
+  - NextIntlClientProvider wrapper
+  - getMessages import and call
+  - getLocale import (replaced with params.locale)
+  - ChatWidgetClient (moved to locale layout)
+
+- **Added to [locale] layout:**
+  - `const messages = await getMessages();`
+  - `<NextIntlClientProvider messages={messages} locale={locale}>`
+  - Wrapped existing ToastProvider, Header, Footer
+  - setRequestLocale(locale) before provider
+
+- **Result:** Locale parameter now accessible, passed correctly to provider
+
+**Phase 2: Fix ChatWidget Context Error** (fe3dba3)
+- **Problem:** Runtime error "No intl context found" from ChatWidgetClient
+- **Cause:** ChatWidgetClient rendered in root layout (outside provider)
+- **Solution:** Moved ChatWidgetClient inside NextIntlClientProvider in [locale] layout
+- **Result:** useLocale() hook now has access to intl context
+
+**Phase 3: Fix LanguageSelector Navigation** (33e1cca)
+- **Problem:** Language switching using standard Next.js router
+- **Issue:** Manual locale URL manipulation not working with next-intl
+- **Solution:** Use next-intl's navigation wrapper
+  - Changed: `import { useRouter } from 'next/navigation'`
+  - To: `import { useRouter } from '@/lib/navigation'`
+  - Changed: `router.push(newPath); router.refresh();`
+  - To: `router.replace(pathname, { locale: newLocale });`
+- **Result:** Language selector now properly switches locales
+
+**User Confirmation:** "Header and Footer are now in POLISH!" 🎉
+- Navigation: "Produkty | Zasoby | Wsparcie | Firma"
+- Footer: Fully translated
+- Language selector: Functional
+- Locale detection: Working
+
+### Homepage Translation Infrastructure
+
+**Discovery:** User noticed homepage still in English (stats + categories hardcoded)
+
+**Phase 4: Add Translation Keys to en.json** (d608b1a)
+- **Added home section** (44 new lines):
+  ```json
+  "home": {
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Years of Excellence",
+      "productsValue": "608",
+      "productsLabel": "Product Models",
+      "globalValue": "Global",
+      "globalLabel": "Reach & Support",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Certified Quality"
+    },
+    "categories": {
+      "title": "Explore Our Product Catalog",
+      "subtitle": "Browse by sensor type...",
+      "temperature": { "name": "...", "description": "..." },
+      "humidity": { "name": "...", "description": "..." },
+      "pressure": { "name": "...", "description": "..." },
+      "airQuality": { "name": "...", "description": "..." },
+      "wireless": { "name": "...", "description": "..." },
+      "accessories": { "name": "...", "description": "..." },
+      "testInstruments": { "name": "...", "description": "..." },
+      "etaLine": { "name": "...", "description": "..." }
+    }
+  }
+  ```
+
+**Phase 5: Refactor Homepage Component** (d608b1a)
+- **Imports:** Added `getTranslations` from next-intl/server
+- **Translation function:** `const t = await getTranslations('home');`
+- **Replacements:** 8 multi_replace operations
+  - Stats section: `"30+"` → `t('stats.yearsValue')`
+  - Stats labels: `"Years of Excellence"` → `t('stats.yearsLabel')`
+  - Categories: All 8 product types converted
+  - Example: `name: "Temperature Sensors"` → `name: t('categories.temperature.name')`
+
+**Phase 6: Translation Automation Script** (cdb5c8b)
+- **Created:** `web/scripts/sync-home-translations.js` (117 lines)
+- **Features:**
+  - Claude Haiku API integration (claude-3-haiku-20240307)
+  - Translates home section to 9 languages
+  - Sequential processing with 1-second delays
+  - JSON structure preservation and validation
+  - Markdown cleanup (removes code blocks from AI responses)
+  - Updates existing language files (preserves other sections)
+- **Cost:** ~$0.50-1.00 for 9 languages
+- **Status:** Ready to execute (awaiting user approval)
+- **Usage:** `node scripts/sync-home-translations.js`
+
+### Technical Details
+
+**Root Layout Architecture (Correct Pattern):**
+```typescript
+// web/src/app/layout.tsx (ROOT - No provider)
+export default async function RootLayout({ children, params }) {
+  const { locale } = await params;
+  return (
+    <html lang={locale}>
+      <body>
+        {children} {/* [locale] layout handles i18n */}
+        <BackToTop />
+        <Analytics />
+      </body>
+    </html>
+  );
+}
+```
+
+**Locale Layout Architecture (Provider Here):**
+```typescript
+// web/src/app/[locale]/layout.tsx (LOCALE - Provider here)
+export default async function LocaleLayout({ children, params }) {
+  const { locale } = await params;
+  setRequestLocale(locale); // Critical for server components
+  const messages = await getMessages();
+  
+  return (
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <ToastProvider>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <ChatWidgetClient />
+      </ToastProvider>
+    </NextIntlClientProvider>
+  );
+}
+```
+
+**Homepage Pattern:**
+```typescript
+// web/src/app/[locale]/(public)/page.tsx
+import { getTranslations } from 'next-intl/server';
+
+export default async function Home({ params }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations('home');
+  
+  return (
+    <div>{t('stats.yearsValue')}</div>
+  );
+}
+```
+
+### Files Changed Summary
+
+**Modified (5 files):**
+1. `web/src/app/layout.tsx` - Removed provider, cleaned up
+2. `web/src/app/[locale]/layout.tsx` - Added provider, messages, ChatWidget
+3. `web/src/components/layout/Header/components/LanguageSelector.tsx` - next-intl navigation
+4. `web/src/app/[locale]/(public)/page.tsx` - Translation function calls
+5. `web/messages/en.json` - Added home section (44 lines)
+
+**Created (1 file):**
+1. `web/scripts/sync-home-translations.js` - Translation automation
+
+**Total Changes:**
+- 7 commits across locale detection fix and homepage prep
+- 17 commits total on feat/ai-translation-thai branch
+- Not pushed to origin (ready for next session)
+
+### Impact on Launch Readiness
+
+**Translation Progress:**
+- Navigation: ✅ 100% (working in Polish)
+- Footer: ✅ 100% (working in Polish)
+- Homepage: ⏳ 95% (English keys ready, needs $1 translation sync)
+- Hero Component: ⏳ 0% (deferred to separate work)
+
+**Cost Tracking:**
+- Navigation translations: $12-17 (already done)
+- Homepage translations: ~$1 (script ready, not executed)
+- **Total estimated:** $13-18 for complete Phase 1 translations
+
+**Internationalization Progress:** 60% → 75% (+15%)
+- Major architectural bug resolved
+- Translation workflow established
+- Automation tooling created
+- Ready for rapid completion
+
+### Testing & Validation
+
+**Verified Working:**
+- ✅ Polish route `/pl` displays Polish navigation
+- ✅ Language selector switches between locales
+- ✅ Footer translates correctly
+- ✅ No console errors
+- ✅ ChatWidget has intl context
+- ✅ Homepage renders without errors (English keys working)
+
+**Pending Testing (Next Session):**
+- [ ] Run translation sync script
+- [ ] Test Polish homepage (stats + categories)
+- [ ] Verify all 9 languages updated
+- [ ] Check translation quality
+- [ ] Test other routes in Polish
+
+### Lessons Learned
+
+**1. next-intl v3 + Next.js 15 Pattern:**
+- NextIntlClientProvider MUST be in [locale] layout
+- Root layout cannot access [locale] URL parameter
+- setRequestLocale() required in layouts AND pages
+- Use next-intl navigation wrappers (Link, useRouter)
+
+**2. Debugging Approach:**
+- Create debug components to verify locale detection
+- Check provider placement in component hierarchy
+- Verify params are awaited properly
+- Test with browser Network tab (check locale in URLs)
+
+**3. Translation Workflow:**
+- Add keys to en.json first (source of truth)
+- Refactor components to use translation functions
+- Create automation scripts for bulk translation
+- Test incrementally (navigation → homepage → hero)
+
+**4. Error Patterns:**
+- "No intl context found" → Component outside provider
+- "Current Locale: en" always → getLocale() instead of params
+- Language selector not working → Using wrong router
+- Translation not loading → Provider in wrong layout
+
+### Next Session Plan
+
+**Immediate (5 minutes):**
+1. Run `node scripts/sync-home-translations.js`
+2. Test http://localhost:3000/pl (verify homepage Polish)
+3. Push feat/ai-translation-thai branch (17 commits)
+
+**Phase 1 Remaining (1-2 hours):**
+1. Hero component translation (separate from homepage)
+2. Test all routes in Polish
+3. Spot-check 3-4 other languages
+4. Create PR and merge to main
+
+**Cost:** ~$1.50 total (homepage + hero translations)
+
+---
+
 ## February 11, 2026 (PM) — TODO Comment Cleanup & Code Quality
 
-**Branch:** `fix/todo-cleanup-high-priority` (ready for PR)  
+**Branch:** `fix/todo-cleanup-high-priority` (merged to main)  
 **Status:** ✅ COMPLETE - 9 TODOs audited, 3 high-priority items resolved
 
 **Critical Achievement:** Completed comprehensive TODO comment audit and cleanup. Resolved all high-priority code debt items before April 10 launch. Implemented quote email notifications, product sort dropdown, and made strategic decision to defer PayPal to Phase 2. Launch readiness: 96% → 97% (+1%).

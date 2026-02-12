@@ -1,0 +1,516 @@
+{
+  "common": {
+    "loading": "正在加载...",
+    "error": "错误",
+    "success": "成功",
+    "tryAgain": "重试",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "close": "关闭",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "submit": "提交",
+    "confirm": "确认",
+    "learnMore": "了解更多",
+    "viewAll": "查看全部",
+    "readMore": "阅读更多",
+    "showMore": "显示更多",
+    "showLess": "显示更少",
+    "search": "搜索",
+    "filter": "筛选",
+    "sort": "排序",
+    "clearAll": "清除全部",
+    "apply": "应用",
+    "reset": "重置"
+  },
+  "nav": {
+    "products": "产品",
+    "applications": "应用程序",
+    "support": "支持",
+    "company": "公司",
+    "cart": "购物车",
+    "account": "账户",
+    "signIn": "用户登录"
+  },
+  "megaMenu": {
+    "products": {
+      "label": "产品",
+      "temperature": {
+        "title": "温度",
+        "roomWallSensors": "室内和墙壁传感器",
+        "roomWallSensorsDesc": "高精度温度检测",
+        "ductSensors": "管道传感器",
+        "ductSensorsDesc": "管道安装式传感器",
+        "immersionWell": "浸入式和套管式",
+        "immersionWellDesc": "液体温度测量",
+        "outdoorSensors": "户外传感器",
+        "outdoorSensorsDesc": "耐候性温度检测"
+      },
+      "humidity": {
+        "title": "湿度",
+        "roomHumidity": "室内湿度",
+        "roomHumidityDesc": "壁挂式湿度传感器",
+        "ductHumidity": "管道湿度",
+        "ductHumidityDesc": "供回风湿度",
+        "outdoorHumidity": "户外湿度",
+        "outdoorHumidityDesc": "耐候性湿度检测",
+        "comboSensors": "组合传感器",
+        "comboSensorsDesc": "温度 + 湿度"
+      },
+      "pressure": {
+        "title": "压力",
+        "differential": "差压",
+        "differentialDesc": "室内和过滤器监测",
+        "static": "静压",
+        "staticDesc": "管道静压传感器",
+        "barometric": "气压",
+        "barometricDesc": "大气压力"
+      },
+      "airQuality": {
+        "title": "空气质量",
+        "co2": "CO₂传感器",
+        "co2Desc": "二氧化碳监测",
+        "voc": "VOC传感器",
+        "vocDesc": "挥发性有机化合物",
+        "particulate": "颗粒物",
+        "particulateDesc": "PM2.5和PM10"
+      },
+      "wireless": {
+        "title": "无线",
+        "wamTemperature": "WAM温度",
+        "wamTemperatureDesc": "无线温度传感器",
+        "wamHumidity": "WAM湿度",
+        "wamHumidityDesc": "无线湿度传感器",
+        "wamDoorSensors": "WAM门传感器",
+        "wamDoorSensorsDesc": "开关监测",
+        "cloudPlatform": "云平台",
+        "cloudPlatformDesc": "全天候远程监控"
+      },
+      "accessories": {
+        "title": "配件",
+        "mounting": "安装硬件",
+        "mountingDesc": "安装板、盒子、支架",
+        "enclosures": "外壳",
+        "enclosuresDesc": "BAPI-Box和外罩",
+        "cables": "线缆和连接器",
+        "cablesDesc": "布线配件"
+      },
+      "testInstruments": {
+        "title": "测试仪器",
+        "bluTestTemp": "Blu-Test温度",
+        "bluTestTempDesc": "NIST可溯源参考",
+        "bluTestHumidity": "Blu-Test湿度",
+        "bluTestHumidityDesc": "温度 + 湿度参考",
+        "bluTestPressure": "Blu-Test压力",
+        "bluTestPressureDesc": "数字压力计"
+      },
+      "featured": {
+        "wamTitle": "WAM™无线资产监控",
+        "wamDescription": "提供全天候远程监控和即时警报。保护您的宝贵资产免受停电和设备故障的影响。无需布线 - 几分钟内即可启动运行。",
+        "wamCta": "了解更多",
+        "wamBadge": "优质解决方案"
+      },
+      "badges": {
+        "popular": "热门",
+        "new": "新品",
+        "premium": "优质"
+      }
+    },
+    "support": {
+      "label": "支持",
+      "technical": {
+        "title": "技术支持",
+        "phone": "电话支持",
+        "phoneDesc": "与我们的工程师交谈",
+        "email": "电子邮件支持",
+        "emailDesc": "获得详细帮助",
+        "chat": "在线聊天",
+        "chatDesc": "即时解答"
+      },
+      "resources": {
+        "title": "资源",
+        "datasheets": "数据手册",
+        "datasheetsDesc": "技术规格",
+        "installGuides": "安装指南",
+        "installGuidesDesc": "分步说明",
+        "appNotes": "应用说明",
+        "appNotesDesc": "设计指南",
+        "videos": "视频库",
+        "videosDesc": "操作视频"
+      },
+      "tools": {
+        "title": "工具和下载",
+        "selector": "产品选择器",
+        "selectorDesc": "找到合适的传感器",
+        "crossRef": "交叉参考",
+        "crossRefDesc": "找到BAPI同等产品",
+        "software": "配置软件",
+        "softwareDesc": "下载设置工具"
+      }
+    },
+    "company": {
+      "label": "公司",
+      "about": {
+        "title": "关于BAPI",
+        "mission": "使命和价值观",
+        "missionDesc": "推动我们前进的动力",
+        "whyBapi": "为什么选择BAPI",
+        "whyBapiDesc": "选择BAPI的原因",
+        "history": "我们的故事",
+        "historyDesc": "30多年的创新历程",
+        "team": "领导团队",
+        "teamDesc": "了解我们的领导者"
+      },
+      "news": {
+        "title": "新闻和活动",
+        "pressReleases": "新闻稿",
+        "pressReleasesDesc": "最新公告",
+        "events": "行业展会",
+        "eventsDesc": "亲自与我们见面",
+        "blog": "技术博客",
+        "blogDesc": "行业洞见"
+      },
+      "careers": {
+        "title": "职业发展",
+        "openings": "职位空缺",
+        "openingsDesc": "加入我们的团队",
+        "culture": "公司文化",
+        "cultureDesc": "BAPI的工作生活"
+      },
+      "contact": {
+        "title": "联系我们",
+        "sales": "销售团队",
+        "salesDesc": "与代表交谈",
+        "locations": "公司位置",
+        "locationsDesc": "找到离您最近的分公司"
+      }
+    }
+  },
+  "products": {
+    "title": "产品",
+    "description": "浏览我们的完整目录",
+    "addToCart": "添加到购物车",
+    "addedToCart": "已添加到购物车!",
+    "outOfStock": "缺货",
+    "backInStock": "现已补货",
+    "price": "价格",
+    "sku": "SKU",
+    "partNumber": "零件编号",
+    "availability": "库存情况",
+    "inStock": "有货",
+    "quantity": "数量",
+    "specifications": "规格参数",
+    "features": "功能特性",
+    "documentation": "文档资料",
+    "relatedProducts": "相关产品",
+    "viewDetails": "查看详情",
+    "compareProducts": "对比产品",
+    "requestQuote": "请求报价",
+    "downloadDatasheet": "下载数据表",
+    "technicalSupport": "技术支持",
+    "filters": {
+      "title": "筛选",
+      "category": "类别",
+      "priceRange": "价格范围",
+      "inStockOnly": "仅显示有货",
+      "clearFilters": "清除筛选"
+    },
+    "sort": {
+      "title": "排序方式",
+      "featured": "推荐",
+      "nameAsc": "名称升序",
+      "nameDesc": "名称降序",
+      "priceLowHigh": "价格升序",
+      "priceHighLow": "价格降序",
+      "newest": "最新"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "面向建筑自动化的精密传感器解决方案",
+      "subtitle": "自1993年以来,受到全球工程师的信赖,用于关键设施",
+      "cta": "浏览产品",
+      "secondaryCta": "联系销售"
+    },
+    "taglines": [
+      "可信赖的精度",
+      "持久耐用",
+      "工程卓越",
+      "美国制造"
+    ],
+    "features": {
+      "quality": {
+        "title": "无与伦比的质量",
+        "description": "每个传感器都经过NIST可追溯校准"
+      },
+      "support": {
+        "title": "专业支持",
+        "description": "工程师随时准备帮助您取得成功"
+      },
+      "delivery": {
+        "title": "快速交货",
+        "description": "现货商品当天发货"
+      },
+      "warranty": {
+        "title": "5年质保",
+        "description": "行业领先的质保保护"
+      }
+    }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "建筑自动化精密传感器解决方案",
+      "description": "自1993年以来,深受全球工程师信赖的关键设施供应商"
+    },
+    "sections": {
+      "products": {
+        "title": "产品",
+        "links": {
+          "allSensors": "全部传感器",
+          "wireless": "无线监测",
+          "testInstruments": "测试仪器",
+          "airQuality": "空气质量传感器",
+          "accessories": "配件",
+          "browseCatalog": "浏览目录"
+        }
+      },
+      "resources": {
+        "title": "资源",
+        "links": {
+          "datasheets": "技术数据表",
+          "installation": "安装指南",
+          "applicationNotes": "应用说明",
+          "videos": "视频库",
+          "caseStudies": "案例研究"
+        }
+      },
+      "company": {
+        "title": "公司",
+        "links": {
+          "mission": "使命与价值观",
+          "whyBapi": "为什么选择BAPI",
+          "news": "新闻",
+          "careers": "职业机会",
+          "contact": "联系我们"
+        }
+      },
+      "support": {
+        "title": "支持",
+        "links": {
+          "technical": "技术支持",
+          "selector": "产品选型器",
+          "crossReference": "交叉参考",
+          "distributorNetwork": "经销商网络"
+        }
+      }
+    },
+    "contact": {
+      "title": "联系我们",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "奖项与认可",
+      "description": "因在建筑自动化技术方面的创新和卓越而获奖"
+    },
+    "certifications": {
+      "title": "认证",
+      "bacnet": "BACnet B-ASC 认证",
+      "iso": "ISO 9001:2015",
+      "ul": "UL 认证",
+      "madeInUsa": "美国制造"
+    },
+    "quickActions": {
+      "title": "快捷操作",
+      "requestQuote": "获取报价",
+      "findDistributor": "查找经销商"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. 版权所有。",
+      "trademark": "BAPI® 是 Building Automation Products, Inc. 的注册商标。",
+      "privacy": "隐私政策",
+      "terms": "使用条款"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "关注我们"
+    }
+  },
+  "region": {
+    "selectLanguage": "选择语言",
+    "selectRegion": "选择地区",
+    "currency": "货币",
+    "measurements": "测量单位",
+    "temperature": "温度",
+    "pressure": "压力",
+    "unitSystem": {
+      "metric": "公制 (°C, bar)",
+      "imperial": "英制 (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "北美",
+      "europe": "欧洲",
+      "asia": "亚洲",
+      "middleEast": "中东",
+      "latinAmerica": "拉丁美洲",
+      "australia": "澳大利亚和太平洋地区"
+    },
+    "languages": {
+      "en": "英语",
+      "de": "德语",
+      "fr": "法语",
+      "es": "西班牙语",
+      "ja": "日语",
+      "zh": "中文",
+      "vi": "越南语",
+      "ar": "阿拉伯语"
+    },
+    "currencies": {
+      "usd": "美元 ($)",
+      "eur": "欧元 (€)",
+      "gbp": "英镑 (£)",
+      "cad": "加拿大元 ($)",
+      "jpy": "日元 (¥)",
+      "cny": "人民币 (¥)",
+      "vnd": "越南盾 (₫)",
+      "aed": "阿联酋迪拉姆 (د.إ)"
+    }
+  },
+  "units": {
+    "温度": {
+      "摄氏度": "°C",
+      "华氏度": "°F",
+      "开尔文": "K"
+    },
+    "压力": {
+      "巴": "bar",
+      "磅力/平方英寸": "PSI",
+      "帕斯卡": "Pa",
+      "千帕": "kPa",
+      "水柱英寸": "inWC"
+    },
+    "长度": {
+      "毫米": "mm",
+      "厘米": "cm",
+      "米": "m",
+      "英寸": "inch",
+      "英尺": "ft"
+    }
+  },
+  "errors": {
+    "generic": "出现了问题",
+    "network": "网络错误。请检查您的连接。",
+    "notFound": "页面未找到",
+    "unauthorized": "您必须登录才能访问此页面",
+    "serverError": "服务器错误。请稍后再试。",
+    "validationError": "请检查您的输入并重试",
+    "addToCartFailed": "无法将商品添加到购物车",
+    "productNotFound": "找不到该产品",
+    "cartEmpty": "您的购物车为空",
+    "checkoutFailed": "结账失败。请重试。"
+  },
+  "auth": {
+    "signIn": "登录",
+    "signOut": "退出登录",
+    "signUp": "注册",
+    "profile": "个人资料",
+    "account": "我的账户",
+    "dashboard": "仪表板",
+    "settings": "设置",
+    "orders": "订单",
+    "favorites": "收藏夹",
+    "quotes": "报价单",
+    "addresses": "地址",
+    "paymentMethods": "支付方式",
+    "welcome": "欢迎",
+    "welcomeBack": "欢迎回来",
+    "loginRequired": "请登录以继续",
+    "logout": "退出登录",
+    "myProfile": "我的个人资料"
+  },
+  "cart": {
+    "title": "购物车",
+    "empty": "您的购物车是空的",
+    "emptyDescription": "浏览我们的产品以将商品添加到您的购物车",
+    "checkout": "前往结账",
+    "continueShopping": "继续购物",
+    "subtotal": "小计",
+    "tax": "税费",
+    "shipping": "运费",
+    "total": "总计",
+    "itemCount": "{count} {count, plural, =1 {件商品} other {件商品}}",
+    "removeItem": "移除商品",
+    "updateQuantity": "更新数量",
+    "applyCoupon": "应用优惠券",
+    "couponCode": "优惠券代码",
+    "couponApplied": "优惠券应用成功",
+    "couponInvalid": "无效的优惠券代码",
+    "cartUpdated": "购物车已更新"
+  },
+  "checkout": {
+    "title": "结账",
+    "shipping": "运送信息",
+    "payment": "付款信息",
+    "review": "审核订单",
+    "placeOrder": "下单",
+    "orderSummary": "订单概要",
+    "billingAddress": "账单地址",
+    "shippingAddress": "送货地址",
+    "sameAsBilling": "与账单地址相同",
+    "paymentMethod": "支付方式",
+    "creditCard": "信用卡",
+    "cardNumber": "卡号",
+    "expiryDate": "有效期",
+    "cvv": "CVV",
+    "nameOnCard": "持卡人姓名",
+    "orderTotal": "订单总额",
+    "terms": "条款与条件",
+    "acceptTerms": "我接受条款与条件",
+    "processing": "正在处理您的订单...",
+    "orderComplete": "订单完成!",
+    "orderNumber": "订单编号",
+    "thankYou": "感谢您的订单"
+  },
+  "forms": {
+    "firstName": "名字",
+    "lastName": "姓氏",
+    "email": "电子邮件地址",
+    "phone": "电话号码",
+    "company": "公司名称",
+    "address": "街道地址",
+    "address2": "公寓、套房等(可选)",
+    "city": "城市",
+    "state": "州/省",
+    "zipCode": "邮政编码",
+    "country": "国家",
+    "message": "消息",
+    "subject": "主题",
+    "required": "必填",
+    "optional": "可选",
+    "invalidEmail": "无效的电子邮件地址",
+    "invalidPhone": "无效的电话号码",
+    "fieldRequired": "此字段为必填项",
+    "selectOption": "选择一个选项",
+    "enterValue": "输入一个值"
+  },
+  "accessibility": {
+    "skipToContent": "跳转至主要内容",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "openCart": "打开购物车",
+    "closeCart": "关闭购物车",
+    "previousSlide": "上一张幻灯片",
+    "nextSlide": "下一张幻灯片",
+    "pageNavigation": "页面导航",
+    "loading": "正在加载内容",
+    "searchResults": "搜索结果"
+  }
+}

@@ -222,6 +222,27 @@
 - ✅ Custom 12-point B2B translation instructions added to AI prompt
 - ✅ Vietnamese marked as HIGHEST PRIORITY (Vietnam facility April 2026)
 
+**Completed (Feb 11, 2026) - Locale Detection Fix & Homepage Translations:**
+- ✅ **CRITICAL BUG FIX:** Resolved locale detection issue (Polish translation bug)
+  - Root cause: NextIntlClientProvider in wrong layout (root vs [locale])
+  - Solution: Moved provider to [locale] layout where locale param accessible
+  - Fixed: ChatWidgetClient moved inside provider (resolved intl context error)
+  - Fixed: LanguageSelector now uses next-intl navigation wrapper
+  - Result: Polish navigation fully functional (verified by user)
+- ✅ Homepage translation infrastructure complete
+  - Added 44 translation keys to en.json (home.stats + home.categories)
+  - Refactored page.tsx to use getTranslations('home')
+  - All hardcoded strings replaced with translation function calls
+  - Stats: Years, Products, Global, ISO labels
+  - Categories: 8 product types with names and descriptions
+- ✅ Translation automation script created (sync-home-translations.js)
+  - Claude Haiku API integration for cost-effective translation
+  - 9 languages: de, fr, es, ja, zh, vi, ar, th, pl
+  - Cost estimate: ~$0.50-1.00 for homepage section
+  - JSON structure preservation and validation
+  - Ready to execute (awaiting user approval)
+- ✅ Branch: feat/ai-translation-thai (17 commits, not pushed)
+
 **BLOCKER (Feb 3, 2026):**
 - ❌ AI Pipeline 402 error: "Insufficient balance"
 - Issue: Team subscription ($99/month) ≠ AI Pipeline credits (separate purchase)
@@ -239,6 +260,10 @@
 **In Progress:**
 - 🔄 Awaiting Crowdin specialist call (Feb 4) for billing clarification
 - 🔄 Decision: AI credits vs Professional translators vs Mixed approach
+- 🔄 **NEXT SESSION:** Execute homepage translation sync (~$1, 2 minutes)
+  - Script ready: web/scripts/sync-home-translations.js
+  - Will update 9 language files with homepage translations
+  - Test Polish route after sync to verify complete translation
 
 **Remaining Work:**
 - [ ] **Feb 4**: Crowdin Account Specialist Call
@@ -277,7 +302,9 @@
 - [ ] **Week of March 10-17**: Stakeholder Demo & Approval
 
 **Files:**
-- `web/messages/en.json` - ✅ Complete (498 lines, 310+ keys)
+- `web/messages/en.json` - ✅ Complete (585 lines, 350+ keys, includes homepage)
+- `web/messages/pl.json` - 🔄 Navigation complete, homepage pending sync
+- `web/scripts/sync-home-translations.js` - ✅ Created, ready to run
 - `web/messages/de.json` - 🔄 20% complete (navigation only)
 - `web/messages/vi.json` - ✅ Skeleton (HIGHEST PRIORITY - Vietnam facility)
 - `web/messages/fr.json` - ⏳ Pending translation service

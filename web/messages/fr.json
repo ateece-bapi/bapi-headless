@@ -23,8 +23,67 @@
   "home": {
     "hero": {
       "title": "Solutions de capteurs de précision pour l'automatisation des bâtiments",
-      "subtitle": "Approuvé par les ingénieurs du monde entier pour la détection HVAC/R fiable",
-      "cta": "Explorer les produits"
+      "description": "Des capteurs traçables NIST et des contrôleurs certifiés BACnet, approuvés par les ingénieurs du monde entier pour les soins de santé, les centres de données et les installations critiques.",
+      "cta": "Explorer les produits",
+      "secondaryCta": "Parler aux ventes",
+      "productFamilyTitle": "Solutions de capteurs complètes pour les systèmes d'automatisation des bâtiments",
+      "productFamilySubtitle": "Approuvés par les ingénieurs du monde entier pour une surveillance et un contrôle de précision"
+    },
+    "taglines": [
+      "Capteurs de premier plan de l'industrie",
+      "Changement de la façon dont vous pensez aux capteurs depuis 1993",
+      "Intégration sans fil transparente pour votre BAS existant",
+      "Ingénierie de précision",
+      "Construction de l'avenir",
+      "...C'est dans les détails",
+      "Personnes. Bâtiment. Capteurs"
+    ],
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Années d'excellence",
+      "productsValue": "608",
+      "productsLabel": "Modèles de produits",
+      "globalValue": "Mondial",
+      "globalLabel": "Portée et soutien",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Qualité certifiée"
+    },
+    "categories": {
+      "title": "Explorez notre catalogue de produits",
+      "subtitle": "Parcourez par type de capteur pour trouver la solution parfaite pour votre projet d'automatisation des bâtiments",
+      "temperature": {
+        "name": "Capteurs de température",
+        "description": "Mesure de température haute précision"
+      },
+      "humidity": {
+        "name": "Capteurs d'humidité",
+        "description": "Surveillance précise de l'humidité relative"
+      },
+      "pressure": {
+        "name": "Capteurs de pression",
+        "description": "Pression différentielle et statique"
+      },
+      "airQuality": {
+        "name": "Capteurs de qualité de l'air",
+        "description": "Surveillance du CO₂, des COV et des particules"
+      },
+      "wireless": {
+        "name": "Capteurs sans fil",
+        "description": "Surveillance connectée au cloud WAM™"
+      },
+      "accessories": {
+        "name": "Accessoires",
+        "description": "Matériel de montage et boîtiers"
+      },
+      "testInstruments": {
+        "name": "Instruments de test",
+        "description": "Outils d'étalonnage et de vérification"
+      },
+      "etaLine": {
+        "name": "Ligne ETA",
+        "description": "E/S et contrôle modulaires"
+      },
+      "viewAll": "Voir tous les produits"
     }
   },
   "footer": {
@@ -35,5 +94,98 @@
     "eu": "Europe",
     "asia": "Asie-Pacifique",
     "mena": "Moyen-Orient"
+  },
+  "megaMenu": {
+    "resources": {
+      "label": "Ressources",
+      "technicalDocumentation": {
+        "title": "Documentation technique",
+        "applicationNotes": "Notes d'application",
+        "applicationNotesDesc": "Conseils de conception et meilleures pratiques",
+        "serviceBulletins": "Bulletins de service",
+        "serviceBulletinsDesc": "Mises à jour et annonces de produits",
+        "datasheets": "Fiches techniques",
+        "datasheetsDesc": "Spécifications complètes du produit",
+        "sensorsOverview": "Présentation des capteurs",
+        "sensorsOverviewDesc": "Comparer les spécifications des capteurs"
+      },
+      "toolsGuides": {
+        "title": "Outils et guides",
+        "catalog": "Catalogue de produits",
+        "catalogDesc": "Catalogue complet avec tarifs",
+        "siteVerification": "Outil de vérification du site",
+        "siteVerificationDesc": "Test de la force du signal sans fil",
+        "productSelector": "Sélecteur de produits",
+        "productSelectorDesc": "Trouvez le bon capteur"
+      },
+      "learningCenter": {
+        "title": "Centre d'apprentissage",
+        "videos": "Bibliothèque de vidéos",
+        "videosDesc": "Vidéos et tutoriels pratiques",
+        "caseStudies": "Études de cas",
+        "caseStudiesDesc": "Histoires de réussite concrètes",
+        "webinars": "Webinaires",
+        "webinarsDesc": "Sessions de formation en direct"
+      },
+      "featured": {
+        "title": "Besoin de documentation technique ?",
+        "description": "Accédez à notre bibliothèque complète de notes d'application, de fiches techniques et de ressources techniques pour vous aider à concevoir et à spécifier la solution parfaite.",
+        "cta": "Parcourir les ressources"
+      }
+    },
+    "support": {
+      "label": "Obtenir de l'aide",
+      "getHelp": {
+        "title": "Obtenir de l'aide",
+        "contactSupport": "Contacter le support",
+        "contactSupportDesc": "Parlez à nos ingénieurs",
+        "rmaRequest": "Demande de RMA",
+        "rmaRequestDesc": "Autorisation de retour de marchandise",
+        "whereToBuy": "Où acheter",
+        "whereToBuyDesc": "Trouvez un distributeur près de chez vous"
+      },
+      "existingCustomers": {
+        "title": "Pour les clients existants",
+        "myAccount": "Mon compte",
+        "myAccountDesc": "Voir les commandes et les devis",
+        "orderStatus": "Statut de la commande",
+        "orderStatusDesc": "Suivez vos expéditions",
+        "requestQuote": "Demander un devis",
+        "requestQuoteDesc": "Obtenez des prix pour votre projet"
+      },
+      "featured": {
+        "title": "Besoin d'assistance technique ?",
+        "description": "Notre équipe d'ingénieurs expérimentés est prête à vous aider avec la sélection de produits, les spécifications et le dépannage.",
+        "cta": "Contacter le support"
+      }
+    },
+    "company": {
+      "label": "À propos de BAPI",
+      "aboutBapi": {
+        "title": "À propos de BAPI",
+        "whyBapi": "Pourquoi BAPI",
+        "whyBapiDesc": "Pourquoi choisir les capteurs BAPI",
+        "missionValues": "Mission et valeurs",
+        "missionValuesDesc": "Ce qui nous anime",
+        "news": "Actualités et événements",
+        "newsDesc": "Dernières annonces",
+        "careers": "Carrières",
+        "careersDesc": "Rejoignez notre équipe"
+      },
+      "getInTouch": {
+        "title": "Entrez en contact",
+        "contactSales": "Contacter les ventes",
+        "contactSalesDesc": "Parlez à un représentant",
+        "whereToBuy": "Où acheter",
+        "whereToBuyDesc": "Trouver un distributeur",
+        "requestQuote": "Demander un devis",
+        "requestQuoteDesc": "Obtenir les tarifs"
+      },
+      "featured": {
+        "title": "Prêt à transformer votre automatisation du bâtiment ?",
+        "description": "Connectez-vous avec notre équipe pour discuter de vos exigences de projet et découvrir la solution de capteur parfaite.",
+        "cta": "Contactez notre équipe"
+      }
+    }
   }
 }

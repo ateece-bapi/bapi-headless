@@ -4,8 +4,8 @@ import { defineRouting } from 'next-intl/routing';
 import { merge } from 'lodash-es';
 import logger from '@/lib/logger';
 
-// All supported locales - 10 languages for Phase 1
-export const locales = ['en', 'de', 'fr', 'es', 'ja', 'zh', 'vi', 'ar', 'th', 'pl'] as const;
+// All supported locales - 11 languages (Phase 1 + Hindi)
+export const locales = ['en', 'de', 'fr', 'es', 'ja', 'zh', 'vi', 'ar', 'th', 'pl', 'hi'] as const;
 export type Locale = (typeof locales)[number];
 
 // Default locale

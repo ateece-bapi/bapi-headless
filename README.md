@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![WordPress](https://img.shields.io/badge/WordPress-6.8.2-21759b?logo=wordpress)](https://wordpress.org/)
 [![WooCommerce](https://img.shields.io/badge/WooCommerce-10.3.5-96588a?logo=woocommerce)](https://woocommerce.com/)
-[![Clerk](https://img.shields.io/badge/Clerk-Auth-6C47FF?logo=clerk)](https://clerk.com/)
+[![i18n](https://img.shields.io/badge/Languages-11-success)](https://next-intl.dev/)
 
 ## 🌐 Staging Environment
 
@@ -32,7 +32,8 @@ This project demonstrates a modern headless CMS architecture:
 │  • Server Components (SSR)                                   │
 │  • TypeScript + Tailwind CSS                                 │
 │  • Zustand State Management                                  │
-│  • Clerk Authentication (Google OAuth)                       │
+│  • WordPress JWT Authentication                              │
+│  • next-intl (11 Languages)                                  │
 │  • BAPI Brand Color System                                   │
 └────────────────────────┬────────────────────────────────────┘
                          │
@@ -58,8 +59,9 @@ bapi-headless/
 ├── web/                         # Next.js application
 │   ├── src/
 │   │   ├── app/                # App Router pages
-│   │   │   ├── page.tsx        # Homepage
-│   │   │   ├── layout.tsx      # Root layout with ClerkProvider
+│   │   │   ├── [locale]/       # Locale-specific routes (11 languages)
+│   │   │   ├── page.tsx        # Root redirect to locale
+│   │   │   ├── layout.tsx      # Root layout (no providers)
 │   │   │   ├── account/        # User dashboard (6 pages)
 │   │   │   │   ├── page.tsx    # Dashboard overview
 │   │   │   │   ├── profile/    # User profile management
@@ -101,16 +103,18 @@ bapi-headless/
 │   │   │       └── queries/    # GraphQL query definitions
 │   │   ├── store/              # Zustand stores
 │   │   └── styles/             # Global styles
-│   ├── middleware.ts           # Clerk authentication middleware
+│   ├── middleware.ts           # next-intl locale routing + auth
+│   ├── messages/               # Translation files (11 languages)
 │   ├── scripts/                # Utility scripts
 │   │   ├── optimize-images.mjs    # WebP batch conversion script
-│   │   ├── bulk-import-users.mjs  # WordPress to Clerk migration
-│   │   └── test-user-import.sh    # Safe migration testing
+│   │   ├── sync-home-translations.js   # AI translation automation
+│   │   ├── sync-footer-translations.js # Footer translation sync
+│   │   └── sync-new-menu-sections.js   # Menu translation sync
 │   ├── public/                 # Static assets
 │   ├── __tests__/              # Test files
 │   ├── package.json            # Dependencies
 │   ├── next.config.ts          # Next.js configuration
-│   ├── CLERK_SETUP.md          # Clerk authentication guide
+│   ├── i18n.ts                 # Internationalization config (11 languages)
 │   ├── COLOR_SYSTEM.md         # Brand color documentation
 │   └── PREVIEW.md              # WordPress preview guide
 │
@@ -133,12 +137,15 @@ bapi-headless/
 - ⚡ **Next.js 16** with App Router and Turbopack
 - ⚡ **95% Faster Product Pages** - Optimized from 2-3s to <100ms with React cache(), parallel queries, and Smart Cache
 - �️ **WebP Image Optimization** - 60% size reduction (88.52 MB → 35.44 MB) across 26 images, hero image alone reduced from 60 MB to 9.4 MB
-- �🔐 **Clerk Authentication** - Google OAuth, user profiles, protected routes
+- 🔐 **WordPress JWT Authentication** - Native WordPress users, HTTP-only cookies, protected routes
 - 👤 **Complete User Dashboard** - 6-page account system (dashboard, profile, orders, favorites, quotes, settings)
-- 🛍️ **Real Order History** - Display WooCommerce orders via authenticated GraphQL- 🤖 **AI Chatbot** - Claude-powered technical support with product search, multilingual support (8 languages), and human handoff capability- 💬 **Quote Request System** - Custom quote forms with file uploads
+- 🛍️ **Real Order History** - Display WooCommerce orders via authenticated GraphQL
+- 🤖 **AI Chatbot** - Claude-powered technical support with product search, multilingual support (11 languages), and human handoff capability
+- 💬 **Quote Request System** - Custom quote forms with file uploads
 - ⭐ **Favorites System** - Save and manage favorite products
 - 🔄 **WordPress User Migration** - Bulk import system for existing customers
-- 🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
+- � **11 Languages** - EN, DE, FR, ES, JA, ZH, VI, AR, TH, PL, HI with next-intl
+- �🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
 - 🧭 **Enterprise Mega Menu** – Multi-column navigation with icons, featured products, quick actions, and B2B enhancements
 - 👥 **Contact & Sales Team** - Professional contact page with 15 sales representatives, video introductions, lead generation form
 - ⬆️ **Back to Top Button** – Floating button for fast site-wide navigation
@@ -214,9 +221,9 @@ bapi-headless/
    NEXT_PUBLIC_WORDPRESS_GRAPHQL=https://bapiheadlessstaging.kinsta.cloud/graphql
    NEXT_PUBLIC_APP_URL=http://localhost:3000
    
-   # Clerk Authentication (get keys from https://dashboard.clerk.com)
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
-   CLERK_SECRET_KEY=sk_test_...
+   # WordPress Authentication (for authenticated GraphQL queries)
+   WORDPRESS_APPLICATION_USERNAME=your-username
+   WORDPRESS_APPLICATION_PASSWORD=your-app-password
    ```
 
 4. **Generate GraphQL types**
@@ -252,7 +259,8 @@ See [`web/COLOR_SYSTEM.md`](./web/COLOR_SYSTEM.md) for complete color documentat
 
 - **[PNPM Setup Guide](./docs/PNPM-TEAM-GUIDE.md)** - 5-minute team onboarding for PNPM migration
 - **[Color System](./web/COLOR_SYSTEM.md)** - Complete brand color guidelines
-- **[Clerk Authentication](./web/CLERK_SETUP.md)** - Authentication setup and configuration
+- **[WordPress Authentication](./docs/WORDPRESS-BACKEND-SETUP.md)** - JWT authentication setup and configuration
+- **[Translation Guide](./docs/PHASE1-TRANSLATION-GUIDE.md)** - 11-language i18n implementation
 - **[WordPress User Migration](./docs/BULK-USER-MIGRATION.md)** - Bulk import guide for existing customers
 - **[GraphQL Setup](./web/GRAPHQL_SETUP.md)** - GraphQL client configuration
 - **[WordPress Performance](./docs/WORDPRESS-GRAPHQL-OPTIMIZATION.md)** - Backend optimization guide (Smart Cache, CORS, Redis)
@@ -371,13 +379,13 @@ NEXT_PUBLIC_WORDPRESS_GRAPHQL=https://your-site.kinsta.cloud/graphql
 # Application URL
 NEXT_PUBLIC_APP_URL=https://your-site.vercel.app
 
-# Clerk Authentication (required)
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your-key
-CLERK_SECRET_KEY=sk_test_your-key
-
-# WordPress Authenticated GraphQL (required for order history)
+# WordPress JWT Authentication (required for protected routes)
 WORDPRESS_API_USER=your-wordpress-username
 WORDPRESS_API_PASSWORD=your-wordpress-app-password
+
+# Stripe Payment (test mode)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your-key
+STRIPE_SECRET_KEY=sk_test_your-key
 
 # Preview mode (optional)
 PREVIEW_SECRET=your-secret-key
@@ -418,12 +426,13 @@ For questions or issues:
 ## 🙏 Acknowledgments
 
 - [Next.js](https://nextjs.org/) - React framework
-- [Clerk](https://clerk.com/) - Authentication and user management
+- [next-intl](https://next-intl.dev/) - Internationalization (11 languages)
 - [WPGraphQL](https://www.wpgraphql.com/) - GraphQL for WordPress
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
 - [Zustand](https://github.com/pmndrs/zustand) - State management
 - [Vercel](https://vercel.com/) - Frontend hosting
 - [Kinsta](https://kinsta.com/) - WordPress hosting
+- [Anthropic Claude](https://www.anthropic.com/) - AI chatbot & translations
 
 ---
 

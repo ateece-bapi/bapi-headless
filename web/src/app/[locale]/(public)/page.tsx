@@ -5,19 +5,19 @@ import { GlobalPresence } from '@/components/company/GlobalPresence';
 import { getPosts } from '@/lib/wordpress';
 import { locales } from '@/i18n';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { 
+import {
   ArrowRight,
   Globe,
   TrendingUp,
   Package,
   ShieldCheck,
   Newspaper,
-  Calendar
+  Calendar,
 } from 'lucide-react';
 
 /**
  * Homepage - Main landing page for BAPI Headless E-Commerce
- * 
+ *
  * Performance & Best Practices:
  * - All inline styles removed (Feb 2026 refactor)
  * - CSS classes defined in globals.css for reusability
@@ -25,7 +25,7 @@ import {
  * - Background images loaded via CSS classes, not inline styles
  * - SVG patterns as CSS classes for better CSP compliance
  * - Full static generation with ISR (revalidate: 3600)
- * 
+ *
  * Architecture:
  * - Server Component (async data fetching)
  * - Static params generation for all locales
@@ -49,18 +49,14 @@ export function generateStaticParams() {
  */
 export const revalidate = 3600;
 
-export default async function Home({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   // Await params and set request locale for next-intl
   const { locale } = await params;
   setRequestLocale(locale);
-  
+
   // Get translations
   const t = await getTranslations('home');
-  
+
   // Prepare hero translations
   const heroTranslations = {
     title: t('hero.title'),
@@ -79,7 +75,7 @@ export default async function Home({
       t('taglines.6'),
     ],
   };
-  
+
   // Fetch latest 3 news posts
   const posts = await getPosts({ perPage: 3 });
   return (
@@ -89,18 +85,18 @@ export default async function Home({
 
       {/* Quick Stats Bar */}
       <section className="bg-neutral-50 py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative bg-gradient-to-br from-primary-600/90 via-primary-500/85 to-primary-600/90 rounded-2xl p-8 shadow-xl overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600/90 via-primary-500/85 to-primary-600/90 p-8 shadow-xl">
             {/* Decorative background elements */}
-            <div className="absolute inset-0 bg-grid-pattern"></div>
-            
-            <div className="relative grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <div className="bg-grid-pattern absolute inset-0"></div>
+
+            <div className="relative grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {/* 30+ Years */}
               <div className="group text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                  <TrendingUp className="w-7 h-7 text-white" strokeWidth={2.5} />
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <TrendingUp className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   {t('stats.yearsValue')}
                 </div>
                 <div className="text-sm font-medium text-white/90">{t('stats.yearsLabel')}</div>
@@ -108,10 +104,10 @@ export default async function Home({
 
               {/* 608 Products */}
               <div className="group text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                  <Package className="w-7 h-7 text-white" strokeWidth={2.5} />
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <Package className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   {t('stats.productsValue')}
                 </div>
                 <div className="text-sm font-medium text-white/90">{t('stats.productsLabel')}</div>
@@ -119,10 +115,10 @@ export default async function Home({
 
               {/* Global Reach */}
               <div className="group text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                  <Globe className="w-7 h-7 text-white" strokeWidth={2.5} />
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <Globe className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   {t('stats.globalValue')}
                 </div>
                 <div className="text-sm font-medium text-white/90">{t('stats.globalLabel')}</div>
@@ -130,10 +126,10 @@ export default async function Home({
 
               {/* ISO 9001 */}
               <div className="group text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                  <ShieldCheck className="w-7 h-7 text-white" strokeWidth={2.5} />
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                  <ShieldCheck className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
-                <div className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   {t('stats.isoValue')}
                 </div>
                 <div className="text-sm font-medium text-white/90">{t('stats.isoLabel')}</div>
@@ -145,117 +141,115 @@ export default async function Home({
 
       {/* Product Categories - 8 Main Product Lines */}
       <section className="bg-white py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               {t('categories.title')}
             </h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              {t('categories.subtitle')}
-            </p>
+            <p className="mx-auto max-w-2xl text-lg text-neutral-600">{t('categories.subtitle')}</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
             {[
               {
                 name: t('categories.temperature.name'),
                 icon: '/images/icons/Temperature_Icon.webp',
                 href: '/products',
                 count: 119,
-                description: t('categories.temperature.description')
+                description: t('categories.temperature.description'),
               },
               {
                 name: t('categories.humidity.name'),
                 icon: '/images/icons/Humidity_Icon.webp',
                 href: '/products',
                 count: 33,
-                description: t('categories.humidity.description')
+                description: t('categories.humidity.description'),
               },
               {
                 name: t('categories.pressure.name'),
                 icon: '/images/icons/Pressure_Icon.webp',
                 href: '/products',
                 count: 39,
-                description: t('categories.pressure.description')
+                description: t('categories.pressure.description'),
               },
               {
                 name: t('categories.airQuality.name'),
                 icon: '/images/icons/AirQuality_Icon.webp',
                 href: '/products',
                 count: 32,
-                description: t('categories.airQuality.description')
+                description: t('categories.airQuality.description'),
               },
               {
                 name: t('categories.wireless.name'),
                 icon: '/images/icons/Wireless_Icon.webp',
                 href: '/products',
                 count: 24,
-                description: t('categories.wireless.description')
+                description: t('categories.wireless.description'),
               },
               {
                 name: t('categories.accessories.name'),
                 icon: '/images/icons/Accessories_Icon.webp',
                 href: '/products',
                 count: 45,
-                description: t('categories.accessories.description')
+                description: t('categories.accessories.description'),
               },
               {
                 name: t('categories.testInstruments.name'),
                 icon: '/images/icons/Test_Instruments_Icon.webp',
                 href: '/products',
                 count: 8,
-                description: t('categories.testInstruments.description')
+                description: t('categories.testInstruments.description'),
               },
               {
                 name: t('categories.etaLine.name'),
                 icon: '/images/icons/Sensors_Icon.webp',
                 href: '/products',
                 count: 70,
-                description: t('categories.etaLine.description')
-              }
+                description: t('categories.etaLine.description'),
+              },
             ].map((category) => {
               return (
                 <Link
                   key={category.name}
                   href={category.href}
-                  className="group relative bg-white rounded-2xl border-2 border-neutral-200 overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 ease-in-out will-change-transform-safe focus:outline-none focus:ring-4 focus:ring-primary-500/50 focus:border-primary-500"
+                  className="will-change-transform-safe group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 ease-in-out hover:border-primary-500 hover:shadow-2xl focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                 >
                   {/* Hover gradient overlay */}
-                  <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out z-10" />
-                  
+                  <div className="absolute inset-x-0 top-0 z-10 h-48 bg-gradient-to-br from-primary-500/5 to-accent-500/5 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100" />
+
                   {/* Icon container with enhanced styling - matches popular products */}
-                  <div className="relative bg-gradient-to-br from-primary-200 via-accent-100 to-primary-100 h-48 flex items-center justify-center p-8 border-b-2 border-neutral-100">
+                  <div className="relative flex h-48 items-center justify-center border-b-2 border-neutral-100 bg-gradient-to-br from-primary-200 via-accent-100 to-primary-100 p-8">
                     <Image
                       src={category.icon}
                       alt={`${category.name} icon`}
                       width={128}
                       height={128}
-                      className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-300 ease-in-out will-change-transform-safe"
+                      className="will-change-transform-safe h-full w-full object-contain drop-shadow-xl transition-transform duration-300 ease-in-out group-hover:scale-110"
                     />
                   </div>
-                  
+
                   <div className="p-6">
                     {/* Category count badge with BAPI accent color */}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-accent-500 text-neutral-900 rounded-full text-xs font-bold uppercase tracking-wide mb-3">
-                      <span className="w-1.5 h-1.5 bg-neutral-900 rounded-full" />
+                    <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-accent-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-neutral-900">
+                      <span className="h-1.5 w-1.5 rounded-full bg-neutral-900" />
                       {category.count} Products
                     </div>
-                    
+
                     {/* Category name */}
-                    <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-primary-600 transition-colors">
+                    <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                       {category.name}
                     </h3>
-                    
+
                     {/* Description */}
-                    <p className="text-sm text-neutral-600 mb-4 leading-relaxed">
+                    <p className="mb-4 text-sm leading-relaxed text-neutral-600">
                       {category.description}
                     </p>
-                    
+
                     {/* View Products CTA */}
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold text-primary-600 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                      <span className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 transition-all group-hover:gap-2">
                         {t('categories.viewProducts')}
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="h-4 w-4" />
                       </span>
                     </div>
                   </div>
@@ -264,36 +258,36 @@ export default async function Home({
             })}
           </div>
 
-          <div className="text-center mt-8">
+          <div className="mt-8 text-center">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               {t('categories.browseAll')}
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* Why BAPI - Based on original website */}
-      <section className="relative bg-gradient-to-br from-primary-50 via-white to-accent-50 py-12 lg:py-16 overflow-hidden">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50 py-12 lg:py-16">
         {/* Decorative background elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-primary-500/5 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-accent-500/5 blur-3xl"></div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Header with facility image */}
           <div className="mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary-500 mb-6 text-center">
+            <h2 className="mb-6 text-center text-3xl font-bold text-primary-500 lg:text-4xl">
               {t('whyBapi.title')}
             </h2>
-            <div className="max-w-4xl mx-auto mb-8">
-              <p className="text-base text-neutral-700 leading-relaxed">
+            <div className="mx-auto mb-8 max-w-4xl">
+              <p className="text-base leading-relaxed text-neutral-700">
                 {t('whyBapi.description')}
               </p>
             </div>
             {/* Facility Image */}
-            <div className="relative w-full h-80 lg:h-[450px] rounded-2xl overflow-hidden shadow-xl border-2 border-neutral-200">
+            <div className="relative h-80 w-full overflow-hidden rounded-2xl border-2 border-neutral-200 shadow-xl lg:h-[450px]">
               <Image
                 src="/images/bapi-facility-solar.webp"
                 alt="BAPI Manufacturing Facility with Solar Panels"
@@ -306,10 +300,10 @@ export default async function Home({
           </div>
 
           {/* Three Pillars */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-12">
             {/* Warranty */}
-            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:ring-4 focus-within:ring-primary-500/50">
-              <div className="w-32 h-32 mx-auto mb-6 relative bg-gradient-to-br from-primary-50 via-white to-accent-50 rounded-2xl p-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 border border-primary-200">
+            <div className="group rounded-2xl border-2 border-neutral-200 bg-white p-6 text-center transition-all duration-300 focus-within:ring-4 focus-within:ring-primary-500/50 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
+              <div className="relative mx-auto mb-6 h-32 w-32 rounded-2xl border border-primary-200 bg-gradient-to-br from-primary-50 via-white to-accent-50 p-4 shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image
                   src="/images/icons/5-year-warranty-icon.webp"
                   alt="5 Year Lifetime Limited Warranty"
@@ -318,18 +312,20 @@ export default async function Home({
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">{t('whyBapi.warranty.title')}</h3>
-              <p className="text-sm text-neutral-600 leading-relaxed">
+              <h3 className="mb-4 text-xl font-bold text-neutral-900">
+                {t('whyBapi.warranty.title')}
+              </h3>
+              <p className="text-sm leading-relaxed text-neutral-600">
                 {t('whyBapi.warranty.description')}
               </p>
-              <p className="text-sm text-neutral-600 leading-relaxed mt-3">
+              <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                 {t('whyBapi.warranty.footnote')}
               </p>
             </div>
 
             {/* BAPI-Backed */}
-            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:ring-4 focus-within:ring-primary-500/50">
-              <div className="w-32 h-32 mx-auto mb-6 relative bg-gradient-to-br from-primary-50 via-white to-accent-50 rounded-2xl p-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 border border-primary-200">
+            <div className="group rounded-2xl border-2 border-neutral-200 bg-white p-6 text-center transition-all duration-300 focus-within:ring-4 focus-within:ring-primary-500/50 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
+              <div className="relative mx-auto mb-6 h-32 w-32 rounded-2xl border border-primary-200 bg-gradient-to-br from-primary-50 via-white to-accent-50 p-4 shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image
                   src="/images/icons/bapi-backed-logo.webp"
                   alt="BAPI Backed"
@@ -338,18 +334,20 @@ export default async function Home({
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">{t('whyBapi.bapiBackedTitle')}</h3>
-              <p className="text-sm text-neutral-600 leading-relaxed">
+              <h3 className="mb-4 text-xl font-bold text-neutral-900">
+                {t('whyBapi.bapiBackedTitle')}
+              </h3>
+              <p className="text-sm leading-relaxed text-neutral-600">
                 {t('whyBapi.bapiBackedDescription')}
               </p>
-              <p className="text-sm text-neutral-600 leading-relaxed mt-3">
+              <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                 {t('whyBapi.bapiBackedFootnote')}
               </p>
             </div>
 
             {/* BAPI Original */}
-            <div className="group text-center bg-white rounded-2xl p-6 border-2 border-neutral-200 hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:ring-4 focus-within:ring-primary-500/50">
-              <div className="w-32 h-32 mx-auto mb-6 relative bg-gradient-to-br from-primary-50 via-white to-accent-50 rounded-2xl p-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 border border-primary-200">
+            <div className="group rounded-2xl border-2 border-neutral-200 bg-white p-6 text-center transition-all duration-300 focus-within:ring-4 focus-within:ring-primary-500/50 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
+              <div className="relative mx-auto mb-6 h-32 w-32 rounded-2xl border border-primary-200 bg-gradient-to-br from-primary-50 via-white to-accent-50 p-4 shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image
                   src="/images/icons/certified-original-stamp.webp"
                   alt="BAPI Certified Original"
@@ -358,11 +356,13 @@ export default async function Home({
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">{t('whyBapi.bapiOriginal.title')}</h3>
-              <p className="text-sm text-neutral-600 leading-relaxed">
+              <h3 className="mb-4 text-xl font-bold text-neutral-900">
+                {t('whyBapi.bapiOriginal.title')}
+              </h3>
+              <p className="text-sm leading-relaxed text-neutral-600">
                 {t('whyBapi.bapiOriginal.description')}
               </p>
-              <p className="text-sm text-neutral-600 leading-relaxed mt-3">
+              <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                 {t('whyBapi.bapiOriginal.footnote')}
               </p>
             </div>
@@ -371,14 +371,15 @@ export default async function Home({
       </section>
 
       {/* Global Presence Map */}
-      <GlobalPresence 
+      <GlobalPresence
         title={t('globalPresence.title')}
-        subtitle={t('globalPresence.subtitle')}        locationTranslations={{
+        subtitle={t('globalPresence.subtitle')}
+        locationTranslations={{
           mapLegend: {
             headquarters: t('locations.mapLegend.headquarters'),
             distribution: t('locations.mapLegend.distribution'),
             production: t('locations.mapLegend.production'),
-            productionService: t('locations.mapLegend.productionService')
+            productionService: t('locations.mapLegend.productionService'),
           },
           facilities: {
             'headquarters-usa': {
@@ -387,21 +388,21 @@ export default async function Home({
               country: t('locations.facilities.headquartersUsa.country'),
               description: t('locations.facilities.headquartersUsa.description'),
               type: t('locations.facilities.headquartersUsa.type'),
-              established: t('locations.facilities.headquartersUsa.established')
+              established: t('locations.facilities.headquartersUsa.established'),
             },
             'distribution-uk': {
               name: t('locations.facilities.distributionUk.name'),
               city: t('locations.facilities.distributionUk.city'),
               country: t('locations.facilities.distributionUk.country'),
               description: t('locations.facilities.distributionUk.description'),
-              type: t('locations.facilities.distributionUk.type')
+              type: t('locations.facilities.distributionUk.type'),
             },
             'production-poland': {
               name: t('locations.facilities.productionPoland.name'),
               city: t('locations.facilities.productionPoland.city'),
               country: t('locations.facilities.productionPoland.country'),
               description: t('locations.facilities.productionPoland.description'),
-              type: t('locations.facilities.productionPoland.type')
+              type: t('locations.facilities.productionPoland.type'),
             },
             'production-vietnam': {
               name: t('locations.facilities.productionVietnam.name'),
@@ -409,51 +410,48 @@ export default async function Home({
               country: t('locations.facilities.productionVietnam.country'),
               description: t('locations.facilities.productionVietnam.description'),
               type: t('locations.facilities.productionVietnam.type'),
-              status: t('locations.facilities.productionVietnam.status')
-            }
+              status: t('locations.facilities.productionVietnam.status'),
+            },
           },
           cta: {
             text: t('locations.cta.text'),
-            button: t('locations.cta.button')
-          }
-        }}      />
+            button: t('locations.cta.button'),
+          },
+        }}
+      />
 
       {/* Latest News Section */}
       <section className="bg-white py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex items-center justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-full text-primary-600 font-semibold text-sm mb-4">
-                <Newspaper className="w-4 h-4" />
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-semibold text-primary-600">
+                <Newspaper className="h-4 w-4" />
                 {t('news.badge')}
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900">
-                {t('news.title')}
-              </h2>
-              <p className="text-lg text-neutral-600 mt-2">
-                {t('news.subtitle')}
-              </p>
+              <h2 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('news.title')}</h2>
+              <p className="mt-2 text-lg text-neutral-600">{t('news.subtitle')}</p>
             </div>
             <Link
               href="/company/news"
-              className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="hidden items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-primary-600 hover:shadow-xl md:inline-flex"
             >
               {t('news.viewAll')}
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
 
           {posts.length === 0 ? (
-            <div className="bg-neutral-50 rounded-2xl p-12 text-center border-2 border-dashed border-neutral-300">
-              <Newspaper className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
+            <div className="rounded-2xl border-2 border-dashed border-neutral-300 bg-neutral-50 p-12 text-center">
+              <Newspaper className="mx-auto mb-4 h-16 w-16 text-neutral-400" />
               <p className="text-lg text-neutral-600">{t('news.noArticles')}</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {posts.map((post) => (
                 <article
                   key={post.id}
-                  className="group relative bg-white border-2 border-neutral-200 rounded-2xl overflow-hidden hover:border-primary-500 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 focus-within:ring-4 focus-within:ring-primary-500/50"
+                  className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 focus-within:ring-4 focus-within:ring-primary-500/50 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl"
                 >
                   {/* Featured Image */}
                   {post.featuredImage && (
@@ -462,7 +460,7 @@ export default async function Home({
                         src={post.featuredImage}
                         alt={post.title || 'News article'}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                         loading="lazy"
                       />
                       {/* Overlay gradient */}
@@ -473,26 +471,28 @@ export default async function Home({
                   {/* Content */}
                   <div className="p-6">
                     {/* Date Badge */}
-                    <div className="flex items-center gap-2 text-sm text-neutral-600 mb-3">
-                      <Calendar className="w-4 h-4 text-primary-500" />
+                    <div className="mb-3 flex items-center gap-2 text-sm text-neutral-600">
+                      <Calendar className="h-4 w-4 text-primary-500" />
                       <time dateTime={post.date || ''}>
-                        {post.date ? new Date(post.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric',
-                        }) : 'Date unavailable'}
+                        {post.date
+                          ? new Date(post.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric',
+                            })
+                          : 'Date unavailable'}
                       </time>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg font-bold text-neutral-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">
+                    <h3 className="mb-3 line-clamp-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                       {post.title}
                     </h3>
 
                     {/* Excerpt */}
                     {post.excerpt && (
                       <div
-                        className="text-sm text-neutral-600 mb-4 line-clamp-3"
+                        className="mb-4 line-clamp-3 text-sm text-neutral-600"
                         dangerouslySetInnerHTML={{ __html: post.excerpt }}
                       />
                     )}
@@ -500,11 +500,11 @@ export default async function Home({
                     {/* Read More Link */}
                     <Link
                       href={`/company/news/${post.slug}`}
-                      className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 hover:text-primary-700 transition-colors group-hover:gap-2"
+                      className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 transition-colors hover:text-primary-700 group-hover:gap-2"
                       aria-label={`Read more about ${post.title}`}
                     >
                       Read More
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
                 </article>
@@ -516,10 +516,10 @@ export default async function Home({
           <div className="mt-8 text-center md:hidden">
             <Link
               href="/company/news"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               View All News
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>
@@ -527,38 +527,35 @@ export default async function Home({
 
       {/* Final CTA - Single Focus on Product Discovery */}
       <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 drop-shadow-md">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-4 text-3xl font-bold text-white drop-shadow-md lg:text-4xl">
             {t('finalCta.title')}
           </h2>
-          <p className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto drop-shadow-sm">
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-primary-100 drop-shadow-sm">
             {t('finalCta.subtitle')}
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/products"
-              className="btn-bapi-accent inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg"
+              className="btn-bapi-accent inline-flex items-center justify-center gap-2 rounded-xl px-8 py-4 text-lg"
             >
               {t('finalCta.exploreProducts')}
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-neutral-50 text-primary-500 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-white hover:border-accent-500"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white bg-white px-8 py-4 text-lg font-bold text-primary-500 shadow-lg transition-all duration-300 hover:border-accent-500 hover:bg-neutral-50 hover:shadow-xl"
             >
               {t('finalCta.talkToSales')}
             </Link>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-primary-400/50 text-primary-100">
-            <p className="text-sm drop-shadow-sm">
-              {t('finalCta.footer')}
-            </p>
+          <div className="mt-8 border-t border-primary-400/50 pt-8 text-primary-100">
+            <p className="text-sm drop-shadow-sm">{t('finalCta.footer')}</p>
           </div>
         </div>
       </section>
     </main>
   );
 }
-

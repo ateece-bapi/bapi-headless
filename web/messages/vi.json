@@ -81,7 +81,7 @@
       "temperature": {
         "title": "Nhiệt độ",
         "roomWallSensors": "Cảm biến Phòng & Tường",
-        "roomWallSensorsDesc": "Cảm biến nhiệt độ độ chính xác cao",
+        "roomWallSensorsDesc": "Cảm biến nhiệt độ chính xác cao",
         "ductSensors": "Cảm biến Ống gió",
         "ductSensorsDesc": "Bộ phát truyền ống gió",
         "immersionWell": "Chìm & Giếng",

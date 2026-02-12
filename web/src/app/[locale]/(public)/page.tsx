@@ -475,12 +475,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                       <Calendar className="h-4 w-4 text-primary-500" />
                       <time dateTime={post.date || ''}>
                         {post.date
-                          ? new Date(post.date).toLocaleDateString('en-US', {
+                          ? new Date(post.date).toLocaleDateString(locale, {
                               year: 'numeric',
                               month: 'short',
                               day: 'numeric',
                             })
-                          : 'Date unavailable'}
+                          : t('news.dateUnavailable')}
                       </time>
                     </div>
 
@@ -501,9 +501,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     <Link
                       href={`/company/news/${post.slug}`}
                       className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 transition-colors hover:text-primary-700 group-hover:gap-2"
-                      aria-label={`Read more about ${post.title}`}
+                      aria-label={t('news.readMoreAriaLabel', { title: post.title })}
                     >
-                      Read More
+                      {t('news.readMore')}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
@@ -518,7 +518,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               href="/company/news"
               className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
-              View All News
+              {t('news.viewAll')}
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

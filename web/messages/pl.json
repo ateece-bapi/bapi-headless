@@ -343,7 +343,10 @@
       "title": "Pozostań na bieżąco",
       "subtitle": "Najnowsze aktualizacje, ogłoszenia o produktach i informacje z branży",
       "viewAll": "Wyświetl wszystkie wiadomości",
-      "noArticles": "Obecnie brak dostępnych artykułów prasowych"
+      "noArticles": "Obecnie brak dostępnych artykułów prasowych",
+      "dateUnavailable": "Data niedostępna",
+      "readMore": "Czytaj więcej",
+      "readMoreAriaLabel": "Czytaj więcej o {title}"
     },
     "locations": {
       "mapLegend": {

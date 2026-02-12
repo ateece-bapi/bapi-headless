@@ -113,7 +113,10 @@
       "title": "Restez informé",
       "subtitle": "Dernières mises à jour, annonces de produits et informations sur l'industrie",
       "viewAll": "Voir toutes les nouvelles",
-      "noArticles": "Aucun article d'actualité disponible pour le moment"
+      "noArticles": "Aucun article de presse disponible pour le moment",
+      "dateUnavailable": "Date non disponible",
+      "readMore": "Lire la suite",
+      "readMoreAriaLabel": "Lire la suite sur {title}"
     },
     "locations": {
       "mapLegend": {

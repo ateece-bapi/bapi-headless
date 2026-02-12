@@ -113,7 +113,10 @@
       "title": "最新情報を把握する",
       "subtitle": "最新のアップデート、製品発表、業界の洞察",
       "viewAll": "すべてのニュースを見る",
-      "noArticles": "まだニュース記事はありません"
+      "noArticles": "まだニュース記事はありません",
+      "dateUnavailable": "日付不明",
+      "readMore": "続きを読む",
+      "readMoreAriaLabel": "{title}について続きを読む"
     },
     "locations": {
       "mapLegend": {

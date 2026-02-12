@@ -113,7 +113,10 @@
       "title": "Mantente informado",
       "subtitle": "Últimas actualizaciones, anuncios de productos e insights de la industria",
       "viewAll": "Ver todas las noticias",
-      "noArticles": "Aún no hay artículos de noticias disponibles"
+      "noArticles": "Aún no hay artículos de noticias disponibles",
+      "dateUnavailable": "Fecha no disponible",
+      "readMore": "Leer más",
+      "readMoreAriaLabel": "Leer más sobre {title}"
     },
     "locations": {
       "mapLegend": {

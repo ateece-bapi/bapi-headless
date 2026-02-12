@@ -348,6 +348,92 @@
         "description": "与我们的团队联系,讨论您的项目需求,找到合适的传感器解决方案。",
         "cta": "联系我们的团队"
       }
+    },
+    "products": {
+      "label": "产品",
+      "temperature": {
+        "title": "温度",
+        "roomWallSensors": "室内和墙壁传感器",
+        "roomWallSensorsDesc": "高精度温度检测",
+        "ductSensors": "管道传感器",
+        "ductSensorsDesc": "管道安装式传感器",
+        "immersionWell": "浸没式和套管式",
+        "immersionWellDesc": "液体温度测量",
+        "outdoorSensors": "室外传感器",
+        "outdoorSensorsDesc": "抗恶劣环境温度检测"
+      },
+      "humidity": {
+        "title": "湿度",
+        "roomHumidity": "室内湿度",
+        "roomHumidityDesc": "壁挂式相对湿度传感器",
+        "ductHumidity": "管道湿度",
+        "ductHumidityDesc": "进出口相对湿度",
+        "outdoorHumidity": "室外湿度",
+        "outdoorHumidityDesc": "抗恶劣环境相对湿度",
+        "comboSensors": "组合式传感器",
+        "comboSensorsDesc": "温度 + 湿度"
+      },
+      "pressure": {
+        "title": "压力",
+        "differential": "差压",
+        "differentialDesc": "室内和过滤器监测",
+        "static": "静压",
+        "staticDesc": "管道静压变送器",
+        "barometric": "大气压力",
+        "barometricDesc": "大气压力"
+      },
+      "airQuality": {
+        "title": "空气质量",
+        "co2": "CO₂传感器",
+        "co2Desc": "二氧化碳监测",
+        "voc": "VOC传感器",
+        "vocDesc": "挥发性有机化合物",
+        "particulate": "颗粒物",
+        "particulateDesc": "PM2.5和PM10"
+      },
+      "wireless": {
+        "title": "无线",
+        "wamTemperature": "WAM温度",
+        "wamTemperatureDesc": "无线温度传感器",
+        "wamHumidity": "WAM湿度",
+        "wamHumidityDesc": "无线相对湿度传感器",
+        "wamDoorSensors": "WAM门传感器",
+        "wamDoorSensorsDesc": "开关监测",
+        "cloudPlatform": "云平台",
+        "cloudPlatformDesc": "全天候远程监控"
+      },
+      "accessories": {
+        "title": "配件",
+        "mounting": "安装硬件",
+        "mountingDesc": "面板、盒子、支架",
+        "enclosures": "外壳",
+        "enclosuresDesc": "BAPI-Box和外罩",
+        "cables": "电缆和连接器",
+        "cablesDesc": "布线配件"
+      },
+      "testInstruments": {
+        "title": "测试仪器",
+        "bluTestTemperature": "Blu-Test温度",
+        "bluTestTemperatureDesc": "NIST可溯源参考",
+        "bluTestHumidity": "Blu-Test湿度",
+        "bluTestHumidityDesc": "温度 + 相对湿度参考",
+        "bluTestPressure": "Blu-Test压力",
+        "bluTestPressureDesc": "数字式微量计"
+      },
+      "featured": {
+        "title": "WAM™无线资产监控",
+        "description": "全天候远程监控,即时报警。保护您的宝贵资产免受停电和设备故障的影响。无需布线 - 几分钟即可启用。",
+        "cta": "了解更多",
+        "wamTitle": "WAM™无线资产监控",
+        "wamDescription": "全天候远程监控,即时报警。保护您的宝贵资产免受停电和设备故障的影响。无需布线 - 几分钟即可启用。",
+        "wamCta": "了解更多",
+        "wamBadge": "优质解决方案"
+      },
+      "badges": {
+        "popular": "热门",
+        "new": "新品",
+        "premium": "优质"
+      }
     }
   }
 }

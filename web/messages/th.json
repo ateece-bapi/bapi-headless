@@ -92,6 +92,92 @@
         "description": "ติดต่อทีมของเราเพื่อหารือข้อกำหนดโครงการของคุณและค้นพบโซลูชันเซ็นเซอร์ที่เหมาะสมที่สุด",
         "cta": "ติดต่อทีมของเรา"
       }
+    },
+    "products": {
+      "label": "ผลิตภัณฑ์",
+      "temperature": {
+        "title": "อุณหภูมิ",
+        "roomWallSensors": "เซนเซอร์ตรวจวัดอุณหภูมิห้องและผนัง",
+        "roomWallSensorsDesc": "การตรวจวัดอุณหภูมิที่มีความแม่นยำสูง",
+        "ductSensors": "เซนเซอร์ตรวจวัดอุณหภูมิในท่อลม",
+        "ductSensorsDesc": "ตัวส่งสัญญาณติดตั้งในท่อลม",
+        "immersionWell": "แบบแช่และแบบวัด",
+        "immersionWellDesc": "การวัดอุณหภูมิของของเหลว",
+        "outdoorSensors": "เซนเซอร์ตรวจวัดอุณหภูมิภายนอก",
+        "outdoorSensorsDesc": "การตรวจวัดที่ทนทานต่อสภาพอากาศ"
+      },
+      "humidity": {
+        "title": "ความชื้น",
+        "roomHumidity": "ความชื้นในห้อง",
+        "roomHumidityDesc": "เซนเซอร์วัดความชื้นติดผนัง",
+        "ductHumidity": "ความชื้นในท่อลม",
+        "ductHumidityDesc": "วัดความชื้นของอากาศจากจ่ายและระบาย",
+        "outdoorHumidity": "ความชื้นภายนอก",
+        "outdoorHumidityDesc": "การวัดความชื้นที่ทนทานต่อสภาพอากาศ",
+        "comboSensors": "เซนเซอร์ผสม",
+        "comboSensorsDesc": "อุณหภูมิ + ความชื้น"
+      },
+      "pressure": {
+        "title": "แรงดัน",
+        "differential": "แรงดันความแตกต่าง",
+        "differentialDesc": "การตรวจสอบห้องและตัวกรอง",
+        "static": "แรงดันสถิต",
+        "staticDesc": "ตัวส่งสัญญาณแรงดันในท่อลม",
+        "barometric": "บาโรมิเตอร์",
+        "barometricDesc": "แรงดันบรรยากาศ"
+      },
+      "airQuality": {
+        "title": "คุณภาพอากาศ",
+        "co2": "เซนเซอร์ CO₂",
+        "co2Desc": "การตรวจสอบคาร์บอนไดออกไซด์",
+        "voc": "เซนเซอร์ VOC",
+        "vocDesc": "สารประกอบอินทรีย์ระเหย",
+        "particulate": "ฝุ่นละออง",
+        "particulateDesc": "PM2.5 และ PM10"
+      },
+      "wireless": {
+        "title": "ระบบไร้สาย",
+        "wamTemperature": "WAM อุณหภูมิ",
+        "wamTemperatureDesc": "เซนเซอร์วัดอุณหภูมิแบบไร้สาย",
+        "wamHumidity": "WAM ความชื้น",
+        "wamHumidityDesc": "เซนเซอร์วัดความชื้นแบบไร้สาย",
+        "wamDoorSensors": "เซนเซอร์ประตู WAM",
+        "wamDoorSensorsDesc": "การตรวจสอบการเปิด/ปิด",
+        "cloudPlatform": "แพลตฟอร์มคลาวด์",
+        "cloudPlatformDesc": "การตรวจสอบระยะไกลตลอด 24/7"
+      },
+      "accessories": {
+        "title": "อุปกรณ์เสริม",
+        "mounting": "อุปกรณ์ยึดติดตั้ง",
+        "mountingDesc": "แผ่น, กล่อง, ขาแขวน",
+        "enclosures": "กล่องใส่",
+        "enclosuresDesc": "BAPI-Box และฝาครอบ",
+        "cables": "สายเคเบิลและขั้วต่อ",
+        "cablesDesc": "อุปกรณ์เสริมในการต่อสาย"
+      },
+      "testInstruments": {
+        "title": "เครื่องมือทดสอบ",
+        "bluTestTemperature": "Blu-Test อุณหภูมิ",
+        "bluTestTemperatureDesc": "เทียบมาตรฐานการวัดอุณหภูมิ NIST",
+        "bluTestHumidity": "Blu-Test ความชื้น",
+        "bluTestHumidityDesc": "เทียบมาตรฐานการวัดอุณหภูมิและความชื้น",
+        "bluTestPressure": "Blu-Test แรงดัน",
+        "bluTestPressureDesc": "มานอมิเตอร์ดิจิตอล"
+      },
+      "featured": {
+        "title": "การติดตามสินทรัพย์ไร้สาย WAM™",
+        "description": "การตรวจสอบระยะไกลแบบ 24/7 พร้อมการแจ้งเตือนทันที. ปกป้องสินทรัพย์ที่มีค่าของคุณจากการไฟฟ้าดับและความเสียหายของอุปกรณ์. ไม่ต้องใช้สายไฟ - เริ่มใช้งานได้ภายในนาที",
+        "cta": "เรียนรู้เพิ่มเติม",
+        "wamTitle": "การติดตามสินทรัพย์ไร้สาย WAM™",
+        "wamDescription": "การตรวจสอบระยะไกลแบบ 24/7 พร้อมการแจ้งเตือนทันที. ปกป้องสินทรัพย์ที่มีค่าของคุณจากการไฟฟ้าดับและความเสียหายของอุปกรณ์. ไม่ต้องใช้สายไฟ - เริ่มใช้งานได้ภายในนาที",
+        "wamCta": "เรียนรู้เพิ่มเติม",
+        "wamBadge": "โซลูชันระดับพรีเมียม"
+      },
+      "badges": {
+        "popular": "ยอดนิยม",
+        "new": "ใหม่",
+        "premium": "พรีเมียม"
+      }
     }
   },
   "products": {},

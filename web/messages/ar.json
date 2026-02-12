@@ -377,6 +377,92 @@
         "description": "تواصل مع فريقنا لمناقشة متطلبات مشروعك واكتشاف الحل الأمثل لأجهزة الاستشعار.",
         "cta": "اتصل بفريقنا"
       }
+    },
+    "products": {
+      "label": "المنتجات",
+      "temperature": {
+        "title": "درجة الحرارة",
+        "roomWallSensors": "استشعارات الغرفة والحائط",
+        "roomWallSensorsDesc": "استشعار درجة الحرارة عالية الدقة",
+        "ductSensors": "استشعارات الدكت",
+        "ductSensorsDesc": "أجهزة إرسال مثبتة في الدكت",
+        "immersionWell": "الغمر والبئر",
+        "immersionWellDesc": "قياس درجة حرارة السائل",
+        "outdoorSensors": "استشعارات الخارجية",
+        "outdoorSensorsDesc": "استشعار مقاوم للأحوال الجوية"
+      },
+      "humidity": {
+        "title": "الرطوبة",
+        "roomHumidity": "رطوبة الغرفة",
+        "roomHumidityDesc": "استشعارات الرطوبة النسبية المثبتة على الحائط",
+        "ductHumidity": "رطوبة الدكت",
+        "ductHumidityDesc": "رطوبة نسبية للهواء الصاعد والعائد",
+        "outdoorHumidity": "رطوبة الخارجية",
+        "outdoorHumidityDesc": "رطوبة نسبية مقاومة للأحوال الجوية",
+        "comboSensors": "استشعارات مزدوجة",
+        "comboSensorsDesc": "درجة الحرارة + الرطوبة"
+      },
+      "pressure": {
+        "title": "الضغط",
+        "differential": "الضغط التفاضلي",
+        "differentialDesc": "مراقبة الغرفة والفلتر",
+        "static": "الضغط الساكن",
+        "staticDesc": "أجهزة إرسال ضغط الدكت الساكن",
+        "barometric": "الضغط الجوي",
+        "barometricDesc": "الضغط الجوي"
+      },
+      "airQuality": {
+        "title": "جودة الهواء",
+        "co2": "استشعارات CO₂",
+        "co2Desc": "مراقبة ثاني أكسيد الكربون",
+        "voc": "استشعارات المركبات العضوية المتطايرة",
+        "vocDesc": "مركبات عضوية متطايرة",
+        "particulate": "الجسيمات العالقة",
+        "particulateDesc": "PM2.5 و PM10"
+      },
+      "wireless": {
+        "title": "لاسلكي",
+        "wamTemperature": "درجة حرارة WAM",
+        "wamTemperatureDesc": "استشعارات درجة حرارة لاسلكية",
+        "wamHumidity": "رطوبة WAM",
+        "wamHumidityDesc": "استشعارات الرطوبة النسبية اللاسلكية",
+        "wamDoorSensors": "استشعارات الأبواب WAM",
+        "wamDoorSensorsDesc": "مراقبة الفتح / الغلق",
+        "cloudPlatform": "منصة السحابة",
+        "cloudPlatformDesc": "المراقبة عن بُعد 24/7"
+      },
+      "accessories": {
+        "title": "الملحقات",
+        "mounting": "أدوات التركيب",
+        "mountingDesc": "ألواح, صناديق, حوامل",
+        "enclosures": "الأغلفة",
+        "enclosuresDesc": "BAPI-Box وأغطية",
+        "cables": "الكابلات والموصلات",
+        "cablesDesc": "ملحقات السلك"
+      },
+      "testInstruments": {
+        "title": "أجهزة الاختبار",
+        "bluTestTemperature": "درجة حرارة Blu-Test",
+        "bluTestTemperatureDesc": "مرجع قابل للتتبع NIST",
+        "bluTestHumidity": "رطوبة Blu-Test",
+        "bluTestHumidityDesc": "مرجع درجة الحرارة + الرطوبة النسبية",
+        "bluTestPressure": "ضغط Blu-Test",
+        "bluTestPressureDesc": "مانومتر رقمي"
+      },
+      "featured": {
+        "title": "مراقبة الأصول اللاسلكية WAM™",
+        "description": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. حماية أصولك الثمينة من انقطاعات الكهرباء وأعطال المعدات. لا يلزم توصيل أسلاك - البدء في الاستخدام في غضون دقائق.",
+        "cta": "تعرف على المزيد",
+        "wamTitle": "مراقبة الأصول اللاسلكية WAM™",
+        "wamDescription": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. حماية أصولك الثمينة من انقطاعات الكهرباء وأعطال المعدات. لا يلزم توصيل أسلاك - البدء في الاستخدام في غضون دقائق.",
+        "wamCta": "تعرف على المزيد",
+        "wamBadge": "الحل المتميز"
+      },
+      "badges": {
+        "popular": "شعبي",
+        "new": "جديد",
+        "premium": "متميز"
+      }
     }
   }
 }

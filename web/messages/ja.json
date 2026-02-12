@@ -389,7 +389,7 @@
         "voc": "VOCセンサー",
         "vocDesc": "揮発性有機化合物",
         "particulate": "微粒子",
-        "particulateDesc": "PM2.5 and PM10"
+        "particulateDesc": "PM2.5とPM10"
       },
       "wireless": {
         "title": "ワイヤレス",

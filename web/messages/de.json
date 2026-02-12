@@ -127,5 +127,54 @@
         "cta": "Kontaktieren Sie unser Team"
       }
     }
+  },
+  "home": {
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Jahre der Exzellenz",
+      "productsValue": "608",
+      "productsLabel": "Produktmodelle",
+      "globalValue": "Global",
+      "globalLabel": "Reichweite & Support",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Zertifizierte Qualität"
+    },
+    "categories": {
+      "title": "Entdecken Sie unser Produktkatalog",
+      "subtitle": "Durchsuchen Sie nach Sensortyp, um die perfekte Lösung für Ihr Gebäudeautomatisierungsprojekt zu finden",
+      "temperature": {
+        "name": "Temperatursensoren",
+        "description": "Hochgenaue Temperaturmessung"
+      },
+      "humidity": {
+        "name": "Feuchtigkeitssensoren",
+        "description": "Präzise relative Feuchtigkeitsüberwachung"
+      },
+      "pressure": {
+        "name": "Drucksensoren",
+        "description": "Differenz- und Statikdruck"
+      },
+      "airQuality": {
+        "name": "Luftqualitätssensoren",
+        "description": "CO₂-, VOC- und Feinstaubüberwachung"
+      },
+      "wireless": {
+        "name": "Drahtlose Sensoren",
+        "description": "WAM™ cloud-verbundene Überwachung"
+      },
+      "accessories": {
+        "name": "Zubehör",
+        "description": "Montagekomponenten & Gehäuse"
+      },
+      "testInstruments": {
+        "name": "Testinstrumente",
+        "description": "Kalibrier- und Überprüfungswerkzeuge"
+      },
+      "etaLine": {
+        "name": "ETA-Linie",
+        "description": "Modulare I/O und Steuerung"
+      },
+      "viewAll": "Alle Produkte anzeigen"
+    }
   }
 }

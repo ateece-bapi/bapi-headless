@@ -251,35 +251,52 @@
     }
   },
   "home": {
-    "hero": {
-      "title": "Precyzyjne rozwiązania sensoryczne dla automatyki budynkowej",
-      "subtitle": "Zaufane przez inżynierów na całym świecie w obiektach o kluczowym znaczeniu od 1993 roku",
-      "cta": "Przeglądaj produkty",
-      "secondaryCta": "Skontaktuj się z działem sprzedaży"
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Lata Doskonałości",
+      "productsValue": "608",
+      "productsLabel": "Modele Produktów",
+      "globalValue": "Globalny",
+      "globalLabel": "Zasięg i Wsparcie",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Certyfikowana Jakość"
     },
-    "taglines": [
-      "Precyzja, której możesz zaufać",
-      "Zbudowane, by wytrzymać",
-      "Doskonałość inżynieryjna",
-      "Wyprodukowane w USA"
-    ],
-    "features": {
-      "quality": {
-        "title": "Niezrównana jakość",
-        "description": "Kalibracja śledzalna do NIST na każdym czujniku"
+    "categories": {
+      "title": "Przeglądaj Nasz Katalog Produktów",
+      "subtitle": "Przeglądaj według typu czujnika, aby znaleźć idealne rozwiązanie dla Twojego projektu automatyki budynkowej",
+      "temperature": {
+        "name": "Czujniki Temperatury",
+        "description": "Wysoka dokładność pomiaru temperatury"
       },
-      "support": {
-        "title": "Ekspertyczna pomoc",
-        "description": "Inżynierowie gotowi pomóc ci odnieść sukces"
+      "humidity": {
+        "name": "Czujniki Wilgotności",
+        "description": "Precyzyjny monitoring wilgotności względnej"
       },
-      "delivery": {
-        "title": "Szybka dostawa",
-        "description": "Wysyłka tego samego dnia dla pozycji magazynowych"
+      "pressure": {
+        "name": "Czujniki Ciśnienia",
+        "description": "Ciśnienie różnicowe i statyczne"
       },
-      "warranty": {
-        "title": "5-letnia gwarancja",
-        "description": "Wiodąca w branży ochrona gwarancyjna"
-      }
+      "airQuality": {
+        "name": "Czujniki Jakości Powietrza",
+        "description": "Monitoring CO₂, LZO i cząstek stałych"
+      },
+      "wireless": {
+        "name": "Czujniki Bezprzewodowe",
+        "description": "Monitorowanie w chmurze WAM™"
+      },
+      "accessories": {
+        "name": "Akcesoria",
+        "description": "Sprzęt montażowy i obudowy"
+      },
+      "testInstruments": {
+        "name": "Przyrządy Testowe",
+        "description": "Narzędzia do kalibracji i weryfikacji"
+      },
+      "etaLine": {
+        "name": "Linia ETA",
+        "description": "Modułowe we/wy i sterowanie"
+      },
+      "viewAll": "Wyświetl Wszystkie Produkty"
     }
   },
   "footer": {

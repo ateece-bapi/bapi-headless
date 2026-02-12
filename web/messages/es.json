@@ -21,10 +21,52 @@
     "viewAll": "Ver todos los productos"
   },
   "home": {
-    "hero": {
-      "title": "Soluciones de sensores de precisión para automatización de edificios",
-      "subtitle": "Confiado por ingenieros de todo el mundo para detección HVAC/R confiable",
-      "cta": "Explorar productos"
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Años de Excelencia",
+      "productsValue": "608",
+      "productsLabel": "Modelos de Productos",
+      "globalValue": "Global",
+      "globalLabel": "Alcance y Soporte",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Calidad Certificada"
+    },
+    "categories": {
+      "title": "Explore Nuestro Catálogo de Productos",
+      "subtitle": "Navega por tipo de sensor para encontrar la solución perfecta para tu proyecto de automatización de edificios",
+      "temperature": {
+        "name": "Sensores de Temperatura",
+        "description": "Medición de temperatura de alta precisión"
+      },
+      "humidity": {
+        "name": "Sensores de Humedad",
+        "description": "Monitoreo preciso de humedad relativa"
+      },
+      "pressure": {
+        "name": "Sensores de Presión",
+        "description": "Presión diferencial y estática"
+      },
+      "airQuality": {
+        "name": "Sensores de Calidad del Aire",
+        "description": "Monitoreo de CO₂, COV y partículas"
+      },
+      "wireless": {
+        "name": "Sensores Inalámbricos",
+        "description": "Monitoreo conectado a la nube WAM™"
+      },
+      "accessories": {
+        "name": "Accesorios",
+        "description": "Herrajes de montaje y gabinetes"
+      },
+      "testInstruments": {
+        "name": "Instrumentos de Prueba",
+        "description": "Herramientas de calibración y verificación"
+      },
+      "etaLine": {
+        "name": "Línea ETA",
+        "description": "Entrada/Salida y control modulares"
+      },
+      "viewAll": "Ver Todos los Productos"
     }
   },
   "footer": {

@@ -21,10 +21,52 @@
     "viewAll": "すべての製品を見る"
   },
   "home": {
-    "hero": {
-      "title": "ビルオートメーション向け精密センサーソリューション",
-      "subtitle": "信頼性の高いHVAC/R センシングで世界中のエンジニアに信頼されています",
-      "cta": "製品を探す"
+    "stats": {
+      "yearsValue": "30年以上",
+      "yearsLabel": "卓越の歴史",
+      "productsValue": "608",
+      "productsLabel": "製品モデル",
+      "globalValue": "グローバル",
+      "globalLabel": "広範なサポート",
+      "isoValue": "ISO 9001",
+      "isoLabel": "品質認証"
+    },
+    "categories": {
+      "title": "製品カタログを探索する",
+      "subtitle": "センサータイプごとにブラウズして、建物オートメーションプロジェクトに最適なソリューションを見つける",
+      "temperature": {
+        "name": "温度センサー",
+        "description": "高精度な温度測定"
+      },
+      "humidity": {
+        "name": "湿度センサー",
+        "description": "正確な相対湿度の監視"
+      },
+      "pressure": {
+        "name": "圧力センサー",
+        "description": "差圧と静圧"
+      },
+      "airQuality": {
+        "name": "空気質センサー",
+        "description": "CO₂、VOC、および粒子状物質の監視"
+      },
+      "wireless": {
+        "name": "ワイヤレスセンサー",
+        "description": "WAM™クラウド接続型の監視"
+      },
+      "accessories": {
+        "name": "アクセサリー",
+        "description": "取付金具とエンクロージャー"
+      },
+      "testInstruments": {
+        "name": "テスト機器",
+        "description": "較正と検証ツール"
+      },
+      "etaLine": {
+        "name": "ETAライン",
+        "description": "モジュラーI/Oとコントロール"
+      },
+      "viewAll": "すべての製品を見る"
     }
   },
   "footer": {

@@ -167,5 +167,54 @@
         "cta": "Liên hệ Đội ngũ của chúng tôi"
       }
     }
+  },
+  "home": {
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Năm Kinh Nghiệm Xuất Sắc",
+      "productsValue": "608",
+      "productsLabel": "Mẫu Sản Phẩm",
+      "globalValue": "Toàn Cầu",
+      "globalLabel": "Phạm Vi Hoạt Động & Hỗ Trợ",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Chất Lượng Được Chứng Nhận"
+    },
+    "categories": {
+      "title": "Khám Phá Danh Mục Sản Phẩm của Chúng Tôi",
+      "subtitle": "Duyệt theo loại cảm biến để tìm giải pháp hoàn hảo cho dự án tự động hóa tòa nhà của bạn",
+      "temperature": {
+        "name": "Cảm Biến Nhiệt Độ",
+        "description": "Đo lường nhiệt độ chính xác cao"
+      },
+      "humidity": {
+        "name": "Cảm Biến Độ Ẩm",
+        "description": "Giám sát độ ẩm tương đối chính xác"
+      },
+      "pressure": {
+        "name": "Cảm Biến Áp Suất",
+        "description": "Áp suất vi sai & tĩnh"
+      },
+      "airQuality": {
+        "name": "Cảm Biến Chất Lượng Không Khí",
+        "description": "Giám sát CO₂, VOC và bụi"
+      },
+      "wireless": {
+        "name": "Cảm Biến Không Dây",
+        "description": "Giám sát kết nối đám mây WAM™"
+      },
+      "accessories": {
+        "name": "Phụ Kiện",
+        "description": "Phụ kiện lắp đặt & vỏ bọc"
+      },
+      "testInstruments": {
+        "name": "Dụng Cụ Kiểm Tra",
+        "description": "Công cụ hiệu chuẩn & xác minh"
+      },
+      "etaLine": {
+        "name": "Dòng ETA",
+        "description": "I/O và điều khiển mô-đun"
+      },
+      "viewAll": "Xem Tất Cả Sản Phẩm"
+    }
   }
 }

@@ -21,10 +21,52 @@
     "viewAll": "Voir tous les produits"
   },
   "home": {
-    "hero": {
-      "title": "Solutions de capteurs de précision pour l'automatisation des bâtiments",
-      "subtitle": "Approuvé par les ingénieurs du monde entier pour la détection HVAC/R fiable",
-      "cta": "Explorer les produits"
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Années d'Excellence",
+      "productsValue": "608",
+      "productsLabel": "Modèles de Produits",
+      "globalValue": "Mondial",
+      "globalLabel": "Portée et Assistance",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Qualité Certifiée"
+    },
+    "categories": {
+      "title": "Explorez Notre Catalogue de Produits",
+      "subtitle": "Parcourez par type de capteur pour trouver la solution parfaite pour votre projet d'automatisation de bâtiment",
+      "temperature": {
+        "name": "Capteurs de Température",
+        "description": "Mesure de température haute précision"
+      },
+      "humidity": {
+        "name": "Capteurs d'Humidité",
+        "description": "Surveillance précise de l'humidité relative"
+      },
+      "pressure": {
+        "name": "Capteurs de Pression",
+        "description": "Pression différentielle et statique"
+      },
+      "airQuality": {
+        "name": "Capteurs de Qualité de l'Air",
+        "description": "Surveillance du CO₂, COV et des particules"
+      },
+      "wireless": {
+        "name": "Capteurs Sans Fil",
+        "description": "Surveillance connectée au cloud WAM™"
+      },
+      "accessories": {
+        "name": "Accessoires",
+        "description": "Matériel de montage et boîtiers"
+      },
+      "testInstruments": {
+        "name": "Instruments de Test",
+        "description": "Outils d'étalonnage et de vérification"
+      },
+      "etaLine": {
+        "name": "Gamme ETA",
+        "description": "E/S et contrôle modulaires"
+      },
+      "viewAll": "Voir Tous les Produits"
     }
   },
   "footer": {

@@ -21,10 +21,52 @@
     "viewAll": "查看所有产品"
   },
   "home": {
-    "hero": {
-      "title": "楼宇自动化精密传感器解决方案",
-      "subtitle": "全球工程师信赖的可靠HVAC/R传感",
-      "cta": "探索产品"
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "卓越年份",
+      "productsValue": "608",
+      "productsLabel": "产品型号",
+      "globalValue": "全球",
+      "globalLabel": "触达和支持",
+      "isoValue": "ISO 9001",
+      "isoLabel": "认证质量"
+    },
+    "categories": {
+      "title": "探索我们的产品目录",
+      "subtitle": "浏览传感器类型,找到适合您建筑自动化项目的完美解决方案",
+      "temperature": {
+        "name": "温度传感器",
+        "description": "高精度温度测量"
+      },
+      "humidity": {
+        "name": "湿度传感器",
+        "description": "精确的相对湿度监测"
+      },
+      "pressure": {
+        "name": "压力传感器",
+        "description": "差压和静压"
+      },
+      "airQuality": {
+        "name": "空气质量传感器",
+        "description": "CO₂、VOC和颗粒物监测"
+      },
+      "wireless": {
+        "name": "无线传感器",
+        "description": "WAM™云连接监测"
+      },
+      "accessories": {
+        "name": "配件",
+        "description": "安装硬件和外壳"
+      },
+      "testInstruments": {
+        "name": "测试仪器",
+        "description": "校准和验证工具"
+      },
+      "etaLine": {
+        "name": "ETA系列",
+        "description": "模块化 I/O 和控制"
+      },
+      "viewAll": "查看所有产品"
     }
   },
   "footer": {

@@ -21,26 +21,43 @@
     "viewAll": "すべての製品を見る"
   },
   "home": {
+    "hero": {
+      "title": "建築自動化のための精密センサーソリューション",
+      "description": "ヘルスケア、データセンター、重要施設で、世界中のエンジニアから信頼されているNIST追跡可能なセンサーとBACnet認証コントローラー。",
+      "cta": "製品を探す",
+      "secondaryCta": "営業担当に話す",
+      "productFamilyTitle": "建築自動化システムのための完全なセンサーソリューション",
+      "productFamilySubtitle": "精密なモニタリングと制御のために、世界中のエンジニアから信頼されています"
+    },
+    "taglines": [
+      "業界をリードするセンサー",
+      "1993年から、センサーについての考え方を変えています",
+      "既存のBASにシームレスワイヤレス統合",
+      "精密な設計",
+      "未来を築く",
+      "...細部にこだわっています",
+      "人。建築。センサー"
+    ],
     "stats": {
       "yearsValue": "30年以上",
-      "yearsLabel": "卓越の歴史",
+      "yearsLabel": "卓越した年数",
       "productsValue": "608",
       "productsLabel": "製品モデル",
       "globalValue": "グローバル",
-      "globalLabel": "広範なサポート",
+      "globalLabel": "対応と支援",
       "isoValue": "ISO 9001",
       "isoLabel": "品質認証"
     },
     "categories": {
-      "title": "製品カタログを探索する",
-      "subtitle": "センサータイプごとにブラウズして、建物オートメーションプロジェクトに最適なソリューションを見つける",
+      "title": "製品カタログを探る",
+      "subtitle": "センサータイプごとに閲覧して、建築自動化プロジェクトに最適なソリューションを見つけましょう",
       "temperature": {
         "name": "温度センサー",
-        "description": "高精度な温度測定"
+        "description": "高精度の温度測定"
       },
       "humidity": {
         "name": "湿度センサー",
-        "description": "正確な相対湿度の監視"
+        "description": "正確な相対湿度モニタリング"
       },
       "pressure": {
         "name": "圧力センサー",
@@ -48,23 +65,23 @@
       },
       "airQuality": {
         "name": "空気質センサー",
-        "description": "CO₂、VOC、および粒子状物質の監視"
+        "description": "CO₂、VOC、粒子状物質のモニタリング"
       },
       "wireless": {
         "name": "ワイヤレスセンサー",
-        "description": "WAM™クラウド接続型の監視"
+        "description": "WAM™クラウド接続モニタリング"
       },
       "accessories": {
         "name": "アクセサリー",
-        "description": "取付金具とエンクロージャー"
+        "description": "取付ハードウェアと筐体"
       },
       "testInstruments": {
-        "name": "テスト機器",
-        "description": "較正と検証ツール"
+        "name": "試験機器",
+        "description": "校正と検証ツール"
       },
       "etaLine": {
         "name": "ETAライン",
-        "description": "モジュラーI/Oとコントロール"
+        "description": "モジュラーI/Oおよび制御"
       },
       "viewAll": "すべての製品を見る"
     }

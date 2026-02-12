@@ -21,37 +21,54 @@
     "viewAll": "Voir tous les produits"
   },
   "home": {
+    "hero": {
+      "title": "Solutions de capteurs de précision pour l'automatisation des bâtiments",
+      "description": "Des capteurs traçables NIST et des contrôleurs certifiés BACnet, approuvés par les ingénieurs du monde entier pour les soins de santé, les centres de données et les installations critiques.",
+      "cta": "Explorer les produits",
+      "secondaryCta": "Parler aux ventes",
+      "productFamilyTitle": "Solutions de capteurs complètes pour les systèmes d'automatisation des bâtiments",
+      "productFamilySubtitle": "Approuvés par les ingénieurs du monde entier pour une surveillance et un contrôle de précision"
+    },
+    "taglines": [
+      "Capteurs de premier plan de l'industrie",
+      "Changement de la façon dont vous pensez aux capteurs depuis 1993",
+      "Intégration sans fil transparente pour votre BAS existant",
+      "Ingénierie de précision",
+      "Construction de l'avenir",
+      "...C'est dans les détails",
+      "Personnes. Bâtiment. Capteurs"
+    ],
     "stats": {
       "yearsValue": "30+",
-      "yearsLabel": "Années d'Excellence",
+      "yearsLabel": "Années d'excellence",
       "productsValue": "608",
-      "productsLabel": "Modèles de Produits",
+      "productsLabel": "Modèles de produits",
       "globalValue": "Mondial",
-      "globalLabel": "Portée et Assistance",
+      "globalLabel": "Portée et soutien",
       "isoValue": "ISO 9001",
-      "isoLabel": "Qualité Certifiée"
+      "isoLabel": "Qualité certifiée"
     },
     "categories": {
-      "title": "Explorez Notre Catalogue de Produits",
-      "subtitle": "Parcourez par type de capteur pour trouver la solution parfaite pour votre projet d'automatisation de bâtiment",
+      "title": "Explorez notre catalogue de produits",
+      "subtitle": "Parcourez par type de capteur pour trouver la solution parfaite pour votre projet d'automatisation des bâtiments",
       "temperature": {
-        "name": "Capteurs de Température",
+        "name": "Capteurs de température",
         "description": "Mesure de température haute précision"
       },
       "humidity": {
-        "name": "Capteurs d'Humidité",
+        "name": "Capteurs d'humidité",
         "description": "Surveillance précise de l'humidité relative"
       },
       "pressure": {
-        "name": "Capteurs de Pression",
+        "name": "Capteurs de pression",
         "description": "Pression différentielle et statique"
       },
       "airQuality": {
-        "name": "Capteurs de Qualité de l'Air",
-        "description": "Surveillance du CO₂, COV et des particules"
+        "name": "Capteurs de qualité de l'air",
+        "description": "Surveillance du CO₂, des COV et des particules"
       },
       "wireless": {
-        "name": "Capteurs Sans Fil",
+        "name": "Capteurs sans fil",
         "description": "Surveillance connectée au cloud WAM™"
       },
       "accessories": {
@@ -59,14 +76,14 @@
         "description": "Matériel de montage et boîtiers"
       },
       "testInstruments": {
-        "name": "Instruments de Test",
+        "name": "Instruments de test",
         "description": "Outils d'étalonnage et de vérification"
       },
       "etaLine": {
-        "name": "Gamme ETA",
+        "name": "Ligne ETA",
         "description": "E/S et contrôle modulaires"
       },
-      "viewAll": "Voir Tous les Produits"
+      "viewAll": "Voir tous les produits"
     }
   },
   "footer": {

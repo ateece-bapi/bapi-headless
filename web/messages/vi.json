@@ -169,52 +169,69 @@
     }
   },
   "home": {
+    "hero": {
+      "title": "Giải pháp cảm biến chính xác cho tòa nhà thông minh",
+      "description": "Cảm biến truy xuất được bởi NIST và bộ điều khiển được chứng nhận BACnet được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho các cơ sở chăm sóc sức khỏe, trung tâm dữ liệu và các cơ sở quan trọng.",
+      "cta": "Khám phá Sản phẩm",
+      "secondaryCta": "Liên hệ với Bộ phận Bán hàng",
+      "productFamilyTitle": "Các giải pháp cảm biến hoàn chỉnh cho các hệ thống tự động hóa tòa nhà",
+      "productFamilySubtitle": "Được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho việc giám sát và điều khiển chính xác"
+    },
+    "taglines": [
+      "Cảm biến Dẫn đầu Ngành",
+      "Thay đổi cách bạn nghĩ về cảm biến từ năm 1993",
+      "Tích hợp không dây liền mạch cho hệ thống BAS hiện có của bạn",
+      "Kỹ thuật Chính xác",
+      "Xây dựng Tương lai",
+      "...Nằm trong những chi tiết nhỏ",
+      "Con người. Tòa nhà. Cảm biến"
+    ],
     "stats": {
       "yearsValue": "30+",
-      "yearsLabel": "Năm Kinh Nghiệm Xuất Sắc",
+      "yearsLabel": "Năm Xuất sắc",
       "productsValue": "608",
-      "productsLabel": "Mẫu Sản Phẩm",
-      "globalValue": "Toàn Cầu",
-      "globalLabel": "Phạm Vi Hoạt Động & Hỗ Trợ",
+      "productsLabel": "Mẫu Sản phẩm",
+      "globalValue": "Toàn cầu",
+      "globalLabel": "Phạm vi & Hỗ trợ",
       "isoValue": "ISO 9001",
-      "isoLabel": "Chất Lượng Được Chứng Nhận"
+      "isoLabel": "Chứng nhận Chất lượng"
     },
     "categories": {
-      "title": "Khám Phá Danh Mục Sản Phẩm của Chúng Tôi",
-      "subtitle": "Duyệt theo loại cảm biến để tìm giải pháp hoàn hảo cho dự án tự động hóa tòa nhà của bạn",
+      "title": "Khám phá Danh mục Sản phẩm của chúng tôi",
+      "subtitle": "Duyệt theo loại cảm biến để tìm ra giải pháp hoàn hảo cho dự án tự động hóa tòa nhà của bạn",
       "temperature": {
-        "name": "Cảm Biến Nhiệt Độ",
-        "description": "Đo lường nhiệt độ chính xác cao"
+        "name": "Cảm biến Nhiệt độ",
+        "description": "Đo nhiệt độ chính xác cao"
       },
       "humidity": {
-        "name": "Cảm Biến Độ Ẩm",
+        "name": "Cảm biến Độ ẩm",
         "description": "Giám sát độ ẩm tương đối chính xác"
       },
       "pressure": {
-        "name": "Cảm Biến Áp Suất",
-        "description": "Áp suất vi sai & tĩnh"
+        "name": "Cảm biến Áp suất",
+        "description": "Áp suất tĩnh và chênh lệch"
       },
       "airQuality": {
-        "name": "Cảm Biến Chất Lượng Không Khí",
-        "description": "Giám sát CO₂, VOC và bụi"
+        "name": "Cảm biến Chất lượng không khí",
+        "description": "Giám sát CO₂, VOC và hạt bụi"
       },
       "wireless": {
-        "name": "Cảm Biến Không Dây",
+        "name": "Cảm biến Không dây",
         "description": "Giám sát kết nối đám mây WAM™"
       },
       "accessories": {
-        "name": "Phụ Kiện",
-        "description": "Phụ kiện lắp đặt & vỏ bọc"
+        "name": "Phụ kiện",
+        "description": "Phần cứng lắp đặt & vỏ bọc"
       },
       "testInstruments": {
-        "name": "Dụng Cụ Kiểm Tra",
+        "name": "Thiết bị Kiểm tra",
         "description": "Công cụ hiệu chuẩn & xác minh"
       },
       "etaLine": {
         "name": "Dòng ETA",
-        "description": "I/O và điều khiển mô-đun"
+        "description": "Điều khiển & I/O mô-đun"
       },
-      "viewAll": "Xem Tất Cả Sản Phẩm"
+      "viewAll": "Xem Tất cả Sản phẩm"
     }
   }
 }

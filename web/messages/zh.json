@@ -21,19 +21,36 @@
     "viewAll": "查看所有产品"
   },
   "home": {
+    "hero": {
+      "title": "建筑自动化精密传感器解决方案",
+      "description": "全球工程师信赖的NIST溯源传感器和BACnet认证控制器,适用于医疗保健、数据中心和关键设施。",
+      "cta": "探索产品",
+      "secondaryCta": "联系销售",
+      "productFamilyTitle": "建筑自动化系统完整的传感器解决方案",
+      "productFamilySubtitle": "全球工程师信赖的精密监测和控制"
+    },
+    "taglines": [
+      "行业领先的传感器",
+      "自1993年以来改变您对传感器的看法",
+      "无缝的无线集成,适用于您现有的建筑自动化系统",
+      "精密工程",
+      "构建未来",
+      "...在细节之中",
+      "人。建筑。传感器"
+    ],
     "stats": {
       "yearsValue": "30+",
-      "yearsLabel": "卓越年份",
+      "yearsLabel": "卓越年数",
       "productsValue": "608",
       "productsLabel": "产品型号",
       "globalValue": "全球",
-      "globalLabel": "触达和支持",
+      "globalLabel": "覆盖和支持",
       "isoValue": "ISO 9001",
-      "isoLabel": "认证质量"
+      "isoLabel": "质量认证"
     },
     "categories": {
       "title": "探索我们的产品目录",
-      "subtitle": "浏览传感器类型,找到适合您建筑自动化项目的完美解决方案",
+      "subtitle": "根据传感器类型浏览,找到您建筑自动化项目的完美解决方案",
       "temperature": {
         "name": "温度传感器",
         "description": "高精度温度测量"
@@ -55,7 +72,7 @@
         "description": "WAM™云连接监测"
       },
       "accessories": {
-        "name": "配件",
+        "name": "附件",
         "description": "安装硬件和外壳"
       },
       "testInstruments": {
@@ -64,7 +81,7 @@
       },
       "etaLine": {
         "name": "ETA系列",
-        "description": "模块化 I/O 和控制"
+        "description": "模块化I/O和控制"
       },
       "viewAll": "查看所有产品"
     }

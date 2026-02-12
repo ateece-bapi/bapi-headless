@@ -21,6 +21,23 @@
     "viewAll": "Ver todos los productos"
   },
   "home": {
+    "hero": {
+      "title": "Soluciones de Sensores de Precisión para la Automatización de Edificios",
+      "description": "Sensores trazables a NIST y controladores certificados por BACnet, confiables para ingenieros de todo el mundo en la atención médica, los centros de datos y las instalaciones críticas.",
+      "cta": "Explorar Productos",
+      "secondaryCta": "Hablar con Ventas",
+      "productFamilyTitle": "Soluciones de sensores completas para sistemas de automatización de edificios",
+      "productFamilySubtitle": "Confiables para ingenieros de todo el mundo para el monitoreo y control de precisión"
+    },
+    "taglines": [
+      "Sensores Líderes de la Industria",
+      "Cambiando la forma en que piensas sobre los sensores desde 1993",
+      "Integración inalámbrica sin problemas para tu sistema BAS existente",
+      "Ingeniería de Precisión",
+      "Construyendo el Futuro",
+      "...Está en los detalles",
+      "Personas. Edificio. Sensores"
+    ],
     "stats": {
       "yearsValue": "30+",
       "yearsLabel": "Años de Excelencia",
@@ -32,7 +49,7 @@
       "isoLabel": "Calidad Certificada"
     },
     "categories": {
-      "title": "Explore Nuestro Catálogo de Productos",
+      "title": "Explora Nuestro Catálogo de Productos",
       "subtitle": "Navega por tipo de sensor para encontrar la solución perfecta para tu proyecto de automatización de edificios",
       "temperature": {
         "name": "Sensores de Temperatura",
@@ -64,7 +81,7 @@
       },
       "etaLine": {
         "name": "Línea ETA",
-        "description": "Entrada/Salida y control modulares"
+        "description": "E/S modular y control"
       },
       "viewAll": "Ver Todos los Productos"
     }

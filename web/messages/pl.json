@@ -251,52 +251,69 @@
     }
   },
   "home": {
+    "hero": {
+      "title": "Precyzyjne rozwiązania sensoryczne dla automatyki budynków",
+      "description": "Czujniki z certyfikatem NIST i kontrolery z certyfikatem BACnet, zaufane przez inżynierów na całym świecie do opieki zdrowotnej, centrów danych i obiektów krytycznych.",
+      "cta": "Przeglądaj produkty",
+      "secondaryCta": "Porozmawiaj z działem sprzedaży",
+      "productFamilyTitle": "Kompletne rozwiązania sensoryczne dla systemów automatyki budynków",
+      "productFamilySubtitle": "Zaufane przez inżynierów na całym świecie do precyzyjnego monitorowania i sterowania"
+    },
+    "taglines": [
+      "Wiodące na rynku czujniki",
+      "Zmieniamy sposób, w jaki myślisz o czujnikach od 1993 roku",
+      "Bezproblemowa integracja bezprzewodowa z istniejącym systemem BAS",
+      "Precyzyjna inżynieria",
+      "Budujemy przyszłość",
+      "...To kwestia szczegółów",
+      "Ludzie. Budynki. Czujniki"
+    ],
     "stats": {
       "yearsValue": "30+",
-      "yearsLabel": "Lata Doskonałości",
+      "yearsLabel": "Lat doskonałości",
       "productsValue": "608",
-      "productsLabel": "Modele Produktów",
-      "globalValue": "Globalny",
-      "globalLabel": "Zasięg i Wsparcie",
+      "productsLabel": "Modeli produktów",
+      "globalValue": "Globalna",
+      "globalLabel": "Zasięg i wsparcie",
       "isoValue": "ISO 9001",
-      "isoLabel": "Certyfikowana Jakość"
+      "isoLabel": "Certyfikat jakości"
     },
     "categories": {
-      "title": "Przeglądaj Nasz Katalog Produktów",
-      "subtitle": "Przeglądaj według typu czujnika, aby znaleźć idealne rozwiązanie dla Twojego projektu automatyki budynkowej",
+      "title": "Przeglądaj nasz katalog produktów",
+      "subtitle": "Przeglądaj według typu czujnika, aby znaleźć idealne rozwiązanie dla Twojego projektu automatyki budynków",
       "temperature": {
-        "name": "Czujniki Temperatury",
-        "description": "Wysoka dokładność pomiaru temperatury"
+        "name": "Czujniki temperatury",
+        "description": "Pomiar wysokiej dokładności temperatury"
       },
       "humidity": {
-        "name": "Czujniki Wilgotności",
+        "name": "Czujniki wilgotności",
         "description": "Precyzyjny monitoring wilgotności względnej"
       },
       "pressure": {
-        "name": "Czujniki Ciśnienia",
+        "name": "Czujniki ciśnienia",
         "description": "Ciśnienie różnicowe i statyczne"
       },
       "airQuality": {
-        "name": "Czujniki Jakości Powietrza",
+        "name": "Czujniki jakości powietrza",
         "description": "Monitoring CO₂, LZO i cząstek stałych"
       },
       "wireless": {
-        "name": "Czujniki Bezprzewodowe",
-        "description": "Monitorowanie w chmurze WAM™"
+        "name": "Czujniki bezprzewodowe",
+        "description": "Monitoring w chmurze WAM™"
       },
       "accessories": {
         "name": "Akcesoria",
-        "description": "Sprzęt montażowy i obudowy"
+        "description": "Elementy montażowe i obudowy"
       },
       "testInstruments": {
-        "name": "Przyrządy Testowe",
+        "name": "Przyrządy testujące",
         "description": "Narzędzia do kalibracji i weryfikacji"
       },
       "etaLine": {
         "name": "Linia ETA",
-        "description": "Modułowe we/wy i sterowanie"
+        "description": "Modułowa I/O i sterowanie"
       },
-      "viewAll": "Wyświetl Wszystkie Produkty"
+      "viewAll": "Wyświetl wszystkie produkty"
     }
   },
   "footer": {

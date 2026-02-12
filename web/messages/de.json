@@ -129,6 +129,23 @@
     }
   },
   "home": {
+    "hero": {
+      "title": "Präzisions-Sensoren-Lösungen für die Gebäudeautomation",
+      "description": "NIST-rückverfolg bare Sensoren und BACnet-zertifizierte Regler, denen Ingenieure weltweit in Gesundheitswesen, Rechenzentren und kritischen Einrichtungen vertrauen.",
+      "cta": "Produkte entdecken",
+      "secondaryCta": "Mit Vertrieb sprechen",
+      "productFamilyTitle": "Komplette Sensoren-Lösungen für Gebäudeautomatisierungssysteme",
+      "productFamilySubtitle": "Von Ingenieuren weltweit für präzise Überwachung und Steuerung vertraut"
+    },
+    "taglines": [
+      "Führende Industriesensoren",
+      "Die Art, wie du Sensoren denkst, seit 1993 verändernd",
+      "Nahtlose Funkintegration für Ihr bestehendes Gebäudeautomatisierungssystem",
+      "Präzisionsentwicklung",
+      "Die Zukunft gestalten",
+      "...Es liegt im Detail",
+      "Menschen. Gebäude. Sensoren"
+    ],
     "stats": {
       "yearsValue": "30+",
       "yearsLabel": "Jahre der Exzellenz",
@@ -140,39 +157,39 @@
       "isoLabel": "Zertifizierte Qualität"
     },
     "categories": {
-      "title": "Entdecken Sie unser Produktkatalog",
-      "subtitle": "Durchsuchen Sie nach Sensortyp, um die perfekte Lösung für Ihr Gebäudeautomatisierungsprojekt zu finden",
+      "title": "Erkunden Sie unseren Produktkatalog",
+      "subtitle": "Durchstöbern Sie nach Sensortyp, um die perfekte Lösung für Ihr Gebäudeautomationsprojekt zu finden",
       "temperature": {
         "name": "Temperatursensoren",
         "description": "Hochgenaue Temperaturmessung"
       },
       "humidity": {
         "name": "Feuchtigkeitssensoren",
-        "description": "Präzise relative Feuchtigkeitsüberwachung"
+        "description": "Präzise Relative-Feuchte-Überwachung"
       },
       "pressure": {
         "name": "Drucksensoren",
-        "description": "Differenz- und Statikdruck"
+        "description": "Differenz- und Statischer Druck"
       },
       "airQuality": {
         "name": "Luftqualitätssensoren",
-        "description": "CO₂-, VOC- und Feinstaubüberwachung"
+        "description": "CO₂-, VOC- und Partikelüberwachung"
       },
       "wireless": {
         "name": "Drahtlose Sensoren",
-        "description": "WAM™ cloud-verbundene Überwachung"
+        "description": "WAM™ cloudverbundene Überwachung"
       },
       "accessories": {
         "name": "Zubehör",
-        "description": "Montagekomponenten & Gehäuse"
+        "description": "Montagehardware und Gehäuse"
       },
       "testInstruments": {
         "name": "Testinstrumente",
-        "description": "Kalibrier- und Überprüfungswerkzeuge"
+        "description": "Kalibrier- und Verifizierungstools"
       },
       "etaLine": {
         "name": "ETA-Linie",
-        "description": "Modulare I/O und Steuerung"
+        "description": "Modulare E/A und Steuerung"
       },
       "viewAll": "Alle Produkte anzeigen"
     }

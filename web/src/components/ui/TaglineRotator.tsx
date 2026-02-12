@@ -2,17 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 
-const taglines = [
-  "Industry Leading Sensors",
-  "Changing the way you think about sensors since 1993",
-  "Seamless wireless integration for your existing BAS",
-  "Precision Engineering",
-  "Building the Future",
-  "...It's in the details",
-  "People. Building. Sensors"
-];
+interface TaglineRotatorProps {
+  taglines: string[];
+}
 
-const TaglineRotator: React.FC = () => {
+const TaglineRotator: React.FC<TaglineRotatorProps> = ({ taglines }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -26,7 +20,7 @@ const TaglineRotator: React.FC = () => {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [taglines.length]);
 
   return (
     <div className="h-[6rem] sm:h-[5rem] lg:h-[6rem] flex items-center justify-center">

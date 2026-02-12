@@ -61,12 +61,31 @@ export default async function Home({
   // Get translations
   const t = await getTranslations('home');
   
+  // Prepare hero translations
+  const heroTranslations = {
+    title: t('hero.title'),
+    description: t('hero.description'),
+    cta: t('hero.cta'),
+    secondaryCta: t('hero.secondaryCta'),
+    productFamilyTitle: t('hero.productFamilyTitle'),
+    productFamilySubtitle: t('hero.productFamilySubtitle'),
+    taglines: [
+      t('taglines.0'),
+      t('taglines.1'),
+      t('taglines.2'),
+      t('taglines.3'),
+      t('taglines.4'),
+      t('taglines.5'),
+      t('taglines.6'),
+    ],
+  };
+  
   // Fetch latest 3 news posts
   const posts = await getPosts({ perPage: 3 });
   return (
     <main className="min-h-screen">
       {/* Hero Section - Simplified with ONE primary CTA */}
-      <Hero />
+      <Hero translations={heroTranslations} />
 
       {/* Quick Stats Bar */}
       <section className="bg-neutral-50 py-12 lg:py-16">

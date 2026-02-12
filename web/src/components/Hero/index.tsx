@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import { HeroProps } from './types';
-import { HERO_CONFIG } from './config';
 import { HeroContent, HeroActions } from './components';
 
 /**
@@ -19,6 +18,10 @@ import { HeroContent, HeroActions } from './components';
  * - Responsive design with Tailwind breakpoints
  * - Accessible gradients for text contrast
  * - Professional wave divider for visual flow
+ * 
+ * i18n Support (Feb 2026):
+ * - Accepts translations prop from parent
+ * - Supports all 10 languages (en, de, fr, es, ja, zh, vi, ar, th, pl)
  */
 
 const heroImage = {
@@ -27,7 +30,12 @@ const heroImage = {
   alt: 'BAPI headquarters facility with solar panels',
 };
 
-export const Hero: React.FC<HeroProps> = ({ className }) => {
+export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
+  const actions = [
+    { label: translations.cta, href: '/products', variant: 'blue' as const },
+    { label: translations.secondaryCta, href: '/contact', variant: 'yellow' as const },
+  ];
+
   return (
     <section 
       className={clsx(
@@ -58,11 +66,11 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
       
       <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <HeroContent
-          title={HERO_CONFIG.title}
-          subtitle={HERO_CONFIG.subtitle}
-          description={HERO_CONFIG.description}
+          title={translations.title}
+          description={translations.description}
+          taglines={translations.taglines}
         />
-        <HeroActions actions={HERO_CONFIG.actions} />
+        <HeroActions actions={actions} />
         
         {/* 2025 Product Family Showcase */}
         <div className="mt-16 lg:mt-20 relative">
@@ -90,10 +98,10 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             {/* Product family caption */}
             <div className="mt-6 text-center max-w-3xl mx-auto">
               <p className="text-base font-bold text-neutral-900 tracking-wide">
-                Complete sensor solutions for building automation systems
+                {translations.productFamilyTitle}
               </p>
               <p className="text-sm text-neutral-600 mt-2 font-medium">
-                Trusted by engineers worldwide for precision monitoring and control
+                {translations.productFamilySubtitle}
               </p>
             </div>
           </div>

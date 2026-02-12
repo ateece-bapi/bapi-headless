@@ -104,13 +104,14 @@ const sourceText = `    "products": {
 async function translate() {
   console.log('🔄 Translating megaMenu.products to Vietnamese...\n');
 
-  const message = await client.messages.create({
-    model: 'claude-3-haiku-20240307',
-    max_tokens: 4000,
-    messages: [
-      {
-        role: 'user',
-        content: `Translate this JSON section to Vietnamese for a building automation e-commerce website.
+  try {
+    const message = await client.messages.create({
+      model: 'claude-3-haiku-20240307',
+      max_tokens: 4000,
+      messages: [
+        {
+          role: 'user',
+          content: `Translate this JSON section to Vietnamese for a building automation e-commerce website.
 
 **CRITICAL RULES:**
 1. Keep ALL JSON keys in English (e.g., "products", "temperature", "roomWallSensors")
@@ -129,18 +130,46 @@ Example of correct translation:
 JSON to translate:
 
 ${sourceText}`,
-      },
-    ],
-  });
+        },
+      ],
+    });
 
-  const translatedText = message.content[0].text;
-  console.log('✅ Translation complete!\n');
-  console.log(translatedText);
+    let translatedText = message.content[0].text;
+    console.log('✅ Translation complete!\n');
 
-  // Save to file for review
-  const outputPath = path.join(__dirname, 'vietnamese-products-translated.json');
-  await fs.writeFile(outputPath, translatedText, 'utf-8');
-  console.log(`\n📝 Saved to: ${outputPath}`);
+    // Remove markdown code blocks if present (Claude sometimes wraps responses)
+    translatedText = translatedText.replace(/^```json\n/g, '').replace(/\n```$/g, '');
+    translatedText = translatedText.replace(/^```\n/g, '').replace(/\n```$/g, '');
+
+    console.log(translatedText);
+
+    /**
+     * NOTE:
+     * This script intentionally does NOT write directly to web/messages/vi.json.
+     * Instead, it saves the translated megaMenu.products section to a separate file
+     * (vietnamese-products-translated.json) for manual review and integration.
+     *
+     * To apply these translations:
+     * 1. Open web/messages/vi.json.
+     * 2. Locate the megaMenu.products section.
+     * 3. Replace that section with the contents of vietnamese-products-translated.json.
+     *
+     * Other scripts (e.g., sync-footer-translations.js) update vi.json automatically,
+     * but this one is kept manual for safety since it was a one-off translation.
+     */
+    const outputPath = path.join(__dirname, 'vietnamese-products-translated.json');
+    await fs.writeFile(outputPath, translatedText, 'utf-8');
+    console.log(`\n📝 Saved translated megaMenu.products section to: ${outputPath}`);
+    console.log(
+      '\nℹ️  Review this file, then manually merge its contents into the megaMenu.products section of web/messages/vi.json.',
+    );
+  } catch (error) {
+    console.error('❌ Translation failed:', error.message);
+    if (error.response) {
+      console.error('API Response:', JSON.stringify(error.response, null, 2));
+    }
+    throw error;
+  }
 }
 
 // Run the translation

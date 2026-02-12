@@ -16,7 +16,7 @@ export interface RecentlyViewedProduct {
 
 interface RecentlyViewedState {
   products: RecentlyViewedProduct[];
-  
+
   // Actions
   addProduct: (product: Omit<RecentlyViewedProduct, 'viewedAt'>) => void;
   clearHistory: () => void;
@@ -27,14 +27,14 @@ const MAX_RECENT_PRODUCTS = 10;
 
 /**
  * Recently Viewed Products Store
- * 
+ *
  * Tracks products the user has viewed with localStorage persistence.
  * Automatically limits to 10 most recent products.
- * 
+ *
  * @example
  * ```tsx
  * const { products, addProduct, clearHistory } = useRecentlyViewedStore();
- * 
+ *
  * // Track a product view
  * addProduct({
  *   id: 'product-1',
@@ -44,10 +44,10 @@ const MAX_RECENT_PRODUCTS = 10;
  *   price: '$19.99',
  *   image: { sourceUrl: 'https://...', altText: 'Product' }
  * });
- * 
+ *
  * // Display recent products
  * {products.map(product => <ProductCard key={product.id} product={product} />)}
- * 
+ *
  * // Clear history
  * clearHistory();
  * ```
@@ -56,10 +56,10 @@ export const useRecentlyViewedStore = create<RecentlyViewedState>()(
   persist(
     (set) => ({
       products: [],
-      
+
       /**
        * Add a product to recently viewed history
-       * 
+       *
        * - Removes duplicates (if already in history)
        * - Adds to beginning of list (most recent first)
        * - Limits to MAX_RECENT_PRODUCTS (10)
@@ -68,30 +68,25 @@ export const useRecentlyViewedStore = create<RecentlyViewedState>()(
       addProduct: (product) => {
         set((state) => {
           // Remove existing entry if product already viewed
-          const filteredProducts = state.products.filter(
-            (p) => p.id !== product.id
-          );
-          
+          const filteredProducts = state.products.filter((p) => p.id !== product.id);
+
           // Add to beginning with current timestamp
-          const updatedProducts = [
-            { ...product, viewedAt: Date.now() },
-            ...filteredProducts,
-          ];
-          
+          const updatedProducts = [{ ...product, viewedAt: Date.now() }, ...filteredProducts];
+
           // Limit to MAX_RECENT_PRODUCTS
           return {
             products: updatedProducts.slice(0, MAX_RECENT_PRODUCTS),
           };
         });
       },
-      
+
       /**
        * Clear all recently viewed products
        */
       clearHistory: () => {
         set({ products: [] });
       },
-      
+
       /**
        * Remove a specific product from history
        */
@@ -110,12 +105,12 @@ export const useRecentlyViewedStore = create<RecentlyViewedState>()(
 
 /**
  * Hook for recently viewed products functionality
- * 
+ *
  * Provides convenient access to the store with computed values
  */
 export function useRecentlyViewed() {
   const store = useRecentlyViewedStore();
-  
+
   return {
     ...store,
     /**

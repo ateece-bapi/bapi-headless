@@ -42,30 +42,21 @@ async function writeFavorites(favorites: Favorite[]): Promise<void> {
 export async function GET(request: NextRequest) {
   try {
     const { userId } = await getServerAuth();
-    
+
     if (!userId) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const allFavorites = await readFavorites();
-    const userFavorites = allFavorites.filter(fav => fav.userId === userId);
+    const userFavorites = allFavorites.filter((fav) => fav.userId === userId);
 
     // Sort by creation date (newest first)
-    userFavorites.sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+    userFavorites.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     return NextResponse.json({ favorites: userFavorites });
-
   } catch (error) {
     logger.error('Error fetching favorites', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch favorites' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch favorites' }, { status: 500 });
   }
 }
 
@@ -73,36 +64,27 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const { userId } = await getServerAuth();
-    
+
     if (!userId) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const body = await request.json();
     const { productId, productName, productSlug, productImage, productPrice } = body;
 
     if (!productId || !productName || !productSlug) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     const favorites = await readFavorites();
 
     // Check if already favorited
     const alreadyFavorited = favorites.some(
-      fav => fav.userId === userId && fav.productId === productId
+      (fav) => fav.userId === userId && fav.productId === productId
     );
 
     if (alreadyFavorited) {
-      return NextResponse.json(
-        { error: 'Product already in favorites' },
-        { status: 409 }
-      );
+      return NextResponse.json({ error: 'Product already in favorites' }, { status: 409 });
     }
 
     // Create new favorite
@@ -125,13 +107,9 @@ export async function POST(request: NextRequest) {
       favorite: newFavorite,
       message: 'Product added to favorites',
     });
-
   } catch (error) {
     logger.error('Error adding to favorites', error);
-    return NextResponse.json(
-      { error: 'Failed to add to favorites' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to add to favorites' }, { status: 500 });
   }
 }
 
@@ -139,36 +117,27 @@ export async function POST(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     const { userId } = await getServerAuth();
-    
+
     if (!userId) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { searchParams } = new URL(request.url);
     const productId = searchParams.get('productId');
 
     if (!productId) {
-      return NextResponse.json(
-        { error: 'Product ID required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Product ID required' }, { status: 400 });
     }
 
     const favorites = await readFavorites();
 
     // Find and remove the favorite
     const favoriteIndex = favorites.findIndex(
-      fav => fav.userId === userId && fav.productId === productId
+      (fav) => fav.userId === userId && fav.productId === productId
     );
 
     if (favoriteIndex === -1) {
-      return NextResponse.json(
-        { error: 'Favorite not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Favorite not found' }, { status: 404 });
     }
 
     favorites.splice(favoriteIndex, 1);
@@ -178,12 +147,8 @@ export async function DELETE(request: NextRequest) {
       success: true,
       message: 'Product removed from favorites',
     });
-
   } catch (error) {
     logger.error('Error removing from favorites', error);
-    return NextResponse.json(
-      { error: 'Failed to remove from favorites' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to remove from favorites' }, { status: 500 });
   }
 }

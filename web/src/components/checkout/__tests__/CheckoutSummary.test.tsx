@@ -70,7 +70,7 @@ describe('CheckoutSummary', () => {
 
     it('renders header with shopping cart icon', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       expect(screen.getByText('Order Summary')).toBeInTheDocument();
       // Icon is rendered (lucide ShoppingCart)
       const icons = document.querySelectorAll('svg[aria-hidden="true"]');
@@ -79,7 +79,7 @@ describe('CheckoutSummary', () => {
 
     it('renders sticky container with proper classes', () => {
       const { container } = render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const stickyContainer = container.querySelector('.sticky');
       expect(stickyContainer).toBeInTheDocument();
       expect(stickyContainer).toHaveClass('top-4');
@@ -103,14 +103,14 @@ describe('CheckoutSummary', () => {
 
     it('renders all cart items', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       expect(screen.getByText('Test Product 1')).toBeInTheDocument();
       expect(screen.getByText('Test Product 2')).toBeInTheDocument();
     });
 
     it('displays product images', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const images = screen.getAllByRole('img');
       expect(images).toHaveLength(2);
       expect(images[0]).toHaveAttribute('alt', 'Test Product 1 Image');
@@ -145,14 +145,14 @@ describe('CheckoutSummary', () => {
 
     it('displays product quantities', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       expect(screen.getByText('Qty: 1')).toBeInTheDocument();
       expect(screen.getByText('Qty: 2')).toBeInTheDocument();
     });
 
     it('displays item totals', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       // Prices appear in item list
       expect(screen.getByText('$50.00')).toBeInTheDocument();
       // $100.00 appears twice (item total + subtotal), use getAllByText
@@ -235,7 +235,7 @@ describe('CheckoutSummary', () => {
 
     it('applies scrollable container for many items', () => {
       const { container } = render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const scrollContainer = container.querySelector('.max-h-64.overflow-y-auto');
       expect(scrollContainer).toBeInTheDocument();
     });
@@ -244,7 +244,7 @@ describe('CheckoutSummary', () => {
   describe('Edit Cart Link', () => {
     it('renders edit cart link', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const editLink = screen.getByText('← Edit Cart');
       expect(editLink).toBeInTheDocument();
       expect(editLink.closest('a')).toHaveAttribute('href', '/cart');
@@ -252,7 +252,7 @@ describe('CheckoutSummary', () => {
 
     it('applies proper styling to edit link', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const editLink = screen.getByText('← Edit Cart');
       expect(editLink).toHaveClass('text-primary-500');
       expect(editLink).toHaveClass('hover:text-primary-600');
@@ -262,7 +262,7 @@ describe('CheckoutSummary', () => {
   describe('Price Calculations', () => {
     it('displays subtotal correctly', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       expect(screen.getByText('Subtotal')).toBeInTheDocument();
       // $100.00 appears twice (item + subtotal)
       const subtotalValue = screen.getAllByText(/\$100\.00/);
@@ -271,21 +271,21 @@ describe('CheckoutSummary', () => {
 
     it('displays shipping cost', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       expect(screen.getByText('Shipping')).toBeInTheDocument();
       expect(screen.getByText('$10.00')).toBeInTheDocument();
     });
 
     it('displays tax amount', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       expect(screen.getByText('Tax')).toBeInTheDocument();
       expect(screen.getByText('$8.00')).toBeInTheDocument();
     });
 
     it('displays total correctly', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       expect(screen.getByText('Total')).toBeInTheDocument();
       // Total is $118.00 and appears multiple times (in items and total)
       const totalElements = screen.getAllByText('$118.00');
@@ -392,35 +392,35 @@ describe('CheckoutSummary', () => {
   describe('Visual Styling', () => {
     it('applies rounded corners to container', () => {
       const { container } = render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const mainContainer = container.querySelector('.rounded-xl');
       expect(mainContainer).toBeInTheDocument();
     });
 
     it('applies border to container', () => {
       const { container } = render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const borderedContainer = container.querySelector('.border-neutral-200');
       expect(borderedContainer).toBeInTheDocument();
     });
 
     it('applies background to header', () => {
       const { container } = render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const header = container.querySelector('.bg-neutral-50');
       expect(header).toBeInTheDocument();
     });
 
     it('applies divider between sections', () => {
       const { container } = render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const dividers = container.querySelectorAll('.border-t');
       expect(dividers.length).toBeGreaterThan(0);
     });
 
     it('applies font weight to total', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const totalLabel = screen.getByText('Total');
       const totalParent = totalLabel.closest('div');
       expect(totalParent).toHaveClass('font-bold');
@@ -451,7 +451,7 @@ describe('CheckoutSummary', () => {
 
     it('applies border above security badge', () => {
       const { container } = render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       // Security badge section has border-t
       const securitySection = screen.getByText('Secure Checkout').closest('div')?.parentElement;
       expect(securitySection).toHaveClass('border-t');
@@ -602,7 +602,7 @@ describe('CheckoutSummary', () => {
   describe('Responsive Design', () => {
     it('renders images for cart items', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const images = screen.getAllByRole('img');
       expect(images.length).toBe(2);
       // Next.js Image component handles sizing via CSS, not attributes
@@ -611,14 +611,14 @@ describe('CheckoutSummary', () => {
 
     it('applies flex layout to cart items', () => {
       const { container } = render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const itemContainers = container.querySelectorAll('.flex.gap-3');
       expect(itemContainers.length).toBeGreaterThan(0);
     });
 
     it('applies proper spacing between sections', () => {
       const { container } = render(<CheckoutSummary cart={mockCartWithItems} />);
-      
+
       const spacedSections = container.querySelectorAll('.space-y-6, .space-y-4, .space-y-3');
       expect(spacedSections.length).toBeGreaterThan(0);
     });

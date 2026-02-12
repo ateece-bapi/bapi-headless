@@ -18,17 +18,17 @@ interface AuthState {
 
 /**
  * Simple, reliable authentication hook
- * 
+ *
  * Checks authentication status once on mount.
  * No automatic retries, no intervals, no complexity.
- * 
+ *
  * If the user's session expires, they'll be prompted to sign in again
  * when they try to access a protected resource (handled by middleware).
- * 
+ *
  * @example
  * ```tsx
  * const { user, isLoaded, isSignedIn } = useAuth();
- * 
+ *
  * if (!isLoaded) return <div>Loading...</div>;
  * if (!isSignedIn) return <div>Please sign in</div>;
  * return <div>Hello, {user.displayName}!</div>;
@@ -47,7 +47,7 @@ export function useAuth(): AuthState {
     async function checkAuth() {
       try {
         const response = await fetch('/api/auth/me');
-        
+
         if (!mounted) return;
 
         if (response.ok) {
@@ -89,7 +89,10 @@ export function useAuth(): AuthState {
 /**
  * Sign in with username and password
  */
-export async function signIn(username: string, password: string): Promise<{ success: boolean; error?: string }> {
+export async function signIn(
+  username: string,
+  password: string
+): Promise<{ success: boolean; error?: string }> {
   try {
     const response = await fetch('/api/auth/login', {
       method: 'POST',
@@ -105,14 +108,14 @@ export async function signIn(username: string, password: string): Promise<{ succ
       return { success: true };
     }
 
-    return { 
-      success: false, 
-      error: data.message || 'Invalid credentials' 
+    return {
+      success: false,
+      error: data.message || 'Invalid credentials',
     };
   } catch (error) {
-    return { 
-      success: false, 
-      error: 'Network error' 
+    return {
+      success: false,
+      error: 'Network error',
     };
   }
 }

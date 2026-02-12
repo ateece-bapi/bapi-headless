@@ -1,6 +1,6 @@
 /**
  * Checkout Components
- * 
+ *
  * Multi-step checkout wizard
  */
 

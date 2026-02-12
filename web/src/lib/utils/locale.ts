@@ -10,7 +10,7 @@ export function formatDate(
   options: Intl.DateTimeFormatOptions = {}
 ): string {
   const dateObj = typeof date === 'string' || typeof date === 'number' ? new Date(date) : date;
-  
+
   const defaultOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: '2-digit',
@@ -33,7 +33,7 @@ export function formatTime(
 ): string {
   const dateObj = typeof date === 'string' || typeof date === 'number' ? new Date(date) : date;
   const config = LANGUAGES[language];
-  
+
   const defaultOptions: Intl.DateTimeFormatOptions = {
     hour: '2-digit',
     minute: '2-digit',
@@ -80,19 +80,19 @@ export function formatMeasurement(
   language: LanguageCode = 'en'
 ): string {
   const locale = getLocaleFromLanguage(language);
-  
+
   // US uses imperial, others use metric
   const useImperial = language === 'en' && locale === 'en-US';
-  
+
   let displayValue = value;
   let displayUnit = unit;
-  
+
   // Convert units if needed
   if (unit === 'celsius' && useImperial) {
-    displayValue = (value * 9/5) + 32;
+    displayValue = (value * 9) / 5 + 32;
     displayUnit = 'fahrenheit';
   } else if (unit === 'fahrenheit' && !useImperial) {
-    displayValue = (value - 32) * 5/9;
+    displayValue = ((value - 32) * 5) / 9;
     displayUnit = 'celsius';
   } else if (unit === 'meters' && useImperial) {
     displayValue = value * 3.28084;
@@ -101,12 +101,12 @@ export function formatMeasurement(
     displayValue = value / 3.28084;
     displayUnit = 'meters';
   }
-  
+
   const formattedValue = formatNumber(displayValue, language, {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   });
-  
+
   const unitSymbol = getUnitSymbol(displayUnit);
   return `${formattedValue}${unitSymbol}`;
 }

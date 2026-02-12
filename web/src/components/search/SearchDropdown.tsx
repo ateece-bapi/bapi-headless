@@ -107,22 +107,24 @@ export function SearchDropdown({
   return (
     <div
       ref={dropdownRef}
-      className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-2xl border border-neutral-200 overflow-hidden z-50 max-h-[80vh] overflow-y-auto"
+      className="absolute left-0 right-0 top-full z-50 mt-2 max-h-[80vh] overflow-hidden overflow-y-auto rounded-lg border border-neutral-200 bg-white shadow-2xl"
       role="listbox"
       aria-label="Search results"
     >
       {isLoading && (
         <div className="flex items-center justify-center py-8">
-          <Loader2 className="w-6 h-6 text-primary-500 animate-spin" />
+          <Loader2 className="h-6 w-6 animate-spin text-primary-500" />
           <span className="ml-3 text-neutral-600">Searching...</span>
         </div>
       )}
 
       {!isLoading && results.length === 0 && query.length >= 2 && (
         <div className="py-8 text-center">
-          <Search className="w-12 h-12 text-neutral-300 mx-auto mb-3" />
-          <p className="text-neutral-600 font-medium">No products found for "{query}"</p>
-          <p className="text-sm text-neutral-500 mt-1">Try different keywords or browse categories</p>
+          <Search className="mx-auto mb-3 h-12 w-12 text-neutral-300" />
+          <p className="font-medium text-neutral-600">No products found for "{query}"</p>
+          <p className="mt-1 text-sm text-neutral-500">
+            Try different keywords or browse categories
+          </p>
         </div>
       )}
 
@@ -131,7 +133,7 @@ export function SearchDropdown({
           <div className="py-2">
             {results.map((product, index) => {
               const category = product.productCategories?.nodes?.[0];
-              
+
               return (
                 <button
                   key={product.id}
@@ -141,20 +143,18 @@ export function SearchDropdown({
                   }}
                   onMouseEnter={() => setSelectedIndex(index)}
                   disabled={isNavigating}
-                  className={`w-full flex items-center gap-4 px-4 py-3 transition-all duration-200 ${
-                    isNavigating 
-                      ? 'cursor-wait opacity-60'
-                      : 'cursor-pointer'
+                  className={`flex w-full items-center gap-4 px-4 py-3 transition-all duration-200 ${
+                    isNavigating ? 'cursor-wait opacity-60' : 'cursor-pointer'
                   } ${
                     selectedIndex === index
-                      ? 'bg-primary-50 border-l-4 border-primary-500 shadow-sm'
-                      : 'hover:bg-neutral-50 border-l-4 border-transparent'
+                      ? 'border-l-4 border-primary-500 bg-primary-50 shadow-sm'
+                      : 'border-l-4 border-transparent hover:bg-neutral-50'
                   }`}
                   role="option"
                   aria-selected={selectedIndex === index}
                 >
                   {product.image && (
-                    <div className="relative w-12 h-12 flex-shrink-0 bg-neutral-100 rounded overflow-hidden group-hover:shadow-md transition-shadow">
+                    <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded bg-neutral-100 transition-shadow group-hover:shadow-md">
                       <Image
                         src={product.image.sourceUrl}
                         alt={product.image.altText || product.name}
@@ -164,20 +164,22 @@ export function SearchDropdown({
                       />
                     </div>
                   )}
-                  <div className="flex-1 text-left min-w-0">
-                    <h4 className={`font-semibold truncate transition-colors ${
-                      selectedIndex === index ? 'text-primary-700' : 'text-neutral-900'
-                    }`}>
+                  <div className="min-w-0 flex-1 text-left">
+                    <h4
+                      className={`truncate font-semibold transition-colors ${
+                        selectedIndex === index ? 'text-primary-700' : 'text-neutral-900'
+                      }`}
+                    >
                       {product.name}
                     </h4>
-                    {category && (
-                      <p className="text-xs text-neutral-500 mt-0.5">{category.name}</p>
-                    )}
+                    {category && <p className="mt-0.5 text-xs text-neutral-500">{category.name}</p>}
                   </div>
                   {product.price && (
-                    <div className={`font-bold text-sm whitespace-nowrap transition-colors ${
-                      selectedIndex === index ? 'text-primary-600' : 'text-primary-500'
-                    }`}>
+                    <div
+                      className={`whitespace-nowrap text-sm font-bold transition-colors ${
+                        selectedIndex === index ? 'text-primary-600' : 'text-primary-500'
+                      }`}
+                    >
                       {product.price}
                     </div>
                   )}
@@ -193,27 +195,29 @@ export function SearchDropdown({
             }}
             onMouseEnter={() => setSelectedIndex(results.length)}
             disabled={isNavigating}
-            className={`w-full flex items-center justify-center gap-2 px-4 py-4 border-t border-neutral-200 font-semibold text-sm transition-all duration-200 ${
-              isNavigating 
-                ? 'bg-primary-600 text-white cursor-wait'
+            className={`flex w-full items-center justify-center gap-2 border-t border-neutral-200 px-4 py-4 text-sm font-semibold transition-all duration-200 ${
+              isNavigating
+                ? 'cursor-wait bg-primary-600 text-white'
                 : selectedIndex === results.length
-                  ? 'bg-primary-600 text-white shadow-md cursor-pointer'
-                  : 'bg-white text-primary-600 hover:bg-primary-50 hover:text-primary-700 cursor-pointer'
+                  ? 'cursor-pointer bg-primary-600 text-white shadow-md'
+                  : 'cursor-pointer bg-white text-primary-600 hover:bg-primary-50 hover:text-primary-700'
             }`}
             role="option"
             aria-selected={selectedIndex === results.length}
           >
             {isNavigating ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="h-4 w-4 animate-spin" />
                 <span>Loading results...</span>
               </>
             ) : (
               <>
                 <span>View all results for "{query}"</span>
-                <ArrowRight className={`w-4 h-4 transition-transform ${
-                  selectedIndex === results.length ? 'translate-x-1' : ''
-                }`} />
+                <ArrowRight
+                  className={`h-4 w-4 transition-transform ${
+                    selectedIndex === results.length ? 'translate-x-1' : ''
+                  }`}
+                />
               </>
             )}
           </button>

@@ -1,24 +1,23 @@
-import { Metadata } from 'next';  
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Download, FileText, Printer, Mail } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Catalog & Price Book | BAPI',
-  description: 'Download the latest BAPI product catalog and price book for building automation sensors and controls.',
+  description:
+    'Download the latest BAPI product catalog and price book for building automation sensors and controls.',
 };
 
 export default function CatalogPricebookPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <FileText className="w-16 h-16 mx-auto mb-4" />
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-              Catalog & Price Book
-            </h1>
-            <p className="text-xl max-w-content mx-auto text-primary-50">
+            <FileText className="mx-auto mb-4 h-16 w-16" />
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Catalog & Price Book</h1>
+            <p className="mx-auto max-w-content text-xl text-primary-50">
               Download our complete product catalog and current pricing
             </p>
           </div>
@@ -27,26 +26,24 @@ export default function CatalogPricebookPage() {
 
       {/* Download Options */}
       <section className="py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {/* Product Catalog */}
-            <div className="bg-white border-2 border-neutral-200 rounded-xl p-8 hover:border-primary-500 transition-all">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-20 h-24 bg-neutral-100 rounded flex items-center justify-center flex-shrink-0">
-                  <FileText className="w-10 h-10 text-primary-500" />
+            <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all hover:border-primary-500">
+              <div className="mb-6 flex items-start gap-4">
+                <div className="flex h-24 w-20 flex-shrink-0 items-center justify-center rounded bg-neutral-100">
+                  <FileText className="h-10 w-10 text-primary-500" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-neutral-900 mb-2">
-                    Product Catalog 2026
-                  </h2>
+                  <h2 className="mb-2 text-2xl font-bold text-neutral-900">Product Catalog 2026</h2>
                   <p className="text-neutral-600">
-                    Complete catalog featuring all BAPI sensors, controls, and accessories with 
+                    Complete catalog featuring all BAPI sensors, controls, and accessories with
                     technical specifications, dimensions, and ordering information.
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-3 mb-6">
+              <div className="mb-6 space-y-3">
                 <div className="flex justify-between text-sm">
                   <span className="text-neutral-600">Version:</span>
                   <span className="font-semibold text-neutral-900">2026.1 (January 2026)</span>
@@ -66,35 +63,33 @@ export default function CatalogPricebookPage() {
               </div>
 
               <div className="space-y-3">
-                <button className="w-full flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold px-6 py-3 rounded-xl transition-colors">
-                  <Download className="w-5 h-5" />
+                <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
+                  <Download className="h-5 w-5" />
                   Download Catalog (PDF)
                 </button>
-                <button className="w-full flex items-center justify-center gap-2 border-2 border-neutral-300 hover:border-primary-500 text-neutral-900 font-semibold px-6 py-3 rounded-xl transition-colors">
-                  <Printer className="w-5 h-5" />
+                <button className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-neutral-300 px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500">
+                  <Printer className="h-5 w-5" />
                   Request Printed Copy
                 </button>
               </div>
             </div>
 
             {/* Price Book */}
-            <div className="bg-white border-2 border-neutral-200 rounded-xl p-8 hover:border-primary-500 transition-all">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-20 h-24 bg-neutral-100 rounded flex items-center justify-center flex-shrink-0">
-                  <FileText className="w-10 h-10 text-primary-500" />
+            <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all hover:border-primary-500">
+              <div className="mb-6 flex items-start gap-4">
+                <div className="flex h-24 w-20 flex-shrink-0 items-center justify-center rounded bg-neutral-100">
+                  <FileText className="h-10 w-10 text-primary-500" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-neutral-900 mb-2">
-                    Price Book 2026
-                  </h2>
+                  <h2 className="mb-2 text-2xl font-bold text-neutral-900">Price Book 2026</h2>
                   <p className="text-neutral-600">
-                    Current list pricing for all BAPI products. Contact your sales representative 
+                    Current list pricing for all BAPI products. Contact your sales representative
                     for volume discounts and project pricing.
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-3 mb-6">
+              <div className="mb-6 space-y-3">
                 <div className="flex justify-between text-sm">
                   <span className="text-neutral-600">Version:</span>
                   <span className="font-semibold text-neutral-900">2026.1 (January 2026)</span>
@@ -114,12 +109,12 @@ export default function CatalogPricebookPage() {
               </div>
 
               <div className="space-y-3">
-                <button className="w-full flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold px-6 py-3 rounded-xl transition-colors">
-                  <Download className="w-5 h-5" />
+                <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
+                  <Download className="h-5 w-5" />
                   Download Price Book (PDF)
                 </button>
-                <button className="w-full flex items-center justify-center gap-2 border-2 border-neutral-300 hover:border-primary-500 text-neutral-900 font-semibold px-6 py-3 rounded-xl transition-colors">
-                  <Mail className="w-5 h-5" />
+                <button className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-neutral-300 px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500">
+                  <Mail className="h-5 w-5" />
                   Request Quote
                 </button>
               </div>
@@ -129,39 +124,39 @@ export default function CatalogPricebookPage() {
       </section>
 
       {/* Additional Resources */}
-      <section className="py-12 bg-neutral-50">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-8 text-center">
+      <section className="bg-neutral-50 py-12">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl font-bold text-neutral-900">
             Additional Resources
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-neutral-200">
-              <h3 className="font-bold text-neutral-900 mb-2">Product Selection Guide</h3>
-              <p className="text-sm text-neutral-600 mb-4">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-neutral-200 bg-white p-6">
+              <h3 className="mb-2 font-bold text-neutral-900">Product Selection Guide</h3>
+              <p className="mb-4 text-sm text-neutral-600">
                 Quick reference guide to help you select the right sensors for your application.
               </p>
-              <button className="text-primary-500 hover:text-primary-600 font-semibold text-sm">
+              <button className="text-sm font-semibold text-primary-500 hover:text-primary-600">
                 Download PDF →
               </button>
             </div>
 
-            <div className="bg-white p-6 rounded-xl border border-neutral-200">
-              <h3 className="font-bold text-neutral-900 mb-2">Technical Specifications</h3>
-              <p className="text-sm text-neutral-600 mb-4">
+            <div className="rounded-xl border border-neutral-200 bg-white p-6">
+              <h3 className="mb-2 font-bold text-neutral-900">Technical Specifications</h3>
+              <p className="mb-4 text-sm text-neutral-600">
                 Detailed technical specs for all BAPI sensors and controls.
               </p>
-              <button className="text-primary-500 hover:text-primary-600 font-semibold text-sm">
+              <button className="text-sm font-semibold text-primary-500 hover:text-primary-600">
                 View Specs →
               </button>
             </div>
 
-            <div className="bg-white p-6 rounded-xl border border-neutral-200">
-              <h3 className="font-bold text-neutral-900 mb-2">Installation Guides</h3>
-              <p className="text-sm text-neutral-600 mb-4">
+            <div className="rounded-xl border border-neutral-200 bg-white p-6">
+              <h3 className="mb-2 font-bold text-neutral-900">Installation Guides</h3>
+              <p className="mb-4 text-sm text-neutral-600">
                 Step-by-step installation instructions for BAPI products.
               </p>
-              <button className="text-primary-500 hover:text-primary-600 font-semibold text-sm">
+              <button className="text-sm font-semibold text-primary-500 hover:text-primary-600">
                 View Guides →
               </button>
             </div>
@@ -171,24 +166,24 @@ export default function CatalogPricebookPage() {
 
       {/* Contact Section */}
       <section className="py-12">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-primary-50 rounded-xl p-8 text-center">
-            <h2 className="text-2xl font-bold text-neutral-900 mb-3">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <div className="rounded-xl bg-primary-50 p-8 text-center">
+            <h2 className="mb-3 text-2xl font-bold text-neutral-900">
               Need Help Finding the Right Products?
             </h2>
-            <p className="text-neutral-600 mb-6">
+            <p className="mb-6 text-neutral-600">
               Our technical sales team can help you select the best sensors for your project
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a
                 href="tel:+17158561203"
-                className="inline-block bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold px-6 py-3 rounded-xl transition-colors"
+                className="inline-block rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"
               >
                 Call (715) 856-1203
               </a>
               <Link
                 href="/request-quote"
-                className="inline-block border-2 border-primary-500 text-primary-500 hover:bg-primary-50 font-bold px-6 py-3 rounded-xl transition-colors"
+                className="inline-block rounded-xl border-2 border-primary-500 px-6 py-3 font-bold text-primary-500 transition-colors hover:bg-primary-50"
               >
                 Request a Quote
               </Link>
@@ -198,21 +193,19 @@ export default function CatalogPricebookPage() {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-12 bg-neutral-50">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-xl font-bold text-neutral-900 mb-3">
-            Stay Updated
-          </h3>
-          <p className="text-neutral-600 mb-6">
+      <section className="bg-neutral-50 py-12">
+        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+          <h3 className="mb-3 text-xl font-bold text-neutral-900">Stay Updated</h3>
+          <p className="mb-6 text-neutral-600">
             Get notified when we release new catalog versions and pricing updates
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <div className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500"
+              className="flex-1 rounded-lg border border-neutral-300 px-4 py-3 focus:ring-2 focus:ring-primary-500"
             />
-            <button className="bg-primary-500 hover:bg-primary-600 text-white font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap">
+            <button className="whitespace-nowrap rounded-lg bg-primary-500 px-6 py-3 font-bold text-white transition-colors hover:bg-primary-600">
               Subscribe
             </button>
           </div>

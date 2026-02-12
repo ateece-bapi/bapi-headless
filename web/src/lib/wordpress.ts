@@ -4,7 +4,12 @@
  */
 
 import { graphqlClient } from './graphql/client';
-import { GetPageBySlugDocument, GetPagesDocument, GetPostsDocument, GetPostBySlugDocument } from './graphql/generated';
+import {
+  GetPageBySlugDocument,
+  GetPagesDocument,
+  GetPostsDocument,
+  GetPostBySlugDocument,
+} from './graphql/generated';
 import logger from './logger';
 
 export interface Page {
@@ -40,13 +45,13 @@ export interface Post {
 export async function getPageBySlug(slug: string): Promise<Page | null> {
   try {
     const data = await graphqlClient.request(GetPageBySlugDocument, { slug });
-    
+
     if (!data?.page) {
       return null;
     }
 
     const page = data.page;
-    
+
     return {
       id: page.id,
       title: page.title || '',
@@ -68,7 +73,7 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
 export async function getPages(first = 100): Promise<Page[]> {
   try {
     const data = await graphqlClient.request(GetPagesDocument, { first });
-    
+
     if (!data?.pages?.nodes) {
       return [];
     }
@@ -91,14 +96,16 @@ export async function getPages(first = 100): Promise<Page[]> {
 /**
  * Fetch WordPress posts
  */
-export async function getPosts(options: { perPage?: number; after?: string } = {}): Promise<Post[]> {
+export async function getPosts(
+  options: { perPage?: number; after?: string } = {}
+): Promise<Post[]> {
   try {
     const { perPage = 20, after } = options;
-    const data = await graphqlClient.request(GetPostsDocument, { 
+    const data = await graphqlClient.request(GetPostsDocument, {
       first: perPage,
       after: after || null,
     });
-    
+
     if (!data?.posts?.nodes) {
       return [];
     }
@@ -111,9 +118,11 @@ export async function getPosts(options: { perPage?: number; after?: string } = {
       slug: post.slug || '',
       date: post.date || '',
       modified: post.modified || '',
-      author: post.author?.node ? {
-        name: post.author.node.name || '',
-      } : undefined,
+      author: post.author?.node
+        ? {
+            name: post.author.node.name || '',
+          }
+        : undefined,
       categories: post.categories?.nodes?.map((cat: any) => ({
         name: cat.name || '',
         slug: cat.slug || '',
@@ -132,13 +141,13 @@ export async function getPosts(options: { perPage?: number; after?: string } = {
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
     const data = await graphqlClient.request(GetPostBySlugDocument, { slug });
-    
+
     if (!data?.post) {
       return null;
     }
 
     const post = data.post;
-    
+
     return {
       id: post.id,
       title: post.title || '',
@@ -147,10 +156,12 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       slug: post.slug || '',
       date: post.date || '',
       modified: post.modified || '',
-      author: post.author?.node ? {
-        name: post.author.node.name || '',
-        avatar: post.author.node.avatar?.url,
-      } : undefined,
+      author: post.author?.node
+        ? {
+            name: post.author.node.name || '',
+            avatar: post.author.node.avatar?.url,
+          }
+        : undefined,
       categories: post.categories?.nodes?.map((cat: any) => ({
         name: cat.name || '',
         slug: cat.slug || '',

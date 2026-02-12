@@ -42,10 +42,7 @@ export interface RateLimitResult {
  * @param config - Rate limit configuration
  * @returns Result object with rate limit status
  */
-export function checkRateLimit(
-  identifier: string,
-  config: RateLimitConfig
-): RateLimitResult {
+export function checkRateLimit(identifier: string, config: RateLimitConfig): RateLimitResult {
   const { limit, windowMs = RATE_LIMITS.DEFAULT_WINDOW_MS } = config;
   const now = Date.now();
   const key = `${identifier}:${config.limit}:${config.windowMs}`;
@@ -85,7 +82,7 @@ export function getClientIP(request: Request): string {
   if (forwarded) {
     return forwarded.split(',')[0].trim();
   }
-  
+
   const realIP = request.headers.get('x-real-ip');
   if (realIP) {
     return realIP;

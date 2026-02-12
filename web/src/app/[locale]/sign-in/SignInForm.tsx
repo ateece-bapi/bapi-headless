@@ -10,7 +10,7 @@ export function SignInForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { showToast } = useToast();
-  
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +19,7 @@ export function SignInForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (!username || !password) {
       showToast('warning', 'Missing Fields', 'Please enter both username and password');
       return;
@@ -31,9 +31,9 @@ export function SignInForm() {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          username: username.trim(), 
-          password 
+        body: JSON.stringify({
+          username: username.trim(),
+          password,
         }),
       });
 
@@ -41,10 +41,10 @@ export function SignInForm() {
 
       if (response.ok) {
         showToast('success', 'Welcome Back!', 'Successfully signed in');
-        
+
         // Redirect to intended page or account dashboard
         const redirect = searchParams?.get('redirect') || '/account';
-        
+
         // Force full page reload to ensure cookies are sent to server
         // Client-side navigation (router.push) doesn't send httpOnly cookies
         // to Server Components, causing authentication to fail
@@ -53,7 +53,7 @@ export function SignInForm() {
         }, 500);
       } else {
         logger.warn('Sign in failed', { username, error: data.message });
-        
+
         // Decode HTML entities from WordPress error messages
         const errorMessage = data.message || 'Invalid username or password';
         const decodedMessage = errorMessage
@@ -64,20 +64,12 @@ export function SignInForm() {
           .replace(/&#039;/g, "'")
           // Strip HTML tags for clean error message
           .replace(/<[^>]*>/g, '');
-        
-        showToast(
-          'error',
-          'Sign In Failed',
-          decodedMessage
-        );
+
+        showToast('error', 'Sign In Failed', decodedMessage);
       }
     } catch (error) {
       logger.error('Sign in error', { error });
-      showToast(
-        'error',
-        'Connection Error',
-        'Unable to connect to server. Please try again.'
-      );
+      showToast('error', 'Connection Error', 'Unable to connect to server. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -85,15 +77,14 @@ export function SignInForm() {
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-      <div className="rounded-2xl bg-white shadow-xl border-2 border-neutral-200 p-8 lg:p-10 space-y-6">
-        
+      <div className="space-y-6 rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-xl lg:p-10">
         {/* Username Field */}
         <div>
-          <label 
-            htmlFor="username" 
-            className="flex items-center gap-2 text-sm font-semibold text-neutral-900 mb-2"
+          <label
+            htmlFor="username"
+            className="mb-2 flex items-center gap-2 text-sm font-semibold text-neutral-900"
           >
-            <User className="w-4 h-4 text-primary-500" />
+            <User className="h-4 w-4 text-primary-500" />
             Username or Email
           </label>
           <input
@@ -104,7 +95,7 @@ export function SignInForm() {
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="appearance-none relative block w-full px-4 py-3.5 border-2 border-neutral-300 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-base hover:border-neutral-400 disabled:bg-neutral-50 disabled:cursor-not-allowed"
+            className="relative block w-full appearance-none rounded-xl border-2 border-neutral-300 px-4 py-3.5 text-base text-neutral-900 placeholder-neutral-400 transition-all hover:border-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 disabled:cursor-not-allowed disabled:bg-neutral-50"
             placeholder="Enter your username or email"
             disabled={isLoading}
             aria-label="Username or email address"
@@ -113,11 +104,11 @@ export function SignInForm() {
 
         {/* Password Field with Toggle */}
         <div>
-          <label 
-            htmlFor="password" 
-            className="flex items-center gap-2 text-sm font-semibold text-neutral-900 mb-2"
+          <label
+            htmlFor="password"
+            className="mb-2 flex items-center gap-2 text-sm font-semibold text-neutral-900"
           >
-            <Lock className="w-4 h-4 text-primary-500" />
+            <Lock className="h-4 w-4 text-primary-500" />
             Password
           </label>
           <div className="relative">
@@ -129,7 +120,7 @@ export function SignInForm() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="appearance-none relative block w-full px-4 py-3.5 pr-12 border-2 border-neutral-300 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-base hover:border-neutral-400 disabled:bg-neutral-50 disabled:cursor-not-allowed"
+              className="relative block w-full appearance-none rounded-xl border-2 border-neutral-300 px-4 py-3.5 pr-12 text-base text-neutral-900 placeholder-neutral-400 transition-all hover:border-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 disabled:cursor-not-allowed disabled:bg-neutral-50"
               placeholder="Enter your password"
               disabled={isLoading}
               aria-label="Password"
@@ -137,15 +128,11 @@ export function SignInForm() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-neutral-500 hover:text-neutral-700 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-2 text-neutral-500 transition-colors hover:text-neutral-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
               aria-label={showPassword ? 'Hide password' : 'Show password'}
               disabled={isLoading}
             >
-              {showPassword ? (
-                <EyeOff className="w-5 h-5" />
-              ) : (
-                <Eye className="w-5 h-5" />
-              )}
+              {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -159,12 +146,12 @@ export function SignInForm() {
               type="checkbox"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="h-4 w-4 text-primary-500 focus:ring-primary-500 focus:ring-2 focus:ring-offset-2 border-neutral-300 rounded cursor-pointer transition-all"
+              className="h-4 w-4 cursor-pointer rounded border-neutral-300 text-primary-500 transition-all focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
               disabled={isLoading}
             />
-            <label 
-              htmlFor="remember-me" 
-              className="ml-2 block text-sm text-neutral-700 cursor-pointer select-none hover:text-neutral-900 transition-colors"
+            <label
+              htmlFor="remember-me"
+              className="ml-2 block cursor-pointer select-none text-sm text-neutral-700 transition-colors hover:text-neutral-900"
             >
               Remember me
             </label>
@@ -173,7 +160,7 @@ export function SignInForm() {
           <div className="text-sm">
             <a
               href="/contact"
-              className="font-semibold text-primary-500 hover:text-primary-600 transition-colors focus:outline-none focus:underline"
+              className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
             >
               Forgot password?
             </a>
@@ -184,28 +171,28 @@ export function SignInForm() {
         <button
           type="submit"
           disabled={isLoading}
-          className="group relative w-full flex justify-center items-center gap-2 py-4 px-6 border-2 border-transparent text-base font-bold rounded-xl text-white bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-500/50 transition-all shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:from-primary-500 disabled:hover:to-primary-700 disabled:active:scale-100"
+          className="group relative flex w-full items-center justify-center gap-2 rounded-xl border-2 border-transparent bg-gradient-to-r from-primary-500 to-primary-700 px-6 py-4 text-base font-bold text-white shadow-lg transition-all hover:from-primary-600 hover:to-primary-800 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-primary-500/50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:from-primary-500 disabled:hover:to-primary-700 disabled:active:scale-100"
         >
           {isLoading ? (
             <>
-              <svg 
-                className="animate-spin h-5 w-5 text-white" 
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
+              <svg
+                className="h-5 w-5 animate-spin text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
-                <circle 
-                  className="opacity-25" 
-                  cx="12" 
-                  cy="12" 
-                  r="10" 
-                  stroke="currentColor" 
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
                   strokeWidth="4"
                 />
-                <path 
-                  className="opacity-75" 
-                  fill="currentColor" 
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 />
               </svg>
@@ -213,7 +200,7 @@ export function SignInForm() {
             </>
           ) : (
             <>
-              <ShieldCheck className="w-5 h-5" />
+              <ShieldCheck className="h-5 w-5" />
               <span>Sign In</span>
             </>
           )}
@@ -221,18 +208,18 @@ export function SignInForm() {
       </div>
 
       {/* Security Notice */}
-      <div className="text-center space-y-3">
+      <div className="space-y-3 text-center">
         <div className="flex items-center justify-center gap-2 text-sm text-neutral-600">
-          <Lock className="w-4 h-4 text-primary-500" />
+          <Lock className="h-4 w-4 text-primary-500" />
           <span className="font-medium">Secure encrypted connection</span>
         </div>
-        
+
         {/* Help Text */}
         <p className="text-sm text-neutral-500">
           Need help?{' '}
-          <a 
-            href="/contact" 
-            className="text-primary-500 hover:text-primary-600 font-semibold transition-colors focus:outline-none focus:underline"
+          <a
+            href="/contact"
+            className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
           >
             Contact Support
           </a>

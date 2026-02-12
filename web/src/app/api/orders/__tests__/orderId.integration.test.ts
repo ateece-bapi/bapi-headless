@@ -1,9 +1,9 @@
 /**
  * Integration Tests for Order Details API
- * 
+ *
  * Tests the GET /api/orders/[orderId] endpoint which fetches
  * order details from WooCommerce REST API.
- * 
+ *
  * Test Coverage:
  * - Success: Valid order ID returns order details
  * - Validation: Missing/invalid order ID returns 400
@@ -34,7 +34,7 @@ describe('Order Details API - Integration Tests', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     global.fetch = mockFetch as any;
-    
+
     // Set required environment variables
     vi.stubEnv('NEXT_PUBLIC_WORDPRESS_GRAPHQL', 'https://test.kinsta.cloud/graphql');
     vi.stubEnv('WORDPRESS_API_USER', 'test_user');
@@ -310,9 +310,33 @@ describe('Order Details API - Integration Tests', () => {
         payment_method_title: 'Credit Card',
         transaction_id: null,
         line_items: [
-          { id: 1, product_id: 1, name: 'Item 1', quantity: 1, total: '100.00', subtotal: '100.00', image: null },
-          { id: 2, product_id: 2, name: 'Item 2', quantity: 2, total: '80.00', subtotal: '80.00', image: null },
-          { id: 3, product_id: 3, name: 'Item 3', quantity: 1, total: '69.96', subtotal: '69.96', image: null },
+          {
+            id: 1,
+            product_id: 1,
+            name: 'Item 1',
+            quantity: 1,
+            total: '100.00',
+            subtotal: '100.00',
+            image: null,
+          },
+          {
+            id: 2,
+            product_id: 2,
+            name: 'Item 2',
+            quantity: 2,
+            total: '80.00',
+            subtotal: '80.00',
+            image: null,
+          },
+          {
+            id: 3,
+            product_id: 3,
+            name: 'Item 3',
+            quantity: 1,
+            total: '69.96',
+            subtotal: '69.96',
+            image: null,
+          },
         ],
         shipping: {},
         billing: {},
@@ -354,7 +378,15 @@ describe('Order Details API - Integration Tests', () => {
         payment_method_title: 'Cash on Delivery',
         transaction_id: '', // Empty transaction ID
         line_items: [
-          { id: 1, product_id: 1, name: 'Test Product', quantity: 1, total: '100.00', subtotal: '100.00', image: null },
+          {
+            id: 1,
+            product_id: 1,
+            name: 'Test Product',
+            quantity: 1,
+            total: '100.00',
+            subtotal: '100.00',
+            image: null,
+          },
         ],
         shipping: {},
         billing: {},
@@ -391,7 +423,15 @@ describe('Order Details API - Integration Tests', () => {
         payment_method_title: 'Credit Card',
         transaction_id: 'pi_test123',
         line_items: [
-          { id: 1, product_id: 1, name: 'Test Product', quantity: 1, total: '100.00', subtotal: '100.00', image: null },
+          {
+            id: 1,
+            product_id: 1,
+            name: 'Test Product',
+            quantity: 1,
+            total: '100.00',
+            subtotal: '100.00',
+            image: null,
+          },
         ],
         shipping: {
           first_name: 'John',

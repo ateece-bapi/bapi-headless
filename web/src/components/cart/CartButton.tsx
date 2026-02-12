@@ -5,16 +5,12 @@ import CartIcon from './CartIcon';
 
 const CartButton = () => {
   const { openCart } = useCartDrawer();
-  
+
   return (
-    <button
-      onClick={openCart}
-      className="hover:text-blue-600 transition"
-      aria-label="Open cart"
-    >
+    <button onClick={openCart} className="transition hover:text-blue-600" aria-label="Open cart">
       <CartIcon />
     </button>
   );
-}
+};
 
 export default CartButton;

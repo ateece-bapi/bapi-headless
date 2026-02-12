@@ -1,6 +1,6 @@
 /**
  * Stripe Payment Form Component
- * 
+ *
  * Integrated Stripe Elements for card payment processing
  */
 
@@ -17,7 +17,7 @@ interface StripePaymentFormProps {
 
 /**
  * Stripe payment form with card input
- * 
+ *
  * @param onSuccess - Called when payment succeeds with payment intent ID
  * @param onError - Called when payment fails with error message
  */
@@ -60,24 +60,15 @@ export default function StripePaymentForm({ onSuccess, onError }: StripePaymentF
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      
+
       <button
         type="submit"
         disabled={!stripe || isProcessing}
-        className="
-          mt-6 w-full
-          px-6 py-3 rounded-xl
-          text-lg font-bold
-          bg-primary-500 text-white
-          hover:bg-primary-600
-          disabled:bg-neutral-300 disabled:cursor-not-allowed
-          transition-colors
-          flex items-center justify-center gap-2
-        "
+        className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-primary-500 px-6 py-3 text-lg font-bold text-white transition-colors hover:bg-primary-600 disabled:cursor-not-allowed disabled:bg-neutral-300"
       >
         {isProcessing ? (
           <>
-            <Loader2 className="w-5 h-5 animate-spin" />
+            <Loader2 className="h-5 w-5 animate-spin" />
             Processing...
           </>
         ) : (

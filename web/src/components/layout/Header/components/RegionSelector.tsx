@@ -7,7 +7,10 @@ import { useRegion, useSetRegion } from '@/store/regionStore';
 import { useToast } from '@/components/ui/Toast';
 import { REGIONS, LANGUAGES } from '@/types/region';
 import type { RegionCode, LanguageCode } from '@/types/region';
-import { getSuggestedLanguage, getLanguageSuggestionMessage } from '@/lib/utils/regionLanguageMapping';
+import {
+  getSuggestedLanguage,
+  getLanguageSuggestionMessage,
+} from '@/lib/utils/regionLanguageMapping';
 
 const RegionSelector: React.FC = () => {
   const currentRegion = useRegion();
@@ -22,48 +25,45 @@ const RegionSelector: React.FC = () => {
 
     // Smart suggestion: Suggest matching language if different
     const suggestedLanguage = getSuggestedLanguage(regionCode);
-    
+
     // Only suggest if language is different AND exists in LANGUAGES
     if (suggestedLanguage !== currentLocale && LANGUAGES[suggestedLanguage]) {
       const languageName = LANGUAGES[suggestedLanguage].nativeName;
       const message = getLanguageSuggestionMessage(regionCode, languageName);
-      
+
       // Show toast with action button
-      showToast(
-        'info',
-        'Language Suggestion',
-        message,
-        7000,
-        {
-          action: {
-            label: 'Switch',
-            onClick: () => {
-              // Change language by navigating to new locale
-              const pathname = window.location.pathname;
-              const pathnameWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
-              const newPath = pathnameWithoutLocale === '/' || pathnameWithoutLocale === '' 
-                ? `/${suggestedLanguage}` 
+      showToast('info', 'Language Suggestion', message, 7000, {
+        action: {
+          label: 'Switch',
+          onClick: () => {
+            // Change language by navigating to new locale
+            const pathname = window.location.pathname;
+            const pathnameWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
+            const newPath =
+              pathnameWithoutLocale === '/' || pathnameWithoutLocale === ''
+                ? `/${suggestedLanguage}`
                 : `/${suggestedLanguage}${pathnameWithoutLocale}`;
-              
-              router.push(newPath);
-              router.refresh();
-            }
-          }
-        }
-      );
+
+            router.push(newPath);
+            router.refresh();
+          },
+        },
+      });
     }
   };
 
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-[10px] font-medium text-gray-500 uppercase tracking-wider px-1">Region</span>
-      <div className="relative group">
+      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-gray-500">
+        Region
+      </span>
+      <div className="group relative">
         <label htmlFor="region-select" className="sr-only">
           Select your region
         </label>
         {/* Globe icon */}
         <svg
-          className="absolute left-3 lg:left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-hover:text-primary-600 transition-colors pointer-events-none"
+          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500 transition-colors group-hover:text-primary-600 lg:left-3.5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -80,15 +80,15 @@ const RegionSelector: React.FC = () => {
           id="region-select"
           value={currentRegion.code}
           onChange={handleChange}
-        className="appearance-none pl-9 lg:pl-10 pr-3 py-2 border border-neutral-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-neutral-50 hover:border-neutral-400 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 focus:border-transparent transition-all duration-200 cursor-pointer"
-        aria-label="Select region"
-      >
-        {Object.values(REGIONS).map((region) => (
-          <option key={region.code} value={region.code}>
-            {region.flag} {region.name}
-          </option>
-        ))}
-      </select>
+          className="cursor-pointer appearance-none rounded-full border border-neutral-300 bg-white py-2 pl-9 pr-3 text-sm font-medium text-gray-700 transition-all duration-200 hover:border-neutral-400 hover:bg-neutral-50 hover:shadow-md focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 lg:pl-10"
+          aria-label="Select region"
+        >
+          {Object.values(REGIONS).map((region) => (
+            <option key={region.code} value={region.code}>
+              {region.flag} {region.name}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );

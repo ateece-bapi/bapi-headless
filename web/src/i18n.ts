@@ -15,13 +15,13 @@ export const defaultLocale: Locale = 'en';
 export const routing = defineRouting({
   locales,
   defaultLocale,
-  localePrefix: 'always'
+  localePrefix: 'always',
 });
 
 export default getRequestConfig(async ({ requestLocale }) => {
   // Get the locale from the request, fallback to default if undefined
   let locale = await requestLocale;
-  
+
   // If no locale provided, use default (handles root '/' path)
   if (!locale) {
     locale = defaultLocale;
@@ -34,7 +34,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   // Always load English as base (complete translations)
   const englishMessages = (await import(`../messages/en.json`)).default;
-  
+
   // If not English, merge with locale-specific translations (overlay on top of English)
   let messages = englishMessages;
   if (locale !== 'en') {

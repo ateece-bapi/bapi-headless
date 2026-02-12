@@ -3,17 +3,14 @@ import type { Metadata } from 'next';
 import ApplicationLandingPage, {
   generateApplicationMetadata,
 } from '@/components/applications/ApplicationLandingPage';
-import {
-  getApplicationBySlug,
-  getAllApplicationSlugs,
-} from '@/data/applications';
+import { getApplicationBySlug, getAllApplicationSlugs } from '@/data/applications';
 
 /**
  * Application landing page route
- * 
+ *
  * Renders solution-focused pages for different application verticals.
  * Uses static generation for optimal performance.
- * 
+ *
  * @example URLs:
  * - /applications/landing/building-automation
  * - /applications/landing/data-centers
@@ -39,9 +36,7 @@ export async function generateStaticParams() {
 /**
  * Generate metadata for SEO
  */
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const data = getApplicationBySlug(slug);
 

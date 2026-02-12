@@ -20,7 +20,7 @@ const PRODUCTS_PER_PAGE = 18;
 
 /**
  * Client component that filters, sorts, and paginates products
- * 
+ *
  * Features:
  * - Filters by 15 product attribute taxonomies
  * - Sort by name (A-Z, Z-A) and price (Low-High, High-Low)
@@ -35,7 +35,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   const [filteredProducts, setFilteredProducts] = useState(products);
   const sortBy = searchParams?.get('sort') || 'default';
   const currentPage = parseInt(searchParams?.get('page') || '1', 10);
-  
+
   // Define all possible filter keys and their corresponding GraphQL fields
   const filterFieldMap: Record<string, string> = {
     application: 'allPaApplication',
@@ -57,7 +57,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
 
   // Get active filters from URL (comma-separated values)
   const activeFilters: Record<string, string[]> = {};
-  Object.keys(filterFieldMap).forEach(filterKey => {
+  Object.keys(filterFieldMap).forEach((filterKey) => {
     const values = searchParams?.get(filterKey)?.split(',').filter(Boolean) || [];
     if (values.length > 0) {
       activeFilters[filterKey] = values;
@@ -70,7 +70,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   // Debounced filtering with loading state
   useEffect(() => {
     setIsFiltering(true);
-    
+
     const timer = setTimeout(() => {
       // Filter products based on active filters
       const filtered = hasActiveFilters
@@ -91,8 +91,8 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
                 .filter((slug: any): slug is string => slug !== null && slug !== undefined);
 
               // Check if product has ANY of the selected values for this filter
-              const hasMatch = selectedValues.some(value => productAttributes.includes(value));
-              
+              const hasMatch = selectedValues.some((value) => productAttributes.includes(value));
+
               // If no match for this filter category, exclude the product
               if (!hasMatch) return false;
             }
@@ -152,25 +152,19 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   return (
     <div>
       {/* Screen reader announcement */}
-      <div
-        className="sr-only"
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-      >
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
         {isFiltering
           ? 'Updating product results...'
-          : `Showing ${paginatedProducts.length} of ${sortedProducts.length} products. Page ${currentPage} of ${totalPages}.`
-        }
+          : `Showing ${paginatedProducts.length} of ${sortedProducts.length} products. Page ${currentPage} of ${totalPages}.`}
       </div>
 
       {/* Active Filter Pills with animations */}
       {hasActiveFilters && (
         <div className="mb-8 animate-[fade-in_300ms_ease-out]">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-100 to-accent-100 px-4 py-2 rounded-full">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 px-4 py-2">
               <svg
-                className="w-4 h-4 text-primary-600"
+                className="h-4 w-4 text-primary-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -186,12 +180,12 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
                 {Object.values(activeFilters).flat().length} Active Filters
               </span>
             </div>
-            
+
             {Object.entries(activeFilters).map(([type, values]) =>
               values.map((value, index) => (
                 <button
                   key={`${type}-${value}`}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-primary-500 text-primary-700 rounded-full text-sm font-medium shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 animate-[fade-in_300ms_ease-out] focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 focus-visible:border-primary-600"
+                  className="inline-flex animate-[fade-in_300ms_ease-out] items-center gap-2 rounded-full border-2 border-primary-500 bg-white px-4 py-2 text-sm font-medium text-primary-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50"
                   style={{
                     animationDelay: `${index * 50}ms`,
                   }}
@@ -217,7 +211,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
                   </span>
                   <span className="text-neutral-900">{value.replace(/-/g, ' ')}</span>
                   <svg
-                    className="w-4 h-4 text-primary-600 hover:text-error-600 transition-colors"
+                    className="h-4 w-4 text-primary-600 transition-colors hover:text-error-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -233,15 +227,10 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
               ))
             )}
           </div>
-          
+
           {/* Product count with animated number transition */}
           <div className="mt-4 inline-flex items-center gap-2 text-sm text-neutral-600">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -251,7 +240,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
             </svg>
             <span className="font-medium">
               Showing{' '}
-              <span className="text-primary-600 font-bold tabular-nums">
+              <span className="font-bold tabular-nums text-primary-600">
                 {filteredProducts.length}
               </span>{' '}
               {filteredProducts.length === 1 ? 'product' : 'products'}
@@ -263,11 +252,11 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
       {/* Product Grid with smooth loading transition */}
       <div className="relative">
         {isFiltering && (
-          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 animate-[fade-in_200ms_ease-out]">
+          <div className="absolute inset-0 z-10 animate-[fade-in_200ms_ease-out] bg-white/80 backdrop-blur-sm">
             <ProductGridSkeleton count={9} />
           </div>
         )}
-        
+
         <div className={isFiltering ? 'opacity-50' : 'opacity-100 transition-opacity duration-300'}>
           <ProductGrid products={paginatedProducts} locale={locale} />
         </div>
@@ -284,14 +273,12 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
 
       {/* No Results Message */}
       {hasActiveFilters && filteredProducts.length === 0 && (
-        <div className="text-center py-16">
-          <div className="text-6xl mb-4">🔍</div>
-          <h3 className="text-xl font-semibold text-neutral-900 mb-2">
+        <div className="py-16 text-center">
+          <div className="mb-4 text-6xl">🔍</div>
+          <h3 className="mb-2 text-xl font-semibold text-neutral-900">
             No products match your filters
           </h3>
-          <p className="text-neutral-600 mb-6">
-            Try removing some filters to see more results.
-          </p>
+          <p className="mb-6 text-neutral-600">Try removing some filters to see more results.</p>
         </div>
       )}
 

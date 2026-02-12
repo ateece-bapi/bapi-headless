@@ -6,7 +6,7 @@ const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
 /**
  * GET /api/auth/me
- * 
+ *
  * Returns current authenticated user from WordPress JWT token.
  * Uses WPGraphQL JWT Authentication viewer query.
  */
@@ -16,10 +16,7 @@ export async function GET(request: NextRequest) {
     const token = cookieStore.get('auth_token')?.value;
 
     if (!token) {
-      return NextResponse.json(
-        { error: 'Not authenticated', user: null },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Not authenticated', user: null }, { status: 401 });
     }
 
     // Query current user with GraphQL
@@ -27,7 +24,7 @@ export async function GET(request: NextRequest) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         query: `
@@ -53,15 +50,12 @@ export async function GET(request: NextRequest) {
 
     if (errors || !data?.viewer) {
       logger.debug('Token validation failed', { errors });
-      
+
       // Clear invalid token
       cookieStore.delete('auth_token');
       cookieStore.delete('refresh_token');
-      
-      return NextResponse.json(
-        { error: 'Invalid token', user: null },
-        { status: 401 }
-      );
+
+      return NextResponse.json({ error: 'Invalid token', user: null }, { status: 401 });
     }
 
     const { viewer } = data;
@@ -80,9 +74,6 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     logger.error('Auth check error', { error });
-    return NextResponse.json(
-      { error: 'Server error', user: null },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Server error', user: null }, { status: 500 });
   }
 }

@@ -30,17 +30,14 @@ export async function POST(request: NextRequest) {
   try {
     // Check authentication
     const { userId } = await getServerAuth();
-    
+
     if (!userId) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Parse form data
     const formData = await request.formData();
-    
+
     // Extract form fields
     const subject = formData.get('subject') as string;
     const productName = formData.get('productName') as string;
@@ -54,11 +51,17 @@ export async function POST(request: NextRequest) {
     const userEmail = formData.get('userEmail') as string;
 
     // Validate required fields
-    if (!subject || !productName || !quantity || !application || !timeline || !details || !companyName || !phoneNumber) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+    if (
+      !subject ||
+      !productName ||
+      !quantity ||
+      !application ||
+      !timeline ||
+      !details ||
+      !companyName ||
+      !phoneNumber
+    ) {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     // Handle file uploads
@@ -77,13 +80,13 @@ export async function POST(request: NextRequest) {
         if (file.size > 0) {
           const bytes = await file.arrayBuffer();
           const buffer = Buffer.from(bytes);
-          
+
           // Generate unique filename
           const timestamp = Date.now();
           const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
           const filename = `${timestamp}_${sanitizedName}`;
           const filepath = path.join(uploadsDir, filename);
-          
+
           await writeFile(filepath, buffer);
           attachments.push(`/uploads/quotes/${filename}`);
         }
@@ -138,11 +141,13 @@ export async function POST(request: NextRequest) {
       customerEmail: userEmail,
       customerPhone: phoneNumber,
       companyName,
-      products: [{
-        name: productName,
-        quantity: parseInt(quantity) || 1,
-        partNumber,
-      }],
+      products: [
+        {
+          name: productName,
+          quantity: parseInt(quantity) || 1,
+          partNumber,
+        },
+      ],
       notes: `Subject: ${subject}\n\nApplication: ${application}\nTimeline: ${timeline}\n\nDetails:\n${details}`,
       requestDate: now,
     };
@@ -150,7 +155,7 @@ export async function POST(request: NextRequest) {
     // Send notification to sales team
     const salesEmail = generateQuoteSalesEmail(emailData);
     const salesRecipient = process.env.NEXT_PUBLIC_SALES_EMAIL || 'customerservice@bapisensors.com';
-    
+
     const salesResult = await sendEmail({
       to: salesRecipient,
       subject: salesEmail.subject,
@@ -159,14 +164,20 @@ export async function POST(request: NextRequest) {
     });
 
     if (!salesResult.success) {
-      logger.error('Failed to send sales team quote notification', { error: salesResult.error, quoteId });
+      logger.error('Failed to send sales team quote notification', {
+        error: salesResult.error,
+        quoteId,
+      });
     } else {
-      logger.info('Quote notification sent to sales team', { quoteId, messageId: salesResult.messageId });
+      logger.info('Quote notification sent to sales team', {
+        quoteId,
+        messageId: salesResult.messageId,
+      });
     }
 
     // Send confirmation to customer
     const customerEmail = generateQuoteCustomerEmail(emailData);
-    
+
     const customerResult = await sendEmail({
       to: userEmail,
       subject: customerEmail.subject,
@@ -175,9 +186,15 @@ export async function POST(request: NextRequest) {
     });
 
     if (!customerResult.success) {
-      logger.error('Failed to send customer quote confirmation', { error: customerResult.error, quoteId });
+      logger.error('Failed to send customer quote confirmation', {
+        error: customerResult.error,
+        quoteId,
+      });
     } else {
-      logger.info('Quote confirmation sent to customer', { quoteId, messageId: customerResult.messageId });
+      logger.info('Quote confirmation sent to customer', {
+        quoteId,
+        messageId: customerResult.messageId,
+      });
     }
 
     return NextResponse.json({
@@ -189,13 +206,9 @@ export async function POST(request: NextRequest) {
         customer: customerResult.success,
       },
     });
-
   } catch (error) {
     logger.error('Error submitting quote request', error);
-    return NextResponse.json(
-      { error: 'Failed to submit quote request' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to submit quote request' }, { status: 500 });
   }
 }
 
@@ -203,17 +216,14 @@ export async function GET(request: NextRequest) {
   try {
     // Check authentication
     const { userId } = await getServerAuth();
-    
+
     if (!userId) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Read quotes from file
     const quotesFile = path.join(process.cwd(), 'data', 'quotes.json');
-    
+
     if (!existsSync(quotesFile)) {
       return NextResponse.json({ quotes: [] });
     }
@@ -223,20 +233,16 @@ export async function GET(request: NextRequest) {
     const allQuotes: QuoteRequestData[] = JSON.parse(data);
 
     // Filter quotes for current user
-    const userQuotes = allQuotes.filter(quote => quote.userId === userId);
+    const userQuotes = allQuotes.filter((quote) => quote.userId === userId);
 
     // Sort by submission date (newest first)
-    userQuotes.sort((a, b) => 
-      new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()
+    userQuotes.sort(
+      (a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime()
     );
 
     return NextResponse.json({ quotes: userQuotes });
-
   } catch (error) {
     logger.error('Error fetching quotes', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch quotes' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch quotes' }, { status: 500 });
   }
 }

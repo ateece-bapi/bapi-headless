@@ -55,7 +55,7 @@ export interface MockUserProfile {
  */
 export const MOCK_USER_DATA: Record<string, MockUserProfile> = {
   // BAPI Test Customer
-  'user_37zABTP9A6DS7FEGh6wAFzZdfRg': {
+  user_37zABTP9A6DS7FEGh6wAFzZdfRg: {
     userId: 'user_37zABTP9A6DS7FEGh6wAFzZdfRg',
     companyName: 'BAPI Test Customer',
     accountNumber: 'ACCT-TEST-001',
@@ -64,7 +64,7 @@ export const MOCK_USER_DATA: Record<string, MockUserProfile> = {
       city: 'Madison',
       state: 'WI',
       zip: '53703',
-      country: 'US'
+      country: 'US',
     },
     shippingAddresses: [
       {
@@ -75,7 +75,7 @@ export const MOCK_USER_DATA: Record<string, MockUserProfile> = {
         state: 'WI',
         zip: '53703',
         country: 'US',
-        isDefault: true
+        isDefault: true,
       },
       {
         id: 'addr_2',
@@ -85,80 +85,80 @@ export const MOCK_USER_DATA: Record<string, MockUserProfile> = {
         state: 'WI',
         zip: '53202',
         country: 'US',
-        isDefault: false
-      }
+        isDefault: false,
+      },
     ],
     orderHistory: [
       {
         orderId: 'ORDER-20260105-001',
         date: '2026-01-05',
         status: 'delivered',
-        total: 1250.00,
+        total: 1250.0,
         items: [
           {
             sku: 'BA/10K-2-O-B',
             name: 'Temperature Sensor, Outdoor',
             quantity: 5,
-            price: 250.00
-          }
-        ]
+            price: 250.0,
+          },
+        ],
       },
       {
         orderId: 'ORDER-20260103-045',
         date: '2026-01-03',
         status: 'shipped',
-        total: 875.50,
+        total: 875.5,
         items: [
           {
             sku: 'BA/HQX-D-C-X-XX-X',
             name: 'Humidity Sensor',
             quantity: 2,
-            price: 437.75
-          }
-        ]
+            price: 437.75,
+          },
+        ],
       },
       {
         orderId: 'ORDER-20251220-102',
         date: '2025-12-20',
         status: 'delivered',
-        total: 3240.00,
+        total: 3240.0,
         items: [
           {
             sku: 'BA/APSW1',
             name: 'Application Software',
             quantity: 1,
-            price: 25.00
+            price: 25.0,
           },
           {
             sku: 'BA/10K-3-O-8',
             name: 'Temperature Sensor Pack',
             quantity: 10,
-            price: 321.50
-          }
-        ]
-      }
+            price: 321.5,
+          },
+        ],
+      },
     ],
     savedQuotes: [
       {
         quoteId: 'QUOTE-20260107-A',
         date: '2026-01-07',
         expiresAt: '2026-02-07',
-        total: 5430.00,
-        items: 15
+        total: 5430.0,
+        items: 15,
       },
       {
         quoteId: 'QUOTE-20251215-B',
         date: '2025-12-15',
         expiresAt: '2026-01-15',
-        total: 2180.00,
-        items: 8
-      }
+        total: 2180.0,
+        items: 8,
+      },
     ],
     preferences: {
       emailNotifications: true,
       orderUpdates: true,
-      newsletter: false
-    }
+      newsletter: false,
+    },
   },
 
   // Add more test users here
@@ -184,5 +184,7 @@ export function hasMockData(userId: string): boolean {
  * For now, always return true in development
  */
 export function isMockDataEnabled(): boolean {
-  return process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_ENABLE_MOCK_DATA === 'true';
+  return (
+    process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_ENABLE_MOCK_DATA === 'true'
+  );
 }

@@ -1,6 +1,6 @@
 /**
  * Schema.org JSON-LD Generators
- * 
+ *
  * Utility functions to generate structured data for SEO
  * Ensures consistent, valid schema.org markup across the site
  */
@@ -131,9 +131,7 @@ export function generateBreadcrumbSchema(
  * Generate FAQ schema for better AI understanding
  * Appears as rich snippets in search results
  */
-export function generateFAQSchema(
-  faqs: Array<{ question: string; answer: string }>
-): SchemaFAQ {
+export function generateFAQSchema(faqs: Array<{ question: string; answer: string }>): SchemaFAQ {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

@@ -1,12 +1,12 @@
 /**
  * Type-Safe Design Tokens
- * 
+ *
  * Centralized export of design system tokens for use in TypeScript/JavaScript.
  * These tokens match the CSS custom properties defined in globals.css @theme.
- * 
+ *
  * Usage:
  * import { colors, zIndex, spacing, durations } from '@/lib/design-tokens';
- * 
+ *
  * <div style={{ backgroundColor: colors.primary[500], zIndex: zIndex.modal }}>
  */
 

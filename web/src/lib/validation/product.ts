@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 /**
  * Zod schema for product image validation
- * 
+ *
  * Validates WooCommerce image structure from GraphQL responses.
  * Ensures sourceUrl is valid URL and altText is optional.
  */
@@ -13,29 +13,33 @@ export const imageSchema = z.object({
 
 /**
  * Zod schema for product gallery validation
- * 
+ *
  * Validates array of gallery images. Gallery may be absent or empty.
  */
-export const galleryImagesSchema = z.object({
-  nodes: z.array(imageSchema).optional(),
-}).optional();
+export const galleryImagesSchema = z
+  .object({
+    nodes: z.array(imageSchema).optional(),
+  })
+  .optional();
 
 /**
  * Zod schema for product variations validation
- * 
+ *
  * Validates WooCommerce product variations (size, color, etc.).
  * Used for variable products with multiple SKUs.
  */
-export const variationsSchema = z.object({
-  nodes: z.array(z.any()).optional(),
-}).optional();
+export const variationsSchema = z
+  .object({
+    nodes: z.array(z.any()).optional(),
+  })
+  .optional();
 
 /**
  * Zod schema for complete product validation
- * 
+ *
  * Validates full product structure from WooCommerce GraphQL.
  * Use with .parse() for runtime validation or .safeParse() to handle errors.
- * 
+ *
  * @example
  * ```ts
  * const product = productSchema.parse(data);
@@ -65,7 +69,7 @@ export type Product = z.infer<typeof productSchema>;
 
 /**
  * Zod schema for GraphQL product query response
- * 
+ *
  * Validates the shape of getProductBySlug GraphQL responses.
  * Product field is nullable (returns null for 404/not found).
  */
@@ -74,4 +78,3 @@ export const getProductQuerySchema = z.object({
 });
 
 export type ProductQuery = z.infer<typeof getProductQuerySchema>;
-

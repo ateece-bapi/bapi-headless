@@ -1,7 +1,7 @@
 import { cache } from 'react';
 import { getGraphQLClient } from './client';
-import { 
-  GetProductsDocument, 
+import {
+  GetProductsDocument,
   GetProductBySlugDocument,
   GetProductBySlugLightDocument,
   GetProductDetailsDeferredDocument,
@@ -9,10 +9,10 @@ import {
   GetProductRelatedDocument,
   GetProductCategoriesDocument,
   GetProductCategoryDocument,
-  GetProductsByCategoryDocument 
+  GetProductsByCategoryDocument,
 } from './generated';
-import type { 
-  GetProductsQuery, 
+import type {
+  GetProductsQuery,
   GetProductBySlugQuery,
   GetProductBySlugLightQuery,
   GetProductDetailsDeferredQuery,
@@ -20,7 +20,7 @@ import type {
   GetProductRelatedQuery,
   GetProductCategoriesQuery,
   GetProductCategoryQuery,
-  GetProductsByCategoryQuery 
+  GetProductsByCategoryQuery,
 } from './generated';
 import { AppError } from '@/lib/errors';
 
@@ -28,19 +28,21 @@ import { AppError } from '@/lib/errors';
  * Server-side function to fetch products with pagination
  * Wrapped with React cache() for automatic deduplication across generateMetadata and page components
  */
-export const getProducts = cache(async (first: number = 10, after?: string): Promise<GetProductsQuery> => {
-  try {
-    const client = getGraphQLClient(['products', 'product-list']);
-    return await client.request(GetProductsDocument, { first, after });
-  } catch (error) {
-    throw new AppError(
-      `Failed to fetch products: ${error instanceof Error ? error.message : 'Unknown error'}`,
-      'Unable to load products at this time. Please try again later.',
-      'PRODUCTS_FETCH_ERROR',
-      500
-    );
+export const getProducts = cache(
+  async (first: number = 10, after?: string): Promise<GetProductsQuery> => {
+    try {
+      const client = getGraphQLClient(['products', 'product-list']);
+      return await client.request(GetProductsDocument, { first, after });
+    } catch (error) {
+      throw new AppError(
+        `Failed to fetch products: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'Unable to load products at this time. Please try again later.',
+        'PRODUCTS_FETCH_ERROR',
+        500
+      );
+    }
   }
-});
+);
 
 /**
  * Server-side function to fetch a single product by slug
@@ -81,7 +83,8 @@ export const getProductBySlug = cache(async (slug: string): Promise<GetProductBy
 export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQuery {
   const safe = (raw ?? {}) as Record<string, unknown>;
 
-  if (!('product' in safe) || safe.product == null) return { product: null } as GetProductBySlugQuery;
+  if (!('product' in safe) || safe.product == null)
+    return { product: null } as GetProductBySlugQuery;
 
   const productRaw = safe.product as Record<string, unknown>;
   const p: Record<string, unknown> = { ...productRaw };
@@ -103,7 +106,6 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
   } else {
     p.image = null;
   }
-
 
   // Normalize galleryImages to the { nodes: [] } shape
   const galleryRaw = productRaw.galleryImages;
@@ -136,15 +138,17 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
       }))
     : [];
 
-    // Normalize sku for main product
-    p.sku = productRaw.sku ?? '';
+  // Normalize sku for main product
+  p.sku = productRaw.sku ?? '';
 
   // Normalize variations to the { nodes: [] } shape
   const variRaw = productRaw.variations as Record<string, unknown> | null | undefined;
   if (!variRaw) {
     p.variations = { nodes: [] };
   } else if (variRaw && typeof variRaw === 'object') {
-    const nodes = Array.isArray((variRaw as Record<string, unknown>).nodes) ? ((variRaw as Record<string, unknown>).nodes as Array<Record<string, unknown>>) : [];
+    const nodes = Array.isArray((variRaw as Record<string, unknown>).nodes)
+      ? ((variRaw as Record<string, unknown>).nodes as Array<Record<string, unknown>>)
+      : [];
     // Normalize each variation's attributes and image fields for consistency
     const normalizedVariations = nodes.map((vn) => {
       const v = (vn ?? {}) as Record<string, unknown>;
@@ -169,12 +173,15 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
 
       // Normalize variation image
       const vImageRaw = v.image as Record<string, unknown> | null | undefined;
-      const vImage = vImageRaw && typeof vImageRaw === 'object'
-        ? {
-            sourceUrl: String(vImageRaw.sourceUrl ?? vImageRaw.source_url ?? ''),
-            altText: (vImageRaw.altText ?? vImageRaw.alt_text ?? vImageRaw.alt ?? '') as string | null,
-          }
-        : null;
+      const vImage =
+        vImageRaw && typeof vImageRaw === 'object'
+          ? {
+              sourceUrl: String(vImageRaw.sourceUrl ?? vImageRaw.source_url ?? ''),
+              altText: (vImageRaw.altText ?? vImageRaw.alt_text ?? vImageRaw.alt ?? '') as
+                | string
+                | null,
+            }
+          : null;
 
       return {
         ...v,
@@ -190,8 +197,10 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
   p.name = (p.name ?? '') as string;
   p.slug = (p.slug ?? '') as string;
   p.price = (p.price ?? '') as string;
-  p.shortDescription = (p.shortDescription ?? (productRaw.short_description ?? null)) as string | null;
-  p.description = (p.description ?? (productRaw.content ?? null)) as string | null;
+  p.shortDescription = (p.shortDescription ?? productRaw.short_description ?? null) as
+    | string
+    | null;
+  p.description = (p.description ?? productRaw.content ?? null) as string | null;
 
   return { product: p as GetProductBySlugQuery['product'] } as GetProductBySlugQuery;
 }
@@ -201,82 +210,88 @@ export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQue
  * Reduces payload by ~70% for faster Time to First Byte
  * Only fetches: name, price, main image, short description, categories
  */
-export const getProductBySlugLight = cache(async (slug: string): Promise<GetProductBySlugLightQuery> => {
-  if (slug === null || slug === undefined || String(slug).trim() === '') {
-    throw new AppError(
-      'getProductBySlugLight called without a valid slug',
-      'Invalid product URL. Please check the link and try again.',
-      'INVALID_PRODUCT_SLUG',
-      400
-    );
-  }
+export const getProductBySlugLight = cache(
+  async (slug: string): Promise<GetProductBySlugLightQuery> => {
+    if (slug === null || slug === undefined || String(slug).trim() === '') {
+      throw new AppError(
+        'getProductBySlugLight called without a valid slug',
+        'Invalid product URL. Please check the link and try again.',
+        'INVALID_PRODUCT_SLUG',
+        400
+      );
+    }
 
-  try {
-    const client = getGraphQLClient(['products', `product-light-${slug}`]);
-    return await client.request(GetProductBySlugLightDocument, { slug });
-  } catch (error) {
-    throw new AppError(
-      `Failed to fetch product '${slug}': ${error instanceof Error ? error.message : 'Unknown error'}`,
-      'Unable to load this product. The product may not exist or there may be a temporary issue.',
-      'PRODUCT_FETCH_ERROR',
-      404
-    );
+    try {
+      const client = getGraphQLClient(['products', `product-light-${slug}`]);
+      return await client.request(GetProductBySlugLightDocument, { slug });
+    } catch (error) {
+      throw new AppError(
+        `Failed to fetch product '${slug}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'Unable to load this product. The product may not exist or there may be a temporary issue.',
+        'PRODUCT_FETCH_ERROR',
+        404
+      );
+    }
   }
-});
+);
 
 /**
  * Deferred product details (description, gallery, tags, multipliers)
  * Load after hero section renders in separate Suspense boundary
  */
-export const getProductDetailsDeferred = cache(async (id: string): Promise<GetProductDetailsDeferredQuery> => {
-  if (!id) {
-    throw new AppError(
-      'getProductDetailsDeferred called without a valid ID',
-      'Invalid product ID',
-      'INVALID_PRODUCT_ID',
-      400
-    );
-  }
+export const getProductDetailsDeferred = cache(
+  async (id: string): Promise<GetProductDetailsDeferredQuery> => {
+    if (!id) {
+      throw new AppError(
+        'getProductDetailsDeferred called without a valid ID',
+        'Invalid product ID',
+        'INVALID_PRODUCT_ID',
+        400
+      );
+    }
 
-  try {
-    const client = getGraphQLClient(['products', `product-details-${id}`]);
-    return await client.request(GetProductDetailsDeferredDocument, { id });
-  } catch (error) {
-    throw new AppError(
-      `Failed to fetch product details for ID '${id}': ${error instanceof Error ? error.message : 'Unknown error'}`,
-      'Unable to load product details.',
-      'PRODUCT_DETAILS_FETCH_ERROR',
-      500
-    );
+    try {
+      const client = getGraphQLClient(['products', `product-details-${id}`]);
+      return await client.request(GetProductDetailsDeferredDocument, { id });
+    } catch (error) {
+      throw new AppError(
+        `Failed to fetch product details for ID '${id}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'Unable to load product details.',
+        'PRODUCT_DETAILS_FETCH_ERROR',
+        500
+      );
+    }
   }
-});
+);
 
 /**
  * Product variations for VariableProduct configurator
  * Only load when needed for variable products
  */
-export const getProductVariations = cache(async (id: string): Promise<GetProductVariationsQuery> => {
-  if (!id) {
-    throw new AppError(
-      'getProductVariations called without a valid ID',
-      'Invalid product ID',
-      'INVALID_PRODUCT_ID',
-      400
-    );
-  }
+export const getProductVariations = cache(
+  async (id: string): Promise<GetProductVariationsQuery> => {
+    if (!id) {
+      throw new AppError(
+        'getProductVariations called without a valid ID',
+        'Invalid product ID',
+        'INVALID_PRODUCT_ID',
+        400
+      );
+    }
 
-  try {
-    const client = getGraphQLClient(['products', `product-variations-${id}`]);
-    return await client.request(GetProductVariationsDocument, { id });
-  } catch (error) {
-    throw new AppError(
-      `Failed to fetch variations for product ID '${id}': ${error instanceof Error ? error.message : 'Unknown error'}`,
-      'Unable to load product variations.',
-      'PRODUCT_VARIATIONS_FETCH_ERROR',
-      500
-    );
+    try {
+      const client = getGraphQLClient(['products', `product-variations-${id}`]);
+      return await client.request(GetProductVariationsDocument, { id });
+    } catch (error) {
+      throw new AppError(
+        `Failed to fetch variations for product ID '${id}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'Unable to load product variations.',
+        'PRODUCT_VARIATIONS_FETCH_ERROR',
+        500
+      );
+    }
   }
-});
+);
 
 /**
  * Related products
@@ -308,7 +323,9 @@ export const getProductRelated = cache(async (id: string): Promise<GetProductRel
 /**
  * Server-side function to fetch product categories
  */
-export async function getProductCategories(first: number = 100): Promise<GetProductCategoriesQuery> {
+export async function getProductCategories(
+  first: number = 100
+): Promise<GetProductCategoriesQuery> {
   const client = getGraphQLClient(['products', 'categories']);
   return client.request(GetProductCategoriesDocument, { first });
 }
@@ -344,33 +361,35 @@ export const getProductCategory = cache(async (slug: string): Promise<GetProduct
  * Server-side function to fetch products by category slug with pagination
  * Wrapped with React cache() for automatic deduplication across generateMetadata and page components
  */
-export const getProductsByCategory = cache(async (
-  categorySlug: string, 
-  first: number = 50, 
-  after?: string
-): Promise<GetProductsByCategoryQuery> => {
-  if (categorySlug === null || categorySlug === undefined || String(categorySlug).trim() === '') {
-    throw new AppError(
-      'getProductsByCategory called without a valid category slug',
-      'Invalid category. Please check the link and try again.',
-      'INVALID_CATEGORY_SLUG',
-      400
-    );
-  }
+export const getProductsByCategory = cache(
+  async (
+    categorySlug: string,
+    first: number = 50,
+    after?: string
+  ): Promise<GetProductsByCategoryQuery> => {
+    if (categorySlug === null || categorySlug === undefined || String(categorySlug).trim() === '') {
+      throw new AppError(
+        'getProductsByCategory called without a valid category slug',
+        'Invalid category. Please check the link and try again.',
+        'INVALID_CATEGORY_SLUG',
+        400
+      );
+    }
 
-  try {
-    const client = getGraphQLClient(['products', `category-${categorySlug}`]);
-    return await client.request(GetProductsByCategoryDocument, { 
-      categorySlug, 
-      first, 
-      after 
-    });
-  } catch (error) {
-    throw new AppError(
-      `Failed to fetch products for category '${categorySlug}': ${error instanceof Error ? error.message : 'Unknown error'}`,
-      'Unable to load products for this category. Please try again later.',
-      'CATEGORY_PRODUCTS_FETCH_ERROR',
-      500
-    );
+    try {
+      const client = getGraphQLClient(['products', `category-${categorySlug}`]);
+      return await client.request(GetProductsByCategoryDocument, {
+        categorySlug,
+        first,
+        after,
+      });
+    } catch (error) {
+      throw new AppError(
+        `Failed to fetch products for category '${categorySlug}': ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'Unable to load products for this category. Please try again later.',
+        'CATEGORY_PRODUCTS_FETCH_ERROR',
+        500
+      );
+    }
   }
-});
+);

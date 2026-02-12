@@ -32,7 +32,7 @@ export default function ChatWidget() {
       /\[([^\]]+)\]\(([^)]+)\)/g,
       '<a href="$2" class="text-primary-500 hover:text-primary-600 underline font-medium" target="_blank" rel="noopener noreferrer">$1</a>'
     );
-    
+
     return <span dangerouslySetInnerHTML={{ __html: withLinks }} />;
   };
 
@@ -64,7 +64,7 @@ export default function ChatWidget() {
               : locale === 'es'
                 ? '¡Hola! Soy el asistente de BAPI. ¿Cómo puedo ayudarle con sensores HVAC y automatización de edificios?'
                 : locale === 'fr'
-                  ? 'Bonjour! Je suis l\'assistant BAPI. Comment puis-je vous aider avec les capteurs CVC et l\'automatisation des bâtiments?'
+                  ? "Bonjour! Je suis l'assistant BAPI. Comment puis-je vous aider avec les capteurs CVC et l'automatisation des bâtiments?"
                   : locale === 'ja'
                     ? 'こんにちは！BAPIアシスタントです。HVACセンサーとビルオートメーションについてどのようにお手伝いできますか？'
                     : locale === 'zh'
@@ -73,7 +73,7 @@ export default function ChatWidget() {
                         ? 'Xin chào! Tôi là trợ lý BAPI. Tôi có thể giúp gì cho bạn về cảm biến HVAC và tự động hóa tòa nhà?'
                         : locale === 'ar'
                           ? 'مرحباً! أنا مساعد BAPI. كيف يمكنني مساعدتك بشأن أجهزة استشعار التدفئة والتهوية وتكييف الهواء وأتمتة المباني؟'
-                          : 'Hello! I\'m the BAPI Assistant. How can I help you with HVAC sensors and building automation products?',
+                          : "Hello! I'm the BAPI Assistant. How can I help you with HVAC sensors and building automation products?",
           timestamp: new Date(),
         },
       ]);
@@ -132,7 +132,7 @@ export default function ChatWidget() {
             : locale === 'es'
               ? 'Lo siento, ocurrió un error. Por favor, inténtelo de nuevo.'
               : locale === 'fr'
-                ? 'Désolé, une erreur s\'est produite. Veuillez réessayer.'
+                ? "Désolé, une erreur s'est produite. Veuillez réessayer."
                 : 'Sorry, an error occurred. Please try again.',
         timestamp: new Date(),
       };
@@ -150,10 +150,7 @@ export default function ChatWidget() {
   };
 
   // Submit feedback for a message
-  const submitFeedback = async (
-    message: Message,
-    feedback: 'positive' | 'negative'
-  ) => {
+  const submitFeedback = async (message: Message, feedback: 'positive' | 'negative') => {
     if (!message.conversationId) return;
 
     try {
@@ -169,9 +166,7 @@ export default function ChatWidget() {
       // Update message to show feedback was given
       setMessages((prev) =>
         prev.map((msg) =>
-          msg.conversationId === message.conversationId
-            ? { ...msg, feedbackGiven: feedback }
-            : msg
+          msg.conversationId === message.conversationId ? { ...msg, feedbackGiven: feedback } : msg
         )
       );
     } catch (error) {
@@ -234,42 +229,31 @@ export default function ChatWidget() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-modal
-            bg-primary-500 hover:bg-primary-600 text-white
-            w-14 h-14 rounded-full shadow-lg
-            flex items-center justify-center
-            transition-all duration-base hover:scale-110
-            focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+          className="z-modal duration-base fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary-500 text-white shadow-lg transition-all hover:scale-110 hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
           aria-label="Open chat"
         >
-          <MessageCircle className="w-6 h-6" />
+          <MessageCircle className="h-6 w-6" />
         </button>
       )}
 
       {/* Chat Drawer */}
       {isOpen && (
-        <div
-          className="fixed bottom-6 right-6 z-modal
-          w-[400px] h-[600px] max-w-[calc(100vw-3rem)] max-h-[calc(100vh-3rem)]
-          bg-white rounded-2xl shadow-2xl
-          flex flex-col overflow-hidden
-          border border-neutral-200"
-        >
+        <div className="z-modal fixed bottom-6 right-6 flex h-[600px] max-h-[calc(100vh-3rem)] w-[400px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl">
           {/* Header */}
-          <div className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white p-4 flex items-center justify-between">
+          <div className="flex items-center justify-between bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 p-4 text-white">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                <MessageCircle className="w-5 h-5" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
+                <MessageCircle className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-bold text-lg">BAPI Assistant</h3>
+                <h3 className="text-lg font-bold">BAPI Assistant</h3>
                 <p className="text-sm text-white/80">Technical Support</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowHandoffForm(true)}
-                className="hover:bg-white/20 rounded-lg p-1.5 transition-colors"
+                className="rounded-lg p-1.5 transition-colors hover:bg-white/20"
                 aria-label="Talk to human"
                 title={
                   locale === 'de'
@@ -279,20 +263,20 @@ export default function ChatWidget() {
                       : 'Talk to human'
                 }
               >
-                <UserCircle className="w-5 h-5" />
+                <UserCircle className="h-5 w-5" />
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="hover:bg-white/20 rounded-lg p-1.5 transition-colors"
+                className="rounded-lg p-1.5 transition-colors hover:bg-white/20"
                 aria-label="Close chat"
               >
-                <X className="w-5 h-5" />
+                <X className="h-5 w-5" />
               </button>
             </div>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-neutral-50">
+          <div className="flex-1 space-y-4 overflow-y-auto bg-neutral-50 p-4">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -302,14 +286,14 @@ export default function ChatWidget() {
                   className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                     message.role === 'user'
                       ? 'bg-primary-500 text-white'
-                      : 'bg-white text-neutral-900 border border-neutral-200'
+                      : 'border border-neutral-200 bg-white text-neutral-900'
                   }`}
                 >
-                  <div className="text-sm whitespace-pre-wrap break-words">
+                  <div className="whitespace-pre-wrap break-words text-sm">
                     {renderMessageContent(message.content)}
                   </div>
                   <p
-                    className={`text-xs mt-1 ${
+                    className={`mt-1 text-xs ${
                       message.role === 'user' ? 'text-white/70' : 'text-neutral-500'
                     }`}
                   >
@@ -322,35 +306,35 @@ export default function ChatWidget() {
 
                 {/* Feedback buttons for assistant messages */}
                 {message.role === 'assistant' && message.conversationId && (
-                  <div className="flex items-center gap-2 mt-2 px-2">
+                  <div className="mt-2 flex items-center gap-2 px-2">
                     <button
                       onClick={() => submitFeedback(message, 'positive')}
                       disabled={!!message.feedbackGiven}
-                      className={`p-1.5 rounded-lg transition-colors ${
+                      className={`rounded-lg p-1.5 transition-colors ${
                         message.feedbackGiven === 'positive'
                           ? 'bg-green-100 text-green-600'
-                          : 'hover:bg-neutral-200 text-neutral-500 hover:text-green-600'
+                          : 'text-neutral-500 hover:bg-neutral-200 hover:text-green-600'
                       } disabled:opacity-50`}
                       aria-label="Helpful"
                       title="This was helpful"
                     >
-                      <ThumbsUp className="w-4 h-4" />
+                      <ThumbsUp className="h-4 w-4" />
                     </button>
                     <button
                       onClick={() => submitFeedback(message, 'negative')}
                       disabled={!!message.feedbackGiven}
-                      className={`p-1.5 rounded-lg transition-colors ${
+                      className={`rounded-lg p-1.5 transition-colors ${
                         message.feedbackGiven === 'negative'
                           ? 'bg-red-100 text-red-600'
-                          : 'hover:bg-neutral-200 text-neutral-500 hover:text-red-600'
+                          : 'text-neutral-500 hover:bg-neutral-200 hover:text-red-600'
                       } disabled:opacity-50`}
                       aria-label="Not helpful"
                       title="This wasn't helpful"
                     >
-                      <ThumbsDown className="w-4 h-4" />
+                      <ThumbsDown className="h-4 w-4" />
                     </button>
                     {message.feedbackGiven && (
-                      <span className="text-xs text-neutral-500 ml-1">
+                      <span className="ml-1 text-xs text-neutral-500">
                         {locale === 'de'
                           ? 'Danke für Ihr Feedback!'
                           : locale === 'es'
@@ -367,8 +351,8 @@ export default function ChatWidget() {
 
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-white border border-neutral-200 rounded-2xl px-4 py-3">
-                  <Loader2 className="w-5 h-5 text-primary-500 animate-spin" />
+                <div className="rounded-2xl border border-neutral-200 bg-white px-4 py-3">
+                  <Loader2 className="h-5 w-5 animate-spin text-primary-500" />
                 </div>
               </div>
             )}
@@ -377,7 +361,7 @@ export default function ChatWidget() {
           </div>
 
           {/* Input */}
-          <div className="p-4 bg-white border-t border-neutral-200">
+          <div className="border-t border-neutral-200 bg-white p-4">
             <div className="flex items-end gap-2">
               <textarea
                 ref={inputRef}
@@ -393,21 +377,17 @@ export default function ChatWidget() {
                         ? 'Tapez un message...'
                         : 'Type a message...'
                 }
-                className="flex-1 resize-none rounded-xl border border-neutral-300 
-                  px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 
-                  focus:border-transparent max-h-32"
+                className="max-h-32 flex-1 resize-none rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
                 rows={1}
                 disabled={isLoading}
               />
               <button
                 onClick={sendMessage}
                 disabled={!input.trim() || isLoading}
-                className="bg-primary-500 hover:bg-primary-600 disabled:bg-neutral-300 
-                  text-white rounded-xl p-3 transition-colors
-                  focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                className="rounded-xl bg-primary-500 p-3 text-white transition-colors hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:bg-neutral-300"
                 aria-label="Send message"
               >
-                <Send className="w-5 h-5" />
+                <Send className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -416,15 +396,15 @@ export default function ChatWidget() {
 
       {/* Handoff Form Modal */}
       {showHandoffForm && (
-        <div className="fixed inset-0 z-chat-widget flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div className="z-chat-widget fixed inset-0 flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm">
+          <div className="mx-4 max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white shadow-2xl">
             {/* Form Header */}
-            <div className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white p-6 rounded-t-2xl">
+            <div className="rounded-t-2xl bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 p-6 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <UserCircle className="w-8 h-8" />
+                  <UserCircle className="h-8 w-8" />
                   <div>
-                    <h3 className="font-bold text-xl">
+                    <h3 className="text-xl font-bold">
                       {locale === 'de'
                         ? 'Mit einem Menschen sprechen'
                         : locale === 'es'
@@ -442,10 +422,10 @@ export default function ChatWidget() {
                 </div>
                 <button
                   onClick={() => setShowHandoffForm(false)}
-                  className="hover:bg-white/20 rounded-lg p-1.5 transition-colors"
+                  className="rounded-lg p-1.5 transition-colors hover:bg-white/20"
                   aria-label="Close form"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="h-5 w-5" />
                 </button>
               </div>
             </div>
@@ -453,10 +433,10 @@ export default function ChatWidget() {
             {/* Form Content */}
             <div className="p-6">
               {handoffSuccess ? (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 bg-success-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="py-8 text-center">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-success-50">
                     <svg
-                      className="w-8 h-8 text-success-500"
+                      className="h-8 w-8 text-success-500"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -469,7 +449,7 @@ export default function ChatWidget() {
                       />
                     </svg>
                   </div>
-                  <h4 className="text-xl font-bold text-neutral-900 mb-2">
+                  <h4 className="mb-2 text-xl font-bold text-neutral-900">
                     {locale === 'de'
                       ? 'Anfrage gesendet!'
                       : locale === 'es'
@@ -488,7 +468,10 @@ export default function ChatWidget() {
                 <form onSubmit={submitHandoff} className="space-y-4">
                   {/* Name */}
                   <div>
-                    <label htmlFor="handoff-name" className="block text-sm font-semibold text-neutral-700 mb-2">
+                    <label
+                      htmlFor="handoff-name"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
                       {locale === 'de' ? 'Name' : locale === 'es' ? 'Nombre' : 'Name'}{' '}
                       <span className="text-error-500">*</span>
                     </label>
@@ -498,23 +481,24 @@ export default function ChatWidget() {
                       name="name"
                       required
                       disabled={handoffSubmitting}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
-                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                        disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                      className="w-full rounded-xl border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-neutral-100"
                       placeholder={
-                        locale === 'de'
-                          ? 'Ihr Name'
-                          : locale === 'es'
-                            ? 'Su nombre'
-                            : 'Your name'
+                        locale === 'de' ? 'Ihr Name' : locale === 'es' ? 'Su nombre' : 'Your name'
                       }
                     />
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="handoff-email" className="block text-sm font-semibold text-neutral-700 mb-2">
-                      {locale === 'de' ? 'E-Mail' : locale === 'es' ? 'Correo electrónico' : 'Email'}{' '}
+                    <label
+                      htmlFor="handoff-email"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
+                      {locale === 'de'
+                        ? 'E-Mail'
+                        : locale === 'es'
+                          ? 'Correo electrónico'
+                          : 'Email'}{' '}
                       <span className="text-error-500">*</span>
                     </label>
                     <input
@@ -523,9 +507,7 @@ export default function ChatWidget() {
                       name="email"
                       required
                       disabled={handoffSubmitting}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
-                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                        disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                      className="w-full rounded-xl border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-neutral-100"
                       placeholder={
                         locale === 'de'
                           ? 'ihre.email@beispiel.de'
@@ -538,9 +520,12 @@ export default function ChatWidget() {
 
                   {/* Phone (Optional) */}
                   <div>
-                    <label htmlFor="handoff-phone" className="block text-sm font-semibold text-neutral-700 mb-2">
+                    <label
+                      htmlFor="handoff-phone"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
                       {locale === 'de' ? 'Telefon' : locale === 'es' ? 'Teléfono' : 'Phone'}{' '}
-                      <span className="text-neutral-400 text-xs">
+                      <span className="text-xs text-neutral-400">
                         ({locale === 'de' ? 'optional' : locale === 'es' ? 'opcional' : 'optional'})
                       </span>
                     </label>
@@ -549,16 +534,17 @@ export default function ChatWidget() {
                       id="handoff-phone"
                       name="phone"
                       disabled={handoffSubmitting}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
-                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                        disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                      className="w-full rounded-xl border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-neutral-100"
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
 
                   {/* Topic */}
                   <div>
-                    <label htmlFor="handoff-topic" className="block text-sm font-semibold text-neutral-700 mb-2">
+                    <label
+                      htmlFor="handoff-topic"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
                       {locale === 'de' ? 'Thema' : locale === 'es' ? 'Tema' : 'Topic'}{' '}
                       <span className="text-error-500">*</span>
                     </label>
@@ -567,9 +553,7 @@ export default function ChatWidget() {
                       name="topic"
                       required
                       disabled={handoffSubmitting}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
-                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                        disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                      className="w-full rounded-xl border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-neutral-100"
                     >
                       <option value="">
                         {locale === 'de'
@@ -607,7 +591,10 @@ export default function ChatWidget() {
 
                   {/* Message */}
                   <div>
-                    <label htmlFor="handoff-message" className="block text-sm font-semibold text-neutral-700 mb-2">
+                    <label
+                      htmlFor="handoff-message"
+                      className="mb-2 block text-sm font-semibold text-neutral-700"
+                    >
                       {locale === 'de' ? 'Nachricht' : locale === 'es' ? 'Mensaje' : 'Message'}{' '}
                       <span className="text-error-500">*</span>
                     </label>
@@ -617,9 +604,7 @@ export default function ChatWidget() {
                       required
                       rows={4}
                       disabled={handoffSubmitting}
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-300 
-                        focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
-                        resize-none disabled:bg-neutral-100 disabled:cursor-not-allowed"
+                      className="w-full resize-none rounded-xl border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-neutral-100"
                       placeholder={
                         locale === 'de'
                           ? 'Wie können wir Ihnen helfen?'
@@ -636,24 +621,24 @@ export default function ChatWidget() {
                       type="button"
                       onClick={() => setShowHandoffForm(false)}
                       disabled={handoffSubmitting}
-                      className="flex-1 px-6 py-3 rounded-xl border-2 border-neutral-300 
-                        text-neutral-700 font-semibold hover:bg-neutral-50 
-                        transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 rounded-xl border-2 border-neutral-300 px-6 py-3 font-semibold text-neutral-700 transition-colors hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {locale === 'de' ? 'Abbrechen' : locale === 'es' ? 'Cancelar' : 'Cancel'}
                     </button>
                     <button
                       type="submit"
                       disabled={handoffSubmitting}
-                      className="flex-1 px-6 py-3 rounded-xl bg-primary-500 hover:bg-primary-600 
-                        text-white font-semibold transition-colors disabled:opacity-50 
-                        disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-600 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {handoffSubmitting ? (
                         <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <Loader2 className="h-5 w-5 animate-spin" />
                           <span>
-                            {locale === 'de' ? 'Senden...' : locale === 'es' ? 'Enviando...' : 'Sending...'}
+                            {locale === 'de'
+                              ? 'Senden...'
+                              : locale === 'es'
+                                ? 'Enviando...'
+                                : 'Sending...'}
                           </span>
                         </>
                       ) : (

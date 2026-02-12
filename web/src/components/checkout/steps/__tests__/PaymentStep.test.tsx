@@ -38,7 +38,7 @@ describe('PaymentStep', () => {
   const mockOnNext = vi.fn();
   const mockOnBack = vi.fn();
   const mockOnUpdateData = vi.fn();
-  
+
   // Create mock fetch function
   const mockFetch = vi.fn();
 
@@ -90,7 +90,7 @@ describe('PaymentStep', () => {
       },
     };
     localStorage.setItem('bapi-cart-storage', JSON.stringify(mockCart));
-    
+
     // Set up fetch mock
     mockFetch.mockResolvedValue({
       json: async () => ({
@@ -183,7 +183,7 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       expect(mockOnUpdateData).toHaveBeenCalledWith(
         expect.objectContaining({
           paymentMethod: { id: 'credit_card', title: 'Credit Card' },
@@ -202,7 +202,7 @@ describe('PaymentStep', () => {
       );
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
-      
+
       expect(mockOnUpdateData).toHaveBeenCalledWith(
         expect.objectContaining({
           paymentMethod: { id: 'paypal', title: 'PayPal' },
@@ -221,7 +221,7 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       expect(creditCardButton).toHaveClass('border-primary-500', 'bg-primary-50');
     });
 
@@ -236,7 +236,7 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       const checkmark = creditCardButton!.querySelector('svg path[d*="M5 13l4 4L19 7"]');
       expect(checkmark).toBeInTheDocument();
     });
@@ -252,7 +252,7 @@ describe('PaymentStep', () => {
       );
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
-      
+
       const icon = paypalButton!.querySelector('.lucide-banknote');
       expect(icon).toHaveClass('text-primary-500');
     });
@@ -288,11 +288,14 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       // Loading state should appear briefly
-      await waitFor(() => {
-        expect(screen.getByText('Setting up payment...')).toBeInTheDocument();
-      }, { timeout: 100 });
+      await waitFor(
+        () => {
+          expect(screen.getByText('Setting up payment...')).toBeInTheDocument();
+        },
+        { timeout: 100 }
+      );
     });
 
     it('creates payment intent when credit card selected', async () => {
@@ -306,7 +309,7 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       await waitFor(() => {
         expect(mockFetch).toHaveBeenCalledWith(
           '/api/payment/create-intent',
@@ -329,7 +332,7 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       await waitFor(() => {
         expect(screen.getByTestId('stripe-provider')).toBeInTheDocument();
         expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
@@ -347,7 +350,7 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       await waitFor(() => {
         expect(screen.getByText('Card Details')).toBeInTheDocument();
       });
@@ -364,10 +367,12 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       await waitFor(() => {
         expect(screen.getByText('Your payment is secure')).toBeInTheDocument();
-        expect(screen.getByText('Powered by Stripe with 256-bit SSL encryption')).toBeInTheDocument();
+        expect(
+          screen.getByText('Powered by Stripe with 256-bit SSL encryption')
+        ).toBeInTheDocument();
       });
     });
 
@@ -382,14 +387,14 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       await waitFor(() => {
         expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
       });
-      
+
       const submitButton = screen.getByText('Submit Payment');
       fireEvent.click(submitButton);
-      
+
       await waitFor(() => {
         expect(mockOnUpdateData).toHaveBeenCalledWith(
           expect.objectContaining({
@@ -411,14 +416,14 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       await waitFor(() => {
         expect(screen.getByTestId('stripe-payment-form')).toBeInTheDocument();
       });
-      
+
       const errorButton = screen.getByText('Trigger Error');
       fireEvent.click(errorButton);
-      
+
       expect(mockOnNext).not.toHaveBeenCalled();
     });
   });
@@ -436,10 +441,8 @@ describe('PaymentStep', () => {
       );
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
-      
-      expect(
-        screen.getByText(/You will be redirected to PayPal/)
-      ).toBeInTheDocument();
+
+      expect(screen.getByText(/You will be redirected to PayPal/)).toBeInTheDocument();
     });
 
     it('shows Continue to Review button for PayPal', () => {
@@ -453,7 +456,7 @@ describe('PaymentStep', () => {
       );
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
-      
+
       expect(screen.getByText('Continue to Review')).toBeInTheDocument();
     });
 
@@ -468,10 +471,10 @@ describe('PaymentStep', () => {
       );
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
-      
+
       const continueButton = screen.getByText('Continue to Review');
       fireEvent.click(continueButton);
-      
+
       expect(mockOnNext).toHaveBeenCalled();
     });
   });
@@ -501,7 +504,7 @@ describe('PaymentStep', () => {
       );
       const backButton = screen.getByText('Back');
       fireEvent.click(backButton);
-      
+
       expect(mockOnBack).toHaveBeenCalled();
     });
 
@@ -516,7 +519,7 @@ describe('PaymentStep', () => {
       );
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
-      
+
       expect(screen.getByText('Back')).toBeInTheDocument();
     });
 
@@ -531,7 +534,7 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       await waitFor(() => {
         expect(screen.queryByText('Back')).not.toBeInTheDocument();
       });
@@ -604,7 +607,7 @@ describe('PaymentStep', () => {
       );
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
-      
+
       expect(paypalButton).toHaveClass('border-primary-500', 'bg-primary-50');
     });
   });
@@ -613,7 +616,7 @@ describe('PaymentStep', () => {
   describe('Edge Cases', () => {
     it('handles empty cart gracefully', () => {
       localStorage.setItem('bapi-cart-storage', JSON.stringify({ state: { items: [] } }));
-      
+
       render(
         <PaymentStep
           data={mockData}
@@ -622,13 +625,13 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      
+
       expect(screen.getByText('Payment Method')).toBeInTheDocument();
     });
 
     it('handles missing localStorage', () => {
       localStorage.removeItem('bapi-cart-storage');
-      
+
       render(
         <PaymentStep
           data={mockData}
@@ -637,7 +640,7 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      
+
       expect(screen.getByText('Payment Method')).toBeInTheDocument();
     });
 
@@ -648,7 +651,7 @@ describe('PaymentStep', () => {
           message: 'Payment setup failed',
         }),
       });
-      
+
       render(
         <PaymentStep
           data={mockData}
@@ -659,7 +662,7 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       await waitFor(() => {
         expect(
           screen.getByText('Unable to load payment form. Please refresh and try again.')
@@ -669,7 +672,7 @@ describe('PaymentStep', () => {
 
     it('handles network error during payment intent', async () => {
       mockFetch.mockRejectedValueOnce(new Error('Network error'));
-      
+
       render(
         <PaymentStep
           data={mockData}
@@ -680,7 +683,7 @@ describe('PaymentStep', () => {
       );
       const creditCardButton = screen.getByText('Credit Card').closest('button');
       fireEvent.click(creditCardButton!);
-      
+
       await waitFor(() => {
         expect(
           screen.getByText('Unable to load payment form. Please refresh and try again.')

@@ -17,28 +17,31 @@ async function ProductGalleryContent({ productId, productName }: ProductGalleryA
       return null;
     }
 
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
-      {product.galleryImages.nodes.map((image, index) => {
-        if (!image?.sourceUrl) return null;
-        
-        const width = image.mediaDetails?.width || 400;
-        const height = image.mediaDetails?.height || 300;
-        
-        return (
-          <div key={image.id || index} className="relative aspect-square bg-neutral-100 rounded-lg overflow-hidden">
-            <Image
-              src={image.sourceUrl}
-              alt={image.altText || `${productName} gallery image ${index + 1}`}
-              fill
-              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              className="object-cover hover-scale"
-            />
-          </div>
-        );
-      })}
-    </div>
-  );
+    return (
+      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {product.galleryImages.nodes.map((image, index) => {
+          if (!image?.sourceUrl) return null;
+
+          const width = image.mediaDetails?.width || 400;
+          const height = image.mediaDetails?.height || 300;
+
+          return (
+            <div
+              key={image.id || index}
+              className="relative aspect-square overflow-hidden rounded-lg bg-neutral-100"
+            >
+              <Image
+                src={image.sourceUrl}
+                alt={image.altText || `${productName} gallery image ${index + 1}`}
+                fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="hover-scale object-cover"
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
   } catch (error) {
     logger.error('[ProductGalleryAsync] Error fetching gallery', error);
     return null;
@@ -47,9 +50,9 @@ async function ProductGalleryContent({ productId, productName }: ProductGalleryA
 
 function ProductGallerySkeleton() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+    <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="relative aspect-square bg-neutral-100 rounded-lg animate-pulse" />
+        <div key={i} className="relative aspect-square animate-pulse rounded-lg bg-neutral-100" />
       ))}
     </div>
   );

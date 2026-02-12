@@ -2,7 +2,7 @@
 
 /**
  * Order Confirmation Client Component
- * 
+ *
  * Displays order confirmation details after successful checkout
  * Features:
  * - Order summary
@@ -87,11 +87,11 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
 
   const fetchOrderDetails = async () => {
     setIsLoading(true);
-    
+
     try {
       // Fetch real order data from WooCommerce API
       const response = await fetch(`/api/orders/${orderId}`);
-      
+
       if (!response.ok) {
         if (response.status === 404) {
           throw new Error('Order not found');
@@ -100,7 +100,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
       }
 
       const result = await response.json();
-      
+
       if (!result.success || !result.order) {
         throw new Error('Invalid response from server');
       }
@@ -110,7 +110,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
       const { title, message } = getUserErrorMessage(error);
       logError('order_confirmation.fetch_failed', error, { orderId });
       showToast('error', title, message);
-      
+
       // Redirect to home after 3 seconds if order not found
       setTimeout(() => {
         router.push('/');
@@ -122,9 +122,9 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-neutral-50">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-primary-500 mx-auto mb-4" />
+          <Loader2 className="mx-auto mb-4 h-12 w-12 animate-spin text-primary-500" />
           <p className="text-lg text-neutral-600">Loading order details...</p>
         </div>
       </div>
@@ -133,18 +133,16 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
 
   if (!order) {
     return (
-      <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-neutral-50">
         <div className="max-w-md text-center">
-          <Package className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-neutral-900 mb-2">Order Not Found</h1>
-          <p className="text-neutral-600 mb-6">
-            We couldn't find the order you're looking for.
-          </p>
+          <Package className="mx-auto mb-4 h-16 w-16 text-neutral-400" />
+          <h1 className="mb-2 text-2xl font-bold text-neutral-900">Order Not Found</h1>
+          <p className="mb-6 text-neutral-600">We couldn't find the order you're looking for.</p>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-xl transition-colors"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-bold text-white transition-colors hover:bg-primary-600"
           >
-            <Home className="w-5 h-5" />
+            <Home className="h-5 w-5" />
             Return Home
           </Link>
         </div>
@@ -154,53 +152,51 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
 
   return (
     <div className="min-h-screen bg-neutral-50 py-8 sm:py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Success Header */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-8 text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6">
-            <CheckCircle className="w-12 h-12 text-green-600" />
+        <div className="mb-8 rounded-xl bg-white p-8 text-center shadow-lg">
+          <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
+            <CheckCircle className="h-12 w-12 text-green-600" />
           </div>
-          
-          <h1 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-2">
-            Order Confirmed!
-          </h1>
-          
-          <p className="text-lg text-neutral-600 mb-6">
+
+          <h1 className="mb-2 text-3xl font-bold text-neutral-900 sm:text-4xl">Order Confirmed!</h1>
+
+          <p className="mb-6 text-lg text-neutral-600">
             Thank you for your order. We've received your purchase and will process it shortly.
           </p>
-          
+
           <div className="inline-flex items-center gap-2 text-sm text-neutral-500">
             <span>Order Number:</span>
-            <span className="font-mono font-bold text-neutral-900 text-lg">
+            <span className="font-mono text-lg font-bold text-neutral-900">
               {order.orderNumber}
             </span>
           </div>
         </div>
 
         {/* Order Status Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-xl shadow p-6 text-center">
-            <Package className="w-8 h-8 text-primary-500 mx-auto mb-3" />
-            <h3 className="font-semibold text-neutral-900 mb-1">Processing</h3>
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="rounded-xl bg-white p-6 text-center shadow">
+            <Package className="mx-auto mb-3 h-8 w-8 text-primary-500" />
+            <h3 className="mb-1 font-semibold text-neutral-900">Processing</h3>
             <p className="text-sm text-neutral-600">Your order is being prepared</p>
           </div>
-          
-          <div className="bg-white rounded-xl shadow p-6 text-center">
-            <Truck className="w-8 h-8 text-neutral-400 mx-auto mb-3" />
-            <h3 className="font-semibold text-neutral-900 mb-1">Shipping Soon</h3>
+
+          <div className="rounded-xl bg-white p-6 text-center shadow">
+            <Truck className="mx-auto mb-3 h-8 w-8 text-neutral-400" />
+            <h3 className="mb-1 font-semibold text-neutral-900">Shipping Soon</h3>
             <p className="text-sm text-neutral-600">You'll receive tracking info</p>
           </div>
-          
-          <div className="bg-white rounded-xl shadow p-6 text-center">
-            <CreditCard className="w-8 h-8 text-green-500 mx-auto mb-3" />
-            <h3 className="font-semibold text-neutral-900 mb-1">Payment Confirmed</h3>
+
+          <div className="rounded-xl bg-white p-6 text-center shadow">
+            <CreditCard className="mx-auto mb-3 h-8 w-8 text-green-500" />
+            <h3 className="mb-1 font-semibold text-neutral-900">Payment Confirmed</h3>
             <p className="text-sm text-neutral-600">Transaction successful</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="space-y-8 lg:col-span-2">
             {/* Order Items */}
             <OrderItems items={order.items} />
 
@@ -225,30 +221,31 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neutral-200 hover:bg-neutral-300 text-neutral-900 font-bold rounded-xl transition-colors"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-neutral-200 px-8 py-4 font-bold text-neutral-900 transition-colors hover:bg-neutral-300"
           >
-            <Home className="w-5 h-5" />
+            <Home className="h-5 w-5" />
             Continue Shopping
           </Link>
-          
+
           <Link
             href="/account/orders"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-xl transition-colors shadow-md hover:shadow-lg"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary-500 px-8 py-4 font-bold text-white shadow-md transition-colors hover:bg-primary-600 hover:shadow-lg"
           >
             View Order Status
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
 
         {/* Email Confirmation Notice */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
+        <div className="mt-8 rounded-xl border border-blue-200 bg-blue-50 p-6 text-center">
           <p className="text-sm text-blue-900">
             <strong>📧 Confirmation Email Sent</strong>
             <br />
-            We've sent a confirmation email to your inbox with order details and tracking information.
+            We've sent a confirmation email to your inbox with order details and tracking
+            information.
           </p>
         </div>
       </div>

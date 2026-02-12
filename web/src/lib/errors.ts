@@ -18,41 +18,42 @@ export const ERROR_MESSAGES = {
   // Network errors
   NETWORK_ERROR: {
     title: 'Connection Error',
-    message: 'Unable to connect to the server. Please check your internet connection and try again.',
+    message:
+      'Unable to connect to the server. Please check your internet connection and try again.',
   },
   TIMEOUT: {
     title: 'Request Timeout',
     message: 'The request took too long to complete. Please try again.',
   },
-  
+
   // Product errors
   PRODUCT_NOT_FOUND: {
     title: 'Product Not Found',
-    message: 'The product you\'re looking for doesn\'t exist or has been removed.',
+    message: "The product you're looking for doesn't exist or has been removed.",
   },
   PRODUCT_LOAD_ERROR: {
     title: 'Unable to Load Product',
-    message: 'We couldn\'t load this product. Please try refreshing the page.',
+    message: "We couldn't load this product. Please try refreshing the page.",
   },
   PRODUCTS_LOAD_ERROR: {
     title: 'Unable to Load Products',
-    message: 'We couldn\'t load the product catalog. Please try refreshing the page.',
+    message: "We couldn't load the product catalog. Please try refreshing the page.",
   },
-  
+
   // Cart errors
   ADD_TO_CART_ERROR: {
     title: 'Unable to Add to Cart',
-    message: 'We couldn\'t add this item to your cart. Please try again.',
+    message: "We couldn't add this item to your cart. Please try again.",
   },
   CART_UPDATE_ERROR: {
     title: 'Cart Update Failed',
-    message: 'We couldn\'t update your cart. Please try again.',
+    message: "We couldn't update your cart. Please try again.",
   },
   OUT_OF_STOCK: {
     title: 'Out of Stock',
     message: 'This product is currently out of stock. Please check back later.',
   },
-  
+
   // Form errors
   VALIDATION_ERROR: {
     title: 'Invalid Information',
@@ -62,7 +63,7 @@ export const ERROR_MESSAGES = {
     title: 'Required Field',
     message: 'Please fill in all required fields.',
   },
-  
+
   // Authentication errors
   UNAUTHORIZED: {
     title: 'Authentication Required',
@@ -70,19 +71,19 @@ export const ERROR_MESSAGES = {
   },
   FORBIDDEN: {
     title: 'Access Denied',
-    message: 'You don\'t have permission to perform this action.',
+    message: "You don't have permission to perform this action.",
   },
-  
+
   // API errors
   RATE_LIMIT: {
     title: 'Too Many Requests',
-    message: 'You\'ve made too many requests. Please wait a moment and try again.',
+    message: "You've made too many requests. Please wait a moment and try again.",
   },
   SERVER_ERROR: {
     title: 'Server Error',
     message: 'Something went wrong on our end. Our team has been notified.',
   },
-  
+
   // Generic
   UNKNOWN_ERROR: {
     title: 'Something Went Wrong',

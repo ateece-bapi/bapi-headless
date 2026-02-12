@@ -11,7 +11,7 @@ const anthropic = new Anthropic({
 
 /**
  * BAPI AI Assistant - Technical Product Support Chatbot
- * 
+ *
  * Powered by Claude 3.5 Sonnet for accurate technical responses
  * about BAPI's 600+ HVAC sensors and building automation products.
  */
@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
   const conversationId = randomUUID();
   const toolsUsed: string[] = [];
   const productsRecommended: string[] = [];
-  
+
   try {
     // Check if API key is configured
     if (!process.env.ANTHROPIC_API_KEY) {
@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    
+
     // Get user's message (last message in array)
     const userMessage = messages[messages.length - 1]?.content || '';
 
@@ -143,13 +143,13 @@ export async function POST(request: NextRequest) {
       // Execute the tool
       if (toolUse.name === 'search_products') {
         toolsUsed.push('search_products');
-        
+
         const { query, limit = 5 } = toolUse.input;
         const products = await searchProducts(query, limit);
         const formattedProducts = formatProductsForAI(products);
-        
+
         // Track recommended products
-        products.forEach(product => {
+        products.forEach((product) => {
           if (product.slug) {
             productsRecommended.push(product.slug);
           }
@@ -188,11 +188,11 @@ export async function POST(request: NextRequest) {
     // Extract final text response
     const assistantMessage = response.content.find((block) => block.type === 'text');
     const text = assistantMessage?.type === 'text' ? assistantMessage.text : '';
-    
+
     // Calculate metrics
     const responseTimeMs = Date.now() - startTime;
     const tokensUsed = response.usage.input_tokens + response.usage.output_tokens;
-    
+
     // Log analytics (non-blocking)
     const analytics: ChatAnalytics = {
       conversationId,
@@ -205,11 +205,9 @@ export async function POST(request: NextRequest) {
       tokensUsed,
       responseTimeMs,
     };
-    
+
     // Log without awaiting (don't block response)
-    logChatAnalytics(analytics).catch(err => 
-      logger.error('Failed to log analytics', err)
-    );
+    logChatAnalytics(analytics).catch((err) => logger.error('Failed to log analytics', err));
 
     return NextResponse.json({
       message: text,

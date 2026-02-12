@@ -1,6 +1,6 @@
 /**
  * Schema.org Utilities - Public API
- * 
+ *
  * Centralized exports for structured data generation
  */
 

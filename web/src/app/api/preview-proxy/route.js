@@ -17,8 +17,8 @@ function safeCompare(a = '', b = '') {
 
 export async function POST(request) {
   try {
-  const previewEnabled = !!process.env.PREVIEW_SECRET;
-  logger.info('preview-proxy.post_start', { previewEnabled });
+    const previewEnabled = !!process.env.PREVIEW_SECRET;
+    logger.info('preview-proxy.post_start', { previewEnabled });
     if (!previewEnabled) return NextResponse.json({ error: 'Preview disabled' }, { status: 503 });
 
     const provided = request.headers.get('x-preview-secret');
@@ -73,7 +73,11 @@ export async function POST(request) {
       }
     }
 
-    if (!fetchOptions.agent && process.env.PREVIEW_ALLOW_INSECURE === 'true' && process.env.NODE_ENV !== 'production') {
+    if (
+      !fetchOptions.agent &&
+      process.env.PREVIEW_ALLOW_INSECURE === 'true' &&
+      process.env.NODE_ENV !== 'production'
+    ) {
       try {
         fetchOptions.agent = new https.Agent({ rejectUnauthorized: false });
         logger.warn('preview-proxy.preview_allow_insecure');
@@ -97,27 +101,44 @@ export async function POST(request) {
       const code = fetchErr?.code || null;
       const message = String(fetchErr?.message || fetchErr);
       logger.error('preview-proxy.upstream_fetch_failed', { name, code, message });
-      if (fetchErr?.stack) logger.error('preview-proxy.upstream_fetch_stack', { stack: fetchErr.stack });
+      if (fetchErr?.stack)
+        logger.error('preview-proxy.upstream_fetch_stack', { stack: fetchErr.stack });
 
       // Recognize aborts as timeouts and return a 502 with a clear message.
-      if (name === 'AbortError' || message.toLowerCase().includes('aborted') || message.toLowerCase().includes('abort')) {
+      if (
+        name === 'AbortError' ||
+        message.toLowerCase().includes('aborted') ||
+        message.toLowerCase().includes('abort')
+      ) {
         logger.warn('preview-proxy.upstream_timeout');
         return NextResponse.json({ error: 'Upstream fetch timed out' }, { status: 502 });
       }
 
-      if (message.includes('unable to verify the first certificate') || message.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')) {
-        return NextResponse.json({ error: 'Upstream TLS verification failed. If this is a local DDEV site with mkcert, either trust the mkcert CA system-wide or set PREVIEW_ALLOW_INSECURE=true for local development.' }, { status: 502 });
+      if (
+        message.includes('unable to verify the first certificate') ||
+        message.includes('UNABLE_TO_VERIFY_LEAF_SIGNATURE')
+      ) {
+        return NextResponse.json(
+          {
+            error:
+              'Upstream TLS verification failed. If this is a local DDEV site with mkcert, either trust the mkcert CA system-wide or set PREVIEW_ALLOW_INSECURE=true for local development.',
+          },
+          { status: 502 }
+        );
       }
 
-      return NextResponse.json({ error: 'Upstream fetch failed', name, code, message }, { status: 502 });
+      return NextResponse.json(
+        { error: 'Upstream fetch failed', name, code, message },
+        { status: 502 }
+      );
     }
 
-  // clear the timeout if fetch succeeded
-  clearTimeout(timeoutId);
+    // clear the timeout if fetch succeeded
+    clearTimeout(timeoutId);
 
-  const status = wpRes.status;
-  const textRes = await wpRes.text();
-  const duration = Date.now() - start;
+    const status = wpRes.status;
+    const textRes = await wpRes.text();
+    const duration = Date.now() - start;
 
     // If upstream returned a non-2xx, do not forward upstream body or status
     // verbatim. Normalize to 502 to present a consistent contract to callers
@@ -125,7 +146,10 @@ export async function POST(request) {
     if (!wpRes.ok) {
       logger.warn('preview-proxy.upstream_non_2xx', { status });
       logger.metric('preview-proxy.upstream.duration_ms', duration, { status });
-      return NextResponse.json({ error: 'Upstream returned non-2xx', upstreamStatus: status }, { status: 502 });
+      return NextResponse.json(
+        { error: 'Upstream returned non-2xx', upstreamStatus: status },
+        { status: 502 }
+      );
     }
 
     let json;
@@ -142,4 +166,3 @@ export async function POST(request) {
     return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }
-

@@ -12,29 +12,29 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ links, className = '' }) => {
   const pathname = usePathname();
-  
+
   return (
     <nav className={className} aria-label="Main navigation">
       {links.map((link) => {
-        const isActive = pathname ? (pathname === link.href || pathname.startsWith(`${link.href}/`)) : false;
-        
+        const isActive = pathname
+          ? pathname === link.href || pathname.startsWith(`${link.href}/`)
+          : false;
+
         return (
           <Link
             key={link.href}
             href={link.href}
             aria-current={isActive ? 'page' : undefined}
-            className={`text-base xl:text-lg font-semibold transition-colors relative group focus:outline-none py-2 ${ 
-              isActive 
-                ? 'text-primary-600' 
+            className={`group relative py-2 text-base font-semibold transition-colors focus:outline-none xl:text-lg ${
+              isActive
+                ? 'text-primary-600'
                 : 'text-gray-900 hover:text-primary-600 focus:text-primary-600'
             }`}
           >
             {link.label}
             <span
-              className={`absolute left-0 -bottom-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-500 transition-all duration-300 ${ 
-                isActive 
-                  ? 'w-full' 
-                  : 'w-0 group-hover:w-full group-focus:w-full'
+              className={`absolute -bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-500 transition-all duration-300 ${
+                isActive ? 'w-full' : 'w-0 group-hover:w-full group-focus:w-full'
               }`}
               aria-hidden="true"
             />

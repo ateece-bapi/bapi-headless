@@ -12,7 +12,9 @@ vi.mock('next/image', () => ({
 
 vi.mock('next/link', () => ({
   default: ({ href, children, ...props }: any) => (
-    <a href={href} {...props}>{children}</a>
+    <a href={href} {...props}>
+      {children}
+    </a>
   ),
 }));
 
@@ -97,9 +99,9 @@ describe('CartItems Component', () => {
       render(<CartItems {...defaultProps} />);
       const links = screen.getAllByRole('link');
       // Each product has 2 links (image + name)
-      expect(links.filter(link => 
-        link.getAttribute('href') === '/en/product/test-product-1'
-      )).toHaveLength(2);
+      expect(
+        links.filter((link) => link.getAttribute('href') === '/en/product/test-product-1')
+      ).toHaveLength(2);
     });
 
     it('renders quantity for each item', () => {
@@ -148,15 +150,17 @@ describe('CartItems Component', () => {
     });
 
     it('displays ON_BACKORDER status for backorder items', () => {
-      const backorderItems = [{
-        ...mockItems[0],
-        product: {
-          node: {
-            ...mockItems[0].product.node,
-            stockStatus: 'ON_BACKORDER',
+      const backorderItems = [
+        {
+          ...mockItems[0],
+          product: {
+            node: {
+              ...mockItems[0].product.node,
+              stockStatus: 'ON_BACKORDER',
+            },
           },
         },
-      }];
+      ];
 
       render(<CartItems {...defaultProps} items={backorderItems} />);
       expect(screen.getByText('On Backorder')).toBeInTheDocument();
@@ -168,15 +172,17 @@ describe('CartItems Component', () => {
     });
 
     it('does not display stock quantity when not available', () => {
-      const itemsWithoutQty = [{
-        ...mockItems[0],
-        product: {
-          node: {
-            ...mockItems[0].product.node,
-            stockQuantity: undefined,
+      const itemsWithoutQty = [
+        {
+          ...mockItems[0],
+          product: {
+            node: {
+              ...mockItems[0].product.node,
+              stockQuantity: undefined,
+            },
           },
         },
-      }];
+      ];
 
       render(<CartItems {...defaultProps} items={itemsWithoutQty} />);
       expect(screen.queryByText(/available/)).not.toBeInTheDocument();
@@ -185,40 +191,44 @@ describe('CartItems Component', () => {
 
   describe('Variation Support', () => {
     it('displays variation details when present', () => {
-      const itemWithVariation = [{
-        ...mockItems[0],
-        variation: {
-          node: {
-            id: 'var-1',
-            databaseId: 10,
-            name: 'Size: Large, Color: Blue',
-            price: '$19.99',
-            stockStatus: 'IN_STOCK',
+      const itemWithVariation = [
+        {
+          ...mockItems[0],
+          variation: {
+            node: {
+              id: 'var-1',
+              databaseId: 10,
+              name: 'Size: Large, Color: Blue',
+              price: '$19.99',
+              stockStatus: 'IN_STOCK',
+            },
           },
         },
-      }];
+      ];
 
       render(<CartItems {...defaultProps} items={itemWithVariation} />);
       expect(screen.getByText('Size: Large, Color: Blue')).toBeInTheDocument();
     });
 
     it('uses variation image when available', () => {
-      const itemWithVariation = [{
-        ...mockItems[0],
-        variation: {
-          node: {
-            id: 'var-1',
-            databaseId: 10,
-            name: 'Variation',
-            price: '$19.99',
-            stockStatus: 'IN_STOCK',
-            image: {
-              sourceUrl: 'https://example.com/variation.jpg',
-              altText: 'Variation Image',
+      const itemWithVariation = [
+        {
+          ...mockItems[0],
+          variation: {
+            node: {
+              id: 'var-1',
+              databaseId: 10,
+              name: 'Variation',
+              price: '$19.99',
+              stockStatus: 'IN_STOCK',
+              image: {
+                sourceUrl: 'https://example.com/variation.jpg',
+                altText: 'Variation Image',
+              },
             },
           },
         },
-      }];
+      ];
 
       render(<CartItems {...defaultProps} items={itemWithVariation} />);
       const images = screen.getAllByAltText('Variation Image');
@@ -226,20 +236,22 @@ describe('CartItems Component', () => {
     });
 
     it('uses variation price when available', () => {
-      const itemWithVariation = [{
-        ...mockItems[0],
-        variation: {
-          node: {
-            id: 'var-1',
-            databaseId: 10,
-            name: 'Variation',
-            price: '$29.99',
-            regularPrice: '$39.99',
-            salePrice: '$29.99',
-            stockStatus: 'IN_STOCK',
+      const itemWithVariation = [
+        {
+          ...mockItems[0],
+          variation: {
+            node: {
+              id: 'var-1',
+              databaseId: 10,
+              name: 'Variation',
+              price: '$29.99',
+              regularPrice: '$39.99',
+              salePrice: '$29.99',
+              stockStatus: 'IN_STOCK',
+            },
           },
         },
-      }];
+      ];
 
       render(<CartItems {...defaultProps} items={itemWithVariation} />);
       // Price appears multiple times (mobile + desktop)
@@ -291,8 +303,8 @@ describe('CartItems Component', () => {
       const increaseButtons = screen.getAllByLabelText('Increase quantity');
       const decreaseButtons = screen.getAllByLabelText('Decrease quantity');
 
-      increaseButtons.forEach(button => expect(button).toBeDisabled());
-      decreaseButtons.forEach(button => expect(button).toBeDisabled());
+      increaseButtons.forEach((button) => expect(button).toBeDisabled());
+      decreaseButtons.forEach((button) => expect(button).toBeDisabled());
     });
   });
 
@@ -311,7 +323,7 @@ describe('CartItems Component', () => {
       render(<CartItems {...defaultProps} isUpdating={true} />);
 
       const removeButtons = screen.getAllByText('Remove');
-      removeButtons.forEach(button => expect(button).toBeDisabled());
+      removeButtons.forEach((button) => expect(button).toBeDisabled());
     });
   });
 

@@ -1,6 +1,6 @@
 /**
  * Metadata Types for SEO and Social Sharing
- * 
+ *
  * Type-safe interfaces for generating comprehensive metadata
  * across the entire site, optimized for search engines and AI systems.
  */

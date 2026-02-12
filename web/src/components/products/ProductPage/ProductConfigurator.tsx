@@ -1,5 +1,4 @@
-
-"use client";
+'use client';
 import React, { useState } from 'react';
 
 interface Variation {
@@ -27,7 +26,10 @@ interface ProductConfiguratorProps {
   onVariationChange?: (variation: Variation | null) => void;
 }
 
-export default function ProductConfigurator({ product, onVariationChange }: ProductConfiguratorProps) {
+export default function ProductConfigurator({
+  product,
+  onVariationChange,
+}: ProductConfiguratorProps) {
   const { attributes = [], variations = [], price, regularPrice } = product;
   // Build initial state for each attribute
   const initialSelections = attributes.reduce<Record<string, string>>((acc, attr) => {
@@ -52,32 +54,38 @@ export default function ProductConfigurator({ product, onVariationChange }: Prod
   const showSelectors = variations.length > 0 && attributes.length > 0;
   return (
     <section className="mb-8">
-      <h2 className="text-lg font-semibold mb-2">Configure Product</h2>
+      <h2 className="mb-2 text-lg font-semibold">Configure Product</h2>
       {showSelectors ? (
-        <form className="flex flex-col gap-4 mb-4">
+        <form className="mb-4 flex flex-col gap-4">
           {attributes.map((attr) => (
-            <div key={attr.name} className="flex flex-col md:flex-row md:items-center gap-2">
-              <label htmlFor={`attr-${attr.name}`} className="font-medium min-w-[120px]">{attr.name}</label>
+            <div key={attr.name} className="flex flex-col gap-2 md:flex-row md:items-center">
+              <label htmlFor={`attr-${attr.name}`} className="min-w-[120px] font-medium">
+                {attr.name}
+              </label>
               <select
                 id={`attr-${attr.name}`}
                 value={selections[attr.name]}
                 onChange={(e) => setSelections({ ...selections, [attr.name]: e.target.value })}
-                className="border rounded px-3 py-2 bg-white"
+                className="rounded border bg-white px-3 py-2"
               >
                 {attr.options.map((opt) => (
-                  <option key={opt} value={opt}>{opt}</option>
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
                 ))}
               </select>
             </div>
           ))}
         </form>
       ) : (
-        <div className="bg-neutral-100 rounded p-4 text-neutral-500">No configuration options available.</div>
+        <div className="rounded bg-neutral-100 p-4 text-neutral-500">
+          No configuration options available.
+        </div>
       )}
       {selectedVariation && (
         <div className="mt-4">
           <div className="text-xs text-neutral-500">Variation Part Number</div>
-          <div className="font-medium text-neutral-900 text-lg">
+          <div className="text-lg font-medium text-neutral-900">
             {selectedVariation.partNumber || selectedVariation.sku || 'N/A'}
           </div>
         </div>

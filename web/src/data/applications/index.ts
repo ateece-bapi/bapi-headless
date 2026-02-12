@@ -1,6 +1,6 @@
 /**
  * Application Landing Page Data Index
- * 
+ *
  * Exports all application landing page data for easy importing.
  * Senior approach: Centralized data management.
  */
@@ -19,8 +19,8 @@ import type { ApplicationLandingPageData } from '@/types/applications';
 export const applicationLandingPages: Record<string, ApplicationLandingPageData> = {
   'building-automation': buildingAutomationData,
   'data-centers': dataCentersData,
-  'healthcare': healthcareData,
-  'industrial': industrialData,
+  healthcare: healthcareData,
+  industrial: industrialData,
   'wireless-monitoring': wirelessMonitoringData,
 };
 

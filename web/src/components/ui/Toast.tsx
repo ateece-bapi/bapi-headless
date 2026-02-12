@@ -22,9 +22,9 @@ interface Toast {
 interface ToastContextValue {
   toasts: Toast[];
   showToast: (
-    type: ToastType, 
-    message: string, 
-    description?: string, 
+    type: ToastType,
+    message: string,
+    description?: string,
     duration?: number,
     options?: { action?: ToastAction }
   ) => void;
@@ -36,31 +36,34 @@ const ToastContext = createContext<ToastContextValue | undefined>(undefined);
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const showToast = useCallback((
-    type: ToastType,
-    message: string,
-    description?: string,
-    duration: number = 5000,
-    options?: { action?: ToastAction }
-  ) => {
-    const id = Math.random().toString(36).substring(7);
-    const toast: Toast = { 
-      id, 
-      type, 
-      message, 
-      description, 
-      duration,
-      action: options?.action 
-    };
-    
-    setToasts((prev) => [...prev, toast]);
+  const showToast = useCallback(
+    (
+      type: ToastType,
+      message: string,
+      description?: string,
+      duration: number = 5000,
+      options?: { action?: ToastAction }
+    ) => {
+      const id = Math.random().toString(36).substring(7);
+      const toast: Toast = {
+        id,
+        type,
+        message,
+        description,
+        duration,
+        action: options?.action,
+      };
 
-    if (duration > 0) {
-      setTimeout(() => {
-        removeToast(id);
-      }, duration);
-    }
-  }, []);
+      setToasts((prev) => [...prev, toast]);
+
+      if (duration > 0) {
+        setTimeout(() => {
+          removeToast(id);
+        }, duration);
+      }
+    },
+    []
+  );
 
   const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
@@ -82,11 +85,17 @@ export function useToast() {
   return context;
 }
 
-function ToastContainer({ toasts, removeToast }: { toasts: Toast[]; removeToast: (id: string) => void }) {
+function ToastContainer({
+  toasts,
+  removeToast,
+}: {
+  toasts: Toast[];
+  removeToast: (id: string) => void;
+}) {
   if (toasts.length === 0) return null;
 
   return (
-    <div className="fixed top-4 right-4 z-toast flex flex-col gap-2 max-w-md">
+    <div className="z-toast fixed right-4 top-4 flex max-w-md flex-col gap-2">
       {toasts.map((toast) => (
         <ToastItem key={toast.id} toast={toast} onClose={() => removeToast(toast.id)} />
       ))}
@@ -120,23 +129,21 @@ function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
 
   return (
     <div
-      className={`${styles[toast.type]} border rounded-lg shadow-lg p-4 flex gap-3 animate-slide-in-right`}
+      className={`${styles[toast.type]} animate-slide-in-right flex gap-3 rounded-lg border p-4 shadow-lg`}
       role="alert"
       aria-live="assertive"
     >
-      <Icon className={`${iconStyles[toast.type]} flex-shrink-0 w-5 h-5 mt-0.5`} />
-      <div className="flex-1 min-w-0">
-        <p className="font-semibold text-sm">{toast.message}</p>
-        {toast.description && (
-          <p className="text-xs mt-1 opacity-90">{toast.description}</p>
-        )}
+      <Icon className={`${iconStyles[toast.type]} mt-0.5 h-5 w-5 flex-shrink-0`} />
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-semibold">{toast.message}</p>
+        {toast.description && <p className="mt-1 text-xs opacity-90">{toast.description}</p>}
         {toast.action && (
           <button
             onClick={() => {
               toast.action!.onClick();
               onClose();
             }}
-            className="mt-2 px-3 py-1.5 bg-primary-500 hover:bg-primary-600 text-white text-xs font-semibold rounded-md transition-colors"
+            className="mt-2 rounded-md bg-primary-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary-600"
           >
             {toast.action.label}
           </button>
@@ -144,10 +151,10 @@ function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
       </div>
       <button
         onClick={onClose}
-        className="flex-shrink-0 text-current opacity-50 hover:opacity-100 transition-opacity"
+        className="flex-shrink-0 text-current opacity-50 transition-opacity hover:opacity-100"
         aria-label="Close notification"
       >
-        <X className="w-4 h-4" />
+        <X className="h-4 w-4" />
       </button>
     </div>
   );

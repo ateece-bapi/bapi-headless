@@ -9,19 +9,19 @@ export const metadata: Metadata = {
 
 export default function SignInPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 via-primary-50/30 to-neutral-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-neutral-50 via-primary-50/30 to-neutral-50 px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-8">
         {/* BAPI Logo and Header */}
         <div className="text-center">
           <div className="flex justify-center">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center shadow-xl ring-4 ring-primary-500/20">
-              <Building2 className="w-10 h-10 text-white" strokeWidth={2.5} />
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 shadow-xl ring-4 ring-primary-500/20">
+              <Building2 className="h-10 w-10 text-white" strokeWidth={2.5} />
             </div>
           </div>
-          <h1 className="mt-6 text-4xl font-extrabold text-neutral-900 tracking-tight">
+          <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-neutral-900">
             Welcome Back
           </h1>
-          <p className="mt-3 text-base text-neutral-600 max-w-sm mx-auto">
+          <p className="mx-auto mt-3 max-w-sm text-base text-neutral-600">
             Sign in to access your orders, saved products, and quote requests
           </p>
         </div>
@@ -30,12 +30,12 @@ export default function SignInPage() {
         <SignInForm />
 
         {/* Help Text */}
-        <div className="text-center space-y-3 pt-4 border-t border-neutral-200">
+        <div className="space-y-3 border-t border-neutral-200 pt-4 text-center">
           <p className="text-sm text-neutral-600">
             Don&apos;t have an account?{' '}
             <a
               href="/contact"
-              className="font-semibold text-primary-500 hover:text-primary-600 transition-colors focus:outline-none focus:underline"
+              className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
             >
               Contact your sales representative
             </a>

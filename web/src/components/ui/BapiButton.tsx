@@ -25,7 +25,7 @@ type BapiButtonProps = ButtonAsButton | ButtonAsLink;
 
 /**
  * BapiButton - Official BAPI brand button component
- * 
+ *
  * Implements 2026 BAPI Brand Guide specifications:
  * - Yellow buttons: Black text, NO text shadow, gradient background with drop shadow
  * - Blue buttons: White text WITH slight text shadow, gradient background with drop shadow
@@ -63,11 +63,7 @@ const BapiButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, BapiB
     if (props.as === 'a') {
       const { href } = props;
       return (
-        <a
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          href={href}
-          className={combinedStyles}
-        >
+        <a ref={ref as React.Ref<HTMLAnchorElement>} href={href} className={combinedStyles}>
           {children}
         </a>
       );

@@ -266,7 +266,7 @@ describe('CheckoutWizard', () => {
       // Step 1 and 2 titles should be bold (dark text)
       const shippingTitle = screen.getByText('Shipping').closest('div');
       const paymentTitle = screen.getByText('Payment').closest('div');
-      
+
       expect(shippingTitle).toHaveClass('text-neutral-900');
       expect(paymentTitle).toHaveClass('text-neutral-900');
     });
@@ -560,9 +560,11 @@ describe('CheckoutWizard', () => {
 
       const titles = screen.getAllByText(/Shipping|Payment|Review/);
       titles.forEach((title) => {
-        if (title.textContent === 'Shipping' || 
-            title.textContent === 'Payment' || 
-            title.textContent === 'Review') {
+        if (
+          title.textContent === 'Shipping' ||
+          title.textContent === 'Payment' ||
+          title.textContent === 'Review'
+        ) {
           const parentDiv = title.closest('div');
           expect(parentDiv?.className).toMatch(/text-xs|sm:text-sm/);
         }
@@ -798,7 +800,7 @@ describe('CheckoutWizard', () => {
 
     it('handles empty checkoutData', () => {
       const emptyData = {} as CheckoutData;
-      
+
       render(
         <CheckoutWizard
           currentStep={1}

@@ -38,47 +38,50 @@ export function useSearch(options: UseSearchOptions = {}) {
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const router = useRouter();
 
-  const performSearch = useCallback(async (searchQuery: string) => {
-    if (searchQuery.length < minChars) {
-      setResults([]);
-      setIsLoading(false);
-      return;
-    }
-
-    // Cancel previous request
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-    }
-
-    // Create new abort controller
-    abortControllerRef.current = new AbortController();
-
-    setIsLoading(true);
-
-    try {
-      const response = await fetch('/api/search', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: searchQuery }),
-        signal: abortControllerRef.current.signal,
-      });
-
-      const data = await response.json();
-      
-      if (data.products?.nodes) {
-        setResults(data.products.nodes);
-      } else {
+  const performSearch = useCallback(
+    async (searchQuery: string) => {
+      if (searchQuery.length < minChars) {
         setResults([]);
+        setIsLoading(false);
+        return;
       }
-    } catch (error: unknown) {
-      if (error instanceof Error && error.name !== 'AbortError') {
-        logger.error('Search error', error);
-        setResults([]);
+
+      // Cancel previous request
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
       }
-    } finally {
-      setIsLoading(false);
-    }
-  }, [minChars]);
+
+      // Create new abort controller
+      abortControllerRef.current = new AbortController();
+
+      setIsLoading(true);
+
+      try {
+        const response = await fetch('/api/search', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: searchQuery }),
+          signal: abortControllerRef.current.signal,
+        });
+
+        const data = await response.json();
+
+        if (data.products?.nodes) {
+          setResults(data.products.nodes);
+        } else {
+          setResults([]);
+        }
+      } catch (error: unknown) {
+        if (error instanceof Error && error.name !== 'AbortError') {
+          logger.error('Search error', error);
+          setResults([]);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [minChars]
+  );
 
   // Debounced search
   useEffect(() => {
@@ -102,20 +105,26 @@ export function useSearch(options: UseSearchOptions = {}) {
     };
   }, [query, minChars, debounceMs, performSearch]);
 
-  const handleQueryChange = useCallback((newQuery: string) => {
-    setQuery(newQuery);
-    if (newQuery.length >= minChars) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
-  }, [minChars]);
+  const handleQueryChange = useCallback(
+    (newQuery: string) => {
+      setQuery(newQuery);
+      if (newQuery.length >= minChars) {
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
+    },
+    [minChars]
+  );
 
-  const handleSelect = useCallback((slug: string) => {
-    setIsOpen(false);
-    setQuery('');
-    router.push(`/products/${slug}`);
-  }, [router]);
+  const handleSelect = useCallback(
+    (slug: string) => {
+      setIsOpen(false);
+      setQuery('');
+      router.push(`/products/${slug}`);
+    },
+    [router]
+  );
 
   const handleViewAll = useCallback(() => {
     if (query.length >= minChars) {

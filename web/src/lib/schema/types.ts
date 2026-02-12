@@ -1,9 +1,9 @@
 /**
  * Schema.org Type Definitions for SEO
- * 
+ *
  * Type-safe interfaces for generating JSON-LD structured data
  * Supports Product, Organization, Breadcrumb, FAQ, and more
- * 
+ *
  * @see https://schema.org/
  */
 

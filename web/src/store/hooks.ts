@@ -14,7 +14,7 @@ export function useCart() {
   const clearCart = useCartStore((state) => state.clearCart);
   const totalItems = useCartStore((state) => state.totalItems);
   const subtotal = useCartStore((state) => state.subtotal);
-  
+
   return {
     items,
     addItem,
@@ -35,7 +35,7 @@ export function useCartDrawer() {
   const toggleCart = useCartStore((state) => state.toggleCart);
   const openCart = useCartStore((state) => state.openCart);
   const closeCart = useCartStore((state) => state.closeCart);
-  
+
   return {
     isOpen,
     toggleCart,

@@ -14,13 +14,13 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
 
   const goToPage = (page: number) => {
     const params = new URLSearchParams(searchParams?.toString() || '');
-    
+
     if (page === 1) {
       params.delete('page');
     } else {
       params.set('page', page.toString());
     }
-    
+
     router.push(`?${params.toString()}`, { scroll: true });
   };
 
@@ -72,23 +72,15 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
       </div>
 
       {/* Pagination Controls */}
-      <nav
-        className="flex items-center gap-2"
-        aria-label="Pagination"
-      >
+      <nav className="flex items-center gap-2" aria-label="Pagination">
         {/* Previous Button */}
         <button
           onClick={() => goToPage(currentPage - 1)}
           disabled={currentPage === 1}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-neutral-200 bg-white text-sm font-medium text-neutral-700 hover:border-primary-500 hover:text-primary-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-neutral-200 disabled:hover:text-neutral-700 transition-all duration-200"
+          className="inline-flex items-center gap-2 rounded-lg border-2 border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 transition-all duration-200 hover:border-primary-500 hover:text-primary-600 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-neutral-200 disabled:hover:text-neutral-700"
           aria-label="Previous page"
         >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -104,10 +96,7 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
           {getPageNumbers().map((page, index) => {
             if (page === '...') {
               return (
-                <span
-                  key={`ellipsis-${index}`}
-                  className="px-3 py-2 text-neutral-400"
-                >
+                <span key={`ellipsis-${index}`} className="px-3 py-2 text-neutral-400">
                   ...
                 </span>
               );
@@ -120,10 +109,10 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
               <button
                 key={pageNum}
                 onClick={() => goToPage(pageNum)}
-                className={`min-w-[2.5rem] px-3 py-2 rounded-lg border-2 text-sm font-semibold transition-all duration-200 ${
+                className={`min-w-[2.5rem] rounded-lg border-2 px-3 py-2 text-sm font-semibold transition-all duration-200 ${
                   isActive
-                    ? 'bg-bapi-primary-gradient text-white border-transparent shadow-md'
-                    : 'bg-white text-neutral-700 border-neutral-200 hover:border-primary-500 hover:text-primary-600'
+                    ? 'bg-bapi-primary-gradient border-transparent text-white shadow-md'
+                    : 'border-neutral-200 bg-white text-neutral-700 hover:border-primary-500 hover:text-primary-600'
                 }`}
                 aria-label={`Go to page ${pageNum}`}
                 aria-current={isActive ? 'page' : undefined}
@@ -138,22 +127,12 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
         <button
           onClick={() => goToPage(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-neutral-200 bg-white text-sm font-medium text-neutral-700 hover:border-primary-500 hover:text-primary-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-neutral-200 disabled:hover:text-neutral-700 transition-all duration-200"
+          className="inline-flex items-center gap-2 rounded-lg border-2 border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 transition-all duration-200 hover:border-primary-500 hover:text-primary-600 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:border-neutral-200 disabled:hover:text-neutral-700"
           aria-label="Next page"
         >
           <span className="hidden sm:inline">Next</span>
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </nav>
@@ -161,7 +140,7 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
       {/* Jump to Page (for large page counts) */}
       {totalPages > 10 && (
         <div className="flex items-center gap-3 text-sm">
-          <label htmlFor="jump-to-page" className="text-neutral-600 font-medium">
+          <label htmlFor="jump-to-page" className="font-medium text-neutral-600">
             Jump to page:
           </label>
           <input
@@ -179,7 +158,7 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
                 }
               }
             }}
-            className="w-20 px-3 py-1.5 border-2 border-neutral-200 rounded-lg text-center focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-colors"
+            className="w-20 rounded-lg border-2 border-neutral-200 px-3 py-1.5 text-center transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
           />
         </div>
       )}

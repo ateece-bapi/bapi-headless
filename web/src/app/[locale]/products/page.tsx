@@ -1,11 +1,11 @@
-"use client";
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { 
-  Thermometer, 
-  Droplets, 
-  Gauge, 
+import {
+  Thermometer,
+  Droplets,
+  Gauge,
   Wind,
   Wifi,
   FlaskConical,
@@ -13,7 +13,7 @@ import {
   Layers,
   ArrowRight,
   Sparkles,
-  Award
+  Award,
 } from 'lucide-react';
 
 // Mock data for product categories - BRAND STANDARD ORDER
@@ -115,46 +115,51 @@ export default function MainProductPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-3xl -translate-y-1/3" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl translate-y-1/3" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 translate-y-1/3 rounded-full bg-primary-400/20 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-primary-100 mb-8" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <nav
+            className="mb-8 flex items-center gap-2 text-sm text-primary-100"
+            aria-label="Breadcrumb"
+          >
+            <Link href="/" className="transition-colors hover:text-white">
+              Home
+            </Link>
             <span>/</span>
-            <span className="text-white font-medium">Products</span>
+            <span className="font-medium text-white">Products</span>
           </nav>
 
           {/* Header */}
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white font-medium text-sm mb-6">
-              <Sparkles className="w-4 h-4" />
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+              <Sparkles className="h-4 w-4" />
               Precision Sensors & Controllers
             </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+
+            <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
               Building Automation Products
             </h1>
-            
-            <p className="text-xl md:text-2xl text-primary-50 leading-relaxed mb-8">
-              Explore our complete range of high-accuracy sensors, controllers, and test instruments. 
-              Trusted by engineers worldwide for critical HVAC applications.
+
+            <p className="mb-8 text-xl leading-relaxed text-primary-50 md:text-2xl">
+              Explore our complete range of high-accuracy sensors, controllers, and test
+              instruments. Trusted by engineers worldwide for critical HVAC applications.
             </p>
 
             {/* Key Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                <div className="text-3xl font-bold text-white mb-1">400+</div>
-                <div className="text-primary-100 text-sm">Products</div>
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
+              <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
+                <div className="mb-1 text-3xl font-bold text-white">400+</div>
+                <div className="text-sm text-primary-100">Products</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                <div className="text-3xl font-bold text-white mb-1">5 Year</div>
-                <div className="text-primary-100 text-sm">Warranty</div>
+              <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
+                <div className="mb-1 text-3xl font-bold text-white">5 Year</div>
+                <div className="text-sm text-primary-100">Warranty</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                <div className="text-3xl font-bold text-white mb-1">±0.2°C</div>
-                <div className="text-primary-100 text-sm">Accuracy</div>
+              <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
+                <div className="mb-1 text-3xl font-bold text-white">±0.2°C</div>
+                <div className="text-sm text-primary-100">Accuracy</div>
               </div>
             </div>
           </div>
@@ -162,16 +167,14 @@ export default function MainProductPage() {
       </section>
 
       {/* Category Grid */}
-      <section className="relative -mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-20">
+      <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
+        <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {productCategories.map((cat, i) => {
             return (
               <Link
                 key={cat.slug}
                 href={`/categories/${cat.slug}`}
-                className={`group block bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-transparent relative focus:outline-none focus:ring-2 focus:ring-primary-500
-                  ${showCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-                `}
+                className={`group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 ${showCards ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} `}
                 style={{
                   transitionDelay: showCards ? `${i * 75}ms` : '0ms',
                 }}
@@ -179,22 +182,26 @@ export default function MainProductPage() {
                 aria-label={`View ${cat.name} category (${cat.count} products)`}
               >
                 {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
+                />
+
                 {/* Product Image */}
-                <div className="relative w-full aspect-square bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-10 overflow-hidden">
+                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-10">
                   <Image
                     src={cat.image}
                     alt={`${cat.name} product category`}
                     fill
-                    className="object-contain p-8 group-hover:scale-110 transition-transform duration-500 drop-shadow-lg"
+                    className="object-contain p-8 drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
                     sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                     quality={85}
                     priority={i === 0}
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
                   {/* Icon Badge - BAPI Brand Icons */}
-                  <div className={`absolute top-4 right-4 w-16 h-16 rounded-2xl bg-gradient-to-br ${cat.gradient} shadow-xl ring-4 ring-white/50 flex items-center justify-center group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300`}>
+                  <div
+                    className={`absolute right-4 top-4 h-16 w-16 rounded-2xl bg-gradient-to-br ${cat.gradient} flex items-center justify-center shadow-xl ring-4 ring-white/50 transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl`}
+                  >
                     {typeof cat.icon === 'string' ? (
                       <Image
                         src={cat.icon}
@@ -204,66 +211,66 @@ export default function MainProductPage() {
                         className="object-contain drop-shadow-sm"
                       />
                     ) : (
-                      <cat.icon className="w-8 h-8 text-white drop-shadow-sm" />
+                      <cat.icon className="h-8 w-8 text-white drop-shadow-sm" />
                     )}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="relative p-7">
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <h2 className="relative text-xl font-bold text-gray-900 transition-colors duration-300 leading-tight">
+                  <div className="mb-4 flex items-start justify-between gap-3">
+                    <h2 className="relative text-xl font-bold leading-tight text-gray-900 transition-colors duration-300">
                       {cat.name}
                       {/* BAPI Yellow underline on hover */}
-                      <span className="absolute left-0 -bottom-1 h-1 w-0 bg-accent-500 rounded transition-all duration-300 ease-in-out group-hover:w-full" />
+                      <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
                     </h2>
-                    <span className="flex-shrink-0 px-3 py-1.5 bg-gradient-to-br from-primary-50 to-primary-100/50 border border-primary-200 text-primary-700 font-bold text-sm rounded-lg shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all duration-300">
+                    <span className="flex-shrink-0 rounded-lg border border-primary-200 bg-gradient-to-br from-primary-50 to-primary-100/50 px-3 py-1.5 text-sm font-bold text-primary-700 shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:shadow-md">
                       {cat.count}
                     </span>
                   </div>
-                  
-                  <p className="text-sm text-gray-600 mb-6 line-clamp-2 leading-relaxed">
+
+                  <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-gray-600">
                     {cat.description}
                   </p>
 
                   {/* View Link */}
-                  <div className="inline-flex items-center gap-2 text-primary-600 font-semibold text-sm group-hover:gap-3 transition-all duration-300 border-b-2 border-transparent group-hover:border-primary-600 pb-0.5">
+                  <div className="inline-flex items-center gap-2 border-b-2 border-transparent pb-0.5 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3 group-hover:border-primary-600">
                     <span>View Products</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
 
                 {/* Decorative corner */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gray-50 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-gradient-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </Link>
             );
           })}
         </div>
 
         {/* Featured Section */}
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-10 lg:p-16 mb-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="mb-20 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-10 lg:p-16">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 rounded-full text-blue-700 font-medium text-sm mb-4">
-                <Award className="w-4 h-4" />
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+                <Award className="h-4 w-4" />
                 Featured Product Line
               </div>
-              
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+
+              <h2 className="mb-4 text-4xl font-bold text-gray-900">
                 BA/10K Series Temperature Sensors
               </h2>
-              
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Our most popular sensors. ±0.2°C accuracy, BACnet MS/TP, and 5-year warranty. 
+
+              <p className="mb-6 text-lg leading-relaxed text-gray-700">
+                Our most popular sensors. ±0.2°C accuracy, BACnet MS/TP, and 5-year warranty.
                 Trusted in healthcare, data centers, and critical facilities worldwide.
               </p>
 
               <Link
                 href="/products/featured/ba-series"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 View BA Series
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="h-5 w-5" />
               </Link>
             </div>
 
@@ -276,11 +283,11 @@ export default function MainProductPage() {
               ].map((item, index) => (
                 <div
                   key={item.label}
-                  className="flex items-center justify-between bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
+                  className="flex items-center justify-between rounded-lg bg-white p-4 shadow-sm transition-shadow duration-300 hover:shadow-md"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <span className="font-semibold text-gray-900">{item.label}</span>
-                  <span className="text-primary-600 font-medium">{item.value}</span>
+                  <span className="font-medium text-primary-600">{item.value}</span>
                 </div>
               ))}
             </div>
@@ -288,27 +295,27 @@ export default function MainProductPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-10 lg:p-16 shadow-2xl relative overflow-hidden">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          
-          <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
+          <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
+
+          <div className="relative flex flex-col items-center justify-between gap-8 text-center lg:flex-row lg:text-left">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">
+              <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">
                 Need Help Finding the Right Product?
               </h2>
-              <p className="text-primary-50 text-lg max-w-2xl">
-                Our team of experts is ready to help you select the perfect sensors and controllers 
+              <p className="max-w-2xl text-lg text-primary-50">
+                Our team of experts is ready to help you select the perfect sensors and controllers
                 for your building automation project.
               </p>
             </div>
-            
+
             <Link
               href="/company/contact-us"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-600 font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               Contact Sales
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>

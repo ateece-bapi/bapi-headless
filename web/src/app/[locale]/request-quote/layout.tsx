@@ -23,10 +23,6 @@ export const metadata: Metadata = generatePageMetadata({
   type: 'website',
 });
 
-export default function RequestQuoteLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RequestQuoteLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

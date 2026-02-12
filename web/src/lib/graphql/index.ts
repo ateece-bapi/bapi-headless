@@ -1,6 +1,6 @@
 /**
  * GraphQL Client Infrastructure
- * 
+ *
  * Central export point for all GraphQL related functionality
  */
 
@@ -8,8 +8,8 @@
 export { graphqlClient, getGraphQLClient, clientGraphQLClient } from './client';
 
 // Query functions
-export { 
-  getProducts, 
+export {
+  getProducts,
   getProductBySlug,
   getProductBySlugLight,
   getProductDetailsDeferred,
@@ -17,7 +17,7 @@ export {
   getProductRelated,
   getProductCategories,
   getProductCategory,
-  getProductsByCategory 
+  getProductsByCategory,
 } from './queries';
 export { normalizeProductQueryResponse } from './queries';
 

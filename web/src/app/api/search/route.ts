@@ -54,10 +54,7 @@ export async function POST(request: NextRequest) {
 
     if (!GRAPHQL_ENDPOINT) {
       logger.error('NEXT_PUBLIC_WORDPRESS_GRAPHQL not configured');
-      return NextResponse.json(
-        { error: 'GraphQL endpoint not configured' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: 'GraphQL endpoint not configured' }, { status: 500 });
     }
 
     const response = await fetch(GRAPHQL_ENDPOINT, {
@@ -73,9 +70,9 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      logger.error('WordPress GraphQL search failed', { 
+      logger.error('WordPress GraphQL search failed', {
         status: response.status,
-        statusText: response.statusText 
+        statusText: response.statusText,
       });
       return NextResponse.json(
         { error: 'Failed to fetch search results' },
@@ -96,9 +93,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(data.data);
   } catch (error) {
     logger.error('Search API error', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

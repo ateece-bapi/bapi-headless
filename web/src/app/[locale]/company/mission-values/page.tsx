@@ -5,7 +5,8 @@ import { Target, Eye, Award, Users, Lightbulb, Shield, Heart, ArrowRight } from 
 
 export const metadata: Metadata = {
   title: 'Mission & Values | BAPI',
-  description: 'Learn about BAPI\'s mission, vision, and core values that drive our commitment to precision sensor solutions.',
+  description:
+    "Learn about BAPI's mission, vision, and core values that drive our commitment to precision sensor solutions.",
 };
 
 // Cache for 1 hour (3600 seconds)
@@ -15,31 +16,36 @@ const coreValues = [
   {
     icon: Users,
     title: 'Quality',
-    description: 'We value our employees by encouraging open dialogue, a sense of community and work-life balance for a healthy culture.',
+    description:
+      'We value our employees by encouraging open dialogue, a sense of community and work-life balance for a healthy culture.',
     gradient: 'from-blue-500 to-cyan-500',
   },
   {
     icon: Award,
     title: 'Innovation',
-    description: 'We value processes and services that are metric driven to continually exceed our customers\' expectations.',
+    description:
+      "We value processes and services that are metric driven to continually exceed our customers' expectations.",
     gradient: 'from-purple-500 to-pink-500',
   },
   {
     icon: Lightbulb,
     title: 'Collaborative Partnership',
-    description: 'We value new and improved solutions that are creative and unique, we continue to find ways to provide distinct advantages.',
+    description:
+      'We value new and improved solutions that are creative and unique, we continue to find ways to provide distinct advantages.',
     gradient: 'from-amber-500 to-orange-500',
   },
   {
     icon: Shield,
     title: 'Integrity & Ethics',
-    description: 'We value our collaborative partnerships that lead to superior solutions and facilitate healthy, productive, and comfortable environments.',
+    description:
+      'We value our collaborative partnerships that lead to superior solutions and facilitate healthy, productive, and comfortable environments.',
     gradient: 'from-emerald-500 to-teal-500',
   },
   {
     icon: Heart,
     title: 'Employees',
-    description: 'We value being deliberate, thoughtful and intentional with behaviors that match our every word.',
+    description:
+      'We value being deliberate, thoughtful and intentional with behaviors that match our every word.',
     gradient: 'from-red-500 to-rose-500',
   },
 ];
@@ -49,8 +55,8 @@ export default async function MissionValuesPage() {
 
   if (!page) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Mission & Values</h1>
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <h1 className="mb-4 text-4xl font-bold text-gray-900">Mission & Values</h1>
         <p className="text-lg text-gray-600">Content not found.</p>
       </div>
     );
@@ -62,75 +68,79 @@ export default async function MissionValuesPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-primary-400/20 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-primary-100 mb-8">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <nav className="mb-8 flex items-center gap-2 text-sm text-primary-100">
+            <Link href="/" className="transition-colors hover:text-white">
+              Home
+            </Link>
             <span>/</span>
-            <Link href="/company" className="hover:text-white transition-colors">Company</Link>
+            <Link href="/company" className="transition-colors hover:text-white">
+              Company
+            </Link>
             <span>/</span>
-            <span className="text-white font-medium">Mission & Values</span>
+            <span className="font-medium text-white">Mission & Values</span>
           </nav>
 
           {/* Header */}
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white font-medium text-sm mb-6">
-              <Target className="w-4 h-4" />
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+              <Target className="h-4 w-4" />
               Our Purpose
             </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+
+            <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
               Mission & Values
             </h1>
-            
-            <p className="text-xl md:text-2xl text-primary-50 leading-relaxed">
-              For over 30 years, our mission and values have guided every decision we make, 
-              every product we design, and every customer relationship we build.
+
+            <p className="text-xl leading-relaxed text-primary-50 md:text-2xl">
+              For over 30 years, our mission and values have guided every decision we make, every
+              product we design, and every customer relationship we build.
             </p>
           </div>
         </div>
       </section>
 
       {/* Mission & Vision Cards */}
-      <section className="relative -mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28">
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
+      <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
+        <div className="mb-20 grid gap-8 md:grid-cols-2">
           {/* Mission Card */}
-          <div className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 p-10 border border-gray-100 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
-            
+          <div className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
+            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-gradient-to-br from-blue-50 to-transparent" />
+
             <div className="relative">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Target className="w-8 h-8 text-white" />
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg transition-transform duration-300 group-hover:scale-110">
+                <Target className="h-8 w-8 text-white" />
               </div>
-              
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Mission</h2>
-              
-              <p className="text-lg text-gray-700 leading-relaxed">
-                At BAPI, we design, manufacture and deliver high quality sensor solutions, 
-                as well as provide high quality services for our business partners to effectively 
-                save their customers money and energy, therefore reducing dependency on natural resources.
+
+              <h2 className="mb-4 text-3xl font-bold text-gray-900">Mission</h2>
+
+              <p className="text-lg leading-relaxed text-gray-700">
+                At BAPI, we design, manufacture and deliver high quality sensor solutions, as well
+                as provide high quality services for our business partners to effectively save their
+                customers money and energy, therefore reducing dependency on natural resources.
               </p>
             </div>
           </div>
 
           {/* Vision Card */}
-          <div className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 p-10 border border-gray-100 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-50 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
-            
+          <div className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
+            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-gradient-to-br from-purple-50 to-transparent" />
+
             <div className="relative">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Eye className="w-8 h-8 text-white" />
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg transition-transform duration-300 group-hover:scale-110">
+                <Eye className="h-8 w-8 text-white" />
               </div>
-              
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Vision</h2>
-              
-              <p className="text-lg text-gray-700 leading-relaxed">
-                To grow as a global, innovative leader by providing unique, customer driven solutions 
-                while inspiring our employees to be their best, delivering quality products and services 
-                that exceed our customers' expectations.
+
+              <h2 className="mb-4 text-3xl font-bold text-gray-900">Vision</h2>
+
+              <p className="text-lg leading-relaxed text-gray-700">
+                To grow as a global, innovative leader by providing unique, customer driven
+                solutions while inspiring our employees to be their best, delivering quality
+                products and services that exceed our customers' expectations.
               </p>
             </div>
           </div>
@@ -138,73 +148,70 @@ export default async function MissionValuesPage() {
 
         {/* Core Values Section */}
         <div className="mb-16 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Our Core Values
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            These principles guide everything we do and shape the way we serve our customers and support our team.
+          <h2 className="mb-4 text-4xl font-bold text-gray-900 lg:text-5xl">Our Core Values</h2>
+          <p className="mx-auto max-w-3xl text-xl text-gray-600">
+            These principles guide everything we do and shape the way we serve our customers and
+            support our team.
           </p>
         </div>
 
         {/* Values Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {coreValues.map((value, index) => {
             const Icon = value.icon;
             return (
               <div
                 key={value.title}
-                className="group bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 p-8 border border-gray-100 hover:border-transparent relative overflow-hidden"
+                className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all duration-500 hover:border-transparent hover:shadow-2xl"
                 style={{ animationDelay: `${index * 75}ms` }}
               >
                 {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
+                />
+
                 {/* Icon */}
                 <div className="relative mb-6">
-                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${value.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-7 h-7 text-white" />
+                  <div
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${value.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                  >
+                    <Icon className="h-7 w-7 text-white" />
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    {value.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 leading-relaxed">
-                    {value.description}
-                  </p>
+                  <h3 className="mb-3 text-2xl font-bold text-gray-900">{value.title}</h3>
+
+                  <p className="leading-relaxed text-gray-600">{value.description}</p>
                 </div>
 
                 {/* Decorative corner */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gray-50 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-gradient-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
             );
           })}
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-10 lg:p-16 shadow-2xl relative overflow-hidden">
+        <div className="relative mt-20 overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-          
-          <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
+
+          <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">
             <div className="text-center lg:text-left">
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-3">
-                Join Our Mission
-              </h2>
-              <p className="text-primary-50 text-lg max-w-2xl">
-                We're always looking for talented individuals who share our values 
-                and passion for innovation. Explore opportunities to join the BAPI team.
+              <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">Join Our Mission</h2>
+              <p className="max-w-2xl text-lg text-primary-50">
+                We're always looking for talented individuals who share our values and passion for
+                innovation. Explore opportunities to join the BAPI team.
               </p>
             </div>
-            
+
             <Link
               href="/company/careers"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-600 font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               View Careers
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>

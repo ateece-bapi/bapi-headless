@@ -90,9 +90,9 @@ describe('ProductGallery Component', () => {
     it('selects image when thumbnail clicked', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
       const thumbnails = screen.getAllByRole('button', { name: /View image \d/ });
-      
+
       fireEvent.click(thumbnails[1]);
-      
+
       // Second image should now be displayed as main
       const mainImages = screen.getAllByAltText('Product image 2');
       expect(mainImages[0]).toBeInTheDocument();
@@ -101,19 +101,19 @@ describe('ProductGallery Component', () => {
     it('highlights selected thumbnail', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
       const thumbnails = screen.getAllByRole('button', { name: /View image \d/ });
-      
+
       fireEvent.click(thumbnails[2]);
-      
+
       expect(thumbnails[2].className).toContain('border-primary-500');
     });
 
     it('updates main image when different thumbnail clicked', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
       const thumbnails = screen.getAllByRole('button', { name: /View image \d/ });
-      
+
       fireEvent.click(thumbnails[0]);
       expect(screen.getAllByAltText('Product image 1')[0]).toBeInTheDocument();
-      
+
       fireEvent.click(thumbnails[1]);
       expect(screen.getAllByAltText('Product image 2')[0]).toBeInTheDocument();
     });
@@ -136,46 +136,46 @@ describe('ProductGallery Component', () => {
     it('navigates to next image on next arrow click', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
       const nextButton = screen.getAllByLabelText('Next image')[0];
-      
+
       fireEvent.click(nextButton);
-      
+
       expect(screen.getAllByAltText('Product image 2')[0]).toBeInTheDocument();
     });
 
     it('navigates to previous image on previous arrow click', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      
+
       // First go to second image
       const nextButton = screen.getAllByLabelText('Next image')[0];
       fireEvent.click(nextButton);
-      
+
       // Then go back
       const prevButton = screen.getAllByLabelText('Previous image')[0];
       fireEvent.click(prevButton);
-      
+
       expect(screen.getAllByAltText('Product image 1')[0]).toBeInTheDocument();
     });
 
     it('wraps to last image when clicking previous on first image', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
       const prevButton = screen.getAllByLabelText('Previous image')[0];
-      
+
       fireEvent.click(prevButton);
-      
+
       expect(screen.getAllByAltText('Product image 3')[0]).toBeInTheDocument();
     });
 
     it('wraps to first image when clicking next on last image', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
       const nextButton = screen.getAllByLabelText('Next image')[0];
-      
+
       // Click next twice to reach last image
       fireEvent.click(nextButton);
       fireEvent.click(nextButton);
-      
+
       // Click next again to wrap
       fireEvent.click(nextButton);
-      
+
       expect(screen.getAllByAltText('Product image 1')[0]).toBeInTheDocument();
     });
   });
@@ -183,23 +183,27 @@ describe('ProductGallery Component', () => {
   describe('Lightbox Modal', () => {
     it('opens lightbox when main image clicked', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       expect(screen.getByLabelText('Close lightbox')).toBeInTheDocument();
     });
 
     it('displays correct image in lightbox', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       // Lightbox should show the selected image
       const lightboxImages = screen.getAllByAltText(/Product image 1/);
       expect(lightboxImages.length).toBeGreaterThan(0);
@@ -207,53 +211,61 @@ describe('ProductGallery Component', () => {
 
     it('shows image counter in lightbox', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       expect(screen.getByText('1 / 3')).toBeInTheDocument();
     });
 
     it('closes lightbox when close button clicked', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       const closeButton = screen.getByLabelText('Close lightbox');
       fireEvent.click(closeButton);
-      
+
       expect(screen.queryByLabelText('Close lightbox')).not.toBeInTheDocument();
     });
 
     it('prevents body scroll when lightbox is open', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       expect(document.body.style.overflow).toBe('');
-      
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       expect(document.body.style.overflow).toBe('hidden');
     });
 
     it('restores body scroll when lightbox is closed', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       const closeButton = screen.getByLabelText('Close lightbox');
       fireEvent.click(closeButton);
-      
+
       expect(document.body.style.overflow).toBe('');
     });
   });
@@ -261,73 +273,81 @@ describe('ProductGallery Component', () => {
   describe('Lightbox Navigation', () => {
     it('navigates to next image in lightbox', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       const nextButtons = screen.getAllByLabelText('Next image');
       const lightboxNextButton = nextButtons[nextButtons.length - 1];
       fireEvent.click(lightboxNextButton);
-      
+
       expect(screen.getByText('2 / 3')).toBeInTheDocument();
     });
 
     it('navigates to previous image in lightbox', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       // Go to next first
       const nextButtons = screen.getAllByLabelText('Next image');
       const lightboxNextButton = nextButtons[nextButtons.length - 1];
       fireEvent.click(lightboxNextButton);
-      
+
       // Then go back
       const prevButtons = screen.getAllByLabelText('Previous image');
       const lightboxPrevButton = prevButtons[prevButtons.length - 1];
       fireEvent.click(lightboxPrevButton);
-      
+
       expect(screen.getByText('1 / 3')).toBeInTheDocument();
     });
 
     it('wraps to last image in lightbox', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       const prevButtons = screen.getAllByLabelText('Previous image');
       const lightboxPrevButton = prevButtons[prevButtons.length - 1];
       fireEvent.click(lightboxPrevButton);
-      
+
       expect(screen.getByText('3 / 3')).toBeInTheDocument();
     });
 
     it('wraps to first image in lightbox', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      
+
       // Select last image via thumbnail
       const thumbnails = screen.getAllByRole('button', { name: /View image \d/ });
       fireEvent.click(thumbnails[2]);
-      
+
       // Open lightbox
-      const mainImageContainer = screen.getAllByAltText('Product image 3')[0].closest('div')?.parentElement;
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 3')[0]
+        .closest('div')?.parentElement;
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       // Navigate next to wrap
       const nextButtons = screen.getAllByLabelText('Next image');
       const lightboxNextButton = nextButtons[nextButtons.length - 1];
       fireEvent.click(lightboxNextButton);
-      
+
       expect(screen.getByText('1 / 3')).toBeInTheDocument();
     });
   });
@@ -335,76 +355,88 @@ describe('ProductGallery Component', () => {
   describe('Keyboard Navigation', () => {
     it('navigates to next image with ArrowRight in lightbox', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       fireEvent.keyDown(window, { key: 'ArrowRight' });
-      
+
       expect(screen.getByText('2 / 3')).toBeInTheDocument();
     });
 
     it('navigates to previous image with ArrowLeft in lightbox', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       fireEvent.keyDown(window, { key: 'ArrowRight' });
       fireEvent.keyDown(window, { key: 'ArrowLeft' });
-      
+
       expect(screen.getByText('1 / 3')).toBeInTheDocument();
     });
 
     it('closes lightbox with Escape key', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       expect(screen.getByLabelText('Close lightbox')).toBeInTheDocument();
-      
+
       fireEvent.keyDown(window, { key: 'Escape' });
-      
+
       expect(screen.queryByLabelText('Close lightbox')).not.toBeInTheDocument();
     });
 
     it('does not respond to keyboard when lightbox is closed', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      
+
       fireEvent.keyDown(window, { key: 'ArrowRight' });
-      
+
       // Should still show first image
       expect(screen.getAllByAltText('Product image 1')[0]).toBeInTheDocument();
     });
 
     it('shows keyboard hints in lightbox', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       expect(screen.getByText('ESC to close')).toBeInTheDocument();
     });
   });
 
   describe('Zoom Functionality', () => {
     it('shows zoom icon on hover', () => {
-      const { container } = render(<ProductGallery images={mockImages} productName={productName} />);
+      const { container } = render(
+        <ProductGallery images={mockImages} productName={productName} />
+      );
       const zoomIcon = container.querySelector('.lucide-zoom-in');
       expect(zoomIcon).toBeInTheDocument();
     });
 
     it('applies zoom cursor to main image container', () => {
-      const { container } = render(<ProductGallery images={mockImages} productName={productName} />);
+      const { container } = render(
+        <ProductGallery images={mockImages} productName={productName} />
+      );
       const mainImageContainer = container.querySelector('.cursor-zoom-in');
       expect(mainImageContainer).toBeInTheDocument();
     });
@@ -426,12 +458,14 @@ describe('ProductGallery Component', () => {
 
     it('has proper ARIA label on close button', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      const mainImageContainer = screen.getAllByAltText('Product image 1')[0].closest('div')?.parentElement;
-      
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 1')[0]
+        .closest('div')?.parentElement;
+
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       expect(screen.getByLabelText('Close lightbox')).toBeInTheDocument();
     });
 
@@ -490,17 +524,19 @@ describe('ProductGallery Component', () => {
 
     it('opens lightbox with correct index when thumbnail clicked first', () => {
       render(<ProductGallery images={mockImages} productName={productName} />);
-      
+
       // Click second thumbnail
       const thumbnails = screen.getAllByRole('button', { name: /View image \d/ });
       fireEvent.click(thumbnails[1]);
-      
+
       // Open lightbox
-      const mainImageContainer = screen.getAllByAltText('Product image 2')[0].closest('div')?.parentElement;
+      const mainImageContainer = screen
+        .getAllByAltText('Product image 2')[0]
+        .closest('div')?.parentElement;
       if (mainImageContainer) {
         fireEvent.click(mainImageContainer);
       }
-      
+
       // Should show image 2
       expect(screen.getByText('2 / 3')).toBeInTheDocument();
     });

@@ -10,7 +10,9 @@ export async function getProductBySlugValidated(slug: string): Promise<ProductQu
   const result = getProductQuerySchema.safeParse(resp);
   if (!result.success) {
     // For observability, throw a descriptive error so the caller can log/monitor
-    throw new Error(`Invalid product shape from GraphQL for slug=${slug}: ${JSON.stringify(result.error.format())}`);
+    throw new Error(
+      `Invalid product shape from GraphQL for slug=${slug}: ${JSON.stringify(result.error.format())}`
+    );
   }
   return result.data;
 }

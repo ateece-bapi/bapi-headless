@@ -4,15 +4,10 @@ import { useCart } from '@/store';
 
 const CartIcon = () => {
   const { totalItems } = useCart();
-  
+
   return (
     <div className="relative">
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -21,12 +16,12 @@ const CartIcon = () => {
         />
       </svg>
       {totalItems > 0 && (
-        <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+        <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
           {totalItems}
         </span>
       )}
     </div>
   );
-}
+};
 
 export default CartIcon;

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Smooth page transitions - simplified for performance */
 @view-transition {
@@ -215,7 +215,7 @@
   --width-container: 1600px;
   --width-content: 1200px;
   --width-narrow: 800px;
-  
+
   /* Tailwind v4 sizing - Required for max-w-* utilities */
   --size-container: 1600px;
   --size-content: 1200px;
@@ -240,7 +240,7 @@
   --gradient-accent-hover: linear-gradient(135deg, #e6872c 0%, #e6b43c 100%);
   --gradient-primary: linear-gradient(135deg, #044976 0%, #1479bc 100%);
   --gradient-primary-hover: linear-gradient(135deg, #033a5f 0%, #106196 100%);
-  
+
   /* Additional gradient utilities */
   --gradient-subtle-accent: linear-gradient(135deg, #fffbf0 0%, #fff7e1 50%, #ffefc3 100%);
   --gradient-subtle-primary: linear-gradient(135deg, #e6f2f9 0%, #cce5f3 50%, #99cbe7 100%);
@@ -254,17 +254,25 @@
 /* BAPI uses a light theme only - no dark mode */
 
 /* Global micro-interactions: Smooth transitions for all interactive elements */
-a, button, input, select, textarea {
-  transition: color var(--duration-base) var(--ease-out),
-              background-color var(--duration-base) var(--ease-out),
-              border-color var(--duration-base) var(--ease-out),
-              opacity var(--duration-base) var(--ease-out),
-              transform var(--duration-base) var(--ease-out);
+a,
+button,
+input,
+select,
+textarea {
+  transition:
+    color var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
 }
 
 /* Enhanced focus states with smooth glow */
-a:focus-visible, button:focus-visible, input:focus-visible, 
-select:focus-visible, textarea:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
   outline: 2px solid var(--color-primary-500);
   outline-offset: 2px;
   transition: outline-offset var(--duration-fast) var(--ease-out);
@@ -281,7 +289,10 @@ body {
   /* Using Roboto font family. Acumin commented out for now. */
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   /* Enable OpenType font features */
-  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1,
+    'calt' 1;
   /* Smooth font rendering - Applied globally instead of per-component */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -327,9 +338,10 @@ body {
 
   /* Micro-interactions: Smooth color transitions */
   .transition-colors-smooth {
-    transition: color var(--duration-normal) var(--ease-out),
-                background-color var(--duration-normal) var(--ease-out),
-                border-color var(--duration-normal) var(--ease-out);
+    transition:
+      color var(--duration-normal) var(--ease-out),
+      background-color var(--duration-normal) var(--ease-out),
+      border-color var(--duration-normal) var(--ease-out);
   }
 
   /* Micro-interactions: Font weight transitions */
@@ -339,8 +351,9 @@ body {
 
   /* Micro-interactions: Subtle lift on hover */
   .hover-lift {
-    transition: transform var(--duration-normal) var(--ease-out),
-                box-shadow var(--duration-normal) var(--ease-out);
+    transition:
+      transform var(--duration-normal) var(--ease-out),
+      box-shadow var(--duration-normal) var(--ease-out);
   }
 
   .hover-lift:hover {
@@ -372,7 +385,7 @@ body {
   /* ============================================
      Z-Index Utilities - Stacking order
      ============================================ */
-  
+
   /**
    * Semantic z-index utilities for consistent stacking
    * Based on --z-* CSS variables defined in @theme
@@ -380,35 +393,35 @@ body {
   .z-base {
     z-index: var(--z-base);
   }
-  
+
   .z-dropdown {
     z-index: var(--z-dropdown);
   }
-  
+
   .z-sticky {
     z-index: var(--z-sticky);
   }
-  
+
   .z-fixed {
     z-index: var(--z-fixed);
   }
-  
+
   .z-modal-backdrop {
     z-index: var(--z-modal-backdrop);
   }
-  
+
   .z-modal {
     z-index: var(--z-modal);
   }
-  
+
   .z-popover {
     z-index: var(--z-popover);
   }
-  
+
   .z-tooltip {
     z-index: var(--z-tooltip);
   }
-  
+
   .z-toast {
     z-index: var(--z-toast);
   }
@@ -424,22 +437,24 @@ body {
   /* ============================================
      BAPI Official Button Styles (2026 Brand Guide)
      ============================================ */
-  
+
   /* Accent (Yellow) Buttons - Primary CTAs */
   .btn-bapi-accent {
     background: var(--gradient-accent);
     color: #000000;
     font-weight: 700;
     text-shadow: none; /* Yellow buttons: NO text shadow per brand guide */
-    box-shadow: 0 4px 6px -1px rgba(248, 150, 35, 0.3), 
-                0 2px 4px -2px rgba(248, 150, 35, 0.2);
+    box-shadow:
+      0 4px 6px -1px rgba(248, 150, 35, 0.3),
+      0 2px 4px -2px rgba(248, 150, 35, 0.2);
     transition: all var(--duration-base) var(--ease-out);
   }
 
   .btn-bapi-accent:hover {
     background: var(--gradient-accent-hover);
-    box-shadow: 0 10px 15px -3px rgba(248, 150, 35, 0.4), 
-                0 4px 6px -4px rgba(248, 150, 35, 0.3);
+    box-shadow:
+      0 10px 15px -3px rgba(248, 150, 35, 0.4),
+      0 4px 6px -4px rgba(248, 150, 35, 0.3);
     transform: translateY(-1px);
   }
 
@@ -454,15 +469,17 @@ body {
     color: #ffffff;
     font-weight: 700;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); /* Blue buttons: WITH slight drop shadow per brand guide */
-    box-shadow: 0 4px 6px -1px rgba(4, 73, 118, 0.3), 
-                0 2px 4px -2px rgba(4, 73, 118, 0.2);
+    box-shadow:
+      0 4px 6px -1px rgba(4, 73, 118, 0.3),
+      0 2px 4px -2px rgba(4, 73, 118, 0.2);
     transition: all var(--duration-base) var(--ease-out);
   }
 
   .btn-bapi-primary:hover {
     background: var(--gradient-primary-hover);
-    box-shadow: 0 10px 15px -3px rgba(4, 73, 118, 0.4), 
-                0 4px 6px -4px rgba(4, 73, 118, 0.3);
+    box-shadow:
+      0 10px 15px -3px rgba(4, 73, 118, 0.4),
+      0 4px 6px -4px rgba(4, 73, 118, 0.3);
     transform: translateY(-1px);
   }
 
@@ -491,7 +508,7 @@ body {
   /* ============================================
      Error Page Utilities
      ============================================ */
-  
+
   /**
    * Error page button styles
    * Proper hover states via CSS pseudo-classes instead of JS event handlers
@@ -519,7 +536,7 @@ body {
   /* ============================================
      Hero Section Styles
      ============================================ */
-  
+
   /**
    * Hero background image - Desktop only
    * 
@@ -595,12 +612,14 @@ body {
   }
 }
 /* Product Description Styling - Override WordPress inline styles */
-.prose a[style*="background"] {
+.prose a[style*='background'] {
   display: inline-block !important;
   padding: 1rem 2rem !important;
   margin: 2rem 0 !important;
   border-radius: 0.75rem !important;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
   transition: all 200ms ease-out !important;
   font-size: 1.25rem !important;
   font-weight: 700 !important;
@@ -608,7 +627,9 @@ body {
   text-decoration: none !important;
 }
 
-.prose a[style*="background"]:hover {
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
+.prose a[style*='background']:hover {
+  box-shadow:
+    0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
   transform: translateY(-2px) !important;
 }

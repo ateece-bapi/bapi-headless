@@ -4,7 +4,8 @@ import type { GetProductBySlugQuery } from '@/lib/graphql';
 describe('getProductBySlug', () => {
   it('throws a descriptive error when called with an empty slug', async () => {
     // Ensure the GraphQL client initializer doesn't fail due to missing env in tests
-    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'http://example.test/graphql';
+    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL =
+      process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'http://example.test/graphql';
 
     // Import after setting env so module-level endpoint picks up the value
     const mod = await import('./queries');
@@ -15,7 +16,8 @@ describe('getProductBySlug', () => {
   });
 
   it('resolves with product data when given a valid slug', async () => {
-    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'http://example.test/graphql';
+    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL =
+      process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'http://example.test/graphql';
 
     const mockProduct = {
       product: {
@@ -39,12 +41,15 @@ describe('getProductBySlug', () => {
     // uses our mocked implementation at runtime (ESM live-binding).
     const { vi } = await import('vitest');
     const clientModule = await import('./client');
-    const spy = vi.spyOn(clientModule, 'getGraphQLClient').mockImplementation(() => ({
-      request: async (
-        _doc: import('graphql-request').RequestDocument,
-        _vars?: Record<string, unknown>
-      ) => mockProduct,
-    } as ReturnType<typeof clientModule.getGraphQLClient>));
+    const spy = vi.spyOn(clientModule, 'getGraphQLClient').mockImplementation(
+      () =>
+        ({
+          request: async (
+            _doc: import('graphql-request').RequestDocument,
+            _vars?: Record<string, unknown>
+          ) => mockProduct,
+        }) as ReturnType<typeof clientModule.getGraphQLClient>
+    );
 
     const mod = await import('./queries');
 
@@ -55,7 +60,8 @@ describe('getProductBySlug', () => {
   });
 
   it('normalizes incomplete GraphQL responses (adds __typename, normalizes gallery/image)', async () => {
-    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'http://example.test/graphql';
+    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL =
+      process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'http://example.test/graphql';
 
     const incompleteProduct = {
       product: {
@@ -76,19 +82,22 @@ describe('getProductBySlug', () => {
 
     const { vi } = await import('vitest');
     const clientModule = await import('./client');
-    const spy = vi.spyOn(clientModule, 'getGraphQLClient').mockImplementation(() => ({
-      request: async (
-        _doc: import('graphql-request').RequestDocument,
-        _vars?: Record<string, unknown>
-      ) => incompleteProduct,
-    } as ReturnType<typeof clientModule.getGraphQLClient>));
+    const spy = vi.spyOn(clientModule, 'getGraphQLClient').mockImplementation(
+      () =>
+        ({
+          request: async (
+            _doc: import('graphql-request').RequestDocument,
+            _vars?: Record<string, unknown>
+          ) => incompleteProduct,
+        }) as ReturnType<typeof clientModule.getGraphQLClient>
+    );
 
     const mod = await import('./queries');
 
     const resp = await mod.getProductBySlug('incomplete-product');
     expect(resp).toHaveProperty('product');
     const p = resp.product;
-    
+
     // Ensure product is not null
     expect(p).toBeDefined();
     expect(p).not.toBeNull();
@@ -102,7 +111,7 @@ describe('getProductBySlug', () => {
     expect(p.image?.altText).toBe('Alt Text');
     // galleryImages.nodes should be an array
     expect(Array.isArray(p.galleryImages?.nodes)).toBe(true);
-    
+
     // variations is only on VariableProduct, so check type first
     if ('variations' in p) {
       expect(Array.isArray(p.variations?.nodes)).toBe(true);
@@ -112,7 +121,8 @@ describe('getProductBySlug', () => {
   });
 
   it('normalizes variation attributes and variation image', async () => {
-    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'http://example.test/graphql';
+    process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL =
+      process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'http://example.test/graphql';
 
     const productWithVariations = {
       product: {
@@ -130,7 +140,12 @@ describe('getProductBySlug', () => {
               name: 'Variant A',
               price: '$29.99',
               // attributes may come back as nodes with varying keys
-              attributes: { nodes: [{ id: 'a1', name: 'Size', value: 'M' }, { id: 'a2', name: 'Color', value: 'Red' }] },
+              attributes: {
+                nodes: [
+                  { id: 'a1', name: 'Size', value: 'M' },
+                  { id: 'a2', name: 'Color', value: 'Red' },
+                ],
+              },
               // variation image may use WP naming
               image: { source_url: 'https://example.test/var-a.png', alt_text: 'Variant A' },
             },
@@ -141,31 +156,34 @@ describe('getProductBySlug', () => {
 
     const { vi } = await import('vitest');
     const clientModule = await import('./client');
-    const spy = vi.spyOn(clientModule, 'getGraphQLClient').mockImplementation(() => ({
-      request: async (
-        _doc: import('graphql-request').RequestDocument,
-        _vars?: Record<string, unknown>
-      ) => productWithVariations,
-    } as ReturnType<typeof clientModule.getGraphQLClient>));
+    const spy = vi.spyOn(clientModule, 'getGraphQLClient').mockImplementation(
+      () =>
+        ({
+          request: async (
+            _doc: import('graphql-request').RequestDocument,
+            _vars?: Record<string, unknown>
+          ) => productWithVariations,
+        }) as ReturnType<typeof clientModule.getGraphQLClient>
+    );
 
     const mod = await import('./queries');
     const resp = await mod.getProductBySlug('variable-product');
     expect(resp).toHaveProperty('product');
 
     const p = resp.product;
-    
+
     // Ensure product is not null and has variations
     expect(p).toBeDefined();
     expect(p).not.toBeNull();
     if (!p || !('variations' in p)) {
       throw new Error('Product should be a VariableProduct with variations');
     }
-    
+
     expect(Array.isArray(p.variations?.nodes)).toBe(true);
     const v = p.variations?.nodes?.[0];
     expect(v).toBeDefined();
     if (!v) throw new Error('Variation should be defined');
-    
+
     // attributes should be normalized to { nodes: [...] }
     // Note: These are normalized fields that may not be in the GraphQL type
     expect(Array.isArray((v as any).attributes?.nodes)).toBe(true);

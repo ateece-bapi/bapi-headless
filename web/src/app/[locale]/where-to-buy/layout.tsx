@@ -24,10 +24,6 @@ export const metadata: Metadata = generatePageMetadata({
   type: 'website',
 });
 
-export default function WhereToBuyLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function WhereToBuyLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

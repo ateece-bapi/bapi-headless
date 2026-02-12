@@ -5,18 +5,18 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import NProgress from 'nprogress';
 
 // Configure NProgress
-NProgress.configure({ 
+NProgress.configure({
   showSpinner: false,
   trickleSpeed: 200,
   minimum: 0.1,
   easing: 'ease',
-  speed: 400
+  speed: 400,
 });
 
 /**
  * Enables smooth page transitions using View Transitions API
  * and loading progress bar
- * 
+ *
  * Progressive enhancement - falls back gracefully in unsupported browsers
  */
 export function PageTransition() {

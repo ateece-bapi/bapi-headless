@@ -27,7 +27,7 @@ export function useKeyboardShortcut({
       const matchesAlt = altKey ? event.altKey : true;
 
       // Check if Ctrl or Cmd is pressed when required
-      const modifierMatch = (ctrlKey || metaKey) ? (event.ctrlKey || event.metaKey) : true;
+      const modifierMatch = ctrlKey || metaKey ? event.ctrlKey || event.metaKey : true;
 
       if (matchesKey && matchesCtrl && matchesMeta && matchesAlt && modifierMatch) {
         if (preventDefault) {

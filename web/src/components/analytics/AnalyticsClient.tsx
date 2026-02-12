@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 /**
  * Client-side analytics components wrapper
- * 
+ *
  * Dynamically imports Vercel Analytics and Speed Insights to prevent
  * blocking initial page render. Only loads after client-side hydration.
  */

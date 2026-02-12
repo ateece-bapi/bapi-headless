@@ -1,6 +1,6 @@
 /**
  * Variation Selector Components
- * 
+ *
  * Enterprise-grade B2B product configuration UI components
  * Automatically selected based on attribute characteristics
  */

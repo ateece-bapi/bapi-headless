@@ -2,7 +2,7 @@
 
 /**
  * Shipping Step Component
- * 
+ *
  * Step 1 of checkout: Collect shipping address
  * - Shipping address form with validation
  * - Billing address toggle (same as shipping)
@@ -20,16 +20,10 @@ interface ShippingStepProps {
   onUpdateData: (data: Partial<CheckoutData>) => void;
 }
 
-export default function ShippingStep({
-  data,
-  onNext,
-  onUpdateData,
-}: ShippingStepProps) {
+export default function ShippingStep({ data, onNext, onUpdateData }: ShippingStepProps) {
   const { showToast } = useToast();
   const [formData, setFormData] = useState(data.shippingAddress);
-  const [sameAsShipping, setSameAsShipping] = useState(
-    data.billingAddress.sameAsShipping
-  );
+  const [sameAsShipping, setSameAsShipping] = useState(data.billingAddress.sameAsShipping);
   const [billingData, setBillingData] = useState(data.billingAddress);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,20 +95,15 @@ export default function ShippingStep({
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Shipping Address Section */}
       <div>
-        <div className="flex items-center gap-2 mb-6">
-          <MapPin className="w-6 h-6 text-primary-500" />
-          <h2 className="text-2xl font-bold text-neutral-900">
-            Shipping Address
-          </h2>
+        <div className="mb-6 flex items-center gap-2">
+          <MapPin className="h-6 w-6 text-primary-500" />
+          <h2 className="text-2xl font-bold text-neutral-900">Shipping Address</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {/* First Name */}
           <div>
-            <label
-              htmlFor="firstName"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="firstName" className="mb-2 block text-sm font-medium text-neutral-700">
               First Name *
             </label>
             <input
@@ -124,16 +113,13 @@ export default function ShippingStep({
               value={formData.firstName}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           {/* Last Name */}
           <div>
-            <label
-              htmlFor="lastName"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="lastName" className="mb-2 block text-sm font-medium text-neutral-700">
               Last Name *
             </label>
             <input
@@ -143,16 +129,13 @@ export default function ShippingStep({
               value={formData.lastName}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           {/* Company (Optional) */}
           <div className="sm:col-span-2">
-            <label
-              htmlFor="company"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="company" className="mb-2 block text-sm font-medium text-neutral-700">
               Company (Optional)
             </label>
             <input
@@ -161,16 +144,13 @@ export default function ShippingStep({
               name="company"
               value={formData.company}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           {/* Address Line 1 */}
           <div className="sm:col-span-2">
-            <label
-              htmlFor="address1"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="address1" className="mb-2 block text-sm font-medium text-neutral-700">
               Address *
             </label>
             <input
@@ -181,7 +161,7 @@ export default function ShippingStep({
               onChange={handleChange}
               required
               placeholder="Street address"
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
@@ -194,16 +174,13 @@ export default function ShippingStep({
               value={formData.address2}
               onChange={handleChange}
               placeholder="Apartment, suite, etc. (optional)"
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           {/* City */}
           <div>
-            <label
-              htmlFor="city"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="city" className="mb-2 block text-sm font-medium text-neutral-700">
               City *
             </label>
             <input
@@ -213,16 +190,13 @@ export default function ShippingStep({
               value={formData.city}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           {/* State */}
           <div>
-            <label
-              htmlFor="state"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="state" className="mb-2 block text-sm font-medium text-neutral-700">
               State *
             </label>
             <input
@@ -233,16 +207,13 @@ export default function ShippingStep({
               onChange={handleChange}
               required
               placeholder="CA, NY, TX, etc."
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           {/* Postcode */}
           <div>
-            <label
-              htmlFor="postcode"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="postcode" className="mb-2 block text-sm font-medium text-neutral-700">
               ZIP Code *
             </label>
             <input
@@ -253,27 +224,22 @@ export default function ShippingStep({
               onChange={handleChange}
               required
               placeholder="12345"
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           {/* Country */}
           <div>
-            <label
-              htmlFor="country"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="country" className="mb-2 block text-sm font-medium text-neutral-700">
               Country *
             </label>
             <select
               id="country"
               name="country"
               value={formData.country}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, country: e.target.value }))
-              }
+              onChange={(e) => setFormData((prev) => ({ ...prev, country: e.target.value }))}
               required
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
               <option value="US">United States</option>
               <option value="CA">Canada</option>
@@ -283,10 +249,7 @@ export default function ShippingStep({
 
           {/* Phone */}
           <div>
-            <label
-              htmlFor="phone"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="phone" className="mb-2 block text-sm font-medium text-neutral-700">
               Phone *
             </label>
             <input
@@ -297,16 +260,13 @@ export default function ShippingStep({
               onChange={handleChange}
               required
               placeholder="(555) 123-4567"
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
 
           {/* Email */}
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-neutral-700 mb-2"
-            >
+            <label htmlFor="email" className="mb-2 block text-sm font-medium text-neutral-700">
               Email *
             </label>
             <input
@@ -317,7 +277,7 @@ export default function ShippingStep({
               onChange={handleChange}
               required
               placeholder="you@example.com"
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
         </div>
@@ -325,12 +285,12 @@ export default function ShippingStep({
 
       {/* Billing Address Toggle */}
       <div className="border-t border-neutral-200 pt-6">
-        <label className="flex items-center gap-3 cursor-pointer">
+        <label className="flex cursor-pointer items-center gap-3">
           <input
             type="checkbox"
             checked={sameAsShipping}
             onChange={(e) => setSameAsShipping(e.target.checked)}
-            className="w-5 h-5 text-primary-500 border-neutral-300 rounded focus:ring-2 focus:ring-primary-500"
+            className="h-5 w-5 rounded border-neutral-300 text-primary-500 focus:ring-2 focus:ring-primary-500"
           />
           <span className="text-sm font-medium text-neutral-700">
             Billing address same as shipping address
@@ -339,13 +299,13 @@ export default function ShippingStep({
       </div>
 
       {/* Continue Button */}
-      <div className="flex justify-end pt-6 border-t border-neutral-200">
+      <div className="flex justify-end border-t border-neutral-200 pt-6">
         <button
           type="submit"
-          className="btn-bapi-primary px-8 py-4 rounded-xl flex items-center gap-2"
+          className="btn-bapi-primary flex items-center gap-2 rounded-xl px-8 py-4"
         >
           Continue to Payment
-          <ArrowRight className="w-5 h-5" />
+          <ArrowRight className="h-5 w-5" />
         </button>
       </div>
     </form>

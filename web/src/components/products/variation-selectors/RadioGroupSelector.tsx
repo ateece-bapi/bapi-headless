@@ -22,35 +22,31 @@ export default function RadioGroupSelector({
   value,
   onChange,
   className = '',
-  description
+  description,
 }: RadioGroupSelectorProps) {
   return (
     <div className={className}>
       <div className="mb-3">
-        <label className="block text-sm font-semibold text-neutral-700 uppercase tracking-wide">
+        <label className="block text-sm font-semibold uppercase tracking-wide text-neutral-700">
           {label}
         </label>
-        {description && (
-          <p className="mt-1 text-xs text-neutral-600">{description}</p>
-        )}
+        {description && <p className="mt-1 text-xs text-neutral-600">{description}</p>}
       </div>
-      
+
       <div className="space-y-2">
         {options.map((option) => {
           const isSelected = value === option;
           const radioId = `radio-${label}-${option}`.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
-          
+
           return (
             <label
               key={option}
               htmlFor={radioId}
-              className={`
-                group relative flex items-center gap-3 px-4 py-3 rounded-lg border-2 cursor-pointer transition-all
-                ${isSelected 
-                  ? 'border-primary-600 bg-primary-50' 
-                  : 'border-neutral-300 hover:border-primary-400 bg-white hover:bg-neutral-50'
-                }
-              `}
+              className={`group relative flex cursor-pointer items-center gap-3 rounded-lg border-2 px-4 py-3 transition-all ${
+                isSelected
+                  ? 'border-primary-600 bg-primary-50'
+                  : 'border-neutral-300 bg-white hover:border-primary-400 hover:bg-neutral-50'
+              } `}
             >
               {/* Hidden native radio for accessibility */}
               <input
@@ -62,33 +58,32 @@ export default function RadioGroupSelector({
                 onChange={(e) => onChange(e.target.value)}
                 className="sr-only"
               />
-              
+
               {/* Custom radio indicator */}
-              <div className={`
-                flex-shrink-0 w-5 h-5 rounded-full border-2 transition-all
-                ${isSelected 
-                  ? 'border-primary-600 bg-primary-600' 
-                  : 'border-neutral-400 group-hover:border-primary-500'
-                }
-              `}>
+              <div
+                className={`h-5 w-5 flex-shrink-0 rounded-full border-2 transition-all ${
+                  isSelected
+                    ? 'border-primary-600 bg-primary-600'
+                    : 'border-neutral-400 group-hover:border-primary-500'
+                } `}
+              >
                 {isSelected && (
-                  <div className="flex items-center justify-center w-full h-full">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                  <div className="flex h-full w-full items-center justify-center">
+                    <Check className="h-3 w-3 text-white" strokeWidth={3} />
                   </div>
                 )}
               </div>
-              
+
               {/* Option text */}
-              <span className={`
-                text-sm font-medium flex-grow
-                ${isSelected ? 'text-primary-900' : 'text-neutral-700'}
-              `}>
+              <span
+                className={`flex-grow text-sm font-medium ${isSelected ? 'text-primary-900' : 'text-neutral-700'} `}
+              >
                 {option}
               </span>
-              
+
               {/* Selected badge */}
               {isSelected && (
-                <span className="px-2 py-1 text-xs font-semibold text-primary-700 bg-primary-100 rounded">
+                <span className="rounded bg-primary-100 px-2 py-1 text-xs font-semibold text-primary-700">
                   Selected
                 </span>
               )}

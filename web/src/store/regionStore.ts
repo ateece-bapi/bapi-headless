@@ -18,22 +18,22 @@ export const useRegionStore = create<RegionStore>()(
       regionCode: 'us',
       region: REGIONS.us,
       languageCode: 'en',
-      
+
       setRegion: (code: RegionCode) => {
         const region = REGIONS[code];
         set({ regionCode: code, region });
-        
+
         // Auto-switch language for region if user hasn't set a preference
         // MENA -> Arabic, others stay on current language
         if (code === 'mena' && get().languageCode === 'en') {
           set({ languageCode: 'ar' });
         }
       },
-      
+
       setLanguage: (code: LanguageCode) => {
         set({ languageCode: code });
       },
-      
+
       getRegion: () => get().region,
     }),
     {

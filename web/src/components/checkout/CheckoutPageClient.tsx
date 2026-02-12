@@ -2,12 +2,12 @@
 
 /**
  * Checkout Page Client Component
- * 
+ *
  * Multi-step checkout wizard with:
  * - Step 1: Shipping Information
  * - Step 2: Payment Method
  * - Step 3: Review & Place Order
- * 
+ *
  * Features:
  * - Progress indicator
  * - Form validation
@@ -110,7 +110,7 @@ export default function CheckoutPageClient() {
   useEffect(() => {
     // Skip during initial loading
     if (isLoadingCart) return;
-    
+
     // Redirect to cart if empty (e.g., after clearing or manual removal)
     if (totalItems() === 0) {
       logger.debug('[Checkout] Cart became empty, redirecting to cart page');
@@ -122,12 +122,12 @@ export default function CheckoutPageClient() {
   const fetchLocalCart = () => {
     try {
       setIsLoadingCart(true);
-      
+
       // Get cart from local storage (Zustand store)
       const localCartData = localStorage.getItem('bapi-cart-storage');
-      
+
       logger.debug('[Checkout] LocalStorage data check', { hasData: !!localCartData });
-      
+
       if (!localCartData) {
         logger.debug('[Checkout] No cart data found');
         setIsLoadingCart(false);
@@ -135,12 +135,12 @@ export default function CheckoutPageClient() {
         setTimeout(() => router.push('/cart'), 1000);
         return;
       }
-      
+
       const parsed = JSON.parse(localCartData);
       const items = parsed.state?.items || [];
-      
+
       logger.debug('[Checkout] Cart items loaded', { itemCount: items.length });
-      
+
       if (items.length === 0) {
         logger.debug('[Checkout] Cart is empty');
         setIsLoadingCart(false);
@@ -148,15 +148,15 @@ export default function CheckoutPageClient() {
         setTimeout(() => router.push('/cart'), 1000);
         return;
       }
-      
+
       // Calculate totals
       const subtotal = items.reduce((sum: number, item: any) => {
         const price = parseFloat(item.price.replace('$', '').replace(',', ''));
-        return sum + (price * item.quantity);
+        return sum + price * item.quantity;
       }, 0);
-      
+
       logger.debug('[Checkout] Setting cart data', { itemCount: items.length, subtotal });
-      
+
       // Convert to WooCommerce cart format expected by CheckoutSummary
       setCart({
         subtotal: `$${subtotal.toFixed(2)}`,
@@ -172,18 +172,20 @@ export default function CheckoutPageClient() {
               node: {
                 id: item.id,
                 name: item.name,
-                image: item.image ? {
-                  sourceUrl: item.image.sourceUrl,
-                  altText: item.name
-                } : null
-              }
+                image: item.image
+                  ? {
+                      sourceUrl: item.image.sourceUrl,
+                      altText: item.name,
+                    }
+                  : null,
+              },
             },
             subtotal: item.price,
-            total: `$${(parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity).toFixed(2)}`
-          }))
-        }
+            total: `$${(parseFloat(item.price.replace('$', '').replace(',', '')) * item.quantity).toFixed(2)}`,
+          })),
+        },
       });
-      
+
       setIsLoadingCart(false);
     } catch (error) {
       logger.error('[Checkout] Error loading local cart', error);
@@ -196,20 +198,20 @@ export default function CheckoutPageClient() {
     try {
       setIsLoadingCart(true);
       const response = await fetch('/api/cart');
-      
+
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
-      
+
       const data = await response.json();
-      
+
       // Redirect to cart if empty
       if (data.cart?.isEmpty) {
         showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
         router.push('/cart');
         return;
       }
-      
+
       setCart(data.cart);
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
@@ -283,12 +285,11 @@ export default function CheckoutPageClient() {
         // Phase 2: Implement PayPal order creation via WooCommerce API
         // For now, create mock order (Stripe is primary payment method for launch)
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        
+
         const mockOrderId = Math.floor(Math.random() * 100000);
         router.push(`/order-confirmation/${mockOrderId}`);
         showToast('success', 'Order Placed!', 'Your order has been placed successfully.');
       }
-      
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
       logError('checkout.place_order_failed', error, { checkoutData });
@@ -301,16 +302,16 @@ export default function CheckoutPageClient() {
   // Loading state
   if (isLoadingCart) {
     return (
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
+      <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
         <div className="animate-pulse">
-          <div className="h-8 bg-neutral-200 rounded w-48 mb-8"></div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-4">
-              <div className="h-64 bg-neutral-200 rounded"></div>
-              <div className="h-64 bg-neutral-200 rounded"></div>
+          <div className="mb-8 h-8 w-48 rounded bg-neutral-200"></div>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div className="space-y-4 lg:col-span-2">
+              <div className="h-64 rounded bg-neutral-200"></div>
+              <div className="h-64 rounded bg-neutral-200"></div>
             </div>
             <div className="lg:col-span-1">
-              <div className="h-96 bg-neutral-200 rounded"></div>
+              <div className="h-96 rounded bg-neutral-200"></div>
             </div>
           </div>
         </div>
@@ -319,19 +320,18 @@ export default function CheckoutPageClient() {
   }
 
   return (
-    <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-12">
+    <div className="mx-auto max-w-container px-4 py-8 sm:px-6 sm:py-12 lg:px-8 xl:px-12">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-neutral-900">
-          Checkout
-        </h1>
-        <p className="text-neutral-600 mt-2">
-          Complete your order in {3 - currentStep + 1} easy step{3 - currentStep + 1 !== 1 ? 's' : ''}
+        <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Checkout</h1>
+        <p className="mt-2 text-neutral-600">
+          Complete your order in {3 - currentStep + 1} easy step
+          {3 - currentStep + 1 !== 1 ? 's' : ''}
         </p>
       </div>
 
       {/* Checkout Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Checkout Wizard (2/3 width on desktop) */}
         <div className="lg:col-span-2">
           <CheckoutWizard

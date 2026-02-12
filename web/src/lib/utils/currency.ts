@@ -51,10 +51,7 @@ export function formatPrice(
 /**
  * Convert price from USD to target currency
  */
-export function convertPrice(
-  amountInUSD: number,
-  targetCurrency: CurrencyCode
-): number {
+export function convertPrice(amountInUSD: number, targetCurrency: CurrencyCode): number {
   const rate = EXCHANGE_RATES[targetCurrency];
   return amountInUSD * rate;
 }

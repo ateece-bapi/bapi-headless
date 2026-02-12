@@ -1,6 +1,6 @@
 /**
  * Shipping Details Component
- * 
+ *
  * Displays shipping and billing addresses
  */
 
@@ -20,10 +20,7 @@ interface ShippingDetailsProps {
   billingAddress: Address;
 }
 
-export default function ShippingDetails({
-  shippingAddress,
-  billingAddress,
-}: ShippingDetailsProps) {
+export default function ShippingDetails({ shippingAddress, billingAddress }: ShippingDetailsProps) {
   const formatAddress = (address: Address) => {
     return (
       <>
@@ -41,30 +38,22 @@ export default function ShippingDetails({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow p-6">
-      <h2 className="text-xl font-bold text-neutral-900 mb-6">
-        Shipping & Billing
-      </h2>
+    <div className="rounded-xl bg-white p-6 shadow">
+      <h2 className="mb-6 text-xl font-bold text-neutral-900">Shipping & Billing</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {/* Shipping Address */}
         <div>
-          <h3 className="text-sm font-semibold text-neutral-700 uppercase mb-3">
+          <h3 className="mb-3 text-sm font-semibold uppercase text-neutral-700">
             Shipping Address
           </h3>
-          <div className="space-y-1 text-sm">
-            {formatAddress(shippingAddress)}
-          </div>
+          <div className="space-y-1 text-sm">{formatAddress(shippingAddress)}</div>
         </div>
 
         {/* Billing Address */}
         <div>
-          <h3 className="text-sm font-semibold text-neutral-700 uppercase mb-3">
-            Billing Address
-          </h3>
-          <div className="space-y-1 text-sm">
-            {formatAddress(billingAddress)}
-          </div>
+          <h3 className="mb-3 text-sm font-semibold uppercase text-neutral-700">Billing Address</h3>
+          <div className="space-y-1 text-sm">{formatAddress(billingAddress)}</div>
         </div>
       </div>
     </div>

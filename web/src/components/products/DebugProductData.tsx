@@ -10,9 +10,9 @@ export default function DebugProductData({ product }: { product: any }) {
   }
 
   return (
-    <div className="my-8 p-4 bg-yellow-100 border-2 border-yellow-500 rounded">
-      <h3 className="font-bold text-lg mb-2">🔍 Debug: Product Variation Data</h3>
-      <div className="space-y-2 text-sm font-mono">
+    <div className="my-8 rounded border-2 border-yellow-500 bg-yellow-100 p-4">
+      <h3 className="mb-2 text-lg font-bold">🔍 Debug: Product Variation Data</h3>
+      <div className="space-y-2 font-mono text-sm">
         <div>
           <strong>Product ID:</strong> {product.id}
         </div>
@@ -20,32 +20,32 @@ export default function DebugProductData({ product }: { product: any }) {
           <strong>Product Name:</strong> {product.name}
         </div>
         <div>
-          <strong>Has Attributes:</strong> {product.attributes?.length > 0 ? `✅ ${product.attributes.length}` : '❌ No attributes'}
+          <strong>Has Attributes:</strong>{' '}
+          {product.attributes?.length > 0 ? `✅ ${product.attributes.length}` : '❌ No attributes'}
         </div>
         {product.attributes?.length > 0 && (
           <div className="ml-4">
             <strong>Attributes:</strong>
-            <pre className="bg-white p-2 rounded mt-1 text-xs overflow-auto max-h-40">
+            <pre className="mt-1 max-h-40 overflow-auto rounded bg-white p-2 text-xs">
               {JSON.stringify(product.attributes, null, 2)}
             </pre>
           </div>
         )}
         <div>
-          <strong>Has Variations:</strong> {product.variations?.length > 0 ? `✅ ${product.variations.length}` : '❌ No variations'}
+          <strong>Has Variations:</strong>{' '}
+          {product.variations?.length > 0 ? `✅ ${product.variations.length}` : '❌ No variations'}
         </div>
         {product.variations?.length > 0 && (
           <div className="ml-4">
             <strong>Variations:</strong>
-            <pre className="bg-white p-2 rounded mt-1 text-xs overflow-auto max-h-40">
+            <pre className="mt-1 max-h-40 overflow-auto rounded bg-white p-2 text-xs">
               {JSON.stringify(product.variations, null, 2)}
             </pre>
           </div>
         )}
-        <div className="mt-2 p-2 bg-white rounded">
+        <div className="mt-2 rounded bg-white p-2">
           <strong>Full Product Object Keys:</strong>
-          <div className="text-xs">
-            {Object.keys(product).join(', ')}
-          </div>
+          <div className="text-xs">{Object.keys(product).join(', ')}</div>
         </div>
       </div>
     </div>

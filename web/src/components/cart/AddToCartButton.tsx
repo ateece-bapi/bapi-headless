@@ -23,7 +23,7 @@ interface AddToCartButtonProps {
 
 /**
  * Enhanced Add to Cart button with loading, success, and error states
- * 
+ *
  * Features:
  * - Loading spinner during async operations
  * - Success animation with checkmark
@@ -31,7 +31,7 @@ interface AddToCartButtonProps {
  * - Optimistic UI updates
  * - Disabled state for out-of-stock products
  * - Accessible with ARIA labels
- * 
+ *
  * @param product - Product to add to cart
  * @param quantity - Quantity to add (default: 1)
  * @param className - Additional CSS classes
@@ -56,16 +56,16 @@ const AddToCartButton = ({
   const { addItem } = useCartHook();
   const { openCart } = useCartDrawerHook();
   const { showToast } = useToast();
-  
+
   const [internalLoading, setInternalLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  
+
   const loading = externalLoading || internalLoading;
 
   const handleAddToCart = async () => {
     // Prevent double-clicks
     if (loading || showSuccess) return;
-    
+
     try {
       // Check if product is out of stock
       if (disabled) {
@@ -92,45 +92,39 @@ const AddToCartButton = ({
 
       // Show loading state
       setInternalLoading(true);
-      
+
       // Phase 3: Skip WooCommerce API call, only use local cart
       // Cart will be synced to WooCommerce during checkout
-      await new Promise(resolve => setTimeout(resolve, 300)); // Brief delay for UX
-      
+      await new Promise((resolve) => setTimeout(resolve, 300)); // Brief delay for UX
+
       // Add to local cart store
       addItem(product, quantity);
-      
+
       // Show success state
       setInternalLoading(false);
       setShowSuccess(true);
-      
+
       // Success feedback
-      showToast(
-        'success',
-        'Added to Cart',
-        `${product.name} has been added to your cart.`,
-        3000
-      );
+      showToast('success', 'Added to Cart', `${product.name} has been added to your cart.`, 3000);
 
       if (showCartOnAdd) {
         // Open cart after a brief delay to let user see the success animation
         setTimeout(() => openCart(), 400);
       }
-      
+
       // Reset success state after duration
       setTimeout(() => {
         setShowSuccess(false);
       }, successDuration);
-      
     } catch (error) {
       setInternalLoading(false);
       setShowSuccess(false);
       logError('cart.add_failed', error, { product, quantity });
-      
+
       // Check if this is a variable product that needs options selected
       const errorMessage = error instanceof Error ? error.message : '';
       const isVariableProductError = errorMessage.includes('choose product options');
-      
+
       if (isVariableProductError) {
         showToast(
           'warning',
@@ -148,50 +142,51 @@ const AddToCartButton = ({
       }
     }
   };
-  
+
   // Button text and icon based on state
   const getButtonContent = () => {
     if (loading) {
       return (
         <>
-          <Loader2 className="w-5 h-5 animate-spin" />
+          <Loader2 className="h-5 w-5 animate-spin" />
           <span>Adding...</span>
         </>
       );
     }
-    
+
     if (showSuccess) {
       return (
         <>
-          <Check className="w-5 h-5" />
+          <Check className="h-5 w-5" />
           <span>Added!</span>
         </>
       );
     }
-    
+
     if (disabled) {
       return <span>Out of Stock</span>;
     }
-    
+
     return (
       <>
-        <ShoppingCart className="w-5 h-5" />
+        <ShoppingCart className="h-5 w-5" />
         <span>Add to Cart</span>
       </>
     );
   };
-  
+
   // Dynamic button classes
   const buttonClasses = `
     flex items-center justify-center gap-2
     font-semibold py-3 px-6 rounded-xl
     transition-all duration-300
     disabled:opacity-50 disabled:cursor-not-allowed
-    ${showSuccess 
-      ? 'bg-success-500 hover:bg-success-600 text-white shadow-sm hover:shadow-md' 
-      : disabled
-        ? 'bg-neutral-300 text-neutral-500 shadow-sm'
-        : 'btn-bapi-accent'
+    ${
+      showSuccess
+        ? 'bg-success-500 hover:bg-success-600 text-white shadow-sm hover:shadow-md'
+        : disabled
+          ? 'bg-neutral-300 text-neutral-500 shadow-sm'
+          : 'btn-bapi-accent'
     }
     ${className}
   `;
@@ -203,19 +198,19 @@ const AddToCartButton = ({
         {loading && `Adding ${product.name} to cart...`}
         {showSuccess && `${product.name} added to cart successfully`}
       </div>
-      
+
       <button
         onClick={handleAddToCart}
         className={buttonClasses}
         disabled={disabled || loading || showSuccess}
         aria-busy={loading}
         aria-label={
-          loading 
-            ? 'Adding to cart...' 
-            : showSuccess 
-              ? 'Added to cart' 
-              : disabled 
-                ? 'Out of stock' 
+          loading
+            ? 'Adding to cart...'
+            : showSuccess
+              ? 'Added to cart'
+              : disabled
+                ? 'Out of stock'
                 : `Add ${product.name} to cart`
         }
       >
@@ -223,6 +218,6 @@ const AddToCartButton = ({
       </button>
     </>
   );
-}
+};
 
 export default AddToCartButton;

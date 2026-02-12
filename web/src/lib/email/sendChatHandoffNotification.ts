@@ -1,6 +1,6 @@
 /**
  * Send Chat Handoff Notification
- * 
+ *
  * Utility function to send email notifications when customers request human assistance
  */
 
@@ -25,11 +25,13 @@ interface SendChatHandoffNotificationParams {
 
 /**
  * Send a chat handoff notification email to the sales team
- * 
+ *
  * @param params - Chat handoff parameters
  * @returns Promise with send result
  */
-export async function sendChatHandoffNotification(params: SendChatHandoffNotificationParams): Promise<{
+export async function sendChatHandoffNotification(
+  params: SendChatHandoffNotificationParams
+): Promise<{
   success: boolean;
   messageId?: string;
   error?: string;

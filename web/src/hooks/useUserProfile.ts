@@ -7,7 +7,7 @@ import { getMockUserData, isMockDataEnabled, type MockUserProfile } from '@/lib/
  */
 export function useUserProfile() {
   const { user, isLoaded, isSignedIn } = useAuth();
-  
+
   // If mock data is enabled and user has mock data, return it
   if (isSignedIn && user && isMockDataEnabled()) {
     const mockData = getMockUserData(user.id);
@@ -17,7 +17,7 @@ export function useUserProfile() {
         isSignedIn: true,
         user,
         profile: mockData,
-        isMockData: true
+        isMockData: true,
       };
     }
   }
@@ -29,6 +29,6 @@ export function useUserProfile() {
     isSignedIn,
     user,
     profile: null,
-    isMockData: false
+    isMockData: false,
   };
 }

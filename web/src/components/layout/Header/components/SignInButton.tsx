@@ -66,8 +66,8 @@ const SignInButton: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="px-3 lg:px-6 py-2 rounded-xl bg-white border-2 border-neutral-200">
-        <div className="w-5 h-5 animate-pulse bg-neutral-200 rounded" />
+      <div className="rounded-xl border-2 border-neutral-200 bg-white px-3 py-2 lg:px-6">
+        <div className="h-5 w-5 animate-pulse rounded bg-neutral-200" />
       </div>
     );
   }
@@ -77,37 +77,37 @@ const SignInButton: React.FC = () => {
       <div className="relative">
         <button
           onClick={() => setShowMenu(!showMenu)}
-          className="group flex items-center gap-2 px-3 lg:px-6 py-2 rounded-xl bg-white text-primary-500 hover:bg-primary-50 transition-all duration-200 border-2 border-primary-500 hover:border-primary-600 shadow-sm hover:shadow-md font-semibold text-sm lg:text-base"
+          className="group flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
           aria-label="User menu"
         >
-          <User className="w-5 h-5" />
+          <User className="h-5 w-5" />
           <span className="hidden lg:inline">{user.displayName || user.username}</span>
         </button>
 
         {showMenu && (
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border-2 border-neutral-200 py-2 z-50">
+          <div className="absolute right-0 z-50 mt-2 w-48 rounded-xl border-2 border-neutral-200 bg-white py-2 shadow-xl">
             <Link
               href="/account"
-              className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-50"
               onClick={() => setShowMenu(false)}
             >
-              <Package className="w-4 h-4" />
+              <Package className="h-4 w-4" />
               Dashboard
             </Link>
             <Link
               href="/account/settings"
-              className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-50"
               onClick={() => setShowMenu(false)}
             >
-              <Settings className="w-4 h-4" />
+              <Settings className="h-4 w-4" />
               Settings
             </Link>
             <hr className="my-2 border-neutral-200" />
             <button
               onClick={handleSignOut}
-              className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors text-left"
+              className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-red-600 transition-colors hover:bg-red-50"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="h-4 w-4" />
               Sign Out
             </button>
           </div>
@@ -119,10 +119,10 @@ const SignInButton: React.FC = () => {
   return (
     <Link
       href="/sign-in"
-      className="group relative flex items-center gap-2 px-3 lg:px-6 py-2 rounded-xl bg-white text-primary-500 hover:bg-primary-50 transition-all duration-200 border-2 border-primary-500 hover:border-primary-600 shadow-sm hover:shadow-md font-semibold text-sm lg:text-base"
+      className="group relative flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
       aria-label="Sign in to your account"
     >
-      <User className="w-5 h-5" />
+      <User className="h-5 w-5" />
       <span className="hidden lg:inline">Sign In</span>
     </Link>
   );

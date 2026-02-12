@@ -9,7 +9,7 @@ const MAX_COMPARE = 3;
 
 /**
  * Hook for managing product comparison
- * 
+ *
  * Features:
  * - Add/remove products from comparison
  * - Max 3 products for comparison

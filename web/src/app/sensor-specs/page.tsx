@@ -4,21 +4,20 @@ import { Thermometer, Droplet, Wind, Gauge, Search, Download } from 'lucide-reac
 
 export const metadata: Metadata = {
   title: 'BAPI Sensors Overview & Specifications | BAPI',
-  description: 'Complete overview of BAPI sensor specifications for temperature, humidity, pressure, and air quality monitoring.',
+  description:
+    'Complete overview of BAPI sensor specifications for temperature, humidity, pressure, and air quality monitoring.',
 };
 
 export default function SensorSpecsPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 text-white py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Thermometer className="w-16 h-16 mx-auto mb-4" />
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-              BAPI Sensors Overview
-            </h1>
-            <p className="text-xl max-w-content mx-auto text-primary-50">
+            <Thermometer className="mx-auto mb-4 h-16 w-16" />
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">BAPI Sensors Overview</h1>
+            <p className="mx-auto max-w-content text-xl text-primary-50">
               Complete technical specifications for building automation sensors
             </p>
           </div>
@@ -26,28 +25,40 @@ export default function SensorSpecsPage() {
       </section>
 
       {/* Quick Navigation */}
-      <section className="py-12 bg-neutral-50">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <a href="#temperature" className="bg-white p-6 rounded-xl border-2 border-neutral-200 hover:border-primary-500 transition-all text-center">
-              <Thermometer className="w-10 h-10 text-primary-500 mx-auto mb-2" />
+      <section className="bg-neutral-50 py-12">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <a
+              href="#temperature"
+              className="rounded-xl border-2 border-neutral-200 bg-white p-6 text-center transition-all hover:border-primary-500"
+            >
+              <Thermometer className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Temperature</h3>
-              <p className="text-sm text-neutral-600 mt-1">Thermistors & RTDs</p>
+              <p className="mt-1 text-sm text-neutral-600">Thermistors & RTDs</p>
             </a>
-            <a href="#humidity" className="bg-white p-6 rounded-xl border-2 border-neutral-200 hover:border-primary-500 transition-all text-center">
-              <Droplet className="w-10 h-10 text-primary-500 mx-auto mb-2" />
+            <a
+              href="#humidity"
+              className="rounded-xl border-2 border-neutral-200 bg-white p-6 text-center transition-all hover:border-primary-500"
+            >
+              <Droplet className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Humidity</h3>
-              <p className="text-sm text-neutral-600 mt-1">RH Sensors</p>
+              <p className="mt-1 text-sm text-neutral-600">RH Sensors</p>
             </a>
-            <a href="#pressure" className="bg-white p-6 rounded-xl border-2 border-neutral-200 hover:border-primary-500 transition-all text-center">
-              <Gauge className="w-10 h-10 text-primary-500 mx-auto mb-2" />
+            <a
+              href="#pressure"
+              className="rounded-xl border-2 border-neutral-200 bg-white p-6 text-center transition-all hover:border-primary-500"
+            >
+              <Gauge className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Pressure</h3>
-              <p className="text-sm text-neutral-600 mt-1">Differential & Absolute</p>
+              <p className="mt-1 text-sm text-neutral-600">Differential & Absolute</p>
             </a>
-            <a href="#air-quality" className="bg-white p-6 rounded-xl border-2 border-neutral-200 hover:border-primary-500 transition-all text-center">
-              <Wind className="w-10 h-10 text-primary-500 mx-auto mb-2" />
+            <a
+              href="#air-quality"
+              className="rounded-xl border-2 border-neutral-200 bg-white p-6 text-center transition-all hover:border-primary-500"
+            >
+              <Wind className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Air Quality</h3>
-              <p className="text-sm text-neutral-600 mt-1">CO₂, VOC, PM</p>
+              <p className="mt-1 text-sm text-neutral-600">CO₂, VOC, PM</p>
             </a>
           </div>
         </div>
@@ -55,20 +66,26 @@ export default function SensorSpecsPage() {
 
       {/* Temperature Sensors */}
       <section id="temperature" className="py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-8">
-            Temperature Sensors
-          </h2>
-          
-          <div className="bg-white border-2 border-neutral-200 rounded-xl overflow-hidden mb-8">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-3xl font-bold text-neutral-900">Temperature Sensors</h2>
+
+          <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-neutral-50">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Sensor Type</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Range</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Accuracy</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Output</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Sensor Type
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Range
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Accuracy
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Output
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-200">
@@ -103,7 +120,7 @@ export default function SensorSpecsPage() {
 
           <Link
             href="/products?category=temperature"
-            className="inline-flex items-center text-primary-500 hover:text-primary-600 font-semibold"
+            className="inline-flex items-center font-semibold text-primary-500 hover:text-primary-600"
           >
             View All Temperature Sensors →
           </Link>
@@ -111,21 +128,27 @@ export default function SensorSpecsPage() {
       </section>
 
       {/* Humidity Sensors */}
-      <section id="humidity" className="py-16 bg-neutral-50">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-8">
-            Humidity Sensors
-          </h2>
-          
-          <div className="bg-white border-2 border-neutral-200 rounded-xl overflow-hidden mb-8">
+      <section id="humidity" className="bg-neutral-50 py-16">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-3xl font-bold text-neutral-900">Humidity Sensors</h2>
+
+          <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-neutral-50">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Sensor Type</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Range</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Accuracy</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Output</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Sensor Type
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Range
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Accuracy
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Output
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-200">
@@ -154,7 +177,7 @@ export default function SensorSpecsPage() {
 
           <Link
             href="/products?category=humidity"
-            className="inline-flex items-center text-primary-500 hover:text-primary-600 font-semibold"
+            className="inline-flex items-center font-semibold text-primary-500 hover:text-primary-600"
           >
             View All Humidity Sensors →
           </Link>
@@ -163,20 +186,26 @@ export default function SensorSpecsPage() {
 
       {/* Pressure Sensors */}
       <section id="pressure" className="py-16">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-8">
-            Pressure Sensors
-          </h2>
-          
-          <div className="bg-white border-2 border-neutral-200 rounded-xl overflow-hidden mb-8">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-3xl font-bold text-neutral-900">Pressure Sensors</h2>
+
+          <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-neutral-50">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Sensor Type</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Range</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Accuracy</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Output</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Sensor Type
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Range
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Accuracy
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Output
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-200">
@@ -199,7 +228,7 @@ export default function SensorSpecsPage() {
 
           <Link
             href="/products?category=pressure"
-            className="inline-flex items-center text-primary-500 hover:text-primary-600 font-semibold"
+            className="inline-flex items-center font-semibold text-primary-500 hover:text-primary-600"
           >
             View All Pressure Sensors →
           </Link>
@@ -207,21 +236,27 @@ export default function SensorSpecsPage() {
       </section>
 
       {/* Air Quality Sensors */}
-      <section id="air-quality" className="py-16 bg-neutral-50">
-        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-8">
-            Air Quality Sensors
-          </h2>
-          
-          <div className="bg-white border-2 border-neutral-200 rounded-xl overflow-hidden mb-8">
+      <section id="air-quality" className="bg-neutral-50 py-16">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-3xl font-bold text-neutral-900">Air Quality Sensors</h2>
+
+          <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-neutral-50">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Sensor Type</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Range</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Accuracy</th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Output</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Sensor Type
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Range
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Accuracy
+                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
+                      Output
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-200">
@@ -250,7 +285,7 @@ export default function SensorSpecsPage() {
 
           <Link
             href="/air-quality"
-            className="inline-flex items-center text-primary-500 hover:text-primary-600 font-semibold"
+            className="inline-flex items-center font-semibold text-primary-500 hover:text-primary-600"
           >
             View All Air Quality Sensors →
           </Link>
@@ -258,16 +293,16 @@ export default function SensorSpecsPage() {
       </section>
 
       {/* Download Resources */}
-      <section className="py-12 bg-primary-50">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">
+      <section className="bg-primary-50 py-12">
+        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-4 text-2xl font-bold text-neutral-900">
             Download Complete Specifications
           </h2>
-          <p className="text-neutral-600 mb-6">
+          <p className="mb-6 text-neutral-600">
             Get the full technical specification guide for all BAPI sensors
           </p>
-          <button className="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-neutral-900 font-bold px-8 py-3 rounded-xl transition-colors">
-            <Download className="w-5 h-5" />
+          <button className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
+            <Download className="h-5 w-5" />
             Download Specs Guide (PDF)
           </button>
         </div>

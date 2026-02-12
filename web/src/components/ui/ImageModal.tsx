@@ -12,7 +12,7 @@ interface ImageModalProps {
 
 /**
  * Full-screen image modal with zoom and pan controls
- * 
+ *
  * Features:
  * - Click outside to close
  * - ESC key to close
@@ -123,50 +123,50 @@ export default function ImageModal({ isOpen, onClose, imageSrc, imageAlt }: Imag
 
   return (
     <div
-      className="fixed inset-0 z-modal flex items-center justify-center bg-black/90 backdrop-blur-sm"
+      className="z-modal fixed inset-0 flex items-center justify-center bg-black/90 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Product image enlarged view"
     >
       {/* Control bar */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 flex items-center gap-2 bg-white/95 rounded-full px-4 py-2 shadow-lg">
+      <div className="absolute left-1/2 top-4 z-10 flex -translate-x-1/2 transform items-center gap-2 rounded-full bg-white/95 px-4 py-2 shadow-lg">
         <button
           onClick={zoomOut}
           disabled={scale <= 1}
-          className="p-2 hover:bg-neutral-100 rounded-full transition-colors duration-base disabled:opacity-50 disabled:cursor-not-allowed"
+          className="duration-base rounded-full p-2 transition-colors hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Zoom out"
         >
-          <ZoomOut className="w-5 h-5 text-neutral-700" />
+          <ZoomOut className="h-5 w-5 text-neutral-700" />
         </button>
-        <span className="text-sm font-medium text-neutral-700 min-w-[60px] text-center">
+        <span className="min-w-[60px] text-center text-sm font-medium text-neutral-700">
           {Math.round(scale * 100)}%
         </span>
         <button
           onClick={zoomIn}
           disabled={scale >= 5}
-          className="p-2 hover:bg-neutral-100 rounded-full transition-colors duration-base disabled:opacity-50 disabled:cursor-not-allowed"
+          className="duration-base rounded-full p-2 transition-colors hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Zoom in"
         >
-          <ZoomIn className="w-5 h-5 text-neutral-700" />
+          <ZoomIn className="h-5 w-5 text-neutral-700" />
         </button>
-        <div className="w-px h-6 bg-neutral-300 mx-1" />
+        <div className="mx-1 h-6 w-px bg-neutral-300" />
         <button
           onClick={resetZoom}
-          className="p-2 hover:bg-neutral-100 rounded-full transition-colors duration-base"
+          className="duration-base rounded-full p-2 transition-colors hover:bg-neutral-100"
           aria-label="Reset zoom"
         >
-          <RotateCcw className="w-5 h-5 text-neutral-700" />
+          <RotateCcw className="h-5 w-5 text-neutral-700" />
         </button>
       </div>
 
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 p-2 bg-white/95 hover:bg-white rounded-full shadow-lg transition-colors duration-base"
+        className="duration-base absolute right-4 top-4 z-10 rounded-full bg-white/95 p-2 shadow-lg transition-colors hover:bg-white"
         aria-label="Close image modal"
       >
-        <X className="w-6 h-6 text-neutral-900" />
+        <X className="h-6 w-6 text-neutral-900" />
       </button>
 
       {/* Image container */}
@@ -180,7 +180,7 @@ export default function ImageModal({ isOpen, onClose, imageSrc, imageAlt }: Imag
         onMouseLeave={handleMouseUp}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
-        className={`relative max-w-7xl max-h-[90vh] p-4 overflow-hidden ${
+        className={`relative max-h-[90vh] max-w-7xl overflow-hidden p-4 ${
           scale > 1 ? 'cursor-move' : 'cursor-default'
         }`}
       >
@@ -191,13 +191,13 @@ export default function ImageModal({ isOpen, onClose, imageSrc, imageAlt }: Imag
             transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`,
             transition: isDragging ? 'none' : 'transform 0.2s ease-out',
           }}
-          className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl select-none"
+          className="max-h-[85vh] max-w-full select-none rounded-lg object-contain shadow-2xl"
           draggable={false}
         />
       </div>
 
       {/* Instructions */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/80 text-sm text-center">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 transform text-center text-sm text-white/80">
         <div>Scroll or pinch to zoom • Drag to pan • Press ESC or click outside to close</div>
       </div>
     </div>

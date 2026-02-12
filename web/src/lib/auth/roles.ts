@@ -1,8 +1,8 @@
 /**
  * WordPress Role-Based Access Control (RBAC) Utilities
- * 
+ *
  * Maps WordPress user roles to application permissions.
- * WordPress default roles: administrator, shop_manager, editor, author, 
+ * WordPress default roles: administrator, shop_manager, editor, author,
  * contributor, subscriber, customer
  */
 
@@ -36,7 +36,7 @@ export function isCustomer(user: User | null | undefined): boolean {
  */
 export function hasRole(user: User | null | undefined, roles: string[]): boolean {
   if (!user?.roles) return false;
-  return roles.some(role => user.roles!.includes(role));
+  return roles.some((role) => user.roles!.includes(role));
 }
 
 /**

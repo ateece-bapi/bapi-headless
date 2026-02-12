@@ -2,7 +2,7 @@
 
 /**
  * Cart Page Client Component
- * 
+ *
  * Fetches cart from WooCommerce API and displays cart management UI.
  * Handles loading states, errors, and empty cart scenarios.
  */
@@ -83,9 +83,13 @@ export default function CartPageClient() {
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
   const { showToast } = useToast();
-  
+
   // Get Zustand store actions
-  const { updateQuantity: updateZustandQuantity, removeItem: removeZustandItem, clearCart: clearZustandCart } = useCartStore();
+  const {
+    updateQuantity: updateZustandQuantity,
+    removeItem: removeZustandItem,
+    clearCart: clearZustandCart,
+  } = useCartStore();
 
   // Fetch cart on mount
   useEffect(() => {
@@ -97,7 +101,7 @@ export default function CartPageClient() {
   const fetchLocalCart = () => {
     try {
       setIsLoading(true);
-      
+
       // Get cart from local storage (Zustand store)
       const localCartData = localStorage.getItem('bapi-cart-storage');
       if (!localCartData) {
@@ -105,21 +109,25 @@ export default function CartPageClient() {
         setIsLoading(false);
         return;
       }
-      
+
       const parsed = JSON.parse(localCartData);
       const items = parsed.state?.items || [];
-      
+
       // Convert Zustand cart format to WooCommerce cart format
       const mockCart: CartData = {
         isEmpty: items.length === 0,
-        total: items.reduce((sum: number, item: any) => {
-          const price = parseFloat(item.price.replace('$', '').replace(',', ''));
-          return sum + (price * item.quantity);
-        }, 0).toFixed(2),
-        subtotal: items.reduce((sum: number, item: any) => {
-          const price = parseFloat(item.price.replace('$', '').replace(',', ''));
-          return sum + (price * item.quantity);
-        }, 0).toFixed(2),
+        total: items
+          .reduce((sum: number, item: any) => {
+            const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+            return sum + price * item.quantity;
+          }, 0)
+          .toFixed(2),
+        subtotal: items
+          .reduce((sum: number, item: any) => {
+            const price = parseFloat(item.price.replace('$', '').replace(',', ''));
+            return sum + price * item.quantity;
+          }, 0)
+          .toFixed(2),
         contentsTax: '0.00',
         shippingTotal: '0.00',
         shippingTax: '0.00',
@@ -147,15 +155,17 @@ export default function CartPageClient() {
               },
             },
             // Add variation data if present
-            variation: item.variationId ? {
-              node: {
-                databaseId: item.variationId,
-              },
-            } : null,
+            variation: item.variationId
+              ? {
+                  node: {
+                    databaseId: item.variationId,
+                  },
+                }
+              : null,
           })),
         },
       };
-      
+
       setCart(mockCart as any);
       setIsLoading(false);
     } catch (error) {
@@ -168,11 +178,11 @@ export default function CartPageClient() {
     try {
       setIsLoading(true);
       const response = await fetch('/api/cart');
-      
+
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
-      
+
       const data = await response.json();
       setCart(data.cart);
     } catch (error) {
@@ -186,16 +196,16 @@ export default function CartPageClient() {
 
   const handleUpdateQuantity = async (itemKey: string, newQuantity: number) => {
     if (newQuantity < 1) return;
-    
+
     try {
       setIsUpdating(true);
-      
+
       // Update Zustand store
       updateZustandQuantity(itemKey, newQuantity);
-      
+
       // Refresh cart display
       fetchLocalCart();
-      
+
       showToast('success', 'Updated', 'Cart updated successfully');
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
@@ -209,19 +219,19 @@ export default function CartPageClient() {
   const handleRemoveItem = async (itemKey: string) => {
     try {
       setIsUpdating(true);
-      
+
       // Parse the itemKey to extract id and variationId
       // Format: "productId" or "productId-variationId"
       const keyParts = itemKey.split('-');
       const productId = keyParts[0];
       const variationId = keyParts.length > 1 ? parseInt(keyParts[1], 10) : undefined;
-      
+
       // Remove from Zustand store with correct parameters
       removeZustandItem(productId, variationId);
-      
+
       // Refresh cart display
       fetchLocalCart();
-      
+
       // Show success toast after state updates complete
       setTimeout(() => {
         showToast('success', 'Removed', 'Item removed from cart');
@@ -237,16 +247,16 @@ export default function CartPageClient() {
 
   const handleClearCart = async () => {
     if (!confirm('Are you sure you want to clear your cart?')) return;
-    
+
     try {
       setIsUpdating(true);
-      
+
       // Clear cart from Zustand store
       clearZustandCart();
-      
+
       // Refresh cart display
       fetchLocalCart();
-      
+
       // Show success toast after state updates complete
       setTimeout(() => {
         showToast('success', 'Cart Cleared', 'All items removed from cart');
@@ -263,13 +273,13 @@ export default function CartPageClient() {
   // Loading state
   if (isLoading) {
     return (
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
+      <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
         <div className="animate-pulse">
-          <div className="h-8 bg-neutral-200 rounded w-48 mb-8"></div>
+          <div className="mb-8 h-8 w-48 rounded bg-neutral-200"></div>
           <div className="space-y-4">
-            <div className="h-32 bg-neutral-200 rounded"></div>
-            <div className="h-32 bg-neutral-200 rounded"></div>
-            <div className="h-32 bg-neutral-200 rounded"></div>
+            <div className="h-32 rounded bg-neutral-200"></div>
+            <div className="h-32 rounded bg-neutral-200"></div>
+            <div className="h-32 rounded bg-neutral-200"></div>
           </div>
         </div>
       </div>
@@ -279,19 +289,17 @@ export default function CartPageClient() {
   // Empty cart state
   if (!cart || cart.isEmpty) {
     return (
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <ShoppingCart className="w-24 h-24 text-neutral-300 mx-auto mb-6" />
-        <h1 className="text-3xl font-bold text-neutral-900 mb-4">
-          Your Cart is Empty
-        </h1>
-        <p className="text-lg text-neutral-600 mb-8">
+      <div className="mx-auto max-w-content px-4 py-16 text-center sm:px-6 lg:px-8">
+        <ShoppingCart className="mx-auto mb-6 h-24 w-24 text-neutral-300" />
+        <h1 className="mb-4 text-3xl font-bold text-neutral-900">Your Cart is Empty</h1>
+        <p className="mb-8 text-lg text-neutral-600">
           Add some products to your cart to get started.
         </p>
         <Link
           href="/products"
-          className="inline-flex items-center gap-2 btn-bapi-primary font-semibold px-8 py-4 rounded-xl"
+          className="btn-bapi-primary inline-flex items-center gap-2 rounded-xl px-8 py-4 font-semibold"
         >
-          <ArrowLeft className="w-5 h-5" />
+          <ArrowLeft className="h-5 w-5" />
           Continue Shopping
         </Link>
       </div>
@@ -299,23 +307,21 @@ export default function CartPageClient() {
   }
 
   return (
-    <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-12">
+    <div className="mx-auto max-w-container px-4 py-8 sm:px-6 sm:py-12 lg:px-8 xl:px-12">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-neutral-900">
-          Shopping Cart
-        </h1>
+      <div className="mb-8 flex items-center justify-between">
+        <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Shopping Cart</h1>
         <Link
           href="/products"
-          className="text-primary-500 hover:text-primary-600 font-medium flex items-center gap-2 transition-colors"
+          className="flex items-center gap-2 font-medium text-primary-500 transition-colors hover:text-primary-600"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="h-4 w-4" />
           Continue Shopping
         </Link>
       </div>
 
       {/* Cart Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Cart Items (2/3 width on desktop) */}
         <div className="lg:col-span-2">
           <CartItems
@@ -329,11 +335,7 @@ export default function CartPageClient() {
 
         {/* Cart Summary (1/3 width on desktop) */}
         <div className="lg:col-span-1">
-          <CartSummary
-            cart={cart}
-            onApplyCoupon={fetchCart}
-            isUpdating={isUpdating}
-          />
+          <CartSummary cart={cart} onApplyCoupon={fetchCart} isUpdating={isUpdating} />
         </div>
       </div>
     </div>

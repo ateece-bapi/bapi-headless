@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from 'react';
 import { useMemo } from 'react';
@@ -41,21 +41,21 @@ interface ProductVariationSelectorProps {
 
 /**
  * Product Variation Selector Adapter
- * 
+ *
  * Wraps the new enterprise VariationSelector component and adapts
  * the product page data structure to the variation system types.
- * 
+ *
  * This maintains backward compatibility while using the new smart
  * variation selector with color swatches, toggles, radio groups, etc.
- * 
+ *
  * @param product - Product with attributes and variations
  * @param onVariationChange - Callback when variation selection changes
  * @param className - Optional CSS classes
  */
-export default function ProductVariationSelector({ 
-  product, 
+export default function ProductVariationSelector({
+  product,
   onVariationChange,
-  className = ''
+  className = '',
 }: ProductVariationSelectorProps) {
   const { attributes = [], variations = [] } = product;
 
@@ -66,43 +66,45 @@ export default function ProductVariationSelector({
 
   // Transform old attribute format to new ProductAttribute format
   // Memoize to prevent recreating arrays on every render
-  const transformedAttributes: ProductAttribute[] = useMemo(() => 
-    attributes.map((attr, index) => ({
-      id: `attr-${index}`,
-      name: attr.name,
-      label: attr.name, // Same as name for now
-      options: attr.options,
-      variation: true // All attributes are for variations
-    })),
+  const transformedAttributes: ProductAttribute[] = useMemo(
+    () =>
+      attributes.map((attr, index) => ({
+        id: `attr-${index}`,
+        name: attr.name,
+        label: attr.name, // Same as name for now
+        options: attr.options,
+        variation: true, // All attributes are for variations
+      })),
     [attributes]
   );
 
   // Transform old variation format to new ProductVariation format
   // Memoize to prevent recreating arrays on every render
-  const transformedVariations: ProductVariation[] = useMemo(() =>
-    variations.map((variation) => ({
-      id: variation.id,
-      databaseId: variation.databaseId || 0,
-      name: variation.name || '',
-      price: variation.price || '',
-      regularPrice: variation.regularPrice || '',
-      stockStatus: variation.stockStatus || 'IN_STOCK',
-      partNumber: variation.partNumber || undefined, // Transform null to undefined
-      sku: variation.sku || '',
-      attributes: {
-        nodes: Object.entries(variation.attributes).map(([name, value]) => ({
-          name,
-          label: name,
-          value: String(value)
-        }))
-      }
-    })),
+  const transformedVariations: ProductVariation[] = useMemo(
+    () =>
+      variations.map((variation) => ({
+        id: variation.id,
+        databaseId: variation.databaseId || 0,
+        name: variation.name || '',
+        price: variation.price || '',
+        regularPrice: variation.regularPrice || '',
+        stockStatus: variation.stockStatus || 'IN_STOCK',
+        partNumber: variation.partNumber || undefined, // Transform null to undefined
+        sku: variation.sku || '',
+        attributes: {
+          nodes: Object.entries(variation.attributes).map(([name, value]) => ({
+            name,
+            label: name,
+            value: String(value),
+          })),
+        },
+      })),
     [variations]
   );
 
   // Handle variation change - transform back to old format
   const handleVariationChange = (
-    newVariation: ProductVariation | null, 
+    newVariation: ProductVariation | null,
     partNumber: string | null
   ) => {
     if (onVariationChange) {
@@ -121,13 +123,16 @@ export default function ProductVariationSelector({
         salePrice: null,
         stockStatus: newVariation.stockStatus as 'IN_STOCK' | 'OUT_OF_STOCK' | 'ON_BACKORDER',
         stockQuantity: null,
-        attributes: newVariation.attributes.nodes.reduce((acc, attr) => {
-          acc[attr.name] = attr.value;
-          return acc;
-        }, {} as Record<string, string>),
+        attributes: newVariation.attributes.nodes.reduce(
+          (acc, attr) => {
+            acc[attr.name] = attr.value;
+            return acc;
+          },
+          {} as Record<string, string>
+        ),
         partNumber: newVariation.partNumber,
         sku: newVariation.sku,
-        image: null
+        image: null,
       };
 
       onVariationChange(oldFormatVariation);

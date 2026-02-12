@@ -224,7 +224,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
 
                     {/* View All Link */}
                     <Link
-                      href={`/products/${column.slug}`}
+                      href={`${item.href}/${column.slug}`}
                       onClick={onCloseImmediate}
                       className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary-600 transition-all hover:gap-2 hover:text-primary-700"
                     >

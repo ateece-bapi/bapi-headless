@@ -73,10 +73,10 @@ export default function middleware(request: NextRequest) {
     const isPublicStaticRoute = 
       pathname === '/' ||
       pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)\/?$/) || // Locale homepage only
-      pathname.startsWith('/products') ||
-      pathname.startsWith('/company') ||
-      pathname.startsWith('/support') ||
-      pathname.startsWith('/resources');
+      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?products/) ||
+      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?company/) ||
+      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?support/) ||
+      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?resources/);
     
     if (isPublicStaticRoute) {
       // Set proper cache headers for CDN

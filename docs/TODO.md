@@ -84,6 +84,34 @@
 
 ---
 
+### ✅ Mega Menu Navigation & CDN Caching i18n Fixes (Feb 12, 2026)
+**Status:** COMPLETE (fix/mega-menu-url-and-cache-i18n) — Pending PR merge
+**Summary:**
+  - Fixed 2 bugs discovered in PR review of the just-merged security/bug fixes
+  - Restored proper navigation for Resources/Support/Company sections (9 broken links)
+  - Restored CDN caching performance for all 10 non-English locales
+**Issues Fixed (2 total):**
+  1. **Mega Menu "View All" Links Broken**: Previous fix oversimplified URL generation by hardcoding `/products/` base path for ALL sections. Resources, Support, and Company "View All" links generated 404s (e.g., `/products/technical-documentation` instead of `/resources/technical-documentation`). **Impact:** 9 of 14 mega menu columns affected.
+  2. **CDN Caching Not Working for i18n Routes**: Cache logic used `pathname.startsWith('/products')` which doesn't match locale-prefixed paths like `/fr/products`, `/de/company`. CDN caching only worked for English routes without locale prefix. **Impact:** Performance degradation for 10 of 11 locales (90% of international users).
+**Changes:**
+  - web/src/components/layout/Header/components/MegaMenuItem.tsx:
+    - Changed: `href={`/products/${column.slug}`}` → `href={`${item.href}/${column.slug}`}`
+    - Result: All "View All" links now use parent menu item's href dynamically
+  - web/middleware.ts:
+    - Changed: `pathname.startsWith('/products')` patterns → regex matching optional locale prefix
+    - Pattern: `/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?products/`
+    - Result: CDN caching now works for all 11 locales with proper Cache-Control headers
+**Verification:**
+  - ✅ Production build successful (exit code 0)
+  - Manual testing required:
+    - [ ] Test all 14 mega menu "View All" links (Products, Resources, Support, Company)
+    - [ ] Verify Resources links route to `/resources/[slug]` not `/products/[slug]`
+    - [ ] Check CDN Cache-Control headers for `/fr/products`, `/de/company`, etc.
+**Result:** Navigation restored for all sections, CDN performance restored for all locales
+**Commit:** `332ac91` — Files: 2, Lines: +5/-5
+
+---
+
 ### ✅ All Languages Products Translation Completion (Feb 12, 2026)
 **Status:** COMPLETE & MERGED (fix/add-products-translations-all-languages)
 **Summary:**

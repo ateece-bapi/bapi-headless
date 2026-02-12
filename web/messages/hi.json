@@ -1,0 +1,656 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "tryAgain": "Try again",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clearAll": "Clear All",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  "nav": {
+    "products": "Products",
+    "applications": "Applications",
+    "support": "Support",
+    "company": "Company",
+    "cart": "Cart",
+    "account": "Account",
+    "signIn": "User Sign In"
+  },
+  "megaMenu": {
+    "products": {
+      "label": "Products",
+      "temperature": {
+        "title": "Temperature",
+        "roomWallSensors": "Room & Wall Sensors",
+        "roomWallSensorsDesc": "High-accuracy temperature sensing",
+        "ductSensors": "Duct Sensors",
+        "ductSensorsDesc": "Duct-mounted transmitters",
+        "immersionWell": "Immersion & Well",
+        "immersionWellDesc": "Liquid temperature measurement",
+        "outdoorSensors": "Outdoor Sensors",
+        "outdoorSensorsDesc": "Weather-resistant sensing"
+      },
+      "humidity": {
+        "title": "Humidity",
+        "roomHumidity": "Room Humidity",
+        "roomHumidityDesc": "Wall-mount RH sensors",
+        "ductHumidity": "Duct Humidity",
+        "ductHumidityDesc": "Supply & return air RH",
+        "outdoorHumidity": "Outdoor Humidity",
+        "outdoorHumidityDesc": "Weather-resistant RH",
+        "comboSensors": "Combo Sensors",
+        "comboSensorsDesc": "Temperature + humidity"
+      },
+      "pressure": {
+        "title": "Pressure",
+        "differential": "Differential Pressure",
+        "differentialDesc": "Room & filter monitoring",
+        "static": "Static Pressure",
+        "staticDesc": "Duct static transmitters",
+        "barometric": "Barometric",
+        "barometricDesc": "Atmospheric pressure"
+      },
+      "airQuality": {
+        "title": "Air Quality",
+        "co2": "CO₂ Sensors",
+        "co2Desc": "Carbon dioxide monitoring",
+        "voc": "VOC Sensors",
+        "vocDesc": "Volatile organic compounds",
+        "particulate": "Particulate Matter",
+        "particulateDesc": "PM2.5 and PM10"
+      },
+      "wireless": {
+        "title": "Wireless",
+        "wamTemperature": "WAM Temperature",
+        "wamTemperatureDesc": "Wireless temp sensors",
+        "wamHumidity": "WAM Humidity",
+        "wamHumidityDesc": "Wireless RH sensors",
+        "wamDoorSensors": "WAM Door Sensors",
+        "wamDoorSensorsDesc": "Open/close monitoring",
+        "cloudPlatform": "Cloud Platform",
+        "cloudPlatformDesc": "24/7 remote monitoring"
+      },
+      "accessories": {
+        "title": "Accessories",
+        "mounting": "Mounting Hardware",
+        "mountingDesc": "Plates, boxes, brackets",
+        "enclosures": "Enclosures",
+        "enclosuresDesc": "BAPI-Box & covers",
+        "cables": "Cables & Connectors",
+        "cablesDesc": "Wiring accessories"
+      },
+      "testInstruments": {
+        "title": "Test Instruments",
+        "bluTestTemperature": "Blu-Test Temperature",
+        "bluTestTemperatureDesc": "NIST-traceable reference",
+        "bluTestHumidity": "Blu-Test Humidity",
+        "bluTestHumidityDesc": "Temp + RH reference",
+        "bluTestPressure": "Blu-Test Pressure",
+        "bluTestPressureDesc": "Digital manometer"
+      },
+      "featured": {
+        "title": "WAM™ Wireless Asset Monitoring",
+        "description": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
+        "cta": "Learn More",
+        "wamTitle": "WAM™ Wireless Asset Monitoring",
+        "wamDescription": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
+        "wamCta": "Learn More",
+        "wamBadge": "Premium Solution"
+      },
+      "badges": {
+        "popular": "Popular",
+        "new": "New",
+        "premium": "Premium"
+      }
+    },
+    "resources": {
+      "label": "संसाधन",
+      "technicalDocumentation": {
+        "title": "तकनीकी दस्तावेज़ीकरण",
+        "applicationNotes": "अनुप्रयोग नोट्स",
+        "applicationNotesDesc": "डिज़ाइन मार्गदर्शन और सर्वोत्तम प्रथाएं",
+        "serviceBulletins": "सर्विस बुलेटिन",
+        "serviceBulletinsDesc": "उत्पाद अपडेट और घोषणाएं",
+        "datasheets": "डेटाशीट",
+        "datasheetsDesc": "पूर्ण उत्पाद विनिर्देश",
+        "sensorsOverview": "सेंसर्स का अवलोकन",
+        "sensorsOverviewDesc": "सेंसर विनिर्देशों की तुलना करें"
+      },
+      "toolsGuides": {
+        "title": "उपकरण और गाइड",
+        "catalog": "उत्पाद कैटलॉग",
+        "catalogDesc": "मूल्य के साथ पूर्ण कैटलॉग",
+        "siteVerification": "साइट सत्यापन उपकरण",
+        "siteVerificationDesc": "वायरलेस सिग्नल शक्ति परीक्षण",
+        "productSelector": "उत्पाद चयनकर्ता",
+        "productSelectorDesc": "सही सेंसर खोजें"
+      },
+      "learningCenter": {
+        "title": "सीखने का केंद्र",
+        "videos": "वीडियो लाइब्रेरी",
+        "videosDesc": "कैसे-करें वीडियो और ट्यूटोरियल",
+        "caseStudies": "केस स्टडीज",
+        "caseStudiesDesc": "वास्तविक दुनिया की सफलता कहानियां",
+        "webinars": "वेबिनार",
+        "webinarsDesc": "लाइव प्रशिक्षण सत्र"
+      },
+      "featured": {
+        "title": "तकनीकी दस्तावेज़ीकरण की आवश्यकता है?",
+        "description": "अनुप्रयोग नोट्स, डेटाशीट और तकनीकी संसाधनों के हमारे पूर्ण पुस्तकालय तक पहुंचें ताकि आप सही समाधान डिज़ाइन और निर्दिष्ट कर सकें।",
+        "cta": "संसाधनों ब्राउज़ करें"
+      }
+    },
+    "support": {
+      "label": "Support",
+      "getHelp": {
+        "title": "सहायता प्राप्त करें",
+        "contactSupport": "सपोर्ट से संपर्क करें",
+        "contactSupportDesc": "हमारे इंजीनियरों से बात करें",
+        "rmaRequest": "आरएमए अनुरोध",
+        "rmaRequestDesc": "वापसी माल प्राधिकरण",
+        "whereToBuy": "कहाँ से खरीदें",
+        "whereToBuyDesc": "अपने आस-पास का वितरक ढूंढें"
+      },
+      "existingCustomers": {
+        "title": "मौजूदा ग्राहकों के लिए",
+        "myAccount": "मेरा खाता",
+        "myAccountDesc": "आदेश और कोटेशन देखें",
+        "orderStatus": "ऑर्डर स्थिति",
+        "orderStatusDesc": "अपने शिपमेंट को ट्रैक करें",
+        "requestQuote": "कोटेशन अनुरोध करें",
+        "requestQuoteDesc": "अपने प्रोजेक्ट के लिए कीमत प्राप्त करें"
+      },
+      "featured": {
+        "title": "तकनीकी सहायता की जरूरत है?",
+        "description": "हमारी अनुभवी इंजीनियरिंग टीम उत्पाद चयन, विनिर्देशों और समस्या निवारण में आपकी मदद करने के लिए तैयार है।",
+        "cta": "सपोर्ट से संपर्क करें"
+      }
+    },
+    "company": {
+      "label": "Company",
+      "aboutBapi": {
+        "title": "BAPI के बारे में",
+        "whyBapi": "BAPI क्यों",
+        "whyBapiDesc": "BAPI सेंसर क्यों चुनें",
+        "missionValues": "मिशन और मूल्य",
+        "missionValuesDesc": "हमें क्या प्रेरित करता है",
+        "news": "समाचार और घटनाएं",
+        "newsDesc": "नवीनतम घोषणाएं",
+        "careers": "करियर",
+        "careersDesc": "हमारी टीम में शामिल हों"
+      },
+      "getInTouch": {
+        "title": "संपर्क करें",
+        "contactSales": "बिक्री से संपर्क करें",
+        "contactSalesDesc": "प्रतिनिधि से बात करें",
+        "whereToBuy": "कहाँ से खरीदें",
+        "whereToBuyDesc": "एक वितरक खोजें",
+        "requestQuote": "कोटेशन मांगें",
+        "requestQuoteDesc": "मूल्य प्राप्त करें"
+      },
+      "featured": {
+        "title": "अपने भवन स्वचालन को परिवर्तित करने के लिए तैयार हैं?",
+        "description": "अपनी परियोजना की आवश्यकताओं पर चर्चा करने और उपयुक्त सेंसर समाधान खोजने के लिए हमारी टीम से संपर्क करें।",
+        "cta": "हमारी टीम से संपर्क करें"
+      }
+    }
+  },
+  "products": {
+    "title": "Products",
+    "description": "Browse our complete catalog",
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added to Cart!",
+    "outOfStock": "Out of Stock",
+    "backInStock": "Back in Stock",
+    "price": "Price",
+    "sku": "SKU",
+    "partNumber": "Part Number",
+    "availability": "Availability",
+    "inStock": "In Stock",
+    "quantity": "Quantity",
+    "specifications": "Specifications",
+    "features": "Features",
+    "documentation": "Documentation",
+    "relatedProducts": "Related Products",
+    "viewDetails": "View Details",
+    "compareProducts": "Compare Products",
+    "requestQuote": "Request Quote",
+    "downloadDatasheet": "Download Datasheet",
+    "technicalSupport": "Technical Support",
+    "filters": {
+      "title": "Filters",
+      "category": "Category",
+      "priceRange": "Price Range",
+      "inStockOnly": "In Stock Only",
+      "clearFilters": "Clear Filters"
+    },
+    "sort": {
+      "title": "Sort By",
+      "featured": "Featured",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "priceLowHigh": "Price: Low to High",
+      "priceHighLow": "Price: High to Low",
+      "newest": "Newest First"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "भवन स्वचालन के लिए सटीक सेंसर समाधान",
+      "description": "NIST-ट्रेसेबल सेंसर और BACnet-प्रमाणित कंट्रोलर डेटा केंद्रों, स्वास्थ्य देखभाल और महत्वपूर्ण सुविधाओं के इंजीनियरों द्वारा विश्वास किया जाता है।",
+      "cta": "उत्पादों का पता लगाएं",
+      "secondaryCta": "सेल्स से बात करें",
+      "productFamilyTitle": "भवन स्वचालन प्रणालियों के लिए पूर्ण सेंसर समाधान",
+      "productFamilySubtitle": "सटीक निगरानी और नियंत्रण के लिए दुनिया भर के इंजीनियरों द्वारा विश्वास किया जाता है"
+    },
+    "taglines": [
+      "उद्योग नेतृत्व करने वाले सेंसर",
+      "1993 से सेंसरों के बारे में सोचने का तरीका बदल रहा है",
+      "अपने मौजूदा BAS के लिए सुगम वायरलेस एकीकरण",
+      "सटीक इंजीनियरिंग",
+      "भविष्य का निर्माण",
+      "...यह ऊपर के छोर में है",
+      "लोग। भवन। सेंसर"
+    ],
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "उत्कृष्टता के वर्ष",
+      "productsValue": "608",
+      "productsLabel": "उत्पाद मॉडल",
+      "globalValue": "वैश्विक",
+      "globalLabel": "पहुंच और समर्थन",
+      "isoValue": "ISO 9001",
+      "isoLabel": "प्रमाणित गुणवत्ता"
+    },
+    "categories": {
+      "title": "हमारे उत्पाद कैटलॉग का पता लगाएं",
+      "subtitle": "अपने भवन स्वचालन परियोजना के लिए सही समाधान खोजने के लिए सेंसर प्रकार के अनुसार ब्राउज़ करें",
+      "temperature": {
+        "name": "तापमान सेंसर",
+        "description": "उच्च शुद्धता तापमान मापन"
+      },
+      "humidity": {
+        "name": "आर्द्रता सेंसर",
+        "description": "सटीक सापेक्ष आर्द्रता निगरानी"
+      },
+      "pressure": {
+        "name": "दबाव सेंसर",
+        "description": "अंतर और स्थिर दबाव"
+      },
+      "airQuality": {
+        "name": "वायु गुणवत्ता सेंसर",
+        "description": "CO₂, VOC और कणों की निगरानी"
+      },
+      "wireless": {
+        "name": "वायरलेस सेंसर",
+        "description": "WAM™ क्लाउड-कनेक्टेड निगरानी"
+      },
+      "accessories": {
+        "name": "एक्सेसरीज",
+        "description": "माउंटिंग हार्डवेयर और इन्क्लोजर"
+      },
+      "testInstruments": {
+        "name": "परीक्षण उपकरण",
+        "description": "कैलिब्रेशन और सत्यापन उपकरण"
+      },
+      "etaLine": {
+        "name": "ETA लाइन",
+        "description": "मॉड्यूलर I/O और नियंत्रण"
+      },
+      "viewAll": "सभी उत्पादों को देखें",
+      "viewProducts": "उत्पाद देखें",
+      "browseAll": "सभी उत्पाद ब्राउज़ करें"
+    },
+    "whyBapi": {
+      "title": "बापी क्यों?",
+      "description": "BAPI 1993 से सेंसरों के बारे में सोचने का तरीका बदल रहा है। हम मानते हैं कि सेंसर केवल सरल वस्तुएं नहीं हैं। वे भवन स्वचालन नियंत्रण प्रणाली के अभिन्न हिस्से हैं और ऊर्जा बचत की मिशन के लिए महत्वपूर्ण हैं। नवाचार और गुणवत्ता के प्रति हमारी प्रतिबद्धता ने BAPI को सेंसर समाधानों का एक अग्रणी वैश्विक निर्माता बना दिया है, जिसमें गुणवत्ता, विश्वसनीयता और मूल्य पर भारी जोर है।",
+      "warranty": {
+        "title": "वारंटी",
+        "description": "हमारे उत्पाद लंबे समय तक चलने के लिए डिज़ाइन और निर्मित किए गए हैं। हम इस दावे का समर्थन करने के लिए सभी उत्पादों पर 5 साल की वारंटी देते हैं।",
+        "footnote": "कई एकल बिंदु, कमरे और डक्ट कमरे के तापमान सेंसरों पर उत्पाद जीवनकाल के दौरान सीमित वारंटी भी उपलब्ध है।*"
+      },
+      "bapiBackedTitle": "बापी-समर्थित",
+      "bapiBackedDescription": "अधिकांश सेंसर निर्माता अपने खराब उत्पादों को प्रतिस्थापित करेंगे, लेकिन केवल BAPI उद्योग मानक से आगे जाने का साहस रखता है।",
+      "bapiBackedFootnote": "बापी-समर्थित का मतलब है कि हम अपने सभी उत्पादों के पीछे खड़े हैं, इसलिए हमारे उत्पादों की गुणवत्ता पर आत्मविश्वास रखें कि अगर कोई वारंटी अवधि के भीतर खराब हो जाता है, तो हम न केवल इसकी मरम्मत या प्रतिस्थापन करेंगे, बल्कि आपके उत्पन्न होने वाले लागत को कम करने के लिए उत्पाद विशेषज्ञ भी प्रदान करेंगे।*",
+      "bapiOriginal": {
+        "title": "बापी मूल",
+        "description": "बापी में, हम अपने उद्योग में अग्रणी बनने का प्रयास करते हैं क्योंकि हम आपके लिए डिज़ाइन किए गए नवीनतम, उच्च गुणवत्ता वाले उत्पाद और सेवाएं प्रदान करते हैं।",
+        "footnote": "\"अन्य मूल\" मुहर से युक्त उत्पाद BAPI के लिए अद्वितीय हैं और इन डिज़ाइनों की प्रेरणा हमारे मूल्यवान ग्राहकों, प्रतिभाशाली कर्मचारियों और सम्मानित वेंडरों से आती है। इन तीन घटकों का संयोग उद्योग नेतृत्व करने वाले, मूल समाधान बनाता है जो सामान्य HVACR समस्याओं को हल करने के लिए बनाए गए हैं।"
+      }
+    },
+    "globalPresence": {
+      "title": "हमारी वैश्विक उपस्थिति",
+      "subtitle": "विस्कॉन्सिन में हमारे मुख्यालय से लेकर तीन महाद्वीपों में स्थित सुविधाओं तक, BAPI स्थानीय विशेषज्ञता और वैश्विक पहुंच के साथ ग्राहकों की सेवा करता है।"
+    },
+    "news": {
+      "badge": "नवीनतम समाचार",
+      "title": "अपडेट रहें",
+      "subtitle": "नवीनतम अपडेट, उत्पाद घोषणाएं और उद्योग अंतर्दृष्टि",
+      "viewAll": "सभी समाचार देखें",
+      "noArticles": "अभी तक कोई समाचार लेख उपलब्ध नहीं हैं"
+    },
+    "locations": {
+      "mapLegend": {
+        "headquarters": "मुख्यालय",
+        "distribution": "वितरण",
+        "production": "उत्पादन",
+        "productionService": "उत्पादन और सेवा"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "वैश्विक मुख्यालय",
+          "city": "गेस मिल्स",
+          "country": "यूएसए",
+          "description": "कॉर्पोरेट मुख्यालय और प्राथमिक विनिर्माण सुविधा",
+          "type": "मुख्यालय",
+          "established": "स्थापित 1993"
+        },
+        "distributionUk": {
+          "name": "यूके वितरण केंद्र",
+          "city": "एल्डरशॉट",
+          "country": "यूनाइटेड किंगडम",
+          "description": "यूरोपीय वितरण और लॉजिस्टिक हब",
+          "type": "वितरण केंद्र"
+        },
+        "productionPoland": {
+          "name": "उत्पादन और ग्राहक सेवा सुविधा",
+          "city": "नोवा वोला",
+          "country": "पोलैंड",
+          "description": "यूरोपीय उत्पादन सुविधा और ग्राहक सेवा केंद्र",
+          "type": "उत्पादन और सेवा"
+        },
+        "productionVietnam": {
+          "name": "एशिया-प्रशांत उत्पादन सुविधा",
+          "city": "दा नांग",
+          "country": "वियतनाम",
+          "description": "एशियाई बाजारों की सेवा करने के लिए नया विनिर्माण सुविधा",
+          "type": "उत्पादन",
+          "status": "जल्द खुल रहा है"
+        }
+      },
+      "cta": {
+        "text": "स्थानीय समर्थन या साझेदारी अवसरों की तलाश कर रहे हैं?",
+        "button": "हमसे संपर्क करें"
+      }
+    },
+    "finalCta": {
+      "title": "अपना समाधान खोजने के लिए तैयार हैं?",
+      "subtitle": "हमारे पूर्ण कैटलॉग का अन्वेषण करें या विशेषज्ञ मार्गदर्शन के लिए हमारी बिक्री टीम से संपर्क करें",
+      "exploreProducts": "उत्पाद का पता लगाएं",
+      "talkToSales": "बिक्री से बात करें",
+      "footer": "अमेरिका में बनाया गया • एक ही दिन में शिपिंग • ISO 9001:2015 प्रमाणित • 30+ वर्षों की उत्कृष्टता"
+    }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "भवन स्वचालन के लिए सटीक सेंसर समाधान",
+      "description": "1993 से मिशन-महत्वपूर्ण सुविधाओं के लिए दुनिया भर के इंजीनियरों द्वारा विश्वसनीय"
+    },
+    "sections": {
+      "products": {
+        "title": "उत्पाद",
+        "links": {
+          "allSensors": "सभी सेंसर",
+          "wireless": "वायरलेस निगरानी",
+          "testInstruments": "परीक्षण उपकरण",
+          "airQuality": "वायु गुणवत्ता सेंसर",
+          "accessories": "सहायक उपकरण",
+          "browseCatalog": "कैटलॉग ब्राउज़ करें"
+        }
+      },
+      "resources": {
+        "title": "संसाधन",
+        "links": {
+          "datasheets": "तकनीकी डेटाशीट",
+          "installation": "स्थापना मार्गदर्शिका",
+          "applicationNotes": "अनुप्रयोग नोट्स",
+          "videos": "वीडियो लाइब्रेरी",
+          "caseStudies": "केस अध्ययन"
+        }
+      },
+      "company": {
+        "title": "कंपनी",
+        "links": {
+          "mission": "मिशन और मूल्य",
+          "whyBapi": "BAPI क्यों",
+          "news": "समाचार",
+          "careers": "करियर",
+          "contact": "हमसे संपर्क करें"
+        }
+      },
+      "support": {
+        "title": "सहायता",
+        "links": {
+          "technical": "तकनीकी सहायता",
+          "selector": "उत्पाद चयनकर्ता",
+          "crossReference": "क्रॉस रेफरेंस",
+          "distributorNetwork": "वितरक नेटवर्क"
+        }
+      }
+    },
+    "contact": {
+      "title": "संपर्क",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "पुरस्कार और मान्यता",
+      "description": "भवन स्वचालन प्रौद्योगिकी में नवाचार और उत्कृष्टता के लिए मान्यता प्राप्त"
+    },
+    "certifications": {
+      "title": "प्रमाणीकरण",
+      "bacnet": "BACnet B-ASC प्रमाणित",
+      "iso": "ISO 9001:2015",
+      "ul": "UL सूचीबद्ध",
+      "madeInUsa": "अमेरिका में बना"
+    },
+    "quickActions": {
+      "title": "त्वरित कार्रवाई",
+      "requestQuote": "कोटेशन अनुरोध करें",
+      "findDistributor": "वितरक खोजें"
+    },
+    "legal": {
+      "copyright": "© {year} बिल्डिंग ऑटोमेशन प्रोडक्ट्स, इंक. सभी अधिकार सुरक्षित।",
+      "trademark": "BAPI® बिल्डिंग ऑटोमेशन प्रोडक्ट्स, इंक. का एक पंजीकृत व्यापार चिह्न है।",
+      "privacy": "गोपनीयता नीति",
+      "terms": "उपयोग की शर्तें"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "हमें फॉलो करें"
+    }
+  },
+  "region": {
+    "selectLanguage": "Select Language",
+    "selectRegion": "Select Region",
+    "currency": "Currency",
+    "measurements": "Measurements",
+    "temperature": "Temperature",
+    "pressure": "Pressure",
+    "unitSystem": {
+      "metric": "Metric (°C, bar)",
+      "imperial": "Imperial (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "North America",
+      "europe": "Europe",
+      "asia": "Asia",
+      "middleEast": "Middle East",
+      "latinAmerica": "Latin America",
+      "australia": "Australia & Pacific"
+    },
+    "languages": {
+      "en": "English",
+      "de": "Deutsch (German)",
+      "fr": "Français (French)",
+      "es": "Español (Spanish)",
+      "ja": "日本語 (Japanese)",
+      "zh": "中文 (Chinese)",
+      "vi": "Tiếng Việt (Vietnamese)",
+      "ar": "العربية (Arabic)"
+    },
+    "currencies": {
+      "usd": "USD ($)",
+      "eur": "EUR (€)",
+      "gbp": "GBP (£)",
+      "cad": "CAD ($)",
+      "jpy": "JPY (¥)",
+      "cny": "CNY (¥)",
+      "vnd": "VND (₫)",
+      "aed": "AED (د.إ)"
+    }
+  },
+  "units": {
+    "temperature": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kelvin": "K"
+    },
+    "pressure": {
+      "bar": "bar",
+      "psi": "PSI",
+      "pa": "Pa",
+      "kpa": "kPa",
+      "inWc": "inWC"
+    },
+    "length": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "inch": "inch",
+      "ft": "ft"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "network": "Network error. Please check your connection.",
+    "notFound": "Page not found",
+    "unauthorized": "You must be signed in to access this page",
+    "serverError": "Server error. Please try again later.",
+    "validationError": "Please check your input and try again",
+    "addToCartFailed": "Failed to add item to cart",
+    "productNotFound": "Product not found",
+    "cartEmpty": "Your cart is empty",
+    "checkoutFailed": "Checkout failed. Please try again."
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign Up",
+    "profile": "Profile",
+    "account": "My Account",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "orders": "Orders",
+    "favorites": "Favorites",
+    "quotes": "Quotes",
+    "addresses": "Addresses",
+    "paymentMethods": "Payment Methods",
+    "welcome": "Welcome",
+    "welcomeBack": "Welcome back",
+    "loginRequired": "Please sign in to continue",
+    "logout": "Sign Out",
+    "myProfile": "My Profile"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "emptyDescription": "Browse our products to add items to your cart",
+    "checkout": "Proceed to Checkout",
+    "continueShopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "total": "Total",
+    "itemCount": "{count} {count, plural, =1 {item} other {items}}",
+    "removeItem": "Remove item",
+    "updateQuantity": "Update quantity",
+    "applyCoupon": "Apply Coupon",
+    "couponCode": "Coupon Code",
+    "couponApplied": "Coupon applied successfully",
+    "couponInvalid": "Invalid coupon code",
+    "cartUpdated": "Cart updated"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping": "Shipping Information",
+    "payment": "Payment Information",
+    "review": "Review Order",
+    "placeOrder": "Place Order",
+    "orderSummary": "Order Summary",
+    "billingAddress": "Billing Address",
+    "shippingAddress": "Shipping Address",
+    "sameAsBilling": "Same as billing address",
+    "paymentMethod": "Payment Method",
+    "creditCard": "Credit Card",
+    "cardNumber": "Card Number",
+    "expiryDate": "Expiry Date",
+    "cvv": "CVV",
+    "nameOnCard": "Name on Card",
+    "orderTotal": "Order Total",
+    "terms": "Terms & Conditions",
+    "acceptTerms": "I accept the terms and conditions",
+    "processing": "Processing your order...",
+    "orderComplete": "Order Complete!",
+    "orderNumber": "Order Number",
+    "thankYou": "Thank you for your order"
+  },
+  "forms": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "company": "Company Name",
+    "address": "Street Address",
+    "address2": "Apartment, suite, etc. (optional)",
+    "city": "City",
+    "state": "State / Province",
+    "zipCode": "ZIP / Postal Code",
+    "country": "Country",
+    "message": "Message",
+    "subject": "Subject",
+    "required": "Required",
+    "optional": "Optional",
+    "invalidEmail": "Invalid email address",
+    "invalidPhone": "Invalid phone number",
+    "fieldRequired": "This field is required",
+    "selectOption": "Select an option",
+    "enterValue": "Enter a value"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "openCart": "Open shopping cart",
+    "closeCart": "Close shopping cart",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "pageNavigation": "Page navigation",
+    "loading": "Loading content",
+    "searchResults": "Search results"
+  }
+}

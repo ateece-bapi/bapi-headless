@@ -126,6 +126,7 @@ function getLocaleFromLanguage(language: LanguageCode): string {
     ar: 'ar-AE',
     th: 'th-TH',
     pl: 'pl-PL',
+    hi: 'hi-IN',
   };
   return localeMap[language];
 }

@@ -15,6 +15,7 @@ import zhMessages from '../../../messages/zh.json';
 import viMessages from '../../../messages/vi.json';
 import thMessages from '../../../messages/th.json';
 import plMessages from '../../../messages/pl.json';
+import hiMessages from '../../../messages/hi.json';
 
 type Messages = Record<string, any>;
 type TranslationContextType = {
@@ -33,6 +34,7 @@ const allMessages: Record<LanguageCode, Messages> = {
   vi: viMessages,
   th: thMessages,
   pl: plMessages,
+  hi: hiMessages,
 };
 
 const TranslationContext = createContext<TranslationContextType | null>(null);

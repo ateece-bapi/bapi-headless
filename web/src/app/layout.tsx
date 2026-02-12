@@ -23,13 +23,12 @@ export const metadata: Metadata = generateDefaultMetadata('en');
 
 export default async function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 }>) {
-  // Get locale from params
-  const { locale } = await params;
+  // Root layout doesn't have locale in route - default to 'en'
+  // The [locale] layout handles locale-specific content
+  const locale = 'en';
 
   // Generate site-wide structured data for SEO
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';

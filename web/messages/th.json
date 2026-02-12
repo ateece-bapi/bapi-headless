@@ -2,6 +2,14 @@
   "common": {},
   "nav": {},
   "megaMenu": {
+    "badges": {
+      "popular": "ยอดนิยม",
+      "premium": "พรีเมี่ยม",
+      "premiumSolution": "โซลูชั่นพรีเมี่ยม",
+      "new": "ใหม่",
+      "download": "ดาวน์โหลด",
+      "phase2": "เฟส 2"
+    },
     "resources": {
       "label": "ทรัพยากร",
       "technicalDocumentation": {

@@ -17,10 +17,10 @@
  * node translate-with-ai.js vi  # Vietnamese
  * node translate-with-ai.js de  # German
  * node translate-with-ai.js fr  # French
- * node translate-with-ai.js all # All 8 languages
+ * node translate-with-ai.js all # All languages
  */
 
-const Anthropic = require('../web/node_modules/@anthropic-ai/sdk');
+const Anthropic = require('@anthropic-ai/sdk');
 const fs = require('fs');
 const path = require('path');
 
@@ -33,7 +33,9 @@ const LANGUAGES = {
   zh: 'Chinese Simplified (中文) - Professional business tone',
   vi: 'Vietnamese (Tiếng Việt) - Professional business tone - URGENT: Vietnam facility opening April 2026',
   ar: 'Arabic (العربية) - Professional business tone - RTL layout',
-  th: 'Thai (ไทย) - Professional business tone'
+  th: 'Thai (ไทย) - Professional business tone',
+  pl: 'Polish (Polski) - Professional B2B tone',
+  hi: 'Hindi (हिंदी) - Professional business tone'
 };
 
 // Initialize Anthropic client

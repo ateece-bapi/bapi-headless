@@ -261,6 +261,14 @@
     "mena": "中東"
   },
   "megaMenu": {
+    "badges": {
+      "popular": "人気",
+      "premium": "プレミアム",
+      "premiumSolution": "プレミアムソリューション",
+      "new": "新着",
+      "download": "ダウンロード",
+      "phase2": "フェーズ2"
+    },
     "resources": {
       "label": "リソース",
       "technicalDocumentation": {

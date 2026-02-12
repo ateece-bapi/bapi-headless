@@ -12,6 +12,7 @@ export interface MegaMenuLink {
 
 export interface MegaMenuColumn {
   title: string;
+  slug: string; // Stable URL slug (not translated, e.g., 'temperature')
   icon?: React.ComponentType<{ className?: string }> | string; // Support both React components and image paths
   links: MegaMenuLink[];
 }

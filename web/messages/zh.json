@@ -261,6 +261,14 @@
     "mena": "中东"
   },
   "megaMenu": {
+    "badges": {
+      "popular": "热门",
+      "premium": "高级",
+      "premiumSolution": "高级解决方案",
+      "new": "新品",
+      "download": "下载",
+      "phase2": "阶段2"
+    },
     "resources": {
       "label": "资源",
       "technicalDocumentation": {

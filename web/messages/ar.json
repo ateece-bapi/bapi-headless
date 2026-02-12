@@ -290,6 +290,14 @@
     "mena": "الشرق الأوسط"
   },
   "megaMenu": {
+    "badges": {
+      "popular": "شائع",
+      "premium": "متميز",
+      "premiumSolution": "حل متميز",
+      "new": "جديد",
+      "download": "تحميل",
+      "phase2": "المرحلة 2"
+    },
     "resources": {
       "label": "الموارد",
       "technicalDocumentation": {

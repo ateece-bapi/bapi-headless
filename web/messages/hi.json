@@ -36,6 +36,14 @@
     "signIn": "उपयोगकर्ता प्रवेश"
   },
   "megaMenu": {
+    "badges": {
+      "popular": "लोकप्रिय",
+      "premium": "प्रीमियम",
+      "premiumSolution": "प्रीमियम समाधान",
+      "new": "नया",
+      "download": "डाउनलोड",
+      "phase2": "चरण 2"
+    },
     "products": {
       "label": "उत्पाद",
       "temperature": {

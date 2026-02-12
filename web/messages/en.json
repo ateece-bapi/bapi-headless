@@ -36,6 +36,14 @@
     "signIn": "User Sign In"
   },
   "megaMenu": {
+    "badges": {
+      "popular": "Popular",
+      "premium": "Premium",
+      "premiumSolution": "Premium Solution",
+      "new": "New",
+      "download": "Download",
+      "phase2": "Phase 2"
+    },
     "products": {
       "label": "Products",
       "temperature": {

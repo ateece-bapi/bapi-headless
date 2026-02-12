@@ -24,6 +24,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
       columns: [
         {
           title: t('products.temperature.title'),
+          slug: 'temperature',
           icon: '/images/icons/Temperature_Icon.webp',
           links: [
             {
@@ -50,6 +51,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.humidity.title'),
+          slug: 'humidity',
           icon: '/images/icons/Humidity_Icon.webp',
           links: [
             {
@@ -76,6 +78,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.pressure.title'),
+          slug: 'pressure',
           icon: '/images/icons/Pressure_Icon.webp',
           links: [
             {
@@ -97,6 +100,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.airQuality.title'),
+          slug: 'air-quality',
           icon: '/images/icons/AirQuality_Icon.webp',
           links: [
             {
@@ -118,13 +122,14 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.wireless.title'),
+          slug: 'wireless',
           icon: '/images/icons/Wireless_Icon.webp',
           links: [
             {
               label: t('products.wireless.wamTemperature'),
               href: '/wireless',
               description: t('products.wireless.wamTemperatureDesc'),
-              badge: 'Popular',
+              badge: t('badges.popular'),
             },
             {
               label: t('products.wireless.wamHumidity'),
@@ -140,12 +145,13 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
               label: t('products.wireless.cloudPlatform'),
               href: '/wam',
               description: t('products.wireless.cloudPlatformDesc'),
-              badge: 'Premium',
+              badge: t('badges.premium'),
             },
           ],
         },
         {
           title: t('products.accessories.title'),
+          slug: 'accessories',
           icon: '/images/icons/Accessories_Icon.webp',
           links: [
             {
@@ -167,13 +173,14 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.testInstruments.title'),
+          slug: 'test-instruments',
           icon: '/images/icons/Test_Instruments_Icon.webp',
           links: [
             {
               label: t('products.testInstruments.bluTestTemperature'),
               href: '/test-instruments',
               description: t('products.testInstruments.bluTestTemperatureDesc'),
-              badge: 'New',
+              badge: t('badges.new'),
             },
             {
               label: t('products.testInstruments.bluTestHumidity'),
@@ -193,7 +200,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         description: t('products.featured.description'),
         cta: t('products.featured.cta'),
         href: '/wam',
-        badge: 'Premium Solution',
+        badge: t('badges.premiumSolution'),
       },
     },
   },
@@ -301,13 +308,14 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
       columns: [
         {
           title: t('resources.technicalDocumentation.title'),
+          slug: 'technical-documentation',
           icon: BookOpen,
           links: [
             {
               label: t('resources.technicalDocumentation.applicationNotes'),
               href: '/application-notes',
               description: t('resources.technicalDocumentation.applicationNotesDesc'),
-              badge: 'Popular',
+              badge: t('badges.popular'),
             },
             {
               label: t('resources.technicalDocumentation.serviceBulletins'),
@@ -328,13 +336,14 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('resources.toolsGuides.title'),
+          slug: 'tools-guides',
           icon: Wrench,
           links: [
             {
               label: t('resources.toolsGuides.catalog'),
               href: '/catalogpricebook/',
               description: t('resources.toolsGuides.catalogDesc'),
-              badge: 'Download',
+              badge: t('badges.download'),
             },
             {
               label: t('resources.toolsGuides.siteVerification'),
@@ -350,13 +359,14 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('resources.learningCenter.title'),
+          slug: 'learning-center',
           icon: GraduationCap,
           links: [
             {
               label: t('resources.learningCenter.videos'),
               href: '/resources/videos',
               description: t('resources.learningCenter.videosDesc'),
-              badge: 'Phase 2',
+              badge: t('badges.phase2'),
             },
             {
               label: t('resources.learningCenter.caseStudies'),
@@ -367,7 +377,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
               label: t('resources.learningCenter.webinars'),
               href: '/resources/webinars',
               description: t('resources.learningCenter.webinarsDesc'),
-              badge: 'Phase 2',
+              badge: t('badges.phase2'),
             },
           ],
         },
@@ -387,13 +397,14 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
       columns: [
         {
           title: t('support.getHelp.title'),
+          slug: 'get-help',
           icon: LifeBuoy,
           links: [
             {
               label: t('support.getHelp.contactSupport'),
               href: '/contact',
               description: t('support.getHelp.contactSupportDesc'),
-              badge: 'Popular',
+              badge: t('badges.popular'),
             },
             {
               label: t('support.getHelp.rmaRequest'),
@@ -404,12 +415,13 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
               label: t('support.getHelp.whereToBuy'),
               href: '/where-to-buy/',
               description: t('support.getHelp.whereToBuyDesc'),
-              badge: 'Popular',
+              badge: t('badges.popular'),
             },
           ],
         },
         {
           title: t('support.existingCustomers.title'),
+          slug: 'existing-customers',
           icon: Users,
           links: [
             {
@@ -445,6 +457,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
       columns: [
         {
           title: t('company.aboutBapi.title'),
+          slug: 'about-bapi',
           icon: Building2,
           links: [
             {
@@ -471,13 +484,14 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('company.getInTouch.title'),
+          slug: 'get-in-touch',
           icon: Phone,
           links: [
             {
               label: t('company.getInTouch.contactSales'),
               href: '/contact',
               description: t('company.getInTouch.contactSalesDesc'),
-              badge: 'Popular',
+              badge: t('badges.popular'),
             },
             {
               label: t('company.getInTouch.whereToBuy'),

@@ -25,94 +25,23 @@ const LANGUAGES = {
   ar: 'Arabic',
 };
 
-const sourceTextFromEn = {
-  "label": "Products",
-  "temperature": {
-    "title": "Temperature",
-    "roomWallSensors": "Room & Wall Sensors",
-    "roomWallSensorsDesc": "High-accuracy temperature sensing",
-    "ductSensors": "Duct Sensors",
-    "ductSensorsDesc": "Duct-mounted transmitters",
-    "immersionWell": "Immersion & Well",
-    "immersionWellDesc": "Liquid temperature measurement",
-    "outdoorSensors": "Outdoor Sensors",
-    "outdoorSensorsDesc": "Weather-resistant sensing"
-  },
-  "humidity": {
-    "title": "Humidity",
-    "roomHumidity": "Room Humidity",
-    "roomHumidityDesc": "Wall-mount RH sensors",
-    "ductHumidity": "Duct Humidity",
-    "ductHumidityDesc": "Supply & return air RH",
-    "outdoorHumidity": "Outdoor Humidity",
-    "outdoorHumidityDesc": "Weather-resistant RH",
-    "comboSensors": "Combo Sensors",
-    "comboSensorsDesc": "Temperature + humidity"
-  },
-  "pressure": {
-    "title": "Pressure",
-    "differential": "Differential Pressure",
-    "differentialDesc": "Room & filter monitoring",
-    "static": "Static Pressure",
-    "staticDesc": "Duct static transmitters",
-    "barometric": "Barometric",
-    "barometricDesc": "Atmospheric pressure"
-  },
-  "airQuality": {
-    "title": "Air Quality",
-    "co2": "CO₂ Sensors",
-    "co2Desc": "Carbon dioxide monitoring",
-    "voc": "VOC Sensors",
-    "vocDesc": "Volatile organic compounds",
-    "particulate": "Particulate Matter",
-    "particulateDesc": "PM2.5 and PM10"
-  },
-  "wireless": {
-    "title": "Wireless",
-    "wamTemperature": "WAM Temperature",
-    "wamTemperatureDesc": "Wireless temp sensors",
-    "wamHumidity": "WAM Humidity",
-    "wamHumidityDesc": "Wireless RH sensors",
-    "wamDoorSensors": "WAM Door Sensors",
-    "wamDoorSensorsDesc": "Open/close monitoring",
-    "cloudPlatform": "Cloud Platform",
-    "cloudPlatformDesc": "24/7 remote monitoring"
-  },
-  "accessories": {
-    "title": "Accessories",
-    "mounting": "Mounting Hardware",
-    "mountingDesc": "Plates, boxes, brackets",
-    "enclosures": "Enclosures",
-    "enclosuresDesc": "BAPI-Box & covers",
-    "cables": "Cables & Connectors",
-    "cablesDesc": "Wiring accessories"
-  },
-  "testInstruments": {
-    "title": "Test Instruments",
-    "bluTestTemperature": "Blu-Test Temperature",
-    "bluTestTemperatureDesc": "NIST-traceable reference",
-    "bluTestHumidity": "Blu-Test Humidity",
-    "bluTestHumidityDesc": "Temp + RH reference",
-    "bluTestPressure": "Blu-Test Pressure",
-    "bluTestPressureDesc": "Digital manometer"
-  },
-  "featured": {
-    "title": "WAM™ Wireless Asset Monitoring",
-    "description": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
-    "cta": "Learn More",
-    "wamTitle": "WAM™ Wireless Asset Monitoring",
-    "wamDescription": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
-    "wamCta": "Learn More",
-    "wamBadge": "Premium Solution"
-  },
-  "badges": {
-    "popular": "Popular",
-    "new": "New",
-    "premium": "Premium"
+/**
+ * Get the source products data from en.json to ensure we always translate
+ * the current canonical version instead of hardcoded text that can drift.
+ */
+function getSourceProducts() {
+  const enPath = path.join(__dirname, '..', 'messages', 'en.json');
+  const enContent = fs.readFileSync(enPath, 'utf-8');
+  const enData = JSON.parse(enContent);
+  
+  if (!enData.megaMenu?.products) {
+    throw new Error('megaMenu.products not found in en.json');
   }
-};
+  
+  return enData.megaMenu.products;
+}
 
-async function translateLanguage(langCode, langName) {
+async function translateLanguage(langCode, langName, sourceProducts) {
   console.log(`\n🔄 Translating megaMenu.products to ${langName} (${langCode})...`);
 
   try {
@@ -136,7 +65,7 @@ async function translateLanguage(langCode, langName) {
 
 JSON to translate:
 
-${JSON.stringify(sourceTextFromEn, null, 2)}`,
+${JSON.stringify(sourceProducts, null, 2)}`,
         },
       ],
     });
@@ -194,9 +123,13 @@ async function main() {
   console.log('🌍 Translating megaMenu.products section for all missing languages...\n');
   console.log(`Languages to translate: ${Object.keys(LANGUAGES).join(', ')}\n`);
 
+  // Read source products from en.json to ensure consistency
+  const sourceProducts = getSourceProducts();
+  console.log('✅ Loaded source products from en.json\n');
+
   for (const [langCode, langName] of Object.entries(LANGUAGES)) {
     try {
-      const translated = await translateLanguage(langCode, langName);
+      const translated = await translateLanguage(langCode, langName, sourceProducts);
       await updateLanguageFile(langCode, translated);
       
       // Small delay between translations to avoid rate limits

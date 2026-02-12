@@ -160,7 +160,7 @@
       }
     },
     "support": {
-      "label": "Support",
+      "label": "सहायता",
       "getHelp": {
         "title": "सहायता प्राप्त करें",
         "contactSupport": "सपोर्ट से संपर्क करें",
@@ -186,7 +186,7 @@
       }
     },
     "company": {
-      "label": "Company",
+      "label": "कंपनी",
       "aboutBapi": {
         "title": "BAPI के बारे में",
         "whyBapi": "BAPI क्यों",

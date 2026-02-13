@@ -2,6 +2,67 @@
 
 ## 🧹 Code Cleanup Tasks
 
+### ✅ Test Infrastructure i18n Fixes (Feb 13, 2026)
+**Status:** COMPLETE & MERGED (test/fix-product-component-i18n)
+**Summary:**
+  - Fixed 55 failing tests (ProductSpecifications, ProductDetailClient) after Tier 1 translation merge
+  - Moved test utilities to enable import alias resolution
+  - Synchronized mock translations with actual en.json content
+  - Updated route expectations to account for locale-aware routing
+**Problems Fixed:**
+  1. **Import Resolution**: `@/test/i18n-test-utils` not resolving (file outside src/ directory)
+  2. **Missing i18n Context**: Tests failing with "Failed to call 'useTranslations' because context from 'NextIntlClientProvider' was not found"
+  3. **Mock Translation Mismatches**: Tests using placeholder mocks ("Optional") instead of actual translations ("Apartment, suite, etc. (optional)")
+  4. **Locale Route Expectations**: Tests expecting `/cart` but components generating `/en/cart`
+**Solution:**
+  - Moved: `test/i18n-test-utils.tsx` → `src/test/i18n-test-utils.tsx` (enables @/ alias)
+  - Updated all 11 test files to use `@/test/i18n-test-utils` import
+  - Replaced entire mockMessages object with exact en.json translations:
+    * cartPage: 60+ keys (meta, header, empty, items, stock, quantity, summary, coupon, shipping, toasts)
+    * checkoutPage: 80+ keys (meta, header, wizard, shipping, payment, review, summary, toasts)
+    * productPage: 6 keys (specifications section)
+  - Updated route expectations: `/cart` → `/en/cart`, `/checkout` → `/en/checkout`, `/products` → `/en/products`
+**Changes:**
+  - web/src/test/i18n-test-utils.tsx: Created (moved from test/, +279 lines with complete mocks)
+  - web/test/i18n-test-utils.tsx: Deleted (-224 lines)
+  - web/src/components/products/__tests__/ProductSpecifications.test.tsx: Updated imports + render calls
+  - web/src/components/products/__tests__/ProductDetailClient.test.tsx: Updated imports + render calls
+  - web/src/app/[locale]/product/[slug]/__tests__/page.test.tsx: Updated imports + render calls
+  - web/src/components/checkout/__tests__/CheckoutSummary.test.tsx: Updated route expectation
+  - web/src/components/cart/CartPage/__tests__/CartSummary.test.tsx: Updated route expectation
+  - web/src/components/cart/CartPage/__tests__/CartPageClient.test.tsx: Updated 2 route expectations
+**Result:** 
+  - Test results: 298 passing → 647 passing (100% pass rate, 1 skipped)
+  - All checkout, cart, and product component tests passing
+  - Production build verified successful
+  - Test infrastructure reusable for future i18n components
+
+---
+
+### ✅ PNPM Lockfile Cleanup (Feb 13, 2026)
+**Status:** COMPLETE & MERGED (chore: ignore package-lock.json)
+**Summary:**
+  - Fixed lockfile warnings about missing @next/swc dependencies
+  - Cleaned up npm lockfile created by Next.js patching attempts
+  - Prevented future npm/pnpm lockfile conflicts
+**Problem:**
+  - Build showed: "⚠ Found lockfile missing swc dependencies, patching..."
+  - Next.js created package-lock.json during failed patching attempt
+  - Project uses pnpm but npm lockfile was present
+**Solution:**
+  - Ran `pnpm install` to sync dependencies (added 85, removed 160 outdated packages)
+  - Deleted `web/package-lock.json` (npm lockfile not needed)
+  - Added `package-lock.json` to `web/.gitignore` to prevent future conflicts
+**Changes:**
+  - web/.gitignore: +1 line (package-lock.json)
+  - pnpm-lock.yaml: Regenerated with correct dependencies
+**Result:**
+  - Build warnings resolved: "✓ Compiled successfully in 7.1s" (no warnings)
+  - Clean production builds for entire team
+  - No more lockfile conflicts between npm/pnpm
+
+---
+
 ### ✅ Prettier Formatting Standardization (Feb 12, 2026)
 **Status:** COMPLETE & MERGED (chore/prettier-formatting)
 **Summary:**

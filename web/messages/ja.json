@@ -679,5 +679,28 @@
       "couponRemoved": "クーポンが削除された",
       "couponRemovedMessage": "クーポン \"{code}\" が削除されました"
     }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "カテゴリが見つかりませんでした",
+      "descriptionTemplate": "BAPI - Building Automation Products Inc.の{name}を参照してください"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品"
+    },
+    "header": {
+      "productsAvailable": "{count}製品が利用可能"
+    },
+    "subcategories": {
+      "title": "カテゴリから探す",
+      "productCount": "{count}製品",
+      "productCountPlural": "{count}製品",
+      "browseButton": "製品を参照"
+    },
+    "quickLinks": {
+      "backToProducts": "← すべての製品に戻る",
+      "needHelp": "ご質問ですか? お問い合わせください"
+    }
   }
 }

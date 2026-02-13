@@ -663,5 +663,28 @@
       "couponRemoved": "ลบคูปองแล้ว",
       "couponRemovedMessage": "ลบคูปอน \"{code}\" แล้ว"
     }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "ไม่พบหมวดหมู่",
+      "descriptionTemplate": "เรียนรู้เกี่ยวกับ {name} จาก BAPI - Building Automation Products Inc."
+    },
+    "breadcrumb": {
+      "home": "หน้าหลัก",
+      "products": "สินค้า"
+    },
+    "header": {
+      "productsAvailable": "มีสินค้าทั้งหมด {count} ชิ้น"
+    },
+    "subcategories": {
+      "title": "เรียนรู้ตามหมวดหมู่",
+      "productCount": "สินค้า {count} ชิ้น",
+      "productCountPlural": "สินค้า {count} ชิ้น",
+      "browseButton": "เรียนรู้สินค้า"
+    },
+    "quickLinks": {
+      "backToProducts": "← กลับไปยังสินค้าทั้งหมด",
+      "needHelp": "ต้องการความช่วยเหลือ? ติดต่อเรา"
+    }
   }
 }

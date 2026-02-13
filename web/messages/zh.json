@@ -679,5 +679,28 @@
       "couponRemoved": "优惠券已删除",
       "couponRemovedMessage": "优惠券 \"{code}\" 已删除"
     }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "未找到分类",
+      "descriptionTemplate": "浏览来自BAPI - Building Automation Products Inc.的{name}"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品"
+    },
+    "header": {
+      "productsAvailable": "共有{count}款产品"
+    },
+    "subcategories": {
+      "title": "按类别浏览",
+      "productCount": "{count}款产品",
+      "productCountPlural": "{count}款产品",
+      "browseButton": "浏览产品"
+    },
+    "quickLinks": {
+      "backToProducts": "← 返回所有产品",
+      "needHelp": "需要帮助？联系我们"
+    }
   }
 }

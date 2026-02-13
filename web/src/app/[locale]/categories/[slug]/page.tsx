@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getGraphQLClient } from '@/lib/graphql/client';
@@ -16,7 +17,8 @@ interface CategoryPageProps {
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+  const t = await getTranslations({ locale });
   const client = getGraphQLClient(['product-categories'], true);
 
   try {
@@ -28,7 +30,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     const categoryData = data.productCategory;
     if (!categoryData) {
       return {
-        title: 'Category Not Found',
+        title: t('categoryPage.meta.notFound'),
       };
     }
 
@@ -36,17 +38,18 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       title: `${categoryData.name} | BAPI`,
       description:
         categoryData.description ||
-        `Browse ${categoryData.name} from BAPI - Building Automation Products Inc.`,
+        t('categoryPage.meta.descriptionTemplate', { name: categoryData.name }),
     };
   } catch (error) {
     return {
-      title: 'Category Not Found',
+      title: t('categoryPage.meta.notFound'),
     };
   }
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug, locale } = await params;
+  const t = await getTranslations({ locale });
   const client = getGraphQLClient(['product-categories'], true);
 
   const data = await client.request<GetProductCategoryWithChildrenQuery>(
@@ -78,14 +81,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               href={`/${locale}`}
               className="text-neutral-600 transition-colors hover:text-primary-500"
             >
-              Home
+              {t('categoryPage.breadcrumb.home')}
             </Link>
             <span className="text-neutral-400">/</span>
             <Link
               href={`/${locale}/products`}
               className="text-neutral-600 transition-colors hover:text-primary-500"
             >
-              Products
+              {t('categoryPage.breadcrumb.products')}
             </Link>
             <span className="text-neutral-400">/</span>
             <span className="font-medium text-neutral-900">{categoryData.name}</span>
@@ -121,7 +124,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 />
               </svg>
               <span className="font-semibold text-white">
-                {categoryData.count} products available
+                {t('categoryPage.header.productsAvailable', { count: categoryData.count })}
               </span>
             </div>
           </div>
@@ -131,7 +134,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       {/* Subcategories Grid */}
       {hasSubcategories && (
         <div className="mx-auto max-w-container px-4 py-12">
-          <h2 className="mb-8 text-2xl font-bold text-neutral-900">Browse by Category</h2>
+          <h2 className="mb-8 text-2xl font-bold text-neutral-900">{t('categoryPage.subcategories.title')}</h2>
           <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
             {subcategories.map((subcategory) => (
               <Link
@@ -188,7 +191,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             />
                           </svg>
                           <span className="text-sm font-semibold text-primary-700">
-                            {subcategory.count} product{subcategory.count !== 1 ? 's' : ''}
+                            {subcategory.count === 1
+                              ? t('categoryPage.subcategories.productCount', { count: subcategory.count })
+                              : t('categoryPage.subcategories.productCountPlural', { count: subcategory.count })}
                           </span>
                         </div>
                       )}
@@ -203,7 +208,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
                   {/* Browse Button with Gradient */}
                   <div className="bg-bapi-primary-gradient inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
-                    <span>Browse Products</span>
+                    <span>{t('categoryPage.subcategories.browseButton')}</span>
                     <svg
                       className="h-4 w-4 transition-transform group-hover:translate-x-1"
                       fill="none"
@@ -233,14 +238,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               href={`/${locale}/products`}
               className="text-sm text-neutral-600 transition-colors hover:text-primary-500"
             >
-              ← Back to All Products
+              {t('categoryPage.quickLinks.backToProducts')}
             </Link>
             <span className="text-neutral-300">|</span>
             <Link
               href={`/${locale}/contact`}
               className="text-sm text-neutral-600 transition-colors hover:text-primary-500"
             >
-              Need Help? Contact Us
+              {t('categoryPage.quickLinks.needHelp')}
             </Link>
           </div>
         </div>

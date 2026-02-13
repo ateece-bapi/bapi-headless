@@ -728,5 +728,28 @@
       "couponRemoved": "Mã giảm giá đã được xóa",
       "couponRemovedMessage": "Mã giảm giá \"{code}\" đã được xóa"
     }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "Không tìm thấy danh mục",
+      "descriptionTemplate": "Duyệt {name} từ BAPI - Building Automation Products Inc."
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm"
+    },
+    "header": {
+      "productsAvailable": "{count} sản phẩm có sẵn"
+    },
+    "subcategories": {
+      "title": "Duyệt theo Danh mục",
+      "productCount": "{count} sản phẩm",
+      "productCountPlural": "{count} sản phẩm",
+      "browseButton": "Duyệt Sản phẩm"
+    },
+    "quickLinks": {
+      "backToProducts": "← Trở lại Tất cả Sản phẩm",
+      "needHelp": "Cần Trợ giúp? Liên hệ với chúng tôi"
+    }
   }
 }

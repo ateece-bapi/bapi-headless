@@ -896,5 +896,28 @@
       "couponRemoved": "Coupon Removed",
       "couponRemovedMessage": "Coupon \"{code}\" removed"
     }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "Category Not Found",
+      "descriptionTemplate": "Browse {name} from BAPI - Building Automation Products Inc."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products"
+    },
+    "header": {
+      "productsAvailable": "{count} products available"
+    },
+    "subcategories": {
+      "title": "Browse by Category",
+      "productCount": "{count} product",
+      "productCountPlural": "{count} products",
+      "browseButton": "Browse Products"
+    },
+    "quickLinks": {
+      "backToProducts": "← Back to All Products",
+      "needHelp": "Need Help? Contact Us"
+    }
   }
 }

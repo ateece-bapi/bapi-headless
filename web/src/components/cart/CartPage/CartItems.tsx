@@ -120,7 +120,11 @@ export default function CartItems({
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center text-neutral-400">
-                  {t('cartPage.items.noImage')}
+                    {t('cartPage.items.noImage')}
+                  </div>
+                )}
+              </Link>
+
               {/* Product Details */}
               <div className="min-w-0 flex-1">
                 <Link href={`/en/product/${product.slug}`} className="group block">
@@ -212,7 +216,7 @@ export default function CartItems({
                     onClick={() => onUpdateQuantity(item.key, item.quantity - 1)}
                     disabled={isUpdating || item.quantity <= 1}
                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
-                    aria-label="Decrease quantity"
+                    aria-label={t('cartPage.quantity.decrease')}
                   >
                     <Minus className="h-4 w-4" />
                   </button>
@@ -223,7 +227,7 @@ export default function CartItems({
                     onClick={() => onUpdateQuantity(item.key, item.quantity + 1)}
                     disabled={isUpdating}
                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
-                    aria-label="Increase quantity"
+                    aria-label={t('cartPage.quantity.increase')}
                   >
                     <Plus className="h-4 w-4" />
                   </button>
@@ -249,7 +253,7 @@ export default function CartItems({
                   </div>
                 )}
                 {item.quantity > 1 && (
-                  <div className="text-sm text-neutral-500">{displayProduct.price} each</div>
+                  <div className="text-sm text-neutral-500">{t('cartPage.items.priceEach', { price: displayProduct.price })}</div>
                 )}
               </div>
             </div>

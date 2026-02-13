@@ -665,6 +665,64 @@
     "searchResults": "Search results"
   },
   "productPage": {
+    "summary": {
+      "title": "Product Summary",
+      "configureProduct": "Configure Product",
+      "selectSpecifications": "Select your specifications below to see pricing and part number",
+      "configurationComplete": "Configuration Complete",
+      "partNumber": "Part Number",
+      "quantity": "Quantity",
+      "multiplier": "Multiplier",
+      "priceCalculation": "Price Calculation"
+    },
+    "tabs": {
+      "description": "Description",
+      "documents": "Documents",
+      "videos": "Videos",
+      "specifications": "Specifications",
+      "support": "Support",
+      "overview": "Overview",
+      "specs": "Specs",
+      "descriptionPlaceholder": "Product description will appear here when available.",
+      "noVideosAvailable": "No videos available for this product.",
+      "noDocumentsAvailable": "No documents available for this product."
+    },
+    "specifications": {
+      "title": "Specifications",
+      "noSpecsAvailable": "No specifications available for this product.",
+      "expandAll": "Expand All",
+      "collapseAll": "Collapse All",
+      "download": "Download",
+      "downloadSpecs": "Download Specifications"
+    },
+    "related": {
+      "title": "Related Products",
+      "view": "View",
+      "addToJobEstimate": "Add to Job Estimate",
+      "viewProduct": "View Product",
+      "viewAll": "View All Related Products"
+    },
+    "actions": {
+      "addToCart": "Add to Cart",
+      "addToQuote": "Add to Quote",
+      "buyNow": "Buy Now",
+      "requestQuote": "Request Quote",
+      "compareProducts": "Compare Products",
+      "addToFavorites": "Add to Favorites",
+      "share": "Share"
+    },
+    "pricing": {
+      "price": "Price",
+      "regularPrice": "Regular Price",
+      "salePrice": "Sale Price",
+      "yourPrice": "Your Price",
+      "calculatedPrice": "Calculated Price",
+      "basePrice": "Base Price",
+      "totalPrice": "Total Price",
+      "pricePerUnit": "Price per unit",
+      "bulkDiscountAvailable": "Bulk discount available",
+      "contactForPricing": "Contact us for pricing"
+    },
     "availability": {
       "inStock": "In Stock",
       "outOfStock": "Out of Stock",

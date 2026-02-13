@@ -477,19 +477,77 @@
     }
   },
   "productPage": {
+    "summary": {
+      "title": "ملخص المنتج",
+      "configureProduct": "تهيئة المنتج",
+      "selectSpecifications": "حدد المواصفات أدناه لمعرفة الأسعار ورقم الجزء",
+      "configurationComplete": "اكتملت التهيئة",
+      "partNumber": "رقم الجزء",
+      "quantity": "الكمية",
+      "multiplier": "ضارب",
+      "priceCalculation": "حساب السعر"
+    },
+    "tabs": {
+      "description": "الوصف",
+      "documents": "المستندات",
+      "videos": "الفيديوهات",
+      "specifications": "المواصفات",
+      "support": "الدعم",
+      "overview": "نظرة عامة",
+      "specs": "المواصفات",
+      "descriptionPlaceholder": "سيظهر وصف المنتج هنا عند توفره.",
+      "noVideosAvailable": "لا توجد فيديوهات متاحة لهذا المنتج.",
+      "noDocumentsAvailable": "لا توجد مستندات متاحة لهذا المنتج."
+    },
+    "specifications": {
+      "title": "المواصفات",
+      "noSpecsAvailable": "لا توجد مواصفات متاحة لهذا المنتج.",
+      "expandAll": "توسيع الكل",
+      "collapseAll": "طي الكل",
+      "download": "تنزيل",
+      "downloadSpecs": "تنزيل المواصفات"
+    },
+    "related": {
+      "title": "المنتجات ذات الصلة",
+      "view": "عرض",
+      "addToJobEstimate": "إضافة إلى تقدير الوظيفة",
+      "viewProduct": "عرض المنتج",
+      "viewAll": "عرض جميع المنتجات ذات الصلة"
+    },
+    "actions": {
+      "addToCart": "إضافة إلى السلة",
+      "addToQuote": "إضافة إلى العرض",
+      "buyNow": "اشتر الآن",
+      "requestQuote": "طلب عرض سعر",
+      "compareProducts": "مقارنة المنتجات",
+      "addToFavorites": "إضافة إلى المفضلة",
+      "share": "مشاركة"
+    },
+    "pricing": {
+      "price": "السعر",
+      "regularPrice": "السعر العادي",
+      "salePrice": "سعر البيع",
+      "yourPrice": "سعرك",
+      "calculatedPrice": "السعر المحسوب",
+      "basePrice": "السعر الأساسي",
+      "totalPrice": "السعر الإجمالي",
+      "pricePerUnit": "السعر لكل وحدة",
+      "bulkDiscountAvailable": "الخصم الجماعي متاح",
+      "contactForPricing": "اتصل بنا للحصول على السعر"
+    },
     "availability": {
-      "inStock": "متوفر في المخزون",
-      "outOfStock": "غير متوفر في المخزون",
-      "onBackorder": "تحت الطلب",
-      "lowStock": "المخزون قليل",
+      "inStock": "متوفر في المخزن",
+      "outOfStock": "غير متوفر في المخزن",
+      "onBackorder": "بانتظار التوريد",
+      "lowStock": "المخزون منخفض",
       "checkAvailability": "تحقق من التوفر",
       "readyToShip": "جاهز للشحن",
       "currentlyUnavailable": "غير متوفر حاليًا",
-      "availableForPreorder": "متوفر للطلب المسبق",
+      "availableForPreorder": "متاح للطلب المسبق",
       "contactForAvailability": "اتصل بنا للاستفسار عن التوفر",
-      "onlyXLeft": "متبقي فقط {count} في المخزون",
-      "xAvailable": "{count} متاح",
-      "expectedBack": "متوقع الحصول عليه: {date}",
+      "onlyXLeft": "تبقى فقط {count} في المخزن",
+      "xAvailable": "{count} متوفرة",
+      "expectedBack": "متوقع العودة: {date}",
       "shipsOn": "يتم الشحن في: {date}"
     }
   }

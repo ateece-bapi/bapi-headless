@@ -497,19 +497,77 @@
     }
   },
   "productPage": {
+    "summary": {
+      "title": "Tóm tắt sản phẩm",
+      "configureProduct": "Cấu hình sản phẩm",
+      "selectSpecifications": "Chọn thông số kỹ thuật của bạn bên dưới để xem giá và số model",
+      "configurationComplete": "Cấu hình hoàn tất",
+      "partNumber": "Số model",
+      "quantity": "Số lượng",
+      "multiplier": "Hệ số nhân",
+      "priceCalculation": "Tính giá"
+    },
+    "tabs": {
+      "description": "Mô tả",
+      "documents": "Tài liệu",
+      "videos": "Video",
+      "specifications": "Thông số kỹ thuật",
+      "support": "Hỗ trợ",
+      "overview": "Tổng quan",
+      "specs": "Thông số",
+      "descriptionPlaceholder": "Mô tả sản phẩm sẽ xuất hiện ở đây khi có sẵn.",
+      "noVideosAvailable": "Không có video nào khả dụng cho sản phẩm này.",
+      "noDocumentsAvailable": "Không có tài liệu nào khả dụng cho sản phẩm này."
+    },
+    "specifications": {
+      "title": "Thông số kỹ thuật",
+      "noSpecsAvailable": "Không có thông số kỹ thuật khả dụng cho sản phẩm này.",
+      "expandAll": "Mở rộng tất cả",
+      "collapseAll": "Thu gọn tất cả",
+      "download": "Tải xuống",
+      "downloadSpecs": "Tải xuống thông số kỹ thuật"
+    },
+    "related": {
+      "title": "Sản phẩm liên quan",
+      "view": "Xem",
+      "addToJobEstimate": "Thêm vào Ước tính công việc",
+      "viewProduct": "Xem sản phẩm",
+      "viewAll": "Xem tất cả sản phẩm liên quan"
+    },
+    "actions": {
+      "addToCart": "Thêm vào giỏ hàng",
+      "addToQuote": "Thêm vào báo giá",
+      "buyNow": "Mua ngay",
+      "requestQuote": "Yêu cầu báo giá",
+      "compareProducts": "So sánh sản phẩm",
+      "addToFavorites": "Thêm vào Yêu thích",
+      "share": "Chia sẻ"
+    },
+    "pricing": {
+      "price": "Giá",
+      "regularPrice": "Giá niêm yết",
+      "salePrice": "Giá khuyến mãi",
+      "yourPrice": "Giá của bạn",
+      "calculatedPrice": "Giá tính toán",
+      "basePrice": "Giá gốc",
+      "totalPrice": "Tổng giá",
+      "pricePerUnit": "Giá mỗi đơn vị",
+      "bulkDiscountAvailable": "Có giảm giá số lượng",
+      "contactForPricing": "Liên hệ với chúng tôi để biết giá"
+    },
     "availability": {
       "inStock": "Còn hàng",
       "outOfStock": "Hết hàng",
       "onBackorder": "Đặt trước",
-      "lowStock": "Số lượng ít",
+      "lowStock": "Hàng sắp hết",
       "checkAvailability": "Kiểm tra tình trạng hàng",
       "readyToShip": "Sẵn sàng giao hàng",
-      "currentlyUnavailable": "Hiện tại không có sẵn",
+      "currentlyUnavailable": "Hiện không có sẵn",
       "availableForPreorder": "Có sẵn để đặt trước",
-      "contactForAvailability": "Liên hệ để biết tình trạng hàng",
-      "onlyXLeft": "Chỉ còn {count} sản phẩm",
+      "contactForAvailability": "Liên hệ với chúng tôi để biết tình trạng hàng",
+      "onlyXLeft": "Chỉ còn lại {count} sản phẩm",
       "xAvailable": "{count} sản phẩm có sẵn",
-      "expectedBack": "Dự kiến về hàng: {date}",
+      "expectedBack": "Dự kiến về vào: {date}",
       "shipsOn": "Giao hàng vào: {date}"
     }
   }

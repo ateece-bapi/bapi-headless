@@ -448,20 +448,78 @@
     }
   },
   "productPage": {
+    "summary": {
+      "title": "Resumen del producto",
+      "configureProduct": "Configurar producto",
+      "selectSpecifications": "Selecciona tus especificaciones a continuación para ver los precios y el número de pieza",
+      "configurationComplete": "Configuración completa",
+      "partNumber": "Número de pieza",
+      "quantity": "Cantidad",
+      "multiplier": "Multiplicador",
+      "priceCalculation": "Cálculo de precio"
+    },
+    "tabs": {
+      "description": "Descripción",
+      "documents": "Documentos",
+      "videos": "Videos",
+      "specifications": "Especificaciones",
+      "support": "Soporte",
+      "overview": "Descripción general",
+      "specs": "Especificaciones",
+      "descriptionPlaceholder": "La descripción del producto aparecerá aquí cuando esté disponible.",
+      "noVideosAvailable": "No hay videos disponibles para este producto.",
+      "noDocumentsAvailable": "No hay documentos disponibles para este producto."
+    },
+    "specifications": {
+      "title": "Especificaciones",
+      "noSpecsAvailable": "No hay especificaciones disponibles para este producto.",
+      "expandAll": "Expandir todo",
+      "collapseAll": "Contraer todo",
+      "download": "Descargar",
+      "downloadSpecs": "Descargar especificaciones"
+    },
+    "related": {
+      "title": "Productos relacionados",
+      "view": "Ver",
+      "addToJobEstimate": "Agregar a la estimación del trabajo",
+      "viewProduct": "Ver producto",
+      "viewAll": "Ver todos los productos relacionados"
+    },
+    "actions": {
+      "addToCart": "Agregar al carrito",
+      "addToQuote": "Agregar a la cotización",
+      "buyNow": "Comprar ahora",
+      "requestQuote": "Solicitar cotización",
+      "compareProducts": "Comparar productos",
+      "addToFavorites": "Agregar a favoritos",
+      "share": "Compartir"
+    },
+    "pricing": {
+      "price": "Precio",
+      "regularPrice": "Precio regular",
+      "salePrice": "Precio de venta",
+      "yourPrice": "Tu precio",
+      "calculatedPrice": "Precio calculado",
+      "basePrice": "Precio base",
+      "totalPrice": "Precio total",
+      "pricePerUnit": "Precio por unidad",
+      "bulkDiscountAvailable": "Descuento por volumen disponible",
+      "contactForPricing": "Contáctanos para obtener el precio"
+    },
     "availability": {
-      "inStock": "En Stock",
-      "outOfStock": "Sin Existencias",
-      "onBackorder": "En Backorder",
-      "lowStock": "Existencias Bajas",
-      "checkAvailability": "Comprobar Disponibilidad",
-      "readyToShip": "Listo para Enviar",
-      "currentlyUnavailable": "Actualmente No Disponible",
-      "availableForPreorder": "Disponible para Pedido Anticipado",
-      "contactForAvailability": "Contáctenos para Disponibilidad",
-      "onlyXLeft": "Solo quedan {count}",
+      "inStock": "En stock",
+      "outOfStock": "Agotado",
+      "onBackorder": "Bajo pedido",
+      "lowStock": "Poco stock",
+      "checkAvailability": "Verificar disponibilidad",
+      "readyToShip": "Listo para enviar",
+      "currentlyUnavailable": "Actualmente no disponible",
+      "availableForPreorder": "Disponible para reserva",
+      "contactForAvailability": "Contáctanos para consultar la disponibilidad",
+      "onlyXLeft": "Solo quedan {count} en stock",
       "xAvailable": "{count} disponibles",
       "expectedBack": "Se espera de vuelta: {date}",
-      "shipsOn": "Envía en: {date}"
+      "shipsOn": "Se envía el: {date}"
     }
   }
 }

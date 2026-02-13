@@ -665,20 +665,78 @@
     "searchResults": "Search results"
   },
   "productPage": {
+    "summary": {
+      "title": "उत्पाद सारांश",
+      "configureProduct": "उत्पाद कॉन्फ़िगर करें",
+      "selectSpecifications": "मूल्य और पार्ट नंबर देखने के लिए नीचे अपने विनिर्देशों का चयन करें",
+      "configurationComplete": "कॉन्फ़िगरेशन पूरा हो गया",
+      "partNumber": "पार्ट नंबर",
+      "quantity": "मात्रा",
+      "multiplier": "गुणक",
+      "priceCalculation": "मूल्य गणना"
+    },
+    "tabs": {
+      "description": "विवरण",
+      "documents": "दस्तावेज़",
+      "videos": "वीडियो",
+      "specifications": "विनिर्देश",
+      "support": "समर्थन",
+      "overview": "अवलोकन",
+      "specs": "विनिर्देश",
+      "descriptionPlaceholder": "जब उपलब्ध होगा, तो उत्पाद विवरण यहाँ दिखाया जाएगा।",
+      "noVideosAvailable": "इस उत्पाद के लिए कोई वीडियो उपलब्ध नहीं है।",
+      "noDocumentsAvailable": "इस उत्पाद के लिए कोई दस्तावेज़ उपलब्ध नहीं है।"
+    },
+    "specifications": {
+      "title": "विनिर्देश",
+      "noSpecsAvailable": "इस उत्पाद के लिए कोई विनिर्देश उपलब्ध नहीं है।",
+      "expandAll": "सभी विस्तृत करें",
+      "collapseAll": "सभी संक्षिप्त करें",
+      "download": "डाउनलोड",
+      "downloadSpecs": "विनिर्देश डाउनलोड करें"
+    },
+    "related": {
+      "title": "संबंधित उत्पाद",
+      "view": "देखें",
+      "addToJobEstimate": "जॉब अनुमान में जोड़ें",
+      "viewProduct": "उत्पाद देखें",
+      "viewAll": "सभी संबंधित उत्पाद देखें"
+    },
+    "actions": {
+      "addToCart": "कार्ट में जोड़ें",
+      "addToQuote": "कोटेशन में जोड़ें",
+      "buyNow": "अभी खरीदें",
+      "requestQuote": "कोटेशन मांगें",
+      "compareProducts": "उत्पादों की तुलना करें",
+      "addToFavorites": "पसंदीदा में जोड़ें",
+      "share": "शेयर करें"
+    },
+    "pricing": {
+      "price": "मूल्य",
+      "regularPrice": "सामान्य मूल्य",
+      "salePrice": "विक्रय मूल्य",
+      "yourPrice": "आपका मूल्य",
+      "calculatedPrice": "गणित मूल्य",
+      "basePrice": "आधारभूत मूल्य",
+      "totalPrice": "कुल मूल्य",
+      "pricePerUnit": "प्रति इकाई मूल्य",
+      "bulkDiscountAvailable": "थोक छूट उपलब्ध है",
+      "contactForPricing": "मूल्य के लिए हमसे संपर्क करें"
+    },
     "availability": {
       "inStock": "स्टॉक में",
-      "outOfStock": "स्टॉक से बाहर",
+      "outOfStock": "स्टॉक में नहीं",
       "onBackorder": "बैकऑर्डर पर",
       "lowStock": "कम स्टॉक",
-      "checkAvailability": "उपलब्धता की जांच करें",
-      "readyToShip": "शिप करने के लिए तैयार",
+      "checkAvailability": "उपलब्धता जांचें",
+      "readyToShip": "शिपमेंट के लिए तैयार",
       "currentlyUnavailable": "वर्तमान में अनुपलब्ध",
-      "availableForPreorder": "प्री-ऑर्डर के लिए उपलब्ध",
+      "availableForPreorder": "पूर्व-आदेश के लिए उपलब्ध",
       "contactForAvailability": "उपलब्धता के लिए हमसे संपर्क करें",
-      "onlyXLeft": "केवल {count} बचा है",
+      "onlyXLeft": "केवल {count} बचे हैं",
       "xAvailable": "{count} उपलब्ध",
       "expectedBack": "वापस आने की उम्मीद: {date}",
-      "shipsOn": "पर भेजा जाएगा: {date}"
+      "shipsOn": "{date} को भेजा जाएगा"
     }
   }
 }

@@ -448,20 +448,78 @@
     }
   },
   "productPage": {
+    "summary": {
+      "title": "产品概要",
+      "configureProduct": "配置产品",
+      "selectSpecifications": "请选择您的规格以查看价格和型号",
+      "configurationComplete": "配置完成",
+      "partNumber": "型号",
+      "quantity": "数量",
+      "multiplier": "乘数",
+      "priceCalculation": "价格计算"
+    },
+    "tabs": {
+      "description": "描述",
+      "documents": "文档",
+      "videos": "视频",
+      "specifications": "规格",
+      "support": "支持",
+      "overview": "概览",
+      "specs": "规格",
+      "descriptionPlaceholder": "产品描述将在此处显示。",
+      "noVideosAvailable": "此产品没有可用的视频。",
+      "noDocumentsAvailable": "此产品没有可用的文档。"
+    },
+    "specifications": {
+      "title": "规格",
+      "noSpecsAvailable": "此产品没有可用的规格。",
+      "expandAll": "全部展开",
+      "collapseAll": "全部收起",
+      "download": "下载",
+      "downloadSpecs": "下载规格"
+    },
+    "related": {
+      "title": "相关产品",
+      "view": "查看",
+      "addToJobEstimate": "添加到工程估算",
+      "viewProduct": "查看产品",
+      "viewAll": "查看所有相关产品"
+    },
+    "actions": {
+      "addToCart": "加入购物车",
+      "addToQuote": "添加到报价",
+      "buyNow": "立即购买",
+      "requestQuote": "请求报价",
+      "compareProducts": "比较产品",
+      "addToFavorites": "添加到收藏夹",
+      "share": "分享"
+    },
+    "pricing": {
+      "price": "价格",
+      "regularPrice": "原价",
+      "salePrice": "销售价",
+      "yourPrice": "您的价格",
+      "calculatedPrice": "计算价格",
+      "basePrice": "基础价格",
+      "totalPrice": "总价",
+      "pricePerUnit": "单价",
+      "bulkDiscountAvailable": "可享批量折扣",
+      "contactForPricing": "联系我们获取价格"
+    },
     "availability": {
       "inStock": "现货",
       "outOfStock": "缺货",
-      "onBackorder": "备货中",
+      "onBackorder": "后补订单",
       "lowStock": "库存不足",
       "checkAvailability": "查看库存",
-      "readyToShip": "现货可发",
+      "readyToShip": "准备发货",
       "currentlyUnavailable": "目前无货",
-      "availableForPreorder": "可预定",
+      "availableForPreorder": "可预订",
       "contactForAvailability": "联系我们查询库存",
-      "onlyXLeft": "仅剩 {count} 件",
-      "xAvailable": "库存 {count} 件",
-      "expectedBack": "预计返货时间: {date}",
-      "shipsOn": "发货时间: {date}"
+      "onlyXLeft": "仅剩{count}件",
+      "xAvailable": "有{count}件可用",
+      "expectedBack": "预计到货时间：{date}",
+      "shipsOn": "发货日期：{date}"
     }
   }
 }

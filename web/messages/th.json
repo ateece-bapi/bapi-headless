@@ -432,19 +432,77 @@
   "forms": {},
   "accessibility": {},
   "productPage": {
+    "summary": {
+      "title": "สรุปผลิตภัณฑ์",
+      "configureProduct": "กำหนดค่าผลิตภัณฑ์",
+      "selectSpecifications": "เลือกข้อมูลจำเพาะของคุณด้านล่างเพื่อดูราคาและหมายเลขชิ้นส่วน",
+      "configurationComplete": "การกำหนดค่าเสร็จสิ้น",
+      "partNumber": "หมายเลขชิ้นส่วน",
+      "quantity": "จำนวน",
+      "multiplier": "ตัวคูณ",
+      "priceCalculation": "การคำนวณราคา"
+    },
+    "tabs": {
+      "description": "รายละเอียด",
+      "documents": "เอกสาร",
+      "videos": "วิดีโอ",
+      "specifications": "ข้อมูลจำเพาะ",
+      "support": "การสนับสนุน",
+      "overview": "ภาพรวม",
+      "specs": "ข้อมูลจำเพาะ",
+      "descriptionPlaceholder": "คำอธิบายผลิตภัณฑ์จะปรากฏที่นี่เมื่อมีการพร้อมใช้งาน",
+      "noVideosAvailable": "ไม่มีวิดีโอสำหรับผลิตภัณฑ์นี้",
+      "noDocumentsAvailable": "ไม่มีเอกสารสำหรับผลิตภัณฑ์นี้"
+    },
+    "specifications": {
+      "title": "ข้อมูลจำเพาะ",
+      "noSpecsAvailable": "ไม่มีข้อมูลจำเพาะสำหรับผลิตภัณฑ์นี้",
+      "expandAll": "ขยายทั้งหมด",
+      "collapseAll": "ยุบทั้งหมด",
+      "download": "ดาวน์โหลด",
+      "downloadSpecs": "ดาวน์โหลดข้อมูลจำเพาะ"
+    },
+    "related": {
+      "title": "ผลิตภัณฑ์ที่เกี่ยวข้อง",
+      "view": "ดู",
+      "addToJobEstimate": "เพิ่มไปยังการประมาณการงาน",
+      "viewProduct": "ดูผลิตภัณฑ์",
+      "viewAll": "ดูผลิตภัณฑ์ที่เกี่ยวข้องทั้งหมด"
+    },
+    "actions": {
+      "addToCart": "เพิ่มลงในตะกร้า",
+      "addToQuote": "เพิ่มลงในใบเสนอราคา",
+      "buyNow": "ซื้อเลย",
+      "requestQuote": "ขอใบเสนอราคา",
+      "compareProducts": "เปรียบเทียบผลิตภัณฑ์",
+      "addToFavorites": "เพิ่มในรายการโปรด",
+      "share": "แชร์"
+    },
+    "pricing": {
+      "price": "ราคา",
+      "regularPrice": "ราคาปกติ",
+      "salePrice": "ราคาขาย",
+      "yourPrice": "ราคาของคุณ",
+      "calculatedPrice": "ราคาที่คำนวณ",
+      "basePrice": "ราคาพื้นฐาน",
+      "totalPrice": "ราคารวม",
+      "pricePerUnit": "ราคาต่อหน่วย",
+      "bulkDiscountAvailable": "มีส่วนลดปริมาณ",
+      "contactForPricing": "ติดต่อเราสำหรับราคา"
+    },
     "availability": {
-      "inStock": "มีสินค้าในสต็อก",
-      "outOfStock": "สินค้าหมด",
-      "onBackorder": "สินค้าอยู่ในสถานะรอจัดส่ง",
-      "lowStock": "สินค้าเหลือน้อย",
-      "checkAvailability": "ตรวจสอบสินค้าคงเหลือ",
+      "inStock": "มีในสต็อค",
+      "outOfStock": "หมดสต็อค",
+      "onBackorder": "สินค้าค้างสั่ง",
+      "lowStock": "สต็อคน้อย",
+      "checkAvailability": "ตรวจสอบความพร้อมใช้งาน",
       "readyToShip": "พร้อมจัดส่ง",
-      "currentlyUnavailable": "ขณะนี้ไม่มีสินค้า",
-      "availableForPreorder": "สามารถสั่งจองล่วงหน้าได้",
-      "contactForAvailability": "ติดต่อสอบถามสินค้าคงเหลือ",
+      "currentlyUnavailable": "ขณะนี้ไม่สามารถใช้งานได้",
+      "availableForPreorder": "พร้อมสั่งจอง",
+      "contactForAvailability": "ติดต่อเราสำหรับความพร้อมใช้งาน",
       "onlyXLeft": "เหลือเพียง {count} ชิ้น",
-      "xAvailable": "มีสินค้าว่าง {count} ชิ้น",
-      "expectedBack": "คาดว่าจะกลับมาพร้อมจัดส่งเมื่อ: {date}",
+      "xAvailable": "มี {count} ชิ้นพร้อมใช้",
+      "expectedBack": "คาดว่าจะมีสินค้าใหม่: {date}",
       "shipsOn": "จัดส่งในวันที่: {date}"
     }
   }

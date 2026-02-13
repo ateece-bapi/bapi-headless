@@ -448,20 +448,78 @@
     }
   },
   "productPage": {
+    "summary": {
+      "title": "製品概要",
+      "configureProduct": "製品を設定する",
+      "selectSpecifications": "以下の仕様を選択して価格とパーツ番号を確認してください",
+      "configurationComplete": "設定完了",
+      "partNumber": "部品番号",
+      "quantity": "数量",
+      "multiplier": "乗数",
+      "priceCalculation": "価格計算"
+    },
+    "tabs": {
+      "description": "説明",
+      "documents": "資料",
+      "videos": "動画",
+      "specifications": "仕様",
+      "support": "サポート",
+      "overview": "概要",
+      "specs": "仕様",
+      "descriptionPlaceholder": "製品の説明は入手可能になり次第ここに表示されます。",
+      "noVideosAvailable": "この製品の動画はありません。",
+      "noDocumentsAvailable": "この製品の資料はありません。"
+    },
+    "specifications": {
+      "title": "仕様",
+      "noSpecsAvailable": "この製品の仕様はありません。",
+      "expandAll": "すべて展開",
+      "collapseAll": "すべて折りたたむ",
+      "download": "ダウンロード",
+      "downloadSpecs": "仕様書をダウンロード"
+    },
+    "related": {
+      "title": "関連製品",
+      "view": "表示",
+      "addToJobEstimate": "見積もりに追加",
+      "viewProduct": "製品を表示",
+      "viewAll": "すべての関連製品を表示"
+    },
+    "actions": {
+      "addToCart": "カートに追加",
+      "addToQuote": "見積もりに追加",
+      "buyNow": "今すぐ購入",
+      "requestQuote": "見積もりをリクエスト",
+      "compareProducts": "製品を比較",
+      "addToFavorites": "お気に入りに追加",
+      "share": "共有"
+    },
+    "pricing": {
+      "price": "価格",
+      "regularPrice": "通常価格",
+      "salePrice": "販売価格",
+      "yourPrice": "あなたの価格",
+      "calculatedPrice": "計算された価格",
+      "basePrice": "ベース価格",
+      "totalPrice": "合計価格",
+      "pricePerUnit": "単価",
+      "bulkDiscountAvailable": "大量割引あり",
+      "contactForPricing": "価格についてはお問い合わせください"
+    },
     "availability": {
       "inStock": "在庫あり",
       "outOfStock": "在庫切れ",
       "onBackorder": "バックオーダー中",
-      "lowStock": "在庫残僅か",
-      "checkAvailability": "在庫確認",
+      "lowStock": "在庫僅少",
+      "checkAvailability": "在庫状況を確認",
       "readyToShip": "出荷準備完了",
-      "currentlyUnavailable": "現在入手できません",
+      "currentlyUnavailable": "現在ご利用いただけません",
       "availableForPreorder": "予約注文可能",
-      "contactForAvailability": "在庫状況についてお問い合わせください",
-      "onlyXLeft": "在庫わずか{count}個",
+      "contactForAvailability": "在庫状況についてはお問い合わせください",
+      "onlyXLeft": "在庫は残り{count}個です",
       "xAvailable": "{count}個ご利用いただけます",
-      "expectedBack": "{date}に再入荷予定",
-      "shipsOn": "{date}に出荷予定"
+      "expectedBack": "入荷予定: {date}",
+      "shipsOn": "出荷日: {date}"
     }
   }
 }

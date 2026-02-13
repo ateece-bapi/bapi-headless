@@ -51,7 +51,7 @@ export function LanguageSelector() {
           {(Object.entries(LANGUAGES) as [LanguageCode, (typeof LANGUAGES)[LanguageCode]][]).map(
             ([code, config]) => (
               <option key={code} value={code}>
-                {config.nativeName}
+                {config.flag} {config.nativeName}
               </option>
             )
           )}

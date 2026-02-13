@@ -252,7 +252,7 @@ describe('CheckoutSummary', () => {
 
       const editLink = screen.getByText('← Edit Cart');
       expect(editLink).toBeInTheDocument();
-      expect(editLink.closest('a')).toHaveAttribute('href', '/cart');
+      expect(editLink.closest('a')).toHaveAttribute('href', '/en/cart');
     });
 
     it('applies proper styling to edit link', () => {

@@ -326,7 +326,7 @@ describe('CartSummary Component', () => {
 
       fireEvent.click(checkoutButton);
 
-      expect(mockPush).toHaveBeenCalledWith('/checkout');
+      expect(mockPush).toHaveBeenCalledWith('/en/checkout');
     });
 
     it('disables checkout button when updating', () => {

@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { renderWithIntl } from '@/test/i18n-test-utils';
 import ProductSpecifications, { type SpecificationGroup } from '../ProductSpecifications';
 
 describe('ProductSpecifications Component', () => {
@@ -33,7 +34,7 @@ describe('ProductSpecifications Component', () => {
 
   describe('Rendering', () => {
     it('renders all specification groups', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -43,7 +44,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('renders all specifications when expanded', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -53,7 +54,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('shows spec count in group headers', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -63,13 +64,13 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('renders empty state when no specifications', () => {
-      render(<ProductSpecifications specifications={[]} productName={productName} />);
+      renderWithIntl(<ProductSpecifications specifications={[]} productName={productName} />);
 
       expect(screen.getByText('No specifications available for this product.')).toBeInTheDocument();
     });
 
     it('renders search input when searchable is true', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications
           specifications={mockSpecifications}
           productName={productName}
@@ -81,7 +82,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('does not render search input when searchable is false', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications
           specifications={mockSpecifications}
           productName={productName}
@@ -93,7 +94,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('renders download button when downloadable is true', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications
           specifications={mockSpecifications}
           productName={productName}
@@ -105,7 +106,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('does not render download button when downloadable is false', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications
           specifications={mockSpecifications}
           productName={productName}
@@ -119,7 +120,7 @@ describe('ProductSpecifications Component', () => {
 
   describe('Group Expansion/Collapse', () => {
     it('starts with all groups expanded by default', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -130,7 +131,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('collapses group when header is clicked', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const technicalHeader = screen.getByText('Technical Specifications');
@@ -141,7 +142,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('expands collapsed group when header is clicked again', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const technicalHeader = screen.getByText('Technical Specifications');
@@ -156,7 +157,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('shows chevron down icon when group is collapsed', () => {
-      const { container } = render(
+      const { container } = renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const technicalHeader = screen.getByText('Technical Specifications');
@@ -168,7 +169,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('shows chevron up icon when group is expanded', () => {
-      const { container } = render(
+      const { container } = renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -179,7 +180,7 @@ describe('ProductSpecifications Component', () => {
 
   describe('Expand/Collapse All', () => {
     it('collapses all groups when Collapse All clicked', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const collapseAllButton = screen.getByRole('button', { name: 'Collapse All' });
@@ -192,7 +193,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('expands all groups when Expand All clicked', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -210,7 +211,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('expands collapsed groups when Expand All clicked', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -228,7 +229,7 @@ describe('ProductSpecifications Component', () => {
 
   describe('Search Functionality', () => {
     it('filters specifications by label', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const searchInput = screen.getByPlaceholderText('Search specifications...');
@@ -240,7 +241,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('filters specifications by value', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const searchInput = screen.getByPlaceholderText('Search specifications...');
@@ -252,7 +253,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('is case insensitive', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const searchInput = screen.getByPlaceholderText('Search specifications...');
@@ -263,7 +264,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('shows no results message when search has no matches', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const searchInput = screen.getByPlaceholderText('Search specifications...');
@@ -276,7 +277,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('hides groups with no matching specs', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const searchInput = screen.getByPlaceholderText('Search specifications...');
@@ -289,7 +290,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('clears search when Clear search button clicked', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const searchInput = screen.getByPlaceholderText('Search specifications...');
@@ -304,7 +305,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('shows all specs when search is cleared', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const searchInput = screen.getByPlaceholderText('Search specifications...');
@@ -323,7 +324,7 @@ describe('ProductSpecifications Component', () => {
       const createObjectURLSpy = vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:mock-url');
       const revokeObjectURLSpy = vi.spyOn(URL, 'revokeObjectURL');
 
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const downloadButton = screen.getByRole('button', { name: /download/i });
@@ -357,7 +358,7 @@ describe('ProductSpecifications Component', () => {
         return element;
       });
 
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName="My Product Name" />
       );
       const downloadButton = screen.getByRole('button', { name: /download/i });
@@ -372,7 +373,7 @@ describe('ProductSpecifications Component', () => {
 
   describe('Table Display', () => {
     it('renders specifications in a table', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -381,7 +382,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('displays label in first column', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -391,7 +392,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('displays value in second column', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -401,7 +402,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('applies alternating row colors', () => {
-      const { container } = render(
+      const { container } = renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -413,7 +414,7 @@ describe('ProductSpecifications Component', () => {
 
   describe('Accessibility', () => {
     it('uses semantic heading elements for group titles', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -422,7 +423,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('has proper button roles for expand/collapse', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -431,7 +432,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('has accessible group toggle buttons', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -440,7 +441,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('has proper table structure', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -453,7 +454,7 @@ describe('ProductSpecifications Component', () => {
 
   describe('Responsive Behavior', () => {
     it('uses responsive flex layout for header', () => {
-      const { container } = render(
+      const { container } = renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -462,7 +463,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('hides Download text on small screens', () => {
-      const { container } = render(
+      const { container } = renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -471,7 +472,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('adjusts table column widths responsively', () => {
-      const { container } = render(
+      const { container } = renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
@@ -489,7 +490,7 @@ describe('ProductSpecifications Component', () => {
         },
       ];
 
-      render(<ProductSpecifications specifications={emptyGroups} productName={productName} />);
+      renderWithIntl(<ProductSpecifications specifications={emptyGroups} productName={productName} />);
 
       // Component filters out empty groups, so nothing should render
       expect(screen.queryByText('Empty Group')).not.toBeInTheDocument();
@@ -516,7 +517,7 @@ describe('ProductSpecifications Component', () => {
         return element;
       });
 
-      render(<ProductSpecifications specifications={mockSpecifications} productName={longName} />);
+      renderWithIntl(<ProductSpecifications specifications={mockSpecifications} productName={longName} />);
       const downloadButton = screen.getByRole('button', { name: /download/i });
 
       fireEvent.click(downloadButton);
@@ -538,7 +539,7 @@ describe('ProductSpecifications Component', () => {
         },
       ];
 
-      render(<ProductSpecifications specifications={specialSpecs} productName={productName} />);
+      renderWithIntl(<ProductSpecifications specifications={specialSpecs} productName={productName} />);
 
       expect(screen.getByText('±10V')).toBeInTheDocument();
       expect(screen.getByText('≤5A')).toBeInTheDocument();
@@ -546,7 +547,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('handles search with no initial results', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const searchInput = screen.getByPlaceholderText('Search specifications...');
@@ -558,7 +559,7 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('maintains expansion state after search', () => {
-      render(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 

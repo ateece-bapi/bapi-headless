@@ -158,7 +158,7 @@ describe('CartPageClient Component', () => {
       await waitFor(() => {
         const link = screen.getByText('Continue Shopping');
         expect(link).toBeInTheDocument();
-        expect(link.closest('a')).toHaveAttribute('href', '/products');
+        expect(link.closest('a')).toHaveAttribute('href', '/en/products');
       });
     });
 
@@ -218,7 +218,7 @@ describe('CartPageClient Component', () => {
 
       await waitFor(() => {
         const links = screen.getAllByText('Continue Shopping');
-        expect(links[0].closest('a')).toHaveAttribute('href', '/products');
+        expect(links[0].closest('a')).toHaveAttribute('href', '/en/products');
       });
     });
 

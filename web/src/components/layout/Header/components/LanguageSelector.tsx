@@ -29,7 +29,7 @@ export function LanguageSelector() {
         </label>
         {/* Language icon */}
         <svg
-          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500 transition-colors group-hover:text-primary-600 lg:left-3.5"
+          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -46,7 +46,7 @@ export function LanguageSelector() {
           id="language-select"
           value={currentLocale}
           onChange={handleLanguageChange}
-          className="cursor-pointer appearance-none rounded-lg border border-gray-300 bg-white py-1.5 pl-9 pr-9 text-sm font-medium text-gray-700 transition-colors hover:border-primary-500 hover:bg-gray-50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 lg:py-2 lg:pl-10"
+          className="cursor-pointer appearance-none rounded-lg border border-gray-300 bg-white py-1.5 pl-9 pr-9 text-sm font-medium text-gray-700 transition-colors duration-150 hover:border-primary-500 hover:bg-gray-50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 lg:py-2 lg:pl-10"
         >
           {(Object.entries(LANGUAGES) as [LanguageCode, (typeof LANGUAGES)[LanguageCode]][]).map(
             ([code, config]) => (

@@ -14,6 +14,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Trash2, Minus, Plus, X } from 'lucide-react';
 
@@ -74,6 +75,8 @@ export default function CartItems({
   onClearCart,
 }: CartItemsProps) {
   const t = useTranslations();
+  const params = useParams();
+  const locale = params.locale as string;
   return (
     <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Header */}
@@ -107,7 +110,7 @@ export default function CartItems({
             >
               {/* Product Image */}
               <Link
-                href={`/en/product/${product.slug}`}
+                href={`/${locale}/product/${product.slug}`}
                 className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-100 transition-opacity hover:opacity-80 sm:h-32 sm:w-32"
               >
                 {image ? (
@@ -127,7 +130,7 @@ export default function CartItems({
 
               {/* Product Details */}
               <div className="min-w-0 flex-1">
-                <Link href={`/en/product/${product.slug}`} className="group block">
+                <Link href={`/${locale}/product/${product.slug}`} className="group block">
                   <h3 className="line-clamp-2 text-lg font-semibold text-neutral-900 transition-colors group-hover:text-primary-500">
                     {product.name}
                   </h3>

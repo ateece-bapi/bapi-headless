@@ -9,6 +9,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
 import { ShoppingCart, ArrowLeft } from 'lucide-react';
@@ -81,6 +82,8 @@ interface CartItem {
 
 export default function CartPageClient() {
   const t = useTranslations();
+  const params = useParams();
+  const locale = params.locale as string;
   const [cart, setCart] = useState<CartData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -298,7 +301,7 @@ export default function CartPageClient() {
           {t('cartPage.empty.description')}
         </p>
         <Link
-          href="/products"
+          href={`/${locale}/products`}
           className="btn-bapi-primary inline-flex items-center gap-2 rounded-xl px-8 py-4 font-semibold"
         >
           <ArrowLeft className="h-5 w-5" />
@@ -314,7 +317,7 @@ export default function CartPageClient() {
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">{t('cartPage.header.title')}</h1>
         <Link
-          href="/products"
+          href={`/${locale}/products`}
           className="flex items-center gap-2 font-medium text-primary-500 transition-colors hover:text-primary-600"
         >
           <ArrowLeft className="h-4 w-4" />

@@ -12,7 +12,7 @@
  */
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Tag, X, ArrowRight } from 'lucide-react';
 import { useToast } from '@/components/ui/Toast';
@@ -39,6 +39,8 @@ interface CartSummaryProps {
 
 export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSummaryProps) {
   const t = useTranslations();
+  const params = useParams();
+  const locale = params.locale as string;
   const [couponCode, setCouponCode] = useState('');
   const [isApplying, setIsApplying] = useState(false);
   const { showToast } = useToast();
@@ -99,7 +101,7 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
   };
 
   const handleCheckout = () => {
-    router.push('/checkout');
+    router.push(`/${locale}/checkout`);
   };
 
   // Parse prices (remove currency symbols, convert to number)

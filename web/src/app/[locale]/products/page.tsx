@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import {
   Thermometer,
@@ -88,6 +89,8 @@ const productCategories = [
 
 export default function MainProductPage() {
   const t = useTranslations();
+  const params = useParams();
+  const locale = params.locale as string;
   // For page fade
   const [pageVisible, setPageVisible] = useState(false);
   // For card animation
@@ -118,7 +121,7 @@ export default function MainProductPage() {
             className="mb-8 flex items-center gap-2 text-sm text-primary-100"
             aria-label="Breadcrumb"
           >
-            <Link href="/" className="transition-colors hover:text-white">
+            <Link href={`/${locale}`} className="transition-colors hover:text-white">
               {t('productsPage.breadcrumb.home')}
             </Link>
             <span>/</span>
@@ -178,7 +181,7 @@ export default function MainProductPage() {
             return (
               <Link
                 key={cat.slug}
-                href={`/categories/${cat.slug}`}
+                href={`/${locale}/categories/${cat.slug}`}
                 className={`group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 ${showCards ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} `}
                 style={{
                   transitionDelay: showCards ? `${i * 75}ms` : '0ms',
@@ -270,7 +273,7 @@ export default function MainProductPage() {
               </p>
 
               <Link
-                href="/products/featured/ba-series"
+                href={`/${locale}/products/featured/ba-series`}
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 {t('productsPage.featured.viewButton')}
@@ -326,7 +329,7 @@ export default function MainProductPage() {
             </div>
 
             <Link
-              href="/company/contact-us"
+              href={`/${locale}/company/contact-us`}
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {t('productsPage.cta.button')}

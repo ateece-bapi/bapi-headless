@@ -446,5 +446,438 @@
         "premium": "Premium"
       }
     }
+  },
+  "productPage": {
+    "summary": {
+      "title": "Résumé du produit",
+      "configureProduct": "Configurer le produit",
+      "selectSpecifications": "Sélectionnez vos spécifications ci-dessous pour voir les prix et le numéro de pièce",
+      "configurationComplete": "Configuration terminée",
+      "partNumber": "Numéro de pièce",
+      "quantity": "Quantité",
+      "multiplier": "Multiplicateur",
+      "priceCalculation": "Calcul du prix"
+    },
+    "tabs": {
+      "description": "Description",
+      "documents": "Documents",
+      "videos": "Vidéos",
+      "specifications": "Spécifications",
+      "support": "Assistance",
+      "overview": "Aperçu",
+      "specs": "Spécifications",
+      "descriptionPlaceholder": "La description du produit apparaîtra ici lorsqu'elle sera disponible.",
+      "noVideosAvailable": "Aucune vidéo n'est disponible pour ce produit.",
+      "noDocumentsAvailable": "Aucun document n'est disponible pour ce produit."
+    },
+    "specifications": {
+      "title": "Spécifications",
+      "noSpecsAvailable": "Aucune spécification n'est disponible pour ce produit.",
+      "expandAll": "Développer tout",
+      "collapseAll": "Réduire tout",
+      "download": "Télécharger",
+      "downloadSpecs": "Télécharger les spécifications"
+    },
+    "related": {
+      "title": "Produits connexes",
+      "view": "Voir",
+      "addToJobEstimate": "Ajouter à l'estimation du projet",
+      "viewProduct": "Voir le produit",
+      "viewAll": "Voir tous les produits connexes"
+    },
+    "actions": {
+      "addToCart": "Ajouter au panier",
+      "addToQuote": "Ajouter à un devis",
+      "buyNow": "Acheter maintenant",
+      "requestQuote": "Demander un devis",
+      "compareProducts": "Comparer les produits",
+      "addToFavorites": "Ajouter aux favoris",
+      "share": "Partager"
+    },
+    "pricing": {
+      "price": "Prix",
+      "regularPrice": "Prix normal",
+      "salePrice": "Prix de vente",
+      "yourPrice": "Votre prix",
+      "calculatedPrice": "Prix calculé",
+      "basePrice": "Prix de base",
+      "totalPrice": "Prix total",
+      "pricePerUnit": "Prix par unité",
+      "bulkDiscountAvailable": "Remise de quantité disponible",
+      "contactForPricing": "Contactez-nous pour les tarifs"
+    },
+    "availability": {
+      "inStock": "En stock",
+      "outOfStock": "Rupture de stock",
+      "onBackorder": "En commande",
+      "lowStock": "Faible stock",
+      "checkAvailability": "Vérifier la disponibilité",
+      "readyToShip": "Prêt à expédier",
+      "currentlyUnavailable": "Actuellement indisponible",
+      "availableForPreorder": "Disponible en précommande",
+      "contactForAvailability": "Contactez-nous pour la disponibilité",
+      "onlyXLeft": "Il ne reste que {count} en stock",
+      "xAvailable": "{count} disponibles",
+      "expectedBack": "Attendu à nouveau: {date}",
+      "shipsOn": "Expédié le: {date}"
+    }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Produits d'automatisation des bâtiments",
+      "description": "Explorez notre gamme complète de capteurs haute précision, de contrôleurs et d'instruments de test. Approuvés par les ingénieurs du monde entier pour les applications HVAC critiques."
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits"
+    },
+    "hero": {
+      "badge": "Capteurs et contrôleurs de précision",
+      "title": "Produits d'automatisation des bâtiments",
+      "description": "Explorez notre gamme complète de capteurs haute précision, de contrôleurs et d'instruments de test. Approuvés par les ingénieurs du monde entier pour les applications HVAC critiques.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Produits",
+        "warrantyDuration": "5 ans",
+        "warrantyLabel": "Garantie",
+        "accuracyValue": "±0,2°C",
+        "accuracyLabel": "Précision"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Capteurs de température",
+        "description": "Solutions de mesure de température haute précision"
+      },
+      "humiditySensors": {
+        "name": "Capteurs d'humidité",
+        "description": "Surveillance précise de l'humidité relative"
+      },
+      "pressureSensors": {
+        "name": "Capteurs de pression",
+        "description": "Transmetteurs de pression différentielle et statique"
+      },
+      "airQualitySensors": {
+        "name": "Capteurs de qualité de l'air",
+        "description": "Surveillance du CO₂, des COV et des particules"
+      },
+      "wirelessSensors": {
+        "name": "Capteurs sans fil",
+        "description": "Solutions sur batterie et à récupération d'énergie"
+      },
+      "accessories": {
+        "name": "Accessoires",
+        "description": "Matériel de montage, boîtiers et câbles"
+      },
+      "testInstruments": {
+        "name": "Instruments de test",
+        "description": "Équipement de calibrage et de test professionnel"
+      },
+      "etaLine": {
+        "name": "Ligne ETA",
+        "description": "Solutions modulaires d'E/S et de contrôle"
+      },
+      "viewProducts": "Voir les produits"
+    },
+    "featured": {
+      "badge": "Gamme de produits vedette",
+      "title": "Capteurs de température BA/10K Series",
+      "description": "Nos capteurs les plus populaires. Précision de ±0,2°C, BACnet MS/TP et garantie de 5 ans. Approuvés dans les soins de santé, les centres de données et les installations critiques dans le monde entier.",
+      "viewButton": "Voir la série BA",
+      "features": {
+        "accuracy": {
+          "label": "Précision de ±0,2°C",
+          "value": "Leader du secteur"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Protocole natif"
+        },
+        "warranty": {
+          "label": "Garantie de 5 ans",
+          "value": "Standard"
+        },
+        "madeInUSA": {
+          "label": "Fabriqué aux États-Unis",
+          "value": "Qualité assurée"
+        }
+      }
+    },
+    "cta": {
+      "title": "Besoin d'aide pour trouver le bon produit ?",
+      "description": "Notre équipe d'experts est prête à vous aider à sélectionner les capteurs et les contrôleurs parfaits pour votre projet d'automatisation des bâtiments.",
+      "button": "Contacter les ventes"
+    }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Panier d'achat",
+      "description": "Examinez votre panier et passez à la caisse"
+    },
+    "header": {
+      "title": "Panier d'achat",
+      "continueShopping": "Continuer les achats"
+    },
+    "empty": {
+      "title": "Votre panier est vide",
+      "description": "Ajoutez quelques produits à votre panier pour commencer.",
+      "button": "Continuer les achats"
+    },
+    "items": {
+      "title": "Produits au panier",
+      "clearCart": "Vider le panier",
+      "clearConfirm": "Êtes-vous sûr de vouloir vider votre panier ?",
+      "noImage": "Pas d'image",
+      "remove": "Supprimer",
+      "priceEach": "{price} chacun"
+    },
+    "stock": {
+      "inStock": "En stock",
+      "outOfStock": "Épuisé",
+      "onBackorder": "En commande",
+      "available": "{count} disponible(s)"
+    },
+    "quantity": {
+      "decrease": "Diminuer la quantité",
+      "increase": "Augmenter la quantité"
+    },
+    "summary": {
+      "title": "Récapitulatif de la commande",
+      "subtotal": "Sous-total",
+      "discount": "Remise",
+      "shipping": "Livraison",
+      "tax": "Taxes",
+      "total": "Total",
+      "calculatedAtCheckout": "Calculé à la caisse",
+      "proceedToCheckout": "Passer à la caisse",
+      "secureCheckout": "Caisse sécurisée",
+      "sslEncrypted": "Cryptage SSL 256 bits"
+    },
+    "coupon": {
+      "label": "Vous avez un code de réduction ?",
+      "placeholder": "Entrez le code",
+      "apply": "Appliquer",
+      "applying": "Application...",
+      "appliedCoupons": "Coupons appliqués :",
+      "remove": "Supprimer le coupon"
+    },
+    "shipping": {
+      "freeShipping": "✓ Livraison gratuite pour les commandes de plus de 500 $",
+      "standardShipping": "Livraison standard : 3 à 5 jours ouvrables"
+    },
+    "toasts": {
+      "updated": "Mis à jour",
+      "cartUpdated": "Panier mis à jour avec succès",
+      "removed": "Supprimé",
+      "itemRemoved": "Article supprimé du panier",
+      "cartCleared": "Panier vidé",
+      "allItemsRemoved": "Tous les articles ont été supprimés du panier",
+      "enterCode": "Entrer le code",
+      "enterCodeMessage": "Veuillez entrer un code de coupon",
+      "couponApplied": "Coupon appliqué",
+      "couponAppliedMessage": "Le coupon \"{code}\" a été appliqué avec succès",
+      "couponRemoved": "Coupon supprimé",
+      "couponRemovedMessage": "Le coupon \"{code}\" a été supprimé"
+    }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "Catégorie introuvable",
+      "descriptionTemplate": "Parcourez {name} de BAPI - Building Automation Products Inc."
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits"
+    },
+    "header": {
+      "productsAvailable": "{count} produits disponibles"
+    },
+    "subcategories": {
+      "title": "Parcourir par catégorie",
+      "productCount": "{count} produit",
+      "productCountPlural": "{count} produits",
+      "browseButton": "Parcourir les produits"
+    },
+    "quickLinks": {
+      "backToProducts": "← Retour à tous les produits",
+      "needHelp": "Besoin d'aide ? Contactez-nous"
+    }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "Résultats de recherche pour \"{query}\" | BAPI",
+      "titleDefault": "Rechercher des produits | BAPI",
+      "descriptionTemplate": "Trouvez des capteurs et des contrôleurs d'automatisation des bâtiments BAPI. Résultats de recherche pour : {query}"
+    },
+    "emptyQuery": {
+      "title": "Rechercher des produits",
+      "description": "Utilisez la barre de recherche ci-dessus pour trouver des capteurs, des contrôleurs et des produits d'automatisation des bâtiments.",
+      "browseButton": "Parcourir tous les produits"
+    },
+    "results": {
+      "backToProducts": "Retour aux produits",
+      "title": "Résultats de recherche",
+      "resultsCount": "{count} résultat pour \"{query}\"",
+      "resultsCountPlural": "{count} résultats pour \"{query}\""
+    },
+    "noResults": {
+      "title": "Aucun produit trouvé",
+      "description": "Nous n'avons pas pu trouver de produits correspondant à \"{query}\". Essayez d'autres mots-clés ou parcourez nos catégories.",
+      "browseButton": "Parcourir tous les produits",
+      "contactButton": "Contacter le support"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "Paiement | BAPI",
+      "description": "Complétez votre commande"
+    },
+    "header": {
+      "title": "Paiement",
+      "stepsRemaining": "Complétez votre commande en {count} étape facile",
+      "stepsRemainingPlural": "Complétez votre commande en {count} étapes faciles"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "Expédition",
+          "description": "Adresse de livraison"
+        },
+        "payment": {
+          "title": "Paiement",
+          "description": "Méthode de paiement"
+        },
+        "review": {
+          "title": "Vérifier",
+          "description": "Passer la commande"
+        }
+      }
+    },
+    "shipping": {
+      "title": "Adresse de livraison",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "company": "Entreprise (facultatif)",
+      "address": "Adresse",
+      "addressPlaceholder": "Adresse postale",
+      "address2Placeholder": "Appartement, suite, etc. (facultatif)",
+      "city": "Ville",
+      "state": "État",
+      "statePlaceholder": "CA, NY, TX, etc.",
+      "zipCode": "Code postal",
+      "zipCodePlaceholder": "12345",
+      "country": "Pays",
+      "phone": "Téléphone",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "Email",
+      "emailPlaceholder": "vous@exemple.com",
+      "countries": {
+        "us": "États-Unis",
+        "ca": "Canada",
+        "mx": "Mexique"
+      },
+      "billingSameAsShipping": "Adresse de facturation identique à l'adresse de livraison",
+      "continueButton": "Continuer au paiement",
+      "validation": {
+        "missingInfo": "Informations manquantes",
+        "missingInfoMessage": "Veuillez remplir tous les champs obligatoires",
+        "invalidEmail": "Email invalide",
+        "invalidEmailMessage": "Veuillez entrer une adresse email valide",
+        "invalidPhone": "Téléphone invalide",
+        "invalidPhoneMessage": "Veuillez entrer un numéro de téléphone valide"
+      }
+    },
+    "payment": {
+      "title": "Méthode de paiement",
+      "methods": {
+        "creditCard": {
+          "title": "Carte de crédit",
+          "description": "Payer avec une carte de crédit ou de débit"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "Payer avec votre compte PayPal"
+        }
+      },
+      "cardDetails": {
+        "title": "Détails de la carte",
+        "settingUp": "Mise en place du paiement...",
+        "loadError": "Impossible de charger le formulaire de paiement. Veuillez actualiser et réessayer."
+      },
+      "security": {
+        "title": "Votre paiement est sécurisé",
+        "description": "Alimenté par Stripe avec un chiffrement SSL 256 bits"
+      },
+      "paypal": {
+        "redirectMessage": "Vous serez redirigé vers PayPal pour finaliser votre achat en toute sécurité après avoir passé en revue votre commande.",
+        "continueButton": "Continuer à la vérification"
+      },
+      "back": "Retour",
+      "toasts": {
+        "selectMethod": "Sélectionnez le mode de paiement",
+        "selectMethodMessage": "Veuillez sélectionner un mode de paiement",
+        "setupFailed": "Échec de la configuration du paiement",
+        "setupError": "Impossible d'initialiser le paiement",
+        "paymentConfirmed": "Paiement confirmé",
+        "paymentConfirmedMessage": "Passage à l'examen de la commande",
+        "paymentFailed": "Paiement échoué"
+      }
+    },
+    "review": {
+      "title": "Vérifier votre commande",
+      "description": "Veuillez vérifier vos informations avant de passer votre commande",
+      "shippingAddress": "Adresse de livraison",
+      "billingAddress": "Adresse de facturation",
+      "paymentMethod": "Méthode de paiement",
+      "sameAsShipping": "Identique à l'adresse de livraison",
+      "notSelected": "Non sélectionné",
+      "edit": "Modifier",
+      "phone": "Téléphone",
+      "email": "Email",
+      "paymentNotes": {
+        "creditCard": "Votre carte sera débitée après confirmation de la commande",
+        "paypal": "Vous serez redirigé vers PayPal pour effectuer le paiement"
+      },
+      "orderNotes": {
+        "label": "Notes de commande (facultatif)",
+        "placeholder": "Ajoutez des instructions ou des remarques spéciales concernant votre commande..."
+      },
+      "terms": {
+        "agree": "J'ai lu et j'accepte les",
+        "termsLink": "Conditions générales",
+        "and": "et la",
+        "privacyLink": "Politique de confidentialité"
+      },
+      "placeOrder": "Passer la commande",
+      "processing": "Traitement en cours...",
+      "back": "Retour",
+      "security": "Paiement sécurisé avec chiffrement SSL 256 bits",
+      "toasts": {
+        "acceptTerms": "Accepter les conditions",
+        "acceptTermsMessage": "Veuillez accepter les conditions générales pour continuer"
+      }
+    },
+    "summary": {
+      "title": "Récapitulatif de la commande",
+      "items": "Articles ({count})",
+      "noImage": "Pas d'image",
+      "qty": "Qté",
+      "editCart": "← Modifier le panier",
+      "subtotal": "Sous-total",
+      "discount": "Remise",
+      "shipping": "Expédition",
+      "tax": "Taxe",
+      "total": "Total",
+      "calculatedAtCheckout": "Calculé à la caisse",
+      "secureCheckout": "Paiement sécurisé"
+    },
+    "toasts": {
+      "cartEmpty": "Panier vide",
+      "cartEmptyMessage": "Votre panier est vide. Ajoutez des articles avant de passer à la caisse.",
+      "error": "Erreur",
+      "errorMessage": "Impossible de charger le panier.",
+      "orderPlaced": "Commande passée !",
+      "orderPlacedMessage": "Votre commande a été passée avec succès."
+    }
   }
 }

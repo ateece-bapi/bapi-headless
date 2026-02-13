@@ -663,5 +663,438 @@
     "pageNavigation": "Page navigation",
     "loading": "Loading content",
     "searchResults": "Search results"
+  },
+  "productPage": {
+    "summary": {
+      "title": "उत्पाद सारांश",
+      "configureProduct": "उत्पाद कॉन्फ़िगर करें",
+      "selectSpecifications": "मूल्य और पार्ट नंबर देखने के लिए नीचे अपने विनिर्देशों का चयन करें",
+      "configurationComplete": "कॉन्फ़िगरेशन पूरा हो गया",
+      "partNumber": "पार्ट नंबर",
+      "quantity": "मात्रा",
+      "multiplier": "गुणक",
+      "priceCalculation": "मूल्य गणना"
+    },
+    "tabs": {
+      "description": "विवरण",
+      "documents": "दस्तावेज़",
+      "videos": "वीडियो",
+      "specifications": "विनिर्देश",
+      "support": "समर्थन",
+      "overview": "अवलोकन",
+      "specs": "विनिर्देश",
+      "descriptionPlaceholder": "जब उपलब्ध होगा, तो उत्पाद विवरण यहाँ दिखाया जाएगा।",
+      "noVideosAvailable": "इस उत्पाद के लिए कोई वीडियो उपलब्ध नहीं है।",
+      "noDocumentsAvailable": "इस उत्पाद के लिए कोई दस्तावेज़ उपलब्ध नहीं है।"
+    },
+    "specifications": {
+      "title": "विनिर्देश",
+      "noSpecsAvailable": "इस उत्पाद के लिए कोई विनिर्देश उपलब्ध नहीं है।",
+      "expandAll": "सभी विस्तृत करें",
+      "collapseAll": "सभी संक्षिप्त करें",
+      "download": "डाउनलोड",
+      "downloadSpecs": "विनिर्देश डाउनलोड करें"
+    },
+    "related": {
+      "title": "संबंधित उत्पाद",
+      "view": "देखें",
+      "addToJobEstimate": "जॉब अनुमान में जोड़ें",
+      "viewProduct": "उत्पाद देखें",
+      "viewAll": "सभी संबंधित उत्पाद देखें"
+    },
+    "actions": {
+      "addToCart": "कार्ट में जोड़ें",
+      "addToQuote": "कोटेशन में जोड़ें",
+      "buyNow": "अभी खरीदें",
+      "requestQuote": "कोटेशन मांगें",
+      "compareProducts": "उत्पादों की तुलना करें",
+      "addToFavorites": "पसंदीदा में जोड़ें",
+      "share": "शेयर करें"
+    },
+    "pricing": {
+      "price": "मूल्य",
+      "regularPrice": "सामान्य मूल्य",
+      "salePrice": "विक्रय मूल्य",
+      "yourPrice": "आपका मूल्य",
+      "calculatedPrice": "गणित मूल्य",
+      "basePrice": "आधारभूत मूल्य",
+      "totalPrice": "कुल मूल्य",
+      "pricePerUnit": "प्रति इकाई मूल्य",
+      "bulkDiscountAvailable": "थोक छूट उपलब्ध है",
+      "contactForPricing": "मूल्य के लिए हमसे संपर्क करें"
+    },
+    "availability": {
+      "inStock": "स्टॉक में",
+      "outOfStock": "स्टॉक में नहीं",
+      "onBackorder": "बैकऑर्डर पर",
+      "lowStock": "कम स्टॉक",
+      "checkAvailability": "उपलब्धता जांचें",
+      "readyToShip": "शिपमेंट के लिए तैयार",
+      "currentlyUnavailable": "वर्तमान में अनुपलब्ध",
+      "availableForPreorder": "पूर्व-आदेश के लिए उपलब्ध",
+      "contactForAvailability": "उपलब्धता के लिए हमसे संपर्क करें",
+      "onlyXLeft": "केवल {count} बचे हैं",
+      "xAvailable": "{count} उपलब्ध",
+      "expectedBack": "वापस आने की उम्मीद: {date}",
+      "shipsOn": "{date} को भेजा जाएगा"
+    }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "भवन स्वचालन उत्पाद",
+      "description": "हमारे उच्च-शुद्धता वाले सेंसर, कंट्रोलर और परीक्षण उपकरणों के पूर्ण श्रृंखला का अन्वेषण करें। महत्वपूर्ण HVAC अनुप्रयोगों के लिए दुनिया भर के इंजीनियरों द्वारा विश्वसनीय।"
+    },
+    "breadcrumb": {
+      "home": "होम",
+      "products": "उत्पाद"
+    },
+    "hero": {
+      "badge": "सटीक सेंसर और नियंत्रक",
+      "title": "भवन स्वचालन उत्पाद",
+      "description": "हमारे उच्च-शुद्धता वाले सेंसर, नियंत्रक और परीक्षण उपकरणों की पूर्ण श्रृंखला का अन्वेषण करें। महत्वपूर्ण HVAC अनुप्रयोगों के लिए दुनिया भर के इंजीनियरों द्वारा विश्वसनीय।",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "उत्पाद",
+        "warrantyDuration": "5 वर्ष",
+        "warrantyLabel": "वारंटी",
+        "accuracyValue": "±0.2°C",
+        "accuracyLabel": "शुद्धता"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "तापमान सेंसर",
+        "description": "उच्च-शुद्धता तापमान माप समाधान"
+      },
+      "humiditySensors": {
+        "name": "आर्द्रता सेंसर",
+        "description": "सटीक अपेक्षित आर्द्रता निगरानी"
+      },
+      "pressureSensors": {
+        "name": "दबाव सेंसर",
+        "description": "अंतर और स्थैतिक दबाव प्रेषक"
+      },
+      "airQualitySensors": {
+        "name": "वायु गुणवत्ता सेंसर",
+        "description": "CO₂, VOC और कणिकाएं मॉनिटरिंग"
+      },
+      "wirelessSensors": {
+        "name": "बिना तार वाले सेंसर",
+        "description": "बैटरी-संचालित और ऊर्जा सामना समाधान"
+      },
+      "accessories": {
+        "name": "सहायक उपकरण",
+        "description": "माउंटिंग हार्डवेयर, इन्क्लोज़र और केबल"
+      },
+      "testInstruments": {
+        "name": "परीक्षण उपकरण",
+        "description": "पेशेवर कैलिब्रेशन और परीक्षण उपकरण"
+      },
+      "etaLine": {
+        "name": "ETA लाइन",
+        "description": "मॉड्यूलर I/O और नियंत्रण समाधान"
+      },
+      "viewProducts": "उत्पाद देखें"
+    },
+    "featured": {
+      "badge": "विशेष रूप से प्रदर्शित उत्पाद श्रृंखला",
+      "title": "BA/10K श्रृंखला तापमान सेंसर",
+      "description": "हमारे सबसे लोकप्रिय सेंसर। ±0.2°C शुद्धता, BACnet MS/TP, और 5 वर्ष की वारंटी। स्वास्थ्यसंभाल, डेटा केंद्रों और महत्वपूर्ण सुविधाओं में दुनिया भर में विश्वसनीय।",
+      "viewButton": "BA श्रृंखला देखें",
+      "features": {
+        "accuracy": {
+          "label": "±0.2°C शुद्धता",
+          "value": "उद्योग में अग्रणी"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "मूल प्रोटोकॉल"
+        },
+        "warranty": {
+          "label": "5 वर्ष की वारंटी",
+          "value": "मानक"
+        },
+        "madeInUSA": {
+          "label": "अमेरिका में बनाया गया",
+          "value": "गुणवत्ता की गारंटी"
+        }
+      }
+    },
+    "cta": {
+      "title": "सही उत्पाद ढूंढने में मदद की जरूरत?",
+      "description": "हमारे विशेषज्ञों की टीम आपके भवन स्वचालन परियोजना के लिए सही सेंसर और नियंत्रक का चयन करने में आपकी मदद करने के लिए तैयार है।",
+      "button": "बिक्री से संपर्क करें"
+    }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "खरीदारी कार्ट",
+      "description": "अपने कार्ट की समीक्षा करें और चेकआउट करने के लिए आगे बढ़ें"
+    },
+    "header": {
+      "title": "खरीदारी कार्ट",
+      "continueShopping": "खरीदारी जारी रखें"
+    },
+    "empty": {
+      "title": "आपका कार्ट खाली है",
+      "description": "शुरू करने के लिए अपने कार्ट में कुछ उत्पाद जोड़ें।",
+      "button": "खरीदारी जारी रखें"
+    },
+    "items": {
+      "title": "कार्ट आइटम",
+      "clearCart": "कार्ट खाली करें",
+      "clearConfirm": "क्या आप वाकई अपने कार्ट को खाली करना चाहते हैं?",
+      "noImage": "कोई छवि नहीं",
+      "remove": "हटाएं",
+      "priceEach": "{price} प्रत्येक"
+    },
+    "stock": {
+      "inStock": "स्टॉक में",
+      "outOfStock": "स्टॉक में नहीं",
+      "onBackorder": "बैकऑर्डर पर",
+      "available": "{count} उपलब्ध"
+    },
+    "quantity": {
+      "decrease": "मात्रा कम करें",
+      "increase": "मात्रा बढ़ाएं"
+    },
+    "summary": {
+      "title": "ऑर्डर सारांश",
+      "subtotal": "उप-कुल",
+      "discount": "छूट",
+      "shipping": "शिपिंग",
+      "tax": "कर",
+      "total": "कुल",
+      "calculatedAtCheckout": "चेकआउट पर गणना की जाएगी",
+      "proceedToCheckout": "चेकआउट पर जाएं",
+      "secureCheckout": "सुरक्षित चेकआउट",
+      "sslEncrypted": "256-बिट SSL एन्क्रिप्टेड"
+    },
+    "coupon": {
+      "label": "क्या आपके पास कूपन कोड है?",
+      "placeholder": "कोड दर्ज करें",
+      "apply": "लागू करें",
+      "applying": "लागू किया जा रहा है...",
+      "appliedCoupons": "लागू किए गए कूपन:",
+      "remove": "कूपन हटाएं"
+    },
+    "shipping": {
+      "freeShipping": "✓ $500 से अधिक के ऑर्डर पर मुफ्त शिपिंग",
+      "standardShipping": "मानक शिपिंग: 3-5 कार्य दिवस"
+    },
+    "toasts": {
+      "updated": "अपडेट किया गया",
+      "cartUpdated": "कार्ट सफलतापूर्वक अपडेट किया गया",
+      "removed": "हटा दिया गया",
+      "itemRemoved": "आइटम को कार्ट से हटा दिया गया",
+      "cartCleared": "कार्ट खाली किया गया",
+      "allItemsRemoved": "सभी आइटम को कार्ट से हटा दिया गया",
+      "enterCode": "कोड दर्ज करें",
+      "enterCodeMessage": "कृपया कूपन कोड दर्ज करें",
+      "couponApplied": "कूपन लागू किया गया",
+      "couponAppliedMessage": "कूपन \"{code}\" को सफलतापूर्वक लागू किया गया",
+      "couponRemoved": "कूपन हटा दिया गया",
+      "couponRemovedMessage": "कूपन \"{code}\" को हटा दिया गया"
+    }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "श्रेणी नहीं मिली",
+      "descriptionTemplate": "BAPI - Building Automation Products Inc. से {name} ब्राउज़ करें"
+    },
+    "breadcrumb": {
+      "home": "मुख्यपृष्ठ",
+      "products": "उत्पाद"
+    },
+    "header": {
+      "productsAvailable": "{count} उत्पाद उपलब्ध"
+    },
+    "subcategories": {
+      "title": "श्रेणी के अनुसार ब्राउज़ करें",
+      "productCount": "{count} उत्पाद",
+      "productCountPlural": "{count} उत्पाद",
+      "browseButton": "उत्पाद ब्राउज़ करें"
+    },
+    "quickLinks": {
+      "backToProducts": "← सभी उत्पादों पर वापस जाएं",
+      "needHelp": "सहायता चाहिए? संपर्क करें"
+    }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "\"{query}\" के लिए खोज परिणाम | BAPI",
+      "titleDefault": "उत्पादों की खोज | BAPI",
+      "descriptionTemplate": "BAPI भवन स्वचालन सेंसर और नियंत्रकों को खोजें। {query} के लिए खोज परिणाम"
+    },
+    "emptyQuery": {
+      "title": "उत्पादों की खोज",
+      "description": "ऊपर दिए गए खोज बार का उपयोग करके सेंसर, नियंत्रक और भवन स्वचालन उत्पाद ढूंढें।",
+      "browseButton": "सभी उत्पादों को ब्राउज़ करें"
+    },
+    "results": {
+      "backToProducts": "उत्पादों पर वापस जाएं",
+      "title": "खोज परिणाम",
+      "resultsCount": "\"{query}\" के लिए {count} परिणाम",
+      "resultsCountPlural": "\"{query}\" के लिए {count} परिणाम"
+    },
+    "noResults": {
+      "title": "कोई उत्पाद नहीं मिला",
+      "description": "हमें \"{query}\" से मेल खाते कोई उत्पाद नहीं मिले। कृपया अलग कीवर्ड्स का उपयोग करें या हमारे श्रेणियों को ब्राउज़ करें।",
+      "browseButton": "सभी उत्पादों को ब्राउज़ करें",
+      "contactButton": "सहायता से संपर्क करें"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "चेकआउट | BAPI",
+      "description": "अपना ऑर्डर पूरा करें"
+    },
+    "header": {
+      "title": "चेकआउट",
+      "stepsRemaining": "{count} आसान चरण में अपना ऑर्डर पूरा करें",
+      "stepsRemainingPlural": "{count} आसान चरणों में अपना ऑर्डर पूरा करें"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "शिपिंग",
+          "description": "डिलीवरी पता"
+        },
+        "payment": {
+          "title": "भुगतान",
+          "description": "भुगतान विधि"
+        },
+        "review": {
+          "title": "समीक्षा",
+          "description": "ऑर्डर दर्ज करें"
+        }
+      }
+    },
+    "shipping": {
+      "title": "शिपिंग पता",
+      "firstName": "पहला नाम",
+      "lastName": "अंतिम नाम",
+      "company": "कंपनी (वैकल्पिक)",
+      "address": "पता",
+      "addressPlaceholder": "स्ट्रीट पता",
+      "address2Placeholder": "अपार्टमेंट, सूट, आदि (वैकल्पिक)",
+      "city": "शहर",
+      "state": "राज्य",
+      "statePlaceholder": "CA, NY, TX, आदि",
+      "zipCode": "ज़िप कोड",
+      "zipCodePlaceholder": "12345",
+      "country": "देश",
+      "phone": "फोन",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "ईमेल",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "संयुक्त राज्य अमेरिका",
+        "ca": "कनाडा",
+        "mx": "मेक्सिको"
+      },
+      "billingSameAsShipping": "शिपिंग पता और बिलिंग पता एक जैसे हैं",
+      "continueButton": "भुगतान पर जारी रखें",
+      "validation": {
+        "missingInfo": "जानकारी अपूर्ण है",
+        "missingInfoMessage": "कृपया सभी आवश्यक क्षेत्रों को भरें",
+        "invalidEmail": "अमान्य ईमेल",
+        "invalidEmailMessage": "कृपया एक वैध ईमेल पता दर्ज करें",
+        "invalidPhone": "अमान्य फोन",
+        "invalidPhoneMessage": "कृपया एक वैध फोन नंबर दर्ज करें"
+      }
+    },
+    "payment": {
+      "title": "भुगतान विधि",
+      "methods": {
+        "creditCard": {
+          "title": "क्रेडिट कार्ड",
+          "description": "क्रेडिट या डेबिट कार्ड से भुगतान करें"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "अपने PayPal खाते से भुगतान करें"
+        }
+      },
+      "cardDetails": {
+        "title": "कार्ड विवरण",
+        "settingUp": "भुगतान सेट अप हो रहा है...",
+        "loadError": "भुगतान फ़ॉर्म लोड करने में असमर्थ। कृपया ताज़ा करें और फिर से कोशिश करें।"
+      },
+      "security": {
+        "title": "आपका भुगतान सुरक्षित है",
+        "description": "स्ट्राइप द्वारा प्रदान किया गया 256-बिट एसएसएल एन्क्रिप्शन के साथ"
+      },
+      "paypal": {
+        "redirectMessage": "आप अपने ऑर्डर की समीक्षा करने के बाद सुरक्षित रूप से अपने खरीद को पूरा करने के लिए PayPal पर पुनर्निर्देशित किए जाएंगे।",
+        "continueButton": "समीक्षा पर जारी रखें"
+      },
+      "back": "वापस",
+      "toasts": {
+        "selectMethod": "भुगतान विधि चुनें",
+        "selectMethodMessage": "कृपया एक भुगतान विधि चुनें",
+        "setupFailed": "भुगतान सेटअप विफल",
+        "setupError": "भुगतान प्रारंभ करने में असमर्थ",
+        "paymentConfirmed": "भुगतान की पुष्टि",
+        "paymentConfirmedMessage": "ऑर्डर समीक्षा पर आगे बढ़ रहा है",
+        "paymentFailed": "भुगतान विफल"
+      }
+    },
+    "review": {
+      "title": "अपने ऑर्डर की समीक्षा करें",
+      "description": "कृपया अपना ऑर्डर दर्ज करने से पहले अपनी जानकारी की समीक्षा करें",
+      "shippingAddress": "शिपिंग पता",
+      "billingAddress": "बिलिंग पता",
+      "paymentMethod": "भुगतान विधि",
+      "sameAsShipping": "शिपिंग पते के समान",
+      "notSelected": "चयनित नहीं",
+      "edit": "संपादित करें",
+      "phone": "फोन",
+      "email": "ईमेल",
+      "paymentNotes": {
+        "creditCard": "ऑर्डर की पुष्टि के बाद आपका कार्ड चार्ज किया जाएगा",
+        "paypal": "आप भुगतान पूरा करने के लिए PayPal पर पुनर्निर्देशित किए जाएंगे"
+      },
+      "orderNotes": {
+        "label": "ऑर्डर नोट्स (वैकल्पिक)",
+        "placeholder": "अपने ऑर्डर के बारे में कोई खास निर्देश या टिप्पणी जोड़ें..."
+      },
+      "terms": {
+        "agree": "मैंने निर्बंध और शर्तों को पढ़ लिया है और सहमत हूं",
+        "termsLink": "नियम और शर्तें",
+        "and": "और",
+        "privacyLink": "गोपनीयता नीति"
+      },
+      "placeOrder": "ऑर्डर दर्ज करें",
+      "processing": "प्रक्रिया चल रही है...",
+      "back": "वापस",
+      "security": "सुरक्षित 256-बिट एसएसएल एन्क्रिप्टेड चेकआउट",
+      "toasts": {
+        "acceptTerms": "नियम और शर्तें स्वीकार करें",
+        "acceptTermsMessage": "जारी रखने के लिए कृपया नियम और शर्तें स्वीकार करें"
+      }
+    },
+    "summary": {
+      "title": "ऑर्डर सारांश",
+      "items": "आइटम ({count})",
+      "noImage": "कोई छवि नहीं",
+      "qty": "मात्रा",
+      "editCart": "← कार्ट संपादित करें",
+      "subtotal": "उपमूल्य",
+      "discount": "छूट",
+      "shipping": "शिपिंग",
+      "tax": "कर",
+      "total": "कुल",
+      "calculatedAtCheckout": "चेकआउट पर गणना की जाती है",
+      "secureCheckout": "सुरक्षित चेकआउट"
+    },
+    "toasts": {
+      "cartEmpty": "कार्ट खाली है",
+      "cartEmptyMessage": "आपका कार्ट खाली है। चेकआउट करने से पहले कोई आइटम जोड़ें।",
+      "error": "त्रुटि",
+      "errorMessage": "कार्ट लोड करने में असमर्थ।",
+      "orderPlaced": "ऑर्डर प्लेस किया गया!",
+      "orderPlacedMessage": "आपका ऑर्डर सफलतापूर्वक प्लेस हो गया है।"
+    }
   }
 }

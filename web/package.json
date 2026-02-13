@@ -23,7 +23,9 @@
     "chromatic": "chromatic --exit-zero-on-changes",
     "lighthouse": "lhci autorun --config=lighthouserc.json",
     "lighthouse:build": "pnpm run build && lhci autorun --config=lighthouserc.json",
-    "check:404": "node scripts/check-404s.mjs"
+    "check:404": "node scripts/check-404s.mjs",
+    "translate:section": "node scripts/translate-section.js",
+    "translate:estimate": "node scripts/translate-section.js --estimate"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",
@@ -36,7 +38,6 @@
     "cd": "^0.3.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "dotenv": "^17.2.3",
     "graphql": "^16.12.0",
     "graphql-request": "^7.3.4",
     "graphql-tag": "^2.12.6",
@@ -83,6 +84,7 @@
     "@vitest/coverage-v8": "4.0.17",
     "baseline-browser-mapping": "^2.9.5",
     "chromatic": "^13.3.5",
+    "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "eslint-plugin-jsdoc": "^61.4.1",

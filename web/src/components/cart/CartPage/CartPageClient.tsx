@@ -9,6 +9,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
 import { ShoppingCart, ArrowLeft } from 'lucide-react';
 import CartItems from './CartItems';
@@ -79,6 +81,9 @@ interface CartItem {
 }
 
 export default function CartPageClient() {
+  const t = useTranslations();
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
   const [cart, setCart] = useState<CartData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -206,7 +211,7 @@ export default function CartPageClient() {
       // Refresh cart display
       fetchLocalCart();
 
-      showToast('success', 'Updated', 'Cart updated successfully');
+      showToast('success', t('cartPage.toasts.updated'), t('cartPage.toasts.cartUpdated'));
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
       logError('cart.update_failed', error, { itemKey, newQuantity });
@@ -234,7 +239,7 @@ export default function CartPageClient() {
 
       // Show success toast after state updates complete
       setTimeout(() => {
-        showToast('success', 'Removed', 'Item removed from cart');
+        showToast('success', t('cartPage.toasts.removed'), t('cartPage.toasts.itemRemoved'));
       }, 100);
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
@@ -246,7 +251,7 @@ export default function CartPageClient() {
   };
 
   const handleClearCart = async () => {
-    if (!confirm('Are you sure you want to clear your cart?')) return;
+    if (!confirm(t('cartPage.items.clearConfirm'))) return;
 
     try {
       setIsUpdating(true);
@@ -259,7 +264,7 @@ export default function CartPageClient() {
 
       // Show success toast after state updates complete
       setTimeout(() => {
-        showToast('success', 'Cart Cleared', 'All items removed from cart');
+        showToast('success', t('cartPage.toasts.cartCleared'), t('cartPage.toasts.allItemsRemoved'));
       }, 100);
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
@@ -291,16 +296,16 @@ export default function CartPageClient() {
     return (
       <div className="mx-auto max-w-content px-4 py-16 text-center sm:px-6 lg:px-8">
         <ShoppingCart className="mx-auto mb-6 h-24 w-24 text-neutral-300" />
-        <h1 className="mb-4 text-3xl font-bold text-neutral-900">Your Cart is Empty</h1>
+        <h1 className="mb-4 text-3xl font-bold text-neutral-900">{t('cartPage.empty.title')}</h1>
         <p className="mb-8 text-lg text-neutral-600">
-          Add some products to your cart to get started.
+          {t('cartPage.empty.description')}
         </p>
         <Link
-          href="/products"
+          href={`/${locale}/products`}
           className="btn-bapi-primary inline-flex items-center gap-2 rounded-xl px-8 py-4 font-semibold"
         >
           <ArrowLeft className="h-5 w-5" />
-          Continue Shopping
+          {t('cartPage.empty.button')}
         </Link>
       </div>
     );
@@ -310,13 +315,13 @@ export default function CartPageClient() {
     <div className="mx-auto max-w-container px-4 py-8 sm:px-6 sm:py-12 lg:px-8 xl:px-12">
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Shopping Cart</h1>
+        <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">{t('cartPage.header.title')}</h1>
         <Link
-          href="/products"
+          href={`/${locale}/products`}
           className="flex items-center gap-2 font-medium text-primary-500 transition-colors hover:text-primary-600"
         >
           <ArrowLeft className="h-4 w-4" />
-          Continue Shopping
+          {t('cartPage.header.continueShopping')}
         </Link>
       </div>
 

@@ -11,12 +11,16 @@
  */
 
 import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import CartPageClient from '@/components/cart/CartPage/CartPageClient';
 
-export const metadata: Metadata = {
-  title: 'Shopping Cart | BAPI',
-  description: 'Review your cart and proceed to checkout',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations();
+  return {
+    title: `${t('cartPage.meta.title')} | BAPI`,
+    description: t('cartPage.meta.description'),
+  };
+}
 
 export default function CartPage() {
   return <CartPageClient />;

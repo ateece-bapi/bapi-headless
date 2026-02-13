@@ -1,6 +1,7 @@
 import { getProductRelated } from '@/lib/graphql';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 import logger from '@/lib/logger';
 import { ArrowRight, Package } from 'lucide-react';
 
@@ -9,6 +10,7 @@ type RelatedProductsAsyncProps = {
 };
 
 export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncProps) {
+  const t = await getTranslations();
   try {
     // Fetch only related products
     const data = await getProductRelated(productId);
@@ -26,7 +28,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                 <Package className="h-6 w-6 text-primary-600" />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-neutral-900">Related Products</h2>
+                <h2 className="text-3xl font-bold text-neutral-900">{t('productPage.related.title')}</h2>
                 <p className="mt-1 text-neutral-600">Products frequently purchased together</p>
               </div>
             </div>
@@ -79,7 +81,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                   {/* View Button */}
                   <div className="flex items-center justify-between gap-2 rounded-lg bg-neutral-100 px-4 py-2.5 transition-colors group-hover:bg-primary-500">
                     <span className="text-sm font-semibold text-neutral-700 transition-colors group-hover:text-white">
-                      View Product
+                      {t('productPage.related.viewProduct')}
                     </span>
                     <ArrowRight className="h-4 w-4 text-neutral-400 transition-colors group-hover:text-white" />
                   </div>

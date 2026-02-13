@@ -11,6 +11,7 @@
 
 import { useState } from 'react';
 import { ArrowRight, MapPin } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import type { CheckoutData } from '../CheckoutPageClient';
 import { useToast } from '@/components/ui/Toast';
 
@@ -22,6 +23,7 @@ interface ShippingStepProps {
 
 export default function ShippingStep({ data, onNext, onUpdateData }: ShippingStepProps) {
   const { showToast } = useToast();
+  const t = useTranslations('checkoutPage.shipping');
   const [formData, setFormData] = useState(data.shippingAddress);
   const [sameAsShipping, setSameAsShipping] = useState(data.billingAddress.sameAsShipping);
   const [billingData, setBillingData] = useState(data.billingAddress);
@@ -51,7 +53,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
 
     for (const field of required) {
       if (!formData[field as keyof typeof formData]) {
-        showToast('warning', 'Missing Information', `Please fill in all required fields`);
+        showToast('warning', t('validation.missingInfo'), t('validation.missingInfoMessage'));
         return false;
       }
     }
@@ -59,14 +61,14 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      showToast('warning', 'Invalid Email', 'Please enter a valid email address');
+      showToast('warning', t('validation.invalidEmail'), t('validation.invalidEmailMessage'));
       return false;
     }
 
     // Phone validation (basic)
     const phoneRegex = /^[\d\s\-\(\)\+]+$/;
     if (!phoneRegex.test(formData.phone)) {
-      showToast('warning', 'Invalid Phone', 'Please enter a valid phone number');
+      showToast('warning', t('validation.invalidPhone'), t('validation.invalidPhoneMessage'));
       return false;
     }
 
@@ -97,14 +99,14 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
       <div>
         <div className="mb-6 flex items-center gap-2">
           <MapPin className="h-6 w-6 text-primary-500" />
-          <h2 className="text-2xl font-bold text-neutral-900">Shipping Address</h2>
+          <h2 className="text-2xl font-bold text-neutral-900">{t('title')}</h2>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {/* First Name */}
           <div>
             <label htmlFor="firstName" className="mb-2 block text-sm font-medium text-neutral-700">
-              First Name *
+              {t('firstName')} *
             </label>
             <input
               type="text"
@@ -120,7 +122,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           {/* Last Name */}
           <div>
             <label htmlFor="lastName" className="mb-2 block text-sm font-medium text-neutral-700">
-              Last Name *
+              {t('lastName')} *
             </label>
             <input
               type="text"
@@ -136,7 +138,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           {/* Company (Optional) */}
           <div className="sm:col-span-2">
             <label htmlFor="company" className="mb-2 block text-sm font-medium text-neutral-700">
-              Company (Optional)
+              {t('company')}
             </label>
             <input
               type="text"
@@ -151,7 +153,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           {/* Address Line 1 */}
           <div className="sm:col-span-2">
             <label htmlFor="address1" className="mb-2 block text-sm font-medium text-neutral-700">
-              Address *
+              {t('address')} *
             </label>
             <input
               type="text"
@@ -160,7 +162,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
               value={formData.address1}
               onChange={handleChange}
               required
-              placeholder="Street address"
+              placeholder={t('addressPlaceholder')}
               className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
@@ -173,7 +175,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
               name="address2"
               value={formData.address2}
               onChange={handleChange}
-              placeholder="Apartment, suite, etc. (optional)"
+              placeholder={t('address2Placeholder')}
               className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
@@ -181,7 +183,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           {/* City */}
           <div>
             <label htmlFor="city" className="mb-2 block text-sm font-medium text-neutral-700">
-              City *
+              {t('city')} *
             </label>
             <input
               type="text"
@@ -197,7 +199,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           {/* State */}
           <div>
             <label htmlFor="state" className="mb-2 block text-sm font-medium text-neutral-700">
-              State *
+              {t('state')} *
             </label>
             <input
               type="text"
@@ -206,7 +208,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
               value={formData.state}
               onChange={handleChange}
               required
-              placeholder="CA, NY, TX, etc."
+              placeholder={t('statePlaceholder')}
               className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
@@ -214,7 +216,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           {/* Postcode */}
           <div>
             <label htmlFor="postcode" className="mb-2 block text-sm font-medium text-neutral-700">
-              ZIP Code *
+              {t('zipCode')} *
             </label>
             <input
               type="text"
@@ -223,7 +225,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
               value={formData.postcode}
               onChange={handleChange}
               required
-              placeholder="12345"
+              placeholder={t('zipCodePlaceholder')}
               className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
@@ -231,7 +233,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           {/* Country */}
           <div>
             <label htmlFor="country" className="mb-2 block text-sm font-medium text-neutral-700">
-              Country *
+              {t('country')} *
             </label>
             <select
               id="country"
@@ -241,16 +243,16 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
               required
               className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="MX">Mexico</option>
+              <option value="US">{t('countries.us')}</option>
+              <option value="CA">{t('countries.ca')}</option>
+              <option value="MX">{t('countries.mx')}</option>
             </select>
           </div>
 
           {/* Phone */}
           <div>
             <label htmlFor="phone" className="mb-2 block text-sm font-medium text-neutral-700">
-              Phone *
+              {t('phone')} *
             </label>
             <input
               type="tel"
@@ -259,7 +261,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
               value={formData.phone}
               onChange={handleChange}
               required
-              placeholder="(555) 123-4567"
+              placeholder={t('phonePlaceholder')}
               className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
@@ -267,7 +269,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           {/* Email */}
           <div>
             <label htmlFor="email" className="mb-2 block text-sm font-medium text-neutral-700">
-              Email *
+              {t('email')} *
             </label>
             <input
               type="email"
@@ -276,7 +278,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
               value={formData.email}
               onChange={handleChange}
               required
-              placeholder="you@example.com"
+              placeholder={t('emailPlaceholder')}
               className="w-full rounded-lg border border-neutral-300 px-4 py-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
@@ -293,7 +295,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
             className="h-5 w-5 rounded border-neutral-300 text-primary-500 focus:ring-2 focus:ring-primary-500"
           />
           <span className="text-sm font-medium text-neutral-700">
-            Billing address same as shipping address
+            {t('billingSameAsShipping')}
           </span>
         </label>
       </div>
@@ -304,7 +306,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           type="submit"
           className="btn-bapi-primary flex items-center gap-2 rounded-xl px-8 py-4"
         >
-          Continue to Payment
+          {t('continueButton')}
           <ArrowRight className="h-5 w-5" />
         </button>
       </div>

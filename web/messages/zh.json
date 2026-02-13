@@ -446,5 +446,438 @@
         "premium": "优质"
       }
     }
+  },
+  "productPage": {
+    "summary": {
+      "title": "产品概要",
+      "configureProduct": "配置产品",
+      "selectSpecifications": "请选择您的规格以查看价格和型号",
+      "configurationComplete": "配置完成",
+      "partNumber": "型号",
+      "quantity": "数量",
+      "multiplier": "乘数",
+      "priceCalculation": "价格计算"
+    },
+    "tabs": {
+      "description": "描述",
+      "documents": "文档",
+      "videos": "视频",
+      "specifications": "规格",
+      "support": "支持",
+      "overview": "概览",
+      "specs": "规格",
+      "descriptionPlaceholder": "产品描述将在此处显示。",
+      "noVideosAvailable": "此产品没有可用的视频。",
+      "noDocumentsAvailable": "此产品没有可用的文档。"
+    },
+    "specifications": {
+      "title": "规格",
+      "noSpecsAvailable": "此产品没有可用的规格。",
+      "expandAll": "全部展开",
+      "collapseAll": "全部收起",
+      "download": "下载",
+      "downloadSpecs": "下载规格"
+    },
+    "related": {
+      "title": "相关产品",
+      "view": "查看",
+      "addToJobEstimate": "添加到工程估算",
+      "viewProduct": "查看产品",
+      "viewAll": "查看所有相关产品"
+    },
+    "actions": {
+      "addToCart": "加入购物车",
+      "addToQuote": "添加到报价",
+      "buyNow": "立即购买",
+      "requestQuote": "请求报价",
+      "compareProducts": "比较产品",
+      "addToFavorites": "添加到收藏夹",
+      "share": "分享"
+    },
+    "pricing": {
+      "price": "价格",
+      "regularPrice": "原价",
+      "salePrice": "销售价",
+      "yourPrice": "您的价格",
+      "calculatedPrice": "计算价格",
+      "basePrice": "基础价格",
+      "totalPrice": "总价",
+      "pricePerUnit": "单价",
+      "bulkDiscountAvailable": "可享批量折扣",
+      "contactForPricing": "联系我们获取价格"
+    },
+    "availability": {
+      "inStock": "现货",
+      "outOfStock": "缺货",
+      "onBackorder": "后补订单",
+      "lowStock": "库存不足",
+      "checkAvailability": "查看库存",
+      "readyToShip": "准备发货",
+      "currentlyUnavailable": "目前无货",
+      "availableForPreorder": "可预订",
+      "contactForAvailability": "联系我们查询库存",
+      "onlyXLeft": "仅剩{count}件",
+      "xAvailable": "有{count}件可用",
+      "expectedBack": "预计到货时间：{date}",
+      "shipsOn": "发货日期：{date}"
+    }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "建筑自动化产品",
+      "description": "探索我们全面的高精度传感器、控制器和测试仪器。受到全球工程师的信赖,用于关键的HVAC应用。"
+    },
+    "breadcrumb": {
+      "home": "主页",
+      "products": "产品"
+    },
+    "hero": {
+      "badge": "精密传感器和控制器",
+      "title": "建筑自动化产品",
+      "description": "探索我们全面的高精度传感器、控制器和测试仪器。受到全球工程师的信赖,用于关键的HVAC应用。",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "产品",
+        "warrantyDuration": "5年",
+        "warrantyLabel": "保修",
+        "accuracyValue": "±0.2°C",
+        "accuracyLabel": "精度"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "温度传感器",
+        "description": "高精度温度测量解决方案"
+      },
+      "humiditySensors": {
+        "name": "湿度传感器",
+        "description": "精确的相对湿度监测"
+      },
+      "pressureSensors": {
+        "name": "压力传感器",
+        "description": "差压和静压变送器"
+      },
+      "airQualitySensors": {
+        "name": "空气质量传感器",
+        "description": "CO₂、VOC和颗粒物监测"
+      },
+      "wirelessSensors": {
+        "name": "无线传感器",
+        "description": "电池供电和能量收集解决方案"
+      },
+      "accessories": {
+        "name": "附件",
+        "description": "安装硬件、外壳和电缆"
+      },
+      "testInstruments": {
+        "name": "测试仪器",
+        "description": "专业校准和测试设备"
+      },
+      "etaLine": {
+        "name": "ETA系列",
+        "description": "模块化I/O和控制解决方案"
+      },
+      "viewProducts": "查看产品"
+    },
+    "featured": {
+      "badge": "精选产品系列",
+      "title": "BA/10K系列温度传感器",
+      "description": "我们最受欢迎的传感器。±0.2°C精度、BACnet MS/TP和5年保修。受到全球医疗保健、数据中心和关键设施的信赖。",
+      "viewButton": "查看BA系列",
+      "features": {
+        "accuracy": {
+          "label": "±0.2°C精度",
+          "value": "行业领先"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "原生协议"
+        },
+        "warranty": {
+          "label": "5年保修",
+          "value": "标准"
+        },
+        "madeInUSA": {
+          "label": "美国制造",
+          "value": "质量保证"
+        }
+      }
+    },
+    "cta": {
+      "title": "需要帮助找到合适的产品?",
+      "description": "我们的专家团队随时准备帮助您为您的建筑自动化项目选择合适的传感器和控制器。",
+      "button": "联系销售"
+    }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "购物车",
+      "description": "查看您的购物车并继续结账"
+    },
+    "header": {
+      "title": "购物车",
+      "continueShopping": "继续购物"
+    },
+    "empty": {
+      "title": "您的购物车是空的",
+      "description": "添加一些产品到您的购物车开始购物。",
+      "button": "继续购物"
+    },
+    "items": {
+      "title": "购物车商品",
+      "clearCart": "清空购物车",
+      "clearConfirm": "您确定要清空您的购物车吗？",
+      "noImage": "无图像",
+      "remove": "删除",
+      "priceEach": "每件 {price}"
+    },
+    "stock": {
+      "inStock": "有货",
+      "outOfStock": "缺货",
+      "onBackorder": "待补货",
+      "available": "还有 {count} 件"
+    },
+    "quantity": {
+      "decrease": "减少数量",
+      "increase": "增加数量"
+    },
+    "summary": {
+      "title": "订单总结",
+      "subtotal": "小计",
+      "discount": "折扣",
+      "shipping": "运费",
+      "tax": "税费",
+      "total": "总计",
+      "calculatedAtCheckout": "将在结账时计算",
+      "proceedToCheckout": "继续结账",
+      "secureCheckout": "安全结账",
+      "sslEncrypted": "256位 SSL 加密"
+    },
+    "coupon": {
+      "label": "有优惠码吗？",
+      "placeholder": "输入优惠码",
+      "apply": "应用",
+      "applying": "应用中...",
+      "appliedCoupons": "已应用优惠券:",
+      "remove": "删除优惠券"
+    },
+    "shipping": {
+      "freeShipping": "✓ 订单满$500免运费",
+      "standardShipping": "标准运输: 3-5 个工作日"
+    },
+    "toasts": {
+      "updated": "已更新",
+      "cartUpdated": "购物车更新成功",
+      "removed": "已删除",
+      "itemRemoved": "商品已从购物车删除",
+      "cartCleared": "购物车已清空",
+      "allItemsRemoved": "所有商品已从购物车删除",
+      "enterCode": "输入优惠码",
+      "enterCodeMessage": "请输入优惠码",
+      "couponApplied": "优惠券已应用",
+      "couponAppliedMessage": "优惠券 \"{code}\" 应用成功",
+      "couponRemoved": "优惠券已删除",
+      "couponRemovedMessage": "优惠券 \"{code}\" 已删除"
+    }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "未找到分类",
+      "descriptionTemplate": "浏览来自BAPI - Building Automation Products Inc.的{name}"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品"
+    },
+    "header": {
+      "productsAvailable": "共有{count}款产品"
+    },
+    "subcategories": {
+      "title": "按类别浏览",
+      "productCount": "{count}款产品",
+      "productCountPlural": "{count}款产品",
+      "browseButton": "浏览产品"
+    },
+    "quickLinks": {
+      "backToProducts": "← 返回所有产品",
+      "needHelp": "需要帮助？联系我们"
+    }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "\"{query}\"的搜索结果 | BAPI",
+      "titleDefault": "搜索产品 | BAPI",
+      "descriptionTemplate": "查找BAPI楼宇自动化传感器和控制器。搜索结果：{query}"
+    },
+    "emptyQuery": {
+      "title": "搜索产品",
+      "description": "使用上方搜索栏查找传感器、控制器和楼宇自动化产品。",
+      "browseButton": "浏览所有产品"
+    },
+    "results": {
+      "backToProducts": "返回产品",
+      "title": "搜索结果",
+      "resultsCount": "\"{query}\"的{count}个结果",
+      "resultsCountPlural": "\"{query}\"的{count}个结果"
+    },
+    "noResults": {
+      "title": "未找到产品",
+      "description": "我们找不到与\"{query}\"匹配的任何产品。请尝试不同的关键词或浏览我们的分类。",
+      "browseButton": "浏览所有产品",
+      "contactButton": "联系支持"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "结帐 | BAPI",
+      "description": "完成您的订单"
+    },
+    "header": {
+      "title": "结帐",
+      "stepsRemaining": "在{count}个简单步骤中完成您的订单",
+      "stepsRemainingPlural": "在{count}个简单步骤中完成您的订单"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "运送",
+          "description": "交付地址"
+        },
+        "payment": {
+          "title": "付款",
+          "description": "支付方式"
+        },
+        "review": {
+          "title": "审查",
+          "description": "下订单"
+        }
+      }
+    },
+    "shipping": {
+      "title": "送货地址",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "company": "公司(可选)",
+      "address": "地址",
+      "addressPlaceholder": "街道地址",
+      "address2Placeholder": "公寓、套房等(可选)",
+      "city": "城市",
+      "state": "州",
+      "statePlaceholder": "CA, NY, TX等",
+      "zipCode": "邮编",
+      "zipCodePlaceholder": "12345",
+      "country": "国家",
+      "phone": "电话",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "电子邮箱",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "美国",
+        "ca": "加拿大",
+        "mx": "墨西哥"
+      },
+      "billingSameAsShipping": "账单地址与送货地址相同",
+      "continueButton": "继续付款",
+      "validation": {
+        "missingInfo": "缺少信息",
+        "missingInfoMessage": "请填写所有必填字段",
+        "invalidEmail": "无效的电子邮箱",
+        "invalidEmailMessage": "请输入有效的电子邮箱地址",
+        "invalidPhone": "无效的电话号码",
+        "invalidPhoneMessage": "请输入有效的电话号码"
+      }
+    },
+    "payment": {
+      "title": "付款方式",
+      "methods": {
+        "creditCard": {
+          "title": "信用卡",
+          "description": "用信用卡或借记卡付款"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "使用您的PayPal账户付款"
+        }
+      },
+      "cardDetails": {
+        "title": "卡片详细信息",
+        "settingUp": "设置付款中...",
+        "loadError": "无法加载付款表单。请刷新并重试。"
+      },
+      "security": {
+        "title": "您的付款是安全的",
+        "description": "由Stripe提供,采用256位SSL加密"
+      },
+      "paypal": {
+        "redirectMessage": "您将被重定向到PayPal,在查看您的订单后完成安全支付。",
+        "continueButton": "继续审查"
+      },
+      "back": "返回",
+      "toasts": {
+        "selectMethod": "选择付款方式",
+        "selectMethodMessage": "请选择一种付款方式",
+        "setupFailed": "付款设置失败",
+        "setupError": "无法初始化付款",
+        "paymentConfirmed": "付款确认",
+        "paymentConfirmedMessage": "正在进入订单审查",
+        "paymentFailed": "付款失败"
+      }
+    },
+    "review": {
+      "title": "审查您的订单",
+      "description": "请在下订单之前仔细检查您的信息",
+      "shippingAddress": "送货地址",
+      "billingAddress": "账单地址",
+      "paymentMethod": "支付方式",
+      "sameAsShipping": "与送货地址相同",
+      "notSelected": "未选择",
+      "edit": "编辑",
+      "phone": "电话",
+      "email": "电子邮箱",
+      "paymentNotes": {
+        "creditCard": "订单确认后,您的卡将被扣款",
+        "paypal": "您将被重定向到PayPal以完成付款"
+      },
+      "orderNotes": {
+        "label": "订单备注(可选)",
+        "placeholder": "添加任何特殊说明或关于您订单的备注..."
+      },
+      "terms": {
+        "agree": "我已阅读并同意",
+        "termsLink": "条款和条件",
+        "and": "和",
+        "privacyLink": "隐私政策"
+      },
+      "placeOrder": "下订单",
+      "processing": "处理中...",
+      "back": "返回",
+      "security": "安全的256位SSL加密结帐",
+      "toasts": {
+        "acceptTerms": "接受条款",
+        "acceptTermsMessage": "请接受条款和条件以继续"
+      }
+    },
+    "summary": {
+      "title": "订单摘要",
+      "items": "商品({count})",
+      "noImage": "无图片",
+      "qty": "数量",
+      "editCart": "← 编辑购物车",
+      "subtotal": "小计",
+      "discount": "折扣",
+      "shipping": "运费",
+      "tax": "税费",
+      "total": "总计",
+      "calculatedAtCheckout": "在结帐时计算",
+      "secureCheckout": "安全结帐"
+    },
+    "toasts": {
+      "cartEmpty": "购物车为空",
+      "cartEmptyMessage": "您的购物车是空的。请在结帐前添加商品。",
+      "error": "错误",
+      "errorMessage": "无法加载购物车。",
+      "orderPlaced": "订单已下置!",
+      "orderPlacedMessage": "您的订单已成功下置。"
+    }
   }
 }

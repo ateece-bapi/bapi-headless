@@ -475,5 +475,438 @@
         "premium": "متميز"
       }
     }
+  },
+  "productPage": {
+    "summary": {
+      "title": "ملخص المنتج",
+      "configureProduct": "تهيئة المنتج",
+      "selectSpecifications": "حدد المواصفات أدناه لمعرفة الأسعار ورقم الجزء",
+      "configurationComplete": "اكتملت التهيئة",
+      "partNumber": "رقم الجزء",
+      "quantity": "الكمية",
+      "multiplier": "ضارب",
+      "priceCalculation": "حساب السعر"
+    },
+    "tabs": {
+      "description": "الوصف",
+      "documents": "المستندات",
+      "videos": "الفيديوهات",
+      "specifications": "المواصفات",
+      "support": "الدعم",
+      "overview": "نظرة عامة",
+      "specs": "المواصفات",
+      "descriptionPlaceholder": "سيظهر وصف المنتج هنا عند توفره.",
+      "noVideosAvailable": "لا توجد فيديوهات متاحة لهذا المنتج.",
+      "noDocumentsAvailable": "لا توجد مستندات متاحة لهذا المنتج."
+    },
+    "specifications": {
+      "title": "المواصفات",
+      "noSpecsAvailable": "لا توجد مواصفات متاحة لهذا المنتج.",
+      "expandAll": "توسيع الكل",
+      "collapseAll": "طي الكل",
+      "download": "تنزيل",
+      "downloadSpecs": "تنزيل المواصفات"
+    },
+    "related": {
+      "title": "المنتجات ذات الصلة",
+      "view": "عرض",
+      "addToJobEstimate": "إضافة إلى تقدير الوظيفة",
+      "viewProduct": "عرض المنتج",
+      "viewAll": "عرض جميع المنتجات ذات الصلة"
+    },
+    "actions": {
+      "addToCart": "إضافة إلى السلة",
+      "addToQuote": "إضافة إلى العرض",
+      "buyNow": "اشتر الآن",
+      "requestQuote": "طلب عرض سعر",
+      "compareProducts": "مقارنة المنتجات",
+      "addToFavorites": "إضافة إلى المفضلة",
+      "share": "مشاركة"
+    },
+    "pricing": {
+      "price": "السعر",
+      "regularPrice": "السعر العادي",
+      "salePrice": "سعر البيع",
+      "yourPrice": "سعرك",
+      "calculatedPrice": "السعر المحسوب",
+      "basePrice": "السعر الأساسي",
+      "totalPrice": "السعر الإجمالي",
+      "pricePerUnit": "السعر لكل وحدة",
+      "bulkDiscountAvailable": "الخصم الجماعي متاح",
+      "contactForPricing": "اتصل بنا للحصول على السعر"
+    },
+    "availability": {
+      "inStock": "متوفر في المخزن",
+      "outOfStock": "غير متوفر في المخزن",
+      "onBackorder": "بانتظار التوريد",
+      "lowStock": "المخزون منخفض",
+      "checkAvailability": "تحقق من التوفر",
+      "readyToShip": "جاهز للشحن",
+      "currentlyUnavailable": "غير متوفر حاليًا",
+      "availableForPreorder": "متاح للطلب المسبق",
+      "contactForAvailability": "اتصل بنا للاستفسار عن التوفر",
+      "onlyXLeft": "تبقى فقط {count} في المخزن",
+      "xAvailable": "{count} متوفرة",
+      "expectedBack": "متوقع العودة: {date}",
+      "shipsOn": "يتم الشحن في: {date}"
+    }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "منتجات أتمتة المباني",
+      "description": "اكتشف مجموعتنا الكاملة من أجهزة استشعار عالية الدقة والوحدات التحكمية وأجهزة الاختبار. موثوق بها من قبل المهندسين في جميع أنحاء العالم للتطبيقات الحرجة للتدفئة والتهوية وتكييف الهواء."
+    },
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "products": "المنتجات"
+    },
+    "hero": {
+      "badge": "أجهزة استشعار ووحدات تحكم دقيقة",
+      "title": "منتجات أتمتة المباني",
+      "description": "اكتشف مجموعتنا الكاملة من أجهزة استشعار عالية الدقة والوحدات التحكمية وأجهزة الاختبار. موثوق بها من قبل المهندسين في جميع أنحاء العالم للتطبيقات الحرجة للتدفئة والتهوية وتكييف الهواء.",
+      "stats": {
+        "productsCount": "أكثر من 400",
+        "productsLabel": "منتجات",
+        "warrantyDuration": "5 سنوات",
+        "warrantyLabel": "ضمان",
+        "accuracyValue": "±0.2°C",
+        "accuracyLabel": "الدقة"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "أجهزة استشعار درجة الحرارة",
+        "description": "حلول قياس درجة الحرارة عالية الدقة"
+      },
+      "humiditySensors": {
+        "name": "أجهزة استشعار الرطوبة",
+        "description": "رصد الرطوبة النسبية الدقيق"
+      },
+      "pressureSensors": {
+        "name": "أجهزة استشعار الضغط",
+        "description": "مرسلات الضغط التفاضلي والساكن"
+      },
+      "airQualitySensors": {
+        "name": "أجهزة استشعار جودة الهواء",
+        "description": "رصد ثاني أكسيد الكربون والمركبات العضوية المتطايرة والجسيمات"
+      },
+      "wirelessSensors": {
+        "name": "أجهزة استشعار لاسلكية",
+        "description": "حلول تعمل بالبطارية وتستخلص الطاقة"
+      },
+      "accessories": {
+        "name": "الملحقات",
+        "description": "أجهزة التثبيت والحاويات والكابلات"
+      },
+      "testInstruments": {
+        "name": "أجهزة الاختبار",
+        "description": "معدات المعايرة والاختبار المهنية"
+      },
+      "etaLine": {
+        "name": "خط ETA",
+        "description": "حلول وحدة إدخال/إخراج ووحدات التحكم القابلة للتكوين"
+      },
+      "viewProducts": "عرض المنتجات"
+    },
+    "featured": {
+      "badge": "خط المنتجات المميز",
+      "title": "أجهزة استشعار درجة الحرارة BA/10K",
+      "description": "أكثر أجهزة استشعارنا شعبية. دقة ±0.2°C وBACnet MS/TP وضمان لمدة 5 سنوات. موثوق بها في الرعاية الصحية ومراكز البيانات والمرافق الحرجة في جميع أنحاء العالم.",
+      "viewButton": "عرض سلسلة BA",
+      "features": {
+        "accuracy": {
+          "label": "دقة ±0.2°C",
+          "value": "الرائدة في الصناعة"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "البروتوكول الأصلي"
+        },
+        "warranty": {
+          "label": "ضمان لمدة 5 سنوات",
+          "value": "قياسي"
+        },
+        "madeInUSA": {
+          "label": "صُنع في الولايات المتحدة الأمريكية",
+          "value": "ضمان الجودة"
+        }
+      }
+    },
+    "cta": {
+      "title": "هل تحتاج إلى المساعدة في العثور على المنتج المناسب؟",
+      "description": "فريق خبرائنا جاهز لمساعدتك في اختيار أجهزة الاستشعار والوحدات التحكمية المثالية لمشروع أتمتة المبنى الخاص بك.",
+      "button": "اتصل بالمبيعات"
+    }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "سلة التسوق",
+      "description": "راجع سلتك وانتقل إلى الدفع"
+    },
+    "header": {
+      "title": "سلة التسوق",
+      "continueShopping": "متابعة التسوق"
+    },
+    "empty": {
+      "title": "سلتك فارغة",
+      "description": "أضف بعض المنتجات إلى سلتك للبدء.",
+      "button": "متابعة التسوق"
+    },
+    "items": {
+      "title": "عناصر السلة",
+      "clearCart": "مسح السلة",
+      "clearConfirm": "هل أنت متأكد من أنك تريد مسح سلتك؟",
+      "noImage": "لا توجد صورة",
+      "remove": "إزالة",
+      "priceEach": "{price} لكل منها"
+    },
+    "stock": {
+      "inStock": "متوفر في المخزون",
+      "outOfStock": "غير متوفر في المخزون",
+      "onBackorder": "تحت الطلب",
+      "available": "متوفر {count}"
+    },
+    "quantity": {
+      "decrease": "خفض الكمية",
+      "increase": "زيادة الكمية"
+    },
+    "summary": {
+      "title": "ملخص الطلب",
+      "subtotal": "المجموع الفرعي",
+      "discount": "الخصم",
+      "shipping": "الشحن",
+      "tax": "الضريبة",
+      "total": "الإجمالي",
+      "calculatedAtCheckout": "يُحتسب عند الدفع",
+      "proceedToCheckout": "المتابعة إلى الدفع",
+      "secureCheckout": "الدفع الآمن",
+      "sslEncrypted": "تشفير SSL 256 بت"
+    },
+    "coupon": {
+      "label": "هل لديك رمز قسيمة؟",
+      "placeholder": "أدخل الرمز",
+      "apply": "تطبيق",
+      "applying": "جاري التطبيق...",
+      "appliedCoupons": "القسائم المطبقة:",
+      "remove": "إزالة القسيمة"
+    },
+    "shipping": {
+      "freeShipping": "✓ الشحن مجاني على الطلبات التي تزيد عن $500",
+      "standardShipping": "الشحن القياسي: 3-5 أيام عمل"
+    },
+    "toasts": {
+      "updated": "تم التحديث",
+      "cartUpdated": "تم تحديث السلة بنجاح",
+      "removed": "تمت الإزالة",
+      "itemRemoved": "تمت إزالة العنصر من السلة",
+      "cartCleared": "تم مسح السلة",
+      "allItemsRemoved": "تمت إزالة جميع العناصر من السلة",
+      "enterCode": "أدخل الرمز",
+      "enterCodeMessage": "الرجاء إدخال رمز قسيمة",
+      "couponApplied": "تم تطبيق القسيمة",
+      "couponAppliedMessage": "تم تطبيق القسيمة \"{code}\" بنجاح",
+      "couponRemoved": "تمت إزالة القسيمة",
+      "couponRemovedMessage": "تمت إزالة القسيمة \"{code}\""
+    }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "لم يتم العثور على الفئة",
+      "descriptionTemplate": "تصفح {name} من BAPI - Building Automation Products Inc."
+    },
+    "breadcrumb": {
+      "home": "الصفحة الرئيسية",
+      "products": "المنتجات"
+    },
+    "header": {
+      "productsAvailable": "{count} منتج متاح"
+    },
+    "subcategories": {
+      "title": "تصفح حسب الفئة",
+      "productCount": "{count} منتج",
+      "productCountPlural": "{count} منتجات",
+      "browseButton": "تصفح المنتجات"
+    },
+    "quickLinks": {
+      "backToProducts": "← العودة إلى جميع المنتجات",
+      "needHelp": "هل تحتاج إلى مساعدة؟ اتصل بنا"
+    }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "نتائج البحث عن \"{query}\" | BAPI",
+      "titleDefault": "البحث عن المنتجات | BAPI",
+      "descriptionTemplate": "العثور على أجهزة استشعار وأجهزة تحكم في تحكم المباني BAPI. نتائج البحث عن: {query}"
+    },
+    "emptyQuery": {
+      "title": "البحث عن المنتجات",
+      "description": "استخدم شريط البحث أعلاه للعثور على أجهزة استشعار وأجهزة تحكم ومنتجات تحكم في المباني.",
+      "browseButton": "تصفح جميع المنتجات"
+    },
+    "results": {
+      "backToProducts": "العودة إلى المنتجات",
+      "title": "نتائج البحث",
+      "resultsCount": "{count} نتيجة عن \"{query}\"",
+      "resultsCountPlural": "{count} نتائج عن \"{query}\""
+    },
+    "noResults": {
+      "title": "لم يتم العثور على أي منتجات",
+      "description": "لم نتمكن من العثور على أي منتجات تطابق \"{query}\". حاول كلمات بحث مختلفة أو تصفح فئاتنا.",
+      "browseButton": "تصفح جميع المنتجات",
+      "contactButton": "اتصل بالدعم الفني"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "الدفع | BAPI",
+      "description": "أكمل طلبك"
+    },
+    "header": {
+      "title": "الدفع",
+      "stepsRemaining": "أكمل طلبك في {count} خطوة سهلة",
+      "stepsRemainingPlural": "أكمل طلبك في {count} خطوات سهلة"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "الشحن",
+          "description": "عنوان التوصيل"
+        },
+        "payment": {
+          "title": "الدفع",
+          "description": "طريقة الدفع"
+        },
+        "review": {
+          "title": "المراجعة",
+          "description": "إتمام الطلب"
+        }
+      }
+    },
+    "shipping": {
+      "title": "عنوان الشحن",
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "company": "الشركة (اختياري)",
+      "address": "العنوان",
+      "addressPlaceholder": "عنوان الشارع",
+      "address2Placeholder": "شقة، جناح، إلخ. (اختياري)",
+      "city": "المدينة",
+      "state": "الولاية",
+      "statePlaceholder": "CA، NY، TX، إلخ.",
+      "zipCode": "الرمز البريدي",
+      "zipCodePlaceholder": "12345",
+      "country": "الدولة",
+      "phone": "الهاتف",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "الولايات المتحدة الأمريكية",
+        "ca": "كندا",
+        "mx": "المكسيك"
+      },
+      "billingSameAsShipping": "عنوان الفوترة نفس عنوان الشحن",
+      "continueButton": "المتابعة إلى الدفع",
+      "validation": {
+        "missingInfo": "معلومات ناقصة",
+        "missingInfoMessage": "يرجى ملء جميع الحقول المطلوبة",
+        "invalidEmail": "بريد إلكتروني غير صالح",
+        "invalidEmailMessage": "الرجاء إدخال عنوان بريد إلكتروني صالح",
+        "invalidPhone": "رقم هاتف غير صالح",
+        "invalidPhoneMessage": "الرجاء إدخال رقم هاتف صالح"
+      }
+    },
+    "payment": {
+      "title": "طريقة الدفع",
+      "methods": {
+        "creditCard": {
+          "title": "بطاقة الائتمان",
+          "description": "الدفع باستخدام بطاقة الائتمان أو الخصم"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "الدفع باستخدام حساب PayPal الخاص بك"
+        }
+      },
+      "cardDetails": {
+        "title": "تفاصيل البطاقة",
+        "settingUp": "إعداد الدفع...",
+        "loadError": "تعذر تحميل نموذج الدفع. يرجى تحديث الصفحة والمحاولة مرة أخرى."
+      },
+      "security": {
+        "title": "الدفع الخاص بك آمن",
+        "description": "بدعم من Stripe باستخدام تشفير SSL بدرجة 256 بت"
+      },
+      "paypal": {
+        "redirectMessage": "سوف يتم إعادة توجيهك إلى PayPal لإكمال عملية الشراء بأمان بعد مراجعة طلبك.",
+        "continueButton": "المتابعة إلى المراجعة"
+      },
+      "back": "رجوع",
+      "toasts": {
+        "selectMethod": "حدد طريقة الدفع",
+        "selectMethodMessage": "الرجاء تحديد طريقة دفع",
+        "setupFailed": "فشل إعداد الدفع",
+        "setupError": "تعذر تهيئة الدفع",
+        "paymentConfirmed": "تم تأكيد الدفع",
+        "paymentConfirmedMessage": "جار الانتقال إلى مراجعة الطلب",
+        "paymentFailed": "فشل الدفع"
+      }
+    },
+    "review": {
+      "title": "مراجعة طلبك",
+      "description": "يرجى مراجعة معلوماتك قبل إتمام طلبك",
+      "shippingAddress": "عنوان الشحن",
+      "billingAddress": "عنوان الفوترة",
+      "paymentMethod": "طريقة الدفع",
+      "sameAsShipping": "نفس عنوان الشحن",
+      "notSelected": "لم يتم تحديد",
+      "edit": "تعديل",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "paymentNotes": {
+        "creditCard": "سيتم خصم بطاقتك بعد تأكيد الطلب",
+        "paypal": "سيتم إعادة توجيهك إلى PayPal لإكمال الدفع"
+      },
+      "orderNotes": {
+        "label": "ملاحظات الطلب (اختياري)",
+        "placeholder": "أضف أي تعليمات خاصة أو ملاحظات حول طلبك..."
+      },
+      "terms": {
+        "agree": "لقد قرأت وأوافق على",
+        "termsLink": "الشروط والأحكام",
+        "and": "و",
+        "privacyLink": "سياسة الخصوصية"
+      },
+      "placeOrder": "إتمام الطلب",
+      "processing": "جار المعالجة...",
+      "back": "رجوع",
+      "security": "الدفع المؤمن بتشفير SSL بدرجة 256 بت",
+      "toasts": {
+        "acceptTerms": "قبول الشروط",
+        "acceptTermsMessage": "يرجى قبول الشروط والأحكام للمتابعة"
+      }
+    },
+    "summary": {
+      "title": "ملخص الطلب",
+      "items": "البنود ({count})",
+      "noImage": "بدون صورة",
+      "qty": "الكمية",
+      "editCart": "← تعديل السلة",
+      "subtotal": "المجموع الفرعي",
+      "discount": "الخصم",
+      "shipping": "الشحن",
+      "tax": "الضرائب",
+      "total": "المجموع",
+      "calculatedAtCheckout": "يتم حسابها عند الخروج",
+      "secureCheckout": "الخروج الآمن"
+    },
+    "toasts": {
+      "cartEmpty": "السلة فارغة",
+      "cartEmptyMessage": "سلتك فارغة. أضف عناصر قبل الخروج.",
+      "error": "خطأ",
+      "errorMessage": "تعذر تحميل السلة.",
+      "orderPlaced": "تم إتمام الطلب!",
+      "orderPlacedMessage": "تم إتمام طلبك بنجاح."
+    }
   }
 }

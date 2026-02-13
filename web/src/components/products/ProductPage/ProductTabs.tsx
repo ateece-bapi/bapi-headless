@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { FileText, Video, BookOpen, Download, ExternalLink } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
 import { sanitizeDescription } from '@/lib/sanitizeDescription';
 
@@ -14,14 +15,15 @@ interface ProductTabsProps {
 }
 
 const TAB_LIST = [
-  { key: 'description', label: 'Description', icon: BookOpen },
-  { key: 'documents', label: 'Documents', icon: FileText },
-  { key: 'videos', label: 'Videos', icon: Video },
+  { key: 'description', labelKey: 'productPage.tabs.description', icon: BookOpen },
+  { key: 'documents', labelKey: 'productPage.tabs.documents', icon: FileText },
+  { key: 'videos', labelKey: 'productPage.tabs.videos', icon: Video },
 ] as const;
 
 type TabType = (typeof TAB_LIST)[number]['key'];
 
 export default function ProductTabs({ product }: ProductTabsProps) {
+  const t = useTranslations();
   const [activeTab, setActiveTab] = useState<TabType>('description');
 
   // Debug: Log what data we're receiving
@@ -59,8 +61,8 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                 onClick={() => setActiveTab(tab.key)}
               >
                 <Icon className="h-5 w-5" />
-                <span className="hidden sm:inline">{tab.label}</span>
-                <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
+                <span className="hidden sm:inline">{t(tab.labelKey)}</span>
+                <span className="sm:hidden">{t(tab.labelKey).split(' ')[0]}</span>
               </button>
             );
           })}
@@ -88,7 +90,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                       No Description Available
                     </p>
                     <p className="text-sm text-neutral-500">
-                      Product description will appear here when available.
+                      {t('productPage.tabs.descriptionPlaceholder')}
                     </p>
                   </div>
                 </div>
@@ -150,7 +152,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
             ) : (
               <div className="py-12 text-center text-neutral-500">
                 <FileText className="mx-auto mb-4 h-12 w-12 text-neutral-300" />
-                <p className="mb-2 font-medium">No specifications available</p>
+                <p className="mb-2 font-medium">{t('productPage.tabs.noDocumentsAvailable')}</p>
                 <p className="text-sm">
                   Specification documents will be displayed here when available.
                 </p>
@@ -226,7 +228,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                     <Video className="h-10 w-10 text-neutral-400" />
                   </div>
                   <div>
-                    <p className="mb-2 text-xl font-bold text-neutral-700">No Videos Available</p>
+                    <p className="mb-2 text-xl font-bold text-neutral-700">{t('productPage.tabs.noVideosAvailable')}</p>
                     <p className="leading-relaxed text-neutral-500">
                       Product videos and tutorials will be displayed here when available. Check back
                       soon for helpful video content about this product.

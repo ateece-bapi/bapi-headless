@@ -17,7 +17,8 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
 import CheckoutWizard from './CheckoutWizard';
 import CheckoutSummary from './CheckoutSummary';
@@ -57,9 +58,14 @@ export interface CheckoutData {
   paymentIntentId?: string; // Stripe payment intent ID
 }
 
-export default function CheckoutPageClient() {
+interface CheckoutPageClientProps {
+  locale: string;
+}
+
+export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) {
   const router = useRouter();
   const { showToast } = useToast();
+  const t = useTranslations('checkoutPage');
   const { clearCart, items: cartItems, totalItems } = useCartStore();
   const [currentStep, setCurrentStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -114,10 +120,10 @@ export default function CheckoutPageClient() {
     // Redirect to cart if empty (e.g., after clearing or manual removal)
     if (totalItems() === 0) {
       logger.debug('[Checkout] Cart became empty, redirecting to cart page');
-      showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
-      router.push('/cart');
+      showToast('warning', t('toasts.cartEmpty'), t('toasts.cartEmptyMessage'));
+      router.push(`/${locale}/cart`);
     }
-  }, [totalItems, isLoadingCart, router, showToast]);
+  }, [totalItems, isLoadingCart, router, showToast, locale, t]);
 
   const fetchLocalCart = () => {
     try {
@@ -131,8 +137,8 @@ export default function CheckoutPageClient() {
       if (!localCartData) {
         logger.debug('[Checkout] No cart data found');
         setIsLoadingCart(false);
-        showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
-        setTimeout(() => router.push('/cart'), 1000);
+        showToast('warning', t('toasts.cartEmpty'), t('toasts.cartEmptyMessage'));
+        setTimeout(() => router.push(`/${locale}/cart`), 1000);
         return;
       }
 
@@ -144,8 +150,8 @@ export default function CheckoutPageClient() {
       if (items.length === 0) {
         logger.debug('[Checkout] Cart is empty');
         setIsLoadingCart(false);
-        showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
-        setTimeout(() => router.push('/cart'), 1000);
+        showToast('warning', t('toasts.cartEmpty'), t('toasts.cartEmptyMessage'));
+        setTimeout(() => router.push(`/${locale}/cart`), 1000);
         return;
       }
 
@@ -189,7 +195,7 @@ export default function CheckoutPageClient() {
       setIsLoadingCart(false);
     } catch (error) {
       logger.error('[Checkout] Error loading local cart', error);
-      showToast('error', 'Error', 'Unable to load cart.');
+      showToast('error', t('toasts.error'), t('toasts.errorMessage'));
       setIsLoadingCart(false);
     }
   };
@@ -207,8 +213,8 @@ export default function CheckoutPageClient() {
 
       // Redirect to cart if empty
       if (data.cart?.isEmpty) {
-        showToast('warning', 'Cart Empty', 'Your cart is empty. Add items before checking out.');
-        router.push('/cart');
+        showToast('warning', t('toasts.cartEmpty'), t('toasts.cartEmptyMessage'));
+        router.push(`/${locale}/cart`);
         return;
       }
 
@@ -217,7 +223,7 @@ export default function CheckoutPageClient() {
       const { title, message } = getUserErrorMessage(error);
       logError('checkout.fetch_cart_failed', error);
       showToast('error', title, message);
-      router.push('/cart');
+      router.push(`/${locale}/cart`);
     } finally {
       setIsLoadingCart(false);
     }
@@ -278,8 +284,8 @@ export default function CheckoutPageClient() {
         }
 
         // Redirect to order confirmation with actual order ID
-        router.push(`/order-confirmation/${result.order.id}`);
-        showToast('success', 'Order Placed!', 'Your order has been placed successfully.');
+        router.push(`/${locale}/order-confirmation/${result.order.id}`);
+        showToast('success', t('toasts.orderPlaced'), t('toasts.orderPlacedMessage'));
       } else {
         // PayPal or other payment methods
         // Phase 2: Implement PayPal order creation via WooCommerce API
@@ -287,8 +293,8 @@ export default function CheckoutPageClient() {
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
         const mockOrderId = Math.floor(Math.random() * 100000);
-        router.push(`/order-confirmation/${mockOrderId}`);
-        showToast('success', 'Order Placed!', 'Your order has been placed successfully.');
+        router.push(`/${locale}/order-confirmation/${mockOrderId}`);
+        showToast('success', t('toasts.orderPlaced'), t('toasts.orderPlacedMessage'));
       }
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
@@ -323,10 +329,11 @@ export default function CheckoutPageClient() {
     <div className="mx-auto max-w-container px-4 py-8 sm:px-6 sm:py-12 lg:px-8 xl:px-12">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Checkout</h1>
+        <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">{t('header.title')}</h1>
         <p className="mt-2 text-neutral-600">
-          Complete your order in {3 - currentStep + 1} easy step
-          {3 - currentStep + 1 !== 1 ? 's' : ''}
+          {3 - currentStep + 1 === 1
+            ? t('header.stepsRemaining', { count: 3 - currentStep + 1 })
+            : t('header.stepsRemainingPlural', { count: 3 - currentStep + 1 })}
         </p>
       </div>
 

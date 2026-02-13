@@ -430,5 +430,438 @@
   "cart": {},
   "checkout": {},
   "forms": {},
-  "accessibility": {}
+  "accessibility": {},
+  "productPage": {
+    "summary": {
+      "title": "สรุปผลิตภัณฑ์",
+      "configureProduct": "กำหนดค่าผลิตภัณฑ์",
+      "selectSpecifications": "เลือกข้อมูลจำเพาะของคุณด้านล่างเพื่อดูราคาและหมายเลขชิ้นส่วน",
+      "configurationComplete": "การกำหนดค่าเสร็จสิ้น",
+      "partNumber": "หมายเลขชิ้นส่วน",
+      "quantity": "จำนวน",
+      "multiplier": "ตัวคูณ",
+      "priceCalculation": "การคำนวณราคา"
+    },
+    "tabs": {
+      "description": "รายละเอียด",
+      "documents": "เอกสาร",
+      "videos": "วิดีโอ",
+      "specifications": "ข้อมูลจำเพาะ",
+      "support": "การสนับสนุน",
+      "overview": "ภาพรวม",
+      "specs": "ข้อมูลจำเพาะ",
+      "descriptionPlaceholder": "คำอธิบายผลิตภัณฑ์จะปรากฏที่นี่เมื่อมีการพร้อมใช้งาน",
+      "noVideosAvailable": "ไม่มีวิดีโอสำหรับผลิตภัณฑ์นี้",
+      "noDocumentsAvailable": "ไม่มีเอกสารสำหรับผลิตภัณฑ์นี้"
+    },
+    "specifications": {
+      "title": "ข้อมูลจำเพาะ",
+      "noSpecsAvailable": "ไม่มีข้อมูลจำเพาะสำหรับผลิตภัณฑ์นี้",
+      "expandAll": "ขยายทั้งหมด",
+      "collapseAll": "ยุบทั้งหมด",
+      "download": "ดาวน์โหลด",
+      "downloadSpecs": "ดาวน์โหลดข้อมูลจำเพาะ"
+    },
+    "related": {
+      "title": "ผลิตภัณฑ์ที่เกี่ยวข้อง",
+      "view": "ดู",
+      "addToJobEstimate": "เพิ่มไปยังการประมาณการงาน",
+      "viewProduct": "ดูผลิตภัณฑ์",
+      "viewAll": "ดูผลิตภัณฑ์ที่เกี่ยวข้องทั้งหมด"
+    },
+    "actions": {
+      "addToCart": "เพิ่มลงในตะกร้า",
+      "addToQuote": "เพิ่มลงในใบเสนอราคา",
+      "buyNow": "ซื้อเลย",
+      "requestQuote": "ขอใบเสนอราคา",
+      "compareProducts": "เปรียบเทียบผลิตภัณฑ์",
+      "addToFavorites": "เพิ่มในรายการโปรด",
+      "share": "แชร์"
+    },
+    "pricing": {
+      "price": "ราคา",
+      "regularPrice": "ราคาปกติ",
+      "salePrice": "ราคาขาย",
+      "yourPrice": "ราคาของคุณ",
+      "calculatedPrice": "ราคาที่คำนวณ",
+      "basePrice": "ราคาพื้นฐาน",
+      "totalPrice": "ราคารวม",
+      "pricePerUnit": "ราคาต่อหน่วย",
+      "bulkDiscountAvailable": "มีส่วนลดปริมาณ",
+      "contactForPricing": "ติดต่อเราสำหรับราคา"
+    },
+    "availability": {
+      "inStock": "มีในสต็อค",
+      "outOfStock": "หมดสต็อค",
+      "onBackorder": "สินค้าค้างสั่ง",
+      "lowStock": "สต็อคน้อย",
+      "checkAvailability": "ตรวจสอบความพร้อมใช้งาน",
+      "readyToShip": "พร้อมจัดส่ง",
+      "currentlyUnavailable": "ขณะนี้ไม่สามารถใช้งานได้",
+      "availableForPreorder": "พร้อมสั่งจอง",
+      "contactForAvailability": "ติดต่อเราสำหรับความพร้อมใช้งาน",
+      "onlyXLeft": "เหลือเพียง {count} ชิ้น",
+      "xAvailable": "มี {count} ชิ้นพร้อมใช้",
+      "expectedBack": "คาดว่าจะมีสินค้าใหม่: {date}",
+      "shipsOn": "จัดส่งในวันที่: {date}"
+    }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "ผลิตภัณฑ์ระบบอัตโนมัติอาคาร",
+      "description": "ค้นพบชุดเซ็นเซอร์ตรวจวัดค่าที่มีความแม่นยำสูง ตัวควบคุม และเครื่องมือทดสอบของเรา ได้รับความไว้วางใจจากวิศวกรทั่วโลกสำหรับการประยุกต์ใช้งานระบบปรับอากาศที่สำคัญ"
+    },
+    "breadcrumb": {
+      "home": "หน้าหลัก",
+      "products": "ผลิตภัณฑ์"
+    },
+    "hero": {
+      "badge": "เซ็นเซอร์และตัวควบคุมความเที่ยงตรง",
+      "title": "ผลิตภัณฑ์ระบบอัตโนมัติอาคาร",
+      "description": "ค้นพบชุดเซ็นเซอร์ตรวจวัดค่าที่มีความแม่นยำสูง ตัวควบคุม และเครื่องมือทดสอบของเรา ได้รับความไว้วางใจจากวิศวกรทั่วโลกสำหรับการประยุกต์ใช้งานระบบปรับอากาศที่สำคัญ",
+      "stats": {
+        "productsCount": "มากกว่า 400",
+        "productsLabel": "ผลิตภัณฑ์",
+        "warrantyDuration": "5 ปี",
+        "warrantyLabel": "การรับประกัน",
+        "accuracyValue": "±0.2°C",
+        "accuracyLabel": "ความแม่นยำ"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "เซ็นเซอร์วัดอุณหภูมิ",
+        "description": "โซลูชันการวัดอุณหภูมิที่มีความแม่นยำสูง"
+      },
+      "humiditySensors": {
+        "name": "เซ็นเซอร์วัดความชื้น",
+        "description": "การติดตามความชื้นสัมพัทธ์ที่แม่นยำ"
+      },
+      "pressureSensors": {
+        "name": "เซ็นเซอร์วัดความดัน",
+        "description": "เครื่องส่งสัญญาณวัดความดันต่างและความดันสถิต"
+      },
+      "airQualitySensors": {
+        "name": "เซ็นเซอร์ตรวจวัดคุณภาพอากาศ",
+        "description": "การตรวจสอบ CO₂, VOC และฝุ่นละออง"
+      },
+      "wirelessSensors": {
+        "name": "เซ็นเซอร์ไร้สาย",
+        "description": "โซลูชันที่ใช้แบตเตอรีและเก็บพลังงาน"
+      },
+      "accessories": {
+        "name": "อุปกรณ์เสริม",
+        "description": "ฮาร์ดแวร์สำหรับติดตั้ง ตู้เครื่อง และสายเคเบิล"
+      },
+      "testInstruments": {
+        "name": "เครื่องมือทดสอบ",
+        "description": "อุปกรณ์สอบเทียบและทดสอบเชิงวิชาชีพ"
+      },
+      "etaLine": {
+        "name": "ไลน์ ETA",
+        "description": "โซลูชัน I/O และการควบคุมแบบโมดูลาร์"
+      },
+      "viewProducts": "ดูผลิตภัณฑ์"
+    },
+    "featured": {
+      "badge": "ผลิตภัณฑ์ที่โดดเด่น",
+      "title": "เซ็นเซอร์วัดอุณหภูมิ BA/10K Series",
+      "description": "เซ็นเซอร์ที่ได้รับความนิยมมากที่สุดของเรา ความแม่นยำ ±0.2°C, BACnet MS/TP และการรับประกัน 5 ปี ได้รับความไว้วางใจในโรงพยาบาล ศูนย์ข้อมูล และสถานที่สำคัญทั่วโลก",
+      "viewButton": "ดู BA Series",
+      "features": {
+        "accuracy": {
+          "label": "ความแม่นยำ ±0.2°C",
+          "value": "ชั้นนำในอุตสาหกรรม"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "โปรโตคอลพื้นฐาน"
+        },
+        "warranty": {
+          "label": "การรับประกัน 5 ปี",
+          "value": "มาตรฐาน"
+        },
+        "madeInUSA": {
+          "label": "ผลิตในสหรัฐอเมริกา",
+          "value": "ประกันคุณภาพ"
+        }
+      }
+    },
+    "cta": {
+      "title": "ต้องการความช่วยเหลือในการค้นหาผลิตภัณฑ์ที่เหมาะสม?",
+      "description": "ทีมผู้เชี่ยวชาญของเราพร้อมให้ความช่วยเหลือในการเลือกเซ็นเซอร์และตัวควบคุมที่สมบูรณ์แบบสำหรับโครงการระบบอัตโนมัติอาคารของคุณ",
+      "button": "ติดต่อฝ่ายขาย"
+    }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "ตะกร้าสินค้า",
+      "description": "ตรวจสอบตะกร้าของคุณและดำเนินการชำระเงิน"
+    },
+    "header": {
+      "title": "ตะกร้าสินค้า",
+      "continueShopping": "ดำเนินการช้อปปิ้งต่อ"
+    },
+    "empty": {
+      "title": "ตะกร้าของคุณว่างเปล่า",
+      "description": "เพิ่มสินค้าบางอย่างลงในตะกร้าของคุณเพื่อเริ่มต้น",
+      "button": "ดำเนินการช้อปปิ้งต่อ"
+    },
+    "items": {
+      "title": "สินค้าในตะกร้า",
+      "clearCart": "ล้างตะกร้า",
+      "clearConfirm": "คุณแน่ใจหรือไม่ที่ต้องการล้างตะกร้าของคุณ?",
+      "noImage": "ไม่มีรูปภาพ",
+      "remove": "ลบ",
+      "priceEach": "{price} ต่อหน่วย"
+    },
+    "stock": {
+      "inStock": "มีสินค้าในสต็อก",
+      "outOfStock": "หมดสต็อก",
+      "onBackorder": "สินค้ารอจัดส่ง",
+      "available": "มี {count} หน่วยให้เลือก"
+    },
+    "quantity": {
+      "decrease": "ลดจำนวน",
+      "increase": "เพิ่มจำนวน"
+    },
+    "summary": {
+      "title": "สรุปคำสั่งซื้อ",
+      "subtotal": "ยอดรวม",
+      "discount": "ส่วนลด",
+      "shipping": "ค่าจัดส่ง",
+      "tax": "ภาษี",
+      "total": "ยอดรวมสุทธิ",
+      "calculatedAtCheckout": "คำนวณเมื่อชำระเงิน",
+      "proceedToCheckout": "ดำเนินการชำระเงิน",
+      "secureCheckout": "ชำระเงินอย่างปลอดภัย",
+      "sslEncrypted": "การเข้ารหัส SSL 256 บิต"
+    },
+    "coupon": {
+      "label": "คุณมีรหัสคูปองหรือไม่?",
+      "placeholder": "ป้อนรหัส",
+      "apply": "ใช้",
+      "applying": "กำลังใช้...",
+      "appliedCoupons": "คูปองที่ใช้:",
+      "remove": "ลบคูปอง"
+    },
+    "shipping": {
+      "freeShipping": "✓ จัดส่งฟรีสำหรับคำสั่งซื้อเกิน $500",
+      "standardShipping": "จัดส่งมาตรฐาน: 3-5 วันทำการ"
+    },
+    "toasts": {
+      "updated": "อัปเดตแล้ว",
+      "cartUpdated": "ตะกร้าอัปเดตเรียบร้อยแล้ว",
+      "removed": "ลบแล้ว",
+      "itemRemoved": "ลบสินค้าออกจากตะกร้าแล้ว",
+      "cartCleared": "ล้างตะกร้าแล้ว",
+      "allItemsRemoved": "ลบสินค้าทั้งหมดออกจากตะกร้าแล้ว",
+      "enterCode": "ป้อนรหัส",
+      "enterCodeMessage": "กรุณาป้อนรหัสคูปอง",
+      "couponApplied": "คูปองใช้แล้ว",
+      "couponAppliedMessage": "คูปอน \"{code}\" ใช้เรียบร้อยแล้ว",
+      "couponRemoved": "ลบคูปองแล้ว",
+      "couponRemovedMessage": "ลบคูปอน \"{code}\" แล้ว"
+    }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "ไม่พบหมวดหมู่",
+      "descriptionTemplate": "เรียนรู้เกี่ยวกับ {name} จาก BAPI - Building Automation Products Inc."
+    },
+    "breadcrumb": {
+      "home": "หน้าหลัก",
+      "products": "สินค้า"
+    },
+    "header": {
+      "productsAvailable": "มีสินค้าทั้งหมด {count} ชิ้น"
+    },
+    "subcategories": {
+      "title": "เรียนรู้ตามหมวดหมู่",
+      "productCount": "สินค้า {count} ชิ้น",
+      "productCountPlural": "สินค้า {count} ชิ้น",
+      "browseButton": "เรียนรู้สินค้า"
+    },
+    "quickLinks": {
+      "backToProducts": "← กลับไปยังสินค้าทั้งหมด",
+      "needHelp": "ต้องการความช่วยเหลือ? ติดต่อเรา"
+    }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "ผลการค้นหาสำหรับ \"{query}\" | BAPI",
+      "titleDefault": "ค้นหาผลิตภัณฑ์ | BAPI",
+      "descriptionTemplate": "ค้นหาเซ็นเซอร์และตัวควบคุมระบบอัตโนมัติอาคารของ BAPI ผลการค้นหาสำหรับ: {query}"
+    },
+    "emptyQuery": {
+      "title": "ค้นหาผลิตภัณฑ์",
+      "description": "ใช้แถบค้นหาด้านบนเพื่อค้นหาเซ็นเซอร์ ตัวควบคุม และผลิตภัณฑ์ระบบอัตโนมัติอาคาร",
+      "browseButton": "เรียกดูผลิตภัณฑ์ทั้งหมด"
+    },
+    "results": {
+      "backToProducts": "กลับไปยังผลิตภัณฑ์",
+      "title": "ผลการค้นหา",
+      "resultsCount": "{count} ผลลัพธ์สำหรับ \"{query}\"",
+      "resultsCountPlural": "{count} ผลลัพธ์สำหรับ \"{query}\""
+    },
+    "noResults": {
+      "title": "ไม่พบผลิตภัณฑ์",
+      "description": "เราไม่พบผลิตภัณฑ์ที่ตรงกับ \"{query}\". ลองใช้คำค้นหาอื่นหรือเรียกดูหมวดหมู่ของเรา",
+      "browseButton": "เรียกดูผลิตภัณฑ์ทั้งหมด",
+      "contactButton": "ติดต่อฝ่ายสนับสนุน"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "ชำระเงิน | BAPI",
+      "description": "เสร็จสิ้นการสั่งซื้อของคุณ"
+    },
+    "header": {
+      "title": "ชำระเงิน",
+      "stepsRemaining": "เสร็จสิ้นการสั่งซื้อของคุณใน {count} ขั้นตอนง่าย ๆ",
+      "stepsRemainingPlural": "เสร็จสิ้นการสั่งซื้อของคุณใน {count} ขั้นตอนง่าย ๆ"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "การจัดส่ง",
+          "description": "ที่อยู่จัดส่ง"
+        },
+        "payment": {
+          "title": "การชำระเงิน",
+          "description": "วิธีการชำระเงิน"
+        },
+        "review": {
+          "title": "ตรวจสอบ",
+          "description": "ส่งคำสั่งซื้อ"
+        }
+      }
+    },
+    "shipping": {
+      "title": "ที่อยู่จัดส่ง",
+      "firstName": "ชื่อ",
+      "lastName": "นามสกุล",
+      "company": "บริษัท (ไม่บังคับ)",
+      "address": "ที่อยู่",
+      "addressPlaceholder": "ที่อยู่",
+      "address2Placeholder": "ห้อง, อาพาร์ทเมนท์, ฯลฯ (ไม่บังคับ)",
+      "city": "เมือง",
+      "state": "จังหวัด",
+      "statePlaceholder": "เช่น CA, NY, TX",
+      "zipCode": "รหัสไปรษณีย์",
+      "zipCodePlaceholder": "12345",
+      "country": "ประเทศ",
+      "phone": "เบอร์โทรศัพท์",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "อีเมล",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "สหรัฐอเมริกา",
+        "ca": "แคนาดา",
+        "mx": "เม็กซิโก"
+      },
+      "billingSameAsShipping": "ที่อยู่เรียกเก็บเงินเหมือนที่อยู่จัดส่ง",
+      "continueButton": "ไปที่การชำระเงิน",
+      "validation": {
+        "missingInfo": "ข้อมูลไม่ครบถ้วน",
+        "missingInfoMessage": "กรุณากรอกข้อมูลที่จำเป็นทั้งหมด",
+        "invalidEmail": "อีเมลไม่ถูกต้อง",
+        "invalidEmailMessage": "กรุณากรอกอีเมลที่ถูกต้อง",
+        "invalidPhone": "เบอร์โทรศัพท์ไม่ถูกต้อง",
+        "invalidPhoneMessage": "กรุณากรอกเบอร์โทรศัพท์ที่ถูกต้อง"
+      }
+    },
+    "payment": {
+      "title": "วิธีการชำระเงิน",
+      "methods": {
+        "creditCard": {
+          "title": "บัตรเครดิต",
+          "description": "ชำระเงินด้วยบัตรเครดิตหรือบัตรเดบิต"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "ชำระเงินด้วยบัญชี PayPal ของคุณ"
+        }
+      },
+      "cardDetails": {
+        "title": "รายละเอียดบัตร",
+        "settingUp": "กำลังตั้งค่าการชำระเงิน...",
+        "loadError": "ไม่สามารถโหลดแบบฟอร์มการชำระเงินได้ กรุณารีเฟรชและลองอีกครั้ง"
+      },
+      "security": {
+        "title": "การชำระเงินของคุณปลอดภัย",
+        "description": "ขับเคลื่อนโดย Stripe ด้วยการเข้ารหัส SSL 256 บิต"
+      },
+      "paypal": {
+        "redirectMessage": "คุณจะถูกนำไปยัง PayPal เพื่อเสร็จสิ้นการซื้อของคุณอย่างปลอดภัยหลังจากตรวจสอบคำสั่งซื้อของคุณ",
+        "continueButton": "ไปที่การตรวจสอบ"
+      },
+      "back": "ย้อนกลับ",
+      "toasts": {
+        "selectMethod": "เลือกวิธีการชำระเงิน",
+        "selectMethodMessage": "กรุณาเลือกวิธีการชำระเงิน",
+        "setupFailed": "การตั้งค่าการชำระเงินล้มเหลว",
+        "setupError": "ไม่สามารถเริ่มต้นการชำระเงินได้",
+        "paymentConfirmed": "การชำระเงินได้รับการยืนยัน",
+        "paymentConfirmedMessage": "กำลังเข้าสู่การตรวจสอบคำสั่งซื้อ",
+        "paymentFailed": "การชำระเงินล้มเหลว"
+      }
+    },
+    "review": {
+      "title": "ตรวจสอบคำสั่งซื้อของคุณ",
+      "description": "กรุณาตรวจสอบข้อมูลของคุณก่อนที่จะส่งคำสั่งซื้อ",
+      "shippingAddress": "ที่อยู่จัดส่ง",
+      "billingAddress": "ที่อยู่เรียกเก็บเงิน",
+      "paymentMethod": "วิธีการชำระเงิน",
+      "sameAsShipping": "เหมือนกับที่อยู่จัดส่ง",
+      "notSelected": "ยังไม่ได้เลือก",
+      "edit": "แก้ไข",
+      "phone": "เบอร์โทรศัพท์",
+      "email": "อีเมล",
+      "paymentNotes": {
+        "creditCard": "บัตรของคุณจะถูกเรียกเก็บเงินหลังจากยืนยันคำสั่งซื้อ",
+        "paypal": "คุณจะถูกนำไปยัง PayPal เพื่อเสร็จสิ้นการชำระเงิน"
+      },
+      "orderNotes": {
+        "label": "หมายเหตุสำหรับคำสั่งซื้อ (ไม่บังคับ)",
+        "placeholder": "เพิ่มคำแนะนำหรือหมายเหตุพิเศษเกี่ยวกับคำสั่งซื้อของคุณ..."
+      },
+      "terms": {
+        "agree": "ฉันได้อ่านและยอมรับ",
+        "termsLink": "ข้อกำหนดและเงื่อนไข",
+        "and": "และ",
+        "privacyLink": "นโยบายความเป็นส่วนตัว"
+      },
+      "placeOrder": "ส่งคำสั่งซื้อ",
+      "processing": "กำลังดำเนินการ...",
+      "back": "ย้อนกลับ",
+      "security": "การชำระเงินที่ปลอดภัยด้วยการเข้ารหัส SSL 256 บิต",
+      "toasts": {
+        "acceptTerms": "ยอมรับข้อกำหนด",
+        "acceptTermsMessage": "โปรดยอมรับข้อกำหนดและเงื่อนไขเพื่อดำเนินการต่อ"
+      }
+    },
+    "summary": {
+      "title": "สรุปคำสั่งซื้อ",
+      "items": "รายการ ({count})",
+      "noImage": "ไม่มีรูปภาพ",
+      "qty": "จำนวน",
+      "editCart": "← แก้ไขตะกร้า",
+      "subtotal": "ยอดรวม",
+      "discount": "ส่วนลด",
+      "shipping": "ค่าจัดส่ง",
+      "tax": "ภาษี",
+      "total": "ยอดรวมทั้งสิ้น",
+      "calculatedAtCheckout": "คำนวณ ณ ขณะชำระเงิน",
+      "secureCheckout": "ชำระเงินอย่างปลอดภัย"
+    },
+    "toasts": {
+      "cartEmpty": "ตะกร้าว่าง",
+      "cartEmptyMessage": "ตะกร้าของคุณว่าง เพิ่มสินค้าก่อนชำระเงิน",
+      "error": "ข้อผิดพลาด",
+      "errorMessage": "ไม่สามารถโหลดตะกร้าได้",
+      "orderPlaced": "คำสั่งซื้อเสร็จสิ้น!",
+      "orderPlacedMessage": "คำสั่งซื้อของคุณได้รับการส่งเรียบร้อยแล้ว"
+    }
+  }
 }

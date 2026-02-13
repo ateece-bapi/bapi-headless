@@ -143,23 +143,31 @@ export async function generateMetadata({
 
     // Log if both failed
     if (categoryResult.status === 'rejected' && productResult.status === 'rejected') {
-      logger.error('[generateMetadata] Both queries failed', {
-        slug,
-        categoryError:
-          categoryResult.reason instanceof Error ? categoryResult.reason.message : 'Unknown',
-        productError:
-          productResult.reason instanceof Error ? productResult.reason.message : 'Unknown',
-      });
+      const categoryError = categoryResult.reason instanceof Error ? categoryResult.reason : new Error('Unknown category error');
+      const productError = productResult.reason instanceof Error ? productResult.reason : new Error('Unknown product error');
+      logger.error(
+        '[generateMetadata] Both queries failed',
+        categoryError,
+        {
+          slug,
+          categoryError: categoryError.message,
+          productError: productError.message,
+        }
+      );
     }
 
     logger.warn('[generateMetadata] No metadata generated', { slug });
     logger.info('[generateMetadata] END - Returning empty metadata');
     return {};
   } catch (error) {
-    logger.error('[generateMetadata] Unhandled error in catch block', {
-      error: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined,
-    });
+    logger.error(
+      '[generateMetadata] Unhandled error in catch block',
+      error,
+      {
+        errorMessage: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined,
+      }
+    );
     return {}; // Return empty metadata instead of throwing
   }
 }
@@ -284,10 +292,14 @@ export default async function ProductPage({
               count: (variationData as any)?.variations?.nodes?.length || 0,
             });
           } catch (error) {
-            logger.error('[ProductPage] Failed to fetch variations', {
-              error: error instanceof Error ? error.message : 'Unknown error',
-              databaseId: product.databaseId,
-            });
+            logger.error(
+              '[ProductPage] Failed to fetch variations',
+              error,
+              {
+                errorMessage: error instanceof Error ? error.message : 'Unknown error',
+                databaseId: product.databaseId,
+              }
+            );
           }
         }
 
@@ -504,22 +516,32 @@ export default async function ProductPage({
         );
       } catch (error) {
         // Product data invalid
-        logger.error('[ProductPage] Error processing product data', {
-          error: error instanceof Error ? error.message : 'Unknown error',
-          stack: error instanceof Error ? error.stack : undefined,
-          slug,
-        });
+        logger.error(
+          '[ProductPage] Error processing product data',
+          error,
+          {
+            errorMessage: error instanceof Error ? error.message : 'Unknown error',
+            stack: error instanceof Error ? error.stack : undefined,
+            slug,
+          }
+        );
         notFound();
       }
     }
 
     // Log if both queries failed
     if (categoryResult.status === 'rejected' && productResult.status === 'rejected') {
-      logger.error('[ProductPage] Both category and product queries failed', {
-        slug,
-        categoryError: categoryResult.reason,
-        productError: productResult.reason,
-      });
+      const categoryError = categoryResult.reason instanceof Error ? categoryResult.reason : new Error('Unknown category error');
+      const productError = productResult.reason instanceof Error ? productResult.reason : new Error('Unknown product error');
+      logger.error(
+        '[ProductPage] Both category and product queries failed',
+        categoryError,
+        {
+          slug,
+          categoryError: categoryError.message,
+          productError: productError.message,
+        }
+      );
     }
 
     // Neither category nor product found
@@ -527,13 +549,17 @@ export default async function ProductPage({
     notFound();
   } catch (error) {
     // Top-level error handler
-    logger.error('[ProductPage] Unhandled error in catch block', {
-      error: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined,
-      name: error instanceof Error ? error.name : undefined,
-      cause: error instanceof Error ? (error as any).cause : undefined,
-    });
-    logger.error('[ProductPage] THROWING ERROR TO NEXT.JS');
+    logger.error(
+      '[ProductPage] Unhandled error in catch block',
+      error,
+      {
+        errorMessage: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined,
+        name: error instanceof Error ? error.name : undefined,
+        cause: error instanceof Error ? (error as any).cause : undefined,
+      }
+    );
+    logger.error('[ProductPage] THROWING ERROR TO NEXT.JS', error);
     throw error; // Re-throw to let Next.js error boundary handle it
   }
 }

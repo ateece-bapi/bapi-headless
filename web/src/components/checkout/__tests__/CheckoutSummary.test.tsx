@@ -2,9 +2,14 @@
  * @vitest-environment jsdom
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen } from '@/test/i18n-test-utils';
 import CheckoutSummary from '../CheckoutSummary';
+
+// Mock next/navigation
+vi.mock('next/navigation', () => ({
+  useParams: () => ({ locale: 'en' }),
+}));
 
 const mockCartWithItems = {
   subtotal: '$100.00',

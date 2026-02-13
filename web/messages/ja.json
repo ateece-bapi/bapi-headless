@@ -446,5 +446,438 @@
         "premium": "プレミアム"
       }
     }
+  },
+  "productPage": {
+    "summary": {
+      "title": "製品概要",
+      "configureProduct": "製品を設定する",
+      "selectSpecifications": "以下の仕様を選択して価格とパーツ番号を確認してください",
+      "configurationComplete": "設定完了",
+      "partNumber": "部品番号",
+      "quantity": "数量",
+      "multiplier": "乗数",
+      "priceCalculation": "価格計算"
+    },
+    "tabs": {
+      "description": "説明",
+      "documents": "資料",
+      "videos": "動画",
+      "specifications": "仕様",
+      "support": "サポート",
+      "overview": "概要",
+      "specs": "仕様",
+      "descriptionPlaceholder": "製品の説明は入手可能になり次第ここに表示されます。",
+      "noVideosAvailable": "この製品の動画はありません。",
+      "noDocumentsAvailable": "この製品の資料はありません。"
+    },
+    "specifications": {
+      "title": "仕様",
+      "noSpecsAvailable": "この製品の仕様はありません。",
+      "expandAll": "すべて展開",
+      "collapseAll": "すべて折りたたむ",
+      "download": "ダウンロード",
+      "downloadSpecs": "仕様書をダウンロード"
+    },
+    "related": {
+      "title": "関連製品",
+      "view": "表示",
+      "addToJobEstimate": "見積もりに追加",
+      "viewProduct": "製品を表示",
+      "viewAll": "すべての関連製品を表示"
+    },
+    "actions": {
+      "addToCart": "カートに追加",
+      "addToQuote": "見積もりに追加",
+      "buyNow": "今すぐ購入",
+      "requestQuote": "見積もりをリクエスト",
+      "compareProducts": "製品を比較",
+      "addToFavorites": "お気に入りに追加",
+      "share": "共有"
+    },
+    "pricing": {
+      "price": "価格",
+      "regularPrice": "通常価格",
+      "salePrice": "販売価格",
+      "yourPrice": "あなたの価格",
+      "calculatedPrice": "計算された価格",
+      "basePrice": "ベース価格",
+      "totalPrice": "合計価格",
+      "pricePerUnit": "単価",
+      "bulkDiscountAvailable": "大量割引あり",
+      "contactForPricing": "価格についてはお問い合わせください"
+    },
+    "availability": {
+      "inStock": "在庫あり",
+      "outOfStock": "在庫切れ",
+      "onBackorder": "バックオーダー中",
+      "lowStock": "在庫僅少",
+      "checkAvailability": "在庫状況を確認",
+      "readyToShip": "出荷準備完了",
+      "currentlyUnavailable": "現在ご利用いただけません",
+      "availableForPreorder": "予約注文可能",
+      "contactForAvailability": "在庫状況についてはお問い合わせください",
+      "onlyXLeft": "在庫は残り{count}個です",
+      "xAvailable": "{count}個ご利用いただけます",
+      "expectedBack": "入荷予定: {date}",
+      "shipsOn": "出荷日: {date}"
+    }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "ビルオートメーション製品",
+      "description": "高精度のセンサー、コントローラー、テスト機器の完全なラインナップをご覧ください。HVAC の重要なアプリケーションで世界中のエンジニアに信頼されています。"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品"
+    },
+    "hero": {
+      "badge": "高精度センサー&コントローラー",
+      "title": "ビルオートメーション製品",
+      "description": "高精度のセンサー、コントローラー、テスト機器の完全なラインナップをご覧ください。HVAC の重要なアプリケーションで世界中のエンジニアに信頼されています。",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "製品",
+        "warrantyDuration": "5年",
+        "warrantyLabel": "保証",
+        "accuracyValue": "±0.2°C",
+        "accuracyLabel": "精度"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "温度センサー",
+        "description": "高精度の温度測定ソリューション"
+      },
+      "humiditySensors": {
+        "name": "湿度センサー",
+        "description": "正確な相対湿度モニタリング"
+      },
+      "pressureSensors": {
+        "name": "圧力センサー",
+        "description": "差圧および静圧トランスミッター"
+      },
+      "airQualitySensors": {
+        "name": "空気質センサー",
+        "description": "CO₂、VOC、および微粒子物質のモニタリング"
+      },
+      "wirelessSensors": {
+        "name": "ワイヤレスセンサー",
+        "description": "バッテリー駆動および省エネルギー型ソリューション"
+      },
+      "accessories": {
+        "name": "アクセサリー",
+        "description": "取り付けハードウェア、エンクロージャ、ケーブル"
+      },
+      "testInstruments": {
+        "name": "テスト機器",
+        "description": "業務用の校正および試験装置"
+      },
+      "etaLine": {
+        "name": "ETAライン",
+        "description": "モジュラー I/O およびコントロールソリューション"
+      },
+      "viewProducts": "製品を見る"
+    },
+    "featured": {
+      "badge": "注目の製品ラインナップ",
+      "title": "BA/10Kシリーズ温度センサー",
+      "description": "最も人気のあるセンサーです。±0.2°Cの精度、BACnet MS/TP、5年保証。世界中の医療、データセンター、重要施設で信頼されています。",
+      "viewButton": "BAシリーズを見る",
+      "features": {
+        "accuracy": {
+          "label": "±0.2°C 精度",
+          "value": "業界トップクラス"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "ネイティブプロトコル"
+        },
+        "warranty": {
+          "label": "5年保証",
+          "value": "標準仕様"
+        },
+        "madeInUSA": {
+          "label": "米国製",
+          "value": "品質保証"
+        }
+      }
+    },
+    "cta": {
+      "title": "最適な製品をお探しですか?",
+      "description": "専門家チームが、ビルオートメーションプロジェクトに最適なセンサーとコントローラーをお選びします。",
+      "button": "営業に問い合わせる"
+    }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "ショッピングカート",
+      "description": "カートを確認し、チェックアウトに進む"
+    },
+    "header": {
+      "title": "ショッピングカート",
+      "continueShopping": "買い物を続ける"
+    },
+    "empty": {
+      "title": "カートが空です",
+      "description": "商品をカートに追加して始めましょう。",
+      "button": "買い物を続ける"
+    },
+    "items": {
+      "title": "カート内の商品",
+      "clearCart": "カートを空にする",
+      "clearConfirm": "本当にカートを空にしますか?",
+      "noImage": "画像なし",
+      "remove": "削除",
+      "priceEach": "1つ {price}"
+    },
+    "stock": {
+      "inStock": "在庫あり",
+      "outOfStock": "在庫切れ",
+      "onBackorder": "バックオーダー中",
+      "available": "{count}個利用可能"
+    },
+    "quantity": {
+      "decrease": "数量を減らす",
+      "increase": "数量を増やす"
+    },
+    "summary": {
+      "title": "注文サマリー",
+      "subtotal": "小計",
+      "discount": "割引",
+      "shipping": "配送料",
+      "tax": "税金",
+      "total": "合計",
+      "calculatedAtCheckout": "チェックアウト時に計算",
+      "proceedToCheckout": "チェックアウトに進む",
+      "secureCheckout": "セキュアなチェックアウト",
+      "sslEncrypted": "256ビットSSL暗号化"
+    },
+    "coupon": {
+      "label": "クーポンコードをお持ちですか?",
+      "placeholder": "コードを入力",
+      "apply": "適用",
+      "applying": "適用中...",
+      "appliedCoupons": "適用されたクーポン:",
+      "remove": "クーポンを削除"
+    },
+    "shipping": {
+      "freeShipping": "✓ 500ドル以上の注文で送料無料",
+      "standardShipping": "標準配送: 3-5営業日"
+    },
+    "toasts": {
+      "updated": "更新された",
+      "cartUpdated": "カートが正常に更新されました",
+      "removed": "削除された",
+      "itemRemoved": "商品がカートから削除されました",
+      "cartCleared": "カートが空になりました",
+      "allItemsRemoved": "すべての商品がカートから削除されました",
+      "enterCode": "コードを入力",
+      "enterCodeMessage": "クーポンコードを入力してください",
+      "couponApplied": "クーポンが適用された",
+      "couponAppliedMessage": "クーポン \"{code}\" が正常に適用されました",
+      "couponRemoved": "クーポンが削除された",
+      "couponRemovedMessage": "クーポン \"{code}\" が削除されました"
+    }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "カテゴリが見つかりませんでした",
+      "descriptionTemplate": "BAPI - Building Automation Products Inc.の{name}を参照してください"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品"
+    },
+    "header": {
+      "productsAvailable": "{count}製品が利用可能"
+    },
+    "subcategories": {
+      "title": "カテゴリから探す",
+      "productCount": "{count}製品",
+      "productCountPlural": "{count}製品",
+      "browseButton": "製品を参照"
+    },
+    "quickLinks": {
+      "backToProducts": "← すべての製品に戻る",
+      "needHelp": "ご質問ですか? お問い合わせください"
+    }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "\"{query}\" の検索結果 | BAPI",
+      "titleDefault": "製品検索 | BAPI",
+      "descriptionTemplate": "BAPI のビルディング・オートメーション・センサーとコントローラーを検索。検索キーワード: {query}"
+    },
+    "emptyQuery": {
+      "title": "製品検索",
+      "description": "上のサーチバーを使って、センサー、コントローラー、ビルディング・オートメーション製品を見つけてください。",
+      "browseButton": "すべての製品を閲覧"
+    },
+    "results": {
+      "backToProducts": "製品に戻る",
+      "title": "検索結果",
+      "resultsCount": "\"{query}\" の検索結果 {count} 件",
+      "resultsCountPlural": "\"{query}\" の検索結果 {count} 件"
+    },
+    "noResults": {
+      "title": "製品が見つかりませんでした",
+      "description": "\"{query}\" に一致する製品は見つかりませんでした。別のキーワードで検索するか、カテゴリーを閲覧してください。",
+      "browseButton": "すべての製品を閲覧",
+      "contactButton": "サポートに問い合わせる"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "チェックアウト | BAPI",
+      "description": "注文を完了する"
+    },
+    "header": {
+      "title": "チェックアウト",
+      "stepsRemaining": "簡単な{count}ステップで注文を完了してください",
+      "stepsRemainingPlural": "簡単な{count}ステップで注文を完了してください"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "配送",
+          "description": "配送先住所"
+        },
+        "payment": {
+          "title": "支払い",
+          "description": "支払い方法"
+        },
+        "review": {
+          "title": "確認",
+          "description": "注文確定"
+        }
+      }
+    },
+    "shipping": {
+      "title": "配送先住所",
+      "firstName": "名",
+      "lastName": "姓",
+      "company": "会社名 (オプション)",
+      "address": "住所",
+      "addressPlaceholder": "番地",
+      "address2Placeholder": "アパート、スイートなど (オプション)",
+      "city": "市区町村",
+      "state": "都道府県",
+      "statePlaceholder": "CA、NY、TX など",
+      "zipCode": "郵便番号",
+      "zipCodePlaceholder": "12345",
+      "country": "国",
+      "phone": "電話番号",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "メールアドレス",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "アメリカ",
+        "ca": "カナダ",
+        "mx": "メキシコ"
+      },
+      "billingSameAsShipping": "請求先住所と同じ",
+      "continueButton": "支払いに進む",
+      "validation": {
+        "missingInfo": "情報が不足しています",
+        "missingInfoMessage": "必須項目を全て記入してください",
+        "invalidEmail": "メールアドレスが無効です",
+        "invalidEmailMessage": "有効なメールアドレスを入力してください",
+        "invalidPhone": "電話番号が無効です",
+        "invalidPhoneMessage": "有効な電話番号を入力してください"
+      }
+    },
+    "payment": {
+      "title": "支払い方法",
+      "methods": {
+        "creditCard": {
+          "title": "クレジットカード",
+          "description": "クレジットカードまたはデビットカードで支払う"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "PayPalアカウントで支払う"
+        }
+      },
+      "cardDetails": {
+        "title": "カード情報",
+        "settingUp": "支払いの設定中...",
+        "loadError": "支払いフォームを読み込めませんでした。再度お試しください。"
+      },
+      "security": {
+        "title": "支払いは安全です",
+        "description": "Stripeによる256ビットSSL暗号化で保護されています"
+      },
+      "paypal": {
+        "redirectMessage": "注文内容の確認後、安全にPayPalに移動してお支払いいただきます。",
+        "continueButton": "確認画面に進む"
+      },
+      "back": "戻る",
+      "toasts": {
+        "selectMethod": "支払い方法を選択してください",
+        "selectMethodMessage": "支払い方法を選択してください",
+        "setupFailed": "支払い設定に失敗しました",
+        "setupError": "支払いを初期化できませんでした",
+        "paymentConfirmed": "支払いが確認されました",
+        "paymentConfirmedMessage": "注文確認画面に進みます",
+        "paymentFailed": "支払いに失敗しました"
+      }
+    },
+    "review": {
+      "title": "注文内容の確認",
+      "description": "注文確定前に内容をご確認ください",
+      "shippingAddress": "配送先住所",
+      "billingAddress": "請求先住所",
+      "paymentMethod": "支払い方法",
+      "sameAsShipping": "配送先と同じ",
+      "notSelected": "未選択",
+      "edit": "編集",
+      "phone": "電話番号",
+      "email": "メールアドレス",
+      "paymentNotes": {
+        "creditCard": "注文確定後にカードに請求されます",
+        "paypal": "PayPalに移動して支払いを完了します"
+      },
+      "orderNotes": {
+        "label": "注文メモ (オプション)",
+        "placeholder": "ご注文に関する特別な指示やメモを追加してください..."
+      },
+      "terms": {
+        "agree": "利用規約に同意します",
+        "termsLink": "利用規約",
+        "and": "および",
+        "privacyLink": "プライバシーポリシー"
+      },
+      "placeOrder": "注文を確定する",
+      "processing": "処理中...",
+      "back": "戻る",
+      "security": "安全な256ビットSSL暗号化チェックアウト",
+      "toasts": {
+        "acceptTerms": "利用規約に同意してください",
+        "acceptTermsMessage": "続行するには利用規約に同意する必要があります"
+      }
+    },
+    "summary": {
+      "title": "注文概要",
+      "items": "アイテム ({count})",
+      "noImage": "画像なし",
+      "qty": "数量",
+      "editCart": "← カートを編集する",
+      "subtotal": "小計",
+      "discount": "割引",
+      "shipping": "配送料",
+      "tax": "税金",
+      "total": "合計",
+      "calculatedAtCheckout": "チェックアウト時に計算されます",
+      "secureCheckout": "安全なチェックアウト"
+    },
+    "toasts": {
+      "cartEmpty": "カートが空です",
+      "cartEmptyMessage": "カートが空です。チェックアウトする前にアイテムを追加してください。",
+      "error": "エラー",
+      "errorMessage": "カートを読み込めませんでした。",
+      "orderPlaced": "ご注文ありがとうございます!",
+      "orderPlacedMessage": "ご注文が正常に完了しました。"
+    }
   }
 }

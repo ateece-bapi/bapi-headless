@@ -455,5 +455,438 @@
       "youtube": "YouTube",
       "follow": "Folgen Sie uns"
     }
+  },
+  "productPage": {
+    "summary": {
+      "title": "Produktzusammenfassung",
+      "configureProduct": "Produkt konfigurieren",
+      "selectSpecifications": "Wählen Sie Ihre Spezifikationen unten aus, um den Preis und die Teilenummer zu sehen",
+      "configurationComplete": "Konfiguration abgeschlossen",
+      "partNumber": "Teilenummer",
+      "quantity": "Menge",
+      "multiplier": "Multiplikator",
+      "priceCalculation": "Preisberechnung"
+    },
+    "tabs": {
+      "description": "Beschreibung",
+      "documents": "Dokumente",
+      "videos": "Videos",
+      "specifications": "Spezifikationen",
+      "support": "Support",
+      "overview": "Übersicht",
+      "specs": "Technische Daten",
+      "descriptionPlaceholder": "Die Produktbeschreibung erscheint hier, sobald sie verfügbar ist.",
+      "noVideosAvailable": "Für dieses Produkt sind keine Videos verfügbar.",
+      "noDocumentsAvailable": "Für dieses Produkt sind keine Dokumente verfügbar."
+    },
+    "specifications": {
+      "title": "Spezifikationen",
+      "noSpecsAvailable": "Für dieses Produkt sind keine Spezifikationen verfügbar.",
+      "expandAll": "Alle erweitern",
+      "collapseAll": "Alle reduzieren",
+      "download": "Herunterladen",
+      "downloadSpecs": "Spezifikationen herunterladen"
+    },
+    "related": {
+      "title": "Verwandte Produkte",
+      "view": "Anzeigen",
+      "addToJobEstimate": "Zur Auftragsschätzung hinzufügen",
+      "viewProduct": "Produkt anzeigen",
+      "viewAll": "Alle verwandten Produkte anzeigen"
+    },
+    "actions": {
+      "addToCart": "In den Warenkorb legen",
+      "addToQuote": "Zu Angebot hinzufügen",
+      "buyNow": "Jetzt kaufen",
+      "requestQuote": "Angebot anfordern",
+      "compareProducts": "Produkte vergleichen",
+      "addToFavorites": "Zu Favoriten hinzufügen",
+      "share": "Teilen"
+    },
+    "pricing": {
+      "price": "Preis",
+      "regularPrice": "Normalpreis",
+      "salePrice": "Sonderpreis",
+      "yourPrice": "Ihr Preis",
+      "calculatedPrice": "Berechneter Preis",
+      "basePrice": "Basispreis",
+      "totalPrice": "Gesamtpreis",
+      "pricePerUnit": "Preis pro Einheit",
+      "bulkDiscountAvailable": "Mengenrabatt verfügbar",
+      "contactForPricing": "Kontaktieren Sie uns für den Preis"
+    },
+    "availability": {
+      "inStock": "Auf Lager",
+      "outOfStock": "Nicht auf Lager",
+      "onBackorder": "Auf Nachbestellung",
+      "lowStock": "Geringer Bestand",
+      "checkAvailability": "Verfügbarkeit prüfen",
+      "readyToShip": "Versandbereit",
+      "currentlyUnavailable": "Derzeit nicht verfügbar",
+      "availableForPreorder": "Für Vorbestellung verfügbar",
+      "contactForAvailability": "Kontaktieren Sie uns für die Verfügbarkeit",
+      "onlyXLeft": "Nur noch {count} auf Lager",
+      "xAvailable": "{count} verfügbar",
+      "expectedBack": "Wieder lieferbar: {date}",
+      "shipsOn": "Wird versandt am: {date}"
+    }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Gebäudeautomationsprodukte",
+      "description": "Entdecken Sie unser komplettes Sortiment an hochgenauen Sensoren, Reglern und Prüfinstrumenten. Von Ingenieuren weltweit für kritische HLK-Anwendungen vertraut."
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte"
+    },
+    "hero": {
+      "badge": "Präzisionssensoren & Regler",
+      "title": "Gebäudeautomationsprodukte",
+      "description": "Entdecken Sie unser komplettes Sortiment an hochgenauen Sensoren, Reglern und Prüfinstrumenten. Von Ingenieuren weltweit für kritische HLK-Anwendungen vertraut.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Produkte",
+        "warrantyDuration": "5 Jahre",
+        "warrantyLabel": "Garantie",
+        "accuracyValue": "±0,2 °C",
+        "accuracyLabel": "Genauigkeit"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Temperatursensoren",
+        "description": "Hochgenaue Temperaturmesslösungen"
+      },
+      "humiditySensors": {
+        "name": "Feuchtigkeitssensoren",
+        "description": "Präzise Überwachung der relativen Luftfeuchtigkeit"
+      },
+      "pressureSensors": {
+        "name": "Drucksensoren",
+        "description": "Differenz- und Statikdrucktransmitter"
+      },
+      "airQualitySensors": {
+        "name": "Luftqualitätssensoren",
+        "description": "CO₂-, VOC- und Feinstaubüberwachung"
+      },
+      "wirelessSensors": {
+        "name": "Funksensoren",
+        "description": "Batteriebetriebene und energieautarke Lösungen"
+      },
+      "accessories": {
+        "name": "Zubehör",
+        "description": "Montageelemente, Gehäuse und Kabel"
+      },
+      "testInstruments": {
+        "name": "Prüfinstrumente",
+        "description": "Professionelle Kalibrierungs- und Prüfausrüstung"
+      },
+      "etaLine": {
+        "name": "ETA-Linie",
+        "description": "Modulare E/A- und Steuerungslösungen"
+      },
+      "viewProducts": "Produkte anzeigen"
+    },
+    "featured": {
+      "badge": "Produktlinie im Fokus",
+      "title": "BA/10K-Serie Temperatursensoren",
+      "description": "Unsere beliebtesten Sensoren. ±0,2 °C Genauigkeit, BACnet MS/TP und 5 Jahre Garantie. Vertraut in Gesundheitseinrichtungen, Rechenzentren und kritischen Einrichtungen weltweit.",
+      "viewButton": "BA-Serie anzeigen",
+      "features": {
+        "accuracy": {
+          "label": "±0,2 °C Genauigkeit",
+          "value": "Branchenführend"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Nativer Protokoll"
+        },
+        "warranty": {
+          "label": "5-Jahre Garantie",
+          "value": "Standard"
+        },
+        "madeInUSA": {
+          "label": "Hergestellt in den USA",
+          "value": "Qualitätsgesichert"
+        }
+      }
+    },
+    "cta": {
+      "title": "Brauchen Sie Hilfe bei der richtigen Produktauswahl?",
+      "description": "Unser Team von Experten steht Ihnen bereit, um Ihnen die perfekten Sensoren und Regler für Ihr Gebäudeautomationsprojekt auszuwählen.",
+      "button": "Vertrieb kontaktieren"
+    }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Warenkorb",
+      "description": "Überprüfen Sie Ihren Warenkorb und fahren Sie mit dem Checkout fort"
+    },
+    "header": {
+      "title": "Warenkorb",
+      "continueShopping": "Einkaufen fortsetzen"
+    },
+    "empty": {
+      "title": "Ihr Warenkorb ist leer",
+      "description": "Fügen Sie einige Produkte zu Ihrem Warenkorb hinzu, um loszulegen.",
+      "button": "Einkaufen fortsetzen"
+    },
+    "items": {
+      "title": "Warenkorbartikel",
+      "clearCart": "Warenkorb leeren",
+      "clearConfirm": "Möchten Sie Ihren Warenkorb wirklich leeren?",
+      "noImage": "Kein Bild",
+      "remove": "Entfernen",
+      "priceEach": "{price} pro Stück"
+    },
+    "stock": {
+      "inStock": "Auf Lager",
+      "outOfStock": "Nicht auf Lager",
+      "onBackorder": "Auf Bestellung",
+      "available": "{count} verfügbar"
+    },
+    "quantity": {
+      "decrease": "Menge verringern",
+      "increase": "Menge erhöhen"
+    },
+    "summary": {
+      "title": "Bestellübersicht",
+      "subtotal": "Zwischensumme",
+      "discount": "Rabatt",
+      "shipping": "Versand",
+      "tax": "Steuern",
+      "total": "Gesamtbetrag",
+      "calculatedAtCheckout": "Wird beim Checkout berechnet",
+      "proceedToCheckout": "Zum Checkout",
+      "secureCheckout": "Sicherer Checkout",
+      "sslEncrypted": "256-Bit-SSL-Verschlüsselung"
+    },
+    "coupon": {
+      "label": "Haben Sie einen Gutscheincode?",
+      "placeholder": "Code eingeben",
+      "apply": "Anwenden",
+      "applying": "Wird angewendet...",
+      "appliedCoupons": "Angewandte Gutscheine:",
+      "remove": "Gutschein entfernen"
+    },
+    "shipping": {
+      "freeShipping": "✓ Kostenloser Versand ab 500 $",
+      "standardShipping": "Standardversand: 3-5 Werktage"
+    },
+    "toasts": {
+      "updated": "Aktualisiert",
+      "cartUpdated": "Warenkorb erfolgreich aktualisiert",
+      "removed": "Entfernt",
+      "itemRemoved": "Artikel aus dem Warenkorb entfernt",
+      "cartCleared": "Warenkorb geleert",
+      "allItemsRemoved": "Alle Artikel aus dem Warenkorb entfernt",
+      "enterCode": "Code eingeben",
+      "enterCodeMessage": "Bitte geben Sie einen Gutscheincode ein",
+      "couponApplied": "Gutschein angewendet",
+      "couponAppliedMessage": "Gutschein \"{code}\" erfolgreich angewendet",
+      "couponRemoved": "Gutschein entfernt",
+      "couponRemovedMessage": "Gutschein \"{code}\" entfernt"
+    }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "Kategorie nicht gefunden",
+      "descriptionTemplate": "Durchsuchen Sie {name} von BAPI - Building Automation Products Inc."
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte"
+    },
+    "header": {
+      "productsAvailable": "{count} Produkte verfügbar"
+    },
+    "subcategories": {
+      "title": "Nach Kategorie durchsuchen",
+      "productCount": "{count} Produkt",
+      "productCountPlural": "{count} Produkte",
+      "browseButton": "Produkte durchsuchen"
+    },
+    "quickLinks": {
+      "backToProducts": "← Zurück zu allen Produkten",
+      "needHelp": "Brauchen Sie Hilfe? Kontaktieren Sie uns"
+    }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "Suchergebnisse für \"{query}\" | BAPI",
+      "titleDefault": "Produkte suchen | BAPI",
+      "descriptionTemplate": "Finden Sie BAPI-Gebäudeautomationssensoren und -controller. Suchergebnisse für: {query}"
+    },
+    "emptyQuery": {
+      "title": "Produkte suchen",
+      "description": "Verwenden Sie die Suchleiste oben, um Sensoren, Controller und Produkte für die Gebäudeautomation zu finden.",
+      "browseButton": "Alle Produkte durchsuchen"
+    },
+    "results": {
+      "backToProducts": "Zurück zu den Produkten",
+      "title": "Suchergebnisse",
+      "resultsCount": "{count} Ergebnis für \"{query}\"",
+      "resultsCountPlural": "{count} Ergebnisse für \"{query}\""
+    },
+    "noResults": {
+      "title": "Keine Produkte gefunden",
+      "description": "Wir konnten keine Produkte finden, die \"{query}\" entsprechen. Versuchen Sie es mit anderen Schlüsselwörtern oder durchsuchen Sie unsere Kategorien.",
+      "browseButton": "Alle Produkte durchsuchen",
+      "contactButton": "Support kontaktieren"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "Kasse | BAPI",
+      "description": "Schließen Sie Ihre Bestellung ab"
+    },
+    "header": {
+      "title": "Kasse",
+      "stepsRemaining": "Schließen Sie Ihre Bestellung in {count} einfachen Schritt ab",
+      "stepsRemainingPlural": "Schließen Sie Ihre Bestellung in {count} einfachen Schritten ab"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "Versand",
+          "description": "Lieferadresse"
+        },
+        "payment": {
+          "title": "Zahlung",
+          "description": "Zahlungsmethode"
+        },
+        "review": {
+          "title": "Überprüfen",
+          "description": "Bestellung aufgeben"
+        }
+      }
+    },
+    "shipping": {
+      "title": "Lieferadresse",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "company": "Firma (optional)",
+      "address": "Adresse",
+      "addressPlaceholder": "Straße und Hausnummer",
+      "address2Placeholder": "Appartement, Wohnung, etc. (optional)",
+      "city": "Stadt",
+      "state": "Bundesland",
+      "statePlaceholder": "CA, NY, TX, etc.",
+      "zipCode": "Postleitzahl",
+      "zipCodePlaceholder": "12345",
+      "country": "Land",
+      "phone": "Telefon",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "E-Mail",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "Vereinigte Staaten",
+        "ca": "Kanada",
+        "mx": "Mexiko"
+      },
+      "billingSameAsShipping": "Rechnungsadresse entspricht Lieferadresse",
+      "continueButton": "Weiter zur Zahlung",
+      "validation": {
+        "missingInfo": "Fehlende Informationen",
+        "missingInfoMessage": "Bitte füllen Sie alle erforderlichen Felder aus",
+        "invalidEmail": "Ungültige E-Mail-Adresse",
+        "invalidEmailMessage": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        "invalidPhone": "Ungültige Telefonnummer",
+        "invalidPhoneMessage": "Bitte geben Sie eine gültige Telefonnummer ein"
+      }
+    },
+    "payment": {
+      "title": "Zahlungsmethode",
+      "methods": {
+        "creditCard": {
+          "title": "Kreditkarte",
+          "description": "Mit Kredit- oder Debitkarte bezahlen"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "Mit Ihrem PayPal-Konto bezahlen"
+        }
+      },
+      "cardDetails": {
+        "title": "Kartendetails",
+        "settingUp": "Zahlung wird eingerichtet...",
+        "loadError": "Das Zahlungsformular kann nicht geladen werden. Bitte aktualisieren Sie die Seite und versuchen Sie es erneut."
+      },
+      "security": {
+        "title": "Ihre Zahlung ist sicher",
+        "description": "Betrieben von Stripe mit 256-Bit-SSL-Verschlüsselung"
+      },
+      "paypal": {
+        "redirectMessage": "Sie werden nach Überprüfung Ihrer Bestellung zur sicheren Bezahlung auf PayPal weitergeleitet.",
+        "continueButton": "Weiter zur Überprüfung"
+      },
+      "back": "Zurück",
+      "toasts": {
+        "selectMethod": "Zahlungsmethode auswählen",
+        "selectMethodMessage": "Bitte wählen Sie eine Zahlungsmethode aus",
+        "setupFailed": "Zahlungseinrichtung fehlgeschlagen",
+        "setupError": "Zahlung kann nicht initialisiert werden",
+        "paymentConfirmed": "Zahlung bestätigt",
+        "paymentConfirmedMessage": "Weiter zur Bestellübersicht",
+        "paymentFailed": "Zahlung fehlgeschlagen"
+      }
+    },
+    "review": {
+      "title": "Bestellung überprüfen",
+      "description": "Bitte überprüfen Sie Ihre Informationen, bevor Sie Ihre Bestellung aufgeben",
+      "shippingAddress": "Lieferadresse",
+      "billingAddress": "Rechnungsadresse",
+      "paymentMethod": "Zahlungsmethode",
+      "sameAsShipping": "Wie Lieferadresse",
+      "notSelected": "Nicht ausgewählt",
+      "edit": "Bearbeiten",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "paymentNotes": {
+        "creditCard": "Ihre Karte wird nach Bestellbestätigung belastet",
+        "paypal": "Sie werden zu PayPal weitergeleitet, um die Zahlung abzuschließen"
+      },
+      "orderNotes": {
+        "label": "Bestellnotizen (optional)",
+        "placeholder": "Fügen Sie spezielle Anweisungen oder Hinweise zu Ihrer Bestellung hinzu..."
+      },
+      "terms": {
+        "agree": "Ich habe die",
+        "termsLink": "Allgemeinen Geschäftsbedingungen",
+        "and": "und die",
+        "privacyLink": "Datenschutzbestimmungen"
+      },
+      "placeOrder": "Bestellung aufgeben",
+      "processing": "Wird verarbeitet...",
+      "back": "Zurück",
+      "security": "Sichere 256-Bit-SSL-verschlüsselte Kasse",
+      "toasts": {
+        "acceptTerms": "AGB akzeptieren",
+        "acceptTermsMessage": "Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen, um fortzufahren"
+      }
+    },
+    "summary": {
+      "title": "Bestellübersicht",
+      "items": "Artikel ({count})",
+      "noImage": "Kein Bild",
+      "qty": "Menge",
+      "editCart": "← Warenkorb bearbeiten",
+      "subtotal": "Zwischensumme",
+      "discount": "Rabatt",
+      "shipping": "Versand",
+      "tax": "Steuern",
+      "total": "Gesamtbetrag",
+      "calculatedAtCheckout": "Wird bei der Kasse berechnet",
+      "secureCheckout": "Sichere Kasse"
+    },
+    "toasts": {
+      "cartEmpty": "Warenkorb ist leer",
+      "cartEmptyMessage": "Ihr Warenkorb ist leer. Fügen Sie Artikel hinzu, bevor Sie zur Kasse gehen.",
+      "error": "Fehler",
+      "errorMessage": "Der Warenkorb kann nicht geladen werden.",
+      "orderPlaced": "Bestellung aufgegeben!",
+      "orderPlacedMessage": "Ihre Bestellung wurde erfolgreich aufgegeben."
+    }
   }
 }

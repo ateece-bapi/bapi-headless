@@ -1,10 +1,11 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@/test/i18n-test-utils';
 import CartSummary from '../CartSummary';
 
 // Mock Next.js navigation
 const mockPush = vi.fn();
 vi.mock('next/navigation', () => ({
+  useParams: () => ({ locale: 'en' }),
   useRouter: () => ({
     push: mockPush,
   }),

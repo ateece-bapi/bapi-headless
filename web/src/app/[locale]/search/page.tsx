@@ -4,8 +4,10 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Search, ArrowLeft } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
 interface SearchPageProps {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ q?: string }>;
 }
 
@@ -65,34 +67,38 @@ async function searchProducts(query: string) {
   return data.data?.products?.nodes || [];
 }
 
-export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
-  const params = await searchParams;
-  const query = params.q || '';
+export async function generateMetadata({ params, searchParams }: SearchPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const queryParams = await searchParams;
+  const query = queryParams.q || '';
+  const t = await getTranslations({ locale, namespace: 'searchPage.meta' });
 
   return {
-    title: query ? `Search Results for "${query}" | BAPI` : 'Search Products | BAPI',
-    description: `Find BAPI building automation sensors and controllers. Search results for: ${query}`,
+    title: query ? t('titleWithQuery', { query }) : t('titleDefault'),
+    description: t('descriptionTemplate', { query }),
   };
 }
 
-export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const params = await searchParams;
-  const query = params.q || '';
+export default async function SearchPage({ params, searchParams }: SearchPageProps) {
+  const { locale } = await params;
+  const queryParams = await searchParams;
+  const query = queryParams.q || '';
+  const t = await getTranslations({ locale, namespace: 'searchPage' });
 
   if (!query) {
     return (
       <div className="min-h-screen bg-neutral-50 py-16">
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
           <Search className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
-          <h1 className="mb-4 text-3xl font-bold text-neutral-900">Search Products</h1>
+          <h1 className="mb-4 text-3xl font-bold text-neutral-900">{t('emptyQuery.title')}</h1>
           <p className="mb-8 text-lg text-neutral-600">
-            Use the search bar above to find sensors, controllers, and building automation products.
+            {t('emptyQuery.description')}
           </p>
           <Link
-            href="/products"
+            href={`/${locale}/products`}
             className="inline-flex items-center justify-center rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
           >
-            Browse All Products
+            {t('emptyQuery.browseButton')}
           </Link>
         </div>
       </div>
@@ -107,39 +113,40 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         {/* Header */}
         <div className="mb-8">
           <Link
-            href="/products"
+            href={`/${locale}/products`}
             className="mb-4 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Products
+            {t('results.backToProducts')}
           </Link>
-          <h1 className="mb-2 text-3xl font-bold text-neutral-900 lg:text-4xl">Search Results</h1>
+          <h1 className="mb-2 text-3xl font-bold text-neutral-900 lg:text-4xl">{t('results.title')}</h1>
           <p className="text-lg text-neutral-600">
-            {results.length} {results.length === 1 ? 'result' : 'results'} for{' '}
-            <span className="font-semibold">"{query}"</span>
+            {results.length === 1 
+              ? t('results.resultsCount', { count: results.length, query })
+              : t('results.resultsCountPlural', { count: results.length, query })
+            }
           </p>
         </div>
 
         {results.length === 0 ? (
           <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center">
             <Search className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
-            <h2 className="mb-3 text-2xl font-bold text-neutral-900">No products found</h2>
+            <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('noResults.title')}</h2>
             <p className="mb-6 text-neutral-600">
-              We couldn't find any products matching "{query}". Try different keywords or browse our
-              categories.
+              {t('noResults.description', { query })}
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Link
-                href="/products"
+                href={`/${locale}/products`}
                 className="inline-flex items-center justify-center rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
               >
-                Browse All Products
+                {t('noResults.browseButton')}
               </Link>
               <Link
-                href="/company/contact-us"
+                href={`/${locale}/company/contact-us`}
                 className="inline-flex items-center justify-center rounded-lg border-2 border-primary-500 px-6 py-3 font-semibold text-primary-600 transition-all hover:bg-primary-50"
               >
-                Contact Support
+                {t('noResults.contactButton')}
               </Link>
             </div>
           </div>
@@ -151,7 +158,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
               return (
                 <Link
                   key={product.id}
-                  href={`/en/product/${product.slug}`}
+                  href={`/${locale}/product/${product.slug}`}
                   className="group rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
                 >
                   {product.image && (

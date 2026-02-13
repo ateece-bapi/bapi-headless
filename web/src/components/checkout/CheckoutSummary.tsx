@@ -11,6 +11,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { ShoppingCart } from 'lucide-react';
 
 interface CheckoutSummaryProps {
@@ -18,6 +20,10 @@ interface CheckoutSummaryProps {
 }
 
 export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+  const t = useTranslations('checkoutPage.summary');
+
   if (!cart) {
     return null;
   }
@@ -38,14 +44,14 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
       {/* Header */}
       <div className="flex items-center gap-2 border-b border-neutral-200 bg-neutral-50 px-6 py-4">
         <ShoppingCart className="h-5 w-5 text-neutral-600" />
-        <h2 className="text-lg font-semibold text-neutral-900">Order Summary</h2>
+        <h2 className="text-lg font-semibold text-neutral-900">{t('title')}</h2>
       </div>
 
       <div className="space-y-6 p-6">
         {/* Cart Items */}
         <div className="space-y-4">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-neutral-700">
-            Items ({cart.contents?.itemCount || 0})
+            {t('items', { count: cart.contents?.itemCount || 0 })}
           </h3>
           <div className="max-h-64 space-y-3 overflow-y-auto">
             {cart.contents?.nodes?.map((item: any) => {
@@ -68,7 +74,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center text-xs text-neutral-400">
-                        No Image
+                        {t('noImage')}
                       </div>
                     )}
                   </div>
@@ -82,7 +88,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
                       <p className="mt-0.5 text-xs text-neutral-600">{variation.name}</p>
                     )}
                     <div className="mt-1 flex items-center justify-between">
-                      <span className="text-xs text-neutral-500">Qty: {item.quantity}</span>
+                      <span className="text-xs text-neutral-500">{t('qty')}: {item.quantity}</span>
                       <span className="text-sm font-semibold text-neutral-900">{item.total}</span>
                     </div>
                   </div>
@@ -93,44 +99,44 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
 
           {/* Edit Cart Link */}
           <Link
-            href="/cart"
+            href={`/${locale}/cart`}
             className="text-sm font-medium text-primary-500 transition-colors hover:text-primary-600"
           >
-            ← Edit Cart
+            {t('editCart')}
           </Link>
         </div>
 
         {/* Totals */}
         <div className="space-y-3 border-t border-neutral-200 pt-4">
           <div className="flex justify-between text-sm text-neutral-600">
-            <span>Subtotal</span>
+            <span>{t('subtotal')}</span>
             <span className="font-medium">${subtotal.toFixed(2)}</span>
           </div>
 
           {discount > 0 && (
             <div className="flex justify-between text-sm text-success-600">
-              <span>Discount</span>
+              <span>{t('discount')}</span>
               <span className="font-medium">-${discount.toFixed(2)}</span>
             </div>
           )}
 
           <div className="flex justify-between text-sm text-neutral-600">
-            <span>Shipping</span>
+            <span>{t('shipping')}</span>
             <span className="font-medium">
-              {shipping > 0 ? `$${shipping.toFixed(2)}` : 'Calculated at checkout'}
+              {shipping > 0 ? `$${shipping.toFixed(2)}` : t('calculatedAtCheckout')}
             </span>
           </div>
 
           <div className="flex justify-between text-sm text-neutral-600">
-            <span>Tax</span>
+            <span>{t('tax')}</span>
             <span className="font-medium">
-              {tax > 0 ? `$${tax.toFixed(2)}` : 'Calculated at checkout'}
+              {tax > 0 ? `$${tax.toFixed(2)}` : t('calculatedAtCheckout')}
             </span>
           </div>
 
           <div className="border-t border-neutral-200 pt-3">
             <div className="flex justify-between text-lg font-bold text-neutral-900">
-              <span>Total</span>
+              <span>{t('total')}</span>
               <span>${total.toFixed(2)}</span>
             </div>
           </div>
@@ -140,7 +146,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
         <div className="border-t border-neutral-200 pt-4">
           <div className="flex items-center justify-center gap-2 text-sm text-neutral-500">
             <span className="text-xl">🔒</span>
-            <span>Secure Checkout</span>
+            <span>{t('secureCheckout')}</span>
           </div>
         </div>
       </div>

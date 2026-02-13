@@ -1,6 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@/test/i18n-test-utils';
 import CartItems from '../CartItems';
+
+// Mock next/navigation
+vi.mock('next/navigation', () => ({
+  useParams: () => ({ locale: 'en' }),
+}));
 
 // Mock Next.js components
 vi.mock('next/image', () => ({

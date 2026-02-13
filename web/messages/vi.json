@@ -495,5 +495,438 @@
       "youtube": "YouTube",
       "follow": "Theo dõi Chúng tôi"
     }
+  },
+  "productPage": {
+    "summary": {
+      "title": "Tóm tắt sản phẩm",
+      "configureProduct": "Cấu hình sản phẩm",
+      "selectSpecifications": "Chọn thông số kỹ thuật của bạn bên dưới để xem giá và số model",
+      "configurationComplete": "Cấu hình hoàn tất",
+      "partNumber": "Số model",
+      "quantity": "Số lượng",
+      "multiplier": "Hệ số nhân",
+      "priceCalculation": "Tính giá"
+    },
+    "tabs": {
+      "description": "Mô tả",
+      "documents": "Tài liệu",
+      "videos": "Video",
+      "specifications": "Thông số kỹ thuật",
+      "support": "Hỗ trợ",
+      "overview": "Tổng quan",
+      "specs": "Thông số",
+      "descriptionPlaceholder": "Mô tả sản phẩm sẽ xuất hiện ở đây khi có sẵn.",
+      "noVideosAvailable": "Không có video nào khả dụng cho sản phẩm này.",
+      "noDocumentsAvailable": "Không có tài liệu nào khả dụng cho sản phẩm này."
+    },
+    "specifications": {
+      "title": "Thông số kỹ thuật",
+      "noSpecsAvailable": "Không có thông số kỹ thuật khả dụng cho sản phẩm này.",
+      "expandAll": "Mở rộng tất cả",
+      "collapseAll": "Thu gọn tất cả",
+      "download": "Tải xuống",
+      "downloadSpecs": "Tải xuống thông số kỹ thuật"
+    },
+    "related": {
+      "title": "Sản phẩm liên quan",
+      "view": "Xem",
+      "addToJobEstimate": "Thêm vào Ước tính công việc",
+      "viewProduct": "Xem sản phẩm",
+      "viewAll": "Xem tất cả sản phẩm liên quan"
+    },
+    "actions": {
+      "addToCart": "Thêm vào giỏ hàng",
+      "addToQuote": "Thêm vào báo giá",
+      "buyNow": "Mua ngay",
+      "requestQuote": "Yêu cầu báo giá",
+      "compareProducts": "So sánh sản phẩm",
+      "addToFavorites": "Thêm vào Yêu thích",
+      "share": "Chia sẻ"
+    },
+    "pricing": {
+      "price": "Giá",
+      "regularPrice": "Giá niêm yết",
+      "salePrice": "Giá khuyến mãi",
+      "yourPrice": "Giá của bạn",
+      "calculatedPrice": "Giá tính toán",
+      "basePrice": "Giá gốc",
+      "totalPrice": "Tổng giá",
+      "pricePerUnit": "Giá mỗi đơn vị",
+      "bulkDiscountAvailable": "Có giảm giá số lượng",
+      "contactForPricing": "Liên hệ với chúng tôi để biết giá"
+    },
+    "availability": {
+      "inStock": "Còn hàng",
+      "outOfStock": "Hết hàng",
+      "onBackorder": "Đặt trước",
+      "lowStock": "Hàng sắp hết",
+      "checkAvailability": "Kiểm tra tình trạng hàng",
+      "readyToShip": "Sẵn sàng giao hàng",
+      "currentlyUnavailable": "Hiện không có sẵn",
+      "availableForPreorder": "Có sẵn để đặt trước",
+      "contactForAvailability": "Liên hệ với chúng tôi để biết tình trạng hàng",
+      "onlyXLeft": "Chỉ còn lại {count} sản phẩm",
+      "xAvailable": "{count} sản phẩm có sẵn",
+      "expectedBack": "Dự kiến về vào: {date}",
+      "shipsOn": "Giao hàng vào: {date}"
+    }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Sản phẩm Tự động hóa Công trình",
+      "description": "Khám phá bộ sản phẩm cảm biến, bộ điều khiển và thiết bị kiểm tra chính xác cao của chúng tôi. Được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho các ứng dụng HVAC quan trọng."
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm"
+    },
+    "hero": {
+      "badge": "Cảm biến & Bộ điều khiển Chính xác",
+      "title": "Sản phẩm Tự động hóa Công trình",
+      "description": "Khám phá bộ sản phẩm cảm biến, bộ điều khiển và thiết bị kiểm tra chính xác cao của chúng tôi. Được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho các ứng dụng HVAC quan trọng.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Sản phẩm",
+        "warrantyDuration": "5 năm",
+        "warrantyLabel": "Bảo hành",
+        "accuracyValue": "±0,2°C",
+        "accuracyLabel": "Độ chính xác"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Cảm biến Nhiệt độ",
+        "description": "Giải pháp đo lường nhiệt độ chính xác cao"
+      },
+      "humiditySensors": {
+        "name": "Cảm biến Độ ẩm",
+        "description": "Theo dõi độ ẩm tương đối chính xác"
+      },
+      "pressureSensors": {
+        "name": "Cảm biến Áp suất",
+        "description": "Bộ chuyển đổi áp suất tĩnh và sai lệch"
+      },
+      "airQualitySensors": {
+        "name": "Cảm biến Chất lượng Không khí",
+        "description": "Theo dõi CO₂, VOC và bụi mịn"
+      },
+      "wirelessSensors": {
+        "name": "Cảm biến Không dây",
+        "description": "Các giải pháp hoạt động bằng pin và thu năng lượng"
+      },
+      "accessories": {
+        "name": "Phụ kiện",
+        "description": "Phần cứng lắp đặt, vỏ bọc và dây cáp"
+      },
+      "testInstruments": {
+        "name": "Thiết bị Kiểm tra",
+        "description": "Thiết bị hiệu chuẩn và kiểm tra chuyên nghiệp"
+      },
+      "etaLine": {
+        "name": "Dòng ETA",
+        "description": "Các giải pháp I/O và điều khiển modular"
+      },
+      "viewProducts": "Xem Sản phẩm"
+    },
+    "featured": {
+      "badge": "Dòng Sản phẩm Nổi bật",
+      "title": "Cảm biến Nhiệt độ Dòng BA/10K",
+      "description": "Các cảm biến phổ biến nhất của chúng tôi. Độ chính xác ±0,2°C, giao thức BACnet MS/TP và bảo hành 5 năm. Được tin cậy sử dụng trong các cơ sở y tế, trung tâm dữ liệu và công trình quan trọng trên toàn thế giới.",
+      "viewButton": "Xem Dòng BA",
+      "features": {
+        "accuracy": {
+          "label": "Độ chính xác ±0,2°C",
+          "value": "Hàng đầu trong ngành"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Giao thức gốc"
+        },
+        "warranty": {
+          "label": "Bảo hành 5 năm",
+          "value": "Tiêu chuẩn"
+        },
+        "madeInUSA": {
+          "label": "Sản xuất tại Mỹ",
+          "value": "Đảm bảo Chất lượng"
+        }
+      }
+    },
+    "cta": {
+      "title": "Cần Trợ giúp tìm Sản phẩm phù hợp?",
+      "description": "Nhóm chuyên gia của chúng tôi sẵn sàng giúp bạn lựa chọn các cảm biến và bộ điều khiển hoàn hảo cho dự án tự động hóa công trình của bạn.",
+      "button": "Liên hệ Bán hàng"
+    }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Giỏ hàng",
+      "description": "Xem lại giỏ hàng và chuyển đến thanh toán"
+    },
+    "header": {
+      "title": "Giỏ hàng",
+      "continueShopping": "Tiếp tục mua sắm"
+    },
+    "empty": {
+      "title": "Giỏ hàng của bạn trống",
+      "description": "Thêm một số sản phẩm vào giỏ hàng để bắt đầu.",
+      "button": "Tiếp tục mua sắm"
+    },
+    "items": {
+      "title": "Mặt hàng trong giỏ",
+      "clearCart": "Xóa giỏ hàng",
+      "clearConfirm": "Bạn có chắc chắn muốn xóa giỏ hàng của mình?",
+      "noImage": "Không có hình ảnh",
+      "remove": "Xóa",
+      "priceEach": "{price} mỗi sản phẩm"
+    },
+    "stock": {
+      "inStock": "Còn hàng",
+      "outOfStock": "Hết hàng",
+      "onBackorder": "Đặt trước",
+      "available": "{count} sản phẩm còn lại"
+    },
+    "quantity": {
+      "decrease": "Giảm số lượng",
+      "increase": "Tăng số lượng"
+    },
+    "summary": {
+      "title": "Tổng quan đơn hàng",
+      "subtotal": "Tổng phụ",
+      "discount": "Giảm giá",
+      "shipping": "Vận chuyển",
+      "tax": "Thuế",
+      "total": "Tổng cộng",
+      "calculatedAtCheckout": "Tính toán khi thanh toán",
+      "proceedToCheckout": "Chuyển đến Thanh toán",
+      "secureCheckout": "Thanh toán an toàn",
+      "sslEncrypted": "Mã hóa SSL 256-bit"
+    },
+    "coupon": {
+      "label": "Bạn có mã giảm giá?",
+      "placeholder": "Nhập mã",
+      "apply": "Áp dụng",
+      "applying": "Đang áp dụng...",
+      "appliedCoupons": "Mã giảm giá đã áp dụng:",
+      "remove": "Xóa mã giảm giá"
+    },
+    "shipping": {
+      "freeShipping": "✓ Miễn phí vận chuyển cho đơn hàng trên 500 USD",
+      "standardShipping": "Vận chuyển tiêu chuẩn: 3-5 ngày làm việc"
+    },
+    "toasts": {
+      "updated": "Đã cập nhật",
+      "cartUpdated": "Giỏ hàng đã được cập nhật thành công",
+      "removed": "Đã xóa",
+      "itemRemoved": "Mặt hàng đã được xóa khỏi giỏ hàng",
+      "cartCleared": "Đã xóa giỏ hàng",
+      "allItemsRemoved": "Tất cả mặt hàng đã được xóa khỏi giỏ hàng",
+      "enterCode": "Nhập mã",
+      "enterCodeMessage": "Vui lòng nhập mã giảm giá",
+      "couponApplied": "Mã giảm giá đã được áp dụng",
+      "couponAppliedMessage": "Mã giảm giá \"{code}\" đã được áp dụng thành công",
+      "couponRemoved": "Mã giảm giá đã được xóa",
+      "couponRemovedMessage": "Mã giảm giá \"{code}\" đã được xóa"
+    }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "Không tìm thấy danh mục",
+      "descriptionTemplate": "Duyệt {name} từ BAPI - Building Automation Products Inc."
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm"
+    },
+    "header": {
+      "productsAvailable": "{count} sản phẩm có sẵn"
+    },
+    "subcategories": {
+      "title": "Duyệt theo Danh mục",
+      "productCount": "{count} sản phẩm",
+      "productCountPlural": "{count} sản phẩm",
+      "browseButton": "Duyệt Sản phẩm"
+    },
+    "quickLinks": {
+      "backToProducts": "← Trở lại Tất cả Sản phẩm",
+      "needHelp": "Cần Trợ giúp? Liên hệ với chúng tôi"
+    }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "Kết quả tìm kiếm cho \"{query}\" | BAPI",
+      "titleDefault": "Tìm kiếm Sản phẩm | BAPI",
+      "descriptionTemplate": "Tìm thấy cảm biến và bộ điều khiển tự động hóa tòa nhà BAPI. Kết quả tìm kiếm cho: {query}"
+    },
+    "emptyQuery": {
+      "title": "Tìm kiếm Sản phẩm",
+      "description": "Sử dụng thanh tìm kiếm bên trên để tìm cảm biến, bộ điều khiển và các sản phẩm tự động hóa tòa nhà.",
+      "browseButton": "Duyệt tất cả Sản phẩm"
+    },
+    "results": {
+      "backToProducts": "Trở về Sản phẩm",
+      "title": "Kết quả tìm kiếm",
+      "resultsCount": "{count} kết quả cho \"{query}\"",
+      "resultsCountPlural": "{count} kết quả cho \"{query}\""
+    },
+    "noResults": {
+      "title": "Không tìm thấy sản phẩm",
+      "description": "Chúng tôi không thể tìm thấy bất kỳ sản phẩm nào khớp với \"{query}\". Hãy thử các từ khóa khác hoặc duyệt qua các danh mục của chúng tôi.",
+      "browseButton": "Duyệt tất cả Sản phẩm",
+      "contactButton": "Liên hệ Hỗ trợ"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "Thanh toán | BAPI",
+      "description": "Hoàn tất đơn hàng của bạn"
+    },
+    "header": {
+      "title": "Thanh toán",
+      "stepsRemaining": "Hoàn tất đơn hàng của bạn trong {count} bước đơn giản",
+      "stepsRemainingPlural": "Hoàn tất đơn hàng của bạn trong {count} bước đơn giản"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "Vận chuyển",
+          "description": "Địa chỉ giao hàng"
+        },
+        "payment": {
+          "title": "Thanh toán",
+          "description": "Phương thức thanh toán"
+        },
+        "review": {
+          "title": "Xem lại",
+          "description": "Đặt hàng"
+        }
+      }
+    },
+    "shipping": {
+      "title": "Địa chỉ giao hàng",
+      "firstName": "Tên",
+      "lastName": "Họ",
+      "company": "Công ty (Tùy chọn)",
+      "address": "Địa chỉ",
+      "addressPlaceholder": "Địa chỉ đường phố",
+      "address2Placeholder": "Căn hộ, tầng, v.v. (tùy chọn)",
+      "city": "Thành phố",
+      "state": "Tỉnh/Bang",
+      "statePlaceholder": "CA, NY, TX, v.v.",
+      "zipCode": "Mã ZIP",
+      "zipCodePlaceholder": "12345",
+      "country": "Quốc gia",
+      "phone": "Điện thoại",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "Hoa Kỳ",
+        "ca": "Canada",
+        "mx": "Mexico"
+      },
+      "billingSameAsShipping": "Địa chỉ thanh toán giống như địa chỉ giao hàng",
+      "continueButton": "Tiếp tục đến Thanh toán",
+      "validation": {
+        "missingInfo": "Thiếu thông tin",
+        "missingInfoMessage": "Vui lòng điền tất cả các trường bắt buộc",
+        "invalidEmail": "Email không hợp lệ",
+        "invalidEmailMessage": "Vui lòng nhập một địa chỉ email hợp lệ",
+        "invalidPhone": "Số điện thoại không hợp lệ",
+        "invalidPhoneMessage": "Vui lòng nhập một số điện thoại hợp lệ"
+      }
+    },
+    "payment": {
+      "title": "Phương thức thanh toán",
+      "methods": {
+        "creditCard": {
+          "title": "Thẻ tín dụng",
+          "description": "Thanh toán bằng thẻ tín dụng hoặc ghi nợ"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "Thanh toán bằng tài khoản PayPal của bạn"
+        }
+      },
+      "cardDetails": {
+        "title": "Chi tiết thẻ",
+        "settingUp": "Đang thiết lập thanh toán...",
+        "loadError": "Không thể tải biểu mẫu thanh toán. Vui lòng làm mới và thử lại."
+      },
+      "security": {
+        "title": "Thanh toán của bạn an toàn",
+        "description": "Được cung cấp bởi Stripe với mã hóa SSL 256-bit"
+      },
+      "paypal": {
+        "redirectMessage": "Bạn sẽ được chuyển hướng đến PayPal để hoàn tất việc mua hàng an toàn sau khi xem lại đơn hàng của mình.",
+        "continueButton": "Tiếp tục đến Xem lại"
+      },
+      "back": "Quay lại",
+      "toasts": {
+        "selectMethod": "Chọn Phương thức Thanh toán",
+        "selectMethodMessage": "Vui lòng chọn một phương thức thanh toán",
+        "setupFailed": "Thiết lập Thanh toán Thất bại",
+        "setupError": "Không thể khởi tạo thanh toán",
+        "paymentConfirmed": "Thanh toán Xác nhận",
+        "paymentConfirmedMessage": "Chuyển đến xem lại đơn hàng",
+        "paymentFailed": "Thanh toán Thất bại"
+      }
+    },
+    "review": {
+      "title": "Xem lại Đơn hàng của Bạn",
+      "description": "Vui lòng xem lại thông tin của bạn trước khi đặt đơn hàng",
+      "shippingAddress": "Địa chỉ Giao hàng",
+      "billingAddress": "Địa chỉ Thanh toán",
+      "paymentMethod": "Phương thức Thanh toán",
+      "sameAsShipping": "Giống như địa chỉ giao hàng",
+      "notSelected": "Chưa chọn",
+      "edit": "Chỉnh sửa",
+      "phone": "Điện thoại",
+      "email": "Email",
+      "paymentNotes": {
+        "creditCard": "Thẻ của bạn sẽ bị tính phí sau khi xác nhận đơn hàng",
+        "paypal": "Bạn sẽ được chuyển hướng đến PayPal để hoàn tất thanh toán"
+      },
+      "orderNotes": {
+        "label": "Ghi chú Đơn hàng (Tùy chọn)",
+        "placeholder": "Thêm bất kỳ hướng dẫn đặc biệt hoặc ghi chú về đơn hàng của bạn..."
+      },
+      "terms": {
+        "agree": "Tôi đã đọc và đồng ý với",
+        "termsLink": "Điều khoản & Điều kiện",
+        "and": "và",
+        "privacyLink": "Chính sách Bảo mật"
+      },
+      "placeOrder": "Đặt Hàng",
+      "processing": "Đang xử lý...",
+      "back": "Quay lại",
+      "security": "Thanh toán được mã hóa SSL 256-bit an toàn",
+      "toasts": {
+        "acceptTerms": "Chấp nhận Điều khoản",
+        "acceptTermsMessage": "Vui lòng chấp nhận các điều khoản và điều kiện để tiếp tục"
+      }
+    },
+    "summary": {
+      "title": "Tóm tắt Đơn hàng",
+      "items": "Sản phẩm ({count})",
+      "noImage": "Không có Hình ảnh",
+      "qty": "SL",
+      "editCart": "← Chỉnh sửa Giỏ hàng",
+      "subtotal": "Tổng phụ",
+      "discount": "Giảm giá",
+      "shipping": "Giao hàng",
+      "tax": "Thuế",
+      "total": "Tổng cộng",
+      "calculatedAtCheckout": "Tính tại thời điểm thanh toán",
+      "secureCheckout": "Thanh toán An toàn"
+    },
+    "toasts": {
+      "cartEmpty": "Giỏ hàng Trống",
+      "cartEmptyMessage": "Giỏ hàng của bạn trống. Thêm sản phẩm trước khi thanh toán.",
+      "error": "Lỗi",
+      "errorMessage": "Không thể tải giỏ hàng.",
+      "orderPlaced": "Đơn hàng Đã Đặt!",
+      "orderPlacedMessage": "Đơn hàng của bạn đã được đặt thành công."
+    }
   }
 }

@@ -10,9 +10,14 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@/test/i18n-test-utils';
 import PaymentStep from '../PaymentStep';
 import type { CheckoutData } from '../../CheckoutPageClient';
+
+// Mock next/navigation
+vi.mock('next/navigation', () => ({
+  useParams: () => ({ locale: 'en' }),
+}));
 
 // Mock Toast component
 vi.mock('@/components/ui/Toast', () => ({

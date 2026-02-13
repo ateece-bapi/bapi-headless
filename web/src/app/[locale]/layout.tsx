@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ChatWidgetClient from '@/components/chat/ChatWidgetClient';
+import AutoRegionDetection from '@/components/region/AutoRegionDetection';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { ToastProvider } from '@/components/ui/Toast';
@@ -34,6 +35,9 @@ export default async function LocaleLayout({
           >
             Skip to main content
           </a>
+
+          {/* Auto-detect region/language for first-time visitors */}
+          <AutoRegionDetection />
 
           <Header />
           <main id="main-content">{children}</main>

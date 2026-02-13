@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Search, Download } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export interface SpecificationGroup {
   title: string;
@@ -43,6 +44,7 @@ export default function ProductSpecifications({
   searchable = true,
   downloadable = true,
 }: ProductSpecificationsProps) {
+  const t = useTranslations();
   const [expandedGroups, setExpandedGroups] = useState<Set<number>>(
     new Set(specifications.map((_, index) => index))
   );
@@ -108,7 +110,7 @@ export default function ProductSpecifications({
   if (specifications.length === 0) {
     return (
       <div className="rounded-xl bg-neutral-50 p-8 text-center">
-        <p className="text-neutral-600">No specifications available for this product.</p>
+        <p className="text-neutral-600">{t('productPage.specifications.noSpecsAvailable')}</p>
       </div>
     );
   }
@@ -137,13 +139,13 @@ export default function ProductSpecifications({
             onClick={expandAll}
             className="rounded-lg px-4 py-2 text-sm font-medium text-primary-600 transition-all hover:bg-primary-50 hover:text-primary-700"
           >
-            Expand All
+            {t('productPage.specifications.expandAll')}
           </button>
           <button
             onClick={collapseAll}
             className="rounded-lg px-4 py-2 text-sm font-medium text-primary-600 transition-all hover:bg-primary-50 hover:text-primary-700"
           >
-            Collapse All
+            {t('productPage.specifications.collapseAll')}
           </button>
           {downloadable && (
             <button
@@ -151,7 +153,7 @@ export default function ProductSpecifications({
               className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-primary-600"
             >
               <Download className="h-4 w-4" />
-              <span className="hidden sm:inline">Download</span>
+              <span className="hidden sm:inline">{t('productPage.specifications.download')}</span>
             </button>
           )}
         </div>

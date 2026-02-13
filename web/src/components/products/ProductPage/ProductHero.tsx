@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { ZoomIn } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 // Lazy load ImageModal for better initial page load performance
 const ImageModal = dynamic(() => import('@/components/ui/ImageModal'), {
@@ -35,6 +36,7 @@ interface ProductHeroProps {
 }
 
 export default function ProductHero({ product, variation }: ProductHeroProps) {
+  const t = useTranslations();
   // Prefer variation image if present, else product image
   const initialImage = variation?.image || product.image || null;
   const [mainImage, setMainImage] = useState<GalleryImage | null>(initialImage);
@@ -101,7 +103,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
 
         {/* Part number with better visibility */}
         <div className="mb-4 flex items-center gap-2 text-base text-neutral-600">
-          <span className="text-neutral-500">Part Number:</span>
+          <span className="text-neutral-500">{t('productPage.summary.partNumber')}:</span>
           <span className="font-semibold text-neutral-900">
             {product.partNumber || product.sku || 'N/A'}
           </span>
@@ -127,7 +129,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
             )}
             {product.multiplier && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-neutral-500">Multiplier:</span>
+                <span className="text-sm text-neutral-500">{t('productPage.summary.multiplier')}:</span>
                 <span className="text-lg font-semibold text-primary-600">{product.multiplier}</span>
               </div>
             )}
@@ -156,7 +158,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
           {typeof product.stockQuantity === 'number' && product.stockQuantity > 0 && (
             <>
               <label htmlFor="quantity" className="block font-medium text-neutral-700">
-                Quantity
+                {t('productPage.summary.quantity')}
               </label>
               <input
                 type="number"

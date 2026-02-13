@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { RegionCode, LanguageCode } from '@/types/region';
+import logger from '@/lib/logger';
 
 /**
  * Auto-detect user's region and language based on geo-location
@@ -130,7 +131,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     // Fallback to US if detection fails
     // Log error for monitoring but don't expose details to client
-    console.error('Region detection error:', error);
+    logger.error('Region detection error', { error });
     
     return NextResponse.json({
       detected: false,

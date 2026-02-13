@@ -83,7 +83,7 @@ interface CartItem {
 export default function CartPageClient() {
   const t = useTranslations();
   const params = useParams();
-  const locale = params.locale as string;
+  const locale = (params?.locale as string) || 'en';
   const [cart, setCart] = useState<CartData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);

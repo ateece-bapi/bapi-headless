@@ -10,6 +10,7 @@
  */
 
 import { Check } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import ShippingStep from './steps/ShippingStep';
 import PaymentStep from './steps/PaymentStep';
 import ReviewStep from './steps/ReviewStep';
@@ -25,12 +26,6 @@ interface CheckoutWizardProps {
   isProcessing: boolean;
 }
 
-const steps = [
-  { number: 1, title: 'Shipping', description: 'Delivery address' },
-  { number: 2, title: 'Payment', description: 'Payment method' },
-  { number: 3, title: 'Review', description: 'Place order' },
-];
-
 export default function CheckoutWizard({
   currentStep,
   checkoutData,
@@ -40,6 +35,14 @@ export default function CheckoutWizard({
   onPlaceOrder,
   isProcessing,
 }: CheckoutWizardProps) {
+  const t = useTranslations('checkoutPage.wizard.steps');
+
+  const steps = [
+    { number: 1, title: t('shipping.title'), description: t('shipping.description') },
+    { number: 2, title: t('payment.title'), description: t('payment.description') },
+    { number: 3, title: t('review.title'), description: t('review.description') },
+  ];
+
   return (
     <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Progress Steps */}

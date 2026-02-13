@@ -940,5 +940,158 @@
       "browseButton": "Przeglądaj wszystkie produkty",
       "contactButton": "Skontaktuj się z pomocą techniczną"
     }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "Kasa | BAPI",
+      "description": "Zakończ swoje zamówienie"
+    },
+    "header": {
+      "title": "Kasa",
+      "stepsRemaining": "Zakończ swoje zamówienie w {count} łatwym kroku",
+      "stepsRemainingPlural": "Zakończ swoje zamówienie w {count} łatwych krokach"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "Wysyłka",
+          "description": "Adres dostawy"
+        },
+        "payment": {
+          "title": "Płatność",
+          "description": "Metoda płatności"
+        },
+        "review": {
+          "title": "Przegląd",
+          "description": "Złóż zamówienie"
+        }
+      }
+    },
+    "shipping": {
+      "title": "Adres wysyłki",
+      "firstName": "Imię",
+      "lastName": "Nazwisko",
+      "company": "Firma (opcjonalnie)",
+      "address": "Adres",
+      "addressPlaceholder": "Ulica i numer",
+      "address2Placeholder": "Mieszkanie, apartament, itp. (opcjonalnie)",
+      "city": "Miasto",
+      "state": "Województwo",
+      "statePlaceholder": "CA, NY, TX, itp.",
+      "zipCode": "Kod pocztowy",
+      "zipCodePlaceholder": "12345",
+      "country": "Kraj",
+      "phone": "Telefon",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "E-mail",
+      "emailPlaceholder": "ty@przykład.com",
+      "countries": {
+        "us": "Stany Zjednoczone",
+        "ca": "Kanada",
+        "mx": "Meksyk"
+      },
+      "billingSameAsShipping": "Adres płatności taki sam jak adres wysyłki",
+      "continueButton": "Przejdź do Płatności",
+      "validation": {
+        "missingInfo": "Brakujące informacje",
+        "missingInfoMessage": "Proszę wypełnić wszystkie wymagane pola",
+        "invalidEmail": "Nieprawidłowy e-mail",
+        "invalidEmailMessage": "Proszę wprowadzić prawidłowy adres e-mail",
+        "invalidPhone": "Nieprawidłowy numer telefonu",
+        "invalidPhoneMessage": "Proszę wprowadzić prawidłowy numer telefonu"
+      }
+    },
+    "payment": {
+      "title": "Metoda płatności",
+      "methods": {
+        "creditCard": {
+          "title": "Karta kredytowa",
+          "description": "Zapłać kartą kredytową lub debetową"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "Zapłać za pomocą konta PayPal"
+        }
+      },
+      "cardDetails": {
+        "title": "Dane karty",
+        "settingUp": "Ustawianie płatności...",
+        "loadError": "Nie można załadować formularza płatności. Odśwież i spróbuj ponownie."
+      },
+      "security": {
+        "title": "Twoja płatność jest bezpieczna",
+        "description": "Obsługiwana przez Stripe z 256-bitowym szyfrowaniem SSL"
+      },
+      "paypal": {
+        "redirectMessage": "Zostaniesz przekierowany do PayPal, aby bezpiecznie ukończyć zakup po przejrzeniu zamówienia.",
+        "continueButton": "Przejdź do Przeglądu"
+      },
+      "back": "Wstecz",
+      "toasts": {
+        "selectMethod": "Wybierz metodę płatności",
+        "selectMethodMessage": "Proszę wybrać metodę płatności",
+        "setupFailed": "Konfiguracja płatności nie powiodła się",
+        "setupError": "Nie można zainicjować płatności",
+        "paymentConfirmed": "Płatność potwierdzona",
+        "paymentConfirmedMessage": "Przechodzenie do przeglądu zamówienia",
+        "paymentFailed": "Płatność nie powiodła się"
+      }
+    },
+    "review": {
+      "title": "Przejrzyj swoje zamówienie",
+      "description": "Proszę sprawdzić swoje informacje przed złożeniem zamówienia",
+      "shippingAddress": "Adres wysyłki",
+      "billingAddress": "Adres płatności",
+      "paymentMethod": "Metoda płatności",
+      "sameAsShipping": "Taki sam jak adres wysyłki",
+      "notSelected": "Nie wybrano",
+      "edit": "Edytuj",
+      "phone": "Telefon",
+      "email": "E-mail",
+      "paymentNotes": {
+        "creditCard": "Twoja karta zostanie obciążona po potwierdzeniu zamówienia",
+        "paypal": "Zostaniesz przekierowany do PayPal, aby dokończyć płatność"
+      },
+      "orderNotes": {
+        "label": "Uwagi do zamówienia (opcjonalnie)",
+        "placeholder": "Dodaj specjalne instrukcje lub uwagi dotyczące Twojego zamówienia..."
+      },
+      "terms": {
+        "agree": "Przeczytałem(-am) i akceptuję",
+        "termsLink": "Warunki Korzystania",
+        "and": "oraz",
+        "privacyLink": "Politykę Prywatności"
+      },
+      "placeOrder": "Złóż Zamówienie",
+      "processing": "Przetwarzanie...",
+      "back": "Wstecz",
+      "security": "Bezpieczna płatność z 256-bitowym szyfrowaniem SSL",
+      "toasts": {
+        "acceptTerms": "Zaakceptuj Warunki",
+        "acceptTermsMessage": "Aby kontynuować, proszę zaakceptować warunki korzystania"
+      }
+    },
+    "summary": {
+      "title": "Podsumowanie zamówienia",
+      "items": "Produkty ({count})",
+      "noImage": "Brak obrazu",
+      "qty": "Ilość",
+      "editCart": "← Edytuj koszyk",
+      "subtotal": "Suma częściowa",
+      "discount": "Zniżka",
+      "shipping": "Wysyłka",
+      "tax": "Podatek",
+      "total": "Razem",
+      "calculatedAtCheckout": "Obliczane w kasie",
+      "secureCheckout": "Bezpieczna Kasa"
+    },
+    "toasts": {
+      "cartEmpty": "Koszyk pusty",
+      "cartEmptyMessage": "Twój koszyk jest pusty. Dodaj produkty przed przejściem do kasy.",
+      "error": "Błąd",
+      "errorMessage": "Nie można załadować koszyka.",
+      "orderPlaced": "Zamówienie złożone!",
+      "orderPlacedMessage": "Twoje zamówienie zostało pomyślnie złożone."
+    }
   }
 }

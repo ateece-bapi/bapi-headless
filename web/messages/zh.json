@@ -705,7 +705,7 @@
   },
   "searchPage": {
     "meta": {
-      "titleWithQuery": ""{query}"的搜索结果 | BAPI",
+      "titleWithQuery": "\"{query}\"的搜索结果 | BAPI",
       "titleDefault": "搜索产品 | BAPI",
       "descriptionTemplate": "查找BAPI楼宇自动化传感器和控制器。搜索结果：{query}"
     },
@@ -717,14 +717,167 @@
     "results": {
       "backToProducts": "返回产品",
       "title": "搜索结果",
-      "resultsCount": ""{query}"的{count}个结果",
-      "resultsCountPlural": ""{query}"的{count}个结果"
+      "resultsCount": "\"{query}\"的{count}个结果",
+      "resultsCountPlural": "\"{query}\"的{count}个结果"
     },
     "noResults": {
       "title": "未找到产品",
-      "description": "我们找不到与"{query}"匹配的任何产品。请尝试不同的关键词或浏览我们的分类。",
+      "description": "我们找不到与\"{query}\"匹配的任何产品。请尝试不同的关键词或浏览我们的分类。",
       "browseButton": "浏览所有产品",
       "contactButton": "联系支持"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "结帐 | BAPI",
+      "description": "完成您的订单"
+    },
+    "header": {
+      "title": "结帐",
+      "stepsRemaining": "在{count}个简单步骤中完成您的订单",
+      "stepsRemainingPlural": "在{count}个简单步骤中完成您的订单"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "运送",
+          "description": "交付地址"
+        },
+        "payment": {
+          "title": "付款",
+          "description": "支付方式"
+        },
+        "review": {
+          "title": "审查",
+          "description": "下订单"
+        }
+      }
+    },
+    "shipping": {
+      "title": "送货地址",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "company": "公司(可选)",
+      "address": "地址",
+      "addressPlaceholder": "街道地址",
+      "address2Placeholder": "公寓、套房等(可选)",
+      "city": "城市",
+      "state": "州",
+      "statePlaceholder": "CA, NY, TX等",
+      "zipCode": "邮编",
+      "zipCodePlaceholder": "12345",
+      "country": "国家",
+      "phone": "电话",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "电子邮箱",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "美国",
+        "ca": "加拿大",
+        "mx": "墨西哥"
+      },
+      "billingSameAsShipping": "账单地址与送货地址相同",
+      "continueButton": "继续付款",
+      "validation": {
+        "missingInfo": "缺少信息",
+        "missingInfoMessage": "请填写所有必填字段",
+        "invalidEmail": "无效的电子邮箱",
+        "invalidEmailMessage": "请输入有效的电子邮箱地址",
+        "invalidPhone": "无效的电话号码",
+        "invalidPhoneMessage": "请输入有效的电话号码"
+      }
+    },
+    "payment": {
+      "title": "付款方式",
+      "methods": {
+        "creditCard": {
+          "title": "信用卡",
+          "description": "用信用卡或借记卡付款"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "使用您的PayPal账户付款"
+        }
+      },
+      "cardDetails": {
+        "title": "卡片详细信息",
+        "settingUp": "设置付款中...",
+        "loadError": "无法加载付款表单。请刷新并重试。"
+      },
+      "security": {
+        "title": "您的付款是安全的",
+        "description": "由Stripe提供,采用256位SSL加密"
+      },
+      "paypal": {
+        "redirectMessage": "您将被重定向到PayPal,在查看您的订单后完成安全支付。",
+        "continueButton": "继续审查"
+      },
+      "back": "返回",
+      "toasts": {
+        "selectMethod": "选择付款方式",
+        "selectMethodMessage": "请选择一种付款方式",
+        "setupFailed": "付款设置失败",
+        "setupError": "无法初始化付款",
+        "paymentConfirmed": "付款确认",
+        "paymentConfirmedMessage": "正在进入订单审查",
+        "paymentFailed": "付款失败"
+      }
+    },
+    "review": {
+      "title": "审查您的订单",
+      "description": "请在下订单之前仔细检查您的信息",
+      "shippingAddress": "送货地址",
+      "billingAddress": "账单地址",
+      "paymentMethod": "支付方式",
+      "sameAsShipping": "与送货地址相同",
+      "notSelected": "未选择",
+      "edit": "编辑",
+      "phone": "电话",
+      "email": "电子邮箱",
+      "paymentNotes": {
+        "creditCard": "订单确认后,您的卡将被扣款",
+        "paypal": "您将被重定向到PayPal以完成付款"
+      },
+      "orderNotes": {
+        "label": "订单备注(可选)",
+        "placeholder": "添加任何特殊说明或关于您订单的备注..."
+      },
+      "terms": {
+        "agree": "我已阅读并同意",
+        "termsLink": "条款和条件",
+        "and": "和",
+        "privacyLink": "隐私政策"
+      },
+      "placeOrder": "下订单",
+      "processing": "处理中...",
+      "back": "返回",
+      "security": "安全的256位SSL加密结帐",
+      "toasts": {
+        "acceptTerms": "接受条款",
+        "acceptTermsMessage": "请接受条款和条件以继续"
+      }
+    },
+    "summary": {
+      "title": "订单摘要",
+      "items": "商品({count})",
+      "noImage": "无图片",
+      "qty": "数量",
+      "editCart": "← 编辑购物车",
+      "subtotal": "小计",
+      "discount": "折扣",
+      "shipping": "运费",
+      "tax": "税费",
+      "total": "总计",
+      "calculatedAtCheckout": "在结帐时计算",
+      "secureCheckout": "安全结帐"
+    },
+    "toasts": {
+      "cartEmpty": "购物车为空",
+      "cartEmptyMessage": "您的购物车是空的。请在结帐前添加商品。",
+      "error": "错误",
+      "errorMessage": "无法加载购物车。",
+      "orderPlaced": "订单已下置!",
+      "orderPlacedMessage": "您的订单已成功下置。"
     }
   }
 }

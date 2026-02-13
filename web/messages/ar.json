@@ -755,5 +755,158 @@
       "browseButton": "تصفح جميع المنتجات",
       "contactButton": "اتصل بالدعم الفني"
     }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "الدفع | BAPI",
+      "description": "أكمل طلبك"
+    },
+    "header": {
+      "title": "الدفع",
+      "stepsRemaining": "أكمل طلبك في {count} خطوة سهلة",
+      "stepsRemainingPlural": "أكمل طلبك في {count} خطوات سهلة"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "الشحن",
+          "description": "عنوان التوصيل"
+        },
+        "payment": {
+          "title": "الدفع",
+          "description": "طريقة الدفع"
+        },
+        "review": {
+          "title": "المراجعة",
+          "description": "إتمام الطلب"
+        }
+      }
+    },
+    "shipping": {
+      "title": "عنوان الشحن",
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "company": "الشركة (اختياري)",
+      "address": "العنوان",
+      "addressPlaceholder": "عنوان الشارع",
+      "address2Placeholder": "شقة، جناح، إلخ. (اختياري)",
+      "city": "المدينة",
+      "state": "الولاية",
+      "statePlaceholder": "CA، NY، TX، إلخ.",
+      "zipCode": "الرمز البريدي",
+      "zipCodePlaceholder": "12345",
+      "country": "الدولة",
+      "phone": "الهاتف",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "الولايات المتحدة الأمريكية",
+        "ca": "كندا",
+        "mx": "المكسيك"
+      },
+      "billingSameAsShipping": "عنوان الفوترة نفس عنوان الشحن",
+      "continueButton": "المتابعة إلى الدفع",
+      "validation": {
+        "missingInfo": "معلومات ناقصة",
+        "missingInfoMessage": "يرجى ملء جميع الحقول المطلوبة",
+        "invalidEmail": "بريد إلكتروني غير صالح",
+        "invalidEmailMessage": "الرجاء إدخال عنوان بريد إلكتروني صالح",
+        "invalidPhone": "رقم هاتف غير صالح",
+        "invalidPhoneMessage": "الرجاء إدخال رقم هاتف صالح"
+      }
+    },
+    "payment": {
+      "title": "طريقة الدفع",
+      "methods": {
+        "creditCard": {
+          "title": "بطاقة الائتمان",
+          "description": "الدفع باستخدام بطاقة الائتمان أو الخصم"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "الدفع باستخدام حساب PayPal الخاص بك"
+        }
+      },
+      "cardDetails": {
+        "title": "تفاصيل البطاقة",
+        "settingUp": "إعداد الدفع...",
+        "loadError": "تعذر تحميل نموذج الدفع. يرجى تحديث الصفحة والمحاولة مرة أخرى."
+      },
+      "security": {
+        "title": "الدفع الخاص بك آمن",
+        "description": "بدعم من Stripe باستخدام تشفير SSL بدرجة 256 بت"
+      },
+      "paypal": {
+        "redirectMessage": "سوف يتم إعادة توجيهك إلى PayPal لإكمال عملية الشراء بأمان بعد مراجعة طلبك.",
+        "continueButton": "المتابعة إلى المراجعة"
+      },
+      "back": "رجوع",
+      "toasts": {
+        "selectMethod": "حدد طريقة الدفع",
+        "selectMethodMessage": "الرجاء تحديد طريقة دفع",
+        "setupFailed": "فشل إعداد الدفع",
+        "setupError": "تعذر تهيئة الدفع",
+        "paymentConfirmed": "تم تأكيد الدفع",
+        "paymentConfirmedMessage": "جار الانتقال إلى مراجعة الطلب",
+        "paymentFailed": "فشل الدفع"
+      }
+    },
+    "review": {
+      "title": "مراجعة طلبك",
+      "description": "يرجى مراجعة معلوماتك قبل إتمام طلبك",
+      "shippingAddress": "عنوان الشحن",
+      "billingAddress": "عنوان الفوترة",
+      "paymentMethod": "طريقة الدفع",
+      "sameAsShipping": "نفس عنوان الشحن",
+      "notSelected": "لم يتم تحديد",
+      "edit": "تعديل",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "paymentNotes": {
+        "creditCard": "سيتم خصم بطاقتك بعد تأكيد الطلب",
+        "paypal": "سيتم إعادة توجيهك إلى PayPal لإكمال الدفع"
+      },
+      "orderNotes": {
+        "label": "ملاحظات الطلب (اختياري)",
+        "placeholder": "أضف أي تعليمات خاصة أو ملاحظات حول طلبك..."
+      },
+      "terms": {
+        "agree": "لقد قرأت وأوافق على",
+        "termsLink": "الشروط والأحكام",
+        "and": "و",
+        "privacyLink": "سياسة الخصوصية"
+      },
+      "placeOrder": "إتمام الطلب",
+      "processing": "جار المعالجة...",
+      "back": "رجوع",
+      "security": "الدفع المؤمن بتشفير SSL بدرجة 256 بت",
+      "toasts": {
+        "acceptTerms": "قبول الشروط",
+        "acceptTermsMessage": "يرجى قبول الشروط والأحكام للمتابعة"
+      }
+    },
+    "summary": {
+      "title": "ملخص الطلب",
+      "items": "البنود ({count})",
+      "noImage": "بدون صورة",
+      "qty": "الكمية",
+      "editCart": "← تعديل السلة",
+      "subtotal": "المجموع الفرعي",
+      "discount": "الخصم",
+      "shipping": "الشحن",
+      "tax": "الضرائب",
+      "total": "المجموع",
+      "calculatedAtCheckout": "يتم حسابها عند الخروج",
+      "secureCheckout": "الخروج الآمن"
+    },
+    "toasts": {
+      "cartEmpty": "السلة فارغة",
+      "cartEmptyMessage": "سلتك فارغة. أضف عناصر قبل الخروج.",
+      "error": "خطأ",
+      "errorMessage": "تعذر تحميل السلة.",
+      "orderPlaced": "تم إتمام الطلب!",
+      "orderPlacedMessage": "تم إتمام طلبك بنجاح."
+    }
   }
 }

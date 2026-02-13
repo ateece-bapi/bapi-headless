@@ -775,5 +775,158 @@
       "browseButton": "Duyệt tất cả Sản phẩm",
       "contactButton": "Liên hệ Hỗ trợ"
     }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "Thanh toán | BAPI",
+      "description": "Hoàn tất đơn hàng của bạn"
+    },
+    "header": {
+      "title": "Thanh toán",
+      "stepsRemaining": "Hoàn tất đơn hàng của bạn trong {count} bước đơn giản",
+      "stepsRemainingPlural": "Hoàn tất đơn hàng của bạn trong {count} bước đơn giản"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "Vận chuyển",
+          "description": "Địa chỉ giao hàng"
+        },
+        "payment": {
+          "title": "Thanh toán",
+          "description": "Phương thức thanh toán"
+        },
+        "review": {
+          "title": "Xem lại",
+          "description": "Đặt hàng"
+        }
+      }
+    },
+    "shipping": {
+      "title": "Địa chỉ giao hàng",
+      "firstName": "Tên",
+      "lastName": "Họ",
+      "company": "Công ty (Tùy chọn)",
+      "address": "Địa chỉ",
+      "addressPlaceholder": "Địa chỉ đường phố",
+      "address2Placeholder": "Căn hộ, tầng, v.v. (tùy chọn)",
+      "city": "Thành phố",
+      "state": "Tỉnh/Bang",
+      "statePlaceholder": "CA, NY, TX, v.v.",
+      "zipCode": "Mã ZIP",
+      "zipCodePlaceholder": "12345",
+      "country": "Quốc gia",
+      "phone": "Điện thoại",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "Hoa Kỳ",
+        "ca": "Canada",
+        "mx": "Mexico"
+      },
+      "billingSameAsShipping": "Địa chỉ thanh toán giống như địa chỉ giao hàng",
+      "continueButton": "Tiếp tục đến Thanh toán",
+      "validation": {
+        "missingInfo": "Thiếu thông tin",
+        "missingInfoMessage": "Vui lòng điền tất cả các trường bắt buộc",
+        "invalidEmail": "Email không hợp lệ",
+        "invalidEmailMessage": "Vui lòng nhập một địa chỉ email hợp lệ",
+        "invalidPhone": "Số điện thoại không hợp lệ",
+        "invalidPhoneMessage": "Vui lòng nhập một số điện thoại hợp lệ"
+      }
+    },
+    "payment": {
+      "title": "Phương thức thanh toán",
+      "methods": {
+        "creditCard": {
+          "title": "Thẻ tín dụng",
+          "description": "Thanh toán bằng thẻ tín dụng hoặc ghi nợ"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "Thanh toán bằng tài khoản PayPal của bạn"
+        }
+      },
+      "cardDetails": {
+        "title": "Chi tiết thẻ",
+        "settingUp": "Đang thiết lập thanh toán...",
+        "loadError": "Không thể tải biểu mẫu thanh toán. Vui lòng làm mới và thử lại."
+      },
+      "security": {
+        "title": "Thanh toán của bạn an toàn",
+        "description": "Được cung cấp bởi Stripe với mã hóa SSL 256-bit"
+      },
+      "paypal": {
+        "redirectMessage": "Bạn sẽ được chuyển hướng đến PayPal để hoàn tất việc mua hàng an toàn sau khi xem lại đơn hàng của mình.",
+        "continueButton": "Tiếp tục đến Xem lại"
+      },
+      "back": "Quay lại",
+      "toasts": {
+        "selectMethod": "Chọn Phương thức Thanh toán",
+        "selectMethodMessage": "Vui lòng chọn một phương thức thanh toán",
+        "setupFailed": "Thiết lập Thanh toán Thất bại",
+        "setupError": "Không thể khởi tạo thanh toán",
+        "paymentConfirmed": "Thanh toán Xác nhận",
+        "paymentConfirmedMessage": "Chuyển đến xem lại đơn hàng",
+        "paymentFailed": "Thanh toán Thất bại"
+      }
+    },
+    "review": {
+      "title": "Xem lại Đơn hàng của Bạn",
+      "description": "Vui lòng xem lại thông tin của bạn trước khi đặt đơn hàng",
+      "shippingAddress": "Địa chỉ Giao hàng",
+      "billingAddress": "Địa chỉ Thanh toán",
+      "paymentMethod": "Phương thức Thanh toán",
+      "sameAsShipping": "Giống như địa chỉ giao hàng",
+      "notSelected": "Chưa chọn",
+      "edit": "Chỉnh sửa",
+      "phone": "Điện thoại",
+      "email": "Email",
+      "paymentNotes": {
+        "creditCard": "Thẻ của bạn sẽ bị tính phí sau khi xác nhận đơn hàng",
+        "paypal": "Bạn sẽ được chuyển hướng đến PayPal để hoàn tất thanh toán"
+      },
+      "orderNotes": {
+        "label": "Ghi chú Đơn hàng (Tùy chọn)",
+        "placeholder": "Thêm bất kỳ hướng dẫn đặc biệt hoặc ghi chú về đơn hàng của bạn..."
+      },
+      "terms": {
+        "agree": "Tôi đã đọc và đồng ý với",
+        "termsLink": "Điều khoản & Điều kiện",
+        "and": "và",
+        "privacyLink": "Chính sách Bảo mật"
+      },
+      "placeOrder": "Đặt Hàng",
+      "processing": "Đang xử lý...",
+      "back": "Quay lại",
+      "security": "Thanh toán được mã hóa SSL 256-bit an toàn",
+      "toasts": {
+        "acceptTerms": "Chấp nhận Điều khoản",
+        "acceptTermsMessage": "Vui lòng chấp nhận các điều khoản và điều kiện để tiếp tục"
+      }
+    },
+    "summary": {
+      "title": "Tóm tắt Đơn hàng",
+      "items": "Sản phẩm ({count})",
+      "noImage": "Không có Hình ảnh",
+      "qty": "SL",
+      "editCart": "← Chỉnh sửa Giỏ hàng",
+      "subtotal": "Tổng phụ",
+      "discount": "Giảm giá",
+      "shipping": "Giao hàng",
+      "tax": "Thuế",
+      "total": "Tổng cộng",
+      "calculatedAtCheckout": "Tính tại thời điểm thanh toán",
+      "secureCheckout": "Thanh toán An toàn"
+    },
+    "toasts": {
+      "cartEmpty": "Giỏ hàng Trống",
+      "cartEmptyMessage": "Giỏ hàng của bạn trống. Thêm sản phẩm trước khi thanh toán.",
+      "error": "Lỗi",
+      "errorMessage": "Không thể tải giỏ hàng.",
+      "orderPlaced": "Đơn hàng Đã Đặt!",
+      "orderPlacedMessage": "Đơn hàng của bạn đã được đặt thành công."
+    }
   }
 }

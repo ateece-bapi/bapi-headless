@@ -11,6 +11,7 @@
 
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
 import { ArrowRight, ArrowLeft, CreditCard, Banknote, Loader2 } from 'lucide-react';
 import type { CheckoutData } from '../CheckoutPageClient';
@@ -49,27 +50,28 @@ interface PaymentStepProps {
   onUpdateData: (data: Partial<CheckoutData>) => void;
 }
 
-const paymentMethods = [
-  {
-    id: 'credit_card',
-    title: 'Credit Card',
-    description: 'Pay with credit or debit card',
-    icon: CreditCard,
-  },
-  {
-    id: 'paypal',
-    title: 'PayPal',
-    description: 'Pay with your PayPal account',
-    icon: Banknote,
-  },
-];
-
 export default function PaymentStep({ data, onNext, onBack, onUpdateData }: PaymentStepProps) {
   const { showToast } = useToast();
+  const t = useTranslations('checkoutPage.payment');
   const [selectedMethod, setSelectedMethod] = useState<string>(data.paymentMethod?.id || '');
   const [clientSecret, setClientSecret] = useState<string>('');
   const [isLoadingIntent, setIsLoadingIntent] = useState(false);
   const [cartTotal, setCartTotal] = useState<number>(0);
+
+  const paymentMethods = [
+    {
+      id: 'credit_card',
+      title: t('methods.creditCard.title'),
+      description: t('methods.creditCard.description'),
+      icon: CreditCard,
+    },
+    {
+      id: 'paypal',
+      title: t('methods.paypal.title'),
+      description: t('methods.paypal.description'),
+      icon: Banknote,
+    },
+  ];
 
   // Fetch cart total from localStorage
   useEffect(() => {
@@ -136,12 +138,12 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       } else {
         showToast(
           'error',
-          'Payment Setup Failed',
-          result.message || 'Unable to initialize payment'
+          t('toasts.setupFailed'),
+          result.message || t('toasts.setupError')
         );
       }
     } catch (error) {
-      showToast('error', 'Error', 'Failed to set up payment. Please try again.');
+      showToast('error', t('toasts.setupFailed'), t('toasts.setupError'));
     } finally {
       setIsLoadingIntent(false);
     }
@@ -166,17 +168,17 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       paymentIntentId,
     });
 
-    showToast('success', 'Payment Confirmed', 'Proceeding to order review');
+    showToast('success', t('toasts.paymentConfirmed'), t('toasts.paymentConfirmedMessage'));
     onNext();
   };
 
   const handleStripeError = (error: string) => {
-    showToast('error', 'Payment Failed', error);
+    showToast('error', t('toasts.paymentFailed'), error);
   };
 
   const handlePayPalNext = () => {
     if (!selectedMethod) {
-      showToast('warning', 'Select Payment Method', 'Please select a payment method');
+      showToast('warning', t('toasts.selectMethod'), t('toasts.selectMethodMessage'));
       return;
     }
 
@@ -188,7 +190,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
     <div className="space-y-8">
       {/* Payment Method Selection */}
       <div>
-        <h2 className="mb-6 text-2xl font-bold text-neutral-900">Payment Method</h2>
+        <h2 className="mb-6 text-2xl font-bold text-neutral-900">{t('title')}</h2>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {paymentMethods.map((method) => {
@@ -239,12 +241,12 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       {/* Stripe Credit Card Form */}
       {selectedMethod === 'credit_card' && (
         <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-          <h3 className="mb-4 text-lg font-semibold text-neutral-900">Card Details</h3>
+          <h3 className="mb-4 text-lg font-semibold text-neutral-900">{t('cardDetails.title')}</h3>
 
           {isLoadingIntent ? (
             <div className="flex items-center justify-center py-8">
               <Loader2 className="h-8 w-8 animate-spin text-primary-500" />
-              <span className="ml-3 text-neutral-600">Setting up payment...</span>
+              <span className="ml-3 text-neutral-600">{t('cardDetails.settingUp')}</span>
             </div>
           ) : clientSecret ? (
             <StripeProvider clientSecret={clientSecret}>
@@ -252,7 +254,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
             </StripeProvider>
           ) : (
             <div className="py-8 text-center text-neutral-600">
-              Unable to load payment form. Please refresh and try again.
+              {t('cardDetails.loadError')}
             </div>
           )}
 
@@ -260,9 +262,9 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
           <div className="mt-6 flex items-start gap-2 rounded-lg border border-primary-200 bg-primary-50 p-4">
             <span className="text-xl">🔒</span>
             <div>
-              <p className="text-sm font-medium text-primary-900">Your payment is secure</p>
+              <p className="text-sm font-medium text-primary-900">{t('security.title')}</p>
               <p className="mt-1 text-xs text-primary-700">
-                Powered by Stripe with 256-bit SSL encryption
+                {t('security.description')}
               </p>
             </div>
           </div>
@@ -273,8 +275,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       {selectedMethod === 'paypal' && (
         <div className="space-y-4 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
           <p className="text-sm text-neutral-600">
-            You will be redirected to PayPal to complete your purchase securely after reviewing your
-            order.
+            {t('paypal.redirectMessage')}
           </p>
 
           <button
@@ -282,7 +283,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
             onClick={handlePayPalNext}
             className="btn-bapi-primary flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3"
           >
-            Continue to Review
+            {t('paypal.continueButton')}
             <ArrowRight className="h-5 w-5" />
           </button>
         </div>
@@ -297,7 +298,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
             className="flex items-center gap-2 rounded-xl bg-neutral-200 px-8 py-4 font-bold text-neutral-900 transition-colors hover:bg-neutral-300"
           >
             <ArrowLeft className="h-5 w-5" />
-            Back
+            {t('back')}
           </button>
         </div>
       )}

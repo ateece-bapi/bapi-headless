@@ -710,5 +710,158 @@
       "browseButton": "เรียกดูผลิตภัณฑ์ทั้งหมด",
       "contactButton": "ติดต่อฝ่ายสนับสนุน"
     }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "ชำระเงิน | BAPI",
+      "description": "เสร็จสิ้นการสั่งซื้อของคุณ"
+    },
+    "header": {
+      "title": "ชำระเงิน",
+      "stepsRemaining": "เสร็จสิ้นการสั่งซื้อของคุณใน {count} ขั้นตอนง่าย ๆ",
+      "stepsRemainingPlural": "เสร็จสิ้นการสั่งซื้อของคุณใน {count} ขั้นตอนง่าย ๆ"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "การจัดส่ง",
+          "description": "ที่อยู่จัดส่ง"
+        },
+        "payment": {
+          "title": "การชำระเงิน",
+          "description": "วิธีการชำระเงิน"
+        },
+        "review": {
+          "title": "ตรวจสอบ",
+          "description": "ส่งคำสั่งซื้อ"
+        }
+      }
+    },
+    "shipping": {
+      "title": "ที่อยู่จัดส่ง",
+      "firstName": "ชื่อ",
+      "lastName": "นามสกุล",
+      "company": "บริษัท (ไม่บังคับ)",
+      "address": "ที่อยู่",
+      "addressPlaceholder": "ที่อยู่",
+      "address2Placeholder": "ห้อง, อาพาร์ทเมนท์, ฯลฯ (ไม่บังคับ)",
+      "city": "เมือง",
+      "state": "จังหวัด",
+      "statePlaceholder": "เช่น CA, NY, TX",
+      "zipCode": "รหัสไปรษณีย์",
+      "zipCodePlaceholder": "12345",
+      "country": "ประเทศ",
+      "phone": "เบอร์โทรศัพท์",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "อีเมล",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "สหรัฐอเมริกา",
+        "ca": "แคนาดา",
+        "mx": "เม็กซิโก"
+      },
+      "billingSameAsShipping": "ที่อยู่เรียกเก็บเงินเหมือนที่อยู่จัดส่ง",
+      "continueButton": "ไปที่การชำระเงิน",
+      "validation": {
+        "missingInfo": "ข้อมูลไม่ครบถ้วน",
+        "missingInfoMessage": "กรุณากรอกข้อมูลที่จำเป็นทั้งหมด",
+        "invalidEmail": "อีเมลไม่ถูกต้อง",
+        "invalidEmailMessage": "กรุณากรอกอีเมลที่ถูกต้อง",
+        "invalidPhone": "เบอร์โทรศัพท์ไม่ถูกต้อง",
+        "invalidPhoneMessage": "กรุณากรอกเบอร์โทรศัพท์ที่ถูกต้อง"
+      }
+    },
+    "payment": {
+      "title": "วิธีการชำระเงิน",
+      "methods": {
+        "creditCard": {
+          "title": "บัตรเครดิต",
+          "description": "ชำระเงินด้วยบัตรเครดิตหรือบัตรเดบิต"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "ชำระเงินด้วยบัญชี PayPal ของคุณ"
+        }
+      },
+      "cardDetails": {
+        "title": "รายละเอียดบัตร",
+        "settingUp": "กำลังตั้งค่าการชำระเงิน...",
+        "loadError": "ไม่สามารถโหลดแบบฟอร์มการชำระเงินได้ กรุณารีเฟรชและลองอีกครั้ง"
+      },
+      "security": {
+        "title": "การชำระเงินของคุณปลอดภัย",
+        "description": "ขับเคลื่อนโดย Stripe ด้วยการเข้ารหัส SSL 256 บิต"
+      },
+      "paypal": {
+        "redirectMessage": "คุณจะถูกนำไปยัง PayPal เพื่อเสร็จสิ้นการซื้อของคุณอย่างปลอดภัยหลังจากตรวจสอบคำสั่งซื้อของคุณ",
+        "continueButton": "ไปที่การตรวจสอบ"
+      },
+      "back": "ย้อนกลับ",
+      "toasts": {
+        "selectMethod": "เลือกวิธีการชำระเงิน",
+        "selectMethodMessage": "กรุณาเลือกวิธีการชำระเงิน",
+        "setupFailed": "การตั้งค่าการชำระเงินล้มเหลว",
+        "setupError": "ไม่สามารถเริ่มต้นการชำระเงินได้",
+        "paymentConfirmed": "การชำระเงินได้รับการยืนยัน",
+        "paymentConfirmedMessage": "กำลังเข้าสู่การตรวจสอบคำสั่งซื้อ",
+        "paymentFailed": "การชำระเงินล้มเหลว"
+      }
+    },
+    "review": {
+      "title": "ตรวจสอบคำสั่งซื้อของคุณ",
+      "description": "กรุณาตรวจสอบข้อมูลของคุณก่อนที่จะส่งคำสั่งซื้อ",
+      "shippingAddress": "ที่อยู่จัดส่ง",
+      "billingAddress": "ที่อยู่เรียกเก็บเงิน",
+      "paymentMethod": "วิธีการชำระเงิน",
+      "sameAsShipping": "เหมือนกับที่อยู่จัดส่ง",
+      "notSelected": "ยังไม่ได้เลือก",
+      "edit": "แก้ไข",
+      "phone": "เบอร์โทรศัพท์",
+      "email": "อีเมล",
+      "paymentNotes": {
+        "creditCard": "บัตรของคุณจะถูกเรียกเก็บเงินหลังจากยืนยันคำสั่งซื้อ",
+        "paypal": "คุณจะถูกนำไปยัง PayPal เพื่อเสร็จสิ้นการชำระเงิน"
+      },
+      "orderNotes": {
+        "label": "หมายเหตุสำหรับคำสั่งซื้อ (ไม่บังคับ)",
+        "placeholder": "เพิ่มคำแนะนำหรือหมายเหตุพิเศษเกี่ยวกับคำสั่งซื้อของคุณ..."
+      },
+      "terms": {
+        "agree": "ฉันได้อ่านและยอมรับ",
+        "termsLink": "ข้อกำหนดและเงื่อนไข",
+        "and": "และ",
+        "privacyLink": "นโยบายความเป็นส่วนตัว"
+      },
+      "placeOrder": "ส่งคำสั่งซื้อ",
+      "processing": "กำลังดำเนินการ...",
+      "back": "ย้อนกลับ",
+      "security": "การชำระเงินที่ปลอดภัยด้วยการเข้ารหัส SSL 256 บิต",
+      "toasts": {
+        "acceptTerms": "ยอมรับข้อกำหนด",
+        "acceptTermsMessage": "โปรดยอมรับข้อกำหนดและเงื่อนไขเพื่อดำเนินการต่อ"
+      }
+    },
+    "summary": {
+      "title": "สรุปคำสั่งซื้อ",
+      "items": "รายการ ({count})",
+      "noImage": "ไม่มีรูปภาพ",
+      "qty": "จำนวน",
+      "editCart": "← แก้ไขตะกร้า",
+      "subtotal": "ยอดรวม",
+      "discount": "ส่วนลด",
+      "shipping": "ค่าจัดส่ง",
+      "tax": "ภาษี",
+      "total": "ยอดรวมทั้งสิ้น",
+      "calculatedAtCheckout": "คำนวณ ณ ขณะชำระเงิน",
+      "secureCheckout": "ชำระเงินอย่างปลอดภัย"
+    },
+    "toasts": {
+      "cartEmpty": "ตะกร้าว่าง",
+      "cartEmptyMessage": "ตะกร้าของคุณว่าง เพิ่มสินค้าก่อนชำระเงิน",
+      "error": "ข้อผิดพลาด",
+      "errorMessage": "ไม่สามารถโหลดตะกร้าได้",
+      "orderPlaced": "คำสั่งซื้อเสร็จสิ้น!",
+      "orderPlacedMessage": "คำสั่งซื้อของคุณได้รับการส่งเรียบร้อยแล้ว"
+    }
   }
 }

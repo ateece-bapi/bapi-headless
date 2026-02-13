@@ -90,7 +90,7 @@ const productCategories = [
 export default function MainProductPage() {
   const t = useTranslations();
   const params = useParams();
-  const locale = params.locale as string;
+  const locale = (params?.locale as string) || 'en';
   // For page fade
   const [pageVisible, setPageVisible] = useState(false);
   // For card animation
@@ -198,7 +198,7 @@ export default function MainProductPage() {
                 <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-10">
                   <Image
                     src={cat.image}
-                    alt={`${cat.name} product category`}
+                    alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} product category`}
                     fill
                     className="object-contain p-8 drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
                     sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
@@ -213,7 +213,7 @@ export default function MainProductPage() {
                     {typeof cat.icon === 'string' ? (
                       <Image
                         src={cat.icon}
-                        alt={`${cat.name} icon`}
+                        alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} icon`}
                         width={32}
                         height={32}
                         className="object-contain drop-shadow-sm"

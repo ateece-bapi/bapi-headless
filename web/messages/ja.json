@@ -726,5 +726,158 @@
       "browseButton": "すべての製品を閲覧",
       "contactButton": "サポートに問い合わせる"
     }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "チェックアウト | BAPI",
+      "description": "注文を完了する"
+    },
+    "header": {
+      "title": "チェックアウト",
+      "stepsRemaining": "簡単な{count}ステップで注文を完了してください",
+      "stepsRemainingPlural": "簡単な{count}ステップで注文を完了してください"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "配送",
+          "description": "配送先住所"
+        },
+        "payment": {
+          "title": "支払い",
+          "description": "支払い方法"
+        },
+        "review": {
+          "title": "確認",
+          "description": "注文確定"
+        }
+      }
+    },
+    "shipping": {
+      "title": "配送先住所",
+      "firstName": "名",
+      "lastName": "姓",
+      "company": "会社名 (オプション)",
+      "address": "住所",
+      "addressPlaceholder": "番地",
+      "address2Placeholder": "アパート、スイートなど (オプション)",
+      "city": "市区町村",
+      "state": "都道府県",
+      "statePlaceholder": "CA、NY、TX など",
+      "zipCode": "郵便番号",
+      "zipCodePlaceholder": "12345",
+      "country": "国",
+      "phone": "電話番号",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "メールアドレス",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "アメリカ",
+        "ca": "カナダ",
+        "mx": "メキシコ"
+      },
+      "billingSameAsShipping": "請求先住所と同じ",
+      "continueButton": "支払いに進む",
+      "validation": {
+        "missingInfo": "情報が不足しています",
+        "missingInfoMessage": "必須項目を全て記入してください",
+        "invalidEmail": "メールアドレスが無効です",
+        "invalidEmailMessage": "有効なメールアドレスを入力してください",
+        "invalidPhone": "電話番号が無効です",
+        "invalidPhoneMessage": "有効な電話番号を入力してください"
+      }
+    },
+    "payment": {
+      "title": "支払い方法",
+      "methods": {
+        "creditCard": {
+          "title": "クレジットカード",
+          "description": "クレジットカードまたはデビットカードで支払う"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "PayPalアカウントで支払う"
+        }
+      },
+      "cardDetails": {
+        "title": "カード情報",
+        "settingUp": "支払いの設定中...",
+        "loadError": "支払いフォームを読み込めませんでした。再度お試しください。"
+      },
+      "security": {
+        "title": "支払いは安全です",
+        "description": "Stripeによる256ビットSSL暗号化で保護されています"
+      },
+      "paypal": {
+        "redirectMessage": "注文内容の確認後、安全にPayPalに移動してお支払いいただきます。",
+        "continueButton": "確認画面に進む"
+      },
+      "back": "戻る",
+      "toasts": {
+        "selectMethod": "支払い方法を選択してください",
+        "selectMethodMessage": "支払い方法を選択してください",
+        "setupFailed": "支払い設定に失敗しました",
+        "setupError": "支払いを初期化できませんでした",
+        "paymentConfirmed": "支払いが確認されました",
+        "paymentConfirmedMessage": "注文確認画面に進みます",
+        "paymentFailed": "支払いに失敗しました"
+      }
+    },
+    "review": {
+      "title": "注文内容の確認",
+      "description": "注文確定前に内容をご確認ください",
+      "shippingAddress": "配送先住所",
+      "billingAddress": "請求先住所",
+      "paymentMethod": "支払い方法",
+      "sameAsShipping": "配送先と同じ",
+      "notSelected": "未選択",
+      "edit": "編集",
+      "phone": "電話番号",
+      "email": "メールアドレス",
+      "paymentNotes": {
+        "creditCard": "注文確定後にカードに請求されます",
+        "paypal": "PayPalに移動して支払いを完了します"
+      },
+      "orderNotes": {
+        "label": "注文メモ (オプション)",
+        "placeholder": "ご注文に関する特別な指示やメモを追加してください..."
+      },
+      "terms": {
+        "agree": "利用規約に同意します",
+        "termsLink": "利用規約",
+        "and": "および",
+        "privacyLink": "プライバシーポリシー"
+      },
+      "placeOrder": "注文を確定する",
+      "processing": "処理中...",
+      "back": "戻る",
+      "security": "安全な256ビットSSL暗号化チェックアウト",
+      "toasts": {
+        "acceptTerms": "利用規約に同意してください",
+        "acceptTermsMessage": "続行するには利用規約に同意する必要があります"
+      }
+    },
+    "summary": {
+      "title": "注文概要",
+      "items": "アイテム ({count})",
+      "noImage": "画像なし",
+      "qty": "数量",
+      "editCart": "← カートを編集する",
+      "subtotal": "小計",
+      "discount": "割引",
+      "shipping": "配送料",
+      "tax": "税金",
+      "total": "合計",
+      "calculatedAtCheckout": "チェックアウト時に計算されます",
+      "secureCheckout": "安全なチェックアウト"
+    },
+    "toasts": {
+      "cartEmpty": "カートが空です",
+      "cartEmptyMessage": "カートが空です。チェックアウトする前にアイテムを追加してください。",
+      "error": "エラー",
+      "errorMessage": "カートを読み込めませんでした。",
+      "orderPlaced": "ご注文ありがとうございます!",
+      "orderPlacedMessage": "ご注文が正常に完了しました。"
+    }
   }
 }

@@ -76,7 +76,7 @@ export default function CartItems({
 }: CartItemsProps) {
   const t = useTranslations();
   const params = useParams();
-  const locale = params.locale as string;
+  const locale = (params?.locale as string) || 'en';
   return (
     <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Header */}

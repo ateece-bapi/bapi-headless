@@ -943,5 +943,158 @@
       "browseButton": "सभी उत्पादों को ब्राउज़ करें",
       "contactButton": "सहायता से संपर्क करें"
     }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "चेकआउट | BAPI",
+      "description": "अपना ऑर्डर पूरा करें"
+    },
+    "header": {
+      "title": "चेकआउट",
+      "stepsRemaining": "{count} आसान चरण में अपना ऑर्डर पूरा करें",
+      "stepsRemainingPlural": "{count} आसान चरणों में अपना ऑर्डर पूरा करें"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "शिपिंग",
+          "description": "डिलीवरी पता"
+        },
+        "payment": {
+          "title": "भुगतान",
+          "description": "भुगतान विधि"
+        },
+        "review": {
+          "title": "समीक्षा",
+          "description": "ऑर्डर दर्ज करें"
+        }
+      }
+    },
+    "shipping": {
+      "title": "शिपिंग पता",
+      "firstName": "पहला नाम",
+      "lastName": "अंतिम नाम",
+      "company": "कंपनी (वैकल्पिक)",
+      "address": "पता",
+      "addressPlaceholder": "स्ट्रीट पता",
+      "address2Placeholder": "अपार्टमेंट, सूट, आदि (वैकल्पिक)",
+      "city": "शहर",
+      "state": "राज्य",
+      "statePlaceholder": "CA, NY, TX, आदि",
+      "zipCode": "ज़िप कोड",
+      "zipCodePlaceholder": "12345",
+      "country": "देश",
+      "phone": "फोन",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "ईमेल",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "संयुक्त राज्य अमेरिका",
+        "ca": "कनाडा",
+        "mx": "मेक्सिको"
+      },
+      "billingSameAsShipping": "शिपिंग पता और बिलिंग पता एक जैसे हैं",
+      "continueButton": "भुगतान पर जारी रखें",
+      "validation": {
+        "missingInfo": "जानकारी अपूर्ण है",
+        "missingInfoMessage": "कृपया सभी आवश्यक क्षेत्रों को भरें",
+        "invalidEmail": "अमान्य ईमेल",
+        "invalidEmailMessage": "कृपया एक वैध ईमेल पता दर्ज करें",
+        "invalidPhone": "अमान्य फोन",
+        "invalidPhoneMessage": "कृपया एक वैध फोन नंबर दर्ज करें"
+      }
+    },
+    "payment": {
+      "title": "भुगतान विधि",
+      "methods": {
+        "creditCard": {
+          "title": "क्रेडिट कार्ड",
+          "description": "क्रेडिट या डेबिट कार्ड से भुगतान करें"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "अपने PayPal खाते से भुगतान करें"
+        }
+      },
+      "cardDetails": {
+        "title": "कार्ड विवरण",
+        "settingUp": "भुगतान सेट अप हो रहा है...",
+        "loadError": "भुगतान फ़ॉर्म लोड करने में असमर्थ। कृपया ताज़ा करें और फिर से कोशिश करें।"
+      },
+      "security": {
+        "title": "आपका भुगतान सुरक्षित है",
+        "description": "स्ट्राइप द्वारा प्रदान किया गया 256-बिट एसएसएल एन्क्रिप्शन के साथ"
+      },
+      "paypal": {
+        "redirectMessage": "आप अपने ऑर्डर की समीक्षा करने के बाद सुरक्षित रूप से अपने खरीद को पूरा करने के लिए PayPal पर पुनर्निर्देशित किए जाएंगे।",
+        "continueButton": "समीक्षा पर जारी रखें"
+      },
+      "back": "वापस",
+      "toasts": {
+        "selectMethod": "भुगतान विधि चुनें",
+        "selectMethodMessage": "कृपया एक भुगतान विधि चुनें",
+        "setupFailed": "भुगतान सेटअप विफल",
+        "setupError": "भुगतान प्रारंभ करने में असमर्थ",
+        "paymentConfirmed": "भुगतान की पुष्टि",
+        "paymentConfirmedMessage": "ऑर्डर समीक्षा पर आगे बढ़ रहा है",
+        "paymentFailed": "भुगतान विफल"
+      }
+    },
+    "review": {
+      "title": "अपने ऑर्डर की समीक्षा करें",
+      "description": "कृपया अपना ऑर्डर दर्ज करने से पहले अपनी जानकारी की समीक्षा करें",
+      "shippingAddress": "शिपिंग पता",
+      "billingAddress": "बिलिंग पता",
+      "paymentMethod": "भुगतान विधि",
+      "sameAsShipping": "शिपिंग पते के समान",
+      "notSelected": "चयनित नहीं",
+      "edit": "संपादित करें",
+      "phone": "फोन",
+      "email": "ईमेल",
+      "paymentNotes": {
+        "creditCard": "ऑर्डर की पुष्टि के बाद आपका कार्ड चार्ज किया जाएगा",
+        "paypal": "आप भुगतान पूरा करने के लिए PayPal पर पुनर्निर्देशित किए जाएंगे"
+      },
+      "orderNotes": {
+        "label": "ऑर्डर नोट्स (वैकल्पिक)",
+        "placeholder": "अपने ऑर्डर के बारे में कोई खास निर्देश या टिप्पणी जोड़ें..."
+      },
+      "terms": {
+        "agree": "मैंने निर्बंध और शर्तों को पढ़ लिया है और सहमत हूं",
+        "termsLink": "नियम और शर्तें",
+        "and": "और",
+        "privacyLink": "गोपनीयता नीति"
+      },
+      "placeOrder": "ऑर्डर दर्ज करें",
+      "processing": "प्रक्रिया चल रही है...",
+      "back": "वापस",
+      "security": "सुरक्षित 256-बिट एसएसएल एन्क्रिप्टेड चेकआउट",
+      "toasts": {
+        "acceptTerms": "नियम और शर्तें स्वीकार करें",
+        "acceptTermsMessage": "जारी रखने के लिए कृपया नियम और शर्तें स्वीकार करें"
+      }
+    },
+    "summary": {
+      "title": "ऑर्डर सारांश",
+      "items": "आइटम ({count})",
+      "noImage": "कोई छवि नहीं",
+      "qty": "मात्रा",
+      "editCart": "← कार्ट संपादित करें",
+      "subtotal": "उपमूल्य",
+      "discount": "छूट",
+      "shipping": "शिपिंग",
+      "tax": "कर",
+      "total": "कुल",
+      "calculatedAtCheckout": "चेकआउट पर गणना की जाती है",
+      "secureCheckout": "सुरक्षित चेकआउट"
+    },
+    "toasts": {
+      "cartEmpty": "कार्ट खाली है",
+      "cartEmptyMessage": "आपका कार्ट खाली है। चेकआउट करने से पहले कोई आइटम जोड़ें।",
+      "error": "त्रुटि",
+      "errorMessage": "कार्ट लोड करने में असमर्थ।",
+      "orderPlaced": "ऑर्डर प्लेस किया गया!",
+      "orderPlacedMessage": "आपका ऑर्डर सफलतापूर्वक प्लेस हो गया है।"
+    }
   }
 }

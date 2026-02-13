@@ -40,7 +40,7 @@ interface CartSummaryProps {
 export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSummaryProps) {
   const t = useTranslations();
   const params = useParams();
-  const locale = params.locale as string;
+  const locale = (params?.locale as string) || 'en';
   const [couponCode, setCouponCode] = useState('');
   const [isApplying, setIsApplying] = useState(false);
   const { showToast } = useToast();

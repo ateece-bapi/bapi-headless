@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       title: `${categoryData.name} | BAPI`,
       description:
         categoryData.description ||
-        t('categoryPage.meta.descriptionTemplate', { name: categoryData.name }),
+        t('categoryPage.meta.descriptionTemplate', { name: categoryData.name || '' }),
     };
   } catch (error) {
     return {
@@ -124,7 +124,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 />
               </svg>
               <span className="font-semibold text-white">
-                {t('categoryPage.header.productsAvailable', { count: categoryData.count })}
+                {t('categoryPage.header.productsAvailable', { count: categoryData.count || 0 })}
               </span>
             </div>
           </div>
@@ -192,8 +192,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                           </svg>
                           <span className="text-sm font-semibold text-primary-700">
                             {subcategory.count === 1
-                              ? t('categoryPage.subcategories.productCount', { count: subcategory.count })
-                              : t('categoryPage.subcategories.productCountPlural', { count: subcategory.count })}
+                              ? t('categoryPage.subcategories.productCount', { count: subcategory.count || 0 })
+                              : t('categoryPage.subcategories.productCountPlural', { count: subcategory.count || 0 })}
                           </span>
                         </div>
                       )}

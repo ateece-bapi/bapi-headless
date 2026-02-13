@@ -1,7 +1,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ChatWidgetClient from '@/components/chat/ChatWidgetClient';
-import AutoRegionDetection from '@/components/region/AutoRegionDetection';
+import { AutoRegionDetection } from '@/components/region/AutoRegionDetection';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { ToastProvider } from '@/components/ui/Toast';

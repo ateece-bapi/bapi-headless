@@ -731,5 +731,29 @@
       "backToProducts": "← العودة إلى جميع المنتجات",
       "needHelp": "هل تحتاج إلى مساعدة؟ اتصل بنا"
     }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "نتائج البحث عن \"{query}\" | BAPI",
+      "titleDefault": "البحث عن المنتجات | BAPI",
+      "descriptionTemplate": "العثور على أجهزة استشعار وأجهزة تحكم في تحكم المباني BAPI. نتائج البحث عن: {query}"
+    },
+    "emptyQuery": {
+      "title": "البحث عن المنتجات",
+      "description": "استخدم شريط البحث أعلاه للعثور على أجهزة استشعار وأجهزة تحكم ومنتجات تحكم في المباني.",
+      "browseButton": "تصفح جميع المنتجات"
+    },
+    "results": {
+      "backToProducts": "العودة إلى المنتجات",
+      "title": "نتائج البحث",
+      "resultsCount": "{count} نتيجة عن \"{query}\"",
+      "resultsCountPlural": "{count} نتائج عن \"{query}\""
+    },
+    "noResults": {
+      "title": "لم يتم العثور على أي منتجات",
+      "description": "لم نتمكن من العثور على أي منتجات تطابق \"{query}\". حاول كلمات بحث مختلفة أو تصفح فئاتنا.",
+      "browseButton": "تصفح جميع المنتجات",
+      "contactButton": "اتصل بالدعم الفني"
+    }
   }
 }

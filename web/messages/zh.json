@@ -702,5 +702,29 @@
       "backToProducts": "← 返回所有产品",
       "needHelp": "需要帮助？联系我们"
     }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": ""{query}"的搜索结果 | BAPI",
+      "titleDefault": "搜索产品 | BAPI",
+      "descriptionTemplate": "查找BAPI楼宇自动化传感器和控制器。搜索结果：{query}"
+    },
+    "emptyQuery": {
+      "title": "搜索产品",
+      "description": "使用上方搜索栏查找传感器、控制器和楼宇自动化产品。",
+      "browseButton": "浏览所有产品"
+    },
+    "results": {
+      "backToProducts": "返回产品",
+      "title": "搜索结果",
+      "resultsCount": ""{query}"的{count}个结果",
+      "resultsCountPlural": ""{query}"的{count}个结果"
+    },
+    "noResults": {
+      "title": "未找到产品",
+      "description": "我们找不到与"{query}"匹配的任何产品。请尝试不同的关键词或浏览我们的分类。",
+      "browseButton": "浏览所有产品",
+      "contactButton": "联系支持"
+    }
   }
 }

@@ -919,5 +919,29 @@
       "backToProducts": "← Back to All Products",
       "needHelp": "Need Help? Contact Us"
     }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "Search Results for \"{query}\" | BAPI",
+      "titleDefault": "Search Products | BAPI",
+      "descriptionTemplate": "Find BAPI building automation sensors and controllers. Search results for: {query}"
+    },
+    "emptyQuery": {
+      "title": "Search Products",
+      "description": "Use the search bar above to find sensors, controllers, and building automation products.",
+      "browseButton": "Browse All Products"
+    },
+    "results": {
+      "backToProducts": "Back to Products",
+      "title": "Search Results",
+      "resultsCount": "{count} result for \"{query}\"",
+      "resultsCountPlural": "{count} results for \"{query}\""
+    },
+    "noResults": {
+      "title": "No products found",
+      "description": "We couldn't find any products matching \"{query}\". Try different keywords or browse our categories.",
+      "browseButton": "Browse All Products",
+      "contactButton": "Contact Support"
+    }
   }
 }

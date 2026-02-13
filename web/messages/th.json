@@ -686,5 +686,29 @@
       "backToProducts": "← กลับไปยังสินค้าทั้งหมด",
       "needHelp": "ต้องการความช่วยเหลือ? ติดต่อเรา"
     }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "ผลการค้นหาสำหรับ \"{query}\" | BAPI",
+      "titleDefault": "ค้นหาผลิตภัณฑ์ | BAPI",
+      "descriptionTemplate": "ค้นหาเซ็นเซอร์และตัวควบคุมระบบอัตโนมัติอาคารของ BAPI ผลการค้นหาสำหรับ: {query}"
+    },
+    "emptyQuery": {
+      "title": "ค้นหาผลิตภัณฑ์",
+      "description": "ใช้แถบค้นหาด้านบนเพื่อค้นหาเซ็นเซอร์ ตัวควบคุม และผลิตภัณฑ์ระบบอัตโนมัติอาคาร",
+      "browseButton": "เรียกดูผลิตภัณฑ์ทั้งหมด"
+    },
+    "results": {
+      "backToProducts": "กลับไปยังผลิตภัณฑ์",
+      "title": "ผลการค้นหา",
+      "resultsCount": "{count} ผลลัพธ์สำหรับ \"{query}\"",
+      "resultsCountPlural": "{count} ผลลัพธ์สำหรับ \"{query}\""
+    },
+    "noResults": {
+      "title": "ไม่พบผลิตภัณฑ์",
+      "description": "เราไม่พบผลิตภัณฑ์ที่ตรงกับ \"{query}\". ลองใช้คำค้นหาอื่นหรือเรียกดูหมวดหมู่ของเรา",
+      "browseButton": "เรียกดูผลิตภัณฑ์ทั้งหมด",
+      "contactButton": "ติดต่อฝ่ายสนับสนุน"
+    }
   }
 }

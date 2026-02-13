@@ -702,5 +702,29 @@
       "backToProducts": "← Retour à tous les produits",
       "needHelp": "Besoin d'aide ? Contactez-nous"
     }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "Résultats de recherche pour \"{query}\" | BAPI",
+      "titleDefault": "Rechercher des produits | BAPI",
+      "descriptionTemplate": "Trouvez des capteurs et des contrôleurs d'automatisation des bâtiments BAPI. Résultats de recherche pour : {query}"
+    },
+    "emptyQuery": {
+      "title": "Rechercher des produits",
+      "description": "Utilisez la barre de recherche ci-dessus pour trouver des capteurs, des contrôleurs et des produits d'automatisation des bâtiments.",
+      "browseButton": "Parcourir tous les produits"
+    },
+    "results": {
+      "backToProducts": "Retour aux produits",
+      "title": "Résultats de recherche",
+      "resultsCount": "{count} résultat pour \"{query}\"",
+      "resultsCountPlural": "{count} résultats pour \"{query}\""
+    },
+    "noResults": {
+      "title": "Aucun produit trouvé",
+      "description": "Nous n'avons pas pu trouver de produits correspondant à \"{query}\". Essayez d'autres mots-clés ou parcourez nos catégories.",
+      "browseButton": "Parcourir tous les produits",
+      "contactButton": "Contacter le support"
+    }
   }
 }

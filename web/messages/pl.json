@@ -916,5 +916,29 @@
       "backToProducts": "← Powrót do Wszystkich Produktów",
       "needHelp": "Potrzebujesz Pomocy? Skontaktuj się z Nami"
     }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "Wyniki wyszukiwania dla \"{query}\" | BAPI",
+      "titleDefault": "Wyszukaj produkty | BAPI",
+      "descriptionTemplate": "Znajdź czujniki i sterowniki automatyki budynkowej BAPI. Wyniki wyszukiwania dla: {query}"
+    },
+    "emptyQuery": {
+      "title": "Wyszukaj produkty",
+      "description": "Użyj paska wyszukiwania powyżej, aby znaleźć czujniki, sterowniki i produkty automatyki budynkowej.",
+      "browseButton": "Przeglądaj wszystkie produkty"
+    },
+    "results": {
+      "backToProducts": "Powrót do produktów",
+      "title": "Wyniki wyszukiwania",
+      "resultsCount": "{count} wynik dla \"{query}\"",
+      "resultsCountPlural": "{count} wyniki dla \"{query}\""
+    },
+    "noResults": {
+      "title": "Nie znaleziono produktów",
+      "description": "Nie mogliśmy znaleźć żadnych produktów pasujących do \"{query}\". Spróbuj innych słów kluczowych lub przeglądaj nasze kategorie.",
+      "browseButton": "Przeglądaj wszystkie produkty",
+      "contactButton": "Skontaktuj się z pomocą techniczną"
+    }
   }
 }

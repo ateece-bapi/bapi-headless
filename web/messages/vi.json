@@ -751,5 +751,29 @@
       "backToProducts": "← Trở lại Tất cả Sản phẩm",
       "needHelp": "Cần Trợ giúp? Liên hệ với chúng tôi"
     }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "Kết quả tìm kiếm cho \"{query}\" | BAPI",
+      "titleDefault": "Tìm kiếm Sản phẩm | BAPI",
+      "descriptionTemplate": "Tìm thấy cảm biến và bộ điều khiển tự động hóa tòa nhà BAPI. Kết quả tìm kiếm cho: {query}"
+    },
+    "emptyQuery": {
+      "title": "Tìm kiếm Sản phẩm",
+      "description": "Sử dụng thanh tìm kiếm bên trên để tìm cảm biến, bộ điều khiển và các sản phẩm tự động hóa tòa nhà.",
+      "browseButton": "Duyệt tất cả Sản phẩm"
+    },
+    "results": {
+      "backToProducts": "Trở về Sản phẩm",
+      "title": "Kết quả tìm kiếm",
+      "resultsCount": "{count} kết quả cho \"{query}\"",
+      "resultsCountPlural": "{count} kết quả cho \"{query}\""
+    },
+    "noResults": {
+      "title": "Không tìm thấy sản phẩm",
+      "description": "Chúng tôi không thể tìm thấy bất kỳ sản phẩm nào khớp với \"{query}\". Hãy thử các từ khóa khác hoặc duyệt qua các danh mục của chúng tôi.",
+      "browseButton": "Duyệt tất cả Sản phẩm",
+      "contactButton": "Liên hệ Hỗ trợ"
+    }
   }
 }

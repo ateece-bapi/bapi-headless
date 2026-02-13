@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useRouter } from '@/lib/navigation';
+import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale } from 'next-intl';
 import { useRegion, useSetRegion } from '@/store/regionStore';
 import { useToast } from '@/components/ui/Toast';
+import logger from '@/lib/logger';
 import type { RegionCode, LanguageCode } from '@/types/region';
 import { REGIONS, LANGUAGES } from '@/types/region';
 
@@ -34,6 +35,7 @@ export function AutoRegionDetection() {
   const setRegion = useSetRegion();
   const currentLocale = useLocale() as LanguageCode;
   const router = useRouter();
+  const pathname = usePathname();
   const { showToast } = useToast();
   const hasChecked = useRef(false);
 
@@ -44,13 +46,25 @@ export function AutoRegionDetection() {
 
     // Check if user has seen the welcome message
     const hasSeenWelcome = localStorage.getItem('bapi-region-welcome-shown');
-    const hasUserSetRegion = localStorage.getItem('bapi-region-storage');
+    const regionStorage = localStorage.getItem('bapi-region-storage');
 
     // Skip if either:
     // 1. User has already seen the welcome
-    // 2. User has manually set a region before
-    if (hasSeenWelcome || hasUserSetRegion) {
+    // 2. User has manually set a region before (validate the data is meaningful)
+    if (hasSeenWelcome) {
       return;
+    }
+
+    if (regionStorage) {
+      try {
+        const parsed = JSON.parse(regionStorage);
+        // If user has valid stored region state, skip detection
+        if (parsed?.state?.region) {
+          return;
+        }
+      } catch {
+        // Invalid JSON, continue with detection
+      }
     }
 
     // Detect and apply region
@@ -83,6 +97,12 @@ export function AutoRegionDetection() {
           setRegion(data.region);
         }
 
+        // Auto-apply language if different (consistent with regionStore MENA behavior)
+        // Show toast to inform user, with option to switch back if needed
+        if (languageChanged) {
+          router.replace(pathname, { locale: data.language });
+        }
+
         // Build welcome message
         let message = `We detected you're in ${data.countryName}`;
         if (data.city) {
@@ -101,29 +121,19 @@ export function AutoRegionDetection() {
           message += `\n${changes.join(' • ')}`;
         }
 
-        // Show friendly, non-intrusive toast
-        showToast('info', '🌍 Welcome to BAPI!', message, 10000, {
-          action: languageChanged
-            ? {
-                label: `Switch to ${detectedLanguage.nativeName}`,
-                onClick: () => {
-                  // Change language by navigating to detected locale
-                  router.replace(window.location.pathname, { locale: data.language });
-                },
-              }
-            : undefined,
-        });
+        // Show friendly, non-intrusive toast to inform about auto-applied changes
+        showToast('info', '🌍 Welcome to BAPI!', message, 10000);
 
         // Mark as shown (never show again)
         localStorage.setItem('bapi-region-welcome-shown', 'true');
       } catch (error) {
-        // Detection failed, silently continue with defaults
-        console.warn('Region auto-detection failed:', error);
+        // Detection failed, log and continue with defaults
+        logger.warn('Region auto-detection failed', { error });
       }
     };
 
     detectAndApplyRegion();
-  }, [currentRegion.code, currentLocale, setRegion, router, showToast]);
+  }, [currentRegion.code, currentLocale, setRegion, router, pathname, showToast]);
 
   // This component doesn't render anything (invisible)
   return null;

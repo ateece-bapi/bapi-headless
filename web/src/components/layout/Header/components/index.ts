@@ -7,5 +7,6 @@ export { default as MegaMenuItemComponent } from './MegaMenuItem';
 export { default as SignInButton } from './SignInButton';
 export { default as RegionSelector } from './RegionSelector';
 export { LanguageSelector } from './LanguageSelector';
+export { MobileRegionLanguageSelector } from './MobileRegionLanguageSelector';
 export { default as SearchButton } from './SearchButton';
 export { default as Logo } from './Logo';

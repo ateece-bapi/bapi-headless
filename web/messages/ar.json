@@ -475,5 +475,22 @@
         "premium": "متميز"
       }
     }
+  },
+  "productPage": {
+    "availability": {
+      "inStock": "متوفر في المخزون",
+      "outOfStock": "غير متوفر في المخزون",
+      "onBackorder": "تحت الطلب",
+      "lowStock": "المخزون قليل",
+      "checkAvailability": "تحقق من التوفر",
+      "readyToShip": "جاهز للشحن",
+      "currentlyUnavailable": "غير متوفر حاليًا",
+      "availableForPreorder": "متوفر للطلب المسبق",
+      "contactForAvailability": "اتصل بنا للاستفسار عن التوفر",
+      "onlyXLeft": "متبقي فقط {count} في المخزون",
+      "xAvailable": "{count} متاح",
+      "expectedBack": "متوقع الحصول عليه: {date}",
+      "shipsOn": "يتم الشحن في: {date}"
+    }
   }
 }

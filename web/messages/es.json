@@ -446,5 +446,22 @@
         "premium": "Premium"
       }
     }
+  },
+  "productPage": {
+    "availability": {
+      "inStock": "En Stock",
+      "outOfStock": "Sin Existencias",
+      "onBackorder": "En Backorder",
+      "lowStock": "Existencias Bajas",
+      "checkAvailability": "Comprobar Disponibilidad",
+      "readyToShip": "Listo para Enviar",
+      "currentlyUnavailable": "Actualmente No Disponible",
+      "availableForPreorder": "Disponible para Pedido Anticipado",
+      "contactForAvailability": "Contáctenos para Disponibilidad",
+      "onlyXLeft": "Solo quedan {count}",
+      "xAvailable": "{count} disponibles",
+      "expectedBack": "Se espera de vuelta: {date}",
+      "shipsOn": "Envía en: {date}"
+    }
   }
 }

@@ -495,5 +495,22 @@
       "youtube": "YouTube",
       "follow": "Theo dõi Chúng tôi"
     }
+  },
+  "productPage": {
+    "availability": {
+      "inStock": "Còn hàng",
+      "outOfStock": "Hết hàng",
+      "onBackorder": "Đặt trước",
+      "lowStock": "Số lượng ít",
+      "checkAvailability": "Kiểm tra tình trạng hàng",
+      "readyToShip": "Sẵn sàng giao hàng",
+      "currentlyUnavailable": "Hiện tại không có sẵn",
+      "availableForPreorder": "Có sẵn để đặt trước",
+      "contactForAvailability": "Liên hệ để biết tình trạng hàng",
+      "onlyXLeft": "Chỉ còn {count} sản phẩm",
+      "xAvailable": "{count} sản phẩm có sẵn",
+      "expectedBack": "Dự kiến về hàng: {date}",
+      "shipsOn": "Giao hàng vào: {date}"
+    }
   }
 }

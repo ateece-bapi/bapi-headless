@@ -455,5 +455,22 @@
       "youtube": "YouTube",
       "follow": "Folgen Sie uns"
     }
+  },
+  "productPage": {
+    "availability": {
+      "inStock": "Auf Lager",
+      "outOfStock": "Nicht auf Lager",
+      "onBackorder": "Auf Nachbestellung",
+      "lowStock": "Niedriger Bestand",
+      "checkAvailability": "Verfügbarkeit überprüfen",
+      "readyToShip": "Versandfertig",
+      "currentlyUnavailable": "Derzeit nicht verfügbar",
+      "availableForPreorder": "Für Vorbestellung erhältlich",
+      "contactForAvailability": "Für Verfügbarkeit kontaktieren Sie uns",
+      "onlyXLeft": "Nur noch {count} auf Lager",
+      "xAvailable": "{count} verfügbar",
+      "expectedBack": "Voraussichtlich wieder erhältlich: {date}",
+      "shipsOn": "Wird versendet am: {date}"
+    }
   }
 }

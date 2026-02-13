@@ -663,5 +663,22 @@
     "pageNavigation": "Page navigation",
     "loading": "Loading content",
     "searchResults": "Search results"
+  },
+  "productPage": {
+    "availability": {
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock",
+      "onBackorder": "On Backorder",
+      "lowStock": "Low Stock",
+      "checkAvailability": "Check Availability",
+      "readyToShip": "Ready to ship",
+      "currentlyUnavailable": "Currently unavailable",
+      "availableForPreorder": "Available for pre-order",
+      "contactForAvailability": "Contact us for availability",
+      "onlyXLeft": "Only {count} left in stock",
+      "xAvailable": "{count} available",
+      "expectedBack": "Expected back: {date}",
+      "shipsOn": "Ships on: {date}"
+    }
   }
 }

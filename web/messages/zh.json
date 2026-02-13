@@ -446,5 +446,22 @@
         "premium": "优质"
       }
     }
+  },
+  "productPage": {
+    "availability": {
+      "inStock": "现货",
+      "outOfStock": "缺货",
+      "onBackorder": "备货中",
+      "lowStock": "库存不足",
+      "checkAvailability": "查看库存",
+      "readyToShip": "现货可发",
+      "currentlyUnavailable": "目前无货",
+      "availableForPreorder": "可预定",
+      "contactForAvailability": "联系我们查询库存",
+      "onlyXLeft": "仅剩 {count} 件",
+      "xAvailable": "库存 {count} 件",
+      "expectedBack": "预计返货时间: {date}",
+      "shipsOn": "发货时间: {date}"
+    }
   }
 }

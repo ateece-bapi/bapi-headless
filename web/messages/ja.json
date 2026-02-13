@@ -446,5 +446,22 @@
         "premium": "プレミアム"
       }
     }
+  },
+  "productPage": {
+    "availability": {
+      "inStock": "在庫あり",
+      "outOfStock": "在庫切れ",
+      "onBackorder": "バックオーダー中",
+      "lowStock": "在庫残僅か",
+      "checkAvailability": "在庫確認",
+      "readyToShip": "出荷準備完了",
+      "currentlyUnavailable": "現在入手できません",
+      "availableForPreorder": "予約注文可能",
+      "contactForAvailability": "在庫状況についてお問い合わせください",
+      "onlyXLeft": "在庫わずか{count}個",
+      "xAvailable": "{count}個ご利用いただけます",
+      "expectedBack": "{date}に再入荷予定",
+      "shipsOn": "{date}に出荷予定"
+    }
   }
 }

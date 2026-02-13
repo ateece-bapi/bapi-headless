@@ -430,5 +430,22 @@
   "cart": {},
   "checkout": {},
   "forms": {},
-  "accessibility": {}
+  "accessibility": {},
+  "productPage": {
+    "availability": {
+      "inStock": "มีสินค้าในสต็อก",
+      "outOfStock": "สินค้าหมด",
+      "onBackorder": "สินค้าอยู่ในสถานะรอจัดส่ง",
+      "lowStock": "สินค้าเหลือน้อย",
+      "checkAvailability": "ตรวจสอบสินค้าคงเหลือ",
+      "readyToShip": "พร้อมจัดส่ง",
+      "currentlyUnavailable": "ขณะนี้ไม่มีสินค้า",
+      "availableForPreorder": "สามารถสั่งจองล่วงหน้าได้",
+      "contactForAvailability": "ติดต่อสอบถามสินค้าคงเหลือ",
+      "onlyXLeft": "เหลือเพียง {count} ชิ้น",
+      "xAvailable": "มีสินค้าว่าง {count} ชิ้น",
+      "expectedBack": "คาดว่าจะกลับมาพร้อมจัดส่งเมื่อ: {date}",
+      "shipsOn": "จัดส่งในวันที่: {date}"
+    }
+  }
 }

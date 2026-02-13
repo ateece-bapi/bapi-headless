@@ -660,5 +660,22 @@
     "pageNavigation": "Nawigacja po stronie",
     "loading": "Ładowanie treści",
     "searchResults": "Wyniki wyszukiwania"
+  },
+  "productPage": {
+    "availability": {
+      "inStock": "W magazynie",
+      "outOfStock": "Brak na stanie",
+      "onBackorder": "Na zamówienie",
+      "lowStock": "Niska dostępność",
+      "checkAvailability": "Sprawdź dostępność",
+      "readyToShip": "Gotowe do wysyłki",
+      "currentlyUnavailable": "Obecnie niedostępne",
+      "availableForPreorder": "Dostępne na zamówienie",
+      "contactForAvailability": "Skontaktuj się z nami w sprawie dostępności",
+      "onlyXLeft": "Tylko {count} szt. w magazynie",
+      "xAvailable": "{count} dostępne",
+      "expectedBack": "Oczekiwana dostawa: {date}",
+      "shipsOn": "Wysyłka: {date}"
+    }
   }
 }

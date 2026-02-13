@@ -663,5 +663,22 @@
     "pageNavigation": "Page navigation",
     "loading": "Loading content",
     "searchResults": "Search results"
+  },
+  "productPage": {
+    "availability": {
+      "inStock": "स्टॉक में",
+      "outOfStock": "स्टॉक से बाहर",
+      "onBackorder": "बैकऑर्डर पर",
+      "lowStock": "कम स्टॉक",
+      "checkAvailability": "उपलब्धता की जांच करें",
+      "readyToShip": "शिप करने के लिए तैयार",
+      "currentlyUnavailable": "वर्तमान में अनुपलब्ध",
+      "availableForPreorder": "प्री-ऑर्डर के लिए उपलब्ध",
+      "contactForAvailability": "उपलब्धता के लिए हमसे संपर्क करें",
+      "onlyXLeft": "केवल {count} बचा है",
+      "xAvailable": "{count} उपलब्ध",
+      "expectedBack": "वापस आने की उम्मीद: {date}",
+      "shipsOn": "पर भेजा जाएगा: {date}"
+    }
   }
 }

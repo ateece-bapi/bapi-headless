@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom';
 import type { useCart as useCartType, useCartDrawer as useCartDrawerType } from '@/store';
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { renderWithIntl } from '@/test/i18n-test-utils';
 import { ProductDetailClient } from '@/components/products';
 import { ToastProvider } from '@/components/ui/Toast';
 
@@ -73,7 +74,7 @@ function renderProductDetail(
   opts: { useCart?: typeof useCartType; useCartDrawer?: typeof useCartDrawerType } = {}
 ) {
   const { useCart, useCartDrawer } = opts;
-  return render(
+  return renderWithIntl(
     <ToastProvider>
       <ProductDetailClient product={product} useCart={useCart} useCartDrawer={useCartDrawer} />
     </ToastProvider>

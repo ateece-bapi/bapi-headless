@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import { renderWithIntl } from '@/test/i18n-test-utils';
 import userEvent from '@testing-library/user-event';
 import { ProductDetailClient } from '@/components/products';
 import { useCartStore } from '@/store';
@@ -32,7 +33,7 @@ describe('ProductDetailClient', () => {
   });
 
   it('renders and adds product to cart', async () => {
-    render(
+    renderWithIntl(
       <ToastProvider>
         <ProductDetailClient
           product={productShape}

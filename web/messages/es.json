@@ -521,5 +521,92 @@
       "expectedBack": "Se espera de vuelta: {date}",
       "shipsOn": "Se envía el: {date}"
     }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Productos de automatización de edificios",
+      "description": "Explora nuestra gama completa de sensores, controladores e instrumentos de prueba de alta precisión. Confiado por ingenieros de todo el mundo para aplicaciones críticas de HVAC."
+    },
+    "breadcrumb": {
+      "home": "Inicio",
+      "products": "Productos"
+    },
+    "hero": {
+      "badge": "Sensores y controladores de precisión",
+      "title": "Productos de automatización de edificios",
+      "description": "Explora nuestra gama completa de sensores, controladores e instrumentos de prueba de alta precisión. Confiado por ingenieros de todo el mundo para aplicaciones críticas de HVAC.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Productos",
+        "warrantyDuration": "5 Años",
+        "warrantyLabel": "Garantía",
+        "accuracyValue": "±0,2°C",
+        "accuracyLabel": "Precisión"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Sensores de temperatura",
+        "description": "Soluciones de medición de temperatura de alta precisión"
+      },
+      "humiditySensors": {
+        "name": "Sensores de humedad",
+        "description": "Monitoreo preciso de humedad relativa"
+      },
+      "pressureSensors": {
+        "name": "Sensores de presión",
+        "description": "Transmisores de presión diferencial y estática"
+      },
+      "airQualitySensors": {
+        "name": "Sensores de calidad del aire",
+        "description": "Monitoreo de CO₂, COV y material particulado"
+      },
+      "wirelessSensors": {
+        "name": "Sensores inalámbricos",
+        "description": "Soluciones alimentadas por batería y con cosecha de energía"
+      },
+      "accessories": {
+        "name": "Accesorios",
+        "description": "Herrajes de montaje, envolventes y cables"
+      },
+      "testInstruments": {
+        "name": "Instrumentos de prueba",
+        "description": "Equipo profesional de calibración y pruebas"
+      },
+      "etaLine": {
+        "name": "Línea ETA",
+        "description": "Soluciones modulares de E/S y control"
+      },
+      "viewProducts": "Ver productos"
+    },
+    "featured": {
+      "badge": "Línea de productos destacada",
+      "title": "Sensores de temperatura BA/10K Series",
+      "description": "Nuestros sensores más populares. Precisión de ±0,2°C, BACnet MS/TP y 5 años de garantía. Confiado en centros de salud, centros de datos e instalaciones críticas de todo el mundo.",
+      "viewButton": "Ver serie BA",
+      "features": {
+        "accuracy": {
+          "label": "Precisión de ±0,2°C",
+          "value": "Líder de la industria"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Protocolo nativo"
+        },
+        "warranty": {
+          "label": "Garantía de 5 años",
+          "value": "Estándar"
+        },
+        "madeInUSA": {
+          "label": "Hecho en EE. UU.",
+          "value": "Calidad asegurada"
+        }
+      }
+    },
+    "cta": {
+      "title": "¿Necesitas ayuda para encontrar el producto adecuado?",
+      "description": "Nuestro equipo de expertos está listo para ayudarte a seleccionar los sensores y controladores perfectos para tu proyecto de automatización de edificios.",
+      "button": "Contactar ventas"
+    }
   }
 }

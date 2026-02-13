@@ -738,5 +738,92 @@
       "expectedBack": "Expected back: {date}",
       "shipsOn": "Ships on: {date}"
     }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Building Automation Products",
+      "description": "Explore our complete range of high-accuracy sensors, controllers, and test instruments. Trusted by engineers worldwide for critical HVAC applications."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products"
+    },
+    "hero": {
+      "badge": "Precision Sensors & Controllers",
+      "title": "Building Automation Products",
+      "description": "Explore our complete range of high-accuracy sensors, controllers, and test instruments. Trusted by engineers worldwide for critical HVAC applications.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Products",
+        "warrantyDuration": "5 Year",
+        "warrantyLabel": "Warranty",
+        "accuracyValue": "±0.2°C",
+        "accuracyLabel": "Accuracy"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Temperature Sensors",
+        "description": "High-accuracy temperature measurement solutions"
+      },
+      "humiditySensors": {
+        "name": "Humidity Sensors",
+        "description": "Precise relative humidity monitoring"
+      },
+      "pressureSensors": {
+        "name": "Pressure Sensors",
+        "description": "Differential and static pressure transmitters"
+      },
+      "airQualitySensors": {
+        "name": "Air Quality Sensors",
+        "description": "CO₂, VOC, and particulate matter monitoring"
+      },
+      "wirelessSensors": {
+        "name": "Wireless Sensors",
+        "description": "Battery-powered and energy harvesting solutions"
+      },
+      "accessories": {
+        "name": "Accessories",
+        "description": "Mounting hardware, enclosures, and cables"
+      },
+      "testInstruments": {
+        "name": "Test Instruments",
+        "description": "Professional calibration and testing equipment"
+      },
+      "etaLine": {
+        "name": "ETA Line",
+        "description": "Modular I/O and control solutions"
+      },
+      "viewProducts": "View Products"
+    },
+    "featured": {
+      "badge": "Featured Product Line",
+      "title": "BA/10K Series Temperature Sensors",
+      "description": "Our most popular sensors. ±0.2°C accuracy, BACnet MS/TP, and 5-year warranty. Trusted in healthcare, data centers, and critical facilities worldwide.",
+      "viewButton": "View BA Series",
+      "features": {
+        "accuracy": {
+          "label": "±0.2°C Accuracy",
+          "value": "Industry Leading"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Native Protocol"
+        },
+        "warranty": {
+          "label": "5-Year Warranty",
+          "value": "Standard"
+        },
+        "madeInUSA": {
+          "label": "Made in USA",
+          "value": "Quality Assured"
+        }
+      }
+    },
+    "cta": {
+      "title": "Need Help Finding the Right Product?",
+      "description": "Our team of experts is ready to help you select the perfect sensors and controllers for your building automation project.",
+      "button": "Contact Sales"
+    }
   }
 }

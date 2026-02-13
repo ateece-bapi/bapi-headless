@@ -735,5 +735,92 @@
       "expectedBack": "Oczekiwana data dostępności: {date}",
       "shipsOn": "Wysyłka: {date}"
     }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Produkty do automatyki budynkowej",
+      "description": "Poznaj naszą pełną gamę czujników wysokiej dokładności, kontrolerów i przyrządów testowych. Zaufali nam inżynierowie na całym świecie, w kluczowych zastosowaniach HVAC."
+    },
+    "breadcrumb": {
+      "home": "Strona główna",
+      "products": "Produkty"
+    },
+    "hero": {
+      "badge": "Precyzyjne czujniki i regulatory",
+      "title": "Produkty do automatyki budynkowej",
+      "description": "Poznaj naszą pełną gamę czujników wysokiej dokładności, kontrolerów i przyrządów testowych. Zaufali nam inżynierowie na całym świecie, w kluczowych zastosowaniach HVAC.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Produktów",
+        "warrantyDuration": "5 Lat",
+        "warrantyLabel": "Gwarancji",
+        "accuracyValue": "±0,2°C",
+        "accuracyLabel": "Dokładność"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Czujniki temperatury",
+        "description": "Rozwiązania do pomiaru temperatury o wysokiej dokładności"
+      },
+      "humiditySensors": {
+        "name": "Czujniki wilgotności",
+        "description": "Precyzyjne monitorowanie wilgotności względnej"
+      },
+      "pressureSensors": {
+        "name": "Czujniki ciśnienia",
+        "description": "Przetworniki ciśnienia różnicowego i statycznego"
+      },
+      "airQualitySensors": {
+        "name": "Czujniki jakości powietrza",
+        "description": "Monitorowanie CO₂, LZO i cząstek stałych"
+      },
+      "wirelessSensors": {
+        "name": "Czujniki bezprzewodowe",
+        "description": "Zasilane z baterii i rozwiązania z odzyskiwaniem energii"
+      },
+      "accessories": {
+        "name": "Akcesoria",
+        "description": "Elementy montażowe, obudowy i kable"
+      },
+      "testInstruments": {
+        "name": "Przyrządy testowe",
+        "description": "Profesjonalny sprzęt do kalibracji i testowania"
+      },
+      "etaLine": {
+        "name": "Linia ETA",
+        "description": "Modułowe rozwiązania I/O i sterujące"
+      },
+      "viewProducts": "Wyświetl produkty"
+    },
+    "featured": {
+      "badge": "Linia produktów wyróżnionych",
+      "title": "Czujniki temperatury serii BA/10K",
+      "description": "Nasze najpopularniejsze czujniki. Dokładność ±0,2°C, BACnet MS/TP i 5-letnia gwarancja. Zaufano im na całym świecie w ochronie zdrowia, centrach danych i obiektach o kluczowym znaczeniu.",
+      "viewButton": "Wyświetl serię BA",
+      "features": {
+        "accuracy": {
+          "label": "Dokładność ±0,2°C",
+          "value": "Wiodąca w branży"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Natywny protokół"
+        },
+        "warranty": {
+          "label": "5-letnia gwarancja",
+          "value": "Standardowa"
+        },
+        "madeInUSA": {
+          "label": "Wyprodukowano w USA",
+          "value": "Zapewniona jakość"
+        }
+      }
+    },
+    "cta": {
+      "title": "Potrzebujesz pomocy w znalezieniu odpowiedniego produktu?",
+      "description": "Nasz zespół ekspertów jest gotowy pomóc Ci wybrać idealne czujniki i kontrolery do Twojego projektu automatyki budynkowej.",
+      "button": "Skontaktuj się z działem handlowym"
+    }
   }
 }

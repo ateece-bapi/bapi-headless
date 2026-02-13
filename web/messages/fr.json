@@ -521,5 +521,92 @@
       "expectedBack": "Attendu à nouveau: {date}",
       "shipsOn": "Expédié le: {date}"
     }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Produits d'automatisation des bâtiments",
+      "description": "Explorez notre gamme complète de capteurs haute précision, de contrôleurs et d'instruments de test. Approuvés par les ingénieurs du monde entier pour les applications HVAC critiques."
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits"
+    },
+    "hero": {
+      "badge": "Capteurs et contrôleurs de précision",
+      "title": "Produits d'automatisation des bâtiments",
+      "description": "Explorez notre gamme complète de capteurs haute précision, de contrôleurs et d'instruments de test. Approuvés par les ingénieurs du monde entier pour les applications HVAC critiques.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Produits",
+        "warrantyDuration": "5 ans",
+        "warrantyLabel": "Garantie",
+        "accuracyValue": "±0,2°C",
+        "accuracyLabel": "Précision"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Capteurs de température",
+        "description": "Solutions de mesure de température haute précision"
+      },
+      "humiditySensors": {
+        "name": "Capteurs d'humidité",
+        "description": "Surveillance précise de l'humidité relative"
+      },
+      "pressureSensors": {
+        "name": "Capteurs de pression",
+        "description": "Transmetteurs de pression différentielle et statique"
+      },
+      "airQualitySensors": {
+        "name": "Capteurs de qualité de l'air",
+        "description": "Surveillance du CO₂, des COV et des particules"
+      },
+      "wirelessSensors": {
+        "name": "Capteurs sans fil",
+        "description": "Solutions sur batterie et à récupération d'énergie"
+      },
+      "accessories": {
+        "name": "Accessoires",
+        "description": "Matériel de montage, boîtiers et câbles"
+      },
+      "testInstruments": {
+        "name": "Instruments de test",
+        "description": "Équipement de calibrage et de test professionnel"
+      },
+      "etaLine": {
+        "name": "Ligne ETA",
+        "description": "Solutions modulaires d'E/S et de contrôle"
+      },
+      "viewProducts": "Voir les produits"
+    },
+    "featured": {
+      "badge": "Gamme de produits vedette",
+      "title": "Capteurs de température BA/10K Series",
+      "description": "Nos capteurs les plus populaires. Précision de ±0,2°C, BACnet MS/TP et garantie de 5 ans. Approuvés dans les soins de santé, les centres de données et les installations critiques dans le monde entier.",
+      "viewButton": "Voir la série BA",
+      "features": {
+        "accuracy": {
+          "label": "Précision de ±0,2°C",
+          "value": "Leader du secteur"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Protocole natif"
+        },
+        "warranty": {
+          "label": "Garantie de 5 ans",
+          "value": "Standard"
+        },
+        "madeInUSA": {
+          "label": "Fabriqué aux États-Unis",
+          "value": "Qualité assurée"
+        }
+      }
+    },
+    "cta": {
+      "title": "Besoin d'aide pour trouver le bon produit ?",
+      "description": "Notre équipe d'experts est prête à vous aider à sélectionner les capteurs et les contrôleurs parfaits pour votre projet d'automatisation des bâtiments.",
+      "button": "Contacter les ventes"
+    }
   }
 }

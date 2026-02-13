@@ -570,5 +570,92 @@
       "expectedBack": "Dự kiến về vào: {date}",
       "shipsOn": "Giao hàng vào: {date}"
     }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Sản phẩm Tự động hóa Công trình",
+      "description": "Khám phá bộ sản phẩm cảm biến, bộ điều khiển và thiết bị kiểm tra chính xác cao của chúng tôi. Được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho các ứng dụng HVAC quan trọng."
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm"
+    },
+    "hero": {
+      "badge": "Cảm biến & Bộ điều khiển Chính xác",
+      "title": "Sản phẩm Tự động hóa Công trình",
+      "description": "Khám phá bộ sản phẩm cảm biến, bộ điều khiển và thiết bị kiểm tra chính xác cao của chúng tôi. Được các kỹ sư trên toàn thế giới tin tưởng sử dụng cho các ứng dụng HVAC quan trọng.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Sản phẩm",
+        "warrantyDuration": "5 năm",
+        "warrantyLabel": "Bảo hành",
+        "accuracyValue": "±0,2°C",
+        "accuracyLabel": "Độ chính xác"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Cảm biến Nhiệt độ",
+        "description": "Giải pháp đo lường nhiệt độ chính xác cao"
+      },
+      "humiditySensors": {
+        "name": "Cảm biến Độ ẩm",
+        "description": "Theo dõi độ ẩm tương đối chính xác"
+      },
+      "pressureSensors": {
+        "name": "Cảm biến Áp suất",
+        "description": "Bộ chuyển đổi áp suất tĩnh và sai lệch"
+      },
+      "airQualitySensors": {
+        "name": "Cảm biến Chất lượng Không khí",
+        "description": "Theo dõi CO₂, VOC và bụi mịn"
+      },
+      "wirelessSensors": {
+        "name": "Cảm biến Không dây",
+        "description": "Các giải pháp hoạt động bằng pin và thu năng lượng"
+      },
+      "accessories": {
+        "name": "Phụ kiện",
+        "description": "Phần cứng lắp đặt, vỏ bọc và dây cáp"
+      },
+      "testInstruments": {
+        "name": "Thiết bị Kiểm tra",
+        "description": "Thiết bị hiệu chuẩn và kiểm tra chuyên nghiệp"
+      },
+      "etaLine": {
+        "name": "Dòng ETA",
+        "description": "Các giải pháp I/O và điều khiển modular"
+      },
+      "viewProducts": "Xem Sản phẩm"
+    },
+    "featured": {
+      "badge": "Dòng Sản phẩm Nổi bật",
+      "title": "Cảm biến Nhiệt độ Dòng BA/10K",
+      "description": "Các cảm biến phổ biến nhất của chúng tôi. Độ chính xác ±0,2°C, giao thức BACnet MS/TP và bảo hành 5 năm. Được tin cậy sử dụng trong các cơ sở y tế, trung tâm dữ liệu và công trình quan trọng trên toàn thế giới.",
+      "viewButton": "Xem Dòng BA",
+      "features": {
+        "accuracy": {
+          "label": "Độ chính xác ±0,2°C",
+          "value": "Hàng đầu trong ngành"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Giao thức gốc"
+        },
+        "warranty": {
+          "label": "Bảo hành 5 năm",
+          "value": "Tiêu chuẩn"
+        },
+        "madeInUSA": {
+          "label": "Sản xuất tại Mỹ",
+          "value": "Đảm bảo Chất lượng"
+        }
+      }
+    },
+    "cta": {
+      "title": "Cần Trợ giúp tìm Sản phẩm phù hợp?",
+      "description": "Nhóm chuyên gia của chúng tôi sẵn sàng giúp bạn lựa chọn các cảm biến và bộ điều khiển hoàn hảo cho dự án tự động hóa công trình của bạn.",
+      "button": "Liên hệ Bán hàng"
+    }
   }
 }

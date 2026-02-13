@@ -521,5 +521,92 @@
       "expectedBack": "预计到货时间：{date}",
       "shipsOn": "发货日期：{date}"
     }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "建筑自动化产品",
+      "description": "探索我们全面的高精度传感器、控制器和测试仪器。受到全球工程师的信赖,用于关键的HVAC应用。"
+    },
+    "breadcrumb": {
+      "home": "主页",
+      "products": "产品"
+    },
+    "hero": {
+      "badge": "精密传感器和控制器",
+      "title": "建筑自动化产品",
+      "description": "探索我们全面的高精度传感器、控制器和测试仪器。受到全球工程师的信赖,用于关键的HVAC应用。",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "产品",
+        "warrantyDuration": "5年",
+        "warrantyLabel": "保修",
+        "accuracyValue": "±0.2°C",
+        "accuracyLabel": "精度"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "温度传感器",
+        "description": "高精度温度测量解决方案"
+      },
+      "humiditySensors": {
+        "name": "湿度传感器",
+        "description": "精确的相对湿度监测"
+      },
+      "pressureSensors": {
+        "name": "压力传感器",
+        "description": "差压和静压变送器"
+      },
+      "airQualitySensors": {
+        "name": "空气质量传感器",
+        "description": "CO₂、VOC和颗粒物监测"
+      },
+      "wirelessSensors": {
+        "name": "无线传感器",
+        "description": "电池供电和能量收集解决方案"
+      },
+      "accessories": {
+        "name": "附件",
+        "description": "安装硬件、外壳和电缆"
+      },
+      "testInstruments": {
+        "name": "测试仪器",
+        "description": "专业校准和测试设备"
+      },
+      "etaLine": {
+        "name": "ETA系列",
+        "description": "模块化I/O和控制解决方案"
+      },
+      "viewProducts": "查看产品"
+    },
+    "featured": {
+      "badge": "精选产品系列",
+      "title": "BA/10K系列温度传感器",
+      "description": "我们最受欢迎的传感器。±0.2°C精度、BACnet MS/TP和5年保修。受到全球医疗保健、数据中心和关键设施的信赖。",
+      "viewButton": "查看BA系列",
+      "features": {
+        "accuracy": {
+          "label": "±0.2°C精度",
+          "value": "行业领先"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "原生协议"
+        },
+        "warranty": {
+          "label": "5年保修",
+          "value": "标准"
+        },
+        "madeInUSA": {
+          "label": "美国制造",
+          "value": "质量保证"
+        }
+      }
+    },
+    "cta": {
+      "title": "需要帮助找到合适的产品?",
+      "description": "我们的专家团队随时准备帮助您为您的建筑自动化项目选择合适的传感器和控制器。",
+      "button": "联系销售"
+    }
   }
 }

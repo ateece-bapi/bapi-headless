@@ -530,5 +530,92 @@
       "expectedBack": "Wieder lieferbar: {date}",
       "shipsOn": "Wird versandt am: {date}"
     }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Gebäudeautomationsprodukte",
+      "description": "Entdecken Sie unser komplettes Sortiment an hochgenauen Sensoren, Reglern und Prüfinstrumenten. Von Ingenieuren weltweit für kritische HLK-Anwendungen vertraut."
+    },
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte"
+    },
+    "hero": {
+      "badge": "Präzisionssensoren & Regler",
+      "title": "Gebäudeautomationsprodukte",
+      "description": "Entdecken Sie unser komplettes Sortiment an hochgenauen Sensoren, Reglern und Prüfinstrumenten. Von Ingenieuren weltweit für kritische HLK-Anwendungen vertraut.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Produkte",
+        "warrantyDuration": "5 Jahre",
+        "warrantyLabel": "Garantie",
+        "accuracyValue": "±0,2 °C",
+        "accuracyLabel": "Genauigkeit"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Temperatursensoren",
+        "description": "Hochgenaue Temperaturmesslösungen"
+      },
+      "humiditySensors": {
+        "name": "Feuchtigkeitssensoren",
+        "description": "Präzise Überwachung der relativen Luftfeuchtigkeit"
+      },
+      "pressureSensors": {
+        "name": "Drucksensoren",
+        "description": "Differenz- und Statikdrucktransmitter"
+      },
+      "airQualitySensors": {
+        "name": "Luftqualitätssensoren",
+        "description": "CO₂-, VOC- und Feinstaubüberwachung"
+      },
+      "wirelessSensors": {
+        "name": "Funksensoren",
+        "description": "Batteriebetriebene und energieautarke Lösungen"
+      },
+      "accessories": {
+        "name": "Zubehör",
+        "description": "Montageelemente, Gehäuse und Kabel"
+      },
+      "testInstruments": {
+        "name": "Prüfinstrumente",
+        "description": "Professionelle Kalibrierungs- und Prüfausrüstung"
+      },
+      "etaLine": {
+        "name": "ETA-Linie",
+        "description": "Modulare E/A- und Steuerungslösungen"
+      },
+      "viewProducts": "Produkte anzeigen"
+    },
+    "featured": {
+      "badge": "Produktlinie im Fokus",
+      "title": "BA/10K-Serie Temperatursensoren",
+      "description": "Unsere beliebtesten Sensoren. ±0,2 °C Genauigkeit, BACnet MS/TP und 5 Jahre Garantie. Vertraut in Gesundheitseinrichtungen, Rechenzentren und kritischen Einrichtungen weltweit.",
+      "viewButton": "BA-Serie anzeigen",
+      "features": {
+        "accuracy": {
+          "label": "±0,2 °C Genauigkeit",
+          "value": "Branchenführend"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Nativer Protokoll"
+        },
+        "warranty": {
+          "label": "5-Jahre Garantie",
+          "value": "Standard"
+        },
+        "madeInUSA": {
+          "label": "Hergestellt in den USA",
+          "value": "Qualitätsgesichert"
+        }
+      }
+    },
+    "cta": {
+      "title": "Brauchen Sie Hilfe bei der richtigen Produktauswahl?",
+      "description": "Unser Team von Experten steht Ihnen bereit, um Ihnen die perfekten Sensoren und Regler für Ihr Gebäudeautomationsprojekt auszuwählen.",
+      "button": "Vertrieb kontaktieren"
+    }
   }
 }

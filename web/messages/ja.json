@@ -521,5 +521,92 @@
       "expectedBack": "入荷予定: {date}",
       "shipsOn": "出荷日: {date}"
     }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "ビルオートメーション製品",
+      "description": "高精度のセンサー、コントローラー、テスト機器の完全なラインナップをご覧ください。HVAC の重要なアプリケーションで世界中のエンジニアに信頼されています。"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品"
+    },
+    "hero": {
+      "badge": "高精度センサー&コントローラー",
+      "title": "ビルオートメーション製品",
+      "description": "高精度のセンサー、コントローラー、テスト機器の完全なラインナップをご覧ください。HVAC の重要なアプリケーションで世界中のエンジニアに信頼されています。",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "製品",
+        "warrantyDuration": "5年",
+        "warrantyLabel": "保証",
+        "accuracyValue": "±0.2°C",
+        "accuracyLabel": "精度"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "温度センサー",
+        "description": "高精度の温度測定ソリューション"
+      },
+      "humiditySensors": {
+        "name": "湿度センサー",
+        "description": "正確な相対湿度モニタリング"
+      },
+      "pressureSensors": {
+        "name": "圧力センサー",
+        "description": "差圧および静圧トランスミッター"
+      },
+      "airQualitySensors": {
+        "name": "空気質センサー",
+        "description": "CO₂、VOC、および微粒子物質のモニタリング"
+      },
+      "wirelessSensors": {
+        "name": "ワイヤレスセンサー",
+        "description": "バッテリー駆動および省エネルギー型ソリューション"
+      },
+      "accessories": {
+        "name": "アクセサリー",
+        "description": "取り付けハードウェア、エンクロージャ、ケーブル"
+      },
+      "testInstruments": {
+        "name": "テスト機器",
+        "description": "業務用の校正および試験装置"
+      },
+      "etaLine": {
+        "name": "ETAライン",
+        "description": "モジュラー I/O およびコントロールソリューション"
+      },
+      "viewProducts": "製品を見る"
+    },
+    "featured": {
+      "badge": "注目の製品ラインナップ",
+      "title": "BA/10Kシリーズ温度センサー",
+      "description": "最も人気のあるセンサーです。±0.2°Cの精度、BACnet MS/TP、5年保証。世界中の医療、データセンター、重要施設で信頼されています。",
+      "viewButton": "BAシリーズを見る",
+      "features": {
+        "accuracy": {
+          "label": "±0.2°C 精度",
+          "value": "業界トップクラス"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "ネイティブプロトコル"
+        },
+        "warranty": {
+          "label": "5年保証",
+          "value": "標準仕様"
+        },
+        "madeInUSA": {
+          "label": "米国製",
+          "value": "品質保証"
+        }
+      }
+    },
+    "cta": {
+      "title": "最適な製品をお探しですか?",
+      "description": "専門家チームが、ビルオートメーションプロジェクトに最適なセンサーとコントローラーをお選びします。",
+      "button": "営業に問い合わせる"
+    }
   }
 }

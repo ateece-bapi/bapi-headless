@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   Thermometer,
   Droplets,
@@ -20,80 +21,73 @@ import {
 // Per BAPI Brand Guide: Temperature, Humidity, Pressure, Air Quality, Wireless, Accessories, Test Instruments
 const productCategories = [
   {
-    name: 'Temperature Sensors',
+    nameKey: 'temperatureSensors',
     slug: 'temperature-sensors',
     count: 119,
     image: '/products/temp_sensors.webp',
     icon: '/images/icons/Temperature_Icon.webp',
-    description: 'High-accuracy temperature measurement solutions',
     gradient: 'from-red-500 to-orange-500',
   },
   {
-    name: 'Humidity Sensors',
+    nameKey: 'humiditySensors',
     slug: 'humidity-sensors',
     count: 33,
     image: '/products/humidity_sensors.webp',
     icon: '/images/icons/Humidity_Icon.webp',
-    description: 'Precise relative humidity monitoring',
     gradient: 'from-blue-500 to-cyan-500',
   },
   {
-    name: 'Pressure Sensors',
+    nameKey: 'pressureSensors',
     slug: 'pressure-sensors',
     count: 39,
     image: '/products/pressure_sensors.webp',
     icon: '/images/icons/Pressure_Icon.webp',
-    description: 'Differential and static pressure transmitters',
     gradient: 'from-purple-500 to-pink-500',
   },
   {
-    name: 'Air Quality Sensors',
+    nameKey: 'airQualitySensors',
     slug: 'air-quality-sensors',
     count: 32,
     image: '/products/air_quality_sensors.webp',
     icon: '/images/icons/AirQuality_Icon.webp',
-    description: 'CO₂, VOC, and particulate matter monitoring',
     gradient: 'from-teal-500 to-cyan-600',
   },
   {
-    name: 'Wireless Sensors',
+    nameKey: 'wirelessSensors',
     slug: 'wireless-sensors',
     count: 24,
     image: '/products/wireless_sensors.webp',
     icon: '/images/icons/Wireless_Icon.webp',
-    description: 'Battery-powered and energy harvesting solutions',
     gradient: 'from-green-500 to-emerald-600',
   },
   {
-    name: 'Accessories',
+    nameKey: 'accessories',
     slug: 'accessories',
     count: 45,
     image: '/images/products/families/Accessories_Family_2025_US.webp',
     icon: '/images/icons/Accessories_Icon.webp',
-    description: 'Mounting hardware, enclosures, and cables',
     gradient: 'from-gray-500 to-neutral-600',
   },
   {
-    name: 'Test Instruments',
+    nameKey: 'testInstruments',
     slug: 'test-instruments',
     count: 8,
     image: '/products/test_products.webp',
     icon: '/images/icons/Test_Instruments_Icon.webp',
-    description: 'Professional calibration and testing equipment',
     gradient: 'from-cyan-500 to-blue-600',
   },
   {
-    name: 'ETA Line',
+    nameKey: 'etaLine',
     slug: 'eta-line',
     count: 70,
     image: '/products/eta_modules_products.webp',
     icon: Layers,
-    description: 'Modular I/O and control solutions',
     gradient: 'from-amber-500 to-orange-600',
   },
 ];
 
 export default function MainProductPage() {
+  const t = useTranslations();
   // For page fade
   const [pageVisible, setPageVisible] = useState(false);
   // For card animation
@@ -125,41 +119,52 @@ export default function MainProductPage() {
             aria-label="Breadcrumb"
           >
             <Link href="/" className="transition-colors hover:text-white">
-              Home
+              {t('productsPage.breadcrumb.home')}
             </Link>
             <span>/</span>
-            <span className="font-medium text-white">Products</span>
+            <span className="font-medium text-white">{t('productsPage.breadcrumb.products')}</span>
           </nav>
 
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
               <Sparkles className="h-4 w-4" />
-              Precision Sensors & Controllers
+              {t('productsPage.hero.badge')}
             </div>
 
             <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-              Building Automation Products
+              {t('productsPage.hero.title')}
             </h1>
 
             <p className="mb-8 text-xl leading-relaxed text-primary-50 md:text-2xl">
-              Explore our complete range of high-accuracy sensors, controllers, and test
-              instruments. Trusted by engineers worldwide for critical HVAC applications.
+              {t('productsPage.hero.description')}
             </p>
 
             {/* Key Stats */}
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
               <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
-                <div className="mb-1 text-3xl font-bold text-white">400+</div>
-                <div className="text-sm text-primary-100">Products</div>
+                <div className="mb-1 text-3xl font-bold text-white">
+                  {t('productsPage.hero.stats.productsCount')}
+                </div>
+                <div className="text-sm text-primary-100">
+                  {t('productsPage.hero.stats.productsLabel')}
+                </div>
               </div>
               <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
-                <div className="mb-1 text-3xl font-bold text-white">5 Year</div>
-                <div className="text-sm text-primary-100">Warranty</div>
+                <div className="mb-1 text-3xl font-bold text-white">
+                  {t('productsPage.hero.stats.warrantyDuration')}
+                </div>
+                <div className="text-sm text-primary-100">
+                  {t('productsPage.hero.stats.warrantyLabel')}
+                </div>
               </div>
               <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
-                <div className="mb-1 text-3xl font-bold text-white">±0.2°C</div>
-                <div className="text-sm text-primary-100">Accuracy</div>
+                <div className="mb-1 text-3xl font-bold text-white">
+                  {t('productsPage.hero.stats.accuracyValue')}
+                </div>
+                <div className="text-sm text-primary-100">
+                  {t('productsPage.hero.stats.accuracyLabel')}
+                </div>
               </div>
             </div>
           </div>
@@ -179,7 +184,7 @@ export default function MainProductPage() {
                   transitionDelay: showCards ? `${i * 75}ms` : '0ms',
                 }}
                 tabIndex={0}
-                aria-label={`View ${cat.name} category (${cat.count} products)`}
+                aria-label={`View ${t(`productsPage.categories.${cat.nameKey}.name`)} category (${cat.count} products)`}
               >
                 {/* Gradient background on hover */}
                 <div
@@ -220,7 +225,7 @@ export default function MainProductPage() {
                 <div className="relative p-7">
                   <div className="mb-4 flex items-start justify-between gap-3">
                     <h2 className="relative text-xl font-bold leading-tight text-gray-900 transition-colors duration-300">
-                      {cat.name}
+                      {t(`productsPage.categories.${cat.nameKey}.name`)}
                       {/* BAPI Yellow underline on hover */}
                       <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
                     </h2>
@@ -230,12 +235,12 @@ export default function MainProductPage() {
                   </div>
 
                   <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-gray-600">
-                    {cat.description}
+                    {t(`productsPage.categories.${cat.nameKey}.description`)}
                   </p>
 
                   {/* View Link */}
                   <div className="inline-flex items-center gap-2 border-b-2 border-transparent pb-0.5 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3 group-hover:border-primary-600">
-                    <span>View Products</span>
+                    <span>{t('productsPage.categories.viewProducts')}</span>
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
@@ -253,33 +258,44 @@ export default function MainProductPage() {
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
                 <Award className="h-4 w-4" />
-                Featured Product Line
+                {t('productsPage.featured.badge')}
               </div>
 
               <h2 className="mb-4 text-4xl font-bold text-gray-900">
-                BA/10K Series Temperature Sensors
+                {t('productsPage.featured.title')}
               </h2>
 
               <p className="mb-6 text-lg leading-relaxed text-gray-700">
-                Our most popular sensors. ±0.2°C accuracy, BACnet MS/TP, and 5-year warranty.
-                Trusted in healthcare, data centers, and critical facilities worldwide.
+                {t('productsPage.featured.description')}
               </p>
 
               <Link
                 href="/products/featured/ba-series"
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
-                View BA Series
+                {t('productsPage.featured.viewButton')}
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </div>
 
             <div className="grid gap-4">
               {[
-                { label: '±0.2°C Accuracy', value: 'Industry Leading' },
-                { label: 'BACnet MS/TP', value: 'Native Protocol' },
-                { label: '5-Year Warranty', value: 'Standard' },
-                { label: 'Made in USA', value: 'Quality Assured' },
+                {
+                  label: t('productsPage.featured.features.accuracy.label'),
+                  value: t('productsPage.featured.features.accuracy.value'),
+                },
+                {
+                  label: t('productsPage.featured.features.bacnet.label'),
+                  value: t('productsPage.featured.features.bacnet.value'),
+                },
+                {
+                  label: t('productsPage.featured.features.warranty.label'),
+                  value: t('productsPage.featured.features.warranty.value'),
+                },
+                {
+                  label: t('productsPage.featured.features.madeInUSA.label'),
+                  value: t('productsPage.featured.features.madeInUSA.value'),
+                },
               ].map((item, index) => (
                 <div
                   key={item.label}
@@ -302,11 +318,10 @@ export default function MainProductPage() {
           <div className="relative flex flex-col items-center justify-between gap-8 text-center lg:flex-row lg:text-left">
             <div>
               <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">
-                Need Help Finding the Right Product?
+                {t('productsPage.cta.title')}
               </h2>
               <p className="max-w-2xl text-lg text-primary-50">
-                Our team of experts is ready to help you select the perfect sensors and controllers
-                for your building automation project.
+                {t('productsPage.cta.description')}
               </p>
             </div>
 
@@ -314,7 +329,7 @@ export default function MainProductPage() {
               href="/company/contact-us"
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
-              Contact Sales
+              {t('productsPage.cta.button')}
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

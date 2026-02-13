@@ -825,5 +825,76 @@
       "description": "हमारे विशेषज्ञों की टीम आपके भवन स्वचालन परियोजना के लिए सही सेंसर और नियंत्रक का चयन करने में आपकी मदद करने के लिए तैयार है।",
       "button": "बिक्री से संपर्क करें"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "खरीदारी कार्ट",
+      "description": "अपने कार्ट की समीक्षा करें और चेकआउट करने के लिए आगे बढ़ें"
+    },
+    "header": {
+      "title": "खरीदारी कार्ट",
+      "continueShopping": "खरीदारी जारी रखें"
+    },
+    "empty": {
+      "title": "आपका कार्ट खाली है",
+      "description": "शुरू करने के लिए अपने कार्ट में कुछ उत्पाद जोड़ें।",
+      "button": "खरीदारी जारी रखें"
+    },
+    "items": {
+      "title": "कार्ट आइटम",
+      "clearCart": "कार्ट खाली करें",
+      "clearConfirm": "क्या आप वाकई अपने कार्ट को खाली करना चाहते हैं?",
+      "noImage": "कोई छवि नहीं",
+      "remove": "हटाएं",
+      "priceEach": "{price} प्रत्येक"
+    },
+    "stock": {
+      "inStock": "स्टॉक में",
+      "outOfStock": "स्टॉक में नहीं",
+      "onBackorder": "बैकऑर्डर पर",
+      "available": "{count} उपलब्ध"
+    },
+    "quantity": {
+      "decrease": "मात्रा कम करें",
+      "increase": "मात्रा बढ़ाएं"
+    },
+    "summary": {
+      "title": "ऑर्डर सारांश",
+      "subtotal": "उप-कुल",
+      "discount": "छूट",
+      "shipping": "शिपिंग",
+      "tax": "कर",
+      "total": "कुल",
+      "calculatedAtCheckout": "चेकआउट पर गणना की जाएगी",
+      "proceedToCheckout": "चेकआउट पर जाएं",
+      "secureCheckout": "सुरक्षित चेकआउट",
+      "sslEncrypted": "256-बिट SSL एन्क्रिप्टेड"
+    },
+    "coupon": {
+      "label": "क्या आपके पास कूपन कोड है?",
+      "placeholder": "कोड दर्ज करें",
+      "apply": "लागू करें",
+      "applying": "लागू किया जा रहा है...",
+      "appliedCoupons": "लागू किए गए कूपन:",
+      "remove": "कूपन हटाएं"
+    },
+    "shipping": {
+      "freeShipping": "✓ $500 से अधिक के ऑर्डर पर मुफ्त शिपिंग",
+      "standardShipping": "मानक शिपिंग: 3-5 कार्य दिवस"
+    },
+    "toasts": {
+      "updated": "अपडेट किया गया",
+      "cartUpdated": "कार्ट सफलतापूर्वक अपडेट किया गया",
+      "removed": "हटा दिया गया",
+      "itemRemoved": "आइटम को कार्ट से हटा दिया गया",
+      "cartCleared": "कार्ट खाली किया गया",
+      "allItemsRemoved": "सभी आइटम को कार्ट से हटा दिया गया",
+      "enterCode": "कोड दर्ज करें",
+      "enterCodeMessage": "कृपया कूपन कोड दर्ज करें",
+      "couponApplied": "कूपन लागू किया गया",
+      "couponAppliedMessage": "कूपन \"{code}\" को सफलतापूर्वक लागू किया गया",
+      "couponRemoved": "कूपन हटा दिया गया",
+      "couponRemovedMessage": "कूपन \"{code}\" को हटा दिया गया"
+    }
   }
 }

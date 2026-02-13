@@ -657,5 +657,76 @@
       "description": "Nhóm chuyên gia của chúng tôi sẵn sàng giúp bạn lựa chọn các cảm biến và bộ điều khiển hoàn hảo cho dự án tự động hóa công trình của bạn.",
       "button": "Liên hệ Bán hàng"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Giỏ hàng",
+      "description": "Xem lại giỏ hàng và chuyển đến thanh toán"
+    },
+    "header": {
+      "title": "Giỏ hàng",
+      "continueShopping": "Tiếp tục mua sắm"
+    },
+    "empty": {
+      "title": "Giỏ hàng của bạn trống",
+      "description": "Thêm một số sản phẩm vào giỏ hàng để bắt đầu.",
+      "button": "Tiếp tục mua sắm"
+    },
+    "items": {
+      "title": "Mặt hàng trong giỏ",
+      "clearCart": "Xóa giỏ hàng",
+      "clearConfirm": "Bạn có chắc chắn muốn xóa giỏ hàng của mình?",
+      "noImage": "Không có hình ảnh",
+      "remove": "Xóa",
+      "priceEach": "{price} mỗi sản phẩm"
+    },
+    "stock": {
+      "inStock": "Còn hàng",
+      "outOfStock": "Hết hàng",
+      "onBackorder": "Đặt trước",
+      "available": "{count} sản phẩm còn lại"
+    },
+    "quantity": {
+      "decrease": "Giảm số lượng",
+      "increase": "Tăng số lượng"
+    },
+    "summary": {
+      "title": "Tổng quan đơn hàng",
+      "subtotal": "Tổng phụ",
+      "discount": "Giảm giá",
+      "shipping": "Vận chuyển",
+      "tax": "Thuế",
+      "total": "Tổng cộng",
+      "calculatedAtCheckout": "Tính toán khi thanh toán",
+      "proceedToCheckout": "Chuyển đến Thanh toán",
+      "secureCheckout": "Thanh toán an toàn",
+      "sslEncrypted": "Mã hóa SSL 256-bit"
+    },
+    "coupon": {
+      "label": "Bạn có mã giảm giá?",
+      "placeholder": "Nhập mã",
+      "apply": "Áp dụng",
+      "applying": "Đang áp dụng...",
+      "appliedCoupons": "Mã giảm giá đã áp dụng:",
+      "remove": "Xóa mã giảm giá"
+    },
+    "shipping": {
+      "freeShipping": "✓ Miễn phí vận chuyển cho đơn hàng trên 500 USD",
+      "standardShipping": "Vận chuyển tiêu chuẩn: 3-5 ngày làm việc"
+    },
+    "toasts": {
+      "updated": "Đã cập nhật",
+      "cartUpdated": "Giỏ hàng đã được cập nhật thành công",
+      "removed": "Đã xóa",
+      "itemRemoved": "Mặt hàng đã được xóa khỏi giỏ hàng",
+      "cartCleared": "Đã xóa giỏ hàng",
+      "allItemsRemoved": "Tất cả mặt hàng đã được xóa khỏi giỏ hàng",
+      "enterCode": "Nhập mã",
+      "enterCodeMessage": "Vui lòng nhập mã giảm giá",
+      "couponApplied": "Mã giảm giá đã được áp dụng",
+      "couponAppliedMessage": "Mã giảm giá \"{code}\" đã được áp dụng thành công",
+      "couponRemoved": "Mã giảm giá đã được xóa",
+      "couponRemovedMessage": "Mã giảm giá \"{code}\" đã được xóa"
+    }
   }
 }

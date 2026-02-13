@@ -14,6 +14,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Trash2, Minus, Plus, X } from 'lucide-react';
 
 interface CartItem {
@@ -72,11 +73,12 @@ export default function CartItems({
   onRemoveItem,
   onClearCart,
 }: CartItemsProps) {
+  const t = useTranslations();
   return (
     <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50 px-6 py-4">
-        <h2 className="text-lg font-semibold text-neutral-900">Cart Items ({items.length})</h2>
+        <h2 className="text-lg font-semibold text-neutral-900">{t('cartPage.items.title')} ({items.length})</h2>
         <button
           onClick={onClearCart}
           disabled={isUpdating}
@@ -84,7 +86,7 @@ export default function CartItems({
           aria-label="Clear cart"
         >
           <Trash2 className="h-4 w-4" />
-          Clear Cart
+          {t('cartPage.items.clearCart')}
         </button>
       </div>
 
@@ -118,11 +120,7 @@ export default function CartItems({
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center text-neutral-400">
-                    No Image
-                  </div>
-                )}
-              </Link>
-
+                  {t('cartPage.items.noImage')}
               {/* Product Details */}
               <div className="min-w-0 flex-1">
                 <Link href={`/en/product/${product.slug}`} className="group block">
@@ -139,22 +137,22 @@ export default function CartItems({
                   {displayProduct.stockStatus === 'IN_STOCK' ? (
                     <span className="inline-flex items-center gap-1 text-sm font-medium text-success-600">
                       <span className="h-2 w-2 rounded-full bg-success-600"></span>
-                      In Stock
+                      {t('cartPage.stock.inStock')}
                       {displayProduct.stockQuantity && (
                         <span className="text-neutral-500">
-                          ({displayProduct.stockQuantity} available)
+                          ({t('cartPage.stock.available', { count: displayProduct.stockQuantity })})
                         </span>
                       )}
                     </span>
                   ) : displayProduct.stockStatus === 'OUT_OF_STOCK' ? (
                     <span className="inline-flex items-center gap-1 text-sm font-medium text-error-600">
                       <span className="h-2 w-2 rounded-full bg-error-600"></span>
-                      Out of Stock
+                      {t('cartPage.stock.outOfStock')}
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1 text-sm font-medium text-warning-600">
                       <span className="h-2 w-2 rounded-full bg-warning-600"></span>
-                      On Backorder
+                      {t('cartPage.stock.onBackorder')}
                     </span>
                   )}
                 </div>
@@ -166,7 +164,7 @@ export default function CartItems({
                       onClick={() => onUpdateQuantity(item.key, item.quantity - 1)}
                       disabled={isUpdating || item.quantity <= 1}
                       className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
-                      aria-label="Decrease quantity"
+                      aria-label={t('cartPage.quantity.decrease')}
                     >
                       <Minus className="h-4 w-4" />
                     </button>
@@ -177,7 +175,7 @@ export default function CartItems({
                       onClick={() => onUpdateQuantity(item.key, item.quantity + 1)}
                       disabled={isUpdating}
                       className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
-                      aria-label="Increase quantity"
+                      aria-label={t('cartPage.quantity.increase')}
                     >
                       <Plus className="h-4 w-4" />
                     </button>
@@ -204,7 +202,7 @@ export default function CartItems({
                     </div>
                   )}
                   {item.quantity > 1 && (
-                    <div className="text-sm text-neutral-500">{displayProduct.price} each</div>
+                    <div className="text-sm text-neutral-500">{t('cartPage.items.priceEach', { price: displayProduct.price })}</div>
                   )}
                 </div>
 
@@ -238,7 +236,7 @@ export default function CartItems({
                   className="flex items-center gap-1 font-medium text-error-600 transition-colors hover:text-error-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <X className="h-4 w-4" />
-                  Remove
+                  {t('cartPage.items.remove')}
                 </button>
               </div>
 

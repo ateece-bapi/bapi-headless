@@ -617,5 +617,76 @@
       "description": "Unser Team von Experten steht Ihnen bereit, um Ihnen die perfekten Sensoren und Regler für Ihr Gebäudeautomationsprojekt auszuwählen.",
       "button": "Vertrieb kontaktieren"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Warenkorb",
+      "description": "Überprüfen Sie Ihren Warenkorb und fahren Sie mit dem Checkout fort"
+    },
+    "header": {
+      "title": "Warenkorb",
+      "continueShopping": "Einkaufen fortsetzen"
+    },
+    "empty": {
+      "title": "Ihr Warenkorb ist leer",
+      "description": "Fügen Sie einige Produkte zu Ihrem Warenkorb hinzu, um loszulegen.",
+      "button": "Einkaufen fortsetzen"
+    },
+    "items": {
+      "title": "Warenkorbartikel",
+      "clearCart": "Warenkorb leeren",
+      "clearConfirm": "Möchten Sie Ihren Warenkorb wirklich leeren?",
+      "noImage": "Kein Bild",
+      "remove": "Entfernen",
+      "priceEach": "{price} pro Stück"
+    },
+    "stock": {
+      "inStock": "Auf Lager",
+      "outOfStock": "Nicht auf Lager",
+      "onBackorder": "Auf Bestellung",
+      "available": "{count} verfügbar"
+    },
+    "quantity": {
+      "decrease": "Menge verringern",
+      "increase": "Menge erhöhen"
+    },
+    "summary": {
+      "title": "Bestellübersicht",
+      "subtotal": "Zwischensumme",
+      "discount": "Rabatt",
+      "shipping": "Versand",
+      "tax": "Steuern",
+      "total": "Gesamtbetrag",
+      "calculatedAtCheckout": "Wird beim Checkout berechnet",
+      "proceedToCheckout": "Zum Checkout",
+      "secureCheckout": "Sicherer Checkout",
+      "sslEncrypted": "256-Bit-SSL-Verschlüsselung"
+    },
+    "coupon": {
+      "label": "Haben Sie einen Gutscheincode?",
+      "placeholder": "Code eingeben",
+      "apply": "Anwenden",
+      "applying": "Wird angewendet...",
+      "appliedCoupons": "Angewandte Gutscheine:",
+      "remove": "Gutschein entfernen"
+    },
+    "shipping": {
+      "freeShipping": "✓ Kostenloser Versand ab 500 $",
+      "standardShipping": "Standardversand: 3-5 Werktage"
+    },
+    "toasts": {
+      "updated": "Aktualisiert",
+      "cartUpdated": "Warenkorb erfolgreich aktualisiert",
+      "removed": "Entfernt",
+      "itemRemoved": "Artikel aus dem Warenkorb entfernt",
+      "cartCleared": "Warenkorb geleert",
+      "allItemsRemoved": "Alle Artikel aus dem Warenkorb entfernt",
+      "enterCode": "Code eingeben",
+      "enterCodeMessage": "Bitte geben Sie einen Gutscheincode ein",
+      "couponApplied": "Gutschein angewendet",
+      "couponAppliedMessage": "Gutschein \"{code}\" erfolgreich angewendet",
+      "couponRemoved": "Gutschein entfernt",
+      "couponRemovedMessage": "Gutschein \"{code}\" entfernt"
+    }
   }
 }

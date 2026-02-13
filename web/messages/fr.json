@@ -608,5 +608,76 @@
       "description": "Notre équipe d'experts est prête à vous aider à sélectionner les capteurs et les contrôleurs parfaits pour votre projet d'automatisation des bâtiments.",
       "button": "Contacter les ventes"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Panier d'achat",
+      "description": "Examinez votre panier et passez à la caisse"
+    },
+    "header": {
+      "title": "Panier d'achat",
+      "continueShopping": "Continuer les achats"
+    },
+    "empty": {
+      "title": "Votre panier est vide",
+      "description": "Ajoutez quelques produits à votre panier pour commencer.",
+      "button": "Continuer les achats"
+    },
+    "items": {
+      "title": "Produits au panier",
+      "clearCart": "Vider le panier",
+      "clearConfirm": "Êtes-vous sûr de vouloir vider votre panier ?",
+      "noImage": "Pas d'image",
+      "remove": "Supprimer",
+      "priceEach": "{price} chacun"
+    },
+    "stock": {
+      "inStock": "En stock",
+      "outOfStock": "Épuisé",
+      "onBackorder": "En commande",
+      "available": "{count} disponible(s)"
+    },
+    "quantity": {
+      "decrease": "Diminuer la quantité",
+      "increase": "Augmenter la quantité"
+    },
+    "summary": {
+      "title": "Récapitulatif de la commande",
+      "subtotal": "Sous-total",
+      "discount": "Remise",
+      "shipping": "Livraison",
+      "tax": "Taxes",
+      "total": "Total",
+      "calculatedAtCheckout": "Calculé à la caisse",
+      "proceedToCheckout": "Passer à la caisse",
+      "secureCheckout": "Caisse sécurisée",
+      "sslEncrypted": "Cryptage SSL 256 bits"
+    },
+    "coupon": {
+      "label": "Vous avez un code de réduction ?",
+      "placeholder": "Entrez le code",
+      "apply": "Appliquer",
+      "applying": "Application...",
+      "appliedCoupons": "Coupons appliqués :",
+      "remove": "Supprimer le coupon"
+    },
+    "shipping": {
+      "freeShipping": "✓ Livraison gratuite pour les commandes de plus de 500 $",
+      "standardShipping": "Livraison standard : 3 à 5 jours ouvrables"
+    },
+    "toasts": {
+      "updated": "Mis à jour",
+      "cartUpdated": "Panier mis à jour avec succès",
+      "removed": "Supprimé",
+      "itemRemoved": "Article supprimé du panier",
+      "cartCleared": "Panier vidé",
+      "allItemsRemoved": "Tous les articles ont été supprimés du panier",
+      "enterCode": "Entrer le code",
+      "enterCodeMessage": "Veuillez entrer un code de coupon",
+      "couponApplied": "Coupon appliqué",
+      "couponAppliedMessage": "Le coupon \"{code}\" a été appliqué avec succès",
+      "couponRemoved": "Coupon supprimé",
+      "couponRemovedMessage": "Le coupon \"{code}\" a été supprimé"
+    }
   }
 }

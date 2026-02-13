@@ -822,5 +822,76 @@
       "description": "Nasz zespół ekspertów jest gotowy pomóc Ci wybrać idealne czujniki i kontrolery do Twojego projektu automatyki budynkowej.",
       "button": "Skontaktuj się z działem handlowym"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Koszyk zakupów",
+      "description": "Przejrzyj swoją wózek i przejdź do kasy"
+    },
+    "header": {
+      "title": "Koszyk zakupów",
+      "continueShopping": "Kontynuuj zakupy"
+    },
+    "empty": {
+      "title": "Twój koszyk jest pusty",
+      "description": "Dodaj kilka produktów do koszyka, aby rozpocząć.",
+      "button": "Kontynuuj zakupy"
+    },
+    "items": {
+      "title": "Przedmioty w koszyku",
+      "clearCart": "Wyczyść koszyk",
+      "clearConfirm": "Czy na pewno chcesz wyczyścić koszyk?",
+      "noImage": "Brak obrazu",
+      "remove": "Usuń",
+      "priceEach": "{price} za sztukę"
+    },
+    "stock": {
+      "inStock": "W magazynie",
+      "outOfStock": "Brak w magazynie",
+      "onBackorder": "Na zamówienie",
+      "available": "{count} dostępnych"
+    },
+    "quantity": {
+      "decrease": "Zmniejsz ilość",
+      "increase": "Zwiększ ilość"
+    },
+    "summary": {
+      "title": "Podsumowanie zamówienia",
+      "subtotal": "Suma częściowa",
+      "discount": "Rabat",
+      "shipping": "Wysyłka",
+      "tax": "Podatek",
+      "total": "Razem",
+      "calculatedAtCheckout": "Obliczone w kasie",
+      "proceedToCheckout": "Przejdź do kasy",
+      "secureCheckout": "Bezpieczna kasa",
+      "sslEncrypted": "Szyfrowanie SSL 256-bit"
+    },
+    "coupon": {
+      "label": "Masz kod kuponu?",
+      "placeholder": "Wprowadź kod",
+      "apply": "Zastosuj",
+      "applying": "Stosowanie...",
+      "appliedCoupons": "Zastosowane kupony:",
+      "remove": "Usuń kupon"
+    },
+    "shipping": {
+      "freeShipping": "✓ Darmowa dostawa na zamówienia powyżej 500 $",
+      "standardShipping": "Standardowa wysyłka: 3-5 dni roboczych"
+    },
+    "toasts": {
+      "updated": "Zaktualizowano",
+      "cartUpdated": "Koszyk został zaktualizowany pomyślnie",
+      "removed": "Usunięto",
+      "itemRemoved": "Przedmiot usunięty z koszyka",
+      "cartCleared": "Koszyk wyczyszczony",
+      "allItemsRemoved": "Wszystkie przedmioty usunięte z koszyka",
+      "enterCode": "Wprowadź kod",
+      "enterCodeMessage": "Wprowadź kod kuponu",
+      "couponApplied": "Kupon zastosowany",
+      "couponAppliedMessage": "Kupon \"{code}\" został pomyślnie zastosowany",
+      "couponRemoved": "Kupon usunięty",
+      "couponRemovedMessage": "Kupon \"{code}\" został usunięty"
+    }
   }
 }

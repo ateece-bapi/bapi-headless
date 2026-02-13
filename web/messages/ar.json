@@ -637,5 +637,76 @@
       "description": "فريق خبرائنا جاهز لمساعدتك في اختيار أجهزة الاستشعار والوحدات التحكمية المثالية لمشروع أتمتة المبنى الخاص بك.",
       "button": "اتصل بالمبيعات"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "سلة التسوق",
+      "description": "راجع سلتك وانتقل إلى الدفع"
+    },
+    "header": {
+      "title": "سلة التسوق",
+      "continueShopping": "متابعة التسوق"
+    },
+    "empty": {
+      "title": "سلتك فارغة",
+      "description": "أضف بعض المنتجات إلى سلتك للبدء.",
+      "button": "متابعة التسوق"
+    },
+    "items": {
+      "title": "عناصر السلة",
+      "clearCart": "مسح السلة",
+      "clearConfirm": "هل أنت متأكد من أنك تريد مسح سلتك؟",
+      "noImage": "لا توجد صورة",
+      "remove": "إزالة",
+      "priceEach": "{price} لكل منها"
+    },
+    "stock": {
+      "inStock": "متوفر في المخزون",
+      "outOfStock": "غير متوفر في المخزون",
+      "onBackorder": "تحت الطلب",
+      "available": "متوفر {count}"
+    },
+    "quantity": {
+      "decrease": "خفض الكمية",
+      "increase": "زيادة الكمية"
+    },
+    "summary": {
+      "title": "ملخص الطلب",
+      "subtotal": "المجموع الفرعي",
+      "discount": "الخصم",
+      "shipping": "الشحن",
+      "tax": "الضريبة",
+      "total": "الإجمالي",
+      "calculatedAtCheckout": "يُحتسب عند الدفع",
+      "proceedToCheckout": "المتابعة إلى الدفع",
+      "secureCheckout": "الدفع الآمن",
+      "sslEncrypted": "تشفير SSL 256 بت"
+    },
+    "coupon": {
+      "label": "هل لديك رمز قسيمة؟",
+      "placeholder": "أدخل الرمز",
+      "apply": "تطبيق",
+      "applying": "جاري التطبيق...",
+      "appliedCoupons": "القسائم المطبقة:",
+      "remove": "إزالة القسيمة"
+    },
+    "shipping": {
+      "freeShipping": "✓ الشحن مجاني على الطلبات التي تزيد عن $500",
+      "standardShipping": "الشحن القياسي: 3-5 أيام عمل"
+    },
+    "toasts": {
+      "updated": "تم التحديث",
+      "cartUpdated": "تم تحديث السلة بنجاح",
+      "removed": "تمت الإزالة",
+      "itemRemoved": "تمت إزالة العنصر من السلة",
+      "cartCleared": "تم مسح السلة",
+      "allItemsRemoved": "تمت إزالة جميع العناصر من السلة",
+      "enterCode": "أدخل الرمز",
+      "enterCodeMessage": "الرجاء إدخال رمز قسيمة",
+      "couponApplied": "تم تطبيق القسيمة",
+      "couponAppliedMessage": "تم تطبيق القسيمة \"{code}\" بنجاح",
+      "couponRemoved": "تمت إزالة القسيمة",
+      "couponRemovedMessage": "تمت إزالة القسيمة \"{code}\""
+    }
   }
 }

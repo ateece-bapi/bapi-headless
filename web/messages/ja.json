@@ -608,5 +608,76 @@
       "description": "専門家チームが、ビルオートメーションプロジェクトに最適なセンサーとコントローラーをお選びします。",
       "button": "営業に問い合わせる"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "ショッピングカート",
+      "description": "カートを確認し、チェックアウトに進む"
+    },
+    "header": {
+      "title": "ショッピングカート",
+      "continueShopping": "買い物を続ける"
+    },
+    "empty": {
+      "title": "カートが空です",
+      "description": "商品をカートに追加して始めましょう。",
+      "button": "買い物を続ける"
+    },
+    "items": {
+      "title": "カート内の商品",
+      "clearCart": "カートを空にする",
+      "clearConfirm": "本当にカートを空にしますか?",
+      "noImage": "画像なし",
+      "remove": "削除",
+      "priceEach": "1つ {price}"
+    },
+    "stock": {
+      "inStock": "在庫あり",
+      "outOfStock": "在庫切れ",
+      "onBackorder": "バックオーダー中",
+      "available": "{count}個利用可能"
+    },
+    "quantity": {
+      "decrease": "数量を減らす",
+      "increase": "数量を増やす"
+    },
+    "summary": {
+      "title": "注文サマリー",
+      "subtotal": "小計",
+      "discount": "割引",
+      "shipping": "配送料",
+      "tax": "税金",
+      "total": "合計",
+      "calculatedAtCheckout": "チェックアウト時に計算",
+      "proceedToCheckout": "チェックアウトに進む",
+      "secureCheckout": "セキュアなチェックアウト",
+      "sslEncrypted": "256ビットSSL暗号化"
+    },
+    "coupon": {
+      "label": "クーポンコードをお持ちですか?",
+      "placeholder": "コードを入力",
+      "apply": "適用",
+      "applying": "適用中...",
+      "appliedCoupons": "適用されたクーポン:",
+      "remove": "クーポンを削除"
+    },
+    "shipping": {
+      "freeShipping": "✓ 500ドル以上の注文で送料無料",
+      "standardShipping": "標準配送: 3-5営業日"
+    },
+    "toasts": {
+      "updated": "更新された",
+      "cartUpdated": "カートが正常に更新されました",
+      "removed": "削除された",
+      "itemRemoved": "商品がカートから削除されました",
+      "cartCleared": "カートが空になりました",
+      "allItemsRemoved": "すべての商品がカートから削除されました",
+      "enterCode": "コードを入力",
+      "enterCodeMessage": "クーポンコードを入力してください",
+      "couponApplied": "クーポンが適用された",
+      "couponAppliedMessage": "クーポン \"{code}\" が正常に適用されました",
+      "couponRemoved": "クーポンが削除された",
+      "couponRemovedMessage": "クーポン \"{code}\" が削除されました"
+    }
   }
 }

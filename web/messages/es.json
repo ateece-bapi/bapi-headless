@@ -608,5 +608,76 @@
       "description": "Nuestro equipo de expertos está listo para ayudarte a seleccionar los sensores y controladores perfectos para tu proyecto de automatización de edificios.",
       "button": "Contactar ventas"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Carrito de Compras",
+      "description": "Revise su carrito y proceda al pago"
+    },
+    "header": {
+      "title": "Carrito de Compras",
+      "continueShopping": "Seguir Comprando"
+    },
+    "empty": {
+      "title": "Su Carrito está Vacío",
+      "description": "Agregue algunos productos a su carrito para empezar.",
+      "button": "Seguir Comprando"
+    },
+    "items": {
+      "title": "Artículos en el Carrito",
+      "clearCart": "Vaciar Carrito",
+      "clearConfirm": "¿Está seguro de que desea vaciar su carrito?",
+      "noImage": "Sin Imagen",
+      "remove": "Eliminar",
+      "priceEach": "{price} cada uno"
+    },
+    "stock": {
+      "inStock": "En Stock",
+      "outOfStock": "Sin Stock",
+      "onBackorder": "En Backorder",
+      "available": "{count} disponibles"
+    },
+    "quantity": {
+      "decrease": "Disminuir cantidad",
+      "increase": "Aumentar cantidad"
+    },
+    "summary": {
+      "title": "Resumen del Pedido",
+      "subtotal": "Subtotal",
+      "discount": "Descuento",
+      "shipping": "Envío",
+      "tax": "Impuesto",
+      "total": "Total",
+      "calculatedAtCheckout": "Calculado al momento del pago",
+      "proceedToCheckout": "Proceder al Pago",
+      "secureCheckout": "Pago Seguro",
+      "sslEncrypted": "Encriptado con SSL de 256 bits"
+    },
+    "coupon": {
+      "label": "¿Tiene un código de cupón?",
+      "placeholder": "Ingresar código",
+      "apply": "Aplicar",
+      "applying": "Aplicando...",
+      "appliedCoupons": "Cupones Aplicados:",
+      "remove": "Eliminar cupón"
+    },
+    "shipping": {
+      "freeShipping": "✓ Envío gratis en pedidos superiores a $500",
+      "standardShipping": "Envío estándar: 3-5 días hábiles"
+    },
+    "toasts": {
+      "updated": "Actualizado",
+      "cartUpdated": "Carrito actualizado correctamente",
+      "removed": "Eliminado",
+      "itemRemoved": "Artículo eliminado del carrito",
+      "cartCleared": "Carrito Vacío",
+      "allItemsRemoved": "Todos los artículos eliminados del carrito",
+      "enterCode": "Ingresar Código",
+      "enterCodeMessage": "Por favor, ingrese un código de cupón",
+      "couponApplied": "Cupón Aplicado",
+      "couponAppliedMessage": "Cupón \"{code}\" aplicado correctamente",
+      "couponRemoved": "Cupón Eliminado",
+      "couponRemovedMessage": "Cupón \"{code}\" eliminado"
+    }
   }
 }

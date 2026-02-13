@@ -592,5 +592,76 @@
       "description": "ทีมผู้เชี่ยวชาญของเราพร้อมให้ความช่วยเหลือในการเลือกเซ็นเซอร์และตัวควบคุมที่สมบูรณ์แบบสำหรับโครงการระบบอัตโนมัติอาคารของคุณ",
       "button": "ติดต่อฝ่ายขาย"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "ตะกร้าสินค้า",
+      "description": "ตรวจสอบตะกร้าของคุณและดำเนินการชำระเงิน"
+    },
+    "header": {
+      "title": "ตะกร้าสินค้า",
+      "continueShopping": "ดำเนินการช้อปปิ้งต่อ"
+    },
+    "empty": {
+      "title": "ตะกร้าของคุณว่างเปล่า",
+      "description": "เพิ่มสินค้าบางอย่างลงในตะกร้าของคุณเพื่อเริ่มต้น",
+      "button": "ดำเนินการช้อปปิ้งต่อ"
+    },
+    "items": {
+      "title": "สินค้าในตะกร้า",
+      "clearCart": "ล้างตะกร้า",
+      "clearConfirm": "คุณแน่ใจหรือไม่ที่ต้องการล้างตะกร้าของคุณ?",
+      "noImage": "ไม่มีรูปภาพ",
+      "remove": "ลบ",
+      "priceEach": "{price} ต่อหน่วย"
+    },
+    "stock": {
+      "inStock": "มีสินค้าในสต็อก",
+      "outOfStock": "หมดสต็อก",
+      "onBackorder": "สินค้ารอจัดส่ง",
+      "available": "มี {count} หน่วยให้เลือก"
+    },
+    "quantity": {
+      "decrease": "ลดจำนวน",
+      "increase": "เพิ่มจำนวน"
+    },
+    "summary": {
+      "title": "สรุปคำสั่งซื้อ",
+      "subtotal": "ยอดรวม",
+      "discount": "ส่วนลด",
+      "shipping": "ค่าจัดส่ง",
+      "tax": "ภาษี",
+      "total": "ยอดรวมสุทธิ",
+      "calculatedAtCheckout": "คำนวณเมื่อชำระเงิน",
+      "proceedToCheckout": "ดำเนินการชำระเงิน",
+      "secureCheckout": "ชำระเงินอย่างปลอดภัย",
+      "sslEncrypted": "การเข้ารหัส SSL 256 บิต"
+    },
+    "coupon": {
+      "label": "คุณมีรหัสคูปองหรือไม่?",
+      "placeholder": "ป้อนรหัส",
+      "apply": "ใช้",
+      "applying": "กำลังใช้...",
+      "appliedCoupons": "คูปองที่ใช้:",
+      "remove": "ลบคูปอง"
+    },
+    "shipping": {
+      "freeShipping": "✓ จัดส่งฟรีสำหรับคำสั่งซื้อเกิน $500",
+      "standardShipping": "จัดส่งมาตรฐาน: 3-5 วันทำการ"
+    },
+    "toasts": {
+      "updated": "อัปเดตแล้ว",
+      "cartUpdated": "ตะกร้าอัปเดตเรียบร้อยแล้ว",
+      "removed": "ลบแล้ว",
+      "itemRemoved": "ลบสินค้าออกจากตะกร้าแล้ว",
+      "cartCleared": "ล้างตะกร้าแล้ว",
+      "allItemsRemoved": "ลบสินค้าทั้งหมดออกจากตะกร้าแล้ว",
+      "enterCode": "ป้อนรหัส",
+      "enterCodeMessage": "กรุณาป้อนรหัสคูปอง",
+      "couponApplied": "คูปองใช้แล้ว",
+      "couponAppliedMessage": "คูปอน \"{code}\" ใช้เรียบร้อยแล้ว",
+      "couponRemoved": "ลบคูปองแล้ว",
+      "couponRemovedMessage": "ลบคูปอน \"{code}\" แล้ว"
+    }
   }
 }

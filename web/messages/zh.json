@@ -608,5 +608,76 @@
       "description": "我们的专家团队随时准备帮助您为您的建筑自动化项目选择合适的传感器和控制器。",
       "button": "联系销售"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "购物车",
+      "description": "查看您的购物车并继续结账"
+    },
+    "header": {
+      "title": "购物车",
+      "continueShopping": "继续购物"
+    },
+    "empty": {
+      "title": "您的购物车是空的",
+      "description": "添加一些产品到您的购物车开始购物。",
+      "button": "继续购物"
+    },
+    "items": {
+      "title": "购物车商品",
+      "clearCart": "清空购物车",
+      "clearConfirm": "您确定要清空您的购物车吗？",
+      "noImage": "无图像",
+      "remove": "删除",
+      "priceEach": "每件 {price}"
+    },
+    "stock": {
+      "inStock": "有货",
+      "outOfStock": "缺货",
+      "onBackorder": "待补货",
+      "available": "还有 {count} 件"
+    },
+    "quantity": {
+      "decrease": "减少数量",
+      "increase": "增加数量"
+    },
+    "summary": {
+      "title": "订单总结",
+      "subtotal": "小计",
+      "discount": "折扣",
+      "shipping": "运费",
+      "tax": "税费",
+      "total": "总计",
+      "calculatedAtCheckout": "将在结账时计算",
+      "proceedToCheckout": "继续结账",
+      "secureCheckout": "安全结账",
+      "sslEncrypted": "256位 SSL 加密"
+    },
+    "coupon": {
+      "label": "有优惠码吗？",
+      "placeholder": "输入优惠码",
+      "apply": "应用",
+      "applying": "应用中...",
+      "appliedCoupons": "已应用优惠券:",
+      "remove": "删除优惠券"
+    },
+    "shipping": {
+      "freeShipping": "✓ 订单满$500免运费",
+      "standardShipping": "标准运输: 3-5 个工作日"
+    },
+    "toasts": {
+      "updated": "已更新",
+      "cartUpdated": "购物车更新成功",
+      "removed": "已删除",
+      "itemRemoved": "商品已从购物车删除",
+      "cartCleared": "购物车已清空",
+      "allItemsRemoved": "所有商品已从购物车删除",
+      "enterCode": "输入优惠码",
+      "enterCodeMessage": "请输入优惠码",
+      "couponApplied": "优惠券已应用",
+      "couponAppliedMessage": "优惠券 \"{code}\" 应用成功",
+      "couponRemoved": "优惠券已删除",
+      "couponRemovedMessage": "优惠券 \"{code}\" 已删除"
+    }
   }
 }

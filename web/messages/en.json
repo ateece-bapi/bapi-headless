@@ -825,5 +825,76 @@
       "description": "Our team of experts is ready to help you select the perfect sensors and controllers for your building automation project.",
       "button": "Contact Sales"
     }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Shopping Cart",
+      "description": "Review your cart and proceed to checkout"
+    },
+    "header": {
+      "title": "Shopping Cart",
+      "continueShopping": "Continue Shopping"
+    },
+    "empty": {
+      "title": "Your Cart is Empty",
+      "description": "Add some products to your cart to get started.",
+      "button": "Continue Shopping"
+    },
+    "items": {
+      "title": "Cart Items",
+      "clearCart": "Clear Cart",
+      "clearConfirm": "Are you sure you want to clear your cart?",
+      "noImage": "No Image",
+      "remove": "Remove",
+      "priceEach": "{price} each"
+    },
+    "stock": {
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock",
+      "onBackorder": "On Backorder",
+      "available": "{count} available"
+    },
+    "quantity": {
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total",
+      "calculatedAtCheckout": "Calculated at checkout",
+      "proceedToCheckout": "Proceed to Checkout",
+      "secureCheckout": "Secure Checkout",
+      "sslEncrypted": "256-bit SSL encrypted"
+    },
+    "coupon": {
+      "label": "Have a coupon code?",
+      "placeholder": "Enter code",
+      "apply": "Apply",
+      "applying": "Applying...",
+      "appliedCoupons": "Applied Coupons:",
+      "remove": "Remove coupon"
+    },
+    "shipping": {
+      "freeShipping": "✓ Free shipping on orders over $500",
+      "standardShipping": "Standard shipping: 3-5 business days"
+    },
+    "toasts": {
+      "updated": "Updated",
+      "cartUpdated": "Cart updated successfully",
+      "removed": "Removed",
+      "itemRemoved": "Item removed from cart",
+      "cartCleared": "Cart Cleared",
+      "allItemsRemoved": "All items removed from cart",
+      "enterCode": "Enter Code",
+      "enterCodeMessage": "Please enter a coupon code",
+      "couponApplied": "Coupon Applied",
+      "couponAppliedMessage": "Coupon \"{code}\" applied successfully",
+      "couponRemoved": "Coupon Removed",
+      "couponRemovedMessage": "Coupon \"{code}\" removed"
+    }
   }
 }

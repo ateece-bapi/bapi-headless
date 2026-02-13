@@ -127,8 +127,11 @@ export async function GET(request: NextRequest) {
       language,
       timestamp: new Date().toISOString(),
     });
-  } catch {
+  } catch (error) {
     // Fallback to US if detection fails
+    // Log error for monitoring but don't expose details to client
+    console.error('Region detection error:', error);
+    
     return NextResponse.json({
       detected: false,
       country: 'US',

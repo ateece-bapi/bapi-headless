@@ -3,9 +3,14 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@/test/i18n-test-utils';
 import CheckoutWizard from '../CheckoutWizard';
 import type { CheckoutData } from '../CheckoutPageClient';
+
+// Mock next/navigation
+vi.mock('next/navigation', () => ({
+  useParams: () => ({ locale: 'en' }),
+}));
 
 // Mock the step components
 vi.mock('../steps/ShippingStep', () => ({

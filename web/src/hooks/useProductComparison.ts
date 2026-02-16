@@ -17,30 +17,28 @@ const MAX_COMPARE = 3;
  * - Type-safe with Product type
  */
 export function useProductComparison() {
-  const [comparisonProducts, setComparisonProducts] = useState<Product[]>([]);
-  const [isClient, setIsClient] = useState(false);
-
-  // Load from localStorage on mount
-  useEffect(() => {
-    setIsClient(true);
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        setComparisonProducts(parsed);
-      } catch (error) {
-        logger.error('Failed to parse comparison products', error);
-        localStorage.removeItem(STORAGE_KEY);
+  // Initialize from localStorage using lazy initial state
+  const [comparisonProducts, setComparisonProducts] = useState<Product[]>(() => {
+    if (typeof window === 'undefined') return [];
+    
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        return JSON.parse(stored);
       }
+    } catch (error) {
+      logger.error('Failed to parse comparison products', error);
+      localStorage.removeItem(STORAGE_KEY);
     }
-  }, []);
+    return [];
+  });
 
-  // Save to localStorage when comparison changes
+  // Save to localStorage when comparison changes (client-side only)
   useEffect(() => {
-    if (isClient) {
+    if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(comparisonProducts));
     }
-  }, [comparisonProducts, isClient]);
+  }, [comparisonProducts]);
 
   const addToComparison = (product: Product) => {
     setComparisonProducts((prev) => {

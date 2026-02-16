@@ -2,7 +2,17 @@
 
 import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';
+import Link from 'next/link';
 
+/**
+ * Global error boundary - catches unhandled errors throughout the application
+ * Logs to Sentry and provides user recovery options
+ * 
+ * @param {Object} props - Component props
+ * @param {Error & { digest?: string }} props.error - The error that was thrown
+ * @param {() => void} props.reset - Function to attempt recovery by re-rendering the error boundary
+ * @returns {JSX.Element} Error UI with recovery options
+ */
 export default function GlobalError({
   error,
   reset,
@@ -11,16 +21,18 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
+    // Log to Sentry for all unhandled errors
     Sentry.captureException(error);
   }, [error]);
+
   return (
     <html>
       <body>
         <div className="flex min-h-screen items-center justify-center bg-neutral-50 px-6">
           <div className="max-w-md text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-50">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-error-50">
               <svg
-                className="h-8 w-8 text-primary-600"
+                className="h-8 w-8 text-error-600"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -34,28 +46,34 @@ export default function GlobalError({
               </svg>
             </div>
 
-            <h2 className="mb-3 text-2xl font-bold text-neutral-900">Critical Error</h2>
+            <h2 className="mb-3 text-2xl font-bold text-neutral-900">
+              Application Error
+            </h2>
 
-            <p className="mb-6 text-base text-neutral-700">
-              A critical error occurred in the application. Please refresh the page or contact
-              support if the issue persists.
+            <p className="mb-6 text-base text-neutral-600">
+              A critical error occurred. Our team has been notified and is working on a fix.
             </p>
 
             <div className="flex flex-col justify-center gap-3 sm:flex-row">
               <button
                 onClick={reset}
-                className="error-btn-primary rounded-lg px-6 py-3 font-semibold"
+                className="rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
               >
                 Try again
               </button>
 
-              <a href="/" className="error-btn-secondary rounded-lg border px-6 py-3 font-semibold">
+              <Link
+                href="/"
+                className="rounded-lg border border-neutral-300 bg-white px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500 hover:bg-primary-50"
+              >
                 Go to homepage
-              </a>
+              </Link>
             </div>
 
             {error.digest && (
-              <p className="mt-6 text-xs text-neutral-400">Error ID: {error.digest}</p>
+              <p className="mt-6 text-xs text-neutral-400">
+                Error ID: {error.digest}
+              </p>
             )}
           </div>
         </div>

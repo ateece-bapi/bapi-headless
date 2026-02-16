@@ -1,8 +1,18 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 import logger from '@/lib/logger';
 
+/**
+ * Products page error boundary - handles errors loading product catalog
+ * Logs to monitoring and provides user recovery options with support contact
+ * 
+ * @param {Object} props - Component props
+ * @param {Error & { digest?: string }} props.error - The error that was thrown
+ * @param {() => void} props.reset - Function to retry loading products
+ * @returns {JSX.Element} Products error UI with retry and contact options
+ */
 export default function ProductsErrorBoundary({
   error,
   reset,
@@ -41,29 +51,35 @@ export default function ProductsErrorBoundary({
         <h2 className="mb-3 text-2xl font-bold text-neutral-900">Unable to load products</h2>
 
         <p className="mb-6 text-base text-neutral-600">
-          We're having trouble loading our product catalog. This could be a temporary issue with our
+          We&apos;re having trouble loading our product catalog. This could be a temporary issue with our
           systems.
         </p>
 
         <div className="flex flex-col justify-center gap-3 sm:flex-row">
-          <button onClick={reset} className="error-btn-primary rounded-lg px-6 py-3 font-semibold">
+          <button
+            onClick={reset}
+            className="rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+          >
             Retry loading
           </button>
 
-          <a href="/" className="error-btn-secondary rounded-lg border px-6 py-3 font-semibold">
+          <Link
+            href="/"
+            className="rounded-lg border border-neutral-300 bg-white px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500 hover:bg-primary-50"
+          >
             Back to home
-          </a>
+          </Link>
         </div>
 
         <div className="mt-8 rounded-lg border-l-4 border-primary-500 bg-primary-50 p-4 text-left text-sm">
           <p className="mb-1 font-semibold text-primary-900">Need help right away?</p>
           <p className="text-primary-700">
             Contact our team:{' '}
-            <a href="tel:6087354800" className="underline">
+            <a href="tel:6087354800" className="underline hover:text-primary-800">
               (608) 735-4800
             </a>{' '}
             or{' '}
-            <a href="mailto:sales@bapihvac.com" className="underline">
+            <a href="mailto:sales@bapihvac.com" className="underline hover:text-primary-800">
               sales@bapihvac.com
             </a>
           </p>

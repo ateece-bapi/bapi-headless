@@ -2,8 +2,17 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { AlertTriangle, ArrowLeft, RefreshCw } from 'lucide-react';
 import logger from '@/lib/logger';
+
+/**
+ * Quotes page error boundary - handles errors loading quote requests
+ * Logs to monitoring and provides user recovery options
+ * 
+ * @param {Object} props - Component props
+ * @param {Error & { digest?: string }} props.error - The error that was thrown
+ * @param {() => void} props.reset - Function to retry loading quotes
+ * @returns {JSX.Element} Quotes error UI with retry and navigation options
+ */
 export default function QuotesError({
   error,
   reset,
@@ -12,84 +21,73 @@ export default function QuotesError({
   reset: () => void;
 }) {
   useEffect(() => {
-    logger.error('Quotes Page Error', error);
+    // Log error to monitoring service
+    logger.error('account.quotes.error_boundary', {
+      message: error.message,
+      stack: error.stack,
+      digest: error.digest,
+    });
   }, [error]);
 
   return (
-    <main className="min-h-screen bg-neutral-50">
-      {/* Header */}
-      <section className="w-full border-b border-neutral-200 bg-white">
-        <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
+    <div className="flex min-h-[60vh] items-center justify-center bg-neutral-50 px-6">
+      <div className="max-w-lg text-center">
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary-50">
+          <svg
+            className="h-10 w-10 text-primary-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            />
+          </svg>
+        </div>
+
+        <h2 className="mb-3 text-2xl font-bold text-neutral-900">
+          Unable to load quotes
+        </h2>
+
+        <p className="mb-6 text-base text-neutral-600">
+          We couldn&apos;t retrieve your quote requests. This might be a temporary issue.
+        </p>
+
+        <div className="flex flex-col justify-center gap-3 sm:flex-row">
+          <button
+            onClick={reset}
+            className="rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+          >
+            Try again
+          </button>
+
           <Link
             href="/account"
-            className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
+            className="rounded-lg border border-neutral-300 bg-white px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500 hover:bg-primary-50"
           >
-            <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-            Back to Dashboard
+            Back to account
           </Link>
-          <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">Quote Requests</h1>
         </div>
-      </section>
 
-      {/* Error Content */}
-      <section className="w-full py-16">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="mx-auto max-w-2xl">
-            <div className="rounded-xl border border-red-200 bg-white p-12 text-center shadow-sm">
-              <div className="mb-6 flex justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
-                  <AlertTriangle className="h-10 w-10 text-red-600" strokeWidth={2} />
-                </div>
-              </div>
-
-              <h2 className="mb-3 text-2xl font-bold text-neutral-900">Unable to Load Quotes</h2>
-
-              <p className="mb-2 text-neutral-600">
-                We couldn&apos;t retrieve your quote requests. This might be a temporary issue.
-              </p>
-
-              {process.env.NODE_ENV === 'development' && (
-                <details className="mb-6 mt-4 text-left">
-                  <summary className="cursor-pointer text-sm text-neutral-500 hover:text-neutral-700">
-                    Error details (development only)
-                  </summary>
-                  <pre className="mt-2 overflow-auto rounded bg-neutral-50 p-4 text-xs text-red-600">
-                    {error.message}
-                  </pre>
-                </details>
-              )}
-
-              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                <button
-                  onClick={reset}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-700 hover:shadow-lg"
-                >
-                  <RefreshCw className="h-4 w-4" strokeWidth={2.5} />
-                  Try Again
-                </button>
-
-                <Link
-                  href="/account"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-neutral-300 px-6 py-3 font-semibold text-neutral-700 transition-colors hover:bg-neutral-50"
-                >
-                  <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-                  Back to Dashboard
-                </Link>
-              </div>
-
-              <p className="mt-8 text-sm text-neutral-500">
-                If this problem persists, please{' '}
-                <Link
-                  href="/company/contact"
-                  className="font-semibold text-primary-600 hover:text-primary-700"
-                >
-                  contact support
-                </Link>
-              </p>
-            </div>
-          </div>
+        <div className="mt-8 rounded-lg border-l-4 border-primary-500 bg-primary-50 p-4 text-left text-sm">
+          <p className="mb-1 font-semibold text-primary-900">Need help?</p>
+          <p className="text-primary-700">
+            Contact our team:{' '}
+            <a href="tel:6087354800" className="underline hover:text-primary-800">
+              (608) 735-4800
+            </a>{' '}
+            or{' '}
+            <a href="mailto:sales@bapihvac.com" className="underline hover:text-primary-800">
+              sales@bapihvac.com
+            </a>
+          </p>
         </div>
-      </section>
-    </main>
+
+        {error.digest && <p className="mt-6 text-xs text-neutral-400">Error ID: {error.digest}</p>}
+      </div>
+    </div>
   );
 }

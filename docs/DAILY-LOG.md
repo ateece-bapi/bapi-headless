@@ -7,6 +7,63 @@
 
 ---
 
+## February 16, 2026 - Build Fixes & Phase 1 Copilot Review 🔍
+
+### Build Error Resolution - **COMPLETE** ✅
+
+**Branch:** `feat/consistent-header-hover-states` (merged to `main`)  
+**Goal:** Fix production build errors blocking Phase 1 development  
+**Time Actual:** 3 hours (build fixes + PR review + merge)
+
+**Context:** Production build failing with TypeScript compilation errors in header components and ProductHero. Required immediate resolution to continue Phase 1 development work.
+
+---
+
+#### Build Fixes Implemented
+
+**1. MobileRegionLanguageSelector Export Pattern**
+- ❌ **Problem**: Component used default export but `index.ts` imported as named export
+- ✅ **Solution**: Changed to named export pattern for consistency
+- File: `web/src/components/layout/Header/components/MobileRegionLanguageSelector.tsx`
+- Added JSDoc documentation for ESLint compliance
+
+**2. RegionSelector Toast API**
+- ❌ **Problem**: Using incorrect toast API signature (5 parameters instead of 4)
+- ✅ **Solution**: Switched to Sonner direct API with options object
+```typescript
+// Before: showToast('info', 'Language Suggestion', message, 7000, { action })
+// After: toast.info(message, { duration: 7000, action })
+```
+- File: `web/src/components/layout/Header/components/RegionSelector.tsx`
+- Applied semantic color tokens: `text-neutral-500/700`, `hover:bg-neutral-50`
+
+**3. ProductHero Image Optimization**
+- ❌ **Problem**: Using native `<img>` tag (slower LCP, ESLint warning)
+- ✅ **Solution**: Replaced with Next.js `<Image />` component
+- Performance wins:
+  - Automatic WebP/AVIF conversion
+  - Responsive srcset generation
+  - Priority loading for hero image
+  - Lazy loading for thumbnails
+- Added proper image sizing: `fill`, `sizes="(max-width: 768px) 100vw, 288px"`
+- File: `web/src/components/products/ProductPage/ProductHero.tsx`
+
+**4. ImageModal Props Fix**
+- ❌ **Problem**: Props mismatch (`imageSrc/imageAlt` vs `src/alt`)
+- ✅ **Solution**: Updated all ImageModal consumers to use correct prop names
+- Files: 
+  - `web/src/components/products/ProductPage/ProductHero.tsx`
+  - `web/src/components/ui/ImageModal.stories.tsx`
+- Follows Next.js Image component conventions
+
+**5. Storybook Integration**
+- ❌ **Problem**: Stories using `@storybook/react` instead of framework package
+- ✅ **Solution**: Installed `@storybook/nextjs` for proper Next.js integration
+- Enables Next.js-specific features: Image optimization, routing, API mocking
+- File: `web/src/components/ui/ImageModal.stories.tsx`
+
+---
+
 ## February 13, 2026 (Afternoon) — Test Infrastructure i18n Fixes
 
 **Branch:** `test/fix-product-component-i18n` → `main` (merged)  

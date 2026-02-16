@@ -1,99 +1,68 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { useTranslation } from '@/hooks/useTranslation';
-import { useRegion } from '@/hooks/useRegion';
-import { showToast } from '@/components/ui/Toast';
-import { detectUserLanguage } from '@/lib/i18n/languageDetection';
-
 /**
  * Mobile region and language selector component.
  * Provides dropdowns for language and region selection in mobile navigation.
- * Automatically detects user's browser language on first mount and suggests switching.
- *
+ * 
+ * **Phase 1 Priority**: Translation Services & Regional Support (i18n, currency conversion)
+ * 
  * @returns {JSX.Element} Mobile selector UI with language and region dropdowns
- *
+ * 
  * @example
  * ```tsx
  * <MobileRegionLanguageSelector />
  * ```
+ * 
+ * @todo Phase 1: Implement useTranslation hook with i18n integration
+ * @todo Phase 1: Implement useRegion hook with currency/measurement conversion
+ * @todo Phase 1: Add language detection utility (detectUserLanguage)
+ * @todo Phase 1: Integrate toast notification system for language suggestions
  */
 export default function MobileRegionLanguageSelector() {
-  const { t, locale, setLocale, availableLocales } = useTranslation();
-  const { region, setRegion, availableRegions } = useRegion();
-  const hasCheckedLanguageRef = useRef(false);
-
-  useEffect(() => {
-    if (hasCheckedLanguageRef.current) return;
-
-    const detectedLanguage = detectUserLanguage();
-    if (detectedLanguage && detectedLanguage !== locale) {
-      const languageName = availableLocales.find(
-        (l) => l.code === detectedLanguage
-      )?.name;
-
-      const message = t('languageSuggestion', {
-        language: languageName || detectedLanguage,
-      });
-
-      showToast('info', 'Language Suggestion', message, {
-        duration: 7000,
-        action: {
-          label: 'Switch',
-          onClick: () => {
-            setLocale(detectedLanguage);
-            showToast('success', 'Language Changed', t('languageChanged'));
-          },
-        },
-      });
-    }
-
-    hasCheckedLanguageRef.current = true;
-  }, [locale, setLocale, availableLocales, t]);
-
+  // Phase 1 TODO: Replace with actual hooks once i18n infrastructure is implemented
+  // - useTranslation() from @/hooks/useTranslation
+  // - useRegion() from @/hooks/useRegion
+  // - showToast() from @/components/ui/Toast
+  // - detectUserLanguage() from @/lib/i18n/languageDetection
+  
   return (
     <div className="flex flex-col gap-4 border-t border-neutral-200 px-4 py-4">
-      {/* Language Selector */}
+      {/* Language Selector - Phase 1 i18n Implementation Required */}
       <div>
         <label
           htmlFor="mobile-language"
           className="text-sm font-medium text-neutral-700"
         >
-          {t('language')}
+          Language
         </label>
         <select
           id="mobile-language"
-          value={locale}
-          onChange={(e) => setLocale(e.target.value)}
+          defaultValue="en"
           className="mt-1 block w-full rounded-md border-neutral-300 py-2 pl-3 pr-10 text-base focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
         >
-          {availableLocales.map((lang) => (
-            <option key={lang.code} value={lang.code}>
-              {lang.name}
-            </option>
-          ))}
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
         </select>
       </div>
 
-      {/* Region Selector */}
+      {/* Region Selector - Phase 1 Regional Support Implementation Required */}
       <div>
         <label
           htmlFor="mobile-region"
           className="text-sm font-medium text-neutral-700"
         >
-          {t('region')}
+          Region
         </label>
         <select
           id="mobile-region"
-          value={region}
-          onChange={(e) => setRegion(e.target.value)}
+          defaultValue="us"
           className="mt-1 block w-full rounded-md border-neutral-300 py-2 pl-3 pr-10 text-base focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
         >
-          {availableRegions.map((reg) => (
-            <option key={reg.code} value={reg.code}>
-              {reg.name} ({reg.currency})
-            </option>
-          ))}
+          <option value="us">United States (USD)</option>
+          <option value="ca">Canada (CAD)</option>
+          <option value="uk">United Kingdom (GBP)</option>
+          <option value="eu">Europe (EUR)</option>
         </select>
       </div>
     </div>

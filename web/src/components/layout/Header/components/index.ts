@@ -1,12 +1,11 @@
 export { default as Navigation } from './Navigation';
-export { default as MobileMenu } from './MobileMenu';
-export { default as CartButton } from './CartButton';
-export { default as MobileMenuButton } from './MobileMenuButton';
 export { default as MegaMenu } from './MegaMenu';
-export { default as MegaMenuItemComponent } from './MegaMenuItem';
+export { default as MobileMenu } from './MobileMenu';
+export { default as MobileMenuButton } from './MobileMenuButton';
+export { default as CartButton } from './CartButton';
 export { default as SignInButton } from './SignInButton';
 export { default as RegionSelector } from './RegionSelector';
 export { LanguageSelector } from './LanguageSelector';
-export { MobileRegionLanguageSelector } from './MobileRegionLanguageSelector';
+export { default as MobileRegionLanguageSelector } from './MobileRegionLanguageSelector';
 export { default as SearchButton } from './SearchButton';
 export { default as Logo } from './Logo';

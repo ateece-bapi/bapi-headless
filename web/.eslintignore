@@ -1,0 +1,18 @@
+# Build outputs
+.next/
+out/
+dist/
+build/
+storybook-static/
+
+# Dependencies
+node_modules/
+
+# Test coverage
+coverage/
+
+# Cache
+.eslintcache
+
+# Environment files
+.env*.local

@@ -1,3 +1,5 @@
+import typography from '@tailwindcss/typography';
+
 /**
  * Tailwind CSS v4 Configuration
  * 
@@ -9,7 +11,7 @@
  * 
  * @type {import('tailwindcss').Config}
  */
-module.exports = {
+const config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -26,10 +28,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-roboto)', 'system-ui', 'sans-serif'],
+      },
       typography: {
         DEFAULT: {
           css: {
-            color: '#282829', // neutral-900
+            color: '#282829',
+            fontFamily: 'var(--font-roboto), system-ui, sans-serif',
             p: {
               color: '#282829',
             },
@@ -43,7 +49,7 @@ module.exports = {
               color: '#282829',
             },
             blockquote: {
-              color: '#434445', // neutral-800
+              color: '#434445',
             },
             h1: {
               color: '#282829',
@@ -132,7 +138,7 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [typography],
 };
+
+export default config;

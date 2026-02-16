@@ -3,12 +3,19 @@
 /**
  * Translate homepage section from en.json to all 9 languages
  * Uses Claude API (Haiku model) for cost-effective translations
+ * 
+ * @requires ANTHROPIC_API_KEY environment variable
  */
 
-require('dotenv').config();
-const fs = require('fs');
-const path = require('path');
-const Anthropic = require('@anthropic-ai/sdk');
+import 'dotenv/config';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import Anthropic from '@anthropic-ai/sdk';
+
+// ES modules don't have __dirname, so create it
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -26,82 +33,91 @@ const languages = [
   { code: 'pl', name: 'Polish' },
 ];
 
+/**
+ * Translates the homepage section for a specific language
+ * @param {string} targetLang - Target language code (e.g., 'de', 'fr')
+ * @param {string} targetLangName - Target language name (e.g., 'German', 'French')
+ * @returns {Promise<void>}
+ */
 async function translateHomeSection(targetLang, targetLangName) {
   const enJsonPath = path.join(__dirname, '../messages/en.json');
+  const targetJsonPath = path.join(__dirname, `../messages/${targetLang}.json`);
+
+  console.log(`\n🔄 Translating homepage for ${targetLangName} (${targetLang})...`);
+
+  // Read source and target files
   const enData = JSON.parse(fs.readFileSync(enJsonPath, 'utf8'));
-  
-  const homeSection = enData.home;
+  const targetData = JSON.parse(fs.readFileSync(targetJsonPath, 'utf8'));
 
-  const prompt = `Translate this JSON structure from English to ${targetLangName}.
-Preserve all JSON keys exactly as they are. Only translate the values.
-Maintain the same structure and formatting.
+  if (!enData.home) {
+    console.error('❌ No home section found in en.json');
+    return;
+  }
 
-English JSON:
-${JSON.stringify(homeSection, null, 2)}
+  // Prepare translation prompt
+  const homeJson = JSON.stringify(enData.home, null, 2);
+  const prompt = `Translate this JSON object from English to ${targetLangName}. 
+Preserve all JSON structure, keys, and formatting. Only translate the string values.
+For technical terms (product names, units like "PSI", "CFM"), keep them in English.
 
-Return ONLY the translated JSON, nothing else.`;
+${homeJson}
+
+Return ONLY the translated JSON object, no explanations.`;
 
   try {
     const message = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',
-      max_tokens: 4096, // Increased from 2048 to handle larger translation payloads
-      messages: [{
-        role: 'user',
-        content: prompt
-      }]
+      max_tokens: 4096,
+      messages: [
+        {
+          role: 'user',
+          content: prompt,
+        },
+      ],
     });
 
-    let translatedText = message.content[0].text.trim();
+    // Extract JSON from response
+    const responseText = message.content[0].text;
+    const jsonMatch = responseText.match(/\{[\s\S]*\}/);
     
-    // Remove markdown code blocks if present
-    translatedText = translatedText.replace(/^```json\s*\n?/gm, '');
-    translatedText = translatedText.replace(/^```\s*\n?/gm, '');
-    translatedText = translatedText.trim();
-
-    return JSON.parse(translatedText);
-  } catch (error) {
-    console.error(`Error translating to ${targetLangName}:`, error.message);
-    throw error;
-  }
-}
-
-async function updateLanguageFile(langCode, translatedHome) {
-  const filePath = path.join(__dirname, `../messages/${langCode}.json`);
-  const existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  
-  // Add or update home section
-  existingData.home = translatedHome;
-  
-  fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2) + '\n');
-  console.log(`✅ Updated ${langCode}.json`);
-}
-
-async function main() {
-  console.log('🚀 Starting homepage translation...\n');
-  
-  const failed = [];
-  
-  for (const lang of languages) {
-    try {
-      console.log(`📝 Translating to ${lang.name} (${lang.code})...`);
-      const translatedHome = await translateHomeSection(lang.code, lang.name);
-      await updateLanguageFile(lang.code, translatedHome);
-      
-      // Small delay to avoid rate limits
-      await new Promise(resolve => setTimeout(resolve, 1000));
-    } catch (error) {
-      console.error(`❌ Failed to translate ${lang.name}: ${error.message}`);
-      failed.push(lang.name);
-      // Continue with other languages
+    if (!jsonMatch) {
+      console.error(`❌ No valid JSON found in Claude response for ${targetLang}`);
+      return;
     }
+
+    const translatedHome = JSON.parse(jsonMatch[0]);
+
+    // Update target file
+    targetData.home = translatedHome;
+    fs.writeFileSync(targetJsonPath, JSON.stringify(targetData, null, 2) + '\n', 'utf8');
+
+    console.log(`✅ Successfully translated homepage for ${targetLangName}`);
+  } catch (error) {
+    console.error(`❌ Error translating ${targetLang}:`, error.message);
   }
-  
-  console.log('\n✨ Translation process completed!');
-  if (failed.length > 0) {
-    console.log(`⚠️  Failed languages: ${failed.join(', ')}`);
-    console.log('💡 Tip: Re-run the script to retry failed languages');
-  }
-  console.log('💰 Estimated cost: ~$0.50-1.00 (9 languages × small JSON)');
 }
 
-main().catch(console.error);
+/**
+ * Main execution - translates homepage for all languages
+ */
+async function main() {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('❌ ANTHROPIC_API_KEY environment variable is required');
+    process.exit(1);
+  }
+
+  console.log('🚀 Starting homepage translation for all languages...\n');
+
+  for (const lang of languages) {
+    await translateHomeSection(lang.code, lang.name);
+    // Rate limiting: wait 1 second between API calls
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+
+  console.log('\n✨ All translations completed!\n');
+}
+
+main().catch((error) => {
+  console.error('❌ Fatal error:', error);
+  process.exit(1);
+});

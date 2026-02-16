@@ -2,170 +2,103 @@
 
 /**
  * Translate megaMenu.products section to Vietnamese
- * This section was missing from the initial Vietnamese translation
+ * Single language translation script for Vietnamese locale
+ * 
+ * @requires ANTHROPIC_API_KEY environment variable
+ * Cost: ~$0.15-0.30 for Vietnamese (Claude Haiku model)
  */
 
-require('dotenv').config();
-const Anthropic = require('@anthropic-ai/sdk');
-const fs = require('fs').promises;
-const path = require('path');
+import 'dotenv/config';
+import Anthropic from '@anthropic-ai/sdk';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// ES modules don't have __dirname, so create it
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-const sourceText = `    "products": {
-      "label": "Products",
-      "temperature": {
-        "title": "Temperature",
-        "roomWallSensors": "Room & Wall Sensors",
-        "roomWallSensorsDesc": "High-accuracy temperature sensing",
-        "ductSensors": "Duct Sensors",
-        "ductSensorsDesc": "Duct-mounted transmitters",
-        "immersionWell": "Immersion & Well",
-        "immersionWellDesc": "Liquid temperature measurement",
-        "outdoorSensors": "Outdoor Sensors",
-        "outdoorSensorsDesc": "Weather-resistant sensing"
-      },
-      "humidity": {
-        "title": "Humidity",
-        "roomHumidity": "Room Humidity",
-        "roomHumidityDesc": "Wall-mount RH sensors",
-        "ductHumidity": "Duct Humidity",
-        "ductHumidityDesc": "Supply & return air RH",
-        "outdoorHumidity": "Outdoor Humidity",
-        "outdoorHumidityDesc": "Weather-resistant RH",
-        "comboSensors": "Combo Sensors",
-        "comboSensorsDesc": "Temperature + humidity"
-      },
-      "pressure": {
-        "title": "Pressure",
-        "differential": "Differential Pressure",
-        "differentialDesc": "Room & filter monitoring",
-        "static": "Static Pressure",
-        "staticDesc": "Duct static transmitters",
-        "barometric": "Barometric",
-        "barometricDesc": "Atmospheric pressure"
-      },
-      "airQuality": {
-        "title": "Air Quality",
-        "co2": "CO₂ Sensors",
-        "co2Desc": "Carbon dioxide monitoring",
-        "voc": "VOC Sensors",
-        "vocDesc": "Volatile organic compounds",
-        "particulate": "Particulate Matter",
-        "particulateDesc": "PM2.5 and PM10"
-      },
-      "wireless": {
-        "title": "Wireless",
-        "wamTemperature": "WAM Temperature",
-        "wamTemperatureDesc": "Wireless temp sensors",
-        "wamHumidity": "WAM Humidity",
-        "wamHumidityDesc": "Wireless RH sensors",
-        "wamDoorSensors": "WAM Door Sensors",
-        "wamDoorSensorsDesc": "Open/close monitoring",
-        "cloudPlatform": "Cloud Platform",
-        "cloudPlatformDesc": "24/7 remote monitoring"
-      },
-      "accessories": {
-        "title": "Accessories",
-        "mounting": "Mounting Hardware",
-        "mountingDesc": "Plates, boxes, brackets",
-        "enclosures": "Enclosures",
-        "enclosuresDesc": "BAPI-Box & covers",
-        "cables": "Cables & Connectors",
-        "cablesDesc": "Wiring accessories"
-      },
-      "testInstruments": {
-        "title": "Test Instruments",
-        "bluTestTemperature": "Blu-Test Temperature",
-        "bluTestTemperatureDesc": "NIST-traceable reference",
-        "bluTestHumidity": "Blu-Test Humidity",
-        "bluTestHumidityDesc": "Temp + RH reference",
-        "bluTestPressure": "Blu-Test Pressure",
-        "bluTestPressureDesc": "Digital manometer"
-      },
-      "featured": {
-        "title": "WAM™ Wireless Asset Monitoring",
-        "description": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
-        "cta": "Learn More",
-        "wamTitle": "WAM™ Wireless Asset Monitoring",
-        "wamDescription": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
-        "wamCta": "Learn More",
-        "wamBadge": "Premium Solution"
-      },
-      "badges": {
-        "popular": "Popular",
-        "new": "New",
-        "premium": "Premium"
-      }
-    },`;
+/**
+ * Get the source products data from en.json to ensure we always translate
+ * the current canonical version instead of hardcoded text that can drift.
+ * 
+ * @returns {Object} The megaMenu.products section from en.json
+ * @throws {Error} If megaMenu.products not found in en.json
+ */
+function getSourceProducts() {
+  const enPath = path.join(__dirname, '..', 'messages', 'en.json');
+  const enContent = fs.readFileSync(enPath, 'utf-8');
+  const enData = JSON.parse(enContent);
+  
+  if (!enData.megaMenu?.products) {
+    throw new Error('megaMenu.products not found in en.json');
+  }
+  
+  return enData.megaMenu.products;
+}
 
-async function translate() {
-  console.log('🔄 Translating megaMenu.products to Vietnamese...\n');
+/**
+ * Translates the products section to Vietnamese using Claude API
+ * 
+ * @param {Object} sourceProducts - English products data to translate
+ * @returns {Promise<Object>} Translated products object in Vietnamese
+ * @throws {Error} If translation or validation fails
+ */
+async function translateToVietnamese(sourceProducts) {
+  console.log('\n🇻🇳 Translating megaMenu.products to Vietnamese (vi)...');
 
   try {
     const message = await client.messages.create({
       model: 'claude-3-haiku-20240307',
       max_tokens: 4000,
+      temperature: 0.3,
       messages: [
         {
           role: 'user',
-          content: `Translate this JSON section to Vietnamese for a building automation e-commerce website.
+          content: `Translate this JSON object to Vietnamese for a building automation e-commerce website.
 
 **CRITICAL RULES:**
-1. Keep ALL JSON keys in English (e.g., "products", "temperature", "roomWallSensors")
+1. Keep ALL JSON keys in English (e.g., "label", "temperature", "roomWallSensors")
 2. Only translate the STRING VALUES (text after the colon)
 3. Preserve all punctuation, special characters, and formatting
 4. Keep brand names like "WAM™", "Blu-Test", "BAPI-Box", "NIST" unchanged
 5. Maintain technical accuracy for HVAC and building automation terms
 6. Keep "CO₂" subscript formatting exact
-7. Do not add or remove any keys
-8. Output ONLY the translated JSON, no explanations
-
-Example of correct translation:
-"label": "Products" → "label": "Sản phẩm"
-"roomWallSensors": "Room & Wall Sensors" → "roomWallSensors": "Cảm biến Phòng & Tường"
+7. Use formal Vietnamese suitable for technical/business context
+8. Do not add or remove any keys
+9. Output ONLY valid JSON, no explanations or markdown
 
 JSON to translate:
 
-${sourceText}`,
+${JSON.stringify(sourceProducts, null, 2)}`,
         },
       ],
     });
 
     let translatedText = message.content[0].text;
-    console.log('✅ Translation complete!\n');
 
-    // Remove markdown code blocks if present (Claude sometimes wraps responses)
+    // Remove markdown code blocks if present
     translatedText = translatedText.replace(/^```json\s*\n?/gm, '');
     translatedText = translatedText.replace(/^```\s*\n?/gm, '');
     translatedText = translatedText.trim();
 
-    console.log(translatedText);
+    // Parse to validate JSON
+    const translatedObj = JSON.parse(translatedText);
 
-    /**
-     * NOTE:
-     * This script intentionally does NOT write directly to web/messages/vi.json.
-     * Instead, it saves the translated megaMenu.products section to a separate file
-     * (vietnamese-products-translated.json) for manual review and integration.
-     *
-     * To apply these translations:
-     * 1. Open web/messages/vi.json.
-     * 2. Locate the megaMenu.products section.
-     * 3. Replace that section with the contents of vietnamese-products-translated.json.
-     *
-     * Other scripts (e.g., sync-footer-translations.js) update vi.json automatically,
-     * but this one is kept manual for safety since it was a one-off translation.
-     */
-    const outputPath = path.join(__dirname, 'vietnamese-products-translated.json');
-    await fs.writeFile(outputPath, translatedText, 'utf-8');
-    console.log(`\n📝 Saved translated megaMenu.products section to: ${outputPath}`);
-    console.log(
-      '\nℹ️  Review this file, then manually merge its contents into the megaMenu.products section of web/messages/vi.json.',
-    );
+    console.log('✅ Vietnamese translation complete and validated!');
+
+    // Save to output file for review
+    const outputPath = path.join(__dirname, 'products-translated-vi.json');
+    fs.writeFileSync(outputPath, JSON.stringify(translatedObj, null, 2), 'utf-8');
+    console.log(`📝 Saved to: ${outputPath}`);
+
+    return translatedObj;
   } catch (error) {
-    console.error('❌ Translation failed:', error.message);
+    console.error('❌ Vietnamese translation failed:', error.message);
     if (error.response) {
       console.error('API Response:', JSON.stringify(error.response, null, 2));
     }
@@ -173,5 +106,68 @@ ${sourceText}`,
   }
 }
 
-// Run the translation
-translate().catch(console.error);
+/**
+ * Updates vi.json with the translated products section
+ * 
+ * @param {Object} translatedProducts - Translated products object
+ * @throws {Error} If file update fails
+ */
+async function updateVietnameseFile(translatedProducts) {
+  const filePath = path.join(__dirname, '..', 'messages', 'vi.json');
+  
+  try {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const data = JSON.parse(content);
+
+    // Add products section to megaMenu
+    if (!data.megaMenu) {
+      data.megaMenu = {};
+    }
+    data.megaMenu.products = translatedProducts;
+
+    // Write back with proper formatting
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf-8');
+    console.log('✅ Updated vi.json with products section');
+  } catch (error) {
+    console.error('❌ Failed to update vi.json:', error.message);
+    throw error;
+  }
+}
+
+/**
+ * Main execution - translates products section to Vietnamese
+ */
+async function main() {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('❌ ANTHROPIC_API_KEY environment variable is required');
+    process.exit(1);
+  }
+
+  console.log('🌏 Starting Vietnamese translation for megaMenu.products...\n');
+
+  try {
+    // Read source products from en.json to ensure consistency
+    const sourceProducts = getSourceProducts();
+    console.log('✅ Loaded source products from en.json\n');
+
+    // Translate to Vietnamese
+    const translated = await translateToVietnamese(sourceProducts);
+    
+    // Update vi.json file
+    await updateVietnameseFile(translated);
+
+    console.log('\n✅ Vietnamese translation complete!');
+    console.log('\nℹ️  Next steps:');
+    console.log('  1. Review messages/vi.json for accuracy');
+    console.log('  2. Test Vietnamese locale in the UI');
+    console.log('  3. Commit and push the changes');
+  } catch (error) {
+    console.error('\n❌ Translation failed');
+    process.exit(1);
+  }
+}
+
+main().catch((error) => {
+  console.error('❌ Fatal error:', error);
+  process.exit(1);
+});

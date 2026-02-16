@@ -4,12 +4,20 @@
  * Sync new menu sections to all language files
  * This script translates the 3 new sections (resources, support updates, company updates)
  * that were added to en.json but are missing in other language files.
+ * 
+ * @requires ANTHROPIC_API_KEY environment variable
+ * Cost: ~$2-3 for all 9 languages (Claude Haiku model)
  */
 
-require('dotenv').config();
-const Anthropic = require('@anthropic-ai/sdk');
-const fs = require('fs');
-const path = require('path');
+import 'dotenv/config';
+import Anthropic from '@anthropic-ai/sdk';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// ES modules don't have __dirname, so create it
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -120,6 +128,14 @@ const NEW_SECTIONS = {
   }
 };
 
+/**
+ * Translates a menu section using Claude API
+ * @param {string} sectionName - Section identifier (e.g., 'resources')
+ * @param {Object} sectionData - English section data to translate
+ * @param {string} targetLanguage - Target language code (e.g., 'de')
+ * @param {string} languageName - Full language name (e.g., 'German')
+ * @returns {Promise<Object>} Translated section data
+ */
 async function translateSection(sectionName, sectionData, targetLanguage, languageName) {
   const prompt = `You are a professional translator for a building automation sensor company (BAPI).
 
@@ -152,6 +168,7 @@ Respond with ONLY the translated JSON:`;
 
   const response = message.content[0].text.trim();
   const jsonMatch = response.match(/\{[\s\S]*\}/);
+  
   if (!jsonMatch) {
     throw new Error(`No JSON found in response for ${languageName} - ${sectionName}`);
   }
@@ -159,6 +176,11 @@ Respond with ONLY the translated JSON:`;
   return JSON.parse(jsonMatch[0]);
 }
 
+/**
+ * Syncs new menu sections for a specific language file
+ * @param {string} langCode - Language code (e.g., 'de')
+ * @param {string} languageName - Full language name (e.g., 'German')
+ */
 async function syncLanguageFile(langCode, languageName) {
   console.log(`\n🌍 Processing ${languageName} (${langCode})...`);
   
@@ -195,11 +217,19 @@ async function syncLanguageFile(langCode, languageName) {
   fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2) + '\n', 'utf8');
   console.log(`  ✅ Updated ${langCode}.json`);
 
-  // Small delay to avoid rate limits
+  // Rate limiting: wait 1 second between API calls
   await new Promise(resolve => setTimeout(resolve, 1000));
 }
 
+/**
+ * Main execution - translates menu sections for all languages
+ */
 async function main() {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('❌ ANTHROPIC_API_KEY environment variable is required');
+    process.exit(1);
+  }
+
   console.log('🚀 Starting menu section sync for all languages...\n');
   console.log('This will translate 3 new sections to 9 languages (~$2-3 cost)\n');
 
@@ -214,4 +244,7 @@ async function main() {
   console.log('\n✨ Translation sync complete!');
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  console.error('❌ Fatal error:', error);
+  process.exit(1);
+});

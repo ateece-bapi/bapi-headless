@@ -17,30 +17,28 @@ const MAX_ITEMS = 5;
  * - Deduplication (move to front if already viewed)
  */
 export function useRecentlyViewed() {
-  const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
-  const [isClient, setIsClient] = useState(false);
-
-  // Load from localStorage on mount
-  useEffect(() => {
-    setIsClient(true);
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        setRecentlyViewed(parsed);
-      } catch (error) {
-        logger.error('Failed to parse recently viewed', error);
-        localStorage.removeItem(STORAGE_KEY);
+  // Initialize from localStorage using lazy initial state
+  const [recentlyViewed, setRecentlyViewed] = useState<Product[]>(() => {
+    if (typeof window === 'undefined') return [];
+    
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        return JSON.parse(stored);
       }
+    } catch (error) {
+      logger.error('Failed to parse recently viewed', error);
+      localStorage.removeItem(STORAGE_KEY);
     }
-  }, []);
+    return [];
+  });
 
-  // Save to localStorage when list changes
+  // Save to localStorage when list changes (client-side only)
   useEffect(() => {
-    if (isClient) {
+    if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(recentlyViewed));
     }
-  }, [recentlyViewed, isClient]);
+  }, [recentlyViewed]);
 
   const addToRecentlyViewed = (product: Product) => {
     setRecentlyViewed((prev) => {

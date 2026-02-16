@@ -4,7 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { useRegion, useSetRegion } from '@/store/regionStore';
-import { useToast } from '@/components/ui/Toast';
+import { toast } from 'sonner';
 import { REGIONS, LANGUAGES } from '@/types/region';
 import type { RegionCode, LanguageCode } from '@/types/region';
 import {
@@ -17,7 +17,6 @@ const RegionSelector: React.FC = () => {
   const setRegion = useSetRegion();
   const currentLocale = useLocale() as LanguageCode;
   const router = useRouter();
-  const { showToast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const regionCode = e.target.value as RegionCode;
@@ -31,8 +30,9 @@ const RegionSelector: React.FC = () => {
       const languageName = LANGUAGES[suggestedLanguage].nativeName;
       const message = getLanguageSuggestionMessage(regionCode, languageName);
 
-      // Show toast with action button
-      showToast('info', 'Language Suggestion', message, 7000, {
+      // Show toast with action button using Sonner
+      toast.info(message, {
+        duration: 7000,
         action: {
           label: 'Switch',
           onClick: () => {
@@ -46,6 +46,9 @@ const RegionSelector: React.FC = () => {
 
             router.push(newPath);
             router.refresh();
+            
+            // Show success toast after language switch
+            toast.success('Language Changed');
           },
         },
       });
@@ -54,7 +57,7 @@ const RegionSelector: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-gray-500">
+      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-500">
         Region
       </span>
       <div className="group relative">
@@ -63,7 +66,7 @@ const RegionSelector: React.FC = () => {
         </label>
         {/* Globe icon */}
         <svg
-          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
+          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -80,7 +83,7 @@ const RegionSelector: React.FC = () => {
           id="region-select"
           value={currentRegion.code}
           onChange={handleChange}
-          className="cursor-pointer appearance-none rounded-full border border-neutral-300 bg-white py-2 pl-9 pr-3 text-sm font-medium text-gray-700 transition-colors duration-150 hover:border-primary-500 hover:bg-gray-50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 lg:pl-10"
+          className="cursor-pointer appearance-none rounded-full border border-neutral-300 bg-white py-2 pl-9 pr-3 text-sm font-medium text-neutral-700 transition-colors duration-150 hover:border-primary-500 hover:bg-neutral-50 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500 lg:pl-10"
           aria-label="Select region"
         >
           {Object.values(REGIONS).map((region) => (

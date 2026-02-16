@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { ZoomIn } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -35,6 +36,24 @@ interface ProductHeroProps {
   } | null;
 }
 
+/**
+ * Product hero section with image gallery and pricing details.
+ * Displays main product image with zoom capability, thumbnails for gallery navigation,
+ * and key product information including pricing, stock status, and quantity selector.
+ * 
+ * **Phase 1 Priority**: Product Navigation (breadcrumbs, categories, mega-menu integration)
+ * 
+ * @param {ProductHeroProps} props - Product and variation data
+ * @returns {JSX.Element} Product hero section with image modal
+ * 
+ * @example
+ * ```tsx
+ * <ProductHero 
+ *   product={productData} 
+ *   variation={selectedVariation} 
+ * />
+ * ```
+ */
 export default function ProductHero({ product, variation }: ProductHeroProps) {
   const t = useTranslations();
   // Prefer variation image if present, else product image
@@ -55,13 +74,16 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
           <div className="group relative">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="relative block h-72 w-72 cursor-zoom-in"
+              className="relative block h-72 w-72 cursor-zoom-in overflow-hidden rounded-xl bg-neutral-50 shadow"
               aria-label="Click to enlarge product image"
             >
-              <img
+              <Image
                 src={mainImage.sourceUrl}
                 alt={mainImage.altText || variation?.name || product.name}
-                className="duration-base h-full w-full rounded-xl bg-neutral-50 object-contain shadow transition-transform hover:scale-105"
+                fill
+                sizes="(max-width: 768px) 100vw, 288px"
+                className="duration-base object-contain transition-transform hover:scale-105"
+                priority
               />
               {/* Zoom icon overlay */}
               <div className="duration-base absolute inset-0 flex items-center justify-center rounded-xl bg-black/0 transition-colors group-hover:bg-black/20">
@@ -76,19 +98,22 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
             No image
           </div>
         )}
-        {/* Action buttons now in summary card */}
+        {/* Gallery thumbnails */}
         {gallery.length > 1 && (
-          <div className="mt-2 flex gap-2 md:mt-0">
+          <div className="mt-2 flex gap-2 md:mt-0 md:flex-col">
             {gallery.map((img, idx) => (
               <button
                 key={img.sourceUrl + idx}
                 onClick={() => setMainImage(img)}
-                className={`rounded border bg-white p-1 ${mainImage?.sourceUrl === img.sourceUrl ? 'border-primary-500' : 'border-neutral-200'}`}
+                className={`relative h-12 w-12 overflow-hidden rounded border bg-white p-1 ${mainImage?.sourceUrl === img.sourceUrl ? 'border-primary-500' : 'border-neutral-200'}`}
+                aria-label={`View thumbnail ${idx + 1}`}
               >
-                <img
+                <Image
                   src={img.sourceUrl}
                   alt="Product thumbnail"
-                  className="h-12 w-12 object-contain"
+                  fill
+                  sizes="48px"
+                  className="object-contain"
                 />
               </button>
             ))}
@@ -179,8 +204,8 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
         <ImageModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          imageSrc={mainImage.sourceUrl}
-          imageAlt={mainImage.altText || variation?.name || product.name}
+          src={mainImage.sourceUrl}
+          alt={mainImage.altText || variation?.name || product.name}
         />
       )}
     </section>

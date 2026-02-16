@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { Wrench, FileText, Download, Search } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -85,12 +86,12 @@ export default function InstallationPage() {
           <p className="mb-6 text-neutral-600">
             Our technical team is here to help with any installation questions
           </p>
-          <a
+          <Link
             href="/support"
             className="inline-block rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600"
           >
             Contact Support
-          </a>
+          </Link>
         </div>
       </section>
     </main>

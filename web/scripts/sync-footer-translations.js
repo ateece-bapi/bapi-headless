@@ -1,109 +1,97 @@
-#!/usr/bin/env node
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { config } from 'dotenv';
+
+// ES modules don't have __dirname, so create it
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load environment variables
+config();
+
 /**
- * Sync Footer Translations
- * Translates the footer section from English to other languages using Claude Haiku API
+ * Syncs footer translations across all locale files
+ * Ensures consistent footer content (links, copyright, contact info) across languages
+ * 
+ * @description Reads the English footer as the source of truth and propagates
+ * structure to other locales while preserving translated text
  */
+async function syncFooterTranslations() {
+  const localesDir = path.join(__dirname, '../messages');
+  const sourceLocale = 'en.json';
+  const sourcePath = path.join(localesDir, sourceLocale);
 
-require('dotenv').config();
-const Anthropic = require('@anthropic-ai/sdk');
-const fs = require('fs');
-const path = require('path');
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
-
-const languages = [
-  { code: 'de', name: 'German' },
-  { code: 'fr', name: 'French' },
-  { code: 'es', name: 'Spanish' },
-  { code: 'ja', name: 'Japanese' },
-  { code: 'zh', name: 'Chinese' },
-  { code: 'vi', name: 'Vietnamese' },
-  { code: 'ar', name: 'Arabic' },
-  { code: 'th', name: 'Thai' },
-  { code: 'pl', name: 'Polish' },
-];
-
-async function translateFooterSection(targetLang, targetLangName) {
-  const enJsonPath = path.join(__dirname, '../messages/en.json');
-  const enData = JSON.parse(fs.readFileSync(enJsonPath, 'utf8'));
-  
-  const footerSection = enData.footer;
-
-  const prompt = `Translate this JSON structure from English to ${targetLangName}.
-Preserve all JSON keys exactly as they are. Only translate the values.
-Maintain the same structure and formatting.
-Keep proper nouns like "BAPI", "Building Automation Products, Inc.", "BACnet", "ISO", "UL", "USA" untranslated.
-Keep the address "750 N Royal Ave, Gays Mills, WI 54631" untranslated.
-Keep phone number "(608) 735-4800" and email "sales@bapihvac.com" untranslated.
-Keep "{year}" placeholder in copyright text exactly as is.
-
-English JSON:
-${JSON.stringify(footerSection, null, 2)}
-
-Return ONLY the translated JSON, nothing else.`;
-
-  try {
-    const message = await anthropic.messages.create({
-      model: 'claude-3-haiku-20240307',
-      max_tokens: 4096,
-      messages: [{
-        role: 'user',
-        content: prompt
-      }]
-    });
-
-    let translatedText = message.content[0].text.trim();
-    
-    // Remove markdown code blocks if present
-    translatedText = translatedText.replace(/^```json\s*\n?/gm, '');
-    translatedText = translatedText.replace(/^```\s*\n?/gm, '');
-    translatedText = translatedText.trim();
-
-    return JSON.parse(translatedText);
-  } catch (error) {
-    console.error(`Error translating to ${targetLangName}:`, error.message);
-    throw error;
+  // Read source English footer
+  if (!fs.existsSync(sourcePath)) {
+    console.error(`❌ Source file not found: ${sourcePath}`);
+    process.exit(1);
   }
-}
 
-async function updateLanguageFile(langCode, translatedFooter) {
-  const filePath = path.join(__dirname, `../messages/${langCode}.json`);
-  const existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  
-  // Update only the footer section
-  existingData.footer = translatedFooter;
-  
-  fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2) + '\n');
-  console.log(`✅ Updated ${langCode}.json`);
-}
+  const sourceData = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
+  const sourceFooter = sourceData.footer;
 
-async function main() {
-  console.log('🚀 Starting footer translation...\n');
-  
-  const failedLanguages = [];
-  
-  for (const lang of languages) {
-    console.log(`📝 Translating to ${lang.name} (${lang.code})...`);
-    try {
-      const translatedFooter = await translateFooterSection(lang.code, lang.name);
-      await updateLanguageFile(lang.code, translatedFooter);
-      
-      // Small delay to avoid rate limits
-      await new Promise(resolve => setTimeout(resolve, 1000));
-    } catch (error) {
-      console.error(`❌ Failed to translate ${lang.name}:`, error.message);
-      failedLanguages.push(lang.name);
+  if (!sourceFooter) {
+    console.error('❌ No footer section found in source locale');
+    process.exit(1);
+  }
+
+  // Get all locale files
+  const localeFiles = fs.readdirSync(localesDir).filter((file) => {
+    return file.endsWith('.json') && file !== sourceLocale;
+  });
+
+  console.log(`\n🔄 Syncing footer translations from ${sourceLocale}...\n`);
+
+  let updatedCount = 0;
+
+  for (const localeFile of localeFiles) {
+    const localePath = path.join(localesDir, localeFile);
+    const localeData = JSON.parse(fs.readFileSync(localePath, 'utf8'));
+
+    // Preserve existing translations, add new keys from source
+    if (!localeData.footer) {
+      localeData.footer = {};
     }
+
+    // Deep merge: keep existing translations, add missing keys
+    localeData.footer = mergeFooterStructure(sourceFooter, localeData.footer);
+
+    // Write updated locale file
+    fs.writeFileSync(localePath, JSON.stringify(localeData, null, 2) + '\n', 'utf8');
+
+    console.log(`✅ Updated ${localeFile}`);
+    updatedCount++;
   }
-  
-  console.log('\n✨ Translation process completed!');
-  if (failedLanguages.length > 0) {
-    console.log(`⚠️  Failed languages: ${failedLanguages.join(', ')}`);
-    console.log('💡 Tip: Re-run the script to retry failed languages');
-  }
-  console.log('💰 Estimated cost: ~$0.50-1.00 (9 languages × footer JSON)');
+
+  console.log(`\n✨ Successfully synced ${updatedCount} locale file(s)\n`);
 }
 
-main().catch(console.error);
+/**
+ * Deep merges footer structure while preserving existing translations
+ * @param {Object} source - Source footer structure (English)
+ * @param {Object} target - Target footer with existing translations
+ * @returns {Object} Merged footer object
+ */
+function mergeFooterStructure(source, target) {
+  const merged = { ...target };
+
+  for (const [key, value] of Object.entries(source)) {
+    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      // Recursively merge nested objects
+      merged[key] = mergeFooterStructure(value, merged[key] || {});
+    } else if (!(key in merged)) {
+      // Add missing keys from source (will need translation)
+      merged[key] = value;
+    }
+    // Keep existing translated values
+  }
+
+  return merged;
+}
+
+// Run the sync
+syncFooterTranslations().catch((error) => {
+  console.error('❌ Error syncing footer translations:', error);
+  process.exit(1);
+});

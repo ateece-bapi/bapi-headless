@@ -1,8 +1,18 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 import logger from '@/lib/logger';
 
+/**
+ * Root error boundary - catches unhandled errors in the application
+ * Logs to monitoring service and provides user recovery options
+ * 
+ * @param {Object} props - Component props
+ * @param {Error & { digest?: string }} props.error - The error that was thrown
+ * @param {() => void} props.reset - Function to attempt recovery by re-rendering
+ * @returns {JSX.Element} Error UI with recovery actions
+ */
 export default function ErrorBoundary({
   error,
   reset,
@@ -45,13 +55,19 @@ export default function ErrorBoundary({
         </p>
 
         <div className="flex flex-col justify-center gap-3 sm:flex-row">
-          <button onClick={reset} className="error-btn-primary rounded-lg px-6 py-3 font-semibold">
+          <button
+            onClick={reset}
+            className="rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+          >
             Try again
           </button>
 
-          <a href="/" className="error-btn-secondary rounded-lg border px-6 py-3 font-semibold">
+          <Link
+            href="/"
+            className="rounded-lg border border-neutral-300 bg-white px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500 hover:bg-primary-50"
+          >
             Go to homepage
-          </a>
+          </Link>
         </div>
 
         {error.digest && <p className="mt-6 text-xs text-neutral-400">Error ID: {error.digest}</p>}

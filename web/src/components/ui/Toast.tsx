@@ -1,78 +1,61 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
-import { X, CheckCircle, AlertCircle, AlertTriangle, Info } from 'lucide-react';
+import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from 'lucide-react';
 
-type ToastType = 'success' | 'error' | 'warning' | 'info';
+export type ToastType = 'success' | 'error' | 'info' | 'warning';
 
-interface ToastAction {
-  label: string;
-  onClick: () => void;
-}
-
-interface Toast {
+export interface Toast {
   id: string;
   type: ToastType;
+  title: string;
   message: string;
-  description?: string;
   duration?: number;
-  action?: ToastAction;
 }
 
-interface ToastContextValue {
+interface ToastContextType {
   toasts: Toast[];
-  showToast: (
-    type: ToastType,
-    message: string,
-    description?: string,
-    duration?: number,
-    options?: { action?: ToastAction }
-  ) => void;
+  showToast: (type: ToastType, title: string, message: string, duration?: number) => void;
   removeToast: (id: string) => void;
 }
 
-const ToastContext = createContext<ToastContextValue | undefined>(undefined);
+const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
+  // Declare removeToast BEFORE showToast to fix temporal dead zone error
+  const removeToast = useCallback((id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
   const showToast = useCallback(
-    (
-      type: ToastType,
-      message: string,
-      description?: string,
-      duration: number = 5000,
-      options?: { action?: ToastAction }
-    ) => {
-      const id = Math.random().toString(36).substring(7);
-      const toast: Toast = {
+    (type: ToastType, title: string, message: string, duration = 5000) => {
+      const id = Math.random().toString(36).substring(2, 9);
+      const newToast: Toast = {
         id,
         type,
+        title,
         message,
-        description,
         duration,
-        action: options?.action,
       };
 
-      setToasts((prev) => [...prev, toast]);
+      setToasts((prev) => [...prev, newToast]);
 
+      // Auto-remove after duration
       if (duration > 0) {
         setTimeout(() => {
           removeToast(id);
         }, duration);
       }
     },
-    []
+    [removeToast] // Add removeToast to dependencies
   );
-
-  const removeToast = useCallback((id: string) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
-  }, []);
 
   return (
     <ToastContext.Provider value={{ toasts, showToast, removeToast }}>
       {children}
-      <ToastContainer toasts={toasts} removeToast={removeToast} />
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </ToastContext.Provider>
   );
 }
@@ -80,30 +63,36 @@ export function ToastProvider({ children }: { children: ReactNode }) {
 export function useToast() {
   const context = useContext(ToastContext);
   if (!context) {
-    throw new Error('useToast must be used within a ToastProvider');
+    throw new Error('useToast must be used within ToastProvider');
   }
   return context;
 }
 
-function ToastContainer({
-  toasts,
-  removeToast,
-}: {
+interface ToastContainerProps {
   toasts: Toast[];
-  removeToast: (id: string) => void;
-}) {
+  onClose: (id: string) => void;
+}
+
+function ToastContainer({ toasts, onClose }: ToastContainerProps) {
   if (toasts.length === 0) return null;
 
   return (
-    <div className="z-toast fixed right-4 top-4 flex max-w-md flex-col gap-2">
-      {toasts.map((toast) => (
-        <ToastItem key={toast.id} toast={toast} onClose={() => removeToast(toast.id)} />
-      ))}
+    <div className="pointer-events-none fixed inset-0 z-50 flex items-end px-4 py-6 sm:items-start sm:p-6">
+      <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
+        {toasts.map((toast) => (
+          <ToastItem key={toast.id} toast={toast} onClose={onClose} />
+        ))}
+      </div>
     </div>
   );
 }
 
-function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
+interface ToastItemProps {
+  toast: Toast;
+  onClose: (id: string) => void;
+}
+
+function ToastItem({ toast, onClose }: ToastItemProps) {
   const icons = {
     success: CheckCircle,
     error: AlertCircle,
@@ -112,50 +101,49 @@ function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
   };
 
   const styles = {
-    success: 'bg-green-50 border-green-200 text-green-900',
-    error: 'bg-red-50 border-red-200 text-red-900',
-    warning: 'bg-yellow-50 border-yellow-200 text-yellow-900',
-    info: 'bg-blue-50 border-blue-200 text-blue-900',
+    success: 'bg-success-50 text-success-900 border-success-200',
+    error: 'bg-error-50 text-error-900 border-error-200',
+    warning: 'bg-warning-50 text-warning-900 border-warning-200',
+    info: 'bg-info-50 text-info-900 border-info-200',
   };
 
   const iconStyles = {
-    success: 'text-green-500',
-    error: 'text-red-500',
-    warning: 'text-yellow-500',
-    info: 'text-blue-500',
+    success: 'text-success-600',
+    error: 'text-error-600',
+    warning: 'text-warning-600',
+    info: 'text-info-600',
   };
 
   const Icon = icons[toast.type];
 
   return (
     <div
-      className={`${styles[toast.type]} animate-slide-in-right flex gap-3 rounded-lg border p-4 shadow-lg`}
+      className={`pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border shadow-lg ${styles[toast.type]}`}
       role="alert"
       aria-live="assertive"
+      aria-atomic="true"
     >
-      <Icon className={`${iconStyles[toast.type]} mt-0.5 h-5 w-5 flex-shrink-0`} />
-      <div className="min-w-0 flex-1">
-        <p className="text-sm font-semibold">{toast.message}</p>
-        {toast.description && <p className="mt-1 text-xs opacity-90">{toast.description}</p>}
-        {toast.action && (
-          <button
-            onClick={() => {
-              toast.action!.onClick();
-              onClose();
-            }}
-            className="mt-2 rounded-md bg-primary-500 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary-600"
-          >
-            {toast.action.label}
-          </button>
-        )}
+      <div className="p-4">
+        <div className="flex items-start">
+          <div className="flex-shrink-0">
+            <Icon className={`h-6 w-6 ${iconStyles[toast.type]}`} aria-hidden="true" />
+          </div>
+          <div className="ml-3 w-0 flex-1 pt-0.5">
+            <p className="text-sm font-medium">{toast.title}</p>
+            <p className="mt-1 text-sm opacity-90">{toast.message}</p>
+          </div>
+          <div className="ml-4 flex flex-shrink-0">
+            <button
+              type="button"
+              className="inline-flex rounded-md opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              onClick={() => onClose(toast.id)}
+              aria-label="Close notification"
+            >
+              <X className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
       </div>
-      <button
-        onClick={onClose}
-        className="flex-shrink-0 text-current opacity-50 transition-opacity hover:opacity-100"
-        aria-label="Close notification"
-      >
-        <X className="h-4 w-4" />
-      </button>
     </div>
   );
 }

@@ -1,170 +1,41 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import ImageModal from './ImageModal';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { useState } from 'react';
-import { ZoomIn } from 'lucide-react';
+import ImageModal from './ImageModal';
 
-/**
- * ImageModal Component
- *
- * Full-screen image viewer with zoom and pan controls.
- * Features:
- * - Click outside/ESC to close
- * - Mouse wheel zoom (desktop)
- * - Pinch-to-zoom (mobile/trackpad)
- * - Drag to pan when zoomed
- * - Zoom in/out/reset buttons
- * - Backdrop blur effect
- * - Accessible with ARIA labels
- * - Prevents body scroll when open
- */
-
-const meta = {
+const meta: Meta<typeof ImageModal> = {
   title: 'UI/ImageModal',
   component: ImageModal,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof ImageModal>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof ImageModal>;
 
 /**
- * Interactive demo with trigger button
- */
-function ImageModalDemo({ imageSrc, imageAlt }: { imageSrc: string; imageAlt: string }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="p-8">
-      <button
-        onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 rounded-lg bg-primary-500 px-6 py-3 text-white transition-colors hover:bg-primary-600"
-      >
-        <ZoomIn size={20} />
-        <span>Open Image Modal</span>
-      </button>
-
-      <ImageModal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        imageSrc={imageSrc}
-        imageAlt={imageAlt}
-      />
-    </div>
-  );
-}
-
-/**
- * Default product image
- *
- * Click "Open Image Modal" to view full-screen image with zoom controls.
+ * Default image modal with product image
  */
 export const Default: Story = {
-  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
-  render: () => (
-    <ImageModalDemo
-      imageSrc="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg"
-      imageAlt="BAPI Temperature Sensor BA/10K-3-O-12"
-    />
-  ),
-};
-
-/**
- * Wide landscape image (tests layout)
- */
-export const LandscapeImage: Story = {
-  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
-  render: () => (
-    <ImageModalDemo
-      imageSrc="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BAPI-Campus-Aerial-1-scaled.jpg"
-      imageAlt="BAPI Campus Aerial View"
-    />
-  ),
-};
-
-/**
- * Portrait image (tests vertical layout)
- */
-export const PortraitImage: Story = {
-  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
-  render: () => (
-    <ImageModalDemo
-      imageSrc="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg"
-      imageAlt="BAPI Product Portrait"
-    />
-  ),
-};
-
-/**
- * High resolution image (tests zoom quality)
- */
-export const HighResolution: Story = {
-  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
-  render: () => (
-    <ImageModalDemo
-      imageSrc="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BAPI-Campus-Aerial-1-scaled.jpg"
-      imageAlt="High Resolution BAPI Campus Image"
-    />
-  ),
-};
-
-/**
- * Multiple images demo (tests modal reopening)
- */
-export const MultipleImages: Story = {
-  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [currentImage, setCurrentImage] = useState({
-      src: '',
-      alt: '',
-    });
-
-    const images = [
-      {
-        src: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg',
-        alt: 'Temperature Sensor',
-        thumb:
-          'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg',
-      },
-      {
-        src: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BAPI-Campus-Aerial-1-scaled.jpg',
-        alt: 'BAPI Campus',
-        thumb:
-          'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BAPI-Campus-Aerial-1-scaled.jpg',
-      },
-    ];
-
-    const openImage = (src: string, alt: string) => {
-      setCurrentImage({ src, alt });
-      setIsOpen(true);
-    };
+    const src = 'https://bapi.kinsta.cloud/wp-content/uploads/2024/01/sample-product.jpg';
+    const alt = 'Sample Product Image';
 
     return (
-      <div className="p-8">
-        <h3 className="mb-4 text-xl font-bold">Click any thumbnail to view:</h3>
-        <div className="grid max-w-xl grid-cols-2 gap-4">
-          {images.map((img, idx) => (
-            <button
-              key={idx}
-              onClick={() => openImage(img.src, img.alt)}
-              className="relative aspect-square overflow-hidden rounded-lg bg-neutral-100 transition-all hover:ring-4 hover:ring-primary-500"
-            >
-              <img src={img.thumb} alt={img.alt} className="h-full w-full object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors hover:bg-black/30">
-                <ZoomIn className="h-8 w-8 text-white opacity-0 transition-opacity hover:opacity-100" />
-              </div>
-            </button>
-          ))}
-        </div>
-
+      <div>
+        <button
+          onClick={() => setIsOpen(true)}
+          className="rounded-md bg-primary-500 px-4 py-2 text-white hover:bg-primary-600"
+        >
+          Open Image Modal
+        </button>
         <ImageModal
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
-          imageSrc={currentImage.src}
-          imageAlt={currentImage.alt}
+          src={src}
+          alt={alt}
         />
       </div>
     );
@@ -172,21 +43,55 @@ export const MultipleImages: Story = {
 };
 
 /**
- * Already open modal (for testing initial state)
+ * Modal with landscape image
  */
-export const InitiallyOpen: Story = {
-  args: { isOpen: false, onClose: () => {}, imageSrc: '', imageAlt: '' },
+export const Landscape: Story = {
   render: () => {
-    const [isOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
+    const src = 'https://bapi.kinsta.cloud/wp-content/uploads/2024/01/landscape-product.jpg';
+    const alt = 'Landscape Product Image';
 
     return (
-      <div className="p-8">
-        <p className="text-neutral-600">Modal is open by default (for testing)</p>
+      <div>
+        <button
+          onClick={() => setIsOpen(true)}
+          className="rounded-md bg-primary-500 px-4 py-2 text-white hover:bg-primary-600"
+        >
+          Open Landscape Image
+        </button>
         <ImageModal
           isOpen={isOpen}
-          onClose={() => {}}
-          imageSrc="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/2024/12/BA10K-3-O-12-1.jpg"
-          imageAlt="BAPI Temperature Sensor"
+          onClose={() => setIsOpen(false)}
+          src={src}
+          alt={alt}
+        />
+      </div>
+    );
+  },
+};
+
+/**
+ * Modal with portrait image
+ */
+export const Portrait: Story = {
+  render: () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const src = 'https://bapi.kinsta.cloud/wp-content/uploads/2024/01/portrait-product.jpg';
+    const alt = 'Portrait Product Image';
+
+    return (
+      <div>
+        <button
+          onClick={() => setIsOpen(true)}
+          className="rounded-md bg-primary-500 px-4 py-2 text-white hover:bg-primary-600"
+        >
+          Open Portrait Image
+        </button>
+        <ImageModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          src={src}
+          alt={alt}
         />
       </div>
     );

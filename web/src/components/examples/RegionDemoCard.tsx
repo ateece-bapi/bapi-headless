@@ -7,6 +7,7 @@ import { formatDate, formatMeasurement, formatNumber } from '@/lib/utils/locale'
 
 /**
  * Example component demonstrating region-aware pricing and formatting
+ * Phase 1 Priority: Translation Services & Regional Support (i18n, currency, units)
  */
 export const RegionDemoCard: React.FC = () => {
   const region = useRegion();
@@ -45,7 +46,7 @@ export const RegionDemoCard: React.FC = () => {
         </div>
 
         <div>
-          <h4 className="mb-1 text-sm font-medium text-gray-700">📅 Today's Date</h4>
+          <h4 className="mb-1 text-sm font-medium text-gray-700">📅 Today&apos;s Date</h4>
           <p className="text-lg text-gray-800">{formatDate(new Date(), region.language)}</p>
         </div>
 

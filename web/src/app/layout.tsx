@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Roboto } from 'next/font/google';
 import './globals.css';
 import BackToTop from '@/components/layout/BackToTop';
 import { AnalyticsClient, SpeedInsightsClient } from '@/components/analytics/AnalyticsClient';
@@ -6,8 +7,13 @@ import { WebVitalsClient } from '@/components/analytics/WebVitalsClient';
 import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from '@/lib/schema';
 import { generateDefaultMetadata } from '@/lib/metadata';
 
-// Using Roboto font family. Acumin commented out for now (see globals.css)
-// Font preloaded below for optimal performance
+// Roboto font configuration using Next.js font optimization
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700', '900'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+  display: 'swap',
+});
 
 /**
  * Root metadata - Optimized for AI discovery and search visibility
@@ -38,19 +44,6 @@ export default async function RootLayout({
   return (
     <html lang={locale || 'en'}>
       <head>
-        {/* Font optimization - Preload Roboto for better performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
-        />
-
         {/* Inline critical CSS for hero image container */}
         <style
           dangerouslySetInnerHTML={{
@@ -73,7 +66,7 @@ export default async function RootLayout({
         {/* Structured Data for  SEO */}
         <StructuredData schema={[organizationSchema, websiteSchema]} />
       </head>
-      <body className="antialiased">
+      <body className={`${roboto.variable} font-sans antialiased`}>
         {children}
         <BackToTop />
         <WebVitalsClient />

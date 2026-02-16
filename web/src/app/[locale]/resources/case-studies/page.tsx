@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { FileText, Building2, Award, TrendingUp } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -99,12 +100,12 @@ export default function CaseStudiesPage() {
           <p className="mb-6 text-neutral-600">
             Let us help you design a solution for your building
           </p>
-          <a
+          <Link
             href="/request-quote"
             className="inline-block rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"
           >
             Request a Quote
-          </a>
+          </Link>
         </div>
       </section>
     </main>

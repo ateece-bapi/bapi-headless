@@ -10,6 +10,8 @@ import ColorSwatchSelector from './variation-selectors/ColorSwatchSelector';
 import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
 import BinaryToggleSelector from './variation-selectors/BinaryToggleSelector';
 import DropdownSelector from './variation-selectors/DropdownSelector';
+import { useRegion } from '@/store/regionStore';
+import { convertWooCommercePrice } from '@/lib/utils/currency';
 
 interface VariationSelectorProps {
   attributes: ProductAttribute[];
@@ -44,6 +46,7 @@ export default function VariationSelector({
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
+  const region = useRegion();
 
   // Filter to only attributes used for variations
   const variationAttributes = attributes.filter((attr) => attr.variation);
@@ -306,11 +309,11 @@ export default function VariationSelector({
                           Your Price
                         </p>
                         <p className="text-4xl font-bold text-primary-700">
-                          {matchedVariation.price}
+                          {convertWooCommercePrice(matchedVariation.price, region.currency)}
                         </p>
                         {basePrice && basePrice !== matchedVariation.price && (
                           <span className="ml-3 text-base text-neutral-500 line-through">
-                            {basePrice}
+                            {convertWooCommercePrice(basePrice, region.currency)}
                           </span>
                         )}
                       </div>

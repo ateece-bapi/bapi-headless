@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
 import { X, ExternalLink, Package, DollarSign } from 'lucide-react';
+import { useRegion } from '@/store/regionStore';
 
 type Product = SimpleProduct | VariableProduct;
 
@@ -29,7 +30,8 @@ interface QuickViewModalProps {
  */
 export default function QuickViewModal({ product, onClose, locale }: QuickViewModalProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const price = getProductPrice(product);
+  const region = useRegion();
+  const price = getProductPrice(product, region.currency);
   const stockStatus = getProductStockStatus(product);
   const inStock = stockStatus === 'IN_STOCK';
   const isSimple = product.__typename === 'SimpleProduct';

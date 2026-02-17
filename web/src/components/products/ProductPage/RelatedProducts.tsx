@@ -1,5 +1,7 @@
 'use client';
 import React from 'react';
+import { useRegion } from '@/store/regionStore';
+import { convertWooCommercePrice } from '@/lib/utils/currency';
 
 interface RelatedProduct {
   id: string;
@@ -16,6 +18,8 @@ interface RelatedProductsProps {
 }
 
 const RelatedProducts: React.FC<RelatedProductsProps> = ({ related }) => {
+  const region = useRegion();
+  
   if (!related || related.length === 0) return null;
   return (
     <section className="mb-8">
@@ -38,7 +42,9 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({ related }) => {
               Part #: {product.partNumber || product.sku || 'N/A'}
             </div>
             {product.price && (
-              <div className="mb-2 text-xs font-semibold text-primary-700">{product.price}</div>
+              <div className="mb-2 text-xs font-semibold text-primary-700">
+                {convertWooCommercePrice(product.price, region.currency)}
+              </div>
             )}
             <div className="mt-auto flex gap-2">
               <a

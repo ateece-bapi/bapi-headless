@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { X, Package, DollarSign, CheckCircle, XCircle } from 'lucide-react';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
+import { useRegion } from '@/store/regionStore';
 
 type Product = SimpleProduct | VariableProduct;
 
@@ -33,6 +34,8 @@ export default function ProductComparison({
   onClose,
   locale,
 }: ProductComparisonProps) {
+  const region = useRegion();
+  
   // ESC key to close
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -142,7 +145,7 @@ export default function ProductComparison({
                   </div>
                 </td>
                 {products.map((product) => {
-                  const price = getProductPrice(product);
+                  const price = getProductPrice(product, region.currency);
                   return (
                     <td key={product.id} className="border-b border-neutral-200 p-4 text-center">
                       <span className="text-xl font-bold text-primary-600">{price || 'N/A'}</span>

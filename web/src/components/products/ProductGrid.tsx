@@ -13,6 +13,7 @@ import { getProductPrice } from '@/lib/graphql/types';
 import QuickViewModal from './QuickViewModal';
 import { useProductComparison } from '@/hooks/useProductComparison';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { useRegion } from '@/store/regionStore';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -147,6 +148,7 @@ function ProductCard({
   canAddToComparison,
 }: ProductCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const region = useRegion();
   const { ref, isVisible } = useIntersectionObserver<HTMLAnchorElement>({
     threshold: 0.1,
     rootMargin: '100px',
@@ -161,8 +163,8 @@ function ProductCard({
     (product as SimpleProduct | VariableProduct).featuredImage?.node ||
     (product as SimpleProduct | VariableProduct).image;
 
-  // Get product price
-  const price = getProductPrice(product as SimpleProduct | VariableProduct);
+  // Get product price with currency conversion
+  const price = getProductPrice(product as SimpleProduct | VariableProduct, region.currency);
 
   // Get stock status
   const stockStatus = isSimpleProduct

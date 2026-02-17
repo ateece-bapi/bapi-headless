@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { Radio, Signal, MapPin, CheckCircle, AlertTriangle, Info } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default function WirelessSiteVerificationPage() {
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg mb-8 max-w-none">
             <p className="text-lg leading-relaxed text-neutral-700">
-              Before deploying BAPI wireless sensors, it's important to verify that your site has
+              Before deploying BAPI wireless sensors, it&apos;s important to verify that your site has
               adequate signal coverage. This tool helps you test signal strength, identify potential
               interference, and optimize sensor placement for reliable communication.
             </p>
@@ -230,18 +231,18 @@ export default function WirelessSiteVerificationPage() {
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row">
-                <a
+                <Link
                   href="/request-quote"
                   className="inline-block rounded-xl bg-accent-500 px-6 py-3 text-center font-bold text-neutral-900 transition-colors hover:bg-accent-600"
                 >
                   Request Verification Kit
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/contact"
                   className="inline-block rounded-xl border-2 border-primary-500 px-6 py-3 text-center font-bold text-primary-500 transition-colors hover:bg-primary-50"
                 >
                   Contact Sales
-                </a>
+                </Link>
               </div>
             </div>
 

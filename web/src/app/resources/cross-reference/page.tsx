@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { RefreshCw, Search } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -132,12 +133,12 @@ export default function CrossReferencePage() {
           <p className="mb-6 text-neutral-600">
             Contact our technical sales team for assistance with cross-referencing
           </p>
-          <a
+          <Link
             href="/contact"
             className="inline-block rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"
           >
             Contact Sales Team
-          </a>
+          </Link>
         </div>
       </section>
     </main>

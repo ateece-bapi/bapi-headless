@@ -141,7 +141,7 @@ export default async function CareersPage() {
 
             <div className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 backdrop-blur-sm">
               <Sparkles className="h-5 w-5 text-yellow-300" />
-              <span className="font-medium text-white">We're excited to meet you!</span>
+              <span className="font-medium text-white">We&apos;re excited to meet you!</span>
             </div>
           </div>
         </div>
@@ -249,7 +249,7 @@ export default async function CareersPage() {
                     <p className="text-gray-600">
                       Most positions will require a <strong>Resume</strong> and a separate{' '}
                       <strong>Cover Letter</strong>
-                      to be considered a "complete" electronic application.
+                      to be considered a &quot;complete&quot; electronic application.
                     </p>
                   </div>
                 </div>
@@ -319,7 +319,7 @@ export default async function CareersPage() {
               </h2>
               <p className="max-w-2xl text-lg text-primary-50">
                 Explore current openings and take the first step toward an exciting career at BAPI.
-                We can't wait to hear from you!
+                We can&apos;t wait to hear from you!
               </p>
             </div>
 

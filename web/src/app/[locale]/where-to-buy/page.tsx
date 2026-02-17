@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Phone, Mail, Globe, MapPin, Search } from 'lucide-react';
 
 export default function WhereToBuyPage() {
@@ -678,18 +679,18 @@ export default function WhereToBuyPage() {
             automation solutions to your customers.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <a
+            <Link
               href="/contact"
               className="rounded-xl bg-accent-500 px-8 py-4 font-bold text-neutral-900 shadow-lg transition-colors hover:bg-accent-600 hover:shadow-xl"
             >
               Apply for Distribution
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contact"
               className="rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
             >
               Contact Sales Team
-            </a>
+            </Link>
           </div>
         </div>
       </section>

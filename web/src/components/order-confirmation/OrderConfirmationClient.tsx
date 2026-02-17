@@ -137,7 +137,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
         <div className="max-w-md text-center">
           <Package className="mx-auto mb-4 h-16 w-16 text-neutral-400" />
           <h1 className="mb-2 text-2xl font-bold text-neutral-900">Order Not Found</h1>
-          <p className="mb-6 text-neutral-600">We couldn't find the order you're looking for.</p>
+          <p className="mb-6 text-neutral-600">We couldn&apos;t find the order you&apos;re looking for.</p>
           <Link
             href="/"
             className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-bold text-white transition-colors hover:bg-primary-600"

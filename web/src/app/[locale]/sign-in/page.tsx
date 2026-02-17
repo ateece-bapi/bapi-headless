@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { SignInForm } from './SignInForm';
 import { Building2 } from 'lucide-react';
 
@@ -33,12 +34,12 @@ export default function SignInPage() {
         <div className="space-y-3 border-t border-neutral-200 pt-4 text-center">
           <p className="text-sm text-neutral-600">
             Don&apos;t have an account?{' '}
-            <a
+            <Link
               href="/contact"
               className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
             >
               Contact your sales representative
-            </a>
+            </Link>
           </p>
         </div>
       </div>

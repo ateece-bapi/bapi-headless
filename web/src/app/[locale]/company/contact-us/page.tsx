@@ -124,7 +124,7 @@ export default async function ContactUsPage() {
 
             <p className="text-xl leading-relaxed text-primary-50 md:text-2xl">
               Whether you need technical support, have sales inquiries, or want to learn more about
-              our products, we're here to help. Reach out to us today!
+              our products, we&apos;re here to help. Reach out to us today!
             </p>
           </div>
         </div>
@@ -185,7 +185,7 @@ export default async function ContactUsPage() {
             </div>
             <h2 className="mb-4 text-4xl font-bold text-gray-900">How Can We Help?</h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600">
-              Choose the department that best fits your needs and we'll connect you with the right
+              Choose the department that best fits your needs and we&apos;ll connect you with the right
               team.
             </p>
           </div>
@@ -316,7 +316,7 @@ export default async function ContactUsPage() {
             </div>
 
             <p className="text-lg text-primary-50">
-              Have a question outside of business hours? Send us an email and we'll get back to you
+              Have a question outside of business hours? Send us an email and we&apos;ll get back to you
               as soon as possible.
             </p>
           </div>

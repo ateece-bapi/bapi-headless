@@ -62,11 +62,11 @@ export function TemperatureSensorTable({ labels }: TemperatureSensorTableProps =
   const params = useParams();
   const locale = (params?.locale as LanguageCode) || 'en';
   
-  // Use provided labels or English defaults
-  const sensorType = labels?.sensorType || 'Sensor Type';
-  const range = labels?.range || 'Range';
-  const accuracy = labels?.accuracy || 'Accuracy';
-  const output = labels?.output || 'Output';
+  // Use provided labels or English defaults (only fallback on null/undefined)
+  const sensorType = labels?.sensorType ?? 'Sensor Type';
+  const range = labels?.range ?? 'Range';
+  const accuracy = labels?.accuracy ?? 'Accuracy';
+  const output = labels?.output ?? 'Output';
 
   return (
     <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">

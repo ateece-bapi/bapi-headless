@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ChatWidgetClient from '@/components/chat/ChatWidgetClient';
 import { AutoRegionDetection } from '@/components/region/AutoRegionDetection';
+import { CurrencyInitializer } from '@/components/providers/CurrencyInitializer';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { ToastProvider } from '@/components/ui/Toast';
@@ -28,6 +29,9 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages} locale={locale}>
       <ToastProvider>
         <>
+          {/* Initialize currency exchange rates */}
+          <CurrencyInitializer />
+          
           {/* Skip to main content link for keyboard users */}
           <a
             href="#main-content"

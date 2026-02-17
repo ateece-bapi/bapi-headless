@@ -6,6 +6,8 @@ import {
   getCurrencySymbol,
   getCurrencyName,
   formatPriceRange,
+  parsePrice,
+  convertWooCommercePrice,
 } from '../currency';
 
 describe('Currency Utilities', () => {
@@ -185,6 +187,84 @@ describe('Currency Utilities', () => {
 
     it('defaults to USD when currency not specified', () => {
       expect(formatPriceRange(10, 100)).toBe('$10.00 - $100.00');
+    });
+  });
+
+  describe('parsePrice', () => {
+    it('parses simple USD prices', () => {
+      expect(parsePrice('$19.99')).toBe(19.99);
+      expect(parsePrice('$100.00')).toBe(100);
+      expect(parsePrice('$0.99')).toBe(0.99);
+    });
+
+    it('parses prices with commas', () => {
+      expect(parsePrice('$1,234.56')).toBe(1234.56);
+      expect(parsePrice('$10,000.00')).toBe(10000);
+    });
+
+    it('parses price ranges (returns minimum)', () => {
+      expect(parsePrice('$10.00 - $25.00')).toBe(10);
+      expect(parsePrice('$99.99 - $199.99')).toBe(99.99);
+    });
+
+    it('parses prices with prefix words', () => {
+      expect(parsePrice('From $15.00')).toBe(15);
+      expect(parsePrice('Starting at $50.00')).toBe(50);
+      expect(parsePrice('Up to $100.00')).toBe(100);
+    });
+
+    it('handles null and undefined', () => {
+      expect(parsePrice(null)).toBeNull();
+      expect(parsePrice(undefined)).toBeNull();
+      expect(parsePrice('')).toBeNull();
+    });
+
+    it('handles invalid formats', () => {
+      expect(parsePrice('Invalid')).toBeNull();
+      expect(parsePrice('No numbers here')).toBeNull();
+    });
+
+    it('handles prices without dollar sign', () => {
+      expect(parsePrice('19.99')).toBe(19.99);
+      expect(parsePrice('1,234.56')).toBe(1234.56);
+    });
+  });
+
+  describe('convertWooCommercePrice', () => {
+    it('converts simple prices', () => {
+      expect(convertWooCommercePrice('$100.00', 'EUR')).toBe('92.00€');
+      expect(convertWooCommercePrice('$100.00', 'GBP')).toBe('£79.00');
+      expect(convertWooCommercePrice('$100.00', 'JPY')).toBe('¥14,950');
+    });
+
+    it('converts price ranges', () => {
+      expect(convertWooCommercePrice('$10.00 - $25.00', 'EUR')).toBe('9.20€');
+      expect(convertWooCommercePrice('$50.00 - $100.00', 'JPY')).toBe('¥7,475');
+    });
+
+    it('converts prices with prefix words', () => {
+      expect(convertWooCommercePrice('From $15.00', 'SGD')).toBe('S$20.10');
+      expect(convertWooCommercePrice('Starting at $50.00', 'AED')).toBe('183.50د.إ');
+    });
+
+    it('handles USD without conversion', () => {
+      expect(convertWooCommercePrice('$19.99', 'USD')).toBe('$19.99');
+    });
+
+    it('handles null and undefined', () => {
+      expect(convertWooCommercePrice(null, 'EUR')).toBeNull();
+      expect(convertWooCommercePrice(undefined, 'EUR')).toBeNull();
+      expect(convertWooCommercePrice('', 'EUR')).toBeNull();
+    });
+
+    it('handles invalid price strings', () => {
+      expect(convertWooCommercePrice('Invalid', 'EUR')).toBeNull();
+      expect(convertWooCommercePrice('No price', 'GBP')).toBeNull();
+    });
+
+    it('handles complex WooCommerce formats', () => {
+      expect(convertWooCommercePrice('$1,234.56', 'EUR')).toBe('1,135.80€');
+      expect(convertWooCommercePrice('From $999.99 - $1,499.99', 'SGD')).toBe('S$1,339.99');
     });
   });
 });

@@ -3,6 +3,8 @@
  */
 
 import type { GetProductsQuery, GetProductBySlugQuery } from './generated';
+import type { CurrencyCode } from '@/types/region';
+import { convertWooCommercePrice } from '@/lib/utils/currency';
 
 // Extract product types from query results
 type ProductNode = NonNullable<NonNullable<GetProductsQuery['products']>['nodes'][number]>;
@@ -50,21 +52,35 @@ export function isGroupProduct(product: Product | null | undefined): product is 
  * from WooCommerce (e.g., "$19.99", "$10.00 - $25.00").
  *
  * @param product - Product from GraphQL query (nullable for safe type guards)
+ * @param currency - Optional target currency for automatic conversion (uses USD if not specified)
  * @returns Formatted price string with currency symbol, or null if unavailable
  *
  * @example
  * ```ts
- * const price = getProductPrice(product);
- * if (price) {
- *   console.log(`Product costs ${price}`);
- * }
+ * // Without conversion (returns WooCommerce USD price)
+ * const usdPrice = getProductPrice(product);
+ * 
+ * // With currency conversion
+ * const eurPrice = getProductPrice(product, 'EUR'); // "$19.99" → "18.39€"
+ * const jpyPrice = getProductPrice(product, 'JPY'); // "$19.99" → "¥2,990"
  * ```
  */
-export function getProductPrice(product: Product | null | undefined): string | null {
+export function getProductPrice(
+  product: Product | null | undefined,
+  currency?: CurrencyCode
+): string | null {
   if (!product) return null;
 
   if ('price' in product && product.price) {
-    return product.price;
+    const priceString = product.price;
+    
+    // If no currency specified or USD, return original price from WooCommerce
+    if (!currency || currency === 'USD') {
+      return priceString;
+    }
+    
+    // Convert to specified currency
+    return convertWooCommercePrice(priceString, currency);
   }
 
   return null;

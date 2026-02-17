@@ -13,6 +13,7 @@ import { getProductPrice } from '@/lib/graphql/types';
 import QuickViewModal from './QuickViewModal';
 import { useProductComparison } from '@/hooks/useProductComparison';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { useRegion } from '@/store/regionStore';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -153,6 +154,9 @@ function ProductCard({
     freezeOnceVisible: true,
   });
 
+  // Get current region for currency conversion
+  const region = useRegion();
+
   const isSimpleProduct = product.__typename === 'SimpleProduct';
   const isVariableProduct = product.__typename === 'VariableProduct';
 
@@ -161,8 +165,8 @@ function ProductCard({
     (product as SimpleProduct | VariableProduct).featuredImage?.node ||
     (product as SimpleProduct | VariableProduct).image;
 
-  // Get product price
-  const price = getProductPrice(product as SimpleProduct | VariableProduct);
+  // Get product price with currency conversion
+  const price = getProductPrice(product as SimpleProduct | VariableProduct, region.currency);
 
   // Get stock status
   const stockStatus = isSimpleProduct

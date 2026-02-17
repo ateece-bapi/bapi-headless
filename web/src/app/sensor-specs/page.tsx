@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Thermometer, Droplet, Wind, Gauge, Search, Download } from 'lucide-react';
+import { TemperatureSensorTable } from '@/components/sensors/TemperatureSensorTable';
 
 export const metadata: Metadata = {
   title: 'BAPI Sensors Overview & Specifications | BAPI',
@@ -69,54 +70,7 @@ export default function SensorSpecsPage() {
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-3xl font-bold text-neutral-900">Temperature Sensors</h2>
 
-          <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-neutral-50">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
-                      Sensor Type
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
-                      Range
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
-                      Accuracy
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
-                      Output
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-neutral-200">
-                  <tr>
-                    <td className="px-6 py-4 text-neutral-900">10K-2 Thermistor</td>
-                    <td className="px-6 py-4 text-neutral-600">-40°F to 212°F</td>
-                    <td className="px-6 py-4 text-neutral-600">±0.2°F @ 77°F</td>
-                    <td className="px-6 py-4 text-neutral-600">Resistance</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 text-neutral-900">10K-3 Thermistor</td>
-                    <td className="px-6 py-4 text-neutral-600">-40°F to 257°F</td>
-                    <td className="px-6 py-4 text-neutral-600">±0.2°F @ 77°F</td>
-                    <td className="px-6 py-4 text-neutral-600">Resistance</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 text-neutral-900">100Ω Platinum RTD</td>
-                    <td className="px-6 py-4 text-neutral-600">-40°F to 257°F</td>
-                    <td className="px-6 py-4 text-neutral-600">±0.3°F @ 77°F</td>
-                    <td className="px-6 py-4 text-neutral-600">Resistance</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 text-neutral-900">1000Ω Platinum RTD</td>
-                    <td className="px-6 py-4 text-neutral-600">-40°F to 257°F</td>
-                    <td className="px-6 py-4 text-neutral-600">±0.3°F @ 77°F</td>
-                    <td className="px-6 py-4 text-neutral-600">Resistance</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <TemperatureSensorTable />
 
           <Link
             href="/products?category=temperature"

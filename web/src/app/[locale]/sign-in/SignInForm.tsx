@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { useToast } from '@/components/ui/Toast';
 import { Eye, EyeOff, Lock, User, ShieldCheck } from 'lucide-react';
 import logger from '@/lib/logger';
@@ -158,12 +159,12 @@ export function SignInForm() {
           </div>
 
           <div className="text-sm">
-            <a
+            <Link
               href="/contact"
               className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
             >
               Forgot password?
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -217,12 +218,12 @@ export function SignInForm() {
         {/* Help Text */}
         <p className="text-sm text-neutral-500">
           Need help?{' '}
-          <a
+          <Link
             href="/contact"
             className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
           >
             Contact Support
-          </a>
+          </Link>
         </p>
       </div>
     </form>

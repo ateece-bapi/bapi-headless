@@ -45,7 +45,7 @@ export default function WAMPage() {
 
               <p className="mb-8 text-xl leading-relaxed text-primary-50">
                 24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor
-                temperature, humidity, and more from anywhere with BAPI's proven wireless solutions.
+                temperature, humidity, and more from anywhere with BAPI&apos;s proven wireless solutions.
               </p>
 
               <div className="flex flex-col gap-4 sm:flex-row">
@@ -113,7 +113,7 @@ export default function WAMPage() {
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">What is WAM?</h2>
             <p className="mx-auto max-w-3xl text-xl text-neutral-600">
-              WAM™ (Wireless Asset Monitoring) is BAPI's complete solution for protecting
+              WAM™ (Wireless Asset Monitoring) is BAPI&apos;s complete solution for protecting
               temperature-sensitive equipment and inventory from costly failures.
             </p>
           </div>
@@ -862,7 +862,7 @@ export default function WAMPage() {
                 </h2>
                 <p className="mb-6 text-lg text-neutral-600">
                   Let us show you how WAM™ can protect your assets and prevent costly failures. Fill
-                  out the form and we'll contact you to schedule a personalized demo.
+                  out the form and we&apos;ll contact you to schedule a personalized demo.
                 </p>
 
                 <div className="space-y-4">
@@ -1044,7 +1044,7 @@ export default function WAMPage() {
             Have questions about wireless monitoring?
           </h2>
           <p className="mb-6 text-primary-100">
-            Talk to one of our technical experts. We're here to help you find the right solution.
+            Talk to one of our technical experts. We&apos;re here to help you find the right solution.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link

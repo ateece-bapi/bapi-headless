@@ -111,7 +111,7 @@ export default function RequestQuotePage() {
           </div>
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">Quote Request Submitted!</h2>
           <p className="mb-6 text-neutral-600">
-            We've received your request and our team will review it shortly. You'll receive a
+            We&apos;ve received your request and our team will review it shortly. You&apos;ll receive a
             response within 24 business hours.
           </p>
           <div className="flex flex-col gap-3">

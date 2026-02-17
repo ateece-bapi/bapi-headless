@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { Search, CheckCircle, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -92,30 +93,30 @@ export default function ProductSelectorPage() {
             Or Browse by Category
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-            <a
+            <Link
               href="/products?category=temperature"
               className="rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500"
             >
               <h3 className="font-bold text-neutral-900">Temperature Sensors</h3>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products?category=humidity"
               className="rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500"
             >
               <h3 className="font-bold text-neutral-900">Humidity Sensors</h3>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products?category=wireless"
               className="rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500"
             >
               <h3 className="font-bold text-neutral-900">Wireless Products</h3>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products?category=air-quality"
               className="rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500"
             >
               <h3 className="font-bold text-neutral-900">Air Quality</h3>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

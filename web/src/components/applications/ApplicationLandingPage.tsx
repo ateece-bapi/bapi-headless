@@ -288,7 +288,7 @@ function BenefitsSection({ benefits }: { benefits: ApplicationLandingPageData['b
         {/* Section Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
-            Benefits You'll See
+            Benefits You&apos;ll See
           </h2>
           <p className="text-lg text-neutral-600">
             Real business outcomes that impact your bottom line

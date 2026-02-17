@@ -211,7 +211,7 @@ export default function SensorSpecsPage() {
                 <tbody className="divide-y divide-neutral-200">
                   <tr>
                     <td className="px-6 py-4 text-neutral-900">Differential Pressure</td>
-                    <td className="px-6 py-4 text-neutral-600">0-0.25" to 0-10"</td>
+                    <td className="px-6 py-4 text-neutral-600">0-0.25&quot; to 0-10&quot;</td>
                     <td className="px-6 py-4 text-neutral-600">±1% FS</td>
                     <td className="px-6 py-4 text-neutral-600">0-5V, 0-10V, 4-20mA</td>
                   </tr>

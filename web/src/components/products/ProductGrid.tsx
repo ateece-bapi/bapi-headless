@@ -49,7 +49,7 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
 
           <h3 className="mb-3 text-2xl font-bold text-neutral-900">No Products Found</h3>
           <p className="mb-6 leading-relaxed text-neutral-600">
-            We couldn't find any products matching your current filters. Try adjusting your
+            We couldn&apos;t find any products matching your current filters. Try adjusting your
             selection or browse all products.
           </p>
 

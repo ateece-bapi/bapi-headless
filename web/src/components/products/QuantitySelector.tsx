@@ -133,6 +133,8 @@ export default function QuantitySelector({
   // Reset when stock status changes
   useEffect(() => {
     if (isOutOfStock) {
+      // Valid: Resetting state in response to prop change
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       setQuantity(0);
       setInputValue('0');
     }

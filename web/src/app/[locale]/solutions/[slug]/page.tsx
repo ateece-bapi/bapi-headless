@@ -349,7 +349,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
               Ready to Optimize Your Facility?
             </h2>
             <p className="mb-8 text-lg text-neutral-600">
-              Let's discuss how BAPI sensors can solve your specific challenges.
+              Let&apos;s discuss how BAPI sensors can solve your specific challenges.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Link

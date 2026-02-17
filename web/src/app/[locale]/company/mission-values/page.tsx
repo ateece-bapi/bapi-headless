@@ -140,7 +140,7 @@ export default async function MissionValuesPage() {
               <p className="text-lg leading-relaxed text-gray-700">
                 To grow as a global, innovative leader by providing unique, customer driven
                 solutions while inspiring our employees to be their best, delivering quality
-                products and services that exceed our customers' expectations.
+                products and services that exceed our customers&apos; expectations.
               </p>
             </div>
           </div>
@@ -201,7 +201,7 @@ export default async function MissionValuesPage() {
             <div className="text-center lg:text-left">
               <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">Join Our Mission</h2>
               <p className="max-w-2xl text-lg text-primary-50">
-                We're always looking for talented individuals who share our values and passion for
+                We&apos;re always looking for talented individuals who share our values and passion for
                 innovation. Explore opportunities to join the BAPI team.
               </p>
             </div>

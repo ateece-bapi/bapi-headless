@@ -99,6 +99,8 @@ export function SearchDropdown({
 
   // Reset selected index when results change
   useEffect(() => {
+    // Valid: Resetting UI state in response to data change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setSelectedIndex(0);
   }, [results]);
 
@@ -121,7 +123,7 @@ export function SearchDropdown({
       {!isLoading && results.length === 0 && query.length >= 2 && (
         <div className="py-8 text-center">
           <Search className="mx-auto mb-3 h-12 w-12 text-neutral-300" />
-          <p className="font-medium text-neutral-600">No products found for "{query}"</p>
+          <p className="font-medium text-neutral-600">No products found for &quot;{query}&quot;</p>
           <p className="mt-1 text-sm text-neutral-500">
             Try different keywords or browse categories
           </p>
@@ -212,7 +214,7 @@ export function SearchDropdown({
               </>
             ) : (
               <>
-                <span>View all results for "{query}"</span>
+                <span>View all results for &quot;{query}&quot;</span>
                 <ArrowRight
                   className={`h-4 w-4 transition-transform ${
                     selectedIndex === results.length ? 'translate-x-1' : ''

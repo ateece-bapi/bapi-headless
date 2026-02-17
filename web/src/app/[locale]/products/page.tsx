@@ -97,6 +97,8 @@ export default function MainProductPage() {
   const [showCards, setShowCards] = useState(false);
 
   useEffect(() => {
+    // Valid: Setting state on mount for page transition animation
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setPageVisible(true);
     // Staggered card animation
     const timeout = setTimeout(() => setShowCards(true), 100);

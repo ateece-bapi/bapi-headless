@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { Download, FileText, Printer, Mail } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -180,12 +181,12 @@ export default function CatalogPricebookPage() {
               >
                 Call (715) 856-1203
               </a>
-              <a
+              <Link
                 href="/request-quote"
                 className="inline-block rounded-xl border-2 border-primary-500 px-6 py-3 font-bold text-primary-500 transition-colors hover:bg-primary-50"
               >
                 Request a Quote
-              </a>
+              </Link>
             </div>
           </div>
         </div>

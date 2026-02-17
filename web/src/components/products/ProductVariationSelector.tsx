@@ -59,13 +59,9 @@ export default function ProductVariationSelector({
 }: ProductVariationSelectorProps) {
   const { attributes = [], variations = [] } = product;
 
-  // Hide selector if no variations or attributes
-  if (variations.length === 0 || attributes.length === 0) {
-    return null;
-  }
-
   // Transform old attribute format to new ProductAttribute format
   // Memoize to prevent recreating arrays on every render
+  // Hooks must be called unconditionally before any early returns
   const transformedAttributes: ProductAttribute[] = useMemo(
     () =>
       attributes.map((attr, index) => ({
@@ -101,6 +97,11 @@ export default function ProductVariationSelector({
       })),
     [variations]
   );
+
+  // Hide selector if no variations or attributes (check AFTER hooks)
+  if (variations.length === 0 || attributes.length === 0) {
+    return null;
+  }
 
   // Handle variation change - transform back to old format
   const handleVariationChange = (

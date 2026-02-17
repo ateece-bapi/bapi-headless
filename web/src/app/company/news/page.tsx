@@ -33,7 +33,7 @@ export default function NewsPage() {
                     BAPI Launches New Wireless Product Line
                   </h2>
                   <p className="mb-4 text-neutral-600">
-                    We're excited to announce the expansion of our wireless sensor line with
+                    We&apos;re excited to announce the expansion of our wireless sensor line with
                     improved battery life and enhanced connectivity features...
                   </p>
                   <button className="font-semibold text-primary-500 hover:text-primary-600">

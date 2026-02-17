@@ -162,7 +162,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
           <h1 className="mb-2 text-3xl font-bold text-neutral-900 sm:text-4xl">Order Confirmed!</h1>
 
           <p className="mb-6 text-lg text-neutral-600">
-            Thank you for your order. We've received your purchase and will process it shortly.
+            Thank you for your order. We&apos;ve received your purchase and will process it shortly.
           </p>
 
           <div className="inline-flex items-center gap-2 text-sm text-neutral-500">
@@ -184,7 +184,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
           <div className="rounded-xl bg-white p-6 text-center shadow">
             <Truck className="mx-auto mb-3 h-8 w-8 text-neutral-400" />
             <h3 className="mb-1 font-semibold text-neutral-900">Shipping Soon</h3>
-            <p className="text-sm text-neutral-600">You'll receive tracking info</p>
+            <p className="text-sm text-neutral-600">You&apos;ll receive tracking info</p>
           </div>
 
           <div className="rounded-xl bg-white p-6 text-center shadow">
@@ -244,7 +244,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
           <p className="text-sm text-blue-900">
             <strong>📧 Confirmation Email Sent</strong>
             <br />
-            We've sent a confirmation email to your inbox with order details and tracking
+            We&apos;ve sent a confirmation email to your inbox with order details and tracking
             information.
           </p>
         </div>

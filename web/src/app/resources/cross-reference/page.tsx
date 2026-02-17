@@ -128,7 +128,7 @@ export default function CrossReferencePage() {
       <section className="py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">
-            Can't Find What You're Looking For?
+            Can&apos;t Find What You&apos;re Looking For?
           </h2>
           <p className="mb-6 text-neutral-600">
             Contact our technical sales team for assistance with cross-referencing

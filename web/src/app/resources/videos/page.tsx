@@ -36,7 +36,7 @@ export default function VideosPage() {
                   Video Library Launching Soon
                 </h2>
                 <p className="mb-4 text-neutral-700">
-                  We're preparing a comprehensive video library with product demonstrations,
+                  We&apos;re preparing a comprehensive video library with product demonstrations,
                   installation guides, and technical tutorials. This feature will be available in
                   Phase 2.
                 </p>

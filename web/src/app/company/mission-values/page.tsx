@@ -47,7 +47,7 @@ export default function MissionValuesPage() {
               <Users className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Customer Focus</h3>
               <p className="text-neutral-600">
-                Our customers' success is our success. We listen, respond, and support every
+                Our customers&apos; success is our success. We listen, respond, and support every
                 project.
               </p>
             </div>

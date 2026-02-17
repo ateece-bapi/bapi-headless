@@ -212,7 +212,7 @@ export default async function WhyBapiPage() {
                 Ready to Experience the BAPI Difference?
               </h2>
               <p className="max-w-2xl text-lg text-primary-50">
-                Let's discuss how our precision sensor solutions can benefit your next project. Our
+                Let&apos;s discuss how our precision sensor solutions can benefit your next project. Our
                 team is ready to help you find the perfect solution.
               </p>
             </div>

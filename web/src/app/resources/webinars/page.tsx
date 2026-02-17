@@ -35,7 +35,7 @@ export default function WebinarsPage() {
                   Webinar Program Launching Soon
                 </h2>
                 <p className="mb-4 text-neutral-700">
-                  We're developing a comprehensive webinar program covering building automation best
+                  We&apos;re developing a comprehensive webinar program covering building automation best
                   practices, new technologies, and product deep-dives. This feature will be
                   available in Phase 2.
                 </p>

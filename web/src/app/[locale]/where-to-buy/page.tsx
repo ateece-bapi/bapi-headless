@@ -675,7 +675,7 @@ export default function WhereToBuyPage() {
             Interested in Becoming a Distributor?
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-primary-50">
-            Join our global network of authorized distributors and bring BAPI's innovative building
+            Join our global network of authorized distributors and bring BAPI&apos;s innovative building
             automation solutions to your customers.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">

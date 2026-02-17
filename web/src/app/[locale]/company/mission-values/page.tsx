@@ -140,7 +140,7 @@ export default async function MissionValuesPage() {
               <p className="text-lg leading-relaxed text-gray-700">
                 To grow as a global, innovative leader by providing unique, customer driven
                 solutions while inspiring our employees to be their best, delivering quality
-                products and services that exceed our customers' expectations.
+                products and services that exceed our customers&apos; expectations.
               </p>
             </div>
           </div>

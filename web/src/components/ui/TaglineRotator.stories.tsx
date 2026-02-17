@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import TaglineRotator from './TaglineRotator';
 
 /**
@@ -21,7 +21,7 @@ const defaultTaglines = [
   'Seamless wireless integration for your existing BAS',
   'Precision Engineering',
   'Building the Future',
-  "...It's in the details",
+  "...It&apos;s in the details",
   'People. Building. Sensors',
 ];
 
@@ -49,7 +49,7 @@ type Story = StoryObj<typeof meta>;
  * 3. "Seamless wireless integration for your existing BAS"
  * 4. "Precision Engineering"
  * 5. "Building the Future"
- * 6. "...It's in the details"
+ * 6. "...It&apos;s in the details"
  * 7. "People. Building. Sensors"
  */
 export const Default: Story = {};

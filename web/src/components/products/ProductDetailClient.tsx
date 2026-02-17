@@ -65,10 +65,7 @@ export default function ProductDetailClient({
   useCart = defaultUseCart,
   useCartDrawer = defaultUseCartDrawer,
 }: ProductDetailClientProps) {
-  // Runtime prop validation for critical fields
-  if (!product?.id || !product?.name || product?.price == null) {
-    return <div className="p-4 text-red-600">Error: Product data is missing required fields.</div>;
-  }
+  // Extract data with safe defaults (hooks must be called unconditionally)
   const { variations = [], attributes = [] } = product ?? {};
 
   // Attribute selection state (e.g., { Size: 'M', Color: 'Red' })
@@ -89,7 +86,7 @@ export default function ProductDetailClient({
   const gallery = product?.gallery ?? [];
   const initialIndex = gallery.length > 0 ? 0 : -1;
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(
-    product.image ? -1 : initialIndex
+    product?.image ? -1 : initialIndex
   );
 
   const selectedVariation = useMemo(() => {
@@ -105,6 +102,11 @@ export default function ProductDetailClient({
     }
     return variations.find((v) => v?.databaseId === selectedVariationId) ?? null;
   }, [variations, selectedVariationId, attributeSelection]);
+
+  // Runtime prop validation AFTER hooks (hooks must be called unconditionally)
+  if (!product?.id || !product?.name || product?.price == null) {
+    return <div className="p-4 text-red-600">Error: Product data is missing required fields.</div>;
+  }
 
   const cartProduct: Omit<CartItem, 'quantity'> = {
     id: selectedVariation ? `${product.id}::${selectedVariation?.databaseId}` : product.id,

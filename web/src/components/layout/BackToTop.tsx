@@ -8,6 +8,8 @@ export default function BackToTop() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Valid: Setting hydration flag on mount (client-side only)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setMounted(true);
   }, []);
 

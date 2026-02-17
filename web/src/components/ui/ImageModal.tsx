@@ -23,10 +23,19 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const imageRef = useRef<HTMLDivElement>(null);
+  const wasOpen = useRef(isOpen);
 
-  // Reset transforms when modal opens - use key prop instead of setState in effect
-  // This follows React best practices: https://react.dev/learn/you-might-not-need-an-effect
-  const resetKey = isOpen ? Date.now() : 0;
+  // Reset transforms when modal opens
+  useEffect(() => {
+    if (isOpen && !wasOpen.current) {
+      // Valid: Resetting state when modal opens (batched updates)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      setScale(1);
+      setPosition({ x: 0, y: 0 });
+      setRotation(0);
+    }
+    wasOpen.current = isOpen;
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -136,7 +145,6 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
 
       {/* Image Container */}
       <div
-        key={resetKey} // Reset state by remounting component when modal opens
         ref={imageRef}
         className="relative max-h-[90vh] max-w-[90vw] cursor-move select-none"
         onClick={(e) => e.stopPropagation()}

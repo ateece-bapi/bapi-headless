@@ -1044,7 +1044,7 @@ export default function WAMPage() {
             Have questions about wireless monitoring?
           </h2>
           <p className="mb-6 text-primary-100">
-            Talk to one of our technical experts. We're here to help you find the right solution.
+            Talk to one of our technical experts. We&apos;re here to help you find the right solution.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link

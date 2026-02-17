@@ -695,6 +695,12 @@
       "download": "Download",
       "downloadSpecs": "Download Specifications"
     },
+    "sensorSpecs": {
+      "sensorType": "Sensor Type",
+      "range": "Range",
+      "accuracy": "Accuracy",
+      "output": "Output"
+    },
     "related": {
       "title": "Related Products",
       "view": "View",

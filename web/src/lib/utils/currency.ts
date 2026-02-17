@@ -14,6 +14,8 @@ const EXCHANGE_RATES: Record<CurrencyCode, number> = {
   SGD: 1.34,
   AED: 3.67,
   VND: 25320, // Vietnamese Dong (1 USD ≈ 25,320 VND)
+  THB: 36.0, // Thai Baht (1 USD ≈ 36 THB)
+  INR: 83.0, // Indian Rupee (1 USD ≈ 83 INR)
 };
 
 /**

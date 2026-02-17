@@ -2,8 +2,8 @@
  * Region and localization types
  */
 
-export type RegionCode = 'us' | 'eu' | 'asia' | 'mena';
-export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED' | 'VND';
+export type RegionCode = 'us' | 'uk' | 'eu' | 'jp' | 'cn' | 'sg' | 'vn' | 'th' | 'in' | 'mena';
+export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED' | 'VND' | 'THB' | 'INR';
 export type LanguageCode =
   | 'en'
   | 'de'
@@ -52,6 +52,14 @@ export const REGIONS: Record<RegionCode, Region> = {
     locale: 'en-US',
     flag: '🇺🇸',
   },
+  uk: {
+    code: 'uk',
+    name: 'United Kingdom',
+    currency: 'GBP',
+    language: 'en',
+    locale: 'en-GB',
+    flag: '🇬🇧',
+  },
   eu: {
     code: 'eu',
     name: 'Europe',
@@ -60,20 +68,60 @@ export const REGIONS: Record<RegionCode, Region> = {
     locale: 'en-GB',
     flag: '🇪🇺',
   },
-  asia: {
-    code: 'asia',
-    name: 'Asia Pacific',
+  jp: {
+    code: 'jp',
+    name: 'Japan',
+    currency: 'JPY',
+    language: 'ja',
+    locale: 'ja-JP',
+    flag: '🇯🇵',
+  },
+  cn: {
+    code: 'cn',
+    name: 'China',
+    currency: 'CNY',
+    language: 'zh',
+    locale: 'zh-CN',
+    flag: '🇨🇳',
+  },
+  sg: {
+    code: 'sg',
+    name: 'Singapore',
     currency: 'SGD',
     language: 'en',
     locale: 'en-SG',
-    flag: '🌏',
+    flag: '🇸🇬',
+  },
+  vn: {
+    code: 'vn',
+    name: 'Vietnam',
+    currency: 'VND',
+    language: 'vi',
+    locale: 'vi-VN',
+    flag: '🇻🇳',
+  },
+  th: {
+    code: 'th',
+    name: 'Thailand',
+    currency: 'THB',
+    language: 'th',
+    locale: 'th-TH',
+    flag: '🇹🇭',
+  },
+  in: {
+    code: 'in',
+    name: 'India',
+    currency: 'INR',
+    language: 'hi',
+    locale: 'hi-IN',
+    flag: '🇮🇳',
   },
   mena: {
     code: 'mena',
     name: 'Middle East',
     currency: 'AED',
-    language: 'en',
-    locale: 'en-AE',
+    language: 'ar',
+    locale: 'ar-AE',
     flag: '🇦🇪',
   },
 };
@@ -134,6 +182,20 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     name: 'Vietnamese Dong',
     decimals: 0,
     position: 'after',
+  },
+  THB: {
+    code: 'THB',
+    symbol: '฿',
+    name: 'Thai Baht',
+    decimals: 2,
+    position: 'before',
+  },
+  INR: {
+    code: 'INR',
+    symbol: '₹',
+    name: 'Indian Rupee',
+    decimals: 2,
+    position: 'before',
   },
 };
 

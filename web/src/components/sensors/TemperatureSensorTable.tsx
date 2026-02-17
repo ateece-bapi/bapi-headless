@@ -92,20 +92,43 @@ export function TemperatureSensorTable({ labels }: TemperatureSensorTableProps =
                 'fahrenheit',
                 locale
               );
-              
+
               // Format accuracy with temperature conversion
-              let accuracy = sensor.accuracy;
+              let formattedAccuracy = sensor.accuracy;
               if (sensor.accuracyTemp) {
-                const accuracyValue = sensor.accuracy.match(/±[\d.]+/)?.[0] || '±0.2';
+                // Extract the numeric accuracy value in Fahrenheit (e.g., "±0.2" from "±0.2°F @ 77°F")
+                const accuracyMatch = sensor.accuracy.match(/±([\d.]+)/);
+                const accuracyValueF = accuracyMatch ? parseFloat(accuracyMatch[1]) : 0.2;
+
+                // Format the reference temperature in the user's locale
                 const tempValue = formatMeasurement(sensor.accuracyTemp, 'fahrenheit', locale);
-                accuracy = `${accuracyValue}°F @ ${tempValue}`;
+
+                // Check if we're displaying in Celsius or Fahrenheit
+                const isCelsius = tempValue.includes('°C');
+                
+                // Convert accuracy tolerance if displaying in Celsius
+                let displayAccuracyValue: string;
+                if (isCelsius && !Number.isNaN(accuracyValueF)) {
+                  // Convert Fahrenheit tolerance to Celsius tolerance
+                  const accuracyValueC = (accuracyValueF * 5) / 9;
+                  const numberFormatter = new Intl.NumberFormat(locale, {
+                    minimumFractionDigits: 1,
+                    maximumFractionDigits: 1,
+                  });
+                  displayAccuracyValue = `±${numberFormatter.format(accuracyValueC)}°C`;
+                } else {
+                  // Keep Fahrenheit format
+                  displayAccuracyValue = `±${accuracyValueF}°F`;
+                }
+
+                formattedAccuracy = `${displayAccuracyValue} @ ${tempValue}`;
               }
 
               return (
                 <tr key={sensor.type}>
                   <td className="px-6 py-4 text-neutral-900">{sensor.type}</td>
                   <td className="px-6 py-4 text-neutral-600">{range}</td>
-                  <td className="px-6 py-4 text-neutral-600">{accuracy}</td>
+                  <td className="px-6 py-4 text-neutral-600">{formattedAccuracy}</td>
                   <td className="px-6 py-4 text-neutral-600">{sensor.output}</td>
                 </tr>
               );

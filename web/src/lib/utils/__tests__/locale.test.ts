@@ -154,7 +154,7 @@ describe('Locale Utilities', () => {
       });
 
       it('converts Fahrenheit to Celsius for non-US locales', () => {
-        const result = formatMeasurement(68, 'fahrenheit','de');
+        const result = formatMeasurement(68, 'fahrenheit', 'de');
         expect(result).toBe('20,0°C'); // 68°F = 20°C, German uses comma
       });
 

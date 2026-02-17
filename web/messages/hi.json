@@ -695,6 +695,12 @@
       "download": "डाउनलोड",
       "downloadSpecs": "विनिर्देश डाउनलोड करें"
     },
+    "sensorSpecs": {
+      "sensorType": "सेंसर प्रकार",
+      "range": "रेंज",
+      "accuracy": "सटीकता",
+      "output": "आउटपुट"
+    },
     "related": {
       "title": "संबंधित उत्पाद",
       "view": "देखें",

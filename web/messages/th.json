@@ -462,6 +462,12 @@
       "download": "ดาวน์โหลด",
       "downloadSpecs": "ดาวน์โหลดข้อมูลจำเพาะ"
     },
+    "sensorSpecs": {
+      "sensorType": "ประเภทเซ็นเซอร์",
+      "range": "ช่วง",
+      "accuracy": "ความแม่นยำ",
+      "output": "เอาต์พุต"
+    },
     "related": {
       "title": "ผลิตภัณฑ์ที่เกี่ยวข้อง",
       "view": "ดู",

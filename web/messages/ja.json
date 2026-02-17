@@ -478,6 +478,12 @@
       "download": "ダウンロード",
       "downloadSpecs": "仕様書をダウンロード"
     },
+    "sensorSpecs": {
+      "sensorType": "センサータイプ",
+      "range": "範囲",
+      "accuracy": "精度",
+      "output": "出力"
+    },
     "related": {
       "title": "関連製品",
       "view": "表示",

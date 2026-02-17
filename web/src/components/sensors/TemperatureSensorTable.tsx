@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { formatTemperatureRange, formatMeasurement } from '@/lib/utils/locale';
 import type { LanguageCode } from '@/types/region';
 
@@ -51,6 +52,7 @@ const temperatureSensors: TemperatureSensorSpec[] = [
 export function TemperatureSensorTable() {
   const params = useParams();
   const locale = (params?.locale as LanguageCode) || 'en';
+  const t = useTranslations('productPage.sensorSpecs');
 
   return (
     <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
@@ -59,13 +61,13 @@ export function TemperatureSensorTable() {
           <thead className="bg-neutral-50">
             <tr>
               <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
-                Sensor Type
+                {t('sensorType')}
               </th>
-              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Range</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">{t('range')}</th>
               <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
-                Accuracy
+                {t('accuracy')}
               </th>
-              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Output</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">{t('output')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-neutral-200">

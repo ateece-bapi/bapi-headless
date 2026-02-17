@@ -692,6 +692,12 @@
       "download": "Pobierz",
       "downloadSpecs": "Pobierz specyfikacje"
     },
+    "sensorSpecs": {
+      "sensorType": "Typ czujnika",
+      "range": "Zakres",
+      "accuracy": "Dokładność",
+      "output": "Wyjście"
+    },
     "related": {
       "title": "Produkty powiązane",
       "view": "Wyświetl",

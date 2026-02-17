@@ -4,6 +4,8 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { ZoomIn } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useRegion } from '@/store/regionStore';
+import { convertWooCommercePrice } from '@/lib/utils/currency';
 
 // Lazy load ImageModal for better initial page load performance
 const ImageModal = dynamic(() => import('@/components/ui/ImageModal'), {
@@ -148,7 +150,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
               <div className="flex items-center gap-2">
                 <span className="text-sm text-neutral-500">List Price:</span>
                 <span className="text-lg font-semibold text-neutral-700">
-                  {product.regularPrice}
+                  {convertWooCommercePrice(product.regularPrice, useRegion().currency)}
                 </span>
               </div>
             )}

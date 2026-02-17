@@ -94,3 +94,56 @@ export function formatPriceRange(
   const maxFormatted = formatConvertedPrice(maxUSD, targetCurrency);
   return `${minFormatted} - ${maxFormatted}`;
 }
+
+/**
+ * Parse USD price from WooCommerce formatted string
+ * Handles formats like "$19.99", "$10.00 - $25.00", "From $15.00"
+ * Returns the numeric USD value or null if invalid
+ */
+export function parsePrice(priceString: string | null | undefined): number | null {
+  if (!priceString || typeof priceString !== 'string') {
+    return null;
+  }
+
+  // Remove common prefixes like "From ", "Starting at ", etc.
+  const cleanString = priceString.replace(/^(from|starting at)\s*/i, '').trim();
+
+  // Extract first dollar amount (handles ranges by taking minimum)
+  const match = cleanString.match(/\$?([\d,]+\.?\d*)/);
+  
+  if (!match) {
+    return null;
+  }
+
+  // Remove commas and parse as float
+  const numericValue = parseFloat(match[1].replace(/,/g, ''));
+  
+  return isNaN(numericValue) ? null : numericValue;
+}
+
+/**
+ * Convert WooCommerce price string to target currency
+ * One-step function: parses USD string and converts to target currency
+ * 
+ * @example
+ * convertWooCommercePrice("$99.99", "EUR") // "€91.99"
+ * convertWooCommercePrice("$50 - $100", "GBP") // "£39.50" (uses minimum)
+ */
+export function convertWooCommercePrice(
+  priceString: string | null | undefined,
+  targetCurrency: CurrencyCode = 'USD'
+): string {
+  const usdAmount = parsePrice(priceString);
+  
+  if (usdAmount === null) {
+    return priceString || '';
+  }
+
+  // If already USD, just return formatted version
+  if (targetCurrency === 'USD') {
+    return formatPrice(usdAmount, 'USD');
+  }
+
+  // Convert and format
+  return formatConvertedPrice(usdAmount, targetCurrency);
+}

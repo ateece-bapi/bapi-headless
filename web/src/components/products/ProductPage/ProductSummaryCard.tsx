@@ -3,6 +3,8 @@
 import React from 'react';
 import { Briefcase, Heart } from 'lucide-react';
 import AddToCartButton from '@/components/cart/AddToCartButton';
+import { useRegion } from '@/store/regionStore';
+import { convertWooCommercePrice } from '@/lib/utils/currency';
 
 interface ProductSummaryCardProps {
   product: any;
@@ -21,12 +23,17 @@ export default function ProductSummaryCard({
 }: ProductSummaryCardProps) {
   const [quantity, setQuantity] = React.useState(1);
   const [isFavorited, setIsFavorited] = React.useState(false);
+  const region = useRegion();
 
   // Check if this is a variable product
   const isVariableProduct = product.attributes && product.attributes.length > 0;
 
   // Use variation data if available, fallback to product data
-  const displayPrice = variation?.price || product.price || '0';
+  const rawPrice = variation?.price || product.price || '0';
+  
+  // Convert price to selected currency
+  const displayPrice = convertWooCommercePrice(rawPrice, region.currency);
+  
   const displayPartNumber =
     variation?.partNumber || variation?.sku || product.partNumber || product.sku || 'N/A';
   const displayStockStatus = variation?.stockStatus || product.stockStatus;
@@ -198,7 +205,9 @@ export default function ProductSummaryCard({
                 <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-primary-700">
                   Your Price
                 </div>
-                <div className="text-4xl font-bold text-primary-600">${calculated}</div>
+                <div className="text-4xl font-bold text-primary-600">
+                  {displayPrice.replace(/[\d.,]/g, '')}{calculated}
+                </div>
               </div>
               <div className="text-right">
                 <div className="text-xs uppercase tracking-wide text-neutral-600">Multiplier</div>

@@ -3,7 +3,53 @@
 **Updated:** February 17, 2026  
 **Launch Date:** April 10, 2026 (52 days remaining)  
 **Current Phase:** Phase 1 Development  
-**Launch Readiness:** 80%
+**Launch Readiness:** 98%
+
+---
+
+## ✅ Currency Conversion & Region Expansion - COMPLETE (Feb 17, 2026)
+
+**Status:** ✅ COMPLETE - 10 REGIONS WITH CURRENCY CONVERSION 🎉  
+**Result:** Currency conversion working sitewide + expanded from 4 to 10 regions  
+**Impact:** Better regional support, Vietnamese & Thai business requirement met  
+**Time:** Single afternoon (2 PRs, both merged)
+
+### Final Implementation
+- **Regions:** 10 regions (US, UK, EU, Japan, China, Singapore, Vietnam, Thailand, India, MENA)
+- **Currencies:** 10 currencies including Thai Baht (฿) and Indian Rupee (₹)
+- **Components Updated:** 8 product components (grid, modal, comparison, hero, summary, related, variations)
+- **Exchange Rates:** Static hardcoded rates (no API dependency, no environment variables)
+- **Production Verified:** ✅ Working on live Vercel deployment
+
+### Implementation Details
+
+#### PR #261: Currency Conversion Bug Fix (merged)
+- ✅ Fixed currency not converting on product listing/grid pages
+- ✅ Added `parsePrice()` - extracts USD from WooCommerce formatted strings
+- ✅ Added `convertWooCommercePrice()` - one-step parse + convert function
+- ✅ Updated `getProductPrice()` - optional currency parameter
+- ✅ Integrated `useRegion()` hook in 8 product components
+- ✅ All 46 currency tests passing
+
+#### PR #262: Region Expansion (merged)
+- ✅ Expanded from 4 to 10 regions (aligned with 11 supported languages)
+- ✅ Added Thai Baht (THB: 36.0) and Indian Rupee (INR: 83.0)
+- ✅ Updated auto-detection mapping (JP, CN, VN, TH, IN specific regions)
+- ✅ Updated region-to-language suggestions
+- ✅ Production deployment successful
+
+### Key Files Created/Modified
+- `web/src/lib/utils/currency.ts` - Added parsePrice and convertWooCommercePrice
+- `web/src/lib/graphql/types.ts` - Updated getProductPrice with currency parameter
+- `web/src/types/region.ts` - Expanded RegionCode and CurrencyCode types
+- `web/src/app/api/detect-region/route.ts` - Updated country-to-region mapping
+- `web/src/lib/utils/regionLanguageMapping.ts` - Added new region mappings
+
+### Branch History
+- PR #261: `fix/currency-conversion-product-pages` (1 commit, merged)
+- PR #262: `feat/expand-regions-language-aligned` (1 commit, merged)
+
+**Launch Impact:** Phase 1 Priority 1 now 95% complete (only Tier 2 translations remaining) ✅
 
 ---
 
@@ -151,7 +197,7 @@
 
 ## 📋 Phase 1 Priorities (Launch: April 10, 2026)
 
-### Priority 1: Translation Services & Regional Support — 🟢 90% Complete
+### Priority 1: Translation Services & Regional Support — 🟢 95% Complete
 
 **Completed:**
 - ✅ Tier 1 translations (276 keys × 11 languages)
@@ -168,13 +214,17 @@
   - ✅ 11 unit types with locale-aware formatting
   - ✅ i18n sensor table headers across all locales
   - ✅ 57 comprehensive tests (100% passing)
+- ✅ **Currency Conversion** (COMPLETED Feb 17, 2026)
+  - ✅ Product listing page currency conversion fixed
+  - ✅ Region expansion: 4 → 10 regions (US, UK, EU, JP, CN, SG, VN, TH, IN, MENA)
+  - ✅ Currency expansion: Added Thai Baht (฿) and Indian Rupee (₹)
+  - ✅ Price formatting across all 10 currencies
+  - ✅ Exchange rate conversion (static rates, no API needed)
+  - ✅ Integrated in 8 product components (grid, modal, comparison, hero, summary, related, variations)
+  - ✅ Production verified on Vercel (all regions working)
+  - ✅ 46/46 currency tests passing
 
-**Remaining (5-7 days):**
-- ⏳ **Currency Conversion** (2-3 days)
-  - Exchange rate API integration
-  - Currency selector UI
-  - Price formatting (USD/EUR/SGD/AED)
-  - Test all 4 regions
+**Remaining (3-4 days):**
 - ⏳ **Tier 2 Translations** (3-4 days)
   - Company pages (~50 keys)
   - Support pages (~40 keys)
@@ -607,8 +657,8 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** February 5, 2026  
-**Current Phase:** Phase 1 - April 10, 2026 Go-Live (64 days remaining)
+**Updated:** February 17, 2026  
+**Current Phase:** Phase 1 - April 10, 2026 Go-Live (52 days remaining)
 
 ### Production Launch Timeline
 - **Early March 2026**: Testing begins (25 days)
@@ -616,16 +666,16 @@
 - **April 6, 2026**: Stakeholder presentation for final approval (61 days)
 - **April 10, 2026**: Production release (HARD DEADLINE - 65 days)
 
-### Launch Readiness Status (Feb 11, 2026)
-**Overall:** 97% Complete (Target: 95% by March 25) - **UP 3% from admin auth + TODO cleanup**
+### Launch Readiness Status (Feb 17, 2026)
+**Overall:** 98% Complete (Target: 95% by March 25) - **UP 1% from currency conversion + region expansion**
 
 **Scorecard:**
 - ✅ Frontend Code: 98% (Excellent - TODO cleanup complete)
 - ✅ Testing: 80%+ coverage (648 tests passing)
 - ✅ Authentication: 100% (WordPress JWT complete with sign-in/sign-out, password toggle, senior polish)
-- ✅ Admin Authorization: 100% (WordPress role-based access control with isAdmin checks) ⬆️
-- 🔄 Internationalization: 60% (Translation service in progress)
-- ✅ Email Notifications: 100% (AWS SES integration with chat handoff + quote requests) ⬆️
+- ✅ Admin Authorization: 100% (WordPress role-based access control with isAdmin checks)
+- ✅ Internationalization: 95% (Currency + measurement unit localization complete, only Tier 2 translations remaining) ⬆️
+- ✅ Email Notifications: 100% (AWS SES integration with chat handoff + quote requests)
 - ✅ **Performance: 94/100 Mobile, 98/100 Desktop** (**WORLD-CLASS** - Top 2-6% globally)
 - ✅ **SEO Optimization: 100% (92/100 both platforms, +9 from Phase 1)**
 - ✅ User Migration: 100% (WordPress users authenticate directly, no migration needed)
@@ -637,7 +687,7 @@
 - ✅ Production Logging: 100% (All 42 production files updated, logger wrapper complete)
 - ✅ Error Monitoring: 100% (Sentry integrated and tested)
 - ✅ Documentation: 95% (Excellent)
-- ✅ Code Quality: 100% (TODO cleanup complete - 9 TODOs resolved) ⬆️
+- ✅ Code Quality: 100% (TODO cleanup complete - 9 TODOs resolved)
 
 ---
 

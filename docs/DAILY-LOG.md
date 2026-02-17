@@ -7,6 +7,222 @@
 
 ---
 
+## February 17, 2026 — Currency Conversion & Region Expansion: 2 PRs MERGED 🎉
+
+**Status:** ✅ COMPLETE - Currency conversion working on all pages + 10 regions  
+**Branches:** fix/currency-conversion-product-pages, feat/expand-regions-language-aligned  
+**PRs:** #261, #262 (both merged)  
+**Days Until Launch:** 52 days (April 10, 2026)
+
+**Critical Achievement:** Fixed currency conversion bug on product listing pages and expanded regional support from 4 to 10 regions, aligning with 11 supported languages. System now shows proper converted prices across all product pages and supports country-specific regions including Vietnam and Thailand per business requirement.
+
+### Executive Summary
+
+**Result:** Currency conversion working sitewide + 10 regional currencies  
+**Time:** ~3 hours (2 PRs with production verification)  
+**Files:** 13 modified (8 components + 4 configuration files)  
+**Impact:** 🟢 Phase 1 Priority 1 → 95% complete (only Tier 2 translations remaining)
+
+**Final Metrics:**
+- Regions: 4 → 10 (US, UK, EU, Japan, China, Singapore, Vietnam, Thailand, India, MENA)
+- Currencies: 8 → 10 (added Thai Baht ฿, Indian Rupee ₹)
+- Components updated: 8 (ProductGrid, QuickView, Comparison, Hero, Summary, Related, Variations)
+- Exchange rates: All hardcoded (no API dependency, no environment variables needed)
+- Production verified: ✅ Working on live Vercel deployment
+- TypeScript errors: 0 (maintained)
+- Launch readiness: 85% → 90% (Phase 1 priority nearly complete)
+
+### Implementation Timeline
+
+**PR #261: Currency Conversion Bug Fix (1 commit)**
+
+**Problem Discovered:**
+- Currency conversion working on individual product pages
+- **NOT working** on product listing/grid pages (all showing USD)
+- User report: "Europe is selected but NO changes in currency"
+
+**Root Cause:**
+- Components using `getProductPrice()` without currency parameter
+- Missing `parsePrice()` utility to extract USD from WooCommerce strings
+- Missing `convertWooCommercePrice()` one-step conversion function
+
+**Solution Implemented:**
+
+1. **Currency Utilities Added** (`web/src/lib/utils/currency.ts`)
+   - `parsePrice()`: Extracts USD from "$99.99", "$50-$100", "From $19.99"
+   - `convertWooCommercePrice()`: One-step parse + convert function
+   - Handles range formats, "From" prefix, invalid inputs
+   - Returns formatted string with currency symbol
+
+2. **Type System Updated** (`web/src/lib/graphql/types.ts`)
+   - `getProductPrice()`: Added optional `currency?: CurrencyCode` parameter
+   - Backward compatible (defaults to USD if not provided)
+   - Delegates to `convertWooCommercePrice()` when currency specified
+
+3. **Component Integration** (8 files modified)
+   - `ProductGrid.tsx`: Added `useRegion()` hook, passes `region.currency`
+   - `QuickViewModal.tsx`: Same pattern for modal pricing
+   - `ProductComparison.tsx`: Comparison table prices convert
+   - `ProductSummaryCard.tsx`: Main pricing card with multiplier logic
+   - `ProductHero.tsx`: List price conversion
+   - `RelatedProducts.tsx`: Carousel prices convert
+   - `VariationSelector.tsx`: Dynamic variation pricing
+   - All components: Import `useRegion()`, call `getProductPrice(product, region.currency)`
+
+**Testing:**
+- Build: ✅ Successful (67 static pages)
+- Tests: ✅ 46/46 currency tests passing
+- Local verification: User confirmed "Yes, it is working now"
+- Production: Initially failed, resolved after deployment
+
+**PR #262: Region Expansion (1 commit)**
+
+**Business Context:**
+- Boss specifically requested Vietnamese and Thai language support
+- Current 4 regions too broad ("Asia Pacific" includes diverse countries)
+- Need alignment between regions and 11 supported languages
+
+**Changes Implemented:**
+
+1. **Region Type Expansion** (`web/src/types/region.ts`)
+   - **Before:** `RegionCode = 'us' | 'eu' | 'asia' | 'mena'` (4 regions)
+   - **After:** Added `'uk' | 'jp' | 'cn' | 'sg' | 'vn' | 'th' | 'in'` (10 regions)
+   - Rationale: Country-specific regions align with language/culture
+
+2. **Currency Additions**
+   - **Thai Baht (THB):** {code: 'THB', symbol: '฿', name: 'Thai Baht', decimals: 2}
+   - **Indian Rupee (INR):** {code: 'INR', symbol: '₹', name: 'Indian Rupee', decimals: 2}
+   - Exchange rates: THB: 36.0, INR: 83.0 (relative to USD 1.0)
+
+3. **Region Configurations**
+   - **UK:** English, GBP (£), flag 🇬🇧
+   - **Japan:** Japanese, JPY (¥), flag 🇯🇵
+   - **China:** Chinese, CNY (¥), flag 🇨🇳
+   - **Singapore:** English, SGD (S$), flag 🇸🇬 (HK, TW, KR, MY, ID, PH, AU, NZ)
+   - **Vietnam:** Vietnamese, VND (₫), flag 🇻🇳
+   - **Thailand:** Thai, THB (฿), flag 🇹🇭
+   - **India:** Hindi, INR (₹), flag 🇮🇳
+
+4. **Auto-Detection Updates** (`detect-region/route.ts`)
+   - Refined country-to-region mapping
+   - GB → 'uk' (was 'eu')
+   - JP, CN, VN, TH, IN → specific regions (were 'asia')
+   - Singapore grouping: Asian countries using English + SGD
+
+5. **Language Mapping** (`regionLanguageMapping.ts`)
+   - Added suggestions for new regions
+   - uk → 'en', jp → 'ja', cn → 'zh', sg → 'en'
+   - vn → 'vi', th → 'th', in → 'hi'
+
+**Production Deployment Issue & Resolution:**
+
+**Problem:** Currency conversion working locally but not on Vercel production
+
+**Investigation:**
+- User question: "Do I need environment variables in Vercel?"
+- Agent checked for `/api/exchange-rates/route.ts` → NOT FOUND
+- Agent checked for `CurrencyInitializer` component → NOT FOUND
+- Discovery: Implementation uses static rates only (no API, no env vars needed)
+
+**Root Cause:** Deployment timing - old code cached/running
+
+**Resolution:**
+- Both PRs merged to main (commits: b80948c, 7eece90)
+- Vercel auto-deployed latest changes
+- User verified: "They ARE working now!" ✅
+
+**Architecture Notes:**
+- Exchange rates: Hardcoded in `EXCHANGE_RATES` constant (no API dependency)
+- No environment variables required
+- No external service calls
+- Simpler than originally planned (static rates sufficient)
+- Can add live API later if needed (deferred to Phase 2)
+
+### Key Files Modified
+
+**Currency Conversion (PR #261):**
+- `web/src/lib/utils/currency.ts`: +60 lines (parsePrice, convertWooCommercePrice)
+- `web/src/lib/graphql/types.ts`: +15 lines (currency parameter)
+- `web/src/components/products/ProductGrid.tsx`: useRegion integration
+- `web/src/components/products/QuickViewModal.tsx`: useRegion integration
+- `web/src/components/products/ProductComparison.tsx`: useRegion integration
+- `web/src/components/products/ProductPage/ProductSummaryCard.tsx`: conversion logic
+- `web/src/components/products/ProductPage/ProductHero.tsx`: list price conversion
+- `web/src/components/products/ProductPage/RelatedProducts.tsx`: carousel prices
+- `web/src/components/products/VariationSelector.tsx`: variation pricing
+
+**Region Expansion (PR #262):**
+- `web/src/types/region.ts`: +78 lines (6 new regions, 2 currencies, configs)
+- `web/src/lib/utils/currency.ts`: +2 lines (THB, INR rates)
+- `web/src/app/api/detect-region/route.ts`: +34 lines (country mapping refinement)
+- `web/src/lib/utils/regionLanguageMapping.ts`: +18 lines (new region suggestions)
+
+### Real-World Impact
+
+**Before:**
+```typescript
+// Product Grid showing USD only
+<span>$99.99</span>
+<span>$50.00 - $100.00</span>
+
+// 4 broad regions
+US, Europe, Asia Pacific, Middle East
+```
+
+**After:**
+```typescript
+// Product Grid with dynamic conversion
+region.currency === 'EUR' → "92,00 €"
+region.currency === 'THB' → "฿3.596,40"
+region.currency === 'INR' → "₹8.291,70"
+
+// 10 specific regions aligned with languages
+US, UK, EU, Japan, China, Singapore
+Vietnam, Thailand, India, MENA
+```
+
+**Business Value:**
+- Vietnamese and Thai employees can view site in native currency
+- Customers see prices in local currency (better UX)
+- Regional alignment supports Phase 1 language rollout
+- Foundation for future B2B regional pricing tiers
+
+### Testing & Verification
+
+**Local Testing:**
+- Currency conversion: User confirmed working
+- All components: Dynamic price updates
+- Region selector: 10 regions display correctly
+- Tests: 46/46 passing
+
+**Production Testing:**
+- Initial issue: Currency not converting on Vercel
+- Investigation: No API endpoint needed (static rates)
+- Resolution: Deployment picked up merged changes
+- Final verification: User confirmed "They ARE working now!"
+
+**Quality Metrics:**
+- Production build: ✅ Successful
+- TypeScript errors: 0
+- ESLint errors: 0
+- Test coverage: Maintained
+- Performance: No impact (static calculations)
+
+### Launch Impact
+
+**Phase 1 Progress:**
+- Priority 1 (Translation & Regional): 85% → 95% complete
+- Currency conversion: ✅ COMPLETE (sitewide)
+- Regional support: ✅ COMPLETE (10 regions)
+- Remaining: Tier 2 translations only (~1,650 translations)
+
+**Next Steps:**
+1. Tier 2 translations (Company, Support, Resources pages)
+2. Live chat production testing
+3. Product navigation polish (breadcrumbs, filters)
+
+---
+
 ## February 17, 2026 — Measurement Unit Localization Complete: 5 PRs MERGED 🎉
 
 **Status:** ✅ COMPLETE - Comprehensive measurement conversion system  

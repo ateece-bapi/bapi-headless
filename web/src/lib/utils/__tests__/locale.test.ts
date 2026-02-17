@@ -5,6 +5,10 @@ import {
   formatDateTime,
   formatNumber,
   formatMeasurement,
+  formatTemperatureRange,
+  formatDimensions,
+  formatWeight,
+  parseAndFormatTemperatureRange,
   getLanguageName,
 } from '../locale';
 
@@ -150,7 +154,7 @@ describe('Locale Utilities', () => {
       });
 
       it('converts Fahrenheit to Celsius for non-US locales', () => {
-        const result = formatMeasurement(68, 'fahrenheit', 'de');
+        const result = formatMeasurement(68, 'fahrenheit','de');
         expect(result).toBe('20,0°C'); // 68°F = 20°C, German uses comma
       });
 
@@ -185,6 +189,153 @@ describe('Locale Utilities', () => {
         const result = formatMeasurement(32.8, 'feet', 'de');
         expect(result).toBe('10,0m'); // 32.8ft ≈ 10m, German uses comma
       });
+
+      it('converts inches to centimeters for non-US locales', () => {
+        const result = formatMeasurement(10, 'inches', 'de');
+        expect(result).toBe('25,4cm'); // 10" = 25.4cm
+      });
+
+      it('keeps inches for US locale', () => {
+        const result = formatMeasurement(10, 'inches', 'en');
+        expect(result).toBe('10.0"');
+      });
+
+      it('converts centimeters to inches for US locale', () => {
+        const result = formatMeasurement(25.4, 'centimeters', 'en');
+        expect(result).toBe('10.0"'); // 25.4cm = 10"
+      });
+
+      it('keeps centimeters for non-US locales', () => {
+        const result = formatMeasurement(25, 'centimeters', 'de');
+        expect(result).toBe('25,0cm');
+      });
+    });
+
+    describe('Weight conversion', () => {
+      it('converts kilograms to pounds for US locale', () => {
+        const result = formatMeasurement(5, 'kilograms', 'en');
+        expect(result).toBe('11.0lbs'); // 5kg ≈ 11lbs
+      });
+
+      it('keeps kilograms for non-US locales', () => {
+        const result = formatMeasurement(5, 'kilograms', 'de');
+        expect(result).toBe('5,0kg');
+      });
+
+      it('keeps pounds for US locale', () => {
+        const result = formatMeasurement(10, 'pounds', 'en');
+        expect(result).toBe('10.0lbs');
+      });
+
+      it('converts pounds to kilograms for non-US locales', () => {
+        const result = formatMeasurement(11, 'pounds', 'de');
+        expect(result).toBe('5,0kg'); // 11lbs ≈ 5kg
+      });
+    });
+
+    describe('Region-aware conversions', () => {
+      it('uses imperial for US region explicitly', () => {
+        const result = formatMeasurement(20, 'celsius', 'fr', 'us');
+        expect(result).toBe('68,0°F'); // French formatting, US units
+      });
+
+      it('uses metric for EU region explicitly', () => {
+        const result = formatMeasurement(68, 'fahrenheit', 'en', 'eu');
+        expect(result).toBe('20.0°C'); // English formatting, EU units
+      });
+
+      it('uses metric for Asia region', () => {
+        const result = formatMeasurement(68, 'fahrenheit', 'ja', 'asia');
+        expect(result).toBe('20.0°C'); // Japanese formatting, metric units
+      });
+
+      it('uses metric for MENA region', () => {
+        const result = formatMeasurement(68, 'fahrenheit', 'ar', 'mena');
+        expect(result).toBe('20.0°C'); // Arabic locale with Western numerals (standard for technical specs)
+      });
+    });
+  });
+
+  describe('formatTemperatureRange', () => {
+    it('formats temperature range for US locale', () => {
+      const result = formatTemperatureRange(-40, 185, 'fahrenheit', 'en');
+      expect(result).toBe('-40.0°F to 185.0°F');
+    });
+
+    it('converts and formats range for non-US locale', () => {
+      const result = formatTemperatureRange(-40, 85, 'celsius', 'en');
+      expect(result).toBe('-40.0°F to 185.0°F'); // Converts to Fahrenheit for US
+    });
+
+    it('keeps Celsius for EU locale', () => {
+      const result = formatTemperatureRange(-40, 85, 'celsius', 'de');
+      expect(result).toBe('-40,0°C to 85,0°C'); // German formatting
+    });
+  });
+
+  describe('formatDimensions', () => {
+    it('formats dimensions in inches for US locale', () => {
+      const result = formatDimensions(4.5, 2.8, 1.2, 'inches', 'en');
+      expect(result).toBe('4.5" x 2.8" x 1.2"');
+    });
+
+    it('converts inches to centimeters for EU locale', () => {
+      const result = formatDimensions(4.5, 2.8, 1.2, 'inches', 'de');
+      expect(result).toBe('11,4cm x 7,1cm x 3,0cm');
+    });
+
+    it('keeps centimeters for EU locale', () => {
+      const result = formatDimensions(11.4, 7.1, 3.0, 'centimeters', 'de');
+      expect(result).toBe('11,4cm x 7,1cm x 3,0cm');
+    });
+
+    it('converts centimeters to inches for US locale', () => {
+      const result = formatDimensions(11.4, 7.1, 3.0, 'centimeters', 'en');
+      expect(result).toBe('4.5" x 2.8" x 1.2"');
+    });
+  });
+
+  describe('formatWeight', () => {
+    it('formats weight in pounds for US locale', () => {
+      const result = formatWeight(0.5, 'pounds', 'en');
+      expect(result).toBe('0.5lbs');
+    });
+
+    it('converts pounds to kilograms for EU locale', () => {
+      const result = formatWeight(2.2, 'pounds', 'de');
+      expect(result).toBe('1,0kg'); // 2.2lbs ≈ 1kg
+    });
+
+    it('keeps kilograms for EU locale', () => {
+      const result = formatWeight(1.5, 'kilograms', 'fr');
+      expect(result).toBe('1,5kg'); // French uses comma
+    });
+  });
+
+  describe('parseAndFormatTemperatureRange', () => {
+    it('parses simple range string', () => {
+      const result = parseAndFormatTemperatureRange('-40 to 185', 'fahrenheit', 'en');
+      expect(result).toBe('-40.0°F to 185.0°F');
+    });
+
+    it('parses range with units in string', () => {
+      const result = parseAndFormatTemperatureRange('-40°F to 185°F', 'fahrenheit', 'en');
+      expect(result).toBe('-40.0°F to 185.0°F');
+    });
+
+    it('converts parsed range to different units', () => {
+      const result = parseAndFormatTemperatureRange('-40 to 185', 'fahrenheit', 'de');
+      expect(result).toBe('-40,0°C to 85,0°C');
+    });
+
+    it('returns original string if cannot parse', () => {
+      const result = parseAndFormatTemperatureRange('invalid range', 'fahrenheit', 'en');
+      expect(result).toBe('invalid range');
+    });
+
+    it('handles decimal values', () => {
+      const result = parseAndFormatTemperatureRange('-40.5 to 185.7', 'fahrenheit', 'en');
+      expect(result).toBe('-40.5°F to 185.7°F');
     });
   });
 

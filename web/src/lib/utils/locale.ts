@@ -141,7 +141,7 @@ export function formatMeasurement(
   }
 
   const formattedValue = formatNumber(displayValue, language, {
-    minimumFractionDigits: displayValue % 1 === 0 ? 0 : 1,
+    minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   });
 

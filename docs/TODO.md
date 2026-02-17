@@ -1,6 +1,198 @@
 # BAPI Headless - Project Roadmap & TODO
 
+**Updated:** February 17, 2026  
+**Launch Date:** April 10, 2026 (52 days remaining)  
+**Current Phase:** Phase 1 Development  
+**Launch Readiness:** 75%
+
+---
+
+## 🔴 CRITICAL PRIORITY: ESLint Compliance (Feb 17, 2026)
+
+**Status:** 🔴 IN PROGRESS - URGENT  
+**Issue:** 1,076 linting problems blocking clean code quality  
+**Impact:** Blocks clean CI/CD, reduces code quality, harder to catch bugs  
+**Estimate:** 1-2 days (12-16 hours focused work)
+
+### Problem Breakdown
+- **353 Errors** (blocking issues)
+- **723 Warnings** (quality issues)
+
+### Issues to Fix
+
+#### 1. React Unescaped Entities (~200+ errors)
+**Problem:** Apostrophes and quotes in JSX not properly escaped  
+**Files:** Many page components with text content  
+**Fix:** Replace with HTML entities or wrap in `{"..."}`  
+**Example:**
+```tsx
+// ❌ Current
+<p>Don't use unescaped quotes</p>
+
+// ✅ Fix
+<p>Don&apos;t use unescaped quotes</p>
+<p>{"Don't use unescaped quotes"}</p>
+```
+
+#### 2. HTML Link Usage (~150+ errors)
+**Problem:** Using native `<a>` tags instead of Next.js `<Link>` components  
+**Files:** Navigation components, CTAs, footer, mega menu  
+**Fix:** Replace all `<a href="...">` with `<Link href="...">`  
+**Example:**
+```tsx
+// ❌ Current
+<a href="/products/">View Products</a>
+
+// ✅ Fix
+<Link href="/products/">View Products</Link>
+```
+
+#### 3. React Hooks Violations
+**Problem:** setState in useEffect causing cascading renders, missing dependencies  
+**Files:** Product filtering components  
+**Fix:** Add proper dependency arrays or use useCallback pattern  
+
+#### 4. TypeScript `any` Types (~100+ warnings)
+**Problem:** Using `any` reduces type safety  
+**Files:** wordpress.ts, GraphQL handlers, type definitions  
+**Fix:** Replace with proper interfaces/types  
+
+#### 5. Missing JSDoc Comments (~50+ warnings)
+**Problem:** No documentation for public APIs  
+**Files:** API routes, test fixtures, utility functions  
+**Fix:** Add JSDoc comments to all exported functions  
+
+### Action Plan
+
+**Step 1: Auto-fix (30 min)**
+```bash
+cd web && pnpm run lint --fix
+```
+Expected: Fixes ~100-150 auto-fixable issues
+
+**Step 2: HTML Link Conversion (4-6 hours)**
+- Find/replace `<a href=` with `<Link href=`
+- Verify imports added
+- Test navigation still works
+
+**Step 3: React Hooks Fixes (2-3 hours)**
+- Fix useEffect dependency arrays
+- Resolve cascading setState issues
+
+**Step 4: TypeScript Strictness (3-4 hours)**
+- Replace `any` types
+- Add type guards
+- Add JSDoc comments
+
+**Step 5: React Entities (2-3 hours)**
+- Replace unescaped quotes/apostrophes
+- Use HTML entities or template literals
+
+**Total: 12-16 hours (1-2 days)**
+
+---
+
+## 📋 Phase 1 Priorities (Launch: April 10, 2026)
+
+### Priority 1: Translation Services & Regional Support — 🟢 85% Complete
+
+**Completed:**
+- ✅ Tier 1 translations (276 keys × 11 languages)
+- ✅ Auto-region detection (Vercel Edge)
+- ✅ Language/region selectors
+- ✅ Translation automation scripts
+- ✅ i18n test infrastructure
+- ✅ 12 locale files (1,100 keys)
+
+**Remaining (6-9 days):**
+- ⏳ **Currency Conversion** (2-3 days)
+  - Exchange rate API integration
+  - Currency selector UI
+  - Price formatting (USD/EUR/SGD/AED)
+  - Test all 4 regions
+- ⏳ **Measurement Unit Localization** (1-2 days)
+  - Temperature (°F ↔ °C)
+  - Dimensions (inches ↔ cm)
+  - Weight (lbs ↔ kg)
+  - Regional defaults
+- ⏳ **Tier 2 Translations** (3-4 days)
+  - Company pages (~50 keys)
+  - Support pages (~40 keys)
+  - Resources pages (~60 keys)
+  - Total: 1,650 translations
+
+### Priority 2: Live Chat Integration — 🟢 95% Complete
+
+**Status:** AI Bot with handoff ALREADY IMPLEMENTED ✅
+
+**Completed:**
+- ✅ AI chatbot integrated
+- ✅ Handoff to live support configured
+- ✅ Chat widget UI (responsive)
+- ✅ API routes implemented
+- ✅ Analytics tracking
+- ✅ Feedback system
+- ✅ Admin analytics dashboard
+
+**Remaining (1-2 days):**
+- ⏳ **Production Testing** (1 day)
+  - Test handoff flow with real support team
+  - Verify analytics accuracy
+  - Load testing (multiple concurrent chats)
+- ⏳ **Documentation** (0.5 days)
+  - Support team handoff guide
+  - Admin dashboard usage guide
+
+### Priority 3: Product Navigation — 🟡 60% Complete
+
+**Completed:**
+- ✅ Mega menu (14 columns)
+- ✅ Category/subcategory structure
+- ✅ Product filtering infrastructure
+- ✅ URL slug generation
+- ✅ i18n badge translations
+
+**Remaining (3-5 days):**
+- ⏳ **Breadcrumb Navigation** (1-2 days)
+  - Implement breadcrumb component
+  - Add to all product/category pages
+  - Schema.org structured data
+- ⏳ **Category Page Refinement** (1 day)
+  - Product grid display logic
+  - Filtering by wpCategories
+  - Sorting options
+- ⏳ **Product Filtering Completion** (1-2 days)
+  - ApplicationCategories logic (line 304)
+  - Test across all 11 locales
+  - Performance optimization
+
+---
+
 ## 🧹 Code Cleanup Tasks
+
+### ✅ Comprehensive Codebase Review (Feb 17, 2026)
+**Status:** COMPLETE  
+**Document:** [CODEBASE-REVIEW-FEB17-2026.md](./CODEBASE-REVIEW-FEB17-2026.md)  
+**Summary:**
+  - Analyzed production build, test suite, ESLint compliance, git history
+  - Identified 1,076 ESLint issues (353 errors, 723 warnings) requiring immediate fix
+  - Assessed Phase 1 progress: 75% launch ready with clear path to 100%
+  - Confirmed live chat already implemented (95% complete)
+  - Created action plan for remaining 52 days until April 10 launch
+**Findings:**
+  - Production build: ✅ Passing (7.7s compilation)
+  - Test suite: 647/648 passing (needs re-verification)
+  - Codebase: 361 TypeScript files, 136 components, 89 routes
+  - Translations: 1,100 keys across 12 locales (85% complete)
+  - Live chat: Already implemented with AI bot + handoff
+**Action Items:**
+  1. ESLint fixes (1-2 days) — URGENT
+  2. Currency conversion (2-3 days) — Phase 1 requirement
+  3. Measurement units (1-2 days) — Phase 1 requirement
+  4. Product navigation polish (1-2 days)
+  5. Live chat production testing (1 day)
+
+---
 
 ### ✅ Test Infrastructure i18n Fixes (Feb 13, 2026)
 **Status:** COMPLETE & MERGED (test/fix-product-component-i18n)

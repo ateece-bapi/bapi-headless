@@ -478,6 +478,12 @@
       "download": "Télécharger",
       "downloadSpecs": "Télécharger les spécifications"
     },
+    "sensorSpecs": {
+      "sensorType": "Type de capteur",
+      "range": "Plage",
+      "accuracy": "Précision",
+      "output": "Sortie"
+    },
     "related": {
       "title": "Produits connexes",
       "view": "Voir",

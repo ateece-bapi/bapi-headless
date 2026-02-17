@@ -478,6 +478,12 @@
       "download": "Descargar",
       "downloadSpecs": "Descargar especificaciones"
     },
+    "sensorSpecs": {
+      "sensorType": "Tipo de sensor",
+      "range": "Rango",
+      "accuracy": "Precisión",
+      "output": "Salida"
+    },
     "related": {
       "title": "Productos relacionados",
       "view": "Ver",

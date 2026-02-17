@@ -507,6 +507,12 @@
       "download": "تنزيل",
       "downloadSpecs": "تنزيل المواصفات"
     },
+    "sensorSpecs": {
+      "sensorType": "نوع المستشعر",
+      "range": "النطاق",
+      "accuracy": "الدقة",
+      "output": "المخرجات"
+    },
     "related": {
       "title": "المنتجات ذات الصلة",
       "view": "عرض",

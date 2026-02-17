@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Thermometer, Droplet, Wind, Gauge, Search, Download } from 'lucide-react';
-import { TemperatureSensorTable } from '@/components/sensors/TemperatureSensorTable';
+import { LocalizedTemperatureSensorTable } from '@/components/sensors/LocalizedTemperatureSensorTable';
 
 export const metadata: Metadata = {
   title: 'BAPI Sensors Overview & Specifications | BAPI',
@@ -70,7 +70,7 @@ export default function SensorSpecsPage() {
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-3xl font-bold text-neutral-900">Temperature Sensors</h2>
 
-          <TemperatureSensorTable />
+          <LocalizedTemperatureSensorTable />
 
           <Link
             href="/products?category=temperature"

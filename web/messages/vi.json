@@ -527,6 +527,12 @@
       "download": "Tải xuống",
       "downloadSpecs": "Tải xuống thông số kỹ thuật"
     },
+    "sensorSpecs": {
+      "sensorType": "Loại cảm biến",
+      "range": "Phạm vi",
+      "accuracy": "Độ chính xác",
+      "output": "Đầu ra"
+    },
     "related": {
       "title": "Sản phẩm liên quan",
       "view": "Xem",

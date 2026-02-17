@@ -13,6 +13,16 @@ interface TemperatureSensorSpec {
   output: string;
 }
 
+interface TemperatureSensorTableProps {
+  /** Table header labels */
+  labels?: {
+    sensorType?: string;
+    range?: string;
+    accuracy?: string;
+    output?: string;
+  };
+}
+
 const temperatureSensors: TemperatureSensorSpec[] = [
   {
     type: '10K-2 Thermistor',
@@ -48,9 +58,15 @@ const temperatureSensors: TemperatureSensorSpec[] = [
   },
 ];
 
-export function TemperatureSensorTable() {
+export function TemperatureSensorTable({ labels }: TemperatureSensorTableProps = {}) {
   const params = useParams();
   const locale = (params?.locale as LanguageCode) || 'en';
+  
+  // Use provided labels or English defaults
+  const sensorType = labels?.sensorType || 'Sensor Type';
+  const range = labels?.range || 'Range';
+  const accuracy = labels?.accuracy || 'Accuracy';
+  const output = labels?.output || 'Output';
 
   return (
     <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
@@ -59,13 +75,13 @@ export function TemperatureSensorTable() {
           <thead className="bg-neutral-50">
             <tr>
               <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
-                Sensor Type
+                {sensorType}
               </th>
-              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Range</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">{range}</th>
               <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
-                Accuracy
+                {accuracy}
               </th>
-              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">Output</th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">{output}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-neutral-200">

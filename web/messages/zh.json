@@ -478,6 +478,12 @@
       "download": "下载",
       "downloadSpecs": "下载规格"
     },
+    "sensorSpecs": {
+      "sensorType": "传感器类型",
+      "range": "范围",
+      "accuracy": "精度",
+      "output": "输出"
+    },
     "related": {
       "title": "相关产品",
       "view": "查看",

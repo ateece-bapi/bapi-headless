@@ -487,6 +487,12 @@
       "download": "Herunterladen",
       "downloadSpecs": "Spezifikationen herunterladen"
     },
+    "sensorSpecs": {
+      "sensorType": "Sensortyp",
+      "range": "Bereich",
+      "accuracy": "Genauigkeit",
+      "output": "Ausgang"
+    },
     "related": {
       "title": "Verwandte Produkte",
       "view": "Anzeigen",

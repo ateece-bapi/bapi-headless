@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { formatTemperatureRange, formatMeasurement } from '@/lib/utils/locale';
+import { formatTemperatureRange, formatMeasurement, shouldUseImperial } from '@/lib/utils/locale';
 import type { LanguageCode } from '@/types/region';
 
 interface TemperatureSensorSpec {
@@ -22,6 +22,9 @@ interface TemperatureSensorTableProps {
     output?: string;
   };
 }
+
+// Default accuracy fallback when parsing fails
+const DEFAULT_ACCURACY_FAHRENHEIT = 0.2;
 
 const temperatureSensors: TemperatureSensorSpec[] = [
   {
@@ -98,27 +101,33 @@ export function TemperatureSensorTable({ labels }: TemperatureSensorTableProps =
               if (sensor.accuracyTemp) {
                 // Extract the numeric accuracy value in Fahrenheit (e.g., "±0.2" from "±0.2°F @ 77°F")
                 const accuracyMatch = sensor.accuracy.match(/±([\d.]+)/);
-                const accuracyValueF = accuracyMatch ? parseFloat(accuracyMatch[1]) : 0.2;
+                const accuracyValueF = accuracyMatch ? parseFloat(accuracyMatch[1]) : DEFAULT_ACCURACY_FAHRENHEIT;
 
                 // Format the reference temperature in the user's locale
                 const tempValue = formatMeasurement(sensor.accuracyTemp, 'fahrenheit', locale);
 
-                // Check if we're displaying in Celsius or Fahrenheit
-                const isCelsius = tempValue.includes('°C');
+                // Determine if we should use imperial units based on locale (more reliable than string matching)
+                const useImperial = shouldUseImperial(locale);
                 
-                // Convert accuracy tolerance if displaying in Celsius
+                // Create number formatter with locale-aware formatting
+                const numberFormatter = new Intl.NumberFormat(locale, {
+                  minimumFractionDigits: 1,
+                  maximumFractionDigits: 1,
+                });
+
                 let displayAccuracyValue: string;
-                if (isCelsius && !Number.isNaN(accuracyValueF)) {
-                  // Convert Fahrenheit tolerance to Celsius tolerance
-                  const accuracyValueC = (accuracyValueF * 5) / 9;
-                  const numberFormatter = new Intl.NumberFormat(locale, {
-                    minimumFractionDigits: 1,
-                    maximumFractionDigits: 1,
-                  });
-                  displayAccuracyValue = `±${numberFormatter.format(accuracyValueC)}°C`;
+                if (!Number.isNaN(accuracyValueF)) {
+                  if (useImperial) {
+                    // Keep Fahrenheit units with locale-aware number formatting
+                    displayAccuracyValue = `±${numberFormatter.format(accuracyValueF)}°F`;
+                  } else {
+                    // Convert Fahrenheit tolerance to Celsius tolerance
+                    const accuracyValueC = (accuracyValueF * 5) / 9;
+                    displayAccuracyValue = `±${numberFormatter.format(accuracyValueC)}°C`;
+                  }
                 } else {
-                  // Keep Fahrenheit format
-                  displayAccuracyValue = `±${accuracyValueF}°F`;
+                  // Fallback to original accuracy string if parsing failed
+                  displayAccuracyValue = sensor.accuracy;
                 }
 
                 formattedAccuracy = `${displayAccuracyValue} @ ${tempValue}`;

@@ -232,7 +232,7 @@ function fahrenheitToCelsius(fahrenheit: number): number {
 /**
  * Determine if region should use imperial units
  */
-function shouldUseImperial(language: LanguageCode, region?: RegionCode): boolean {
+export function shouldUseImperial(language: LanguageCode, region?: RegionCode): boolean {
   // If region explicitly provided, use it
   if (region) {
     return region === 'us';

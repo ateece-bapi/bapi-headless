@@ -20,7 +20,7 @@ const COUNTRY_TO_REGION: Record<string, RegionCode> = {
   FR: 'eu',
   ES: 'eu',
   IT: 'eu',
-  GB: 'eu',
+  GB: 'uk',  // United Kingdom gets its own region
   NL: 'eu',
   BE: 'eu',
   AT: 'eu',
@@ -46,21 +46,23 @@ const COUNTRY_TO_REGION: Record<string, RegionCode> = {
   LB: 'mena',
   EG: 'mena',
 
-  // Asia Pacific
-  JP: 'asia',
-  CN: 'asia',
-  SG: 'asia',
-  HK: 'asia',
-  TW: 'asia',
-  KR: 'asia',
-  MY: 'asia',
-  TH: 'asia',
-  ID: 'asia',
-  PH: 'asia',
-  VN: 'asia',
-  IN: 'asia',
-  AU: 'asia',
-  NZ: 'asia',
+  // Asia - Specific regions
+  JP: 'jp',  // Japan
+  CN: 'cn',  // China
+  SG: 'sg',  // Singapore
+  VN: 'vn',  // Vietnam
+  TH: 'th',  // Thailand
+  IN: 'in',  // India
+  
+  // Asia - Grouped under Singapore
+  HK: 'sg',
+  TW: 'sg',
+  KR: 'sg',
+  MY: 'sg',
+  ID: 'sg',
+  PH: 'sg',
+  AU: 'sg',
+  NZ: 'sg',
 };
 
 // Map country codes to suggested languages

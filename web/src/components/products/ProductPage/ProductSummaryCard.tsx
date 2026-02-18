@@ -40,9 +40,8 @@ export default function ProductSummaryCard({
 
   const price = parseFloat(displayPrice.replace(/[^0-9.-]+/g, '') || '0');
   const multiplier = parseFloat(product.multiplier || '1');
-  const calculated = isNaN(price * multiplier * quantity)
-    ? '0.00'
-    : (price * multiplier * quantity).toFixed(2);
+  const calculatedAmount = price * multiplier * quantity;
+  const calculated = isNaN(calculatedAmount) ? '0.00' : calculatedAmount.toFixed(2);
   const isOutOfStock =
     displayStockStatus !== 'IN_STOCK' ||
     (typeof product.stockQuantity === 'number' && product.stockQuantity < 1);
@@ -206,7 +205,7 @@ export default function ProductSummaryCard({
                   Your Price
                 </div>
                 <div className="text-4xl font-bold text-primary-600">
-                  {displayPrice.replace(/[\d.,]/g, '')}{calculated}
+                  {convertWooCommercePrice(calculated, region.currency)}
                 </div>
               </div>
               <div className="text-right">

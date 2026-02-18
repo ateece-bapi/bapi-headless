@@ -126,28 +126,85 @@ export function parsePrice(priceString: string | null | undefined): number | nul
 }
 
 /**
+ * Parse a WooCommerce price string into a min/max USD range.
+ * Handles formats like:
+ *   "$19.99"
+ *   "$10.00 - $25.00"
+ *   "From $15.00"
+ * Returns null if no numeric values can be parsed.
+ */
+function parsePriceRange(
+  priceString: string | null | undefined
+): { min: number; max: number } | null {
+  if (!priceString || typeof priceString !== 'string') {
+    return null;
+  }
+
+  // Reuse the same cleaning logic as parsePrice
+  const cleanString = priceString.replace(/^(from|starting at)\s*/i, '').trim();
+
+  // Extract all dollar amounts (supports single values and ranges)
+  const matches = Array.from(cleanString.matchAll(/\$?([\d,]+\.?\d*)/g));
+
+  if (matches.length === 0) {
+    return null;
+  }
+
+  const parseAmount = (value: string): number | null => {
+    const numeric = parseFloat(value.replace(/,/g, ''));
+    return Number.isNaN(numeric) ? null : numeric;
+  };
+
+  const first = parseAmount(matches[0][1]);
+  if (first === null) {
+    return null;
+  }
+
+  const secondMatch = matches[1]?.[1];
+  const second = secondMatch != null ? parseAmount(secondMatch) : null;
+
+  const min = first;
+  const max = second ?? first;
+
+  return { min, max };
+}
+
+/**
  * Convert WooCommerce price string to target currency
  * One-step function: parses USD string and converts to target currency
  * 
  * @example
- * convertWooCommercePrice("$99.99", "EUR") // "€91.99"
- * convertWooCommercePrice("$50 - $100", "GBP") // "£39.50" (uses minimum)
+ * convertWooCommercePrice("$99.99", "EUR") // "91.99€"
+ * convertWooCommercePrice("$50 - $100", "GBP") // "£39.50 - £79.00"
  */
 export function convertWooCommercePrice(
   priceString: string | null | undefined,
   targetCurrency: CurrencyCode = 'USD'
 ): string {
-  const usdAmount = parsePrice(priceString);
-  
-  if (usdAmount === null) {
+  // If we can't parse or have no string, fall back to original behavior
+  if (!priceString || typeof priceString !== 'string') {
     return priceString || '';
   }
 
-  // If already USD, just return formatted version
+  // For USD, preserve the original WooCommerce-formatted string
   if (targetCurrency === 'USD') {
-    return formatPrice(usdAmount, 'USD');
+    return priceString;
   }
 
-  // Convert and format
-  return formatConvertedPrice(usdAmount, targetCurrency);
+  const range = parsePriceRange(priceString);
+
+  if (!range) {
+    // If parsing fails, return the original string unchanged
+    return priceString;
+  }
+
+  const { min, max } = range;
+
+  // Single price
+  if (min === max) {
+    return formatConvertedPrice(min, targetCurrency);
+  }
+
+  // Price range
+  return formatPriceRange(min, max, targetCurrency);
 }

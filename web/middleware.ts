@@ -49,7 +49,10 @@ export default function middleware(request: NextRequest) {
 
   // Redirect to sign-in if accessing protected route without auth
   if ((isProtectedRoute || isAdminRoute) && !authToken) {
-    const signInUrl = new URL('/sign-in', request.url);
+    // Extract locale from pathname or use default
+    const localeMatch = pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)(?:\/|$)/);
+    const locale = localeMatch ? localeMatch[1] : routing.defaultLocale;
+    const signInUrl = new URL(`/${locale}/sign-in`, request.url);
     // Preserve intended destination for post-login redirect
     signInUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(signInUrl);

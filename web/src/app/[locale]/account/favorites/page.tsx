@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Heart } from 'lucide-react';
 import logger from '@/lib/logger';
@@ -23,6 +23,8 @@ interface Favorite {
 export default function FavoritesPage() {
   const { user, isLoaded } = useAuth();
   const router = useRouter();
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,7 +32,7 @@ export default function FavoritesPage() {
     if (!isLoaded) return;
 
     if (!user) {
-      router.push('/sign-in');
+      router.push(`/${locale}/sign-in`);
       return;
     }
 

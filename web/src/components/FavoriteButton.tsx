@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { toast } from 'sonner';
 import logger from '@/lib/logger';
 
@@ -55,6 +55,9 @@ export default function FavoriteButton({
     checkFavoriteStatus();
   }, [user, productId]);
 
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+
   const handleToggle = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -62,7 +65,7 @@ export default function FavoriteButton({
     // Redirect to sign-in if not authenticated
     if (!isLoaded || !user) {
       toast.info('Please sign in to save favorites');
-      router.push('/sign-in');
+      router.push(`/${locale}/sign-in`);
       return;
     }
 

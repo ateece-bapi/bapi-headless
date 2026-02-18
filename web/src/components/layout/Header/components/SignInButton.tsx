@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { User, LogOut, Settings, Package } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { useToast } from '@/components/ui/Toast';
 import logger from '@/lib/logger';
 
@@ -116,9 +116,12 @@ const SignInButton: React.FC = () => {
     );
   }
 
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+
   return (
     <Link
-      href="/sign-in"
+      href={`/${locale}/sign-in`}
       className="group relative flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
       aria-label="Sign in to your account"
     >

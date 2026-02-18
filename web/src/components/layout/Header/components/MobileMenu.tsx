@@ -6,8 +6,7 @@ import { ChevronRight, Globe, Languages } from 'lucide-react';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
 import { getMegaMenuItems } from '../config';
-import RegionSelector from './RegionSelector';
-import { LanguageSelector } from './LanguageSelector';
+import { RegionSelector, LanguageSelector } from './index';
 
 interface MobileMenuProps {
   isOpen: boolean;

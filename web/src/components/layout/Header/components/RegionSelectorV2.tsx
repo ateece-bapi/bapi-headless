@@ -2,7 +2,7 @@
 
 import React, { Fragment, useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale } from 'next-intl';
 import { useRegion, useSetRegion } from '@/store/regionStore';
 import { toast } from 'sonner';
@@ -21,6 +21,7 @@ const RegionSelectorV2: React.FC = () => {
   const setRegion = useSetRegion();
   const currentLocale = useLocale() as LanguageCode;
   const router = useRouter();
+  const pathname = usePathname();
 
   // Prevent hydration mismatch by only rendering Headless UI on client
   useEffect(() => {
@@ -44,16 +45,8 @@ const RegionSelectorV2: React.FC = () => {
         action: {
           label: 'Switch',
           onClick: () => {
-            // Change language by navigating to new locale
-            const pathname = window.location.pathname;
-            const pathnameWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, '/');
-            const newPath =
-              pathnameWithoutLocale === '/' || pathnameWithoutLocale === ''
-                ? `/${suggestedLanguage}`
-                : `/${suggestedLanguage}${pathnameWithoutLocale}`;
-
-            router.push(newPath);
-            router.refresh();
+            // Change language using next-intl navigation helpers
+            router.replace(pathname, { locale: suggestedLanguage });
             
             // Show success toast after language switch
             toast.success('Language Changed');

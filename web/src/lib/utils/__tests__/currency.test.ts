@@ -31,6 +31,16 @@ describe('Currency Utilities', () => {
       expect(formatPrice(1234, 'JPY')).toBe('¥1,234');
     });
 
+    it('formats CAD correctly', () => {
+      expect(formatPrice(100, 'CAD')).toBe('C$100.00');
+      expect(formatPrice(1234.56, 'CAD')).toBe('C$1,234.56');
+    });
+
+    it('formats MXN correctly', () => {
+      expect(formatPrice(100, 'MXN')).toBe('$100.00');
+      expect(formatPrice(1234.56, 'MXN')).toBe('$1,234.56');
+    });
+
     it('formats with currency code when showCode is true', () => {
       expect(formatPrice(100, 'USD', { showCode: true })).toBe('$100.00 USD');
       expect(formatPrice(100, 'EUR', { showCode: true })).toBe('100.00€ EUR');
@@ -97,6 +107,16 @@ describe('Currency Utilities', () => {
       expect(result).toBe(367); // 100 * 3.67
     });
 
+    it('converts USD to CAD', () => {
+      const result = convertPrice(100, 'CAD');
+      expect(result).toBe(136); // 100 * 1.36
+    });
+
+    it('converts USD to MXN', () => {
+      const result = convertPrice(100, 'MXN');
+      expect(result).toBe(1750); // 100 * 17.5
+    });
+
     it('handles zero', () => {
       expect(convertPrice(0, 'EUR')).toBe(0);
     });
@@ -118,6 +138,14 @@ describe('Currency Utilities', () => {
 
     it('converts and formats USD to JPY', () => {
       expect(formatConvertedPrice(100, 'JPY')).toBe('¥14,950');
+    });
+
+    it('converts and formats USD to CAD', () => {
+      expect(formatConvertedPrice(100, 'CAD')).toBe('C$136.00');
+    });
+
+    it('converts and formats USD to MXN', () => {
+      expect(formatConvertedPrice(100, 'MXN')).toBe('$1,750.00');
     });
 
     it('handles USD default (no conversion)', () => {
@@ -143,6 +171,8 @@ describe('Currency Utilities', () => {
       expect(getCurrencySymbol('CNY')).toBe('¥');
       expect(getCurrencySymbol('SGD')).toBe('S$');
       expect(getCurrencySymbol('AED')).toBe('د.إ');
+      expect(getCurrencySymbol('CAD')).toBe('C$');
+      expect(getCurrencySymbol('MXN')).toBe('$');
     });
   });
 
@@ -155,6 +185,8 @@ describe('Currency Utilities', () => {
       expect(getCurrencyName('CNY')).toBe('Chinese Yuan');
       expect(getCurrencyName('SGD')).toBe('Singapore Dollar');
       expect(getCurrencyName('AED')).toBe('UAE Dirham');
+      expect(getCurrencyName('CAD')).toBe('Canadian Dollar');
+      expect(getCurrencyName('MXN')).toBe('Mexican Peso');
     });
   });
 
@@ -173,6 +205,14 @@ describe('Currency Utilities', () => {
 
     it('formats JPY range', () => {
       expect(formatPriceRange(10, 100, 'JPY')).toBe('¥1,495 - ¥14,950');
+    });
+
+    it('formats CAD range', () => {
+      expect(formatPriceRange(10, 100, 'CAD')).toBe('C$13.60 - C$136.00');
+    });
+
+    it('formats MXN range', () => {
+      expect(formatPriceRange(10, 100, 'MXN')).toBe('$175.00 - $1,750.00');
     });
 
     it('handles same min and max', () => {

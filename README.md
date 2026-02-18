@@ -7,6 +7,7 @@
 [![WordPress](https://img.shields.io/badge/WordPress-6.8.2-21759b?logo=wordpress)](https://wordpress.org/)
 [![WooCommerce](https://img.shields.io/badge/WooCommerce-10.3.5-96588a?logo=woocommerce)](https://woocommerce.com/)
 [![i18n](https://img.shields.io/badge/Languages-11-success)](https://next-intl.dev/)
+[![Regions](https://img.shields.io/badge/Regions-12-blue)](https://next-intl.dev/)
 
 ## 🌐 Staging Environment
 
@@ -144,8 +145,12 @@ bapi-headless/
 - 💬 **Quote Request System** - Custom quote forms with file uploads
 - ⭐ **Favorites System** - Save and manage favorite products
 - 🔄 **WordPress User Migration** - Bulk import system for existing customers
-- � **11 Languages** - EN, DE, FR, ES, JA, ZH, VI, AR, TH, PL, HI with next-intl
-- �🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
+- 🌍 **12 Regions with Currency Conversion** - US, Canada, Mexico, UK, Europe, Japan, China, Singapore, Vietnam, Thailand, India, Middle East
+- 🗣️ **11 Languages** - EN, DE, FR, ES, JA, ZH, VI, AR, TH, PL, HI with next-intl
+- 🎛️ **Professional Region/Language Selectors** - Headless UI components with grouped organization, matching B2B industry standards (Siemens, Schneider Electric)
+- 💱 **Automatic Currency Conversion** - Real-time price conversion across 12 currencies (USD, CAD, MXN, GBP, EUR, JPY, CNY, SGD, VND, THB, INR, AED)
+- 📏 **Measurement Unit Localization** - Automatic °F↔°C, inches↔cm, lbs↔kg conversion based on region
+- 🎨 **BAPI Brand Colors** - Blue (#1479BC), Yellow (#FFC843), Gray (#97999B)
 - 🧭 **Enterprise Mega Menu** – Multi-column navigation with icons, featured products, quick actions, and B2B enhancements
 - 👥 **Contact & Sales Team** - Professional contact page with 15 sales representatives, video introductions, lead generation form
 - ⬆️ **Back to Top Button** – Floating button for fast site-wide navigation

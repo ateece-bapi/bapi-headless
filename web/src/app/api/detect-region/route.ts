@@ -70,6 +70,7 @@ const COUNTRY_TO_LANGUAGE: Record<string, LanguageCode> = {
   DE: 'de',
   FR: 'fr',
   ES: 'es',
+  MX: 'es',  // Mexico
   JP: 'ja',
   CN: 'zh',
   VN: 'vi',
@@ -84,6 +85,7 @@ const COUNTRY_TO_LANGUAGE: Record<string, LanguageCode> = {
 const COUNTRY_NAMES: Record<string, string> = {
   US: 'United States',
   CA: 'Canada',
+  MX: 'Mexico',
   GB: 'United Kingdom',
   DE: 'Germany',
   FR: 'France',

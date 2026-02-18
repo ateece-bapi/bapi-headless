@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale } from 'next-intl';

@@ -218,27 +218,25 @@ export default async function CareersPage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {['bapiOffers', 'timeOff', 'environment'].map((categoryKey, categoryIndex) => (
+            {[
+              { key: 'bapiOffers', items: ['compensation', 'health', 'vision', 'hsa', 'retirement'] },
+              { key: 'timeOff', items: ['holidays', 'shortTerm', 'life'] },
+              { key: 'environment', items: ['facility', 'culture', 'balance'] },
+            ].map((category, categoryIndex) => (
               <div
-                key={categoryKey}
+                key={category.key}
                 className="rounded-xl bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
                 style={{ animationDelay: `${categoryIndex * 100}ms` }}
               >
                 <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-gray-900">
                   <div className="h-2 w-2 rounded-full bg-gradient-to-r from-primary-500 to-primary-600" />
-                  {t(`cultureSection.${categoryKey}.title`)}
+                  {t(`cultureSection.${category.key}.title`)}
                 </h3>
                 <ul className="space-y-3">
-                  {Object.keys(
-                    categoryKey === 'bapiOffers'
-                      ? { compensation: '', health: '', vision: '', hsa: '', retirement: '' }
-                      : categoryKey === 'timeOff'
-                        ? { holidays: '', shortTerm: '', life: '' }
-                        : { facility: '', culture: '', balance: '' }
-                  ).map((itemKey, itemIndex) => (
+                  {category.items.map((itemKey, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-3">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-500" />
-                      <span className="text-gray-700">{t(`cultureSection.${categoryKey}.items.${itemKey}`)}</span>
+                      <span className="text-gray-700">{t(`cultureSection.${category.key}.items.${itemKey}`)}</span>
                     </li>
                   ))}
                 </ul>

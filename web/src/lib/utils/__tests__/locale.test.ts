@@ -244,8 +244,8 @@ describe('Locale Utilities', () => {
         expect(result).toBe('20.0°C'); // English formatting, EU units
       });
 
-      it('uses metric for Asia region', () => {
-        const result = formatMeasurement(68, 'fahrenheit', 'ja', 'asia');
+      it('uses metric for Singapore region', () => {
+        const result = formatMeasurement(68, 'fahrenheit', 'ja', 'sg');
         expect(result).toBe('20.0°C'); // Japanese formatting, metric units
       });
 

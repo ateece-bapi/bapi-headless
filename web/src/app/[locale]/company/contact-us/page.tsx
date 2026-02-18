@@ -170,17 +170,17 @@ export default async function ContactUsPage() {
                     </div>
                     <div className="flex-1">
                       <h3 className="mb-2 text-xl font-bold text-gray-900">
-                        {t(`departmentsSection.departments.${dept.key}.title`)}
+                        {t(`departmentsSection.${dept.key}.title`)}
                       </h3>
                       <p className="mb-3 text-sm text-gray-600">
-                        {t(`departmentsSection.departments.${dept.key}.description`)}
+                        {t(`departmentsSection.${dept.key}.description`)}
                       </p>
                       <a
-                        href={`mailto:${t(`departmentsSection.departments.${dept.key}.email`)}`}
+                        href={`mailto:${t(`departmentsSection.${dept.key}.email`)}`}
                         className="inline-flex items-center gap-2 font-medium text-primary-600 transition-all duration-300 hover:gap-3"
                       >
                         <Mail className="h-4 w-4" />
-                        {t(`departmentsSection.departments.${dept.key}.email`)}
+                        {t(`departmentsSection.${dept.key}.email`)}
                       </a>
                     </div>
                   </div>

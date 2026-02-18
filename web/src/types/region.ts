@@ -2,8 +2,8 @@
  * Region and localization types
  */
 
-export type RegionCode = 'us' | 'uk' | 'eu' | 'jp' | 'cn' | 'sg' | 'vn' | 'th' | 'in' | 'mena';
-export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED' | 'VND' | 'THB' | 'INR';
+export type RegionCode = 'us' | 'ca' | 'mx' | 'uk' | 'eu' | 'jp' | 'cn' | 'sg' | 'vn' | 'th' | 'in' | 'mena';
+export type CurrencyCode = 'USD' | 'CAD' | 'MXN' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED' | 'VND' | 'THB' | 'INR';
 export type LanguageCode =
   | 'en'
   | 'de'
@@ -51,6 +51,22 @@ export const REGIONS: Record<RegionCode, Region> = {
     language: 'en',
     locale: 'en-US',
     flag: '🇺🇸',
+  },
+  ca: {
+    code: 'ca',
+    name: 'Canada',
+    currency: 'CAD',
+    language: 'en',
+    locale: 'en-CA',
+    flag: '🇨🇦',
+  },
+  mx: {
+    code: 'mx',
+    name: 'Mexico',
+    currency: 'MXN',
+    language: 'es',
+    locale: 'es-MX',
+    flag: '🇲🇽',
   },
   uk: {
     code: 'uk',
@@ -131,6 +147,20 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     code: 'USD',
     symbol: '$',
     name: 'US Dollar',
+    decimals: 2,
+    position: 'before',
+  },
+  CAD: {
+    code: 'CAD',
+    symbol: 'C$',
+    name: 'Canadian Dollar',
+    decimals: 2,
+    position: 'before',
+  },
+  MXN: {
+    code: 'MXN',
+    symbol: '$',
+    name: 'Mexican Peso',
     decimals: 2,
     position: 'before',
   },

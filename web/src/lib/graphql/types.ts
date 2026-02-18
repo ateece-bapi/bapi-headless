@@ -71,11 +71,13 @@ export function getProductPrice(
   if (!product) return null;
 
   if ('price' in product && product.price) {
-    // If currency is provided, convert the price
-    if (currency) {
-      return convertWooCommercePrice(product.price, currency);
+    // Preserve WooCommerce-formatted price (including ranges) for USD/default
+    if (!currency || currency === 'USD') {
+      return product.price;
     }
-    return product.price;
+
+    // For non-USD currencies, convert the price string
+    return convertWooCommercePrice(product.price, currency);
   }
 
   return null;

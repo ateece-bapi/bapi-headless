@@ -58,6 +58,8 @@ interface ProductHeroProps {
  */
 export default function ProductHero({ product, variation }: ProductHeroProps) {
   const t = useTranslations();
+  const region = useRegion(); // Move to top level to avoid React Hooks violation
+  
   // Prefer variation image if present, else product image
   const initialImage = variation?.image || product.image || null;
   const [mainImage, setMainImage] = useState<GalleryImage | null>(initialImage);
@@ -150,7 +152,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
               <div className="flex items-center gap-2">
                 <span className="text-sm text-neutral-500">List Price:</span>
                 <span className="text-lg font-semibold text-neutral-700">
-                  {convertWooCommercePrice(product.regularPrice, useRegion().currency)}
+                  {convertWooCommercePrice(product.regularPrice, region.currency)}
                 </span>
               </div>
             )}

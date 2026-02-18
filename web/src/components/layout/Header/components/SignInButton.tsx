@@ -24,7 +24,11 @@ const SignInButton: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
+  const params = useParams();
   const { showToast } = useToast();
+  
+  // Extract locale early for use in sign-in link
+  const locale = (params?.locale as string) || 'en';
 
   useEffect(() => {
     checkAuth();
@@ -115,9 +119,6 @@ const SignInButton: React.FC = () => {
       </div>
     );
   }
-
-  const params = useParams();
-  const locale = (params?.locale as string) || 'en';
 
   return (
     <Link

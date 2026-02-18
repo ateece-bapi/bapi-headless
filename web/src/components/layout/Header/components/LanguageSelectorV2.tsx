@@ -6,6 +6,7 @@ import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale } from 'next-intl';
 import { LANGUAGES } from '@/types/region';
 import type { LanguageCode } from '@/types/region';
+import { LANGUAGE_GROUPS } from '@/lib/constants/languageGroups';
 import { ChevronDownIcon, LanguageIcon, CheckIcon } from '@heroicons/react/24/outline';
 
 export function LanguageSelectorV2() {
@@ -91,55 +92,66 @@ export function LanguageSelectorV2() {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-50 mt-1 max-h-[400px] w-full min-w-[220px] overflow-auto rounded-lg border border-neutral-200 bg-white py-1 shadow-xl ring-1 ring-black/5 focus:outline-none lg:w-auto">
-                {(Object.entries(LANGUAGES) as [LanguageCode, (typeof LANGUAGES)[LanguageCode]][]).map(
-                  ([code, config]) => {
-                    const isSelected = code === currentLocale;
+                {LANGUAGE_GROUPS.map((group) => (
+                  <div key={group.id} className="py-1">
+                    {/* Group Header */}
+                    <div className="px-3 py-1.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">
+                        {group.label}
+                      </span>
+                    </div>
+                    
+                    {/* Group Options */}
+                    {group.languages.map((languageCode) => {
+                      const config = LANGUAGES[languageCode];
+                      const isSelected = languageCode === currentLocale;
 
-                    return (
-                      <Listbox.Option
-                        key={code}
-                        value={code}
-                        className={({ active }) =>
-                          `relative cursor-pointer select-none py-2.5 pl-10 pr-4 transition-colors duration-75 ${
-                            active ? 'bg-primary-50 text-primary-900' : 'text-neutral-900'
-                          }`
-                        }
-                      >
-                        {({ active }) => (
-                          <>
-                            {/* Check Icon (Selected) */}
-                            {isSelected && (
-                              <span className="absolute left-3 flex items-center text-primary-600">
-                                <CheckIcon className="h-4 w-4" aria-hidden="true" />
-                              </span>
-                            )}
+                      return (
+                        <Listbox.Option
+                          key={languageCode}
+                          value={languageCode}
+                          className={({ active }) =>
+                            `relative cursor-pointer select-none py-2.5 pl-10 pr-4 transition-colors duration-75 ${
+                              active ? 'bg-primary-50 text-primary-900' : 'text-neutral-900'
+                            }`
+                          }
+                        >
+                          {({ active }) => (
+                            <>
+                              {/* Check Icon (Selected) */}
+                              {isSelected && (
+                                <span className="absolute left-3 flex items-center text-primary-600">
+                                  <CheckIcon className="h-4 w-4" aria-hidden="true" />
+                                </span>
+                              )}
 
-                            {/* Option Content */}
-                            <div className="flex items-center gap-2">
-                              <span className="text-lg" aria-hidden="true">{config.flag}</span>
-                              <div className="flex flex-col">
-                                <span
-                                  className={`block truncate ${
-                                    isSelected ? 'font-semibold' : 'font-medium'
-                                  }`}
-                                >
-                                  {config.nativeName}
-                                </span>
-                                <span
-                                  className={`text-xs ${
-                                    active ? 'text-primary-600' : 'text-neutral-500'
-                                  }`}
-                                >
-                                  {config.name}
-                                </span>
+                              {/* Option Content */}
+                              <div className="flex items-center gap-2">
+                                <span className="text-lg" aria-hidden="true">{config.flag}</span>
+                                <div className="flex flex-col">
+                                  <span
+                                    className={`block truncate ${
+                                      isSelected ? 'font-semibold' : 'font-medium'
+                                    }`}
+                                  >
+                                    {config.nativeName}
+                                  </span>
+                                  <span
+                                    className={`text-xs ${
+                                      active ? 'text-primary-600' : 'text-neutral-500'
+                                    }`}
+                                  >
+                                    {config.name}
+                                  </span>
+                                </div>
                               </div>
-                            </div>
-                          </>
-                        )}
-                      </Listbox.Option>
-                    );
-                  }
-                )}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      );
+                    })}
+                  </div>
+                ))}
               </Listbox.Options>
             </Transition>
           </div>

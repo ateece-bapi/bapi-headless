@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { SignInForm } from './SignInForm';
 import { Building2 } from 'lucide-react';
 
@@ -27,8 +28,16 @@ export default function SignInPage() {
           </p>
         </div>
 
-        {/* Sign In Form Component */}
-        <SignInForm />
+        {/* Sign In Form Component - Wrapped in Suspense for useSearchParams() */}
+        <Suspense
+          fallback={
+            <div className="flex min-h-[400px] items-center justify-center">
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-200 border-t-primary-600" />
+            </div>
+          }
+        >
+          <SignInForm />
+        </Suspense>
 
         {/* Help Text */}
         <div className="space-y-3 border-t border-neutral-200 pt-4 text-center">

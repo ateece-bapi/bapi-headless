@@ -885,5 +885,433 @@
       "orderPlaced": "ご注文ありがとうございます!",
       "orderPlacedMessage": "ご注文が正常に完了しました。"
     }
+  },
+  "companyPages": {
+    "about": {
+      "metadata": {
+        "title": "BAPIについて | Building Automation Products, Inc.",
+        "description": "BAPIの40年以上の歴史と世界中の建築自動化システム向けの高精度センサーソリューションの製造について説明します。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "company": "企業情報"
+      },
+      "hero": {
+        "badge": "設立1993年",
+        "title": "Building Automation Products Inc.",
+        "subtitle": "建築自動化のための高精度センサーソリューション",
+        "description": "40年以上にわたり、BAPIは世界中のエンジニアから信頼されている建築自動化システム向けの高精度センサーの大手メーカーです。"
+      },
+      "overview": {
+        "title": "BAPIについて",
+        "paragraph1": "Building Automation Products, Inc. (BAPI)は、1983年に設立されたBEMCO, Inc.の子会社として1993年に設立されました。以来、BAPIは建築自動化システムの改善と省エネルギーに不可欠な高精度センサーの世界的なメーカーに成長してきました。BAPIのすべての製品は、ウィスコンシン州Gays Millsの本社で設計・製造されており、Driftless地域の自然の美しい丘陵地帯に囲まれています。",
+        "paragraph2": "BAPIでは、品質と信頼性が全ての活動の中核にあります。当社のセンサー製品は、病院、データセンター、クリーンルーム、研究所、商業施設などの重要な施設において、世界中のエンジニアから信頼されています。600を超える製品モデル、NIST追跡可能な校正、BACnet®認証、ISO 9001:2015の製造基準を持つBAPIは、信頼できる高精度を提供しています。"
+      },
+      "stats": {
+        "years": {
+          "value": "40年以上",
+          "label": "事業年数"
+        },
+        "products": {
+          "value": "600以上",
+          "label": "製品モデル"
+        },
+        "madeInUsa": {
+          "value": "100%",
+          "label": "米国製"
+        },
+        "distribution": {
+          "value": "グローバル",
+          "label": "販売地域"
+        }
+      },
+      "coreValues": {
+        "title": "私たちの価値観",
+        "subtitle": "私たちの行動を導く原則",
+        "qualityFirst": {
+          "title": "品質第一",
+          "description": "業界トップクラスの保証、NIST追跡可能な高精度計測器、製造過程での100%の製品検査。"
+        },
+        "customerFocus": {
+          "title": "お客様志向",
+          "description": "製品知識と建築自動化の実務経験が豊富な専任のテクニカルサポートチーム。"
+        },
+        "innovation": {
+          "title": "革新性",
+          "description": "ワイヤレス監視、クラウド接続、BACnet統合などの新しいソリューションを継続的に開発中。"
+        }
+      },
+      "globalPresence": {
+        "title": "グローバル展開",
+        "description": "世界中のお客様に対応するため、3大陸にわたる製造および流通拠点を有しています。"
+      },
+      "location": {
+        "title": "訪問とお問い合わせ",
+        "locationCard": {
+          "title": "当社の所在地",
+          "companyName": "Building Automation Products Inc.",
+          "street": "750 North Royal Avenue",
+          "city": "Gays Mills, WI 54631",
+          "country": "USA"
+        },
+        "contactCard": {
+          "title": "お問い合わせ",
+          "phoneLabel": "電話番号",
+          "phone": "(715) 856-1203",
+          "emailLabel": "Eメール",
+          "email": "sales@bapihvac.com",
+          "hoursLabel": "営業時間",
+          "hoursDays": "月曜日 - 金曜日",
+          "hoursTime": "8:00 AM - 5:00 PM CST"
+        },
+        "cta": "弊社の担当者にお問い合わせください"
+      },
+      "quickLinks": {
+        "title": "BAPIについてもっと知る",
+        "whyBapi": {
+          "title": "BAPIを選ぶ理由",
+          "description": "品質、信頼性、サポート"
+        },
+        "news": {
+          "title": "ニュース&更新情報",
+          "description": "最新の企業アナウンス"
+        },
+        "careers": {
+          "title": "採用情報",
+          "description": "私たちのチームに参加する"
+        }
+      }
+    },
+    "careers": {
+      "metadata": {
+        "title": "キャリア | BAPI",
+        "description": "BAPI チームに参加し、建物自動化技術の未来を形作るお手伝いをしましょう。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "company": "会社",
+        "careers": "キャリア"
+      },
+      "hero": {
+        "badge": "私たちのチームに参加しましょう",
+        "title": "BAPI でキャリアを築きませんか",
+        "description": "BAPI は、会社のピクニックやホリデーパーティーなど、ファミリー指向の従業員の特典を備えた、ワークライフバランスの文化を支持しています。また、美的ウェルネスイニシアチブ、エクササイズプログラムなども行っています。私たちは機会均等雇用主(EOP)であり、全従業員にインクルーシブな職場環境を提供することに取り組んでいます。",
+        "tagline": "あなたとお会いできるのを楽しみにしています!"
+      },
+      "benefits": {
+        "healthInsurance": {
+          "title": "健康保険",
+          "description": "あなたとご家族のための包括的な健康、歯科、そして視覚的なカバレッジ。"
+        },
+        "compensation": {
+          "title": "競争力のある報酬",
+          "description": "定期的な業績評価と昇給を伴う業界トップクラスの給与。"
+        },
+        "paidHolidays": {
+          "title": "有給休暇",
+          "description": "ホリデー、休暇日、個人の時間を含む、寛大な有給時間。"
+        },
+        "retirement": {
+          "title": "401(k) マッチング",
+          "description": "あなたの将来を確保するために、退職積立金へのカンパニーマッチング。"
+        },
+        "lifeInsurance": {
+          "title": "生命保険",
+          "description": "追加の保障オプションを備えた、カンパニー支給の生命保険カバレッジ。"
+        },
+        "development": {
+          "title": "専門的な開発",
+          "description": "継続的な学習の機会、研修プログラム、キャリアアドバンス。"
+        }
+      },
+      "cultureSection": {
+        "badge": "私たちが提供するもの",
+        "title": "仕事以上のもの",
+        "description": "BAPI はファミリー指向の従業員の特典を備えたワークライフバランスの文化を支持しています。",
+        "bapiOffers": {
+          "title": "BAPI が提供するもの",
+          "items": {
+            "compensation": "競争力のある報酬",
+            "health": "健康保険",
+            "vision": "ビジョンと歯科",
+            "hsa": "健康貯蓄口座",
+            "retirement": "カンパニーマッチ付きの401(k)"
+          }
+        },
+        "timeOff": {
+          "title": "休暇",
+          "items": {
+            "holidays": "有給カンパニーホリデー",
+            "shortTerm": "AFLAC を通じた短期および長期の障害",
+            "life": "生命保険"
+          }
+        },
+        "environment": {
+          "title": "職場環境",
+          "items": {
+            "facility": "オープンなファシリティ待つ取締役会の席",
+            "culture": "前向きで包括的な文化",
+            "balance": "ファミリー指向の従業員の特典を備えたワークライフバランス"
+          }
+        }
+      },
+      "applicationProcess": {
+        "badge": "採用プロセス",
+        "title": "応募方法",
+        "description": "www.bapihvac.com/careers ウェブページから直接提出された完全な電子申請のみを受け付け、検討します。",
+        "step1": {
+          "title": "申請の完了",
+          "description": "ほとんどの職位では、「完全な」電子申請として、履歴書と別途の応募書が必要です。"
+        },
+        "step2": {
+          "title": "直接提出",
+          "description": "応募書は、オンラインの申請システムを通じて添付ファイルとしてアップロードする必要があります。"
+        },
+        "step3": {
+          "title": "機会均等",
+          "description": "BAPI は機会均等雇用主(EOP)です。オンラインでの申請ができない場合や、申請や選考の代替方法を必要とする場合は、文化的出身、障害、退役軍人ステータスを特定してください。"
+        },
+        "contactTitle": "オンラインの申請に関する質問や支援:",
+        "email": "careers@bapihvac.com",
+        "phone": "(800) 753-4400",
+        "or": "または"
+      },
+      "cta": {
+        "title": "私たちの使命に参加する準備はできましたか?",
+        "description": "現在の求人を探索し、BAPI での刺激的なキャリアの第一歩を踏み出しましょう。お会いできることを楽しみにしています!",
+        "button": "連絡を取る"
+      }
+    },
+    "missionValues": {
+      "metadata": {
+        "title": "ミッション＆バリュー | BAPI",
+        "description": "BAPIのミッション、ビジョン、そしてコア バリューについて学びます。これらが精密センサーソリューションへのコミットメントを後押しします。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "company": "会社概要",
+        "missionValues": "ミッション＆バリュー"
+      },
+      "hero": {
+        "badge": "私たちの目的",
+        "title": "ミッション＆バリュー",
+        "description": "30年以上にわたり、私たちのミッションとバリューが、私たちが下すすべての決断、設計するすべての製品、そして構築するすべての顧客関係に指針を与えてきました。"
+      },
+      "mission": {
+        "title": "ミッション",
+        "description": "BAPIは、高品質のセンサーソリューションの設計、製造、提供を行うとともに、顧客の省エネを支援し、自然資源への依存を削減するためのサービスを提供しています。"
+      },
+      "vision": {
+        "title": "ビジョン",
+        "description": "お客様のニーズに合わせたユニークなソリューションの提供、従業員の最高の力を引き出すこと、そして顧客の期待を超える品質の製品とサービスを提供することで、グローバルな革新的リーダーとして成長していくことです。"
+      },
+      "coreValuesSection": {
+        "title": "私たちのコア バリュー",
+        "description": "これらの原則は、私たちのすべての行動を導き、顧客へのサービス方法と社員サポートの仕方を形づくっています。",
+        "quality": {
+          "title": "品質",
+          "description": "オープンなコミュニケーション、コミュニティ意識、ワークライフバランスを奨励することで、従業員を大切にしています。"
+        },
+        "innovation": {
+          "title": "イノベーション",
+          "description": "お客様の期待を常に上回るために、指標に基づいたプロセスとサービスを大切にしています。"
+        },
+        "partnership": {
+          "title": "協業パートナーシップ",
+          "description": "創造的かつユニークな新しいソリューションを見出し続け、お客様に明確な優位性をもたらすことを大切にしています。"
+        },
+        "integrity": {
+          "title": "誠実と倫理",
+          "description": "優れたソリューションを生み出し、健康的で生産的、快適な環境を実現するための協力的パートナーシップを大切にしています。"
+        },
+        "employees": {
+          "title": "従業員",
+          "description": "言葉と行動を一致させ、慎重かつ意図的であることを大切にしています。"
+        }
+      },
+      "cta": {
+        "title": "私たちのミッションに参加しましょう",
+        "description": "私たちの価値観とイノベーションへの情熱を共有する有能な人材を常に探しています。BAPIチームに参加する機会を探してみてください。",
+        "button": "キャリアを見る"
+      }
+    },
+    "whyBapi": {
+      "metadata": {
+        "title": "BAPI | BAPI について",
+        "description": "建築オートメーション業界でBAPIが際立つ理由と、エンジニアが信頼する精密なセンサーソリューションを発見してください。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "company": "会社概要",
+        "whyBapi": "BAPI について"
+      },
+      "hero": {
+        "badge": "私たちの特徴",
+        "title": "なぜ BAPI なのか?",
+        "description": "BAPIは1993年以来、センサーの概念を変え続けています。私たちはセンサーは単なる商品ではなく、建築オートメーションシステムの不可欠な要素であり、エネルギー節約に重要だと考えています。",
+        "stats": {
+          "years": {
+            "value": "30年以上",
+            "label": "卓越した実績"
+          },
+          "warranty": {
+            "value": "5年間",
+            "label": "標準保証"
+          },
+          "testing": {
+            "value": "100%",
+            "label": "製品テスト"
+          }
+        }
+      },
+      "differentiators": {
+        "warranty": {
+          "title": "5年保証",
+          "description": "私たちの製品は長期間使用できるよう設計・製造されています。その自信の表れとして、全製品に5年間の保証を提供しています。"
+        },
+        "guarantee": {
+          "title": "BAPI保証",
+          "description": "ほとんどのセンサーメーカーは製品の不良品を交換していますが、BAPIだけが製品保証を提供する自信を持っています。"
+        },
+        "lifetime": {
+          "title": "限定生涯保証",
+          "description": "多くの単一点センサー、ルームセンサー、非ルームセンサーモデルに限定生涯保証も用意しています。"
+        },
+        "testing": {
+          "title": "100%テスト",
+          "description": "BAPIの全製品は製造工程の複数の段階で精密性と信頼性を確保するためテストされています。"
+        },
+        "customerFocus": {
+          "title": "お客様重視",
+          "description": "BAPIは業界をリードする革新的で高品質な製品とサービスを提供することで、お客様のニーズにお応えしていきます。"
+        },
+        "original": {
+          "title": "オリジナル製品",
+          "description": "「オリジナル製品」のスタンプが付いた製品は、BAPIが顧客、従業員、サプライヤーからのアイデアを元に開発した独自のものです。"
+        }
+      },
+      "qualitySection": {
+        "badge": "品質基準",
+        "title": "私たちが行う追加的な取り組み",
+        "description": "優れた人材に加え、BAPIは最高品質のセンシング要素と徹底した製造、テスト、品質保証の手順を使用しています。",
+        "features": {
+          "compatibility": "100%互換性保証",
+          "certified": "CE認証およびRoHS指令対応",
+          "nist": "NIST traceableの精密機器",
+          "production": "コンピューター支援生産ステーション",
+          "experience": "30年以上の経験",
+          "distribution": "グローバル流通ネットワーク"
+        }
+      },
+      "cta": {
+        "title": "BAPIの違いを体験する準備はできましたか?",
+        "description": "精密センサーソリューションがあなたのプロジェクトにどのように役立つかを一緒に話し合いましょう。私たちのチームがあなたにぴったりの解決策を見つけるお手伝いをさせていただきます。",
+        "button": "お問い合わせ"
+      }
+    },
+    "contact": {
+      "metadata": {
+        "title": "お問い合わせ | BAPI",
+        "description": "BAPI のサポート、営業問い合わせ、または技術支援に連絡してください。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "company": "会社概要",
+        "contact": "お問い合わせ"
+      },
+      "hero": {
+        "badge": "お問い合わせはこちらから",
+        "title": "BAPI にお問い合わせください",
+        "description": "テクニカルサポート、営業問い合わせ、または製品に関する詳細について、お手伝いさせていただきます。今すぐご連絡ください!"
+      },
+      "contactMethods": {
+        "phone": {
+          "title": "電話",
+          "details": "+1 (800) 735-4800",
+          "description": "月曜日 - 金曜日, 午前 8 時 - 午後 5 時 (中部時間)"
+        },
+        "email": {
+          "title": "メール",
+          "details": "sales@bapihvac.com",
+          "description": "通常 24 時間以内に返信いたします"
+        },
+        "visit": {
+          "title": "訪問",
+          "details": "750 N Royal Ave, Gays Mills, WI 54631",
+          "description": "アメリカ"
+        }
+      },
+      "departmentsSection": {
+        "badge": "部門",
+        "title": "どのようなサポートが必要ですか?",
+        "description": "ご要望に最適な部門をお選びいただき、適切な担当者がご対応させていただきます。",
+        "sales": {
+          "title": "営業",
+          "email": "sales@bapihvac.com",
+          "description": "製品に関する問い合わせ、見積り、一般的な販売に関する質問"
+        },
+        "international": {
+          "title": "国際営業",
+          "email": "sales@bapihvac.com",
+          "description": "グローバル流通およびパートナーシップ"
+        },
+        "distribution": {
+          "title": "流通",
+          "email": "sales@bapihvac.com",
+          "description": "ディストリビューターの問い合わせおよびパートナーシップの機会"
+        },
+        "technical": {
+          "title": "テクニカルサポート",
+          "email": "bapitechsupport@bapisensors.com",
+          "description": "製品サポート、トラブルシューティング、および技術支援"
+        }
+      },
+      "internationalOffice": {
+        "title": "返品処理 (RMA)",
+        "subtitle": "英国/Column エリア/ヨーロッパ",
+        "phone": "+44 (0) 1252 548410",
+        "addressLine1": "BAPI Distribution Centre, North 1c",
+        "addressLine2": "Aldershot GU12 4RG",
+        "addressLine3": "英国/Column エリア/ヨーロッパ返品処理"
+      },
+      "globalPresence": {
+        "badge": "当社の拠点",
+        "title": "BAPI 世界展開",
+        "description": "3 大陸にわたる施設を持つ BAPI は、グローバルな専門知識を生かしながら、地域密着のサポートを提供しています。"
+      },
+      "cta": {
+        "title": "始めましょう",
+        "description": "プロジェクトの要件を担当チームと検討し、お客様のニーズに最適なセンサーソリューションをご提案いたします。",
+        "button": "メッセージを送る"
+      }
+    },
+    "news": {
+      "metadata": {
+        "title": "ニュース | BAPI",
+        "description": "BAPIからの最新のニュース、お知らせ、更新情報をご覧ください。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "company": "会社概要",
+        "news": "ニュース"
+      },
+      "hero": {
+        "badge": "最新のお知らせ",
+        "title": "ニュースと更新情報",
+        "description": "BAPIからの最新ニュース、製品アナウンス、業界インサイトをご確認ください。"
+      },
+      "empty": {
+        "title": "まだニュース記事はありません",
+        "description": "最新の更新情報が掲載されますので、また後ほどご確認ください。"
+      },
+      "dateLabel": "公開日",
+      "readMore": "続きを読む",
+      "cta": {
+        "badge": "最新情報を受け取る",
+        "title": "最新情報を逃さない",
+        "description": "当社の最新のイノベーション、業界インサイト、企業ニュースについて最新情報を受け取りたいですか? 今すぐお問い合わせください。",
+        "button": "お問い合わせ"
+      }
+    }
   }
 }

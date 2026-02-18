@@ -79,11 +79,13 @@ export default function middleware(request: NextRequest) {
       pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?resources/);
     
     if (isPublicStaticRoute) {
-      // Set proper cache headers for CDN
+      // Set proper cache headers for CDN with locale awareness
       response.headers.set(
         'Cache-Control',
         'public, s-maxage=3600, stale-while-revalidate=86400'
-     );
+      );
+      // CRITICAL: Vary by Accept-Language to ensure locale-specific caching
+      response.headers.set('Vary', 'Accept-Language, Cookie');
     }
   }
   

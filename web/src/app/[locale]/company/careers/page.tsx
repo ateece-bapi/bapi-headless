@@ -19,6 +19,15 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
+import { locales } from '@/i18n';
+
+// Generate static params for all locales - ensures each locale is built separately
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+// ISR with 1-hour revalidation for careers page (moderately updated)
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('companyPages.careers.metadata');
@@ -28,8 +37,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// Cache for 1 hour (3600 seconds)
-export const revalidate = 3600;
+// Force dynamic rendering to ensure locale-specific translations load correctly
+export const dynamic = 'force-dynamic';
 
 const benefits = [
   {

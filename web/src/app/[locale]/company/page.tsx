@@ -5,6 +5,12 @@ import PageContainer from '@/components/layout/PageContainer';
 import { GlobalPresence } from '@/components/company/GlobalPresence';
 import { generatePageMetadata } from '@/lib/metadata';
 import { getTranslations } from 'next-intl/server';
+import { locales } from '@/i18n';
+
+// Generate static params for all locales - ensures each locale is built separately
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 /**
  * AI-optimized metadata for company page
@@ -31,6 +37,9 @@ export async function generateMetadata(): Promise<Metadata> {
     type: 'website',
   });
 }
+
+// ISR with 1-hour revalidation for about page (rarely updated)
+export const revalidate = 3600;
 
 export default async function CompanyPage() {
   const t = await getTranslations('companyPages.about');

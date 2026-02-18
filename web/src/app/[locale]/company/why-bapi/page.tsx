@@ -3,6 +3,12 @@ import { getPageBySlug } from '@/lib/wordpress';
 import Link from 'next/link';
 import { Star, Award, Shield, Clock, Users, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
+import { locales } from '@/i18n';
+
+// Generate static params for all locales - ensures each locale is built separately
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('companyPages.whyBapi.metadata');
@@ -12,9 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// Cache for 1 hour (3600 seconds)
+// ISR with 1-hour revalidation for why-bapi page (rarely updated)
 export const revalidate = 3600;
-
 
 export default async function WhyBapiPage() {
   const page = await getPageBySlug('why-bapi');

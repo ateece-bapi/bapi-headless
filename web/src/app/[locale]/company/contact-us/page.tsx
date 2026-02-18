@@ -15,6 +15,12 @@ import {
   ArrowRight,
   Send,
 } from 'lucide-react';
+import { locales } from '@/i18n';
+
+// Generate static params for all locales - ensures each locale is built separately
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('companyPages.contact.metadata');
@@ -25,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// Cache for 1 hour (3600 seconds)
+// ISR with 1-hour revalidation for contact page (rarely updated)
 export const revalidate = 3600;
 
 export default async function ContactUsPage() {

@@ -4,6 +4,12 @@ import { getPosts } from '@/lib/wordpress';
 import Link from 'next/link';
 import { Newspaper, Calendar, ArrowRight, TrendingUp } from 'lucide-react';
 import Image from 'next/image';
+import { locales } from '@/i18n';
+
+// Generate static params for all locales - ensures each locale is built separately
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('companyPages.news.metadata');
@@ -14,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// Cache for 15 minutes (900 seconds) - news updates more frequently
+// ISR with 15-minute revalidation for news content (frequently updated)
 export const revalidate = 900;
 
 export default async function NewsPage() {

@@ -934,5 +934,433 @@
       "orderPlaced": "Đơn hàng Đã Đặt!",
       "orderPlacedMessage": "Đơn hàng của bạn đã được đặt thành công."
     }
+  },
+  "companyPages": {
+    "about": {
+      "metadata": {
+        "title": "Về BAPI | Building Automation Products, Inc.",
+        "description": "Tìm hiểu về lịch sử hơn 40 năm của BAPI trong việc sản xuất các giải pháp cảm biến chính xác dành cho các hệ thống tự động hóa toà nhà trên toàn thế giới."
+      },
+      "breadcrumb": {
+        "home": "Trang chủ",
+        "company": "Công ty"
+      },
+      "hero": {
+        "badge": "Thành lập năm 1993",
+        "title": "Building Automation Products Inc.",
+        "subtitle": "Các Giải Pháp Cảm Biến Chính Xác cho Tự Động Hóa Toà Nhà",
+        "description": "Trong hơn 40 năm qua, BAPI đã trở thành nhà sản xuất hàng đầu các cảm biến chính xác dành cho các hệ thống tự động hóa toà nhà, được các kỹ sư trên toàn thế giới tin cậy."
+      },
+      "overview": {
+        "title": "Về BAPI",
+        "paragraph1": "Building Automation Products, Inc. (BAPI) được thành lập vào năm 1993 từ công ty mẹ là BEMCO, Inc., được thành lập vào năm 1983. Kể từ đó, BAPI đã trở thành nhà sản xuất toàn cầu các cảm biến chính xác cải thiện các hệ thống tự động hóa toà nhà và rất quan trọng để tiết kiệm năng lượng. Mỗi sản phẩm BAPI được thiết kế và sản xuất tại trụ sở chính của chúng tôi ở Gays Mills, Wisconsin, được bao quanh bởi vẻ đẹp tự nhiên của các ngọn đồi trôi nổi.",
+        "paragraph2": "Tại BAPI, chất lượng và độ tin cậy là cốt lõi của mọi việc chúng tôi làm. Các sản phẩm cảm biến của chúng tôi được các kỹ sư trên toàn thế giới tin tưởng đối với các cơ sở quan trọng bao gồm bệnh viện, trung tâm dữ liệu, phòng sạch, phòng thí nghiệm và tòa nhà thương mại. Với hơn 600 mẫu sản phẩm, hiệu chỉnh theo tiêu chuẩn NIST, chứng nhận BACnet® và tiêu chuẩn sản xuất ISO 9001:2015, BAPI mang lại độ chính xác mà bạn có thể tin cậy."
+      },
+      "stats": {
+        "years": {
+          "value": "40+",
+          "label": "Năm Kinh Doanh"
+        },
+        "products": {
+          "value": "600+",
+          "label": "Mẫu Sản Phẩm"
+        },
+        "madeInUsa": {
+          "value": "100%",
+          "label": "Sản Xuất Tại Mỹ"
+        },
+        "distribution": {
+          "value": "Toàn Cầu",
+          "label": "Phân Phối"
+        }
+      },
+      "coreValues": {
+        "title": "Các Giá Trị Cốt Lõi Của Chúng Tôi",
+        "subtitle": "Các nguyên tắc hướng dẫn mọi việc chúng tôi làm",
+        "qualityFirst": {
+          "title": "Chất Lượng Hàng Đầu",
+          "description": "Các bảo hành hàng đầu trong ngành, các công cụ đo lường chính xác theo tiêu chuẩn NIST và kiểm tra sản phẩm 100% ở mọi giai đoạn của quá trình sản xuất."
+        },
+        "customerFocus": {
+          "title": "Tập Trung Vào Khách Hàng",
+          "description": "Đội ngũ hỗ trợ kỹ thuật chuyên nghiệp với kiến thức sâu về sản phẩm và kinh nghiệm thực tế trong lĩnh vực tự động hóa toà nhà."
+        },
+        "innovation": {
+          "title": "Đổi Mới",
+          "description": "Liên tục phát triển các giải pháp mới như giám sát không dây, kết nối đám mây và tích hợp BACnet."
+        }
+      },
+      "globalPresence": {
+        "title": "Hiện Diện Toàn Cầu",
+        "description": "Các cơ sở sản xuất và phân phối trên ba châu lục phục vụ khách hàng trên toàn thế giới."
+      },
+      "location": {
+        "title": "Ghé thăm hoặc Liên hệ với Chúng Tôi",
+        "locationCard": {
+          "title": "Địa Điểm Của Chúng Tôi",
+          "companyName": "Building Automation Products Inc.",
+          "street": "750 North Royal Avenue",
+          "city": "Gays Mills, WI 54631",
+          "country": "Mỹ"
+        },
+        "contactCard": {
+          "title": "Liên Hệ Với Chúng Tôi",
+          "phoneLabel": "Điện Thoại",
+          "phone": "(715) 856-1203",
+          "emailLabel": "Email",
+          "email": "sales@bapihvac.com",
+          "hoursLabel": "Giờ Làm Việc",
+          "hoursDays": "Thứ Hai - Thứ Sáu",
+          "hoursTime": "8:00 sáng - 5:00 chiều CST"
+        },
+        "cta": "Liên Hệ Đội Ngũ Của Chúng Tôi"
+      },
+      "quickLinks": {
+        "title": "Tìm Hiểu Thêm Về BAPI",
+        "whyBapi": {
+          "title": "Tại Sao Chọn BAPI",
+          "description": "Chất lượng, độ tin cậy và hỗ trợ"
+        },
+        "news": {
+          "title": "Tin Tức & Cập Nhật",
+          "description": "Các thông báo mới nhất của công ty"
+        },
+        "careers": {
+          "title": "Cơ Hội Nghề Nghiệp",
+          "description": "Tham gia đội ngũ của chúng tôi"
+        }
+      }
+    },
+    "careers": {
+      "metadata": {
+        "title": "Nghề nghiệp | BAPI",
+        "description": "Hãy gia nhập đội ngũ BAPI và giúp chúng tôi định hình tương lai của công nghệ tự động hóa tòa nhà."
+      },
+      "breadcrumb": {
+        "home": "Trang chủ",
+        "company": "Công ty",
+        "careers": "Nghề nghiệp"
+      },
+      "hero": {
+        "badge": "Tham gia Đội ngũ của chúng tôi",
+        "title": "Xây dựng Sự nghiệp của Bạn tại BAPI",
+        "description": "BAPI hỗ trợ một văn hóa cân bằng công việc-cuộc sống với các phúc lợi dành cho nhân viên hướng về gia đình như các buổi picnic công ty & tiệc lễ, các sáng kiến về sức khỏe thẩm mỹ, các chương trình tập thể dục và nhiều hơn nữa. Chúng tôi là Nhà tuyển dụng cơ hội bình đẳng (EOP) và chúng tôi cam kết tạo ra một môi trường làm việc bao dung cho tất cả các nhân viên.",
+        "tagline": "Chúng tôi rất vui mừng được gặp bạn!"
+      },
+      "benefits": {
+        "healthInsurance": {
+          "title": "Bảo hiểm Y tế",
+          "description": "Bảo hiểm y tế, nha khoa và thị giác toàn diện cho bạn và gia đình."
+        },
+        "compensation": {
+          "title": "Mức Lương Cạnh Tranh",
+          "description": "Mức lương dẫn đầu ngành với các đánh giá hiệu suất thường xuyên và tăng lương xứng đáng."
+        },
+        "paidHolidays": {
+          "title": "Nghỉ Phép Có Lương",
+          "description": "Nghỉ phép có lương hào phóng bao gồm ngày lễ, ngày nghỉ phép và thời gian cá nhân."
+        },
+        "retirement": {
+          "title": "Đóng Góp 401(k)",
+          "description": "Đóng góp của công ty vào khoản đóng góp hưu trí để bảo đảm tương lai của bạn."
+        },
+        "lifeInsurance": {
+          "title": "Bảo Hiểm Nhân Thọ",
+          "description": "Bảo hiểm nhân thọ do công ty trả phí với các tùy chọn bảo hiểm bổ sung."
+        },
+        "development": {
+          "title": "Phát Triển Chuyên Nghiệp",
+          "description": "Cơ hội học tập liên tục, các chương trình đào tạo và thăng tiến nghề nghiệp."
+        }
+      },
+      "cultureSection": {
+        "badge": "Những Điều Chúng Tôi Cung Cấp",
+        "title": "Không Chỉ Là Một Công Việc",
+        "description": "BAPI hỗ trợ một văn hóa cân bằng công việc-cuộc sống với các phúc lợi dành cho nhân viên hướng về gia đình.",
+        "bapiOffers": {
+          "title": "BAPI Cung Cấp",
+          "items": {
+            "compensation": "Mức Lương Cạnh Tranh",
+            "health": "Bảo Hiểm Y Tế",
+            "vision": "Tầm Nhìn & Nha Khoa",
+            "hsa": "Tài Khoản Tiết Kiệm Y Tế",
+            "retirement": "401(k) với đóng góp của công ty"
+          }
+        },
+        "timeOff": {
+          "title": "Nghỉ Phép",
+          "items": {
+            "holidays": "Ngày lễ có lương của công ty",
+            "shortTerm": "Bảo hiểm Tàn tật Ngắn hạn và Dài hạn thông qua AFLAC",
+            "life": "Bảo Hiểm Nhân Thọ"
+          }
+        },
+        "environment": {
+          "title": "Môi Trường Làm Việc",
+          "items": {
+            "facility": "Một ghế trong Hội đồng quản trị chờ đợi nhà cửa mở cửa",
+            "culture": "Văn hóa tích cực, hòa nhập",
+            "balance": "Cân bằng công việc-cuộc sống với các phúc lợi dành cho nhân viên hướng về gia đình"
+          }
+        }
+      },
+      "applicationProcess": {
+        "badge": "Quy Trình Ứng Tuyển",
+        "title": "Cách Ứng Tuyển",
+        "description": "Chúng tôi CHỈ chấp nhận và xem xét các đơn xin đầy đủ được gửi trực tiếp thông qua trang web www.bapihvac.com/careers.",
+        "step1": {
+          "title": "Hoàn Thành Đơn Ứng Tuyển",
+          "description": "Hầu hết các vị trí sẽ yêu cầu một Sơ yếu lý lịch và một Thư giới thiệu riêng để được coi là đơn xin \"đầy đủ\" theo hệ thống ứng tuyển trực tuyến."
+        },
+        "step2": {
+          "title": "Gửi Trực Tiếp",
+          "description": "Thư giới thiệu phải được tải lên trực tiếp dưới dạng tệp đính kèm thông qua hệ thống ứng tuyển trực tuyến."
+        },
+        "step3": {
+          "title": "Cơ Hội Bình Đẳng",
+          "description": "BAPI là Nhà Tuyển Dụng Cơ Hội Bình Đẳng (EOP). Nếu bạn không thể nộp đơn trực tuyến hoặc cần các phương pháp ứng tuyển hoặc sàng lọc thay thế, vui lòng xác định nguồn gốc văn hóa, tình trạng khuyết tật hoặc tình trạng cựu chiến binh."
+        },
+        "contactTitle": "Nếu có câu hỏi hoặc cần trợ giúp với đơn ứng tuyến trực tuyến:",
+        "email": "careers@bapihvac.com",
+        "phone": "(800) 753-4400",
+        "or": "hoặc gọi"
+      },
+      "cta": {
+        "title": "Sẵn Sàng Tham Gia Sứ Mệnh Của Chúng Tôi?",
+        "description": "Khám phá các vị trí hiện có và thực hiện bước đầu tiên hướng tới một sự nghiệp thú vị tại BAPI. Chúng tôi mong được nghe từ bạn!",
+        "button": "Liên Hệ"
+      }
+    },
+    "missionValues": {
+      "metadata": {
+        "title": "Sứ mệnh & Giá trị | BAPI",
+        "description": "Tìm hiểu về sứ mệnh, tầm nhìn và các giá trị cốt lõi của BAPI thúc đẩy cam kết của chúng tôi đối với các giải pháp cảm biến chính xác."
+      },
+      "breadcrumb": {
+        "home": "Trang chủ",
+        "company": "Công ty",
+        "missionValues": "Sứ mệnh & Giá trị"
+      },
+      "hero": {
+        "badge": "Mục đích của chúng tôi",
+        "title": "Sứ mệnh & Giá trị",
+        "description": "Trong hơn 30 năm qua, sứ mệnh và các giá trị của chúng tôi đã hướng dẫn mọi quyết định chúng tôi đưa ra, mỗi sản phẩm chúng tôi thiết kế và mỗi mối quan hệ với khách hàng chúng tôi xây dựng."
+      },
+      "mission": {
+        "title": "Sứ mệnh",
+        "description": "Tại BAPI, chúng tôi thiết kế, sản xuất và cung cấp các giải pháp cảm biến chất lượng cao, cũng như cung cấp các dịch vụ chất lượng cao cho các đối tác kinh doanh của chúng tôi để tiết kiệm tiền và năng lượng cho khách hàng của họ, do đó giảm phụ thuộc vào tài nguyên thiên nhiên."
+      },
+      "vision": {
+        "title": "Tầm nhìn",
+        "description": "Để phát triển trở thành một nhà lãnh đạo đổi mới toàn cầu bằng cách cung cấp các giải pháp độc đáo, lấy khách hàng làm trung tâm, đồng thời truyền cảm hứng cho nhân viên của chúng tôi phát huy hết khả năng của mình, cung cấp sản phẩm và dịch vụ chất lượng vượt ngoài kỳ vọng của khách hàng."
+      },
+      "coreValuesSection": {
+        "title": "Các Giá Trị Cốt Lõi của Chúng Tôi",
+        "description": "Những nguyên tắc này hướng dẫn mọi thứ chúng tôi làm và định hình cách chúng tôi phục vụ khách hàng và hỗ trợ đội nhóm của chúng tôi.",
+        "quality": {
+          "title": "Chất lượng",
+          "description": "Chúng tôi trân trọng nhân viên của mình bằng cách khuyến khích đối thoại cởi mở, tinh thần cộng đồng và cân bằng giữa công việc và cuộc sống để có một văn hóa lành mạnh."
+        },
+        "innovation": {
+          "title": "Đổi mới",
+          "description": "Chúng tôi trân trọng các quy trình và dịch vụ được điều khiển bằng chỉ số để không ngừng vượt qua kỳ vọng của khách hàng."
+        },
+        "partnership": {
+          "title": "Quan hệ đối tác hợp tác",
+          "description": "Chúng tôi trân trọng các giải pháp mới và cải tiến mang tính sáng tạo và độc đáo, chúng tôi không ngừng tìm cách cung cấp những lợi thế riêng biệt."
+        },
+        "integrity": {
+          "title": "Liêm chính & Đạo đức",
+          "description": "Chúng tôi trân trọng các quan hệ đối tác hợp tác của chúng tôi dẫn đến các giải pháp tối ưu và tạo điều kiện cho các môi trường lành mạnh, năng suất và thoải mái."
+        },
+        "employees": {
+          "title": "Nhân viên",
+          "description": "Chúng tôi trân trọng việc cẩn trọng, chu đáo và có ý định với các hành vi phù hợp với từng lời nói của chúng tôi."
+        }
+      },
+      "cta": {
+        "title": "Tham gia sứ mệnh của chúng tôi",
+        "description": "Chúng tôi luôn tìm kiếm những cá nhân tài năng chia sẻ các giá trị và niềm đam mê về đổi mới của chúng tôi. Khám phá cơ hội để gia nhập đội ngũ BAPI.",
+        "button": "Xem cơ hội nghề nghiệp"
+      }
+    },
+    "contact": {
+      "metadata": {
+        "title": "Liên hệ với chúng tôi | BAPI",
+        "description": "Liên hệ với BAPI để được hỗ trợ, tư vấn bán hàng hoặc hỗ trợ kỹ thuật."
+      },
+      "breadcrumb": {
+        "home": "Trang chủ",
+        "company": "Công ty",
+        "contact": "Liên hệ với chúng tôi"
+      },
+      "hero": {
+        "badge": "Hãy liên hệ với chúng tôi",
+        "title": "Liên hệ với BAPI",
+        "description": "Bất kể quý khách cần hỗ trợ kỹ thuật, có câu hỏi về bán hàng hoặc muốn tìm hiểu thêm về sản phẩm của chúng tôi, chúng tôi luôn sẵn sàng hỗ trợ. Hãy liên hệ với chúng tôi ngay hôm nay!"
+      },
+      "contactMethods": {
+        "phone": {
+          "title": "Điện thoại",
+          "details": "+1 (800) 735-4800",
+          "description": "Thứ Hai - Thứ Sáu, 8:00 sáng - 5:00 chiều giờ Trung Tây Hoa Kỳ"
+        },
+        "email": {
+          "title": "Email",
+          "details": "sales@bapihvac.com",
+          "description": "Chúng tôi thường phản hồi trong vòng 24 giờ"
+        },
+        "visit": {
+          "title": "Đến thăm chúng tôi",
+          "details": "750 N Royal Ave, Gays Mills, WI 54631",
+          "description": "Hoa Kỳ"
+        }
+      },
+      "departmentsSection": {
+        "badge": "Các bộ phận",
+        "title": "Chúng tôi có thể giúp gì?",
+        "description": "Chọn bộ phận phù hợp nhất với nhu cầu của quý khách và chúng tôi sẽ kết nối quý khách với đội ngũ phù hợp.",
+        "sales": {
+          "title": "Bán hàng",
+          "email": "sales@bapihvac.com",
+          "description": "Các câu hỏi về sản phẩm, báo giá và bán hàng nói chung"
+        },
+        "international": {
+          "title": "Bán hàng quốc tế",
+          "email": "sales@bapihvac.com",
+          "description": "Phân phối toàn cầu và các cơ hội hợp tác quốc tế"
+        },
+        "distribution": {
+          "title": "Phân phối",
+          "email": "sales@bapihvac.com",
+          "description": "Các câu hỏi về nhà phân phối và cơ hội hợp tác"
+        },
+        "technical": {
+          "title": "Hỗ trợ kỹ thuật",
+          "email": "bapitechsupport@bapisensors.com",
+          "description": "Hỗ trợ sản phẩm, xử lý sự cố và hỗ trợ kỹ thuật"
+        }
+      },
+      "internationalOffice": {
+        "title": "TRẢ LẠI HÀNG HOÁ (RMA)",
+        "subtitle": "Vương quốc Anh/Khu vực Cột/Châu Âu",
+        "phone": "+44 (0) 1252 548410",
+        "addressLine1": "BAPI Distribution Centre, North 1c",
+        "addressLine2": "Aldershot GU12 4RG",
+        "addressLine3": "Vương quốc Anh/Khu vực Cột/Châu Âu_rma"
+      },
+      "globalPresence": {
+        "badge": "Địa điểm của chúng tôi",
+        "title": "BAPI trên toàn cầu",
+        "description": "Với các cơ sở trên ba châu lục, BAPI cung cấp hỗ trợ địa phương cùng với chuyên môn toàn cầu."
+      },
+      "cta": {
+        "title": "Sẵn sàng bắt đầu?",
+        "description": "Liên hệ với đội ngũ của chúng tôi để thảo luận về các yêu cầu dự án của quý khách và tìm ra giải pháp cảm biến hoàn hảo cho nhu cầu của quý khách.",
+        "button": "Gửi tin nhắn"
+      }
+    },
+    "news": {
+      "metadata": {
+        "title": "Tin tức | BAPI",
+        "description": "Cập nhật thường xuyên với những tin tức mới nhất, thông báo và cập nhật từ BAPI."
+      },
+      "breadcrumb": {
+        "home": "Trang chủ",
+        "company": "Công ty",
+        "news": "Tin tức"
+      },
+      "hero": {
+        "badge": "Cập nhật mới nhất",
+        "title": "Tin tức & Cập nhật",
+        "description": "Hãy theo dõi những tin tức mới nhất, thông báo sản phẩm và thông tin ngành từ BAPI."
+      },
+      "empty": {
+        "title": "Chưa có bài viết tin tức nào",
+        "description": "Hãy kiểm tra lại sau để xem những cập nhật mới nhất từ BAPI."
+      },
+      "dateLabel": "Được đăng",
+      "readMore": "Đọc thêm",
+      "cta": {
+        "badge": "Luôn Kết Nối",
+        "title": "Không Bao Giờ Bỏ Lỡ Cập Nhật",
+        "description": "Bạn muốn được biết về những đổi mới mới nhất, thông tin ngành và tin tức công ty của chúng tôi? Hãy liên hệ với chúng tôi ngay hôm nay.",
+        "button": "Liên Hệ Với Chúng Tôi"
+      }
+    },
+    "whyBapi": {
+      "metadata": {
+        "title": "Tại sao BAPI | BAPI",
+        "description": "Khám phá những điều làm BAPI nổi bật trong ngành tự động hóa công trình và lý do tại sao các kỹ sư tin tưởng vào các giải pháp cảm biến chính xác của chúng tôi."
+      },
+      "breadcrumb": {
+        "home": "Trang chủ",
+        "company": "Công ty",
+        "whyBapi": "Tại sao BAPI"
+      },
+      "hero": {
+        "badge": "Những gì Làm Chúng Tôi Khác Biệt",
+        "title": "Tại sao BAPI?",
+        "description": "BAPI đã thay đổi cách bạn nghĩ về cảm biến kể từ năm 1993. Chúng tôi tin rằng cảm biến không phải là hàng hóa đơn giản - chúng là một phần không thể thiếu của các hệ thống tự động hóa công trình và rất quan trọng cho việc tiết kiệm năng lượng.",
+        "stats": {
+          "years": {
+            "value": "30+",
+            "label": "Năm Kinh Nghiệm"
+          },
+          "warranty": {
+            "value": "5 Năm",
+            "label": "Tiêu Chuẩn Bảo Hành"
+          },
+          "testing": {
+            "value": "100%",
+            "label": "Kiểm Tra Sản Phẩm"
+          }
+        }
+      },
+      "differentiators": {
+        "warranty": {
+          "title": "Bảo Hành 5 Năm",
+          "description": "Các sản phẩm của chúng tôi được thiết kế và sản xuất để kéo dài. Chúng tôi khẳng định điều này bằng cách cung cấp bảo hành 5 năm trên tất cả các sản phẩm của mình."
+        },
+        "guarantee": {
+          "title": "Bảo Đảm của BAPI",
+          "description": "Hầu hết các nhà sản xuất cảm biến sẽ thay thế sản phẩm lỗi của họ, nhưng chỉ có BAPI đủ tự tin để cung cấp bảo hành sản phẩm."
+        },
+        "lifetime": {
+          "title": "Bảo Hành Trọn Đời Có Giới Hạn",
+          "description": "Bảo hành trọn đời có giới hạn cũng được cung cấp cho nhiều mẫu cảm biến điểm đơn, phòng và không phải phòng của chúng tôi."
+        },
+        "testing": {
+          "title": "Kiểm Tra 100%",
+          "description": "Mỗi sản phẩm BAPI đều được kiểm tra ở nhiều giai đoạn trong quá trình sản xuất để đảm bảo độ chính xác và độ tin cậy."
+        },
+        "customerFocus": {
+          "title": "Tập Trung Vào Khách Hàng",
+          "description": "Tại BAPI, chúng tôi nỗ lực trở thành những người dẫn đầu trong ngành của mình bằng cách cung cấp các sản phẩm và dịch vụ sáng tạo, chất lượng cao được thiết kế có bạn trong tâm trí."
+        },
+        "original": {
+          "title": "Một Cái Khác Độc Đáo",
+          "description": "Các sản phẩm mang tem 'Một Cái Khác Độc Đáo' là duy nhất của BAPI và được gợi ý từ khách hàng, nhân viên và nhà cung cấp của chúng tôi."
+        }
+      },
+      "qualitySection": {
+        "badge": "Tiêu Chuẩn Chất Lượng",
+        "title": "Những Bước Thêm Chúng Tôi Thực Hiện",
+        "description": "Ngoài những người tuyệt vời của mình, BAPI chỉ sử dụng các bộ phận cảm biến chất lượng cao nhất và các quy trình sản xuất, kiểm tra và đảm bảo chất lượng tỉ mỉ.",
+        "features": {
+          "compatibility": "Bảo Đảm 100% Tương Thích",
+          "certified": "Chứng Nhận CE & Tuân Thủ RoHS",
+          "nist": "Các Công Cụ Đo Chính Xác Truy Nguyên NIST",
+          "production": "Trạm Sản Xuất Được Hỗ Trợ Máy Tính",
+          "experience": "Hơn 30 Năm Kinh Nghiệm",
+          "distribution": "Mạng Lưới Phân Phối Toàn Cầu"
+        }
+      },
+      "cta": {
+        "title": "Sẵn Sàng Trải Nghiệm Sự Khác Biệt của BAPI?",
+        "description": "Hãy cùng trao đổi về cách các giải pháp cảm biến chính xác của chúng tôi có thể mang lại lợi ích cho dự án tiếp theo của bạn. Đội ngũ của chúng tôi sẵn sàng giúp bạn tìm thấy giải pháp hoàn hảo.",
+        "button": "Liên Hệ Với Chúng Tôi"
+      }
+    }
   }
 }

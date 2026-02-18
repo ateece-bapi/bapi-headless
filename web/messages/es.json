@@ -885,5 +885,433 @@
       "orderPlaced": "¡Pedido realizado!",
       "orderPlacedMessage": "Tu pedido ha sido realizado exitosamente."
     }
+  },
+  "companyPages": {
+    "about": {
+      "metadata": {
+        "title": "Acerca de BAPI | Building Automation Products, Inc.",
+        "description": "Conozca la historia de más de 40 años de BAPI fabricando soluciones de sensores de precisión para sistemas de automatización de edificios en todo el mundo."
+      },
+      "breadcrumb": {
+        "home": "Inicio",
+        "company": "Empresa"
+      },
+      "hero": {
+        "badge": "Est. 1993",
+        "title": "Building Automation Products Inc.",
+        "subtitle": "Soluciones de Sensores de Precisión para Automatización de Edificios",
+        "description": "Durante más de 40 años, BAPI ha sido un fabricante líder de sensores de precisión para sistemas de automatización de edificios, en los que confían ingenieros de todo el mundo."
+      },
+      "overview": {
+        "title": "Acerca de BAPI",
+        "paragraph1": "Building Automation Products, Inc. (BAPI) se formó en 1993 a partir de su empresa matriz BEMCO, Inc., que fue fundada en 1983. Desde entonces, BAPI se ha convertido en un fabricante global de sensores de precisión que mejoran los sistemas de automatización de edificios y son fundamentales para el ahorro de energía. Cada producto BAPI está diseñado y fabricado en nuestra sede central en Gays Mills, Wisconsin, rodeado de la belleza natural de las onduladas colinas de la región sin glaciares.",
+        "paragraph2": "En BAPI, la calidad y la confiabilidad están en el centro de todo lo que hacemos. Nuestros productos de sensores son de confianza para ingenieros de todo el mundo en instalaciones de misión crítica, incluyendo hospitales, centros de datos, salas limpias, laboratorios y edificios comerciales. Con más de 600 modelos de productos, calibración rastreable a NIST, certificación BACnet® y estándares de fabricación ISO 9001:2015, BAPI ofrece la precisión en la que puede confiar."
+      },
+      "stats": {
+        "years": {
+          "value": "40+",
+          "label": "Años en el Negocio"
+        },
+        "products": {
+          "value": "600+",
+          "label": "Modelos de Productos"
+        },
+        "madeInUsa": {
+          "value": "100%",
+          "label": "Fabricado en EE.UU."
+        },
+        "distribution": {
+          "value": "Global",
+          "label": "Distribución"
+        }
+      },
+      "coreValues": {
+        "title": "Nuestros Valores Fundamentales",
+        "subtitle": "Los principios que guían todo lo que hacemos",
+        "qualityFirst": {
+          "title": "Calidad Ante Todo",
+          "description": "Garantías líderes en la industria, instrumentos de precisión rastreables a NIST y pruebas de productos al 100% en cada etapa de la fabricación."
+        },
+        "customerFocus": {
+          "title": "Enfoque en el Cliente",
+          "description": "Equipo de soporte técnico dedicado con profundos conocimientos del producto y experiencia práctica en automatización de edificios."
+        },
+        "innovation": {
+          "title": "Innovación",
+          "description": "Desarrollo continuo de nuevas soluciones como monitoreo inalámbrico, conectividad en la nube e integración BACnet."
+        }
+      },
+      "globalPresence": {
+        "title": "Presencia Global",
+        "description": "Instalaciones de fabricación y distribución en tres continentes al servicio de clientes de todo el mundo."
+      },
+      "location": {
+        "title": "Visítenos o Contáctenos",
+        "locationCard": {
+          "title": "Nuestra Ubicación",
+          "companyName": "Building Automation Products Inc.",
+          "street": "750 North Royal Avenue",
+          "city": "Gays Mills, WI 54631",
+          "country": "EE.UU."
+        },
+        "contactCard": {
+          "title": "Ponte en Contacto",
+          "phoneLabel": "Teléfono",
+          "phone": "(715) 856-1203",
+          "emailLabel": "Correo Electrónico",
+          "email": "sales@bapihvac.com",
+          "hoursLabel": "Horario",
+          "hoursDays": "Lunes - Viernes",
+          "hoursTime": "8:00 AM - 5:00 PM CST"
+        },
+        "cta": "Contacta a Nuestro Equipo"
+      },
+      "quickLinks": {
+        "title": "Aprende Más Sobre BAPI",
+        "whyBapi": {
+          "title": "Por Qué Elegir BAPI",
+          "description": "Calidad, confiabilidad y soporte"
+        },
+        "news": {
+          "title": "Noticias y Actualizaciones",
+          "description": "Últimos anuncios de la empresa"
+        },
+        "careers": {
+          "title": "Carreras",
+          "description": "Únete a nuestro equipo"
+        }
+      }
+    },
+    "careers": {
+      "metadata": {
+        "title": "Carreras | BAPI",
+        "description": "Únase al equipo de BAPI y ayúdenos a dar forma al futuro de la tecnología de automatización de edificios."
+      },
+      "breadcrumb": {
+        "home": "Inicio",
+        "company": "Empresa",
+        "careers": "Carreras"
+      },
+      "hero": {
+        "badge": "Únete a nuestro equipo",
+        "title": "Construye tu carrera en BAPI",
+        "description": "BAPI apoya una cultura de equilibrio entre el trabajo y la vida personal con beneficios para empleados orientados a la familia, como picnics y fiestas navideñas de la empresa, iniciativas de bienestar estético, programas de ejercicios y mucho más. Somos un Empleador de Igualdad de Oportunidades (EOP) y estamos comprometidos a crear un entorno de trabajo inclusivo para todos los empleados.",
+        "tagline": "¡Estamos emocionados de conocerte!"
+      },
+      "benefits": {
+        "healthInsurance": {
+          "title": "Seguro de Salud",
+          "description": "Cobertura integral de salud, dental y visual para usted y su familia."
+        },
+        "compensation": {
+          "title": "Compensación Competitiva",
+          "description": "Salarios líderes en la industria con revisiones de desempeño regulares y aumentos por mérito."
+        },
+        "paidHolidays": {
+          "title": "Días Festivos Pagados",
+          "description": "Generoso tiempo libre pagado, incluyendo días festivos, días de vacaciones y tiempo personal."
+        },
+        "retirement": {
+          "title": "Coincidencia 401(k)",
+          "description": "Coincidencia de la empresa en las contribuciones a la jubilación para ayudar a asegurar tu futuro."
+        },
+        "lifeInsurance": {
+          "title": "Seguro de Vida",
+          "description": "Cobertura de seguro de vida pagada por la empresa con opciones para cobertura adicional."
+        },
+        "development": {
+          "title": "Desarrollo Profesional",
+          "description": "Oportunidades continuas de aprendizaje, programas de capacitación y avance de carrera."
+        }
+      },
+      "cultureSection": {
+        "badge": "Lo que ofrecemos",
+        "title": "Más que solo un trabajo",
+        "description": "BAPI apoya una cultura de equilibrio entre el trabajo y la vida personal con beneficios para empleados orientados a la familia.",
+        "bapiOffers": {
+          "title": "BAPI Ofrece",
+          "items": {
+            "compensation": "Compensación Competitiva",
+            "health": "Seguro de Salud",
+            "vision": "Visión y Dental",
+            "hsa": "Cuenta de Ahorros de Salud",
+            "retirement": "401(k) con coincidencia de la empresa"
+          }
+        },
+        "timeOff": {
+          "title": "Tiempo Libre",
+          "items": {
+            "holidays": "Días festivos pagados por la empresa",
+            "shortTerm": "Discapacidad a corto y largo plazo a través de AFLAC",
+            "life": "Seguro de Vida"
+          }
+        },
+        "environment": {
+          "title": "Ambiente de Trabajo",
+          "items": {
+            "facility": "Una plaza en la junta directiva espera a una instalación abierta",
+            "culture": "Cultura positiva e inclusiva",
+            "balance": "Equilibrio entre el trabajo y la vida personal con beneficios para empleados orientados a la familia"
+          }
+        }
+      },
+      "applicationProcess": {
+        "badge": "Proceso de Solicitud",
+        "title": "Cómo Aplicar",
+        "description": "SOLO aceptamos y consideramos solicitudes electrónicas completas presentadas directamente a través de la página web www.bapihvac.com/careers.",
+        "step1": {
+          "title": "Completar Solicitud",
+          "description": "La mayoría de los puestos requerirán un Currículum y una Carta de Presentación por separado para ser considerada una solicitud electrónica \"completa\"."
+        },
+        "step2": {
+          "title": "Presentación Directa",
+          "description": "Las Cartas de Presentación deben cargarse directamente como archivos adjuntos a través del sistema de solicitud en línea."
+        },
+        "step3": {
+          "title": "Igualdad de Oportunidades",
+          "description": "BAPI es un Empleador de Igualdad de Oportunidades (EOP). Si no puede aplicar en línea o requiere métodos alternativos de solicitud o evaluación, identifique su origen cultural, discapacidad o condición de veterano."
+        },
+        "contactTitle": "Para preguntas o ayuda con solicitudes en línea:",
+        "email": "careers@bapihvac.com",
+        "phone": "(800) 753-4400",
+        "or": "o llama"
+      },
+      "cta": {
+        "title": "¿Listo para unirte a nuestra misión?",
+        "description": "Explora las oportunidades abiertas y da el primer paso hacia una emocionante carrera en BAPI. ¡Anhelamos saber de ti!",
+        "button": "Contáctanos"
+      }
+    },
+    "missionValues": {
+      "metadata": {
+        "title": "Misión y Valores | BAPI",
+        "description": "Conozca la misión, visión y valores fundamentales de BAPI que impulsan nuestro compromiso con soluciones de sensores de precisión."
+      },
+      "breadcrumb": {
+        "home": "Inicio",
+        "company": "Empresa",
+        "missionValues": "Misión y Valores"
+      },
+      "hero": {
+        "badge": "Nuestro Propósito",
+        "title": "Misión y Valores",
+        "description": "Durante más de 30 años, nuestra misión y valores han guiado cada decisión que tomamos, cada producto que diseñamos y cada relación con el cliente que construimos."
+      },
+      "mission": {
+        "title": "Misión",
+        "description": "En BAPI, diseñamos, fabricamos y entregamos soluciones de sensores de alta calidad, así como servicios de alta calidad para que nuestros socios comerciales puedan ahorrar dinero y energía a sus clientes, reduciendo así la dependencia de los recursos naturales."
+      },
+      "vision": {
+        "title": "Visión",
+        "description": "Crecer como un líder global e innovador al proporcionar soluciones únicas centradas en el cliente, inspirando a nuestros empleados a dar lo mejor de sí, entregando productos y servicios de calidad que superen las expectativas de nuestros clientes."
+      },
+      "coreValuesSection": {
+        "title": "Nuestros Valores Fundamentales",
+        "description": "Estos principios guían todo lo que hacemos y dan forma a la forma en que servimos a nuestros clientes y apoyamos a nuestro equipo.",
+        "quality": {
+          "title": "Calidad",
+          "description": "Valoramos a nuestros empleados fomentando el diálogo abierto, un sentido de comunidad y el equilibrio entre el trabajo y la vida personal para una cultura saludable."
+        },
+        "innovation": {
+          "title": "Innovación",
+          "description": "Valoramos los procesos y servicios basados en métricas para superar continuamente las expectativas de nuestros clientes."
+        },
+        "partnership": {
+          "title": "Asociación Colaborativa",
+          "description": "Valoramos las soluciones nuevas y mejoradas que son creativas y únicas, y seguimos encontrando formas de brindar ventajas distintivas."
+        },
+        "integrity": {
+          "title": "Integridad y Ética",
+          "description": "Valoramos nuestras asociaciones colaborativas que conducen a soluciones superiores y facilitan entornos saludables, productivos y cómodos."
+        },
+        "employees": {
+          "title": "Empleados",
+          "description": "Valoramos ser deliberados, reflexivos e intencionales con comportamientos que coincidan con cada una de nuestras palabras."
+        }
+      },
+      "cta": {
+        "title": "Únete a Nuestra Misión",
+        "description": "Siempre buscamos individuos talentosos que compartan nuestros valores y pasión por la innovación. Explora oportunidades para unirte al equipo de BAPI.",
+        "button": "Ver Carreras"
+      }
+    },
+    "whyBapi": {
+      "metadata": {
+        "title": "¿Por qué BAPI | BAPI",
+        "description": "Descubra lo que distingue a BAPI en la industria de la automatización de edificios y por qué los ingenieros confían en nuestras soluciones de sensores de precisión."
+      },
+      "breadcrumb": {
+        "home": "Inicio",
+        "company": "Empresa",
+        "whyBapi": "¿Por qué BAPI?"
+      },
+      "hero": {
+        "badge": "Lo que nos distingue",
+        "title": "¿Por qué BAPI?",
+        "description": "BAPI ha estado cambiando la forma en que piensa acerca de los sensores desde 1993. Creemos que los sensores no son simples mercancías, sino que son fundamentales para los sistemas de automatización de edificios y críticos para ahorrar energía.",
+        "stats": {
+          "years": {
+            "value": "Más de 30",
+            "label": "Años de excelencia"
+          },
+          "warranty": {
+            "value": "5 años",
+            "label": "Garantía estándar"
+          },
+          "testing": {
+            "value": "100%",
+            "label": "Pruebas de producto"
+          }
+        }
+      },
+      "differentiators": {
+        "warranty": {
+          "title": "Garantía de 5 años",
+          "description": "Nuestros productos están diseñados y fabricados para durar. Respaldamos esa afirmación ofreciendo una garantía de 5 años en todos nuestros productos."
+        },
+        "guarantee": {
+          "title": "Garantía respaldada por BAPI",
+          "description": "La mayoría de los fabricantes de sensores reemplazarán sus productos defectuosos, pero solo BAPI tiene la confianza de proporcionar una garantía de producto."
+        },
+        "lifetime": {
+          "title": "Garantía limitada de por vida",
+          "description": "También está disponible una garantía limitada de por vida en muchos de nuestros modelos de sensores de punto único, de sala y de fuera de sala."
+        },
+        "testing": {
+          "title": "Prueba al 100%",
+          "description": "Cada producto BAPI se prueba en múltiples etapas del proceso de fabricación para garantizar la precisión y la confiabilidad."
+        },
+        "customerFocus": {
+          "title": "Enfoque en el cliente",
+          "description": "En BAPI, nos esforzamos por ser líderes en nuestra industria al brindar productos y servicios innovadores y de alta calidad diseñados pensando en usted."
+        },
+        "original": {
+          "title": "Otro original",
+          "description": "Los productos que muestran el sello \"Otro original\" son exclusivos de BAPI e inspirados en nuestros clientes, empleados y proveedores."
+        }
+      },
+      "qualitySection": {
+        "badge": "Estándares de calidad",
+        "title": "Los pasos adicionales que tomamos",
+        "description": "Además de nuestro personal excepcional, BAPI utiliza solo los elementos de detección de la más alta calidad y procedimientos meticulosos de fabricación, prueba y aseguramiento de la calidad.",
+        "features": {
+          "compatibility": "Garantía de compatibilidad al 100%",
+          "certified": "Certificado CE y cumplimiento de RoHS",
+          "nist": "Instrumentos de precisión trazables a NIST",
+          "production": "Estaciones de producción asistidas por computadora",
+          "experience": "Más de 30 años de experiencia",
+          "distribution": "Red de distribución global"
+        }
+      },
+      "cta": {
+        "title": "¿Listo para experimentar la diferencia BAPI?",
+        "description": "Hablemos de cómo nuestras soluciones de sensores de precisión pueden beneficiar su próximo proyecto. Nuestro equipo está listo para ayudarlo a encontrar la solución perfecta.",
+        "button": "Contáctenos"
+      }
+    },
+    "contact": {
+      "metadata": {
+        "title": "Contáctenos | BAPI",
+        "description": "Comuníquese con BAPI para obtener asistencia, consultas de ventas o ayuda técnica."
+      },
+      "breadcrumb": {
+        "home": "Inicio",
+        "company": "Empresa",
+        "contact": "Contáctenos"
+      },
+      "hero": {
+        "badge": "Póngase en Contacto",
+        "title": "Contacte a BAPI",
+        "description": "Ya sea que necesite asistencia técnica, tenga consultas de ventas o desee obtener más información sobre nuestros productos, estamos aquí para ayudarlo. ¡Comuníquese con nosotros hoy!"
+      },
+      "contactMethods": {
+        "phone": {
+          "title": "Teléfono",
+          "details": "+1 (800) 735-4800",
+          "description": "Lunes - Viernes, 8:00 AM - 5:00 PM CST"
+        },
+        "email": {
+          "title": "Correo Electrónico",
+          "details": "sales@bapihvac.com",
+          "description": "Normalmente respondemos en 24 horas"
+        },
+        "visit": {
+          "title": "Visítenos",
+          "details": "750 N Royal Ave, Gays Mills, WI 54631",
+          "description": "EE.UU."
+        }
+      },
+      "departmentsSection": {
+        "badge": "Departamentos",
+        "title": "¿Cómo podemos ayudarte?",
+        "description": "Elija el departamento que mejor se adapte a sus necesidades y lo conectaremos con el equipo adecuado.",
+        "sales": {
+          "title": "Ventas",
+          "email": "sales@bapihvac.com",
+          "description": "Consultas de productos, cotizaciones y preguntas generales de ventas"
+        },
+        "international": {
+          "title": "Ventas Internacionales",
+          "email": "sales@bapihvac.com",
+          "description": "Distribución global y oportunidades de asociación internacional"
+        },
+        "distribution": {
+          "title": "Distribución",
+          "email": "sales@bapihvac.com",
+          "description": "Consultas de distribuidores y oportunidades de asociación"
+        },
+        "technical": {
+          "title": "Soporte Técnico",
+          "email": "bapitechsupport@bapisensors.com",
+          "description": "Soporte de productos, solución de problemas y asistencia técnica"
+        }
+      },
+      "internationalOffice": {
+        "title": "DEVOLUCIÓN DE MERCANCÍA (RMA)",
+        "subtitle": "Reino Unido/Área de la Columna/Europa",
+        "phone": "+44 (0) 1252 548410",
+        "addressLine1": "Centro de Distribución de BAPI, North 1c",
+        "addressLine2": "Aldershot GU12 4RG",
+        "addressLine3": "Reino Unido/Área de la Columna/Europa_rma"
+      },
+      "globalPresence": {
+        "badge": "Nuestras Ubicaciones",
+        "title": "BAPI en Todo el Mundo",
+        "description": "Con instalaciones en tres continentes, BAPI brinda asistencia local con experiencia global."
+      },
+      "cta": {
+        "title": "¿Listo para empezar?",
+        "description": "Comuníquese con nuestro equipo para discutir los requisitos de su proyecto y descubrir la solución de sensor perfecta para sus necesidades.",
+        "button": "Enviar un Mensaje"
+      }
+    },
+    "news": {
+      "metadata": {
+        "title": "Noticias | BAPI",
+        "description": "Manténgase actualizado con las últimas noticias, anuncios y actualizaciones de BAPI."
+      },
+      "breadcrumb": {
+        "home": "Inicio",
+        "company": "Empresa",
+        "news": "Noticias"
+      },
+      "hero": {
+        "badge": "Últimas Actualizaciones",
+        "title": "Noticias y Actualizaciones",
+        "description": "Manténgase informado con las últimas noticias, anuncios de productos y perspectivas del sector de BAPI."
+      },
+      "empty": {
+        "title": "Aún No Hay Artículos de Noticias",
+        "description": "Vuelva a consultar próximamente para obtener las últimas actualizaciones de BAPI."
+      },
+      "dateLabel": "Publicado",
+      "readMore": "Leer más",
+      "cta": {
+        "badge": "Manténgase Conectado",
+        "title": "No Se Pierda Ninguna Actualización",
+        "description": "¿Quiere estar informado sobre nuestras últimas innovaciones, perspectivas del sector y noticias de la empresa? Póngase en contacto con nosotros hoy.",
+        "button": "Contáctenos"
+      }
+    }
   }
 }

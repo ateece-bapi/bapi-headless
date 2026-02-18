@@ -225,7 +225,7 @@
   "companyPages": {
     "about": {
       "metadata": {
-        "title": "About BAPI | Building Automation Products, Inc.",
+        "title": "About BAPI | BAPI",
         "description": "Learn about BAPI's 40+ year history manufacturing precision sensor solutions for building automation systems worldwide."
       },
       "breadcrumb": {
@@ -240,7 +240,7 @@
       },
       "overview": {
         "title": "About BAPI",
-        "paragraph1": "Building Automation Products, Inc. (BAPI) was formed in 1993 from its parent company BEMCO, Inc., which was founded in 1983. Since then, BAPI has grown into a global manufacturer of precision sensors that improve building automation systems and critical to saving energy. Every BAPI product is designed and manufactured at our headquarters in Gays Mills, Wisconsin, surrounded by the natural beauty of the rolling hills of the Driftless Region.",
+        "paragraph1": "Building Automation Products, Inc. (BAPI) was formed in 1993 from its parent company BEMCO, Inc., which was founded in 1983. Since then, BAPI has grown into a global manufacturer of precision sensors that improve building automation systems and are critical to saving energy. Every BAPI product is designed and manufactured at our headquarters in Gays Mills, Wisconsin, surrounded by the natural beauty of the rolling hills of the Driftless Region.",
         "paragraph2": "At BAPI, quality and reliability are at the core of everything we do.  Our sensor products are trusted by engineers worldwide for mission-critical facilities including hospitals, data centers, clean rooms, laboratories, and commercial buildings. With over 600 product models, NIST-traceable calibration, BACnet® certification, and ISO 9001:2015 manufacturing standards, BAPI delivers precision you can depend on."
       },
       "stats": {
@@ -385,7 +385,7 @@
         "environment": {
           "title": "Work Environment",
           "items": {
-            "facility": "A board seat awaits open facility",
+            "facility": "A modern, state-of-the-art open facility",
             "culture": "Positive, inclusive culture",
             "balance": "Work-life balance with family oriented employee benefits"
           }
@@ -604,11 +604,17 @@
       },
       "internationalOffice": {
         "title": "RETURN MERCHANDISE (RMA)",
-        "subtitle": "United Kingdom/Column Area/Europe",
+        "subtitle": "United Kingdom · Europe RMA",
+        "phoneLabel": "Phone",
+        "addressLabel": "Address",
         "phone": "+44 (0) 1252 548410",
         "addressLine1": "BAPI Distribution Centre, North 1c",
         "addressLine2": "Aldershot GU12 4RG",
-        "addressLine3": "United Kingdom/Column_area/europe_rma"
+        "addressLine3": "United Kingdom",
+        "rmaInstructions": {
+          "strong": "For RMA (Return Material Authorization) requests,",
+          "text": "please contact your local representative or distributor."
+        }
       },
       "globalPresence": {
         "badge": "Our Locations",
@@ -618,6 +624,16 @@
       "cta": {
         "title": "Ready to Get Started?",
         "description": "Contact our team to discuss your project requirements and discover the perfect sensor solution for your needs.",
+        "weekday": {
+          "label": "Weekday",
+          "hours": "8:00 AM - 5:00 PM",
+          "timezone": "Central Standard Time"
+        },
+        "weekend": {
+          "label": "Weekend",
+          "status": "Closed",
+          "days": "Saturday & Sunday"
+        },
         "button": "Send a Message"
       }
     },

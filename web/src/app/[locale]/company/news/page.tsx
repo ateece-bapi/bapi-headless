@@ -1,18 +1,24 @@
 import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { getPosts } from '@/lib/wordpress';
 import Link from 'next/link';
 import { Newspaper, Calendar, ArrowRight, TrendingUp } from 'lucide-react';
 import Image from 'next/image';
 
-export const metadata: Metadata = {
-  title: 'News | BAPI',
-  description: 'Stay updated with the latest news, announcements, and updates from BAPI.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('companyPages.news.metadata');
+
+  return {
+    title: t('title'),
+    description: t('description'),
+  };
+}
 
 // Cache for 15 minutes (900 seconds) - news updates more frequently
 export const revalidate = 900;
 
 export default async function NewsPage() {
+  const t = await getTranslations('companyPages.news');
   const posts = await getPosts({ perPage: 20 });
 
   return (
@@ -28,30 +34,29 @@ export default async function NewsPage() {
           {/* Breadcrumb */}
           <nav className="mb-6 flex items-center gap-2 text-sm text-primary-100">
             <Link href="/" className="transition-colors hover:text-white">
-              Home
+              {t('breadcrumb.home')}
             </Link>
             <span>/</span>
             <Link href="/company" className="transition-colors hover:text-white">
-              Company
+              {t('breadcrumb.company')}
             </Link>
             <span>/</span>
-            <span className="font-medium text-white">News</span>
+            <span className="font-medium text-white">{t('breadcrumb.news')}</span>
           </nav>
 
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
               <Newspaper className="h-4 w-4" />
-              Latest Updates
+              {t('hero.badge')}
             </div>
 
             <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-              News & Updates
+              {t('hero.title')}
             </h1>
 
             <p className="text-xl leading-relaxed text-primary-50 md:text-2xl">
-              Stay informed with the latest news, product announcements, and industry insights from
-              BAPI.
+              {t('hero.description')}
             </p>
           </div>
         </div>
@@ -64,10 +69,8 @@ export default async function NewsPage() {
             <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
               <Newspaper className="h-8 w-8 text-gray-400" />
             </div>
-            <h2 className="mb-2 text-2xl font-bold text-gray-900">No News Articles Yet</h2>
-            <p className="text-lg text-gray-600">
-              Check back soon for the latest updates from BAPI.
-            </p>
+            <h2 className="mb-2 text-2xl font-bold text-gray-900">{t('empty.title')}</h2>
+            <p className="text-lg text-gray-600">{t('empty.description')}</p>
           </div>
         ) : (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -121,7 +124,7 @@ export default async function NewsPage() {
                     href={`/news/${post.slug}`}
                     className="group/link inline-flex items-center gap-2 font-semibold text-primary-600 transition-all duration-300 hover:gap-3"
                   >
-                    <span>Read more</span>
+                    <span>{t('readMore')}</span>
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
                 </div>
@@ -143,22 +146,17 @@ export default async function NewsPage() {
               <div>
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
                   <TrendingUp className="h-4 w-4" />
-                  Stay Connected
+                  {t('cta.badge')}
                 </div>
-                <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">
-                  Never Miss an Update
-                </h2>
-                <p className="max-w-2xl text-lg text-primary-50">
-                  Want to stay informed about our latest innovations, industry insights, and company
-                  news? Get in touch with us today.
-                </p>
+                <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">{t('cta.title')}</h2>
+                <p className="max-w-2xl text-lg text-primary-50">{t('cta.description')}</p>
               </div>
 
               <Link
                 href="/company/contact-us"
                 className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
-                Contact Us
+                {t('cta.button')}
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </div>

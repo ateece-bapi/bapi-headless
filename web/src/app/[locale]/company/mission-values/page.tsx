@@ -2,12 +2,15 @@ import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wordpress';
 import Link from 'next/link';
 import { Target, Eye, Award, Users, Lightbulb, Shield, Heart, ArrowRight } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Mission & Values | BAPI',
-  description:
-    "Learn about BAPI's mission, vision, and core values that drive our commitment to precision sensor solutions.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('companyPages.missionValues.metadata');
+  return {
+    title: t('title'),
+    description: t('description'),
+  };
+}
 
 // Cache for 1 hour (3600 seconds)
 export const revalidate = 3600;
@@ -52,11 +55,12 @@ const coreValues = [
 
 export default async function MissionValuesPage() {
   const page = await getPageBySlug('mission-and-values');
+  const t = await getTranslations('companyPages.missionValues');
 
   if (!page) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="mb-4 text-4xl font-bold text-gray-900">Mission & Values</h1>
+        <h1 className="mb-4 text-4xl font-bold text-gray-900">{t('hero.title')}</h1>
         <p className="text-lg text-gray-600">Content not found.</p>
       </div>
     );
@@ -75,30 +79,29 @@ export default async function MissionValuesPage() {
           {/* Breadcrumb */}
           <nav className="mb-8 flex items-center gap-2 text-sm text-primary-100">
             <Link href="/" className="transition-colors hover:text-white">
-              Home
+              {t('breadcrumb.home')}
             </Link>
             <span>/</span>
             <Link href="/company" className="transition-colors hover:text-white">
-              Company
+              {t('breadcrumb.company')}
             </Link>
             <span>/</span>
-            <span className="font-medium text-white">Mission & Values</span>
+            <span className="font-medium text-white">{t('breadcrumb.missionValues')}</span>
           </nav>
 
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
               <Target className="h-4 w-4" />
-              Our Purpose
+              {t('hero.badge')}
             </div>
 
             <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-              Mission & Values
+              {t('hero.title')}
             </h1>
 
             <p className="text-xl leading-relaxed text-primary-50 md:text-2xl">
-              For over 30 years, our mission and values have guided every decision we make, every
-              product we design, and every customer relationship we build.
+              {t('hero.description')}
             </p>
           </div>
         </div>
@@ -116,12 +119,10 @@ export default async function MissionValuesPage() {
                 <Target className="h-8 w-8 text-white" />
               </div>
 
-              <h2 className="mb-4 text-3xl font-bold text-gray-900">Mission</h2>
+              <h2 className="mb-4 text-3xl font-bold text-gray-900">{t('mission.title')}</h2>
 
               <p className="text-lg leading-relaxed text-gray-700">
-                At BAPI, we design, manufacture and deliver high quality sensor solutions, as well
-                as provide high quality services for our business partners to effectively save their
-                customers money and energy, therefore reducing dependency on natural resources.
+                {t('mission.description')}
               </p>
             </div>
           </div>
@@ -135,12 +136,10 @@ export default async function MissionValuesPage() {
                 <Eye className="h-8 w-8 text-white" />
               </div>
 
-              <h2 className="mb-4 text-3xl font-bold text-gray-900">Vision</h2>
+              <h2 className="mb-4 text-3xl font-bold text-gray-900">{t('vision.title')}</h2>
 
               <p className="text-lg leading-relaxed text-gray-700">
-                To grow as a global, innovative leader by providing unique, customer driven
-                solutions while inspiring our employees to be their best, delivering quality
-                products and services that exceed our customers&apos; expectations.
+                {t('vision.description')}
               </p>
             </div>
           </div>
@@ -148,20 +147,25 @@ export default async function MissionValuesPage() {
 
         {/* Core Values Section */}
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 lg:text-5xl">Our Core Values</h2>
+          <h2 className="mb-4 text-4xl font-bold text-gray-900 lg:text-5xl">{t('coreValuesSection.title')}</h2>
           <p className="mx-auto max-w-3xl text-xl text-gray-600">
-            These principles guide everything we do and shape the way we serve our customers and
-            support our team.
+            {t('coreValuesSection.description')}
           </p>
         </div>
 
         {/* Values Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {coreValues.map((value, index) => {
+          {[
+            { key: 'quality', icon: Users, gradient: 'from-blue-500 to-cyan-500' },
+            { key: 'innovation', icon: Award, gradient: 'from-purple-500 to-pink-500' },
+            { key: 'partnership', icon: Lightbulb, gradient: 'from-amber-500 to-orange-500' },
+            { key: 'integrity', icon: Shield, gradient: 'from-emerald-500 to-teal-500' },
+            { key: 'employees', icon: Heart, gradient: 'from-red-500 to-rose-500' },
+          ].map((value, index) => {
             const Icon = value.icon;
             return (
               <div
-                key={value.title}
+                key={value.key}
                 className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all duration-500 hover:border-transparent hover:shadow-2xl"
                 style={{ animationDelay: `${index * 75}ms` }}
               >
@@ -181,9 +185,9 @@ export default async function MissionValuesPage() {
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="mb-3 text-2xl font-bold text-gray-900">{value.title}</h3>
+                  <h3 className="mb-3 text-2xl font-bold text-gray-900">{t(`coreValuesSection.${value.key}.title`)}</h3>
 
-                  <p className="leading-relaxed text-gray-600">{value.description}</p>
+                  <p className="leading-relaxed text-gray-600">{t(`coreValuesSection.${value.key}.description`)}</p>
                 </div>
 
                 {/* Decorative corner */}
@@ -199,10 +203,9 @@ export default async function MissionValuesPage() {
 
           <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">
             <div className="text-center lg:text-left">
-              <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">Join Our Mission</h2>
+              <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">{t('cta.title')}</h2>
               <p className="max-w-2xl text-lg text-primary-50">
-                We&apos;re always looking for talented individuals who share our values and passion for
-                innovation. Explore opportunities to join the BAPI team.
+                {t('cta.description')}
               </p>
             </div>
 
@@ -210,7 +213,7 @@ export default async function MissionValuesPage() {
               href="/company/careers"
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
-              View Careers
+              {t('cta.button')}
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

@@ -18,11 +18,15 @@ import {
   CheckCircle2,
   Sparkles,
 } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Careers | BAPI',
-  description: 'Join the BAPI team and help us shape the future of building automation technology.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('companyPages.careers.metadata');
+  return {
+    title: t('title'),
+    description: t('description'),
+  };
+}
 
 // Cache for 1 hour (3600 seconds)
 export const revalidate = 3600;
@@ -97,6 +101,7 @@ const cultureValues = [
 
 export default async function CareersPage() {
   const page = await getPageBySlug('careers');
+  const t = await getTranslations('companyPages.careers');
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50/30">
@@ -111,37 +116,34 @@ export default async function CareersPage() {
           {/* Breadcrumb */}
           <nav className="mb-8 flex items-center gap-2 text-sm text-primary-100">
             <Link href="/" className="transition-colors hover:text-white">
-              Home
+              {t('breadcrumb.home')}
             </Link>
             <span>/</span>
             <Link href="/company" className="transition-colors hover:text-white">
-              Company
+              {t('breadcrumb.company')}
             </Link>
             <span>/</span>
-            <span className="font-medium text-white">Careers</span>
+            <span className="font-medium text-white">{t('breadcrumb.careers')}</span>
           </nav>
 
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
               <Briefcase className="h-4 w-4" />
-              Join Our Team
+              {t('hero.badge')}
             </div>
 
             <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-              Build Your Career at BAPI
+              {t('hero.title')}
             </h1>
 
             <p className="mb-8 text-xl leading-relaxed text-primary-50 md:text-2xl">
-              BAPI supports a culture of work-life balance with family oriented employee benefits
-              such as company picnics & holiday parties, aesthetic wellness initiatives, exercise
-              programs and much more. We are an Equal Opportunity Employer (EOP) and we are
-              committed to creating an inclusive work environment for all employees.
+              {t('hero.description')}
             </p>
 
             <div className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 backdrop-blur-sm">
               <Sparkles className="h-5 w-5 text-yellow-300" />
-              <span className="font-medium text-white">We&apos;re excited to meet you!</span>
+              <span className="font-medium text-white">{t('hero.tagline')}</span>
             </div>
           </div>
         </div>
@@ -150,11 +152,18 @@ export default async function CareersPage() {
       {/* Benefits Grid */}
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((benefit, index) => {
+          {[
+            { key: 'healthInsurance', icon: Shield, gradient: 'from-blue-500 to-cyan-500' },
+            { key: 'compensation', icon: DollarSign, gradient: 'from-emerald-500 to-teal-500' },
+            { key: 'paidHolidays', icon: Plane, gradient: 'from-purple-500 to-pink-500' },
+            { key: 'retirement', icon: TrendingUp, gradient: 'from-amber-500 to-orange-500' },
+            { key: 'lifeInsurance', icon: Heart, gradient: 'from-red-500 to-rose-500' },
+            { key: 'development', icon: GraduationCap, gradient: 'from-indigo-500 to-violet-500' },
+          ].map((benefit, index) => {
             const Icon = benefit.icon;
             return (
               <div
-                key={benefit.title}
+                key={benefit.key}
                 className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-xl transition-all duration-500 hover:border-transparent hover:shadow-2xl"
                 style={{ animationDelay: `${index * 75}ms` }}
               >
@@ -174,9 +183,9 @@ export default async function CareersPage() {
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="mb-3 text-2xl font-bold text-gray-900">{benefit.title}</h3>
+                  <h3 className="mb-3 text-2xl font-bold text-gray-900">{t(`benefits.${benefit.key}.title`)}</h3>
 
-                  <p className="leading-relaxed text-gray-600">{benefit.description}</p>
+                  <p className="leading-relaxed text-gray-600">{t(`benefits.${benefit.key}.description`)}</p>
                 </div>
 
                 {/* Decorative corner */}
@@ -191,30 +200,36 @@ export default async function CareersPage() {
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
               <Gift className="h-4 w-4" />
-              What We Offer
+              {t('cultureSection.badge')}
             </div>
-            <h2 className="mb-4 text-4xl font-bold text-gray-900">More Than Just a Job</h2>
+            <h2 className="mb-4 text-4xl font-bold text-gray-900">{t('cultureSection.title')}</h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600">
-              BAPI supports a culture of work-life balance with family oriented employee benefits.
+              {t('cultureSection.description')}
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {cultureValues.map((category, categoryIndex) => (
+            {['bapiOffers', 'timeOff', 'environment'].map((categoryKey, categoryIndex) => (
               <div
-                key={category.title}
+                key={categoryKey}
                 className="rounded-xl bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
                 style={{ animationDelay: `${categoryIndex * 100}ms` }}
               >
                 <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-gray-900">
                   <div className="h-2 w-2 rounded-full bg-gradient-to-r from-primary-500 to-primary-600" />
-                  {category.title}
+                  {t(`cultureSection.${categoryKey}.title`)}
                 </h3>
                 <ul className="space-y-3">
-                  {category.items.map((item, itemIndex) => (
+                  {Object.keys(
+                    categoryKey === 'bapiOffers'
+                      ? { compensation: '', health: '', vision: '', hsa: '', retirement: '' }
+                      : categoryKey === 'timeOff'
+                        ? { holidays: '', shortTerm: '', life: '' }
+                        : { facility: '', culture: '', balance: '' }
+                  ).map((itemKey, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-3">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-500" />
-                      <span className="text-gray-700">{item}</span>
+                      <span className="text-gray-700">{t(`cultureSection.${categoryKey}.items.${itemKey}`)}</span>
                     </li>
                   ))}
                 </ul>
@@ -229,12 +244,11 @@ export default async function CareersPage() {
             <div className="mb-10 text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
                 <FileText className="h-4 w-4" />
-                Application Process
+                {t('applicationProcess.badge')}
               </div>
-              <h2 className="mb-4 text-4xl font-bold text-gray-900">How to Apply</h2>
+              <h2 className="mb-4 text-4xl font-bold text-gray-900">{t('applicationProcess.title')}</h2>
               <p className="text-lg text-gray-700">
-                We ONLY accept and consider complete electronic applications submitted directly
-                through the <strong>www.bapihvac.com/careers</strong> webpage.
+                {t('applicationProcess.description')}
               </p>
             </div>
 
@@ -245,11 +259,9 @@ export default async function CareersPage() {
                     1
                   </div>
                   <div>
-                    <h3 className="mb-2 font-bold text-gray-900">Complete Application</h3>
+                    <h3 className="mb-2 font-bold text-gray-900">{t('applicationProcess.step1.title')}</h3>
                     <p className="text-gray-600">
-                      Most positions will require a <strong>Resume</strong> and a separate{' '}
-                      <strong>Cover Letter</strong>
-                      to be considered a &quot;complete&quot; electronic application.
+                      {t('applicationProcess.step1.description')}
                     </p>
                   </div>
                 </div>
@@ -259,10 +271,9 @@ export default async function CareersPage() {
                     2
                   </div>
                   <div>
-                    <h3 className="mb-2 font-bold text-gray-900">Direct Submission</h3>
+                    <h3 className="mb-2 font-bold text-gray-900">{t('applicationProcess.step2.title')}</h3>
                     <p className="text-gray-600">
-                      Cover Letters must be uploaded directly as attachments via online application
-                      system.
+                      {t('applicationProcess.step2.description')}
                     </p>
                   </div>
                 </div>
@@ -272,11 +283,9 @@ export default async function CareersPage() {
                     3
                   </div>
                   <div>
-                    <h3 className="mb-2 font-bold text-gray-900">Equal Opportunity</h3>
+                    <h3 className="mb-2 font-bold text-gray-900">{t('applicationProcess.step3.title')}</h3>
                     <p className="text-gray-600">
-                      BAPI is an Equal Opportunity Employer (EOP). If you are unable to apply online
-                      or require alternative methods of application or screening, please identify
-                      cultural origin, disability or veteran status.
+                      {t('applicationProcess.step3.description')}
                     </p>
                   </div>
                 </div>
@@ -285,7 +294,7 @@ export default async function CareersPage() {
 
             <div className="rounded-xl bg-blue-600 p-6 text-center text-white">
               <p className="mb-4">
-                <strong>For questions or help with online applications:</strong>
+                <strong>{t('applicationProcess.contactTitle')}</strong>
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <a
@@ -293,14 +302,14 @@ export default async function CareersPage() {
                   className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition-all duration-300 hover:shadow-lg"
                 >
                   <Mail className="h-5 w-5" />
-                  careers@bapihvac.com
+                  {t('applicationProcess.email')}
                 </a>
-                <span className="text-blue-100">or call</span>
+                <span className="text-blue-100">{t('applicationProcess.or')}</span>
                 <a
                   href="tel:+16087534400"
                   className="font-bold transition-colors hover:text-blue-100"
                 >
-                  (800) 753-4400
+                  {t('applicationProcess.phone')}
                 </a>
               </div>
             </div>
@@ -315,11 +324,10 @@ export default async function CareersPage() {
           <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">
             <div className="text-center lg:text-left">
               <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">
-                Ready to Join Our Mission?
+                {t('cta.title')}
               </h2>
               <p className="max-w-2xl text-lg text-primary-50">
-                Explore current openings and take the first step toward an exciting career at BAPI.
-                We can&apos;t wait to hear from you!
+                {t('cta.description')}
               </p>
             </div>
 
@@ -327,7 +335,7 @@ export default async function CareersPage() {
               href="/company/contact-us"
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
-              Get in Touch
+              {t('cta.button')}
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

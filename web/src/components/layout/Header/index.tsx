@@ -11,7 +11,6 @@ import { useCartStore } from '@/store/cart';
 import {
   RegionSelector,
   LanguageSelector,
-  MobileRegionLanguageSelector,
   SignInButton,
   CartButton,
   Logo,
@@ -57,9 +56,8 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           </div>
 
           <div className="flex items-center gap-2 lg:gap-2">
-            {/* Mobile-only Region/Language, Sign In and Cart */}
+            {/* Mobile-only Sign In and Cart (Region/Language in hamburger menu) */}
             <div className="flex items-center gap-2 lg:hidden">
-              <MobileRegionLanguageSelector />
               <SignInButton />
               <CartButton itemCount={totalItems} />
             </div>

@@ -6,6 +6,5 @@ export { default as CartButton } from './CartButton';
 export { default as SignInButton } from './SignInButton';
 export { default as RegionSelector } from './RegionSelectorV2';
 export { LanguageSelector } from './LanguageSelectorV2';
-export { default as MobileRegionLanguageSelector } from './MobileRegionLanguageSelector';
 export { default as SearchButton } from './SearchButton';
 export { default as Logo } from './Logo';

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { getPageBySlug } from '@/lib/wordpress';
 import { GlobalPresence } from '@/components/company/GlobalPresence';
 import Link from 'next/link';
@@ -15,77 +16,20 @@ import {
   Send,
 } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Contact Us | BAPI',
-  description: 'Get in touch with BAPI for support, sales inquiries, or technical assistance.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('companyPages.contact.metadata');
+
+  return {
+    title: t('title'),
+    description: t('description'),
+  };
+}
 
 // Cache for 1 hour (3600 seconds)
 export const revalidate = 3600;
 
-const contactMethods = [
-  {
-    icon: Phone,
-    title: 'Phone',
-    details: '+1 (800) 735-4800',
-    href: 'tel:+18007354800',
-    description: 'Monday - Friday, 8:00 AM - 5:00 PM CST',
-    gradient: 'from-blue-500 to-cyan-500',
-  },
-  {
-    icon: Mail,
-    title: 'Email',
-    details: 'sales@bapihvac.com',
-    href: 'mailto:sales@bapihvac.com',
-    description: 'We typically respond within 24 hours',
-    gradient: 'from-purple-500 to-pink-500',
-  },
-  {
-    icon: MapPin,
-    title: 'Visit Us',
-    details: '750 N Royal Ave, Gays Mills, WI 54631',
-    href: 'https://maps.google.com/?q=750+N+Royal+Ave+Gays+Mills+WI+54631',
-    description: 'USA',
-    gradient: 'from-emerald-500 to-teal-500',
-  },
-];
-
-const departments = [
-  {
-    icon: Users,
-    title: 'Sales',
-    email: 'sales@bapihvac.com',
-    description: 'Product inquiries, quotes, and general sales questions',
-  },
-  {
-    icon: Globe,
-    title: 'International Sales',
-    email: 'sales@bapihvac.com',
-    description: 'Global distribution and international partnerships',
-  },
-  {
-    icon: Package,
-    title: 'Distribution',
-    email: 'sales@bapihvac.com',
-    description: 'Distributor inquiries and partnership opportunities',
-  },
-  {
-    icon: Headphones,
-    title: 'Technical Support',
-    email: 'bapitechsupport@bapisensors.com',
-    description: 'Product support, troubleshooting, and technical assistance',
-  },
-];
-
-const internationalOffice = {
-  title: 'RETURN MERCHANDISE (RMA)',
-  subtitle: 'United Kingdom/Column Area/Europe',
-  phone: '+44 (0) 1252 548410',
-  address:
-    'BAPI Distribution Centre, North 1c\nAldershot GU12 4RG\nUnited Kingdom/Column_area/europe_rma',
-};
-
 export default async function ContactUsPage() {
+  const t = await getTranslations('companyPages.contact');
   const page = await getPageBySlug('contact');
 
   return (
@@ -101,30 +45,29 @@ export default async function ContactUsPage() {
           {/* Breadcrumb */}
           <nav className="mb-8 flex items-center gap-2 text-sm text-primary-100">
             <Link href="/" className="transition-colors hover:text-white">
-              Home
+              {t('breadcrumb.home')}
             </Link>
             <span>/</span>
             <Link href="/company" className="transition-colors hover:text-white">
-              Company
+              {t('breadcrumb.company')}
             </Link>
             <span>/</span>
-            <span className="font-medium text-white">Contact Us</span>
+            <span className="font-medium text-white">{t('breadcrumb.contact')}</span>
           </nav>
 
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
               <Mail className="h-4 w-4" />
-              Get in Touch
+              {t('hero.badge')}
             </div>
 
             <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-              Contact BAPI
+              {t('hero.title')}
             </h1>
 
             <p className="text-xl leading-relaxed text-primary-50 md:text-2xl">
-              Whether you need technical support, have sales inquiries, or want to learn more about
-              our products, we&apos;re here to help. Reach out to us today!
+              {t('hero.description')}
             </p>
           </div>
         </div>
@@ -133,14 +76,24 @@ export default async function ContactUsPage() {
       {/* Contact Methods */}
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <div className="mb-20 grid gap-8 md:grid-cols-3">
-          {contactMethods.map((method, index) => {
+          {[
+            { key: 'phone', icon: Phone, gradient: 'from-blue-500 to-cyan-500' },
+            { key: 'email', icon: Mail, gradient: 'from-purple-500 to-pink-500' },
+            { key: 'visit', icon: MapPin, gradient: 'from-emerald-500 to-teal-500' },
+          ].map((method, index) => {
             const Icon = method.icon;
+            const href =
+              method.key === 'phone'
+                ? 'tel:+18007354800'
+                : method.key === 'email'
+                  ? 'mailto:sales@bapihvac.com'
+                  : 'https://maps.google.com/?q=750+N+Royal+Ave+Gays+Mills+WI+54631';
             return (
               <a
-                key={method.title}
-                href={method.href}
-                target={method.href.startsWith('http') ? '_blank' : undefined}
-                rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                key={method.key}
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-xl transition-all duration-500 hover:border-transparent hover:shadow-2xl"
                 style={{ animationDelay: `${index * 75}ms` }}
               >
@@ -161,12 +114,12 @@ export default async function ContactUsPage() {
                 {/* Content */}
                 <div className="relative">
                   <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">
-                    {method.title}
+                    {t(`contactMethods.${method.key}.title`)}
                   </h3>
                   <p className="mb-2 text-xl font-bold text-gray-900 transition-colors group-hover:text-primary-600">
-                    {method.details}
+                    {t(`contactMethods.${method.key}.details`)}
                   </p>
-                  <p className="text-sm text-gray-600">{method.description}</p>
+                  <p className="text-sm text-gray-600">{t(`contactMethods.${method.key}.description`)}</p>
                 </div>
 
                 {/* Arrow */}
@@ -181,21 +134,25 @@ export default async function ContactUsPage() {
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
               <Users className="h-4 w-4" />
-              Departments
+              {t('departmentsSection.badge')}
             </div>
-            <h2 className="mb-4 text-4xl font-bold text-gray-900">How Can We Help?</h2>
+            <h2 className="mb-4 text-4xl font-bold text-gray-900">{t('departmentsSection.title')}</h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600">
-              Choose the department that best fits your needs and we&apos;ll connect you with the right
-              team.
+              {t('departmentsSection.description')}
             </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {departments.map((dept, index) => {
+            {[
+              { key: 'sales', icon: Users },
+              { key: 'international', icon: Globe },
+              { key: 'distribution', icon: Package },
+              { key: 'technical', icon: Headphones },
+            ].map((dept, index) => {
               const Icon = dept.icon;
               return (
                 <div
-                  key={dept.title}
+                  key={dept.key}
                   className="group rounded-xl border border-gray-100 bg-white p-6 shadow-md transition-all duration-300 hover:shadow-xl"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
@@ -206,14 +163,18 @@ export default async function ContactUsPage() {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="mb-2 text-xl font-bold text-gray-900">{dept.title}</h3>
-                      <p className="mb-3 text-sm text-gray-600">{dept.description}</p>
+                      <h3 className="mb-2 text-xl font-bold text-gray-900">
+                        {t(`departmentsSection.departments.${dept.key}.title`)}
+                      </h3>
+                      <p className="mb-3 text-sm text-gray-600">
+                        {t(`departmentsSection.departments.${dept.key}.description`)}
+                      </p>
                       <a
-                        href={`mailto:${dept.email}`}
+                        href={`mailto:${t(`departmentsSection.departments.${dept.key}.email`)}`}
                         className="inline-flex items-center gap-2 font-medium text-primary-600 transition-all duration-300 hover:gap-3"
                       >
                         <Mail className="h-4 w-4" />
-                        {dept.email}
+                        {t(`departmentsSection.departments.${dept.key}.email`)}
                       </a>
                     </div>
                   </div>
@@ -234,10 +195,10 @@ export default async function ContactUsPage() {
             <div className="mb-8 text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
                 <Globe className="h-4 w-4" />
-                International
+                {t('internationalOffice.badge')}
               </div>
-              <h2 className="mb-2 text-3xl font-bold text-gray-900">{internationalOffice.title}</h2>
-              <p className="text-lg text-gray-600">{internationalOffice.subtitle}</p>
+              <h2 className="mb-2 text-3xl font-bold text-gray-900">{t('internationalOffice.title')}</h2>
+              <p className="text-lg text-gray-600">{t('internationalOffice.subtitle')}</p>
             </div>
 
             <div className="rounded-xl bg-white p-8 shadow-md">
@@ -248,13 +209,13 @@ export default async function ContactUsPage() {
                   </div>
                   <div>
                     <div className="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-500">
-                      Phone
+                      {t('internationalOffice.phoneLabel')}
                     </div>
                     <a
-                      href={`tel:${internationalOffice.phone.replace(/[^+0-9]/g, '')}`}
+                      href={`tel:${t('internationalOffice.phone').replace(/[^+0-9]/g, '')}`}
                       className="text-lg font-bold text-gray-900 transition-colors hover:text-primary-600"
                     >
-                      {internationalOffice.phone}
+                      {t('internationalOffice.phone')}
                     </a>
                   </div>
                 </div>
@@ -265,10 +226,14 @@ export default async function ContactUsPage() {
                   </div>
                   <div>
                     <div className="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-500">
-                      Address
+                      {t('internationalOffice.addressLabel')}
                     </div>
                     <p className="whitespace-pre-line text-gray-900">
-                      {internationalOffice.address}
+                      {t('internationalOffice.addressLine1')}
+                      {'\n'}
+                      {t('internationalOffice.addressLine2')}
+                      {'\n'}
+                      {t('internationalOffice.addressLine3')}
                     </p>
                   </div>
                 </div>
@@ -277,8 +242,8 @@ export default async function ContactUsPage() {
 
             <div className="mt-8 rounded-lg border border-blue-100 bg-blue-50 p-6">
               <p className="text-center text-gray-700">
-                <strong>To submit a request:</strong> Click HERE or go to Contact Information
-                online, click RMA
+                <strong>{t('internationalOffice.rmaInstructions.strong')}</strong>{' '}
+                {t('internationalOffice.rmaInstructions.text')}
               </p>
             </div>
           </div>
@@ -294,31 +259,28 @@ export default async function ContactUsPage() {
               <Clock className="h-8 w-8 text-white" />
             </div>
 
-            <h2 className="mb-4 text-3xl font-bold text-white lg:text-4xl">Business Hours</h2>
+            <h2 className="mb-4 text-3xl font-bold text-white lg:text-4xl">{t('cta.title')}</h2>
 
             <div className="mb-6 rounded-xl bg-white/10 p-8 backdrop-blur-sm">
               <div className="grid gap-6 text-white md:grid-cols-2">
                 <div>
                   <div className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary-100">
-                    Monday - Friday
+                    {t('cta.weekday.label')}
                   </div>
-                  <div className="text-2xl font-bold">8:00 AM - 5:00 PM</div>
-                  <div className="mt-1 text-sm text-primary-100">Central Standard Time</div>
+                  <div className="text-2xl font-bold">{t('cta.weekday.hours')}</div>
+                  <div className="mt-1 text-sm text-primary-100">{t('cta.weekday.timezone')}</div>
                 </div>
                 <div>
                   <div className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary-100">
-                    Weekend
+                    {t('cta.weekend.label')}
                   </div>
-                  <div className="text-2xl font-bold">Closed</div>
-                  <div className="mt-1 text-sm text-primary-100">Saturday & Sunday</div>
+                  <div className="text-2xl font-bold">{t('cta.weekend.status')}</div>
+                  <div className="mt-1 text-sm text-primary-100">{t('cta.weekend.days')}</div>
                 </div>
               </div>
             </div>
 
-            <p className="text-lg text-primary-50">
-              Have a question outside of business hours? Send us an email and we&apos;ll get back to you
-              as soon as possible.
-            </p>
+            <p className="text-lg text-primary-50">{t('cta.description')}</p>
           </div>
         </div>
       </section>

@@ -6,6 +6,8 @@ import type { RegionCode, LanguageCode } from '@/types/region';
  */
 export const REGION_LANGUAGE_MAP: Record<RegionCode, LanguageCode> = {
   us: 'en',
+  ca: 'en',  // Canada
+  mx: 'es',  // Mexico
   uk: 'en',
   eu: 'en', // English is most universal for multi-country EU
   jp: 'ja',
@@ -30,6 +32,8 @@ export function getSuggestedLanguage(regionCode: RegionCode): LanguageCode {
 export function getLanguageSuggestionMessage(regionCode: RegionCode, languageName: string): string {
   const suggestions: Record<RegionCode, string> = {
     us: `Switch to ${languageName}?`,
+    ca: `Switch to ${languageName}?`,
+    mx: `Switch to ${languageName}?`,
     uk: `Switch to ${languageName}?`,
     eu: `Switch to ${languageName}?`,
     jp: `Switch to ${languageName}?`,

@@ -7,6 +7,8 @@ import { CURRENCIES } from '@/types/region';
  */
 const EXCHANGE_RATES: Record<CurrencyCode, number> = {
   USD: 1.0,
+  CAD: 1.36, // Canadian Dollar (1 USD ≈ 1.36 CAD)
+  MXN: 17.5, // Mexican Peso (1 USD ≈ 17.5 MXN)
   EUR: 0.92,
   GBP: 0.79,
   JPY: 149.5,

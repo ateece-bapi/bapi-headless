@@ -12,8 +12,8 @@ export const runtime = 'edge';
 const COUNTRY_TO_REGION: Record<string, RegionCode> = {
   // North America
   US: 'us',
-  CA: 'us',
-  MX: 'us',
+  CA: 'ca',  // Canada
+  MX: 'mx',  // Mexico
 
   // Europe
   DE: 'eu',

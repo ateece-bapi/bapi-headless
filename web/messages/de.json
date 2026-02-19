@@ -1324,6 +1324,10 @@
     }
   },
   "supportPage": {
+    "metadata": {
+      "description": "Fachkundiger technischer Support für BAPI-Gebäudeautomationsprodukte. Zugriff auf Installationsdokumente, Fehlerbehebungsanleitungen, RMA-Anfragen und Live-Chat mit Ingenieuren. Kostenlose technische Unterstützung für alle BAPI-Sensoren, -Steuerungen und -Funksysteme.",
+      "keywords": "Gebäudeautomatisierungssupport, HVAC-Sensor technischer Support, BACnet-Controller-Hilfe, Sensor-Installationsanleitung, technische Dokumentation, Fehlerbehebungsanleitung, RMA-Anfrage, Garantie-Support, Sensorkalibrierung, Installationshilfe"
+    },
     "hero": {
       "title": "BAPI Support-Center",
       "subtitle": "Fachkundiger technischer Support für Gebäudeautomationsspezialisten"

@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import {
   LifeBuoy,
@@ -26,27 +25,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return generatePageMetadata({
     title: t('hero.title'),
-    description:
-      'Expert technical support for BAPI building automation products. Access installation docs, troubleshooting guides, RMA requests, and live chat with engineers. Free technical assistance for all BAPI sensors, controllers, and wireless systems.',
+    description: t('metadata.description'),
     path: 'support',
-    keywords: [
-      'building automation support',
-      'HVAC sensor technical support',
-      'BACnet controller help',
-      'sensor installation guide',
-      'technical documentation',
-      'troubleshooting guide',
-      'RMA request',
-      'warranty support',
-      'sensor calibration',
-      'installation assistance',
-    ],
+    keywords: t('metadata.keywords').split(',').map((k: string) => k.trim()),
     type: 'website',
   });
 }
 
-export default function SupportPage() {
-  const t = useTranslations('supportPage');
+export default async function SupportPage() {
+  const t = await getTranslations('supportPage');
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}

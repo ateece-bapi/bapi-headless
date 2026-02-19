@@ -1315,6 +1315,10 @@
     }
   },
   "supportPage": {
+    "metadata": {
+      "description": "Soporte técnico experto para productos de automatización de edificios BAPI. Acceda a documentos de instalación, guías de solución de problemas, solicitudes RMA y chat en vivo con ingenieros. Asistencia técnica gratuita para todos los sensores, controladores y sistemas inalámbricos BAPI.",
+      "keywords": "soporte automatización edificios, soporte técnico sensor HVAC, ayuda controlador BACnet, guía instalación sensor, documentación técnica, guía solución problemas, solicitud RMA, soporte garantía, calibración sensor, asistencia instalación"
+    },
     "hero": {
       "title": "Centro de Soporte BAPI",
       "subtitle": "Soporte técnico experto para profesionales de automatización de edificios"

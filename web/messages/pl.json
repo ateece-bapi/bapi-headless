@@ -1529,6 +1529,10 @@
     }
   },
   "supportPage": {
+    "metadata": {
+      "description": "Eksperckie wsparcie techniczne dla produktów automatyki budynkowej BAPI. Dostęp do dokumentacji instalacyjnej, przewodników rozwiązywania problemów, wniosków RMA i czatu na żywo z inżynierami. Bezpłatna pomoc techniczna dla wszystkich czujników, sterowników i systemów bezprzewodowych BAPI.",
+      "keywords": "wsparcie automatyki budynkowej, wsparcie techniczne czujnika HVAC, pomoc sterownika BACnet, przewodnik instalacji czujnika, dokumentacja techniczna, przewodnik rozwiązywania problemów, wniosek RMA, wsparcie gwarancyjne, kalibracja czujnika, pomoc w instalacji"
+    },
     "hero": {
       "title": "Centrum Wsparcia BAPI",
       "subtitle": "Eksperckie wsparcie techniczne dla specjalistów automatyki budynkowej"

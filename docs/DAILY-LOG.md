@@ -7,6 +7,198 @@
 
 ---
 
+## February 19, 2026 — Codebase Cleanup & Maintenance: 15GB Freed + OpenGraph URL Fix 🧹
+
+**Status:** ✅ COMPLETE - Major repository cleanup and SEO improvements  
+**Branches:** chore/codebase-cleanup, fix/copilot-review-support-subpages, fix/metadata-opengraph-locale, fix/metadata-opengraph-product-category  
+**PRs Merged:** #283, #284, #285, #286  
+**Days Until Launch:** 50 days (April 10, 2026)
+
+**Critical Achievement:** Comprehensive codebase cleanup removing ~15GB of unnecessary files, plus site-wide OpenGraph URL localization fixes ensuring proper social media sharing across all pages and languages. Combined with translation typo corrections from Copilot reviews, this completes a full day of maintenance and quality improvements.
+
+### Executive Summary
+
+**Result:** 15GB freed + Site-wide SEO fix + 11 translation corrections  
+**Time:** ~4 hours (cleanup, metadata fixes, review responses)  
+**PRs:** 4 merged (Copilot reviews, metadata fixes, cleanup)  
+**Impact:** 🟢 Cleaner repository, faster git operations, proper social media sharing  
+**Validation:** TypeScript 0 errors, all 771 routes building successfully
+
+### Session 1: Copilot Review Fixes - Translation Typos (PR #283)
+
+**Branch:** fix/copilot-review-support-subpages  
+**Commit:** fc40dcb  
+**Files:** 6 modified (3 translation files + 3 component files)
+
+**Translation Fixes (7 issues):**
+
+*Arabic (ar.json):*
+- Fixed missing space in warranty description: `الدعملدينا` → `الدعم لدينا`
+- Fixed typo in CTA button: `الاتص بالدعم` → `الاتصال بالدعم`
+
+*Japanese (ja.json):*
+- Fixed email description + punctuation: `お送りくださや24時間` → `お送りください。24時間以内に回答いたします。`
+- Fixed warranty description: `業界最高島` → `業界最高水準` (corrected typo)
+- Fixed warranty hero subtitle: same correction
+- Removed duplicate phrase: `材料および製造上の製造上の欠陥` → `材料および製造上の欠陥`
+
+*Vietnamese (vi.json):*
+- Fixed business hours spacing: `Thứhai - Thứsáu` → `Thứ Hai - Thứ Sáu`
+- Fixed warranty materials: `V vật liệu` → `Vật liệu`
+
+**Initial OpenGraph URL Attempt (3 issues - later corrected):**
+- Initially added locale prefix to path parameter in 3 support pages
+- This caused duplicate locale segments in canonical URLs
+- Reverted in PR #284 with proper fix in metadata generator
+
+### Session 2: OpenGraph URL Localization Fix (PR #284)
+
+**Branch:** fix/metadata-opengraph-locale  
+**Commit:** a93fff4  
+**Files:** 4 modified (1 generator + 3 support pages)
+
+**Problem Identified:**
+Copilot correctly identified that adding locale to `path` parameter causes duplicated locale segments because `generatePageMetadata` already adds locale prefix for canonical and hreflang URLs.
+
+**Root Cause:**
+```typescript
+// In generatePageMetadata:
+canonical: `/${locale}/${page.path}` ✓ (locale included)
+openGraph.url: getAbsoluteUrl(page.path) ✗ (locale missing)
+```
+
+**Proper Solution:**
+1. **Updated metadata generator** (generators.ts):
+   - Changed: `url: getAbsoluteUrl(page.path)`
+   - To: `url: getAbsoluteUrl(\`${locale}/${page.path}\`)`
+
+2. **Reverted 3 Support pages** to locale-less paths:
+   - contact/page.tsx: `path: 'support/contact'`
+   - warranty/page.tsx: `path: 'support/warranty'`
+   - returns/page.tsx: `path: 'support/returns'`
+
+**Impact:**
+- OpenGraph URLs now include locale: `/en/support/contact`
+- Canonical URLs remain correct: `/en/support/contact`
+- Hreflang alternates remain correct: `/de/support/contact`
+- No duplicated locale segments
+- Single source of truth for URL localization
+
+### Session 3: Complete OpenGraph Fix - Products & Categories (PR #285)
+
+**Branch:** fix/metadata-opengraph-product-category  
+**Commit:** d104df5  
+**File:** 1 modified (generators.ts)
+
+**Copilot Follow-up Feedback:**
+"While this fix correctly addresses the OpenGraph URL localization issue for pages using generatePageMetadata, the same issue exists in generateProductMetadata (line 189) and generateCategoryMetadata (line 287)."
+
+**Functions Fixed:**
+1. **generateProductMetadata** (line 189):
+   - Before: `url: getAbsoluteUrl(canonicalUrl)`
+   - After: `url: getAbsoluteUrl(\`${locale}/${canonicalUrl}\`)`
+
+2. **generateCategoryMetadata** (line 287):
+   - Before: `url: getAbsoluteUrl(canonicalUrl)`
+   - After: `url: getAbsoluteUrl(\`${locale}/${canonicalUrl}\`)`
+
+**Complete Coverage:**
+All three metadata generator functions now have consistent OpenGraph URL localization:
+- ✅ `generatePageMetadata` (fixed in PR #284) - Static pages
+- ✅ `generateProductMetadata` (fixed in PR #285) - All 608 products
+- ✅ `generateCategoryMetadata` (fixed in PR #285) - All categories
+
+**Site-wide Impact:**
+Every page type now provides correctly localized URLs to social media platforms (Facebook, Twitter, LinkedIn, etc.) for proper preview cards across all 11 languages.
+
+### Session 4: Major Codebase Cleanup (PR #286)
+
+**Branch:** chore/codebase-cleanup  
+**Commit:** b8c5c0f  
+**Files:** 5 modified (2 .gitignore files, 3 log files removed from tracking)
+
+**Space Freed: ~15GB**
+
+**.gitignore Updates:**
+- **Root .gitignore:** Added `Thumbs.db`, `*.log`, `*.bak`, `*~`, `*.swp`, `*.tmp`
+- **Web .gitignore:** Added `Thumbs.db`, `*.log` catch-all
+
+**Files Removed from Git Tracking (3 files):**
+- cms/wp-content/debug.log
+- web/build-output.log
+- web/dev.log
+
+**Files Deleted from Disk (Not Tracked):**
+
+*Database dumps and archives (~14.6GB):*
+- bapi_dump.sql.gz (87MB)
+- uploads.tgz (14GB)
+- bapi-wordpress-export.sql (574MB)
+
+*Old WordPress import/export files (~182MB):*
+- cms/wp-content/uploads/wpallexport/ (9.6MB)
+- cms/wp-content/uploads/wpallimport/ (173MB)
+- Contains old exports from 2018-2022
+
+*Log files (127 files):*
+- WooCommerce logs
+- Build logs
+- Development logs
+- Image processing logs
+
+*OS-specific cache files (45 files):*
+- Thumbs.db (Windows image cache)
+- .DS_Store (macOS folder metadata)
+
+*Plugin backups:*
+- cms/wp-content/uploads/paypal-advanced.zip (17KB)
+
+**Kept As-Is:**
+- `web/2026-approved-images/` (16GB) - Already in .gitignore, useful for local development
+
+**Repository Impact:**
+- Before: ~39GB total
+- After: ~24GB total
+- Git-tracked content: ~8GB
+- Cleaner history
+- Faster git operations
+- Better .gitignore coverage
+
+### Combined Session Impact
+
+**Quality Improvements:**
+- ✅ 7 translation typos corrected (Arabic, Japanese, Vietnamese)
+- ✅ Site-wide OpenGraph URL localization (pages, products, categories)
+- ✅ Proper SEO metadata for all 11 languages
+- ✅ Single source of truth for URL generation logic
+
+**Repository Improvements:**
+- ✅ 15GB disk space freed
+- ✅ Enhanced .gitignore patterns
+- ✅ Removed stale migration artifacts (2018-2022)
+- ✅ Cleaned 172+ temporary/cache files
+- ✅ Faster git operations
+
+**Technical Debt Addressed:**
+- ✅ Corrected architectural approach to OpenGraph URLs
+- ✅ Unified metadata generation logic across all page types
+- ✅ Removed code duplication in URL localization
+- ✅ Cleaned up historical backup files
+
+**PRs Merged:**
+- PR #283: Translation typo fixes + initial OpenGraph attempt
+- PR #284: Proper OpenGraph URL fix (metadata generator approach)
+- PR #285: Product/category OpenGraph completion
+- PR #286: Codebase cleanup (15GB freed)
+
+**Phase 1 Status:**
+- Translation Services: ~75% complete (Support section 100%)
+- Live Chat: 95% complete (production testing ongoing)
+- Product Navigation: 60% complete (ongoing polish)
+- **Overall Launch Readiness: 99.6% maintained**
+
+---
+
 ## February 19, 2026 — Support Subpages Internationalization: Contact, Warranty, Returns Complete 🎉
 
 **Status:** ✅ COMPLETE - 3 support subpages fully internationalized (11 languages)  

@@ -516,21 +516,6 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
   },
 ];
 
-export const REGIONS = [
-  { value: 'us', label: 'United States' },
-  { value: 'ca', label: 'Canada' },
-  { value: 'mx', label: 'Mexico' },
-  { value: 'uk', label: 'United Kingdom' },
-  { value: 'eu', label: 'Europe' },
-  { value: 'jp', label: 'Japan' },
-  { value: 'cn', label: 'China' },
-  { value: 'sg', label: 'Singapore' },
-  { value: 'vn', label: 'Vietnam' },
-  { value: 'th', label: 'Thailand' },
-  { value: 'in', label: 'India' },
-  { value: 'mena', label: 'Middle East' },
-] as const;
-
 export const HEADER_CONFIG = {
   logo: {
     src: '/BAPI_Logo_with_white_border.jpg',

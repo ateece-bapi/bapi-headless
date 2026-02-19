@@ -4,7 +4,7 @@ import React from 'react';
 import { Briefcase, Heart } from 'lucide-react';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
-import { convertWooCommercePrice } from '@/lib/utils/currency';
+import { convertWooCommercePrice, formatPrice } from '@/lib/utils/currency';
 
 interface ProductSummaryCardProps {
   product: any;
@@ -205,7 +205,7 @@ export default function ProductSummaryCard({
                   Your Price
                 </div>
                 <div className="text-4xl font-bold text-primary-600">
-                  {convertWooCommercePrice(calculated, region.currency)}
+                  {formatPrice(parseFloat(calculated), region.currency)}
                 </div>
               </div>
               <div className="text-right">

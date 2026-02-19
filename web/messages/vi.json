@@ -1450,5 +1450,43 @@
       "title": "Tìm kiếm hướng dẫn kỹ thuật?",
       "description": "Duyệt qua bộ sưu tập Ghi chú Ứng dụng của chúng tôi để biết hướng dẫn kỹ thuật chi tiết, thực tiễn tốt nhất và ví dụ triển khai →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "Công Cụ Tham Chiếu Chéo | BAPI",
+      "description": "Tìm sản phẩm tương đương BAPI cho các sản phẩm cạnh tranh. Công cụ tham chiếu chéo cho cảm biến tự động hóa tòa nhà.",
+      "keywords": "tham chiếu chéo, so sánh đối thủ, sản phẩm tương đương BAPI, thay thế Honeywell, thay thế Johnson Controls, thay thế Siemens, tham chiếu chéo cảm biến, khả năng tương thích tự động hóa tòa nhà, thay thế sản phẩm",
+      "keywords": "tham chiếu chéo, so sánh đối thủ, sản phẩm tương đương BAPI"
+    },
+    "hero": {
+      "title": "Công Cụ Tham Chiếu Chéo",
+      "subtitle": "Tìm sản phẩm tương đương BAPI cho các sản phẩm cạnh tranh"
+    },
+    "searchTool": {
+      "heading": "Tìm Sản Phẩm Tương Đương BAPI",
+      "manufacturerLabel": "Chọn Nhà Sản Xuất",
+      "manufacturerPlaceholder": "Chọn nhà sản xuất...",
+      "modelLabel": "Nhập Số Model Đối Thủ",
+      "modelPlaceholder": "ví dụ: C7400A2100",
+      "searchButton": "Tìm Sản Phẩm Tương Đương BAPI",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "Khác"
+      }
+    },
+    "popularSection": {
+      "heading": "Tham Chiếu Chéo Phổ Biến",
+      "competitorLabel": "Đối Thủ",
+      "bapiLabel": "Tương Đương BAPI"
+    },
+    "helpSection": {
+      "heading": "Không Tìm Thấy Thông Tin Bạn Cần?",
+      "description": "Liên hệ đội bán hàng kỹ thuật của chúng tôi để được hỗ trợ về tham chiếu chéo",
+      "ctaButton": "Liên Hệ Đội Bán Hàng"
+    }
   }
 }

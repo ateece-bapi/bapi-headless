@@ -1615,5 +1615,42 @@
       "title": "Szukasz przewodników technicznych?",
       "description": "Przeglądaj naszą kolekcję Notatek Aplikacyjnych, aby uzyskać szczegółowe wskazówki techniczne, najlepsze praktyki i przykłady wdrożeń →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "Narzędzie Odniesieniowe | BAPI",
+      "description": "Znajdź odpowiedniki BAPI dla produktów konkurencji. Narzędzie odniesieniowe dla czujników automatyki budynkowej.",
+      "keywords": "odniesienia krzyżowe, porównanie konkurencji, odpowiedniki BAPI, alternatywa Honeywell, alternatywa Johnson Controls, alternatywa Siemens, odniesienia krzyżowe czujników, kompatybilność automatyki budynkowej, zastępowanie produktów"
+    },
+    "hero": {
+      "title": "Narzędzie Odniesieniowe",
+      "subtitle": "Znajdź odpowiedniki BAPI dla produktów konkurencji"
+    },
+    "searchTool": {
+      "heading": "Znajdź Odpowiednik BAPI",
+      "manufacturerLabel": "Wybierz Producenta",
+      "manufacturerPlaceholder": "Wybierz producenta...",
+      "modelLabel": "Wprowadź Numer Modelu Konkurencji",
+      "modelPlaceholder": "np. C7400A2100",
+      "searchButton": "Znajdź Odpowiednik BAPI",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "Inny"
+      }
+    },
+    "popularSection": {
+      "heading": "Popularne Odniesienia Krzyżowe",
+      "competitorLabel": "Konkurencja",
+      "bapiLabel": "Odpowiednik BAPI"
+    },
+    "helpSection": {
+      "heading": "Nie możesz znaleźć tego, czego szukasz?",
+      "description": "Skontaktuj się z naszym technicznym zespołem sprzedaży, aby uzyskać pomoc w odniesieniach krzyżowych",
+      "ctaButton": "Skontaktuj się z Zespołem Sprzedaży"
+    }
   }
 }

@@ -1430,5 +1430,42 @@
       "title": "تبحث عن أدلة تقنية؟",
       "description": "استكشف مجموعة ملاحظات التطبيق الخاصة بنا للحصول على إرشادات تقنية مفصلة وأفضل الممارسات وأمثلة التنفيذ ←"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "أداة الإشارات المتقاطعة | BAPI",
+      "description": "ابحث عن بدائل BAPI للمنتجات المنافسة. أداة الإشارات المتقاطعة لأجهزة استشعار أتمتة المباني.",
+      "keywords": "إشارات متقاطعة, مقارنة منافسين, بدائل BAPI, بديل Honeywell, بديل Johnson Controls, بديل Siemens, إشارات متقاطعة لأجهزة الاستشعار, توافق أتمتة المباني, استبدال المنتج"
+    },
+    "hero": {
+      "title": "أداة الإشارات المتقاطعة",
+      "subtitle": "ابحث عن بدائل BAPI للمنتجات المنافسة"
+    },
+    "searchTool": {
+      "heading": "ابحث عن بديل BAPI",
+      "manufacturerLabel": "اختر الشركة المصنعة",
+      "manufacturerPlaceholder": "اختر الشركة المصنعة...",
+      "modelLabel": "أدخل رقم طراز المنافس",
+      "modelPlaceholder": "مثال: C7400A2100",
+      "searchButton": "ابحث عن بديل BAPI",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "أخرى"
+      }
+    },
+    "popularSection": {
+      "heading": "إشارات متقاطعة مشهورة",
+      "competitorLabel": "المنافس",
+      "bapiLabel": "بديل BAPI"
+    },
+    "helpSection": {
+      "heading": "لا تجد ما تبحث عنه؟",
+      "description": "اتصل بفريق المبيعات التقني للحصول على مساعدة في الإشارات المتقاطعة",
+      "ctaButton": "اتصل بفريق المبيعات"
+    }
   }
 }

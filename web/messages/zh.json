@@ -1401,5 +1401,42 @@
       "title": "寻找技术指南？",
       "description": "浏览我们的应用说明集合，获取深入的技术指导、最佳实践和实施示例 →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "交叉参考工具 | BAPI",
+      "description": "查找竞争产品的BAPI等效产品。楼宇自动化传感器交叉参考工具。",
+      "keywords": "交叉参考, 竞争对手比较, BAPI等效产品, Honeywell替代品, Johnson Controls替代品, Siemens替代品, 传感器交叉参考, 楼宇自动化兼容性, 产品替换"
+    },
+    "hero": {
+      "title": "交叉参考工具",
+      "subtitle": "查找竞争产品的BAPI等效产品"
+    },
+    "searchTool": {
+      "heading": "查找BAPI等效产品",
+      "manufacturerLabel": "选择制造商",
+      "manufacturerPlaceholder": "选择制造商...",
+      "modelLabel": "输入竞争对手型号",
+      "modelPlaceholder": "例如：C7400A2100",
+      "searchButton": "查找BAPI等效产品",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "其他"
+      }
+    },
+    "popularSection": {
+      "heading": "热门交叉参考",
+      "competitorLabel": "竞争对手",
+      "bapiLabel": "BAPI等效产品"
+    },
+    "helpSection": {
+      "heading": "找不到您需要的内容？",
+      "description": "联系我们的技术销售团队以获取交叉参考帮助",
+      "ctaButton": "联系销售团队"
+    }
   }
 }

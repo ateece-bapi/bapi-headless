@@ -1410,5 +1410,42 @@
       "title": "Suchen Sie nach technischen Anleitungen?",
       "description": "Durchsuchen Sie unsere Sammlung von Anwendungshinweisen für ausführliche technische Anleitungen, Best Practices und Implementierungsbeispiele →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "Querverweisungstool | BAPI",
+      "description": "Finden Sie BAPI-Äquivalente für Konkurrenzprodukte. Querverweisungstool für Gebäudeautomatisierungssensoren.",
+      "keywords": "Querverweisung, Konkurrenzvergleich, BAPI-Äquivalente, Honeywell-Alternative, Johnson Controls-Alternative, Siemens-Alternative, Sensor-Querverweisung, Gebäudeautomatisierungskompatibilität, Produktersatz"
+    },
+    "hero": {
+      "title": "Querverweisungstool",
+      "subtitle": "Finden Sie BAPI-Äquivalente für Konkurrenzprodukte"
+    },
+    "searchTool": {
+      "heading": "BAPI-Äquivalent finden",
+      "manufacturerLabel": "Hersteller auswählen",
+      "manufacturerPlaceholder": "Hersteller wählen...",
+      "modelLabel": "Konkurrenz-Modellnummer eingeben",
+      "modelPlaceholder": "z.B. C7400A2100",
+      "searchButton": "BAPI-Äquivalent finden",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "Andere"
+      }
+    },
+    "popularSection": {
+      "heading": "Beliebte Querverweise",
+      "competitorLabel": "Konkurrent",
+      "bapiLabel": "BAPI-Äquivalent"
+    },
+    "helpSection": {
+      "heading": "Können Sie nicht finden, wonach Sie suchen?",
+      "description": "Kontaktieren Sie unser technisches Vertriebsteam für Unterstützung bei der Querverweisungssuche",
+      "ctaButton": "Vertriebsteam kontaktieren"
+    }
   }
 }

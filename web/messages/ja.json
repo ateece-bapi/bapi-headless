@@ -1401,5 +1401,42 @@
       "title": "技術ガイドをお探しですか？",
       "description": "詳細な技術ガイダンス、ベストプラクティス、実装例については、アプリケーションノートのコレクションをご覧ください →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "クロスリファレンスツール | BAPI",
+      "description": "競合他社製品にBAPI同等品を見つけます。ビル自動化センサー用クロスリファレンスツール。",
+      "keywords": "クロスリファレンス, 競合他社比較, BAPI同等品, Honeywell代替品, Johnson Controls代替品, Siemens代替品, センサークロスリファレンス, ビル自動化互換性, 製品置き換え"
+    },
+    "hero": {
+      "title": "クロスリファレンスツール",
+      "subtitle": "競合他社製品にBAPI同等品を見つけます"
+    },
+    "searchTool": {
+      "heading": "BAPI同等品を見つける",
+      "manufacturerLabel": "メーカーを選択",
+      "manufacturerPlaceholder": "メーカーを選ぶ...",
+      "modelLabel": "競合他社型番を入力",
+      "modelPlaceholder": "例: C7400A2100",
+      "searchButton": "BAPI同等品を見つける",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "その他"
+      }
+    },
+    "popularSection": {
+      "heading": "人気のクロスリファレンス",
+      "competitorLabel": "競合他社",
+      "bapiLabel": "BAPI同等品"
+    },
+    "helpSection": {
+      "heading": "お探しのものが見つかりませんか？",
+      "description": "クロスリファレンスの支援については、技術営業チームにお問い合わせください",
+      "ctaButton": "営業チームに連絡"
+    }
   }
 }

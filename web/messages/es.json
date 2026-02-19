@@ -1401,5 +1401,42 @@
       "title": "¿Busca guías técnicas?",
       "description": "Explore nuestra colección de Notas de Aplicación para obtener orientación técnica detallada, mejores prácticas y ejemplos de implementación →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "Herramienta de Referencias Cruzadas | BAPI",
+      "description": "Encuentre equivalentes BAPI para productos de la competencia. Herramienta de referencias cruzadas para sensores de automatización de edificios.",
+      "keywords": "referencias cruzadas, comparación competidores, equivalentes BAPI, alternativa Honeywell, alternativa Johnson Controls, alternativa Siemens, referencias cruzadas sensores, compatibilidad automatización edificios, reemplazo productos"
+    },
+    "hero": {
+      "title": "Herramienta de Referencias Cruzadas",
+      "subtitle": "Encuentre equivalentes BAPI para productos de la competencia"
+    },
+    "searchTool": {
+      "heading": "Encontrar Equivalente BAPI",
+      "manufacturerLabel": "Seleccionar Fabricante",
+      "manufacturerPlaceholder": "Elegir fabricante...",
+      "modelLabel": "Ingresar Número de Modelo de la Competencia",
+      "modelPlaceholder": "ej. C7400A2100",
+      "searchButton": "Encontrar Equivalente BAPI",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "Otro"
+      }
+    },
+    "popularSection": {
+      "heading": "Referencias Cruzadas Populares",
+      "competitorLabel": "Competidor",
+      "bapiLabel": "Equivalente BAPI"
+    },
+    "helpSection": {
+      "heading": "¿No encuentra lo que busca?",
+      "description": "Contacte a nuestro equipo de ventas técnicas para asistencia con referencias cruzadas",
+      "ctaButton": "Contactar Equipo de Ventas"
+    }
   }
 }

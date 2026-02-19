@@ -374,13 +374,19 @@
   - ✅ Production verified on Vercel (all regions working)
   - ✅ 46/46 currency tests passing
 
-**Remaining (1-2 days):**
-- ⏳ **Tier 2 Support & Resources Translations** (1-2 days)
-  - Support pages (~40 keys × 10 languages = 400 translations)
-  - Resources pages (~60 keys × 10 languages = 600 translations)
-  - Total: ~1,000 translations remaining
+**Remaining (0.5-1 days):**
+- ⏳ **Tier 2 Support Pages Translations** (0.5-1 days)
+  - Support subpages: Contact Support, Warranty, Returns (~20 keys × 10 languages = 200 translations)
+  - Main Support page: ✅ COMPLETE (60 keys × 11 languages, merged as PR #271)
+  - Resources section: ✅ COMPLETE (111 keys × 11 languages, commit e44b8cc)
+  - Total remaining: ~200 translations
 
-**Note:** Core infrastructure 100% complete. Company Pages 100% translated. Only Support and Resources content pages remain for full i18n coverage.
+**Note:** Core infrastructure 100% complete. Company Pages 100% translated. Resources section 100% translated (8/8 pages). Main Support page complete. Only 3 Support subpages remain for full i18n coverage.
+
+**Completed Today (Feb 19):**
+- ✅ Resources Section: Videos, Webinars, Case Studies, Selector pages (682 translations)
+- ✅ Main Support Page: Complete internationalization with metadata (660 translations)
+- ✅ Phase 1 Priority 1: Now **~72% complete** (up from 70%)
 
 ### Priority 2: Live Chat Integration — 🟢 95% Complete
 

@@ -1447,5 +1447,42 @@
       "description": "Kontaktieren Sie unser technisches Vertriebsteam für Unterstützung bei der Querverweisungssuche",
       "ctaButton": "Vertriebsteam kontaktieren"
     }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "Produktdatenblätter | BAPI",
+      "description": "Laden Sie detaillierte technische Datenblätter für alle BAPI-Gebäudeautomatisierungsprodukte herunter.",
+      "keywords": "Produktdatenblätter, technische Spezifikationen, Sensor-Datenblätter, BAPI-Spezifikationen, Temperatursensor-Spezifikationen, Feuchtigkeitssensor-Spezifikationen, Drucksensor-Spezifikationen, Luftqualitätssensor-Datenblätter, Funksensor-Spezifikationen, Controller-Datenblätter, PDF-Downloads"
+    },
+    "hero": {
+      "title": "Produktdatenblätter",
+      "subtitle": "Detaillierte technische Spezifikationen für alle BAPI-Produkte"
+    },
+    "search": {
+      "placeholder": "Datenblätter nach Modellnummer oder Produktname durchsuchen...",
+      "categoryLabel": "Alle Kategorien",
+      "categories": {
+        "temperature": "Temperatur",
+        "humidity": "Feuchtigkeit",
+        "pressure": "Druck",
+        "airQuality": "Luftqualität",
+        "wireless": "Funk",
+        "controllers": "Controller"
+      }
+    },
+    "grid": {
+      "pagesLabel": "Seiten",
+      "downloadButton": "PDF herunterladen"
+    },
+    "pagination": {
+      "previous": "Zurück",
+      "next": "Weiter"
+    },
+    "bulkDownload": {
+      "heading": "Benötigen Sie mehrere Datenblätter?",
+      "description": "Laden Sie unser vollständiges Datenblattpaket mit allen Produktspezifikationen herunter",
+      "button": "Alle Datenblätter herunterladen (ZIP)",
+      "packageInfo": "Vollständiges Paket • 125 MB • Aktualisiert Januar 2026"
+    }
   }
 }

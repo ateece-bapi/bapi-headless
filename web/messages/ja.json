@@ -1438,5 +1438,42 @@
       "description": "クロスリファレンスの支援については、技術営業チームにお問い合わせください",
       "ctaButton": "営業チームに連絡"
     }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "製品データシート | BAPI",
+      "description": "すべてのBAPIビル自動化製品の詳細な技術データシートをダウンロード。",
+      "keywords": "製品データシート, 技術仕様, センサーデータシート, BAPI仕様, 温度センサー仕様, 湿度センサー仕様, 圧力センサー仕様, 空気質センサーデータシート, ワイヤレスセンサー仕様, コントローラーデータシート, PDFダウンロード"
+    },
+    "hero": {
+      "title": "製品データシート",
+      "subtitle": "すべてのBAPI製品の詳細な技術仕様"
+    },
+    "search": {
+      "placeholder": "型番または製品名でデータシートを検索...",
+      "categoryLabel": "すべてのカテゴリー",
+      "categories": {
+        "temperature": "温度",
+        "humidity": "湿度",
+        "pressure": "圧力",
+        "airQuality": "空気質",
+        "wireless": "ワイヤレス",
+        "controllers": "コントローラー"
+      }
+    },
+    "grid": {
+      "pagesLabel": "ページ",
+      "downloadButton": "PDFダウンロード"
+    },
+    "pagination": {
+      "previous": "前へ",
+      "next": "次へ"
+    },
+    "bulkDownload": {
+      "heading": "複数のデータシートが必要ですか？",
+      "description": "すべての製品仕様を含む完全なデータシートパッケージをダウンロード",
+      "button": "すべてのデータシートをダウンロード (ZIP)",
+      "packageInfo": "完全パッケージ • 125 MB • 2026年1月更新"
+    }
   }
 }

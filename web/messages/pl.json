@@ -1652,5 +1652,42 @@
       "description": "Skontaktuj się z naszym technicznym zespołem sprzedaży, aby uzyskać pomoc w odniesieniach krzyżowych",
       "ctaButton": "Skontaktuj się z Zespołem Sprzedaży"
     }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "Karty Danych Produktów | BAPI",
+      "description": "Pobierz szczegółowe karty danych technicznych dla wszystkich produktów automatyki budynkowej BAPI.",
+      "keywords": "karty danych produktów, specyfikacje techniczne, karty danych czujników, specyfikacje BAPI, specyfikacje czujników temperatury, specyfikacje czujników wilgotności, specyfikacje czujników ciśnienia, karty danych czujników jakości powietrza, specyfikacje czujników bezprzewodowych, karty danych sterowników, pobieranie PDF"
+    },
+    "hero": {
+      "title": "Karty Danych Produktów",
+      "subtitle": "Szczegółowe specyfikacje techniczne wszystkich produktów BAPI"
+    },
+    "search": {
+      "placeholder": "Szukaj kart danych według numeru modelu lub nazwy produktu...",
+      "categoryLabel": "Wszystkie Kategorie",
+      "categories": {
+        "temperature": "Temperatura",
+        "humidity": "Wilgotność",
+        "pressure": "Ciśnienie",
+        "airQuality": "Jakość Powietrza",
+        "wireless": "Bezprzewodowe",
+        "controllers": "Sterowniki"
+      }
+    },
+    "grid": {
+      "pagesLabel": "strony",
+      "downloadButton": "Pobierz PDF"
+    },
+    "pagination": {
+      "previous": "Poprzednie",
+      "next": "Następne"
+    },
+    "bulkDownload": {
+      "heading": "Potrzebujesz Wielu Kart Danych?",
+      "description": "Pobierz nasz kompletny pakiet kart danych ze wszystkimi specyfikacjami produktów",
+      "button": "Pobierz Wszystkie Karty Danych (ZIP)",
+      "packageInfo": "Kompletny pakiet • 125 MB • Zaktualizowano styczeń 2026"
+    }
   }
 }

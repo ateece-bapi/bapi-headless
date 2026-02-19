@@ -1488,5 +1488,42 @@
       "description": "Liên hệ đội bán hàng kỹ thuật của chúng tôi để được hỗ trợ về tham chiếu chéo",
       "ctaButton": "Liên Hệ Đội Bán Hàng"
     }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "Tờ Dữ Liệu Sản Phẩm | BAPI",
+      "description": "Tầi xuống tờ dữ liệu kỹ thuật chi tiết cho tất cả các sản phẩm tự động hóa tòa nhà BAPI.",
+      "keywords": "tờ dữ liệu sản phẩm, thông số kỹ thuật, tờ dữ liệu cảm biến, thông số BAPI, thông số cảm biến nhiệt độ, thông số cảm biến độ ẩm, thông số cảm biến áp suất, tờ dữ liệu cảm biến chất lượng không khí, thông số cảm biến không dây, tờ dữ liệu bộ điều khiển, tải PDF"
+    },
+    "hero": {
+      "title": "Tờ Dữ Liệu Sản Phẩm",
+      "subtitle": "Thông số kỹ thuật chi tiết cho tất cả sản phẩm BAPI"
+    },
+    "search": {
+      "placeholder": "Tìm kiếm tờ dữ liệu theo số model hoặc tên sản phẩm...",
+      "categoryLabel": "Tất Cả Danh Mục",
+      "categories": {
+        "temperature": "Nhiệt Độ",
+        "humidity": "Độ Ẩm",
+        "pressure": "Áp Suất",
+        "airQuality": "Chất Lượng Không Khí",
+        "wireless": "Không Dây",
+        "controllers": "Bộ Điều Khiển"
+      }
+    },
+    "grid": {
+      "pagesLabel": "trang",
+      "downloadButton": "Tải PDF"
+    },
+    "pagination": {
+      "previous": "Trước",
+      "next": "Tiếp"
+    },
+    "bulkDownload": {
+      "heading": "Cần Nhiều Tờ Dữ Liệu?",
+      "description": "Tải gói tờ dữ liệu hoàn chỉnh của chúng tôi với tất cả thông số sản phẩm",
+      "button": "Tải Tất Cả Tờ Dữ Liệu (ZIP)",
+      "packageInfo": "Gói hoàn chỉnh • 125 MB • Cập nhật tháng 1 năm 2026"
+    }
   }
 }

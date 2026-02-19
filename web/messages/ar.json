@@ -1,29 +1,77 @@
 {
   "common": {
-    "language": "العربية",
-    "region": "المنطقة",
-    "currency": "العملة",
+    "loading": "جارٍ التحميل...",
+    "error": "خطأ",
+    "success": "نجاح",
+    "tryAgain": "حاول مرة أخرى",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تحرير",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "submit": "إرسال",
+    "confirm": "تأكيد",
+    "learnMore": "تعرف على المزيد",
+    "viewAll": "عرض الكل",
+    "readMore": "اقرأ المزيد",
+    "showMore": "إظهار المزيد",
+    "showLess": "إظهار أقل",
     "search": "بحث",
-    "cart": "السلة",
-    "signIn": "تسجيل الدخول",
-    "signOut": "تسجيل الخروج",
-    "backToTop": "العودة للأعلى"
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "clearAll": "مسح الكل",
+    "apply": "تطبيق",
+    "reset": "إعادة تعيين"
   },
   "nav": {
     "products": "المنتجات",
-    "solutions": "الحلول",
-    "resources": "الموارد",
+    "applications": "التطبيقات",
+    "support": "الدعم",
     "company": "الشركة",
-    "support": "الدعم"
+    "cart": "السلة",
+    "account": "الحساب",
+    "signIn": "تسجيل الدخول"
   },
   "products": {
     "title": "المنتجات",
-    "viewAll": "عرض جميع المنتجات",
-    "categories": {
-      "temperature": "درجة الحرارة",
-      "humidity": "الرطوبة وجودة الهواء",
-      "pressure": "الضغط والتدفق",
-      "controllers": "أجهزة التحكم والمدخلات/المخرجات"
+    "description": "تصفح كتالوجنا الكامل",
+    "addToCart": "إضافة إلى السلة",
+    "addedToCart": "تمت الإضافة إلى السلة!",
+    "outOfStock": "غير متوفر حاليًا",
+    "backInStock": "متوفر مرة أخرى",
+    "price": "السعر",
+    "sku": "رقم المنتج",
+    "partNumber": "رقم الجزء",
+    "availability": "التوفر",
+    "inStock": "متوفر",
+    "quantity": "الكمية",
+    "specifications": "المواصفات",
+    "features": "الميزات",
+    "documentation": "الوثائق",
+    "relatedProducts": "منتجات ذات صلة",
+    "viewDetails": "عرض التفاصيل",
+    "compareProducts": "مقارنة المنتجات",
+    "requestQuote": "طلب عرض سعر",
+    "downloadDatasheet": "تنزيل ورقة البيانات",
+    "technicalSupport": "الدعم الفني",
+    "filters": {
+      "title": "الفلاتر",
+      "category": "الفئة",
+      "priceRange": "نطاق السعر",
+      "inStockOnly": "المتوفر فقط",
+      "clearFilters": "مسح الفلاتر"
+    },
+    "sort": {
+      "title": "الترتيب حسب",
+      "featured": "الأكثر شيوعًا",
+      "nameAsc": "الاسم (أ-ي)",
+      "nameDesc": "الاسم (ي-أ)",
+      "priceLowHigh": "السعر: من الأقل إلى الأعلى",
+      "priceHighLow": "السعر: من الأعلى إلى الأقل",
+      "newest": "الأحدث أولاً"
     }
   },
   "home": {
@@ -261,33 +309,44 @@
     }
   },
   "region": {
-    "demo": {
-      "title": "عرض المنطقة والتوطين",
-      "subtitle": "حدد منطقة من القائمة المنسدلة في الرأس لرؤية تحويل العملة التلقائي وتنسيق التاريخ وتحويل الوحدات وترجمة الأرقام أثناء العمل.",
-      "productPrice": "سعر المنتج",
-      "priceRange": "نطاق السعر",
-      "todayDate": "تاريخ اليوم",
-      "temperatureRange": "نطاق درجة الحرارة",
-      "dimensions": "الأبعاد",
-      "largeNumbers": "أرقام كبيرة",
-      "tip": "نصيحة: قم بتغيير محدد المنطقة في الرأس لرؤية تنسيقات مختلفة",
-      "howItWorks": "كيف يعمل",
-      "regionSelection": "اختيار المنطقة",
-      "regionSelectionDesc": "استخدم محدد المنطقة في الرأس (أيقونة الكرة الأرضية) لاختيار منطقتك. يتم حفظ اختيارك في التخزين المحلي ويستمر عبر الجلسات.",
-      "currencyPricing": "العملة والتسعير",
-      "currencyPricingDesc": "يتم تحويل جميع الأسعار تلقائيًا من السعر الأساسي بالدولار الأمريكي باستخدام أسعار الصرف الحالية. يتم ضبط موضع الرمز والأماكن العشرية لكل عملة.",
-      "dateTimeFormatting": "تنسيق التاريخ والوقت",
-      "unitConversion": "تحويل الوحدات",
-      "numberFormatting": "تنسيق الأرقام",
-      "numberFormattingDesc": "يتم تنسيق الأرقام الكبيرة وفقًا للاصطلاحات الإقليمية (على سبيل المثال، 1,234.56 مقابل 1.234,56).",
-      "forDevelopers": "للمطورين",
-      "forDevelopersDesc": "استخدم الأدوات المساعدة المقدمة في مكوناتك:",
-      "original": "الأصلي"
+    "selectLanguage": "اختر اللغة",
+    "selectRegion": "اختر المنطقة",
+    "currency": "العملة",
+    "measurements": "القياسات",
+    "temperature": "درجة الحرارة",
+    "pressure": "الضغط",
+    "unitSystem": {
+      "metric": "المتري (°C، bar)",
+      "imperial": "الإمبراطوري (°F، PSI)"
     },
-    "us": "الولايات المتحدة",
-    "eu": "أوروبا",
-    "asia": "آسيا والمحيط الهادئ",
-    "mena": "الشرق الأوسط"
+    "regions": {
+      "northAmerica": "أمريكا الشمالية",
+      "europe": "أوروبا",
+      "asia": "آسيا",
+      "middleEast": "الشرق الأوسط",
+      "latinAmerica": "أمريكا اللاتينية",
+      "australia": "أستراليا والمحيط الهادئ"
+    },
+    "languages": {
+      "en": "الإنجليزية",
+      "de": "الألمانية",
+      "fr": "الفرنسية",
+      "es": "الإسبانية",
+      "ja": "اليابانية",
+      "zh": "الصينية",
+      "vi": "الفيتنامية",
+      "ar": "العربية"
+    },
+    "currencies": {
+      "usd": "دولار أمريكي ($)",
+      "eur": "يورو (€)",
+      "gbp": "جنيه إسترليني (£)",
+      "cad": "دولار كندي ($)",
+      "jpy": "ين ياباني (¥)",
+      "cny": "يوان صيني (¥)",
+      "vnd": "دونج فيتنامي (₫)",
+      "aed": "درهم إماراتي (د.إ)"
+    }
   },
   "megaMenu": {
     "badges": {
@@ -1301,7 +1360,13 @@
         "phone": "+44 (0) 1252 548410",
         "addressLine1": "مركز توزيع BAPI، الشمال 1ج",
         "addressLine2": "Aldershot GU12 4RG",
-        "addressLine3": "المملكة المتحدة/منطقة العمود/rma_أوروبا"
+        "addressLine3": "المملكة المتحدة/منطقة العمود/rma_أوروبا",
+        "phoneLabel": "الهاتف",
+        "addressLabel": "العنوان",
+        "rmaInstructions": {
+          "strong": "لطلبات RMA (Return Material Authorization)،",
+          "text": "يرجى الاتصال بالممثل المحلي أو الموزع الخاص بك."
+        }
       },
       "globalPresence": {
         "badge": "مواقعنا",
@@ -1311,7 +1376,17 @@
       "cta": {
         "title": "جاهز للبدء؟",
         "description": "اتصل بفريقنا لمناقشة متطلبات مشروعك واكتشاف الحل المثالي للاستشعار لاحتياجاتك.",
-        "button": "أرسل رسالة"
+        "button": "أرسل رسالة",
+        "weekday": {
+          "label": "يوم عمل",
+          "hours": "8:00 صباحًا - 5:00 مساءً",
+          "timezone": "توقيت وسط الولايات المتحدة"
+        },
+        "weekend": {
+          "label": "عطلة نهاية الأسبوع",
+          "status": "مغلق",
+          "days": "السبت والأحد"
+        }
       }
     },
     "news": {
@@ -1747,5 +1822,134 @@
       "wireless": "المنتجات اللاسلكية",
       "airQuality": "جودة الهواء"
     }
+  },
+  "units": {
+    "temperature": {
+      "celsius": "درجة مئوية",
+      "fahrenheit": "درجة فهرنهايت",
+      "kelvin": "كلفن"
+    },
+    "pressure": {
+      "bar": "بار",
+      "psi": "رطل لكل بوصة مربعة",
+      "pa": "باسكال",
+      "kpa": "كيلو باسكال",
+      "inWc": "بوصة من الماء"
+    },
+    "length": {
+      "mm": "ملم",
+      "cm": "سم",
+      "m": "متر",
+      "inch": "بوصة",
+      "ft": "قدم"
+    }
+  },
+  "errors": {
+    "generic": "حدث خطأ ما",
+    "network": "خطأ في الشبكة. يرجى التحقق من اتصالك.",
+    "notFound": "الصفحة غير موجودة",
+    "unauthorized": "يجب أن تسجل الدخول للوصول إلى هذه الصفحة",
+    "serverError": "خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقًا.",
+    "validationError": "يرجى التحقق من إدخالك والمحاولة مرة أخرى",
+    "addToCartFailed": "فشل في إضافة العنصر إلى السلة",
+    "productNotFound": "المنتج غير موجود",
+    "cartEmpty": "سلتك فارغة",
+    "checkoutFailed": "فشل الدفع. يرجى المحاولة مرة أخرى."
+  },
+  "auth": {
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "signUp": "التسجيل",
+    "profile": "الملف الشخصي",
+    "account": "حسابي",
+    "dashboard": "لوحة القيادة",
+    "settings": "الإعدادات",
+    "orders": "الطلبات",
+    "favorites": "المفضلة",
+    "quotes": "عروض الأسعار",
+    "addresses": "العناوين",
+    "paymentMethods": "طرق الدفع",
+    "welcome": "مرحبًا",
+    "welcomeBack": "مرحبًا بعودتك",
+    "loginRequired": "الرجاء تسجيل الدخول للمتابعة",
+    "logout": "تسجيل الخروج",
+    "myProfile": "ملفي الشخصي"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلتك فارغة",
+    "emptyDescription": "تصفح منتجاتنا لإضافة عناصر إلى سلتك",
+    "checkout": "الانتقال إلى الدفع",
+    "continueShopping": "متابعة التسوق",
+    "subtotal": "المجموع الفرعي",
+    "tax": "الضريبة",
+    "shipping": "الشحن",
+    "total": "الإجمالي",
+    "itemCount": "{count} {count, plural, =1 {عنصر} other {عناصر}}",
+    "removeItem": "إزالة العنصر",
+    "updateQuantity": "تحديث الكمية",
+    "applyCoupon": "تطبيق القسيمة",
+    "couponCode": "رمز القسيمة",
+    "couponApplied": "تم تطبيق القسيمة بنجاح",
+    "couponInvalid": "رمز القسيمة غير صالح",
+    "cartUpdated": "تم تحديث السلة"
+  },
+  "checkout": {
+    "title": "الدفع",
+    "shipping": "معلومات الشحن",
+    "payment": "معلومات الدفع",
+    "review": "مراجعة الطلب",
+    "placeOrder": "إرسال الطلب",
+    "orderSummary": "ملخص الطلب",
+    "billingAddress": "عنوان الفوترة",
+    "shippingAddress": "عنوان الشحن",
+    "sameAsBilling": "نفس عنوان الفوترة",
+    "paymentMethod": "طريقة الدفع",
+    "creditCard": "بطاقة ائتمان",
+    "cardNumber": "رقم البطاقة",
+    "expiryDate": "تاريخ الانتهاء",
+    "cvv": "CVV",
+    "nameOnCard": "الاسم على البطاقة",
+    "orderTotal": "إجمالي الطلب",
+    "terms": "الشروط والأحكام",
+    "acceptTerms": "أوافق على الشروط والأحكام",
+    "processing": "جاري معالجة طلبك...",
+    "orderComplete": "اكتمل الطلب!",
+    "orderNumber": "رقم الطلب",
+    "thankYou": "شكرًا لك على طلبك"
+  },
+  "forms": {
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "عنوان البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "company": "اسم الشركة",
+    "address": "عنوان الشارع",
+    "address2": "الشقة، الجناح، إلخ. (اختياري)",
+    "city": "المدينة",
+    "state": "الولاية / المقاطعة",
+    "zipCode": "الرمز البريدي",
+    "country": "البلد",
+    "message": "رسالة",
+    "subject": "الموضوع",
+    "required": "مطلوب",
+    "optional": "اختياري",
+    "invalidEmail": "عنوان البريد الإلكتروني غير صالح",
+    "invalidPhone": "رقم الهاتف غير صالح",
+    "fieldRequired": "هذا الحقل مطلوب",
+    "selectOption": "حدد خيارًا",
+    "enterValue": "أدخل قيمة"
+  },
+  "accessibility": {
+    "skipToContent": "تخطي إلى المحتوى الرئيسي",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "openCart": "فتح سلة التسوق",
+    "closeCart": "إغلاق سلة التسوق",
+    "previousSlide": "الشريحة السابقة",
+    "nextSlide": "الشريحة التالية",
+    "pageNavigation": "تنقل الصفحة",
+    "loading": "جارٍ تحميل المحتوى",
+    "searchResults": "نتائج البحث"
   }
 }

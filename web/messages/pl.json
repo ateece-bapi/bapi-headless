@@ -119,7 +119,10 @@
         "wamTitle": "Bezprzewodowy monitoring aktywów WAM™",
         "wamDescription": "Zdalne monitorowanie 24/7 z natychmiastowymi alarmami. Chroń swoje cenne aktywa przed awariami zasilania i awariami sprzętu. Bez okablowania - uruchom w kilka minut.",
         "wamCta": "Dowiedz się więcej",
-        "wamBadge": "Rozwiązanie premium"
+        "wamBadge": "Rozwiązanie premium",
+        "title": "Monitorowanie aktywów WAM™ bezprzewodowo",
+        "description": "Zdalne monitorowanie 24/7 z natychmiastowymi alarmami. Chroń swoje cenne aktywa przed awariami zasilania i awariami sprzętu. Bez konieczności okablowania - uruchom w kilka minut.",
+        "cta": "Dowiedz się więcej"
       },
       "badges": {
         "popular": "Popularny",
@@ -1486,7 +1489,13 @@
         "phone": "+44 (0) 1252 548410",
         "addressLine1": "BAPI Distribution Centre, North 1c",
         "addressLine2": "Aldershot GU12 4RG",
-        "addressLine3": "Wielka Brytania/Obszar_Kolumny/Europa_rma"
+        "addressLine3": "Wielka Brytania/Obszar_Kolumny/Europa_rma",
+        "phoneLabel": "Telefon",
+        "addressLabel": "Adres",
+        "rmaInstructions": {
+          "strong": "W celu złożenia wniosku o RMA (Return Material Authorization),",
+          "text": "prosimy o kontakt z lokalnym przedstawicielem lub dystrybutorem."
+        }
       },
       "globalPresence": {
         "badge": "Nasze lokalizacje",
@@ -1496,7 +1505,17 @@
       "cta": {
         "title": "Gotowy, aby rozpocząć?",
         "description": "Skontaktuj się z naszym zespołem, aby omówić wymagania Twojego projektu i odkryć idealną czujkę dla Twoich potrzeb.",
-        "button": "Wyślij wiadomość"
+        "button": "Wyślij wiadomość",
+        "weekday": {
+          "label": "Dzień roboczy",
+          "hours": "8:00 - 17:00",
+          "timezone": "Czas środkowoamerykański"
+        },
+        "weekend": {
+          "label": "Weekend",
+          "status": "Zamknięte",
+          "days": "Sobota i niedziela"
+        }
       }
     },
     "news": {

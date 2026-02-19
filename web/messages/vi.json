@@ -1247,7 +1247,13 @@
         "phone": "+44 (0) 1252 548410",
         "addressLine1": "BAPI Distribution Centre, North 1c",
         "addressLine2": "Aldershot GU12 4RG",
-        "addressLine3": "Vương quốc Anh/Khu vực Cột/Châu Âu_rma"
+        "addressLine3": "Vương quốc Anh/Khu vực Cột/Châu Âu_rma",
+        "phoneLabel": "Điện thoại",
+        "addressLabel": "Địa chỉ",
+        "rmaInstructions": {
+          "strong": "Đối với yêu cầu RMA (Ủy quyền Trả lại Hàng hóa),",
+          "text": "vui lòng liên hệ với đại diện hoặc nhà phân phối địa phương của quý vị."
+        }
       },
       "globalPresence": {
         "badge": "Địa điểm của chúng tôi",
@@ -1257,7 +1263,17 @@
       "cta": {
         "title": "Sẵn sàng bắt đầu?",
         "description": "Liên hệ với đội ngũ của chúng tôi để thảo luận về các yêu cầu dự án của quý khách và tìm ra giải pháp cảm biến hoàn hảo cho nhu cầu của quý khách.",
-        "button": "Gửi tin nhắn"
+        "button": "Gửi tin nhắn",
+        "weekday": {
+          "label": "Ngày trong tuần",
+          "hours": "8:00 sáng - 5:00 chiều",
+          "timezone": "Giờ Trung Tâm Chuẩn"
+        },
+        "weekend": {
+          "label": "Cuối tuần",
+          "status": "Đóng cửa",
+          "days": "Thứ Bảy & Chủ Nhật"
+        }
       }
     },
     "news": {
@@ -1767,5 +1783,173 @@
       "wireless": "Sản Phẩm Không Dây",
       "airQuality": "Chất Lượng Không Khí"
     }
+  },
+  "products": {
+    "title": "Sản phẩm",
+    "description": "Duyệt qua danh mục sản phẩm đầy đủ của chúng tôi",
+    "addToCart": "Thêm vào giỏ hàng",
+    "addedToCart": "Đã thêm vào giỏ hàng!",
+    "outOfStock": "Hết hàng",
+    "backInStock": "Có hàng trở lại",
+    "price": "Giá",
+    "sku": "SKU",
+    "partNumber": "Mã sản phẩm",
+    "availability": "Tình trạng hàng",
+    "inStock": "Còn hàng",
+    "quantity": "Số lượng",
+    "specifications": "Thông số kỹ thuật",
+    "features": "Tính năng",
+    "documentation": "Tài liệu",
+    "relatedProducts": "Sản phẩm liên quan",
+    "viewDetails": "Xem chi tiết",
+    "compareProducts": "So sánh sản phẩm",
+    "requestQuote": "Yêu cầu báo giá",
+    "downloadDatasheet": "Tải tài liệu kỹ thuật",
+    "technicalSupport": "Hỗ trợ kỹ thuật",
+    "filters": {
+      "title": "Bộ lọc",
+      "category": "Danh mục",
+      "priceRange": "Khoảng giá",
+      "inStockOnly": "Chỉ hiện sản phẩm còn hàng",
+      "clearFilters": "Xóa bộ lọc"
+    },
+    "sort": {
+      "title": "Sắp xếp theo",
+      "featured": "Nổi bật",
+      "nameAsc": "Tên (A-Z)",
+      "nameDesc": "Tên (Z-A)",
+      "priceLowHigh": "Giá: Thấp đến Cao",
+      "priceHighLow": "Giá: Cao đến Thấp",
+      "newest": "Mới nhất"
+    }
+  },
+  "units": {
+    "temperature": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kelvin": "K"
+    },
+    "pressure": {
+      "bar": "bar",
+      "psi": "PSI",
+      "pa": "Pa",
+      "kpa": "kPa",
+      "inWc": "inWC"
+    },
+    "length": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "inch": "inch",
+      "ft": "ft"
+    }
+  },
+  "errors": {
+    "generic": "Đã xảy ra lỗi",
+    "network": "Lỗi mạng. Vui lòng kiểm tra kết nối của bạn.",
+    "notFound": "Không tìm thấy trang",
+    "unauthorized": "Bạn phải đăng nhập để truy cập trang này",
+    "serverError": "Lỗi máy chủ. Vui lòng thử lại sau.",
+    "validationError": "Vui lòng kiểm tra dữ liệu nhập và thử lại",
+    "addToCartFailed": "Không thể thêm sản phẩm vào giỏ hàng",
+    "productNotFound": "Không tìm thấy sản phẩm",
+    "cartEmpty": "Giỏ hàng của bạn trống",
+    "checkoutFailed": "Thanh toán không thành công. Vui lòng thử lại."
+  },
+  "auth": {
+    "signIn": "Đăng nhập",
+    "signOut": "Đăng xuất",
+    "signUp": "Đăng ký",
+    "profile": "Hồ sơ",
+    "account": "Tài khoản của tôi",
+    "dashboard": "Bảng điều khiển",
+    "settings": "Cài đặt",
+    "orders": "Đơn hàng",
+    "favorites": "Yêu thích",
+    "quotes": "Báo giá",
+    "addresses": "Địa chỉ",
+    "paymentMethods": "Phương thức thanh toán",
+    "welcome": "Chào mừng",
+    "welcomeBack": "Chào mừng trở lại",
+    "loginRequired": "Vui lòng đăng nhập để tiếp tục",
+    "logout": "Đăng xuất",
+    "myProfile": "Hồ sơ của tôi"
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "empty": "Giỏ hàng của bạn trống",
+    "emptyDescription": "Duyệt qua các sản phẩm của chúng tôi để thêm mục vào giỏ hàng",
+    "checkout": "Tiến hành thanh toán",
+    "continueShopping": "Tiếp tục mua sắm",
+    "subtotal": "Tổng phụ",
+    "tax": "Thuế",
+    "shipping": "Vận chuyển",
+    "total": "Tổng cộng",
+    "itemCount": "{count} {count, plural, =1 {mục} other {mục}}",
+    "removeItem": "Xóa mục",
+    "updateQuantity": "Cập nhật số lượng",
+    "applyCoupon": "Áp dụng phiếu giảm giá",
+    "couponCode": "Mã phiếu giảm giá",
+    "couponApplied": "Đã áp dụng phiếu giảm giá thành công",
+    "couponInvalid": "Mã phiếu giảm giá không hợp lệ",
+    "cartUpdated": "Giỏ hàng đã được cập nhật"
+  },
+  "checkout": {
+    "title": "Thanh toán",
+    "shipping": "Thông tin vận chuyển",
+    "payment": "Thông tin thanh toán",
+    "review": "Xem lại đơn hàng",
+    "placeOrder": "Đặt hàng",
+    "orderSummary": "Tóm tắt đơn hàng",
+    "billingAddress": "Địa chỉ thanh toán",
+    "shippingAddress": "Địa chỉ giao hàng",
+    "sameAsBilling": "Giống với địa chỉ thanh toán",
+    "paymentMethod": "Phương thức thanh toán",
+    "creditCard": "Thẻ tín dụng",
+    "cardNumber": "Số thẻ",
+    "expiryDate": "Ngày hết hạn",
+    "cvv": "CVV",
+    "nameOnCard": "Tên trên thẻ",
+    "orderTotal": "Tổng đơn hàng",
+    "terms": "Điều khoản & Điều kiện",
+    "acceptTerms": "Tôi chấp nhận các điều khoản và điều kiện",
+    "processing": "Đang xử lý đơn hàng của bạn...",
+    "orderComplete": "Đơn hàng hoàn tất!",
+    "orderNumber": "Số đơn hàng",
+    "thankYou": "Cảm ơn bạn đã đặt hàng"
+  },
+  "forms": {
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "email": "Địa chỉ email",
+    "phone": "Số điện thoại",
+    "company": "Tên công ty",
+    "address": "Địa chỉ",
+    "address2": "Căn hộ, tầng, v.v. (tùy chọn)",
+    "city": "Thành phố",
+    "state": "Bang / Tỉnh",
+    "zipCode": "Mã ZIP / Bưu chính",
+    "country": "Quốc gia",
+    "message": "Tin nhắn",
+    "subject": "Chủ đề",
+    "required": "Bắt buộc",
+    "optional": "Tùy chọn",
+    "invalidEmail": "Địa chỉ email không hợp lệ",
+    "invalidPhone": "Số điện thoại không hợp lệ",
+    "fieldRequired": "Trường này là bắt buộc",
+    "selectOption": "Chọn một tùy chọn",
+    "enterValue": "Nhập một giá trị"
+  },
+  "accessibility": {
+    "skipToContent": "Chuyển đến nội dung chính",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "openCart": "Mở giỏ hàng",
+    "closeCart": "Đóng giỏ hàng",
+    "previousSlide": "Slide trước",
+    "nextSlide": "Slide tiếp theo",
+    "pageNavigation": "Điều hướng trang",
+    "loading": "Đang tải nội dung",
+    "searchResults": "Kết quả tìm kiếm"
   }
 }

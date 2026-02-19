@@ -1281,7 +1281,13 @@
         "phone": "+44 (0) 1252 548410",
         "addressLine1": "BAPI Distribution Centre, North 1c",
         "addressLine2": "Aldershot GU12 4RG",
-        "addressLine3": "Vereinigtes Königreich/Säulenbereich/europa_rma"
+        "addressLine3": "Vereinigtes Königreich/Säulenbereich/europa_rma",
+        "phoneLabel": "Telefon",
+        "addressLabel": "Adresse",
+        "rmaInstructions": {
+          "strong": "Für RMA-Anfragen (Return Material Authorization)",
+          "text": "wenden Sie sich bitte an Ihren örtlichen Vertreter oder Händler."
+        }
       },
       "globalPresence": {
         "badge": "Unsere Standorte",
@@ -1291,7 +1297,17 @@
       "cta": {
         "title": "Bereit loszulegen?",
         "description": "Kontaktieren Sie unser Team, um Ihre Projektanforderungen zu besprechen und die perfekte Sensorlösung für Ihre Bedürfnisse zu finden.",
-        "button": "Eine Nachricht senden"
+        "button": "Eine Nachricht senden",
+        "weekday": {
+          "label": "Werktag",
+          "hours": "8:00 Uhr - 17:00 Uhr",
+          "timezone": "Mitteleuropäische Zeit"
+        },
+        "weekend": {
+          "label": "Wochenende",
+          "status": "Geschlossen",
+          "days": "Samstag & Sonntag"
+        }
       }
     },
     "news": {
@@ -1727,5 +1743,213 @@
       "wireless": "Drahtlose Produkte",
       "airQuality": "Luftqualität"
     }
+  },
+  "products": {
+    "title": "Produkte",
+    "description": "Durchsuchen Sie unser komplettes Sortiment",
+    "addToCart": "In den Warenkorb",
+    "addedToCart": "Zum Warenkorb hinzugefügt!",
+    "outOfStock": "Nicht auf Lager",
+    "backInStock": "Wieder auf Lager",
+    "price": "Preis",
+    "sku": "Artikelnummer",
+    "partNumber": "Teilenummer",
+    "availability": "Verfügbarkeit",
+    "inStock": "Auf Lager",
+    "quantity": "Menge",
+    "specifications": "Spezifikationen",
+    "features": "Funktionen",
+    "documentation": "Dokumentation",
+    "relatedProducts": "Verwandte Produkte",
+    "viewDetails": "Details anzeigen",
+    "compareProducts": "Produkte vergleichen",
+    "requestQuote": "Angebot anfordern",
+    "downloadDatasheet": "Datenblatt herunterladen",
+    "technicalSupport": "Technischer Support",
+    "filters": {
+      "title": "Filter",
+      "category": "Kategorie",
+      "priceRange": "Preisbereich",
+      "inStockOnly": "Nur auf Lager",
+      "clearFilters": "Filter zurücksetzen"
+    },
+    "sort": {
+      "title": "Sortieren nach",
+      "featured": "Empfohlen",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "priceLowHigh": "Preis: Niedrig nach Hoch",
+      "priceHighLow": "Preis: Hoch nach Niedrig",
+      "newest": "Neueste zuerst"
+    }
+  },
+  "region": {
+    "selectLanguage": "Sprache auswählen",
+    "selectRegion": "Region auswählen",
+    "currency": "Währung",
+    "measurements": "Messungen",
+    "temperature": "Temperatur",
+    "pressure": "Druck",
+    "unitSystem": {
+      "metric": "Metrisch (°C, bar)",
+      "imperial": "Imperial (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "Nordamerika",
+      "europe": "Europa",
+      "asia": "Asien",
+      "middleEast": "Naher Osten",
+      "latinAmerica": "Lateinamerika",
+      "australia": "Australien & Pazifik"
+    },
+    "languages": {
+      "en": "Englisch",
+      "de": "Deutsch",
+      "fr": "Französisch",
+      "es": "Spanisch",
+      "ja": "Japanisch",
+      "zh": "Chinesisch",
+      "vi": "Vietnamesisch",
+      "ar": "Arabisch"
+    },
+    "currencies": {
+      "usd": "USD ($)",
+      "eur": "EUR (€)",
+      "gbp": "GBP (£)",
+      "cad": "CAD ($)",
+      "jpy": "JPY (¥)",
+      "cny": "CNY (¥)",
+      "vnd": "VND (₫)",
+      "aed": "AED (د.إ)"
+    }
+  },
+  "units": {
+    "temperature": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kelvin": "K"
+    },
+    "pressure": {
+      "bar": "bar",
+      "psi": "PSI",
+      "pa": "Pa",
+      "kpa": "kPa",
+      "inWc": "inWC"
+    },
+    "length": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "inch": "inch",
+      "ft": "ft"
+    }
+  },
+  "errors": {
+    "generic": "Es ist ein Fehler aufgetreten",
+    "network": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
+    "notFound": "Seite nicht gefunden",
+    "unauthorized": "Sie müssen angemeldet sein, um auf diese Seite zuzugreifen",
+    "serverError": "Serverfehler. Bitte versuchen Sie es später erneut.",
+    "validationError": "Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut",
+    "addToCartFailed": "Fehler beim Hinzufügen des Artikels zum Warenkorb",
+    "productNotFound": "Produkt nicht gefunden",
+    "cartEmpty": "Ihr Warenkorb ist leer",
+    "checkoutFailed": "Checkout fehlgeschlagen. Bitte versuchen Sie es erneut."
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "signUp": "Registrieren",
+    "profile": "Profil",
+    "account": "Mein Konto",
+    "dashboard": "Dashboard",
+    "settings": "Einstellungen",
+    "orders": "Aufträge",
+    "favorites": "Favoriten",
+    "quotes": "Angebote",
+    "addresses": "Adressen",
+    "paymentMethods": "Zahlungsmethoden",
+    "welcome": "Willkommen",
+    "welcomeBack": "Willkommen zurück",
+    "loginRequired": "Bitte melden Sie sich an, um fortzufahren",
+    "logout": "Abmelden",
+    "myProfile": "Mein Profil"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "empty": "Ihr Warenkorb ist leer",
+    "emptyDescription": "Durchsuchen Sie unsere Produkte, um Artikel in Ihren Warenkorb zu legen",
+    "checkout": "Zur Kasse gehen",
+    "continueShopping": "Einkaufen fortsetzen",
+    "subtotal": "Zwischensumme",
+    "tax": "Steuern",
+    "shipping": "Versand",
+    "total": "Gesamtbetrag",
+    "itemCount": "{count} {count, plural, =1 {Artikel} other {Artikel}}",
+    "removeItem": "Artikel entfernen",
+    "updateQuantity": "Menge aktualisieren",
+    "applyCoupon": "Gutschein anwenden",
+    "couponCode": "Gutscheincode",
+    "couponApplied": "Gutschein erfolgreich angewendet",
+    "couponInvalid": "Ungültiger Gutscheincode",
+    "cartUpdated": "Warenkorb aktualisiert"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "shipping": "Versandinformationen",
+    "payment": "Zahlungsinformationen",
+    "review": "Bestellung überprüfen",
+    "placeOrder": "Bestellung aufgeben",
+    "orderSummary": "Bestellübersicht",
+    "billingAddress": "Rechnungsadresse",
+    "shippingAddress": "Lieferadresse",
+    "sameAsBilling": "Wie Rechnungsadresse",
+    "paymentMethod": "Zahlungsmethode",
+    "creditCard": "Kreditkarte",
+    "cardNumber": "Kartennummer",
+    "expiryDate": "Ablaufdatum",
+    "cvv": "CVV",
+    "nameOnCard": "Name auf der Karte",
+    "orderTotal": "Gesamtbetrag",
+    "terms": "Allgemeine Geschäftsbedingungen",
+    "acceptTerms": "Ich akzeptiere die Allgemeinen Geschäftsbedingungen",
+    "processing": "Ihre Bestellung wird bearbeitet...",
+    "orderComplete": "Bestellung abgeschlossen!",
+    "orderNumber": "Bestellnummer",
+    "thankYou": "Vielen Dank für Ihre Bestellung"
+  },
+  "forms": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "company": "Firmenname",
+    "address": "Straßenadresse",
+    "address2": "Wohnung, Suite usw. (optional)",
+    "city": "Stadt",
+    "state": "Bundesland / Provinz",
+    "zipCode": "PLZ / Postleitzahl",
+    "country": "Land",
+    "message": "Nachricht",
+    "subject": "Betreff",
+    "required": "Erforderlich",
+    "optional": "Optional",
+    "invalidEmail": "Ungültige E-Mail-Adresse",
+    "invalidPhone": "Ungültige Telefonnummer",
+    "fieldRequired": "Dieses Feld ist erforderlich",
+    "selectOption": "Wählen Sie eine Option",
+    "enterValue": "Geben Sie einen Wert ein"
+  },
+  "accessibility": {
+    "skipToContent": "Zum Hauptinhalt springen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "openCart": "Einkaufswagen öffnen",
+    "closeCart": "Einkaufswagen schließen",
+    "previousSlide": "Vorheriger Slide",
+    "nextSlide": "Nächster Slide",
+    "pageNavigation": "Seitennavigation",
+    "loading": "Inhalte werden geladen",
+    "searchResults": "Suchergebnisse"
   }
 }

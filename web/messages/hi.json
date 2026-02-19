@@ -1489,7 +1489,13 @@
         "phone": "+44 (0) 1252 548410",
         "addressLine1": "BAPI Distribution Centre, North 1c",
         "addressLine2": "Aldershot GU12 4RG",
-        "addressLine3": "यूनाइटेड किंगडम/कॉलम_क्षेत्र/यूरोप_रमा"
+        "addressLine3": "यूनाइटेड किंगडम/कॉलम_क्षेत्र/यूरोप_रमा",
+        "phoneLabel": "फ़ोन",
+        "addressLabel": "पता",
+        "rmaInstructions": {
+          "strong": "RMA (Return Material Authorization) अनुरोधों के लिए,",
+          "text": "कृपया अपने स्थानीय प्रतिनिधि या वितरक से संपर्क करें।"
+        }
       },
       "globalPresence": {
         "badge": "हमारे स्थान",
@@ -1499,7 +1505,17 @@
       "cta": {
         "title": "शुरू करने के लिए तैयार हैं?",
         "description": "अपनी परियोजना की आवश्यकताओं पर चर्चा करने और अपनी जरूरतों के लिए उपयुक्त सेंसर समाधान खोजने के लिए हमारी टीम से संपर्क करें।",
-        "button": "संदेश भेजें"
+        "button": "संदेश भेजें",
+        "weekday": {
+          "label": "कार्यदिवस",
+          "hours": "सुबह 8:00 बजे - शाम 5:00 बजे",
+          "timezone": "केंद्रीय मानक समय"
+        },
+        "weekend": {
+          "label": "वीकेंड",
+          "status": "बंद",
+          "days": "शनिवार और रविवार"
+        }
       }
     },
     "news": {

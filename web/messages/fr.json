@@ -1,24 +1,78 @@
 {
   "common": {
-    "language": "Français",
-    "region": "Région",
-    "currency": "Devise",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "tryAgain": "Réessayer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre",
+    "confirm": "Confirmer",
+    "learnMore": "En savoir plus",
+    "viewAll": "Voir tout",
+    "readMore": "Lire la suite",
+    "showMore": "Afficher plus",
+    "showLess": "Afficher moins",
     "search": "Rechercher",
-    "cart": "Panier",
-    "signIn": "Se connecter",
-    "signOut": "Se déconnecter",
-    "backToTop": "Retour en haut"
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "clearAll": "Effacer tout",
+    "apply": "Appliquer",
+    "reset": "Réinitialiser"
   },
   "nav": {
     "products": "Produits",
-    "solutions": "Solutions",
-    "resources": "Ressources",
+    "applications": "Applications",
+    "support": "Assistance",
     "company": "Entreprise",
-    "support": "Support"
+    "cart": "Panier",
+    "account": "Compte",
+    "signIn": "Connexion utilisateur"
   },
   "products": {
     "title": "Produits",
-    "viewAll": "Voir tous les produits"
+    "description": "Parcourez notre catalogue complet",
+    "addToCart": "Ajouter au panier",
+    "addedToCart": "Ajouté au panier !",
+    "outOfStock": "Rupture de stock",
+    "backInStock": "De retour en stock",
+    "price": "Prix",
+    "sku": "Référence",
+    "partNumber": "Numéro de pièce",
+    "availability": "Disponibilité",
+    "inStock": "En stock",
+    "quantity": "Quantité",
+    "specifications": "Spécifications",
+    "features": "Caractéristiques",
+    "documentation": "Documentation",
+    "relatedProducts": "Produits connexes",
+    "viewDetails": "Voir les détails",
+    "compareProducts": "Comparer les produits",
+    "requestQuote": "Demander un devis",
+    "downloadDatasheet": "Télécharger la fiche technique",
+    "technicalSupport": "Assistance technique",
+    "filters": {
+      "title": "Filtres",
+      "category": "Catégorie",
+      "priceRange": "Fourchette de prix",
+      "inStockOnly": "Uniquement en stock",
+      "clearFilters": "Effacer les filtres"
+    },
+    "sort": {
+      "title": "Trier par",
+      "featured": "Produits vedettes",
+      "nameAsc": "Nom (A-Z)",
+      "nameDesc": "Nom (Z-A)",
+      "priceLowHigh": "Prix : du plus bas au plus élevé",
+      "priceHighLow": "Prix : du plus élevé au plus bas",
+      "newest": "Les plus récents en premier"
+    }
   },
   "home": {
     "hero": {
@@ -255,10 +309,44 @@
     }
   },
   "region": {
-    "us": "États-Unis",
-    "eu": "Europe",
-    "asia": "Asie-Pacifique",
-    "mena": "Moyen-Orient"
+    "selectLanguage": "Sélectionner la langue",
+    "selectRegion": "Sélectionner la région",
+    "currency": "Devise",
+    "measurements": "Mesures",
+    "temperature": "Température",
+    "pressure": "Pression",
+    "unitSystem": {
+      "metric": "Métrique (°C, bar)",
+      "imperial": "Impérial (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "Amérique du Nord",
+      "europe": "Europe",
+      "asia": "Asie",
+      "middleEast": "Moyen-Orient",
+      "latinAmerica": "Amérique latine",
+      "australia": "Australie et Pacifique"
+    },
+    "languages": {
+      "en": "Anglais",
+      "de": "Allemand",
+      "fr": "Français",
+      "es": "Espagnol",
+      "ja": "Japonais",
+      "zh": "Chinois",
+      "vi": "Vietnamien",
+      "ar": "Arabe"
+    },
+    "currencies": {
+      "usd": "USD ($)",
+      "eur": "EUR (€)",
+      "gbp": "GBP (£)",
+      "cad": "CAD ($)",
+      "jpy": "JPY (¥)",
+      "cny": "CNY (¥)",
+      "vnd": "VND (₫)",
+      "aed": "AED (د.إ)"
+    }
   },
   "megaMenu": {
     "badges": {
@@ -1272,7 +1360,13 @@
         "phone": "+44 (0) 1252 548410",
         "addressLine1": "Centre de distribution BAPI, Nord 1c",
         "addressLine2": "Aldershot GU12 4RG",
-        "addressLine3": "Royaume-Uni/Région des Collines/europe_rma"
+        "addressLine3": "Royaume-Uni/Région des Collines/europe_rma",
+        "phoneLabel": "Téléphone",
+        "addressLabel": "Adresse",
+        "rmaInstructions": {
+          "strong": "Pour les demandes d'autorisation de retour de matériel (RMA),",
+          "text": "veuillez contacter votre représentant ou distributeur local."
+        }
       },
       "globalPresence": {
         "badge": "Nos emplacements",
@@ -1282,7 +1376,17 @@
       "cta": {
         "title": "Prêt à commencer ?",
         "description": "Contactez notre équipe pour discuter des exigences de votre projet et découvrir la solution de capteur parfaite pour vos besoins.",
-        "button": "Envoyer un message"
+        "button": "Envoyer un message",
+        "weekday": {
+          "label": "Jour ouvrable",
+          "hours": "8h00 - 17h00",
+          "timezone": "Heure normale du Centre"
+        },
+        "weekend": {
+          "label": "Week-end",
+          "status": "Fermé",
+          "days": "Samedi et dimanche"
+        }
       }
     },
     "news": {
@@ -1718,5 +1822,134 @@
       "wireless": "Produits Sans Fil",
       "airQuality": "Qualité de l'Air"
     }
+  },
+  "units": {
+    "temperature": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kelvin": "K"
+    },
+    "pressure": {
+      "bar": "bar",
+      "psi": "PSI",
+      "pa": "Pa",
+      "kpa": "kPa",
+      "inWc": "inWC"
+    },
+    "length": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "inch": "inch",
+      "ft": "ft"
+    }
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite",
+    "network": "Erreur réseau. Veuillez vérifier votre connexion.",
+    "notFound": "Page non trouvée",
+    "unauthorized": "Vous devez être connecté pour accéder à cette page",
+    "serverError": "Erreur du serveur. Veuillez réessayer plus tard.",
+    "validationError": "Veuillez vérifier vos entrées et réessayer",
+    "addToCartFailed": "Échec de l'ajout de l'article au panier",
+    "productNotFound": "Produit non trouvé",
+    "cartEmpty": "Votre panier est vide",
+    "checkoutFailed": "Échec de la commande. Veuillez réessayer."
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter",
+    "signUp": "S'inscrire",
+    "profile": "Profil",
+    "account": "Mon compte",
+    "dashboard": "Tableau de bord",
+    "settings": "Paramètres",
+    "orders": "Commandes",
+    "favorites": "Favoris",
+    "quotes": "Devis",
+    "addresses": "Adresses",
+    "paymentMethods": "Modes de paiement",
+    "welcome": "Bienvenue",
+    "welcomeBack": "Bienvenue à nouveau",
+    "loginRequired": "Veuillez vous connecter pour continuer",
+    "logout": "Se déconnecter",
+    "myProfile": "Mon profil"
+  },
+  "cart": {
+    "title": "Panier d'achat",
+    "empty": "Votre panier est vide",
+    "emptyDescription": "Parcourez nos produits pour ajouter des articles à votre panier",
+    "checkout": "Procéder au paiement",
+    "continueShopping": "Continuer les achats",
+    "subtotal": "Sous-total",
+    "tax": "Taxes",
+    "shipping": "Frais de port",
+    "total": "Total",
+    "itemCount": "{count} {count, plural, =1 {article} other {articles}}",
+    "removeItem": "Supprimer l'article",
+    "updateQuantity": "Mettre à jour la quantité",
+    "applyCoupon": "Appliquer un coupon",
+    "couponCode": "Code de coupon",
+    "couponApplied": "Coupon appliqué avec succès",
+    "couponInvalid": "Code de coupon invalide",
+    "cartUpdated": "Panier mis à jour"
+  },
+  "checkout": {
+    "title": "Passer la commande",
+    "shipping": "Informations d'expédition",
+    "payment": "Informations de paiement",
+    "review": "Vérifier la commande",
+    "placeOrder": "Passer la commande",
+    "orderSummary": "Récapitulatif de la commande",
+    "billingAddress": "Adresse de facturation",
+    "shippingAddress": "Adresse d'expédition",
+    "sameAsBilling": "Identique à l'adresse de facturation",
+    "paymentMethod": "Moyen de paiement",
+    "creditCard": "Carte de crédit",
+    "cardNumber": "Numéro de carte",
+    "expiryDate": "Date d'expiration",
+    "cvv": "CVV",
+    "nameOnCard": "Nom sur la carte",
+    "orderTotal": "Total de la commande",
+    "terms": "Termes et conditions",
+    "acceptTerms": "J'accepte les termes et conditions",
+    "processing": "Traitement de votre commande...",
+    "orderComplete": "Commande terminée !",
+    "orderNumber": "Numéro de commande",
+    "thankYou": "Merci pour votre commande"
+  },
+  "forms": {
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "email": "Adresse e-mail",
+    "phone": "Numéro de téléphone",
+    "company": "Nom de l'entreprise",
+    "address": "Adresse postale",
+    "address2": "Appartement, suite, etc. (facultatif)",
+    "city": "Ville",
+    "state": "État / Province",
+    "zipCode": "Code postal",
+    "country": "Pays",
+    "message": "Message",
+    "subject": "Sujet",
+    "required": "Obligatoire",
+    "optional": "Facultatif",
+    "invalidEmail": "Adresse e-mail non valide",
+    "invalidPhone": "Numéro de téléphone non valide",
+    "fieldRequired": "Ce champ est obligatoire",
+    "selectOption": "Sélectionnez une option",
+    "enterValue": "Entrez une valeur"
+  },
+  "accessibility": {
+    "skipToContent": "Passer au contenu principal",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "openCart": "Ouvrir le panier d'achat",
+    "closeCart": "Fermer le panier d'achat",
+    "previousSlide": "Diapositive précédente",
+    "nextSlide": "Diapositive suivante",
+    "pageNavigation": "Navigation de la page",
+    "loading": "Chargement du contenu",
+    "searchResults": "Résultats de la recherche"
   }
 }

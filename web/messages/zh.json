@@ -1382,6 +1382,113 @@
       "cta": "联系支持团队"
     }
   },
+  "contactSupportPage": {
+    "metadata": {
+      "title": "联系支持 | BAPI",
+      "description": "获取BAPI楼宇自动化产品的专家技术支持。提供电话、电子邮件和现场协助。"
+    },
+    "hero": {
+      "title": "联系技术支持",
+      "subtitle": "为楼宇自动化专业人员提供专家协助"
+    },
+    "phone": {
+      "title": "电话支持",
+      "description": "直接与我们的技术支持团队交流",
+      "hours": "周一至周五，上午8点至下午5点 CST"
+    },
+    "email": {
+      "title": "电子邮件支持",
+      "description": "向我们发送您的技术问题，我们将在24小时内回复"
+    },
+    "location": {
+      "title": "我们的位置"
+    },
+    "resources": {
+      "heading": "其他资源",
+      "description": "浏览我们的支持中心以获取指南、文档和工具",
+      "supportCenter": "支持中心",
+      "rmaRequest": "RMA请求"
+    }
+  },
+  "warrantyPage": {
+    "metadata": {
+      "title": "保修信息 | BAPI",
+      "description": "BAPI为楼宇自动化产品提供行业领先的5年保修。了解我们的保修范围和支持。"
+    },
+    "hero": {
+      "title": "保修信息",
+      "subtitle": "所有BAPI产品均享受行业领先的5年保修"
+    },
+    "coverage": {
+      "title": "保修范围",
+      "description": "BAPI以全面5年保修支持我们产品的质量和可靠性。",
+      "years": "5年保修",
+      "defects": "制造缺陷",
+      "support": "技术支持"
+    },
+    "covered": {
+      "title": "保修内容",
+      "manufacturing": "材料和工艺的制造缺陷",
+      "materials": "在正常使用条件下失效的产品材料",
+      "workmanship": "装配和构造缺陷"
+    },
+    "important": {
+      "title": "重要信息",
+      "description": "保修不包括由不当安装、误用或正常磨损造成的损坏。如有具体保修问题，请联系我们的支持团队。"
+    },
+    "cta": {
+      "heading": "需要帮助？",
+      "description": "我们的支持团队随时准备协助您处理保修问题和索赔",
+      "contactButton": "联系支持",
+      "rmaButton": "启动RMA请求"
+    }
+  },
+  "returnsPage": {
+    "metadata": {
+      "title": "退货与RMA | BAPI",
+      "description": "请求BAPI产品的退货授权。快速处理和专家支持，用于退货和维修。"
+    },
+    "hero": {
+      "title": "退货与RMA流程",
+      "subtitle": "BAPI产品的退货授权"
+    },
+    "process": {
+      "title": "RMA流程",
+      "step1": {
+        "title": "联系支持",
+        "description": "与我们的支持团队取得联系"
+      },
+      "step2": {
+        "title": "接收RMA编号",
+        "description": "24小时内获得授权"
+      },
+      "step3": {
+        "title": "发送产品",
+        "description": "在包裹上带有RMA编号退回"
+      },
+      "step4": {
+        "title": "解决方案",
+        "description": "维修、更换或退款"
+      }
+    },
+    "requirements": {
+      "title": "退货要求",
+      "rmaNumber": "所有退货必须在发货前获得RMA编号",
+      "timeframe": "产品必须在RMA授权后30天内退回",
+      "invoice": "请在退回的产品中附上原始发票的副本",
+      "packaging": "请在运输箱外侧清楚地写明RMA编号"
+    },
+    "important": {
+      "title": "重要信息",
+      "description": "除非产品在保修范围内有缺陷，否则客户需要承担退货运输费用。在退回任何产品之前，请联系我们的支持团队。"
+    },
+    "cta": {
+      "heading": "准备好开始了吗？",
+      "description": "联系我们的支持团队开始退货流程",
+      "contactButton": "联系支持",
+      "warrantyButton": "查看保修信息"
+    }
+  },
   "resourcesPage": {
     "metadata": {
       "description": "BAPI楼宇自动化产品的免费技术文档。下载安装指南、数据表、应用说明、CAD图纸和BACnet PICS。为工程师、承包商和设施管理员提供全面的资源。",

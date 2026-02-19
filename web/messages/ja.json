@@ -1382,6 +1382,113 @@
       "cta": "サポートチームに連絡"
     }
   },
+  "contactSupportPage": {
+    "metadata": {
+      "title": "サポートに連絡 | BAPI",
+      "description": "BAPIビルディングオートメーション製品の専門的な技術サポートを受けられます。電話、メール、現場支援が利用可能です。"
+    },
+    "hero": {
+      "title": "技術サポートに連絡",
+      "subtitle": "ビルディングオートメーションの専門家のための専門的な支援"
+    },
+    "phone": {
+      "title": "電話サポート",
+      "description": "技術サポートチームと直接お話しください",
+      "hours": "月曜日～金曜日、午前8時～午後5時 CST"
+    },
+    "email": {
+      "title": "メールサポート",
+      "description": "技術的な質問をお送りくださや24時間以内に回答いたします"
+    },
+    "location": {
+      "title": "当社の所在地"
+    },
+    "resources": {
+      "heading": "追加のリソース",
+      "description": "ガイド、ドキュメント、ツールについては、サポートセンターをご覧ください",
+      "supportCenter": "サポートセンター",
+      "rmaRequest": "RMAリクエスト"
+    }
+  },
+  "warrantyPage": {
+    "metadata": {
+      "title": "保証情報 | BAPI",
+      "description": "BAPIはビルディングオートメーション製品に業界最高島の5年保証を提供します。保証範囲とサポートについて詳しくご覧ください。"
+    },
+    "hero": {
+      "title": "保証情報",
+      "subtitle": "全BAPI製品に業界最高島の5年保証"
+    },
+    "coverage": {
+      "title": "保証範囲",
+      "description": "BAPIは当社製品の品質と信頼性を包括的な5年保証で裏付けしています。",
+      "years": "5年間の保証",
+      "defects": "製造上の欠陥",
+      "support": "技術サポート"
+    },
+    "covered": {
+      "title": "保証対象",
+      "manufacturing": "材料および製造上の製造上の欠陥",
+      "materials": "通常の使用条件下で故障する製品材料",
+      "workmanship": "組み立ておよび構造の欠陥"
+    },
+    "important": {
+      "title": "重要な情報",
+      "description": "保証は、不適切な設置、誤用、または通常の摩耗、裂け目による損傷をカバーしません。具体的な保証に関する質問は、当社サポートチームにお問い合わせください。"
+    },
+    "cta": {
+      "heading": "お困りですか？",
+      "description": "当社のサポートチームは保証の質問や請求に対して支援いたします",
+      "contactButton": "サポートに連絡",
+      "rmaButton": "RMAリクエストを開始"
+    }
+  },
+  "returnsPage": {
+    "metadata": {
+      "title": "返品とRMA | BAPI",
+      "description": "BAPI製品の返品認証をリクエストします。返品と修理の迅速な処理と専門的なサポートを提供します。"
+    },
+    "hero": {
+      "title": "返品とRMAプロセス",
+      "subtitle": "BAPI製品の返品認証"
+    },
+    "process": {
+      "title": "RMAプロセス",
+      "step1": {
+        "title": "サポートに連絡",
+        "description": "当社サポートチームにお問い合わせください"
+      },
+      "step2": {
+        "title": "RMA番号を受け取る",
+        "description": "24時間以内に認証を取得"
+      },
+      "step3": {
+        "title": "製品を発送",
+        "description": "パッケージにRMA番号を記載して返品"
+      },
+      "step4": {
+        "title": "解決",
+        "description": "修理、交換、またはクレジット"
+      }
+    },
+    "requirements": {
+      "title": "返品要件",
+      "rmaNumber": "すべての返品は配送前にRMA番号が必要です",
+      "timeframe": "製品はRMA認証から30日以内に返品する必要があります",
+      "invoice": "返品製品に元の請求書のコピーを同封してください",
+      "packaging": "RMA番号を配送箱の外側に明確に記載してください"
+    },
+    "important": {
+      "title": "重要な情報",
+      "description": "製品が保証対象の欠陥でない限り、返品配送費用はお客様の負担となります。製品を返品する前に当社サポートチームにお問い合わせください。"
+    },
+    "cta": {
+      "heading": "始める準備はできましたか？",
+      "description": "返品プロセスを開始するには、当社サポートチームにお問い合わせください",
+      "contactButton": "サポートに連絡",
+      "warrantyButton": "保証情報を見る"
+    }
+  },
   "resourcesPage": {
     "metadata": {
       "description": "BAPIビル自動化製品の無料技術文書。設置ガイド、データシート、アプリケーションノート、CAD図面、BACnet PICSをダウンロード。エンジニア、請負業者、施設管理者向けの包括的なリソース。",

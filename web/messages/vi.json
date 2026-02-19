@@ -1431,6 +1431,113 @@
       "cta": "Liên Hệ Đội Ngũ Hỗ Trợ"
     }
   },
+  "contactSupportPage": {
+    "metadata": {
+      "title": "Liên Hệ Hỗ Trợ | BAPI",
+      "description": "Nhận hỗ trợ kỹ thuật chuyên môn cho các sản phẩm tự động hóa tòa nhà BAPI. Hỗ trợ qua điện thoại, email và tại chỗ."
+    },
+    "hero": {
+      "title": "Liên Hệ Hỗ Trợ Kỹ Thuật",
+      "subtitle": "Hỗ trợ chuyên môn cho các chuyên gia tự động hóa tòa nhà"
+    },
+    "phone": {
+      "title": "Hỗ Trợ Qua Điện Thoại",
+      "description": "Nói chuyện trực tiếp với đội ngũ hỗ trợ kỹ thuật của chúng tôi",
+      "hours": "Thứhai - Thứsáu, 8am - 5pm CST"
+    },
+    "email": {
+      "title": "Hỗ Trợ Qua Email",
+      "description": "Gửi câu hỏi kỹ thuật của bạn và chúng tôi sẽ trả lời trong vòng 24 giờ"
+    },
+    "location": {
+      "title": "Vị Trí Của Chúng Tôi"
+    },
+    "resources": {
+      "heading": "Tài Nguyên Bổ Sung",
+      "description": "Khám phá trung tâm hỗ trợ của chúng tôi về hướng dẫn, tài liệu và công cụ",
+      "supportCenter": "Trung Tâm Hỗ Trợ",
+      "rmaRequest": "Yêu Cầu RMA"
+    }
+  },
+  "warrantyPage": {
+    "metadata": {
+      "title": "Thông Tin Bảo Hành | BAPI",
+      "description": "BAPI cung cấp bảo hành 5 năm hàng đầu trong ngành cho các sản phẩm tự động hóa tòa nhà. Tìm hiểu về phạm vi bảo hành và hỗ trợ của chúng tôi."
+    },
+    "hero": {
+      "title": "Thông Tin Bảo Hành",
+      "subtitle": "Bảo hành 5 năm hàng đầu trong ngành cho tất cả sản phẩm BAPI"
+    },
+    "coverage": {
+      "title": "Phạm Vi Bảo Hành",
+      "description": "BAPI đảm bảo chất lượng và độ tin cậy của sản phẩm với bảo hành toàn diện 5 năm.",
+      "years": "Bảo Hành 5 Năm",
+      "defects": "Lỗi Sản Xuất",
+      "support": "Hỗ Trợ Kỹ Thuật"
+    },
+    "covered": {
+      "title": "Những Gì Được Bảo Hành",
+      "manufacturing": "Lỗi sản xuất về vật liệu và tay nghề",
+      "materials": "V vật liệu sản phẩm bị hỏng trong điều kiện sử dụng bình thường",
+      "workmanship": "Lỗi lắp ráp và xây dựng"
+    },
+    "important": {
+      "title": "Thông Tin Quan Trọng",
+      "description": "Bảo hành không bao gồm hư hỏng do lắp đặt không đúng cách, sử dụng sai hoặc hao mòn bình thường. Liên hệ đội ngũ hỗ trợ của chúng tôi để biết câu hỏi cụ thể về bảo hành."
+    },
+    "cta": {
+      "heading": "Cần Giúp Đỡ?",
+      "description": "Đội ngũ hỗ trợ của chúng tôi luôn sẵn sàng hỗ trợ bạn về câu hỏi và khiếu nại bảo hành",
+      "contactButton": "Liên Hệ Hỗ Trợ",
+      "rmaButton": "Bắt Đầu Yêu Cầu RMA"
+    }
+  },
+  "returnsPage": {
+    "metadata": {
+      "title": "Trả Hàng & RMA | BAPI",
+      "description": "Yêu cầu Ủy Quyền Trả Hàng cho các sản phẩm BAPI. Xử lý nhanh chóng và hỗ trợ chuyên môn cho việc trả hàng và sửa chữa."
+    },
+    "hero": {
+      "title": "Quy Trình Trả Hàng & RMA",
+      "subtitle": "Ủy Quyền Trả Hàng cho các sản phẩm BAPI"
+    },
+    "process": {
+      "title": "Quy Trình RMA",
+      "step1": {
+        "title": "Liên Hệ Hỗ Trợ",
+        "description": "Liên hệ với đội ngũ hỗ trợ của chúng tôi"
+      },
+      "step2": {
+        "title": "Nhận Số RMA",
+        "description": "Nhận ủy quyền trong vòng 24 giờ"
+      },
+      "step3": {
+        "title": "Gửi Sản Phẩm",
+        "description": "Trả hàng với số RMA trên kiện hàng"
+      },
+      "step4": {
+        "title": "Giải Quyết",
+        "description": "Sửa chữa, thay thế hoặc hoàn tiền"
+      }
+    },
+    "requirements": {
+      "title": "Yêu Cầu Trả Hàng",
+      "rmaNumber": "Tất cả hàng trả phải có số RMA trước khi vận chuyển",
+      "timeframe": "Sản phẩm phải được trả trong vòng 30 ngày kể từ khi nhận ủy quyền RMA",
+      "invoice": "Bao gồm bản sao hóa đơn gốc với sản phẩm trả về",
+      "packaging": "Viết số RMA rõ ràng ở bên ngoài hộp vận chuyển"
+    },
+    "important": {
+      "title": "Thông Tin Quan Trọng",
+      "description": "Khách hàng chịu trách nhiệm cho chi phí vận chuyển trả hàng trừ khi sản phẩm bị lỗi theo bảo hành. Liên hệ đội ngũ hỗ trợ của chúng tôi trước khi trả bất kỳ sản phẩm nào."
+    },
+    "cta": {
+      "heading": "Sẵn Sàng Bắt Đầu?",
+      "description": "Liên hệ đội ngũ hỗ trợ của chúng tôi để bắt đầu quy trình trả hàng",
+      "contactButton": "Liên Hệ Hỗ Trợ",
+      "warrantyButton": "Xem Thông Tin Bảo Hành"
+    }
+  },
   "resourcesPage": {
     "metadata": {
       "description": "Tài liệu kỹ thuật miễn phí cho các sản phẩm tự động hóa tòa nhà BAPI. Tải xuống hướng dẫn cài đặt, tờ dữ liệu, ghi chú ứng dụng, bản vẽ CAD và BACnet PICS. Tài nguyên toàn diện cho kỹ sư, nhà thầu và người quản lý cơ sở.",

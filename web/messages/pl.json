@@ -1596,6 +1596,113 @@
       "cta": "Skontaktuj się z zespołem wsparcia"
     }
   },
+  "contactSupportPage": {
+    "metadata": {
+      "title": "Kontakt z pomocą techniczną | BAPI",
+      "description": "Uzyskaj eksperckie wsparcie techniczne dla produktów automatyki budynkowej BAPI. Dostępne wsparcie telefoniczne, e-mailowe i pomoc na miejscu."
+    },
+    "hero": {
+      "title": "Kontakt z pomocą techniczną",
+      "subtitle": "Ekspercka pomoc dla profesjonalistów automatyki budynkowej"
+    },
+    "phone": {
+      "title": "Wsparcie telefoniczne",
+      "description": "Porozmawiaj bezpośrednio z naszym zespołem wsparcia technicznego",
+      "hours": "Poniedziałek - Piątek, 8:00 - 17:00 CST"
+    },
+    "email": {
+      "title": "Wsparcie e-mailowe",
+      "description": "Wyślij nam swoje pytania techniczne, a odpowiemy w ciągu 24 godzin"
+    },
+    "location": {
+      "title": "Nasza lokalizacja"
+    },
+    "resources": {
+      "heading": "Dodatkowe zasoby",
+      "description": "Przeglądaj nasze centrum wsparcia, aby znaleźć przewodniki, dokumentację i narzędzia",
+      "supportCenter": "Centrum wsparcia",
+      "rmaRequest": "Wniosek RMA"
+    }
+  },
+  "warrantyPage": {
+    "metadata": {
+      "title": "Informacje o gwarancji | BAPI",
+      "description": "BAPI oferuje wiodącą w branży 5-letnią gwarancję na produkty automatyki budynkowej. Dowiedz się o naszym zakresie gwarancji i wsparciu."
+    },
+    "hero": {
+      "title": "Informacje o gwarancji",
+      "subtitle": "Wiodąca w branży 5-letnia gwarancja na wszystkie produkty BAPI"
+    },
+    "coverage": {
+      "title": "Zakres gwarancji",
+      "description": "BAPI wspiera jakość i niezawodność naszych produktów kompleksową 5-letnią gwarancją.",
+      "years": "Pokrycie przez 5 lat",
+      "defects": "Wady produkcyjne",
+      "support": "Wsparcie techniczne"
+    },
+    "covered": {
+      "title": "Co jest objęte",
+      "manufacturing": "Wady produkcyjne w materiałach i wykonaniu",
+      "materials": "Materiały produktu, które zawodzą w warunkach normalnego użytkowania",
+      "workmanship": "Wady montażu i konstrukcji"
+    },
+    "important": {
+      "title": "Ważne informacje",
+      "description": "Gwarancja nie obejmuje uszkodzeń spowodowanych nieprawidłową instalacją, niewłaściwym użytkowaniem lub normalnym zużyciem. Skontaktuj się z naszym zespołem wsparcia w sprawie konkretnych pytań dotyczących gwarancji."
+    },
+    "cta": {
+      "heading": "Potrzebujesz pomocy?",
+      "description": "Nasz zespół wsparcia jest tutaj, aby pomóc Ci w pytaniach i roszczeniach gwarancyjnych",
+      "contactButton": "Skontaktuj się ze wsparciem",
+      "rmaButton": "Rozpocznij wniosek RMA"
+    }
+  },
+  "returnsPage": {
+    "metadata": {
+      "title": "Zwroty i RMA | BAPI",
+      "description": "Zgłoś upoważnienie do zwrotu towaru dla produktów BAPI. Szybkie przetwarzanie i eksperckie wsparcie dla zwrotów i napraw."
+    },
+    "hero": {
+      "title": "Proces zwrotów i RMA",
+      "subtitle": "Upoważnienie do zwrotu towaru dla produktów BAPI"
+    },
+    "process": {
+      "title": "Proces RMA",
+      "step1": {
+        "title": "Skontaktuj się ze wsparciem",
+        "description": "Skontaktuj się z naszym zespołem wsparcia"
+      },
+      "step2": {
+        "title": "Otrzymaj numer RMA",
+        "description": "Otrzymaj upoważnienie w ciągu 24 godzin"
+      },
+      "step3": {
+        "title": "Wyślij produkt",
+        "description": "Zwróć z numerem RMA na paczce"
+      },
+      "step4": {
+        "title": "Rozwiązanie",
+        "description": "Naprawa, wymiana lub kredyt"
+      }
+    },
+    "requirements": {
+      "title": "Wymagania dotyczące zwrotu",
+      "rmaNumber": "Wszystkie zwroty muszą mieć numer RMA przed wysyłką",
+      "timeframe": "Produkty muszą zostać zwrócone w ciągu 30 dni od upoważnienia RMA",
+      "invoice": "Dołącz kopię oryginalnej faktury do zwracanych produktów",
+      "packaging": "Napisz wyraźnie numer RMA na zewnętrznej stronie pudełka wysyłkowego"
+    },
+    "important": {
+      "title": "Ważne informacje",
+      "description": "Klient jest odpowiedzialny za koszty wysyłki zwrotu, chyba że produkt jest wadliwy w ramach gwarancji. Skontaktuj się z naszym zespołem wsparcia przed zwróceniem jakichkolwiek produktów."
+    },
+    "cta": {
+      "heading": "Gotowy do rozpoczęcia?",
+      "description": "Skontaktuj się z naszym zespołem wsparcia, aby rozpocząć proces zwrotu",
+      "contactButton": "Skontaktuj się ze wsparciem",
+      "warrantyButton": "Zobacz informacje o gwarancji"
+    }
+  },
   "resourcesPage": {
     "metadata": {
       "description": "Bezpłatna dokumentacja techniczna dla produktów automatyki budynkowej BAPI. Pobierz instrukcje instalacji, karty danych, notatki aplikacyjne, rysunki CAD i BACnet PICS. Kompleksowe zasoby dla inżynierów, wykonawców i zarządców obiektów.",

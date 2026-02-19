@@ -99,7 +99,7 @@ export default async function CaseStudiesPage({ params }: Props) {
                       </div>
                     </div>
                     <button className="font-semibold text-primary-500 hover:text-primary-600">
-                      {t('readMore')} →
+                      {t('readMore')}
                     </button>
                   </div>
                 </div>

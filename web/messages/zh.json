@@ -1381,5 +1381,25 @@
       },
       "cta": "联系支持团队"
     }
+  },
+  "resourcesPage": {
+    "metadata": {
+      "description": "BAPI楼宇自动化产品的免费技术文档。下载安装指南、数据表、应用说明、CAD图纸和BACnet PICS。为工程师、承包商和设施管理员提供全面的资源。",
+      "keywords": "BAPI文档, 安装指南, 传感器数据表, 技术规格, 应用说明, BACnet PICS, CAD图纸, 接线图, 楼宇自动化资源, HVAC文档, 控制器手册, 传感器规格"
+    },
+    "hero": {
+      "title": "技术资源",
+      "subtitle": "访问BAPI楼宇自动化产品的全面文档、安装指南和技术规格。"
+    },
+    "stats": {
+      "documents": "1,100+份文档",
+      "guides": "安装指南",
+      "datasheets": "产品数据表",
+      "catalogs": "技术目录"
+    },
+    "appNotesCta": {
+      "title": "寻找技术指南？",
+      "description": "浏览我们的应用说明集合，获取深入的技术指导、最佳实践和实施示例 →"
+    }
   }
 }

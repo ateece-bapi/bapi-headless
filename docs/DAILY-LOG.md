@@ -24,7 +24,7 @@
 **Files:** 12 modified (10 language files + 2 new automation scripts)  
 **Changes:** 2,437 insertions, 136 deletions  
 **Impact:** 🟢 Phase 1 Priority 1 COMPLETE - All languages ready for April 10 launch  
-**Cost:** ~$8-12 USD (vs $400-600 for professional translation service)  
+**Cost:** ~$8-12 USD (vs $350-600 for Crowdin AI or ~$1,800-2,100 for human professional translation).  
 **Quality:** Professional B2B tone, technical term preservation, contextual accuracy
 
 ### Translation Gap Analysis & Completion
@@ -109,7 +109,7 @@ Executed: `node scripts/translate-final-gaps.js`
 
 *Polish Mega Menu (3 translations):*
 - 3 missing keys in megaMenu section
-- Completed Polish to 100% across all sections
+- Brought Polish from 100% in Tier 1 to 100% completion across all sections by filling the 3 missing Mega Menu keys
 
 ### Translation Quality Assurance
 
@@ -189,12 +189,12 @@ Executed: `node scripts/translate-final-gaps.js`
 - Control: Limited, requires Crowdin workflow
 
 **Alternative B (Professional Human Translation):**
-- Cost: $1,800-2,100 (1,745 strings × $0.10-0.12/word avg)
+- Cost: $1,800-2,100 (estimated 18,000-21,000 words × ~$0.10/word)
 - Time: 7-10 business days
 - Quality: 95-98% accuracy
 - Control: Moderate, requires revision rounds
 
-**Savings: $1,788-2,088 USD (99%+ cost reduction)**
+**Savings: $1,788-2,088 USD (99%+ cost reduction vs human translation, 97-98% vs Crowdin AI)**
 
 ### Git History
 

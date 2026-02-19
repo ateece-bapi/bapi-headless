@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     {
       title: t('metadata.title'),
       description: t('metadata.description'),
-      path: 'support/warranty',
+      path: `${locale}/support/warranty`,
     },
     locale,
   );

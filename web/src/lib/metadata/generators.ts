@@ -332,21 +332,6 @@ export function generatePageMetadata(page: PageMetadataInput, locale: string = '
   const image = page.image || SITE_CONFIG.defaultImage;
   const type: 'website' | 'article' = page.type || 'website';
 
-  // Map locale to OpenGraph locale format (language_TERRITORY)
-  const localeToOgLocale: Record<string, string> = {
-    en: 'en_US',
-    de: 'de_DE',
-    fr: 'fr_FR',
-    es: 'es_ES',
-    ja: 'ja_JP',
-    zh: 'zh_CN',
-    vi: 'vi_VN',
-    ar: 'ar_SA',
-    th: 'th_TH',
-    pl: 'pl_PL',
-    hi: 'hi_IN',
-  };
-
   return {
     title,
     description: page.description,
@@ -357,7 +342,7 @@ export function generatePageMetadata(page: PageMetadataInput, locale: string = '
       description: page.description,
       url: getAbsoluteUrl(page.path),
       siteName: SITE_CONFIG.siteName,
-      locale: localeToOgLocale[locale] || 'en_US',
+      locale: LOCALE_TO_OG_LOCALE[locale] || 'en_US',
       images: [
         {
           url: image.startsWith('http') ? image : getAbsoluteUrl(image),
@@ -381,19 +366,7 @@ export function generatePageMetadata(page: PageMetadataInput, locale: string = '
     },
     alternates: {
       canonical: `/${locale}/${page.path}`,
-      languages: {
-        'en-US': `/en/${page.path}`,
-        'de-DE': `/de/${page.path}`,
-        'fr-FR': `/fr/${page.path}`,
-        'es-ES': `/es/${page.path}`,
-        'ja-JP': `/ja/${page.path}`,
-        'zh-CN': `/zh/${page.path}`,
-        'vi-VN': `/vi/${page.path}`,
-        'ar-SA': `/ar/${page.path}`,
-        'th-TH': `/th/${page.path}`,
-        'pl-PL': `/pl/${page.path}`,
-        'hi-IN': `/hi/${page.path}`,
-      },
+      languages: generateLanguageAlternates(page.path),
     },
     robots: {
       index: true,

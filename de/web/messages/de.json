@@ -1546,5 +1546,93 @@
       "orderPlaced": "Order Placed!",
       "orderPlacedMessage": "Your order has been placed successfully."
     }
+  },
+  "supportPage": {
+    "metadata": {
+      "description": "Expert technical support for BAPI building automation products. Access installation docs, troubleshooting guides, RMA requests, and live chat with engineers. Free technical assistance for all BAPI sensors, controllers, and wireless systems.",
+      "keywords": "building automation support, HVAC sensor technical support, BACnet controller help, sensor installation guide, technical documentation, troubleshooting guide, RMA request, warranty support, sensor calibration, installation assistance"
+    },
+    "hero": {
+      "title": "BAPI Support Center",
+      "subtitle": "Expert technical support for building automation professionals"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "Contact Support",
+        "description": "Speak with our technical support team"
+      },
+      "applicationNotes": {
+        "title": "Application Notes",
+        "description": "Technical guides and installation instructions"
+      },
+      "rmaRequest": {
+        "title": "RMA Request",
+        "description": "Return merchandise authorization"
+      }
+    },
+    "resources": {
+      "title": "Support Resources",
+      "technicalDocs": {
+        "title": "Technical Documentation",
+        "links": {
+          "applicationNotes": "Application Notes",
+          "installationGuides": "Installation Guides",
+          "productDatasheets": "Product Datasheets",
+          "sensorSpecs": "Sensor Specifications"
+        }
+      },
+      "toolsUtilities": {
+        "title": "Tools & Utilities",
+        "links": {
+          "productSelector": "Product Selector",
+          "crossReference": "Cross Reference Tool",
+          "wirelessVerification": "Wireless Site Verification",
+          "catalogPriceBook": "Catalog & Price Book"
+        }
+      },
+      "serviceReturns": {
+        "title": "Service & Returns",
+        "links": {
+          "rmaRequest": "RMA Request Form",
+          "serviceBulletins": "Service Bulletins",
+          "contactSupport": "Contact Technical Support"
+        }
+      }
+    },
+    "contact": {
+      "title": "Need Direct Support?",
+      "subtitle": "Our technical support team is ready to help",
+      "phone": {
+        "title": "Phone Support",
+        "hours": "Monday - Friday, 8am - 5pm CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "Email Support",
+        "description": "Technical questions and support",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "Contact Support Team"
+    }
+  },
+  "resourcesPage": {
+    "metadata": {
+      "description": "Free technical documentation for BAPI building automation products. Download installation guides, datasheets, application notes, CAD drawings, and BACnet PICS. Comprehensive resources for engineers, contractors, and facility managers.",
+      "keywords": "BAPI documentation, installation guides, sensor datasheets, technical specifications, application notes, BACnet PICS, CAD drawings, wiring diagrams, building automation resources, HVAC documentation, controller manuals, sensor specs"
+    },
+    "hero": {
+      "title": "Technical Resources",
+      "subtitle": "Access comprehensive documentation, installation guides, and technical specifications for BAPI building automation products."
+    },
+    "stats": {
+      "documents": "1,100+ Documents",
+      "guides": "Installation Guides",
+      "datasheets": "Product Datasheets",
+      "catalogs": "Technical Catalogs"
+    },
+    "appNotesCta": {
+      "title": "Looking for Technical Guides?",
+      "description": "Browse our collection of Application Notes for in-depth technical guidance, best practices, and implementation examples →"
+    }
   }
 }

@@ -1475,5 +1475,25 @@
       "button": "Descargar Todas las Hojas (ZIP)",
       "packageInfo": "Paquete completo • 125 MB • Actualizado enero 2026"
     }
+  },
+  "installationPage": {
+    "metadata": {
+      "title": "Guías de Instalación | Recursos BAPI",
+      "description": "Guías de instalación completas y documentación para productos BAPI.",
+      "keywords": "guías de instalación, instalación de sensores, instalación BAPI, instalación sensor temperatura, configuración sensor inalámbrico, instalación calidad aire, montaje sensor presión, documentación instalación, guías PDF, instalación técnica"
+    },
+    "hero": {
+      "title": "Guías de Instalación",
+      "subtitle": "Instrucciones paso a paso para todos los productos BAPI"
+    },
+    "search": {
+      "placeholder": "Buscar guías de instalación..."
+    },
+    "downloadButton": "Descargar PDF",
+    "support": {
+      "heading": "¿Necesita Ayuda con la Instalación?",
+      "description": "Nuestro equipo técnico está aquí para ayudar con cualquier pregunta de instalación",
+      "ctaButton": "Contactar Soporte"
+    }
   }
 }

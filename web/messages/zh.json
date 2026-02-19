@@ -1475,5 +1475,25 @@
       "button": "下载所有数据表 (ZIP)",
       "packageInfo": "完整包 • 125 MB • 2026年1月更新"
     }
+  },
+  "installationPage": {
+    "metadata": {
+      "title": "安装指南 | BAPI资源",
+      "description": "BAPI产品的全面安装指南和文档。",
+      "keywords": "安装指南, 传感器安装, BAPI安装, 温度传感器安装, 无线传感器设置, 空气质量安装, 压力传感器安装, 安装文档, PDF指南, 技术安装"
+    },
+    "hero": {
+      "title": "安装指南",
+      "subtitle": "所有BAPI产品的分步骤安装说明"
+    },
+    "search": {
+      "placeholder": "搜索安装指南..."
+    },
+    "downloadButton": "下载PDF",
+    "support": {
+      "heading": "需要安装支持？",
+      "description": "我们的技术团队随时准备帮助您解决任何安装问题",
+      "ctaButton": "联系支持"
+    }
   }
 }

@@ -1455,8 +1455,7 @@
     "metadata": {
       "title": "Công Cụ Tham Chiếu Chéo | BAPI",
       "description": "Tìm sản phẩm tương đương BAPI cho các sản phẩm cạnh tranh. Công cụ tham chiếu chéo cho cảm biến tự động hóa tòa nhà.",
-      "keywords": "tham chiếu chéo, so sánh đối thủ, sản phẩm tương đương BAPI, thay thế Honeywell, thay thế Johnson Controls, thay thế Siemens, tham chiếu chéo cảm biến, khả năng tương thích tự động hóa tòa nhà, thay thế sản phẩm",
-      "keywords": "tham chiếu chéo, so sánh đối thủ, sản phẩm tương đương BAPI"
+      "keywords": "tham chiếu chéo, so sánh đối thủ, sản phẩm tương đương BAPI, thay thế Honeywell, thay thế Johnson Controls, thay thế Siemens, tham chiếu chéo cảm biến, khả năng tương thích tự động hóa tòa nhà, thay thế sản phẩm"
     },
     "hero": {
       "title": "Công Cụ Tham Chiếu Chéo",
@@ -1524,6 +1523,26 @@
       "description": "Tải gói tờ dữ liệu hoàn chỉnh của chúng tôi với tất cả thông số sản phẩm",
       "button": "Tải Tất Cả Tờ Dữ Liệu (ZIP)",
       "packageInfo": "Gói hoàn chỉnh • 125 MB • Cập nhật tháng 1 năm 2026"
+    }
+  },
+  "installationPage": {
+    "metadata": {
+      "title": "Hướng Dẫn Cài Đặt | Nguồn BAPI",
+      "description": "Hướng dẫn cài đặt và tài liệu toàn diện cho các sản phẩm BAPI.",
+      "keywords": "hướng dẫn cài đặt, cài đặt cảm biến, cài đặt BAPI, cài đặt cảm biến nhiệt độ, thiết lập cảm biến không dây, cài đặt chất lượng không khí, lắp đặt cảm biến áp suất, tài liệu cài đặt, hướng dẫn PDF, cài đặt kỹ thuật"
+    },
+    "hero": {
+      "title": "Hướng Dẫn Cài Đặt",
+      "subtitle": "Hướng dẫn cài đặt từng bước cho tất cả sản phẩm BAPI"
+    },
+    "search": {
+      "placeholder": "Tìm kiếm hướng dẫn cài đặt..."
+    },
+    "downloadButton": "Tải PDF",
+    "support": {
+      "heading": "Cần Hỗ Trợ Cài Đặt?",
+      "description": "Đội kỹ thuật của chúng tôi sẵn sàng giúp đỡ bất kỳ câu hỏi cài đặt nào",
+      "ctaButton": "Liên Hệ Hỗ Trợ"
     }
   }
 }

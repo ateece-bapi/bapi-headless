@@ -1484,5 +1484,25 @@
       "button": "Alle Datenblätter herunterladen (ZIP)",
       "packageInfo": "Vollständiges Paket • 125 MB • Aktualisiert Januar 2026"
     }
+  },
+  "installationPage": {
+    "metadata": {
+      "title": "Installationsanleitungen | BAPI Ressourcen",
+      "description": "Umfassende Installationsanleitungen und Dokumentation für BAPI-Produkte.",
+      "keywords": "Installationsanleitungen, Sensorinstallation, BAPI-Installation, Temperatursensor-Installation, Wireless-Sensor-Setup, Luftqualitäts-Installation, Drucksensor-Montage, Installationsdokumentation, PDF-Anleitungen, technische Installation"
+    },
+    "hero": {
+      "title": "Installationsanleitungen",
+      "subtitle": "Schritt-für-Schritt-Installationsanweisungen für alle BAPI-Produkte"
+    },
+    "search": {
+      "placeholder": "Installationsanleitungen durchsuchen..."
+    },
+    "downloadButton": "PDF herunterladen",
+    "support": {
+      "heading": "Benötigen Sie Installationsunterstützung?",
+      "description": "Unser technisches Team hilft Ihnen gerne bei allen Installationsfragen",
+      "ctaButton": "Support kontaktieren"
+    }
   }
 }

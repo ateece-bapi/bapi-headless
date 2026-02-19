@@ -1315,6 +1315,10 @@
     }
   },
   "supportPage": {
+    "metadata": {
+      "description": "Support technique expert pour les produits d'automatisation des bâtiments BAPI. Accédez aux documents d'installation, aux guides de dépannage, aux demandes RMA et au chat en direct avec les ingénieurs. Assistance technique gratuite pour tous les capteurs, contrôleurs et systèmes sans fil BAPI.",
+      "keywords": "support automatisation bâtiment, support technique capteur HVAC, aide contrôleur BACnet, guide installation capteur, documentation technique, guide dépannage, demande RMA, support garantie, calibration capteur, assistance installation"
+    },
     "hero": {
       "title": "Centre d'Assistance BAPI",
       "subtitle": "Support technique expert pour les professionnels de l'automatisation des bâtiments"

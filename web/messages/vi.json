@@ -1364,6 +1364,10 @@
     }
   },
   "supportPage": {
+    "metadata": {
+      "description": "Hỗ trợ kỹ thuật chuyên nghiệp cho các sản phẩm tự động hóa tòa nhà BAPI. Truy cập tài liệu cài đặt, hướng dẫn khắc phục sự cố, yêu cầu RMA và trò chuyện trực tuyến với kỹ sư. Hỗ trợ kỹ thuật miễn phí cho tất cả cảm biến, bộ điều khiển và hệ thống không dây BAPI.",
+      "keywords": "hỗ trợ tự động hóa tòa nhà, hỗ trợ kỹ thuật cảm biến HVAC, trợ giúp bộ điều khiển BACnet, hướng dẫn cài đặt cảm biến, tài liệu kỹ thuật, hướng dẫn khắc phục sự cố, yêu cầu RMA, hỗ trợ bảo hành, hiệu chuẩn cảm biến, hỗ trợ cài đặt"
+    },
     "hero": {
       "title": "Trung Tâm Hỗ Trợ BAPI",
       "subtitle": "Hỗ trợ kỹ thuật chuyên nghiệp cho các chuyên gia tự động hóa tòa nhà"

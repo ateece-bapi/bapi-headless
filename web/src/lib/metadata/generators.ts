@@ -22,6 +22,55 @@ import type {
 } from './types';
 
 /**
+ * Locale to OpenGraph locale mapping
+ * Maps our locale codes (en, de, fr, etc.) to OpenGraph format (en_US, de_DE, etc.)
+ */
+export const LOCALE_TO_OG_LOCALE: Record<string, string> = {
+  en: 'en_US',
+  de: 'de_DE',
+  fr: 'fr_FR',
+  es: 'es_ES',
+  ja: 'ja_JP',
+  zh: 'zh_CN',
+  vi: 'vi_VN',
+  ar: 'ar_SA',
+  th: 'th_TH',
+  pl: 'pl_PL',
+  hi: 'hi_IN',
+};
+
+/**
+ * Locale to hreflang mapping
+ * Maps our locale codes to hreflang format for language alternates
+ */
+export const LOCALE_TO_HREFLANG: Record<string, string> = {
+  en: 'en-US',
+  de: 'de-DE',
+  fr: 'fr-FR',
+  es: 'es-ES',
+  ja: 'ja-JP',
+  zh: 'zh-CN',
+  vi: 'vi-VN',
+  ar: 'ar-SA',
+  th: 'th-TH',
+  pl: 'pl-PL',
+  hi: 'hi-IN',
+};
+
+/**
+ * Generate language alternates for all supported locales
+ * @param basePath - The base path for the alternate URLs (e.g., 'products/sensor-name')
+ * @returns Object with hreflang keys and paths for all 11 locales
+ */
+function generateLanguageAlternates(basePath: string): Record<string, string> {
+  const alternates: Record<string, string> = {};
+  for (const [locale, hreflang] of Object.entries(LOCALE_TO_HREFLANG)) {
+    alternates[hreflang] = `/${locale}/${basePath}`;
+  }
+  return alternates;
+}
+
+/**
  * Site-wide configuration
  * Used as fallback and for consistent branding across all pages
  */
@@ -139,7 +188,7 @@ export function generateProductMetadata(
       description: aiDescription.slice(0, 160),
       url: getAbsoluteUrl(canonicalUrl),
       siteName: SITE_CONFIG.siteName,
-      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      locale: LOCALE_TO_OG_LOCALE[locale] || 'en_US',
       images: [
         {
           url: primaryImage.startsWith('http') ? primaryImage : getAbsoluteUrl(primaryImage),
@@ -173,10 +222,7 @@ export function generateProductMetadata(
     },
     alternates: {
       canonical: `/${locale}/${canonicalUrl}`,
-      languages: {
-        'en-US': `/en/${canonicalUrl}`,
-        'es-ES': `/es/${canonicalUrl}`,
-      },
+      languages: generateLanguageAlternates(canonicalUrl),
     },
     robots: {
       index: true,
@@ -240,7 +286,7 @@ export function generateCategoryMetadata(
       description: aiDescription.slice(0, 160),
       url: getAbsoluteUrl(canonicalUrl),
       siteName: SITE_CONFIG.siteName,
-      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      locale: LOCALE_TO_OG_LOCALE[locale] || 'en_US',
       images: [
         {
           url: image.startsWith('http') ? image : getAbsoluteUrl(image),
@@ -259,10 +305,7 @@ export function generateCategoryMetadata(
     },
     alternates: {
       canonical: `/${locale}/${canonicalUrl}`,
-      languages: {
-        'en-US': `/en/${canonicalUrl}`,
-        'es-ES': `/es/${canonicalUrl}`,
-      },
+      languages: generateLanguageAlternates(canonicalUrl),
     },
     robots: {
       index: true,
@@ -289,6 +332,21 @@ export function generatePageMetadata(page: PageMetadataInput, locale: string = '
   const image = page.image || SITE_CONFIG.defaultImage;
   const type: 'website' | 'article' = page.type || 'website';
 
+  // Map locale to OpenGraph locale format (language_TERRITORY)
+  const localeToOgLocale: Record<string, string> = {
+    en: 'en_US',
+    de: 'de_DE',
+    fr: 'fr_FR',
+    es: 'es_ES',
+    ja: 'ja_JP',
+    zh: 'zh_CN',
+    vi: 'vi_VN',
+    ar: 'ar_SA',
+    th: 'th_TH',
+    pl: 'pl_PL',
+    hi: 'hi_IN',
+  };
+
   return {
     title,
     description: page.description,
@@ -299,7 +357,7 @@ export function generatePageMetadata(page: PageMetadataInput, locale: string = '
       description: page.description,
       url: getAbsoluteUrl(page.path),
       siteName: SITE_CONFIG.siteName,
-      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      locale: localeToOgLocale[locale] || 'en_US',
       images: [
         {
           url: image.startsWith('http') ? image : getAbsoluteUrl(image),
@@ -325,7 +383,16 @@ export function generatePageMetadata(page: PageMetadataInput, locale: string = '
       canonical: `/${locale}/${page.path}`,
       languages: {
         'en-US': `/en/${page.path}`,
+        'de-DE': `/de/${page.path}`,
+        'fr-FR': `/fr/${page.path}`,
         'es-ES': `/es/${page.path}`,
+        'ja-JP': `/ja/${page.path}`,
+        'zh-CN': `/zh/${page.path}`,
+        'vi-VN': `/vi/${page.path}`,
+        'ar-SA': `/ar/${page.path}`,
+        'th-TH': `/th/${page.path}`,
+        'pl-PL': `/pl/${page.path}`,
+        'hi-IN': `/hi/${page.path}`,
       },
     },
     robots: {
@@ -365,7 +432,7 @@ export function generateDefaultMetadata(locale: string = 'en'): Metadata {
       description: SITE_CONFIG.defaultDescription,
       url: SITE_CONFIG.siteUrl,
       siteName: SITE_CONFIG.siteName,
-      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      locale: LOCALE_TO_OG_LOCALE[locale] || 'en_US',
       images: [
         {
           url: getAbsoluteUrl(SITE_CONFIG.defaultImage),
@@ -385,10 +452,7 @@ export function generateDefaultMetadata(locale: string = 'en'): Metadata {
     },
     alternates: {
       canonical: `/${locale}`,
-      languages: {
-        'en-US': '/en',
-        'es-ES': '/es',
-      },
+      languages: generateLanguageAlternates(''),
     },
     robots: {
       index: true,

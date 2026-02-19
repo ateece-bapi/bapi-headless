@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     {
       title: t('metadata.title'),
       description: t('metadata.description'),
+      path: 'resources/cross-reference',
       keywords: t('metadata.keywords').split(', '),
     },
     locale,

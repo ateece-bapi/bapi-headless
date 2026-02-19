@@ -1398,7 +1398,7 @@
     },
     "email": {
       "title": "メールサポート",
-      "description": "技術的な質問をお送りくださや24時間以内に回答いたします"
+      "description": "技術的な質問をお送りください。24時間以内に回答いたします。"
     },
     "location": {
       "title": "当社の所在地"
@@ -1413,11 +1413,11 @@
   "warrantyPage": {
     "metadata": {
       "title": "保証情報 | BAPI",
-      "description": "BAPIはビルディングオートメーション製品に業界最高島の5年保証を提供します。保証範囲とサポートについて詳しくご覧ください。"
+      "description": "BAPIはビルディングオートメーション製品に業界最高水準の5年保証を提供します。保証範囲とサポートについて詳しくご覧ください。"
     },
     "hero": {
       "title": "保証情報",
-      "subtitle": "全BAPI製品に業界最高島の5年保証"
+      "subtitle": "全BAPI製品に業界最高水準の5年保証"
     },
     "coverage": {
       "title": "保証範囲",
@@ -1428,7 +1428,7 @@
     },
     "covered": {
       "title": "保証対象",
-      "manufacturing": "材料および製造上の製造上の欠陥",
+      "manufacturing": "材料および製造上の欠陥",
       "materials": "通常の使用条件下で故障する製品材料",
       "workmanship": "組み立ておよび構造の欠陥"
     },

@@ -1443,7 +1443,7 @@
     "phone": {
       "title": "Hỗ Trợ Qua Điện Thoại",
       "description": "Nói chuyện trực tiếp với đội ngũ hỗ trợ kỹ thuật của chúng tôi",
-      "hours": "Thứhai - Thứsáu, 8am - 5pm CST"
+      "hours": "Thứ Hai - Thứ Sáu, 8am - 5pm CST"
     },
     "email": {
       "title": "Hỗ Trợ Qua Email",
@@ -1478,7 +1478,7 @@
     "covered": {
       "title": "Những Gì Được Bảo Hành",
       "manufacturing": "Lỗi sản xuất về vật liệu và tay nghề",
-      "materials": "V vật liệu sản phẩm bị hỏng trong điều kiện sử dụng bình thường",
+      "materials": "Vật liệu sản phẩm bị hỏng trong điều kiện sử dụng bình thường",
       "workmanship": "Lỗi lắp ráp và xây dựng"
     },
     "important": {

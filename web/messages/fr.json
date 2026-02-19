@@ -1588,7 +1588,7 @@
     },
     "steps": {
       "step1": "Étape 1 sur 4",
-      "question": "Quel type de mesure avez-vous besoin ?"
+      "question": "De quel type de mesure avez-vous besoin ?"
     },
     "options": {
       "temperature": "Température Seulement",

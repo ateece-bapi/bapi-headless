@@ -38,24 +38,44 @@ export const useRegionStore = create<RegionStore>()(
     }),
     {
       name: 'bapi-region-storage',
+      version: 1,
       // Migration: Handle deprecated 'asia' region from previous version
       migrate: (persistedState: unknown) => {
-        // Type assertion for legacy state that may contain deprecated 'asia' region
-        const state = persistedState as {
-          regionCode?: string;
-          region?: Region;
-          languageCode?: LanguageCode;
-        };
-        
+        const state = persistedState as
+          | Partial<{
+              regionCode: string; // Use string to allow deprecated 'asia'
+              region: Region;
+              languageCode: LanguageCode;
+            }>
+          | undefined;
+
         // If user has deprecated 'asia' region, migrate to 'sg' (Singapore hub)
         if (state?.regionCode === 'asia') {
           return {
             ...state,
             regionCode: 'sg' as RegionCode,
             region: REGIONS.sg,
+            languageCode: state.languageCode ?? 'en',
           };
         }
-        return persistedState;
+
+        // If there is no persisted state, fall back to defaults
+        if (!state) {
+          return {
+            regionCode: 'us',
+            region: REGIONS.us,
+            languageCode: 'en',
+          };
+        }
+
+        // Return a normalized, well-typed state when no migration is needed
+        const normalizedRegionCode = (state.regionCode as RegionCode) ?? 'us';
+
+        return {
+          regionCode: normalizedRegionCode,
+          region: state.region ?? REGIONS[normalizedRegionCode],
+          languageCode: state.languageCode ?? 'en',
+        };
       },
     }
   )

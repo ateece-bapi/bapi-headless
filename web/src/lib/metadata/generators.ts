@@ -186,7 +186,7 @@ export function generateProductMetadata(
       type: 'website', // Use 'website' for product pages (Next.js doesn't support 'product' type)
       title,
       description: aiDescription.slice(0, 160),
-      url: getAbsoluteUrl(canonicalUrl),
+      url: getAbsoluteUrl(`${locale}/${canonicalUrl}`),
       siteName: SITE_CONFIG.siteName,
       locale: LOCALE_TO_OG_LOCALE[locale] || 'en_US',
       images: [
@@ -284,7 +284,7 @@ export function generateCategoryMetadata(
       type: 'website',
       title,
       description: aiDescription.slice(0, 160),
-      url: getAbsoluteUrl(canonicalUrl),
+      url: getAbsoluteUrl(`${locale}/${canonicalUrl}`),
       siteName: SITE_CONFIG.siteName,
       locale: LOCALE_TO_OG_LOCALE[locale] || 'en_US',
       images: [

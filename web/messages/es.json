@@ -1495,5 +1495,121 @@
       "description": "Nuestro equipo técnico está aquí para ayudar con cualquier pregunta de instalación",
       "ctaButton": "Contactar Soporte"
     }
+  },
+  "videosPage": {
+    "metadata": {
+      "title": "Biblioteca de Videos | Recursos BAPI",
+      "description": "Demostraciones de productos, guías de instalación y videos técnicos de BAPI."
+    },
+    "hero": {
+      "title": "Biblioteca de Videos",
+      "subtitle": "Demostraciones, tutoriales y guías técnicas"
+    },
+    "comingSoon": {
+      "badge": "Próximamente en Fase 2",
+      "heading": "Biblioteca de Videos Próximamente",
+      "description": "Estamos preparando una biblioteca de videos completa con demostraciones de productos, guías de instalación y tutoriales técnicos. Esta función estará disponible en la Fase 2.",
+      "note": "Mientras tanto, contacte a nuestro equipo de soporte técnico para asistencia con productos."
+    },
+    "categories": {
+      "heading": "Categorías de Video Planificadas",
+      "productDemos": "Demostraciones de Productos",
+      "productDemosDesc": "Características y capacidades",
+      "installation": "Guías de Instalación",
+      "installationDesc": "Tutoriales paso a paso",
+      "training": "Capacitación Técnica",
+      "trainingDesc": "Temas avanzados"
+    },
+    "support": {
+      "heading": "¿Necesita Soporte Ahora?",
+      "description": "Contacte a nuestro equipo técnico para asistencia inmediata",
+      "button": "Contactar Soporte"
+    }
+  },
+  "webinarsPage": {
+    "metadata": {
+      "title": "Webinars | Recursos BAPI",
+      "description": "Webinars en vivo y grabados sobre temas de automatización de edificios de expertos BAPI."
+    },
+    "hero": {
+      "title": "Webinars",
+      "subtitle": "Webinars educativos de expertos BAPI"
+    },
+    "comingSoon": {
+      "badge": "Próximamente en Fase 2",
+      "heading": "Programa de Webinars Próximamente",
+      "description": "Estamos desarrollando un programa de webinars integral que cubre mejores prácticas de automatización de edificios, nuevas tecnologías y análisis profundos de productos. Esta función estará disponible en la Fase 2.",
+      "note": "Vuelva pronto para horarios de webinars próximos y grabaciones."
+    },
+    "topics": {
+      "heading": "Temas de Webinars Planificados",
+      "training": "Capacitación de Productos",
+      "trainingDesc": "Descripciones detalladas de productos",
+      "bestPractices": "Mejores Prácticas",
+      "bestPracticesDesc": "Estándares de la industria y consejos",
+      "liveQA": "Sesiones de Preguntas y Respuestas en Vivo",
+      "liveQADesc": "Discusiones interactivas con expertos"
+    },
+    "stayUpdated": {
+      "heading": "Manténgase Actualizado",
+      "description": "Contáctenos para recibir notificaciones sobre webinars próximos",
+      "button": "Recibir Notificaciones"
+    }
+  },
+  "caseStudiesPage": {
+    "metadata": {
+      "title": "Casos de Estudio | Recursos BAPI",
+      "description": "Historias de éxito reales y casos de estudio con soluciones de automatización de edificios BAPI."
+    },
+    "hero": {
+      "title": "Casos de Estudio",
+      "subtitle": "Historias de éxito del mundo real con soluciones BAPI"
+    },
+    "labels": {
+      "challenge": "Desafío",
+      "solution": "Solución",
+      "results": "Resultados"
+    },
+    "readMore": "Leer Caso de Estudio Completo",
+    "cta": {
+      "heading": "¿Listo para Comenzar su Proyecto?",
+      "description": "Permítanos ayudarlo a diseñar una solución para su edificio",
+      "button": "Solicitar Cotización"
+    }
+  },
+  "selectorPage": {
+    "metadata": {
+      "title": "Herramienta de Selección de Productos | BAPI",
+      "description": "Encuentre el sensor BAPI perfecto para su aplicación. Responda algunas preguntas para obtener recomendaciones de productos."
+    },
+    "hero": {
+      "title": "Selector de Productos",
+      "subtitle": "Encuentre el sensor perfecto para su proyecto de automatización de edificios"
+    },
+    "steps": {
+      "step1": "Paso 1 de 4",
+      "question": "¿Qué tipo de medición necesita?"
+    },
+    "options": {
+      "temperature": "Solo Temperatura",
+      "temperatureDesc": "Medir temperatura en espacios, conductos o exteriores",
+      "tempHumidity": "Temperatura y Humedad",
+      "tempHumidityDesc": "Monitorear temperatura y humedad relativa",
+      "airQuality": "Calidad del Aire (CO₂, VOC, PM)",
+      "airQualityDesc": "Medir CO₂, COV o partículas",
+      "pressure": "Presión",
+      "pressureDesc": "Monitorear presión diferencial o absoluta"
+    },
+    "buttons": {
+      "back": "Atrás",
+      "continue": "Continuar"
+    },
+    "browse": {
+      "heading": "O Navegar por Categoría",
+      "temperature": "Sensores de Temperatura",
+      "humidity": "Sensores de Humedad",
+      "wireless": "Productos Inalámbricos",
+      "airQuality": "Calidad del Aire"
+    }
   }
 }

@@ -340,7 +340,7 @@ export function generatePageMetadata(page: PageMetadataInput, locale: string = '
       type,
       title,
       description: page.description,
-      url: getAbsoluteUrl(page.path),
+      url: getAbsoluteUrl(`${locale}/${page.path}`),
       siteName: SITE_CONFIG.siteName,
       locale: LOCALE_TO_OG_LOCALE[locale] || 'en_US',
       images: [

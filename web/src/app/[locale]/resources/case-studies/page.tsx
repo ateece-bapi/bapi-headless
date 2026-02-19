@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FileText, Building2, Award, TrendingUp } from 'lucide-react';
+import { FileText, Building2, Award, TrendingUp, ArrowRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
 
@@ -98,9 +98,13 @@ export default async function CaseStudiesPage({ params }: Props) {
                         <p className="text-sm text-neutral-600">{study.results}</p>
                       </div>
                     </div>
-                    <button className="font-semibold text-primary-500 hover:text-primary-600">
-                      {t('readMore')}
-                    </button>
+                    <Link
+                      href={`/${locale}/resources/case-studies/${study.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="group/link inline-flex items-center gap-2 font-semibold text-primary-500 transition-all duration-300 hover:gap-3 hover:text-primary-600"
+                    >
+                      <span>{t('readMore')}</span>
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                    </Link>
                   </div>
                 </div>
               </article>

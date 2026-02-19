@@ -1495,5 +1495,121 @@
       "description": "技術チームが設置に関するあらゆる質問にお答えします",
       "ctaButton": "サポートに連絡"
     }
+  },
+  "videosPage": {
+    "metadata": {
+      "title": "ビデオライブラリ | BAPIリソース",
+      "description": "BAPIの製品デモ、設置ガイド、技術ビデオ。"
+    },
+    "hero": {
+      "title": "ビデオライブラリ",
+      "subtitle": "製品デモ、チュートリアル、技術ガイド"
+    },
+    "comingSoon": {
+      "badge": "フェーズ2で提供予定",
+      "heading": "ビデオライブラリ近日公開",
+      "description": "製品デモ、設置ガイド、技術チュートリアルを含む包括的なビデオライブラリを準備中です。この機能はフェーズ2で利用可能になります。",
+      "note": "現時点では、製品サポートについては技術サポートチームにお問い合わせください。"
+    },
+    "categories": {
+      "heading": "予定されているビデオカテゴリ",
+      "productDemos": "製品デモ",
+      "productDemosDesc": "機能と性能",
+      "installation": "設置ガイド",
+      "installationDesc": "段階的なチュートリアル",
+      "training": "技術トレーニング",
+      "trainingDesc": "高度なトピック"
+    },
+    "support": {
+      "heading": "今すぐサポートが必要ですか？",
+      "description": "即座のサポートについては技術チームにお問い合わせください",
+      "button": "サポートに連絡"
+    }
+  },
+  "webinarsPage": {
+    "metadata": {
+      "title": "ウェビナー | BAPIリソース",
+      "description": "BAPI専門家によるビルディングオートメーショントピックのライブおよび録画ウェビナー。"
+    },
+    "hero": {
+      "title": "ウェビナー",
+      "subtitle": "BAPI専門家による教育ウェビナー"
+    },
+    "comingSoon": {
+      "badge": "フェーズ2で提供予定",
+      "heading": "ウェビナープログラム近日公開",
+      "description": "ビルディングオートメーションのベストプラクティス、新技術、製品の詳細分析を網羅した包括的なウェビナープログラムを開発中です。この機能はフェーズ2で利用可能になります。",
+      "note": "今後のウェビナースケジュールと録画については近日中にご確認ください。"
+    },
+    "topics": {
+      "heading": "予定されているウェビナートピック",
+      "training": "製品トレーニング",
+      "trainingDesc": "詳細な製品概要",
+      "bestPractices": "ベストプラクティス",
+      "bestPracticesDesc": "業界標準とヒント",
+      "liveQA": "ライブQ&Aセッション",
+      "liveQADesc": "インタラクティブな専門家ディスカッション"
+    },
+    "stayUpdated": {
+      "heading": "最新情報を入手",
+      "description": "今後のウェビナーについての通知を受け取るにはお問い合わせください",
+      "button": "通知を受け取る"
+    }
+  },
+  "caseStudiesPage": {
+    "metadata": {
+      "title": "ケーススタディ | BAPIリソース",
+      "description": "BAPIビルディングオートメーションソリューションの実際の成功事例とケーススタディ。"
+    },
+    "hero": {
+      "title": "ケーススタディ",
+      "subtitle": "BAPIソリューションによる実際の成功事例"
+    },
+    "labels": {
+      "challenge": "課題",
+      "solution": "ソリューション",
+      "results": "結果"
+    },
+    "readMore": "完全なケーススタディを読む",
+    "cta": {
+      "heading": "プロジェクトを開始する準備はできましたか？",
+      "description": "建物のソリューション設計をお手伝いします",
+      "button": "見積もりを依頼"
+    }
+  },
+  "selectorPage": {
+    "metadata": {
+      "title": "製品セレクターツール | BAPI",
+      "description": "アプリケーションに最適なBAPIセンサーを見つけてください。いくつかの質問に答えて製品の推奨を受け取ります。"
+    },
+    "hero": {
+      "title": "製品セレクター",
+      "subtitle": "ビルディングオートメーションプロジェクトに最適なセンサーを見つける"
+    },
+    "steps": {
+      "step1": "ステップ1/4",
+      "question": "どのタイプの測定が必要ですか？"
+    },
+    "options": {
+      "temperature": "温度のみ",
+      "temperatureDesc": "スペース、ダクト、屋外の温度測定",
+      "tempHumidity": "温度と湿度",
+      "tempHumidityDesc": "温度と相対湿度の両方を監視",
+      "airQuality": "空気質（CO₂、VOC、PM）",
+      "airQualityDesc": "CO₂、VOC、または粒子状物質の測定",
+      "pressure": "圧力",
+      "pressureDesc": "差圧または絶対圧の監視"
+    },
+    "buttons": {
+      "back": "戻る",
+      "continue": "続ける"
+    },
+    "browse": {
+      "heading": "またはカテゴリで閲覧",
+      "temperature": "温度センサー",
+      "humidity": "湿度センサー",
+      "wireless": "ワイヤレス製品",
+      "airQuality": "空気質"
+    }
   }
 }

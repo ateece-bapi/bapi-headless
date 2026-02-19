@@ -1731,86 +1731,118 @@
   },
   "videosPage": {
     "metadata": {
-      "title": "Product Videos | BAPI Resources",
-      "description": "Watch product demonstration videos, installation tutorials, and technical training for BAPI building automation products.",
-      "keywords": "product videos, installation videos, BAPI tutorials, sensor demos, technical training, how-to videos, product demonstrations, video library, training videos, instructional videos"
+      "title": "Video Library | BAPI Resources",
+      "description": "Product demonstrations, installation guides, and technical videos from BAPI."
     },
     "hero": {
-      "title": "Product Videos",
-      "subtitle": "Watch demonstrations, tutorials, and technical training videos"
+      "title": "Video Library",
+      "subtitle": "Product demos, tutorials, and technical guides"
     },
-    "filter": {
-      "allCategories": "All Categories",
-      "categories": {
-        "installation": "Installation",
-        "product": "Product Demos",
-        "training": "Training",
-        "troubleshooting": "Troubleshooting"
-      }
+    "comingSoon": {
+      "badge": "Coming in Phase 2",
+      "heading": "Video Library Launching Soon",
+      "description": "We're preparing a comprehensive video library with product demonstrations, installation guides, and technical tutorials. This feature will be available in Phase 2.",
+      "note": "In the meantime, contact our technical support team for product assistance."
+    },
+    "categories": {
+      "heading": "Planned Video Categories",
+      "productDemos": "Product Demos",
+      "productDemosDesc": "Features and capabilities",
+      "installation": "Installation Guides",
+      "installationDesc": "Step-by-step tutorials",
+      "training": "Technical Training",
+      "trainingDesc": "Advanced topics"
+    },
+    "support": {
+      "heading": "Need Support Now?",
+      "description": "Contact our technical team for immediate assistance",
+      "button": "Contact Support"
     }
   },
   "webinarsPage": {
     "metadata": {
-      "title": "Webinars & Training | BAPI Resources",
-      "description": "Access recorded webinars, technical training sessions, and educational content for BAPI products.",
-      "keywords": "webinars, technical training, online training, BAPI education, recorded webinars, training sessions, technical sessions, building automation training, product training, educational content"
+      "title": "Webinars | BAPI Resources",
+      "description": "Live and recorded webinars on building automation topics from BAPI experts."
     },
     "hero": {
-      "title": "Webinars & Training",
-      "subtitle": "Free technical training and educational webinars"
+      "title": "Webinars",
+      "subtitle": "Educational webinars from BAPI experts"
     },
-    "tabs": {
-      "upcoming": "Upcoming",
-      "recorded": "Recorded"
+    "comingSoon": {
+      "badge": "Coming in Phase 2",
+      "heading": "Webinar Program Launching Soon",
+      "description": "We're developing a comprehensive webinar program covering building automation best practices, new technologies, and product deep-dives. This feature will be available in Phase 2.",
+      "note": "Check back soon for upcoming webinar schedules and recordings."
     },
-    "register": "Register Now",
-    "watch": "Watch Recording"
+    "topics": {
+      "heading": "Planned Webinar Topics",
+      "training": "Product Training",
+      "trainingDesc": "In-depth product overviews",
+      "bestPractices": "Best Practices",
+      "bestPracticesDesc": "Industry standards and tips",
+      "liveQA": "Live Q&A Sessions",
+      "liveQADesc": "Interactive expert discussions"
+    },
+    "stayUpdated": {
+      "heading": "Stay Updated",
+      "description": "Contact us to receive notifications about upcoming webinars",
+      "button": "Get Notified"
+    }
   },
   "caseStudiesPage": {
     "metadata": {
       "title": "Case Studies | BAPI Resources",
-      "description": "Read real-world case studies and success stories of BAPI product installations across various industries.",
-      "keywords": "case studies, success stories, BAPI projects, customer stories, installation examples, real-world applications, project case studies, building automation projects, industry examples, customer testimonials"
+      "description": "Real-world success stories and case studies featuring BAPI building automation solutions."
     },
     "hero": {
       "title": "Case Studies",
-      "subtitle": "Real-world success stories and project examples"
+      "subtitle": "Real-world success stories with BAPI solutions"
     },
-    "filter": {
-      "allIndustries": "All Industries",
-      "industries": {
-        "commercial": "Commercial",
-        "healthcare": "Healthcare",
-        "education": "Education",
-        "industrial": "Industrial",
-        "hospitality": "Hospitality"
-      }
+    "labels": {
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "results": "Results"
     },
-    "readMore": "Read Full Case Study"
+    "readMore": "Read Full Case Study",
+    "cta": {
+      "heading": "Ready to Start Your Project?",
+      "description": "Let us help you design a solution for your building",
+      "button": "Request a Quote"
+    }
   },
   "selectorPage": {
     "metadata": {
-      "title": "Product Selector Tool | BAPI Resources",
-      "description": "Find the right BAPI product for your application with our interactive product selector tool.",
-      "keywords": "product selector, find products, BAPI selector, product finder, application selector, sensor selector, product recommendation, interactive tool, product search, selection tool"
+      "title": "Product Selector Tool | BAPI",
+      "description": "Find the perfect BAPI sensor for your application. Answer a few questions to get product recommendations."
     },
     "hero": {
-      "title": "Product Selector Tool",
-      "subtitle": "Find the perfect product for your application"
+      "title": "Product Selector",
+      "subtitle": "Find the perfect sensor for your building automation project"
     },
     "steps": {
-      "step1": "Select Application",
-      "step2": "Choose Parameters",
-      "step3": "View Results"
+      "step1": "Step 1 of 4",
+      "question": "What type of measurement do you need?"
     },
-    "applications": {
-      "temperature": "Temperature Sensing",
-      "humidity": "Humidity Sensing",
-      "pressure": "Pressure Monitoring",
-      "airQuality": "Air Quality",
-      "wireless": "Wireless Solutions"
+    "options": {
+      "temperature": "Temperature Only",
+      "temperatureDesc": "Measure temperature in spaces, ducts, or outdoors",
+      "tempHumidity": "Temperature & Humidity",
+      "tempHumidityDesc": "Monitor both temperature and relative humidity",
+      "airQuality": "Air Quality (CO₂, VOC, PM)",
+      "airQualityDesc": "Measure CO₂, VOC, or particulate matter",
+      "pressure": "Pressure",
+      "pressureDesc": "Monitor differential or absolute pressure"
     },
-    "viewProduct": "View Product Details",
-    "startOver": "Start Over"
+    "buttons": {
+      "back": "Back",
+      "continue": "Continue"
+    },
+    "browse": {
+      "heading": "Or Browse by Category",
+      "temperature": "Temperature Sensors",
+      "humidity": "Humidity Sensors",
+      "wireless": "Wireless Products",
+      "airQuality": "Air Quality"
+    }
   }
 }

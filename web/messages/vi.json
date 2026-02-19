@@ -1544,5 +1544,121 @@
       "description": "Đội kỹ thuật của chúng tôi sẵn sàng giúp đỡ bất kỳ câu hỏi cài đặt nào",
       "ctaButton": "Liên Hệ Hỗ Trợ"
     }
+  },
+  "videosPage": {
+    "metadata": {
+      "title": "Thư Viện Video | Nguồn BAPI",
+      "description": "Trình diễn sản phẩm, hướng dẫn cài đặt và video kỹ thuật từ BAPI."
+    },
+    "hero": {
+      "title": "Thư Viện Video",
+      "subtitle": "Trình diễn sản phẩm, hướng dẫn và video kỹ thuật"
+    },
+    "comingSoon": {
+      "badge": "Sẽ ra mắt trong Giai đoạn 2",
+      "heading": "Thư Viện Video Sắp Ra Mắt",
+      "description": "Chúng tôi đang chuẩn bị một thư viện video toàn diện với các trình diễn sản phẩm, hướng dẫn cài đặt và hướng dẫn kỹ thuật. Tính năng này sẽ có sẵn trong Giai đoạn 2.",
+      "note": "Trong thời gian chờ đợi, vui lòng liên hệ đội hỗ trợ kỹ thuật của chúng tôi để được hỗ trợ sản phẩm."
+    },
+    "categories": {
+      "heading": "Danh Mục Video Dự Kiến",
+      "productDemos": "Trình Diễn Sản Phẩm",
+      "productDemosDesc": "Tính năng và khả năng",
+      "installation": "Hướng Dẫn Cài Đặt",
+      "installationDesc": "Hướng dẫn từng bước",
+      "training": "Đào Tạo Kỹ Thuật",
+      "trainingDesc": "Chủ đề nâng cao"
+    },
+    "support": {
+      "heading": "Cần Hỗ Trợ Ngay?",
+      "description": "Liên hệ đội kỹ thuật của chúng tôi để được hỗ trợ ngay lập tức",
+      "button": "Liên Hệ Hỗ Trợ"
+    }
+  },
+  "webinarsPage": {
+    "metadata": {
+      "title": "Hội Thảo Trực Tuyến | Nguồn BAPI",
+      "description": "Hội thảo trực tuyến trực tiếp và đã ghi về các chủ đề tự động hóa tòa nhà từ các chuyên gia BAPI."
+    },
+    "hero": {
+      "title": "Hội Thảo Trực Tuyến",
+      "subtitle": "Hội thảo giáo dục từ các chuyên gia BAPI"
+    },
+    "comingSoon": {
+      "badge": "Sẽ ra mắt trong Giai đoạn 2",
+      "heading": "Chương Trình Hội Thảo Sắp Ra Mắt",
+      "description": "Chúng tôi đang phát triển một chương trình hội thảo toàn diện bao gồm các phương pháp hay nhất về tự động hóa tòa nhà, công nghệ mới và phân tích sản phẩm chuyên sâu. Tính năng này sẽ có sẵn trong Giai đoạn 2.",
+      "note": "Vui lòng quay lại sớm để xem lịch trình hội thảo sắp tới và các bản ghi."
+    },
+    "topics": {
+      "heading": "Chủ Đề Hội Thảo Dự Kiến",
+      "training": "Đào Tạo Sản Phẩm",
+      "trainingDesc": "Tổng quan sản phẩm chi tiết",
+      "bestPractices": "Phương Pháp Hay Nhất",
+      "bestPracticesDesc": "Tiêu chuẩn ngành và mẹo",
+      "liveQA": "Phiên Hỏi & Đáp Trực Tiếp",
+      "liveQADesc": "Thảo luận chuyên gia tương tác"
+    },
+    "stayUpdated": {
+      "heading": "Cập Nhật Thông Tin",
+      "description": "Liên hệ chúng tôi để nhận thông báo về các hội thảo sắp tới",
+      "button": "Nhận Thông Báo"
+    }
+  },
+  "caseStudiesPage": {
+    "metadata": {
+      "title": "Nghiên Cứu Điển Hình | Nguồn BAPI",
+      "description": "Câu chuyện thành công thực tế và nghiên cứu điển hình về các giải pháp tự động hóa tòa nhà BAPI."
+    },
+    "hero": {
+      "title": "Nghiên Cứu Điển Hình",
+      "subtitle": "Câu chuyện thành công thực tế với giải pháp BAPI"
+    },
+    "labels": {
+      "challenge": "Thách Thức",
+      "solution": "Giải Pháp",
+      "results": "Kết Quả"
+    },
+    "readMore": "Đọc Nghiên Cứu Điển Hình Đầy Đủ",
+    "cta": {
+      "heading": "Sẵn Sàng Bắt Đầu Dự Án?",
+      "description": "Hãy để chúng tôi giúp bạn thiết kế giải pháp cho tòa nhà của bạn",
+      "button": "Yêu Cầu Báo Giá"
+    }
+  },
+  "selectorPage": {
+    "metadata": {
+      "title": "Công Cụ Chọn Sản Phẩm | BAPI",
+      "description": "Tìm cảm biến BAPI hoàn hảo cho ứng dụng của bạn. Trả lời một vài câu hỏi để nhận đề xuất sản phẩm."
+    },
+    "hero": {
+      "title": "Công Cụ Chọn Sản Phẩm",
+      "subtitle": "Tìm cảm biến hoàn hảo cho dự án tự động hóa tòa nhà của bạn"
+    },
+    "steps": {
+      "step1": "Bước 1 trong 4",
+      "question": "Bạn cần loại đo lường nào?"
+    },
+    "options": {
+      "temperature": "Chỉ Nhiệt Độ",
+      "temperatureDesc": "Đo nhiệt độ trong không gian, ống dẫn hoặc ngoài trời",
+      "tempHumidity": "Nhiệt Độ & Độ Ẩm",
+      "tempHumidityDesc": "Giám sát cả nhiệt độ và độ ẩm tương đối",
+      "airQuality": "Chất Lượng Không Khí (CO₂, VOC, PM)",
+      "airQualityDesc": "Đo CO₂, VOC hoặc bụi mịn",
+      "pressure": "Áp Suất",
+      "pressureDesc": "Giám sát áp suất chênh lệch hoặc tuyệt đối"
+    },
+    "buttons": {
+      "back": "Quay Lại",
+      "continue": "Tiếp Tục"
+    },
+    "browse": {
+      "heading": "Hoặc Duyệt Theo Danh Mục",
+      "temperature": "Cảm Biến Nhiệt Độ",
+      "humidity": "Cảm Biến Độ Ẩm",
+      "wireless": "Sản Phẩm Không Dây",
+      "airQuality": "Chất Lượng Không Khí"
+    }
   }
 }

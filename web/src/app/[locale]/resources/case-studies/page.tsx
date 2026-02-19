@@ -1,14 +1,29 @@
-import { Metadata } from 'next';
 import Link from 'next/link';
 import { FileText, Building2, Award, TrendingUp } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
+import { generatePageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Case Studies | BAPI Resources',
-  description:
-    'Real-world success stories and case studies featuring BAPI building automation solutions.',
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function CaseStudiesPage() {
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'caseStudiesPage' });
+
+  return generatePageMetadata(
+    {
+      title: t('metadata.title'),
+      description: t('metadata.description'),
+      path: 'resources/case-studies',
+    },
+    locale,
+  );
+}
+
+export default async function CaseStudiesPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'caseStudiesPage' });
   const caseStudies = [
     {
       title: 'University Campus Energy Management',
@@ -42,9 +57,9 @@ export default function CaseStudiesPage() {
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <FileText className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Case Studies</h1>
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
-              Real-world success stories with BAPI solutions
+              {t('hero.subtitle')}
             </p>
           </div>
         </div>
@@ -71,20 +86,20 @@ export default function CaseStudiesPage() {
                     <h2 className="mb-4 text-2xl font-bold text-neutral-900">{study.title}</h2>
                     <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
                       <div>
-                        <h3 className="mb-2 font-bold text-neutral-900">Challenge</h3>
+                        <h3 className="mb-2 font-bold text-neutral-900">{t('labels.challenge')}</h3>
                         <p className="text-sm text-neutral-600">{study.challenge}</p>
                       </div>
                       <div>
-                        <h3 className="mb-2 font-bold text-neutral-900">Solution</h3>
+                        <h3 className="mb-2 font-bold text-neutral-900">{t('labels.solution')}</h3>
                         <p className="text-sm text-neutral-600">{study.solution}</p>
                       </div>
                       <div>
-                        <h3 className="mb-2 font-bold text-neutral-900">Results</h3>
+                        <h3 className="mb-2 font-bold text-neutral-900">{t('labels.results')}</h3>
                         <p className="text-sm text-neutral-600">{study.results}</p>
                       </div>
                     </div>
                     <button className="font-semibold text-primary-500 hover:text-primary-600">
-                      Read Full Case Study →
+                      {t('readMore')} →
                     </button>
                   </div>
                 </div>
@@ -96,15 +111,15 @@ export default function CaseStudiesPage() {
 
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-2xl font-bold text-neutral-900">Ready to Start Your Project?</h2>
+          <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('cta.heading')}</h2>
           <p className="mb-6 text-neutral-600">
-            Let us help you design a solution for your building
+            {t('cta.description')}
           </p>
           <Link
             href="/request-quote"
             className="inline-block rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"
           >
-            Request a Quote
+            {t('cta.button')}
           </Link>
         </div>
       </section>

@@ -1495,5 +1495,121 @@
       "description": "我们的技术团队随时准备帮助您解决任何安装问题",
       "ctaButton": "联系支持"
     }
+  },
+  "videosPage": {
+    "metadata": {
+      "title": "视频库 | BAPI资源",
+      "description": "来自BAPI的产品演示、安装指南和技术视频。"
+    },
+    "hero": {
+      "title": "视频库",
+      "subtitle": "产品演示、教程和技术指南"
+    },
+    "comingSoon": {
+      "badge": "第二阶段推出",
+      "heading": "视频库即将推出",
+      "description": "我们正在准备一个包含产品演示、安装指南和技术教程的综合视频库。此功能将在第二阶段提供。",
+      "note": "与此同时，请联系我们的技术支持团队获取产品帮助。"
+    },
+    "categories": {
+      "heading": "计划中的视频类别",
+      "productDemos": "产品演示",
+      "productDemosDesc": "功能和特性",
+      "installation": "安装指南",
+      "installationDesc": "分步教程",
+      "training": "技术培训",
+      "trainingDesc": "高级主题"
+    },
+    "support": {
+      "heading": "现在需要支持？",
+      "description": "联系我们的技术团队获取即时帮助",
+      "button": "联系支持"
+    }
+  },
+  "webinarsPage": {
+    "metadata": {
+      "title": "网络研讨会 | BAPI资源",
+      "description": "来自BAPI专家的楼宇自动化主题的现场和录播网络研讨会。"
+    },
+    "hero": {
+      "title": "网络研讨会",
+      "subtitle": "来自BAPI专家的教育网络研讨会"
+    },
+    "comingSoon": {
+      "badge": "第二阶段推出",
+      "heading": "网络研讨会计划即将推出",
+      "description": "我们正在开发一个综合的网络研讨会计划，涵盖楼宇自动化最佳实践、新技术和产品深度解析。此功能将在第二阶段提供。",
+      "note": "敬请期待即将到来的网络研讨会时间表和录播内容。"
+    },
+    "topics": {
+      "heading": "计划中的网络研讨会主题",
+      "training": "产品培训",
+      "trainingDesc": "深入的产品概述",
+      "bestPractices": "最佳实践",
+      "bestPracticesDesc": "行业标准和技巧",
+      "liveQA": "现场问答会议",
+      "liveQADesc": "互动专家讨论"
+    },
+    "stayUpdated": {
+      "heading": "保持更新",
+      "description": "联系我们以接收有关即将举行的网络研讨会的通知",
+      "button": "获取通知"
+    }
+  },
+  "caseStudiesPage": {
+    "metadata": {
+      "title": "案例研究 | BAPI资源",
+      "description": "真实的成功案例和BAPI楼宇自动化解决方案的案例研究。"
+    },
+    "hero": {
+      "title": "案例研究",
+      "subtitle": "BAPI解决方案的真实成功案例"
+    },
+    "labels": {
+      "challenge": "挑战",
+      "solution": "解决方案",
+      "results": "结果"
+    },
+    "readMore": "阅读完整案例研究",
+    "cta": {
+      "heading": "准备开始您的项目？",
+      "description": "让我们帮助您为建筑设计解决方案",
+      "button": "请求报价"
+    }
+  },
+  "selectorPage": {
+    "metadata": {
+      "title": "产品选择工具 | BAPI",
+      "description": "为您的应用找到完美的BAPI传感器。回答几个问题以获得产品推荐。"
+    },
+    "hero": {
+      "title": "产品选择器",
+      "subtitle": "为您的楼宇自动化项目找到完美的传感器"
+    },
+    "steps": {
+      "step1": "第1步，共4步",
+      "question": "您需要什么类型的测量？"
+    },
+    "options": {
+      "temperature": "仅温度",
+      "temperatureDesc": "测量空间、管道或室外的温度",
+      "tempHumidity": "温度和湿度",
+      "tempHumidityDesc": "监测温度和相对湿度",
+      "airQuality": "空气质量（CO₂、VOC、PM）",
+      "airQualityDesc": "测量CO₂、VOC或颗粒物",
+      "pressure": "压力",
+      "pressureDesc": "监测差压或绝对压力"
+    },
+    "buttons": {
+      "back": "返回",
+      "continue": "继续"
+    },
+    "browse": {
+      "heading": "或按类别浏览",
+      "temperature": "温度传感器",
+      "humidity": "湿度传感器",
+      "wireless": "无线产品",
+      "airQuality": "空气质量"
+    }
   }
 }

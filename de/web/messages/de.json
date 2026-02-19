@@ -1615,6 +1615,113 @@
       "cta": "Contact Support Team"
     }
   },
+  "contactSupportPage": {
+    "metadata": {
+      "title": "Contact Support | BAPI",
+      "description": "Get expert technical support for BAPI building automation products. Phone, email, and on-site assistance available."
+    },
+    "hero": {
+      "title": "Contact Technical Support",
+      "subtitle": "Expert assistance for building automation professionals"
+    },
+    "phone": {
+      "title": "Phone Support",
+      "description": "Speak directly with our technical support team",
+      "hours": "Monday - Friday, 8am - 5pm CST"
+    },
+    "email": {
+      "title": "Email Support",
+      "description": "Send us your technical questions and we'll respond within 24 hours"
+    },
+    "location": {
+      "title": "Our Location"
+    },
+    "resources": {
+      "heading": "Additional Resources",
+      "description": "Explore our support center for guides, documentation, and tools",
+      "supportCenter": "Support Center",
+      "rmaRequest": "RMA Request"
+    }
+  },
+  "warrantyPage": {
+    "metadata": {
+      "title": "Warranty Information | BAPI",
+      "description": "BAPI offers industry-leading 5-year warranty on building automation products. Learn about our warranty coverage and support."
+    },
+    "hero": {
+      "title": "Warranty Information",
+      "subtitle": "Industry-leading 5-year warranty on all BAPI products"
+    },
+    "coverage": {
+      "title": "Warranty Coverage",
+      "description": "BAPI stands behind the quality and reliability of our products with a comprehensive 5-year warranty.",
+      "years": "5-Year Coverage",
+      "defects": "Manufacturing Defects",
+      "support": "Technical Support"
+    },
+    "covered": {
+      "title": "What's Covered",
+      "manufacturing": "Manufacturing defects in materials and workmanship",
+      "materials": "Product materials that fail under normal use conditions",
+      "workmanship": "Assembly and construction defects"
+    },
+    "important": {
+      "title": "Important Information",
+      "description": "Warranty does not cover damage from improper installation, misuse, or normal wear and tear. Contact our support team for specific warranty questions."
+    },
+    "cta": {
+      "heading": "Need Help?",
+      "description": "Our support team is here to assist with warranty questions and claims",
+      "contactButton": "Contact Support",
+      "rmaButton": "Start RMA Request"
+    }
+  },
+  "returnsPage": {
+    "metadata": {
+      "title": "Returns & RMA | BAPI",
+      "description": "Request a Return Merchandise Authorization for BAPI products. Fast processing and expert support for returns and repairs."
+    },
+    "hero": {
+      "title": "Returns & RMA Process",
+      "subtitle": "Return Merchandise Authorization for BAPI products"
+    },
+    "process": {
+      "title": "RMA Process",
+      "step1": {
+        "title": "Contact Support",
+        "description": "Reach out to our support team"
+      },
+      "step2": {
+        "title": "Receive RMA Number",
+        "description": "Get authorization within 24 hours"
+      },
+      "step3": {
+        "title": "Ship Product",
+        "description": "Return with RMA number on package"
+      },
+      "step4": {
+        "title": "Resolution",
+        "description": "Repair, replacement, or credit"
+      }
+    },
+    "requirements": {
+      "title": "Return Requirements",
+      "rmaNumber": "All returns must have an RMA number before shipping",
+      "timeframe": "Products must be returned within 30 days of RMA authorization",
+      "invoice": "Include a copy of the original invoice with returned products",
+      "packaging": "Write RMA number clearly on outside of shipping box"
+    },
+    "important": {
+      "title": "Important Information",
+      "description": "Customer is responsible for return shipping costs unless product is defective under warranty. Contact our support team before returning any products."
+    },
+    "cta": {
+      "heading": "Ready to Start?",
+      "description": "Contact our support team to begin the return process",
+      "contactButton": "Contact Support",
+      "warrantyButton": "View Warranty Info"
+    }
+  },
   "resourcesPage": {
     "metadata": {
       "description": "Free technical documentation for BAPI building automation products. Download installation guides, datasheets, application notes, CAD drawings, and BACnet PICS. Comprehensive resources for engineers, contractors, and facility managers.",

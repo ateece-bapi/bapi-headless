@@ -323,9 +323,9 @@
 
 ## 📋 Phase 1 Priorities (Launch: April 10, 2026)
 
-### Priority 1: Translation Services & Regional Support — 🟢 100% COMPLETE ✅
+### Priority 1: Translation Services & Regional Support — � ~72% Complete
 
-**ALL ITEMS COMPLETED (Feb 18, 2026):**
+**CORE INFRASTRUCTURE & MAJOR SECTIONS COMPLETED:**
 - ✅ Tier 1 translations (276 keys × 11 languages)
 - ✅ **Tier 2 Company Pages translations** (552 keys × 11 languages) - **COMPLETED TODAY**
   - ✅ All 6 sections: about, careers, missionValues, whyBapi, contact, news
@@ -375,11 +375,11 @@
   - ✅ 46/46 currency tests passing
 
 **Remaining (0.5-1 days):**
-- ⏳ **Tier 2 Support Pages Translations** (0.5-1 days)
-  - Support subpages: Contact Support, Warranty, Returns (~20 keys × 10 languages = 200 translations)
+- ⏳ **Tier 2 Support Subpages Translations** (0.5-1 days)
+  - Support subpages: Contact Support, Warranty, Returns (~20 keys × 11 languages = 220 translations)
   - Main Support page: ✅ COMPLETE (60 keys × 11 languages, merged as PR #271)
-  - Resources section: ✅ COMPLETE (111 keys × 11 languages, commit e44b8cc)
-  - Total remaining: ~200 translations
+  - Resources section: ✅ COMPLETE (111 keys × 11 languages, merged as PR #279)
+  - Total remaining: ~220 translations (English source + 10 non-English translations)
 
 **Note:** Core infrastructure 100% complete. Company Pages 100% translated. Resources section 100% translated (8/8 pages). Main Support page complete. Only 3 Support subpages remain for full i18n coverage.
 

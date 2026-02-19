@@ -1382,6 +1382,113 @@
       "cta": "Contactar Equipo de Soporte"
     }
   },
+  "contactSupportPage": {
+    "metadata": {
+      "title": "Contactar Soporte | BAPI",
+      "description": "Obtenga soporte técnico experto para productos de automatización de edificios BAPI. Asistencia telefónica, por correo electrónico y en sitio disponible."
+    },
+    "hero": {
+      "title": "Contactar Soporte Técnico",
+      "subtitle": "Asistencia experta para profesionales de automatización de edificios"
+    },
+    "phone": {
+      "title": "Soporte Telefónico",
+      "description": "Hable directamente con nuestro equipo de soporte técnico",
+      "hours": "Lunes - Viernes, 8am - 5pm CST"
+    },
+    "email": {
+      "title": "Soporte por Correo Electrónico",
+      "description": "Envíenos sus preguntas técnicas y le responderemos dentro de 24 horas"
+    },
+    "location": {
+      "title": "Nuestra Ubicación"
+    },
+    "resources": {
+      "heading": "Recursos Adicionales",
+      "description": "Explore nuestro centro de soporte para guías, documentación y herramientas",
+      "supportCenter": "Centro de Soporte",
+      "rmaRequest": "Solicitud RMA"
+    }
+  },
+  "warrantyPage": {
+    "metadata": {
+      "title": "Información de Garantía | BAPI",
+      "description": "BAPI ofrece una garantía líder en la industria de 5 años en productos de automatización de edificios. Conozca nuestra cobertura de garantía y soporte."
+    },
+    "hero": {
+      "title": "Información de Garantía",
+      "subtitle": "Garantía líder en la industria de 5 años en todos los productos BAPI"
+    },
+    "coverage": {
+      "title": "Cobertura de Garantía",
+      "description": "BAPI respalda la calidad y confiabilidad de nuestros productos con una garantía integral de 5 años.",
+      "years": "Cobertura de 5 Años",
+      "defects": "Defectos de Fabricación",
+      "support": "Soporte Técnico"
+    },
+    "covered": {
+      "title": "Qué Está Cubierto",
+      "manufacturing": "Defectos de fabricación en materiales y mano de obra",
+      "materials": "Materiales del producto que fallen en condiciones de uso normal",
+      "workmanship": "Defectos de ensamblaje y construcción"
+    },
+    "important": {
+      "title": "Información Importante",
+      "description": "La garantía no cubre daños por instalación incorrecta, mal uso o desgaste normal. Contacte a nuestro equipo de soporte para preguntas específicas sobre garantía."
+    },
+    "cta": {
+      "heading": "¿Necesita Ayuda?",
+      "description": "Nuestro equipo de soporte está aquí para ayudar con preguntas y reclamaciones de garantía",
+      "contactButton": "Contactar Soporte",
+      "rmaButton": "Iniciar Solicitud RMA"
+    }
+  },
+  "returnsPage": {
+    "metadata": {
+      "title": "Devoluciones y RMA | BAPI",
+      "description": "Solicite una Autorización de Devolución de Mercancía para productos BAPI. Procesamiento rápido y soporte experto para devoluciones y reparaciones."
+    },
+    "hero": {
+      "title": "Proceso de Devoluciones y RMA",
+      "subtitle": "Autorización de Devolución de Mercancía para productos BAPI"
+    },
+    "process": {
+      "title": "Proceso RMA",
+      "step1": {
+        "title": "Contactar Soporte",
+        "description": "Comuníquese con nuestro equipo de soporte"
+      },
+      "step2": {
+        "title": "Recibir Número RMA",
+        "description": "Obtener autorización dentro de 24 horas"
+      },
+      "step3": {
+        "title": "Enviar Producto",
+        "description": "Devolver con número RMA en el paquete"
+      },
+      "step4": {
+        "title": "Resolución",
+        "description": "Reparación, reemplazo o crédito"
+      }
+    },
+    "requirements": {
+      "title": "Requisitos de Devolución",
+      "rmaNumber": "Todas las devoluciones deben tener un número RMA antes del envío",
+      "timeframe": "Los productos deben devolverse dentro de 30 días de la autorización RMA",
+      "invoice": "Incluya una copia de la factura original con los productos devueltos",
+      "packaging": "Escriba el número RMA claramente en el exterior de la caja de envío"
+    },
+    "important": {
+      "title": "Información Importante",
+      "description": "El cliente es responsable de los costos de envío de devolución a menos que el producto sea defectuoso bajo garantía. Contacte a nuestro equipo de soporte antes de devolver productos."
+    },
+    "cta": {
+      "heading": "¿Listo para Comenzar?",
+      "description": "Contacte a nuestro equipo de soporte para iniciar el proceso de devolución",
+      "contactButton": "Contactar Soporte",
+      "warrantyButton": "Ver Información de Garantía"
+    }
+  },
   "resourcesPage": {
     "metadata": {
       "description": "Documentación técnica gratuita para productos de automatización de edificios BAPI. Descargue guías de instalación, hojas de datos, notas de aplicación, dibujos CAD y PICS BACnet. Recursos completos para ingenieros, contratistas y administradores de instalaciones.",

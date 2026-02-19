@@ -1313,5 +1313,69 @@
         "button": "お問い合わせ"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "BAPIサポートセンター",
+      "subtitle": "ビル自動化の専門家向け技術サポート"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "サポートに連絡",
+        "description": "技術サポートチームと対話"
+      },
+      "applicationNotes": {
+        "title": "アプリケーションノート",
+        "description": "技術ガイドと設置手順"
+      },
+      "rmaRequest": {
+        "title": "RMA申請",
+        "description": "返品承認"
+      }
+    },
+    "resources": {
+      "title": "サポートリソース",
+      "technicalDocs": {
+        "title": "技術文書",
+        "links": {
+          "applicationNotes": "アプリケーションノート",
+          "installationGuides": "設置ガイド",
+          "productDatasheets": "製品データシート",
+          "sensorSpecs": "センサー仕様"
+        }
+      },
+      "toolsUtilities": {
+        "title": "ツールとユーティリティ",
+        "links": {
+          "productSelector": "製品セレクター",
+          "crossReference": "相互参照ツール",
+          "wirelessVerification": "ワイヤレスサイト検証",
+          "catalogPriceBook": "カタログと価格表"
+        }
+      },
+      "serviceReturns": {
+        "title": "サービスと返品",
+        "links": {
+          "rmaRequest": "RMA申請フォーム",
+          "serviceBulletins": "サービス通知",
+          "contactSupport": "技術サポートに連絡"
+        }
+      }
+    },
+    "contact": {
+      "title": "直接サポートが必要ですか？",
+      "subtitle": "当社の技術サポートチームがお手伝いします",
+      "phone": {
+        "title": "電話サポート",
+        "hours": "月曜日～金曜日、午前8時～午後5時 CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "メールサポート",
+        "description": "技術的な質問とサポート",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "サポートチームに連絡"
+    }
   }
 }

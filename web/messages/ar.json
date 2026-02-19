@@ -1342,5 +1342,69 @@
         "button": "اتصل بنا"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "مركز دعم BAPI",
+      "subtitle": "دعم فني متخصص لخبراء أتمتة المباني"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "الاتصال بالدعم",
+        "description": "تحدث مع فريق الدعم الفني"
+      },
+      "applicationNotes": {
+        "title": "ملاحظات التطبيق",
+        "description": "أدلة فنية وتعليمات التثبيت"
+      },
+      "rmaRequest": {
+        "title": "طلب RMA",
+        "description": "تفويض إرجاع البضائع"
+      }
+    },
+    "resources": {
+      "title": "موارد الدعم",
+      "technicalDocs": {
+        "title": "الوثائق الفنية",
+        "links": {
+          "applicationNotes": "ملاحظات التطبيق",
+          "installationGuides": "أدلة التثبيت",
+          "productDatasheets": "صفحات بيانات المنتج",
+          "sensorSpecs": "مواصفات المستشعر"
+        }
+      },
+      "toolsUtilities": {
+        "title": "الأدوات والمرافق",
+        "links": {
+          "productSelector": "محدد المنتج",
+          "crossReference": "أداة المرجع المتقاطع",
+          "wirelessVerification": "التحقق من الموقع اللاسلكي",
+          "catalogPriceBook": "الكتالوج وقائمة الأسعار"
+        }
+      },
+      "serviceReturns": {
+        "title": "الخدمة والإرجاع",
+        "links": {
+          "rmaRequest": "نموذج طلب RMA",
+          "serviceBulletins": "نشرات الخدمة",
+          "contactSupport": "الاتصال بالدعم الفني"
+        }
+      }
+    },
+    "contact": {
+      "title": "هل تحتاج إلى دعم مباشر؟",
+      "subtitle": "فريق الدعم الفني لدينا جاهز للمساعدة",
+      "phone": {
+        "title": "الدعم الهاتفي",
+        "hours": "الاثنين - الجمعة، 8 صباحًا - 5 مساءً CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "دعم البريد الإلكتروني",
+        "description": "الأسئلة الفنية والدعم",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "الاتصال بفريق الدعم"
+    }
   }
 }

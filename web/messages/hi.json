@@ -1530,5 +1530,69 @@
         "button": "हमसे संपर्क करें"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "BAPI सहायता केंद्र",
+      "subtitle": "बिल्डिंग ऑटोमेशन पेशेवरों के लिए विशेषज्ञ तकनीकी सहायता"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "सहायता से संपर्क करें",
+        "description": "हमारी तकनीकी सहायता टीम से बात करें"
+      },
+      "applicationNotes": {
+        "title": "एप्लिकेशन नोट्स",
+        "description": "तकनीकी गाइड और स्थापना निर्देश"
+      },
+      "rmaRequest": {
+        "title": "RMA अनुरोध",
+        "description": "माल वापसी प्राधिकरण"
+      }
+    },
+    "resources": {
+      "title": "सहायता संसाधन",
+      "technicalDocs": {
+        "title": "तकनीकी दस्तावेज़ीकरण",
+        "links": {
+          "applicationNotes": "एप्लिकेशन नोट्स",
+          "installationGuides": "स्थापना गाइड",
+          "productDatasheets": "उत्पाद डेटाशीट",
+          "sensorSpecs": "सेंसर विनिर्देश"
+        }
+      },
+      "toolsUtilities": {
+        "title": "उपकरण और उपयोगिताएं",
+        "links": {
+          "productSelector": "उत्पाद चयनकर्ता",
+          "crossReference": "क्रॉस रेफ़रेंस टूल",
+          "wirelessVerification": "वायरलेस साइट सत्यापन",
+          "catalogPriceBook": "कैटलॉग और मूल्य पुस्तक"
+        }
+      },
+      "serviceReturns": {
+        "title": "सेवा और रिटर्न",
+        "links": {
+          "rmaRequest": "RMA अनुरोध फॉर्म",
+          "serviceBulletins": "सेवा बुलेटिन",
+          "contactSupport": "तकनीकी सहायता से संपर्क करें"
+        }
+      }
+    },
+    "contact": {
+      "title": "प्रत्यक्ष सहायता चाहिए?",
+      "subtitle": "हमारी तकनीकी सहायता टीम मदद के लिए तैयार है",
+      "phone": {
+        "title": "फोन सहायता",
+        "hours": "सोमवार - शुक्रवार, सुबह 8 बजे - शाम 5 बजे CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "ईमेल सहायता",
+        "description": "तकनीकी प्रश्न और सहायता",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "सहायता टीम से संपर्क करें"
+    }
   }
 }

@@ -1313,5 +1313,69 @@
         "button": "联系我们"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "BAPI 支持中心",
+      "subtitle": "为楼宇自动化专业人士提供专业技术支持"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "联系支持",
+        "description": "与我们的技术支持团队交谈"
+      },
+      "applicationNotes": {
+        "title": "应用说明",
+        "description": "技术指南和安装说明"
+      },
+      "rmaRequest": {
+        "title": "RMA 申请",
+        "description": "退货授权"
+      }
+    },
+    "resources": {
+      "title": "支持资源",
+      "technicalDocs": {
+        "title": "技术文档",
+        "links": {
+          "applicationNotes": "应用说明",
+          "installationGuides": "安装指南",
+          "productDatasheets": "产品数据表",
+          "sensorSpecs": "传感器规格"
+        }
+      },
+      "toolsUtilities": {
+        "title": "工具与实用程序",
+        "links": {
+          "productSelector": "产品选择器",
+          "crossReference": "交叉参考工具",
+          "wirelessVerification": "无线站点验证",
+          "catalogPriceBook": "产品目录和价格手册"
+        }
+      },
+      "serviceReturns": {
+        "title": "服务与退货",
+        "links": {
+          "rmaRequest": "RMA 申请表",
+          "serviceBulletins": "服务公告",
+          "contactSupport": "联系技术支持"
+        }
+      }
+    },
+    "contact": {
+      "title": "需要直接支持？",
+      "subtitle": "我们的技术支持团队随时准备提供帮助",
+      "phone": {
+        "title": "电话支持",
+        "hours": "周一至周五，上午8点至下午5点 CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "电子邮件支持",
+        "description": "技术问题和支持",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "联系支持团队"
+    }
   }
 }

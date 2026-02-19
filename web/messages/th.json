@@ -1,6 +1,40 @@
 {
-  "common": {},
-  "nav": {},
+  "common": {
+    "loading": "กำลังโหลด...",
+    "error": "เกิดข้อผิดพลาด",
+    "success": "สำเร็จ",
+    "tryAgain": "ลองอีกครั้ง",
+    "cancel": "ยกเลิก",
+    "save": "บันทึก",
+    "delete": "ลบ",
+    "edit": "แก้ไข",
+    "close": "ปิด",
+    "back": "ย้อนกลับ",
+    "next": "ถัดไป",
+    "previous": "ก่อนหน้า",
+    "submit": "ส่ง",
+    "confirm": "ยืนยัน",
+    "learnMore": "เรียนรู้เพิ่มเติม",
+    "viewAll": "ดูทั้งหมด",
+    "readMore": "อ่านเพิ่มเติม",
+    "showMore": "แสดงเพิ่มเติม",
+    "showLess": "แสดงน้อยลง",
+    "search": "ค้นหา",
+    "filter": "กรอง",
+    "sort": "จัดเรียง",
+    "clearAll": "ล้างทั้งหมด",
+    "apply": "ใช้งาน",
+    "reset": "รีเซ็ต"
+  },
+  "nav": {
+    "products": "ผลิตภัณฑ์",
+    "applications": "การประยุกต์ใช้",
+    "support": "การสนับสนุน",
+    "company": "บริษัท",
+    "cart": "ตะกร้าสินค้า",
+    "account": "บัญชี",
+    "signIn": "เข้าสู่ระบบ"
+  },
   "megaMenu": {
     "badges": {
       "popular": "ยอดนิยม",
@@ -188,7 +222,45 @@
       }
     }
   },
-  "products": {},
+  "products": {
+    "title": "ผลิตภัณฑ์",
+    "description": "เรียกดูแคตตาล็อกสินค้าของเราทั้งหมด",
+    "addToCart": "เพิ่มลงในตะกร้า",
+    "addedToCart": "เพิ่มลงในตะกร้าแล้ว!",
+    "outOfStock": "สินค้าหมด",
+    "backInStock": "มีสินค้าเข้ามาใหม่",
+    "price": "ราคา",
+    "sku": "รหัสสินค้า",
+    "partNumber": "หมายเลขชิ้นส่วน",
+    "availability": "สถานะสินค้า",
+    "inStock": "มีสินค้าในสต็อก",
+    "quantity": "จำนวน",
+    "specifications": "รายละเอียดทางเทคนิค",
+    "features": "คุณสมบัติ",
+    "documentation": "เอกสารประกอบ",
+    "relatedProducts": "สินค้าที่เกี่ยวข้อง",
+    "viewDetails": "ดูรายละเอียด",
+    "compareProducts": "เปรียบเทียบสินค้า",
+    "requestQuote": "ขอใบเสนอราคา",
+    "downloadDatasheet": "ดาวน์โหลดข้อมูลจำเพาะ",
+    "technicalSupport": "การสนับสนุนทางเทคนิค",
+    "filters": {
+      "title": "ตัวกรอง",
+      "category": "หมวดหมู่",
+      "priceRange": "ช่วงราคา",
+      "inStockOnly": "มีสินค้าในสต็อกเท่านั้น",
+      "clearFilters": "ล้างตัวกรอง"
+    },
+    "sort": {
+      "title": "จัดเรียงตาม",
+      "featured": "สินค้าแนะนำ",
+      "nameAsc": "ชื่อ (A-Z)",
+      "nameDesc": "ชื่อ (Z-A)",
+      "priceLowHigh": "ราคา: ต่ำไปสูง",
+      "priceHighLow": "ราคา: สูงไปต่ำ",
+      "newest": "ใหม่ที่สุด"
+    }
+  },
   "home": {
     "hero": {
       "title": "สำหรับอาคารอัตโนมัติ มีเซนเซอร์ที่แม่นยำ",
@@ -423,14 +495,175 @@
       "follow": "ติดตามเรา"
     }
   },
-  "region": {},
-  "units": {},
-  "errors": {},
-  "auth": {},
-  "cart": {},
-  "checkout": {},
-  "forms": {},
-  "accessibility": {},
+  "region": {
+    "selectLanguage": "เลือกภาษา",
+    "selectRegion": "เลือกภูมิภาค",
+    "currency": "สกุลเงิน",
+    "measurements": "การวัด",
+    "temperature": "อุณหภูมิ",
+    "pressure": "ความดัน",
+    "unitSystem": {
+      "metric": "เมตริก (°C, bar)",
+      "imperial": "อิมพีเรียล (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "อเมริกาเหนือ",
+      "europe": "ยุโรป",
+      "asia": "เอเชีย",
+      "middleEast": "ตะวันออกกลาง",
+      "latinAmerica": "ละตินอเมริกา",
+      "australia": "ออสเตรเลียและแปซิฟิก"
+    },
+    "languages": {
+      "en": "ภาษาอังกฤษ",
+      "de": "เยอรมัน (German)",
+      "fr": "ฝรั่งเศส (French)",
+      "es": "สเปน (Spanish)",
+      "ja": "ญี่ปุ่น (Japanese)",
+      "zh": "จีน (Chinese)",
+      "vi": "เวียดนาม (Vietnamese)",
+      "ar": "อาหรับ (Arabic)"
+    },
+    "currencies": {
+      "usd": "ดอลลาร์สหรัฐ ($)",
+      "eur": "ยูโร (€)",
+      "gbp": "ปอนด์สเตอร์ลิง (£)",
+      "cad": "ดอลลาร์แคนาดา ($)",
+      "jpy": "เยน (¥)",
+      "cny": "หยวน (¥)",
+      "vnd": "ดองเวียดนาม (₫)",
+      "aed": "ดิรฮัมอาหรับเอมิเรตส์ (د.إ)"
+    }
+  },
+  "units": {
+    "temperature": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kelvin": "K"
+    },
+    "pressure": {
+      "bar": "bar",
+      "psi": "PSI",
+      "pa": "Pa",
+      "kpa": "kPa",
+      "inWc": "inWC"
+    },
+    "length": {
+      "mm": "มม.",
+      "cm": "ซม.",
+      "m": "ม.",
+      "inch": "นิ้ว",
+      "ft": "ฟุต"
+    }
+  },
+  "errors": {
+    "generic": "เกิดข้อผิดพลาดบางอย่าง",
+    "network": "เกิดข้อผิดพลาดเกี่ยวกับเครือข่าย โปรดตรวจสอบการเชื่อมต่อของคุณ",
+    "notFound": "ไม่พบหน้าที่ระบุ",
+    "unauthorized": "คุณต้องเข้าสู่ระบบเพื่อเข้าถึงหน้านี้",
+    "serverError": "เกิดข้อผิดพลาดที่เซิร์ฟเวอร์ โปรดลองอีกครั้งในภายหลัง",
+    "validationError": "โปรดตรวจสอบข้อมูลของคุณและลองอีกครั้ง",
+    "addToCartFailed": "ไม่สามารถเพิ่มรายการลงในตะกร้าได้",
+    "productNotFound": "ไม่พบสินค้า",
+    "cartEmpty": "ตะกร้าของคุณว่างเปล่า",
+    "checkoutFailed": "การชำระเงินล้มเหลว โปรดลองอีกครั้ง"
+  },
+  "auth": {
+    "signIn": "เข้าสู่ระบบ",
+    "signOut": "ออกจากระบบ",
+    "signUp": "ลงทะเบียน",
+    "profile": "ข้อมูลส่วนตัว",
+    "account": "บัญชีของฉัน",
+    "dashboard": "แดชบอร์ด",
+    "settings": "การตั้งค่า",
+    "orders": "คำสั่งซื้อ",
+    "favorites": "รายการโปรด",
+    "quotes": "ใบเสนอราคา",
+    "addresses": "ที่อยู่",
+    "paymentMethods": "วิธีการชำระเงิน",
+    "welcome": "ยินดีต้อนรับ",
+    "welcomeBack": "ยินดีต้อนรับกลับ",
+    "loginRequired": "กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ",
+    "logout": "ออกจากระบบ",
+    "myProfile": "ข้อมูลส่วนตัวของฉัน"
+  },
+  "cart": {
+    "title": "ตะกร้าสินค้า",
+    "empty": "ตะกร้าของคุณว่างเปล่า",
+    "emptyDescription": "เรียกดูสินค้าของเราเพื่อเพิ่มรายการลงในตะกร้า",
+    "checkout": "ดำเนินการชำระเงิน",
+    "continueShopping": "เลือกซื้อสินค้าต่อ",
+    "subtotal": "ยอดรวม",
+    "tax": "ภาษี",
+    "shipping": "ค่าจัดส่ง",
+    "total": "ยอดรวมทั้งหมด",
+    "itemCount": "{count} {count, plural, =1 {รายการ} other {รายการ}}",
+    "removeItem": "ลบรายการ",
+    "updateQuantity": "อัปเดตจำนวน",
+    "applyCoupon": "ใช้คูปอง",
+    "couponCode": "รหัสคูปอง",
+    "couponApplied": "ใช้คูปองสำเร็จ",
+    "couponInvalid": "รหัสคูปองไม่ถูกต้อง",
+    "cartUpdated": "ตะกร้าถูกอัปเดต"
+  },
+  "checkout": {
+    "title": "การชำระเงิน",
+    "shipping": "ข้อมูลการจัดส่ง",
+    "payment": "ข้อมูลการชำระเงิน",
+    "review": "ตรวจสอบคำสั่งซื้อ",
+    "placeOrder": "ยืนยันคำสั่งซื้อ",
+    "orderSummary": "สรุปคำสั่งซื้อ",
+    "billingAddress": "ที่อยู่ในการเรียกเก็บเงิน",
+    "shippingAddress": "ที่อยู่ในการจัดส่ง",
+    "sameAsBilling": "เหมือนกับที่อยู่ในการเรียกเก็บเงิน",
+    "paymentMethod": "วิธีการชำระเงิน",
+    "creditCard": "บัตรเครดิต",
+    "cardNumber": "หมายเลขบัตร",
+    "expiryDate": "วันหมดอายุ",
+    "cvv": "CVV",
+    "nameOnCard": "ชื่อบนบัตร",
+    "orderTotal": "ยอดรวมคำสั่งซื้อ",
+    "terms": "ข้อกำหนดและเงื่อนไข",
+    "acceptTerms": "ฉันยอมรับข้อกำหนดและเงื่อนไข",
+    "processing": "กำลังดำเนินการคำสั่งซื้อของคุณ...",
+    "orderComplete": "คำสั่งซื้อเสร็จสมบูรณ์!",
+    "orderNumber": "หมายเลขคำสั่งซื้อ",
+    "thankYou": "ขอบคุณสำหรับคำสั่งซื้อของคุณ"
+  },
+  "forms": {
+    "firstName": "ชื่อ",
+    "lastName": "นามสกุล",
+    "email": "ที่อยู่อีเมล",
+    "phone": "หมายเลขโทรศัพท์",
+    "company": "ชื่อบริษัท",
+    "address": "ที่อยู่",
+    "address2": "อพาร์ทเมนท์, ห้อง ฯลฯ (ตัวเลือก)",
+    "city": "เมือง",
+    "state": "รัฐ / จังหวัด",
+    "zipCode": "รหัสไปรษณีย์",
+    "country": "ประเทศ",
+    "message": "ข้อความ",
+    "subject": "หัวข้อ",
+    "required": "จำเป็น",
+    "optional": "ตัวเลือก",
+    "invalidEmail": "ที่อยู่อีเมลไม่ถูกต้อง",
+    "invalidPhone": "หมายเลขโทรศัพท์ไม่ถูกต้อง",
+    "fieldRequired": "ฟิลด์นี้จำเป็นต้องกรอก",
+    "selectOption": "เลือกตัวเลือก",
+    "enterValue": "ป้อนค่า"
+  },
+  "accessibility": {
+    "skipToContent": "ข้ามไปยังเนื้อหาหลัก",
+    "openMenu": "เปิดเมนู",
+    "closeMenu": "ปิดเมนู",
+    "openCart": "เปิดตะกร้าสินค้า",
+    "closeCart": "ปิดตะกร้าสินค้า",
+    "previousSlide": "สไลด์ก่อนหน้า",
+    "nextSlide": "สไลด์ถัดไป",
+    "pageNavigation": "การนำทางหน้าเว็บ",
+    "loading": "กำลังโหลดเนื้อหา",
+    "searchResults": "ผลการค้นหา"
+  },
   "productPage": {
     "summary": {
       "title": "สรุปผลิตภัณฑ์",
@@ -1156,7 +1389,13 @@
         "phone": "+44 (0) 1252 548410",
         "addressLine1": "BAPI Distribution Centre, North 1c",
         "addressLine2": "Aldershot GU12 4RG",
-        "addressLine3": "สหราชอาณาจักร/Column_area/europe_rma"
+        "addressLine3": "สหราชอาณาจักร/Column_area/europe_rma",
+        "phoneLabel": "โทรศัพท์",
+        "addressLabel": "ที่อยู่",
+        "rmaInstructions": {
+          "strong": "สำหรับคำขอ RMA (Return Material Authorization)",
+          "text": "โปรดติดต่อตัวแทนหรือตัวแทนจำหน่ายในท้องถิ่นของคุณ"
+        }
       },
       "globalPresence": {
         "badge": "ที่ตั้งของเรา",
@@ -1166,7 +1405,17 @@
       "cta": {
         "title": "พร้อมที่จะเริ่มต้นหรือไม่?",
         "description": "ติดต่อทีมของเราเพื่อหารือเกี่ยวกับข้อกำหนดโครงการของคุณ และค้นพบโซลูชันเซ็นเซอร์ที่สมบูรณ์แบบสำหรับความต้องการของคุณ",
-        "button": "ส่งข้อความ"
+        "button": "ส่งข้อความ",
+        "weekday": {
+          "label": "วันธรรมดา",
+          "hours": "8:00 น. - 17:00 น.",
+          "timezone": "เวลามาตรฐานกลาง"
+        },
+        "weekend": {
+          "label": "วันหยุด",
+          "status": "ปิด",
+          "days": "วันเสาร์และวันอาทิตย์"
+        }
       }
     },
     "news": {

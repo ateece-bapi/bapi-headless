@@ -1,24 +1,78 @@
 {
   "common": {
-    "language": "日本語",
-    "region": "地域",
-    "currency": "通貨",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "tryAgain": "もう一度お試しください",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "close": "閉じる",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "submit": "送信",
+    "confirm": "確認",
+    "learnMore": "詳細を確認する",
+    "viewAll": "すべて表示",
+    "readMore": "続きを読む",
+    "showMore": "さらに表示",
+    "showLess": "表示を減らす",
     "search": "検索",
-    "cart": "カート",
-    "signIn": "ログイン",
-    "signOut": "ログアウト",
-    "backToTop": "トップへ戻る"
+    "filter": "フィルター",
+    "sort": "並べ替え",
+    "clearAll": "すべてクリア",
+    "apply": "適用",
+    "reset": "リセット"
   },
   "nav": {
     "products": "製品",
-    "solutions": "ソリューション",
-    "resources": "リソース",
-    "company": "会社情報",
-    "support": "サポート"
+    "applications": "用途",
+    "support": "サポート",
+    "company": "会社概要",
+    "cart": "カート",
+    "account": "アカウント",
+    "signIn": "ユーザーサインイン"
   },
   "products": {
     "title": "製品",
-    "viewAll": "すべての製品を見る"
+    "description": "完全なカタログをご覧ください",
+    "addToCart": "カートに追加",
+    "addedToCart": "カートに追加されました!",
+    "outOfStock": "在庫切れ",
+    "backInStock": "再入荷しました",
+    "price": "価格",
+    "sku": "SKU",
+    "partNumber": "部品番号",
+    "availability": "在庫状況",
+    "inStock": "在庫あり",
+    "quantity": "数量",
+    "specifications": "仕様",
+    "features": "特徴",
+    "documentation": "ドキュメンテーション",
+    "relatedProducts": "関連製品",
+    "viewDetails": "詳細を表示",
+    "compareProducts": "製品を比較",
+    "requestQuote": "見積もりをリクエスト",
+    "downloadDatasheet": "データシートをダウンロード",
+    "technicalSupport": "テクニカルサポート",
+    "filters": {
+      "title": "フィルター",
+      "category": "カテゴリー",
+      "priceRange": "価格範囲",
+      "inStockOnly": "在庫あり商品のみ",
+      "clearFilters": "フィルターをクリア"
+    },
+    "sort": {
+      "title": "並べ替え",
+      "featured": "おすすめ順",
+      "nameAsc": "名称 (昇順)",
+      "nameDesc": "名称 (降順)",
+      "priceLowHigh": "価格 (安い順)",
+      "priceHighLow": "価格 (高い順)",
+      "newest": "新着順"
+    }
   },
   "home": {
     "hero": {
@@ -255,10 +309,44 @@
     }
   },
   "region": {
-    "us": "アメリカ合衆国",
-    "eu": "ヨーロッパ",
-    "asia": "アジア太平洋",
-    "mena": "中東"
+    "selectLanguage": "言語の選択",
+    "selectRegion": "地域の選択",
+    "currency": "通貨",
+    "measurements": "測定単位",
+    "temperature": "温度",
+    "pressure": "圧力",
+    "unitSystem": {
+      "metric": "メートル法 (°C, bar)",
+      "imperial": "ヤード・ポンド法 (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "北アメリカ",
+      "europe": "ヨーロッパ",
+      "asia": "アジア",
+      "middleEast": "中東",
+      "latinAmerica": "ラテンアメリカ",
+      "australia": "オーストラリア & 太平洋地域"
+    },
+    "languages": {
+      "en": "英語",
+      "de": "ドイツ語",
+      "fr": "フランス語",
+      "es": "スペイン語",
+      "ja": "日本語",
+      "zh": "中国語",
+      "vi": "ベトナム語",
+      "ar": "アラビア語"
+    },
+    "currencies": {
+      "usd": "米ドル ($)",
+      "eur": "ユーロ (€)",
+      "gbp": "英ポンド (£)",
+      "cad": "カナダドル ($)",
+      "jpy": "日本円 (¥)",
+      "cny": "中国人民元 (¥)",
+      "vnd": "ベトナムドン (₫)",
+      "aed": "アラブ首長国連邦ディルハム (د.إ)"
+    }
   },
   "megaMenu": {
     "badges": {
@@ -1272,7 +1360,13 @@
         "phone": "+44 (0) 1252 548410",
         "addressLine1": "BAPI Distribution Centre, North 1c",
         "addressLine2": "Aldershot GU12 4RG",
-        "addressLine3": "英国/Column エリア/ヨーロッパ返品処理"
+        "addressLine3": "英国/Column エリア/ヨーロッパ返品処理",
+        "phoneLabel": "電話番号",
+        "addressLabel": "住所",
+        "rmaInstructions": {
+          "strong": "RMA（Return Material Authorization）のリクエストについては、",
+          "text": "お客様の地域の代表者または販売店にご連絡ください。"
+        }
       },
       "globalPresence": {
         "badge": "当社の拠点",
@@ -1282,7 +1376,17 @@
       "cta": {
         "title": "始めましょう",
         "description": "プロジェクトの要件を担当チームと検討し、お客様のニーズに最適なセンサーソリューションをご提案いたします。",
-        "button": "メッセージを送る"
+        "button": "メッセージを送る",
+        "weekday": {
+          "label": "平日",
+          "hours": "午前8時 - 午後5時",
+          "timezone": "中部標準時"
+        },
+        "weekend": {
+          "label": "週末",
+          "status": "閉店",
+          "days": "土曜日 & 日曜日"
+        }
       }
     },
     "news": {
@@ -1718,5 +1822,134 @@
       "wireless": "ワイヤレス製品",
       "airQuality": "空気質"
     }
+  },
+  "units": {
+    "temperature": {
+      "celsius": "摂氏度",
+      "fahrenheit": "華氏度",
+      "kelvin": "ケルビン"
+    },
+    "pressure": {
+      "bar": "バール",
+      "psi": "ポンド/平方インチ",
+      "pa": "パスカル",
+      "kpa": "キロパスカル",
+      "inWc": "インチ水柱"
+    },
+    "length": {
+      "mm": "ミリメートル",
+      "cm": "センチメートル",
+      "m": "メートル",
+      "inch": "インチ",
+      "ft": "フィート"
+    }
+  },
+  "errors": {
+    "generic": "何かが間違っています",
+    "network": "ネットワークエラーが発生しました。接続を確認してください。",
+    "notFound": "ページが見つかりませんでした",
+    "unauthorized": "このページにアクセスするにはサインインする必要があります",
+    "serverError": "サーバーエラーが発生しました。後ほど再試行してください。",
+    "validationError": "入力内容を確認し、再度お試しください",
+    "addToCartFailed": "カートへの追加に失敗しました",
+    "productNotFound": "製品が見つかりませんでした",
+    "cartEmpty": "カートが空です",
+    "checkoutFailed": "チェックアウトに失敗しました。再度お試しください。"
+  },
+  "auth": {
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "signUp": "新規登録",
+    "profile": "プロフィール",
+    "account": "マイアカウント",
+    "dashboard": "ダッシュボード",
+    "settings": "設定",
+    "orders": "注文履歴",
+    "favorites": "お気に入り",
+    "quotes": "見積もり",
+    "addresses": "住所",
+    "paymentMethods": "支払い方法",
+    "welcome": "ようこそ",
+    "welcomeBack": "おかえりなさいませ",
+    "loginRequired": "続行するにはサインインしてください",
+    "logout": "ログアウト",
+    "myProfile": "マイプロフィール"
+  },
+  "cart": {
+    "title": "ショッピングカート",
+    "empty": "カートが空です",
+    "emptyDescription": "製品を閲覧してカートに商品を追加してください",
+    "checkout": "チェックアウトに進む",
+    "continueShopping": "ショッピングを続ける",
+    "subtotal": "小計",
+    "tax": "税金",
+    "shipping": "配送料",
+    "total": "合計",
+    "itemCount": "{count} {count, plural, =1 {個} other {個}}",
+    "removeItem": "商品を削除する",
+    "updateQuantity": "数量を更新する",
+    "applyCoupon": "クーポンを適用する",
+    "couponCode": "クーポンコード",
+    "couponApplied": "クーポンが正常に適用されました",
+    "couponInvalid": "無効なクーポンコードです",
+    "cartUpdated": "カートが更新されました"
+  },
+  "checkout": {
+    "title": "ご注文",
+    "shipping": "配送情報",
+    "payment": "支払い情報",
+    "review": "ご注文内容の確認",
+    "placeOrder": "ご注文を確定する",
+    "orderSummary": "ご注文の概要",
+    "billingAddress": "請求先住所",
+    "shippingAddress": "配送先住所",
+    "sameAsBilling": "請求先住所と同じ",
+    "paymentMethod": "お支払い方法",
+    "creditCard": "クレジットカード",
+    "cardNumber": "カード番号",
+    "expiryDate": "有効期限",
+    "cvv": "セキュリティコード",
+    "nameOnCard": "カード名義人",
+    "orderTotal": "ご注文合計",
+    "terms": "利用規約",
+    "acceptTerms": "利用規約に同意します",
+    "processing": "ご注文を処理しております...",
+    "orderComplete": "ご注文が完了しました!",
+    "orderNumber": "ご注文番号",
+    "thankYou": "ご注文ありがとうございます"
+  },
+  "forms": {
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "メールアドレス",
+    "phone": "電話番号",
+    "company": "会社名",
+    "address": "住所",
+    "address2": "アパート、スイートなど(オプション)",
+    "city": "市区町村",
+    "state": "都道府県",
+    "zipCode": "郵便番号",
+    "country": "国",
+    "message": "メッセージ",
+    "subject": "件名",
+    "required": "必須",
+    "optional": "オプション",
+    "invalidEmail": "無効なメールアドレスです",
+    "invalidPhone": "無効な電話番号です",
+    "fieldRequired": "このフィールドは必須です",
+    "selectOption": "オプションを選択してください",
+    "enterValue": "値を入力してください"
+  },
+  "accessibility": {
+    "skipToContent": "メインコンテンツにスキップ",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "openCart": "ショッピングカートを開く",
+    "closeCart": "ショッピングカートを閉じる",
+    "previousSlide": "前のスライド",
+    "nextSlide": "次のスライド",
+    "pageNavigation": "ページナビゲーション",
+    "loading": "コンテンツを読み込み中",
+    "searchResults": "検索結果"
   }
 }

@@ -323,7 +323,7 @@
 
 ## 📋 Phase 1 Priorities (Launch: April 10, 2026)
 
-### Priority 1: Translation Services & Regional Support — � ~72% Complete
+### Priority 1: Translation Services & Regional Support — 🟡 ~72% Complete
 
 **CORE INFRASTRUCTURE & MAJOR SECTIONS COMPLETED:**
 - ✅ Tier 1 translations (276 keys × 11 languages)
@@ -379,7 +379,7 @@
   - Support subpages: Contact Support, Warranty, Returns (~20 keys × 11 languages = 220 translations)
   - Main Support page: ✅ COMPLETE (60 keys × 11 languages, merged as PR #271)
   - Resources section: ✅ COMPLETE (111 keys × 11 languages, merged as PR #279)
-  - Total remaining: ~220 translations (English source + 10 non-English translations)
+  - Total remaining: ~220 translations across 11 languages
 
 **Note:** Core infrastructure 100% complete. Company Pages 100% translated. Resources section 100% translated (8/8 pages). Main Support page complete. Only 3 Support subpages remain for full i18n coverage.
 

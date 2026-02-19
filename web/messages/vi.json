@@ -1430,5 +1430,25 @@
       },
       "cta": "Liên Hệ Đội Ngũ Hỗ Trợ"
     }
+  },
+  "resourcesPage": {
+    "metadata": {
+      "description": "Tài liệu kỹ thuật miễn phí cho các sản phẩm tự động hóa tòa nhà BAPI. Tải xuống hướng dẫn cài đặt, tờ dữ liệu, ghi chú ứng dụng, bản vẽ CAD và BACnet PICS. Tài nguyên toàn diện cho kỹ sư, nhà thầu và người quản lý cơ sở.",
+      "keywords": "tài liệu BAPI, hướng dẫn cài đặt, tờ dữ liệu cảm biến, thông số kỹ thuật, ghi chú ứng dụng, BACnet PICS, bản vẽ CAD, sơ đồ dây, tài nguyên tự động hóa tòa nhà, tài liệu HVAC, sổ tay bộ điều khiển, thông số cảm biến"
+    },
+    "hero": {
+      "title": "Tài Nguyên Kỹ Thuật",
+      "subtitle": "Truy cập tài liệu toàn diện, hướng dẫn cài đặt và thông số kỹ thuật cho các sản phẩm tự động hóa tòa nhà BAPI."
+    },
+    "stats": {
+      "documents": "1.100+ Tài Liệu",
+      "guides": "Hướng Dẫn Cài Đặt",
+      "datasheets": "Tờ Dữ Liệu Sản Phẩm",
+      "catalogs": "Danh Mục Kỹ Thuật"
+    },
+    "appNotesCta": {
+      "title": "Tìm kiếm hướng dẫn kỹ thuật?",
+      "description": "Duyệt qua bộ sưu tập Ghi chú Ứng dụng của chúng tôi để biết hướng dẫn kỹ thuật chi tiết, thực tiễn tốt nhất và ví dụ triển khai →"
+    }
   }
 }

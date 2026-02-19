@@ -1595,5 +1595,25 @@
       },
       "cta": "Skontaktuj się z zespołem wsparcia"
     }
+  },
+  "resourcesPage": {
+    "metadata": {
+      "description": "Bezpłatna dokumentacja techniczna dla produktów automatyki budynkowej BAPI. Pobierz instrukcje instalacji, karty danych, notatki aplikacyjne, rysunki CAD i BACnet PICS. Kompleksowe zasoby dla inżynierów, wykonawców i zarządców obiektów.",
+      "keywords": "dokumentacja BAPI, instrukcje instalacji, karty danych czujników, specyfikacje techniczne, notatki aplikacyjne, BACnet PICS, rysunki CAD, schematy okablowania, zasoby automatyki budynkowej, dokumentacja HVAC, instrukcje sterowników, specyfikacje czujników"
+    },
+    "hero": {
+      "title": "Zasoby Techniczne",
+      "subtitle": "Uzyskaj dostęp do kompleksowej dokumentacji, instrukcji instalacji i specyfikacji technicznych produktów automatyki budynkowej BAPI."
+    },
+    "stats": {
+      "documents": "1100+ Dokumentów",
+      "guides": "Instrukcje Instalacji",
+      "datasheets": "Karty Danych Produktów",
+      "catalogs": "Katalogi Techniczne"
+    },
+    "appNotesCta": {
+      "title": "Szukasz przewodników technicznych?",
+      "description": "Przeglądaj naszą kolekcję Notatek Aplikacyjnych, aby uzyskać szczegółowe wskazówki techniczne, najlepsze praktyki i przykłady wdrożeń →"
+    }
   }
 }

@@ -1390,5 +1390,25 @@
       },
       "cta": "Support-Team kontaktieren"
     }
+  },
+  "resourcesPage": {
+    "metadata": {
+      "description": "Kostenlose technische Dokumentation für BAPI-Gebäudeautomationsprodukte. Laden Sie Installationsanleitungen, Datenblätter, Anwendungshinweise, CAD-Zeichnungen und BACnet PICS herunter. Umfassende Ressourcen für Ingenieure, Auftragnehmer und Facility Manager.",
+      "keywords": "BAPI-Dokumentation, Installationsanleitungen, Sensor-Datenblätter, technische Spezifikationen, Anwendungshinweise, BACnet PICS, CAD-Zeichnungen, Schaltpläne, Gebäudeautomatisierungsressourcen, HVAC-Dokumentation, Controller-Handbücher, Sensor-Spezifikationen"
+    },
+    "hero": {
+      "title": "Technische Ressourcen",
+      "subtitle": "Greifen Sie auf umfassende Dokumentation, Installationsanleitungen und technische Spezifikationen für BAPI-Gebäudeautomationsprodukte zu."
+    },
+    "stats": {
+      "documents": "1.100+ Dokumente",
+      "guides": "Installationsanleitungen",
+      "datasheets": "Produktdatenblätter",
+      "catalogs": "Technische Kataloge"
+    },
+    "appNotesCta": {
+      "title": "Suchen Sie nach technischen Anleitungen?",
+      "description": "Durchsuchen Sie unsere Sammlung von Anwendungshinweisen für ausführliche technische Anleitungen, Best Practices und Implementierungsbeispiele →"
+    }
   }
 }

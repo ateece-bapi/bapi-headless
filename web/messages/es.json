@@ -1381,5 +1381,25 @@
       },
       "cta": "Contactar Equipo de Soporte"
     }
+  },
+  "resourcesPage": {
+    "metadata": {
+      "description": "Documentación técnica gratuita para productos de automatización de edificios BAPI. Descargue guías de instalación, hojas de datos, notas de aplicación, dibujos CAD y PICS BACnet. Recursos completos para ingenieros, contratistas y administradores de instalaciones.",
+      "keywords": "documentación BAPI, guías de instalación, hojas de datos de sensores, especificaciones técnicas, notas de aplicación, BACnet PICS, dibujos CAD, diagramas de cableado, recursos de automatización de edificios, documentación HVAC, manuales de controladores, especificaciones de sensores"
+    },
+    "hero": {
+      "title": "Recursos Técnicos",
+      "subtitle": "Acceda a documentación completa, guías de instalación y especificaciones técnicas para productos de automatización de edificios BAPI."
+    },
+    "stats": {
+      "documents": "1,100+ Documentos",
+      "guides": "Guías de Instalación",
+      "datasheets": "Hojas de Datos de Productos",
+      "catalogs": "Catálogos Técnicos"
+    },
+    "appNotesCta": {
+      "title": "¿Busca guías técnicas?",
+      "description": "Explore nuestra colección de Notas de Aplicación para obtener orientación técnica detallada, mejores prácticas y ejemplos de implementación →"
+    }
   }
 }

@@ -4,6 +4,7 @@ import { BookOpen } from 'lucide-react';
 import { ResourceList } from '@/components/resources/ResourceList';
 import logger from '@/lib/logger';
 import { generatePageMetadata } from '@/lib/metadata';
+import { getTranslations } from 'next-intl/server';
 
 interface MediaItemNode {
   id: string;
@@ -75,30 +76,31 @@ async function fetchResources(): Promise<MediaItemNode[]> {
  * AI-optimized metadata for technical resources
  * Enhanced for technical documentation discovery
  */
-export const metadata: Metadata = generatePageMetadata({
-  title: 'Technical Resources - Installation Guides, Datasheets & Documentation',
-  description:
-    'Free technical documentation for BAPI building automation products. Download installation guides, datasheets, application notes, CAD drawings, and BACnet PICS. Comprehensive resources for engineers, contractors, and facility managers.',
-  path: 'resources',
-  keywords: [
-    'BAPI documentation',
-    'installation guides',
-    'sensor datasheets',
-    'technical specifications',
-    'application notes',
-    'BACnet PICS',
-    'CAD drawings',
-    'wiring diagrams',
-    'building automation resources',
-    'HVAC documentation',
-    'controller manuals',
-    'sensor specs',
-  ],
-  type: 'website',
-});
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<{ locale: string }> 
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'resourcesPage' });
 
-export default async function ResourcesPage() {
+  return generatePageMetadata({
+    title: t('hero.title') + ' - Installation Guides, Datasheets & Documentation',
+    description: t('metadata.description'),
+    path: 'resources',
+    keywords: t('metadata.keywords').split(',').map((k: string) => k.trim()),
+    type: 'website',
+  }, locale);
+}
+
+export default async function ResourcesPage({
+  params
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params;
   const resources = await fetchResources();
+  const t = await getTranslations({ locale, namespace: 'resourcesPage' });
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -112,28 +114,27 @@ export default async function ResourcesPage() {
         <div className="container relative mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="mb-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
-              Technical Resources
+              {t('hero.title')}
             </h1>
             <p className="mb-8 text-xl leading-relaxed text-primary-50 md:text-2xl">
-              Access comprehensive documentation, installation guides, and technical specifications
-              for BAPI building automation products.
+              {t('hero.subtitle')}
             </p>
             <div className="mt-6 flex flex-wrap gap-4 text-sm">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-accent-400" />
-                <span>1,100+ Documents</span>
+                <span>{t('stats.documents')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-accent-400" />
-                <span>Installation Guides</span>
+                <span>{t('stats.guides')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-accent-400" />
-                <span>Product Datasheets</span>
+                <span>{t('stats.datasheets')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-accent-400" />
-                <span>Technical Catalogs</span>
+                <span>{t('stats.catalogs')}</span>
               </div>
             </div>
           </div>
@@ -153,11 +154,10 @@ export default async function ResourcesPage() {
             </div>
             <div className="flex-1">
               <h3 className="mb-1 text-xl font-semibold text-neutral-900 transition-colors group-hover:text-primary-700">
-                Looking for Technical Guides?
+                {t('appNotesCta.title')}
               </h3>
               <p className="text-neutral-600">
-                Browse our collection of Application Notes for in-depth technical guidance, best
-                practices, and implementation examples →
+                {t('appNotesCta.description')}
               </p>
             </div>
           </div>

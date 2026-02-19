@@ -1475,5 +1475,25 @@
       "button": "すべてのデータシートをダウンロード (ZIP)",
       "packageInfo": "完全パッケージ • 125 MB • 2026年1月更新"
     }
+  },
+  "installationPage": {
+    "metadata": {
+      "title": "設置ガイド | BAPIリソース",
+      "description": "BAPI製品の包括的な設置ガイドとドキュメント。",
+      "keywords": "設置ガイド, センサー設置, BAPI設置, 温度センサー設置, ワイヤレスセンサーセットアップ, 空気質設置, 圧力センサー取り付け, 設置ドキュメント, PDFガイド, 技術設置"
+    },
+    "hero": {
+      "title": "設置ガイド",
+      "subtitle": "すべてのBAPI製品の段階的な設置手順"
+    },
+    "search": {
+      "placeholder": "設置ガイドを検索..."
+    },
+    "downloadButton": "PDFダウンロード",
+    "support": {
+      "heading": "設置サポートが必要ですか？",
+      "description": "技術チームが設置に関するあらゆる質問にお答えします",
+      "ctaButton": "サポートに連絡"
+    }
   }
 }

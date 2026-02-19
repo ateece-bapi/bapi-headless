@@ -1475,5 +1475,25 @@
       "button": "Télécharger Toutes les Fiches (ZIP)",
       "packageInfo": "Package complet • 125 MB • Mis à jour janvier 2026"
     }
+  },
+  "installationPage": {
+    "metadata": {
+      "title": "Guides d'Installation | Ressources BAPI",
+      "description": "Guides d'installation et documentation complète pour les produits BAPI.",
+      "keywords": "guides d'installation, installation capteurs, installation BAPI, installation capteur température, configuration capteur sans fil, installation qualité air, montage capteur pression, documentation installation, guides PDF, installation technique"
+    },
+    "hero": {
+      "title": "Guides d'Installation",
+      "subtitle": "Instructions d'installation étape par étape pour tous les produits BAPI"
+    },
+    "search": {
+      "placeholder": "Rechercher des guides d'installation..."
+    },
+    "downloadButton": "Télécharger PDF",
+    "support": {
+      "heading": "Besoin d'Aide pour l'Installation ?",
+      "description": "Notre équipe technique est là pour répondre à toutes vos questions d'installation",
+      "ctaButton": "Contacter le Support"
+    }
   }
 }

@@ -1,13 +1,31 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Wrench, FileText, Download, Search } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
+import { generatePageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Installation Guides | BAPI Resources',
-  description: 'Comprehensive installation guides and documentation for BAPI products.',
+type Props = {
+  params: Promise<{ locale: string }>;
 };
 
-export default function InstallationPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'installationPage' });
+
+  return generatePageMetadata(
+    {
+      title: t('metadata.title'),
+      description: t('metadata.description'),
+      path: 'resources/installation',
+      keywords: t('metadata.keywords').split(', '),
+    },
+    locale,
+  );
+}
+
+export default async function InstallationPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'installationPage' });
   const guides = [
     {
       title: 'Temperature Sensor Installation',
@@ -38,9 +56,9 @@ export default function InstallationPage() {
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Wrench className="mx-auto mb-4 h-16 w-16" />
-            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Installation Guides</h1>
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
-              Step-by-step installation instructions for all BAPI products
+              {t('hero.subtitle')}
             </p>
           </div>
         </div>
@@ -54,7 +72,7 @@ export default function InstallationPage() {
                 <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
                 <input
                   type="text"
-                  placeholder="Search installation guides..."
+                  placeholder={t('search.placeholder')}
                   className="w-full rounded-xl border-2 border-neutral-200 py-3 pl-12 pr-4 focus:border-primary-500 focus:outline-none"
                 />
               </div>
@@ -72,7 +90,7 @@ export default function InstallationPage() {
                 <p className="mb-4 text-neutral-600">{guide.description}</p>
                 <button className="inline-flex items-center gap-2 font-semibold text-primary-500 hover:text-primary-600">
                   <Download className="h-4 w-4" />
-                  Download PDF
+                  {t('downloadButton')}
                 </button>
               </div>
             ))}
@@ -82,15 +100,15 @@ export default function InstallationPage() {
 
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-2xl font-bold text-neutral-900">Need Installation Support?</h2>
+          <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('support.heading')}</h2>
           <p className="mb-6 text-neutral-600">
-            Our technical team is here to help with any installation questions
+            {t('support.description')}
           </p>
           <Link
             href="/support"
             className="inline-block rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600"
           >
-            Contact Support
+            {t('support.ctaButton')}
           </Link>
         </div>
       </section>

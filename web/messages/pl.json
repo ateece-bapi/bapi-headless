@@ -1689,5 +1689,25 @@
       "button": "Pobierz Wszystkie Karty Danych (ZIP)",
       "packageInfo": "Kompletny pakiet • 125 MB • Zaktualizowano styczeń 2026"
     }
+  },
+  "installationPage": {
+    "metadata": {
+      "title": "Instrukcje Instalacji | Zasoby BAPI",
+      "description": "Kompleksowe instrukcje instalacji i dokumentacja dla produktów BAPI.",
+      "keywords": "instrukcje instalacji, instalacja czujników, instalacja BAPI, instalacja czujnika temperatury, konfiguracja czujnika bezprzewodowego, instalacja jakości powietrza, montaż czujnika ciśnienia, dokumentacja instalacji, instrukcje PDF, instalacja techniczna"
+    },
+    "hero": {
+      "title": "Instrukcje Instalacji",
+      "subtitle": "Instrukcje instalacji krok po kroku dla wszystkich produktów BAPI"
+    },
+    "search": {
+      "placeholder": "Szukaj instrukcji instalacji..."
+    },
+    "downloadButton": "Pobierz PDF",
+    "support": {
+      "heading": "Potrzebujesz Pomocy przy Instalacji?",
+      "description": "Nasz zespół techniczny chętnie odpowie na wszelkie pytania dotyczące instalacji",
+      "ctaButton": "Skontaktuj się z Wsparciem"
+    }
   }
 }

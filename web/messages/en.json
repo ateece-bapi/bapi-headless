@@ -1708,5 +1708,109 @@
       "button": "Download All Datasheets (ZIP)",
       "packageInfo": "Complete package • 125 MB • Updated January 2026"
     }
+  },
+  "installationPage": {
+    "metadata": {
+      "title": "Installation Guides | BAPI Resources",
+      "description": "Comprehensive installation guides and documentation for BAPI products.",
+      "keywords": "installation guides, sensor installation, BAPI installation, temperature sensor installation, wireless sensor setup, air quality installation, pressure sensor mounting, installation documentation, PDF guides, technical installation"
+    },
+    "hero": {
+      "title": "Installation Guides",
+      "subtitle": "Step-by-step installation instructions for all BAPI products"
+    },
+    "search": {
+      "placeholder": "Search installation guides..."
+    },
+    "downloadButton": "Download PDF",
+    "support": {
+      "heading": "Need Installation Support?",
+      "description": "Our technical team is here to help with any installation questions",
+      "ctaButton": "Contact Support"
+    }
+  },
+  "videosPage": {
+    "metadata": {
+      "title": "Product Videos | BAPI Resources",
+      "description": "Watch product demonstration videos, installation tutorials, and technical training for BAPI building automation products.",
+      "keywords": "product videos, installation videos, BAPI tutorials, sensor demos, technical training, how-to videos, product demonstrations, video library, training videos, instructional videos"
+    },
+    "hero": {
+      "title": "Product Videos",
+      "subtitle": "Watch demonstrations, tutorials, and technical training videos"
+    },
+    "filter": {
+      "allCategories": "All Categories",
+      "categories": {
+        "installation": "Installation",
+        "product": "Product Demos",
+        "training": "Training",
+        "troubleshooting": "Troubleshooting"
+      }
+    }
+  },
+  "webinarsPage": {
+    "metadata": {
+      "title": "Webinars & Training | BAPI Resources",
+      "description": "Access recorded webinars, technical training sessions, and educational content for BAPI products.",
+      "keywords": "webinars, technical training, online training, BAPI education, recorded webinars, training sessions, technical sessions, building automation training, product training, educational content"
+    },
+    "hero": {
+      "title": "Webinars & Training",
+      "subtitle": "Free technical training and educational webinars"
+    },
+    "tabs": {
+      "upcoming": "Upcoming",
+      "recorded": "Recorded"
+    },
+    "register": "Register Now",
+    "watch": "Watch Recording"
+  },
+  "caseStudiesPage": {
+    "metadata": {
+      "title": "Case Studies | BAPI Resources",
+      "description": "Read real-world case studies and success stories of BAPI product installations across various industries.",
+      "keywords": "case studies, success stories, BAPI projects, customer stories, installation examples, real-world applications, project case studies, building automation projects, industry examples, customer testimonials"
+    },
+    "hero": {
+      "title": "Case Studies",
+      "subtitle": "Real-world success stories and project examples"
+    },
+    "filter": {
+      "allIndustries": "All Industries",
+      "industries": {
+        "commercial": "Commercial",
+        "healthcare": "Healthcare",
+        "education": "Education",
+        "industrial": "Industrial",
+        "hospitality": "Hospitality"
+      }
+    },
+    "readMore": "Read Full Case Study"
+  },
+  "selectorPage": {
+    "metadata": {
+      "title": "Product Selector Tool | BAPI Resources",
+      "description": "Find the right BAPI product for your application with our interactive product selector tool.",
+      "keywords": "product selector, find products, BAPI selector, product finder, application selector, sensor selector, product recommendation, interactive tool, product search, selection tool"
+    },
+    "hero": {
+      "title": "Product Selector Tool",
+      "subtitle": "Find the perfect product for your application"
+    },
+    "steps": {
+      "step1": "Select Application",
+      "step2": "Choose Parameters",
+      "step3": "View Results"
+    },
+    "applications": {
+      "temperature": "Temperature Sensing",
+      "humidity": "Humidity Sensing",
+      "pressure": "Pressure Monitoring",
+      "airQuality": "Air Quality",
+      "wireless": "Wireless Solutions"
+    },
+    "viewProduct": "View Product Details",
+    "startOver": "Start Over"
   }
 }

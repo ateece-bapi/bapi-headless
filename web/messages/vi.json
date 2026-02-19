@@ -1362,5 +1362,69 @@
         "button": "Liên Hệ Với Chúng Tôi"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "Trung Tâm Hỗ Trợ BAPI",
+      "subtitle": "Hỗ trợ kỹ thuật chuyên nghiệp cho các chuyên gia tự động hóa tòa nhà"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "Liên Hệ Hỗ Trợ",
+        "description": "Trò chuyện với đội ngũ hỗ trợ kỹ thuật của chúng tôi"
+      },
+      "applicationNotes": {
+        "title": "Ghi Chú Ứng Dụng",
+        "description": "Hướng dẫn kỹ thuật và hướng dẫn lắp đặt"
+      },
+      "rmaRequest": {
+        "title": "Yêu Cầu RMA",
+        "description": "Ủy quyền hoàn trả hàng hóa"
+      }
+    },
+    "resources": {
+      "title": "Tài Nguyên Hỗ Trợ",
+      "technicalDocs": {
+        "title": "Tài Liệu Kỹ Thuật",
+        "links": {
+          "applicationNotes": "Ghi Chú Ứng Dụng",
+          "installationGuides": "Hướng Dẫn Lắp Đặt",
+          "productDatasheets": "Bảng Dữ Liệu Sản Phẩm",
+          "sensorSpecs": "Thông Số Kỹ Thuật Cảm Biến"
+        }
+      },
+      "toolsUtilities": {
+        "title": "Công Cụ & Tiện Ích",
+        "links": {
+          "productSelector": "Bộ Chọn Sản Phẩm",
+          "crossReference": "Công Cụ Tham Chiếu Chéo",
+          "wirelessVerification": "Xác Minh Địa Điểm Không Dây",
+          "catalogPriceBook": "Catalog & Bảng Giá"
+        }
+      },
+      "serviceReturns": {
+        "title": "Dịch Vụ & Hoàn Trả",
+        "links": {
+          "rmaRequest": "Mẫu Yêu Cầu RMA",
+          "serviceBulletins": "Bản Tin Dịch Vụ",
+          "contactSupport": "Liên Hệ Hỗ Trợ Kỹ Thuật"
+        }
+      }
+    },
+    "contact": {
+      "title": "Cần Hỗ Trợ Trực Tiếp?",
+      "subtitle": "Đội ngũ hỗ trợ kỹ thuật của chúng tôi sẵn sàng giúp đỡ",
+      "phone": {
+        "title": "Hỗ Trợ Qua Điện Thoại",
+        "hours": "Thứ Hai - Thứ Sáu, 8am - 5pm CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "Hỗ Trợ Qua Email",
+        "description": "Câu hỏi kỹ thuật và hỗ trợ",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "Liên Hệ Đội Ngũ Hỗ Trợ"
+    }
   }
 }

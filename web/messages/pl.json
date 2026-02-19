@@ -1527,5 +1527,69 @@
         "button": "Skontaktuj się z nami"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "Centrum Wsparcia BAPI",
+      "subtitle": "Eksperckie wsparcie techniczne dla specjalistów automatyki budynkowej"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "Skontaktuj się z pomocą",
+        "description": "Porozmawiaj z naszym zespołem wsparcia technicznego"
+      },
+      "applicationNotes": {
+        "title": "Notatki aplikacyjne",
+        "description": "Przewodniki techniczne i instrukcje instalacji"
+      },
+      "rmaRequest": {
+        "title": "Wniosek RMA",
+        "description": "Autoryzacja zwrotu towaru"
+      }
+    },
+    "resources": {
+      "title": "Zasoby wsparcia",
+      "technicalDocs": {
+        "title": "Dokumentacja techniczna",
+        "links": {
+          "applicationNotes": "Notatki aplikacyjne",
+          "installationGuides": "Przewodniki instalacji",
+          "productDatasheets": "Karty danych produktów",
+          "sensorSpecs": "Specyfikacje czujników"
+        }
+      },
+      "toolsUtilities": {
+        "title": "Narzędzia i użyteczności",
+        "links": {
+          "productSelector": "Selektor produktów",
+          "crossReference": "Narzędzie odniesienia krzyżowego",
+          "wirelessVerification": "Weryfikacja strony bezprzewodowej",
+          "catalogPriceBook": "Katalog i cennik"
+        }
+      },
+      "serviceReturns": {
+        "title": "Serwis i zwroty",
+        "links": {
+          "rmaRequest": "Formularz wniosku RMA",
+          "serviceBulletins": "Biuletyny serwisowe",
+          "contactSupport": "Skontaktuj się z pomocą techniczną"
+        }
+      }
+    },
+    "contact": {
+      "title": "Potrzebujesz bezpośredniej pomocy?",
+      "subtitle": "Nasz zespół wsparcia technicznego jest gotowy do pomocy",
+      "phone": {
+        "title": "Wsparcie telefoniczne",
+        "hours": "Poniedziałek - Piątek, 8:00 - 17:00 CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "Wsparcie e-mail",
+        "description": "Pytania techniczne i wsparcie",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "Skontaktuj się z zespołem wsparcia"
+    }
   }
 }

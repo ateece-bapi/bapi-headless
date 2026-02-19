@@ -1322,5 +1322,69 @@
         "button": "Kontaktieren Sie uns"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "BAPI Support-Center",
+      "subtitle": "Fachkundiger technischer Support für Gebäudeautomationsspezialisten"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "Support kontaktieren",
+        "description": "Sprechen Sie mit unserem technischen Support-Team"
+      },
+      "applicationNotes": {
+        "title": "Anwendungshinweise",
+        "description": "Technische Leitfäden und Installationsanleitungen"
+      },
+      "rmaRequest": {
+        "title": "RMA-Anfrage",
+        "description": "Rückgabegenehmigung für Waren"
+      }
+    },
+    "resources": {
+      "title": "Support-Ressourcen",
+      "technicalDocs": {
+        "title": "Technische Dokumentation",
+        "links": {
+          "applicationNotes": "Anwendungshinweise",
+          "installationGuides": "Installationsanleitungen",
+          "productDatasheets": "Produktdatenblätter",
+          "sensorSpecs": "Sensor-Spezifikationen"
+        }
+      },
+      "toolsUtilities": {
+        "title": "Tools & Dienstprogramme",
+        "links": {
+          "productSelector": "Produktauswahl",
+          "crossReference": "Kreuzreferenz-Tool",
+          "wirelessVerification": "Drahtlose Standortüberprüfung",
+          "catalogPriceBook": "Katalog & Preisliste"
+        }
+      },
+      "serviceReturns": {
+        "title": "Service & Rücksendungen",
+        "links": {
+          "rmaRequest": "RMA-Anfrageformular",
+          "serviceBulletins": "Service-Bulletins",
+          "contactSupport": "Technischen Support kontaktieren"
+        }
+      }
+    },
+    "contact": {
+      "title": "Benötigen Sie direkte Unterstützung?",
+      "subtitle": "Unser technisches Support-Team steht bereit",
+      "phone": {
+        "title": "Telefon-Support",
+        "hours": "Montag - Freitag, 8:00 - 17:00 Uhr CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "E-Mail-Support",
+        "description": "Technische Fragen und Support",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "Support-Team kontaktieren"
+    }
   }
 }

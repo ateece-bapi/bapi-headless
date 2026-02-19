@@ -1297,5 +1297,69 @@
         "button": "ติดต่อเรา"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "ศูนย์สนับสนุน BAPI",
+      "subtitle": "การสนับสนุนทางเทคนิคจากผู้เชี่ยวชาญสำหรับมืออาชีพด้านระบบอัตโนมัติของอาคาร"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "ติดต่อฝ่ายสนับสนุน",
+        "description": "พูดคุยกับทีมสนับสนุนทางเทคนิคของเรา"
+      },
+      "applicationNotes": {
+        "title": "บันทึกการประยุกต์ใช้",
+        "description": "คู่มือทางเทคนิคและคำแนะนำการติดตั้ง"
+      },
+      "rmaRequest": {
+        "title": "คำขอ RMA",
+        "description": "การอนุญาตให้ส่งคืนสินค้า"
+      }
+    },
+    "resources": {
+      "title": "ทรัพยากรสนับสนุน",
+      "technicalDocs": {
+        "title": "เอกสารทางเทคนิค",
+        "links": {
+          "applicationNotes": "บันทึกการประยุกต์ใช้",
+          "installationGuides": "คู่มือการติดตั้ง",
+          "productDatasheets": "แผ่นข้อมูลผลิตภัณฑ์",
+          "sensorSpecs": "ข้อมูลจำเพาะของเซ็นเซอร์"
+        }
+      },
+      "toolsUtilities": {
+        "title": "เครื่องมือและยูทิลิตี้",
+        "links": {
+          "productSelector": "ตัวเลือกผลิตภัณฑ์",
+          "crossReference": "เครื่องมืออ้างอิงไขว้",
+          "wirelessVerification": "การตรวจสอบไซต์ไร้สาย",
+          "catalogPriceBook": "แคตตาล็อกและสมุดราคา"
+        }
+      },
+      "serviceReturns": {
+        "title": "บริการและการคืนสินค้า",
+        "links": {
+          "rmaRequest": "แบบฟอร์มคำขอ RMA",
+          "serviceBulletins": "จดหมายข่าวบริการ",
+          "contactSupport": "ติดต่อฝ่ายสนับสนุนทางเทคนิค"
+        }
+      }
+    },
+    "contact": {
+      "title": "ต้องการการสนับสนุนโดยตรงหรือไม่?",
+      "subtitle": "ทีมสนับสนุนทางเทคนิคของเราพร้อมให้ความช่วยเหลือ",
+      "phone": {
+        "title": "การสนับสนุนทางโทรศัพท์",
+        "hours": "วันจันทร์ - วันศุกร์ เวลา 8.00 น. - 17.00 น. CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "การสนับสนุนทางอีเมล",
+        "description": "คำถามทางเทคนิคและการสนับสนุน",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "ติดต่อทีมสนับสนุน"
+    }
   }
 }

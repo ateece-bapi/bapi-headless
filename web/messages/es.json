@@ -1313,5 +1313,69 @@
         "button": "Contáctenos"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "Centro de Soporte BAPI",
+      "subtitle": "Soporte técnico experto para profesionales de automatización de edificios"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "Contactar Soporte",
+        "description": "Hable con nuestro equipo de soporte técnico"
+      },
+      "applicationNotes": {
+        "title": "Notas de Aplicación",
+        "description": "Guías técnicas e instrucciones de instalación"
+      },
+      "rmaRequest": {
+        "title": "Solicitud RMA",
+        "description": "Autorización de devolución de mercancía"
+      }
+    },
+    "resources": {
+      "title": "Recursos de Soporte",
+      "technicalDocs": {
+        "title": "Documentación Técnica",
+        "links": {
+          "applicationNotes": "Notas de Aplicación",
+          "installationGuides": "Guías de Instalación",
+          "productDatasheets": "Hojas de Datos de Productos",
+          "sensorSpecs": "Especificaciones de Sensores"
+        }
+      },
+      "toolsUtilities": {
+        "title": "Herramientas y Utilidades",
+        "links": {
+          "productSelector": "Selector de Productos",
+          "crossReference": "Herramienta de Referencia Cruzada",
+          "wirelessVerification": "Verificación de Sitio Inalámbrico",
+          "catalogPriceBook": "Catálogo y Lista de Precios"
+        }
+      },
+      "serviceReturns": {
+        "title": "Servicio y Devoluciones",
+        "links": {
+          "rmaRequest": "Formulario de Solicitud RMA",
+          "serviceBulletins": "Boletines de Servicio",
+          "contactSupport": "Contactar Soporte Técnico"
+        }
+      }
+    },
+    "contact": {
+      "title": "¿Necesita Soporte Directo?",
+      "subtitle": "Nuestro equipo de soporte técnico está listo para ayudar",
+      "phone": {
+        "title": "Soporte Telefónico",
+        "hours": "Lunes - Viernes, 8am - 5pm CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "Soporte por Correo Electrónico",
+        "description": "Preguntas técnicas y soporte",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "Contactar Equipo de Soporte"
+    }
   }
 }

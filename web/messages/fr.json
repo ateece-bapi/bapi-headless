@@ -1313,5 +1313,69 @@
         "button": "Contactez-nous"
       }
     }
+  },
+  "supportPage": {
+    "hero": {
+      "title": "Centre d'Assistance BAPI",
+      "subtitle": "Support technique expert pour les professionnels de l'automatisation des bâtiments"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "Contacter le Support",
+        "description": "Parlez avec notre équipe de support technique"
+      },
+      "applicationNotes": {
+        "title": "Notes d'Application",
+        "description": "Guides techniques et instructions d'installation"
+      },
+      "rmaRequest": {
+        "title": "Demande RMA",
+        "description": "Autorisation de retour de marchandise"
+      }
+    },
+    "resources": {
+      "title": "Ressources d'Assistance",
+      "technicalDocs": {
+        "title": "Documentation Technique",
+        "links": {
+          "applicationNotes": "Notes d'Application",
+          "installationGuides": "Guides d'Installation",
+          "productDatasheets": "Fiches Techniques Produits",
+          "sensorSpecs": "Spécifications des Capteurs"
+        }
+      },
+      "toolsUtilities": {
+        "title": "Outils & Utilitaires",
+        "links": {
+          "productSelector": "Sélecteur de Produits",
+          "crossReference": "Outil de Référence Croisée",
+          "wirelessVerification": "Vérification de Site Sans Fil",
+          "catalogPriceBook": "Catalogue & Liste de Prix"
+        }
+      },
+      "serviceReturns": {
+        "title": "Service & Retours",
+        "links": {
+          "rmaRequest": "Formulaire de Demande RMA",
+          "serviceBulletins": "Bulletins de Service",
+          "contactSupport": "Contacter le Support Technique"
+        }
+      }
+    },
+    "contact": {
+      "title": "Besoin d'Assistance Directe ?",
+      "subtitle": "Notre équipe de support technique est prête à vous aider",
+      "phone": {
+        "title": "Support Téléphonique",
+        "hours": "Lundi - Vendredi, 8h - 17h CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "Support par E-mail",
+        "description": "Questions techniques et assistance",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "Contacter l'Équipe de Support"
+    }
   }
 }

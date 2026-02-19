@@ -1634,5 +1634,79 @@
       "title": "Looking for Technical Guides?",
       "description": "Browse our collection of Application Notes for in-depth technical guidance, best practices, and implementation examples →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "Cross Reference Tool | BAPI",
+      "description": "Find BAPI equivalents for competitor products. Cross-reference tool for building automation sensors.",
+      "keywords": "cross reference, competitor comparison, BAPI equivalents, Honeywell alternative, Johnson Controls alternative, Siemens alternative, sensor cross reference, building automation compatibility, product replacement"
+    },
+    "hero": {
+      "title": "Cross Reference Tool",
+      "subtitle": "Find BAPI equivalents for competitor products"
+    },
+    "searchTool": {
+      "heading": "Find BAPI Equivalent",
+      "manufacturerLabel": "Select Manufacturer",
+      "manufacturerPlaceholder": "Choose manufacturer...",
+      "modelLabel": "Enter Competitor Model Number",
+      "modelPlaceholder": "e.g., C7400A2100",
+      "searchButton": "Find BAPI Equivalent",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "Other"
+      }
+    },
+    "popularSection": {
+      "heading": "Popular Cross References",
+      "competitorLabel": "Competitor",
+      "bapiLabel": "BAPI Equivalent"
+    },
+    "helpSection": {
+      "heading": "Can't Find What You're Looking For?",
+      "description": "Contact our technical sales team for assistance with cross-referencing",
+      "ctaButton": "Contact Sales Team"
+    }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "Product Datasheets | BAPI",
+      "description": "Download detailed technical datasheets for all BAPI building automation products.",
+      "keywords": "product datasheets, technical specifications, sensor datasheets, BAPI specifications, temperature sensor specs, humidity sensor specs, pressure sensor specs, air quality sensor datasheets, wireless sensor specs, controller datasheets, PDF downloads"
+    },
+    "hero": {
+      "title": "Product Datasheets",
+      "subtitle": "Detailed technical specifications for all BAPI products"
+    },
+    "search": {
+      "placeholder": "Search datasheets by model number or product name...",
+      "categoryLabel": "All Categories",
+      "categories": {
+        "temperature": "Temperature",
+        "humidity": "Humidity",
+        "pressure": "Pressure",
+        "airQuality": "Air Quality",
+        "wireless": "Wireless",
+        "controllers": "Controllers"
+      }
+    },
+    "grid": {
+      "pagesLabel": "pages",
+      "downloadButton": "Download PDF"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "bulkDownload": {
+      "heading": "Need Multiple Datasheets?",
+      "description": "Download our complete datasheet package with all product specifications",
+      "button": "Download All Datasheets (ZIP)",
+      "packageInfo": "Complete package • 125 MB • Updated January 2026"
+    }
   }
 }

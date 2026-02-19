@@ -1618,5 +1618,79 @@
       "title": "तकनीकी गाइड खोज रहे हैं?",
       "description": "विस्तृत तकनीकी मार्गदर्शन, सर्वोत्तम प्रथाओं और कार्यान्वयन उदाहरणों के लिए हमारे एप्लिकेशन नोट्स संग्रह को ब्राउज़ करें →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "क्रॉस रेफ़रेंस टूल | BAPI",
+      "description": "प्रतिस्पर्धी उत्पादों के लिए BAPI समकक्ष खोजें। बिल्डिंग ऑटोमेशन सेंसर के लिए क्रॉस रेफ़रेंस टूल।",
+      "keywords": "क्रॉस रेफ़रेंस, प्रतिस्पर्धी तुलना, BAPI समकक्ष, Honeywell विकल्प, Johnson Controls विकल्प, Siemens विकल्प, सेंसर क्रॉस रेफ़रेंस, बिल्डिंग ऑटोमेशन संगतता, उत्पाद प्रतिस्थापन"
+    },
+    "hero": {
+      "title": "क्रॉस रेफ़रेंस टूल",
+      "subtitle": "प्रतिस्पर्धी उत्पादों के लिए BAPI समकक्ष खोजें"
+    },
+    "searchTool": {
+      "heading": "BAPI समकक्ष खोजें",
+      "manufacturerLabel": "निर्माता चुनें",
+      "manufacturerPlaceholder": "निर्माता चुनें...",
+      "modelLabel": "प्रतिस्पर्धी मॉडल नंबर दर्ज करें",
+      "modelPlaceholder": "उदा: C7400A2100",
+      "searchButton": "BAPI समकक्ष खोजें",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "अन्य"
+      }
+    },
+    "popularSection": {
+      "heading": "लोकप्रिय क्रॉस रेफ़रेंस",
+      "competitorLabel": "प्रतिस्पर्धी",
+      "bapiLabel": "BAPI समकक्ष"
+    },
+    "helpSection": {
+      "heading": "आपजो ढूंढ रहे हैं वह नहीं मिल रहा?",
+      "description": "क्रॉस रेफ़रेंसिंग के लिए सहायता के लिए हमारी तकनीकी बिक्री टीम से संपर्क करें",
+      "ctaButton": "बिक्री टीम से संपर्क करें"
+    }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "उत्पाद डेटाशीट | BAPI",
+      "description": "सभी BAPI बिल्डिंग ऑटोमेशन उत्पादों के लिए विस्तृत तकनीकी डेटाशीट डाउनलोड करें।",
+      "keywords": "उत्पाद डेटाशीट, तकनीकी विनिर्देश, सेंसर डेटाशीट, BAPI विनिर्देश, तापमान सेंसर विनिर्देश, नमी सेंसर विनिर्देश, दबाव सेंसर विनिर्देश, वायु गुणवत्ता सेंसर डेटाशीट, वायरलेस सेंसर विनिर्देश, नियंत्रक डेटाशीट, PDF डाउनलोड"
+    },
+    "hero": {
+      "title": "उत्पाद डेटाशीट",
+      "subtitle": "सभी BAPI उत्पादों के लिए विस्तृत तकनीकी विनिर्देश"
+    },
+    "search": {
+      "placeholder": "मॉडल नंबर या उत्पाद नाम द्वारा डेटाशीट खोजें...",
+      "categoryLabel": "सभी श्रेणियां",
+      "categories": {
+        "temperature": "तापमान",
+        "humidity": "नमी",
+        "pressure": "दबाव",
+        "airQuality": "वायु गुणवत्ता",
+        "wireless": "वायरलेस",
+        "controllers": "नियंत्रक"
+      }
+    },
+    "grid": {
+      "pagesLabel": "पृष्ठ",
+      "downloadButton": "PDF डाउनलोड करें"
+    },
+    "pagination": {
+      "previous": "पिछला",
+      "next": "अगला"
+    },
+    "bulkDownload": {
+      "heading": "कई डेटाशीट चाहिए?",
+      "description": "सभी उत्पाद विनिर्देशों के साथ हमारा पूरा डेटाशीट पैकेज डाउनलोड करें",
+      "button": "सभी डेटाशीट डाउनलोड करें (ZIP)",
+      "packageInfo": "पूरा पैकेज • 125 MB • जनवरी 2026 को अपडेट किया गया"
+    }
   }
 }

@@ -1401,5 +1401,79 @@
       "title": "¿Busca guías técnicas?",
       "description": "Explore nuestra colección de Notas de Aplicación para obtener orientación técnica detallada, mejores prácticas y ejemplos de implementación →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "Herramienta de Referencias Cruzadas | BAPI",
+      "description": "Encuentre equivalentes BAPI para productos de la competencia. Herramienta de referencias cruzadas para sensores de automatización de edificios.",
+      "keywords": "referencias cruzadas, comparación competidores, equivalentes BAPI, alternativa Honeywell, alternativa Johnson Controls, alternativa Siemens, referencias cruzadas sensores, compatibilidad automatización edificios, reemplazo productos"
+    },
+    "hero": {
+      "title": "Herramienta de Referencias Cruzadas",
+      "subtitle": "Encuentre equivalentes BAPI para productos de la competencia"
+    },
+    "searchTool": {
+      "heading": "Encontrar Equivalente BAPI",
+      "manufacturerLabel": "Seleccionar Fabricante",
+      "manufacturerPlaceholder": "Elegir fabricante...",
+      "modelLabel": "Ingresar Número de Modelo de la Competencia",
+      "modelPlaceholder": "ej. C7400A2100",
+      "searchButton": "Encontrar Equivalente BAPI",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "Otro"
+      }
+    },
+    "popularSection": {
+      "heading": "Referencias Cruzadas Populares",
+      "competitorLabel": "Competidor",
+      "bapiLabel": "Equivalente BAPI"
+    },
+    "helpSection": {
+      "heading": "¿No encuentra lo que busca?",
+      "description": "Contacte a nuestro equipo de ventas técnicas para asistencia con referencias cruzadas",
+      "ctaButton": "Contactar Equipo de Ventas"
+    }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "Hojas de Datos de Productos | BAPI",
+      "description": "Descargue hojas de datos técnicas detalladas para todos los productos de automatización de edificios BAPI.",
+      "keywords": "hojas de datos de productos, especificaciones técnicas, hojas de datos de sensores, especificaciones BAPI, especificaciones de sensor de temperatura, especificaciones de sensor de humedad, especificaciones de sensor de presión, hojas de datos de sensores de calidad del aire, especificaciones de sensores inalámbricos, hojas de datos de controladores, descargas PDF"
+    },
+    "hero": {
+      "title": "Hojas de Datos de Productos",
+      "subtitle": "Especificaciones técnicas detalladas para todos los productos BAPI"
+    },
+    "search": {
+      "placeholder": "Buscar hojas de datos por número de modelo o nombre de producto...",
+      "categoryLabel": "Todas las Categorías",
+      "categories": {
+        "temperature": "Temperatura",
+        "humidity": "Humedad",
+        "pressure": "Presión",
+        "airQuality": "Calidad del Aire",
+        "wireless": "Inalámbrico",
+        "controllers": "Controladores"
+      }
+    },
+    "grid": {
+      "pagesLabel": "páginas",
+      "downloadButton": "Descargar PDF"
+    },
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente"
+    },
+    "bulkDownload": {
+      "heading": "¿Necesita Varias Hojas de Datos?",
+      "description": "Descargue nuestro paquete completo de hojas de datos con todas las especificaciones de productos",
+      "button": "Descargar Todas las Hojas (ZIP)",
+      "packageInfo": "Paquete completo • 125 MB • Actualizado enero 2026"
+    }
   }
 }

@@ -1401,5 +1401,79 @@
       "title": "Vous cherchez des guides techniques?",
       "description": "Parcourez notre collection de Notes d'Application pour des conseils techniques approfondis, des meilleures pratiques et des exemples d'implémentation →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "Outil de Références Croisées | BAPI",
+      "description": "Trouvez les équivalents BAPI pour les produits concurrents. Outil de références croisées pour capteurs d'automatisation des bâtiments.",
+      "keywords": "références croisées, comparaison concurrents, équivalents BAPI, alternative Honeywell, alternative Johnson Controls, alternative Siemens, références croisées capteurs, compatibilité automatisation bâtiment, remplacement produit"
+    },
+    "hero": {
+      "title": "Outil de Références Croisées",
+      "subtitle": "Trouvez les équivalents BAPI pour les produits concurrents"
+    },
+    "searchTool": {
+      "heading": "Trouver l'Équivalent BAPI",
+      "manufacturerLabel": "Sélectionner le Fabricant",
+      "manufacturerPlaceholder": "Choisir un fabricant...",
+      "modelLabel": "Entrer le Numéro de Modèle Concurrent",
+      "modelPlaceholder": "ex. C7400A2100",
+      "searchButton": "Trouver l'Équivalent BAPI",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "Autre"
+      }
+    },
+    "popularSection": {
+      "heading": "Références Croisées Populaires",
+      "competitorLabel": "Concurrent",
+      "bapiLabel": "Équivalent BAPI"
+    },
+    "helpSection": {
+      "heading": "Vous ne trouvez pas ce que vous cherchez ?",
+      "description": "Contactez notre équipe de vente technique pour obtenir de l'aide avec les références croisées",
+      "ctaButton": "Contacter l'Équipe Commerciale"
+    }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "Fiches Techniques des Produits | BAPI",
+      "description": "Téléchargez les fiches techniques détaillées pour tous les produits d'automatisation des bâtiments BAPI.",
+      "keywords": "fiches techniques produits, spécifications techniques, fiches techniques capteurs, spécifications BAPI, spécifications capteur température, spécifications capteur humidité, spécifications capteur pression, fiches techniques capteurs qualité air, spécifications capteurs sans fil, fiches techniques contrôleurs, téléchargements PDF"
+    },
+    "hero": {
+      "title": "Fiches Techniques des Produits",
+      "subtitle": "Spécifications techniques détaillées pour tous les produits BAPI"
+    },
+    "search": {
+      "placeholder": "Rechercher des fiches techniques par numéro de modèle ou nom de produit...",
+      "categoryLabel": "Toutes les Catégories",
+      "categories": {
+        "temperature": "Température",
+        "humidity": "Humidité",
+        "pressure": "Pression",
+        "airQuality": "Qualité de l'Air",
+        "wireless": "Sans Fil",
+        "controllers": "Contrôleurs"
+      }
+    },
+    "grid": {
+      "pagesLabel": "pages",
+      "downloadButton": "Télécharger PDF"
+    },
+    "pagination": {
+      "previous": "Précédent",
+      "next": "Suivant"
+    },
+    "bulkDownload": {
+      "heading": "Besoin de Plusieurs Fiches Techniques ?",
+      "description": "Téléchargez notre package complet de fiches techniques avec toutes les spécifications produits",
+      "button": "Télécharger Toutes les Fiches (ZIP)",
+      "packageInfo": "Package complet • 125 MB • Mis à jour janvier 2026"
+    }
   }
 }

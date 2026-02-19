@@ -1401,5 +1401,79 @@
       "title": "寻找技术指南？",
       "description": "浏览我们的应用说明集合，获取深入的技术指导、最佳实践和实施示例 →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "交叉参考工具 | BAPI",
+      "description": "查找竞争产品的BAPI等效产品。楼宇自动化传感器交叉参考工具。",
+      "keywords": "交叉参考, 竞争对手比较, BAPI等效产品, Honeywell替代品, Johnson Controls替代品, Siemens替代品, 传感器交叉参考, 楼宇自动化兼容性, 产品替换"
+    },
+    "hero": {
+      "title": "交叉参考工具",
+      "subtitle": "查找竞争产品的BAPI等效产品"
+    },
+    "searchTool": {
+      "heading": "查找BAPI等效产品",
+      "manufacturerLabel": "选择制造商",
+      "manufacturerPlaceholder": "选择制造商...",
+      "modelLabel": "输入竞争对手型号",
+      "modelPlaceholder": "例如：C7400A2100",
+      "searchButton": "查找BAPI等效产品",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "其他"
+      }
+    },
+    "popularSection": {
+      "heading": "热门交叉参考",
+      "competitorLabel": "竞争对手",
+      "bapiLabel": "BAPI等效产品"
+    },
+    "helpSection": {
+      "heading": "找不到您需要的内容？",
+      "description": "联系我们的技术销售团队以获取交叉参考帮助",
+      "ctaButton": "联系销售团队"
+    }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "产品数据表 | BAPI",
+      "description": "下载所有BAPI楼宇自动化产品的详细技术数据表。",
+      "keywords": "产品数据表, 技术规格, 传感器数据表, BAPI规格, 温度传感器规格, 湿度传感器规格, 压力传感器规格, 空气质量传感器数据表, 无线传感器规格, 控制器数据表, PDF下载"
+    },
+    "hero": {
+      "title": "产品数据表",
+      "subtitle": "所有BAPI产品的详细技术规格"
+    },
+    "search": {
+      "placeholder": "按型号或产品名称搜索数据表...",
+      "categoryLabel": "所有类别",
+      "categories": {
+        "temperature": "温度",
+        "humidity": "湿度",
+        "pressure": "压力",
+        "airQuality": "空气质量",
+        "wireless": "无线",
+        "controllers": "控制器"
+      }
+    },
+    "grid": {
+      "pagesLabel": "页",
+      "downloadButton": "下载PDF"
+    },
+    "pagination": {
+      "previous": "上一页",
+      "next": "下一页"
+    },
+    "bulkDownload": {
+      "heading": "需要多个数据表？",
+      "description": "下载我们完整的数据表包，包含所有产品规格",
+      "button": "下载所有数据表 (ZIP)",
+      "packageInfo": "完整包 • 125 MB • 2026年1月更新"
+    }
   }
 }

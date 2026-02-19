@@ -1450,5 +1450,80 @@
       "title": "Tìm kiếm hướng dẫn kỹ thuật?",
       "description": "Duyệt qua bộ sưu tập Ghi chú Ứng dụng của chúng tôi để biết hướng dẫn kỹ thuật chi tiết, thực tiễn tốt nhất và ví dụ triển khai →"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "Công Cụ Tham Chiếu Chéo | BAPI",
+      "description": "Tìm sản phẩm tương đương BAPI cho các sản phẩm cạnh tranh. Công cụ tham chiếu chéo cho cảm biến tự động hóa tòa nhà.",
+      "keywords": "tham chiếu chéo, so sánh đối thủ, sản phẩm tương đương BAPI, thay thế Honeywell, thay thế Johnson Controls, thay thế Siemens, tham chiếu chéo cảm biến, khả năng tương thích tự động hóa tòa nhà, thay thế sản phẩm",
+      "keywords": "tham chiếu chéo, so sánh đối thủ, sản phẩm tương đương BAPI"
+    },
+    "hero": {
+      "title": "Công Cụ Tham Chiếu Chéo",
+      "subtitle": "Tìm sản phẩm tương đương BAPI cho các sản phẩm cạnh tranh"
+    },
+    "searchTool": {
+      "heading": "Tìm Sản Phẩm Tương Đương BAPI",
+      "manufacturerLabel": "Chọn Nhà Sản Xuất",
+      "manufacturerPlaceholder": "Chọn nhà sản xuất...",
+      "modelLabel": "Nhập Số Model Đối Thủ",
+      "modelPlaceholder": "ví dụ: C7400A2100",
+      "searchButton": "Tìm Sản Phẩm Tương Đương BAPI",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "Khác"
+      }
+    },
+    "popularSection": {
+      "heading": "Tham Chiếu Chéo Phổ Biến",
+      "competitorLabel": "Đối Thủ",
+      "bapiLabel": "Tương Đương BAPI"
+    },
+    "helpSection": {
+      "heading": "Không Tìm Thấy Thông Tin Bạn Cần?",
+      "description": "Liên hệ đội bán hàng kỹ thuật của chúng tôi để được hỗ trợ về tham chiếu chéo",
+      "ctaButton": "Liên Hệ Đội Bán Hàng"
+    }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "Tờ Dữ Liệu Sản Phẩm | BAPI",
+      "description": "Tầi xuống tờ dữ liệu kỹ thuật chi tiết cho tất cả các sản phẩm tự động hóa tòa nhà BAPI.",
+      "keywords": "tờ dữ liệu sản phẩm, thông số kỹ thuật, tờ dữ liệu cảm biến, thông số BAPI, thông số cảm biến nhiệt độ, thông số cảm biến độ ẩm, thông số cảm biến áp suất, tờ dữ liệu cảm biến chất lượng không khí, thông số cảm biến không dây, tờ dữ liệu bộ điều khiển, tải PDF"
+    },
+    "hero": {
+      "title": "Tờ Dữ Liệu Sản Phẩm",
+      "subtitle": "Thông số kỹ thuật chi tiết cho tất cả sản phẩm BAPI"
+    },
+    "search": {
+      "placeholder": "Tìm kiếm tờ dữ liệu theo số model hoặc tên sản phẩm...",
+      "categoryLabel": "Tất Cả Danh Mục",
+      "categories": {
+        "temperature": "Nhiệt Độ",
+        "humidity": "Độ Ẩm",
+        "pressure": "Áp Suất",
+        "airQuality": "Chất Lượng Không Khí",
+        "wireless": "Không Dây",
+        "controllers": "Bộ Điều Khiển"
+      }
+    },
+    "grid": {
+      "pagesLabel": "trang",
+      "downloadButton": "Tải PDF"
+    },
+    "pagination": {
+      "previous": "Trước",
+      "next": "Tiếp"
+    },
+    "bulkDownload": {
+      "heading": "Cần Nhiều Tờ Dữ Liệu?",
+      "description": "Tải gói tờ dữ liệu hoàn chỉnh của chúng tôi với tất cả thông số sản phẩm",
+      "button": "Tải Tất Cả Tờ Dữ Liệu (ZIP)",
+      "packageInfo": "Gói hoàn chỉnh • 125 MB • Cập nhật tháng 1 năm 2026"
+    }
   }
 }

@@ -1430,5 +1430,79 @@
       "title": "تبحث عن أدلة تقنية؟",
       "description": "استكشف مجموعة ملاحظات التطبيق الخاصة بنا للحصول على إرشادات تقنية مفصلة وأفضل الممارسات وأمثلة التنفيذ ←"
     }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "أداة الإشارات المتقاطعة | BAPI",
+      "description": "ابحث عن بدائل BAPI للمنتجات المنافسة. أداة الإشارات المتقاطعة لأجهزة استشعار أتمتة المباني.",
+      "keywords": "إشارات متقاطعة, مقارنة منافسين, بدائل BAPI, بديل Honeywell, بديل Johnson Controls, بديل Siemens, إشارات متقاطعة لأجهزة الاستشعار, توافق أتمتة المباني, استبدال المنتج"
+    },
+    "hero": {
+      "title": "أداة الإشارات المتقاطعة",
+      "subtitle": "ابحث عن بدائل BAPI للمنتجات المنافسة"
+    },
+    "searchTool": {
+      "heading": "ابحث عن بديل BAPI",
+      "manufacturerLabel": "اختر الشركة المصنعة",
+      "manufacturerPlaceholder": "اختر الشركة المصنعة...",
+      "modelLabel": "أدخل رقم طراز المنافس",
+      "modelPlaceholder": "مثال: C7400A2100",
+      "searchButton": "ابحث عن بديل BAPI",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "أخرى"
+      }
+    },
+    "popularSection": {
+      "heading": "إشارات متقاطعة مشهورة",
+      "competitorLabel": "المنافس",
+      "bapiLabel": "بديل BAPI"
+    },
+    "helpSection": {
+      "heading": "لا تجد ما تبحث عنه؟",
+      "description": "اتصل بفريق المبيعات التقني للحصول على مساعدة في الإشارات المتقاطعة",
+      "ctaButton": "اتصل بفريق المبيعات"
+    }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "أوراق بيانات المنتجات | BAPI",
+      "description": "قم بتنزيل أوراق بيانات تقنية تفصيلية لجميع منتجات أتمتة المباني BAPI.",
+      "keywords": "أوراق بيانات المنتجات, مواصفات تقنية, أوراق بيانات أجهزة الاستشعار, مواصفات BAPI, مواصفات مستشعر حرارة, مواصفات مستشعر رطوبة, مواصفات مستشعر ضغط, أوراق بيانات مستشعرات جودة الهواء, مواصفات مستشعرات لاسلكية, أوراق بيانات المتحكمات, تنزيلات PDF"
+    },
+    "hero": {
+      "title": "أوراق بيانات المنتجات",
+      "subtitle": "مواصفات تقنية تفصيلية لجميع منتجات BAPI"
+    },
+    "search": {
+      "placeholder": "ابحث عن أوراق البيانات حسب رقم الطراز أو اسم المنتج...",
+      "categoryLabel": "جميع الفئات",
+      "categories": {
+        "temperature": "درجة الحرارة",
+        "humidity": "الرطوبة",
+        "pressure": "الضغط",
+        "airQuality": "جودة الهواء",
+        "wireless": "لاسلكي",
+        "controllers": "المتحكمات"
+      }
+    },
+    "grid": {
+      "pagesLabel": "صفحة",
+      "downloadButton": "تنزيل PDF"
+    },
+    "pagination": {
+      "previous": "السابق",
+      "next": "التالي"
+    },
+    "bulkDownload": {
+      "heading": "تحتاج لعدة أوراق بيانات؟",
+      "description": "قم بتنزيل حزمة أوراق البيانات الكاملة مع جميع مواصفات المنتجات",
+      "button": "تنزيل جميع أوراق البيانات (ZIP)",
+      "packageInfo": "حزمة كاملة • 125 ميجابايت • تم التحديث يناير 2026"
+    }
   }
 }

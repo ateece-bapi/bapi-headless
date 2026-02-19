@@ -45,7 +45,15 @@ cookies.txt
 
 # OS / Editor
 .DS_Store
+Thumbs.db
 .vscode/
+
+# Logs and temporary files
+*.log
+*.bak
+*~
+*.swp
+*.tmp
 
 # local cookie dumps from testing / browser exports
 cookies.txt

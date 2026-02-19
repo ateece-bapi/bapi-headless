@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     path: 'support',
     keywords: t('metadata.keywords').split(',').map((k: string) => k.trim()),
     type: 'website',
-  });
+  }, locale);
 }
 
 export default async function SupportPage() {

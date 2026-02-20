@@ -16,6 +16,107 @@ This guide helps you access and use Storybook to review components, provide feed
 - 🔄 **Interactive playground** - Change props, test different states
 - ✅ **Quality assurance** - Review visual consistency across the app
 
+**Important:** Storybook is **read-only for designers**. You can view, comment, and approve components, but cannot edit the code. Your design work continues in Figma!
+
+---
+
+## 🎨 Figma + Storybook Workflow
+
+**Matt, this is how you'll use both tools together:**
+
+### Your Design Creation Tool: Figma ✏️
+
+**Figma is where you create and iterate on designs:**
+- Design new components and screens
+- Create design system libraries
+- Prototype user flows
+- Collaborate with Elly on visual assets
+- Hand off specs to developers
+
+**You continue using Figma as your primary design tool** - Storybook doesn't replace it!
+
+### Your Review & QA Tool: Storybook 👀
+
+**Storybook is where you verify developers implemented your designs correctly:**
+- Review built components match Figma specs
+- Test responsive behavior (mobile/tablet/desktop)
+- Check interactive states (hover, focus, loading, error)
+- Verify accessibility compliance (color contrast, keyboard navigation)
+- Leave feedback for developers to fix issues
+
+### The Complete Workflow
+
+```
+1. Design in Figma
+   ↓
+   Matt creates component mockups (buttons, forms, cards)
+   Shares Figma link with development team
+
+2. Developer Implements
+   ↓
+   Developer builds component in React/Next.js
+   Creates Storybook story for the component
+   Pushes to GitHub (triggers Chromatic publish)
+
+3. Review in Storybook
+   ↓
+   Matt gets notification of new component
+   Opens Chromatic Storybook URL
+   Compares built component to Figma designs
+
+4. Provide Feedback
+   ↓
+   Matt leaves comments in Chromatic:
+   - "Button padding should be 16px not 12px"
+   - "Icon color needs to match Figma spec (#1479BC)"
+   - "Hover state missing shadow effect"
+
+5. Developer Iterates
+   ↓
+   Developer fixes issues based on Matt's feedback
+   Publishes updated component to Storybook
+
+6. Final Approval
+   ↓
+   Matt reviews fixes, approves in Chromatic
+   Component merges to production
+```
+
+### Figma-to-Storybook Best Practices
+
+**For Matt (Designer):**
+- ✅ **Share Figma links** in GitHub issues or Chromatic comments
+- ✅ **Use design tokens** - Reference colors by name (BAPI Blue, not #1479BC)
+- ✅ **Document variants** - If Figma shows 3 button states, expect 3 Storybook stories
+- ✅ **Annotate specs** - Use Figma's inspect panel for spacing, font sizes, colors
+- ✅ **Create responsive frames** - Show mobile (375px), tablet (768px), desktop (1440px)
+
+**For Developers (Reference):**
+- ✅ **Match Figma specs** - Use exact colors, spacing, typography from design
+- ✅ **Create all variants** - Every Figma frame = one Storybook story
+- ✅ **Link Figma in stories** - Add Figma link to story description
+- ✅ **Capture edge cases** - Show states Figma didn't cover (loading, error, empty)
+
+### Optional: Storybook Figma Plugin
+
+**There's a Figma plugin to link designs to Storybook!**
+
+1. **Install plugin in Figma:**
+   - Search Figma plugins for "Storybook Connect"
+   - Install from Figma Community
+
+2. **Link Figma frames to Storybook stories:**
+   - Select a Figma frame (e.g., "Button/Primary")
+   - Run plugin → Paste Storybook story URL
+   - Now both tools are cross-referenced!
+
+3. **Benefits:**
+   - Click Figma frame → Opens corresponding Storybook story
+   - Developers see Figma link directly in Storybook
+   - Side-by-side comparison (design vs implementation)
+
+**Not required, but nice to have for large teams!**
+
 ---
 
 ## 🌐 Access Storybook (No Installation Needed)
@@ -396,7 +497,60 @@ When reviewing components in Storybook:
 1. **Check viewport:** Ensure correct screen size (mobile vs desktop)
 2. **Check story variant:** May be viewing "error" state instead of "default"
 3. **Check for draft mode:** Component may be work-in-progress
-4. **Screenshot and share:** Developer can investigate discrepancy
+4. **Compare to Figma:** Open your Figma file side-by-side
+5. **Document differences:**
+   - Take screenshots of both Storybook and Figma
+   - List specific discrepancies (color, spacing, size, behavior)
+   - Reference Figma frame/page link
+6. **Leave feedback in Chromatic:**
+   - Click comment icon on the specific element
+   - Include: "Doesn't match Figma spec: [Figma link]"
+   - Be specific: "Button padding is 12px, should be 16px per Figma"
+
+### "Component doesn't match Figma specs"
+**This is the most common issue - here's how to handle it:**
+
+1. **Identify the discrepancy:**
+   - Color off? Use Figma inspect panel to get exact hex code
+   - Spacing wrong? Measure padding/margin in Figma
+   - Interactive state missing? Check all Figma frames (hover, focus, active)
+
+2. **Create detailed feedback:**
+   ```
+   Component: Button/Primary
+   Issue: Background color doesn't match Figma
+   Expected: #1479BC (BAPI Blue from Figma)
+   Current: #1488CC (slightly lighter)
+   Figma link: https://figma.com/file/...
+   Screenshot: [attach both views]
+   ```
+
+3. **Choose feedback method:**
+   - **Small fix** (color, spacing): Chromatic comment
+   - **Large change** (layout, behavior): GitHub Issue with `design` label
+   - **Multiple issues**: Create checklist in GitHub Issue
+
+4. **Developer response timeline:**
+   - Minor fixes: 1-2 business days
+   - Major changes: Discussed in sprint planning
+
+### "I want to make changes myself"
+**Storybook is read-only for designers.** You cannot edit components directly.
+
+**To make changes:**
+1. **Update your Figma design** with the desired changes
+2. **Share updated Figma link** with development team
+3. **Create GitHub Issue** describing the changes:
+   ```
+   Title: [Design Update] Button Primary - New Hover State
+   Description:
+   - Updated Figma with new hover state design
+   - Figma link: https://figma.com/file/...
+   - Changes: Add 2px drop shadow on hover, reduce opacity to 90%
+   - Priority: Medium (enhancement, not blocking)
+   ```
+4. **Developer implements** the changes
+5. **You review** in Storybook once deployed
 
 ### "Need to test a new design"
 - **Figma → Storybook workflow:**

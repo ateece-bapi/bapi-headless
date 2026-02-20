@@ -30,7 +30,7 @@
  * - DesktopView: 3-4 column grid layout
  */
 
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { ProductCard } from './ProductCard';
 
 const meta: Meta<typeof ProductCard> = {

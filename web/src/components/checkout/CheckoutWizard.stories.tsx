@@ -27,9 +27,18 @@ const mockMessages = {
   checkoutPage: {
     wizard: {
       steps: {
-        shipping: 'Shipping',
-        payment: 'Payment',
-        review: 'Review',
+        shipping: {
+          title: 'Shipping',
+          description: 'Enter your shipping information',
+        },
+        payment: {
+          title: 'Payment',
+          description: 'Select your payment method',
+        },
+        review: {
+          title: 'Review',
+          description: 'Review and place your order',
+        },
       },
     },
     shipping: {

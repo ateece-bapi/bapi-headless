@@ -4,13 +4,27 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'web/src/**'
+      - 'web/.storybook/**'
+      - 'web/public/**'
+      - 'web/package.json'
+      - '.github/workflows/chromatic.yml'
   pull_request:
     branches:
       - main
+    paths:
+      - 'web/src/**'
+      - 'web/.storybook/**'
+      - 'web/public/**'
+      - 'web/package.json'
+      - '.github/workflows/chromatic.yml'
 
 jobs:
   chromatic:
     runs-on: ubuntu-latest
+    # Skip if secret is not available (e.g., forks)
+    if: ${{ secrets.CHROMATIC_PROJECT_TOKEN != '' }}
     
     steps:
       - name: Checkout code
@@ -26,7 +40,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
       
       - name: Get pnpm store directory
         shell: bash
@@ -42,6 +56,8 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       
       - name: Install dependencies
+        env:
+          HUSKY: 0
         run: |
           cd web
           pnpm install --frozen-lockfile
@@ -52,7 +68,7 @@ jobs:
           pnpm run build-storybook
       
       - name: Publish to Chromatic
-        uses: chromaui/action@latest
+        uses: chromaui/action@v11
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: web

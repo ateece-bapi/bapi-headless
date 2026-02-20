@@ -27,7 +27,7 @@
  * Full interactive functionality requires the complete app context.
  */
 
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 // Create a simple documentation component since the actual components 
 // require complex setup (next-intl, routing, Zustand)

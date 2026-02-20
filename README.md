@@ -193,7 +193,7 @@ bapi-headless/
   - ✅ Interaction testing with @storybook/test (8 automated tests)
   - ✅ Accessibility guide with WCAG 2.1 Level AA examples
   - ✅ Visual regression testing with Chromatic
-- �🔧 **Git Hooks** - Husky + lint-staged for code quality
+- 🔧 **Git Hooks** - Husky + lint-staged for code quality
 - 📦 **Monorepo** - WordPress and Next.js in single repository
 - ⚡ **React cache()** - Automatic query deduplication across server components
 - 🎯 **Static Generation** - Pre-build 30 most popular pages for instant loads
@@ -365,10 +365,6 @@ pnpm run chromatic
 - Visual regression testing with Chromatic
 
 **Setup Chromatic:** See [CHROMATIC-QUICK-START.md](./docs/CHROMATIC-QUICK-START.md) for step-by-step setup guide.
-
-# Build static Storybook
-pnpm run build-storybook
-```
 
 Access Storybook at [http://localhost:6006](http://localhost:6006) to:
 - Browse and interact with UI components

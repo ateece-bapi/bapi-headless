@@ -36,6 +36,7 @@ const mockMessages = {
       discount: 'Discount',
       total: 'Total',
       secureCheckout: 'Secure Checkout',
+      calculatedAtCheckout: 'Calculated at checkout',
     },
   },
 };

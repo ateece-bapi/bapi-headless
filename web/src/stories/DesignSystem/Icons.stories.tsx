@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { useState } from 'react';
+import Image from 'next/image';
 import {
   // Navigation
   Menu,
@@ -789,4 +790,346 @@ export const CommonUseCases: Story = {
       </div>
     </div>
   ),
+};
+
+// Story: BAPI Branded Product Category Icons
+export const BAPIBrandedIcons: Story = {
+  render: () => {
+    const bapiIcons = [
+      {
+        name: 'Temperature',
+        file: 'Temperature_Icon',
+        lucide: Thermometer,
+        color: 'Red/Orange',
+        order: 1,
+      },
+      {
+        name: 'Humidity',
+        file: 'Humidity_Icon',
+        lucide: Droplets,
+        color: 'Blue/Cyan',
+        order: 2,
+      },
+      {
+        name: 'Pressure',
+        file: 'Pressure_Icon',
+        lucide: Gauge,
+        color: 'Purple/Pink',
+        order: 3,
+      },
+      {
+        name: 'Air Quality',
+        file: 'AirQuality_Icon',
+        lucide: Wind,
+        color: 'Teal/Cyan',
+        order: 4,
+      },
+      {
+        name: 'Wireless',
+        file: 'Wireless_Icon',
+        lucide: Wifi,
+        color: 'Green/Emerald',
+        order: 5,
+      },
+      {
+        name: 'Accessories',
+        file: 'Accessories_Icon',
+        lucide: Package,
+        color: 'Gray/Neutral',
+        order: 6,
+      },
+      {
+        name: 'Test Instruments',
+        file: 'Test_Instruments_Icon',
+        lucide: Info, // Placeholder since FlaskConical not imported
+        color: 'Cyan/Blue',
+        order: 7,
+      },
+    ];
+
+    return (
+      <div className="space-y-8">
+        <div className="space-y-2">
+          <h1 className="text-4xl font-bold text-neutral-950">BAPI Branded Product Icons</h1>
+          <p className="text-lg text-neutral-600">
+            Official brand-standard product category icons from the 2024 BAPI Brand Guide
+          </p>
+        </div>
+
+        {/* Brand Compliance Alert */}
+        <div className="rounded-lg border-2 border-accent-500 bg-accent-50 p-6">
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="mt-1 text-accent-600" size={24} />
+            <div>
+              <h3 className="mb-2 text-lg font-semibold text-accent-900">
+                Brand Standard Requirements
+              </h3>
+              <ul className="space-y-1 text-sm text-accent-800">
+                <li>
+                  ✓ Icons <strong>must always</strong> appear in this order: T → H → P → AQ → W →
+                  A → TI
+                </li>
+                <li>✓ Icons must be equidistant horizontally or vertically</li>
+                <li>✓ Use WebP format for web performance</li>
+                <li>✓ Two color schemes: Blue on white OR White on blue background</li>
+                <li>✗ Never reorder icons for visual preference</li>
+                <li>✗ Never combine categories (e.g., &quot;Humidity &amp; Air Quality&quot;)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Brand Icons Grid */}
+        <div>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">
+            Official Brand Icons (Mandatory Order)
+          </h2>
+          <div className="rounded-lg border border-neutral-200 bg-white p-8">
+            <div className="grid grid-cols-7 gap-6">
+              {bapiIcons.map((icon) => (
+                <div key={icon.order} className="flex flex-col items-center gap-3">
+                  <div className="relative h-16 w-16">
+                    <Image
+                      src={`/images/icons/${icon.file}.webp`}
+                      alt={`${icon.name} category icon`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm font-semibold text-neutral-900">{icon.name}</div>
+                    <div className="text-xs text-neutral-500">#{icon.order}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-3 rounded bg-neutral-900 p-4 text-sm text-white">
+            <code>{`<img src="/images/icons/Temperature_Icon.webp" alt="Temperature sensors" />`}</code>
+          </div>
+        </div>
+
+        {/* White on Blue Variant */}
+        <div>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">
+            White Icons on Blue Background
+          </h2>
+          <div className="rounded-lg bg-primary-500 p-8">
+            <div className="grid grid-cols-7 gap-6">
+              {bapiIcons.map((icon) => (
+                <div key={icon.order} className="flex flex-col items-center gap-3">
+                  <div className="relative h-16 w-16">
+                    <Image
+                      src={`/images/icons/${icon.file}.webp`}
+                      alt={`${icon.name} category icon`}
+                      fill
+                      className="object-contain brightness-0 invert"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm font-semibold text-white">{icon.name}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-3 rounded bg-neutral-900 p-4 text-sm text-white">
+            <code>{`<img className="brightness-0 invert" src="/images/icons/Temperature_Icon.webp" />`}</code>
+          </div>
+        </div>
+
+        {/* Size Variants */}
+        <div>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">Size Guidelines</h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+              <h4 className="mb-3 text-sm font-semibold text-neutral-900">Mobile Nav (24px)</h4>
+              <div className="relative mx-auto h-6 w-6">
+                <Image
+                  src="/images/icons/Temperature_Icon.webp"
+                  alt="Temperature"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+              <h4 className="mb-3 text-sm font-semibold text-neutral-900">Mega Menu (32px)</h4>
+              <div className="relative mx-auto h-8 w-8">
+                <Image
+                  src="/images/icons/Temperature_Icon.webp"
+                  alt="Temperature"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+              <h4 className="mb-3 text-sm font-semibold text-neutral-900">Product Cards (48px)</h4>
+              <div className="relative mx-auto h-12 w-12">
+                <Image
+                  src="/images/icons/Temperature_Icon.webp"
+                  alt="Temperature"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+              <h4 className="mb-3 text-sm font-semibold text-neutral-900">Hero Sections (64px)</h4>
+              <div className="relative mx-auto h-16 w-16">
+                <Image
+                  src="/images/icons/Temperature_Icon.webp"
+                  alt="Temperature"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Lucide Fallbacks Comparison */}
+        <div>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">
+            Lucide Fallbacks (Development Only)
+          </h2>
+          <p className="mb-4 text-sm text-neutral-600">
+            Use these lucide-react icons during development when brand assets aren&apos;t available
+          </p>
+          <div className="rounded-lg border border-neutral-200 bg-white p-6">
+            <div className="grid grid-cols-7 gap-6">
+              {bapiIcons.map((icon) => {
+                const LucideIcon = icon.lucide;
+                return (
+                  <div key={icon.order} className="flex flex-col items-center gap-3">
+                    <div className="flex h-16 w-16 items-center justify-center">
+                      <LucideIcon className="text-primary-500" size={40} />
+                    </div>
+                    <div className="text-center">
+                      <div className="text-sm font-medium text-neutral-700">{icon.name}</div>
+                      <code className="text-2xs text-neutral-500">
+                        {icon.lucide.displayName || icon.lucide.name}
+                      </code>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Implementation Example */}
+        <div>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">
+            Mega Menu Implementation
+          </h2>
+          <div className="rounded-lg border border-neutral-200 bg-white p-6">
+            <div className="grid grid-cols-4 gap-4 md:grid-cols-7">
+              {bapiIcons.map((icon) => (
+                <button
+                  key={icon.order}
+                  type="button"
+                  className="flex flex-col items-center gap-2 rounded-lg p-3 transition-colors hover:bg-primary-50"
+                >
+                  <div className="relative h-8 w-8">
+                    <Image
+                      src={`/images/icons/${icon.file}.webp`}
+                      alt=""
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-xs font-medium text-neutral-900">{icon.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+          <pre className="mt-3 rounded bg-neutral-900 p-4 text-sm text-white">
+            {`// Header mega menu config
+export const PRODUCT_CATEGORIES = [
+  { name: 'Temperature', icon: '/images/icons/Temperature_Icon.webp' },
+  { name: 'Humidity', icon: '/images/icons/Humidity_Icon.webp' },
+  { name: 'Pressure', icon: '/images/icons/Pressure_Icon.webp' },
+  { name: 'Air Quality', icon: '/images/icons/AirQuality_Icon.webp' },
+  { name: 'Wireless', icon: '/images/icons/Wireless_Icon.webp' },
+  { name: 'Accessories', icon: '/images/icons/Accessories_Icon.webp' },
+  { name: 'Test Instruments', icon: '/images/icons/Test_Instruments_Icon.webp' },
+];`}
+          </pre>
+        </div>
+
+        {/* When to Limit Icons */}
+        <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+          <h3 className="mb-4 text-xl font-semibold text-neutral-900">
+            Space Constraints (6 Icons)
+          </h3>
+          <p className="mb-4 text-sm text-neutral-600">
+            If space allows only 6 icons, you may eliminate <strong>one</strong> of the following:
+          </p>
+          <div className="mb-4 space-y-2 text-sm">
+            <div className="flex items-center gap-2">
+              <X className="text-error-500" size={16} />
+              <span>
+                <strong>Accessories</strong> - For technical/engineering audiences
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <X className="text-error-500" size={16} />
+              <span>
+                <strong>Wireless</strong> - For traditional wired-sensor focused content
+              </span>
+            </div>
+          </div>
+          <div className="rounded bg-accent-100 p-3 text-sm">
+            <strong className="text-accent-900">Never eliminate:</strong>{' '}
+            <span className="text-accent-800">
+              Temperature, Humidity, Pressure, Air Quality, Test Instruments
+            </span>
+          </div>
+        </div>
+
+        {/* Brand Compliance Checklist */}
+        <div className="rounded-lg border-2 border-success-500 bg-success-50 p-6">
+          <h3 className="mb-4 text-xl font-semibold text-success-900">
+            Brand Compliance Checklist
+          </h3>
+          <div className="grid grid-cols-1 gap-2 text-sm md:grid-cols-2">
+            <div className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <span className="text-success-800">Icons in brand-standard order (T-H-P-AQ-W-A-TI)</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <span className="text-success-800">Equidistant spacing (horizontal or vertical)</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <span className="text-success-800">Using WebP format for performance</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <span className="text-success-800">Original aspect ratio maintained</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <span className="text-success-800">Blue or white color scheme only</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <span className="text-success-800">Alt text for accessibility</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <span className="text-success-800">No combined categories</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <span className="text-success-800">Appropriate size for context (32-64px)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  },
 };

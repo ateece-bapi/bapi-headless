@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import { expect, fn, userEvent, within } from '@storybook/test';
+import { expect, userEvent, within } from '@storybook/test';
 import { ToastProvider, useToast } from './Toast';
 import AddToCartButton from '../cart/AddToCartButton';
 import { mockProduct } from '../../../test/msw/fixtures';
@@ -153,15 +153,22 @@ export const ToastMultipleClicks: StoryObj = {
  */
 export const AddToCartClick: StoryObj = {
   render: () => {
-    const mockAddItem = fn();
+    // Convert mockProduct to ensure altText is never null (CartItem expects string | undefined)
+    const product = {
+      ...mockProduct,
+      image: mockProduct.image
+        ? {
+            ...mockProduct.image,
+            altText: mockProduct.image.altText ?? undefined,
+          }
+        : null,
+    };
 
     return (
       <ToastProvider>
         <AddToCartButton
-          product={mockProduct}
+          product={product}
           quantity={1}
-          selectedVariation={null}
-          onAddToCart={mockAddItem}
         />
       </ToastProvider>
     );
@@ -201,13 +208,21 @@ export const AddToCartClick: StoryObj = {
  */
 export const AddToCartLoadingState: StoryObj = {
   render: () => {
+    const product = {
+      ...mockProduct,
+      image: mockProduct.image
+        ? {
+            ...mockProduct.image,
+            altText: mockProduct.image.altText ?? undefined,
+          }
+        : null,
+    };
+
     return (
       <ToastProvider>
         <AddToCartButton
-          product={mockProduct}
+          product={product}
           quantity={2}
-          selectedVariation={null}
-          onAddToCart={() => new Promise((resolve) => setTimeout(resolve, 2000))}
         />
       </ToastProvider>
     );
@@ -245,13 +260,21 @@ export const AddToCartLoadingState: StoryObj = {
  */
 export const AddToCartWithQuantity: StoryObj = {
   render: () => {
+    const product = {
+      ...mockProduct,
+      image: mockProduct.image
+        ? {
+            ...mockProduct.image,
+            altText: mockProduct.image.altText ?? undefined,
+          }
+        : null,
+    };
+
     return (
       <ToastProvider>
         <AddToCartButton
-          product={mockProduct}
+          product={product}
           quantity={5}
-          selectedVariation={null}
-          onAddToCart={() => Promise.resolve()}
         />
       </ToastProvider>
     );
@@ -287,13 +310,21 @@ export const AddToCartWithQuantity: StoryObj = {
  */
 export const ButtonHoverEffect: StoryObj = {
   render: () => {
+    const product = {
+      ...mockProduct,
+      image: mockProduct.image
+        ? {
+            ...mockProduct.image,
+            altText: mockProduct.image.altText ?? undefined,
+          }
+        : null,
+    };
+
     return (
       <ToastProvider>
         <AddToCartButton
-          product={mockProduct}
+          product={product}
           quantity={1}
-          selectedVariation={null}
-          onAddToCart={() => Promise.resolve()}
         />
       </ToastProvider>
     );
@@ -331,14 +362,22 @@ export const ButtonHoverEffect: StoryObj = {
  */
 export const ButtonDisabledState: StoryObj = {
   render: () => {
+    const product = {
+      ...mockProduct,
+      image: mockProduct.image
+        ? {
+            ...mockProduct.image,
+            altText: mockProduct.image.altText ?? undefined,
+          }
+        : null,
+    };
+
     return (
       <ToastProvider>
         <AddToCartButton
-          product={mockProduct}
+          product={product}
           quantity={1}
           disabled={true}
-          selectedVariation={null}
-          onAddToCart={() => Promise.resolve()}
         />
       </ToastProvider>
     );

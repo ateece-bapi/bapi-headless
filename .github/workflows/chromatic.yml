@@ -9,6 +9,10 @@ on:
       - 'web/.storybook/**'
       - 'web/public/**'
       - 'web/package.json'
+      - 'web/pnpm-lock.yaml'
+      - 'web/tailwind.config.js'
+      - 'web/postcss.config.mjs'
+      - 'web/next.config.ts'
       - '.github/workflows/chromatic.yml'
   pull_request:
     branches:
@@ -18,6 +22,10 @@ on:
       - 'web/.storybook/**'
       - 'web/public/**'
       - 'web/package.json'
+      - 'web/pnpm-lock.yaml'
+      - 'web/tailwind.config.js'
+      - 'web/postcss.config.mjs'
+      - 'web/next.config.ts'
       - '.github/workflows/chromatic.yml'
 
 jobs:

@@ -364,7 +364,10 @@ pnpm run chromatic
 - Accessibility testing with @storybook/addon-a11y
 - Visual regression testing with Chromatic
 
-**Setup Chromatic:** See [CHROMATIC-QUICK-START.md](./docs/CHROMATIC-QUICK-START.md) for step-by-step setup guide.
+**Setup Guides:**
+- **Developers:** [CHROMATIC-QUICK-START.md](./docs/CHROMATIC-QUICK-START.md) - Chromatic setup and local testing
+- **Designers:** [STORYBOOK-DESIGNER-GUIDE.md](./docs/STORYBOOK-DESIGNER-GUIDE.md) - No-code guide for UI/UX review
+- **Admins:** [STORYBOOK-DESIGNER-SETUP-ADMIN.md](./docs/STORYBOOK-DESIGNER-SETUP-ADMIN.md) - Give designers access to Chromatic
 
 Access Storybook at [http://localhost:6006](http://localhost:6006) to:
 - Browse and interact with UI components

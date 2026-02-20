@@ -8,7 +8,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
  * for headings, body text, and UI elements with proper line heights and spacing.
  */
 
-const meta = {
+const meta: Meta = {
   title: 'Design System/Typography',
   parameters: {
     layout: 'fullscreen',
@@ -22,16 +22,16 @@ with proper contrast ratios, line heights, and font sizes optimized for readabil
 ## Font Families
 
 - **Sans-serif (Primary):** Roboto - Modern, clean, highly legible
-- **Monospace (Code):**mono Roboto Mono - For code samples and technical data
+- **Monospace (Code):** Roboto Mono - For code samples and technical data
         `,
       },
     },
   },
   tags: ['autodocs'],
-} satisfies Meta;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj;
 
 /**
  * Typography Sample Component

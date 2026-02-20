@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import { NextIntlClientProvider } from 'next-intl';
 import CheckoutWizard from './CheckoutWizard';
 import { ToastProvider } from '../ui/Toast';
 import type { CheckoutData } from './CheckoutPageClient';
@@ -21,17 +22,73 @@ import type { CheckoutData } from './CheckoutPageClient';
  * - Billing address toggle (same as shipping vs different)
  */
 
+// Mock translations for CheckoutWizard and its steps
+const mockMessages = {
+  checkoutPage: {
+    wizard: {
+      steps: {
+        shipping: 'Shipping',
+        payment: 'Payment',
+        review: 'Review',
+      },
+    },
+    shipping: {
+      title: 'Shipping Information',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      company: 'Company',
+      address1: 'Address Line 1',
+      address2: 'Address Line 2',
+      city: 'City',
+      state: 'State',
+      postcode: 'Postal Code',
+      country: 'Country',
+      phone: 'Phone',
+      email: 'Email',
+      continue: 'Continue to Payment',
+      required: 'This field is required',
+      invalidEmail: 'Invalid email address',
+    },
+    payment: {
+      title: 'Payment Method',
+      creditCard: 'Credit Card',
+      paypal: 'PayPal',
+      cardNumber: 'Card Number',
+      expiryDate: 'Expiry Date',
+      cvc: 'CVC',
+      billingAddress: 'Billing Address',
+      sameAsShipping: 'Same as shipping address',
+      differentAddress: 'Use a different billing address',
+      continue: 'Continue to Review',
+      back: 'Back to Shipping',
+    },
+    review: {
+      title: 'Review & Place Order',
+      orderSummary: 'Order Summary',
+      shippingAddress: 'Shipping Address',
+      paymentMethod: 'Payment Method',
+      termsLabel: 'I agree to the Terms & Conditions',
+      placeOrder: 'Place Order',
+      processing: 'Processing...',
+      back: 'Back to Payment',
+      edit: 'Edit',
+    },
+  },
+};
+
 const meta: Meta<typeof CheckoutWizard> = {
   title: 'Components/Checkout/CheckoutWizard',
   component: CheckoutWizard,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <ToastProvider>
-        <div className="min-h-screen bg-neutral-50 p-4">
-          <Story />
-        </div>
-      </ToastProvider>
+      <NextIntlClientProvider locale="en" messages={mockMessages}>
+        <ToastProvider>
+          <div className="min-h-screen bg-neutral-50 p-4">
+            <Story />
+          </div>
+        </ToastProvider>
+      </NextIntlClientProvider>
     ),
   ],
   parameters: {

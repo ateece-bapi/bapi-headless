@@ -187,10 +187,12 @@ bapi-headless/
   - ✅ 125 unit tests (utilities, formatters, type guards)
   - ✅ 309 integration tests (products, cart, components)
   - ✅ 214 checkout tests (wizard, summary, steps)
-- � **Storybook** - Component library with MSW GraphQL mocking
-  - ✅ Interactive component development and documentation
-  - ✅ Visual regression testing ready (Chromatic integration)
-  - ✅ 60+ stories across UI components
+- 📚 **Storybook 10.2** - Component library with MSW GraphQL mocking
+  - ✅ 122+ story variations across 20 files (20x coverage increase)
+  - ✅ Design System documentation (Colors, Typography, Icons)
+  - ✅ Interaction testing with @storybook/test (8 automated tests)
+  - ✅ Accessibility guide with WCAG 2.1 Level AA examples
+  - ✅ Visual regression testing with Chromatic
 - �🔧 **Git Hooks** - Husky + lint-staged for code quality
 - 📦 **Monorepo** - WordPress and Next.js in single repository
 - ⚡ **React cache()** - Automatic query deduplication across server components
@@ -264,6 +266,7 @@ See [`web/COLOR_SYSTEM.md`](./web/COLOR_SYSTEM.md) for complete color documentat
 
 - **[PNPM Setup Guide](./docs/PNPM-TEAM-GUIDE.md)** - 5-minute team onboarding for PNPM migration
 - **[Color System](./web/COLOR_SYSTEM.md)** - Complete brand color guidelines
+- **[Storybook & Chromatic](./docs/CHROMATIC-QUICK-START.md)** - Visual regression testing setup (122+ stories)
 - **[WordPress Authentication](./docs/WORDPRESS-BACKEND-SETUP.md)** - JWT authentication setup and configuration
 - **[Translation Guide](./docs/PHASE1-TRANSLATION-GUIDE.md)** - 11-language i18n implementation
 - **[WordPress User Migration](./docs/BULK-USER-MIGRATION.md)** - Bulk import guide for existing customers
@@ -345,6 +348,23 @@ pnpm test -- --coverage
 ```bash
 # Start Storybook dev server
 pnpm run storybook
+
+# Build static Storybook
+pnpm run build-storybook
+
+# Run Chromatic visual regression tests
+pnpm run chromatic
+```
+
+**Features:**
+- 122+ story variations across 20 files
+- Design System docs (Colors, Typography, Icons)
+- Interactive component development
+- MSW GraphQL mocking for realistic data
+- Accessibility testing with @storybook/addon-a11y
+- Visual regression testing with Chromatic
+
+**Setup Chromatic:** See [CHROMATIC-QUICK-START.md](./docs/CHROMATIC-QUICK-START.md) for step-by-step setup guide.
 
 # Build static Storybook
 pnpm run build-storybook

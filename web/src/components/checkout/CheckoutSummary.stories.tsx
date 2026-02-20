@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import { NextIntlClientProvider } from 'next-intl';
 import CheckoutSummary from './CheckoutSummary';
 
 /**
@@ -20,17 +21,38 @@ import CheckoutSummary from './CheckoutSummary';
  * - Mobile responsive layout
  */
 
+// Mock translations for CheckoutSummary
+const mockMessages = {
+  checkoutPage: {
+    summary: {
+      title: 'Order Summary',
+      items: '{count, plural, =0 {No items} =1 {1 item} other {# items}} in cart',
+      noImage: 'No image',
+      qty: 'Qty',
+      editCart: 'Edit Cart',
+      subtotal: 'Subtotal',
+      shipping: 'Shipping',
+      tax: 'Tax',
+      discount: 'Discount',
+      total: 'Total',
+      secureCheckout: 'Secure Checkout',
+    },
+  },
+};
+
 const meta: Meta<typeof CheckoutSummary> = {
   title: 'Components/Checkout/CheckoutSummary',
   component: CheckoutSummary,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className="min-h-screen bg-neutral-50 p-4">
-        <div className="mx-auto max-w-md">
-          <Story />
+      <NextIntlClientProvider locale="en" messages={mockMessages}>
+        <div className="min-h-screen bg-neutral-50 p-4">
+          <div className="mx-auto max-w-md">
+            <Story />
+          </div>
         </div>
-      </div>
+      </NextIntlClientProvider>
     ),
   ],
   parameters: {

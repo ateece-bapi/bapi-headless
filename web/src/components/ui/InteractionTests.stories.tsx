@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { expect, userEvent, within } from '@storybook/test';
+import { useRef } from 'react';
 import { ToastProvider, useToast } from './Toast';
 import AddToCartButton from '../cart/AddToCartButton';
 import { mockProduct } from '../../../test/msw/fixtures';
@@ -97,14 +98,14 @@ export const ToastMultipleClicks: StoryObj = {
   render: () => {
     const Demo = () => {
       const { showToast } = useToast();
-      let clickCount = 0;
+      const clickCountRef = useRef(0);
 
       return (
         <button
           data-testid="multi-toast-trigger"
           onClick={() => {
-            clickCount++;
-            showToast('info', `Toast #${clickCount}`, `This is toast number ${clickCount}`);
+            clickCountRef.current++;
+            showToast('info', `Toast #${clickCountRef.current}`, `This is toast number ${clickCountRef.current}`);
           }}
           className="rounded-lg bg-blue-500 px-6 py-3 text-white hover:bg-blue-600"
         >
@@ -176,8 +177,8 @@ export const AddToCartClick: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    // Find the "Add to Cart" button
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    // Find the "Add to Cart" button (aria-label includes product name)
+    const addButton = canvas.getByRole('button', { name: /add.*to cart/i });
 
     // Verify button is enabled
     expect(addButton).toBeEnabled();
@@ -230,19 +231,19 @@ export const AddToCartLoadingState: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    const addButton = canvas.getByRole('button', { name: /add.*to cart/i });
 
     // Click button
     await userEvent.click(addButton);
 
-    // Immediately verify loading state
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    // Immediately check loading state (shorter delay to catch it)
+    await new Promise((resolve) => setTimeout(resolve, 50));
 
     const loadingButton = canvas.getByRole('button');
     expect(loadingButton).toBeDisabled();
 
-    // Verify button text changes to "Adding..."
-    const loadingText = await canvas.findByText(/adding/i);
+    // Verify button text changes to "Adding..." (check for the text content)
+    const loadingText = canvas.getByText('Adding...');
     expect(loadingText).toBeInTheDocument();
   },
   parameters: {
@@ -282,7 +283,7 @@ export const AddToCartWithQuantity: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    const addButton = canvas.getByRole('button', { name: /add.*to cart/i });
 
     // Click button
     await userEvent.click(addButton);
@@ -332,7 +333,7 @@ export const ButtonHoverEffect: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    const addButton = canvas.getByRole('button', { name: /add.*to cart/i });
 
     // Verify initial state
     expect(addButton).toBeInTheDocument();
@@ -385,7 +386,7 @@ export const ButtonDisabledState: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    const addButton = canvas.getByRole('button', { name: /out of stock/i });
 
     // Verify button is disabled
     expect(addButton).toBeDisabled();

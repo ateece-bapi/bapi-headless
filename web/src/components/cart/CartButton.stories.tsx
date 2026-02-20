@@ -26,7 +26,7 @@
  * - FloatingAction: Sticky floating button (mobile)
  */
 
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import CartButton from './CartButton';
 
 const meta: Meta<typeof CartButton> = {

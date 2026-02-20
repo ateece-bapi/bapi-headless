@@ -54,8 +54,8 @@ This allows the GitHub Action to publish builds automatically on every PR.
 Run Chromatic locally to create initial baseline snapshots for all 122+ stories:
 
 ```bash
-# Navigate to web directory
-cd /home/ateece/bapi-headless/web
+# Navigate to web directory (from repo root)
+cd web
 
 # Set your Chromatic token (replace with your actual token)
 export CHROMATIC_PROJECT_TOKEN=chpt_your_token_here
@@ -111,9 +111,8 @@ Verify the GitHub Action works by creating a test PR:
 
 ```bash
 # Make a small UI change (example: change button text)
-# On your current branch: feat/chromatic-visual-regression
-
-cd /home/ateece/bapi-headless/web
+# From repo root, navigate to web directory
+cd web
 
 # Make a trivial change to test Chromatic detection
 echo "// Chromatic test" >> src/components/ui/Button.tsx

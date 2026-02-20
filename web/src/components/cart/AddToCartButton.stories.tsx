@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import AddToCartButton from './AddToCartButton';
 import { mockProductForClient, makeProductForClient } from '../../../test/msw/fixtures';
 import type { CartItem } from '@/store';

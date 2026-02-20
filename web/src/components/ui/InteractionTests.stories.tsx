@@ -176,8 +176,8 @@ export const AddToCartClick: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    // Find the "Add to Cart" button
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    // Find the "Add to Cart" button (aria-label includes product name)
+    const addButton = canvas.getByRole('button', { name: /add.*to cart/i });
 
     // Verify button is enabled
     expect(addButton).toBeEnabled();
@@ -230,7 +230,7 @@ export const AddToCartLoadingState: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    const addButton = canvas.getByRole('button', { name: /add.*to cart/i });
 
     // Click button
     await userEvent.click(addButton);
@@ -282,7 +282,7 @@ export const AddToCartWithQuantity: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    const addButton = canvas.getByRole('button', { name: /add.*to cart/i });
 
     // Click button
     await userEvent.click(addButton);
@@ -332,7 +332,7 @@ export const ButtonHoverEffect: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    const addButton = canvas.getByRole('button', { name: /add.*to cart/i });
 
     // Verify initial state
     expect(addButton).toBeInTheDocument();
@@ -385,7 +385,7 @@ export const ButtonDisabledState: StoryObj = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const addButton = canvas.getByRole('button', { name: /add to cart/i });
+    const addButton = canvas.getByRole('button', { name: /out of stock/i });
 
     // Verify button is disabled
     expect(addButton).toBeDisabled();

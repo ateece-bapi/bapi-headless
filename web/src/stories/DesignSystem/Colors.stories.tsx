@@ -46,7 +46,12 @@ const ColorSwatch = ({
   value: string; 
   subtitle?: string;
 }) => {
-  const isLight = parseInt(value.slice(1, 3), 16) > 200;
+  // Calculate relative luminance using WCAG formula
+  const r = parseInt(value.slice(1, 3), 16) / 255;
+  const g = parseInt(value.slice(3, 5), 16) / 255;
+  const b = parseInt(value.slice(5, 7), 16) / 255;
+  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  const isLight = luminance > 0.5;
   
   return (
     <div className="flex flex-col">

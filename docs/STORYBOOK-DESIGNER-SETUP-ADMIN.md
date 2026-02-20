@@ -16,32 +16,34 @@ This guide walks you (Andrew) through giving Matt (UI/UX) and Elly (Graphic Desi
 
 ---
 
-## Step 1: Get Chromatic Project URL (2 minutes)
+## Step 1: Chromatic Project URLs ✅ (Already Complete)
 
-1. **Visit Chromatic Dashboard:**
-   - Go to [https://www.chromatic.com/builds](https://www.chromatic.com/builds)
-   - Or click your project from the Chromatic homepage
+**Your BAPI Headless Storybook is published at:**
 
-2. **Copy Project Information:**
-   - **Project ID:** Found in URL (`https://www.chromatic.com/builds?appId=YOUR_PROJECT_ID`)
-   - **Main Branch Storybook URL:** `https://YOUR_PROJECT_ID-main.chromatic.com`
-   - **Project Dashboard:** `https://www.chromatic.com/builds?appId=YOUR_PROJECT_ID`
+- **📚 Main Storybook URL:** https://69790f14a4a9ebfab83a9f49-main.chromatic.com
+  - Share this URL with Matt and Elly
+  - Bookmark this for yourself
+  - Updates automatically on every main branch commit
 
-3. **Document URLs (save these):**
-   ```
-   Project ID: _________________
-   Main Storybook: https://__________-main.chromatic.com
-   Chromatic Dashboard: https://www.chromatic.com/builds?appId=__________
-   ```
+- **🔧 Chromatic Dashboard:** https://www.chromatic.com/builds?appId=69790f14a4a9ebfab83a9f49
+  - Manage collaborators
+  - View build history (186 baselines accepted)
+  - Review visual diffs and PR comparisons
+
+- **⚙️ Project Settings:** https://www.chromatic.com/manage?appId=69790f14a4a9ebfab83a9f49
+  - Add/remove team members
+  - Configure notifications
+  - Manage billing (currently free tier)
+
+**Project ID:** `69790f14a4a9ebfab83a9f49`
 
 ---
 
 ## Step 2: Invite Matt to Chromatic (3 minutes)
 
 1. **Go to Chromatic Project Settings:**
-   - Open your Chromatic project dashboard
-   - Click **"Manage"** » **"Collaborators"** (or similar)
-   - Or visit: `https://www.chromatic.com/manage?appId=YOUR_PROJECT_ID`
+   - Visit: https://www.chromatic.com/manage?appId=69790f14a4a9ebfab83a9f49
+   - Or from dashboard: Click **"Manage"** » **"Collaborators"**
 
 2. **Add Matt as Collaborator:**
    - Click **"Invite member"** or **"Add collaborator"**
@@ -60,8 +62,8 @@ This guide walks you (Andrew) through giving Matt (UI/UX) and Elly (Graphic Desi
 4. **Notify Matt:**
    - Email Matt with:
      - Chromatic invite link (he'll get this automatically)
-     - Main Storybook URL: `https://YOUR_PROJECT_ID-main.chromatic.com`
-     - Link to designer guide: `docs/STORYBOOK-DESIGNER-GUIDE.md`
+     - Main Storybook URL: https://69790f14a4a9ebfab83a9f49-main.chromatic.com
+     - Link to designer guide: https://github.com/ateece-bapi/bapi-headless/blob/main/docs/STORYBOOK-DESIGNER-GUIDE.md
    - Example email template below
 
 ---
@@ -123,8 +125,8 @@ Hi Matt,
 You now have access to our Storybook component library! This is a living documentation of all UI components we're building for the new BAPI website.
 
 🚀 QUICK LINKS:
-• Main Storybook: https://YOUR_PROJECT_ID-main.chromatic.com
-• Chromatic Dashboard: https://www.chromatic.com/builds?appId=YOUR_PROJECT_ID
+• Main Storybook: https://69790f14a4a9ebfab83a9f49-main.chromatic.com
+• Chromatic Dashboard: https://www.chromatic.com/builds?appId=69790f14a4a9ebfab83a9f49
 • Designer Guide: https://github.com/ateece-bapi/bapi-headless/blob/main/docs/STORYBOOK-DESIGNER-GUIDE.md
 
 📝 GETTING STARTED:
@@ -328,4 +330,29 @@ Matt and Elly now have full access to:
 5. Add Storybook URL to team wiki/onboarding docs
 
 **Questions?** Reference this guide or contact Chromatic support.
+
+---
+
+## 📋 Quick Reference - Your Project URLs
+
+**Copy/paste these URLs as needed:**
+
+```
+Main Storybook (share with designers):
+https://69790f14a4a9ebfab83a9f49-main.chromatic.com
+
+Chromatic Builds Dashboard:
+https://www.chromatic.com/builds?appId=69790f14a4a9ebfab83a9f49
+
+Chromatic Project Settings (manage collaborators):
+https://www.chromatic.com/manage?appId=69790f14a4a9ebfab83a9f49
+
+Designer Guide (for Matt & Elly):
+https://github.com/ateece-bapi/bapi-headless/blob/main/docs/STORYBOOK-DESIGNER-GUIDE.md
+
+GitHub Repository:
+https://github.com/ateece-bapi/bapi-headless
+
+Project ID: 69790f14a4a9ebfab83a9f49
+```
 

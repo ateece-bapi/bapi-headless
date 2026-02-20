@@ -307,7 +307,7 @@ When reviewing components in Storybook:
 
 ### Visual Design
 - ✅ **Colors match brand guidelines** (BAPI Blue #1479BC, Yellow #FFC843)
-- ✅ **Typography uses correct font** (Open Sans for BAPI)
+- ✅ **Typography uses correct font** (Roboto for BAPI)
 - ✅ **Spacing follows 8px grid** (multiples of 8px)
 - ✅ **Icons are consistent size** (16px, 20px, 24px standard sizes)
 - ✅ **Shadows/borders match design system**
@@ -355,10 +355,10 @@ When reviewing components in Storybook:
 - Yellow: `#FFC843` - Warnings, highlights, CTAs
 
 **Semantic:**
-- Success: `#10B981` (Green) - Confirmations, success messages
-- Error: `#EF4444` (Red) - Errors, destructive actions
-- Warning: `#F59E0B` (Orange) - Warnings, cautions
-- Info: `#3B82F6` (Blue) - Informational messages
+- Success: `#22c55e` (Green) - Confirmations, success messages
+- Error: `#ef4444` (Red) - Errors, destructive actions
+- Warning: `#ffc843` (Yellow) - Warnings, cautions
+- Info: `#1479bc` (BAPI Blue) - Informational messages
 
 **Usage Ratio:**
 - 60% White/Gray (backgrounds, neutrals)
@@ -368,8 +368,8 @@ When reviewing components in Storybook:
 ### Typography (See in Storybook: Design System/Typography)
 
 **Font Family:**
-- Primary: `Open Sans` (BAPI standard)
-- Fallback: `-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`
+- Primary: `Roboto` (BAPI standard)
+- Fallback: `system-ui, sans-serif`
 
 **Scale:**
 - Display: `48px` - Hero headlines

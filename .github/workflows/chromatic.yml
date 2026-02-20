@@ -46,13 +46,17 @@ jobs:
           cd web
           pnpm install --frozen-lockfile
       
+      - name: Build Storybook
+        run: |
+          cd web
+          pnpm run build-storybook
+      
       - name: Publish to Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: web
-          buildScriptName: build-storybook
-          storybookBuildDir: storybook-static  # Explicit output directory
+          storybookBuildDir: storybook-static
           onlyChanged: true  # Only test changed stories
           exitZeroOnChanges: true  # Don't fail build on UI changes
           exitOnceUploaded: true  # Exit immediately after upload

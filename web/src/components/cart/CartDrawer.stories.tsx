@@ -176,7 +176,7 @@ const mockManyItemsCart = () => {
       name: `Product ${i + 1}`,
       slug: `product-${i + 1}`,
       price: `$${(29 + i * 10).toFixed(2)}`,
-      quantity: Math.floor(Math.random() * 3) + 1,
+      quantity: (i % 3) + 1,
     })
   );
 

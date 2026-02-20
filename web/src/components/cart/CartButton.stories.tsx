@@ -144,7 +144,7 @@ const mockExtraLargeQuantityCart = () => ({
 const mockCartDrawer = () => ({
   isOpen: false,
   openCart: () => {
-    console.log('Cart drawer opened');
+    // No-op for Storybook mock
   },
   closeCart: () => {},
   toggleCart: () => {},

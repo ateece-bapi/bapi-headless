@@ -4,8 +4,8 @@
  * Documents the language and region selector components used in the header.
  * 
  * **LanguageSelector Features:**
- * - Headless UI Listbox dropdown-
- - 11 languages grouped by region (LANGUAGE_GROUPS)
+ * - Headless UI Listbox dropdown
+ * - 11 languages grouped by region (LANGUAGE_GROUPS)
  * - Native language names + English names
  * - Flag emojis for each language
  * - Check icon for selected language
@@ -240,7 +240,7 @@ const NavigationDocs = () => (
           <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-500">
             Open State (Dropdown Example)
           </h3>
-          <div className="inline-block w-75 rounded-lg border border-neutral-200 bg-white shadow-xl">
+          <div className="inline-block w-72 rounded-lg border border-neutral-200 bg-white shadow-xl">
             {/* Americas Group */}
             <div className="py-1">
               <div className="px-3 py-1.5">

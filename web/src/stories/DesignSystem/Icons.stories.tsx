@@ -78,6 +78,7 @@ import {
   Radio,
   Wifi,
   Cable,
+  FlaskConical,
   // Industry
   Building2,
   Briefcase,
@@ -260,10 +261,16 @@ const IconDisplay = ({
 }: IconDisplayProps) => {
   const [copied, setCopied] = useState(false);
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(`import { ${name} } from 'lucide-react';`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(`import { ${name} } from 'lucide-react';`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      // Swallow clipboard errors in Storybook to avoid noisy unhandled rejections
+      // eslint-disable-next-line no-console
+      console.error('Failed to copy icon import to clipboard:', error);
+    }
   };
 
   return (
@@ -271,12 +278,12 @@ const IconDisplay = ({
       <Icon size={size} color={color} strokeWidth={2} />
       <span className="text-xs font-medium text-neutral-700">{name}</span>
       {showUsage && usage && (
-        <span className="text-center text-2xs text-neutral-500">{usage}</span>
+        <span className="text-center text-[10px] text-neutral-500">{usage}</span>
       )}
       {showCode && (
         <button
           onClick={copyCode}
-          className="mt-1 rounded bg-neutral-900 px-2 py-1 text-2xs text-white opacity-0 transition-opacity group-hover:opacity-100"
+          className="mt-1 rounded bg-neutral-900 px-2 py-1 text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100"
           type="button"
         >
           {copied ? 'Copied!' : 'Copy import'}
@@ -404,7 +411,7 @@ export const AllIcons: Story = {
               <strong>Accessibility:</strong> Provide <code>aria-label</code> for icon-only buttons
             </li>
             <li>
-              <strong>Import:</strong> <code>import {'{IconName}'} from 'lucide-react';</code>
+              <strong>Import:</strong> <code>import {'{ IconName }'} from 'lucide-react';</code>
             </li>
           </ul>
         </div>
@@ -841,7 +848,7 @@ export const BAPIBrandedIcons: Story = {
       {
         name: 'Test Instruments',
         file: 'Test_Instruments_Icon',
-        lucide: Info, // Placeholder since FlaskConical not imported
+        lucide: FlaskConical,
         color: 'Cyan/Blue',
         order: 7,
       },
@@ -1008,7 +1015,7 @@ export const BAPIBrandedIcons: Story = {
                     </div>
                     <div className="text-center">
                       <div className="text-sm font-medium text-neutral-700">{icon.name}</div>
-                      <code className="text-2xs text-neutral-500">
+                      <code className="text-xs text-neutral-500">
                         {icon.lucide.displayName || icon.lucide.name}
                       </code>
                     </div>

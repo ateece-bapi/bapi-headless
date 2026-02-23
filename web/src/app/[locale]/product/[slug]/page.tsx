@@ -41,6 +41,7 @@ import { RelatedProductsAsync } from '@/components/products/RelatedProductsAsync
 import { PerformanceTimer } from '@/lib/monitoring/performance';
 import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import { generateProductMetadata, generateCategoryMetadata } from '@/lib/metadata';
+import { getProductBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 import type { Metadata } from 'next';
 
 /**
@@ -189,7 +190,7 @@ export const dynamic = 'force-dynamic';
 export default async function ProductPage({
   params,
 }: {
-  params: { slug: string } | Promise<{ slug: string }>;
+  params: { locale: string; slug: string } | Promise<{ locale: string; slug: string }>;
 }) {
   const timer = new PerformanceTimer('ProductPage');
 
@@ -428,6 +429,9 @@ export default async function ProductPage({
           hasVariations: productForClient.variations.length > 0,
         });
 
+        // Get locale from params
+        const locale = resolvedParams.locale || 'en';
+
         // Generate structured data for SEO
         // Use Vercel URL if available, otherwise fallback to custom domain or localhost
         logger.info('[ProductPage] Generating structured data...');
@@ -437,7 +441,7 @@ export default async function ProductPage({
           process.env.VERCEL_URL
             ? `https://${process.env.VERCEL_URL}`
             : 'https://bapi-headless.vercel.app';
-        const productUrl = `${siteUrl}/product/${slug}`;
+        const productUrl = `${siteUrl}/${locale}/product/${slug}`;
 
         logger.debug('[ProductPage] Generating structured data', { siteUrl, productUrl });
 
@@ -469,25 +473,26 @@ export default async function ProductPage({
           siteUrl
         );
 
-        // Generate breadcrumb schema
-        const breadcrumbs: Array<{ name: string; url?: string }> = [
-          { name: 'Home', url: '/' },
-          { name: 'Products', url: '/products' },
-        ];
+        // Generate breadcrumb schema using new utility
+        const categories = (rawProduct.productCategories?.nodes || []).map((cat: any) => ({
+          name: cat.name || '',
+          slug: cat.slug || '',
+          parent: cat.parent?.node
+            ? {
+                name: cat.parent.node.name || '',
+                slug: cat.parent.node.slug || '',
+              }
+            : undefined,
+        }));
 
-        // Add category if available (use raw product data before transformation)
-        if (rawProduct.productCategories?.nodes?.[0]) {
-          const category = rawProduct.productCategories.nodes[0];
-          breadcrumbs.push({
-            name: category.name || '',
-            url: `/products/${category.slug}`,
-          });
-        }
+        const breadcrumbItems = getProductBreadcrumbs(
+          product.name || '',
+          slug,
+          categories,
+          { locale }
+        );
 
-        // Add product (no URL for last item)
-        breadcrumbs.push({ name: product.name || '', url: undefined });
-
-        const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, siteUrl);
+        const breadcrumbSchema = breadcrumbsToSchemaOrg(breadcrumbItems, siteUrl);
         logger.info('[ProductPage] Schemas generated, preparing return...');
 
         logger.info('[ProductPage] BEFORE RETURN - About to render ProductDetailClient', {
@@ -501,6 +506,13 @@ export default async function ProductPage({
           <>
             {/* Structured Data for SEO */}
             <StructuredData schema={[productSchema, breadcrumbSchema]} />
+
+            {/* Breadcrumb Navigation */}
+            <div className="border-b border-neutral-200 bg-white">
+              <div className="mx-auto max-w-container px-4 py-4">
+                <Breadcrumbs items={breadcrumbItems} schema={breadcrumbSchema} />
+              </div>
+            </div>
 
             <ProductDetailClient product={productForClient} productId={productDbId} />
 

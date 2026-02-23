@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
@@ -29,6 +29,16 @@ export function ProductFilters({ categorySlug, products, currentFilters }: Produ
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
+  const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Clean up timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (updateTimeoutRef.current) {
+        clearTimeout(updateTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Extract filter options from products
   const filterOptions = extractFilterOptions(products);
@@ -62,8 +72,15 @@ export function ProductFilters({ categorySlug, products, currentFilters }: Produ
       // Reset to page 1 when filters change
       params.delete('page');
 
-      // Update URL without scroll
-      router.push(`${pathname || ''}?${params.toString()}`, { scroll: false });
+      // Debounce URL updates to prevent excessive history entries (300ms)
+      if (updateTimeoutRef.current) {
+        clearTimeout(updateTimeoutRef.current);
+      }
+
+      updateTimeoutRef.current = setTimeout(() => {
+        // Update URL without scroll
+        router.push(`${pathname || ''}?${params.toString()}`, { scroll: false });
+      }, 300);
     },
     [searchParams, pathname, router]
   );

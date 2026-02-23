@@ -1,7 +1,8 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
+import * as Sentry from '@sentry/nextjs';
 import { ProductGrid } from './ProductGrid';
 import { Pagination } from './Pagination';
 import ComparisonButton from './ComparisonButton';
@@ -212,6 +213,23 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const endIndex = startIndex + PRODUCTS_PER_PAGE;
   const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
+
+  // Track filter usage for analytics (Sentry breadcrumbs)
+  useEffect(() => {
+    if (hasActiveFilters) {
+      Sentry.addBreadcrumb({
+        category: 'product-filter',
+        message: 'Filter applied',
+        level: 'info',
+        data: {
+          activeFilters: Object.keys(activeFilters),
+          filterCount: Object.keys(activeFilters).length,
+          resultCount: totalProducts,
+          sortBy,
+        },
+      });
+    }
+  }, [activeFilters, hasActiveFilters, totalProducts, sortBy]);
 
   return (
     <>

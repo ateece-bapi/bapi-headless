@@ -3,16 +3,33 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Suspense } from 'react';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import {
   GetProductCategoryWithChildrenDocument,
   GetProductCategoryWithChildrenQuery,
+  GetProductsWithFiltersDocument,
+  GetProductsWithFiltersQuery,
 } from '@/lib/graphql/generated';
+import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
+import { getCategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
+import FilteredProductGrid from '@/components/products/FilteredProductGrid';
+import ProductSortDropdown from '@/components/products/ProductSortDropdown';
+import { ProductFilters } from '@/components/products/ProductFilters';
+import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 
 interface CategoryPageProps {
   params: Promise<{
     locale: string;
     slug: string;
+  }>;
+  searchParams: Promise<{
+    application?: string;
+    enclosure?: string;
+    output?: string;
+    display?: string;
+    sort?: string;
+    page?: string;
   }>;
 }
 
@@ -47,8 +64,9 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   }
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   const { slug, locale } = await params;
+  const filters = await searchParams;
   const t = await getTranslations({ locale });
   const client = getGraphQLClient(['product-categories'], true);
 
@@ -66,33 +84,46 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const subcategories = categoryData.children?.nodes || [];
   const hasSubcategories = subcategories.length > 0;
 
-  // If no subcategories, redirect to product grid
+  // Fetch products if category has no subcategories (leaf category)
+  let products: any[] = [];
   if (!hasSubcategories) {
-    // TODO: Show product grid directly
+    try {
+      const productsData = await client.request<GetProductsWithFiltersQuery>(
+        GetProductsWithFiltersDocument,
+        {
+          categorySlug: slug,
+          first: 100,
+        }
+      );
+      products = productsData.products?.nodes || [];
+    } catch (error) {
+      console.error('Failed to fetch products for category:', error);
+    }
   }
+
+  // Generate breadcrumbs
+  const breadcrumbs = getCategoryBreadcrumbs(
+    categoryData.name || '',
+    slug,
+    { locale, includeHome: false }
+  );
+  
+  // Add translated labels
+  const translatedBreadcrumbs = [
+    { label: t('categoryPage.breadcrumb.home'), href: `/${locale}` },
+    { label: t('categoryPage.breadcrumb.products'), href: `/${locale}/products` },
+    { label: categoryData.name || '' },
+  ];
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
+  const schema = breadcrumbsToSchemaOrg(translatedBreadcrumbs, siteUrl);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumbs */}
       <div className="border-b border-neutral-200">
         <div className="mx-auto max-w-content px-4 py-4">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm">
-            <Link
-              href={`/${locale}`}
-              className="text-neutral-600 transition-colors hover:text-primary-500"
-            >
-              {t('categoryPage.breadcrumb.home')}
-            </Link>
-            <span className="text-neutral-400">/</span>
-            <Link
-              href={`/${locale}/products`}
-              className="text-neutral-600 transition-colors hover:text-primary-500"
-            >
-              {t('categoryPage.breadcrumb.products')}
-            </Link>
-            <span className="text-neutral-400">/</span>
-            <span className="font-medium text-neutral-900">{categoryData.name}</span>
-          </nav>
+          <Breadcrumbs items={translatedBreadcrumbs} schema={schema} />
         </div>
       </div>
 
@@ -227,6 +258,41 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               </Link>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Product Grid for Leaf Categories (no subcategories) */}
+      {!hasSubcategories && (
+        <div className="mx-auto max-w-content px-4 py-12">
+          <div className="flex flex-col gap-8 lg:flex-row">
+            {/* Desktop Sidebar Filters */}
+            <aside className="hidden shrink-0 lg:block lg:w-64">
+              <div className="sticky top-4">
+                <Suspense fallback={<div className="h-96 animate-pulse rounded-lg bg-neutral-100" />}>
+                  <ProductFilters categorySlug={slug} products={products} currentFilters={filters} />
+                </Suspense>
+              </div>
+            </aside>
+
+            {/* Main Product Grid */}
+            <div className="flex-1">
+              {/* Sort Dropdown */}
+              <div className="mb-6 flex items-center justify-between">
+                <p className="text-sm text-neutral-600">
+                  {t('categoryPage.products.showing', { count: products.length })}
+                </p>
+                <ProductSortDropdown />
+              </div>
+
+              {/* Product Grid with Filters */}
+              <Suspense fallback={<div className="h-96 animate-pulse rounded-lg bg-neutral-100" />}>
+                <FilteredProductGrid products={products} locale={locale} />
+              </Suspense>
+            </div>
+          </div>
+
+          {/* Mobile Filter Button */}
+          <MobileFilterButton categorySlug={slug} products={products} currentFilters={filters} />
         </div>
       )}
 

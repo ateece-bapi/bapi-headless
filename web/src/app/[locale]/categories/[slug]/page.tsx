@@ -3,18 +3,33 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Suspense } from 'react';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import {
   GetProductCategoryWithChildrenDocument,
   GetProductCategoryWithChildrenQuery,
+  GetProductsWithFiltersDocument,
+  GetProductsWithFiltersQuery,
 } from '@/lib/graphql/generated';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getCategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
+import FilteredProductGrid from '@/components/products/FilteredProductGrid';
+import ProductSortDropdown from '@/components/products/ProductSortDropdown';
+import { ProductFilters } from '@/components/products/ProductFilters';
+import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 
 interface CategoryPageProps {
   params: Promise<{
     locale: string;
     slug: string;
+  }>;
+  searchParams: Promise<{
+    application?: string;
+    enclosure?: string;
+    output?: string;
+    display?: string;
+    sort?: string;
+    page?: string;
   }>;
 }
 
@@ -49,8 +64,9 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   }
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   const { slug, locale } = await params;
+  const filters = await searchParams;
   const t = await getTranslations({ locale });
   const client = getGraphQLClient(['product-categories'], true);
 
@@ -68,9 +84,21 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const subcategories = categoryData.children?.nodes || [];
   const hasSubcategories = subcategories.length > 0;
 
-  // If no subcategories, redirect to product grid
+  // Fetch products if category has no subcategories (leaf category)
+  let products: any[] = [];
   if (!hasSubcategories) {
-    // TODO: Show product grid directly
+    try {
+      const productsData = await client.request<GetProductsWithFiltersQuery>(
+        GetProductsWithFiltersDocument,
+        {
+          categorySlug: slug,
+          first: 100,
+        }
+      );
+      products = productsData.products?.nodes || [];
+    } catch (error) {
+      console.error('Failed to fetch products for category:', error);
+    }
   }
 
   // Generate breadcrumbs
@@ -230,6 +258,41 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               </Link>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Product Grid for Leaf Categories (no subcategories) */}
+      {!hasSubcategories && (
+        <div className="mx-auto max-w-content px-4 py-12">
+          <div className="flex flex-col gap-8 lg:flex-row">
+            {/* Desktop Sidebar Filters */}
+            <aside className="hidden shrink-0 lg:block lg:w-64">
+              <div className="sticky top-4">
+                <Suspense fallback={<div className="h-96 animate-pulse rounded-lg bg-neutral-100" />}>
+                  <ProductFilters categorySlug={slug} products={products} currentFilters={filters} />
+                </Suspense>
+              </div>
+            </aside>
+
+            {/* Main Product Grid */}
+            <div className="flex-1">
+              {/* Sort Dropdown */}
+              <div className="mb-6 flex items-center justify-between">
+                <p className="text-sm text-neutral-600">
+                  {t('categoryPage.products.showing', { count: products.length })}
+                </p>
+                <ProductSortDropdown />
+              </div>
+
+              {/* Product Grid with Filters */}
+              <Suspense fallback={<div className="h-96 animate-pulse rounded-lg bg-neutral-100" />}>
+                <FilteredProductGrid products={products} locale={locale} />
+              </Suspense>
+            </div>
+          </div>
+
+          {/* Mobile Filter Button */}
+          <MobileFilterButton categorySlug={slug} products={products} currentFilters={filters} />
         </div>
       )}
 

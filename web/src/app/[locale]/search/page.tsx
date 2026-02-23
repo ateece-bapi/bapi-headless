@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Search, ArrowLeft } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
+import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
+import { getSearchBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 
 interface SearchPageProps {
   params: Promise<{ locale: string }>;
@@ -107,26 +109,39 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
 
   const results = await searchProducts(query);
 
+  // Generate breadcrumbs
+  const breadcrumbItems = getSearchBreadcrumbs(query, { locale });
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
+  const schema = breadcrumbsToSchemaOrg(breadcrumbItems, siteUrl);
+
   return (
-    <div className="min-h-screen bg-neutral-50 py-8 lg:py-12">
-      <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-8">
-          <Link
-            href={`/${locale}/products`}
-            className="mb-4 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {t('results.backToProducts')}
-          </Link>
-          <h1 className="mb-2 text-3xl font-bold text-neutral-900 lg:text-4xl">{t('results.title')}</h1>
-          <p className="text-lg text-neutral-600">
-            {results.length === 1 
-              ? t('results.resultsCount', { count: results.length, query })
-              : t('results.resultsCountPlural', { count: results.length, query })
-            }
-          </p>
+    <div className="min-h-screen bg-neutral-50">
+      {/* Breadcrumbs */}
+      <div className="border-b border-neutral-200 bg-white">
+        <div className="mx-auto max-w-container px-4 py-4">
+          <Breadcrumbs items={breadcrumbItems} schema={schema} />
         </div>
+      </div>
+
+      <div className="py-8 lg:py-12">
+        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="mb-8">
+            <Link
+              href={`/${locale}/products`}
+              className="mb-4 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              {t('results.backToProducts')}
+            </Link>
+            <h1 className="mb-2 text-3xl font-bold text-neutral-900 lg:text-4xl">{t('results.title')}</h1>
+            <p className="text-lg text-neutral-600">
+              {results.length === 1 
+                ? t('results.resultsCount', { count: results.length, query })
+                : t('results.resultsCountPlural', { count: results.length, query })
+              }
+            </p>
+          </div>
 
         {results.length === 0 ? (
           <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center">
@@ -200,6 +215,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
             })}
           </div>
         )}
+        </div>
       </div>
     </div>
   );

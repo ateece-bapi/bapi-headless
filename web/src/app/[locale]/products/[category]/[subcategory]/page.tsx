@@ -13,6 +13,8 @@ import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 import ProductSortDropdown from '@/components/products/ProductSortDropdown';
+import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
+import { getSubcategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 
 interface SubcategoryPageProps {
   params: Promise<{
@@ -92,42 +94,35 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
 
   // Build breadcrumb trail
   const parentCategory = subcategoryData.parent?.node;
-  const breadcrumbs = [
-    { label: 'Home', href: `/${locale}` },
-    { label: 'Products', href: `/${locale}/products` },
-  ];
-
+  
+  let breadcrumbs;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
+  
   if (parentCategory) {
-    breadcrumbs.push({
-      label: parentCategory.name || '',
-      href: `/${locale}/categories/${parentCategory.slug}`,
-    });
+    breadcrumbs = getSubcategoryBreadcrumbs(
+      parentCategory.name || '',
+      parentCategory.slug || '',
+      subcategoryData.name || '',
+      subcategory,
+      { locale }
+    );
+  } else {
+    // Fallback if no parent category
+    breadcrumbs = [
+      { label: 'Home', href: `/${locale}` },
+      { label: 'Products', href: `/${locale}/products` },
+      { label: subcategoryData.name || '' },
+    ];
   }
 
-  breadcrumbs.push({ label: subcategoryData.name || '', href: '' });
+  const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumbs */}
       <div className="border-b border-neutral-200">
         <div className="mx-auto max-w-container px-4 py-4">
-          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-sm">
-            {breadcrumbs.map((crumb, index) => (
-              <div key={index} className="flex items-center gap-2">
-                {crumb.href ? (
-                  <Link
-                    href={crumb.href}
-                    className="text-neutral-600 transition-colors hover:text-primary-500"
-                  >
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span className="font-medium text-neutral-900">{crumb.label}</span>
-                )}
-                {index < breadcrumbs.length - 1 && <span className="text-neutral-400">/</span>}
-              </div>
-            ))}
-          </nav>
+          <Breadcrumbs items={breadcrumbs} schema={schema} />
         </div>
       </div>
 

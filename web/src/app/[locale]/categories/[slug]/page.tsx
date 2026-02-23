@@ -8,6 +8,8 @@ import {
   GetProductCategoryWithChildrenDocument,
   GetProductCategoryWithChildrenQuery,
 } from '@/lib/graphql/generated';
+import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
+import { getCategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 
 interface CategoryPageProps {
   params: Promise<{
@@ -71,28 +73,29 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     // TODO: Show product grid directly
   }
 
+  // Generate breadcrumbs
+  const breadcrumbs = getCategoryBreadcrumbs(
+    categoryData.name || '',
+    slug,
+    { locale, includeHome: false }
+  );
+  
+  // Add translated labels
+  const translatedBreadcrumbs = [
+    { label: t('categoryPage.breadcrumb.home'), href: `/${locale}` },
+    { label: t('categoryPage.breadcrumb.products'), href: `/${locale}/products` },
+    { label: categoryData.name || '' },
+  ];
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
+  const schema = breadcrumbsToSchemaOrg(translatedBreadcrumbs, siteUrl);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumbs */}
       <div className="border-b border-neutral-200">
         <div className="mx-auto max-w-content px-4 py-4">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm">
-            <Link
-              href={`/${locale}`}
-              className="text-neutral-600 transition-colors hover:text-primary-500"
-            >
-              {t('categoryPage.breadcrumb.home')}
-            </Link>
-            <span className="text-neutral-400">/</span>
-            <Link
-              href={`/${locale}/products`}
-              className="text-neutral-600 transition-colors hover:text-primary-500"
-            >
-              {t('categoryPage.breadcrumb.products')}
-            </Link>
-            <span className="text-neutral-400">/</span>
-            <span className="font-medium text-neutral-900">{categoryData.name}</span>
-          </nav>
+          <Breadcrumbs items={translatedBreadcrumbs} schema={schema} />
         </div>
       </div>
 

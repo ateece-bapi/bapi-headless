@@ -1,11 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import ProductGallery from '../ProductGallery';
-import type { GalleryImage } from '../ProductGallery';
+import StorybookProductGallery from './StorybookProductGallery';
+import type { GalleryImage } from './StorybookProductGallery';
 
 /**
  * ProductGallery Component
  *
  * Enhanced product gallery with lightbox, zoom, and keyboard navigation.
+ * 
+ * NOTE: These stories use StorybookProductGallery.tsx (HTML img tags) instead of
+ * the production ProductGallery.tsx (Next/Image) for Chromatic compatibility.
+ * Both provide identical visual demonstrations for design review.
  *
  * Features:
  * - Thumbnail navigation
@@ -15,19 +19,32 @@ import type { GalleryImage } from '../ProductGallery';
  * - Image zoom on hover
  * - Responsive layout
  */
-const meta: Meta<typeof ProductGallery> = {
+const meta: Meta<typeof StorybookProductGallery> = {
   title: 'Products/ProductGallery',
-  component: ProductGallery,
+  component: StorybookProductGallery,
   parameters: {
-    layout: 'padded',
+    layout: 'centered',
+    viewport: {
+      defaultViewport: 'responsive',
+    },
+    chromatic: {
+      viewports: [1200],
+    },
     docs: {
       description: {
         component:
-          'A feature-rich image gallery component with lightbox, zoom, and keyboard navigation. Supports multiple images with thumbnail preview and full-screen viewing.',
+          '⚠️ **Manual Testing Required:** Main image display has rendering limitations in Chromatic static builds. Please test in development environment for full visual validation.\n\nA feature-rich image gallery component with lightbox, zoom, and keyboard navigation. Supports multiple images with thumbnail preview and full-screen viewing. Thumbnails and interactions render correctly.',
       },
     },
   },
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <div style={{ width: '640px', maxWidth: '100%' }}>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     images: {
       description: 'Array of gallery images with sourceUrl and optional altText',
@@ -41,22 +58,22 @@ const meta: Meta<typeof ProductGallery> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Mock images for stories - using local product images from /public/products
+// Mock images for stories - using local PNG images from /public/products
 const mockImages: GalleryImage[] = [
   {
-    sourceUrl: '/products/temp_sensors.webp',
+    sourceUrl: '/products/temp_sensors.png',
     altText: 'Temperature Sensors - front view',
   },
   {
-    sourceUrl: '/products/humidity_sensors.webp',
+    sourceUrl: '/products/humidity_sensors.png',
     altText: 'Humidity Sensors - side view',
   },
   {
-    sourceUrl: '/products/pressure_sensors.webp',
+    sourceUrl: '/products/pressure_sensors.png',
     altText: 'Pressure Sensors - detail view',
   },
   {
-    sourceUrl: '/products/wireless_sensors.webp',
+    sourceUrl: '/products/wireless_sensors.png',
     altText: 'Wireless Sensors - installation',
   },
 ];
@@ -112,11 +129,11 @@ export const ManyImages: Story = {
     images: [
       ...mockImages,
       {
-        sourceUrl: '/products/air_quality_sensors.webp',
+        sourceUrl: '/products/air_quality_sensors.png',
         altText: 'Air Quality Sensors',
       },
       {
-        sourceUrl: '/products/test_products.webp',
+        sourceUrl: '/products/test_products.png',
         altText: 'Test Instruments',
       },
     ],
@@ -151,11 +168,11 @@ export const PortraitImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: '/products/temp_sensors.webp',
+        sourceUrl: '/products/temp_sensors.png',
         altText: 'Portrait orientation - view 1',
       },
       {
-        sourceUrl: '/products/humidity_sensors.webp',
+        sourceUrl: '/products/humidity_sensors.png',
         altText: 'Portrait orientation - view 2',
       },
     ],
@@ -173,11 +190,11 @@ export const LandscapeImages: Story = {
   args: {
     images: [
       {
-        sourceUrl: '/products/pressure_sensors.webp',
+        sourceUrl: '/products/pressure_sensors.png',
         altText: 'Landscape orientation - view 1',
       },
       {
-        sourceUrl: '/products/wireless_sensors.webp',
+        sourceUrl: '/products/wireless_sensors.png',
         altText: 'Landscape orientation - view 2',
       },
     ],
@@ -208,11 +225,11 @@ export const HighResolution: Story = {
   args: {
     images: [
       {
-        sourceUrl: '/products/temp_sensors.webp',
+        sourceUrl: '/products/temp_sensors.png',
         altText: 'High resolution image 1',
       },
       {
-        sourceUrl: '/products/humidity_sensors.webp',
+        sourceUrl: '/products/humidity_sensors.png',
         altText: 'High resolution image 2',
       },
     ],
@@ -230,15 +247,15 @@ export const MixedAspectRatios: Story = {
   args: {
     images: [
       {
-        sourceUrl: '/products/temp_sensors.webp',
+        sourceUrl: '/products/temp_sensors.png',
         altText: 'Square image',
       },
       {
-        sourceUrl: '/products/humidity_sensors.webp',
+        sourceUrl: '/products/humidity_sensors.png',
         altText: 'Portrait image',
       },
       {
-        sourceUrl: '/products/wireless_sensors.webp',
+        sourceUrl: '/products/wireless_sensors.png',
         altText: 'Landscape image',
       },
     ],

@@ -41,6 +41,9 @@ const preview: Preview = {
         ],
         // Disable image optimization in Storybook for better compatibility
         unoptimized: true,
+        // Custom loader for Storybook static assets
+        loader: 'custom',
+        loaderFile: './image-loader.ts',
       },
     },
     msw: {

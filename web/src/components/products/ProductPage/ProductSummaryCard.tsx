@@ -4,7 +4,7 @@ import React from 'react';
 import { Briefcase, Heart } from 'lucide-react';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
-import { convertWooCommercePrice, formatPrice } from '@/lib/utils/currency';
+import { convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
 
 interface ProductSummaryCardProps {
   product: any;
@@ -33,14 +33,14 @@ export default function ProductSummaryCard({
   
   // Convert price to selected currency
   const displayPrice = convertWooCommercePrice(rawPrice, region.currency);
+  const numericPrice = convertWooCommercePriceNumeric(rawPrice, region.currency);
   
   const displayPartNumber =
     variation?.partNumber || variation?.sku || product.partNumber || product.sku || 'N/A';
   const displayStockStatus = variation?.stockStatus || product.stockStatus;
 
-  const price = parseFloat(displayPrice.replace(/[^0-9.-]+/g, '') || '0');
   const multiplier = parseFloat(product.multiplier || '1');
-  const calculatedAmount = price * multiplier * quantity;
+  const calculatedAmount = numericPrice * multiplier * quantity;
   const calculated = isNaN(calculatedAmount) ? '0.00' : calculatedAmount.toFixed(2);
   const isOutOfStock =
     displayStockStatus !== 'IN_STOCK' ||
@@ -280,6 +280,7 @@ export default function ProductSummaryCard({
               name: summaryName,
               slug: summarySlug,
               price: displayPrice,
+              numericPrice,
               image: summaryImage,
               variationId,
               variationName,

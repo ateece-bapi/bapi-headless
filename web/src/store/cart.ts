@@ -6,7 +6,8 @@ export interface CartItem {
   databaseId: number;
   name: string;
   slug: string;
-  price: string;
+  price: string; // Formatted display string (e.g., "$49.00", "€1.299,00")
+  numericPrice: number; // Raw numeric value for calculations (e.g., 49.00, 1299.00)
   quantity: number;
   image?: {
     sourceUrl: string;
@@ -123,8 +124,9 @@ export const useCartStore = create<CartState>()(
 
       subtotal: () => {
         return get().items.reduce((total, item) => {
-          const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
-          return total + price * item.quantity;
+          // Use numericPrice instead of parsing formatted string
+          // This prevents issues with European formatting (1.299,00) and multi-currency support
+          return total + item.numericPrice * item.quantity;
         }, 0);
       },
     }),

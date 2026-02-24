@@ -33,6 +33,7 @@ describe('Cart Store - State Management Tests', () => {
     name: 'Temperature Sensor',
     slug: 'temperature-sensor',
     price: '$49.99',
+    numericPrice: 49.99,
     image: {
       sourceUrl: 'https://example.com/image.jpg',
       altText: 'Temperature Sensor',
@@ -45,6 +46,7 @@ describe('Cart Store - State Management Tests', () => {
     name: 'Humidity Sensor',
     slug: 'humidity-sensor',
     price: '$59.99',
+    numericPrice: 59.99,
     image: {
       sourceUrl: 'https://example.com/image2.jpg',
       altText: 'Humidity Sensor',
@@ -189,12 +191,13 @@ describe('Cart Store - State Management Tests', () => {
       expect(total).toBeCloseTo(159.97, 2);
     });
 
-    it('should handle prices with currency symbols', () => {
+    it('should use numeric price for calculations (not parsed from string)', () => {
       const { addItem, subtotal } = useCartStore.getState();
 
       const productWithDollarSign = {
         ...sampleProduct,
-        price: '$100.00',
+        price: '$100.00', // Display string (could be European format like "€1.299,00")
+        numericPrice: 100.0, // Numeric value for calculations
       };
 
       addItem(productWithDollarSign, 1);

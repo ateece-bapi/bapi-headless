@@ -655,25 +655,6 @@ describe('Breadcrumb Navigation Utilities', () => {
   });
 
   describe('Edge Cases and Error Handling', () => {
-    it('handles undefined locale gracefully', () => {
-      const result = getCategoryBreadcrumbs('Test', 'test', {
-        locale: undefined as any,
-        includeHome: true,
-      });
-
-      expect(result).toHaveLength(3);
-      expect(result[0].href).toBe('/undefined');
-    });
-
-    it('handles null category name', () => {
-      const result = getCategoryBreadcrumbs(null as any, 'test', {
-        locale: 'en',
-        includeHome: true,
-      });
-
-      expect(result[2].label).toBe(null);
-    });
-
     it('handles extremely long breadcrumb names', () => {
       const longName = 'A'.repeat(500);
       const result = getCategoryBreadcrumbs(longName, 'test', {

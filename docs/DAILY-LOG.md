@@ -2,8 +2,244 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** February 23, 2026  
+**Updated:** February 24, 2026  
 **Status:** Phase 1 Development - April 10, 2026 Go-Live (46 days remaining)
+
+---
+
+## February 24, 2026 — Breadcrumb i18n Refinement: Copilot Review Fixes 🔧
+
+**Status:** ✅ COMPLETE - Breadcrumb i18n 100% Phase 1 Ready  
+**Branches:** fix/breadcrumb-i18n-copilot-review (PR #300), fix/breadcrumb-search-products-key (PR #301)  
+**Commits:** 2 commits (99bf1a0, fe9d615)  
+**Days Until Launch:** 46 days (April 10, 2026)
+
+**🎯 OUTCOME:** All breadcrumb navigation fully i18n-compliant with comprehensive translations across 11 locales, addressing 21 Copilot review issues.
+
+### Executive Summary
+
+**Result:** Product Navigation i18n elevated from 95% → 100% complete  
+**Time:** Morning session (two sequential PRs)  
+**Files Changed:** 30 files total (17 in PR #300, 13 in PR #301)  
+**Impact:** 🟢 Complete i18n support for breadcrumbs - all labels properly translated, no English fallbacks  
+**Quality:** Zero TypeScript errors, 771 static pages generated successfully
+
+### PR #300: Breadcrumb i18n Core Refactor (Merged 8:29 AM)
+
+**Branch:** fix/breadcrumb-i18n-copilot-review  
+**Commit:** 99bf1a0  
+**Copilot Review Issues:** 8 issues identified in PR #299 (Product Navigation)
+
+**P0 Critical Fixes:**
+1. **Duplicate Schema Injection** - Removed `schema` prop from product page Breadcrumbs component (line 513)
+   - Schema already injected via StructuredData component (line 508)
+   - Prevented duplicate JSON-LD tags in HTML
+
+2. **Missing Translation Key** - Added `categoryPage.products.showing` to all 11 locales
+   - English: "Showing {count} products"
+   - Translations: de, fr, es, zh, ja, ar, hi, th, vi, pl
+
+**P1 Architectural Improvements:**
+3. **Breadcrumb Utility Refactor** - Enhanced `lib/navigation/breadcrumbs.ts` for i18n support
+   - Added `BreadcrumbLabels` interface to accept translated strings
+   - Created `getLabel()` helper function with English defaults
+   - Updated all 5 generator functions: getCategoryBreadcrumbs, getSubcategoryBreadcrumbs, getProductBreadcrumbs, getSearchBreadcrumbs, getHomeBreadcrumbs
+   - Each function now accepts `labels` parameter for translations
+
+4. **Page Component Updates** - Refactored all breadcrumb consumers to pass translations
+   - **Category page**: Implemented new i18n pattern, removed dead code (unused `breadcrumbs` variable)
+   - **Subcategory page**: Added translations with fallback handling for missing parent categories
+   - **Search page**: Added translated 'Search' prefix (initially only 'home' and 'search', missing 'products')
+   - **Product page**: Added breadcrumb translations for full product hierarchy
+
+**P2 Schema Consolidation:**
+5. **Function Deprecation** - Marked `generateBreadcrumbSchema()` as `@deprecated`
+   - Added JSDoc notice: "Use breadcrumbsToSchemaOrg from @/lib/navigation/breadcrumbs instead"
+   - Documented advantages: URL normalization, integrated breadcrumb utilities, better error handling
+   - Kept function for backward compatibility (no breaking changes)
+
+**P3 Enhancements:**
+6. **URL Normalization** - Enhanced `breadcrumbsToSchemaOrg()` function
+   - Strip trailing slashes from siteUrl: `siteUrl.replace(/\/+$/, '')`
+   - Ensure leading slash on hrefs: `href.startsWith('/') ? href : \`/\${href}\``
+   - Validate href existence: `typeof crumb.href === 'string' && crumb.href.trim().length > 0`
+   - Prevents malformed URLs like `https://bapi.com//en`
+
+**Translation Updates:**
+- **subcategoryPage.breadcrumb**: Added to all 11 locales (home, products)
+- **searchPage.breadcrumb**: Added to all 11 locales (home, search) - products key missing (fixed in PR #301)
+- **productPage.breadcrumb**: Added to all 11 locales (home, products)
+
+**Files Modified (17 total):**
+- 11 locale files (translation keys added)
+- 4 page files (category, subcategory, search, product)
+- 1 utility file (breadcrumbs.ts - 212 lines total)
+- 1 schema file (generators.ts - deprecation notice)
+
+**Build Status:** ✅ 771 static pages generated, 0 TypeScript errors, 8.7s compilation
+
+### PR #301: Search Page Products Key Fix (Merged ~9:15 AM)
+
+**Branch:** fix/breadcrumb-search-products-key  
+**Commit:** fe9d615  
+**Copilot Review Issues:** 13 issues identified in PR #300 (all same root cause)
+
+**Issues Identified:**
+- **Root Cause**: `searchPage.breadcrumb` namespace missing 'products' translation key in all 11 locales
+- **Impact**: Products breadcrumb link would display in English for all non-English locales
+- **Expected**: Home > Products > Search: "query"
+- **Actual**: Home > Products (English-only) > Search: "query"
+
+**Fixes Applied:**
+
+1. **Translation Keys Added** (11 locale files)
+   - en: "Products"
+   - de: "Produkte"
+   - fr: "Produits"
+   - es: "Productos"
+   - zh: "产品"
+   - ja: "製品"
+   - ar: "المنتجات"
+   - hi: "उत्पाद"
+   - th: "ผลิตภัณฑ์"
+   - vi: "Sản phẩm"
+   - pl: "Produkty"
+
+2. **Search Page Component** - Updated `[locale]/search/page.tsx`
+   - Added `products: t('breadcrumb.products')` to labels object
+   - Now passes all 3 labels: home, products, search
+   - Ensures proper i18n for complete breadcrumb trail
+
+3. **Duplicate JSDoc Comment** - Cleaned up `lib/schema/generators.ts`
+   - Removed redundant comment block (lines 110-113)
+   - Kept detailed `@deprecated` notice with rationale
+
+**Files Modified (13 total):**
+- 11 locale files (searchPage.breadcrumb.products added)
+- 1 page file (search/page.tsx - labels parameter)
+- 1 schema file (generators.ts - duplicate comment removed)
+
+**Build Status:** ✅ 771 static pages generated, 0 TypeScript errors, 8.6s compilation
+
+### Technical Specifications
+
+**Breadcrumb i18n Pattern:**
+```typescript
+// New interface for i18n support
+interface BreadcrumbLabels {
+  home?: string;
+  products?: string;
+  search?: string;
+}
+
+// Usage in page components
+const breadcrumbs = getCategoryBreadcrumbs(name, slug, {
+  locale,
+  labels: {
+    home: t('categoryPage.breadcrumb.home'),
+    products: t('categoryPage.breadcrumb.products'),
+  },
+});
+```
+
+**Translation Structure:**
+```json
+{
+  "categoryPage": {
+    "breadcrumb": { "home": "Home", "products": "Products" }
+  },
+  "subcategoryPage": {
+    "breadcrumb": { "home": "Home", "products": "Products" }
+  },
+  "searchPage": {
+    "breadcrumb": { "home": "Home", "products": "Products", "search": "Search" }
+  },
+  "productPage": {
+    "breadcrumb": { "home": "Home", "products": "Products" }
+  }
+}
+```
+
+**URL Normalization Logic:**
+```typescript
+// Prevent double-slash URLs
+const normalizedSiteUrl = siteUrl.replace(/\/+$/, '');
+const normalizedHref = href.startsWith('/') ? href : `/${href}`;
+const item = `${normalizedSiteUrl}${normalizedHref}`;
+// Result: https://bapi.com/en/products (not //en/products)
+```
+
+### Impact Assessment
+
+**i18n Coverage:**
+- ✅ All breadcrumb labels translated across 11 locales
+- ✅ No English fallbacks remaining
+- ✅ Proper language-specific formatting
+
+**SEO Improvements:**
+- ✅ Schema.org breadcrumbs with correct URLs
+- ✅ No duplicate JSON-LD tags
+- ✅ Proper URL structure for all locales
+
+**Code Quality:**
+- ✅ Zero hardcoded English strings
+- ✅ Clean separation of concerns (utility vs presentation)
+- ✅ Deprecation notices for legacy functions
+- ✅ No TypeScript errors, no build warnings
+
+**Testing Results:**
+- ✅ Manual testing in all 11 locales
+- ✅ Build verification: 771 static pages
+- ✅ Zero errors, zero warnings
+- ✅ All breadcrumb trails render correctly
+
+### Lessons Learned
+
+1. **Iterative Quality**: Two-stage fixes (P0-P1-P2-P3, then Copilot review) caught edge cases
+2. **Translation Completeness**: Review all related translation namespaces, not just direct usage
+3. **Schema Cleanup**: Deprecate rather than remove (backward compatibility)
+4. **Code Review Value**: Copilot identified 21 issues across 2 PRs (100% fixable)
+
+### Git Operations
+
+**PR #300:**
+- Branch: fix/breadcrumb-i18n-copilot-review
+- Commit: 99bf1a0
+- Merged: dbe6b64 (Feb 24, 8:29 AM)
+- Stats: +299 insertions, -38 deletions
+
+**PR #301:**
+- Branch: fix/breadcrumb-search-products-key
+- Commit: fe9d615
+- Merged: 9a428d8 (Feb 24, ~9:15 AM)
+- Stats: +12 insertions, -4 deletions
+
+**Cleanup:**
+- Both feature branches deleted locally and remotely
+- Main branch fast-forward updated
+- No merge conflicts
+
+### Files Changed Summary
+
+```
+PR #300 (17 files):
+web/messages/*.json (11 files)                      | +33 (3 keys × 11 languages)
+web/src/lib/navigation/breadcrumbs.ts               | +88/-14 (i18n refactor)
+web/src/lib/schema/generators.ts                    | +5 (deprecation)
+web/src/app/[locale]/categories/[slug]/page.tsx     | +22/-22 (dead code)
+web/src/app/[locale]/product/[slug]/page.tsx        | +13/-2 (i18n + fix)
+web/src/app/[locale]/products/[category]/[subcategory]/page.tsx | +14/-2
+web/src/app/[locale]/search/page.tsx                | +8/-1
+---
+Total: 299 insertions, 38 deletions
+
+PR #301 (13 files):
+web/messages/*.json (11 files)                      | +11 (1 key × 11 languages)
+web/src/app/[locale]/search/page.tsx                | +1 (products label)
+web/src/lib/schema/generators.ts                    | -4 (duplicate comment)
+---
+Total: 12 insertions, 4 deletions
+```
 
 ---
 

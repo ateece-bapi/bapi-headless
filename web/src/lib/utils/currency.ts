@@ -208,3 +208,31 @@ export function convertWooCommercePrice(
   // Price range
   return formatPriceRange(min, max, targetCurrency);
 }
+
+/**
+ * Convert WooCommerce price string to numeric value in target currency
+ * Returns the numeric value for calculations (avoids fragile string parsing)
+ * 
+ * @example
+ * convertWooCommercePriceNumeric("$99.99", "EUR") // 91.99
+ * convertWooCommercePriceNumeric("$50 - $100", "GBP") // 39.50 (returns min)
+ * convertWooCommercePriceNumeric("invalid", "USD") // 0
+ */
+export function convertWooCommercePriceNumeric(
+  priceString: string | null | undefined,
+  targetCurrency: CurrencyCode = 'USD'
+): number {
+  // Parse the USD price(s) from the string
+  const range = parsePriceRange(priceString);
+
+  if (!range) {
+    // If parsing fails, return 0 as safe fallback
+    return 0;
+  }
+
+  // Always use minimum price for cart calculations (simplest for ranges)
+  const usdPrice = range.min;
+
+  // Convert to target currency
+  return convertPrice(usdPrice, targetCurrency);
+}

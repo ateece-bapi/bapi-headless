@@ -25,13 +25,22 @@ export const mockProductForClient = {
   name: mockProduct.name,
   slug: mockProduct.slug,
   price: mockProduct.price,
+  numericPrice: 49.0, // Parsed numeric value for cart calculations
   stockStatus: mockProduct.stockStatus,
   image: mockProduct.image,
   gallery: [],
   variations: [],
-} as const;
+};
 
 export function makeProductForClient(overrides: Partial<typeof mockProductForClient> = {}) {
+  // If price is overridden but numericPrice is not, parse numericPrice from price string
+  // NOTE: This uses simplified parsing safe for controlled test data (always US format: "$1,234.56")
+  // Production code should use convertWooCommercePriceNumeric() for locale-aware parsing
+  if (overrides.price !== undefined && overrides.numericPrice === undefined) {
+    const parsedPrice = parseFloat(overrides.price.replace(/[^0-9.-]+/g, ''));
+    return { ...mockProductForClient, ...overrides, numericPrice: isNaN(parsedPrice) ? 0 : parsedPrice };
+  }
+  
   return { ...mockProductForClient, ...overrides };
 }
 

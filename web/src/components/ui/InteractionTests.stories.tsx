@@ -3,7 +3,7 @@ import { expect, userEvent, within } from '@storybook/test';
 import { useRef } from 'react';
 import { ToastProvider, useToast } from './Toast';
 import AddToCartButton from '../cart/AddToCartButton';
-import { mockProduct } from '../../../test/msw/fixtures';
+import { mockProductForClient } from '../../../test/msw/fixtures';
 
 /**
  * Interaction Tests Stories
@@ -154,13 +154,13 @@ export const ToastMultipleClicks: StoryObj = {
  */
 export const AddToCartClick: StoryObj = {
   render: () => {
-    // Convert mockProduct to ensure altText is never null (CartItem expects string | undefined)
+    // Use mockProductForClient which already has numericPrice field
     const product = {
-      ...mockProduct,
-      image: mockProduct.image
+      ...mockProductForClient,
+      image: mockProductForClient.image
         ? {
-            ...mockProduct.image,
-            altText: mockProduct.image.altText ?? undefined,
+            ...mockProductForClient.image,
+            altText: mockProductForClient.image.altText ?? undefined,
           }
         : null,
     };
@@ -210,11 +210,11 @@ export const AddToCartClick: StoryObj = {
 export const AddToCartLoadingState: StoryObj = {
   render: () => {
     const product = {
-      ...mockProduct,
-      image: mockProduct.image
+      ...mockProductForClient,
+      image: mockProductForClient.image
         ? {
-            ...mockProduct.image,
-            altText: mockProduct.image.altText ?? undefined,
+            ...mockProductForClient.image,
+            altText: mockProductForClient.image.altText ?? undefined,
           }
         : null,
     };
@@ -262,11 +262,11 @@ export const AddToCartLoadingState: StoryObj = {
 export const AddToCartWithQuantity: StoryObj = {
   render: () => {
     const product = {
-      ...mockProduct,
-      image: mockProduct.image
+      ...mockProductForClient,
+      image: mockProductForClient.image
         ? {
-            ...mockProduct.image,
-            altText: mockProduct.image.altText ?? undefined,
+            ...mockProductForClient.image,
+            altText: mockProductForClient.image.altText ?? undefined,
           }
         : null,
     };
@@ -312,11 +312,11 @@ export const AddToCartWithQuantity: StoryObj = {
 export const ButtonHoverEffect: StoryObj = {
   render: () => {
     const product = {
-      ...mockProduct,
-      image: mockProduct.image
+      ...mockProductForClient,
+      image: mockProductForClient.image
         ? {
-            ...mockProduct.image,
-            altText: mockProduct.image.altText ?? undefined,
+            ...mockProductForClient.image,
+            altText: mockProductForClient.image.altText ?? undefined,
           }
         : null,
     };
@@ -364,11 +364,11 @@ export const ButtonHoverEffect: StoryObj = {
 export const ButtonDisabledState: StoryObj = {
   render: () => {
     const product = {
-      ...mockProduct,
-      image: mockProduct.image
+      ...mockProductForClient,
+      image: mockProductForClient.image
         ? {
-            ...mockProduct.image,
-            altText: mockProduct.image.altText ?? undefined,
+            ...mockProductForClient.image,
+            altText: mockProductForClient.image.altText ?? undefined,
           }
         : null,
     };

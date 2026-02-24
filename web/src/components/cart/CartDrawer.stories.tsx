@@ -79,6 +79,7 @@ const createCartItem = (overrides: Partial<CartItem> = {}): CartItem => ({
   name: 'Temperature Sensor Model 101',
   slug: 'temperature-sensor-101',
   price: '$49.00',
+  numericPrice: 49.0,
   quantity: 1,
   image: {
     sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=Sensor',
@@ -129,6 +130,7 @@ const mockMultipleItemsCart = () => ({
       databaseId: 101,
       name: 'Temperature Sensor Model 101',
       price: '$49.00',
+      numericPrice: 49.0,
       quantity: 2,
     }),
     createCartItem({
@@ -137,6 +139,7 @@ const mockMultipleItemsCart = () => ({
       name: 'Humidity Sensor Model 205',
       slug: 'humidity-sensor-205',
       price: '$89.00',
+      numericPrice: 89.0,
       quantity: 1,
       image: {
         sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=Humidity',
@@ -149,6 +152,7 @@ const mockMultipleItemsCart = () => ({
       name: 'Pressure Transducer PT-300',
       slug: 'pressure-transducer-300',
       price: '$129.00',
+      numericPrice: 129.0,
       quantity: 3,
       image: {
         sourceUrl: 'https://placehold.co/400x400/1479BC/FFFFFF?text=Pressure',
@@ -209,6 +213,7 @@ const mockVariableProductsCart = () => ({
       name: 'Temperature Sensor - Industrial',
       slug: 'temp-sensor-industrial',
       price: '$149.00',
+      numericPrice: 149.0,
       quantity: 1,
       variationId: 2011,
       variationName: 'Stainless Steel, 0-100°C',
@@ -225,6 +230,7 @@ const mockVariableProductsCart = () => ({
       name: 'Pressure Transducer - Heavy Duty',
       slug: 'pressure-transducer-hd',
       price: '$299.00',
+      numericPrice: 299.0,
       quantity: 2,
       variationId: 2021,
       variationName: 'Titanium, 0-500PSI',
@@ -260,6 +266,7 @@ const mockHighValueCart = () => ({
       name: 'Multi-Parameter Sensor System MPS-5000',
       slug: 'mps-5000',
       price: '$2,499.00',
+      numericPrice: 2499.0,
       quantity: 1,
       partNumber: 'MPS-5K-PRO',
       image: {
@@ -273,6 +280,7 @@ const mockHighValueCart = () => ({
       name: 'Data Logger with Cloud Integration DL-360',
       slug: 'data-logger-dl-360',
       price: '$1,899.00',
+      numericPrice: 1899.0,
       quantity: 2,
       partNumber: 'DL-360-CLOUD',
       image: {

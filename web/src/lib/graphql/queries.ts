@@ -80,6 +80,59 @@ export const getProductBySlug = cache(async (slug: string): Promise<GetProductBy
 
 // Normalizer: Make best-effort repairs to common GraphQL response issues so
 // callers (and validation) can depend on a consistent shape.
+/**
+ * TODO (Post-Launch): Replace defensive normalization with schema validation
+ * ===========================================================================
+ * PROBLEM: 120-line normalizer with 8+ "as any"/"as Record<string, unknown>" casts
+ *          defeats TypeScript safety and masks upstream WordPress schema issues.
+ * 
+ * ROOT CAUSE: This function exists to defensively handle inconsistencies in the
+ *             WPGraphQL schema responses:
+ * 
+ * 1. Missing __typename fields on Product type
+ * 2. Inconsistent image field naming:
+ *    - sourceUrl vs source_url
+ *    - altText vs alt_text vs alt
+ *    - mediaDetails vs media_details
+ * 3. Inconsistent collection structures:
+ *    - galleryImages: sometimes Array, sometimes { nodes: [] }, sometimes null
+ *    - variations: sometimes missing, sometimes { nodes: undefined }
+ *    - attributes: sometimes Array, sometimes { nodes: [] }
+ * 4. Missing relatedProducts.partNumber field
+ * 5. Inconsistent string fallbacks (shortDescription vs short_description, etc.)
+ * 
+ * RECOMMENDED APPROACH (Post-Launch):
+ * 
+ * 1. Add Zod schema validation layer BETWEEN GraphQL response and normalizer
+ *    - Parse raw response with Zod schema
+ *    - Log warnings when normalization is actually needed (detect real problems)
+ *    - Track which inconsistencies occur in production
+ * 
+ * 2. Fix WordPress/WPGraphQL schema at source
+ *    - Ensure WPGraphQL returns consistent field naming (camelCase)
+ *    - Guarantee { nodes: [] } shape for all connection types
+ *    - Add missing fields to schema (partNumber on related products)
+ *    - Ensure __typename always present
+ * 
+ * 3. Add unit tests for normalizeProductQueryResponse
+ *    - Test with malformed inputs (missing fields, wrong types, null values)
+ *    - Ensure backward compatibility during migration
+ *    - Document which edge cases are actually possible vs overcautious
+ * 
+ * 4. Gradually remove normalization as schema becomes reliable
+ *    - Once Zod validation shows schema is consistent for 30 days
+ *    - Remove unnecessary fallbacks and type casts
+ *    - Let TypeScript do its job
+ * 
+ * SEVERITY: Low (works correctly, but hides upstream problems and defeats type safety)
+ * URGENCY: Defer to post-launch (Phase 1 launches April 10, 2026)
+ * 
+ * EXAMPLE ISSUES THIS MASKS:
+ * - Line 48: (galleryRaw as Record<string, unknown>).nodes
+ * - Line 60-61: (rp.image as any).sourceUrl / .altText
+ * - Line 79-80: (attrsRaw as any).nodes
+ * - Line 119: Final cast loses all type information
+ */
 export function normalizeProductQueryResponse(raw: unknown): GetProductBySlugQuery {
   const safe = (raw ?? {}) as Record<string, unknown>;
 
@@ -322,13 +375,23 @@ export const getProductRelated = cache(async (id: string): Promise<GetProductRel
 
 /**
  * Server-side function to fetch product categories
+ * Wrapped with React cache() for automatic deduplication across generateMetadata and page components
  */
-export async function getProductCategories(
-  first: number = 100
-): Promise<GetProductCategoriesQuery> {
-  const client = getGraphQLClient(['products', 'categories']);
-  return client.request(GetProductCategoriesDocument, { first });
-}
+export const getProductCategories = cache(
+  async (first: number = 100): Promise<GetProductCategoriesQuery> => {
+    try {
+      const client = getGraphQLClient(['products', 'categories']);
+      return await client.request(GetProductCategoriesDocument, { first });
+    } catch (error) {
+      throw new AppError(
+        `Failed to fetch product categories: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'Unable to load product categories at this time. Please try again later.',
+        'CATEGORIES_FETCH_ERROR',
+        500
+      );
+    }
+  }
+);
 
 /**
  * Server-side function to fetch a single product category by slug

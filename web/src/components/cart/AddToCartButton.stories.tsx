@@ -94,6 +94,7 @@ const testProduct: Omit<CartItem, 'quantity'> = {
   name: mockProductForClient.name,
   slug: mockProductForClient.slug,
   price: mockProductForClient.price,
+  numericPrice: mockProductForClient.numericPrice,
   image: mockProductForClient.image
     ? {
         sourceUrl: mockProductForClient.image.sourceUrl,

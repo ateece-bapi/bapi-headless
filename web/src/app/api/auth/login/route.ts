@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import logger from '@/lib/logger';
+import { LOGIN_MUTATION, type LoginResponse } from '@/lib/auth/queries';
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
@@ -28,26 +29,12 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `
-          mutation Login($username: String!, $password: String!) {
-            login(input: { username: $username, password: $password }) {
-              authToken
-              refreshToken
-              user {
-                id
-                databaseId
-                email
-                name
-                username
-              }
-            }
-          }
-        `,
+        query: LOGIN_MUTATION,
         variables: { username, password },
       }),
     });
 
-    const { data, errors } = await response.json();
+    const { data, errors }: { data: LoginResponse; errors?: any[] } = await response.json();
 
     if (errors || !data?.login?.authToken) {
       logger.error('WordPress authentication failed', { errors });

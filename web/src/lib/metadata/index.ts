@@ -18,4 +18,5 @@
 
 export * from './types';
 export * from './generators';
+export * from './schemas';
 export { SITE_CONFIG } from './generators';

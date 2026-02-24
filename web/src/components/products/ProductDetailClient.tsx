@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { AddToCartButton } from '@/components/cart';
 import type { CartItem } from '@/store';
 import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
+import { useRegion } from '@/store/regionStore';
+import { convertWooCommercePriceNumeric } from '@/lib/utils/currency';
 
 /**
  * Product variation (e.g., size/color option)
@@ -65,6 +67,8 @@ export default function ProductDetailClient({
   useCart = defaultUseCart,
   useCartDrawer = defaultUseCartDrawer,
 }: ProductDetailClientProps) {
+  const region = useRegion();
+  
   // Extract data with safe defaults (hooks must be called unconditionally)
   const { variations = [], attributes = [] } = product ?? {};
 
@@ -108,12 +112,17 @@ export default function ProductDetailClient({
     return <div className="p-4 text-red-600">Error: Product data is missing required fields.</div>;
   }
 
+  // Determine the price to use (variation or product)
+  const displayPrice = selectedVariation && selectedVariation?.price ? selectedVariation?.price : product.price;
+  const numericPrice = convertWooCommercePriceNumeric(displayPrice, region.currency);
+
   const cartProduct: Omit<CartItem, 'quantity'> = {
     id: selectedVariation ? `${product.id}::${selectedVariation?.databaseId}` : product.id,
     databaseId: selectedVariation ? selectedVariation?.databaseId : product.databaseId,
     name: selectedVariation ? selectedVariation?.name : product.name,
     slug: product.slug,
-    price: selectedVariation && selectedVariation?.price ? selectedVariation?.price : product.price,
+    price: displayPrice,
+    numericPrice,
     image: (() => {
       if (selectedImageIndex === -1) {
         const img = selectedVariation?.image ?? product?.image;

@@ -7,6 +7,65 @@
 
 ---
 
+## February 24, 2026 — Copilot PR Review Fixes (PR #304 + PR #305) 🔍
+
+**Status:** ✅ COMPLETE - 7 Copilot Review Issues Resolved  
+**Branch:** fix/copilot-review-pr304-pr305 (PR #306)  
+**Commits:** 1 commit (10ee18a)  
+**Days Until Launch:** 45 days (April 10, 2026)
+
+**🎯 OUTCOME:** Addressed all post-merge Copilot review comments from PR #304 (middleware security) and PR #305 (architecture fixes). Fixed two security/correctness bugs, one performance issue, and added 13 missing tests.
+
+### PR #304 Middleware Issues (5 fixes)
+
+**1. Critical Bug — stripLocalePrefix path boundary** 
+- **Problem:** `path.replace(LOCALE_REGEX, '')` lacks path segment checking — `/english/page` incorrectly strips `/en` leaving `glish/page`, potentially bypassing protected route checks
+- **Fix:** Use `LOCALE_WITH_END_REGEX` (includes `(?:\/|$)` boundary) in `stripLocalePrefix`
+
+**2. Bug — Public route regex allows double slashes** 
+- **Problem:** `^/(LOCALE_PATTERN)?/?products` is too permissive — matches `/en//products` due to optional locale group + optional slash combination
+- **Fix:** `^/(LOCALE_PATTERN/)?products` — groups locale with its trailing slash so pattern correctly matches `/products` and `/en/products` but NOT `/en//products`
+- Applied to all 4 public route patterns (products, company, support, resources)
+
+**3. Performance — Regex created on every request** 
+- **Problem:** 4 inline `new RegExp(...)` calls inside `middleware()` execute on every incoming request
+- **Fix:** Extracted as module-level constants (`LOCALE_PRODUCTS_REGEX`, `LOCALE_COMPANY_REGEX`, `LOCALE_SUPPORT_REGEX`, `LOCALE_RESOURCES_REGEX`) — created once at startup
+
+**4. Maintainability — Duplicated locale extraction logic** 
+- **Problem:** Locale extraction code duplicated in two places, using inconsistent regexes (`LOCALE_REGEX` vs `LOCALE_WITH_END_REGEX`)
+- **Fix:** Extracted `extractLocale()` helper function using `LOCALE_WITH_END_REGEX` consistently throughout
+
+**5. Spelling — `//If` → `// If`** 
+- Inconsistent comment formatting corrected
+
+### PR #305 Architecture Issues (2 fixes)
+
+**6. schemas.ts — Fragile price parsing inconsistency** 
+- **Problem:** `generateProductSchema()` used `parseFloat(product.price.replace(/[^0-9.]/g, ''))` — doesn't handle European formats, price ranges, or post-number currency symbols
+- **Fix:** Imported and used `parsePrice()` from `@/lib/utils/currency` — same robust utility used by the rest of the codebase, consistent with the `convertWooCommercePriceNumeric` introduced in PR #305
+
+**7. `convertWooCommercePriceNumeric` missing test coverage** 
+- **Problem:** Critical cart calculation utility had zero tests despite comprehensive coverage for other currency utilities
+- **Fix:** Added 13 tests to `currency.test.ts`:
+  - Single prices: `'$99.99'` → `99.99`
+  - Price ranges: `'$50 - $100'` → `50.0` (minimum)
+  - `'From $X'` prefix handling
+  - Currency conversion (EUR, GBP, JPY round-trip)
+  - Edge cases: `invalid`, `null`, `undefined`, `''` → `0`
+  - Thousands separators: `'$1,299.00'` → `1299.0`
+  - All 12 supported currencies pass without throwing
+- **Result:** 74 → 87 tests passing in currency.test.ts (100% pass rate)
+
+### Files Changed
+- `web/middleware.ts` — 5 fixes (regex constants, extractLocale helper, stripLocalePrefix, spelling)
+- `web/src/lib/metadata/schemas.ts` — Use `parsePrice()` instead of fragile regex
+- `web/src/lib/utils/__tests__/currency.test.ts` — 13 new tests for `convertWooCommercePriceNumeric`
+
+**Build:** ✅ TypeScript clean  
+**Tests:** ✅ 87/87 currency tests passing
+
+---
+
 ## February 24, 2026 — Architecture Tech Debt Cleanup 🏗️
 
 **Status:** ✅ COMPLETE - 7 Architecture Fixes Merged  

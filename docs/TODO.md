@@ -589,6 +589,39 @@ git branch -d fix/breadcrumb-search-products-key
 
 ## 🧹 Code Cleanup Tasks
 
+### ✅ Copilot PR Review Fixes (Feb 24, 2026)
+**Status:** COMPLETE & MERGED (fix/copilot-review-pr304-pr305, PR #306)  
+**Branch:** fix/copilot-review-pr304-pr305  
+**Commits:** 1 commit (10ee18a)  
+**Summary:**
+  - Addressed 7 Copilot review comments from PR #304 (middleware security) and PR #305 (architecture)
+  - Fixed 2 security/correctness bugs in middleware regex logic
+  - Fixed 1 fragile price parsing in schemas.ts
+  - Added 13 missing tests for convertWooCommercePriceNumeric
+**Problems Fixed:**
+  1. **Critical:** `stripLocalePrefix` used `LOCALE_REGEX` (no boundary check) → `/english/page` strips to `glish/page`
+     - Fix: Use `LOCALE_WITH_END_REGEX` with `(?:\/|$)` boundary
+  2. **Bug:** Public route patterns `^/(LOCALE)?/?products` allow double slashes `/en//products`
+     - Fix: `^/(LOCALE/)?products` groups locale+slash correctly
+  3. **Performance:** 4 route regex patterns created on every request
+     - Fix: Extracted as module-level constants (`LOCALE_PRODUCTS_REGEX` etc.)
+  4. **Maintainability:** Duplicated locale extraction with inconsistent regex usage
+     - Fix: Extracted `extractLocale()` helper using `LOCALE_WITH_END_REGEX` throughout
+  5. **Spelling:** `//If` → `// If` comment formatting
+  6. **Inconsistency:** `schemas.ts` used fragile `parseFloat(price.replace(/[^0-9.]/g, ''))` 
+     - Fix: Use `parsePrice()` from currency.ts (handles European formats, ranges, symbols)
+  7. **Missing tests:** `convertWooCommercePriceNumeric` had zero test coverage
+     - Fix: 13 new tests (single prices, ranges, currency conversion, edge cases, all 12 currencies)
+**Changes:**
+  - web/middleware.ts: 5 fixes (regex constants, extractLocale helper, boundary fix, spelling)
+  - web/src/lib/metadata/schemas.ts: Use parsePrice() instead of fragile regex
+  - web/src/lib/utils/__tests__/currency.test.ts: 13 new tests
+**Result:**
+  - Middleware regex now immune to path boundary bypass attacks
+  - 3 files changed, +103 insertions, -17 deletions
+  - Currency tests: 74 → 87 passing (100% pass rate)
+  - TypeScript: ✅ Zero errors
+
 ### ✅ Architecture Tech Debt Cleanup (Feb 24, 2026)
 **Status:** COMPLETE & MERGED (refactor/architecture-fixes, PR #305)  
 **Branch:** refactor/architecture-fixes  

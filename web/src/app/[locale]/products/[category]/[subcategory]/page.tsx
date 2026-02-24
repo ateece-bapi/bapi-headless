@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import {
   GetProductCategoryWithChildrenDocument,
@@ -65,6 +66,7 @@ export async function generateMetadata({ params }: SubcategoryPageProps): Promis
 export default async function SubcategoryPage({ params, searchParams }: SubcategoryPageProps) {
   const { category, subcategory, locale } = await params;
   const filters = await searchParams;
+  const t = await getTranslations({ locale, namespace: 'subcategoryPage' });
 
   const client = getGraphQLClient(['products', `category-${subcategory}`], true);
 
@@ -104,13 +106,19 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
       parentCategory.slug || '',
       subcategoryData.name || '',
       subcategory,
-      { locale }
+      {
+        locale,
+        labels: {
+          home: t('breadcrumb.home'),
+          products: t('breadcrumb.products'),
+        },
+      }
     );
   } else {
     // Fallback if no parent category
     breadcrumbs = [
-      { label: 'Home', href: `/${locale}` },
-      { label: 'Products', href: `/${locale}/products` },
+      { label: t('breadcrumb.home'), href: `/${locale}` },
+      { label: t('breadcrumb.products'), href: `/${locale}/products` },
       { label: subcategoryData.name || '' },
     ];
   }

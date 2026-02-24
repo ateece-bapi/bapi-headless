@@ -101,29 +101,29 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     }
   }
 
-  // Generate breadcrumbs
+  // Generate breadcrumbs with i18n support
   const breadcrumbs = getCategoryBreadcrumbs(
     categoryData.name || '',
     slug,
-    { locale, includeHome: false }
+    {
+      locale,
+      includeHome: true,
+      labels: {
+        home: t('categoryPage.breadcrumb.home'),
+        products: t('categoryPage.breadcrumb.products'),
+      },
+    }
   );
-  
-  // Add translated labels
-  const translatedBreadcrumbs = [
-    { label: t('categoryPage.breadcrumb.home'), href: `/${locale}` },
-    { label: t('categoryPage.breadcrumb.products'), href: `/${locale}/products` },
-    { label: categoryData.name || '' },
-  ];
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
-  const schema = breadcrumbsToSchemaOrg(translatedBreadcrumbs, siteUrl);
+  const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumbs */}
       <div className="border-b border-neutral-200">
         <div className="mx-auto max-w-content px-4 py-4">
-          <Breadcrumbs items={translatedBreadcrumbs} schema={schema} />
+          <Breadcrumbs items={breadcrumbs} schema={schema} />
         </div>
       </div>
 

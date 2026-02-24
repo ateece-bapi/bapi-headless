@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import logger from '@/lib/logger';
 import {
   getProductBySlug,
@@ -212,6 +213,8 @@ export default async function ProductPage({
       notFound();
     }
     const slug = String(resolvedParams.slug);
+    const locale = String(resolvedParams.locale);
+    const t = await getTranslations({ locale, namespace: 'productPage' });
 
     logger.info('[ProductPage] Loading product', { slug });
     timer.mark('params-resolved');
@@ -489,7 +492,13 @@ export default async function ProductPage({
           product.name || '',
           slug,
           categories,
-          { locale }
+          {
+            locale,
+            labels: {
+              home: t('breadcrumb.home'),
+              products: t('breadcrumb.products'),
+            },
+          }
         );
 
         const breadcrumbSchema = breadcrumbsToSchemaOrg(breadcrumbItems, siteUrl);
@@ -510,7 +519,7 @@ export default async function ProductPage({
             {/* Breadcrumb Navigation */}
             <div className="border-b border-neutral-200 bg-white">
               <div className="mx-auto max-w-container px-4 py-4">
-                <Breadcrumbs items={breadcrumbItems} schema={breadcrumbSchema} />
+                <Breadcrumbs items={breadcrumbItems} />
               </div>
             </div>
 

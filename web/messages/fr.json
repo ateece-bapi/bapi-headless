@@ -536,6 +536,10 @@
     }
   },
   "productPage": {
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits"
+    },
     "summary": {
       "title": "Résumé du produit",
       "configureProduct": "Configurer le produit",
@@ -786,6 +790,9 @@
     "header": {
       "productsAvailable": "{count} produits disponibles"
     },
+    "products": {
+      "showing": "Affichage de {count} produits"
+    },
     "subcategories": {
       "title": "Parcourir par catégorie",
       "productCount": "{count} produit",
@@ -797,11 +804,21 @@
       "needHelp": "Besoin d'aide ? Contactez-nous"
     }
   },
+  "subcategoryPage": {
+    "breadcrumb": {
+      "home": "Accueil",
+      "products": "Produits"
+    }
+  },
   "searchPage": {
     "meta": {
       "titleWithQuery": "Résultats de recherche pour \"{query}\" | BAPI",
       "titleDefault": "Rechercher des produits | BAPI",
       "descriptionTemplate": "Trouvez des capteurs et des contrôleurs d'automatisation des bâtiments BAPI. Résultats de recherche pour : {query}"
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "search": "Recherche"
     },
     "emptyQuery": {
       "title": "Rechercher des produits",

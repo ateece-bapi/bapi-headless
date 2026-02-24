@@ -536,6 +536,10 @@
     }
   },
   "productPage": {
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品"
+    },
     "summary": {
       "title": "製品概要",
       "configureProduct": "製品を設定する",
@@ -786,6 +790,9 @@
     "header": {
       "productsAvailable": "{count}製品が利用可能"
     },
+    "products": {
+      "showing": "{count}個の製品を表示"
+    },
     "subcategories": {
       "title": "カテゴリから探す",
       "productCount": "{count}製品",
@@ -797,11 +804,21 @@
       "needHelp": "ご質問ですか? お問い合わせください"
     }
   },
+  "subcategoryPage": {
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品"
+    }
+  },
   "searchPage": {
     "meta": {
       "titleWithQuery": "\"{query}\" の検索結果 | BAPI",
       "titleDefault": "製品検索 | BAPI",
       "descriptionTemplate": "BAPI のビルディング・オートメーション・センサーとコントローラーを検索。検索キーワード: {query}"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "search": "検索"
     },
     "emptyQuery": {
       "title": "製品検索",

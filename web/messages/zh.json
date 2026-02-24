@@ -536,6 +536,10 @@
     }
   },
   "productPage": {
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品"
+    },
     "summary": {
       "title": "产品概要",
       "configureProduct": "配置产品",
@@ -786,6 +790,9 @@
     "header": {
       "productsAvailable": "共有{count}款产品"
     },
+    "products": {
+      "showing": "显示 {count} 个产品"
+    },
     "subcategories": {
       "title": "按类别浏览",
       "productCount": "{count}款产品",
@@ -797,11 +804,21 @@
       "needHelp": "需要帮助？联系我们"
     }
   },
+  "subcategoryPage": {
+    "breadcrumb": {
+      "home": "首页",
+      "products": "产品"
+    }
+  },
   "searchPage": {
     "meta": {
       "titleWithQuery": "\"{query}\"的搜索结果 | BAPI",
       "titleDefault": "搜索产品 | BAPI",
       "descriptionTemplate": "查找BAPI楼宇自动化传感器和控制器。搜索结果：{query}"
+    },
+    "breadcrumb": {
+      "home": "首页",
+      "search": "搜索"
     },
     "emptyQuery": {
       "title": "搜索产品",

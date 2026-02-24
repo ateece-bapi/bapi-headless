@@ -4,6 +4,8 @@ import logger from '@/lib/logger';
 import { searchProducts, formatProductsForAI } from '@/lib/chat/productSearch';
 import { logChatAnalytics, type ChatAnalytics } from '@/lib/chat/analytics';
 import { randomUUID } from 'crypto';
+import { checkRateLimit, getClientIP } from '@/lib/rate-limit';
+import { RATE_LIMITS } from '@/lib/constants/rate-limits';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -91,6 +93,35 @@ export async function POST(request: NextRequest) {
   const productsRecommended: string[] = [];
 
   try {
+    // Rate limiting - prevent abuse of expensive AI API calls
+    const clientIP = getClientIP(request);
+    const rateLimitResult = checkRateLimit(clientIP, RATE_LIMITS.CHAT_API);
+
+    if (!rateLimitResult.success) {
+      logger.warn('Chat API rate limit exceeded', {
+        ip: clientIP,
+        limit: rateLimitResult.limit,
+        reset: new Date(rateLimitResult.reset * 1000).toISOString(),
+      });
+
+      return NextResponse.json(
+        {
+          error: 'Rate limit exceeded',
+          message: `Too many chat requests. Please try again in ${Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000)} seconds.`,
+          retryAfter: Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000),
+        },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': String(rateLimitResult.limit),
+            'X-RateLimit-Remaining': String(rateLimitResult.remaining),
+            'X-RateLimit-Reset': String(rateLimitResult.reset),
+            'Retry-After': String(Math.ceil((rateLimitResult.reset * 1000 - Date.now()) / 1000)),
+          },
+        }
+      );
+    }
+
     // Check if API key is configured
     if (!process.env.ANTHROPIC_API_KEY) {
       logger.error('ANTHROPIC_API_KEY not found in environment variables');

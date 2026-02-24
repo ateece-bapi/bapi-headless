@@ -37,6 +37,17 @@ export const RATE_LIMITS = {
   } as RateLimitConfig,
 
   /**
+   * Chat API (AI assistant powered by Claude)
+   * 20 requests per minute per IP
+   * Prevents abuse of expensive Anthropic API calls
+   * Balanced for natural conversation flow while protecting costs
+   */
+  CHAT_API: {
+    limit: 20,
+    windowMs: 60000, // 1 minute
+  } as RateLimitConfig,
+
+  /**
    * Default time window
    * 1 minute (60000 milliseconds)
    */

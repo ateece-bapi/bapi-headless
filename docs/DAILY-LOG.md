@@ -7,6 +7,37 @@
 
 ---
 
+## February 24, 2026 — Stale Documentation Housekeeping (PR #307) 🧹
+
+**Status:** ✅ COMPLETE - 3 Stale Files Removed  
+**Branch:** chore/stale-docs-cleanup (PR #307)  
+**Commits:** 1 commit (ffa543d)  
+**Days Until Launch:** 45 days (April 10, 2026)
+
+**🎯 OUTCOME:** Cleaned up leftover files from the Clerk → WordPress JWT auth migration. 678 lines of stale content removed.
+
+### Files Deleted (3)
+
+**1. `web/CLERK_SETUP.md`** (148 lines)  
+- Full Clerk authentication setup guide  
+- Obsolete: auth migrated to WordPress JWT (WPGraphQL JWT Authentication plugin)  
+- Current auth: `web/src/proxy.ts` + `web/src/lib/auth/queries.ts`
+
+**2. `docs/TRANSLATION-ACTION-PLAN.md`** (429 lines)  
+- Contained Clerk middleware code examples in i18n setup sections  
+- Stale: middleware patterns no longer reflect WordPress JWT architecture
+
+**3. `web/src/proxy.ts.backup`** (101 lines)  
+- Artifact file left over from proxy.ts refactor  
+- No historical value not already covered by git history
+
+### Other Clerk References in Docs (Kept)
+Files like `TODO-AUDIT-FEB11.md`, `CODEBASE-REVIEW-FEB17-2026.md`, `DAILY-LOG.md` reference Clerk in historical context (migration notes) — accurate as written, no action needed.
+
+**Net:** 3 files deleted, -678 lines, PR #307 merged.
+
+---
+
 ## February 24, 2026 — Copilot PR Review Fixes (PR #304 + PR #305) 🔍
 
 **Status:** ✅ COMPLETE - 7 Copilot Review Issues Resolved  

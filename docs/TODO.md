@@ -589,6 +589,21 @@ git branch -d fix/breadcrumb-search-products-key
 
 ## 🧹 Code Cleanup Tasks
 
+### ✅ Stale Documentation Housekeeping (Feb 24, 2026)
+**Status:** COMPLETE & MERGED (chore/stale-docs-cleanup, PR #307)  
+**Branch:** chore/stale-docs-cleanup  
+**Commits:** 1 commit (ffa543d)  
+**Summary:**
+  - Removed leftover artifacts from Clerk → WordPress JWT auth migration
+  - 3 files deleted, 678 lines removed
+**Files Deleted:**
+  1. `web/CLERK_SETUP.md` — Clerk setup guide, auth now handled by WordPress JWT
+  2. `docs/TRANSLATION-ACTION-PLAN.md` — contained stale Clerk middleware examples
+  3. `web/src/proxy.ts.backup` — leftover artifact from proxy.ts refactor
+**Notes:**
+  - Other docs referencing Clerk (audit logs, DAILY-LOG, code reviews) kept as historical records
+  - Current auth docs: `web/src/proxy.ts`, `web/src/lib/auth/queries.ts`
+
 ### ✅ Copilot PR Review Fixes (Feb 24, 2026)
 **Status:** COMPLETE & MERGED (fix/copilot-review-pr304-pr305, PR #306)  
 **Branch:** fix/copilot-review-pr304-pr305  

@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { cache } from 'react';
 import { isAdmin } from './roles';
 import logger from '@/lib/logger';
+import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from './queries';
 
 export interface User {
   id: string;
@@ -41,22 +42,7 @@ export const getServerAuth = cache(
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          query: `
-          query GetCurrentUser {
-            viewer {
-              id
-              databaseId
-              email
-              name
-              username
-              roles {
-                nodes {
-                  name
-                }
-              }
-            }
-          }
-        `,
+          query: GET_CURRENT_USER_QUERY,
         }),
         next: {
           revalidate: 30, // Cache user data for 30 seconds
@@ -68,7 +54,7 @@ export const getServerAuth = cache(
         return { userId: null, user: null };
       }
 
-      const { data, errors } = await response.json();
+      const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } = await response.json();
 
       if (errors || !data?.viewer) {
         return { userId: null, user: null };

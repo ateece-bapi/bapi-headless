@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import logger from '@/lib/logger';
+import { REFRESH_TOKEN_MUTATION, type RefreshTokenResponse } from '@/lib/auth/queries';
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
@@ -29,18 +30,12 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `
-          mutation RefreshToken($token: String!) {
-            refreshJwtAuthToken(input: { jwtRefreshToken: $token }) {
-              authToken
-            }
-          }
-        `,
+        query: REFRESH_TOKEN_MUTATION,
         variables: { token: refreshToken },
       }),
     });
 
-    const { data, errors } = await response.json();
+    const { data, errors }: { data: RefreshTokenResponse; errors?: any[] } = await response.json();
 
     if (errors || !data?.refreshJwtAuthToken?.authToken) {
       logger.error('Token refresh failed', { errors });

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import logger from '@/lib/logger';
+import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from '@/lib/auth/queries';
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
@@ -27,26 +28,11 @@ export async function GET(request: NextRequest) {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        query: `
-          query GetCurrentUser {
-            viewer {
-              id
-              databaseId
-              email
-              name
-              username
-              roles {
-                nodes {
-                  name
-                }
-              }
-            }
-          }
-        `,
+        query: GET_CURRENT_USER_QUERY,
       }),
     });
 
-    const { data, errors } = await response.json();
+    const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } = await response.json();
 
     if (errors || !data?.viewer) {
       logger.debug('Token validation failed', { errors });

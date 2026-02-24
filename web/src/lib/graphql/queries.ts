@@ -375,13 +375,23 @@ export const getProductRelated = cache(async (id: string): Promise<GetProductRel
 
 /**
  * Server-side function to fetch product categories
+ * Wrapped with React cache() for automatic deduplication across generateMetadata and page components
  */
-export async function getProductCategories(
-  first: number = 100
-): Promise<GetProductCategoriesQuery> {
-  const client = getGraphQLClient(['products', 'categories']);
-  return client.request(GetProductCategoriesDocument, { first });
-}
+export const getProductCategories = cache(
+  async (first: number = 100): Promise<GetProductCategoriesQuery> => {
+    try {
+      const client = getGraphQLClient(['products', 'categories']);
+      return await client.request(GetProductCategoriesDocument, { first });
+    } catch (error) {
+      throw new AppError(
+        `Failed to fetch product categories: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'Unable to load product categories at this time. Please try again later.',
+        'CATEGORIES_FETCH_ERROR',
+        500
+      );
+    }
+  }
+);
 
 /**
  * Server-side function to fetch a single product category by slug

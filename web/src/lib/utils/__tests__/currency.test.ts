@@ -8,6 +8,7 @@ import {
   formatPriceRange,
   parsePrice,
   convertWooCommercePrice,
+  convertWooCommercePriceNumeric,
 } from '../currency';
 
 describe('Currency Utilities', () => {
@@ -426,6 +427,74 @@ describe('Currency Utilities', () => {
         const result = convertWooCommercePrice(testPrice, 'INR');
         expect(result).toMatch(/^₹/);
       });
+    });
+  });
+
+  describe('convertWooCommercePriceNumeric', () => {
+    it('converts a simple USD price to a number', () => {
+      expect(convertWooCommercePriceNumeric('$99.99', 'USD')).toBe(99.99);
+    });
+
+    it('returns the minimum price for a price range', () => {
+      expect(convertWooCommercePriceNumeric('$50.00 - $100.00', 'USD')).toBe(50.0);
+    });
+
+    it('handles "From $X" price prefix', () => {
+      expect(convertWooCommercePriceNumeric('From $15.00', 'USD')).toBe(15.0);
+    });
+
+    it('converts USD price to EUR', () => {
+      // $99.99 USD × 0.92 = 91.9908
+      const result = convertWooCommercePriceNumeric('$99.99', 'EUR');
+      expect(result).toBeCloseTo(91.99, 1);
+    });
+
+    it('converts USD price to GBP', () => {
+      // $99.99 USD × 0.79 = 78.9921
+      const result = convertWooCommercePriceNumeric('$99.99', 'GBP');
+      expect(result).toBeCloseTo(78.99, 1);
+    });
+
+    it('converts USD price to JPY (no decimals)', () => {
+      // $99.99 USD × 149.5 = 14948.505
+      const result = convertWooCommercePriceNumeric('$99.99', 'JPY');
+      expect(result).toBeCloseTo(14948.5, 0);
+    });
+
+    it('returns 0 for invalid input', () => {
+      expect(convertWooCommercePriceNumeric('invalid price', 'USD')).toBe(0);
+      expect(convertWooCommercePriceNumeric('no numbers here', 'USD')).toBe(0);
+    });
+
+    it('returns 0 for null input', () => {
+      expect(convertWooCommercePriceNumeric(null, 'USD')).toBe(0);
+    });
+
+    it('returns 0 for undefined input', () => {
+      expect(convertWooCommercePriceNumeric(undefined, 'USD')).toBe(0);
+    });
+
+    it('returns 0 for empty string', () => {
+      expect(convertWooCommercePriceNumeric('', 'USD')).toBe(0);
+    });
+
+    it('handles prices with commas (thousands separator)', () => {
+      // $1,299.00 = 1299.00 USD
+      expect(convertWooCommercePriceNumeric('$1,299.00', 'USD')).toBe(1299.0);
+    });
+
+    it('uses minimum price from range for currency conversion', () => {
+      // $50 - $100 USD → minimum $50 × 0.92 = $46 EUR
+      const result = convertWooCommercePriceNumeric('$50.00 - $100.00', 'EUR');
+      expect(result).toBeCloseTo(50 * 0.92, 2);
+    });
+
+    it('handles all 12 supported currencies without throwing', () => {
+      const currencies = ['USD', 'CAD', 'MXN', 'EUR', 'GBP', 'JPY', 'CNY', 'SGD', 'AED', 'VND', 'THB', 'INR'] as const;
+      for (const currency of currencies) {
+        expect(() => convertWooCommercePriceNumeric('$99.99', currency)).not.toThrow();
+        expect(convertWooCommercePriceNumeric('$99.99', currency)).toBeGreaterThan(0);
+      }
     });
   });
 });

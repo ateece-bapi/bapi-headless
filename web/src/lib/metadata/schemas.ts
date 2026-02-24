@@ -10,6 +10,7 @@
 
 import type { ProductMetadataInput } from './types';
 import { SITE_CONFIG } from './generators';
+import { parsePrice } from '@/lib/utils/currency';
 
 /**
  * Generate Product schema JSON-LD for rich snippets
@@ -41,8 +42,9 @@ export function generateProductSchema(product: ProductMetadataInput) {
     .replace(/<[^>]*>/g, '')
     .trim();
 
-  // Parse numeric price
-  const numericPrice = product.price ? parseFloat(product.price.replace(/[^0-9.]/g, '')) : undefined;
+  // Parse numeric price using the robust parsePrice() utility (handles European formats,
+  // price ranges, and currency symbols correctly — consistent with cart calculations)
+  const numericPrice = product.price ? (parsePrice(product.price) ?? undefined) : undefined;
 
   return {
     '@context': 'https://schema.org/',

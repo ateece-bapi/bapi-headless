@@ -114,6 +114,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
     locale,
     labels: {
       home: t('breadcrumb.home'),
+      products: t('breadcrumb.products'),
       search: t('breadcrumb.search'),
     },
   });

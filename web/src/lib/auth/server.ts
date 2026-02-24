@@ -107,22 +107,7 @@ export async function getCurrentUser(): Promise<User | null> {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        query: `
-          query GetCurrentUser {
-            viewer {
-              id
-              databaseId
-              email
-              name
-              username
-              roles {
-                nodes {
-                  name
-                }
-              }
-            }
-          }
-        `,
+        query: GET_CURRENT_USER_QUERY,
       }),
     });
 
@@ -130,7 +115,7 @@ export async function getCurrentUser(): Promise<User | null> {
       return null;
     }
 
-    const { data, errors } = await response.json();
+    const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } = await response.json();
 
     if (errors || !data?.viewer) {
       logger.debug('Token validation failed in getCurrentUser', { errors });

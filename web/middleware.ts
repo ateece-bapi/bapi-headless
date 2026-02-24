@@ -35,14 +35,20 @@ const intlMiddleware = createMiddleware(routing);
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  // Check if route needs authentication
-  const isProtectedRoute = protectedRoutes.some(route => 
-    pathname.includes(route)
-  );
+  // Helper to strip locale prefix for accurate path matching
+  const stripLocalePrefix = (path: string) => 
+    path.replace(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/, '');
   
-  const isAdminRoute = adminRoutes.some(route => 
-    pathname.includes(route)
-  );
+  // Check if route needs authentication (use segment matching to prevent false positives)
+  const isProtectedRoute = protectedRoutes.some(route => {
+    const pathWithoutLocale = stripLocalePrefix(pathname);
+    return pathWithoutLocale === route || pathWithoutLocale.startsWith(`${route}/`);
+  });
+  
+  const isAdminRoute = adminRoutes.some(route => {
+    const pathWithoutLocale = stripLocalePrefix(pathname);
+    return pathWithoutLocale === route || pathWithoutLocale.startsWith(`${route}/`);
+  });
 
   // Check for auth token in cookies
   const authToken = request.cookies.get('auth_token')?.value;
@@ -59,7 +65,8 @@ export default function middleware(request: NextRequest) {
   }
 
   //If accessing sign-in page while already authenticated, redirect to account
-  if (pathname.includes('/sign-in') && authToken) {
+  const pathWithoutLocale = stripLocalePrefix(pathname);
+  if ((pathWithoutLocale === '/sign-in' || pathWithoutLocale.startsWith('/sign-in/')) && authToken) {
     // Extract locale from pathname or use default
     const localeMatch = pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)/);
     const locale = localeMatch ? localeMatch[1] : routing.defaultLocale;

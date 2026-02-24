@@ -1391,6 +1391,7 @@
     },
     "breadcrumb": {
       "home": "Home",
+      "products": "Products",
       "search": "Search"
     },
     "emptyQuery": {

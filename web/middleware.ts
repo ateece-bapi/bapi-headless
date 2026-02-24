@@ -13,6 +13,12 @@ import type { NextRequest } from 'next/server';
  * - Redirect to sign-in with preserved destination
  */
 
+// Supported locales - update this list when adding new languages
+const LOCALE_PATTERN = 'en|de|fr|es|ja|zh|vi|ar|th|pl|hi';
+const LOCALE_REGEX = new RegExp(`^/(${LOCALE_PATTERN})`);
+const LOCALE_WITH_END_REGEX = new RegExp(`^/(${LOCALE_PATTERN})(?:\/|$)`);
+const LOCALE_HOMEPAGE_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/?$`);
+
 // Protected routes that require authentication
 const protectedRoutes = [
   '/account',
@@ -37,7 +43,7 @@ export default function middleware(request: NextRequest) {
   
   // Helper to strip locale prefix for accurate path matching
   const stripLocalePrefix = (path: string) => 
-    path.replace(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)/, '');
+    path.replace(LOCALE_REGEX, '');
   
   // Check if route needs authentication (use segment matching to prevent false positives)
   const isProtectedRoute = protectedRoutes.some(route => {
@@ -56,7 +62,7 @@ export default function middleware(request: NextRequest) {
   // Redirect to sign-in if accessing protected route without auth
   if ((isProtectedRoute || isAdminRoute) && !authToken) {
     // Extract locale from pathname or use default
-    const localeMatch = pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)(?:\/|$)/);
+    const localeMatch = pathname.match(LOCALE_WITH_END_REGEX);
     const locale = localeMatch ? localeMatch[1] : routing.defaultLocale;
     const signInUrl = new URL(`/${locale}/sign-in`, request.url);
     // Preserve intended destination for post-login redirect
@@ -68,7 +74,7 @@ export default function middleware(request: NextRequest) {
   const pathWithoutLocale = stripLocalePrefix(pathname);
   if ((pathWithoutLocale === '/sign-in' || pathWithoutLocale.startsWith('/sign-in/')) && authToken) {
     // Extract locale from pathname or use default
-    const localeMatch = pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)/);
+    const localeMatch = pathname.match(LOCALE_REGEX);
     const locale = localeMatch ? localeMatch[1] : routing.defaultLocale;
     return NextResponse.redirect(new URL(`/${locale}/account`, request.url));
   }
@@ -82,11 +88,11 @@ export default function middleware(request: NextRequest) {
     // Only cache truly public, non-personalized routes
     const isPublicStaticRoute = 
       pathname === '/' ||
-      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl)\/?$/) || // Locale homepage only
-      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?products/) ||
-      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?company/) ||
-      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?support/) ||
-      pathname.match(/^\/(en|de|fr|es|ja|zh|vi|ar|th|pl|hi)?\/?resources/);
+      pathname.match(LOCALE_HOMEPAGE_REGEX) || // Locale homepage only
+      pathname.match(new RegExp(`^/(${LOCALE_PATTERN})?/?products`)) ||
+      pathname.match(new RegExp(`^/(${LOCALE_PATTERN})?/?company`)) ||
+      pathname.match(new RegExp(`^/(${LOCALE_PATTERN})?/?support`)) ||
+      pathname.match(new RegExp(`^/(${LOCALE_PATTERN})?/?resources`));
     
     if (isPublicStaticRoute) {
       // Set proper cache headers for CDN with locale awareness

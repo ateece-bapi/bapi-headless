@@ -1,6 +1,6 @@
 import { getProducts } from '@/lib/graphql';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql';
-import { getCollectionPageJsonLd } from '@/lib/seo';
+import { generateCollectionPageSchema } from '@/lib/metadata';
 export const metadata = {
   title: 'Products Test | BAPI',
   description: 'Test page for viewing building automation products and their stock status.',
@@ -32,7 +32,7 @@ import Image from 'next/image';
 
 export default async function ProductsTestPage() {
   // --- JSON-LD Structured Data ---
-  const jsonLd = getCollectionPageJsonLd({
+  const jsonLd = generateCollectionPageSchema({
     title: 'Products Test | BAPI',
     description: 'Test page for viewing building automation products and their stock status.',
     url: 'https://yourdomain.com/products-test',

@@ -6,6 +6,17 @@
  * Once the schema is updated (via WordPress introspection with JWT plugin enabled),
  * these should be moved to auth.graphql and generated via codegen.
  * 
+ * TODO (Post-Launch): Migrate to codegen pipeline
+ * ===================================================
+ * 1. Run GraphQL introspection against WordPress with JWT Auth plugin enabled
+ *    - Verify WPGraphQL JWT Authentication plugin is installed
+ *    - Run: npm run download-schema (or similar script)
+ * 2. Create auth.graphql with these queries/mutations
+ * 3. Run: npm run codegen to generate TypeScript types
+ * 4. Update all imports to use generated types from generated.ts
+ * 5. Remove manual type definitions (LoginResponse, GetCurrentUserResponse, etc.)
+ * 6. Test all auth flows thoroughly (login, logout, refresh, protected routes)
+ * 
  * Severity: Low (tech debt, not a bug)
  * Tracks: Consistency with product queries which use codegen pipeline
  */

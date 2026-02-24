@@ -110,7 +110,13 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
   const results = await searchProducts(query);
 
   // Generate breadcrumbs
-  const breadcrumbItems = getSearchBreadcrumbs(query, { locale });
+  const breadcrumbItems = getSearchBreadcrumbs(query, {
+    locale,
+    labels: {
+      home: t('breadcrumb.home'),
+      search: t('breadcrumb.search'),
+    },
+  });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
   const schema = breadcrumbsToSchemaOrg(breadcrumbItems, siteUrl);
 

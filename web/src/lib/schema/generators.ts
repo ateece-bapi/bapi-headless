@@ -111,6 +111,11 @@ export function generateProductSchema(
  * Generate Breadcrumb schema for navigation
  * Helps search engines understand site hierarchy
  */
+/**
+ * Generate breadcrumb schema for structured data
+ * @deprecated Use breadcrumbsToSchemaOrg from @/lib/navigation/breadcrumbs instead.
+ * The new function provides URL normalization and is integrated with the breadcrumb navigation utilities.
+ */
 export function generateBreadcrumbSchema(
   breadcrumbs: Array<{ name: string; url?: string }>,
   siteUrl: string

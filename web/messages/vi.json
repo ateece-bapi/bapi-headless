@@ -497,6 +497,10 @@
     }
   },
   "productPage": {
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm"
+    },
     "summary": {
       "title": "Tóm tắt sản phẩm",
       "configureProduct": "Cấu hình sản phẩm",
@@ -747,6 +751,9 @@
     "header": {
       "productsAvailable": "{count} sản phẩm có sẵn"
     },
+    "products": {
+      "showing": "Hiển thị {count} sản phẩm"
+    },
     "subcategories": {
       "title": "Duyệt theo Danh mục",
       "productCount": "{count} sản phẩm",
@@ -758,11 +765,21 @@
       "needHelp": "Cần Trợ giúp? Liên hệ với chúng tôi"
     }
   },
+  "subcategoryPage": {
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "products": "Sản phẩm"
+    }
+  },
   "searchPage": {
     "meta": {
       "titleWithQuery": "Kết quả tìm kiếm cho \"{query}\" | BAPI",
       "titleDefault": "Tìm kiếm Sản phẩm | BAPI",
       "descriptionTemplate": "Tìm thấy cảm biến và bộ điều khiển tự động hóa tòa nhà BAPI. Kết quả tìm kiếm cho: {query}"
+    },
+    "breadcrumb": {
+      "home": "Trang chủ",
+      "search": "Tìm kiếm"
     },
     "emptyQuery": {
       "title": "Tìm kiếm Sản phẩm",

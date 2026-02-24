@@ -665,6 +665,10 @@
     "searchResults": "ผลการค้นหา"
   },
   "productPage": {
+    "breadcrumb": {
+      "home": "หน้าแรก",
+      "products": "ผลิตภัณฑ์"
+    },
     "summary": {
       "title": "สรุปผลิตภัณฑ์",
       "configureProduct": "กำหนดค่าผลิตภัณฑ์",
@@ -915,6 +919,9 @@
     "header": {
       "productsAvailable": "มีสินค้าทั้งหมด {count} ชิ้น"
     },
+    "products": {
+      "showing": "แสดง {count} ผลิตภัณฑ์"
+    },
     "subcategories": {
       "title": "เรียนรู้ตามหมวดหมู่",
       "productCount": "สินค้า {count} ชิ้น",
@@ -926,11 +933,21 @@
       "needHelp": "ต้องการความช่วยเหลือ? ติดต่อเรา"
     }
   },
+  "subcategoryPage": {
+    "breadcrumb": {
+      "home": "หน้าแรก",
+      "products": "ผลิตภัณฑ์"
+    }
+  },
   "searchPage": {
     "meta": {
       "titleWithQuery": "ผลการค้นหาสำหรับ \"{query}\" | BAPI",
       "titleDefault": "ค้นหาผลิตภัณฑ์ | BAPI",
       "descriptionTemplate": "ค้นหาเซ็นเซอร์และตัวควบคุมระบบอัตโนมัติอาคารของ BAPI ผลการค้นหาสำหรับ: {query}"
+    },
+    "breadcrumb": {
+      "home": "หน้าแรก",
+      "search": "ค้นหา"
     },
     "emptyQuery": {
       "title": "ค้นหาผลิตภัณฑ์",

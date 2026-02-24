@@ -665,6 +665,10 @@
     "searchResults": "Search results"
   },
   "productPage": {
+    "breadcrumb": {
+      "home": "होम",
+      "products": "उत्पाद"
+    },
     "summary": {
       "title": "उत्पाद सारांश",
       "configureProduct": "उत्पाद कॉन्फ़िगर करें",
@@ -915,6 +919,9 @@
     "header": {
       "productsAvailable": "{count} उत्पाद उपलब्ध"
     },
+    "products": {
+      "showing": "{count} उत्पाद दिखा रहे हैं"
+    },
     "subcategories": {
       "title": "श्रेणी के अनुसार ब्राउज़ करें",
       "productCount": "{count} उत्पाद",
@@ -926,11 +933,21 @@
       "needHelp": "सहायता चाहिए? संपर्क करें"
     }
   },
+  "subcategoryPage": {
+    "breadcrumb": {
+      "home": "होम",
+      "products": "उत्पाद"
+    }
+  },
   "searchPage": {
     "meta": {
       "titleWithQuery": "\"{query}\" के लिए खोज परिणाम | BAPI",
       "titleDefault": "उत्पादों की खोज | BAPI",
       "descriptionTemplate": "BAPI भवन स्वचालन सेंसर और नियंत्रकों को खोजें। {query} के लिए खोज परिणाम"
+    },
+    "breadcrumb": {
+      "home": "होम",
+      "search": "खोज"
     },
     "emptyQuery": {
       "title": "उत्पादों की खोज",

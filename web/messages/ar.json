@@ -536,6 +536,10 @@
     }
   },
   "productPage": {
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "products": "المنتجات"
+    },
     "summary": {
       "title": "ملخص المنتج",
       "configureProduct": "تهيئة المنتج",
@@ -786,6 +790,9 @@
     "header": {
       "productsAvailable": "{count} منتج متاح"
     },
+    "products": {
+      "showing": "عرض {count} منتجات"
+    },
     "subcategories": {
       "title": "تصفح حسب الفئة",
       "productCount": "{count} منتج",
@@ -797,11 +804,21 @@
       "needHelp": "هل تحتاج إلى مساعدة؟ اتصل بنا"
     }
   },
+  "subcategoryPage": {
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "products": "المنتجات"
+    }
+  },
   "searchPage": {
     "meta": {
       "titleWithQuery": "نتائج البحث عن \"{query}\" | BAPI",
       "titleDefault": "البحث عن المنتجات | BAPI",
       "descriptionTemplate": "العثور على أجهزة استشعار وأجهزة تحكم في تحكم المباني BAPI. نتائج البحث عن: {query}"
+    },
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "search": "بحث"
     },
     "emptyQuery": {
       "title": "البحث عن المنتجات",

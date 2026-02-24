@@ -4,7 +4,7 @@ import React from 'react';
 import { Briefcase, Heart } from 'lucide-react';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
-import { convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
+import { convertWooCommercePrice, convertWooCommercePriceNumeric, formatPrice } from '@/lib/utils/currency';
 
 interface ProductSummaryCardProps {
   product: any;

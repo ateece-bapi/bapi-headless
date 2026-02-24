@@ -3,7 +3,160 @@
 ## 📋 Project Timeline & Phasing Strategy
 
 **Updated:** February 24, 2026  
-**Status:** Phase 1 Development - April 10, 2026 Go-Live (46 days remaining)
+**Status:** Phase 1 Development - April 10, 2026 Go-Live (45 days remaining)
+
+---
+
+## February 24, 2026 — Architecture Tech Debt Cleanup 🏗️
+
+**Status:** ✅ COMPLETE - 7 Architecture Fixes Merged  
+**Branch:** refactor/architecture-fixes (PR #305)  
+**Commits:** 7 commits (9ed0442 → 98469f8)  
+**Days Until Launch:** 45 days (April 10, 2026)
+
+**🎯 OUTCOME:** Pre-launch architecture cleanup addressing cart calculations, auth consistency, metadata duplication, and type safety documentation.
+
+### Executive Summary
+
+**Result:** Cleaner codebase with improved maintainability and reduced tech debt  
+**Time:** Full day session (security vulnerabilities → architecture improvements)  
+**Files Changed:** 14 files (+642 insertions, -410 deletions)  
+**Impact:** 🟢 Better error handling, eliminated duplication, documented type safety issues  
+**Quality:** All builds successful, TypeScript compilation clean
+
+### Architecture Fix #1: Cart Price Numeric Field (Commits 9ed0442, 7f06286)
+
+**Problem:** Cart price stored as formatted string, parsed with fragile regex  
+**Issue:** `parseFloat(price.replace(/[^0-9.-]+/g, ''))` breaks European formats (€1.299,00 → 1.299 instead of 1299.00)
+
+**Solution:** Dual representation pattern
+- Added `numericPrice: number` field to `CartItem` interface
+- Created `convertWooCommercePriceNumeric()` utility for locale-aware parsing
+- Updated `ProductSummaryCard` to pass both display and numeric prices
+- Updated all test fixtures and Storybook stories (8 files)
+- Auto-calculate numericPrice in `makeProductForClient()` helper
+
+**Files Modified:**
+- web/src/store/cart.ts (CartItem interface)
+- web/src/lib/utils/currency.ts (new utility function)
+- web/src/components/products/ProductPage/ProductSummaryCard.tsx
+- web/src/components/products/ProductDetailClient.tsx
+- web/src/store/__tests__/cart.test.ts
+- web/src/components/cart/CartDrawer.stories.tsx
+- web/src/components/cart/AddToCartButton.stories.tsx
+- web/src/components/ui/InteractionTests.stories.tsx
+- web/test/msw/fixtures.ts
+
+**Impact:** All 12 currencies across 12 regions now calculate correctly
+
+### Architecture Fix #2: Auth Query Centralization (Commits 8bac0fa, fd527fd)
+
+**Problem:** GraphQL auth queries duplicated across 4 files as raw strings  
+**Issue:** Bypasses codegen pipeline, inconsistent with product queries
+
+**Solution:** Centralized auth queries system
+- Created `web/src/lib/auth/queries.ts` as single source of truth
+- Exported `LOGIN_MUTATION`, `GET_CURRENT_USER_QUERY`, `REFRESH_TOKEN_MUTATION`
+- Added TypeScript interfaces: `LoginResponse`, `GetCurrentUserResponse`, `RefreshTokenResponse`
+- Updated 5 locations to import from centralized file
+- Added comprehensive TODO for post-launch schema migration to codegen
+
+**Files Modified:**
+- web/src/lib/auth/queries.ts (NEW - 85 lines)
+- web/src/app/api/auth/login/route.ts
+- web/src/app/api/auth/me/route.ts
+- web/src/app/api/auth/refresh/route.ts
+- web/src/lib/auth/server.ts (2 functions updated)
+
+**Impact:** Eliminated query duplication, easier maintenance, clear migration path
+
+### Architecture Fix #3: Product Normalizer Documentation (Commit 2a3a95a)
+
+**Problem:** `normalizeProductQueryResponse` has 8+ "as any" casts defeating TypeScript safety  
+**Issue:** 120-line function masks upstream WordPress/WPGraphQL schema inconsistencies
+
+**Solution:** Comprehensive documentation for post-launch fix
+- Added 53-line TODO explaining all type casts
+- Documented 5 categories of schema issues:
+  1. Missing __typename fields
+  2. Inconsistent image field naming (sourceUrl vs source_url)
+  3. Inconsistent collection structures (Array vs { nodes: [] })
+  4. Missing relatedProducts.partNumber field
+  5. Inconsistent string fallbacks
+- Recommended approach: Zod validation layer, fix WP schema, add unit tests
+- Referenced specific line numbers where "as any" occurs
+
+**Files Modified:**
+- web/src/lib/graphql/queries.ts (+53 lines documentation)
+
+**Impact:** Clear technical debt documented, actionable post-launch plan
+
+### Architecture Fix #4: getProductCategories Consistency (Commit 0811a74)
+
+**Problem:** `getProductCategories` is ONLY query function not wrapped in `cache()` with try/catch  
+**Issue:** Inconsistent with established pattern used by 7+ other query functions
+
+**Solution:** Match pattern used by all other queries
+- Wrapped in `React.cache()` for automatic deduplication
+- Added try/catch with `AppError` throwing
+- Error code: `CATEGORIES_FETCH_ERROR` with 500 status
+- Updated JSDoc to document cache() usage
+- Changed from `export async function` to `export const` pattern
+
+**Files Modified:**
+- web/src/lib/graphql/queries.ts (+16 lines, -6 lines)
+
+**Impact:** Consistent error handling across all GraphQL queries
+
+### Architecture Fix #5: Metadata System Migration (Commit 98469f8)
+
+**Problem:** Two competing metadata systems causing confusion  
+**Issue:** 
+- OLD: `seo.ts` (basic metadata + JSON-LD, no locale support)
+- NEW: `metadata/generators.ts` (enterprise-level, locale-aware, AI-friendly)
+
+**Solution:** Eliminate duplication, use modern system
+- Created `web/src/lib/metadata/schemas.ts` (237 lines)
+  - `generateProductSchema()` - Product rich snippets with Brand/Offers
+  - `generateCollectionPageSchema()` - Category pages with hierarchy
+  - `generateWebsiteSchema()` - Site-wide context with SearchAction
+  - `generateOrganizationSchema()` - Brand/knowledge graph integration
+  - `generateBreadcrumbSchema()` - Navigation hierarchy
+- Updated `web/src/lib/metadata/index.ts` to export schemas
+- Migrated `products-test/page.tsx` to use new system
+- Deleted deprecated `web/src/lib/seo.ts` (204 lines removed)
+
+**Files Modified:**
+- web/src/lib/metadata/schemas.ts (NEW - 237 lines)
+- web/src/lib/metadata/index.ts (+1 export)
+- web/src/app/products-test/page.tsx (updated import)
+- web/src/lib/seo.ts (DELETED - 204 lines)
+
+**Impact:** Single source of truth, better JSON-LD schemas, consistent locale handling
+
+### Summary Statistics
+
+**Commits:** 7 atomic commits with detailed messages  
+**Net Changes:** +642 insertions, -410 deletions (232 lines added)  
+**Files Created:** 2 (auth/queries.ts, metadata/schemas.ts)  
+**Files Deleted:** 1 (seo.ts)  
+**Production Build:** ✅ Passing  
+**TypeScript:** ✅ Zero errors
+
+**Benefits:**
+- ✅ Cart calculations now work for all European formats
+- ✅ Auth queries centralized (eliminates duplication)
+- ✅ Type safety issues documented with actionable plan
+- ✅ Query functions follow consistent pattern
+- ✅ Metadata system unified (removed 204-line legacy file)
+- ✅ Better error handling across GraphQL layer
+- ✅ Enhanced JSON-LD schemas (Organization, SearchAction, Breadcrumbs)
+
+**Deferred to Post-Launch:**
+- Schema update for JWT Auth plugin → codegen migration (6-step plan documented)
+- Zod validation layer for product normalization
+- WordPress schema fixes at source
+- Unit tests for edge cases
 
 ---
 

@@ -589,6 +589,53 @@ git branch -d fix/breadcrumb-search-products-key
 
 ## 🧹 Code Cleanup Tasks
 
+### ✅ Architecture Tech Debt Cleanup (Feb 24, 2026)
+**Status:** COMPLETE & MERGED (refactor/architecture-fixes, PR #305)  
+**Branch:** refactor/architecture-fixes  
+**Commits:** 7 commits (9ed0442 → 98469f8)  
+**Summary:**
+  - Fixed cart price calculation fragility (European format support)
+  - Centralized GraphQL auth queries (eliminated duplication)
+  - Documented normalizeProductQueryResponse type safety issues
+  - Made getProductCategories consistent with other queries
+  - Migrated from deprecated seo.ts to metadata/schemas.ts system
+**Problems Fixed:**
+  1. **Cart Price Parsing**: `parseFloat(price.replace(/[^0-9.-]+/g, ''))` breaks European formats
+     - Solution: Added `numericPrice: number` field to CartItem interface
+     - Created `convertWooCommercePriceNumeric()` utility for locale-aware parsing
+     - Updated 9 files (components, tests, fixtures, Storybook stories)
+  2. **Auth Query Duplication**: GraphQL queries duplicated in 4 files as raw strings
+     - Solution: Created `lib/auth/queries.ts` as single source of truth
+     - Centralized LOGIN_MUTATION, GET_CURRENT_USER_QUERY, REFRESH_TOKEN_MUTATION
+     - Added TypeScript interfaces and comprehensive TODO for schema migration
+  3. **Type Safety Documentation**: normalizeProductQueryResponse has 8+ "as any" casts
+     - Solution: Added 53-line TODO documenting all type casts and schema issues
+     - Recommended post-launch approach: Zod validation, fix WP schema, unit tests
+  4. **Query Inconsistency**: getProductCategories not wrapped in cache() with error handling
+     - Solution: Wrapped in React.cache() with AppError try/catch pattern
+     - Matches established pattern used by all other query functions
+  5. **Metadata Duplication**: Two competing systems (seo.ts vs metadata/generators.ts)
+     - Solution: Created lib/metadata/schemas.ts with 5 JSON-LD generators
+     - Deleted deprecated seo.ts (204 lines removed)
+     - Migrated products-test/page.tsx to new system
+**Changes:**
+  - web/src/store/cart.ts: Added numericPrice field to CartItem
+  - web/src/lib/utils/currency.ts: Added convertWooCommercePriceNumeric()
+  - web/src/lib/auth/queries.ts: NEW - Centralized auth queries (85 lines)
+  - web/src/lib/metadata/schemas.ts: NEW - JSON-LD generators (237 lines)
+  - web/src/lib/seo.ts: DELETED (204 lines)
+  - web/src/lib/graphql/queries.ts: Added 53-line TODO, wrapped getProductCategories
+  - 8+ component/test files updated for numericPrice
+**Result:**
+  - Cart calculations now work for all European formats (€1.299,00 → 1299.00)
+  - Auth queries centralized (eliminates duplication, easier maintenance)
+  - Type safety issues documented with actionable post-launch plan
+  - Query functions follow consistent cache() + error handling pattern
+  - Metadata system unified (single source of truth)
+  - Enhanced JSON-LD schemas (Organization, SearchAction, Breadcrumbs)
+  - Net change: +642 insertions, -410 deletions
+  - Production build: ✅ Passing, TypeScript: ✅ Zero errors
+
 ### ✅ Comprehensive Codebase Review (Feb 17, 2026)
 **Status:** COMPLETE  
 **Document:** [CODEBASE-REVIEW-FEB17-2026.md](./CODEBASE-REVIEW-FEB17-2026.md)  
@@ -1791,6 +1838,38 @@ Deferred to post-launch - see Phase 2 section below for details.
 - [ ] Build individual solution pages
 - [ ] Update footer navigation
 - [ ] SEO optimization
+
+---
+
+### Code Quality & Architecture Improvements (Deferred)
+**Status:** Documented with actionable plans
+
+**Context:** Architecture tech debt cleanup (PR #305, Feb 24) documented several improvements to be addressed post-launch once Phase 1 is stable.
+
+**Deferred Work:**
+- [ ] **Auth Query Schema Migration** (from lib/auth/queries.ts TODO)
+  - Run GraphQL introspection against WordPress with JWT Auth plugin enabled
+  - Create auth.graphql with queries/mutations
+  - Run codegen to generate TypeScript types
+  - Update all imports to use generated types from generated.ts
+  - Remove manual type definitions (LoginResponse, GetCurrentUserResponse, etc.)
+  - Test all auth flows thoroughly (login, logout, refresh, protected routes)
+
+- [ ] **Product Normalization Validation Layer** (from lib/graphql/queries.ts TODO)
+  - Add Zod schema validation layer between GraphQL response and normalizer
+  - Log warnings when normalization is actually needed (detect real issues)
+  - Track which inconsistencies occur in production
+  - Fix WordPress/WPGraphQL schema at source (consistent field naming, camelCase)
+  - Guarantee { nodes: [] } shape for all connection types
+  - Add missing fields to schema (partNumber on related products)
+  - Add unit tests for normalizeProductQueryResponse with malformed inputs
+  - Gradually remove normalization as schema becomes reliable
+
+**Benefits:**
+- Improved type safety across auth and product queries
+- Better error detection and debugging
+- Reduced technical debt
+- Cleaner codebase with less defensive programming
 
 ---
 

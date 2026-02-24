@@ -818,6 +818,7 @@
     },
     "breadcrumb": {
       "home": "首页",
+      "products": "产品",
       "search": "搜索"
     },
     "emptyQuery": {

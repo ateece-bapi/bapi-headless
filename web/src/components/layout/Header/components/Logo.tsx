@@ -15,7 +15,7 @@ const Logo: React.FC = () => (
       width={HEADER_CONFIG.logo.width}
       height={HEADER_CONFIG.logo.height}
       priority
-      className="h-12 w-auto sm:h-14 md:h-16 lg:h-16 xl:h-20"
+      className="h-12 w-auto sm:h-14 md:h-16 xl:h-20"
     />
   </Link>
 );

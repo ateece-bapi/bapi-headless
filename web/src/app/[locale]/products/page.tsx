@@ -5,14 +5,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import {
-  Thermometer,
-  Droplets,
-  Gauge,
-  Wind,
-  Wifi,
-  FlaskConical,
-  Package,
-  Layers,
   ArrowRight,
   Sparkles,
   Award,
@@ -27,7 +19,6 @@ const productCategories = [
     count: 119,
     image: '/products/temp_sensors.webp',
     icon: '/images/icons/Temperature_Icon.webp',
-    gradient: 'from-red-500 to-orange-500',
   },
   {
     nameKey: 'humiditySensors',
@@ -35,7 +26,6 @@ const productCategories = [
     count: 33,
     image: '/products/humidity_sensors.webp',
     icon: '/images/icons/Humidity_Icon.webp',
-    gradient: 'from-blue-500 to-cyan-500',
   },
   {
     nameKey: 'pressureSensors',
@@ -43,7 +33,6 @@ const productCategories = [
     count: 39,
     image: '/products/pressure_sensors.webp',
     icon: '/images/icons/Pressure_Icon.webp',
-    gradient: 'from-purple-500 to-pink-500',
   },
   {
     nameKey: 'airQualitySensors',
@@ -51,7 +40,6 @@ const productCategories = [
     count: 32,
     image: '/products/air_quality_sensors.webp',
     icon: '/images/icons/AirQuality_Icon.webp',
-    gradient: 'from-teal-500 to-cyan-600',
   },
   {
     nameKey: 'wirelessSensors',
@@ -59,7 +47,6 @@ const productCategories = [
     count: 24,
     image: '/products/wireless_sensors.webp',
     icon: '/images/icons/Wireless_Icon.webp',
-    gradient: 'from-green-500 to-emerald-600',
   },
   {
     nameKey: 'accessories',
@@ -67,7 +54,6 @@ const productCategories = [
     count: 45,
     image: '/images/products/families/Accessories_Family_2025_US.webp',
     icon: '/images/icons/Accessories_Icon.webp',
-    gradient: 'from-gray-500 to-neutral-600',
   },
   {
     nameKey: 'testInstruments',
@@ -75,15 +61,13 @@ const productCategories = [
     count: 8,
     image: '/products/test_products.webp',
     icon: '/images/icons/Test_Instruments_Icon.webp',
-    gradient: 'from-cyan-500 to-blue-600',
   },
   {
     nameKey: 'etaLine',
     slug: 'eta-line',
     count: 70,
     image: '/products/eta_modules_products.webp',
-    icon: Layers,
-    gradient: 'from-amber-500 to-orange-600',
+    icon: '/images/icons/Sensors_Icon.webp',
   },
 ];
 
@@ -107,14 +91,14 @@ export default function MainProductPage() {
 
   return (
     <main
-      className={`min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 transition-opacity duration-500 ${pageVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={`min-h-screen bg-linear-to-br from-slate-50 via-white to-primary-50/30 transition-opacity duration-500 ${pageVisible ? 'opacity-100' : 'opacity-0'}`}
       data-testid="products-page-fade"
     >
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
+      <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute right-0 top-0 h-150 w-150 -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-96 w-96 translate-y-1/3 rounded-full bg-primary-400/20 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
@@ -184,20 +168,17 @@ export default function MainProductPage() {
               <Link
                 key={cat.slug}
                 href={`/${locale}/categories/${cat.slug}`}
-                className={`group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 ${showCards ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} `}
+                className={`group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl transition-all duration-500 hover:border-primary-200 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 ${showCards ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} `}
                 style={{
                   transitionDelay: showCards ? `${i * 75}ms` : '0ms',
                 }}
                 tabIndex={0}
                 aria-label={`View ${t(`productsPage.categories.${cat.nameKey}.name`)} category (${cat.count} products)`}
               >
-                {/* Gradient background on hover */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
-                />
+
 
                 {/* Product Image */}
-                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-10">
+                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-linear-to-br from-gray-50 to-white p-10">
                   <Image
                     src={cat.image}
                     alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} product category`}
@@ -209,19 +190,17 @@ export default function MainProductPage() {
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
                   {/* Icon Badge - BAPI Brand Icons */}
-                  <div
-                    className={`absolute right-4 top-4 h-16 w-16 rounded-2xl bg-gradient-to-br ${cat.gradient} flex items-center justify-center shadow-xl ring-4 ring-white/50 transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl`}
-                  >
+                  <div className="absolute right-4 top-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-[#1479BC] to-[#0054b6] shadow-lg">
                     {typeof cat.icon === 'string' ? (
                       <Image
                         src={cat.icon}
                         alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} icon`}
-                        width={32}
-                        height={32}
-                        className="object-contain drop-shadow-sm"
+                        width={40}
+                        height={40}
+                        className="object-contain"
                       />
                     ) : (
-                      <cat.icon className="h-8 w-8 text-white drop-shadow-sm" />
+                      <cat.icon className="h-8 w-8 text-white" />
                     )}
                   </div>
                 </div>
@@ -234,7 +213,7 @@ export default function MainProductPage() {
                       {/* BAPI Yellow underline on hover */}
                       <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
                     </h2>
-                    <span className="flex-shrink-0 rounded-lg border border-primary-200 bg-gradient-to-br from-primary-50 to-primary-100/50 px-3 py-1.5 text-sm font-bold text-primary-700 shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:shadow-md">
+                    <span className="shrink-0 rounded-md bg-primary-50 px-3 py-1.5 text-sm font-semibold text-primary-700">
                       {cat.count}
                     </span>
                   </div>
@@ -250,18 +229,17 @@ export default function MainProductPage() {
                   </div>
                 </div>
 
-                {/* Decorative corner */}
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-gradient-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
               </Link>
             );
           })}
         </div>
 
         {/* Featured Section */}
-        <div className="mb-20 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-10 lg:p-16">
+        <div className="mb-20 rounded-2xl bg-linear-to-br from-primary-50 to-primary-100/50 p-10 lg:p-16">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-primary-700">
                 <Award className="h-4 w-4" />
                 {t('productsPage.featured.badge')}
               </div>
@@ -276,7 +254,7 @@ export default function MainProductPage() {
 
               <Link
                 href={`/${locale}/products/featured/ba-series`}
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 {t('productsPage.featured.viewButton')}
                 <ArrowRight className="h-5 w-5" />
@@ -316,7 +294,7 @@ export default function MainProductPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 

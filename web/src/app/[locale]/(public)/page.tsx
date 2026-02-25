@@ -86,7 +86,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       {/* Quick Stats Bar */}
       <section className="bg-neutral-50 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-600/90 via-primary-500/85 to-primary-600/90 p-8 shadow-xl">
+          <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 p-8 shadow-xl">
             {/* Decorative background elements */}
             <div className="bg-grid-pattern absolute inset-0"></div>
 

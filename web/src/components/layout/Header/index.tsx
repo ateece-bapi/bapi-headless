@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         className
       )}
     >
-      <div className="mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8 lg:py-4">
+      <div className="relative mx-auto max-w-7xl px-4 py-2 sm:px-6 lg:px-8 lg:py-4">
         {/* Top Row: Region, Language, Sign In, Cart - Hidden on mobile, visible on desktop */}
         <div className="bg-linear-to-r mb-4 hidden items-end justify-end gap-3 rounded-full from-neutral-50/50 via-white to-neutral-50/50 p-2 lg:mb-6 lg:flex">
           <RegionSelector />

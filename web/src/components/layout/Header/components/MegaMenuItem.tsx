@@ -61,7 +61,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   };
 
   return (
-    <div className="relative">
+    <div>
       {/* Trigger Button: Use <Link> when href exists, <button> otherwise */}
       {item.href ? (
         <Link
@@ -144,8 +144,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
         onMouseEnter={onCancelTimers}
         onMouseLeave={onCloseWithGrace}
         className={clsx(
-          'absolute left-0 top-full z-50 mt-2 md:left-1/2 md:-translate-x-1/2',
-          'mx-auto w-[min(100vw-1rem,72rem)] max-w-7xl',
+          'absolute left-0 right-0 top-full z-50 mt-2',
           'max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border-2 border-primary-500/20 bg-white shadow-2xl',
           'p-3 sm:p-4 md:p-5',
           'origin-top transition-all duration-300 ease-out',

@@ -191,17 +191,13 @@ export default function MainProductPage() {
                   />
                   {/* Icon Badge - BAPI Brand Icons */}
                   <div className="absolute right-4 top-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-[#1479BC] to-[#0054b6] shadow-lg">
-                    {typeof cat.icon === 'string' ? (
-                      <Image
-                        src={cat.icon}
-                        alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} icon`}
-                        width={40}
-                        height={40}
-                        className="object-contain"
-                      />
-                    ) : (
-                      <cat.icon className="h-8 w-8 text-white" />
-                    )}
+                    <Image
+                      src={cat.icon}
+                      alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} icon`}
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
                   </div>
                 </div>
 

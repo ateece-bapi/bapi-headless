@@ -7,6 +7,28 @@
 
 ---
 
+## February 25, 2026 — Homepage Category Card Icon Backgrounds (PR #312) 🎨
+
+**Status:** ✅ COMPLETE  
+**Branch:** fix/homepage-category-cards (PR #312)  
+**Commits:** 1 commit (02d618c)  
+**Main after merge:** `ef5b95e`  
+**Days Until Launch:** 44 days (April 10, 2026)
+
+**🎯 OUTCOME:** Fixed homepage product catalog card icon backgrounds — pastel blue/yellow mix replaced with BAPI brand blue, matching the brand guide and the Products landing page.
+
+### Changes
+
+| Element | Before | After |
+|---|---|---|
+| Icon area background | `from-primary-200 via-accent-100 to-primary-100` (pastel) | `bg-linear-to-br from-[#1479BC] to-[#0054b6]` (BAPI Web Blue) |
+| Hover overlay | Dead div (invisible over solid blue) | Removed |
+| Tailwind v4 warnings | 8 `bg-gradient-to-*` + `lg:h-[450px]` | All fixed to `bg-linear-to-*` / `lg:h-112.5` |
+
+**Files changed:** `web/src/app/[locale]/(public)/page.tsx`
+
+---
+
 ## February 25, 2026 — Logo Responsive Class Cleanup (PR #311) 🔧
 
 **Status:** ✅ COMPLETE  

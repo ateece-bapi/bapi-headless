@@ -3,7 +3,19 @@
 **Updated:** February 25, 2026  
 **Launch Date:** April 10, 2026 (44 days remaining)  
 **Current Phase:** Phase 1 Development  
-**Launch Readiness:** 99.7%
+**Launch Readiness:** 99.8%
+
+---
+
+## ✅ Homepage Category Card Icon Backgrounds - COMPLETE (Feb 25, 2026)
+
+**Status:** ✅ COMPLETE  
+**Result:** Homepage product catalog cards now use BAPI brand blue icon backgrounds  
+**PR:** #312
+
+- [x] Replace pastel `from-primary-200 via-accent-100 to-primary-100` with `bg-linear-to-br from-[#1479BC] to-[#0054b6]`
+- [x] Remove dead hover overlay div
+- [x] Fix all pre-existing Tailwind v4 `bg-gradient-to-*` warnings in file
 
 ---
 

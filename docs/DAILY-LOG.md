@@ -2,8 +2,35 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** February 24, 2026  
-**Status:** Phase 1 Development - April 10, 2026 Go-Live (45 days remaining)
+**Updated:** February 25, 2026  
+**Status:** Phase 1 Development - April 10, 2026 Go-Live (44 days remaining)
+
+---
+
+## February 25, 2026 — Mega Menu Feedback Fixes (PR #308) 🗂️
+
+**Status:** ✅ COMPLETE - 3 User Feedback Issues Resolved  
+**Branch:** fix/mega-menu-feedback (PR #308)  
+**Commits:** 2 commits (a442121, 72b689a)  
+**Days Until Launch:** 44 days (April 10, 2026)
+
+**🎯 OUTCOME:** Addressed user feedback and visual QA on the Products mega menu.
+
+### Fixes
+
+**1. Panel overflow on smaller screens**  
+- **Problem:** Panel was `absolute` relative to each nav item wrapper — on medium screens the "Products" button sits left of center, so `md:left-1/2 md:-translate-x-1/2` pushed the panel past the left viewport edge  
+- **Fix:** Moved `relative` anchor to the `max-w-7xl` header container; panel uses `left-0 right-0 top-full` to span the full container width at all screen sizes
+
+**2. Category column headers now link to product landing pages**  
+- **Problem:** TEMPERATURE, HUMIDITY, PRESSURE, AIR QUALITY headers were plain `<h3>` elements — no way to navigate directly to a category  
+- **Fix:** Wrapped icon + title in `<Link href="/products/{slug}">` with hover states (icon bg lightens, title shifts to `primary-600`)
+
+**3. "View All" links restyled**  
+- **Problem:** Plain small inline text link — too easy to overlook  
+- **Fix:** Full-width pill button — `border border-primary-200 bg-primary-50`, fill-on-hover, arrow slides `translate-x-0.5` on hover, `focus-visible` ring for keyboard accessibility
+
+**Files changed:** `web/src/components/layout/Header/components/MegaMenuItem.tsx`, `web/src/components/layout/Header/index.tsx`
 
 ---
 

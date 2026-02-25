@@ -589,6 +589,15 @@ git branch -d fix/breadcrumb-search-products-key
 
 ## 🧹 Code Cleanup Tasks
 
+### ✅ Mega Menu Feedback Fixes (Feb 25, 2026)
+**Status:** COMPLETE & MERGED (fix/mega-menu-feedback, PR #308)  
+**Branch:** fix/mega-menu-feedback  
+**Commits:** 2 commits (a442121, 72b689a)  
+**Summary:**
+  - Fixed panel left overflow on smaller screens (positioning anchor moved to header container)
+  - Category headers (TEMPERATURE etc.) now link to `/products/{slug}`
+  - "View All" links restyled as full-width pill buttons
+
 ### ✅ Stale Documentation Housekeeping (Feb 24, 2026)
 **Status:** COMPLETE & MERGED (chore/stale-docs-cleanup, PR #307)  
 **Branch:** chore/stale-docs-cleanup  

@@ -7,6 +7,31 @@
 
 ---
 
+## February 25, 2026 — Product/Category Page Hero Gradients (PR #314) 🎨
+
+**Status:** ✅ COMPLETE  
+**Branch:** fix/product-page-gradients (PR #314)  
+**Commits:** 1 commit (b9dcb69)  
+**Main after merge:** `07a99aa`  
+**Days Until Launch:** 44 days (April 10, 2026)
+
+**🎯 OUTCOME:** Standardized all product and category landing page hero gradients to `from-primary-700 via-primary-600 to-primary-500` — matching the homepage stats bar pattern established in PR #313. Also applied Copilot PR review fixes: corrected homepage category card gradient direction per COLOR_SYSTEM.md (`from-[#044976] to-[#1479bc]`), fixed invalid `lg:h-112.5` utility, and replaced remaining off-brand `blue-*`, `purple-*`, `emerald-*`, `amber-*`, `red-*` tokens in company pages.
+
+### Changes
+
+| File | Hero Gradient Fixed |
+|---|---|
+| `products/page.tsx` | `from-primary-700 via-primary-600 to-primary-500` |
+| `products/[category]/page.tsx` | `from-primary-700 via-primary-600 to-primary-500` |
+| `products/[category]/[subcategory]/page.tsx` | `from-primary-700 via-primary-600 to-primary-500` |
+| `categories/[slug]/page.tsx` | `from-primary-700 via-primary-600 to-primary-500` |
+| `wireless/page.tsx` | `from-primary-700 via-primary-600 to-primary-500` |
+| `sensors/page.tsx` | `from-primary-700 via-primary-600 to-primary-500` |
+| `accessories/page.tsx` | `from-primary-700 via-primary-600 to-primary-500` |
+| `air-quality/page.tsx` | `from-primary-700 via-primary-600 to-primary-500` |
+
+---
+
 ## February 25, 2026 — Site-Wide Gradient Color Audit (PR #313) 🎨
 
 **Status:** ✅ COMPLETE  

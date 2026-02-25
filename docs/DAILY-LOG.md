@@ -7,6 +7,38 @@
 
 ---
 
+## February 25, 2026 — Site-Wide Gradient Color Audit (PR #313) 🎨
+
+**Status:** ✅ COMPLETE  
+**Branch:** fix/homepage-stats-gradient (PR #313)  
+**Commits:** 3 commits (311723d, 4d11bdf, 2eddbb9)  
+**Main after merge:** `f7695ab`  
+**Days Until Launch:** 44 days (April 10, 2026)
+
+**🎯 OUTCOME:** Full site-wide gradient audit — replaced all off-brand Tailwind color stops (`blue-*`, `cyan-*`, `indigo-*`, `violet-*`, `purple-*`, `pink-*`, `amber-*`, `orange-*`, `accent-*`) with `primary-*` tokens across 13 page files. Also fixed stats bar gradient on homepage and cleaned up pre-existing Tailwind v4 `bg-gradient-to-*` → `bg-linear-to-*` warnings throughout.
+
+### Changes
+
+| Color Replaced | Replaced With | Locations |
+|---|---|---|
+| `from-blue-500 to-cyan-500` | `from-primary-600 to-primary-700` | contact-us, why-bapi, mission-values |
+| `from-indigo-500 to-violet-500` | `from-primary-700 to-primary-500` | why-bapi, careers |
+| `from-purple-500 to-pink-500` | `from-primary-600 to-primary-400` | careers |
+| `from-amber-500 to-orange-500` | `from-primary-700 to-primary-500` | careers |
+| `bg-blue-600` contact box | `bg-primary-600` | careers |
+| `to-blue-50/30`, `to-purple-50/30` page bgs | `to-primary-50/30` | contact-us, news, careers |
+| `from-blue-50 to-indigo-50` | `from-primary-50 to-primary-100/50` | careers |
+| `from-accent-500 via-primary-500 to-accent-500` | `from-primary-400 via-primary-600 to-primary-400` | wam, installations, wireless, sensors, accessories, air-quality |
+| `from-accent-500 to-primary-500` | `from-primary-600 to-primary-400` | wam, installations |
+| `from-primary-50 to-accent-50` | `from-primary-50 to-primary-100/50` | installations |
+| `from-primary-50 via-white to-accent-50` | `from-white to-primary-50` | (public)/page.tsx |
+| `via-accent-500/10` | `via-primary-500/10` | categories/[slug] |
+| Stats bar gradient | `from-primary-700 via-primary-600 to-primary-500` | (public)/page.tsx |
+
+**Files changed (13):** `(public)/page.tsx`, `accessories/page.tsx`, `air-quality/page.tsx`, `categories/[slug]/page.tsx`, `company/careers/page.tsx`, `company/contact-us/page.tsx`, `company/mission-values/page.tsx`, `company/news/page.tsx`, `company/why-bapi/page.tsx`, `installations/page.tsx`, `sensors/page.tsx`, `wam/page.tsx`, `wireless/page.tsx`
+
+---
+
 ## February 25, 2026 — Homepage Category Card Icon Backgrounds (PR #312) 🎨
 
 **Status:** ✅ COMPLETE  

@@ -7,6 +7,26 @@
 
 ---
 
+## February 25, 2026 — Logo Responsive Class Cleanup (PR #311) 🔧
+
+**Status:** ✅ COMPLETE  
+**Branch:** fix/logo-responsive-scaling (PR #311)  
+**Commits:** 1 commit (f0b5f55)  
+**Main after merge:** `b901d2f`  
+**Days Until Launch:** 44 days (April 10, 2026)
+
+**🎯 OUTCOME:** Applied Copilot review suggestion from PR #309 — removed redundant `lg:h-16` class.
+
+`md:h-16` already covers 768px+, so `lg:h-16` was a no-op that broke the progressive scaling pattern.
+
+| Before | After |
+|---|---|
+| `h-12 w-auto sm:h-14 md:h-16 lg:h-16 xl:h-20` | `h-12 w-auto sm:h-14 md:h-16 xl:h-20` |
+
+**Files changed:** `web/src/components/layout/Header/components/Logo.tsx`
+
+---
+
 ## February 25, 2026 — Products Page BAPI Icons + UX Polish (PR #310) 🎨
 
 **Status:** ✅ COMPLETE  

@@ -27,7 +27,7 @@ const coreValues = [
     title: 'Quality',
     description:
       'We value our employees by encouraging open dialogue, a sense of community and work-life balance for a healthy culture.',
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: 'from-primary-600 to-primary-700',
   },
   {
     icon: Award,
@@ -73,9 +73,9 @@ export default async function MissionValuesPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+    <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
+      <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
@@ -118,10 +118,10 @@ export default async function MissionValuesPage() {
         <div className="mb-20 grid gap-8 md:grid-cols-2">
           {/* Mission Card */}
           <div className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
-            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-gradient-to-br from-blue-50 to-transparent" />
+            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-linear-to-br from-primary-50 to-transparent" />
 
             <div className="relative">
-              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg transition-transform duration-300 group-hover:scale-110">
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 shadow-lg transition-transform duration-300 group-hover:scale-110">
                 <Target className="h-8 w-8 text-white" />
               </div>
 
@@ -135,10 +135,10 @@ export default async function MissionValuesPage() {
 
           {/* Vision Card */}
           <div className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
-            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-gradient-to-br from-purple-50 to-transparent" />
+            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-linear-to-br from-purple-50 to-transparent" />
 
             <div className="relative">
-              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg transition-transform duration-300 group-hover:scale-110">
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-purple-500 to-pink-500 shadow-lg transition-transform duration-300 group-hover:scale-110">
                 <Eye className="h-8 w-8 text-white" />
               </div>
 
@@ -162,7 +162,7 @@ export default async function MissionValuesPage() {
         {/* Values Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
-            { key: 'quality', icon: Users, gradient: 'from-blue-500 to-cyan-500' },
+            { key: 'quality', icon: Users, gradient: 'from-primary-600 to-primary-700' },
             { key: 'innovation', icon: Award, gradient: 'from-purple-500 to-pink-500' },
             { key: 'partnership', icon: Lightbulb, gradient: 'from-amber-500 to-orange-500' },
             { key: 'integrity', icon: Shield, gradient: 'from-emerald-500 to-teal-500' },
@@ -177,13 +177,13 @@ export default async function MissionValuesPage() {
               >
                 {/* Gradient background on hover */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
+                  className={`absolute inset-0 bg-linear-to-br ${value.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
                 />
 
                 {/* Icon */}
                 <div className="relative mb-6">
                   <div
-                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${value.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br ${value.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
                   >
                     <Icon className="h-7 w-7 text-white" />
                   </div>
@@ -197,14 +197,14 @@ export default async function MissionValuesPage() {
                 </div>
 
                 {/* Decorative corner */}
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-gradient-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-linear-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
             );
           })}
         </div>
 
         {/* CTA Section */}
-        <div className="relative mt-20 overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="relative mt-20 overflow-hidden rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
 
           <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">

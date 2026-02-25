@@ -23,7 +23,7 @@ export default function WirelessPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 py-20 text-white lg:py-32">
+      <section className="relative overflow-hidden bg-linear-to-br from-primary-700 via-primary-500 to-primary-700 py-20 text-white lg:py-32">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -123,7 +123,7 @@ export default function WirelessPage() {
                   className="object-cover transition-transform duration-700 group-hover/image:scale-105"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-primary-900/20 to-transparent" />
               </div>
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function WirelessPage() {
                 key={idx}
                 className="group relative rounded-xl bg-white p-8 shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
               >
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 transition-transform duration-500 group-hover:scale-110">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-linear-to-br from-primary-500 to-primary-700 transition-transform duration-500 group-hover:scale-110">
                   <product.icon className="h-8 w-8 text-white" />
                 </div>
 
@@ -199,7 +199,7 @@ export default function WirelessPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
 
-                <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
+                <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
               </div>
             ))}
           </div>
@@ -268,7 +268,7 @@ export default function WirelessPage() {
       </section>
 
       {/* Installation Gallery Preview */}
-      <section className="bg-gradient-to-br from-neutral-50 to-white py-16 lg:py-24">
+      <section className="bg-linear-to-br from-neutral-50 to-white py-16 lg:py-24">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
@@ -336,7 +336,7 @@ export default function WirelessPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-500 to-primary-700 py-16 text-white lg:py-24">
+      <section className="bg-linear-to-br from-primary-700 via-primary-500 to-primary-700 py-16 text-white lg:py-24">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-6 text-3xl font-bold lg:text-4xl">Ready to Go Wireless?</h2>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-primary-50">

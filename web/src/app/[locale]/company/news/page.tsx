@@ -28,9 +28,9 @@ export default async function NewsPage() {
   const posts = await getPosts({ perPage: 20 });
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+    <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
+      <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -88,14 +88,14 @@ export default async function NewsPage() {
               >
                 {/* Featured Image */}
                 {post.featuredImage && (
-                  <div className="relative h-56 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                  <div className="relative h-56 overflow-hidden bg-linear-to-br from-gray-100 to-gray-200">
                     <img
                       src={post.featuredImage}
                       alt={post.title}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     {/* Overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                 )}
 
@@ -136,7 +136,7 @@ export default async function NewsPage() {
                 </div>
 
                 {/* Decorative corner element */}
-                <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-full bg-gradient-to-br from-primary-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-full bg-linear-to-br from-primary-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </article>
             ))}
           </div>
@@ -144,7 +144,7 @@ export default async function NewsPage() {
 
         {/* Additional CTA - if there are posts */}
         {posts.length > 0 && (
-          <div className="relative mt-16 overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-12">
+          <div className="relative mt-16 overflow-hidden rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-12">
             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
             <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 

@@ -175,9 +175,9 @@ const installations = {
 
 export default function RealWorldInstallationsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-white">
+    <div className="min-h-screen bg-linear-to-br from-neutral-50 to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-600 to-primary-700 py-16 text-white sm:py-20">
+      <section className="bg-linear-to-r from-primary-700 via-primary-600 to-primary-700 py-16 text-white sm:py-20">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-content text-center">
             <h1 className="mb-6 text-balance text-4xl font-extrabold sm:text-5xl lg:text-6xl">
@@ -258,7 +258,7 @@ export default function RealWorldInstallationsPage() {
                           <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                             {subcategory.name}
                           </h3>
-                          <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-accent-500 to-primary-500" />
+                          <div className="mx-auto h-1 w-20 rounded-full bg-linear-to-r from-primary-600 to-primary-400" />
                         </div>
 
                         {/* Subcategory Image Grid */}
@@ -278,7 +278,7 @@ export default function RealWorldInstallationsPage() {
                                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                                 {/* Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                                <div className="absolute inset-0 bg-linear-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                               </div>
 
                               {/* Content */}
@@ -292,7 +292,7 @@ export default function RealWorldInstallationsPage() {
                               </div>
 
                               {/* Accent Bar */}
-                              <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
+                              <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
                             </div>
                           ))}
                         </div>
@@ -323,7 +323,7 @@ export default function RealWorldInstallationsPage() {
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                           />
                           {/* Gradient Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                          <div className="absolute inset-0 bg-linear-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                         </div>
 
                         {/* Content */}
@@ -337,7 +337,7 @@ export default function RealWorldInstallationsPage() {
                         </div>
 
                         {/* Accent Bar */}
-                        <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
+                        <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
                       </div>
                     ))}
                   </div>
@@ -346,7 +346,7 @@ export default function RealWorldInstallationsPage() {
                 {/* Category Divider (except last) */}
                 {categoryIndex < Object.keys(installations).length - 1 && (
                   <div className="mt-20 flex items-center justify-center">
-                    <div className="h-px w-full max-w-md bg-gradient-to-r from-transparent via-neutral-300 to-transparent" />
+                    <div className="h-px w-full max-w-md bg-linear-to-r from-transparent via-neutral-300 to-transparent" />
                   </div>
                 )}
               </div>
@@ -356,7 +356,7 @@ export default function RealWorldInstallationsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-accent-50 py-16 sm:py-20">
+      <section className="bg-linear-to-br from-primary-50 to-primary-100/50 py-16 sm:py-20">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-6 text-3xl font-extrabold text-neutral-900 sm:text-4xl">
             Ready to Implement BAPI Solutions?

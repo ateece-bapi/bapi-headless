@@ -51,7 +51,7 @@ const benefits = [
     icon: DollarSign,
     title: 'Competitive Compensation',
     description: 'Industry-leading salaries with regular performance reviews and merit increases.',
-    gradient: 'from-emerald-500 to-teal-500',
+    gradient: 'from-primary-600 to-primary-700',
   },
   {
     icon: Plane,
@@ -69,7 +69,7 @@ const benefits = [
     icon: Heart,
     title: 'Life Insurance',
     description: 'Company-paid life insurance coverage with options for additional coverage.',
-    gradient: 'from-red-500 to-rose-500',
+    gradient: 'from-primary-500 to-primary-700',
   },
   {
     icon: GraduationCap,
@@ -163,10 +163,10 @@ export default async function CareersPage() {
         <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
             { key: 'healthInsurance', icon: Shield, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'compensation', icon: DollarSign, gradient: 'from-emerald-500 to-teal-500' },
+            { key: 'compensation', icon: DollarSign, gradient: 'from-primary-600 to-primary-700' },
             { key: 'paidHolidays', icon: Plane, gradient: 'from-primary-600 to-primary-400' },
             { key: 'retirement', icon: TrendingUp, gradient: 'from-primary-700 to-primary-500' },
-            { key: 'lifeInsurance', icon: Heart, gradient: 'from-red-500 to-rose-500' },
+            { key: 'lifeInsurance', icon: Heart, gradient: 'from-primary-500 to-primary-700' },
             { key: 'development', icon: GraduationCap, gradient: 'from-primary-700 to-primary-500' },
           ].map((benefit, index) => {
             const Icon = benefit.icon;

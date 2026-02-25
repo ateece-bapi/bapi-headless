@@ -84,8 +84,8 @@ export default async function ContactUsPage() {
         <div className="mb-20 grid gap-8 md:grid-cols-3">
           {[
             { key: 'phone', icon: Phone, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'email', icon: Mail, gradient: 'from-purple-500 to-pink-500' },
-            { key: 'visit', icon: MapPin, gradient: 'from-emerald-500 to-teal-500' },
+            { key: 'email', icon: Mail, gradient: 'from-primary-500 to-primary-600' },
+            { key: 'visit', icon: MapPin, gradient: 'from-primary-600 to-primary-700' },
           ].map((method, index) => {
             const Icon = method.icon;
             const href =
@@ -199,7 +199,7 @@ export default async function ContactUsPage() {
         <div className="mb-20 rounded-2xl bg-linear-to-br from-gray-50 to-white p-10 shadow-lg lg:p-16">
           <div className="mx-auto max-w-3xl">
             <div className="mb-8 text-center">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
                 <Globe className="h-4 w-4" />
                 {t('internationalOffice.badge')}
               </div>
@@ -227,7 +227,7 @@ export default async function ContactUsPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-emerald-500 to-teal-500">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-primary-600 to-primary-700">
                     <MapPin className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -246,7 +246,7 @@ export default async function ContactUsPage() {
               </div>
             </div>
 
-            <div className="mt-8 rounded-lg border border-blue-100 bg-blue-50 p-6">
+            <div className="mt-8 rounded-lg border border-primary-100 bg-primary-50 p-6">
               <p className="text-center text-gray-700">
                 <strong>{t('internationalOffice.rmaInstructions.strong')}</strong>{' '}
                 {t('internationalOffice.rmaInstructions.text')}

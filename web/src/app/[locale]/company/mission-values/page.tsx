@@ -34,28 +34,28 @@ const coreValues = [
     title: 'Innovation',
     description:
       "We value processes and services that are metric driven to continually exceed our customers' expectations.",
-    gradient: 'from-purple-500 to-pink-500',
+    gradient: 'from-primary-600 to-primary-400',
   },
   {
     icon: Lightbulb,
     title: 'Collaborative Partnership',
     description:
       'We value new and improved solutions that are creative and unique, we continue to find ways to provide distinct advantages.',
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: 'from-primary-700 to-primary-500',
   },
   {
     icon: Shield,
     title: 'Integrity & Ethics',
     description:
       'We value our collaborative partnerships that lead to superior solutions and facilitate healthy, productive, and comfortable environments.',
-    gradient: 'from-emerald-500 to-teal-500',
+    gradient: 'from-primary-600 to-primary-700',
   },
   {
     icon: Heart,
     title: 'Employees',
     description:
       'We value being deliberate, thoughtful and intentional with behaviors that match our every word.',
-    gradient: 'from-red-500 to-rose-500',
+    gradient: 'from-primary-500 to-primary-700',
   },
 ];
 
@@ -135,10 +135,10 @@ export default async function MissionValuesPage() {
 
           {/* Vision Card */}
           <div className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
-            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-linear-to-br from-purple-50 to-transparent" />
+            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-linear-to-br from-primary-50 to-transparent" />
 
             <div className="relative">
-              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-purple-500 to-pink-500 shadow-lg transition-transform duration-300 group-hover:scale-110">
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-primary-600 to-primary-400 shadow-lg transition-transform duration-300 group-hover:scale-110">
                 <Eye className="h-8 w-8 text-white" />
               </div>
 
@@ -163,10 +163,10 @@ export default async function MissionValuesPage() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
             { key: 'quality', icon: Users, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'innovation', icon: Award, gradient: 'from-purple-500 to-pink-500' },
-            { key: 'partnership', icon: Lightbulb, gradient: 'from-amber-500 to-orange-500' },
-            { key: 'integrity', icon: Shield, gradient: 'from-emerald-500 to-teal-500' },
-            { key: 'employees', icon: Heart, gradient: 'from-red-500 to-rose-500' },
+            { key: 'innovation', icon: Award, gradient: 'from-primary-600 to-primary-400' },
+            { key: 'partnership', icon: Lightbulb, gradient: 'from-primary-700 to-primary-500' },
+            { key: 'integrity', icon: Shield, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'employees', icon: Heart, gradient: 'from-primary-500 to-primary-700' },
           ].map((value, index) => {
             const Icon = value.icon;
             return (

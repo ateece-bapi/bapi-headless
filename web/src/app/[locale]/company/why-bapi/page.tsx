@@ -87,10 +87,10 @@ export default async function WhyBapiPage() {
         <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
             { key: 'warranty', icon: Shield, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'guarantee', icon: Award, gradient: 'from-purple-500 to-pink-500' },
-            { key: 'lifetime', icon: Clock, gradient: 'from-amber-500 to-orange-500' },
-            { key: 'testing', icon: Zap, gradient: 'from-emerald-500 to-teal-500' },
-            { key: 'customerFocus', icon: Users, gradient: 'from-red-500 to-rose-500' },
+            { key: 'guarantee', icon: Award, gradient: 'from-primary-600 to-primary-400' },
+            { key: 'lifetime', icon: Clock, gradient: 'from-primary-700 to-primary-500' },
+            { key: 'testing', icon: Zap, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'customerFocus', icon: Users, gradient: 'from-primary-500 to-primary-700' },
             { key: 'original', icon: Star, gradient: 'from-primary-700 to-primary-500' },
           ].map((item, index) => {
             const Icon = item.icon;

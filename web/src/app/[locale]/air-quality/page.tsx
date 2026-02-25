@@ -23,7 +23,7 @@ export default function AirQualityPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-br from-primary-700 via-primary-500 to-primary-700 py-20 text-white lg:py-32">
+      <section className="relative overflow-hidden bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 py-20 text-white lg:py-32">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -337,7 +337,7 @@ export default function AirQualityPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-linear-to-br from-primary-700 via-primary-500 to-primary-700 py-16 text-white lg:py-24">
+      <section className="bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-24">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-6 text-3xl font-bold lg:text-4xl">Improve Your Indoor Air Quality</h2>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-primary-50">

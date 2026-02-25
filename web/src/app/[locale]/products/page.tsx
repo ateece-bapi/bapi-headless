@@ -95,7 +95,7 @@ export default function MainProductPage() {
       data-testid="products-page-fade"
     >
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
+      <section className="relative overflow-hidden bg-linear-to-br from-primary-700 via-primary-600 to-primary-500">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-150 w-150 -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />

@@ -128,7 +128,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       </div>
 
       {/* Category Header with BAPI Gradient */}
-      <div className="relative border-b-4 border-accent-500 bg-linear-to-br from-primary-600 via-primary-500 to-primary-600">
+      <div className="relative border-b-4 border-accent-500 bg-linear-to-br from-primary-700 via-primary-600 to-primary-500">
         <div className="absolute inset-0 bg-linear-to-r from-transparent via-primary-500/10 to-transparent" />
         <div className="relative mx-auto max-w-content px-4 py-16">
           <div className="max-w-3xl">

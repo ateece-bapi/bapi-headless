@@ -116,7 +116,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </div>
 
       {/* Category Hero */}
-      <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 py-12 text-white lg:py-16">
+      <section className="bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 py-12 text-white lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="mb-4 text-4xl font-bold lg:text-5xl">{categoryInfo.name}</h1>

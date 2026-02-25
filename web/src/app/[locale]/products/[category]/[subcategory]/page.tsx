@@ -135,8 +135,8 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
       </div>
 
       {/* Category Header with BAPI Gradient */}
-      <div className="relative border-b-4 border-accent-500 bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      <div className="relative border-b-4 border-accent-500 bg-linear-to-br from-primary-700 via-primary-600 to-primary-500">
+        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent" />
         <div className="relative mx-auto max-w-container px-4 py-12">
           <div className="max-w-4xl">
             <h1 className="mb-4 text-4xl font-bold text-white drop-shadow-lg md:text-5xl">

@@ -589,6 +589,16 @@ git branch -d fix/breadcrumb-search-products-key
 
 ## 🧹 Code Cleanup Tasks
 
+### ✅ Header Height Reduction (Feb 25, 2026)
+**Status:** COMPLETE & MERGED (fix/header-height, PR #309)  
+**Branch:** fix/header-height  
+**Commits:** 1 commit (9d6b93c)  
+**Summary:**
+  - Logo shrunk from lg:h-24/xl:h-28 → lg:h-16/xl:h-20
+  - Tighter container padding and utility bar spacing
+  - Bottom row switched to items-end — nav baselines to logo bottom
+  - Net ~40-50px reduction in header height
+
 ### ✅ Mega Menu Feedback Fixes (Feb 25, 2026)
 **Status:** COMPLETE & MERGED (fix/mega-menu-feedback, PR #308)  
 **Branch:** fix/mega-menu-feedback  

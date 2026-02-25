@@ -7,6 +7,31 @@
 
 ---
 
+## February 25, 2026 — Header Height Reduction (PR #309) 📏
+
+**Status:** ✅ COMPLETE  
+**Branch:** fix/header-height (PR #309)  
+**Commits:** 1 commit (9d6b93c)  
+**Days Until Launch:** 44 days (April 10, 2026)
+
+**🎯 OUTCOME:** Addressed user feedback that the header was too tall.
+
+### Changes
+
+| Element | Before | After |
+|---|---|---|
+| Logo height (lg) | `h-24` (96px) | `h-16` (64px) |
+| Logo height (xl) | `h-28` (112px) | `h-20` (80px) |
+| Container padding (lg) | `py-4` | `py-3` |
+| Utility bar spacing | `mb-4 lg:mb-6 p-2` | `mb-2 lg:mb-3 px-2 py-1` |
+| Bottom row alignment | `items-center` | `items-end` |
+
+Nav links and search now baseline-align to the logo bottom edge. Net reduction ~40–50px off overall header height.
+
+**Files changed:** `Header/components/Logo.tsx`, `Header/index.tsx`
+
+---
+
 ## February 25, 2026 — Mega Menu Feedback Fixes (PR #308) 🗂️
 
 **Status:** ✅ COMPLETE - 3 User Feedback Issues Resolved  

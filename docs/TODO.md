@@ -1,9 +1,28 @@
 # BAPI Headless - Project Roadmap & TODO
 
-**Updated:** February 24, 2026  
-**Launch Date:** April 10, 2026 (45 days remaining)  
+**Updated:** February 25, 2026  
+**Launch Date:** April 10, 2026 (44 days remaining)  
 **Current Phase:** Phase 1 Development  
-**Launch Readiness:** 99.5%
+**Launch Readiness:** 99.6%
+
+---
+
+## ✅ Products Page BAPI Icons + UX Polish - COMPLETE (Feb 25, 2026)
+
+**Status:** ✅ COMPLETE  
+**Result:** Category cards fully brand-compliant; UX micro-animation noise eliminated  
+**Impact:** Visual consistency with BAPI brand guide; TS build error resolved  
+**PR:** #310 (1 file, `web/src/app/[locale]/products/page.tsx`)
+
+- [x] Replace iOS-style colorful gradients with BAPI brand icon badges (`from-[#1479BC] to-[#0054b6]`)
+- [x] All 8 categories use official BAPI `.webp` icon files
+- [x] ETA Line: Lucide Layers → `Sensors_Icon.webp`
+- [x] Accessories: family image → `accessories_products.webp`
+- [x] Fix off-brand `blue-*`/`indigo-*` → `primary-*` tokens
+- [x] Remove double-scale hover, border twitch, over-decorated count badge
+- [x] Remove excess micro-animations (gradient overlay, corner decoration)
+- [x] Fix TS build error: remove dead Lucide component fallback
+- [x] Clean up all pre-existing Tailwind v4 class warnings
 
 ---
 

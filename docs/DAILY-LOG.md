@@ -7,6 +7,43 @@
 
 ---
 
+## February 25, 2026 — Products Page BAPI Icons + UX Polish (PR #310) 🎨
+
+**Status:** ✅ COMPLETE  
+**Branch:** fix/products-page-icons (PR #310)  
+**Commits:** 2 commits (b43eed8, 2b13a39)  
+**Main after merge:** `8ad0be2`  
+**Days Until Launch:** 44 days (April 10, 2026)
+
+**🎯 OUTCOME:** Replaced colorful iOS-style category icon badges with BAPI brand icons and resolved senior UX review issues.
+
+### Changes
+
+**Brand Icons**
+- All 8 category cards now use official BAPI `.webp` icon files (white glyph on BAPI blue gradient)
+- ETA Line: `Layers` Lucide icon → `Sensors_Icon.webp`
+- Badge background: `bg-linear-to-br from-[#1479BC] to-[#0054b6]` (BAPI Web Blue)
+- Removed 8 unused Lucide imports and per-category `gradient` field
+- Removed dead `typeof cat.icon` conditional that caused TS build error
+
+**Product Images**
+- Accessories: `Accessories_Family_2025_US.webp` → `accessories_products.webp` (family images too large/busy at card size)
+
+**UX Polish (Senior Review)**
+| Issue | Fix |
+|---|---|
+| Off-brand `blue-*`/`indigo-*` colors | Replaced with `primary-*` tokens throughout |
+| Double-scale on hover (image + badge) | Badge scale removed — image zoom only |
+| Border twitch (`border-transparent` on hover) | Changed to `hover:border-primary-200` |
+| Over-decorated count badge | Simplified to `bg-primary-50 text-primary-700` |
+| 7 simultaneous hover micro-animations | Removed gradient overlay and corner decoration |
+
+**Tailwind v4 cleanup:** All pre-existing `bg-gradient-to-br` → `bg-linear-to-br`, `flex-shrink-0` → `shrink-0`, `h-[600px]` → `h-150` warnings resolved.
+
+**Files changed:** `web/src/app/[locale]/products/page.tsx`
+
+---
+
 ## February 25, 2026 — Header Height Reduction (PR #309) 📏
 
 **Status:** ✅ COMPLETE  

@@ -249,7 +249,7 @@ export default async function CareersPage() {
         <div className="mb-20 rounded-2xl bg-linear-to-br from-primary-50 to-primary-100/50 p-10 lg:p-16">
           <div className="mx-auto max-w-3xl">
             <div className="mb-10 text-center">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-primary-700">
                 <FileText className="h-4 w-4" />
                 {t('applicationProcess.badge')}
               </div>
@@ -299,22 +299,22 @@ export default async function CareersPage() {
               </div>
             </div>
 
-            <div className="rounded-xl bg-blue-600 p-6 text-center text-white">
+            <div className="rounded-xl bg-primary-600 p-6 text-center text-white">
               <p className="mb-4">
                 <strong>{t('applicationProcess.contactTitle')}</strong>
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <a
                   href="mailto:careers@bapihvac.com"
-                  className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition-all duration-300 hover:shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-primary-600 transition-all duration-300 hover:shadow-lg"
                 >
                   <Mail className="h-5 w-5" />
                   {t('applicationProcess.email')}
                 </a>
-                <span className="text-blue-100">{t('applicationProcess.or')}</span>
+                <span className="text-primary-100">{t('applicationProcess.or')}</span>
                 <a
                   href="tel:+16087534400"
-                  className="font-bold transition-colors hover:text-blue-100"
+                  className="font-bold transition-colors hover:text-primary-100"
                 >
                   {t('applicationProcess.phone')}
                 </a>

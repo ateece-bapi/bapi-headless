@@ -74,10 +74,10 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
 
         {/* 2025 Product Family Showcase */}
         <div className="relative mt-16 lg:mt-20">
-          <div className="relative overflow-hidden rounded-3xl border-2 border-neutral-200 bg-gradient-to-br from-neutral-50 to-neutral-100 p-6 shadow-2xl lg:p-8">
+          <div className="relative overflow-hidden rounded-3xl border-2 border-neutral-200 bg-linear-to-br from-white to-neutral-50 p-6 shadow-2xl lg:p-8">
             {/* Subtle decorative corner accents */}
-            <div className="absolute left-0 top-0 h-32 w-32 rounded-br-full bg-gradient-to-br from-primary-500/10 to-transparent"></div>
-            <div className="absolute bottom-0 right-0 h-32 w-32 rounded-tl-full bg-gradient-to-tl from-accent-500/10 to-transparent"></div>
+            <div className="absolute left-0 top-0 h-32 w-32 rounded-br-full bg-linear-to-br from-primary-500/10 to-transparent"></div>
+            <div className="absolute bottom-0 right-0 h-32 w-32 rounded-tl-full bg-linear-to-tl from-primary-500/8 to-transparent"></div>
 
             {/* Optimized hero image - responsive with proper mobile support */}
             <div className="hero-image-container">
@@ -96,13 +96,34 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
             </div>
 
             {/* Product family caption */}
-            <div className="mx-auto mt-6 max-w-3xl text-center">
-              <p className="text-base font-bold tracking-wide text-neutral-900">
-                {translations.productFamilyTitle}
-              </p>
-              <p className="mt-2 text-sm font-medium text-neutral-600">
-                {translations.productFamilySubtitle}
-              </p>
+            <div className="mx-auto mt-8 max-w-2xl">
+              <div className="rounded-2xl border border-neutral-100 bg-white/80 px-8 py-6 text-center shadow-sm backdrop-blur-sm">
+                {/* Brand accent separator */}
+                <div className="mx-auto mb-5 flex items-center justify-center gap-3">
+                  <div className="h-px w-20 bg-linear-to-r from-transparent via-primary-200 to-primary-400" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-primary-500 shadow-sm shadow-primary-300" />
+                  <div className="h-px w-20 bg-linear-to-l from-transparent via-primary-200 to-primary-400" />
+                </div>
+
+                <p className="text-xl font-bold tracking-tight text-neutral-900">
+                  {translations.productFamilyTitle}
+                </p>
+                <p className="mt-2 text-sm font-medium tracking-wide text-neutral-500">
+                  {translations.productFamilySubtitle}
+                </p>
+
+                {/* Product type badges */}
+                <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+                  {['Temperature', 'Humidity', 'Pressure', 'Air Quality', 'Wireless'].map((type) => (
+                    <span
+                      key={type}
+                      className="inline-flex items-center rounded-full border border-primary-200 bg-primary-50 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-primary-700 transition-colors duration-200 hover:border-primary-400 hover:bg-primary-100"
+                    >
+                      {type}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

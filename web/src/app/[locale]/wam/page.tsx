@@ -29,7 +29,7 @@ export default function WAMPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 text-white">
+      <section className="relative bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 text-white">
         <div className="mx-auto max-w-container px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             {/* Left Column - Content */}
@@ -143,7 +143,7 @@ export default function WAMPage() {
                 key={feature.title}
                 className="rounded-xl bg-neutral-50 p-8 transition-shadow duration-300 hover:shadow-lg"
               >
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-primary-500 to-primary-600">
                   <feature.icon className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="mb-3 text-xl font-bold text-neutral-900">{feature.title}</h3>
@@ -197,7 +197,7 @@ export default function WAMPage() {
                   <div className="absolute -left-4 -top-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent-500 text-xl font-bold text-neutral-900 shadow-lg">
                     {step.step}
                   </div>
-                  <div className="mb-4 mt-2 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600">
+                  <div className="mb-4 mt-2 flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-br from-primary-500 to-primary-600">
                     <step.icon className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">{step.title}</h3>
@@ -278,7 +278,7 @@ export default function WAMPage() {
                 key={benefit.title}
                 className="group rounded-xl border border-transparent bg-neutral-50 p-6 transition-all duration-300 hover:border-primary-200 hover:bg-white hover:shadow-xl"
               >
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600 transition-transform duration-300 group-hover:scale-110">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-br from-primary-500 to-primary-600 transition-transform duration-300 group-hover:scale-110">
                   <benefit.icon className="h-7 w-7 text-white" />
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
@@ -386,7 +386,7 @@ export default function WAMPage() {
       </section>
 
       {/* Real-World Installations Gallery */}
-      <section className="bg-gradient-to-br from-neutral-50 to-white py-16 lg:py-24">
+      <section className="bg-linear-to-br from-neutral-50 to-white py-16 lg:py-24">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
@@ -404,7 +404,7 @@ export default function WAMPage() {
               <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                 Walk-In Coolers
               </h3>
-              <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-accent-500 to-primary-500" />
+              <div className="mx-auto h-1 w-20 rounded-full bg-linear-to-r from-primary-600 to-primary-400" />
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
@@ -456,14 +456,14 @@ export default function WAMPage() {
                       sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                   <div className="p-4">
                     <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                       {image.title}
                     </h4>
                   </div>
-                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
+                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
                 </div>
               ))}
             </div>
@@ -475,7 +475,7 @@ export default function WAMPage() {
               <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                 Walk-In Freezers
               </h3>
-              <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-accent-500 to-primary-500" />
+              <div className="mx-auto h-1 w-20 rounded-full bg-linear-to-r from-primary-600 to-primary-400" />
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
@@ -557,14 +557,14 @@ export default function WAMPage() {
                       sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                   <div className="p-4">
                     <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                       {image.title}
                     </h4>
                   </div>
-                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
+                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
                 </div>
               ))}
             </div>
@@ -576,7 +576,7 @@ export default function WAMPage() {
               <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                 Deli Cases & Prepared Foods
               </h3>
-              <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-accent-500 to-primary-500" />
+              <div className="mx-auto h-1 w-20 rounded-full bg-linear-to-r from-primary-600 to-primary-400" />
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
@@ -618,14 +618,14 @@ export default function WAMPage() {
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                   <div className="p-4">
                     <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                       {image.title}
                     </h4>
                   </div>
-                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
+                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
                 </div>
               ))}
             </div>
@@ -637,7 +637,7 @@ export default function WAMPage() {
               <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                 Convenience Stores & Mini-Marts
               </h3>
-              <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-accent-500 to-primary-500" />
+              <div className="mx-auto h-1 w-20 rounded-full bg-linear-to-r from-primary-600 to-primary-400" />
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {[
@@ -699,14 +699,14 @@ export default function WAMPage() {
                       sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </div>
                   <div className="p-4">
                     <h4 className="text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                       {image.title}
                     </h4>
                   </div>
-                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
+                  <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
                 </div>
               ))}
             </div>
@@ -836,7 +836,7 @@ export default function WAMPage() {
                 key={feature.title}
                 className="rounded-lg bg-neutral-50 p-6 text-center transition-all duration-300 hover:bg-white hover:shadow-lg"
               >
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-linear-to-br from-primary-500 to-primary-600">
                   <feature.icon className="h-6 w-6 text-white" />
                 </div>
                 <h4 className="mb-2 font-bold text-neutral-900">{feature.title}</h4>
@@ -850,7 +850,7 @@ export default function WAMPage() {
       {/* Demo Request Section */}
       <section
         id="demo"
-        className="bg-gradient-to-br from-primary-50 to-primary-100 py-16 lg:py-24"
+        className="bg-linear-to-br from-primary-50 to-primary-100 py-16 lg:py-24"
       >
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-white p-8 shadow-2xl lg:p-12">

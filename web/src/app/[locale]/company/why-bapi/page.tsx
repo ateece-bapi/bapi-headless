@@ -26,9 +26,9 @@ export default async function WhyBapiPage() {
   const t = await getTranslations('companyPages.whyBapi');
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+    <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
+      <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -86,12 +86,12 @@ export default async function WhyBapiPage() {
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
         <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
-            { key: 'warranty', icon: Shield, gradient: 'from-blue-500 to-cyan-500' },
+            { key: 'warranty', icon: Shield, gradient: 'from-primary-600 to-primary-700' },
             { key: 'guarantee', icon: Award, gradient: 'from-purple-500 to-pink-500' },
             { key: 'lifetime', icon: Clock, gradient: 'from-amber-500 to-orange-500' },
             { key: 'testing', icon: Zap, gradient: 'from-emerald-500 to-teal-500' },
             { key: 'customerFocus', icon: Users, gradient: 'from-red-500 to-rose-500' },
-            { key: 'original', icon: Star, gradient: 'from-indigo-500 to-violet-500' },
+            { key: 'original', icon: Star, gradient: 'from-primary-700 to-primary-500' },
           ].map((item, index) => {
             const Icon = item.icon;
             return (
@@ -102,13 +102,13 @@ export default async function WhyBapiPage() {
               >
                 {/* Gradient background on hover */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
+                  className={`absolute inset-0 bg-linear-to-br ${item.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
                 />
 
                 {/* Icon */}
                 <div className="relative mb-6">
                   <div
-                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
                   >
                     <Icon className="h-7 w-7 text-white" />
                   </div>
@@ -122,14 +122,14 @@ export default async function WhyBapiPage() {
                 </div>
 
                 {/* Decorative corner */}
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-gradient-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-linear-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
             );
           })}
         </div>
 
         {/* Key Features Section */}
-        <div className="mb-20 rounded-2xl bg-gradient-to-br from-gray-50 to-white p-10 shadow-lg lg:p-16">
+        <div className="mb-20 rounded-2xl bg-linear-to-br from-gray-50 to-white p-10 shadow-lg lg:p-16">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
@@ -151,7 +151,7 @@ export default async function WhyBapiPage() {
                   className="flex items-center gap-3 rounded-lg bg-white p-4 shadow-sm transition-shadow duration-300 hover:shadow-md"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-primary-600">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-primary-500 to-primary-600">
                     <CheckCircle2 className="h-5 w-5 text-white" />
                   </div>
                   <span className="font-medium text-gray-900">{t(`qualitySection.features.${key}`)}</span>
@@ -162,7 +162,7 @@ export default async function WhyBapiPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 

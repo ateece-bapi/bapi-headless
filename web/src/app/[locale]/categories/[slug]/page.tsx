@@ -128,8 +128,8 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       </div>
 
       {/* Category Header with BAPI Gradient */}
-      <div className="relative border-b-4 border-accent-500 bg-gradient-to-br from-primary-600 via-primary-500 to-primary-600">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-500/10 to-transparent" />
+      <div className="relative border-b-4 border-accent-500 bg-linear-to-br from-primary-600 via-primary-500 to-primary-600">
+        <div className="absolute inset-0 bg-linear-to-r from-transparent via-primary-500/10 to-transparent" />
         <div className="relative mx-auto max-w-content px-4 py-16">
           <div className="max-w-3xl">
             <h1 className="mb-5 text-5xl font-bold text-white drop-shadow-lg md:text-6xl">
@@ -174,14 +174,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-2xl"
               >
                 {/* BAPI Gradient Top Border */}
-                <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute left-0 top-0 h-1 w-full bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* Subtle gradient overlay on hover */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary-50/0 to-accent-50/0 transition-all duration-300 group-hover:from-primary-50/20 group-hover:to-accent-50/10" />
+                <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-primary-50/0 to-primary-100/0 transition-all duration-300 group-hover:from-primary-50/20 group-hover:to-primary-100/10" />
 
                 {/* Subcategory Image - Larger, square aspect */}
                 {subcategory.image?.sourceUrl ? (
-                  <div className="relative aspect-[4/3] bg-gradient-to-br from-neutral-50 to-neutral-100">
+                  <div className="relative aspect-[4/3] bg-linear-to-br from-neutral-50 to-neutral-100">
                     <Image
                       src={subcategory.image.sourceUrl}
                       alt={subcategory.image.altText || subcategory.name || ''}
@@ -192,7 +192,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     />
                   </div>
                 ) : (
-                  <div className="relative flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-primary-100 via-accent-100 to-primary-100">
+                  <div className="relative flex aspect-[4/3] items-center justify-center bg-linear-to-br from-primary-50 via-white to-primary-50">
                     <span className="text-xl font-semibold text-primary-600">
                       {subcategory.name}
                     </span>
@@ -207,7 +207,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                         {subcategory.name}
                       </h3>
                       {subcategory.count !== null && (
-                        <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 px-3 py-1">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-primary-50 to-primary-100 px-3 py-1">
                           <svg
                             className="h-4 w-4 text-primary-600"
                             fill="none"

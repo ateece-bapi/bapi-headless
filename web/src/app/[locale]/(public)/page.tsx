@@ -86,7 +86,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       {/* Quick Stats Bar */}
       <section className="bg-neutral-50 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-600/90 via-primary-500/85 to-primary-600/90 p-8 shadow-xl">
+          <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 p-8 shadow-xl">
             {/* Decorative background elements */}
             <div className="bg-grid-pattern absolute inset-0"></div>
 
@@ -268,7 +268,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* Why BAPI - Based on original website */}
-      <section className="relative overflow-hidden bg-linear-to-br from-primary-50 via-white to-accent-50 py-12 lg:py-16">
+      <section className="relative overflow-hidden bg-linear-to-br from-white to-primary-50 py-12 lg:py-16">
         {/* Decorative background elements */}
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-primary-500/5 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-accent-500/5 blur-3xl"></div>
@@ -300,7 +300,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-12">
             {/* Warranty */}
             <div className="group rounded-2xl border-2 border-neutral-200 bg-white p-6 text-center transition-all duration-300 focus-within:ring-4 focus-within:ring-primary-500/50 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
-              <div className="relative mx-auto mb-6 h-32 w-32 rounded-2xl border border-primary-200 bg-linear-to-br from-primary-50 via-white to-accent-50 p-4 shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
+              <div className="relative mx-auto mb-6 h-32 w-32 rounded-2xl border border-primary-200 bg-linear-to-br from-white to-primary-50 p-4 shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image
                   src="/images/icons/5-year-warranty-icon.webp"
                   alt="5 Year Lifetime Limited Warranty"
@@ -322,7 +322,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
             {/* BAPI-Backed */}
             <div className="group rounded-2xl border-2 border-neutral-200 bg-white p-6 text-center transition-all duration-300 focus-within:ring-4 focus-within:ring-primary-500/50 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
-              <div className="relative mx-auto mb-6 h-32 w-32 rounded-2xl border border-primary-200 bg-linear-to-br from-primary-50 via-white to-accent-50 p-4 shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
+              <div className="relative mx-auto mb-6 h-32 w-32 rounded-2xl border border-primary-200 bg-linear-to-br from-white to-primary-50 p-4 shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image
                   src="/images/icons/bapi-backed-logo.webp"
                   alt="BAPI Backed"
@@ -344,7 +344,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
             {/* BAPI Original */}
             <div className="group rounded-2xl border-2 border-neutral-200 bg-white p-6 text-center transition-all duration-300 focus-within:ring-4 focus-within:ring-primary-500/50 hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl">
-              <div className="relative mx-auto mb-6 h-32 w-32 rounded-2xl border border-primary-200 bg-linear-to-br from-primary-50 via-white to-accent-50 p-4 shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
+              <div className="relative mx-auto mb-6 h-32 w-32 rounded-2xl border border-primary-200 bg-linear-to-br from-white to-primary-50 p-4 shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 <Image
                   src="/images/icons/certified-original-stamp.webp"
                   alt="BAPI Certified Original"

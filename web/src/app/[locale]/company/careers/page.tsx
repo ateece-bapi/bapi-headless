@@ -45,7 +45,7 @@ const benefits = [
     icon: Shield,
     title: 'Health Insurance',
     description: 'Comprehensive health, dental, and vision coverage for you and your family.',
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: 'from-primary-600 to-primary-700',
   },
   {
     icon: DollarSign,
@@ -57,13 +57,13 @@ const benefits = [
     icon: Plane,
     title: 'Paid Holidays',
     description: 'Generous paid time off including holidays, vacation days, and personal time.',
-    gradient: 'from-purple-500 to-pink-500',
+    gradient: 'from-primary-600 to-primary-400',
   },
   {
     icon: TrendingUp,
     title: '401(k) Match',
     description: 'Company match on retirement contributions to help secure your future.',
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: 'from-primary-700 to-primary-500',
   },
   {
     icon: Heart,
@@ -75,7 +75,7 @@ const benefits = [
     icon: GraduationCap,
     title: 'Professional Development',
     description: 'Continuous learning opportunities, training programs, and career advancement.',
-    gradient: 'from-indigo-500 to-violet-500',
+    gradient: 'from-primary-700 to-primary-500',
   },
 ];
 
@@ -113,9 +113,9 @@ export default async function CareersPage() {
   const t = await getTranslations('companyPages.careers');
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50/30">
+    <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
+      <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -162,12 +162,12 @@ export default async function CareersPage() {
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
-            { key: 'healthInsurance', icon: Shield, gradient: 'from-blue-500 to-cyan-500' },
+            { key: 'healthInsurance', icon: Shield, gradient: 'from-primary-600 to-primary-700' },
             { key: 'compensation', icon: DollarSign, gradient: 'from-emerald-500 to-teal-500' },
-            { key: 'paidHolidays', icon: Plane, gradient: 'from-purple-500 to-pink-500' },
-            { key: 'retirement', icon: TrendingUp, gradient: 'from-amber-500 to-orange-500' },
+            { key: 'paidHolidays', icon: Plane, gradient: 'from-primary-600 to-primary-400' },
+            { key: 'retirement', icon: TrendingUp, gradient: 'from-primary-700 to-primary-500' },
             { key: 'lifeInsurance', icon: Heart, gradient: 'from-red-500 to-rose-500' },
-            { key: 'development', icon: GraduationCap, gradient: 'from-indigo-500 to-violet-500' },
+            { key: 'development', icon: GraduationCap, gradient: 'from-primary-700 to-primary-500' },
           ].map((benefit, index) => {
             const Icon = benefit.icon;
             return (
@@ -178,13 +178,13 @@ export default async function CareersPage() {
               >
                 {/* Gradient background on hover */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
+                  className={`absolute inset-0 bg-linear-to-br ${benefit.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
                 />
 
                 {/* Icon */}
                 <div className="relative mb-6">
                   <div
-                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${benefit.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br ${benefit.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
                   >
                     <Icon className="h-7 w-7 text-white" />
                   </div>
@@ -198,14 +198,14 @@ export default async function CareersPage() {
                 </div>
 
                 {/* Decorative corner */}
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-gradient-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-linear-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
             );
           })}
         </div>
 
         {/* Culture & Benefits Details */}
-        <div className="mb-20 rounded-2xl bg-gradient-to-br from-gray-50 to-white p-10 shadow-lg lg:p-16">
+        <div className="mb-20 rounded-2xl bg-linear-to-br from-gray-50 to-white p-10 shadow-lg lg:p-16">
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
               <Gift className="h-4 w-4" />
@@ -229,7 +229,7 @@ export default async function CareersPage() {
                 style={{ animationDelay: `${categoryIndex * 100}ms` }}
               >
                 <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-gray-900">
-                  <div className="h-2 w-2 rounded-full bg-gradient-to-r from-primary-500 to-primary-600" />
+                  <div className="h-2 w-2 rounded-full bg-linear-to-r from-primary-500 to-primary-600" />
                   {t(`cultureSection.${category.key}.title`)}
                 </h3>
                 <ul className="space-y-3">
@@ -246,10 +246,10 @@ export default async function CareersPage() {
         </div>
 
         {/* How to Apply Section */}
-        <div className="mb-20 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-10 lg:p-16">
+        <div className="mb-20 rounded-2xl bg-linear-to-br from-primary-50 to-primary-100/50 p-10 lg:p-16">
           <div className="mx-auto max-w-3xl">
             <div className="mb-10 text-center">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-primary-700">
                 <FileText className="h-4 w-4" />
                 {t('applicationProcess.badge')}
               </div>
@@ -262,7 +262,7 @@ export default async function CareersPage() {
             <div className="mb-8 rounded-xl bg-white p-8 shadow-md">
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 font-bold text-white">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary-600 to-primary-700 font-bold text-white">
                     1
                   </div>
                   <div>
@@ -274,7 +274,7 @@ export default async function CareersPage() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500 font-bold text-white">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary-600 to-primary-400 font-bold text-white">
                     2
                   </div>
                   <div>
@@ -286,7 +286,7 @@ export default async function CareersPage() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-orange-500 font-bold text-white">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary-700 to-primary-500 font-bold text-white">
                     3
                   </div>
                   <div>
@@ -299,22 +299,22 @@ export default async function CareersPage() {
               </div>
             </div>
 
-            <div className="rounded-xl bg-blue-600 p-6 text-center text-white">
+            <div className="rounded-xl bg-primary-600 p-6 text-center text-white">
               <p className="mb-4">
                 <strong>{t('applicationProcess.contactTitle')}</strong>
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <a
                   href="mailto:careers@bapihvac.com"
-                  className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition-all duration-300 hover:shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-primary-600 transition-all duration-300 hover:shadow-lg"
                 >
                   <Mail className="h-5 w-5" />
                   {t('applicationProcess.email')}
                 </a>
-                <span className="text-blue-100">{t('applicationProcess.or')}</span>
+                <span className="text-primary-100">{t('applicationProcess.or')}</span>
                 <a
                   href="tel:+16087534400"
-                  className="font-bold transition-colors hover:text-blue-100"
+                  className="font-bold transition-colors hover:text-primary-100"
                 >
                   {t('applicationProcess.phone')}
                 </a>
@@ -324,7 +324,7 @@ export default async function CareersPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 

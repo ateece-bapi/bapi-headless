@@ -7,6 +7,31 @@
 
 ---
 
+## February 25, 2026 — Homepage Product Family Caption Polish (PR #315) ✨
+
+**Status:** ✅ COMPLETE  
+**Branch:** fix/homepage-product-caption (PR #315)  
+**Commits:** 1 commit (0e123a2)  
+**Main after merge:** `9dd0492`  
+**Days Until Launch:** 44 days (April 10, 2026)
+
+**🎯 OUTCOME:** Senior UX polish on the homepage product family image caption — lifted into a glass card, stronger typography hierarchy, refined separator and badges.
+
+### Changes (`web/src/components/Hero/index.tsx`)
+
+| Element | Before | After |
+|---|---|---|
+| Caption container | Plain div, no visual lift | White glass card — `bg-white/80 backdrop-blur-sm border shadow-sm rounded-2xl` |
+| Card background | `from-neutral-50 to-neutral-100` | `from-white to-neutral-50` |
+| Separator lines | `w-16`, solid `to-primary-300` | `w-20`, gradient `via-primary-200 to-primary-400` |
+| Separator dot | `h-2 w-2` | `h-2.5 w-2.5` with `shadow-sm shadow-primary-300` |
+| Title | `text-lg font-semibold` | `text-xl font-bold` |
+| Subtitle | `text-sm text-neutral-500` | `text-sm font-medium tracking-wide text-neutral-500` |
+| Badges | `px-3 py-1 font-medium border-primary-100` | `px-3.5 py-1.5 font-semibold tracking-wide border-primary-200` + hover state |
+| Corner accents | `bg-gradient-to-*` + off-brand `accent-500/10` | `bg-linear-to-*` (Tailwind v4), both corners `primary-500/*` |
+
+---
+
 ## February 25, 2026 — Product/Category Page Hero Gradients (PR #314) 🎨
 
 **Status:** ✅ COMPLETE  

@@ -52,7 +52,7 @@ const productCategories = [
     nameKey: 'accessories',
     slug: 'accessories',
     count: 45,
-    image: '/images/products/families/Accessories_Family_2025_US.webp',
+    image: '/products/accessories_products.webp',
     icon: '/images/icons/Accessories_Icon.webp',
   },
   {

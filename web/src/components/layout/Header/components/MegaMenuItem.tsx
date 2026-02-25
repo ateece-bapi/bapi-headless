@@ -61,7 +61,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
   };
 
   return (
-    <div className="relative">
+    <div>
       {/* Trigger Button: Use <Link> when href exists, <button> otherwise */}
       {item.href ? (
         <Link
@@ -144,8 +144,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
         onMouseEnter={onCancelTimers}
         onMouseLeave={onCloseWithGrace}
         className={clsx(
-          'absolute left-0 top-full z-50 mt-2 md:left-1/2 md:-translate-x-1/2',
-          'mx-auto w-[min(100vw-1rem,72rem)] max-w-7xl',
+          'absolute left-0 right-0 top-full z-50 mt-2',
           'max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border-2 border-primary-500/20 bg-white shadow-2xl',
           'p-3 sm:p-4 md:p-5',
           'origin-top transition-all duration-300 ease-out',
@@ -175,10 +174,14 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                       <div className="absolute bottom-0 left-0 top-0 hidden w-px bg-gradient-to-b from-transparent via-neutral-200 to-transparent xl:block" />
                     )}
 
-                    {/* Column header with icon */}
-                    <div className="flex items-center gap-2 border-b-2 border-primary-500/20 pb-2">
+                    {/* Column header with icon — links to category landing page */}
+                    <Link
+                      href={`${item.href}/${column.slug}`}
+                      onClick={onCloseImmediate}
+                      className="group flex items-center gap-2 border-b-2 border-primary-500/20 pb-2 transition-colors duration-200 hover:border-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                    >
                       {iconPath ? (
-                        <div className="rounded-md bg-primary-100 p-1.5">
+                        <div className="rounded-md bg-primary-100 p-1.5 transition-colors duration-200 group-hover:bg-primary-200">
                           <img
                             src={iconPath}
                             alt={`${column.title} icon`}
@@ -186,14 +189,14 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                           />
                         </div>
                       ) : IconComponent ? (
-                        <div className="rounded-md bg-primary-100 p-1.5">
+                        <div className="rounded-md bg-primary-100 p-1.5 transition-colors duration-200 group-hover:bg-primary-200">
                           <IconComponent className="h-4 w-4 text-primary-700" />
                         </div>
                       ) : null}
-                      <h3 className="text-xs font-black uppercase tracking-wider text-primary-800">
+                      <h3 className="text-xs font-black uppercase tracking-wider text-primary-800 transition-colors duration-200 group-hover:text-primary-600">
                         {column.title}
                       </h3>
-                    </div>
+                    </Link>
                     <ul className="space-y-1.5">
                       {column.links.map((link, linkIndex) => (
                         <li key={`${link.href}-${link.label}-${linkIndex}`}>
@@ -226,11 +229,11 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                     <Link
                       href={`${item.href}/${column.slug}`}
                       onClick={onCloseImmediate}
-                      className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary-600 transition-all hover:gap-2 hover:text-primary-700"
+                      className="group mt-3 inline-flex w-full items-center justify-between rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-700 transition-all duration-200 hover:border-primary-400 hover:bg-primary-100 hover:text-primary-800 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                     >
-                      View All {column.title}
+                      <span>View All {column.title}</span>
                       <svg
-                        className="h-3 w-3"
+                        className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

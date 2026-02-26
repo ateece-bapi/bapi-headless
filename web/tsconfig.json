@@ -34,8 +34,7 @@
   ],
   "exclude": [
     "node_modules",
-    "test",
-    "test/**",
+    "test-output",
     "web/test-output"
   ]
 }

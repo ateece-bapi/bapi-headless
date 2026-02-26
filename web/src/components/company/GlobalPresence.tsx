@@ -7,7 +7,7 @@ import {
   FACILITY_TYPE_COLORS,
   getActiveFacilityTypes,
 } from '@/lib/constants/locations';
-import type { Location } from '@/lib/constants/locations';
+import type { Location, FacilityType } from '@/lib/constants/locations';
 import { Building2, MapPin } from 'lucide-react';
 import { useState } from 'react';
 import Link from 'next/link';

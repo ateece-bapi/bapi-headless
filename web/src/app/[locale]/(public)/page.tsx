@@ -367,55 +367,60 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
-      {/* Global Presence Map */}
-      <GlobalPresence
-        title={t('globalPresence.title')}
-        subtitle={t('globalPresence.subtitle')}
-        locationTranslations={{
-          mapLegend: {
-            headquarters: t('locations.mapLegend.headquarters'),
-            distribution: t('locations.mapLegend.distribution'),
-            production: t('locations.mapLegend.production'),
-            productionService: t('locations.mapLegend.productionService'),
-          },
-          facilities: {
-            'headquarters-usa': {
-              name: t('locations.facilities.headquartersUsa.name'),
-              city: t('locations.facilities.headquartersUsa.city'),
-              country: t('locations.facilities.headquartersUsa.country'),
-              description: t('locations.facilities.headquartersUsa.description'),
-              type: t('locations.facilities.headquartersUsa.type'),
-              established: t('locations.facilities.headquartersUsa.established'),
+
+
+        {/* Global Presence Section */}
+        <GlobalPresence
+          title={t('locations.title')}
+          subtitle={t('locations.subtitle')}
+          locationTranslations={{
+            mapLegend: {
+              headquarters: t('locations.mapLegend.headquarters'),
+              manufacturing: t('locations.mapLegend.manufacturing'),
+              sales: t('locations.mapLegend.sales'),
+              distributionPartner: t('locations.mapLegend.distributionPartner'),
             },
-            'distribution-uk': {
-              name: t('locations.facilities.distributionUk.name'),
-              city: t('locations.facilities.distributionUk.city'),
-              country: t('locations.facilities.distributionUk.country'),
-              description: t('locations.facilities.distributionUk.description'),
-              type: t('locations.facilities.distributionUk.type'),
+            facilities: {
+              'headquarters-usa': {
+                name: t('locations.facilities.headquartersUsa.name'),
+                city: t('locations.facilities.headquartersUsa.city'),
+                country: t('locations.facilities.headquartersUsa.country'),
+                description: t('locations.facilities.headquartersUsa.description'),
+                type: t('locations.facilities.headquartersUsa.type'),
+                established: t('locations.facilities.headquartersUsa.established'),
+              },
+              'manufacturing-poland': {
+                name: t('locations.facilities.manufacturingPoland.name'),
+                city: t('locations.facilities.manufacturingPoland.city'),
+                country: t('locations.facilities.manufacturingPoland.country'),
+                description: t('locations.facilities.manufacturingPoland.description'),
+                type: t('locations.facilities.manufacturingPoland.type'),
+              },
+              'manufacturing-vietnam': {
+                name: t('locations.facilities.manufacturingVietnam.name'),
+                city: t('locations.facilities.manufacturingVietnam.city'),
+                country: t('locations.facilities.manufacturingVietnam.country'),
+                description: t('locations.facilities.manufacturingVietnam.description'),
+                type: t('locations.facilities.manufacturingVietnam.type'),
+                status: t('locations.facilities.manufacturingVietnam.status'),
+              },
+              'sales-uk': {
+                name: t('locations.facilities.salesUk.name'),
+                city: t('locations.facilities.salesUk.city'),
+                country: t('locations.facilities.salesUk.country'),
+                description: t('locations.facilities.salesUk.description'),
+                type: t('locations.facilities.salesUk.type'),
+              },
             },
-            'production-poland': {
-              name: t('locations.facilities.productionPoland.name'),
-              city: t('locations.facilities.productionPoland.city'),
-              country: t('locations.facilities.productionPoland.country'),
-              description: t('locations.facilities.productionPoland.description'),
-              type: t('locations.facilities.productionPoland.type'),
+            cta: {
+              text: t('locations.cta.text'),
+              button: t('locations.cta.button'),
             },
-            'production-vietnam': {
-              name: t('locations.facilities.productionVietnam.name'),
-              city: t('locations.facilities.productionVietnam.city'),
-              country: t('locations.facilities.productionVietnam.country'),
-              description: t('locations.facilities.productionVietnam.description'),
-              type: t('locations.facilities.productionVietnam.type'),
-              status: t('locations.facilities.productionVietnam.status'),
-            },
-          },
-          cta: {
-            text: t('locations.cta.text'),
-            button: t('locations.cta.button'),
-          },
-        }}
-      />
+          }}
+        />
+
+
+      
 
       {/* Latest News Section */}
       <section className="bg-white py-12 lg:py-16">

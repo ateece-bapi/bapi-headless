@@ -360,11 +360,13 @@
       "readMoreAriaLabel": "Czytaj więcej o {title}"
     },
     "locations": {
+      "title": "Nasza globalna obecność",
+      "subtitle": "Od naszej siedziby głównej w Wisconsin do zakładów na trzech kontynentach, BAPI obsługuje klientów na całym świecie z lokalną wiedzą i globalnym zasięgiem.",
       "mapLegend": {
         "headquarters": "Siedziba główna",
-        "distribution": "Dystrybucja",
-        "production": "Produkcja",
-        "productionService": "Produkcja i serwis"
+        "manufacturing": "Produkcja i biuro",
+        "sales": "Biuro sprzedaży",
+        "distributionPartner": "Partner dystrybucyjny"
       },
       "facilities": {
         "headquartersUsa": {
@@ -375,27 +377,27 @@
           "type": "Siedziba główna",
           "established": "Est. 1993"
         },
-        "distributionUk": {
-          "name": "Centrum Dystrybucji w Wielkiej Brytanii",
-          "city": "Aldershot",
-          "country": "Wielka Brytania",
-          "description": "Europejskie centrum dystrybucji i logistyki",
-          "type": "Centrum Dystrybucji"
-        },
-        "productionPoland": {
-          "name": "Zakład Produkcyjny i Obsługi Klienta",
+        "manufacturingPoland": {
+          "name": "Europejska produkcja i biuro",
           "city": "Nowa Wola",
           "country": "Polska",
-          "description": "Europejski zakład produkcyjny i centrum obsługi klienta",
-          "type": "Produkcja i Serwis"
+          "description": "Europejski zakład produkcyjny, biuro i centrum obsługi klienta",
+          "type": "Produkcja i biuro"
         },
-        "productionVietnam": {
-          "name": "Zakład Produkcyjny Azji i Pacyfiku",
+        "manufacturingVietnam": {
+          "name": "Produkcja i biuro w regionie Azji i Pacyfiku",
           "city": "Da Nang",
           "country": "Wietnam",
-          "description": "Nowy zakład produkcyjny obsługujący rynki azjatyckie",
-          "type": "Produkcja",
+          "description": "Nowy zakład produkcyjny i biuro obsługujące rynki azjatyckie",
+          "type": "Produkcja i biuro",
           "status": "Otwarcie wkrótce"
+        },
+        "salesUk": {
+          "name": "Biuro sprzedaży w Wielkiej Brytanii",
+          "city": "Aldershot",
+          "country": "Wielka Brytania",
+          "description": "Europejskie centrum sprzedaży i wsparcia klienta",
+          "type": "Biuro sprzedaży"
         }
       },
       "cta": {

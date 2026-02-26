@@ -361,11 +361,13 @@
       "readMoreAriaLabel": "Đọc thêm về {title}"
     },
     "locations": {
+      "title": "Sự hiện diện toàn cầu của chúng tôi",
+      "subtitle": "Từ trụ sở chính của chúng tôi tại Wisconsin đến các cơ sở trên ba châu lục, BAPI phục vụ khách hàng trên toàn thế giới với chuyên môn địa phương và tầm với toàn cầu.",
       "mapLegend": {
         "headquarters": "Trụ sở chính",
-        "distribution": "Phân phối",
-        "production": "Sản xuất",
-        "productionService": "Sản xuất & Dịch vụ"
+        "manufacturing": "Sản xuất & Văn phòng",
+        "sales": "Văn phòng bán hàng",
+        "distributionPartner": "Đối tác phân phối"
       },
       "facilities": {
         "headquartersUsa": {
@@ -376,27 +378,27 @@
           "type": "Trụ sở chính",
           "established": "Thành lập năm 1993"
         },
-        "distributionUk": {
-          "name": "Trung tâm Phân phối Vương quốc Anh",
-          "city": "Aldershot",
-          "country": "Vương quốc Anh",
-          "description": "Trung tâm phân phối và logistics châu Âu",
-          "type": "Trung tâm Phân phối"
-        },
-        "productionPoland": {
-          "name": "Cơ sở Sản xuất & Dịch vụ Khách hàng",
+        "manufacturingPoland": {
+          "name": "Sản xuất & Văn phòng châu Âu",
           "city": "Nowa Wola",
           "country": "Ba Lan",
-          "description": "Cơ sở sản xuất châu Âu và trung tâm dịch vụ khách hàng",
-          "type": "Sản xuất & Dịch vụ"
+          "description": "Cơ sở sản xuất châu Âu, văn phòng và trung tâm dịch vụ khách hàng",
+          "type": "Sản xuất & Văn phòng"
         },
-        "productionVietnam": {
-          "name": "Cơ sở Sản xuất Khu vực châu Á-Thái Bình Dương",
+        "manufacturingVietnam": {
+          "name": "Sản xuất & Văn phòng Khu vực châu Á-Thái Bình Dương",
           "city": "Đà Nẵng",
           "country": "Việt Nam",
-          "description": "Cơ sở sản xuất mới phục vụ thị trường châu Á",
-          "type": "Sản xuất",
+          "description": "Cơ sở sản xuất và văn phòng mới phục vụ thị trường châu Á",
+          "type": "Sản xuất & Văn phòng",
           "status": "Sắp Khai trương"
+        },
+        "salesUk": {
+          "name": "Văn phòng bán hàng Vương quốc Anh",
+          "city": "Aldershot",
+          "country": "Vương quốc Anh",
+          "description": "Trung tâm bán hàng và hỗ trợ khách hàng châu Âu",
+          "type": "Văn phòng bán hàng"
         }
       },
       "cta": {

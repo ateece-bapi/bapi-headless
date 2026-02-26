@@ -173,11 +173,13 @@
       "readMoreAriaLabel": "Lire la suite sur {title}"
     },
     "locations": {
+      "title": "Notre présence mondiale",
+      "subtitle": "De notre siège social dans le Wisconsin à des installations sur trois continents, BAPI sert des clients dans le monde entier avec une expertise locale et une portée mondiale.",
       "mapLegend": {
         "headquarters": "Siège social",
-        "distribution": "Distribution",
-        "production": "Production",
-        "productionService": "Production et service"
+        "manufacturing": "Fabrication et bureau",
+        "sales": "Bureau de vente",
+        "distributionPartner": "Partenaire de distribution"
       },
       "facilities": {
         "headquartersUsa": {
@@ -188,27 +190,27 @@
           "type": "Siège social",
           "established": "Fondé en 1993"
         },
-        "distributionUk": {
-          "name": "Centre de distribution au Royaume-Uni",
-          "city": "Aldershot",
-          "country": "Royaume-Uni",
-          "description": "Centre de distribution et de logistique européen",
-          "type": "Centre de distribution"
-        },
-        "productionPoland": {
-          "name": "Installation de production et de service client",
+        "manufacturingPoland": {
+          "name": "Fabrication et bureau européens",
           "city": "Nowa Wola",
           "country": "Pologne",
-          "description": "Installation de production européenne et centre de service client",
-          "type": "Production et service"
+          "description": "Installation de production européenne, bureau et centre de service client",
+          "type": "Fabrication et bureau"
         },
-        "productionVietnam": {
-          "name": "Installation de production Asie-Pacifique",
+        "manufacturingVietnam": {
+          "name": "Fabrication et bureau Asie-Pacifique",
           "city": "Da Nang",
           "country": "Vietnam",
-          "description": "Nouvelle installation de fabrication desservant les marchés asiatiques",
-          "type": "Production",
+          "description": "Nouvelle installation de fabrication et bureau desservant les marchés asiatiques",
+          "type": "Fabrication et bureau",
           "status": "Ouverture prochaine"
+        },
+        "salesUk": {
+          "name": "Bureau de vente du Royaume-Uni",
+          "city": "Aldershot",
+          "country": "Royaume-Uni",
+          "description": "Centre de vente européen et support client",
+          "type": "Bureau de vente"
         }
       },
       "cta": {

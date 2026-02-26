@@ -321,11 +321,13 @@
       "readMoreAriaLabel": "Mehr lesen über {title}"
     },
     "locations": {
+      "title": "Unsere globale Präsenz",
+      "subtitle": "Von unserem Hauptsitz in Wisconsin bis zu Einrichtungen auf drei Kontinenten bedient BAPI Kunden weltweit mit lokaler Expertise und globaler Reichweite.",
       "mapLegend": {
         "headquarters": "Hauptsitz",
-        "distribution": "Vertrieb",
-        "production": "Produktion",
-        "productionService": "Produktion und Service"
+        "manufacturing": "Fertigung und Büro",
+        "sales": "Vertriebsbüro",
+        "distributionPartner": "Vertriebspartner"
       },
       "facilities": {
         "headquartersUsa": {
@@ -336,27 +338,27 @@
           "type": "Hauptsitz",
           "established": "Gegründet 1993"
         },
-        "distributionUk": {
-          "name": "Vertriebszentrum Großbritannien",
-          "city": "Aldershot",
-          "country": "Vereinigtes Königreich",
-          "description": "Europäisches Vertriebs- und Logistikzentrum",
-          "type": "Vertriebszentrum"
-        },
-        "productionPoland": {
-          "name": "Produktions- und Kundendiensteinrichtung",
+        "manufacturingPoland": {
+          "name": "Europäische Fertigung und Büro",
           "city": "Nowa Wola",
           "country": "Polen",
-          "description": "Europäische Produktionsanlage und Kundendienst zentrum",
-          "type": "Produktion und Service"
+          "description": "Europäische Produktionsanlage, Büro und Kundendienstzentrum",
+          "type": "Fertigung und Büro"
         },
-        "productionVietnam": {
-          "name": "Produktionseinrichtung Asien-Pazifik",
+        "manufacturingVietnam": {
+          "name": "Asien-Pazifik Fertigung und Büro",
           "city": "Da Nang",
           "country": "Vietnam",
-          "description": "Neue Produktionsanlage für die asiatischen Märkte",
-          "type": "Produktion",
+          "description": "Neue Produktionsanlage und Büro für asiatische Märkte",
+          "type": "Fertigung und Büro",
           "status": "Eröffnung demnächst"
+        },
+        "salesUk": {
+          "name": "Vertriebsbüro Großbritannien",
+          "city": "Aldershot",
+          "country": "Vereinigtes Königreich",
+          "description": "Europäisches Vertriebs- und Kundensupportzentrum",
+          "type": "Vertriebsbüro"
         }
       },
       "cta": {

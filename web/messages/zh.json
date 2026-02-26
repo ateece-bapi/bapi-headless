@@ -173,11 +173,13 @@
       "readMoreAriaLabel": "阅读更多关于{title}"
     },
     "locations": {
+      "title": "我们的全球业务",
+      "subtitle": "从我们在威斯康星州的总部到遍及三大洲的设施，BAPI以本地专业知识和全球影响力为全球客户提供服务。",
       "mapLegend": {
         "headquarters": "总部",
-        "distribution": "分销",
-        "production": "生产",
-        "productionService": "生产和服务"
+        "manufacturing": "制造与办公室",
+        "sales": "销售办公室",
+        "distributionPartner": "分销合作伙伴"
       },
       "facilities": {
         "headquartersUsa": {
@@ -188,27 +190,27 @@
           "type": "总部",
           "established": "成立于1993年"
         },
-        "distributionUk": {
-          "name": "英国分销中心",
-          "city": "Aldershot",
-          "country": "英国",
-          "description": "欧洲分销和物流中心",
-          "type": "分销中心"
-        },
-        "productionPoland": {
-          "name": "生产和客户服务设施",
+        "manufacturingPoland": {
+          "name": "欧洲制造与办公室",
           "city": "Nowa Wola",
           "country": "波兰",
-          "description": "欧洲生产设施和客户服务中心",
-          "type": "生产和服务"
+          "description": "欧洲生产设施、办公室和客户服务中心",
+          "type": "制造与办公室"
         },
-        "productionVietnam": {
-          "name": "亚太区生产设施",
+        "manufacturingVietnam": {
+          "name": "亚太区制造与办公室",
           "city": "Da Nang",
           "country": "越南",
-          "description": "新的制造设施,服务于亚洲市场",
-          "type": "生产",
+          "description": "服务于亚洲市场的新制造设施和办公室",
+          "type": "制造与办公室",
           "status": "即将开业"
+        },
+        "salesUk": {
+          "name": "英国销售办公室",
+          "city": "Aldershot",
+          "country": "英国",
+          "description": "欧洲销售和客户支持中心",
+          "type": "销售办公室"
         }
       },
       "cta": {

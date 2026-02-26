@@ -15,6 +15,7 @@ import { HeroContent, HeroActions } from './components';
  * - GPU acceleration via CSS classes, not inline transforms
  * - FIXED: Responsive typography scales from 15" to 28" displays
  * - FIXED: Using Next.js Image component instead of <img> for better LCP
+ * - FIXED: Text/CTA left-aligned at xl+ (1280px+) for 15" and larger displays
  *
  * Best Practices:
  * - Semantic HTML with proper ARIA labels
@@ -69,22 +70,21 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
         {/* Two-column at 2xl only: text+CTAs left, product showcase right */}
         <div className="2xl:grid 2xl:grid-cols-[1fr_1.2fr] 2xl:items-center 2xl:gap-16">
 
-          {/* Left column: headline + CTAs */}
+          {/* Left column: headline + CTAs - LEFT-ALIGNED AT XL+ (1280px+) */}
           <div className="2xl:pb-4">
             <HeroContent
               title={translations.title}
               description={translations.description}
               taglines={translations.taglines}
-              className="2xl:mx-0 2xl:text-left"
+              className="xl:mx-0 xl:text-left"
             />
             <HeroActions
               actions={actions}
-              className="2xl:justify-start"
+              className="xl:justify-start"
             />
           </div>
 
-          {/* FIXED: Show product image at xl breakpoint (1280px+) for 15" displays */}
-          {/* Right column / stacked below xl */}
+          {/* Right column / stacked below xl - PRODUCT IMAGE SHOWCASE */}
           <div className="mt-12 hidden xl:mt-0 xl:block">
             <div className="hero-image-container relative aspect-[768/495] overflow-hidden rounded-2xl">
               <Image

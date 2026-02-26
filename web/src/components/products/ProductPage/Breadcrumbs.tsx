@@ -25,10 +25,10 @@ interface BreadcrumbsProps {
 
 /**
  * Breadcrumb Navigation Component
- * 
+ *
  * Displays hierarchical navigation trail with Schema.org structured data support
  * WCAG 2.1 AA compliant with aria-label and aria-current attributes
- * 
+ *
  * @example
  * ```tsx
  * <Breadcrumbs
@@ -70,10 +70,7 @@ export default function Breadcrumbs({ items, schema }: BreadcrumbsProps) {
                 </span>
               )}
               {idx < items.length - 1 && (
-                <ChevronRight
-                  className="mx-1 h-4 w-4 text-neutral-300"
-                  aria-hidden="true"
-                />
+                <ChevronRight className="mx-1 h-4 w-4 text-neutral-300" aria-hidden="true" />
               )}
             </li>
           ))}
@@ -82,4 +79,3 @@ export default function Breadcrumbs({ items, schema }: BreadcrumbsProps) {
     </>
   );
 }
-

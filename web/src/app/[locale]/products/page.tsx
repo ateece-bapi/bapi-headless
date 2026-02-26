@@ -4,11 +4,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import {
-  ArrowRight,
-  Sparkles,
-  Award,
-} from 'lucide-react';
+import { ArrowRight, Sparkles, Award } from 'lucide-react';
 
 // Mock data for product categories - BRAND STANDARD ORDER
 // Per BAPI Brand Guide: Temperature, Humidity, Pressure, Air Quality, Wireless, Accessories, Test Instruments
@@ -91,14 +87,14 @@ export default function MainProductPage() {
 
   return (
     <main
-      className={`min-h-screen bg-linear-to-br from-slate-50 via-white to-primary-50/30 transition-opacity duration-500 ${pageVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={`bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30 transition-opacity duration-500 ${pageVisible ? 'opacity-100' : 'opacity-0'}`}
       data-testid="products-page-fade"
     >
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-br from-primary-700 via-primary-600 to-primary-500">
+      <section className="bg-linear-to-br relative overflow-hidden from-primary-700 via-primary-600 to-primary-500">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="absolute right-0 top-0 h-150 w-150 -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
+        <div className="h-150 w-150 absolute right-0 top-0 -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-96 w-96 translate-y-1/3 rounded-full bg-primary-400/20 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
@@ -175,10 +171,8 @@ export default function MainProductPage() {
                 tabIndex={0}
                 aria-label={`View ${t(`productsPage.categories.${cat.nameKey}.name`)} category (${cat.count} products)`}
               >
-
-
                 {/* Product Image */}
-                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-linear-to-br from-gray-50 to-white p-10">
+                <div className="bg-linear-to-br relative flex aspect-square w-full items-center justify-center overflow-hidden from-gray-50 to-white p-10">
                   <Image
                     src={cat.image}
                     alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} product category`}
@@ -190,7 +184,7 @@ export default function MainProductPage() {
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
                   {/* Icon Badge - BAPI Brand Icons */}
-                  <div className="absolute right-4 top-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-[#1479BC] to-[#0054b6] shadow-lg">
+                  <div className="bg-linear-to-br absolute right-4 top-4 flex h-16 w-16 items-center justify-center rounded-2xl from-[#1479BC] to-[#0054b6] shadow-lg">
                     <Image
                       src={cat.icon}
                       alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} icon`}
@@ -224,15 +218,13 @@ export default function MainProductPage() {
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
-
-
               </Link>
             );
           })}
         </div>
 
         {/* Featured Section */}
-        <div className="mb-20 rounded-2xl bg-linear-to-br from-primary-50 to-primary-100/50 p-10 lg:p-16">
+        <div className="bg-linear-to-br mb-20 rounded-2xl from-primary-50 to-primary-100/50 p-10 lg:p-16">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-primary-700">
@@ -250,7 +242,7 @@ export default function MainProductPage() {
 
               <Link
                 href={`/${locale}/products/featured/ba-series`}
-                className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                className="bg-linear-to-r inline-flex items-center gap-2 rounded-xl from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 {t('productsPage.featured.viewButton')}
                 <ArrowRight className="h-5 w-5" />
@@ -290,7 +282,7 @@ export default function MainProductPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="bg-linear-to-br relative overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 

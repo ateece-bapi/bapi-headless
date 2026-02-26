@@ -6,8 +6,8 @@ import type { RegionCode, LanguageCode } from '@/types/region';
  */
 export const REGION_LANGUAGE_MAP: Record<RegionCode, LanguageCode> = {
   us: 'en',
-  ca: 'en',  // Canada
-  mx: 'es',  // Mexico
+  ca: 'en', // Canada
+  mx: 'es', // Mexico
   uk: 'en',
   eu: 'en', // English is most universal for multi-country EU
   jp: 'ja',

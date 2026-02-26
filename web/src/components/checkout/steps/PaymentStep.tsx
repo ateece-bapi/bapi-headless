@@ -136,11 +136,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       if (result.success && result.clientSecret) {
         setClientSecret(result.clientSecret);
       } else {
-        showToast(
-          'error',
-          t('toasts.setupFailed'),
-          result.message || t('toasts.setupError')
-        );
+        showToast('error', t('toasts.setupFailed'), result.message || t('toasts.setupError'));
       }
     } catch (error) {
       showToast('error', t('toasts.setupFailed'), t('toasts.setupError'));
@@ -253,9 +249,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
               <StripePaymentForm onSuccess={handleStripeSuccess} onError={handleStripeError} />
             </StripeProvider>
           ) : (
-            <div className="py-8 text-center text-neutral-600">
-              {t('cardDetails.loadError')}
-            </div>
+            <div className="py-8 text-center text-neutral-600">{t('cardDetails.loadError')}</div>
           )}
 
           {/* Security Note */}
@@ -263,9 +257,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
             <span className="text-xl">🔒</span>
             <div>
               <p className="text-sm font-medium text-primary-900">{t('security.title')}</p>
-              <p className="mt-1 text-xs text-primary-700">
-                {t('security.description')}
-              </p>
+              <p className="mt-1 text-xs text-primary-700">{t('security.description')}</p>
             </div>
           </div>
         </div>
@@ -274,9 +266,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       {/* PayPal Info */}
       {selectedMethod === 'paypal' && (
         <div className="space-y-4 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-          <p className="text-sm text-neutral-600">
-            {t('paypal.redirectMessage')}
-          </p>
+          <p className="text-sm text-neutral-600">{t('paypal.redirectMessage')}</p>
 
           <button
             type="button"

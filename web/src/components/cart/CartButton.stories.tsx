@@ -1,8 +1,8 @@
 /**
  * CartButton Storybook Stories
- * 
+ *
  * Documents the cart button with item count badge variations.
- * 
+ *
  * **Component Features:**
  * - Shopping cart icon (24x24px SVG)
  * - Item count badge (only visible when cart has items)
@@ -11,7 +11,7 @@
  * - Click handler to open cart drawer
  * - Hover state transition
  * - Accessibility (aria-label for screen readers)
- * 
+ *
  * **Story Coverage:**
  * - EmptyCart: No badge (0 items)
  * - SingleItem: Badge shows "1"
@@ -19,7 +19,7 @@
  * - ManyItems: Badge shows "15"
  * - LargeQuantity: Badge shows "99"
  * - ExtraLargeQuantity: Badge shows "150" (tests overflow)
- * 
+ *
  * **Real-World Contexts:**
  * - HeaderPrimary: In main navigation bar
  * - HeaderMobile: Mobile hamburger menu

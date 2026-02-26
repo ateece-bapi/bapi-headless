@@ -26,7 +26,7 @@ const SignInButton: React.FC = () => {
   const router = useRouter();
   const params = useParams();
   const { showToast } = useToast();
-  
+
   // Extract locale early for use in sign-in link
   const locale = (params?.locale as string) || 'en';
 

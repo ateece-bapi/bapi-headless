@@ -7,7 +7,7 @@ import Link from 'next/link';
 /**
  * Global error boundary - catches unhandled errors throughout the application
  * Logs to Sentry and provides user recovery options
- * 
+ *
  * @param {Object} props - Component props
  * @param {Error & { digest?: string }} props.error - The error that was thrown
  * @param {() => void} props.reset - Function to attempt recovery by re-rendering the error boundary
@@ -46,9 +46,7 @@ export default function GlobalError({
               </svg>
             </div>
 
-            <h2 className="mb-3 text-2xl font-bold text-neutral-900">
-              Application Error
-            </h2>
+            <h2 className="mb-3 text-2xl font-bold text-neutral-900">Application Error</h2>
 
             <p className="mb-6 text-base text-neutral-600">
               A critical error occurred. Our team has been notified and is working on a fix.
@@ -71,9 +69,7 @@ export default function GlobalError({
             </div>
 
             {error.digest && (
-              <p className="mt-6 text-xs text-neutral-400">
-                Error ID: {error.digest}
-              </p>
+              <p className="mt-6 text-xs text-neutral-400">Error ID: {error.digest}</p>
             )}
           </div>
         </div>

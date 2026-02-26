@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       path: 'resources/installation',
       keywords: t('metadata.keywords').split(', '),
     },
-    locale,
+    locale
   );
 }
 
@@ -57,9 +57,7 @@ export default async function InstallationPage({ params }: Props) {
           <div className="text-center">
             <Wrench className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">
-              {t('hero.subtitle')}
-            </p>
+            <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
         </div>
       </section>
@@ -101,9 +99,7 @@ export default async function InstallationPage({ params }: Props) {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('support.heading')}</h2>
-          <p className="mb-6 text-neutral-600">
-            {t('support.description')}
-          </p>
+          <p className="mb-6 text-neutral-600">{t('support.description')}</p>
           <Link
             href="/support"
             className="inline-block rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600"

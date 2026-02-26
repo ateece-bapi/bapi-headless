@@ -39,9 +39,9 @@ export default async function ContactUsPage() {
   const page = await getPageBySlug('contact');
 
   return (
-    <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-primary-50/30">
+    <main className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
+      <section className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -105,13 +105,13 @@ export default async function ContactUsPage() {
               >
                 {/* Gradient background on hover */}
                 <div
-                  className={`absolute inset-0 bg-linear-to-br ${method.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
+                  className={`bg-linear-to-br absolute inset-0 ${method.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
                 />
 
                 {/* Icon */}
                 <div className="relative mb-6">
                   <div
-                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br ${method.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                    className={`bg-linear-to-br inline-flex h-14 w-14 items-center justify-center rounded-xl ${method.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
                   >
                     <Icon className="h-7 w-7 text-white" />
                   </div>
@@ -125,7 +125,9 @@ export default async function ContactUsPage() {
                   <p className="mb-2 text-xl font-bold text-gray-900 transition-colors group-hover:text-primary-600">
                     {t(`contactMethods.${method.key}.details`)}
                   </p>
-                  <p className="text-sm text-gray-600">{t(`contactMethods.${method.key}.description`)}</p>
+                  <p className="text-sm text-gray-600">
+                    {t(`contactMethods.${method.key}.description`)}
+                  </p>
                 </div>
 
                 {/* Arrow */}
@@ -142,7 +144,9 @@ export default async function ContactUsPage() {
               <Users className="h-4 w-4" />
               {t('departmentsSection.badge')}
             </div>
-            <h2 className="mb-4 text-4xl font-bold text-gray-900">{t('departmentsSection.title')}</h2>
+            <h2 className="mb-4 text-4xl font-bold text-gray-900">
+              {t('departmentsSection.title')}
+            </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600">
               {t('departmentsSection.description')}
             </p>
@@ -164,7 +168,7 @@ export default async function ContactUsPage() {
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-primary-500 to-primary-600 transition-transform duration-300 group-hover:scale-110">
+                      <div className="bg-linear-to-br flex h-12 w-12 items-center justify-center rounded-lg from-primary-500 to-primary-600 transition-transform duration-300 group-hover:scale-110">
                         <Icon className="h-6 w-6 text-white" />
                       </div>
                     </div>
@@ -196,21 +200,23 @@ export default async function ContactUsPage() {
 
       <section className="relative mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         {/* International Office */}
-        <div className="mb-20 rounded-2xl bg-linear-to-br from-gray-50 to-white p-10 shadow-lg lg:p-16">
+        <div className="bg-linear-to-br mb-20 rounded-2xl from-gray-50 to-white p-10 shadow-lg lg:p-16">
           <div className="mx-auto max-w-3xl">
             <div className="mb-8 text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
                 <Globe className="h-4 w-4" />
                 {t('internationalOffice.badge')}
               </div>
-              <h2 className="mb-2 text-3xl font-bold text-gray-900">{t('internationalOffice.title')}</h2>
+              <h2 className="mb-2 text-3xl font-bold text-gray-900">
+                {t('internationalOffice.title')}
+              </h2>
               <p className="text-lg text-gray-600">{t('internationalOffice.subtitle')}</p>
             </div>
 
             <div className="rounded-xl bg-white p-8 shadow-md">
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-primary-600 to-primary-700">
+                  <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg from-primary-600 to-primary-700">
                     <Phone className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -227,7 +233,7 @@ export default async function ContactUsPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-primary-600 to-primary-700">
+                  <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg from-primary-600 to-primary-700">
                     <MapPin className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -256,7 +262,7 @@ export default async function ContactUsPage() {
         </div>
 
         {/* Business Hours */}
-        <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="bg-linear-to-br relative overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 

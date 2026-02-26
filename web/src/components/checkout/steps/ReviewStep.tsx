@@ -74,8 +74,12 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
             {shippingAddress.city}, {shippingAddress.state} {shippingAddress.postcode}
           </p>
           <p>{shippingAddress.country}</p>
-          <p className="pt-2">{t('phone')}: {shippingAddress.phone}</p>
-          <p>{t('email')}: {shippingAddress.email}</p>
+          <p className="pt-2">
+            {t('phone')}: {shippingAddress.phone}
+          </p>
+          <p>
+            {t('email')}: {shippingAddress.email}
+          </p>
         </div>
       </div>
 
@@ -130,14 +134,10 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
         <div className="ml-9 text-sm text-neutral-700">
           <p className="font-medium">{paymentMethod?.title || t('notSelected')}</p>
           {paymentMethod?.id === 'credit_card' && (
-            <p className="mt-1 text-xs text-neutral-600">
-              {t('paymentNotes.creditCard')}
-            </p>
+            <p className="mt-1 text-xs text-neutral-600">{t('paymentNotes.creditCard')}</p>
           )}
           {paymentMethod?.id === 'paypal' && (
-            <p className="mt-1 text-xs text-neutral-600">
-              {t('paymentNotes.paypal')}
-            </p>
+            <p className="mt-1 text-xs text-neutral-600">{t('paymentNotes.paypal')}</p>
           )}
         </div>
       </div>

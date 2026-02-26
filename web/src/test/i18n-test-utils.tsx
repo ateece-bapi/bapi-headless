@@ -160,7 +160,8 @@ const mockMessages = {
         description: 'Powered by Stripe with 256-bit SSL encryption',
       },
       paypal: {
-        redirectMessage: 'You will be redirected to PayPal to complete your purchase securely after reviewing your order.',
+        redirectMessage:
+          'You will be redirected to PayPal to complete your purchase securely after reviewing your order.',
         continueButton: 'Continue to Review',
       },
       back: 'Back',
@@ -247,7 +248,11 @@ interface AllTheProvidersProps {
 /**
  * Test wrapper that provides NextIntlClientProvider context
  */
-function AllTheProviders({ children, locale = 'en', messages = mockMessages }: AllTheProvidersProps) {
+function AllTheProviders({
+  children,
+  locale = 'en',
+  messages = mockMessages,
+}: AllTheProvidersProps) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       {children}

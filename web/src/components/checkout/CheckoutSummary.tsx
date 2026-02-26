@@ -88,7 +88,9 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
                       <p className="mt-0.5 text-xs text-neutral-600">{variation.name}</p>
                     )}
                     <div className="mt-1 flex items-center justify-between">
-                      <span className="text-xs text-neutral-500">{t('qty')}: {item.quantity}</span>
+                      <span className="text-xs text-neutral-500">
+                        {t('qty')}: {item.quantity}
+                      </span>
                       <span className="text-sm font-semibold text-neutral-900">{item.total}</span>
                     </div>
                   </div>

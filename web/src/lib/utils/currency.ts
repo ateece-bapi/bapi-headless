@@ -114,14 +114,14 @@ export function parsePrice(priceString: string | null | undefined): number | nul
 
   // Extract first dollar amount (handles ranges by taking minimum)
   const match = cleanString.match(/\$?([\d,]+\.?\d*)/);
-  
+
   if (!match) {
     return null;
   }
 
   // Remove commas and parse as float
   const numericValue = parseFloat(match[1].replace(/,/g, ''));
-  
+
   return isNaN(numericValue) ? null : numericValue;
 }
 
@@ -172,7 +172,7 @@ function parsePriceRange(
 /**
  * Convert WooCommerce price string to target currency
  * One-step function: parses USD string and converts to target currency
- * 
+ *
  * @example
  * convertWooCommercePrice("$99.99", "EUR") // "91.99€"
  * convertWooCommercePrice("$50 - $100", "GBP") // "£39.50 - £79.00"
@@ -212,7 +212,7 @@ export function convertWooCommercePrice(
 /**
  * Convert WooCommerce price string to numeric value in target currency
  * Returns the numeric value for calculations (avoids fragile string parsing)
- * 
+ *
  * @example
  * convertWooCommercePriceNumeric("$99.99", "EUR") // 91.99
  * convertWooCommercePriceNumeric("$50 - $100", "GBP") // 39.50 (returns min)

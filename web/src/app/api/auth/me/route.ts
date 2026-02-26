@@ -32,7 +32,8 @@ export async function GET(request: NextRequest) {
       }),
     });
 
-    const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } = await response.json();
+    const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } =
+      await response.json();
 
     if (errors || !data?.viewer) {
       logger.debug('Token validation failed', { errors });

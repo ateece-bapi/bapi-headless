@@ -90,7 +90,7 @@ export function formatMeasurement(
   region?: RegionCode
 ): string {
   const locale = getLocaleFromLanguage(language);
-  
+
   // Determine if we should use imperial (US) or metric
   const useImperial = shouldUseImperial(language, region);
 

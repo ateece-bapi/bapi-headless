@@ -3,16 +3,16 @@
 /**
  * Mobile region and language selector component.
  * Provides dropdowns for language and region selection in mobile navigation.
- * 
+ *
  * **Phase 1 Priority**: Translation Services & Regional Support (i18n, currency conversion)
- * 
+ *
  * @returns {JSX.Element} Mobile selector UI with language and region dropdowns
- * 
+ *
  * @example
  * ```tsx
  * <MobileRegionLanguageSelector />
  * ```
- * 
+ *
  * @todo Phase 1: Implement useTranslation hook with i18n integration
  * @todo Phase 1: Implement useRegion hook with currency/measurement conversion
  * @todo Phase 1: Add language detection utility (detectUserLanguage)
@@ -24,15 +24,12 @@ export default function MobileRegionLanguageSelector() {
   // - useRegion() from @/hooks/useRegion
   // - showToast() from @/components/ui/Toast
   // - detectUserLanguage() from @/lib/i18n/languageDetection
-  
+
   return (
     <div className="flex flex-col gap-4 border-t border-neutral-200 px-4 py-4">
       {/* Language Selector - Phase 1 i18n Implementation Required */}
       <div>
-        <label
-          htmlFor="mobile-language"
-          className="text-sm font-medium text-neutral-700"
-        >
+        <label htmlFor="mobile-language" className="text-sm font-medium text-neutral-700">
           Language
         </label>
         <select
@@ -48,10 +45,7 @@ export default function MobileRegionLanguageSelector() {
 
       {/* Region Selector - Phase 1 Regional Support Implementation Required */}
       <div>
-        <label
-          htmlFor="mobile-region"
-          className="text-sm font-medium text-neutral-700"
-        >
+        <label htmlFor="mobile-region" className="text-sm font-medium text-neutral-700">
           Region
         </label>
         <select

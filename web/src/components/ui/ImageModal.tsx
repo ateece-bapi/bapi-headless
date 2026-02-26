@@ -94,7 +94,7 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
       onClick={onClose}
     >
       {/* Controls */}
-      <div className="absolute top-4 right-4 z-10 flex gap-2">
+      <div className="absolute right-4 top-4 z-10 flex gap-2">
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -162,7 +162,7 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
           alt={alt}
           width={1200}
           height={1200}
-          className="h-auto w-auto max-h-[90vh] max-w-[90vw] rounded-lg object-contain"
+          className="h-auto max-h-[90vh] w-auto max-w-[90vw] rounded-lg object-contain"
           quality={90}
           priority
           unoptimized={src.startsWith('data:')} // Allow data URLs for base64 images

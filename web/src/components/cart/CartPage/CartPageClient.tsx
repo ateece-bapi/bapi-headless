@@ -264,7 +264,11 @@ export default function CartPageClient() {
 
       // Show success toast after state updates complete
       setTimeout(() => {
-        showToast('success', t('cartPage.toasts.cartCleared'), t('cartPage.toasts.allItemsRemoved'));
+        showToast(
+          'success',
+          t('cartPage.toasts.cartCleared'),
+          t('cartPage.toasts.allItemsRemoved')
+        );
       }, 100);
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
@@ -297,9 +301,7 @@ export default function CartPageClient() {
       <div className="mx-auto max-w-content px-4 py-16 text-center sm:px-6 lg:px-8">
         <ShoppingCart className="mx-auto mb-6 h-24 w-24 text-neutral-300" />
         <h1 className="mb-4 text-3xl font-bold text-neutral-900">{t('cartPage.empty.title')}</h1>
-        <p className="mb-8 text-lg text-neutral-600">
-          {t('cartPage.empty.description')}
-        </p>
+        <p className="mb-8 text-lg text-neutral-600">{t('cartPage.empty.description')}</p>
         <Link
           href={`/${locale}/products`}
           className="btn-bapi-primary inline-flex items-center gap-2 rounded-xl px-8 py-4 font-semibold"
@@ -315,7 +317,9 @@ export default function CartPageClient() {
     <div className="mx-auto max-w-container px-4 py-8 sm:px-6 sm:py-12 lg:px-8 xl:px-12">
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">{t('cartPage.header.title')}</h1>
+        <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">
+          {t('cartPage.header.title')}
+        </h1>
         <Link
           href={`/${locale}/products`}
           className="flex items-center gap-2 font-medium text-primary-500 transition-colors hover:text-primary-600"

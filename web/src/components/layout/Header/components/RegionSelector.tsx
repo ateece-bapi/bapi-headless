@@ -46,7 +46,7 @@ const RegionSelector: React.FC = () => {
 
             router.push(newPath);
             router.refresh();
-            
+
             // Show success toast after language switch
             toast.success('Language Changed');
           },

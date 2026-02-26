@@ -21,7 +21,7 @@ const defaultTaglines = [
   'Seamless wireless integration for your existing BAS',
   'Precision Engineering',
   'Building the Future',
-  "...It&apos;s in the details",
+  '...It&apos;s in the details',
   'People. Building. Sensors',
 ];
 

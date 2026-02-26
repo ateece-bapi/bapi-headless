@@ -85,10 +85,10 @@ export const getProductBySlug = cache(async (slug: string): Promise<GetProductBy
  * ===========================================================================
  * PROBLEM: 120-line normalizer with 8+ "as any"/"as Record<string, unknown>" casts
  *          defeats TypeScript safety and masks upstream WordPress schema issues.
- * 
+ *
  * ROOT CAUSE: This function exists to defensively handle inconsistencies in the
  *             WPGraphQL schema responses:
- * 
+ *
  * 1. Missing __typename fields on Product type
  * 2. Inconsistent image field naming:
  *    - sourceUrl vs source_url
@@ -100,33 +100,33 @@ export const getProductBySlug = cache(async (slug: string): Promise<GetProductBy
  *    - attributes: sometimes Array, sometimes { nodes: [] }
  * 4. Missing relatedProducts.partNumber field
  * 5. Inconsistent string fallbacks (shortDescription vs short_description, etc.)
- * 
+ *
  * RECOMMENDED APPROACH (Post-Launch):
- * 
+ *
  * 1. Add Zod schema validation layer BETWEEN GraphQL response and normalizer
  *    - Parse raw response with Zod schema
  *    - Log warnings when normalization is actually needed (detect real problems)
  *    - Track which inconsistencies occur in production
- * 
+ *
  * 2. Fix WordPress/WPGraphQL schema at source
  *    - Ensure WPGraphQL returns consistent field naming (camelCase)
  *    - Guarantee { nodes: [] } shape for all connection types
  *    - Add missing fields to schema (partNumber on related products)
  *    - Ensure __typename always present
- * 
+ *
  * 3. Add unit tests for normalizeProductQueryResponse
  *    - Test with malformed inputs (missing fields, wrong types, null values)
  *    - Ensure backward compatibility during migration
  *    - Document which edge cases are actually possible vs overcautious
- * 
+ *
  * 4. Gradually remove normalization as schema becomes reliable
  *    - Once Zod validation shows schema is consistent for 30 days
  *    - Remove unnecessary fallbacks and type casts
  *    - Let TypeScript do its job
- * 
+ *
  * SEVERITY: Low (works correctly, but hides upstream problems and defeats type safety)
  * URGENCY: Defer to post-launch (Phase 1 launches April 10, 2026)
- * 
+ *
  * EXAMPLE ISSUES THIS MASKS:
  * - Line 48: (galleryRaw as Record<string, unknown>).nodes
  * - Line 60-61: (rp.image as any).sourceUrl / .altText

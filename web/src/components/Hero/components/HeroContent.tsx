@@ -50,7 +50,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ title, description, taglines,
       {/* Yellow decorative accent line */}
       <div
         className={clsx(
-          'h-2 w-4/5 rounded-full bg-linear-to-r from-transparent via-accent-500 to-transparent shadow-lg shadow-accent-500/50',
+          'bg-linear-to-r h-2 w-4/5 rounded-full from-transparent via-accent-500 to-transparent shadow-lg shadow-accent-500/50',
           // Mobile to lg: centered with mx-auto
           'mx-auto',
           // xl+: remove auto margins for left alignment

@@ -1,6 +1,6 @@
 /**
  * Breadcrumb Navigation Utilities
- * 
+ *
  * Generates breadcrumb trails for product, category, and content pages
  * Supports i18n and Schema.org structured data
  */
@@ -198,21 +198,18 @@ export function getSearchBreadcrumbs(
 
 /**
  * Convert breadcrumb items to Schema.org BreadcrumbList format
- * 
+ *
  * This function provides improved schema generation compared to generateBreadcrumbSchema:
  * - URL normalization to prevent double slashes
  * - Filtering of invalid/empty hrefs
  * - Integration with BreadcrumbItem type
  * - Proper handling of relative URLs
- * 
+ *
  * @param breadcrumbs - Array of breadcrumb items with label and optional href
  * @param siteUrl - Base site URL (e.g., "https://bapi.com")
  * @returns Schema.org BreadcrumbList object for structured data
  */
-export function breadcrumbsToSchemaOrg(
-  breadcrumbs: BreadcrumbItem[],
-  siteUrl: string
-) {
+export function breadcrumbsToSchemaOrg(breadcrumbs: BreadcrumbItem[], siteUrl: string) {
   // Normalize siteUrl to avoid double slashes
   const normalizedSiteUrl = siteUrl.replace(/\/+$/, '');
 

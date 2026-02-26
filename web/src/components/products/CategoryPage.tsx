@@ -133,8 +133,8 @@ export function CategoryPage({ category, products }: CategoryPageProps) {
             </div>
             <h2 className="mb-3 text-3xl font-bold text-gray-900">No Products Yet</h2>
             <p className="mb-8 text-lg text-gray-600">
-              We&apos;re currently updating this category. Check back soon for new products, or browse
-              our other categories.
+              We&apos;re currently updating this category. Check back soon for new products, or
+              browse our other categories.
             </p>
             <Link
               href="/products"

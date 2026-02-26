@@ -40,7 +40,9 @@ export function LanguageSelectorV2() {
             aria-hidden="true"
           />
           <span className="flex items-center gap-2">
-            <span className="text-lg" aria-hidden="true">{currentLanguage.flag}</span>
+            <span className="text-lg" aria-hidden="true">
+              {currentLanguage.flag}
+            </span>
             <span className="block truncate">{currentLanguage.nativeName}</span>
           </span>
           <ChevronDownIcon
@@ -69,10 +71,12 @@ export function LanguageSelectorV2() {
                 className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
                 aria-hidden="true"
               />
-              
+
               {/* Selected Language Display */}
               <span className="flex items-center gap-2">
-                <span className="text-lg" aria-hidden="true">{currentLanguage.flag}</span>
+                <span className="text-lg" aria-hidden="true">
+                  {currentLanguage.flag}
+                </span>
                 <span className="block truncate">{currentLanguage.nativeName}</span>
               </span>
 
@@ -100,7 +104,7 @@ export function LanguageSelectorV2() {
                         {group.label}
                       </span>
                     </div>
-                    
+
                     {/* Group Options */}
                     {group.languages.map((languageCode) => {
                       const config = LANGUAGES[languageCode];
@@ -127,7 +131,9 @@ export function LanguageSelectorV2() {
 
                               {/* Option Content */}
                               <div className="flex items-center gap-2">
-                                <span className="text-lg" aria-hidden="true">{config.flag}</span>
+                                <span className="text-lg" aria-hidden="true">
+                                  {config.flag}
+                                </span>
                                 <div className="flex flex-col">
                                   <span
                                     className={`block truncate ${

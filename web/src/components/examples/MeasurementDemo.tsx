@@ -13,7 +13,7 @@ import type { LanguageCode } from '@/types/region';
 
 /**
  * Demonstration component showing measurement unit conversion
- * 
+ *
  * This component demonstrates how to use the measurement utilities
  * for product specifications and sensor data.
  */
@@ -111,9 +111,7 @@ export default function MeasurementDemo() {
           </div>
           <div>
             <p className="text-sm font-medium text-neutral-600">Weight:</p>
-            <p className="text-lg text-neutral-900">
-              {formatWeight(0.3, 'pounds', locale)}
-            </p>
+            <p className="text-lg text-neutral-900">{formatWeight(0.3, 'pounds', locale)}</p>
           </div>
         </div>
       </div>

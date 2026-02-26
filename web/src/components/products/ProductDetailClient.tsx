@@ -68,7 +68,7 @@ export default function ProductDetailClient({
   useCartDrawer = defaultUseCartDrawer,
 }: ProductDetailClientProps) {
   const region = useRegion();
-  
+
   // Extract data with safe defaults (hooks must be called unconditionally)
   const { variations = [], attributes = [] } = product ?? {};
 
@@ -113,7 +113,8 @@ export default function ProductDetailClient({
   }
 
   // Determine the price to use (variation or product)
-  const displayPrice = selectedVariation && selectedVariation?.price ? selectedVariation?.price : product.price;
+  const displayPrice =
+    selectedVariation && selectedVariation?.price ? selectedVariation?.price : product.price;
   const numericPrice = convertWooCommercePriceNumeric(displayPrice, region.currency);
 
   const cartProduct: Omit<CartItem, 'quantity'> = {

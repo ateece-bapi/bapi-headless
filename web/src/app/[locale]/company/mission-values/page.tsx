@@ -73,9 +73,9 @@ export default async function MissionValuesPage() {
   }
 
   return (
-    <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-primary-50/30">
+    <main className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
+      <section className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
@@ -118,42 +118,40 @@ export default async function MissionValuesPage() {
         <div className="mb-20 grid gap-8 md:grid-cols-2">
           {/* Mission Card */}
           <div className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
-            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-linear-to-br from-primary-50 to-transparent" />
+            <div className="bg-linear-to-br absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full from-primary-50 to-transparent" />
 
             <div className="relative">
-              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 shadow-lg transition-transform duration-300 group-hover:scale-110">
+              <div className="bg-linear-to-br mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl from-primary-600 to-primary-700 shadow-lg transition-transform duration-300 group-hover:scale-110">
                 <Target className="h-8 w-8 text-white" />
               </div>
 
               <h2 className="mb-4 text-3xl font-bold text-gray-900">{t('mission.title')}</h2>
 
-              <p className="text-lg leading-relaxed text-gray-700">
-                {t('mission.description')}
-              </p>
+              <p className="text-lg leading-relaxed text-gray-700">{t('mission.description')}</p>
             </div>
           </div>
 
           {/* Vision Card */}
           <div className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-10 shadow-xl transition-all duration-500 hover:shadow-2xl">
-            <div className="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-linear-to-br from-primary-50 to-transparent" />
+            <div className="bg-linear-to-br absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full from-primary-50 to-transparent" />
 
             <div className="relative">
-              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-primary-600 to-primary-400 shadow-lg transition-transform duration-300 group-hover:scale-110">
+              <div className="bg-linear-to-br mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl from-primary-600 to-primary-400 shadow-lg transition-transform duration-300 group-hover:scale-110">
                 <Eye className="h-8 w-8 text-white" />
               </div>
 
               <h2 className="mb-4 text-3xl font-bold text-gray-900">{t('vision.title')}</h2>
 
-              <p className="text-lg leading-relaxed text-gray-700">
-                {t('vision.description')}
-              </p>
+              <p className="text-lg leading-relaxed text-gray-700">{t('vision.description')}</p>
             </div>
           </div>
         </div>
 
         {/* Core Values Section */}
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 lg:text-5xl">{t('coreValuesSection.title')}</h2>
+          <h2 className="mb-4 text-4xl font-bold text-gray-900 lg:text-5xl">
+            {t('coreValuesSection.title')}
+          </h2>
           <p className="mx-auto max-w-3xl text-xl text-gray-600">
             {t('coreValuesSection.description')}
           </p>
@@ -177,13 +175,13 @@ export default async function MissionValuesPage() {
               >
                 {/* Gradient background on hover */}
                 <div
-                  className={`absolute inset-0 bg-linear-to-br ${value.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
+                  className={`bg-linear-to-br absolute inset-0 ${value.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
                 />
 
                 {/* Icon */}
                 <div className="relative mb-6">
                   <div
-                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br ${value.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                    className={`bg-linear-to-br inline-flex h-14 w-14 items-center justify-center rounded-xl ${value.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
                   >
                     <Icon className="h-7 w-7 text-white" />
                   </div>
@@ -191,28 +189,30 @@ export default async function MissionValuesPage() {
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="mb-3 text-2xl font-bold text-gray-900">{t(`coreValuesSection.${value.key}.title`)}</h3>
+                  <h3 className="mb-3 text-2xl font-bold text-gray-900">
+                    {t(`coreValuesSection.${value.key}.title`)}
+                  </h3>
 
-                  <p className="leading-relaxed text-gray-600">{t(`coreValuesSection.${value.key}.description`)}</p>
+                  <p className="leading-relaxed text-gray-600">
+                    {t(`coreValuesSection.${value.key}.description`)}
+                  </p>
                 </div>
 
                 {/* Decorative corner */}
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-linear-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="bg-linear-to-br absolute right-0 top-0 h-24 w-24 rounded-bl-full from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
             );
           })}
         </div>
 
         {/* CTA Section */}
-        <div className="relative mt-20 overflow-hidden rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="bg-linear-to-br relative mt-20 overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
 
           <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">
             <div className="text-center lg:text-left">
               <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">{t('cta.title')}</h2>
-              <p className="max-w-2xl text-lg text-primary-50">
-                {t('cta.description')}
-              </p>
+              <p className="max-w-2xl text-lg text-primary-50">{t('cta.description')}</p>
             </div>
 
             <Link

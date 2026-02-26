@@ -47,7 +47,7 @@ const RegionSelectorV2: React.FC = () => {
           onClick: () => {
             // Change language using next-intl navigation helpers
             router.replace(pathname, { locale: suggestedLanguage });
-            
+
             // Show success toast after language switch
             toast.success('Language Changed');
           },
@@ -71,7 +71,9 @@ const RegionSelectorV2: React.FC = () => {
             aria-hidden="true"
           />
           <span className="flex items-center gap-2">
-            <span className="text-lg" aria-hidden="true">{currentRegion.flag}</span>
+            <span className="text-lg" aria-hidden="true">
+              {currentRegion.flag}
+            </span>
             <span className="block truncate">{currentRegion.name}</span>
           </span>
           <span className="ml-auto flex items-center gap-1.5 text-neutral-500">
@@ -104,13 +106,15 @@ const RegionSelectorV2: React.FC = () => {
                 className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
                 aria-hidden="true"
               />
-              
+
               {/* Selected Region Display */}
               <span className="flex items-center gap-2">
-                <span className="text-lg" aria-hidden="true">{currentRegion.flag}</span>
+                <span className="text-lg" aria-hidden="true">
+                  {currentRegion.flag}
+                </span>
                 <span className="block truncate">{currentRegion.name}</span>
               </span>
-              
+
               {/* Currency Symbol */}
               <span className="ml-auto flex items-center gap-1.5 text-neutral-500">
                 <span className="text-xs font-semibold">{currentCurrency.symbol}</span>
@@ -141,7 +145,7 @@ const RegionSelectorV2: React.FC = () => {
                         {group.label}
                       </span>
                     </div>
-                    
+
                     {/* Group Options */}
                     {group.regions.map((regionCode) => {
                       const region = REGIONS[regionCode];
@@ -170,7 +174,9 @@ const RegionSelectorV2: React.FC = () => {
                               {/* Option Content */}
                               <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-2">
-                                  <span className="text-lg" aria-hidden="true">{region.flag}</span>
+                                  <span className="text-lg" aria-hidden="true">
+                                    {region.flag}
+                                  </span>
                                   <span
                                     className={`block truncate ${
                                       isSelected ? 'font-semibold' : 'font-medium'
@@ -179,7 +185,7 @@ const RegionSelectorV2: React.FC = () => {
                                     {region.name}
                                   </span>
                                 </div>
-                                
+
                                 {/* Currency Info */}
                                 <div
                                   className={`flex items-center gap-1 text-xs ${

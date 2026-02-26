@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props) {
       description: t('metadata.description'),
       path: 'resources/case-studies',
     },
-    locale,
+    locale
   );
 }
 
@@ -58,9 +58,7 @@ export default async function CaseStudiesPage({ params }: Props) {
           <div className="text-center">
             <FileText className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">
-              {t('hero.subtitle')}
-            </p>
+            <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
         </div>
       </section>
@@ -116,9 +114,7 @@ export default async function CaseStudiesPage({ params }: Props) {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('cta.heading')}</h2>
-          <p className="mb-6 text-neutral-600">
-            {t('cta.description')}
-          </p>
+          <p className="mb-6 text-neutral-600">{t('cta.description')}</p>
           <Link
             href="/request-quote"
             className="inline-block rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"

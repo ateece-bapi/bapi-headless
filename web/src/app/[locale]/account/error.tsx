@@ -7,7 +7,7 @@ import logger from '@/lib/logger';
 /**
  * Account dashboard error boundary - handles errors in the account section
  * Logs to monitoring and provides user recovery options
- * 
+ *
  * @param {Object} props - Component props
  * @param {Error & { digest?: string }} props.error - The error that was thrown
  * @param {() => void} props.reset - Function to retry loading the dashboard
@@ -48,9 +48,7 @@ export default function AccountError({
           </svg>
         </div>
 
-        <h2 className="mb-3 text-2xl font-bold text-neutral-900">
-          Unable to load account
-        </h2>
+        <h2 className="mb-3 text-2xl font-bold text-neutral-900">Unable to load account</h2>
 
         <p className="mb-6 text-base text-neutral-600">
           We&apos;re having trouble loading your account dashboard. Please try again.

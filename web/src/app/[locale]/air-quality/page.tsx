@@ -23,7 +23,7 @@ export default function AirQualityPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 py-20 text-white lg:py-32">
+      <section className="bg-linear-to-br relative overflow-hidden from-primary-700 via-primary-600 to-primary-500 py-20 text-white lg:py-32">
         <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
         <div className="relative z-10 mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -187,7 +187,7 @@ export default function AirQualityPage() {
                 key={idx}
                 className="group relative rounded-xl bg-white p-8 shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
               >
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-linear-to-br from-primary-500 to-primary-700 transition-transform duration-500 group-hover:scale-110">
+                <div className="bg-linear-to-br mb-6 flex h-16 w-16 items-center justify-center rounded-xl from-primary-500 to-primary-700 transition-transform duration-500 group-hover:scale-110">
                   <sensor.icon className="h-8 w-8 text-white" />
                 </div>
 
@@ -213,7 +213,7 @@ export default function AirQualityPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
 
-                <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
+                <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
               </div>
             ))}
           </div>

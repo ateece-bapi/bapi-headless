@@ -76,28 +76,29 @@ async function fetchResources(): Promise<MediaItemNode[]> {
  * AI-optimized metadata for technical resources
  * Enhanced for technical documentation discovery
  */
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: Promise<{ locale: string }> 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'resourcesPage' });
 
-  return generatePageMetadata({
-    title: t('hero.title') + ' - Installation Guides, Datasheets & Documentation',
-    description: t('metadata.description'),
-    path: 'resources',
-    keywords: t('metadata.keywords').split(',').map((k: string) => k.trim()),
-    type: 'website',
-  }, locale);
+  return generatePageMetadata(
+    {
+      title: t('hero.title') + ' - Installation Guides, Datasheets & Documentation',
+      description: t('metadata.description'),
+      path: 'resources',
+      keywords: t('metadata.keywords')
+        .split(',')
+        .map((k: string) => k.trim()),
+      type: 'website',
+    },
+    locale
+  );
 }
 
-export default async function ResourcesPage({
-  params
-}: {
-  params: Promise<{ locale: string }>
-}) {
+export default async function ResourcesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const resources = await fetchResources();
   const t = await getTranslations({ locale, namespace: 'resourcesPage' });
@@ -156,9 +157,7 @@ export default async function ResourcesPage({
               <h3 className="mb-1 text-xl font-semibold text-neutral-900 transition-colors group-hover:text-primary-700">
                 {t('appNotesCta.title')}
               </h3>
-              <p className="text-neutral-600">
-                {t('appNotesCta.description')}
-              </p>
+              <p className="text-neutral-600">{t('appNotesCta.description')}</p>
             </div>
           </div>
         </Link>

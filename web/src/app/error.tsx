@@ -7,7 +7,7 @@ import logger from '@/lib/logger';
 /**
  * Root error boundary - catches unhandled errors in the application
  * Logs to monitoring service and provides user recovery options
- * 
+ *
  * @param {Object} props - Component props
  * @param {Error & { digest?: string }} props.error - The error that was thrown
  * @param {() => void} props.reset - Function to attempt recovery by re-rendering

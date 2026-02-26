@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       path: 'resources/datasheets',
       keywords: t('metadata.keywords').split(', '),
     },
-    locale,
+    locale
   );
 }
 
@@ -33,9 +33,7 @@ export default async function DatasheetsPage({ params }: Props) {
           <div className="text-center">
             <FileText className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">
-              {t('hero.subtitle')}
-            </p>
+            <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
         </div>
       </section>
@@ -103,7 +101,9 @@ export default async function DatasheetsPage({ params }: Props) {
                 </div>
                 <p className="mb-4 line-clamp-2 text-sm text-neutral-600">{item.description}</p>
                 <div className="mb-4 flex items-center justify-between text-xs text-neutral-500">
-                  <span>{item.pages} {t('grid.pagesLabel')}</span>
+                  <span>
+                    {item.pages} {t('grid.pagesLabel')}
+                  </span>
                   <span>{item.size}</span>
                 </div>
                 <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent-500 px-4 py-2 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
@@ -143,16 +143,12 @@ export default async function DatasheetsPage({ params }: Props) {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('bulkDownload.heading')}</h2>
-          <p className="mb-6 text-neutral-600">
-            {t('bulkDownload.description')}
-          </p>
+          <p className="mb-6 text-neutral-600">{t('bulkDownload.description')}</p>
           <button className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600">
             <Download className="h-5 w-5" />
             {t('bulkDownload.button')}
           </button>
-          <p className="mt-3 text-sm text-neutral-500">
-            {t('bulkDownload.packageInfo')}
-          </p>
+          <p className="mt-3 text-sm text-neutral-500">{t('bulkDownload.packageInfo')}</p>
         </div>
       </section>
     </main>

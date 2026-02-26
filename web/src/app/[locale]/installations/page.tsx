@@ -175,7 +175,7 @@ const installations = {
 
 export default function RealWorldInstallationsPage() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-neutral-50 to-white">
+    <div className="bg-linear-to-br min-h-screen from-neutral-50 to-white">
       {/* Hero Section */}
       <section className="bg-linear-to-r from-primary-700 via-primary-600 to-primary-700 py-16 text-white sm:py-20">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -258,7 +258,7 @@ export default function RealWorldInstallationsPage() {
                           <h3 className="mb-2 text-center text-2xl font-bold text-neutral-900 sm:text-3xl">
                             {subcategory.name}
                           </h3>
-                          <div className="mx-auto h-1 w-20 rounded-full bg-linear-to-r from-primary-600 to-primary-400" />
+                          <div className="bg-linear-to-r mx-auto h-1 w-20 rounded-full from-primary-600 to-primary-400" />
                         </div>
 
                         {/* Subcategory Image Grid */}
@@ -278,7 +278,7 @@ export default function RealWorldInstallationsPage() {
                                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                                 {/* Gradient Overlay */}
-                                <div className="absolute inset-0 bg-linear-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                                <div className="bg-linear-to-t absolute inset-0 from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                               </div>
 
                               {/* Content */}
@@ -292,7 +292,7 @@ export default function RealWorldInstallationsPage() {
                               </div>
 
                               {/* Accent Bar */}
-                              <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
+                              <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
                             </div>
                           ))}
                         </div>
@@ -323,7 +323,7 @@ export default function RealWorldInstallationsPage() {
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                           />
                           {/* Gradient Overlay */}
-                          <div className="absolute inset-0 bg-linear-to-t from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                          <div className="bg-linear-to-t absolute inset-0 from-neutral-900/60 via-neutral-900/0 to-neutral-900/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                         </div>
 
                         {/* Content */}
@@ -337,7 +337,7 @@ export default function RealWorldInstallationsPage() {
                         </div>
 
                         {/* Accent Bar */}
-                        <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform bg-linear-to-r from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
+                        <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
                       </div>
                     ))}
                   </div>
@@ -346,7 +346,7 @@ export default function RealWorldInstallationsPage() {
                 {/* Category Divider (except last) */}
                 {categoryIndex < Object.keys(installations).length - 1 && (
                   <div className="mt-20 flex items-center justify-center">
-                    <div className="h-px w-full max-w-md bg-linear-to-r from-transparent via-neutral-300 to-transparent" />
+                    <div className="bg-linear-to-r h-px w-full max-w-md from-transparent via-neutral-300 to-transparent" />
                   </div>
                 )}
               </div>

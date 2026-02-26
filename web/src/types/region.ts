@@ -2,8 +2,32 @@
  * Region and localization types
  */
 
-export type RegionCode = 'us' | 'ca' | 'mx' | 'uk' | 'eu' | 'jp' | 'cn' | 'sg' | 'vn' | 'th' | 'in' | 'mena';
-export type CurrencyCode = 'USD' | 'CAD' | 'MXN' | 'EUR' | 'GBP' | 'JPY' | 'CNY' | 'SGD' | 'AED' | 'VND' | 'THB' | 'INR';
+export type RegionCode =
+  | 'us'
+  | 'ca'
+  | 'mx'
+  | 'uk'
+  | 'eu'
+  | 'jp'
+  | 'cn'
+  | 'sg'
+  | 'vn'
+  | 'th'
+  | 'in'
+  | 'mena';
+export type CurrencyCode =
+  | 'USD'
+  | 'CAD'
+  | 'MXN'
+  | 'EUR'
+  | 'GBP'
+  | 'JPY'
+  | 'CNY'
+  | 'SGD'
+  | 'AED'
+  | 'VND'
+  | 'THB'
+  | 'INR';
 export type LanguageCode =
   | 'en'
   | 'de'

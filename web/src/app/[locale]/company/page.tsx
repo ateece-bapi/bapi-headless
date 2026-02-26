@@ -18,7 +18,7 @@ export function generateStaticParams() {
  */
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('companyPages.about.metadata');
-  
+
   return generatePageMetadata({
     title: t('title'),
     description: t('description'),
@@ -53,9 +53,7 @@ export default async function CompanyPage() {
               <Building2 className="h-4 w-4" />
               {t('hero.badge')}
             </div>
-            <h1 className="mb-4 text-balance text-4xl font-bold sm:text-5xl">
-              {t('hero.title')}
-            </h1>
+            <h1 className="mb-4 text-balance text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
             <p className="mx-auto mb-2 max-w-3xl text-balance text-xl text-primary-50">
               {t('hero.subtitle')}
             </p>
@@ -76,9 +74,7 @@ export default async function CompanyPage() {
             <p className="mb-6 text-lg leading-relaxed text-neutral-700">
               {t('overview.paragraph1')}
             </p>
-            <p className="text-lg leading-relaxed text-neutral-700">
-              {t('overview.paragraph2')}
-            </p>
+            <p className="text-lg leading-relaxed text-neutral-700">{t('overview.paragraph2')}</p>
           </div>
           <div className="mt-10 h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
         </PageContainer>
@@ -199,7 +195,9 @@ export default async function CompanyPage() {
               </h3>
               <div className="space-y-4">
                 <div>
-                  <p className="mb-1 text-sm text-neutral-600">{t('location.contactCard.phoneLabel')}</p>
+                  <p className="mb-1 text-sm text-neutral-600">
+                    {t('location.contactCard.phoneLabel')}
+                  </p>
                   <a
                     href="tel:+17158561203"
                     className="duration-normal text-lg font-bold text-primary-500 transition-colors hover:text-primary-600"
@@ -208,7 +206,9 @@ export default async function CompanyPage() {
                   </a>
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-600">{t('location.contactCard.emailLabel')}</p>
+                  <p className="mb-1 text-sm text-neutral-600">
+                    {t('location.contactCard.emailLabel')}
+                  </p>
                   <a
                     href="mailto:sales@bapihvac.com"
                     className="duration-normal text-lg font-bold text-primary-500 transition-colors hover:text-primary-600"
@@ -217,7 +217,9 @@ export default async function CompanyPage() {
                   </a>
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-600">{t('location.contactCard.hoursLabel')}</p>
+                  <p className="mb-1 text-sm text-neutral-600">
+                    {t('location.contactCard.hoursLabel')}
+                  </p>
                   <p className="text-neutral-900">{t('location.contactCard.hoursDays')}</p>
                   <p className="text-neutral-900">{t('location.contactCard.hoursTime')}</p>
                 </div>

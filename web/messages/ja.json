@@ -173,11 +173,13 @@
       "readMoreAriaLabel": "{title}について続きを読む"
     },
     "locations": {
+      "title": "グローバルプレゼンス",
+      "subtitle": "ウィスコンシン州の本社から3大陸の施設まで、BAPIは地域の専門知識とグローバルなリーチで世界中のお客様にサービスを提供しています。",
       "mapLegend": {
         "headquarters": "本社",
-        "distribution": "流通",
-        "production": "生産",
-        "productionService": "生産と修理"
+        "manufacturing": "製造・オフィス",
+        "sales": "営業所",
+        "distributionPartner": "販売パートナー"
       },
       "facilities": {
         "headquartersUsa": {
@@ -188,27 +190,27 @@
           "type": "本社",
           "established": "1993年設立"
         },
-        "distributionUk": {
-          "name": "英国流通センター",
-          "city": "Aldershot",
-          "country": "イギリス",
-          "description": "ヨーロッパの流通とロジスティクスのハブ",
-          "type": "流通センター"
-        },
-        "productionPoland": {
-          "name": "生産・カスタマーサービス施設",
+        "manufacturingPoland": {
+          "name": "ヨーロッパ製造・オフィス",
           "city": "Nowa Wola",
           "country": "ポーランド",
-          "description": "ヨーロッパの生産施設とカスタマーサービスセンター",
-          "type": "生産と修理"
+          "description": "ヨーロッパの生産施設、オフィス、カスタマーサービスセンター",
+          "type": "製造・オフィス"
         },
-        "productionVietnam": {
-          "name": "アジア太平洋地域の生産施設",
+        "manufacturingVietnam": {
+          "name": "アジア太平洋製造・オフィス",
           "city": "Da Nang",
           "country": "ベトナム",
-          "description": "アジア市場向けの新しい製造施設",
-          "type": "生産",
+          "description": "アジア市場向けの新しい製造施設とオフィス",
+          "type": "製造・オフィス",
           "status": "間もなく開設"
+        },
+        "salesUk": {
+          "name": "英国営業所",
+          "city": "Aldershot",
+          "country": "イギリス",
+          "description": "ヨーロッパの営業とカスタマーサポート拠点",
+          "type": "営業所"
         }
       },
       "cta": {

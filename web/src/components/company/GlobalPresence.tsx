@@ -5,6 +5,7 @@ import {
   BAPI_LOCATIONS,
   FACILITY_TYPE_LABELS,
   FACILITY_TYPE_COLORS,
+  getActiveFacilityTypes,
 } from '@/lib/constants/locations';
 import type { Location } from '@/lib/constants/locations';
 import { Building2, MapPin } from 'lucide-react';
@@ -24,9 +25,9 @@ type GeoFeature = {
 interface LocationTranslations {
   mapLegend: {
     headquarters: string;
-    distribution: string;
-    production: string;
-    productionService: string;
+    manufacturing: string;
+    sales: string;
+    distributionPartner: string;
   };
   facilities: {
     [key: string]: {
@@ -61,6 +62,24 @@ interface GlobalPresenceProps {
  * - Responsive layout with location cards
  * - Zero runtime cost (no API calls)
  *
+ * Updated February 2026 per Mike Moss feedback:
+ * - All manufacturing facilities (Poland, Vietnam) use same color/category
+ * - UK changed from "Distribution Centre" to "Sales Office"
+ * - Support for sales staff and distribution partner locations
+ *
+ * Performance:
+ * - Static data from constants (no GraphQL queries)
+ * - SVG map with minimal re-renders
+ * - Tooltip state managed with useState (no global state)
+ *
+ * i18n:
+ * - Accepts locationTranslations prop for all text
+ * - Falls back to English defaults
+ * - Location names, descriptions, and labels all translatable
+ *
+ * @param {string} [title] - Section heading
+ * @param {string} [subtitle] - Section description
+ * @param {LocationTranslations} [locationTranslations] - i18n translations
  * @returns {JSX.Element} Global presence section with map and location details
  */
 export function GlobalPresence({
@@ -69,6 +88,9 @@ export function GlobalPresence({
   locationTranslations,
 }: GlobalPresenceProps = {}) {
   const [tooltip, setTooltip] = useState<{ location: Location; visible: boolean } | null>(null);
+
+  // Get active facility types for legend (only show types that exist in data)
+  const activeFacilityTypes = getActiveFacilityTypes();
 
   return (
     <section className="bg-linear-to-b from-white to-neutral-50 py-16">
@@ -99,14 +121,15 @@ export function GlobalPresence({
               className="h-full w-full"
             >
               <ZoomableGroup center={[15, 30]} zoom={1}>
+                {/* World Geography Base Layer */}
                 <Geographies geography={geoUrl}>
                   {({ geographies }: { geographies: GeoFeature[] }) =>
                     geographies.map((geo: GeoFeature) => (
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}
-                        fill="#E5E7EB"
-                        stroke="#D1D5DB"
+                        fill="#E5E7EB" // neutral-200
+                        stroke="#D1D5DB" // neutral-300
                         strokeWidth={0.5}
                         style={{
                           default: { outline: 'none' },
@@ -156,7 +179,7 @@ export function GlobalPresence({
               </ZoomableGroup>
             </ComposableMap>
 
-            {/* Tooltip */}
+            {/* Hover Tooltip */}
             {tooltip?.visible &&
               (() => {
                 const translation = locationTranslations?.facilities[tooltip.location.id];
@@ -194,33 +217,29 @@ export function GlobalPresence({
               })()}
           </div>
 
-          {/* Map Legend */}
+          {/* Map Legend - Only show active facility types */}
           <div className="mt-6 border-t border-neutral-200 pt-6">
             <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="h-4 w-4 rounded-full bg-[#1479BC]" />
-                <span className="text-neutral-700">
-                  {locationTranslations?.mapLegend.headquarters || 'Headquarters'}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="h-4 w-4 rounded-full bg-[#FFC843]" />
-                <span className="text-neutral-700">
-                  {locationTranslations?.mapLegend.distribution || 'Distribution'}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="h-4 w-4 rounded-full bg-[#3B82F6]" />
-                <span className="text-neutral-700">
-                  {locationTranslations?.mapLegend.production || 'Production'}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="h-4 w-4 rounded-full bg-[#10B981]" />
-                <span className="text-neutral-700">
-                  {locationTranslations?.mapLegend.productionService || 'Production & Service'}
-                </span>
-              </div>
+              {activeFacilityTypes.map((type) => {
+                // Map facility types to translation keys
+                const translationKey =
+                  type === 'distribution-partner'
+                    ? 'distributionPartner'
+                    : (type as keyof LocationTranslations['mapLegend']);
+
+                return (
+                  <div key={type} className="flex items-center gap-2">
+                    <div
+                      className="h-4 w-4 rounded-full"
+                      style={{ backgroundColor: FACILITY_TYPE_COLORS[type] }}
+                    />
+                    <span className="text-neutral-700">
+                      {locationTranslations?.mapLegend[translationKey] ||
+                        FACILITY_TYPE_LABELS[type]}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

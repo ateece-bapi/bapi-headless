@@ -1,5 +1,11 @@
 import '@testing-library/jest-dom';
 import { server } from './msw/server';
+import { toHaveNoViolations } from 'jest-axe';
+import { expect } from 'vitest';
+
+// Extend Vitest's expect with jest-axe accessibility matchers
+// Note: jest-axe is the industry standard and works perfectly with Vitest
+expect.extend(toHaveNoViolations);
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen({ onUnhandledRequest: 'warn' }));

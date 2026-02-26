@@ -90,6 +90,9 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Product image viewer"
       className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/90 backdrop-blur-sm"
       onClick={onClose}
     >

@@ -804,11 +804,13 @@
       "readMoreAriaLabel": "Read more about {title}"
     },
     "locations": {
+      "title": "Our Global Presence",
+      "subtitle": "From our headquarters in Wisconsin to facilities across three continents, BAPI serves customers worldwide with local expertise and global reach.",
       "mapLegend": {
         "headquarters": "Headquarters",
-        "distribution": "Distribution",
-        "production": "Production",
-        "productionService": "Production & Service"
+        "manufacturing": "Manufacturing & Office",
+        "sales": "Sales Office",
+        "distributionPartner": "Distribution Partner"
       },
       "facilities": {
         "headquartersUsa": {
@@ -819,27 +821,27 @@
           "type": "Headquarters",
           "established": "Est. 1993"
         },
-        "distributionUk": {
-          "name": "UK Distribution Centre",
-          "city": "Aldershot",
-          "country": "United Kingdom",
-          "description": "European distribution and logistics hub",
-          "type": "Distribution Centre"
-        },
-        "productionPoland": {
-          "name": "Production & Customer Service Facility",
+        "manufacturingPoland": {
+          "name": "European Manufacturing & Office",
           "city": "Nowa Wola",
           "country": "Poland",
-          "description": "European production facility and customer service center",
-          "type": "Production & Service"
+          "description": "European production facility, office, and customer service center",
+          "type": "Manufacturing & Office"
         },
-        "productionVietnam": {
-          "name": "Asia-Pacific Production Facility",
+        "manufacturingVietnam": {
+          "name": "Asia-Pacific Manufacturing & Office",
           "city": "Da Nang",
           "country": "Vietnam",
-          "description": "New manufacturing facility serving Asian markets",
-          "type": "Production",
+          "description": "New manufacturing facility and office serving Asian markets",
+          "type": "Manufacturing & Office",
           "status": "Opening Soon"
+        },
+        "salesUk": {
+          "name": "UK Sales Office",
+          "city": "Aldershot",
+          "country": "United Kingdom",
+          "description": "European sales and customer support hub",
+          "type": "Sales Office"
         }
       },
       "cta": {

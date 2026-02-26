@@ -113,9 +113,9 @@ export default async function CareersPage() {
   const t = await getTranslations('companyPages.careers');
 
   return (
-    <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-primary-50/30">
+    <main className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
+      <section className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
@@ -167,7 +167,11 @@ export default async function CareersPage() {
             { key: 'paidHolidays', icon: Plane, gradient: 'from-primary-600 to-primary-400' },
             { key: 'retirement', icon: TrendingUp, gradient: 'from-primary-700 to-primary-500' },
             { key: 'lifeInsurance', icon: Heart, gradient: 'from-primary-500 to-primary-700' },
-            { key: 'development', icon: GraduationCap, gradient: 'from-primary-700 to-primary-500' },
+            {
+              key: 'development',
+              icon: GraduationCap,
+              gradient: 'from-primary-700 to-primary-500',
+            },
           ].map((benefit, index) => {
             const Icon = benefit.icon;
             return (
@@ -178,13 +182,13 @@ export default async function CareersPage() {
               >
                 {/* Gradient background on hover */}
                 <div
-                  className={`absolute inset-0 bg-linear-to-br ${benefit.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
+                  className={`bg-linear-to-br absolute inset-0 ${benefit.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`}
                 />
 
                 {/* Icon */}
                 <div className="relative mb-6">
                   <div
-                    className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-linear-to-br ${benefit.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                    className={`bg-linear-to-br inline-flex h-14 w-14 items-center justify-center rounded-xl ${benefit.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
                   >
                     <Icon className="h-7 w-7 text-white" />
                   </div>
@@ -192,20 +196,24 @@ export default async function CareersPage() {
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="mb-3 text-2xl font-bold text-gray-900">{t(`benefits.${benefit.key}.title`)}</h3>
+                  <h3 className="mb-3 text-2xl font-bold text-gray-900">
+                    {t(`benefits.${benefit.key}.title`)}
+                  </h3>
 
-                  <p className="leading-relaxed text-gray-600">{t(`benefits.${benefit.key}.description`)}</p>
+                  <p className="leading-relaxed text-gray-600">
+                    {t(`benefits.${benefit.key}.description`)}
+                  </p>
                 </div>
 
                 {/* Decorative corner */}
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-linear-to-br from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="bg-linear-to-br absolute right-0 top-0 h-24 w-24 rounded-bl-full from-gray-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
             );
           })}
         </div>
 
         {/* Culture & Benefits Details */}
-        <div className="mb-20 rounded-2xl bg-linear-to-br from-gray-50 to-white p-10 shadow-lg lg:p-16">
+        <div className="bg-linear-to-br mb-20 rounded-2xl from-gray-50 to-white p-10 shadow-lg lg:p-16">
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
               <Gift className="h-4 w-4" />
@@ -219,7 +227,10 @@ export default async function CareersPage() {
 
           <div className="grid gap-8 md:grid-cols-3">
             {[
-              { key: 'bapiOffers', items: ['compensation', 'health', 'vision', 'hsa', 'retirement'] },
+              {
+                key: 'bapiOffers',
+                items: ['compensation', 'health', 'vision', 'hsa', 'retirement'],
+              },
               { key: 'timeOff', items: ['holidays', 'shortTerm', 'life'] },
               { key: 'environment', items: ['facility', 'culture', 'balance'] },
             ].map((category, categoryIndex) => (
@@ -229,14 +240,16 @@ export default async function CareersPage() {
                 style={{ animationDelay: `${categoryIndex * 100}ms` }}
               >
                 <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-gray-900">
-                  <div className="h-2 w-2 rounded-full bg-linear-to-r from-primary-500 to-primary-600" />
+                  <div className="bg-linear-to-r h-2 w-2 rounded-full from-primary-500 to-primary-600" />
                   {t(`cultureSection.${category.key}.title`)}
                 </h3>
                 <ul className="space-y-3">
                   {category.items.map((itemKey, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-3">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-500" />
-                      <span className="text-gray-700">{t(`cultureSection.${category.key}.items.${itemKey}`)}</span>
+                      <span className="text-gray-700">
+                        {t(`cultureSection.${category.key}.items.${itemKey}`)}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -246,54 +259,54 @@ export default async function CareersPage() {
         </div>
 
         {/* How to Apply Section */}
-        <div className="mb-20 rounded-2xl bg-linear-to-br from-primary-50 to-primary-100/50 p-10 lg:p-16">
+        <div className="bg-linear-to-br mb-20 rounded-2xl from-primary-50 to-primary-100/50 p-10 lg:p-16">
           <div className="mx-auto max-w-3xl">
             <div className="mb-10 text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-primary-700">
                 <FileText className="h-4 w-4" />
                 {t('applicationProcess.badge')}
               </div>
-              <h2 className="mb-4 text-4xl font-bold text-gray-900">{t('applicationProcess.title')}</h2>
-              <p className="text-lg text-gray-700">
-                {t('applicationProcess.description')}
-              </p>
+              <h2 className="mb-4 text-4xl font-bold text-gray-900">
+                {t('applicationProcess.title')}
+              </h2>
+              <p className="text-lg text-gray-700">{t('applicationProcess.description')}</p>
             </div>
 
             <div className="mb-8 rounded-xl bg-white p-8 shadow-md">
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary-600 to-primary-700 font-bold text-white">
+                  <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full from-primary-600 to-primary-700 font-bold text-white">
                     1
                   </div>
                   <div>
-                    <h3 className="mb-2 font-bold text-gray-900">{t('applicationProcess.step1.title')}</h3>
-                    <p className="text-gray-600">
-                      {t('applicationProcess.step1.description')}
-                    </p>
+                    <h3 className="mb-2 font-bold text-gray-900">
+                      {t('applicationProcess.step1.title')}
+                    </h3>
+                    <p className="text-gray-600">{t('applicationProcess.step1.description')}</p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary-600 to-primary-400 font-bold text-white">
+                  <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full from-primary-600 to-primary-400 font-bold text-white">
                     2
                   </div>
                   <div>
-                    <h3 className="mb-2 font-bold text-gray-900">{t('applicationProcess.step2.title')}</h3>
-                    <p className="text-gray-600">
-                      {t('applicationProcess.step2.description')}
-                    </p>
+                    <h3 className="mb-2 font-bold text-gray-900">
+                      {t('applicationProcess.step2.title')}
+                    </h3>
+                    <p className="text-gray-600">{t('applicationProcess.step2.description')}</p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary-700 to-primary-500 font-bold text-white">
+                  <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full from-primary-700 to-primary-500 font-bold text-white">
                     3
                   </div>
                   <div>
-                    <h3 className="mb-2 font-bold text-gray-900">{t('applicationProcess.step3.title')}</h3>
-                    <p className="text-gray-600">
-                      {t('applicationProcess.step3.description')}
-                    </p>
+                    <h3 className="mb-2 font-bold text-gray-900">
+                      {t('applicationProcess.step3.title')}
+                    </h3>
+                    <p className="text-gray-600">{t('applicationProcess.step3.description')}</p>
                   </div>
                 </div>
               </div>
@@ -324,18 +337,14 @@ export default async function CareersPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
+        <div className="bg-linear-to-br relative overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 
           <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">
             <div className="text-center lg:text-left">
-              <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">
-                {t('cta.title')}
-              </h2>
-              <p className="max-w-2xl text-lg text-primary-50">
-                {t('cta.description')}
-              </p>
+              <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">{t('cta.title')}</h2>
+              <p className="max-w-2xl text-lg text-primary-50">{t('cta.description')}</p>
             </div>
 
             <Link

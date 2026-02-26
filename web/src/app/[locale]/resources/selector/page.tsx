@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props) {
       description: t('metadata.description'),
       path: 'resources/selector',
     },
-    locale,
+    locale
   );
 }
 
@@ -32,9 +32,7 @@ export default async function ProductSelectorPage({ params }: Props) {
           <div className="text-center">
             <Search className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">
-              {t('hero.subtitle')}
-            </p>
+            <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
         </div>
       </section>
@@ -60,17 +58,13 @@ export default async function ProductSelectorPage({ params }: Props) {
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.temperature')}</h3>
-                <p className="text-sm text-neutral-600">
-                  {t('options.temperatureDesc')}
-                </p>
+                <p className="text-sm text-neutral-600">{t('options.temperatureDesc')}</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.tempHumidity')}</h3>
-                <p className="text-sm text-neutral-600">
-                  {t('options.tempHumidityDesc')}
-                </p>
+                <p className="text-sm text-neutral-600">{t('options.tempHumidityDesc')}</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
@@ -82,9 +76,7 @@ export default async function ProductSelectorPage({ params }: Props) {
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.pressure')}</h3>
-                <p className="text-sm text-neutral-600">
-                  {t('options.pressureDesc')}
-                </p>
+                <p className="text-sm text-neutral-600">{t('options.pressureDesc')}</p>
               </button>
             </div>
 

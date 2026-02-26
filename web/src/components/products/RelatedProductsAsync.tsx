@@ -28,7 +28,9 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                 <Package className="h-6 w-6 text-primary-600" />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-neutral-900">{t('productPage.related.title')}</h2>
+                <h2 className="text-3xl font-bold text-neutral-900">
+                  {t('productPage.related.title')}
+                </h2>
                 <p className="mt-1 text-neutral-600">Products frequently purchased together</p>
               </div>
             </div>

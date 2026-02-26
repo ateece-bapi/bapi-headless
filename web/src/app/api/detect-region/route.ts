@@ -12,15 +12,15 @@ export const runtime = 'edge';
 const COUNTRY_TO_REGION: Record<string, RegionCode> = {
   // North America
   US: 'us',
-  CA: 'ca',  // Canada
-  MX: 'mx',  // Mexico
+  CA: 'ca', // Canada
+  MX: 'mx', // Mexico
 
   // Europe
   DE: 'eu',
   FR: 'eu',
   ES: 'eu',
   IT: 'eu',
-  GB: 'uk',  // United Kingdom gets its own region
+  GB: 'uk', // United Kingdom gets its own region
   NL: 'eu',
   BE: 'eu',
   AT: 'eu',
@@ -47,13 +47,13 @@ const COUNTRY_TO_REGION: Record<string, RegionCode> = {
   EG: 'mena',
 
   // Asia - Specific regions
-  JP: 'jp',  // Japan
-  CN: 'cn',  // China
-  SG: 'sg',  // Singapore
-  VN: 'vn',  // Vietnam
-  TH: 'th',  // Thailand
-  IN: 'in',  // India
-  
+  JP: 'jp', // Japan
+  CN: 'cn', // China
+  SG: 'sg', // Singapore
+  VN: 'vn', // Vietnam
+  TH: 'th', // Thailand
+  IN: 'in', // India
+
   // Asia - Grouped under Singapore
   HK: 'sg',
   TW: 'sg',
@@ -70,7 +70,7 @@ const COUNTRY_TO_LANGUAGE: Record<string, LanguageCode> = {
   DE: 'de',
   FR: 'fr',
   ES: 'es',
-  MX: 'es',  // Mexico
+  MX: 'es', // Mexico
   JP: 'ja',
   CN: 'zh',
   VN: 'vi',
@@ -136,7 +136,7 @@ export async function GET(request: NextRequest) {
     // Fallback to US if detection fails
     // Log error for monitoring but don't expose details to client
     logger.error('Region detection error', { error });
-    
+
     return NextResponse.json({
       detected: false,
       country: 'US',

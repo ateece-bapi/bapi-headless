@@ -1,11 +1,11 @@
 /**
  * CartDrawer Storybook Stories
- * 
+ *
  * Demonstrates the shopping cart slide-out drawer with various content states.
- * 
+ *
  * **Component Features:**
  * - Slide-out drawer animation from right side
- * - Semi-transparent backdrop with subtle gradient  
+ * - Semi-transparent backdrop with subtle gradient
  * - Empty cart state with messaging
  * - Cart item list with images, prices, quantities
  * - Quantity controls (+ / - buttons)
@@ -14,7 +14,7 @@
  * - View Cart and Proceed to Checkout CTAs
  * - Variation details display (for variable products)
  * - Part number / SKU display
- * 
+ *
  * **Story Coverage:**
  * - EmptyCart: Shows empty state messaging
  * - SingleItem: One product with all details

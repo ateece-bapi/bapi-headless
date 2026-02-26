@@ -6,7 +6,7 @@ import type { GalleryImage } from './StorybookProductGallery';
  * ProductGallery Component
  *
  * Enhanced product gallery with lightbox, zoom, and keyboard navigation.
- * 
+ *
  * NOTE: These stories use StorybookProductGallery.tsx (HTML img tags) instead of
  * the production ProductGallery.tsx (Next/Image) for Chromatic compatibility.
  * Both provide identical visual demonstrations for design review.

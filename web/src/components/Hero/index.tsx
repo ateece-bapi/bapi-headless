@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
           aria-label={heroImage.alt}
         ></div>
         {/* Professional overlay for text readability */}
-        <div className="absolute inset-0 bg-linear-to-br from-white/80 via-white/75 to-white/70" />
+        <div className="bg-linear-to-br absolute inset-0 from-white/80 via-white/75 to-white/70" />
       </div>
 
       {/* Subtle accent gradients */}
@@ -69,7 +69,6 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
       <div className="relative mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Two-column at 2xl only: text+CTAs left, product showcase right */}
         <div className="2xl:grid 2xl:grid-cols-[1fr_1.2fr] 2xl:items-center 2xl:gap-16">
-
           {/* Left column: headline + CTAs - LEFT-ALIGNED AT XL+ (1280px+) */}
           <div className="2xl:pb-4">
             <HeroContent
@@ -78,10 +77,7 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
               taglines={translations.taglines}
               className="xl:mx-0 xl:text-left"
             />
-            <HeroActions
-              actions={actions}
-              className="xl:justify-start"
-            />
+            <HeroActions actions={actions} className="xl:justify-start" />
           </div>
 
           {/* Right column / stacked below xl - PRODUCT IMAGE SHOWCASE */}
@@ -97,7 +93,6 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
               />
             </div>
           </div>
-
         </div>
       </div>
 

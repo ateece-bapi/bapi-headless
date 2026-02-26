@@ -4,7 +4,11 @@ import React from 'react';
 import { Briefcase, Heart } from 'lucide-react';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
-import { convertWooCommercePrice, convertWooCommercePriceNumeric, formatPrice } from '@/lib/utils/currency';
+import {
+  convertWooCommercePrice,
+  convertWooCommercePriceNumeric,
+  formatPrice,
+} from '@/lib/utils/currency';
 
 interface ProductSummaryCardProps {
   product: any;
@@ -30,11 +34,11 @@ export default function ProductSummaryCard({
 
   // Use variation data if available, fallback to product data
   const rawPrice = variation?.price || product.price || '0';
-  
+
   // Convert price to selected currency
   const displayPrice = convertWooCommercePrice(rawPrice, region.currency);
   const numericPrice = convertWooCommercePriceNumeric(rawPrice, region.currency);
-  
+
   const displayPartNumber =
     variation?.partNumber || variation?.sku || product.partNumber || product.sku || 'N/A';
   const displayStockStatus = variation?.stockStatus || product.stockStatus;

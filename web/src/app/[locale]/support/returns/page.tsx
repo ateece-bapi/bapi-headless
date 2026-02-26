@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t('metadata.description'),
       path: 'support/returns',
     },
-    locale,
+    locale
   );
 }
 
@@ -34,9 +34,7 @@ export default async function ReturnsPage({ params }: Props) {
           <div className="text-center">
             <Package className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-content text-xl text-primary-50">
-              {t('hero.subtitle')}
-            </p>
+            <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
         </div>
       </section>

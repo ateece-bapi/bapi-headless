@@ -7,7 +7,7 @@ import logger from '@/lib/logger';
 /**
  * Products page error boundary - handles errors loading product catalog
  * Logs to monitoring and provides user recovery options with support contact
- * 
+ *
  * @param {Object} props - Component props
  * @param {Error & { digest?: string }} props.error - The error that was thrown
  * @param {() => void} props.reset - Function to retry loading products
@@ -51,8 +51,8 @@ export default function ProductsErrorBoundary({
         <h2 className="mb-3 text-2xl font-bold text-neutral-900">Unable to load products</h2>
 
         <p className="mb-6 text-base text-neutral-600">
-          We&apos;re having trouble loading our product catalog. This could be a temporary issue with our
-          systems.
+          We&apos;re having trouble loading our product catalog. This could be a temporary issue
+          with our systems.
         </p>
 
         <div className="flex flex-col justify-center gap-3 sm:flex-row">

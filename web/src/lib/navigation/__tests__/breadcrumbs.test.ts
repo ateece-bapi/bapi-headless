@@ -79,14 +79,10 @@ describe('Breadcrumb Navigation Utilities', () => {
     });
 
     it('handles special characters in category names and slugs', () => {
-      const result = getCategoryBreadcrumbs(
-        'Sensors & Controls',
-        'sensors-controls',
-        {
-          locale: 'en',
-          includeHome: true,
-        }
-      );
+      const result = getCategoryBreadcrumbs('Sensors & Controls', 'sensors-controls', {
+        locale: 'en',
+        includeHome: true,
+      });
 
       expect(result[2].label).toBe('Sensors & Controls');
       expect(result[2].href).toBe('/en/categories/sensors-controls');
@@ -295,9 +291,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       );
 
       expect(result[2].label).toBe('Primary Category');
-      expect(result).not.toContainEqual(
-        expect.objectContaining({ label: 'Secondary Category' })
-      );
+      expect(result).not.toContainEqual(expect.objectContaining({ label: 'Secondary Category' }));
     });
 
     it('product label has no href (current page)', () => {
@@ -613,9 +607,7 @@ describe('Breadcrumb Navigation Utilities', () => {
     });
 
     it('works with different site URLs', () => {
-      const breadcrumbs: BreadcrumbItem[] = [
-        { label: 'Home', href: '/en' },
-      ];
+      const breadcrumbs: BreadcrumbItem[] = [{ label: 'Home', href: '/en' }];
 
       const urls = [
         'https://bapi.com',
@@ -631,9 +623,7 @@ describe('Breadcrumb Navigation Utilities', () => {
     });
 
     it('validates Schema.org required properties', () => {
-      const breadcrumbs: BreadcrumbItem[] = [
-        { label: 'Home', href: '/en' },
-      ];
+      const breadcrumbs: BreadcrumbItem[] = [{ label: 'Home', href: '/en' }];
 
       const schema = breadcrumbsToSchemaOrg(breadcrumbs, 'https://bapi.com');
 
@@ -721,9 +711,7 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(schema.itemListElement).toHaveLength(3);
       expect(schema.itemListElement[2].name).toBe('Actuators');
-      expect(schema.itemListElement[2].item).toBe(
-        'https://bapi.com/en/categories/actuators'
-      );
+      expect(schema.itemListElement[2].item).toBe('https://bapi.com/en/categories/actuators');
     });
 
     it('product breadcrumbs work with Schema.org conversion', () => {

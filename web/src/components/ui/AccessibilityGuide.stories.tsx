@@ -60,7 +60,9 @@ export const AccessibleButton: StoryObj = {
   render: () => (
     <div className="space-y-4 p-8">
       <h2 className="text-2xl font-bold text-neutral-900">✅ Accessible Button</h2>
-      <p className="text-neutral-600">Proper button with text label, focus ring, and semantic HTML</p>
+      <p className="text-neutral-600">
+        Proper button with text label, focus ring, and semantic HTML
+      </p>
       <button
         type="button"
         className="rounded-lg bg-primary-500 px-6 py-3 text-white transition-colors hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
@@ -70,7 +72,9 @@ export const AccessibleButton: StoryObj = {
       <div className="mt-4 rounded-lg bg-green-50 p-4 text-sm text-green-800">
         <p className="font-semibold">✅ Passes Accessibility Checks:</p>
         <ul className="mt-2 list-inside list-disc space-y-1">
-          <li>Uses semantic <code>&lt;button&gt;</code> element</li>
+          <li>
+            Uses semantic <code>&lt;button&gt;</code> element
+          </li>
           <li>Has visible text label</li>
           <li>Focus ring visible (try Tab key)</li>
           <li>Sufficient color contrast (WCAG AA)</li>
@@ -99,7 +103,13 @@ export const InaccessibleButton: StoryObj = {
       <p className="text-neutral-600">Common accessibility mistakes to avoid</p>
       <div
         onClick={() => alert('Clicked!')}
-        style={{ backgroundColor: '#e0e0e0', color: '#999', padding: '12px 24px', display: 'inline-block', cursor: 'pointer' }}
+        style={{
+          backgroundColor: '#e0e0e0',
+          color: '#999',
+          padding: '12px 24px',
+          display: 'inline-block',
+          cursor: 'pointer',
+        }}
       >
         Click Here
       </div>
@@ -140,7 +150,10 @@ export const AccessibleForm: StoryObj = {
       <h2 className="text-2xl font-bold text-neutral-900">✅ Accessible Form</h2>
       <form className="space-y-4">
         <div>
-          <label htmlFor="email-input" className="mb-2 block text-sm font-semibold text-neutral-700">
+          <label
+            htmlFor="email-input"
+            className="mb-2 block text-sm font-semibold text-neutral-700"
+          >
             Email Address
           </label>
           <input
@@ -153,7 +166,10 @@ export const AccessibleForm: StoryObj = {
         </div>
 
         <div>
-          <label htmlFor="quantity-input" className="mb-2 block text-sm font-semibold text-neutral-700">
+          <label
+            htmlFor="quantity-input"
+            className="mb-2 block text-sm font-semibold text-neutral-700"
+          >
             Quantity
           </label>
           <input
@@ -216,16 +232,8 @@ export const InaccessibleForm: StoryObj = {
     <div className="max-w-md space-y-6 p-8">
       <h2 className="text-2xl font-bold text-neutral-900">❌ Inaccessible Form (Bad Example)</h2>
       <form className="space-y-4">
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full rounded border px-3 py-2"
-        />
-        <input
-          type="number"
-          placeholder="Quantity"
-          className="w-full rounded border px-3 py-2"
-        />
+        <input type="email" placeholder="Email" className="w-full rounded border px-3 py-2" />
+        <input type="number" placeholder="Quantity" className="w-full rounded border px-3 py-2" />
         <div className="flex items-center gap-2">
           <input type="checkbox" />
           <span>Subscribe</span>
@@ -289,7 +297,9 @@ export const ColorContrastExamples: StoryObj = {
         </div>
 
         <div className="rounded-lg border-2 border-yellow-200 bg-yellow-50 p-4">
-          <h3 className="text-lg font-semibold text-yellow-900">⚠️ Marginal Contrast (AAA Fail, AA Pass)</h3>
+          <h3 className="text-lg font-semibold text-yellow-900">
+            ⚠️ Marginal Contrast (AAA Fail, AA Pass)
+          </h3>
           <p className="mt-2 text-yellow-800">
             This text passes WCAG AA (4.6:1) but fails AAA (needs 7:1)
           </p>
@@ -380,8 +390,19 @@ export const ARIAExamples: StoryObj = {
             className="mt-2 flex items-center gap-2 rounded bg-neutral-400 px-4 py-2 text-white"
           >
             <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
             </svg>
             Adding...
           </button>
@@ -441,10 +462,19 @@ export const KeyboardNavigation: StoryObj = {
       <div className="mt-6 rounded-lg bg-neutral-100 p-4 text-sm text-neutral-700">
         <p className="font-semibold">⌨️ Keyboard Testing Checklist:</p>
         <ul className="mt-2 list-inside list-disc space-y-1">
-          <li><kbd className="rounded bg-neutral-200 px-2 py-1">Tab</kbd> - Navigate forward</li>
-          <li><kbd className="rounded bg-neutral-200 px-2 py-1">Shift+Tab</kbd> - Navigate backward</li>
-          <li><kbd className="rounded bg-neutral-200 px-2 py-1">Enter</kbd> or <kbd className="rounded bg-neutral-200 px-2 py-1">Space</kbd> - Activate buttons</li>
-          <li><kbd className="rounded bg-neutral-200 px-2 py-1">Esc</kbd> - Close modals/dropdowns</li>
+          <li>
+            <kbd className="rounded bg-neutral-200 px-2 py-1">Tab</kbd> - Navigate forward
+          </li>
+          <li>
+            <kbd className="rounded bg-neutral-200 px-2 py-1">Shift+Tab</kbd> - Navigate backward
+          </li>
+          <li>
+            <kbd className="rounded bg-neutral-200 px-2 py-1">Enter</kbd> or{' '}
+            <kbd className="rounded bg-neutral-200 px-2 py-1">Space</kbd> - Activate buttons
+          </li>
+          <li>
+            <kbd className="rounded bg-neutral-200 px-2 py-1">Esc</kbd> - Close modals/dropdowns
+          </li>
           <li>Focus rings must be visible (blue glow)</li>
           <li>Tab order should be logical (top to bottom, left to right)</li>
         </ul>

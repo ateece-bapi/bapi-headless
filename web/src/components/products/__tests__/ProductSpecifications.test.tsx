@@ -490,7 +490,9 @@ describe('ProductSpecifications Component', () => {
         },
       ];
 
-      renderWithIntl(<ProductSpecifications specifications={emptyGroups} productName={productName} />);
+      renderWithIntl(
+        <ProductSpecifications specifications={emptyGroups} productName={productName} />
+      );
 
       // Component filters out empty groups, so nothing should render
       expect(screen.queryByText('Empty Group')).not.toBeInTheDocument();
@@ -517,7 +519,9 @@ describe('ProductSpecifications Component', () => {
         return element;
       });
 
-      renderWithIntl(<ProductSpecifications specifications={mockSpecifications} productName={longName} />);
+      renderWithIntl(
+        <ProductSpecifications specifications={mockSpecifications} productName={longName} />
+      );
       const downloadButton = screen.getByRole('button', { name: /download/i });
 
       fireEvent.click(downloadButton);
@@ -539,7 +543,9 @@ describe('ProductSpecifications Component', () => {
         },
       ];
 
-      renderWithIntl(<ProductSpecifications specifications={specialSpecs} productName={productName} />);
+      renderWithIntl(
+        <ProductSpecifications specifications={specialSpecs} productName={productName} />
+      );
 
       expect(screen.getByText('±10V')).toBeInTheDocument();
       expect(screen.getByText('≤5A')).toBeInTheDocument();

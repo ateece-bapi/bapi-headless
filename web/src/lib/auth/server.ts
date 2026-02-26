@@ -54,7 +54,8 @@ export const getServerAuth = cache(
         return { userId: null, user: null };
       }
 
-      const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } = await response.json();
+      const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } =
+        await response.json();
 
       if (errors || !data?.viewer) {
         return { userId: null, user: null };
@@ -115,7 +116,8 @@ export async function getCurrentUser(): Promise<User | null> {
       return null;
     }
 
-    const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } = await response.json();
+    const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } =
+      await response.json();
 
     if (errors || !data?.viewer) {
       logger.debug('Token validation failed in getCurrentUser', { errors });

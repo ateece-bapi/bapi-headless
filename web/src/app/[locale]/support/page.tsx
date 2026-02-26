@@ -19,17 +19,26 @@ import { generatePageMetadata } from '@/lib/metadata';
  * AI-optimized metadata for support center
  * Enhanced for technical resource discovery
  */
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'supportPage' });
 
-  return generatePageMetadata({
-    title: t('hero.title'),
-    description: t('metadata.description'),
-    path: 'support',
-    keywords: t('metadata.keywords').split(',').map((k: string) => k.trim()),
-    type: 'website',
-  }, locale);
+  return generatePageMetadata(
+    {
+      title: t('hero.title'),
+      description: t('metadata.description'),
+      path: 'support',
+      keywords: t('metadata.keywords')
+        .split(',')
+        .map((k: string) => k.trim()),
+      type: 'website',
+    },
+    locale
+  );
 }
 
 export default async function SupportPage() {
@@ -42,9 +51,7 @@ export default async function SupportPage() {
           <div className="text-center">
             <LifeBuoy className="duration-normal mx-auto mb-4 h-16 w-16 transition-transform hover:rotate-12 hover:scale-110" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-3xl text-xl text-primary-50">
-              {t('hero.subtitle')}
-            </p>
+            <p className="mx-auto max-w-3xl text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
         </PageContainer>
       </section>
@@ -58,7 +65,9 @@ export default async function SupportPage() {
               className="duration-normal group rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg"
             >
               <MessageSquare className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
-              <h3 className="mb-2 text-xl font-bold text-neutral-900">{t('quickActions.contactSupport.title')}</h3>
+              <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                {t('quickActions.contactSupport.title')}
+              </h3>
               <p className="leading-relaxed text-neutral-600">
                 {t('quickActions.contactSupport.description')}
               </p>
@@ -69,7 +78,9 @@ export default async function SupportPage() {
               className="duration-normal group rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg"
             >
               <FileText className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
-              <h3 className="mb-2 text-xl font-bold text-neutral-900">{t('quickActions.applicationNotes.title')}</h3>
+              <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                {t('quickActions.applicationNotes.title')}
+              </h3>
               <p className="leading-relaxed text-neutral-600">
                 {t('quickActions.applicationNotes.description')}
               </p>
@@ -80,8 +91,12 @@ export default async function SupportPage() {
               className="duration-normal group rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg"
             >
               <Package className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
-              <h3 className="mb-2 text-xl font-bold text-neutral-900">{t('quickActions.rmaRequest.title')}</h3>
-              <p className="leading-relaxed text-neutral-600">{t('quickActions.rmaRequest.description')}</p>
+              <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                {t('quickActions.rmaRequest.title')}
+              </h3>
+              <p className="leading-relaxed text-neutral-600">
+                {t('quickActions.rmaRequest.description')}
+              </p>
             </Link>
           </div>
         </PageContainer>
@@ -98,7 +113,9 @@ export default async function SupportPage() {
             {/* Technical Documentation */}
             <div className="duration-normal rounded-xl bg-neutral-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
               <BookOpen className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
-              <h3 className="mb-3 text-xl font-bold text-neutral-900">{t('resources.technicalDocs.title')}</h3>
+              <h3 className="mb-3 text-xl font-bold text-neutral-900">
+                {t('resources.technicalDocs.title')}
+              </h3>
               <ul className="space-y-2 text-neutral-600">
                 <li>
                   <Link
@@ -138,7 +155,9 @@ export default async function SupportPage() {
             {/* Tools & Utilities */}
             <div className="duration-normal rounded-xl bg-neutral-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
               <Wrench className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
-              <h3 className="mb-3 text-xl font-bold text-neutral-900">{t('resources.toolsUtilities.title')}</h3>
+              <h3 className="mb-3 text-xl font-bold text-neutral-900">
+                {t('resources.toolsUtilities.title')}
+              </h3>
               <ul className="space-y-2 text-neutral-600">
                 <li>
                   <Link
@@ -178,7 +197,9 @@ export default async function SupportPage() {
             {/* Service & Returns */}
             <div className="duration-normal rounded-xl bg-neutral-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
               <AlertCircle className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
-              <h3 className="mb-3 text-xl font-bold text-neutral-900">{t('resources.serviceReturns.title')}</h3>
+              <h3 className="mb-3 text-xl font-bold text-neutral-900">
+                {t('resources.serviceReturns.title')}
+              </h3>
               <ul className="space-y-2 text-neutral-600">
                 <li>
                   <Link
@@ -222,7 +243,9 @@ export default async function SupportPage() {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <div className="group">
                 <Phone className="duration-normal mb-3 h-8 w-8 text-primary-500 transition-transform group-hover:scale-110" />
-                <h3 className="mb-2 text-xl font-bold text-neutral-900">{t('contact.phone.title')}</h3>
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                  {t('contact.phone.title')}
+                </h3>
                 <p className="mb-2 text-neutral-600">{t('contact.phone.hours')}</p>
                 <a
                   href="tel:+17158561203"
@@ -234,7 +257,9 @@ export default async function SupportPage() {
 
               <div className="group">
                 <Mail className="duration-normal mb-3 h-8 w-8 text-primary-500 transition-transform group-hover:scale-110" />
-                <h3 className="mb-2 text-xl font-bold text-neutral-900">{t('contact.email.title')}</h3>
+                <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                  {t('contact.email.title')}
+                </h3>
                 <p className="mb-2 text-neutral-600">{t('contact.email.description')}</p>
                 <a
                   href="mailto:sales@bapihvac.com"

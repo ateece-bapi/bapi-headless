@@ -7,7 +7,7 @@ import logger from '@/lib/logger';
 /**
  * Profile page error boundary - handles errors during profile data fetching/rendering
  * Logs to monitoring and provides navigation options
- * 
+ *
  * @param {Object} props - Component props
  * @param {Error & { digest?: string }} props.error - The error that was thrown
  * @param {() => void} props.reset - Function to retry loading the profile
@@ -48,9 +48,7 @@ export default function ProfileError({
           </svg>
         </div>
 
-        <h2 className="mb-3 text-2xl font-bold text-neutral-900">
-          Unable to load profile
-        </h2>
+        <h2 className="mb-3 text-2xl font-bold text-neutral-900">Unable to load profile</h2>
 
         <p className="mb-6 text-base text-neutral-600">
           We couldn&apos;t load your profile information. Please try again.

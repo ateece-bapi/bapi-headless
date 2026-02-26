@@ -19,7 +19,7 @@ interface RelatedProductsProps {
 
 const RelatedProducts: React.FC<RelatedProductsProps> = ({ related }) => {
   const region = useRegion();
-  
+
   if (!related || related.length === 0) return null;
   return (
     <section className="mb-8">

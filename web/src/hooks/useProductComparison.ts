@@ -20,7 +20,7 @@ export function useProductComparison() {
   // Initialize from localStorage using lazy initial state
   const [comparisonProducts, setComparisonProducts] = useState<Product[]>(() => {
     if (typeof window === 'undefined') return [];
-    
+
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {

@@ -262,8 +262,8 @@ export default function ProductVariationTestPage() {
               <li className="flex items-start gap-2">
                 <span className="font-bold text-primary-500">✓</span>
                 <span>
-                  <strong>Stock Status Indicators:</strong> See what&apos;s in stock, backordered, or
-                  unavailable
+                  <strong>Stock Status Indicators:</strong> See what&apos;s in stock, backordered,
+                  or unavailable
                 </span>
               </li>
               <li className="flex items-start gap-2">

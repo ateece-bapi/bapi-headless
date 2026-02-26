@@ -1,8 +1,8 @@
 /**
  * Navigation Component Stories
- * 
+ *
  * Documents the language and region selector components used in the header.
- * 
+ *
  * **LanguageSelector Features:**
  * - Headless UI Listbox dropdown
  * - 11 languages grouped by region (LANGUAGE_GROUPS)
@@ -11,7 +11,7 @@
  * - Check icon for selected language
  * - Hover states with primary-50 background
  * - Language icon + chevron indicators
- * 
+ *
  * **RegionSelector Features:**
  * - Headless UI Listbox dropdown
  * - Regions grouped (Americas, Europe, Asia-Pacific)
@@ -20,23 +20,23 @@
  * - Smart language suggestion on region change
  * - Globe icon + chevron indicators
  * - Check icon for selected region
- * 
+ *
  * **Note:**
- * Due to the complexity of these components (Headless UI, next-intl routing, 
+ * Due to the complexity of these components (Headless UI, next-intl routing,
  * Zustand store integration), these stories document the visual appearance.
  * Full interactive functionality requires the complete app context.
  */
 
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-// Create a simple documentation component since the actual components 
+// Create a simple documentation component since the actual components
 // require complex setup (next-intl, routing, Zustand)
 const NavigationDocs = () => (
   <div className="space-y-12 p-8">
     {/* Language Selector Documentation */}
     <section>
       <h2 className="mb-6 text-2xl font-bold text-neutral-900">Language Selector</h2>
-      
+
       <div className="space-y-8">
         {/* Closed State */}
         <div>
@@ -76,7 +76,12 @@ const NavigationDocs = () => (
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </div>
             </div>
@@ -184,7 +189,7 @@ const NavigationDocs = () => (
     {/* Region Selector Documentation */}
     <section className="border-t border-neutral-200 pt-12">
       <h2 className="mb-6 text-2xl font-bold text-neutral-900">Region Selector</h2>
-      
+
       <div className="space-y-8">
         {/* Closed State */}
         <div>
@@ -228,7 +233,12 @@ const NavigationDocs = () => (
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </div>
             </div>
@@ -342,11 +352,7 @@ const NavigationDocs = () => (
             When a user changes their region, the system suggests matching language if different:
           </p>
           <div className="inline-flex items-center gap-3 rounded-lg bg-blue-50 px-4 py-3 text-sm">
-            <svg
-              className="h-5 w-5 text-blue-600"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
+            <svg className="h-5 w-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
@@ -372,11 +378,17 @@ const NavigationDocs = () => (
           <h4 className="font-semibold text-neutral-900">Components</h4>
           <ul className="mt-2 space-y-1 text-sm text-neutral-700">
             <li>
-              • <code className="rounded bg-white px-1 py-0.5 text-primary-600">LanguageSelectorV2.tsx</code>{' '}
+              •{' '}
+              <code className="rounded bg-white px-1 py-0.5 text-primary-600">
+                LanguageSelectorV2.tsx
+              </code>{' '}
               - Located in <code className="text-xs">/components/layout/Header/components/</code>
             </li>
             <li>
-              • <code className="rounded bg-white px-1 py-0.5 text-primary-600">RegionSelectorV2.tsx</code>{' '}
+              •{' '}
+              <code className="rounded bg-white px-1 py-0.5 text-primary-600">
+                RegionSelectorV2.tsx
+              </code>{' '}
               - Located in <code className="text-xs">/components/layout/Header/components/</code>
             </li>
           </ul>
@@ -395,16 +407,19 @@ const NavigationDocs = () => (
           <h4 className="font-semibold text-neutral-900">Configuration Files</h4>
           <ul className="mt-2 space-y-1 text-sm text-neutral-700">
             <li>
-              • <code className="text-xs">/types/region.ts</code> - LANGUAGES, REGIONS, CURRENCIES constants
+              • <code className="text-xs">/types/region.ts</code> - LANGUAGES, REGIONS, CURRENCIES
+              constants
             </li>
             <li>
-              • <code className="text-xs">/lib/constants/languageGroups.ts</code> - Language grouping
+              • <code className="text-xs">/lib/constants/languageGroups.ts</code> - Language
+              grouping
             </li>
             <li>
               • <code className="text-xs">/lib/constants/regionGroups.ts</code> - Region grouping
             </li>
             <li>
-              • <code className="text-xs">/lib/utils/regionLanguageMapping.ts</code> - Smart suggestion logic
+              • <code className="text-xs">/lib/utils/regionLanguageMapping.ts</code> - Smart
+              suggestion logic
             </li>
           </ul>
         </div>

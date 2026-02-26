@@ -45,7 +45,8 @@ export default function WAMPage() {
 
               <p className="mb-8 text-xl leading-relaxed text-primary-50">
                 24/7 monitoring with instant alerts to avoid costly equipment failures. Monitor
-                temperature, humidity, and more from anywhere with BAPI&apos;s proven wireless solutions.
+                temperature, humidity, and more from anywhere with BAPI&apos;s proven wireless
+                solutions.
               </p>
 
               <div className="flex flex-col gap-4 sm:flex-row">
@@ -1044,7 +1045,8 @@ export default function WAMPage() {
             Have questions about wireless monitoring?
           </h2>
           <p className="mb-6 text-primary-100">
-            Talk to one of our technical experts. We&apos;re here to help you find the right solution.
+            Talk to one of our technical experts. We&apos;re here to help you find the right
+            solution.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link

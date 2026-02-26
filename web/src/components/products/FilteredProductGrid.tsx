@@ -126,14 +126,14 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   // Get active filters from URL (comma-separated values)
   const activeFilters = useMemo(() => {
     const filters: Partial<Record<FilterFieldKey, string[]>> = {};
-    
+
     (Object.keys(filterFieldMap) as FilterFieldKey[]).forEach((filterKey) => {
       const values = searchParams?.get(filterKey)?.split(',').filter(Boolean) || [];
       if (values.length > 0) {
         filters[filterKey] = values;
       }
     });
-    
+
     return filters;
   }, [searchParams, filterFieldMap]);
 
@@ -143,7 +143,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   // Helper to extract numeric price from product
   const getNumericPrice = (product: Product): number => {
     const productData = product as ProductWithTaxonomies;
-    
+
     // Try multiple price fields in order of preference
     const price =
       (typeof productData.price === 'string' ? productData.price : null) ||
@@ -165,7 +165,8 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
 
       // Check each filter category
       for (const [filterKey, selectedValues] of Object.entries(activeFilters)) {
-        if (!isFilterFieldKey(filterKey) || !selectedValues || selectedValues.length === 0) continue;
+        if (!isFilterFieldKey(filterKey) || !selectedValues || selectedValues.length === 0)
+          continue;
 
         // Get the GraphQL field name for this filter
         const fieldName = filterFieldMap[filterKey];

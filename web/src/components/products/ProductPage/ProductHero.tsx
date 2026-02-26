@@ -42,24 +42,24 @@ interface ProductHeroProps {
  * Product hero section with image gallery and pricing details.
  * Displays main product image with zoom capability, thumbnails for gallery navigation,
  * and key product information including pricing, stock status, and quantity selector.
- * 
+ *
  * **Phase 1 Priority**: Product Navigation (breadcrumbs, categories, mega-menu integration)
- * 
+ *
  * @param {ProductHeroProps} props - Product and variation data
  * @returns {JSX.Element} Product hero section with image modal
- * 
+ *
  * @example
  * ```tsx
- * <ProductHero 
- *   product={productData} 
- *   variation={selectedVariation} 
+ * <ProductHero
+ *   product={productData}
+ *   variation={selectedVariation}
  * />
  * ```
  */
 export default function ProductHero({ product, variation }: ProductHeroProps) {
   const t = useTranslations();
   const region = useRegion(); // Move to top level to avoid React Hooks violation
-  
+
   // Prefer variation image if present, else product image
   const initialImage = variation?.image || product.image || null;
   const [mainImage, setMainImage] = useState<GalleryImage | null>(initialImage);
@@ -158,7 +158,9 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
             )}
             {product.multiplier && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-neutral-500">{t('productPage.summary.multiplier')}:</span>
+                <span className="text-sm text-neutral-500">
+                  {t('productPage.summary.multiplier')}:
+                </span>
                 <span className="text-lg font-semibold text-primary-600">{product.multiplier}</span>
               </div>
             )}

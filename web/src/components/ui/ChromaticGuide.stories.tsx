@@ -184,9 +184,9 @@ export const PRWorkflow: StoryObj = {
             </p>
             <div className="ml-13 mt-3 rounded-lg bg-neutral-50 p-4 font-mono text-sm">
               <div>✓ GitHub Action: chromatic.yml</div>
-              <div className="text-neutral-500">  → Installs dependencies (pnpm)</div>
-              <div className="text-neutral-500">  → Builds Storybook (production)</div>
-              <div className="text-neutral-500">  → Uploads to Chromatic</div>
+              <div className="text-neutral-500"> → Installs dependencies (pnpm)</div>
+              <div className="text-neutral-500"> → Builds Storybook (production)</div>
+              <div className="text-neutral-500"> → Uploads to Chromatic</div>
             </div>
           </div>
 
@@ -267,8 +267,7 @@ export const PRWorkflow: StoryObj = {
               <h2 className="text-2xl font-bold text-neutral-900">Review Changes</h2>
             </div>
             <p className="ml-13 mb-4 text-neutral-700">
-              Click "Details" on status check to open Chromatic UI. Review side-by-side
-              comparisons:
+              Click "Details" on status check to open Chromatic UI. Review side-by-side comparisons:
             </p>
             <div className="ml-13 rounded-lg bg-neutral-100 p-4">
               <div className="grid grid-cols-2 gap-4">
@@ -366,22 +365,38 @@ export const SetupInstructions: StoryObj = {
           <div className="rounded-xl border border-primary-200 bg-primary-50 p-6">
             <h2 className="mb-4 text-2xl font-bold text-primary-900">Step 1: Create Account</h2>
             <ol className="space-y-3 text-primary-900">
-              <li>1. Visit <a href="https://www.chromatic.com/" className="underline">chromatic.com</a></li>
+              <li>
+                1. Visit{' '}
+                <a href="https://www.chromatic.com/" className="underline">
+                  chromatic.com
+                </a>
+              </li>
               <li>2. Click "Sign in with GitHub"</li>
               <li>3. Authorize Chromatic to access your repositories</li>
               <li>4. Select "ateece-bapi/bapi-headless" project</li>
-              <li>5. Copy the <strong>Project Token</strong> (starts with <code>chpt_</code>)</li>
+              <li>
+                5. Copy the <strong>Project Token</strong> (starts with <code>chpt_</code>)
+              </li>
             </ol>
           </div>
 
           <div className="rounded-xl border border-accent-200 bg-accent-50 p-6">
             <h2 className="mb-4 text-2xl font-bold text-neutral-900">Step 2: Add GitHub Secret</h2>
             <ol className="space-y-3 text-neutral-900">
-              <li>1. Go to GitHub: <strong>Settings → Secrets → Actions</strong></li>
-              <li>2. Click <strong>"New repository secret"</strong></li>
-              <li>3. Name: <code className="rounded bg-neutral-100 px-2 py-1">CHROMATIC_PROJECT_TOKEN</code></li>
+              <li>
+                1. Go to GitHub: <strong>Settings → Secrets → Actions</strong>
+              </li>
+              <li>
+                2. Click <strong>"New repository secret"</strong>
+              </li>
+              <li>
+                3. Name:{' '}
+                <code className="rounded bg-neutral-100 px-2 py-1">CHROMATIC_PROJECT_TOKEN</code>
+              </li>
               <li>4. Value: Paste token from Chromatic dashboard</li>
-              <li>5. Click <strong>"Add secret"</strong></li>
+              <li>
+                5. Click <strong>"Add secret"</strong>
+              </li>
             </ol>
           </div>
 
@@ -405,7 +420,9 @@ export const SetupInstructions: StoryObj = {
             <ol className="space-y-3 text-purple-900">
               <li>1. Open Chromatic URL from terminal output</li>
               <li>2. Review all captured stories</li>
-              <li>3. Click <strong>"✓ Accept"</strong> button to approve baselines</li>
+              <li>
+                3. Click <strong>"✓ Accept"</strong> button to approve baselines
+              </li>
               <li>4. These become the reference snapshots for future PRs</li>
             </ol>
           </div>
@@ -414,7 +431,9 @@ export const SetupInstructions: StoryObj = {
             <h2 className="mb-4 text-2xl font-bold text-blue-900">Step 5: Test PR Workflow</h2>
             <ol className="space-y-3 text-blue-900">
               <li>1. Create a branch and make a small UI change</li>
-              <li>2. Open a pull request to <code>main</code></li>
+              <li>
+                2. Open a pull request to <code>main</code>
+              </li>
               <li>3. Wait for Chromatic GitHub Action (2-5 minutes)</li>
               <li>4. Check status: Should show "Changes detected" (yellow)</li>
               <li>5. Click "Details" to review changes in Chromatic UI</li>
@@ -426,9 +445,27 @@ export const SetupInstructions: StoryObj = {
         <div className="rounded-xl bg-neutral-800 p-6 text-white">
           <h2 className="mb-3 text-xl font-bold">📚 Additional Resources</h2>
           <ul className="space-y-2 text-sm">
-            <li>• <a href="/docs/CHROMATIC-SETUP.md" className="underline">docs/CHROMATIC-SETUP.md</a> - Full setup guide</li>
-            <li>• <a href="/.github/workflows/chromatic.yml" className="underline">.github/workflows/chromatic.yml</a> - GitHub Action config</li>
-            <li>• <a href="https://www.chromatic.com/docs" className="underline">Chromatic Docs</a> - Official documentation</li>
+            <li>
+              •{' '}
+              <a href="/docs/CHROMATIC-SETUP.md" className="underline">
+                docs/CHROMATIC-SETUP.md
+              </a>{' '}
+              - Full setup guide
+            </li>
+            <li>
+              •{' '}
+              <a href="/.github/workflows/chromatic.yml" className="underline">
+                .github/workflows/chromatic.yml
+              </a>{' '}
+              - GitHub Action config
+            </li>
+            <li>
+              •{' '}
+              <a href="https://www.chromatic.com/docs" className="underline">
+                Chromatic Docs
+              </a>{' '}
+              - Official documentation
+            </li>
           </ul>
         </div>
       </div>
@@ -452,12 +489,8 @@ export const BestPractices: StoryObj = {
     <div className="min-h-screen bg-neutral-50 p-8">
       <div className="mx-auto max-w-4xl space-y-8">
         <div className="rounded-xl bg-white p-8 shadow-lg">
-          <h1 className="mb-4 text-3xl font-bold text-neutral-900">
-            Chromatic Best Practices
-          </h1>
-          <p className="text-lg text-neutral-600">
-            Tips for effective visual regression testing
-          </p>
+          <h1 className="mb-4 text-3xl font-bold text-neutral-900">Chromatic Best Practices</h1>
+          <p className="text-lg text-neutral-600">Tips for effective visual regression testing</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -486,7 +519,9 @@ export const BestPractices: StoryObj = {
               </li>
               <li className="flex gap-2">
                 <span className="flex-shrink-0">•</span>
-                <span>Use <code>chromatic.disableSnapshot: true</code> for non-visual stories</span>
+                <span>
+                  Use <code>chromatic.disableSnapshot: true</code> for non-visual stories
+                </span>
               </li>
               <li className="flex gap-2">
                 <span className="flex-shrink-0">•</span>
@@ -539,8 +574,10 @@ export const BestPractices: StoryObj = {
                 Use <code>delay</code> parameter for animations:
               </p>
               <div className="rounded bg-neutral-100 p-3 font-mono text-xs">
-                parameters: &#123;<br />
-                &nbsp;&nbsp;chromatic: &#123; delay: 1000 &#125; // Wait 1s<br />
+                parameters: &#123;
+                <br />
+                &nbsp;&nbsp;chromatic: &#123; delay: 1000 &#125; // Wait 1s
+                <br />
                 &#125;
               </div>
             </div>
@@ -551,17 +588,17 @@ export const BestPractices: StoryObj = {
                 Skip non-visual stories (docs, tests):
               </p>
               <div className="rounded bg-neutral-100 p-3 font-mono text-xs">
-                parameters: &#123;<br />
-                &nbsp;&nbsp;chromatic: &#123; disableSnapshot: true &#125;<br />
+                parameters: &#123;
+                <br />
+                &nbsp;&nbsp;chromatic: &#123; disableSnapshot: true &#125;
+                <br />
                 &#125;
               </div>
             </div>
 
             <div className="rounded-lg bg-white p-4">
               <h3 className="mb-2 font-bold text-neutral-900">Run Locally</h3>
-              <p className="mb-2 text-sm text-neutral-700">
-                Test before pushing:
-              </p>
+              <p className="mb-2 text-sm text-neutral-700">Test before pushing:</p>
               <div className="rounded bg-neutral-100 p-3 font-mono text-xs">
                 pnpm chromatic --only-changed
               </div>

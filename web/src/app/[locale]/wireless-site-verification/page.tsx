@@ -29,9 +29,9 @@ export default function WirelessSiteVerificationPage() {
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg mb-8 max-w-none">
             <p className="text-lg leading-relaxed text-neutral-700">
-              Before deploying BAPI wireless sensors, it&apos;s important to verify that your site has
-              adequate signal coverage. This tool helps you test signal strength, identify potential
-              interference, and optimize sensor placement for reliable communication.
+              Before deploying BAPI wireless sensors, it&apos;s important to verify that your site
+              has adequate signal coverage. This tool helps you test signal strength, identify
+              potential interference, and optimize sensor placement for reliable communication.
             </p>
           </div>
 

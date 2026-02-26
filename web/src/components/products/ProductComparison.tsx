@@ -35,7 +35,7 @@ export default function ProductComparison({
   locale,
 }: ProductComparisonProps) {
   const region = useRegion();
-  
+
   // ESC key to close
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {

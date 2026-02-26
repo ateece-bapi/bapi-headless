@@ -302,7 +302,7 @@ describe('Currency Utilities', () => {
       it('converts USD to GBP', () => {
         const result = convertWooCommercePrice('$99.99', 'GBP');
         expect(result).toMatch(/^£\d+\.\d{2}$/);
-        expect(parseFloat(result.replace(/[£,]/g, ''))).toBeCloseTo(79.00, 1);
+        expect(parseFloat(result.replace(/[£,]/g, ''))).toBeCloseTo(79.0, 1);
       });
 
       it('converts USD to JPY (no decimals)', () => {
@@ -490,7 +490,20 @@ describe('Currency Utilities', () => {
     });
 
     it('handles all 12 supported currencies without throwing', () => {
-      const currencies = ['USD', 'CAD', 'MXN', 'EUR', 'GBP', 'JPY', 'CNY', 'SGD', 'AED', 'VND', 'THB', 'INR'] as const;
+      const currencies = [
+        'USD',
+        'CAD',
+        'MXN',
+        'EUR',
+        'GBP',
+        'JPY',
+        'CNY',
+        'SGD',
+        'AED',
+        'VND',
+        'THB',
+        'INR',
+      ] as const;
       for (const currency of currencies) {
         expect(() => convertWooCommercePriceNumeric('$99.99', currency)).not.toThrow();
         expect(convertWooCommercePriceNumeric('$99.99', currency)).toBeGreaterThan(0);

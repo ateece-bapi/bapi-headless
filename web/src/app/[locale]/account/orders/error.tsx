@@ -7,7 +7,7 @@ import logger from '@/lib/logger';
 /**
  * Orders page error boundary - handles errors loading order history
  * Logs to monitoring and provides user recovery options
- * 
+ *
  * @param {Object} props - Component props
  * @param {Error & { digest?: string }} props.error - The error that was thrown
  * @param {() => void} props.reset - Function to retry loading orders
@@ -48,9 +48,7 @@ export default function OrdersError({
           </svg>
         </div>
 
-        <h2 className="mb-3 text-2xl font-bold text-neutral-900">
-          Unable to load orders
-        </h2>
+        <h2 className="mb-3 text-2xl font-bold text-neutral-900">Unable to load orders</h2>
 
         <p className="mb-6 text-base text-neutral-600">
           We couldn&apos;t retrieve your order history. This might be a temporary issue.

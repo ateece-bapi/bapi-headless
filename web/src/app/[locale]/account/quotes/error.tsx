@@ -7,7 +7,7 @@ import logger from '@/lib/logger';
 /**
  * Quotes page error boundary - handles errors loading quote requests
  * Logs to monitoring and provides user recovery options
- * 
+ *
  * @param {Object} props - Component props
  * @param {Error & { digest?: string }} props.error - The error that was thrown
  * @param {() => void} props.reset - Function to retry loading quotes
@@ -48,9 +48,7 @@ export default function QuotesError({
           </svg>
         </div>
 
-        <h2 className="mb-3 text-2xl font-bold text-neutral-900">
-          Unable to load quotes
-        </h2>
+        <h2 className="mb-3 text-2xl font-bold text-neutral-900">Unable to load quotes</h2>
 
         <p className="mb-6 text-base text-neutral-600">
           We couldn&apos;t retrieve your quote requests. This might be a temporary issue.

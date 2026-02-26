@@ -10,7 +10,7 @@ import { mockProductForClient } from '../../../test/msw/fixtures';
  *
  * Demonstrates automated interaction testing with @storybook/test:
  * - userEvent: Simulates user interactions (click, type, hover)
- * - within: Queries elements within component  
+ * - within: Queries elements within component
  * - expect: Assertions for testing behavior
  * - fn: Mock functions for tracking calls
  * - play: Automated test scenarios
@@ -105,7 +105,11 @@ export const ToastMultipleClicks: StoryObj = {
           data-testid="multi-toast-trigger"
           onClick={() => {
             clickCountRef.current++;
-            showToast('info', `Toast #${clickCountRef.current}`, `This is toast number ${clickCountRef.current}`);
+            showToast(
+              'info',
+              `Toast #${clickCountRef.current}`,
+              `This is toast number ${clickCountRef.current}`
+            );
           }}
           className="rounded-lg bg-blue-500 px-6 py-3 text-white hover:bg-blue-600"
         >
@@ -167,10 +171,7 @@ export const AddToCartClick: StoryObj = {
 
     return (
       <ToastProvider>
-        <AddToCartButton
-          product={product}
-          quantity={1}
-        />
+        <AddToCartButton product={product} quantity={1} />
       </ToastProvider>
     );
   },
@@ -221,10 +222,7 @@ export const AddToCartLoadingState: StoryObj = {
 
     return (
       <ToastProvider>
-        <AddToCartButton
-          product={product}
-          quantity={2}
-        />
+        <AddToCartButton product={product} quantity={2} />
       </ToastProvider>
     );
   },
@@ -273,10 +271,7 @@ export const AddToCartWithQuantity: StoryObj = {
 
     return (
       <ToastProvider>
-        <AddToCartButton
-          product={product}
-          quantity={5}
-        />
+        <AddToCartButton product={product} quantity={5} />
       </ToastProvider>
     );
   },
@@ -323,10 +318,7 @@ export const ButtonHoverEffect: StoryObj = {
 
     return (
       <ToastProvider>
-        <AddToCartButton
-          product={product}
-          quantity={1}
-        />
+        <AddToCartButton product={product} quantity={1} />
       </ToastProvider>
     );
   },
@@ -375,11 +367,7 @@ export const ButtonDisabledState: StoryObj = {
 
     return (
       <ToastProvider>
-        <AddToCartButton
-          product={product}
-          quantity={1}
-          disabled={true}
-        />
+        <AddToCartButton product={product} quantity={1} disabled={true} />
       </ToastProvider>
     );
   },
@@ -438,9 +426,7 @@ export const InteractionTestsSummary: StoryObj = {
         </div>
 
         <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
-          <h3 className="mb-2 text-lg font-semibold text-neutral-900">
-            AddToCartButton Tests (4)
-          </h3>
+          <h3 className="mb-2 text-lg font-semibold text-neutral-900">AddToCartButton Tests (4)</h3>
           <ul className="list-inside list-disc space-y-1 text-sm text-neutral-700">
             <li>Click Test: Adds item, verifies success toast</li>
             <li>Loading State: Checks disabled state during async operation</li>

@@ -153,7 +153,8 @@ export const Loading: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Shows animated spinner when adding product to cart. Button is disabled to prevent double-clicks.',
+        story:
+          'Shows animated spinner when adding product to cart. Button is disabled to prevent double-clicks.',
       },
     },
   },
@@ -193,7 +194,8 @@ export const NoCartDrawer: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Cart drawer does not open after adding. Useful for product listing pages where user may add multiple items.',
+        story:
+          'Cart drawer does not open after adding. Useful for product listing pages where user may add multiple items.',
       },
     },
   },
@@ -228,7 +230,8 @@ export const MultipleQuantity: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Add 5 units at once. Useful for bulk purchases or when integrated with quantity selector.',
+        story:
+          'Add 5 units at once. Useful for bulk purchases or when integrated with quantity selector.',
       },
     },
   },
@@ -292,7 +295,8 @@ export const LongProductName: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Product with long descriptive name. ARIA label includes full product name for accessibility.',
+        story:
+          'Product with long descriptive name. ARIA label includes full product name for accessibility.',
       },
     },
   },
@@ -313,7 +317,8 @@ export const LowStockProduct: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Product with low stock. Button remains enabled but could show urgency indicator elsewhere.',
+        story:
+          'Product with low stock. Button remains enabled but could show urgency indicator elsewhere.',
       },
     },
   },
@@ -405,7 +410,8 @@ export const QuickSuccess: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Success animation lasts 1 second instead of default 2 seconds. Faster feedback cycle.',
+        story:
+          'Success animation lasts 1 second instead of default 2 seconds. Faster feedback cycle.',
       },
     },
   },
@@ -483,14 +489,18 @@ export const WithQuantitySelector: Story = {
     (Story) => (
       <div className="flex items-stretch gap-3">
         <div className="flex items-center rounded-lg border border-neutral-300">
-          <button className="px-3 py-2 hover:bg-neutral-50" type="button">−</button>
+          <button className="px-3 py-2 hover:bg-neutral-50" type="button">
+            −
+          </button>
           <input
             type="number"
             value="1"
             readOnly
             className="w-16 border-x border-neutral-300 py-2 text-center"
           />
-          <button className="px-3 py-2 hover:bg-neutral-50" type="button">+</button>
+          <button className="px-3 py-2 hover:bg-neutral-50" type="button">
+            +
+          </button>
         </div>
         <Story />
       </div>
@@ -499,7 +509,8 @@ export const WithQuantitySelector: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Button alongside quantity selector on product detail page. Flexible width to fill available space.',
+        story:
+          'Button alongside quantity selector on product detail page. Flexible width to fill available space.',
       },
     },
   },
@@ -524,8 +535,8 @@ export const MobileStickyBottom: Story = {
             <h2 className="mb-2 text-2xl font-bold">Product Title</h2>
             <div className="mb-4 text-2xl font-bold text-primary-500">$49.00</div>
             <p className="text-neutral-700">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Product description
-              would appear here with all the technical details and specifications...
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Product description would
+              appear here with all the technical details and specifications...
             </p>
           </div>
         </div>
@@ -539,7 +550,8 @@ export const MobileStickyBottom: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Mobile layout with sticky bottom bar. Button remains accessible while user scrolls product details.',
+        story:
+          'Mobile layout with sticky bottom bar. Button remains accessible while user scrolls product details.',
       },
     },
   },

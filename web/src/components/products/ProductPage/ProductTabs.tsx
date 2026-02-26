@@ -228,7 +228,9 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                     <Video className="h-10 w-10 text-neutral-400" />
                   </div>
                   <div>
-                    <p className="mb-2 text-xl font-bold text-neutral-700">{t('productPage.tabs.noVideosAvailable')}</p>
+                    <p className="mb-2 text-xl font-bold text-neutral-700">
+                      {t('productPage.tabs.noVideosAvailable')}
+                    </p>
                     <p className="leading-relaxed text-neutral-500">
                       Product videos and tutorials will be displayed here when available. Check back
                       soon for helpful video content about this product.

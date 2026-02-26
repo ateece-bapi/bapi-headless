@@ -180,6 +180,9 @@ export const FACILITY_TYPE_COLORS: Record<FacilityType, string> = {
 
 /**
  * Get locations by type
+ * @param type - Facility type to filter by
+ * @returns Array of locations matching the specified type
+ * @note Reserved for Phase 2: Filtering sales staff and distribution partner locations
  */
 export function getLocationsByType(type: FacilityType): Location[] {
   return BAPI_LOCATIONS.filter((location) => location.type === type);
@@ -187,6 +190,9 @@ export function getLocationsByType(type: FacilityType): Location[] {
 
 /**
  * Get location by ID
+ * @param id - Location ID to search for
+ * @returns Location object if found, undefined otherwise
+ * @note Reserved for Phase 2: Individual location lookups for detail pages
  */
 export function getLocationById(id: string): Location | undefined {
   return BAPI_LOCATIONS.find((location) => location.id === id);

@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * Color System Documentation
- * 
+ *
  * The BAPI Headless color system based on 2026 BAPI Brand Standards.
- * Uses semantic naming with three primary families: Primary (Blue), 
+ * Uses semantic naming with three primary families: Primary (Blue),
  * Accent (Yellow), and Neutral (Gray).
  */
 
@@ -37,13 +37,13 @@ type Story = StoryObj<typeof meta>;
 /**
  * Color Swatch Component
  */
-const ColorSwatch = ({ 
-  name, 
-  value, 
-  subtitle 
-}: { 
-  name: string; 
-  value: string; 
+const ColorSwatch = ({
+  name,
+  value,
+  subtitle,
+}: {
+  name: string;
+  value: string;
   subtitle?: string;
 }) => {
   // Calculate relative luminance using WCAG formula
@@ -52,22 +52,22 @@ const ColorSwatch = ({
   const b = parseInt(value.slice(5, 7), 16) / 255;
   const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
   const isLight = luminance > 0.5;
-  
+
   return (
     <div className="flex flex-col">
       <div
-        className="h-24 rounded-lg shadow-md flex items-center justify-center"
+        className="flex h-24 items-center justify-center rounded-lg shadow-md"
         style={{ backgroundColor: value }}
       >
-        <div 
+        <div
           className={`text-center font-mono text-sm ${isLight ? 'text-neutral-900' : 'text-white'}`}
         >
           {value}
         </div>
       </div>
       <div className="mt-2 text-center">
-        <div className="font-semibold text-sm text-neutral-900">{name}</div>
-        {subtitle && <div className="text-xs text-neutral-600 mt-1">{subtitle}</div>}
+        <div className="text-sm font-semibold text-neutral-900">{name}</div>
+        {subtitle && <div className="mt-1 text-xs text-neutral-600">{subtitle}</div>}
       </div>
     </div>
   );
@@ -86,9 +86,9 @@ const ColorFamily = ({
   colors: Array<{ name: string; value: string; subtitle?: string }>;
 }) => (
   <div className="mb-12">
-    <h2 className="text-2xl font-bold text-neutral-900 mb-2">{title}</h2>
-    <p className="text-neutral-600 mb-6">{description}</p>
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <h2 className="mb-2 text-2xl font-bold text-neutral-900">{title}</h2>
+    <p className="mb-6 text-neutral-600">{description}</p>
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       {colors.map((color) => (
         <ColorSwatch key={color.name} {...color} />
       ))}
@@ -101,49 +101,47 @@ const ColorFamily = ({
  */
 export const AllColors: Story = {
   render: () => (
-    <div className="p-8 bg-white min-h-screen">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-white p-8">
+      <div className="mx-auto max-w-7xl">
         {/* Hero Section */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-neutral-900 mb-4">
-            BAPI Color System
-          </h1>
-          <p className="text-lg text-neutral-600 mb-8">
+          <h1 className="mb-4 text-4xl font-bold text-neutral-900">BAPI Color System</h1>
+          <p className="mb-8 text-lg text-neutral-600">
             Official 2026 BAPI Brand Standards for digital applications
           </p>
-          
+
           {/* Brand Distribution */}
-          <div className="grid grid-cols-1 md:grid-cols-10 gap-4 mb-8">
-            <div className="md:col-span-6 bg-neutral-50 p-6 rounded-lg text-center">
-              <div className="text-5xl font-bold text-neutral-500 mb-2">60%</div>
+          <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-10">
+            <div className="rounded-lg bg-neutral-50 p-6 text-center md:col-span-6">
+              <div className="mb-2 text-5xl font-bold text-neutral-500">60%</div>
               <div className="text-xl font-semibold text-neutral-900">White & Gray</div>
-              <div className="text-sm text-neutral-600 mt-2">Backgrounds, surfaces, subtle UI</div>
+              <div className="mt-2 text-sm text-neutral-600">Backgrounds, surfaces, subtle UI</div>
             </div>
-            <div className="md:col-span-3 bg-primary-500 p-6 rounded-lg text-center">
-              <div className="text-5xl font-bold text-white mb-2">30%</div>
+            <div className="rounded-lg bg-primary-500 p-6 text-center md:col-span-3">
+              <div className="mb-2 text-5xl font-bold text-white">30%</div>
               <div className="text-xl font-semibold text-white">BAPI Blue</div>
-              <div className="text-sm text-primary-100 mt-2">Navigation, primary actions</div>
+              <div className="mt-2 text-sm text-primary-100">Navigation, primary actions</div>
             </div>
-            <div className="md:col-span-1 bg-accent-500 p-6 rounded-lg text-center">
-              <div className="text-5xl font-bold text-neutral-900 mb-2">10%</div>
+            <div className="rounded-lg bg-accent-500 p-6 text-center md:col-span-1">
+              <div className="mb-2 text-5xl font-bold text-neutral-900">10%</div>
               <div className="text-xl font-semibold text-neutral-900">Yellow</div>
-              <div className="text-sm text-accent-900 mt-2">CTAs</div>
+              <div className="mt-2 text-sm text-accent-900">CTAs</div>
             </div>
           </div>
 
           {/* Official Brand Colors */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-            <div className="bg-primary-500 p-6 rounded-lg">
-              <div className="text-white text-xl font-bold">BAPI Blue</div>
-              <div className="text-primary-100 font-mono text-lg mt-2">#1479BC</div>
+          <div className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div className="rounded-lg bg-primary-500 p-6">
+              <div className="text-xl font-bold text-white">BAPI Blue</div>
+              <div className="mt-2 font-mono text-lg text-primary-100">#1479BC</div>
             </div>
-            <div className="bg-accent-500 p-6 rounded-lg">
-              <div className="text-neutral-900 text-xl font-bold">BAPI Yellow</div>
-              <div className="text-accent-900 font-mono text-lg mt-2">#FFC843</div>
+            <div className="rounded-lg bg-accent-500 p-6">
+              <div className="text-xl font-bold text-neutral-900">BAPI Yellow</div>
+              <div className="mt-2 font-mono text-lg text-accent-900">#FFC843</div>
             </div>
-            <div className="bg-neutral-500 p-6 rounded-lg">
-              <div className="text-white text-xl font-bold">BAPI Gray</div>
-              <div className="text-neutral-200 font-mono text-lg mt-2">#97999B</div>
+            <div className="rounded-lg bg-neutral-500 p-6">
+              <div className="text-xl font-bold text-white">BAPI Gray</div>
+              <div className="mt-2 font-mono text-lg text-neutral-200">#97999B</div>
             </div>
           </div>
         </div>
@@ -207,25 +205,25 @@ export const AllColors: Story = {
 
         {/* Semantic Colors */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-2">Semantic Colors</h2>
-          <p className="text-neutral-600 mb-6">
+          <h2 className="mb-2 text-2xl font-bold text-neutral-900">Semantic Colors</h2>
+          <p className="mb-6 text-neutral-600">
             Purpose-specific colors for conveying state and meaning
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
             <div>
-              <h3 className="font-semibold text-neutral-900 mb-3">Success</h3>
+              <h3 className="mb-3 font-semibold text-neutral-900">Success</h3>
               <ColorSwatch name="success-500" value="#22c55e" subtitle="Base" />
             </div>
             <div>
-              <h3 className="font-semibold text-neutral-900 mb-3">Warning</h3>
+              <h3 className="mb-3 font-semibold text-neutral-900">Warning</h3>
               <ColorSwatch name="warning-500" value="#ffc843" subtitle="Base (accent)" />
             </div>
             <div>
-              <h3 className="font-semibold text-neutral-900 mb-3">Error</h3>
+              <h3 className="mb-3 font-semibold text-neutral-900">Error</h3>
               <ColorSwatch name="error-500" value="#ef4444" subtitle="Base" />
             </div>
             <div>
-              <h3 className="font-semibold text-neutral-900 mb-3">Info</h3>
+              <h3 className="mb-3 font-semibold text-neutral-900">Info</h3>
               <ColorSwatch name="info-500" value="#1479bc" subtitle="Base (primary)" />
             </div>
           </div>
@@ -233,45 +231,41 @@ export const AllColors: Story = {
 
         {/* Gradients */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-2">Official BAPI Gradients</h2>
-          <p className="text-neutral-600 mb-6">
+          <h2 className="mb-2 text-2xl font-bold text-neutral-900">Official BAPI Gradients</h2>
+          <p className="mb-6 text-neutral-600">
             2026 Brand Guide specifications for buttons and graphical elements
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
               <div
-                className="h-32 rounded-lg shadow-lg flex items-center justify-center text-2xl font-bold text-neutral-900"
-                style={{ 
-                  background: 'linear-gradient(135deg, #f89623 0%, #ffc843 100%)' 
+                className="flex h-32 items-center justify-center rounded-lg text-2xl font-bold text-neutral-900 shadow-lg"
+                style={{
+                  background: 'linear-gradient(135deg, #f89623 0%, #ffc843 100%)',
                 }}
               >
                 Accent Gradient
               </div>
               <div className="mt-3 text-sm text-neutral-600">
-                <div className="font-mono bg-neutral-100 p-2 rounded mt-2">
+                <div className="mt-2 rounded bg-neutral-100 p-2 font-mono">
                   bg-bapi-accent-gradient
                 </div>
-                <div className="mt-2">
-                  Use for: Add to Cart, Primary CTAs
-                </div>
+                <div className="mt-2">Use for: Add to Cart, Primary CTAs</div>
               </div>
             </div>
             <div>
               <div
-                className="h-32 rounded-lg shadow-lg flex items-center justify-center text-2xl font-bold text-white"
-                style={{ 
-                  background: 'linear-gradient(135deg, #044976 0%, #1479bc 100%)' 
+                className="flex h-32 items-center justify-center rounded-lg text-2xl font-bold text-white shadow-lg"
+                style={{
+                  background: 'linear-gradient(135deg, #044976 0%, #1479bc 100%)',
                 }}
               >
                 Primary Gradient
               </div>
               <div className="mt-3 text-sm text-neutral-600">
-                <div className="font-mono bg-neutral-100 p-2 rounded mt-2">
+                <div className="mt-2 rounded bg-neutral-100 p-2 font-mono">
                   bg-bapi-primary-gradient
                 </div>
-                <div className="mt-2">
-                  Use for: Continue, View Details, Secondary CTAs
-                </div>
+                <div className="mt-2">Use for: Continue, View Details, Secondary CTAs</div>
               </div>
             </div>
           </div>
@@ -279,46 +273,46 @@ export const AllColors: Story = {
 
         {/* Accessibility */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-2">
-            Accessibility & Contrast
-          </h2>
-          <p className="text-neutral-600 mb-6">
+          <h2 className="mb-2 text-2xl font-bold text-neutral-900">Accessibility & Contrast</h2>
+          <p className="mb-6 text-neutral-600">
             All color combinations meet WCAG 2.1 Level AA standards
           </p>
-          <div className="bg-neutral-50 rounded-lg p-6 overflow-x-auto">
+          <div className="overflow-x-auto rounded-lg bg-neutral-50 p-6">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-neutral-200">
-                  <th className="text-left py-2 px-4 font-semibold text-neutral-900">Background</th>
-                  <th className="text-left py-2 px-4 font-semibold text-neutral-900">Text Color</th>
-                  <th className="text-left py-2 px-4 font-semibold text-neutral-900">Contrast Ratio</th>
-                  <th className="text-left py-2 px-4 font-semibold text-neutral-900">WCAG Level</th>
+                  <th className="px-4 py-2 text-left font-semibold text-neutral-900">Background</th>
+                  <th className="px-4 py-2 text-left font-semibold text-neutral-900">Text Color</th>
+                  <th className="px-4 py-2 text-left font-semibold text-neutral-900">
+                    Contrast Ratio
+                  </th>
+                  <th className="px-4 py-2 text-left font-semibold text-neutral-900">WCAG Level</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-neutral-200">
-                  <td className="py-2 px-4">primary-500</td>
-                  <td className="py-2 px-4">white</td>
-                  <td className="py-2 px-4">4.89:1</td>
-                  <td className="py-2 px-4">✓ AA Large Text</td>
+                  <td className="px-4 py-2">primary-500</td>
+                  <td className="px-4 py-2">white</td>
+                  <td className="px-4 py-2">4.89:1</td>
+                  <td className="px-4 py-2">✓ AA Large Text</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
-                  <td className="py-2 px-4">primary-600</td>
-                  <td className="py-2 px-4">white</td>
-                  <td className="py-2 px-4">6.45:1</td>
-                  <td className="py-2 px-4">✓✓ AA Normal Text</td>
+                  <td className="px-4 py-2">primary-600</td>
+                  <td className="px-4 py-2">white</td>
+                  <td className="px-4 py-2">6.45:1</td>
+                  <td className="px-4 py-2">✓✓ AA Normal Text</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
-                  <td className="py-2 px-4">accent-500</td>
-                  <td className="py-2 px-4">neutral-900</td>
-                  <td className="py-2 px-4">10.24:1</td>
-                  <td className="py-2 px-4">✓✓ AAA Normal Text</td>
+                  <td className="px-4 py-2">accent-500</td>
+                  <td className="px-4 py-2">neutral-900</td>
+                  <td className="px-4 py-2">10.24:1</td>
+                  <td className="px-4 py-2">✓✓ AAA Normal Text</td>
                 </tr>
                 <tr className="border-b border-neutral-200">
-                  <td className="py-2 px-4">neutral-50</td>
-                  <td className="py-2 px-4">neutral-900</td>
-                  <td className="py-2 px-4">17.82:1</td>
-                  <td className="py-2 px-4">✓✓ AAA Normal Text</td>
+                  <td className="px-4 py-2">neutral-50</td>
+                  <td className="px-4 py-2">neutral-900</td>
+                  <td className="px-4 py-2">17.82:1</td>
+                  <td className="px-4 py-2">✓✓ AAA Normal Text</td>
                 </tr>
               </tbody>
             </table>
@@ -327,18 +321,16 @@ export const AllColors: Story = {
 
         {/* Usage Examples */}
         <div>
-          <h2 className="text-2xl font-bold text-neutral-900 mb-2">Usage Examples</h2>
-          <p className="text-neutral-600 mb-6">
-            Common patterns and component implementations
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-neutral-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-neutral-900 mb-4">Primary Button</h3>
-              <button className="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+          <h2 className="mb-2 text-2xl font-bold text-neutral-900">Usage Examples</h2>
+          <p className="mb-6 text-neutral-600">Common patterns and component implementations</p>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="rounded-lg bg-neutral-50 p-6">
+              <h3 className="mb-4 font-semibold text-neutral-900">Primary Button</h3>
+              <button className="rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-600">
                 Proceed to Checkout
               </button>
-              <pre className="mt-4 bg-neutral-900 text-neutral-100 p-3 rounded text-xs overflow-x-auto">
-{`<button className="bg-primary-500 
+              <pre className="mt-4 overflow-x-auto rounded bg-neutral-900 p-3 text-xs text-neutral-100">
+                {`<button className="bg-primary-500 
   hover:bg-primary-600 
   text-white">
   Proceed to Checkout
@@ -346,13 +338,13 @@ export const AllColors: Story = {
               </pre>
             </div>
 
-            <div className="bg-neutral-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-neutral-900 mb-4">Accent Button</h3>
-              <button className="bg-accent-500 hover:bg-accent-600 text-neutral-900 px-6 py-3 rounded-lg font-semibold transition-colors">
+            <div className="rounded-lg bg-neutral-50 p-6">
+              <h3 className="mb-4 font-semibold text-neutral-900">Accent Button</h3>
+              <button className="rounded-lg bg-accent-500 px-6 py-3 font-semibold text-neutral-900 transition-colors hover:bg-accent-600">
                 Add to Cart
               </button>
-              <pre className="mt-4 bg-neutral-900 text-neutral-100 p-3 rounded text-xs overflow-x-auto">
-{`<button className="bg-accent-500 
+              <pre className="mt-4 overflow-x-auto rounded bg-neutral-900 p-3 text-xs text-neutral-100">
+                {`<button className="bg-accent-500 
   hover:bg-accent-600 
   text-neutral-900">
   Add to Cart
@@ -360,13 +352,13 @@ export const AllColors: Story = {
               </pre>
             </div>
 
-            <div className="bg-neutral-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-neutral-900 mb-4">Success Alert</h3>
-              <div className="bg-success-50 border border-success-500 text-success-700 p-4 rounded">
+            <div className="rounded-lg bg-neutral-50 p-6">
+              <h3 className="mb-4 font-semibold text-neutral-900">Success Alert</h3>
+              <div className="rounded border border-success-500 bg-success-50 p-4 text-success-700">
                 ✓ Order placed successfully!
               </div>
-              <pre className="mt-4 bg-neutral-900 text-neutral-100 p-3 rounded text-xs overflow-x-auto">
-{`<div className="bg-success-50 
+              <pre className="mt-4 overflow-x-auto rounded bg-neutral-900 p-3 text-xs text-neutral-100">
+                {`<div className="bg-success-50 
   border border-success-500 
   text-success-700">
   ✓ Order placed successfully!
@@ -374,13 +366,13 @@ export const AllColors: Story = {
               </pre>
             </div>
 
-            <div className="bg-neutral-50 p-6 rounded-lg">
-              <h3 className="font-semibold text-neutral-900 mb-4">Error Alert</h3>
-              <div className="bg-error-50 border border-error-500 text-error-700 p-4 rounded">
+            <div className="rounded-lg bg-neutral-50 p-6">
+              <h3 className="mb-4 font-semibold text-neutral-900">Error Alert</h3>
+              <div className="rounded border border-error-500 bg-error-50 p-4 text-error-700">
                 ✗ Payment failed. Try again.
               </div>
-              <pre className="mt-4 bg-neutral-900 text-neutral-100 p-3 rounded text-xs overflow-x-auto">
-{`<div className="bg-error-50 
+              <pre className="mt-4 overflow-x-auto rounded bg-neutral-900 p-3 text-xs text-neutral-100">
+                {`<div className="bg-error-50 
   border border-error-500 
   text-error-700">
   ✗ Payment failed. Try again.
@@ -400,25 +392,25 @@ export const AllColors: Story = {
 export const BrandColors: Story = {
   render: () => (
     <div className="p-8">
-      <h2 className="text-2xl font-bold text-neutral-900 mb-6">BAPI Official Brand Colors</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
-        <div className="bg-primary-500 p-8 rounded-lg text-center">
-          <div className="text-white text-2xl font-bold mb-2">BAPI Blue</div>
-          <div className="text-primary-100 font-mono text-xl mb-4">#1479BC</div>
-          <div className="text-primary-100 text-sm">30% Usage</div>
-          <div className="text-primary-200 text-xs mt-2">Navigation, Primary Actions</div>
+      <h2 className="mb-6 text-2xl font-bold text-neutral-900">BAPI Official Brand Colors</h2>
+      <div className="grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="rounded-lg bg-primary-500 p-8 text-center">
+          <div className="mb-2 text-2xl font-bold text-white">BAPI Blue</div>
+          <div className="mb-4 font-mono text-xl text-primary-100">#1479BC</div>
+          <div className="text-sm text-primary-100">30% Usage</div>
+          <div className="mt-2 text-xs text-primary-200">Navigation, Primary Actions</div>
         </div>
-        <div className="bg-accent-500 p-8 rounded-lg text-center">
-          <div className="text-neutral-900 text-2xl font-bold mb-2">BAPI Yellow</div>
-          <div className="text-accent-900 font-mono text-xl mb-4">#FFC843</div>
-          <div className="text-accent-900 text-sm">10% Usage</div>
-          <div className="text-accent-800 text-xs mt-2">CTAs, Highlights</div>
+        <div className="rounded-lg bg-accent-500 p-8 text-center">
+          <div className="mb-2 text-2xl font-bold text-neutral-900">BAPI Yellow</div>
+          <div className="mb-4 font-mono text-xl text-accent-900">#FFC843</div>
+          <div className="text-sm text-accent-900">10% Usage</div>
+          <div className="mt-2 text-xs text-accent-800">CTAs, Highlights</div>
         </div>
-        <div className="bg-neutral-500 p-8 rounded-lg text-center">
-          <div className="text-white text-2xl font-bold mb-2">BAPI Gray</div>
-          <div className="text-neutral-200 font-mono text-xl mb-4">#97999B</div>
-          <div className="text-neutral-200 text-sm">60% Usage (with white)</div>
-          <div className="text-neutral-300 text-xs mt-2">Backgrounds, Subtle UI</div>
+        <div className="rounded-lg bg-neutral-500 p-8 text-center">
+          <div className="mb-2 text-2xl font-bold text-white">BAPI Gray</div>
+          <div className="mb-4 font-mono text-xl text-neutral-200">#97999B</div>
+          <div className="text-sm text-neutral-200">60% Usage (with white)</div>
+          <div className="mt-2 text-xs text-neutral-300">Backgrounds, Subtle UI</div>
         </div>
       </div>
     </div>
@@ -430,21 +422,19 @@ export const BrandColors: Story = {
  */
 export const AccessibilityExamples: Story = {
   render: () => (
-    <div className="p-8 max-w-4xl">
-      <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-        WCAG Accessibility Examples
-      </h2>
+    <div className="max-w-4xl p-8">
+      <h2 className="mb-6 text-2xl font-bold text-neutral-900">WCAG Accessibility Examples</h2>
       <div className="space-y-4">
-        <div className="bg-primary-600 text-white p-4 rounded-lg">
+        <div className="rounded-lg bg-primary-600 p-4 text-white">
           <strong>✓ PASS:</strong> White text on primary-600 (6.45:1) - AA Normal Text
         </div>
-        <div className="bg-accent-500 text-neutral-900 p-4 rounded-lg">
+        <div className="rounded-lg bg-accent-500 p-4 text-neutral-900">
           <strong>✓ PASS:</strong> Dark text on accent-500 (10.24:1) - AAA Normal Text
         </div>
-        <div className="bg-success-500 text-white p-4 rounded-lg">
+        <div className="rounded-lg bg-success-500 p-4 text-white">
           <strong>✓ PASS:</strong> White text on success-500 (4.51:1) - AA Large Text
         </div>
-        <div className="bg-neutral-200 text-neutral-900 p-4 rounded-lg">
+        <div className="rounded-lg bg-neutral-200 p-4 text-neutral-900">
           <strong>✓ PASS:</strong> Dark text on neutral-200 (13.42:1) - AAA Normal Text
         </div>
       </div>

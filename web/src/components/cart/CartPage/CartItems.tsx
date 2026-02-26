@@ -81,7 +81,9 @@ export default function CartItems({
     <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50 px-6 py-4">
-        <h2 className="text-lg font-semibold text-neutral-900">{t('cartPage.items.title')} ({items.length})</h2>
+        <h2 className="text-lg font-semibold text-neutral-900">
+          {t('cartPage.items.title')} ({items.length})
+        </h2>
         <button
           onClick={onClearCart}
           disabled={isUpdating}
@@ -209,7 +211,9 @@ export default function CartItems({
                     </div>
                   )}
                   {item.quantity > 1 && (
-                    <div className="text-sm text-neutral-500">{t('cartPage.items.priceEach', { price: displayProduct.price })}</div>
+                    <div className="text-sm text-neutral-500">
+                      {t('cartPage.items.priceEach', { price: displayProduct.price })}
+                    </div>
                   )}
                 </div>
 
@@ -256,7 +260,9 @@ export default function CartItems({
                   </div>
                 )}
                 {item.quantity > 1 && (
-                  <div className="text-sm text-neutral-500">{t('cartPage.items.priceEach', { price: displayProduct.price })}</div>
+                  <div className="text-sm text-neutral-500">
+                    {t('cartPage.items.priceEach', { price: displayProduct.price })}
+                  </div>
                 )}
               </div>
             </div>

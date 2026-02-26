@@ -31,12 +31,7 @@ export const Default: Story = {
         >
           Open Image Modal
         </button>
-        <ImageModal
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          src={src}
-          alt={alt}
-        />
+        <ImageModal isOpen={isOpen} onClose={() => setIsOpen(false)} src={src} alt={alt} />
       </div>
     );
   },
@@ -59,12 +54,7 @@ export const Landscape: Story = {
         >
           Open Landscape Image
         </button>
-        <ImageModal
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          src={src}
-          alt={alt}
-        />
+        <ImageModal isOpen={isOpen} onClose={() => setIsOpen(false)} src={src} alt={alt} />
       </div>
     );
   },
@@ -87,12 +77,7 @@ export const Portrait: Story = {
         >
           Open Portrait Image
         </button>
-        <ImageModal
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          src={src}
-          alt={alt}
-        />
+        <ImageModal isOpen={isOpen} onClose={() => setIsOpen(false)} src={src} alt={alt} />
       </div>
     );
   },

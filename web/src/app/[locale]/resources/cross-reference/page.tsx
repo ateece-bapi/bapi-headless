@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       path: 'resources/cross-reference',
       keywords: t('metadata.keywords').split(', '),
     },
-    locale,
+    locale
   );
 }
 
@@ -68,7 +68,10 @@ export default async function CrossReferencePage({ params }: Props) {
               </div>
 
               <div>
-                <label htmlFor="model" className="mb-2 block text-sm font-semibold text-neutral-700">
+                <label
+                  htmlFor="model"
+                  className="mb-2 block text-sm font-semibold text-neutral-700"
+                >
                   {t('searchTool.modelLabel')}
                 </label>
                 <div className="relative">
@@ -94,13 +97,17 @@ export default async function CrossReferencePage({ params }: Props) {
       {/* Popular Cross References */}
       <section className="bg-neutral-50 py-16">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-2xl font-bold text-neutral-900">{t('popularSection.heading')}</h2>
+          <h2 className="mb-8 text-2xl font-bold text-neutral-900">
+            {t('popularSection.heading')}
+          </h2>
 
           <div className="space-y-4">
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-3">
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">{t('popularSection.competitorLabel')}</div>
+                  <div className="mb-1 text-xs text-neutral-500">
+                    {t('popularSection.competitorLabel')}
+                  </div>
                   <div className="font-bold text-neutral-900">Honeywell C7400A2100</div>
                   <div className="text-sm text-neutral-600">Room Temperature Sensor</div>
                 </div>
@@ -108,7 +115,9 @@ export default async function CrossReferencePage({ params }: Props) {
                   <RefreshCw className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">{t('popularSection.bapiLabel')}</div>
+                  <div className="mb-1 text-xs text-neutral-500">
+                    {t('popularSection.bapiLabel')}
+                  </div>
                   <div className="font-bold text-primary-500">BA/10K-2-R</div>
                   <div className="text-sm text-neutral-600">10K Type 2 Room Sensor</div>
                 </div>
@@ -118,7 +127,9 @@ export default async function CrossReferencePage({ params }: Props) {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-3">
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">{t('popularSection.competitorLabel')}</div>
+                  <div className="mb-1 text-xs text-neutral-500">
+                    {t('popularSection.competitorLabel')}
+                  </div>
                   <div className="font-bold text-neutral-900">Johnson Controls TE-6000</div>
                   <div className="text-sm text-neutral-600">Temperature & Humidity Sensor</div>
                 </div>
@@ -126,7 +137,9 @@ export default async function CrossReferencePage({ params }: Props) {
                   <RefreshCw className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">{t('popularSection.bapiLabel')}</div>
+                  <div className="mb-1 text-xs text-neutral-500">
+                    {t('popularSection.bapiLabel')}
+                  </div>
                   <div className="font-bold text-primary-500">BA/RH-AS-R2</div>
                   <div className="text-sm text-neutral-600">RH & Temp Room Sensor</div>
                 </div>

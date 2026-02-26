@@ -221,11 +221,18 @@ export function GlobalPresence({
           <div className="mt-6 border-t border-neutral-200 pt-6">
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               {activeFacilityTypes.map((type) => {
-                // Map facility types to translation keys
-                const translationKey =
-                  type === 'distribution-partner'
-                    ? 'distributionPartner'
-                    : (type as keyof LocationTranslations['mapLegend']);
+                // Type-safe mapping from facility types to translation keys
+                const FACILITY_TYPE_TO_LEGEND_KEY: Record<
+                  FacilityType,
+                  keyof LocationTranslations['mapLegend']
+                > = {
+                  headquarters: 'headquarters',
+                  manufacturing: 'manufacturing',
+                  sales: 'sales',
+                  'distribution-partner': 'distributionPartner',
+                };
+
+                const translationKey = FACILITY_TYPE_TO_LEGEND_KEY[type];
 
                 return (
                   <div key={type} className="flex items-center gap-2">

@@ -294,9 +294,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
             onChange={(e) => setSameAsShipping(e.target.checked)}
             className="h-5 w-5 rounded border-neutral-300 text-primary-500 focus:ring-2 focus:ring-primary-500"
           />
-          <span className="text-sm font-medium text-neutral-700">
-            {t('billingSameAsShipping')}
-          </span>
+          <span className="text-sm font-medium text-neutral-700">{t('billingSameAsShipping')}</span>
         </label>
       </div>
 

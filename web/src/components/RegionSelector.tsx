@@ -22,10 +22,7 @@ export default function RegionSelector() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
@@ -45,20 +42,8 @@ export default function RegionSelector() {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <Image
-          src="/icons/globe.svg"
-          alt=""
-          width={24}
-          height={24}
-          className="h-6 w-6"
-        />
-        <Image
-          src={selectedRegion.flag}
-          alt=""
-          width={24}
-          height={24}
-          className="h-6 w-6"
-        />
+        <Image src="/icons/globe.svg" alt="" width={24} height={24} className="h-6 w-6" />
+        <Image src={selectedRegion.flag} alt="" width={24} height={24} className="h-6 w-6" />
         <span className="font-medium">{selectedRegion.name}</span>
       </button>
 
@@ -74,16 +59,8 @@ export default function RegionSelector() {
                   }}
                   className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-neutral-50"
                 >
-                  <Image
-                    src={region.flag}
-                    alt=""
-                    width={24}
-                    height={24}
-                    className="h-6 w-6"
-                  />
-                  <span className="font-medium text-neutral-900">
-                    {region.name}
-                  </span>
+                  <Image src={region.flag} alt="" width={24} height={24} className="h-6 w-6" />
+                  <span className="font-medium text-neutral-900">{region.name}</span>
                 </button>
               </li>
             ))}

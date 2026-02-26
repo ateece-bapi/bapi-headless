@@ -330,8 +330,8 @@ export const AllIcons: Story = {
         <div className="space-y-2">
           <h1 className="text-4xl font-bold text-neutral-950">Icon Library</h1>
           <p className="text-lg text-neutral-600">
-            {Object.values(icons).reduce((sum, cat) => sum + cat.length, 0)} lucide-react icons
-            used across BAPI Headless
+            {Object.values(icons).reduce((sum, cat) => sum + cat.length, 0)} lucide-react icons used
+            across BAPI Headless
           </p>
         </div>
 
@@ -690,9 +690,7 @@ export const CommonUseCases: Story = {
 
         {/* Product Card Footer */}
         <div>
-          <h3 className="mb-4 text-xl font-semibold text-neutral-950">
-            Product Card Action Icons
-          </h3>
+          <h3 className="mb-4 text-xl font-semibold text-neutral-950">Product Card Action Icons</h3>
           <div className="rounded-lg border border-neutral-200 p-6">
             <div className="flex items-center gap-2">
               <button
@@ -873,8 +871,8 @@ export const BAPIBrandedIcons: Story = {
               </h3>
               <ul className="space-y-1 text-sm text-accent-800">
                 <li>
-                  ✓ Icons <strong>must always</strong> appear in this order: T → H → P → AQ → W →
-                  A → TI
+                  ✓ Icons <strong>must always</strong> appear in this order: T → H → P → AQ → W → A
+                  → TI
                 </li>
                 <li>✓ Icons must be equidistant horizontally or vertically</li>
                 <li>✓ Use WebP format for web performance</li>
@@ -1028,9 +1026,7 @@ export const BAPIBrandedIcons: Story = {
 
         {/* Implementation Example */}
         <div>
-          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">
-            Mega Menu Implementation
-          </h2>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">Mega Menu Implementation</h2>
           <div className="rounded-lg border border-neutral-200 bg-white p-6">
             <div className="grid grid-cols-4 gap-4 md:grid-cols-7">
               {bapiIcons.map((icon) => (
@@ -1098,13 +1094,15 @@ export const PRODUCT_CATEGORIES = [
 
         {/* Brand Compliance Checklist */}
         <div className="rounded-lg border-2 border-success-500 bg-success-50 p-6">
-          <h3 className="mb-4 text-xl font-semibold text-success-900">
+          <h3 className="text-success-900 mb-4 text-xl font-semibold">
             Brand Compliance Checklist
           </h3>
           <div className="grid grid-cols-1 gap-2 text-sm md:grid-cols-2">
             <div className="flex items-start gap-2">
               <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
-              <span className="text-success-800">Icons in brand-standard order (T-H-P-AQ-W-A-TI)</span>
+              <span className="text-success-800">
+                Icons in brand-standard order (T-H-P-AQ-W-A-TI)
+              </span>
             </div>
             <div className="flex items-start gap-2">
               <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />

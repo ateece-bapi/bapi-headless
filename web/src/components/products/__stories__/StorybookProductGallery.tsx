@@ -1,12 +1,12 @@
 /**
  * Storybook-Only Product Gallery
- * 
+ *
  * This is a story-specific implementation that uses standard HTML <img> tags
  * instead of Next/Image to ensure compatibility with Chromatic's static builds.
- * 
+ *
  * The production ProductGallery.tsx uses Next/Image for optimization, but
  * Next/Image's `fill` prop doesn't render properly in Storybook/Chromatic env.
- * 
+ *
  * This provides the same visual demonstration for designers without framework conflicts.
  */
 
@@ -124,32 +124,32 @@ export default function StorybookProductGallery({
           </div>
 
           {/* Navigation arrows (only if multiple images) */}
-            {hasMultipleImages && (
-              <>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goToPrevious();
-                    setSelectedIndex((prev) => (prev - 1 + images.length) % images.length);
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 opacity-0 shadow-lg transition-all hover:bg-white group-hover:opacity-100"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft className="h-6 w-6 text-neutral-700" />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goToNext();
-                    setSelectedIndex((prev) => (prev + 1) % images.length);
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 opacity-0 shadow-lg transition-all hover:bg-white group-hover:opacity-100"
-                  aria-label="Next image"
-                >
-                  <ChevronRight className="h-6 w-6 text-neutral-700" />
-                </button>
-              </>
-            )}
+          {hasMultipleImages && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPrevious();
+                  setSelectedIndex((prev) => (prev - 1 + images.length) % images.length);
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 opacity-0 shadow-lg transition-all hover:bg-white group-hover:opacity-100"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="h-6 w-6 text-neutral-700" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNext();
+                  setSelectedIndex((prev) => (prev + 1) % images.length);
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 opacity-0 shadow-lg transition-all hover:bg-white group-hover:opacity-100"
+                aria-label="Next image"
+              >
+                <ChevronRight className="h-6 w-6 text-neutral-700" />
+              </button>
+            </>
+          )}
         </div>
 
         {/* Thumbnails */}

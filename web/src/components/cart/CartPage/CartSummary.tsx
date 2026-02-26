@@ -67,7 +67,11 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
         throw new Error(errorData.message || 'Failed to apply coupon');
       }
 
-      showToast('success', t('cartPage.toasts.couponApplied'), t('cartPage.toasts.couponAppliedMessage', { code: couponCode }));
+      showToast(
+        'success',
+        t('cartPage.toasts.couponApplied'),
+        t('cartPage.toasts.couponAppliedMessage', { code: couponCode })
+      );
       setCouponCode('');
       onApplyCoupon();
     } catch (error) {
@@ -91,7 +95,11 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
         throw new Error('Failed to remove coupon');
       }
 
-      showToast('success', t('cartPage.toasts.couponRemoved'), t('cartPage.toasts.couponRemovedMessage', { code }));
+      showToast(
+        'success',
+        t('cartPage.toasts.couponRemoved'),
+        t('cartPage.toasts.couponRemovedMessage', { code })
+      );
       onApplyCoupon();
     } catch (error) {
       const { title, message } = getUserErrorMessage(error);
@@ -152,7 +160,9 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
         {/* Applied Coupons */}
         {cart.appliedCoupons && cart.appliedCoupons.length > 0 && (
           <div className="space-y-2">
-            <p className="text-sm font-medium text-neutral-700">{t('cartPage.coupon.appliedCoupons')}</p>
+            <p className="text-sm font-medium text-neutral-700">
+              {t('cartPage.coupon.appliedCoupons')}
+            </p>
             {cart.appliedCoupons.map((coupon) => (
               <div
                 key={coupon.code}
@@ -195,7 +205,9 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
           <div className="flex justify-between text-neutral-600">
             <span>{t('cartPage.summary.shipping')}</span>
             <span className="font-medium">
-              {shipping > 0 ? `$${shipping.toFixed(2)}` : t('cartPage.summary.calculatedAtCheckout')}
+              {shipping > 0
+                ? `$${shipping.toFixed(2)}`
+                : t('cartPage.summary.calculatedAtCheckout')}
             </span>
           </div>
 
@@ -226,10 +238,14 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
 
         {/* Security Badges */}
         <div className="border-t border-neutral-200 pt-4">
-          <p className="mb-3 text-center text-xs text-neutral-500">{t('cartPage.summary.secureCheckout')}</p>
+          <p className="mb-3 text-center text-xs text-neutral-500">
+            {t('cartPage.summary.secureCheckout')}
+          </p>
           <div className="flex items-center justify-center gap-4">
             <div className="text-2xl">🔒</div>
-            <div className="text-center text-xs text-neutral-500">{t('cartPage.summary.sslEncrypted')}</div>
+            <div className="text-center text-xs text-neutral-500">
+              {t('cartPage.summary.sslEncrypted')}
+            </div>
           </div>
         </div>
 

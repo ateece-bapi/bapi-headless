@@ -17,17 +17,12 @@ const languages: Language[] = [
 
 export default function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<Language>(
-    languages[0],
-  );
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>(languages[0]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
@@ -47,20 +42,8 @@ export default function LanguageSelector() {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <Image
-          src="/icons/chat-bubble.svg"
-          alt=""
-          width={24}
-          height={24}
-          className="h-6 w-6"
-        />
-        <Image
-          src={selectedLanguage.flag}
-          alt=""
-          width={24}
-          height={24}
-          className="h-6 w-6"
-        />
+        <Image src="/icons/chat-bubble.svg" alt="" width={24} height={24} className="h-6 w-6" />
+        <Image src={selectedLanguage.flag} alt="" width={24} height={24} className="h-6 w-6" />
         <span className="font-medium">{selectedLanguage.name}</span>
       </button>
 
@@ -76,16 +59,8 @@ export default function LanguageSelector() {
                   }}
                   className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-neutral-50"
                 >
-                  <Image
-                    src={language.flag}
-                    alt=""
-                    width={24}
-                    height={24}
-                    className="h-6 w-6"
-                  />
-                  <span className="font-medium text-neutral-900">
-                    {language.name}
-                  </span>
+                  <Image src={language.flag} alt="" width={24} height={24} className="h-6 w-6" />
+                  <span className="font-medium text-neutral-900">{language.name}</span>
                 </button>
               </li>
             ))}

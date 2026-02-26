@@ -64,7 +64,7 @@ const temperatureSensors: TemperatureSensorSpec[] = [
 export function TemperatureSensorTable({ labels }: TemperatureSensorTableProps = {}) {
   const params = useParams();
   const locale = (params?.locale as LanguageCode) || 'en';
-  
+
   // Use provided labels or English defaults (only fallback on null/undefined)
   const sensorType = labels?.sensorType ?? 'Sensor Type';
   const range = labels?.range ?? 'Range';
@@ -81,9 +81,7 @@ export function TemperatureSensorTable({ labels }: TemperatureSensorTableProps =
                 {sensorType}
               </th>
               <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">{range}</th>
-              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">
-                {accuracy}
-              </th>
+              <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">{accuracy}</th>
               <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900">{output}</th>
             </tr>
           </thead>
@@ -101,14 +99,16 @@ export function TemperatureSensorTable({ labels }: TemperatureSensorTableProps =
               if (sensor.accuracyTemp) {
                 // Extract the numeric accuracy value in Fahrenheit (e.g., "±0.2" from "±0.2°F @ 77°F")
                 const accuracyMatch = sensor.accuracy.match(/±([\d.]+)/);
-                const accuracyValueF = accuracyMatch ? parseFloat(accuracyMatch[1]) : DEFAULT_ACCURACY_FAHRENHEIT;
+                const accuracyValueF = accuracyMatch
+                  ? parseFloat(accuracyMatch[1])
+                  : DEFAULT_ACCURACY_FAHRENHEIT;
 
                 // Format the reference temperature in the user's locale
                 const tempValue = formatMeasurement(sensor.accuracyTemp, 'fahrenheit', locale);
 
                 // Determine if we should use imperial units based on locale (more reliable than string matching)
                 const useImperial = shouldUseImperial(locale);
-                
+
                 // Create number formatter with locale-aware formatting
                 const numberFormatter = new Intl.NumberFormat(locale, {
                   minimumFractionDigits: 1,

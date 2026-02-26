@@ -1,8 +1,8 @@
 /**
  * ProductCard Storybook Stories
- * 
+ *
  * Documents the product card component with various content states and layouts.
- * 
+ *
  * **Component Features:**
  * - Responsive product card with link to detail page
  * - Product image with hover zoom and fallback icon
@@ -15,7 +15,7 @@
  * - Shadow and border transitions
  * - Decorative corner element
  * - Staggered grid animation via index prop
- * 
+ *
  * **Story Coverage:**
  * - Default: Complete product with all fields
  * - MissingImage: Placeholder Package icon

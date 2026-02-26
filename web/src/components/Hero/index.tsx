@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import clsx from 'clsx';
 import { HeroProps } from './types';
 import { HeroContent, HeroActions } from './components';
@@ -10,8 +11,10 @@ import { HeroContent, HeroActions } from './components';
  * - Inline styles removed, using CSS classes from globals.css
  * - Background image via .hero-bg-image class (better caching)
  * - Mobile-first: solid color on mobile, image on desktop
- * - Product family image uses proper <img> with srcSet for responsiveness
+ * - Product family image uses Next.js Image for automatic optimization
  * - GPU acceleration via CSS classes, not inline transforms
+ * - FIXED: Responsive typography scales from 15" to 28" displays
+ * - FIXED: Using Next.js Image component instead of <img> for better LCP
  *
  * Best Practices:
  * - Semantic HTML with proper ARIA labels
@@ -26,7 +29,7 @@ import { HeroContent, HeroActions } from './components';
 
 const heroImage = {
   desktop: '/images/bapi-facility-solar-optimized.webp',
-  mobile: '/images/bapi-facility-solar-optimized.webp', // Same file, but we'll optimize it differently
+  mobile: '/images/bapi-facility-solar-optimized.webp',
   alt: 'BAPI headquarters facility with solar panels',
 };
 
@@ -62,8 +65,6 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(20,121,188,0.08)_0%,transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,200,67,0.08)_0%,transparent_50%)]" />
 
-      {/* Removed decorative floating elements for performance */}
-
       <div className="relative mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Two-column at 2xl only: text+CTAs left, product showcase right */}
         <div className="2xl:grid 2xl:grid-cols-[1fr_1.2fr] 2xl:items-center 2xl:gap-16">
@@ -82,23 +83,19 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
             />
           </div>
 
-          {/* Right column / stacked below 2xl — hidden at xl to avoid crowding on 15" screens */}
-          <div className="mt-12 hidden 2xl:mt-0 2xl:block">
-            <div className="hero-image-container overflow-hidden rounded-2xl">
-              <img
-                src="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp"
-                srcSet="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp 768w, /images/products/families/BAPI_Full_Family_Hero_Desktop.webp 1920w"
-                sizes="(max-width: 768px) 100vw, 1920px"
+          {/* FIXED: Show product image at xl breakpoint (1280px+) for 15" displays */}
+          {/* Right column / stacked below xl */}
+          <div className="mt-12 hidden xl:mt-0 xl:block">
+            <div className="hero-image-container relative aspect-[768/495] overflow-hidden rounded-2xl">
+              <Image
+                src="/images/products/families/BAPI_Full_Family_Hero_Desktop.webp"
                 alt="BAPI 2025 Complete Product Family - Temperature, Humidity, Pressure, Air Quality Sensors"
-                width="768"
-                height="495"
-                loading="eager"
-                fetchPriority="high"
-                decoding="sync"
-                className="hero-image"
+                fill
+                priority
+                sizes="(max-width: 768px) 768px, (max-width: 1536px) 900px, 1200px"
+                className="hero-image object-contain"
               />
             </div>
-
           </div>
 
         </div>

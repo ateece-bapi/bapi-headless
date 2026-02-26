@@ -39,7 +39,7 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
   return (
     <section
       className={clsx(
-        'relative w-full overflow-hidden bg-white py-24 sm:py-32 lg:py-40',
+        'relative w-full overflow-hidden bg-white py-14 sm:py-16 lg:py-20 xl:py-14 2xl:py-24',
         className
       )}
     >
@@ -55,7 +55,7 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
           aria-label={heroImage.alt}
         ></div>
         {/* Professional overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/75 to-white/70" />
+        <div className="absolute inset-0 bg-linear-to-br from-white/80 via-white/75 to-white/70" />
       </div>
 
       {/* Subtle accent gradients */}
@@ -65,22 +65,26 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
       {/* Removed decorative floating elements for performance */}
 
       <div className="relative mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
-        <HeroContent
-          title={translations.title}
-          description={translations.description}
-          taglines={translations.taglines}
-        />
-        <HeroActions actions={actions} />
+        {/* Two-column at 2xl only: text+CTAs left, product showcase right */}
+        <div className="2xl:grid 2xl:grid-cols-[1fr_1.2fr] 2xl:items-center 2xl:gap-16">
 
-        {/* 2025 Product Family Showcase */}
-        <div className="relative mt-16 lg:mt-20">
-          <div className="relative overflow-hidden rounded-3xl border-2 border-neutral-200 bg-linear-to-br from-white to-neutral-50 p-6 shadow-2xl lg:p-8">
-            {/* Subtle decorative corner accents */}
-            <div className="absolute left-0 top-0 h-32 w-32 rounded-br-full bg-linear-to-br from-primary-500/10 to-transparent"></div>
-            <div className="absolute bottom-0 right-0 h-32 w-32 rounded-tl-full bg-linear-to-tl from-primary-500/8 to-transparent"></div>
+          {/* Left column: headline + CTAs */}
+          <div className="2xl:pb-4">
+            <HeroContent
+              title={translations.title}
+              description={translations.description}
+              taglines={translations.taglines}
+              className="2xl:mx-0 2xl:text-left"
+            />
+            <HeroActions
+              actions={actions}
+              className="2xl:justify-start"
+            />
+          </div>
 
-            {/* Optimized hero image - responsive with proper mobile support */}
-            <div className="hero-image-container">
+          {/* Right column / stacked below 2xl — hidden at xl to avoid crowding on 15" screens */}
+          <div className="mt-12 hidden 2xl:mt-0 2xl:block">
+            <div className="hero-image-container overflow-hidden rounded-2xl">
               <img
                 src="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp"
                 srcSet="/images/products/families/BAPI_Full_Family_Hero_Mobile.webp 768w, /images/products/families/BAPI_Full_Family_Hero_Desktop.webp 1920w"
@@ -95,37 +99,8 @@ export const Hero: React.FC<HeroProps> = ({ className, translations }) => {
               />
             </div>
 
-            {/* Product family caption */}
-            <div className="mx-auto mt-8 max-w-2xl">
-              <div className="rounded-2xl border border-neutral-100 bg-white/80 px-8 py-6 text-center shadow-sm backdrop-blur-sm">
-                {/* Brand accent separator */}
-                <div className="mx-auto mb-5 flex items-center justify-center gap-3">
-                  <div className="h-px w-20 bg-linear-to-r from-transparent via-primary-200 to-primary-400" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-primary-500 shadow-sm shadow-primary-300" />
-                  <div className="h-px w-20 bg-linear-to-l from-transparent via-primary-200 to-primary-400" />
-                </div>
-
-                <p className="text-xl font-bold tracking-tight text-neutral-900">
-                  {translations.productFamilyTitle}
-                </p>
-                <p className="mt-2 text-sm font-medium tracking-wide text-neutral-500">
-                  {translations.productFamilySubtitle}
-                </p>
-
-                {/* Product type badges */}
-                <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-                  {['Temperature', 'Humidity', 'Pressure', 'Air Quality', 'Wireless'].map((type) => (
-                    <span
-                      key={type}
-                      className="inline-flex items-center rounded-full border border-primary-200 bg-primary-50 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-primary-700 transition-colors duration-200 hover:border-primary-400 hover:bg-primary-100"
-                    >
-                      {type}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
+
         </div>
       </div>
 

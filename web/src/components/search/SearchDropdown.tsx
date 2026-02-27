@@ -25,6 +25,7 @@ interface SearchProduct {
 }
 
 interface SearchDropdownProps {
+  id: string;
   results: SearchProduct[];
   isLoading: boolean;
   isOpen: boolean;
@@ -35,6 +36,7 @@ interface SearchDropdownProps {
 }
 
 export function SearchDropdown({
+  id,
   results,
   isLoading,
   isOpen,
@@ -109,7 +111,7 @@ export function SearchDropdown({
   return (
     <div
       ref={dropdownRef}
-      id="search-dropdown"
+      id={id}
       className="absolute left-0 right-0 top-full z-50 mt-2 max-h-[80vh] overflow-hidden overflow-y-auto rounded-lg border border-neutral-200 bg-white shadow-2xl"
       role={results.length > 0 && !isLoading ? 'listbox' : 'status'}
       aria-label={results.length > 0 && !isLoading ? 'Search results' : undefined}

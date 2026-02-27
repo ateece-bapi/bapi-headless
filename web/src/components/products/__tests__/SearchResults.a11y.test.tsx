@@ -169,6 +169,7 @@ describe('SearchDropdown - Automated Accessibility (WCAG 2.1 AA)', () => {
   it('has no automated accessibility violations (with results)', async () => {
     const { container } = render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={false}
         isOpen={true}
@@ -189,6 +190,7 @@ describe('SearchDropdown - Automated Accessibility (WCAG 2.1 AA)', () => {
   it('has no automated accessibility violations (empty state)', async () => {
     const { container } = render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={[]}
         isLoading={false}
         isOpen={true}
@@ -209,6 +211,7 @@ describe('SearchDropdown - Automated Accessibility (WCAG 2.1 AA)', () => {
   it('has no automated accessibility violations (loading state)', async () => {
     const { container } = render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={[]}
         isLoading={true}
         isOpen={true}
@@ -229,6 +232,7 @@ describe('SearchDropdown - Automated Accessibility (WCAG 2.1 AA)', () => {
   it('has no automated accessibility violations (loading with stale results)', async () => {
     const { container } = render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={true}
         isOpen={true}
@@ -248,6 +252,7 @@ describe('SearchDropdown - ARIA Attributes', () => {
   it('has proper listbox role with aria-label', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={false}
         isOpen={true}
@@ -261,12 +266,15 @@ describe('SearchDropdown - ARIA Attributes', () => {
     const listbox = screen.getByRole('listbox', { name: /search results/i });
     expect(listbox).toBeInTheDocument();
     // Verify ID exists for aria-controls association from SearchInput
-    expect(listbox).toHaveAttribute('id', 'search-dropdown');
+    // Note: In production, SearchInput uses useId() to generate unique IDs per instance
+    expect(listbox).toHaveAttribute('id');
+    expect(listbox.getAttribute('id')).toBeTruthy();
   });
 
   it('loading state has accessible loading indicator', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={[]}
         isLoading={true}
         isOpen={true}
@@ -286,6 +294,7 @@ describe('SearchDropdown - ARIA Attributes', () => {
   it('loading state with stale results uses status role and aria-busy', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={true}
         isOpen={true}
@@ -308,6 +317,7 @@ describe('SearchDropdown - ARIA Attributes', () => {
   it('empty state has descriptive no results message', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={[]}
         isLoading={false}
         isOpen={true}
@@ -330,6 +340,7 @@ describe('SearchDropdown - Keyboard Navigation', () => {
 
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={false}
         isOpen={true}
@@ -351,6 +362,7 @@ describe('SearchDropdown - Keyboard Navigation', () => {
 
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={false}
         isOpen={true}
@@ -372,6 +384,7 @@ describe('SearchDropdown - Keyboard Navigation', () => {
 
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={false}
         isOpen={true}
@@ -393,6 +406,7 @@ describe('SearchDropdown - Content Structure', () => {
   it('displays product images with proper alt text', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={false}
         isOpen={true}
@@ -413,6 +427,7 @@ describe('SearchDropdown - Content Structure', () => {
   it('displays product names, prices, and categories', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={false}
         isOpen={true}
@@ -431,6 +446,7 @@ describe('SearchDropdown - Content Structure', () => {
   it('view all button is accessible', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={false}
         isOpen={true}
@@ -451,6 +467,7 @@ describe('SearchDropdown - Color Contrast', () => {
   it('loading text has sufficient contrast', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={[]}
         isLoading={true}
         isOpen={true}
@@ -469,6 +486,7 @@ describe('SearchDropdown - Color Contrast', () => {
   it('empty state text has sufficient contrast', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={[]}
         isLoading={false}
         isOpen={true}
@@ -487,6 +505,7 @@ describe('SearchDropdown - Color Contrast', () => {
   it('result items have sufficient contrast (hover state)', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={mockSearchResults}
         isLoading={false}
         isOpen={true}
@@ -1032,6 +1051,7 @@ describe('Edge Cases - Search & Filter Components', () => {
   it('handles search with single result', () => {
     render(
       <SearchDropdown
+        id="test-search-dropdown"
         results={[mockSearchResults[0]]}
         isLoading={false}
         isOpen={true}

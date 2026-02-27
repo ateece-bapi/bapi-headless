@@ -77,9 +77,11 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 | Stock status | `text-success-600` or `text-error-600` | 4.6:1+ | ✓ |
 | Category tags | `text-neutral-700` (#5e5f60) on white | 5.8:1 | ✓ |
 | Hover state | `border-primary-500` with gradient overlay | N/A | ✓ |
-| Quick view button | `bg-white/90` with `text-primary-600` (#106196) | 6.6:1 | ✓ |
-| Comparison button (checked) | `bg-white/90` with `text-primary-600` (#106196) | 6.6:1 | ✓ |
-| Comparison button (unchecked) | `bg-white/90` with `text-neutral-600` (#797a7c) | 4.6:1 | ✓ |
+| Quick view button | `bg-white/90` with `text-primary-600` (#106196) | 6.6:1 (vs `#ffffff`; actual contrast varies with imagery) | ✓ |
+| Comparison button (checked) | `bg-white/90` with `text-primary-600` (#106196) | 6.6:1 (vs `#ffffff`; actual contrast varies with imagery) | ✓ |
+| Comparison button (unchecked) | `bg-white/90` with `text-neutral-600` (#797a7c) | 4.6:1 (vs `#ffffff`; actual contrast varies with imagery) | ✓ |
+
+**Note:** For buttons using `bg-white/90` over product imagery and hover gradients, the effective background is not guaranteed to be pure white. The contrast ratios above are calculated against a white background (`#ffffff`) and represent an upper bound; actual contrast may be lower depending on the underlying image.
 
 **Keyboard Access:** ✅ All cards are focusable links  
 **Button Labels:** ✅ All buttons have proper `aria-label` attributes  

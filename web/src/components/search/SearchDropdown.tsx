@@ -110,11 +110,12 @@ export function SearchDropdown({
     <div
       ref={dropdownRef}
       className="absolute left-0 right-0 top-full z-50 mt-2 max-h-[80vh] overflow-hidden overflow-y-auto rounded-lg border border-neutral-200 bg-white shadow-2xl"
-      role="listbox"
-      aria-label="Search results"
+      role={results.length > 0 ? 'listbox' : 'status'}
+      aria-label={results.length > 0 ? 'Search results' : undefined}
+      aria-live={results.length === 0 && !isLoading ? 'polite' : undefined}
     >
       {isLoading && (
-        <div className="flex items-center justify-center py-8">
+        <div className="flex items-center justify-center py-8" role="status" aria-live="assertive">
           <Loader2 className="h-6 w-6 animate-spin text-primary-500" />
           <span className="ml-3 text-neutral-600">Searching...</span>
         </div>

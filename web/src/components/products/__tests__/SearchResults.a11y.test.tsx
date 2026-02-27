@@ -183,10 +183,10 @@ describe('SearchDropdown - Automated Accessibility (WCAG 2.1 AA)', () => {
     expect(results).toHaveNoViolations();
   });
 
-  // TODO: SearchDropdown has a real ARIA violation in empty/loading states
-  // Issue: role="listbox" requires role="option" children, but empty/loading states have none
-  // Fix: Component should conditionally remove role="listbox" when no results, or use role="status"
-  it.skip('has no automated accessibility violations (empty state)', async () => {
+  // FIXED: SearchDropdown now uses conditional role logic
+  // Empty state: role="status" with aria-live="polite" (no longer role="listbox")
+  // This allows proper status announcements without requiring role="option" children
+  it('has no automated accessibility violations (empty state)', async () => {
     const { container } = render(
       <SearchDropdown
         results={[]}
@@ -203,10 +203,10 @@ describe('SearchDropdown - Automated Accessibility (WCAG 2.1 AA)', () => {
     expect(results).toHaveNoViolations();
   });
 
-  // TODO: SearchDropdown has a real ARIA violation in empty/loading states
-  // Issue: role="listbox" requires role="option" children, but empty/loading states have none
-  // Fix: Component should conditionally remove role="listbox" when no results, or use role="status"
-  it.skip('has no automated accessibility violations (loading state)', async () => {
+  // FIXED: SearchDropdown now uses conditional role logic
+  // Loading state: role="status" with nested role="status" aria-live="assertive"
+  // This provides proper status semantics without requiring role="option" children
+  it('has no automated accessibility violations (loading state)', async () => {
     const { container } = render(
       <SearchDropdown
         results={[]}

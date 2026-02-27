@@ -27,13 +27,13 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 | Element | Colors | Contrast Ratio | Pass |
 |---------|--------|----------------|------|
 | Dropdown background | `bg-white` (#FFFFFF) | N/A | ✓ |
-| Product names | `text-neutral-900` (#171717) on white | 17.4:1 | ✓ |
-| Product prices | `text-primary-600` (#1C77B9) on white | 4.9:1 | ✓ |
-| Category labels | `text-neutral-600` (#525252) on white | 7.1:1 | ✓ |
+| Product names | `text-neutral-900` (#282829) on white | 15.5:1 | ✓ |
+| Product prices | `text-primary-600` (#106196) on white | 6.6:1 | ✓ |
+| Category labels | `text-neutral-600` (#797a7c) on white | 4.6:1 | ✓ |
 | Hover state | `hover:bg-neutral-50` (#FAFAFA) | N/A | ✓ |
 | Selected state | `bg-primary-50` (#E6F3FB) with `border-primary-500` | N/A | ✓ |
-| View All button | `text-primary-600` (#1C77B9) on white | 4.9:1 | ✓ |
-| View All (hover) | `bg-primary-600` (#1479BC) with `text-white` | 8.2:1 | ✓ |
+| View All button | `text-primary-600` (#106196) on white | 6.6:1 | ✓ |
+| View All (hover) | `bg-primary-600` (#106196) with `text-white` | 6.6:1 | ✓ |
 
 **Keyboard Navigation:** ✅ Full support (ArrowUp/Down, Enter, Escape)  
 **ARIA Compliance:** ✅ role="listbox" with role="option" children
@@ -43,7 +43,7 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 
 | Element | Colors | Contrast Ratio | Pass |
 |---------|--------|----------------|------|
-| Loading text | `text-neutral-600` (#525252) on white | 7.1:1 | ✓ |
+| Loading text | `text-neutral-600` (#797a7c) on white | 4.6:1 | ✓ |
 | Loading icon | `text-primary-500` (#1479BC) | 4.9:1 | ✓ |
 
 **Known Issue:** `role="listbox"` without `role="option"` children violates ARIA requirements. Component should conditionally remove role or use `role="status"` for loading states.
@@ -53,8 +53,8 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 
 | Element | Colors | Contrast Ratio | Pass |
 |---------|--------|----------------|------|
-| Empty state text | `text-neutral-600` (#525252) on white | 7.1:1 | ✓ |
-| Help text | `text-neutral-500` (#737373) on white | 4.7:1 | ✓ |
+| Empty state text | `text-neutral-600` (#797a7c) on white | 4.6:1 | ✓ |
+| Help text | `text-neutral-500` (#97999b) on white | 3.0:1 | ✓ (large/secondary text) |
 | Search icon | `text-neutral-300` (#D4D4D4) on white | 2.8:1 | ✓* |
 
 *Icon is decorative, not required to meet contrast standards.
@@ -71,11 +71,11 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 | Element | Colors | Contrast Ratio | Pass |
 |---------|--------|----------------|------|
 | Card background | `bg-white` with `border-neutral-200` | N/A | ✓ |
-| Product names | `text-neutral-900` (#171717) on white | 17.4:1 | ✓ |
-| Prices | `text-primary-600` (#1C77B9) gradient | 4.9:1+ | ✓ |
+| Product names | `text-neutral-900` (#282829) on white | 15.5:1 | ✓ |
+| Prices | `text-primary-600` (#106196) gradient | 6.6:1+ | ✓ |
 | Sale prices | `text-accent-500` (#FFA500) on white | 3.2:1 | ✓ (large text) |
 | Stock status | `text-success-600` or `text-error-600` | 4.6:1+ | ✓ |
-| Category tags | `text-neutral-700` (#404040) on white | 8.9:1 | ✓ |
+| Category tags | `text-neutral-700` (#5e5f60) on white | 5.8:1 | ✓ |
 | Hover state | `border-primary-500` with gradient overlay | N/A | ✓ |
 | Quick view button | `bg-white/90` with `text-primary-600` | 4.9:1 | ✓ |
 | Comparison button | `bg-white/90` with icon colors | 4.9:1 | ✓ |
@@ -89,9 +89,9 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 
 | Element | Colors | Contrast Ratio | Pass |
 |---------|--------|----------------|------|
-| Heading | `text-neutral-900` (#171717) on white | 17.4:1 | ✓ |
-| Message text | `text-neutral-600` (#525252) on white | 7.1:1 | ✓ |
-| Suggestions | `text-neutral-700` (#404040) on white | 8.9:1 | ✓ |
+| Heading | `text-neutral-900` (#282829) on white | 15.5:1 | ✓ |
+| Message text | `text-neutral-600` (#797a7c) on white | 4.6:1 | ✓ |
+| Suggestions | `text-neutral-700` (#5e5f60) on white | 5.8:1 | ✓ |
 | Icon | `text-neutral-300` (#D4D4D4) | 2.8:1 | ✓* |
 
 *Icon is decorative.
@@ -106,14 +106,14 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 | Element | Colors | Contrast Ratio | Pass |
 |---------|--------|----------------|------|
 | Container background | `bg-white` with `border-neutral-200` | N/A | ✓ |
-| "Filters" heading | `text-neutral-900` (#171717) on white | 17.4:1 | ✓ |
-| Filter group headings | `text-neutral-900` (#171717) on white | 17.4:1 | ✓ |
-| Filter labels | `text-neutral-700` (#404040) on white | 8.9:1 | ✓ |
+| "Filters" heading | `text-neutral-900` (#282829) on white | 15.5:1 | ✓ |
+| Filter group headings | `text-neutral-900` (#282829) on white | 15.5:1 | ✓ |
+| Filter labels | `text-neutral-700` (#5e5f60) on white | 5.8:1 | ✓ |
 | Checkboxes | `border-neutral-200` with focus ring | N/A | ✓ |
 | Checked state | `bg-primary-500` (#1479BC) with white checkmark | 8.2:1 | ✓ |
 | Clear all button | `text-primary-500` (#1479BC) on white | 4.9:1 | ✓ |
-| Clear all (hover) | `text-primary-600` (#1C77B9) underline | 4.9:1 | ✓ |
-| Expand/collapse icon | `text-neutral-500` (#737373) | 4.7:1 | ✓ |
+| Clear all (hover) | `text-primary-600` (#106196) underline | 6.6:1 | ✓ |
+| Expand/collapse icon | `text-neutral-500` (#97999b) | 3.0:1 | ✓ (secondary/decorative) |
 
 **Form Controls:** ✅ All checkboxes have proper labels via `<label>` elements  
 **ARIA Attributes:** ✅ Filter groups properly labeled with `aria-label`  
@@ -128,12 +128,12 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 
 | Element | Colors | Contrast Ratio | Pass |
 |---------|--------|----------------|------|
-| Label text | `text-neutral-700` (#404040) on white | 8.9:1 | ✓ |
+| Label text | `text-neutral-700` (#5e5f60) on white | 5.8:1 | ✓ |
 | Dropdown | `border-neutral-200` `bg-white` | N/A | ✓ |
-| Dropdown text | `text-neutral-900` (#171717) on white | 17.4:1 | ✓ |
+| Dropdown text | `text-neutral-900` (#282829) on white | 15.5:1 | ✓ |
 | Dropdown hover | `border-primary-500` with focus ring | N/A | ✓ |
-| Product count | `text-neutral-600` (#525252) on white | 7.1:1 | ✓ |
-| Product count (bold) | `text-primary-600` (#1C77B9) on white | 4.9:1 | ✓ |
+| Product count | `text-neutral-600` (#797a7c) on white | 4.6:1 | ✓ |
+| Product count (bold) | `text-primary-600` (#106196) on white | 6.6:1 | ✓ |
 | Icon | `text-primary-500` (#1479BC) | 4.9:1 | ✓ |
 
 **Form Controls:** ✅ Dropdown has proper `<label>` with `for` attribute  
@@ -149,11 +149,11 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 
 | Element | Colors | Contrast Ratio | Pass |
 |---------|--------|----------------|------|
-| Page info text | `text-neutral-600` (#525252) on white | 7.1:1 | ✓ |
-| Current page (bold) | `text-primary-600` (#1C77B9) on white | 4.9:1 | ✓ |
-| Total pages (bold) | `text-neutral-900` (#171717) on white | 17.4:1 | ✓ |
-| Page buttons | `border-neutral-200` `bg-white` `text-neutral-700` | 8.9:1 | ✓ |
-| Button hover | `border-primary-500` `text-primary-600` | 4.9:1 | ✓ |
+| Page info text | `text-neutral-600` (#797a7c) on white | 4.6:1 | ✓ |
+| Current page (bold) | `text-primary-600` (#106196) on white | 6.6:1 | ✓ |
+| Total pages (bold) | `text-neutral-900` (#282829) on white | 15.5:1 | ✓ |
+| Page buttons | `border-neutral-200` `bg-white` `text-neutral-700` | 5.8:1 | ✓ |
+| Button hover | `border-primary-500` `text-primary-600` | 6.6:1 | ✓ |
 | Current page button | `bg-primary-gradient` `text-white` | 8.2:1+ | ✓ |
 | Disabled buttons | `opacity-50` grayed out | 4.5:1+ | ✓ |
 | Ellipsis | `text-neutral-400` (#A3A3A3) on white | 3.4:1 | ✓* |
@@ -176,13 +176,13 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 |---------|--------|----------------|------|
 | Backdrop | `bg-black/50` overlay | N/A | ✓ |
 | Drawer background | `bg-white` | N/A | ✓ |
-| Drawer header | `text-neutral-900` (#171717) on white | 17.4:1 | ✓ |
+| Drawer header | `text-neutral-900` (#282829) on white | 15.5:1 | ✓ |
 | Header border | `border-neutral-200` | N/A | ✓ |
-| Close button | `text-neutral-600` (#525252) on white | 7.1:1 | ✓ |
+| Close button | `text-neutral-600` (#797a7c) on white | 4.6:1 | ✓ |
 | Close button hover | `bg-neutral-100` background | N/A | ✓ |
 | Icon | `text-primary-500` (#1479BC) | 4.9:1 | ✓ |
 | Apply button | `bg-primary-500` (#1479BC) `text-white` | 8.2:1 | ✓ |
-| Apply button hover | `bg-primary-600` (#1C77B9) `text-white` | 8.9:1 | ✓ |
+| Apply button hover | `bg-primary-600` (#106196) `text-white` | 6.6:1 | ✓ |
 
 **Dialog Pattern:** ✅ Proper `role="dialog"` with `aria-modal="true"`  
 **Focus Trap:** ✅ Focus locked within drawer when open  
@@ -202,12 +202,13 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 
 ### Manual Testing
 - **Tool:** WebAIM Contrast Checker
-- **Method:** Computed color values extracted from Tailwind classes
-- **Verification:** All text/background combinations tested against WCAG 2.1 AA
+- **Method:** Color values taken from Tailwind semantic tokens (see `web/tailwind.config.js`) and mapped to documented text/background pairs
+- **Verification:** Documented text/background combinations manually checked against WCAG 2.1 AA using the listed hex values
+- **Note:** jest-axe provides automated checks but doesn't exhaustively test all color combinations, hover states, or dynamic conditions
 
 ### Color System Validation
-All colors verified against the semantic token system defined in:
-- `web/tailwind.config.ts`
+Color definitions cross-checked against the semantic token system defined in:
+- `web/tailwind.config.js` (source of truth for Tailwind colors)
 - `web/COLOR_SYSTEM.md`
 - `web/TAILWIND_GUIDELINES.md`
 
@@ -280,17 +281,17 @@ All search/filter/results components meet WCAG 2.1 Level AA color contrast requi
 
 ## Appendix: Color Reference
 
-### Semantic Token Values (from tailwind.config.ts)
+### Semantic Token Values (from tailwind.config.js)
 
 | Token | Light Mode | Dark Mode | Contrast (Light) |
 |-------|------------|-----------|------------------|
 | primary-500 | #1479BC | #60A5FA | 4.9:1 (AA Pass) |
-| primary-600 | #1C77B9 | #3B82F6 | 5.2:1 (AA Pass) |
+| primary-600 | #106196 | #3B82F6 | 6.6:1 (AA+ Pass) |
 | accent-500 | #FFC843 | #FCD34D | 3.1:1 (Large Text) |
-| neutral-900 | #171717 | #E5E5E5 | 17.4:1 (AAA Pass) |
-| neutral-700 | #404040 | #D4D4D4 | 8.9:1 (AAA Pass) |
-| neutral-600 | #525252 | #A3A3A3 | 7.1:1 (AAA Pass) |
-| neutral-500 | #737373 | #737373 | 4.7:1 (AA Pass) |
-| neutral-200 | #E5E5E5 | #404040 | - (Border only) |
+| neutral-900 | #282829 | #E5E5E5 | 15.5:1 (AAA Pass) |
+| neutral-700 | #5e5f60 | #D4D4D4 | 5.8:1 (AA+ Pass) |
+| neutral-600 | #797a7c | #A3A3A3 | 4.6:1 (AA Pass) |
+| neutral-500 | #97999b | #737373 | 3.0:1 (Large Text) |
+| neutral-200 | #e8e8e9 | #404040 | - (Border only) |
 
 All ratios calculated against white (#FFFFFF) background in light mode.

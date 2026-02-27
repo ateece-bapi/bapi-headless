@@ -108,8 +108,7 @@ const mockProduct = {
       { slug: 'duct-mount', name: 'Duct Mount' },
     ],
   },
-  ... (null as any), // Type assertion to satisfy GetProductsWithFiltersQuery type
-};
+} as const;
 
 const mockProducts = [
   mockProduct,
@@ -204,7 +203,7 @@ describe('SearchDropdown - Automated Accessibility (WCAG 2.1 AA)', () => {
     expect(results).toHaveNoViolations();
   });
 
-  // TODO: SearchDropdown has a real ARIA violation in empty/loading states  
+  // TODO: SearchDropdown has a real ARIA violation in empty/loading states
   // Issue: role="listbox" requires role="option" children, but empty/loading states have none
   // Fix: Component should conditionally remove role="listbox" when no results, or use role="status"
   it.skip('has no automated accessibility violations (loading state)', async () => {
@@ -419,7 +418,7 @@ describe('SearchDropdown - Color Contrast', () => {
     );
 
     const loadingText = screen.getByText(/searching/i);
-    // text-neutral-600 on white background - compliant (jest-axe verified)
+    // text-neutral-600 on white background - passes automated checks
     expect(loadingText).toHaveClass('text-neutral-600');
   });
 
@@ -437,7 +436,7 @@ describe('SearchDropdown - Color Contrast', () => {
     );
 
     const heading = screen.getByText(/no products found/i);
-    // font-medium text-neutral-600 on white - compliant (jest-axe verified)
+    // font-medium text-neutral-600 on white - passes automated checks
     expect(heading).toHaveClass('text-neutral-600');
   });
 
@@ -455,7 +454,7 @@ describe('SearchDropdown - Color Contrast', () => {
     );
 
     const options = screen.getAllByRole('option');
-    // Options have hover:bg-neutral-50 and selected state with bg-primary-50 - compliant (jest-axe verified)
+    // Options have hover:bg-neutral-50 and selected state with bg-primary-50 - passes automated checks
     options.forEach((option) => {
       expect(option).toBeInTheDocument();
     });
@@ -585,9 +584,10 @@ describe('ProductFilters - Form Controls', () => {
 
     const checkboxes = screen.getAllByRole('checkbox');
     checkboxes.forEach((checkbox) => {
-      // Each checkbox should have an associated label
-      const label = checkbox.closest('label') || checkbox.parentElement?.querySelector('label');
-      expect(label || checkbox.getAttribute('aria-label')).toBeTruthy();
+      // Each checkbox should have an associated label (wrapped in label element or aria-label)
+      const wrappingLabel = checkbox.closest('label');
+      const ariaLabel = checkbox.getAttribute('aria-label');
+      expect(wrappingLabel || ariaLabel).toBeTruthy();
     });
   });
 
@@ -798,7 +798,7 @@ describe('Pagination - Color Contrast', () => {
     render(<Pagination currentPage={2} totalPages={5} totalProducts={50} />);
 
     const buttons = screen.getAllByRole('button');
-    // border-neutral-200 bg-white text-neutral-700 - compliant (jest-axe verified)
+    // border-neutral-200 bg-white text-neutral-700 - passes automated checks
     buttons.forEach((button) => {
       expect(button).toBeInTheDocument();
     });
@@ -959,7 +959,7 @@ describe('MobileFilterDrawer - Color Contrast', () => {
     const heading = document.getElementById('mobile-filters-title');
     expect(heading).toBeInTheDocument();
     expect(heading?.tagName).toBe('H2');
-    // text-neutral-900 on white background - compliant (jest-axe verified)
+    // text-neutral-900 on white background - passes automated checks
   });
 
   it('backdrop has appropriate opacity', () => {

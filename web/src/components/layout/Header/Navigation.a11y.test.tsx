@@ -9,8 +9,7 @@ import MobileMenuButton from './components/MobileMenuButton';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import type { MegaMenuItem } from './types';
 
-// Extend expect with jest-axe matchers
-expect.extend(toHaveNoViolations);
+// Note: expect.extend(toHaveNoViolations) called globally in web/test/setupTests.ts
 
 // Mock next/navigation
 vi.mock('next/navigation', () => ({

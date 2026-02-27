@@ -761,6 +761,137 @@ describe('ProductFilters - ARIA Attributes', () => {
   });
 });
 
+describe('ProductFilters - Live Region (WCAG 4.1.3 Status Messages)', () => {
+  it('has live region with proper ARIA attributes', () => {
+    const { container } = render(
+      <ProductFilters
+        categorySlug="temperature-sensors"
+        products={mockProducts}
+        currentFilters={{ application: 'hvac' }}
+      />
+    );
+
+    // Live region should exist with proper ARIA attributes
+    const liveRegion = container.querySelector('[role="status"]');
+    expect(liveRegion).toBeInTheDocument();
+    expect(liveRegion).toHaveAttribute('aria-live', 'polite');
+    expect(liveRegion).toHaveAttribute('aria-atomic', 'true');
+  });
+
+  it('live region is screen-reader only (not visually displayed)', () => {
+    const { container } = render(
+      <ProductFilters
+        categorySlug="temperature-sensors"
+        products={mockProducts}
+        currentFilters={{ application: 'hvac' }}
+      />
+    );
+
+    const liveRegion = container.querySelector('[role="status"]');
+    expect(liveRegion).toBeInTheDocument();
+    
+    // Should have sr-only class for screen reader only
+    expect(liveRegion).toHaveClass('sr-only');
+  });
+
+  it('announces single filter correctly', () => {
+    const { container } = render(
+      <ProductFilters
+        categorySlug="temperature-sensors"
+        products={mockProducts}
+        currentFilters={{ application: 'hvac' }}
+      />
+    );
+
+    const liveRegion = container.querySelector('[role="status"]');
+    expect(liveRegion).toBeInTheDocument();
+    
+    // Should announce "1 filter applied" (singular)
+    expect(liveRegion?.textContent).toBe('1 filter applied');
+  });
+
+  it('announces multiple filters correctly', () => {
+    const { container } = render(
+      <ProductFilters
+        categorySlug="temperature-sensors"
+        products={mockProducts}
+        currentFilters={{ 
+          application: 'hvac',
+          display: 'lcd,led',
+          sensorOutput: 'voltage'
+        }}
+      />
+    );
+
+    const liveRegion = container.querySelector('[role="status"]');
+    expect(liveRegion).toBeInTheDocument();
+    
+    // Should announce "4 filters applied" (plural: hvac + 2 displays + voltage = 4)
+    expect(liveRegion?.textContent).toContain('filters applied');
+    expect(liveRegion?.textContent).toMatch(/\d+\s+filters applied/);
+  });
+
+  it('no announcement when no filters active', () => {
+    const { container } = render(
+      <ProductFilters
+        categorySlug="temperature-sensors"
+        products={mockProducts}
+        currentFilters={{}}
+      />
+    );
+
+    const liveRegion = container.querySelector('[role="status"]');
+    expect(liveRegion).toBeInTheDocument();
+    
+    // Live region exists but should be empty when no filters active
+    expect(liveRegion?.textContent).toBe('');
+  });
+
+  it('updates announcement when filters change', () => {
+    const { container, rerender } = render(
+      <ProductFilters
+        categorySlug="temperature-sensors"
+        products={mockProducts}
+        currentFilters={{}}
+      />
+    );
+
+    const liveRegion = container.querySelector('[role="status"]');
+    expect(liveRegion?.textContent).toBe('');
+
+    // Apply filters
+    rerender(
+      <ProductFilters
+        categorySlug="temperature-sensors"
+        products={mockProducts}
+        currentFilters={{ application: 'hvac', display: 'lcd' }}
+      />
+    );
+
+    // Should now announce 2 filters
+    expect(liveRegion?.textContent).toBe('2 filters applied');
+  });
+
+  it('correctly counts comma-separated filter values', () => {
+    const { container } = render(
+      <ProductFilters
+        categorySlug="temperature-sensors"
+        products={mockProducts}
+        currentFilters={{ 
+          application: 'hvac,industrial',
+          display: 'lcd,led,oled'
+        }}
+      />
+    );
+
+    const liveRegion = container.querySelector('[role="status"]');
+    expect(liveRegion).toBeInTheDocument();
+    
+    // Should count: 2 applications + 3 displays = 5 total
+    expect(liveRegion?.textContent).toBe('5 filters applied');
+  });
+});
+
 // ============================================================================
 // TESTS: ProductSort Component
 // ============================================================================

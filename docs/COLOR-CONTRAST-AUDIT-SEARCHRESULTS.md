@@ -77,8 +77,9 @@ Comprehensive accessibility testing of the search/filter/results flow covering 6
 | Stock status | `text-success-600` or `text-error-600` | 4.6:1+ | ✓ |
 | Category tags | `text-neutral-700` (#5e5f60) on white | 5.8:1 | ✓ |
 | Hover state | `border-primary-500` with gradient overlay | N/A | ✓ |
-| Quick view button | `bg-white/90` with `text-primary-600` | 4.9:1 | ✓ |
-| Comparison button | `bg-white/90` with icon colors | 4.9:1 | ✓ |
+| Quick view button | `bg-white/90` with `text-primary-600` (#106196) | 6.6:1 | ✓ |
+| Comparison button (checked) | `bg-white/90` with `text-primary-600` (#106196) | 6.6:1 | ✓ |
+| Comparison button (unchecked) | `bg-white/90` with `text-neutral-600` (#797a7c) | 4.6:1 | ✓ |
 
 **Keyboard Access:** ✅ All cards are focusable links  
 **Button Labels:** ✅ All buttons have proper `aria-label` attributes  

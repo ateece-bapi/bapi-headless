@@ -50,6 +50,15 @@ export function ProductFilters({ categorySlug, products, currentFilters }: Produ
   });
 
   const hasActiveFilters = Object.values(activeFilters).some((arr) => arr.length > 0);
+  
+  // Calculate total active filter count for live region announcements
+  // Count from currentFilters (URL params) rather than filterOptions to catch all active filters
+  const activeFilterCount = Object.entries(currentFilters).reduce((total, [key, value]) => {
+    // Exclude non-filter params (sort, page, etc.)
+    if (key === 'sort' || key === 'page' || !value) return total;
+    // Split comma-separated values and count them
+    return total + value.split(',').filter(Boolean).length;
+  }, 0);
 
   const handleFilterChange = useCallback(
     (filterType: string, value: string, checked: boolean) => {
@@ -103,6 +112,12 @@ export function ProductFilters({ categorySlug, products, currentFilters }: Produ
             Clear All
           </button>
         )}
+      </div>
+
+      {/* Live Region for Screen Reader Announcements (WCAG 4.1.3 Status Messages) */}
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {activeFilterCount > 0 &&
+          `${activeFilterCount} filter${activeFilterCount !== 1 ? 's' : ''} applied`}
       </div>
 
       {/* Filter Groups */}

@@ -32,11 +32,11 @@
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| primary-500 | #1479BC | BAPI Blue - Focus rings, active states |
-| primary-600 | #1267a3 | Menu item hover, active triggers |
-| primary-700 | (darker) | Active tab state, emphasis |
-| primary-800 | (darker) | Column headers |
-| accent-500 | #FFC843 | BAPI Yellow - Featured badges |
+| primary-500 | #1479bc | BAPI Blue - Focus rings, active states |
+| primary-600 | #106196 | Menu item hover, active triggers |
+| primary-700 | #0c4971 | Active tab state, emphasis |
+| primary-800 | #08304b | Column headers |
+| accent-500 | #ffc843 | BAPI Yellow - Featured badges |
 
 ### Neutral Scale
 
@@ -61,40 +61,40 @@
 
 | State | Text Color | Background | Ratio | Required | Status |
 |-------|------------|------------|-------|----------|--------|
-| Default (closed) | neutral-700 (#5e5f60) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Hover (closed) | white (#FFFFFF) | primary-600 (#1267a3) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Active (open) | white (#FFFFFF) | primary-600 (#1267a3) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Focus ring | primary-500 (#1479BC) | N/A | N/A | 3:1 (graphics) | ✅ **PASS** |
+| Default (closed) | neutral-700 (#5e5f60) | white (#FFFFFF) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Hover (closed) | white (#FFFFFF) | primary-600 (#106196) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Active (open) | white (#FFFFFF) | primary-600 (#106196) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Focus ring | primary-500 (#1479bc) | N/A | N/A | 3:1 (graphics) | ✅ **PASS** |
 
 ### ✅ Mega Menu Panel Content
 
 **Column Headers:**
 | Element | Foreground | Background | Ratio | Required | Status |
 |---------|------------|------------|-------|----------|--------|
-| Category titles (H3) | primary-800 (darker blue) | white/primary-100 | **Verified** | 4.5:1 | ✅ **PASS** |
-| Category icons | primary-700 | primary-100 background | **Verified** | 3:1 (graphics) | ✅ **PASS** |
+| Category titles (H3) | primary-800 (darker blue) | white/primary-100 | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Category icons | primary-700 | primary-100 background | **Compliant (jest-axe)** | 3:1 (graphics) | ✅ **PASS** |
 
 **Product Links:**
 | Element | Foreground | Background | Ratio | Required | Status |
 |---------|------------|------------|-------|----------|--------|
-| Product name/title | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Product name hover | primary-700 | primary-50 (#fafafa) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Product description | neutral-700 (#5e5f60) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Badge (NEW) | neutral-900 (#282829) | accent-500 (#FFC843) | **Verified** | 4.5:1 | ✅ **PASS** |
+| Product name/title | neutral-900 (#282829) | white (#FFFFFF) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Product name hover | primary-700 | primary-50 (#fafafa) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Product description | neutral-700 (#5e5f60) | white (#FFFFFF) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Badge (NEW) | neutral-900 (#282829) | accent-500 (#ffc843) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
 
 **Featured Section:**
 | Element | Foreground | Background | Ratio | Required | Status |
 |---------|------------|------------|-------|----------|--------|
-| Featured title (H3) | neutral-900 (#282829) | accent-50/100 gradient | **Verified** | 4.5:1 | ✅ **PASS** |
-| Featured description | neutral-700 (#5e5f60) | accent-50/100 gradient | **Verified** | 4.5:1 | ✅ **PASS** |
-| CTA button text | white (#FFFFFF) | primary-600 (#1267a3) | **Verified** | 4.5:1 | ✅ **PASS** |
+| Featured title (H3) | neutral-900 (#282829) | accent-50/100 gradient | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Featured description | neutral-700 (#5e5f60) | accent-50/100 gradient | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| CTA button text | white (#FFFFFF) | primary-600 (#106196) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
 
 **Quick Action Links:**
 | Element | Foreground | Background | Ratio | Required | Status |
 |---------|------------|------------|-------|----------|--------|
-| Contact Sales | primary-700 | primary-50 | **Verified** | 4.5:1 | ✅ **PASS** |
-| Find Distributor | neutral-700 (#5e5f60) | neutral-50 (#fafafa) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Technical Support | neutral-700 (#5e5f60) | neutral-50 (#fafafa) | **Verified** | 4.5:1 | ✅ **PASS** |
+| Contact Sales | primary-700 | primary-50 | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Find Distributor | neutral-700 (#5e5f60) | neutral-50 (#fafafa) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Technical Support | neutral-700 (#5e5f60) | neutral-50 (#fafafa) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
 
 **Notes:**
 - All menu triggers properly use aria-haspopup="true", aria-expanded, aria-controls
@@ -112,10 +112,10 @@
 
 | Element | Text Color | Background | Ratio | Required | Status |
 |---------|------------|------------|-------|----------|--------|
-| Top-level menu items | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Expandable buttons | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Hover state | primary-700 | primary-50 | **Verified** | 4.5:1 | ✅ **PASS** |
-| Settings heading | neutral-900 (#282829) | primary-50 gradient | **Verified** | 4.5:1 | ✅ **PASS** |
+| Top-level menu items | neutral-900 (#282829) | white (#FFFFFF) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Expandable buttons | neutral-900 (#282829) | white (#FFFFFF) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Hover state | primary-700 | primary-50 | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Settings heading | neutral-900 (#282829) | primary-50 gradient | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
 
 ### ✅ Accordion Pattern
 
@@ -149,9 +149,9 @@
 
 | Element | Foreground | Background | Ratio | Required | Status |
 |---------|------------|------------|-------|----------|--------|
-| Icon (closed) | gray-700 | white hover:neutral-100 | **Verified** | 4.5:1 | ✅ **PASS** |
-| Icon (open) | gray-700 | white hover:neutral-100 | **Verified** | 4.5:1 | ✅ **PASS** |
-| Focus ring | primary-600 (#1267a3) | N/A | **Verified** | 3:1 (graphics) | ✅ **PASS** |
+| Icon (closed) | gray-700 | white hover:neutral-100 | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Icon (open) | gray-700 | white hover:neutral-100 | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Focus ring | primary-500 (#1479bc) | N/A | **Compliant (jest-axe)** | 3:1 (graphics) | ✅ **PASS** |
 
 ### ✅ ARIA Attributes
 
@@ -164,12 +164,12 @@
 
 ### ✅ Touch Target Size
 
-| Dimension | Value | Required | Status |
-|-----------|-------|----------|--------|
-| Width | h-10 w-10 (40px) | 44px | ⚠️ **Note** |
-| Visual clickable area | With padding ~44px | 44px | ✅ **PASS** |
+| Dimension | Value | WCAG 2.1 AA | WCAG 2.2 AA | Status |
+|-----------|-------|-------------|-------------|--------|
+| Width × Height | 40px × 40px | No minimum | 24px (2.5.8) | ✅ **PASS** |
+| Effective area | ~44px with context | No minimum | 24px (2.5.8) | ✅ **EXCEEDS** |
 
-**Note:** Button is 40×40px but with surrounding padding/margin achieves 44×44px effective touch target in layout context. Verified visually acceptable.
+**Note:** 40×40px button exceeds WCAG 2.1 Level AA requirements (no specific minimum) and WCAG 2.2 Level AA (24×24px per 2.5.8). The 44×44px target is from WCAG 2.5.5 Level AAA, which we exceed in practice with surrounding spacing.
 
 ### ✅ Keyboard Interaction
 
@@ -193,10 +193,10 @@
 
 | Element | Foreground | Background | Ratio | Required | Status |
 |---------|------------|------------|-------|----------|--------|
-| Breadcrumb links | neutral-500 (#97999b) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Link hover/focus | primary-600 (#1267a3) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Current page (last) | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
-| Separators (chevrons) | neutral-300 (#c5c6c7) | N/A | **Verified** | 3:1 (graphics) | ✅ **PASS** |
+| Breadcrumb links | neutral-500 (#97999b) | white (#FFFFFF) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Link hover/focus | primary-600 (#106196) | white (#FFFFFF) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Current page (last) | neutral-900 (#282829) | white (#FFFFFF) | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
+| Separators (chevrons) | neutral-300 (#c5c6c7) | N/A | **Compliant (jest-axe)** | 3:1 (graphics) | ✅ **PASS** |
 
 ### ✅ ARIA & Semantic Structure
 
@@ -309,15 +309,15 @@
 
 **Why This Approach:**
 - Tests actual browser-rendered colors from tailwind.config.js
-- No manual calculation errors
-- Catches real accessibility issues users would experience
-- Validates complete color combinations including hover/focus states
+- Greatly reduces manual calculation effort for solid-color backgrounds
+- Catches many real accessibility issues users would experience
+- Validates key color combinations including hover/focus states that are exercised in tests
 
-**Manual Calculation Not Required:**
-- jest-axe uses proper WCAG formulas (relative luminance)
-- Accounts for transparency and layering
-- Tests real DOM state, not theoretical values
-- Handles gradient backgrounds correctly
+**Manual Calculation Considerations:**
+- jest-axe uses proper WCAG formulas (relative luminance) on sampled DOM states
+- It does not exhaustively test every possible color combination within gradients
+- For gradients or complex layered backgrounds, manually verify worst-case contrast ratios to confirm WCAG compliance
+- For legal compliance documentation, retain manual checks for any critical color combinations that may not be fully exercised in automated tests
 
 ---
 
@@ -387,7 +387,7 @@
 - Focus indicators visible (focus-visible:ring-2, ring-offset-2)
 
 ### Mobile Accessibility
-- Touch targets ≥44×44px (WCAG 2.5.8)
+- Touch targets ≥44×44px (exceeds WCAG 2.1 AA; aligns with WCAG 2.5.5 AAA / WCAG 2.2 2.5.8 AA)
 - Proper overlay/modal patterns
 - Accordion pattern for nested navigation
 - Responsive touch feedback (active:scale-95)

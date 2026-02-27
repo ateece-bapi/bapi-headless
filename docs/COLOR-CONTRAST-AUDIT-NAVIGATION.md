@@ -151,7 +151,7 @@
 |---------|------------|------------|-------|----------|--------|
 | Icon (closed) | gray-700 | white hover:neutral-100 | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
 | Icon (open) | gray-700 | white hover:neutral-100 | **Compliant (jest-axe)** | 4.5:1 | ✅ **PASS** |
-| Focus ring | primary-500 (#1479bc) | N/A | **Compliant (jest-axe)** | 3:1 (graphics) | ✅ **PASS** |
+| Focus ring | primary-600 (#106196) | N/A | **Compliant (jest-axe)** | 3:1 (graphics) | ✅ **PASS** |
 
 ### ✅ ARIA Attributes
 

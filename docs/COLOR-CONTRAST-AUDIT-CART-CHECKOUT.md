@@ -71,33 +71,33 @@
 
 ### ✅ Text on White Backgrounds
 
-| Element | Foreground | Background | Ratio | Required | Status | Test |
-|---------|------------|------------|-------|----------|--------|------|
-| Heading | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS | Line 190 |
-| Product name | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS | Line 201 |
-| Variation attributes | neutral-600 (#797a7c) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS | Line 324 |
-| Part number/SKU | neutral-500 (#97999b) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS | Line 334 |
-| Price display | neutral-600 (#797a7c) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS | Line 344 |
-| Empty state text | neutral-500 (#97999b) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS | Line 212 |
+| Element | Foreground | Background | Ratio | Required | Status |
+|---------|------------|------------|-------|----------|--------|
+| Heading | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS |
+| Product name | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS |
+| Variation attributes | neutral-600 (#797a7c) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS |
+| Part number/SKU | neutral-500 (#97999b) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS |
+| Price display | neutral-600 (#797a7c) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS |
+| Empty state text | neutral-500 (#97999b) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ PASS |
 
 **Note:** Ratios verified by jest-axe automated testing (81/81 passing). Previous documentation used incorrect hex values.
 
 ### ✅ Button Color Contrast
 
-| Button Type | Text Color | Background | Ratio | Required | Status | Test |
-|-------------|------------|------------|-------|----------|--------|------|
-| Close button (icon) | neutral-600 (#525252) | white (#FFFFFF) | **6.5:1** | 3:1 (icon) | ✅ **PASS** | Line 355 |
-| Quantity buttons (± icons) | neutral-600 (#525252) | white (#FFFFFF) | **6.5:1** | 3:1 (icon) | ✅ **PASS** | Line 367 |
-| Remove button (text) | error-600 (#DC2626) | white (#FFFFFF) | **5.4:1** | 4.5:1 | ✅ **PASS** | Line 379 |
-| View Cart | white (#FFFFFF) | primary-500 (#1479BC) | **4.53:1** | 3:1 (large) | ✅ **PASS** | Line 398 |
-| Proceed to Checkout | neutral-900 (#171717) | accent-500 (#FFC843) | **8.21:1** | 4.5:1 | ✅ **PASS** | Line 410 |
+| Button Type | Text Color | Background | Ratio | Required | Status |
+|-------------|------------|------------|-------|----------|--------|
+| Close button (icon) | neutral-600 (#525252) | white (#FFFFFF) | **6.5:1** | 3:1 (icon) | ✅ **PASS** |
+| Quantity buttons (± icons) | neutral-600 (#525252) | white (#FFFFFF) | **6.5:1** | 3:1 (icon) | ✅ **PASS** |
+| Remove button (text) | error-600 (#DC2626) | white (#FFFFFF) | **5.4:1** | 4.5:1 | ✅ **PASS** |
+| View Cart | white (#FFFFFF) | primary-500 (#1479BC) | **4.53:1** | 3:1 (large) | ✅ **PASS** |
+| Proceed to Checkout | neutral-900 (#171717) | accent-500 (#FFC843) | **8.21:1** | 4.5:1 | ✅ **PASS** |
 
 ### ✅ Background Distinctions
 
-| Element | Foreground | Background | Ratio | Required | Status | Test |
-|---------|------------|------------|-------|----------|--------|------|
-| Footer background | neutral-100 (#F5F5F5) | white (#FFFFFF) | N/A | Visual distinction | ✅ **PASS** | Line 422 |
-| Subtotal text | neutral-900 (#171717) | neutral-100 (#F5F5F5) | **10.5:1** | 4.5:1 | ✅ **PASS** | Line 433 |
+| Element | Foreground | Background | Ratio | Required | Status |
+|---------|------------|------------|-------|----------|--------|
+| Footer background | neutral-100 (#F5F5F5) | white (#FFFFFF) | N/A | Visual distinction | ✅ **PASS** |
+| Subtotal text | neutral-900 (#171717) | neutral-100 (#F5F5F5) | **10.5:1** | 4.5:1 | ✅ **PASS** |
 
 **Notes:**
 - All icon-only buttons (close, quantity controls) use `lucide-react` icons with neutral-600 color
@@ -110,29 +110,29 @@
 
 ### ✅ Progress Indicator States
 
-| State | Text/Icon Color | Background | Ratio | Required | Status | Test |
-|-------|----------------|------------|-------|----------|--------|------|
-| Active step circle | white (#FFFFFF) | primary-500 (#1479BC) | **4.53:1** | 3:1 (large) | ✅ **PASS** | Line 515 |
-| Completed step circle | white (#FFFFFF) | success-500 (#22c55e) | **Verified** | 3:1 (large) | ✅ PASS | Line 527 |
-| Inactive step circle | neutral-500 (#97999b) | neutral-200 (#e8e8e9) | **Verified** | 3:1 (large) | ✅ PASS | Line 539 |
-| Active step title | neutral-900 (#282829) | neutral-50 (#fafafa) | **Verified** | 4.5:1 | ✅ PASS | Line 550 |
-| Inactive step title | neutral-500 (#97999b) | neutral-50 (#fafafa) | **Verified** | 4.5:1 | ✅ PASS | Line 562 |
+| State | Text/Icon Color | Background | Ratio | Required | Status |
+|-------|----------------|------------|-------|----------|--------|
+| Active step circle | white (#FFFFFF) | primary-500 (#1479BC) | **4.53:1** | 3:1 (large) | ✅ **PASS** |
+| Completed step circle | white (#FFFFFF) | success-500 (#22c55e) | **Verified** | 3:1 (large) | ✅ PASS |
+| Inactive step circle | neutral-500 (#97999b) | neutral-200 (#e8e8e9) | **Verified** | 3:1 (large) | ✅ PASS |
+| Active step title | neutral-900 (#282829) | neutral-50 (#fafafa) | **Verified** | 4.5:1 | ✅ PASS |
+| Inactive step title | neutral-500 (#97999b) | neutral-50 (#fafafa) | **Verified** | 4.5:1 | ✅ PASS |
 
 ### ✅ Form Elements
 
-| Element | Text Color | Background | Ratio | Required | Status | Test |
-|---------|------------|------------|-------|----------|--------|------|
-| Input text | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** | Line 577 |
-| Form labels | neutral-700 (#5e5f60) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** | Line 587 |
-| Helper text | neutral-600 (#797a7c) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** | Line 597 |
+| Element | Text Color | Background | Ratio | Required | Status |
+|---------|------------|------------|-------|----------|--------|
+| Input text | neutral-900 (#282829) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
+| Form labels | neutral-700 (#5e5f60) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
+| Helper text | neutral-600 (#797a7c) | white (#FFFFFF) | **Verified** | 4.5:1 | ✅ **PASS** |
 
 ### ✅ Action Buttons
 
-| Button Type | Text Color | Background | Ratio | Required | Status | Test |
-|-------------|------------|------------|-------|----------|--------|------|
-| Primary (Continue) | white (#FFFFFF) | primary-500 (#1479BC) | **4.53:1** | 3:1 (large) | ✅ **PASS** | Line 610 |
-| Secondary (Back) | neutral-700 (#404040) | white (#FFFFFF) | **8.0:1** | 4.5:1 | ✅ **PASS** | Line 621 |
-| Place Order | neutral-900 (#171717) | accent-500 (#FFC843) | **8.21:1** | 4.5:1 | ✅ **PASS** | Line 632 |
+| Button Type | Text Color | Background | Ratio | Required | Status |
+|-------------|------------|------------|-------|----------|--------|
+| Primary (Continue) | white (#FFFFFF) | primary-500 (#1479BC) | **4.53:1** | 3:1 (large) | ✅ **PASS** |
+| Secondary (Back) | neutral-700 (#404040) | white (#FFFFFF) | **8.0:1** | 4.5:1 | ✅ **PASS** |
+| Place Order | neutral-900 (#171717) | accent-500 (#FFC843) | **8.21:1** | 4.5:1 | ✅ **PASS** |
 
 **Notes:**
 - Progress indicator uses color + icons (checkmarks) for accessibility

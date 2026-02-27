@@ -16,11 +16,11 @@
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'jest-axe';
 import CheckoutWizard from './CheckoutWizard';
 import type { CheckoutData } from './CheckoutPageClient';
 
-// Note: expect.extend() called globally in web/test/setupTests.ts
+// Note: expect.extend(toHaveNoViolations) called globally in web/test/setupTests.ts
 
 // Mock next-intl
 vi.mock('next-intl', () => ({

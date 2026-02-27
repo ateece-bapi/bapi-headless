@@ -1,0 +1,1975 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "tryAgain": "Try again",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clearAll": "Clear All",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  "nav": {
+    "products": "Products",
+    "applications": "Applications",
+    "support": "Support",
+    "company": "Company",
+    "cart": "Cart",
+    "account": "Account",
+    "signIn": "User Sign In"
+  },
+  "megaMenu": {
+    "badges": {
+      "popular": "Popular",
+      "premium": "Premium",
+      "premiumSolution": "Premium Solution",
+      "new": "New",
+      "download": "Download",
+      "phase2": "Phase 2"
+    },
+    "products": {
+      "label": "Products",
+      "temperature": {
+        "title": "Temperature",
+        "roomWallSensors": "Room & Wall Sensors",
+        "roomWallSensorsDesc": "High-accuracy temperature sensing",
+        "ductSensors": "Duct Sensors",
+        "ductSensorsDesc": "Duct-mounted transmitters",
+        "immersionWell": "Immersion & Well",
+        "immersionWellDesc": "Liquid temperature measurement",
+        "outdoorSensors": "Outdoor Sensors",
+        "outdoorSensorsDesc": "Weather-resistant sensing"
+      },
+      "humidity": {
+        "title": "Humidity",
+        "roomHumidity": "Room Humidity",
+        "roomHumidityDesc": "Wall-mount RH sensors",
+        "ductHumidity": "Duct Humidity",
+        "ductHumidityDesc": "Supply & return air RH",
+        "outdoorHumidity": "Outdoor Humidity",
+        "outdoorHumidityDesc": "Weather-resistant RH",
+        "comboSensors": "Combo Sensors",
+        "comboSensorsDesc": "Temperature + humidity"
+      },
+      "pressure": {
+        "title": "Pressure",
+        "differential": "Differential Pressure",
+        "differentialDesc": "Room & filter monitoring",
+        "static": "Static Pressure",
+        "staticDesc": "Duct static transmitters",
+        "barometric": "Barometric",
+        "barometricDesc": "Atmospheric pressure"
+      },
+      "airQuality": {
+        "title": "Air Quality",
+        "co2": "CO₂ Sensors",
+        "co2Desc": "Carbon dioxide monitoring",
+        "voc": "VOC Sensors",
+        "vocDesc": "Volatile organic compounds",
+        "particulate": "Particulate Matter",
+        "particulateDesc": "PM2.5 and PM10"
+      },
+      "wireless": {
+        "title": "Wireless",
+        "wamTemperature": "WAM Temperature",
+        "wamTemperatureDesc": "Wireless temp sensors",
+        "wamHumidity": "WAM Humidity",
+        "wamHumidityDesc": "Wireless RH sensors",
+        "wamDoorSensors": "WAM Door Sensors",
+        "wamDoorSensorsDesc": "Open/close monitoring",
+        "cloudPlatform": "Cloud Platform",
+        "cloudPlatformDesc": "24/7 remote monitoring"
+      },
+      "accessories": {
+        "title": "Accessories",
+        "mounting": "Mounting Hardware",
+        "mountingDesc": "Plates, boxes, brackets",
+        "enclosures": "Enclosures",
+        "enclosuresDesc": "BAPI-Box & covers",
+        "cables": "Cables & Connectors",
+        "cablesDesc": "Wiring accessories"
+      },
+      "testInstruments": {
+        "title": "Test Instruments",
+        "bluTestTemperature": "Blu-Test Temperature",
+        "bluTestTemperatureDesc": "NIST-traceable reference",
+        "bluTestHumidity": "Blu-Test Humidity",
+        "bluTestHumidityDesc": "Temp + RH reference",
+        "bluTestPressure": "Blu-Test Pressure",
+        "bluTestPressureDesc": "Digital manometer"
+      },
+      "featured": {
+        "title": "WAM™ Wireless Asset Monitoring",
+        "description": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
+        "cta": "Learn More",
+        "wamTitle": "WAM™ Wireless Asset Monitoring",
+        "wamDescription": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",
+        "wamCta": "Learn More",
+        "wamBadge": "Premium Solution"
+      },
+      "badges": {
+        "popular": "Popular",
+        "new": "New",
+        "premium": "Premium"
+      }
+    },
+    "resources": {
+      "label": "Resources",
+      "technicalDocumentation": {
+        "title": "Technical Documentation",
+        "applicationNotes": "Application Notes",
+        "applicationNotesDesc": "Design guidance & best practices",
+        "serviceBulletins": "Service Bulletins",
+        "serviceBulletinsDesc": "Product updates & announcements",
+        "datasheets": "Datasheets",
+        "datasheetsDesc": "Complete product specifications",
+        "sensorsOverview": "Sensors Overview",
+        "sensorsOverviewDesc": "Compare sensor specifications"
+      },
+      "toolsGuides": {
+        "title": "Tools & Guides",
+        "catalog": "Product Catalog",
+        "catalogDesc": "Complete catalog with pricing",
+        "siteVerification": "Site Verification Tool",
+        "siteVerificationDesc": "Wireless signal strength testing",
+        "productSelector": "Product Selector",
+        "productSelectorDesc": "Find the right sensor"
+      },
+      "learningCenter": {
+        "title": "Learning Center",
+        "videos": "Video Library",
+        "videosDesc": "How-to videos & tutorials",
+        "caseStudies": "Case Studies",
+        "caseStudiesDesc": "Real-world success stories",
+        "webinars": "Webinars",
+        "webinarsDesc": "Live training sessions"
+      },
+      "featured": {
+        "title": "Need Technical Documentation?",
+        "description": "Access our complete library of application notes, datasheets, and technical resources to help you design and specify the perfect solution.",
+        "cta": "Browse Resources"
+      }
+    },
+    "support": {
+      "label": "Support",
+      "getHelp": {
+        "title": "Get Help",
+        "contactSupport": "Contact Support",
+        "contactSupportDesc": "Talk to our engineers",
+        "rmaRequest": "RMA Request",
+        "rmaRequestDesc": "Return merchandise authorization",
+        "whereToBuy": "Where to Buy",
+        "whereToBuyDesc": "Find a distributor near you"
+      },
+      "existingCustomers": {
+        "title": "For Existing Customers",
+        "myAccount": "My Account",
+        "myAccountDesc": "View orders & quotes",
+        "orderStatus": "Order Status",
+        "orderStatusDesc": "Track your shipments",
+        "requestQuote": "Request a Quote",
+        "requestQuoteDesc": "Get pricing for your project"
+      },
+      "featured": {
+        "title": "Need Technical Support?",
+        "description": "Our experienced engineering team is ready to help with product selection, specifications, and troubleshooting.",
+        "cta": "Contact Support"
+      }
+    },
+    "company": {
+      "label": "Company",
+      "aboutBapi": {
+        "title": "About BAPI",
+        "whyBapi": "Why BAPI",
+        "whyBapiDesc": "Why choose BAPI sensors",
+        "missionValues": "Mission & Values",
+        "missionValuesDesc": "What drives us",
+        "news": "News & Events",
+        "newsDesc": "Latest announcements",
+        "careers": "Careers",
+        "careersDesc": "Join our team"
+      },
+      "getInTouch": {
+        "title": "Get In Touch",
+        "contactSales": "Contact Sales",
+        "contactSalesDesc": "Talk to a rep",
+        "whereToBuy": "Where to Buy",
+        "whereToBuyDesc": "Find a distributor",
+        "requestQuote": "Request a Quote",
+        "requestQuoteDesc": "Get pricing"
+      },
+      "featured": {
+        "title": "Ready to Transform Your Building Automation?",
+        "description": "Connect with our team to discuss your project requirements and discover the perfect sensor solution.",
+        "cta": "Contact Our Team"
+      }
+    }
+  },
+  "companyPages": {
+    "about": {
+      "metadata": {
+        "title": "About BAPI | BAPI",
+        "description": "Learn about BAPI's 40+ year history manufacturing precision sensor solutions for building automation systems worldwide."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "company": "Company"
+      },
+      "hero": {
+        "badge": "Est. 1993",
+        "title": "Building Automation Products Inc.",
+        "subtitle": "Precision Sensor Solutions for Building Automation",
+        "description": "For over 40 years, BAPI has been a leading manufacturer of precision sensors for building automation systems, trusted by engineers worldwide."
+      },
+      "overview": {
+        "title": "About BAPI",
+        "paragraph1": "Building Automation Products, Inc. (BAPI) was formed in 1993 from its parent company BEMCO, Inc., which was founded in 1983. Since then, BAPI has grown into a global manufacturer of precision sensors that improve building automation systems and are critical to saving energy. Every BAPI product is designed and manufactured at our headquarters in Gays Mills, Wisconsin, surrounded by the natural beauty of the rolling hills of the Driftless Region.",
+        "paragraph2": "At BAPI, quality and reliability are at the core of everything we do.  Our sensor products are trusted by engineers worldwide for mission-critical facilities including hospitals, data centers, clean rooms, laboratories, and commercial buildings. With over 600 product models, NIST-traceable calibration, BACnet® certification, and ISO 9001:2015 manufacturing standards, BAPI delivers precision you can depend on."
+      },
+      "stats": {
+        "years": {
+          "value": "40+",
+          "label": "Years in Business"
+        },
+        "products": {
+          "value": "600+",
+          "label": "Product Models"
+        },
+        "madeInUsa": {
+          "value": "100%",
+          "label": "Made in USA"
+        },
+        "distribution": {
+          "value": "Global",
+          "label": "Distribution"
+        }
+      },
+      "coreValues": {
+        "title": "Our Core Values",
+        "subtitle": "The principles that guide everything we do",
+        "qualityFirst": {
+          "title": "Quality First",
+          "description": "Industry-leading warranties, NIST-traceable precision instruments, and 100% product testing at every stage of manufacturing."
+        },
+        "customerFocus": {
+          "title": "Customer Focus",
+          "description": "Dedicated technical support team with deep product knowledge and real-world building automation experience."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Continuously developing new solutions like wireless monitoring, cloud connectivity, and BACnet integration."
+        }
+      },
+      "globalPresence": {
+        "title": "Global Presence",
+        "description": "Manufacturing and distribution facilities across three continents serving customers worldwide."
+      },
+      "location": {
+        "title": "Visit or Contact Us",
+        "locationCard": {
+          "title": "Our Location",
+          "companyName": "Building Automation Products Inc.",
+          "street": "750 North Royal Avenue",
+          "city": "Gays Mills, WI 54631",
+          "country": "USA"
+        },
+        "contactCard": {
+          "title": "Get in Touch",
+          "phoneLabel": "Phone",
+          "phone": "(715) 856-1203",
+          "emailLabel": "Email",
+          "email": "sales@bapihvac.com",
+          "hoursLabel": "Hours",
+          "hoursDays": "Monday - Friday",
+          "hoursTime": "8:00 AM - 5:00 PM CST"
+        },
+        "cta": "Contact Our Team"
+      },
+      "quickLinks": {
+        "title": "Learn More About BAPI",
+        "whyBapi": {
+          "title": "Why Choose BAPI",
+          "description": "Quality, reliability, and support"
+        },
+        "news": {
+          "title": "News & Updates",
+          "description": "Latest company announcements"
+        },
+        "careers": {
+          "title": "Careers",
+          "description": "Join our team"
+        }
+      }
+    },
+    "careers": {
+      "metadata": {
+        "title": "Careers | BAPI",
+        "description": "Join the BAPI team and help us shape the future of building automation technology."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "company": "Company",
+        "careers": "Careers"
+      },
+      "hero": {
+        "badge": "Join Our Team",
+        "title": "Build Your Career at BAPI",
+        "description": "BAPI supports a culture of work-life balance with family oriented employee benefits such as company picnics & holiday parties, aesthetic wellness initiatives, exercise programs and much more. We are an Equal Opportunity Employer (EOP) and we are committed to creating an inclusive work environment for all employees.",
+        "tagline": "We're excited to meet you!"
+      },
+      "benefits": {
+        "healthInsurance": {
+          "title": "Health Insurance",
+          "description": "Comprehensive health, dental, and vision coverage for you and your family."
+        },
+        "compensation": {
+          "title": "Competitive Compensation",
+          "description": "Industry-leading salaries with regular performance reviews and merit increases."
+        },
+        "paidHolidays": {
+          "title": "Paid Holidays",
+          "description": "Generous paid time off including holidays, vacation days, and personal time."
+        },
+        "retirement": {
+          "title": "401(k) Match",
+          "description": "Company match on retirement contributions to help secure your future."
+        },
+        "lifeInsurance": {
+          "title": "Life Insurance",
+          "description": "Company-paid life insurance coverage with options for additional coverage."
+        },
+        "development": {
+          "title": "Professional Development",
+          "description": "Continuous learning opportunities, training programs, and career advancement."
+        }
+      },
+      "cultureSection": {
+        "badge": "What We Offer",
+        "title": "More Than Just a Job",
+        "description": "BAPI supports a culture of work-life balance with family oriented employee benefits.",
+        "bapiOffers": {
+          "title": "BAPI Offers",
+          "items": {
+            "compensation": "Competitive Compensation",
+            "health": "Health Insurance",
+            "vision": "Vision & Dental",
+            "hsa": "Health Savings Account",
+            "retirement": "401(k) with company match"
+          }
+        },
+        "timeOff": {
+          "title": "Time Off",
+          "items": {
+            "holidays": "Paid company holidays",
+            "shortTerm": "Short and Long-Term Disability through AFLAC",
+            "life": "Life Insurance"
+          }
+        },
+        "environment": {
+          "title": "Work Environment",
+          "items": {
+            "facility": "A modern, state-of-the-art open facility",
+            "culture": "Positive, inclusive culture",
+            "balance": "Work-life balance with family oriented employee benefits"
+          }
+        }
+      },
+      "applicationProcess": {
+        "badge": "Application Process",
+        "title": "How to Apply",
+        "description": "We ONLY accept and consider complete electronic applications submitted directly through the www.bapihvac.com/careers webpage.",
+        "step1": {
+          "title": "Complete Application",
+          "description": "Most positions will require a Resume and a separate Cover Letter to be considered a \"complete\" electronic application."
+        },
+        "step2": {
+          "title": "Direct Submission",
+          "description": "Cover Letters must be uploaded directly as attachments via online application system."
+        },
+        "step3": {
+          "title": "Equal Opportunity",
+          "description": "BAPI is an Equal Opportunity Employer (EOP). If you are unable to apply online or require alternative methods of application or screening, please identify cultural origin, disability or veteran status."
+        },
+        "contactTitle": "For questions or help with online applications:",
+        "email": "careers@bapihvac.com",
+        "phone": "(800) 753-4400",
+        "or": "or call"
+      },
+      "cta": {
+        "title": "Ready to Join Our Mission?",
+        "description": "Explore current openings and take the first step toward an exciting career at BAPI. We can't wait to hear from you!",
+        "button": "Get in Touch"
+      }
+    },
+    "missionValues": {
+      "metadata": {
+        "title": "Mission & Values | BAPI",
+        "description": "Learn about BAPI's mission, vision, and core values that drive our commitment to precision sensor solutions."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "company": "Company",
+        "missionValues": "Mission & Values"
+      },
+      "hero": {
+        "badge": "Our Purpose",
+        "title": "Mission & Values",
+        "description": "For over 30 years, our mission and values have guided every decision we make, every product we design, and every customer relationship we build."
+      },
+      "mission": {
+        "title": "Mission",
+        "description": "At BAPI, we design, manufacture and deliver high quality sensor solutions, as well as provide high quality services for our business partners to effectively save their customers money and energy, therefore reducing dependency on natural resources."
+      },
+      "vision": {
+        "title": "Vision",
+        "description": "To grow as a global, innovative leader by providing unique, customer driven solutions while inspiring our employees to be their best, delivering quality products and services that exceed our customers' expectations."
+      },
+      "coreValuesSection": {
+        "title": "Our Core Values",
+        "description": "These principles guide everything we do and shape the way we serve our customers and support our team.",
+        "quality": {
+          "title": "Quality",
+          "description": "We value our employees by encouraging open dialogue, a sense of community and work-life balance for a healthy culture."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "We value processes and services that are metric driven to continually exceed our customers' expectations."
+        },
+        "partnership": {
+          "title": "Collaborative Partnership",
+          "description": "We value new and improved solutions that are creative and unique, we continue to find ways to provide distinct advantages."
+        },
+        "integrity": {
+          "title": "Integrity & Ethics",
+          "description": "We value our collaborative partnerships that lead to superior solutions and facilitate healthy, productive, and comfortable environments."
+        },
+        "employees": {
+          "title": "Employees",
+          "description": "We value being deliberate, thoughtful and intentional with behaviors that match our every word."
+        }
+      },
+      "cta": {
+        "title": "Join Our Mission",
+        "description": "We're always looking for talented individuals who share our values and passion for innovation. Explore opportunities to join the BAPI team.",
+        "button": "View Careers"
+      }
+    },
+    "whyBapi": {
+      "metadata": {
+        "title": "Why BAPI | BAPI",
+        "description": "Discover what sets BAPI apart in the building automation industry and why engineers trust our precision sensor solutions."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "company": "Company",
+        "whyBapi": "Why BAPI"
+      },
+      "hero": {
+        "badge": "What Sets Us Apart",
+        "title": "Why BAPI?",
+        "description": "BAPI has been changing the way you think about sensors since 1993. We believe sensors are not simple commodities—they are integral to building automation systems and critical to saving energy.",
+        "stats": {
+          "years": {
+            "value": "30+",
+            "label": "Years of Excellence"
+          },
+          "warranty": {
+            "value": "5 Year",
+            "label": "Warranty Standard"
+          },
+          "testing": {
+            "value": "100%",
+            "label": "Product Testing"
+          }
+        }
+      },
+      "differentiators": {
+        "warranty": {
+          "title": "5-Year Warranty",
+          "description": "Our products are designed and manufactured to last. We back up that claim by offering a 5-year warranty across all our products."
+        },
+        "guarantee": {
+          "title": "BAPI-Backed Guarantee",
+          "description": "Most sensor manufacturers will replace their defective products, but only BAPI has the confidence to provide a product warranty."
+        },
+        "lifetime": {
+          "title": "Lifetime Limited Warranty",
+          "description": "A lifetime limited warranty is also available on many of our single point, room and non-room sensor models."
+        },
+        "testing": {
+          "title": "100% Testing",
+          "description": "Each and every BAPI product is tested at multiple stages in the manufacturing process to ensure precision and reliability."
+        },
+        "customerFocus": {
+          "title": "Customer Focus",
+          "description": "At BAPI, we strive to be leaders in our industry by providing innovative, high quality products and services designed with you in mind."
+        },
+        "original": {
+          "title": "Another Original",
+          "description": "Products displaying the \"Another Original\" stamp are unique to BAPI and inspired by our customers, employees and vendors."
+        }
+      },
+      "qualitySection": {
+        "badge": "Quality Standards",
+        "title": "The Extra Steps We Take",
+        "description": "In addition to our exceptional people, BAPI uses only the highest quality sensing elements and meticulous manufacturing, testing and quality assurance procedures.",
+        "features": {
+          "compatibility": "100% Compatibility Guarantee",
+          "certified": "CE Certified & RoHS Compliant",
+          "nist": "NIST Traceable Precision Instruments",
+          "production": "Computer Aided Production Stations",
+          "experience": "Over 30 Years of Experience",
+          "distribution": "Global Distribution Network"
+        }
+      },
+      "cta": {
+        "title": "Ready to Experience the BAPI Difference?",
+        "description": "Let's discuss how our precision sensor solutions can benefit your next project. Our team is ready to help you find the perfect solution.",
+        "button": "Contact Us"
+      }
+    },
+    "contact": {
+      "metadata": {
+        "title": "Contact Us | BAPI",
+        "description": "Get in touch with BAPI for support, sales inquiries, or technical assistance."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "company": "Company",
+        "contact": "Contact Us"
+      },
+      "hero": {
+        "badge": "Get in Touch",
+        "title": "Contact BAPI",
+        "description": "Whether you need technical support, have sales inquiries, or want to learn more about our products, we're here to help. Reach out to us today!"
+      },
+      "contactMethods": {
+        "phone": {
+          "title": "Phone",
+          "details": "+1 (800) 735-4800",
+          "description": "Monday - Friday, 8:00 AM - 5:00 PM CST"
+        },
+        "email": {
+          "title": "Email",
+          "details": "sales@bapihvac.com",
+          "description": "We typically respond within 24 hours"
+        },
+        "visit": {
+          "title": "Visit Us",
+          "details": "750 N Royal Ave, Gays Mills, WI 54631",
+          "description": "USA"
+        }
+      },
+      "departmentsSection": {
+        "badge": "Departments",
+        "title": "How Can We Help?",
+        "description": "Choose the department that best fits your needs and we'll connect you with the right team.",
+        "sales": {
+          "title": "Sales",
+          "email": "sales@bapihvac.com",
+          "description": "Product inquiries, quotes, and general sales questions"
+        },
+        "international": {
+          "title": "International Sales",
+          "email": "sales@bapihvac.com",
+          "description": "Global distribution and international partnerships"
+        },
+        "distribution": {
+          "title": "Distribution",
+          "email": "sales@bapihvac.com",
+          "description": "Distributor inquiries and partnership opportunities"
+        },
+        "technical": {
+          "title": "Technical Support",
+          "email": "bapitechsupport@bapisensors.com",
+          "description": "Product support, troubleshooting, and technical assistance"
+        }
+      },
+      "internationalOffice": {
+        "title": "RETURN MERCHANDISE (RMA)",
+        "subtitle": "United Kingdom · Europe RMA",
+        "phoneLabel": "Phone",
+        "addressLabel": "Address",
+        "phone": "+44 (0) 1252 548410",
+        "addressLine1": "BAPI Distribution Centre, North 1c",
+        "addressLine2": "Aldershot GU12 4RG",
+        "addressLine3": "United Kingdom",
+        "rmaInstructions": {
+          "strong": "For RMA (Return Material Authorization) requests,",
+          "text": "please contact your local representative or distributor."
+        }
+      },
+      "globalPresence": {
+        "badge": "Our Locations",
+        "title": "BAPI Worldwide",
+        "description": "With facilities across three continents, BAPI provides local support with global expertise."
+      },
+      "cta": {
+        "title": "Ready to Get Started?",
+        "description": "Contact our team to discuss your project requirements and discover the perfect sensor solution for your needs.",
+        "weekday": {
+          "label": "Weekday",
+          "hours": "8:00 AM - 5:00 PM",
+          "timezone": "Central Standard Time"
+        },
+        "weekend": {
+          "label": "Weekend",
+          "status": "Closed",
+          "days": "Saturday & Sunday"
+        },
+        "button": "Send a Message"
+      }
+    },
+    "news": {
+      "metadata": {
+        "title": "News | BAPI",
+        "description": "Stay updated with the latest news, announcements, and updates from BAPI."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "company": "Company",
+        "news": "News"
+      },
+      "hero": {
+        "badge": "Latest Updates",
+        "title": "News & Updates",
+        "description": "Stay informed with the latest news, product announcements, and industry insights from BAPI."
+      },
+      "empty": {
+        "title": "No News Articles Yet",
+        "description": "Check back soon for the latest updates from BAPI."
+      },
+      "dateLabel": "Published",
+      "readMore": "Read more",
+      "cta": {
+        "badge": "Stay Connected",
+        "title": "Never Miss an Update",
+        "description": "Want to stay informed about our latest innovations, industry insights, and company news? Get in touch with us today.",
+        "button": "Contact Us"
+      }
+    }
+  },
+  "products": {
+    "title": "Products",
+    "description": "Browse our complete catalog",
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added to Cart!",
+    "outOfStock": "Out of Stock",
+    "backInStock": "Back in Stock",
+    "price": "Price",
+    "sku": "SKU",
+    "partNumber": "Part Number",
+    "availability": "Availability",
+    "inStock": "In Stock",
+    "quantity": "Quantity",
+    "specifications": "Specifications",
+    "features": "Features",
+    "documentation": "Documentation",
+    "relatedProducts": "Related Products",
+    "viewDetails": "View Details",
+    "compareProducts": "Compare Products",
+    "requestQuote": "Request Quote",
+    "downloadDatasheet": "Download Datasheet",
+    "technicalSupport": "Technical Support",
+    "filters": {
+      "title": "Filters",
+      "category": "Category",
+      "priceRange": "Price Range",
+      "inStockOnly": "In Stock Only",
+      "clearFilters": "Clear Filters"
+    },
+    "sort": {
+      "title": "Sort By",
+      "featured": "Featured",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "priceLowHigh": "Price: Low to High",
+      "priceHighLow": "Price: High to Low",
+      "newest": "Newest First"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Precision Sensor Solutions for Building Automation",
+      "description": "NIST-traceable sensors and BACnet-certified controllers trusted by engineers worldwide for healthcare, data centers, and critical facilities.",
+      "cta": "Explore Products",
+      "secondaryCta": "Talk to Sales",
+      "productFamilyTitle": "Complete sensor solutions for building automation systems",
+      "productFamilySubtitle": "Trusted by engineers worldwide for precision monitoring and control"
+    },
+    "taglines": [
+      "Industry Leading Sensors",
+      "Changing the way you think about sensors since 1993",
+      "Seamless wireless integration for your existing BAS",
+      "Precision Engineering",
+      "Building the Future",
+      "...It's in the details",
+      "People. Building. Sensors"
+    ],
+    "stats": {
+      "yearsValue": "30+",
+      "yearsLabel": "Years of Excellence",
+      "productsValue": "608",
+      "productsLabel": "Product Models",
+      "globalValue": "Global",
+      "globalLabel": "Reach & Support",
+      "isoValue": "ISO 9001",
+      "isoLabel": "Certified Quality"
+    },
+    "categories": {
+      "title": "Explore Our Product Catalog",
+      "subtitle": "Browse by sensor type to find the perfect solution for your building automation project",
+      "temperature": {
+        "name": "Temperature Sensors",
+        "description": "High-accuracy temperature measurement"
+      },
+      "humidity": {
+        "name": "Humidity Sensors",
+        "description": "Precise relative humidity monitoring"
+      },
+      "pressure": {
+        "name": "Pressure Sensors",
+        "description": "Differential & static pressure"
+      },
+      "airQuality": {
+        "name": "Air Quality Sensors",
+        "description": "CO₂, VOC, and particulate monitoring"
+      },
+      "wireless": {
+        "name": "Wireless Sensors",
+        "description": "WAM™ cloud-connected monitoring"
+      },
+      "accessories": {
+        "name": "Accessories",
+        "description": "Mounting hardware & enclosures"
+      },
+      "testInstruments": {
+        "name": "Test Instruments",
+        "description": "Calibration & verification tools"
+      },
+      "etaLine": {
+        "name": "ETA Line",
+        "description": "Modular I/O and control"
+      },
+      "viewAll": "View All Products",
+      "viewProducts": "View Products",
+      "browseAll": "Browse All Products"
+    },
+    "whyBapi": {
+      "title": "WHY BAPI?",
+      "description": "BAPI has been changing the way you think about sensors since 1993. We believe sensors are not just simple commodities. They are integral to a building automation controls system and critical to the mission of saving energy. Our commitment to innovation and quality has helped transform BAPI into a leading global manufacturer of sensor solutions with a tremendous focus on quality, reliability and value.",
+      "warranty": {
+        "title": "Warranty",
+        "description": "Our products are designed and manufactured to last. We back up that claim by offering a 5-year warranty across all of our products.",
+        "footnote": "A lifetime limited warranty is also available on many of our single point, room and duct room temperature sensors.*"
+      },
+      "bapiBackedTitle": "BAPI-Backed",
+      "bapiBackedDescription": "Most sensor manufacturers will replace their defective products, but only BAPI has the confidence to go beyond the industry standard.",
+      "bapiBackedFootnote": "'BAPI-Backed' means we stand behind everything we sell, so be confident in the quality of our products that if one fails within the warranty period, we will not only repair or replace it, but we'll provide a product expert to offset your incurred cost.*",
+      "bapiOriginal": {
+        "title": "BAPI Original",
+        "description": "At BAPI, we strive to be leaders in our industry by providing innovative, high quality products and services designed with you in mind.",
+        "footnote": "Products displaying the \"Another Original\" stamp are unique to BAPI and the inspiration for these designs come from our valuable customers, talented employees and respected vendors. Those three ingredients combined create industry-leading, original solutions created to solve common HVACR problems."
+      }
+    },
+    "globalPresence": {
+      "title": "Our Global Presence",
+      "subtitle": "From our headquarters in Wisconsin to facilities across three continents, BAPI serves customers worldwide with local expertise and global reach."
+    },
+    "news": {
+      "badge": "Latest News",
+      "title": "Stay Informed",
+      "subtitle": "Latest updates, product announcements, and industry insights",
+      "viewAll": "View All News",
+      "noArticles": "No news articles available yet",
+      "dateUnavailable": "Date unavailable",
+      "readMore": "Read More",
+      "readMoreAriaLabel": "Read more about {title}"
+    },
+    "locations": {
+      "title": "Our Global Presence",
+      "subtitle": "From our headquarters in Wisconsin to facilities across three continents, BAPI serves customers worldwide with local expertise and global reach.",
+      "mapLegend": {
+        "headquarters": "Headquarters",
+        "manufacturing": "Manufacturing & Office",
+        "sales": "Sales Office",
+        "distributionPartner": "Distribution Partner"
+      },
+      "facilities": {
+        "headquartersUsa": {
+          "name": "Global Headquarters",
+          "city": "Gays Mills",
+          "country": "USA",
+          "description": "Corporate headquarters and primary manufacturing facility",
+          "type": "Headquarters",
+          "established": "Est. 1993"
+        },
+        "manufacturingPoland": {
+          "name": "European Manufacturing & Office",
+          "city": "Nowa Wola",
+          "country": "Poland",
+          "description": "European production facility, office, and customer service center",
+          "type": "Manufacturing & Office"
+        },
+        "manufacturingVietnam": {
+          "name": "Asia-Pacific Manufacturing & Office",
+          "city": "Da Nang",
+          "country": "Vietnam",
+          "description": "New manufacturing facility and office serving Asian markets",
+          "type": "Manufacturing & Office",
+          "status": "Opening Soon"
+        },
+        "salesUk": {
+          "name": "UK Sales Office",
+          "city": "Aldershot",
+          "country": "United Kingdom",
+          "description": "European sales and customer support hub",
+          "type": "Sales Office"
+        }
+      },
+      "cta": {
+        "text": "Looking for local support or partnership opportunities?",
+        "button": "Contact Us"
+      }
+    },
+    "finalCta": {
+      "title": "Ready to Find Your Solution?",
+      "subtitle": "Explore our complete catalog or connect with our sales team for expert guidance",
+      "exploreProducts": "Explore Products",
+      "talkToSales": "Talk to Sales",
+      "footer": "Made in USA • Same-Day Shipping • ISO 9001:2015 Certified • 30+ Years of Excellence"
+    }
+  },
+  "footer": {
+    "brand": {
+      "tagline": "Precision Sensor Solutions for Building Automation",
+      "description": "Trusted by engineers worldwide for mission-critical facilities since 1993"
+    },
+    "sections": {
+      "products": {
+        "title": "Products",
+        "links": {
+          "allSensors": "All Sensors",
+          "wireless": "Wireless Monitoring",
+          "testInstruments": "Test Instruments",
+          "airQuality": "Air Quality Sensors",
+          "accessories": "Accessories",
+          "browseCatalog": "Browse Catalog"
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "links": {
+          "datasheets": "Technical Datasheets",
+          "installation": "Installation Guides",
+          "applicationNotes": "Application Notes",
+          "videos": "Video Library",
+          "caseStudies": "Case Studies"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "links": {
+          "mission": "Mission & Values",
+          "whyBapi": "Why BAPI",
+          "news": "News",
+          "careers": "Careers",
+          "contact": "Contact Us"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "links": {
+          "technical": "Technical Support",
+          "selector": "Product Selector",
+          "crossReference": "Cross Reference",
+          "distributorNetwork": "Distributor Network"
+        }
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "address": {
+        "street": "750 N Royal Ave",
+        "city": "Gays Mills, WI 54631"
+      },
+      "phone": "(608) 735-4800",
+      "email": "sales@bapihvac.com"
+    },
+    "awards": {
+      "title": "Awards & Recognition",
+      "description": "Recognized for innovation and excellence in building automation technology"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "bacnet": "BACnet B-ASC Certified",
+      "iso": "ISO 9001:2015",
+      "ul": "UL Listed",
+      "madeInUsa": "Made in USA"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "requestQuote": "Request Quote",
+      "findDistributor": "Find Distributor"
+    },
+    "legal": {
+      "copyright": "© {year} Building Automation Products, Inc. All rights reserved.",
+      "trademark": "BAPI® is a registered trademark of Building Automation Products, Inc.",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    },
+    "social": {
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "follow": "Follow Us"
+    }
+  },
+  "region": {
+    "selectLanguage": "Select Language",
+    "selectRegion": "Select Region",
+    "currency": "Currency",
+    "measurements": "Measurements",
+    "temperature": "Temperature",
+    "pressure": "Pressure",
+    "unitSystem": {
+      "metric": "Metric (°C, bar)",
+      "imperial": "Imperial (°F, PSI)"
+    },
+    "regions": {
+      "northAmerica": "North America",
+      "europe": "Europe",
+      "asia": "Asia",
+      "middleEast": "Middle East",
+      "latinAmerica": "Latin America",
+      "australia": "Australia & Pacific"
+    },
+    "languages": {
+      "en": "English",
+      "de": "Deutsch (German)",
+      "fr": "Français (French)",
+      "es": "Español (Spanish)",
+      "ja": "日本語 (Japanese)",
+      "zh": "中文 (Chinese)",
+      "vi": "Tiếng Việt (Vietnamese)",
+      "ar": "العربية (Arabic)"
+    },
+    "currencies": {
+      "usd": "USD ($)",
+      "eur": "EUR (€)",
+      "gbp": "GBP (£)",
+      "cad": "CAD ($)",
+      "jpy": "JPY (¥)",
+      "cny": "CNY (¥)",
+      "vnd": "VND (₫)",
+      "aed": "AED (د.إ)"
+    }
+  },
+  "units": {
+    "temperature": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kelvin": "K"
+    },
+    "pressure": {
+      "bar": "bar",
+      "psi": "PSI",
+      "pa": "Pa",
+      "kpa": "kPa",
+      "inWc": "inWC"
+    },
+    "length": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "inch": "inch",
+      "ft": "ft"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "network": "Network error. Please check your connection.",
+    "notFound": "Page not found",
+    "unauthorized": "You must be signed in to access this page",
+    "serverError": "Server error. Please try again later.",
+    "validationError": "Please check your input and try again",
+    "addToCartFailed": "Failed to add item to cart",
+    "productNotFound": "Product not found",
+    "cartEmpty": "Your cart is empty",
+    "checkoutFailed": "Checkout failed. Please try again."
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign Up",
+    "profile": "Profile",
+    "account": "My Account",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "orders": "Orders",
+    "favorites": "Favorites",
+    "quotes": "Quotes",
+    "addresses": "Addresses",
+    "paymentMethods": "Payment Methods",
+    "welcome": "Welcome",
+    "welcomeBack": "Welcome back",
+    "loginRequired": "Please sign in to continue",
+    "logout": "Sign Out",
+    "myProfile": "My Profile"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "emptyDescription": "Browse our products to add items to your cart",
+    "checkout": "Proceed to Checkout",
+    "continueShopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "total": "Total",
+    "itemCount": "{count} {count, plural, =1 {item} other {items}}",
+    "removeItem": "Remove item",
+    "updateQuantity": "Update quantity",
+    "applyCoupon": "Apply Coupon",
+    "couponCode": "Coupon Code",
+    "couponApplied": "Coupon applied successfully",
+    "couponInvalid": "Invalid coupon code",
+    "cartUpdated": "Cart updated"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping": "Shipping Information",
+    "payment": "Payment Information",
+    "review": "Review Order",
+    "placeOrder": "Place Order",
+    "orderSummary": "Order Summary",
+    "billingAddress": "Billing Address",
+    "shippingAddress": "Shipping Address",
+    "sameAsBilling": "Same as billing address",
+    "paymentMethod": "Payment Method",
+    "creditCard": "Credit Card",
+    "cardNumber": "Card Number",
+    "expiryDate": "Expiry Date",
+    "cvv": "CVV",
+    "nameOnCard": "Name on Card",
+    "orderTotal": "Order Total",
+    "terms": "Terms & Conditions",
+    "acceptTerms": "I accept the terms and conditions",
+    "processing": "Processing your order...",
+    "orderComplete": "Order Complete!",
+    "orderNumber": "Order Number",
+    "thankYou": "Thank you for your order"
+  },
+  "forms": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "company": "Company Name",
+    "address": "Street Address",
+    "address2": "Apartment, suite, etc. (optional)",
+    "city": "City",
+    "state": "State / Province",
+    "zipCode": "ZIP / Postal Code",
+    "country": "Country",
+    "message": "Message",
+    "subject": "Subject",
+    "required": "Required",
+    "optional": "Optional",
+    "invalidEmail": "Invalid email address",
+    "invalidPhone": "Invalid phone number",
+    "fieldRequired": "This field is required",
+    "selectOption": "Select an option",
+    "enterValue": "Enter a value"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "openCart": "Open shopping cart",
+    "closeCart": "Close shopping cart",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "pageNavigation": "Page navigation",
+    "loading": "Loading content",
+    "searchResults": "Search results"
+  },
+  "productPage": {
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products"
+    },
+    "summary": {
+      "title": "Product Summary",
+      "configureProduct": "Configure Product",
+      "selectSpecifications": "Select your specifications below to see pricing and part number",
+      "configurationComplete": "Configuration Complete",
+      "partNumber": "Part Number",
+      "quantity": "Quantity",
+      "multiplier": "Multiplier",
+      "priceCalculation": "Price Calculation"
+    },
+    "tabs": {
+      "description": "Description",
+      "documents": "Documents",
+      "videos": "Videos",
+      "specifications": "Specifications",
+      "support": "Support",
+      "overview": "Overview",
+      "specs": "Specs",
+      "descriptionPlaceholder": "Product description will appear here when available.",
+      "noVideosAvailable": "No videos available for this product.",
+      "noDocumentsAvailable": "No documents available for this product."
+    },
+    "specifications": {
+      "title": "Specifications",
+      "noSpecsAvailable": "No specifications available for this product.",
+      "expandAll": "Expand All",
+      "collapseAll": "Collapse All",
+      "download": "Download",
+      "downloadSpecs": "Download Specifications"
+    },
+    "sensorSpecs": {
+      "sensorType": "Sensor Type",
+      "range": "Range",
+      "accuracy": "Accuracy",
+      "output": "Output"
+    },
+    "related": {
+      "title": "Related Products",
+      "view": "View",
+      "addToJobEstimate": "Add to Job Estimate",
+      "viewProduct": "View Product",
+      "viewAll": "View All Related Products"
+    },
+    "actions": {
+      "addToCart": "Add to Cart",
+      "addToQuote": "Add to Quote",
+      "buyNow": "Buy Now",
+      "requestQuote": "Request Quote",
+      "compareProducts": "Compare Products",
+      "addToFavorites": "Add to Favorites",
+      "share": "Share"
+    },
+    "pricing": {
+      "price": "Price",
+      "regularPrice": "Regular Price",
+      "salePrice": "Sale Price",
+      "yourPrice": "Your Price",
+      "calculatedPrice": "Calculated Price",
+      "basePrice": "Base Price",
+      "totalPrice": "Total Price",
+      "pricePerUnit": "Price per unit",
+      "bulkDiscountAvailable": "Bulk discount available",
+      "contactForPricing": "Contact us for pricing"
+    },
+    "availability": {
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock",
+      "onBackorder": "On Backorder",
+      "lowStock": "Low Stock",
+      "checkAvailability": "Check Availability",
+      "readyToShip": "Ready to ship",
+      "currentlyUnavailable": "Currently unavailable",
+      "availableForPreorder": "Available for pre-order",
+      "contactForAvailability": "Contact us for availability",
+      "onlyXLeft": "Only {count} left in stock",
+      "xAvailable": "{count} available",
+      "expectedBack": "Expected back: {date}",
+      "shipsOn": "Ships on: {date}"
+    }
+  },
+  "productsPage": {
+    "meta": {
+      "title": "Building Automation Products",
+      "description": "Explore our complete range of high-accuracy sensors, controllers, and test instruments. Trusted by engineers worldwide for critical HVAC applications."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products"
+    },
+    "hero": {
+      "badge": "Precision Sensors & Controllers",
+      "title": "Building Automation Products",
+      "description": "Explore our complete range of high-accuracy sensors, controllers, and test instruments. Trusted by engineers worldwide for critical HVAC applications.",
+      "stats": {
+        "productsCount": "400+",
+        "productsLabel": "Products",
+        "warrantyDuration": "5 Year",
+        "warrantyLabel": "Warranty",
+        "accuracyValue": "±0.2°C",
+        "accuracyLabel": "Accuracy"
+      }
+    },
+    "categories": {
+      "temperatureSensors": {
+        "name": "Temperature Sensors",
+        "description": "High-accuracy temperature measurement solutions"
+      },
+      "humiditySensors": {
+        "name": "Humidity Sensors",
+        "description": "Precise relative humidity monitoring"
+      },
+      "pressureSensors": {
+        "name": "Pressure Sensors",
+        "description": "Differential and static pressure transmitters"
+      },
+      "airQualitySensors": {
+        "name": "Air Quality Sensors",
+        "description": "CO₂, VOC, and particulate matter monitoring"
+      },
+      "wirelessSensors": {
+        "name": "Wireless Sensors",
+        "description": "Battery-powered and energy harvesting solutions"
+      },
+      "accessories": {
+        "name": "Accessories",
+        "description": "Mounting hardware, enclosures, and cables"
+      },
+      "testInstruments": {
+        "name": "Test Instruments",
+        "description": "Professional calibration and testing equipment"
+      },
+      "etaLine": {
+        "name": "ETA Line",
+        "description": "Modular I/O and control solutions"
+      },
+      "viewProducts": "View Products"
+    },
+    "featured": {
+      "badge": "Featured Product Line",
+      "title": "BA/10K Series Temperature Sensors",
+      "description": "Our most popular sensors. ±0.2°C accuracy, BACnet MS/TP, and 5-year warranty. Trusted in healthcare, data centers, and critical facilities worldwide.",
+      "viewButton": "View BA Series",
+      "features": {
+        "accuracy": {
+          "label": "±0.2°C Accuracy",
+          "value": "Industry Leading"
+        },
+        "bacnet": {
+          "label": "BACnet MS/TP",
+          "value": "Native Protocol"
+        },
+        "warranty": {
+          "label": "5-Year Warranty",
+          "value": "Standard"
+        },
+        "madeInUSA": {
+          "label": "Made in USA",
+          "value": "Quality Assured"
+        }
+      }
+    },
+    "cta": {
+      "title": "Need Help Finding the Right Product?",
+      "description": "Our team of experts is ready to help you select the perfect sensors and controllers for your building automation project.",
+      "button": "Contact Sales"
+    }
+  },
+  "cartPage": {
+    "meta": {
+      "title": "Shopping Cart",
+      "description": "Review your cart and proceed to checkout"
+    },
+    "header": {
+      "title": "Shopping Cart",
+      "continueShopping": "Continue Shopping"
+    },
+    "empty": {
+      "title": "Your Cart is Empty",
+      "description": "Add some products to your cart to get started.",
+      "button": "Continue Shopping"
+    },
+    "items": {
+      "title": "Cart Items",
+      "clearCart": "Clear Cart",
+      "clearConfirm": "Are you sure you want to clear your cart?",
+      "noImage": "No Image",
+      "remove": "Remove",
+      "priceEach": "{price} each"
+    },
+    "stock": {
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock",
+      "onBackorder": "On Backorder",
+      "available": "{count} available"
+    },
+    "quantity": {
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total",
+      "calculatedAtCheckout": "Calculated at checkout",
+      "proceedToCheckout": "Proceed to Checkout",
+      "secureCheckout": "Secure Checkout",
+      "sslEncrypted": "256-bit SSL encrypted"
+    },
+    "coupon": {
+      "label": "Have a coupon code?",
+      "placeholder": "Enter code",
+      "apply": "Apply",
+      "applying": "Applying...",
+      "appliedCoupons": "Applied Coupons:",
+      "remove": "Remove coupon"
+    },
+    "shipping": {
+      "freeShipping": "✓ Free shipping on orders over $500",
+      "standardShipping": "Standard shipping: 3-5 business days"
+    },
+    "toasts": {
+      "updated": "Updated",
+      "cartUpdated": "Cart updated successfully",
+      "removed": "Removed",
+      "itemRemoved": "Item removed from cart",
+      "cartCleared": "Cart Cleared",
+      "allItemsRemoved": "All items removed from cart",
+      "enterCode": "Enter Code",
+      "enterCodeMessage": "Please enter a coupon code",
+      "couponApplied": "Coupon Applied",
+      "couponAppliedMessage": "Coupon \"{code}\" applied successfully",
+      "couponRemoved": "Coupon Removed",
+      "couponRemovedMessage": "Coupon \"{code}\" removed"
+    }
+  },
+  "categoryPage": {
+    "meta": {
+      "notFound": "Category Not Found",
+      "descriptionTemplate": "Browse {name} from BAPI - Building Automation Products Inc."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products"
+    },
+    "header": {
+      "productsAvailable": "{count} products available"
+    },
+    "products": {
+      "showing": "Showing {count} products"
+    },
+    "subcategories": {
+      "title": "Browse by Category",
+      "productCount": "{count} product",
+      "productCountPlural": "{count} products",
+      "browseButton": "Browse Products"
+    },
+    "quickLinks": {
+      "backToProducts": "← Back to All Products",
+      "needHelp": "Need Help? Contact Us"
+    }
+  },
+  "subcategoryPage": {
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products"
+    }
+  },
+  "searchPage": {
+    "meta": {
+      "titleWithQuery": "Search Results for \"{query}\" | BAPI",
+      "titleDefault": "Search Products | BAPI",
+      "descriptionTemplate": "Find BAPI building automation sensors and controllers. Search results for: {query}"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products",
+      "search": "Search"
+    },
+    "emptyQuery": {
+      "title": "Search Products",
+      "description": "Use the search bar above to find sensors, controllers, and building automation products.",
+      "browseButton": "Browse All Products"
+    },
+    "results": {
+      "backToProducts": "Back to Products",
+      "title": "Search Results",
+      "resultsCount": "{count} result for \"{query}\"",
+      "resultsCountPlural": "{count} results for \"{query}\""
+    },
+    "noResults": {
+      "title": "No products found",
+      "description": "We couldn't find any products matching \"{query}\". Try different keywords or browse our categories.",
+      "browseButton": "Browse All Products",
+      "contactButton": "Contact Support"
+    }
+  },
+  "checkoutPage": {
+    "meta": {
+      "title": "Checkout | BAPI",
+      "description": "Complete your order"
+    },
+    "header": {
+      "title": "Checkout",
+      "stepsRemaining": "Complete your order in {count} easy step",
+      "stepsRemainingPlural": "Complete your order in {count} easy steps"
+    },
+    "wizard": {
+      "steps": {
+        "shipping": {
+          "title": "Shipping",
+          "description": "Delivery address"
+        },
+        "payment": {
+          "title": "Payment",
+          "description": "Payment method"
+        },
+        "review": {
+          "title": "Review",
+          "description": "Place order"
+        }
+      }
+    },
+    "shipping": {
+      "title": "Shipping Address",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "company": "Company (Optional)",
+      "address": "Address",
+      "addressPlaceholder": "Street address",
+      "address2Placeholder": "Apartment, suite, etc. (optional)",
+      "city": "City",
+      "state": "State",
+      "statePlaceholder": "CA, NY, TX, etc.",
+      "zipCode": "ZIP Code",
+      "zipCodePlaceholder": "12345",
+      "country": "Country",
+      "phone": "Phone",
+      "phonePlaceholder": "(555) 123-4567",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "countries": {
+        "us": "United States",
+        "ca": "Canada",
+        "mx": "Mexico"
+      },
+      "billingSameAsShipping": "Billing address same as shipping address",
+      "continueButton": "Continue to Payment",
+      "validation": {
+        "missingInfo": "Missing Information",
+        "missingInfoMessage": "Please fill in all required fields",
+        "invalidEmail": "Invalid Email",
+        "invalidEmailMessage": "Please enter a valid email address",
+        "invalidPhone": "Invalid Phone",
+        "invalidPhoneMessage": "Please enter a valid phone number"
+      }
+    },
+    "payment": {
+      "title": "Payment Method",
+      "methods": {
+        "creditCard": {
+          "title": "Credit Card",
+          "description": "Pay with credit or debit card"
+        },
+        "paypal": {
+          "title": "PayPal",
+          "description": "Pay with your PayPal account"
+        }
+      },
+      "cardDetails": {
+        "title": "Card Details",
+        "settingUp": "Setting up payment...",
+        "loadError": "Unable to load payment form. Please refresh and try again."
+      },
+      "security": {
+        "title": "Your payment is secure",
+        "description": "Powered by Stripe with 256-bit SSL encryption"
+      },
+      "paypal": {
+        "redirectMessage": "You will be redirected to PayPal to complete your purchase securely after reviewing your order.",
+        "continueButton": "Continue to Review"
+      },
+      "back": "Back",
+      "toasts": {
+        "selectMethod": "Select Payment Method",
+        "selectMethodMessage": "Please select a payment method",
+        "setupFailed": "Payment Setup Failed",
+        "setupError": "Unable to initialize payment",
+        "paymentConfirmed": "Payment Confirmed",
+        "paymentConfirmedMessage": "Proceeding to order review",
+        "paymentFailed": "Payment Failed"
+      }
+    },
+    "review": {
+      "title": "Review Your Order",
+      "description": "Please review your information before placing your order",
+      "shippingAddress": "Shipping Address",
+      "billingAddress": "Billing Address",
+      "paymentMethod": "Payment Method",
+      "sameAsShipping": "Same as shipping address",
+      "notSelected": "Not selected",
+      "edit": "Edit",
+      "phone": "Phone",
+      "email": "Email",
+      "paymentNotes": {
+        "creditCard": "Your card will be charged after order confirmation",
+        "paypal": "You will be redirected to PayPal to complete payment"
+      },
+      "orderNotes": {
+        "label": "Order Notes (Optional)",
+        "placeholder": "Add any special instructions or notes about your order..."
+      },
+      "terms": {
+        "agree": "I have read and agree to the",
+        "termsLink": "Terms & Conditions",
+        "and": "and",
+        "privacyLink": "Privacy Policy"
+      },
+      "placeOrder": "Place Order",
+      "processing": "Processing...",
+      "back": "Back",
+      "security": "Secure 256-bit SSL encrypted checkout",
+      "toasts": {
+        "acceptTerms": "Accept Terms",
+        "acceptTermsMessage": "Please accept the terms and conditions to continue"
+      }
+    },
+    "summary": {
+      "title": "Order Summary",
+      "items": "Items ({count})",
+      "noImage": "No Image",
+      "qty": "Qty",
+      "editCart": "← Edit Cart",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total",
+      "calculatedAtCheckout": "Calculated at checkout",
+      "secureCheckout": "Secure Checkout"
+    },
+    "toasts": {
+      "cartEmpty": "Cart Empty",
+      "cartEmptyMessage": "Your cart is empty. Add items before checking out.",
+      "error": "Error",
+      "errorMessage": "Unable to load cart.",
+      "orderPlaced": "Order Placed!",
+      "orderPlacedMessage": "Your order has been placed successfully."
+    }
+  },
+  "supportPage": {
+    "metadata": {
+      "description": "Expert technical support for BAPI building automation products. Access installation docs, troubleshooting guides, RMA requests, and live chat with engineers. Free technical assistance for all BAPI sensors, controllers, and wireless systems.",
+      "keywords": "building automation support, HVAC sensor technical support, BACnet controller help, sensor installation guide, technical documentation, troubleshooting guide, RMA request, warranty support, sensor calibration, installation assistance"
+    },
+    "hero": {
+      "title": "BAPI Support Center",
+      "subtitle": "Expert technical support for building automation professionals"
+    },
+    "quickActions": {
+      "contactSupport": {
+        "title": "Contact Support",
+        "description": "Speak with our technical support team"
+      },
+      "applicationNotes": {
+        "title": "Application Notes",
+        "description": "Technical guides and installation instructions"
+      },
+      "rmaRequest": {
+        "title": "RMA Request",
+        "description": "Return merchandise authorization"
+      }
+    },
+    "resources": {
+      "title": "Support Resources",
+      "technicalDocs": {
+        "title": "Technical Documentation",
+        "links": {
+          "applicationNotes": "Application Notes",
+          "installationGuides": "Installation Guides",
+          "productDatasheets": "Product Datasheets",
+          "sensorSpecs": "Sensor Specifications"
+        }
+      },
+      "toolsUtilities": {
+        "title": "Tools & Utilities",
+        "links": {
+          "productSelector": "Product Selector",
+          "crossReference": "Cross Reference Tool",
+          "wirelessVerification": "Wireless Site Verification",
+          "catalogPriceBook": "Catalog & Price Book"
+        }
+      },
+      "serviceReturns": {
+        "title": "Service & Returns",
+        "links": {
+          "rmaRequest": "RMA Request Form",
+          "serviceBulletins": "Service Bulletins",
+          "contactSupport": "Contact Technical Support"
+        }
+      }
+    },
+    "contact": {
+      "title": "Need Direct Support?",
+      "subtitle": "Our technical support team is ready to help",
+      "phone": {
+        "title": "Phone Support",
+        "hours": "Monday - Friday, 8am - 5pm CST",
+        "number": "(715) 856-1203"
+      },
+      "email": {
+        "title": "Email Support",
+        "description": "Technical questions and support",
+        "address": "sales@bapihvac.com"
+      },
+      "cta": "Contact Support Team"
+    }
+  },
+  "contactSupportPage": {
+    "metadata": {
+      "title": "Contact Support | BAPI",
+      "description": "Get expert technical support for BAPI building automation products. Phone, email, and on-site assistance available."
+    },
+    "hero": {
+      "title": "Contact Technical Support",
+      "subtitle": "Expert assistance for building automation professionals"
+    },
+    "phone": {
+      "title": "Phone Support",
+      "description": "Speak directly with our technical support team",
+      "hours": "Monday - Friday, 8am - 5pm CST"
+    },
+    "email": {
+      "title": "Email Support",
+      "description": "Send us your technical questions and we'll respond within 24 hours"
+    },
+    "location": {
+      "title": "Our Location"
+    },
+    "resources": {
+      "heading": "Additional Resources",
+      "description": "Explore our support center for guides, documentation, and tools",
+      "supportCenter": "Support Center",
+      "rmaRequest": "RMA Request"
+    }
+  },
+  "warrantyPage": {
+    "metadata": {
+      "title": "Warranty Information | BAPI",
+      "description": "BAPI offers industry-leading 5-year warranty on building automation products. Learn about our warranty coverage and support."
+    },
+    "hero": {
+      "title": "Warranty Information",
+      "subtitle": "Industry-leading 5-year warranty on all BAPI products"
+    },
+    "coverage": {
+      "title": "Warranty Coverage",
+      "description": "BAPI stands behind the quality and reliability of our products with a comprehensive 5-year warranty.",
+      "years": "5-Year Coverage",
+      "defects": "Manufacturing Defects",
+      "support": "Technical Support"
+    },
+    "covered": {
+      "title": "What's Covered",
+      "manufacturing": "Manufacturing defects in materials and workmanship",
+      "materials": "Product materials that fail under normal use conditions",
+      "workmanship": "Assembly and construction defects"
+    },
+    "important": {
+      "title": "Important Information",
+      "description": "Warranty does not cover damage from improper installation, misuse, or normal wear and tear. Contact our support team for specific warranty questions."
+    },
+    "cta": {
+      "heading": "Need Help?",
+      "description": "Our support team is here to assist with warranty questions and claims",
+      "contactButton": "Contact Support",
+      "rmaButton": "Start RMA Request"
+    }
+  },
+  "returnsPage": {
+    "metadata": {
+      "title": "Returns & RMA | BAPI",
+      "description": "Request a Return Merchandise Authorization for BAPI products. Fast processing and expert support for returns and repairs."
+    },
+    "hero": {
+      "title": "Returns & RMA Process",
+      "subtitle": "Return Merchandise Authorization for BAPI products"
+    },
+    "process": {
+      "title": "RMA Process",
+      "step1": {
+        "title": "Contact Support",
+        "description": "Reach out to our support team"
+      },
+      "step2": {
+        "title": "Receive RMA Number",
+        "description": "Get authorization within 24 hours"
+      },
+      "step3": {
+        "title": "Ship Product",
+        "description": "Return with RMA number on package"
+      },
+      "step4": {
+        "title": "Resolution",
+        "description": "Repair, replacement, or credit"
+      }
+    },
+    "requirements": {
+      "title": "Return Requirements",
+      "rmaNumber": "All returns must have an RMA number before shipping",
+      "timeframe": "Products must be returned within 30 days of RMA authorization",
+      "invoice": "Include a copy of the original invoice with returned products",
+      "packaging": "Write RMA number clearly on outside of shipping box"
+    },
+    "important": {
+      "title": "Important Information",
+      "description": "Customer is responsible for return shipping costs unless product is defective under warranty. Contact our support team before returning any products."
+    },
+    "cta": {
+      "heading": "Ready to Start?",
+      "description": "Contact our support team to begin the return process",
+      "contactButton": "Contact Support",
+      "warrantyButton": "View Warranty Info"
+    }
+  },
+  "resourcesPage": {
+    "metadata": {
+      "description": "Free technical documentation for BAPI building automation products. Download installation guides, datasheets, application notes, CAD drawings, and BACnet PICS. Comprehensive resources for engineers, contractors, and facility managers.",
+      "keywords": "BAPI documentation, installation guides, sensor datasheets, technical specifications, application notes, BACnet PICS, CAD drawings, wiring diagrams, building automation resources, HVAC documentation, controller manuals, sensor specs"
+    },
+    "hero": {
+      "title": "Technical Resources",
+      "subtitle": "Access comprehensive documentation, installation guides, and technical specifications for BAPI building automation products."
+    },
+    "stats": {
+      "documents": "1,100+ Documents",
+      "guides": "Installation Guides",
+      "datasheets": "Product Datasheets",
+      "catalogs": "Technical Catalogs"
+    },
+    "appNotesCta": {
+      "title": "Looking for Technical Guides?",
+      "description": "Browse our collection of Application Notes for in-depth technical guidance, best practices, and implementation examples →"
+    }
+  },
+  "crossReferencePage": {
+    "metadata": {
+      "title": "Cross Reference Tool | BAPI",
+      "description": "Find BAPI equivalents for competitor products. Cross-reference tool for building automation sensors.",
+      "keywords": "cross reference, competitor comparison, BAPI equivalents, Honeywell alternative, Johnson Controls alternative, Siemens alternative, sensor cross reference, building automation compatibility, product replacement"
+    },
+    "hero": {
+      "title": "Cross Reference Tool",
+      "subtitle": "Find BAPI equivalents for competitor products"
+    },
+    "searchTool": {
+      "heading": "Find BAPI Equivalent",
+      "manufacturerLabel": "Select Manufacturer",
+      "manufacturerPlaceholder": "Choose manufacturer...",
+      "modelLabel": "Enter Competitor Model Number",
+      "modelPlaceholder": "e.g., C7400A2100",
+      "searchButton": "Find BAPI Equivalent",
+      "manufacturers": {
+        "honeywell": "Honeywell",
+        "johnson": "Johnson Controls",
+        "siemens": "Siemens",
+        "schneider": "Schneider Electric",
+        "belimo": "Belimo",
+        "other": "Other"
+      }
+    },
+    "popularSection": {
+      "heading": "Popular Cross References",
+      "competitorLabel": "Competitor",
+      "bapiLabel": "BAPI Equivalent"
+    },
+    "helpSection": {
+      "heading": "Can't Find What You're Looking For?",
+      "description": "Contact our technical sales team for assistance with cross-referencing",
+      "ctaButton": "Contact Sales Team"
+    }
+  },
+  "datasheetsPage": {
+    "metadata": {
+      "title": "Product Datasheets | BAPI",
+      "description": "Download detailed technical datasheets for all BAPI building automation products.",
+      "keywords": "product datasheets, technical specifications, sensor datasheets, BAPI specifications, temperature sensor specs, humidity sensor specs, pressure sensor specs, air quality sensor datasheets, wireless sensor specs, controller datasheets, PDF downloads"
+    },
+    "hero": {
+      "title": "Product Datasheets",
+      "subtitle": "Detailed technical specifications for all BAPI products"
+    },
+    "search": {
+      "placeholder": "Search datasheets by model number or product name...",
+      "categoryLabel": "All Categories",
+      "categories": {
+        "temperature": "Temperature",
+        "humidity": "Humidity",
+        "pressure": "Pressure",
+        "airQuality": "Air Quality",
+        "wireless": "Wireless",
+        "controllers": "Controllers"
+      }
+    },
+    "grid": {
+      "pagesLabel": "pages",
+      "downloadButton": "Download PDF"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "bulkDownload": {
+      "heading": "Need Multiple Datasheets?",
+      "description": "Download our complete datasheet package with all product specifications",
+      "button": "Download All Datasheets (ZIP)",
+      "packageInfo": "Complete package • 125 MB • Updated January 2026"
+    }
+  },
+  "installationPage": {
+    "metadata": {
+      "title": "Installation Guides | BAPI Resources",
+      "description": "Comprehensive installation guides and documentation for BAPI products.",
+      "keywords": "installation guides, sensor installation, BAPI installation, temperature sensor installation, wireless sensor setup, air quality installation, pressure sensor mounting, installation documentation, PDF guides, technical installation"
+    },
+    "hero": {
+      "title": "Installation Guides",
+      "subtitle": "Step-by-step installation instructions for all BAPI products"
+    },
+    "search": {
+      "placeholder": "Search installation guides..."
+    },
+    "downloadButton": "Download PDF",
+    "support": {
+      "heading": "Need Installation Support?",
+      "description": "Our technical team is here to help with any installation questions",
+      "ctaButton": "Contact Support"
+    }
+  },
+  "videosPage": {
+    "metadata": {
+      "title": "Video Library | BAPI Resources",
+      "description": "Product demonstrations, installation guides, and technical videos from BAPI."
+    },
+    "hero": {
+      "title": "Video Library",
+      "subtitle": "Product demos, tutorials, and technical guides"
+    },
+    "comingSoon": {
+      "badge": "Coming in Phase 2",
+      "heading": "Video Library Launching Soon",
+      "description": "We're preparing a comprehensive video library with product demonstrations, installation guides, and technical tutorials. This feature will be available in Phase 2.",
+      "note": "In the meantime, contact our technical support team for product assistance."
+    },
+    "categories": {
+      "heading": "Planned Video Categories",
+      "productDemos": "Product Demos",
+      "productDemosDesc": "Features and capabilities",
+      "installation": "Installation Guides",
+      "installationDesc": "Step-by-step tutorials",
+      "training": "Technical Training",
+      "trainingDesc": "Advanced topics"
+    },
+    "support": {
+      "heading": "Need Support Now?",
+      "description": "Contact our technical team for immediate assistance",
+      "button": "Contact Support"
+    }
+  },
+  "webinarsPage": {
+    "metadata": {
+      "title": "Webinars | BAPI Resources",
+      "description": "Live and recorded webinars on building automation topics from BAPI experts."
+    },
+    "hero": {
+      "title": "Webinars",
+      "subtitle": "Educational webinars from BAPI experts"
+    },
+    "comingSoon": {
+      "badge": "Coming in Phase 2",
+      "heading": "Webinar Program Launching Soon",
+      "description": "We're developing a comprehensive webinar program covering building automation best practices, new technologies, and product deep-dives. This feature will be available in Phase 2.",
+      "note": "Check back soon for upcoming webinar schedules and recordings."
+    },
+    "topics": {
+      "heading": "Planned Webinar Topics",
+      "training": "Product Training",
+      "trainingDesc": "In-depth product overviews",
+      "bestPractices": "Best Practices",
+      "bestPracticesDesc": "Industry standards and tips",
+      "liveQA": "Live Q&A Sessions",
+      "liveQADesc": "Interactive expert discussions"
+    },
+    "stayUpdated": {
+      "heading": "Stay Updated",
+      "description": "Contact us to receive notifications about upcoming webinars",
+      "button": "Get Notified"
+    }
+  },
+  "caseStudiesPage": {
+    "metadata": {
+      "title": "Case Studies | BAPI Resources",
+      "description": "Real-world success stories and case studies featuring BAPI building automation solutions."
+    },
+    "hero": {
+      "title": "Case Studies",
+      "subtitle": "Real-world success stories with BAPI solutions"
+    },
+    "labels": {
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "results": "Results"
+    },
+    "readMore": "Read Full Case Study",
+    "cta": {
+      "heading": "Ready to Start Your Project?",
+      "description": "Let us help you design a solution for your building",
+      "button": "Request a Quote"
+    }
+  },
+  "selectorPage": {
+    "metadata": {
+      "title": "Product Selector Tool | BAPI",
+      "description": "Find the perfect BAPI sensor for your application. Answer a few questions to get product recommendations."
+    },
+    "hero": {
+      "title": "Product Selector",
+      "subtitle": "Find the perfect sensor for your building automation project"
+    },
+    "steps": {
+      "step1": "Step 1 of 4",
+      "question": "What type of measurement do you need?"
+    },
+    "options": {
+      "temperature": "Temperature Only",
+      "temperatureDesc": "Measure temperature in spaces, ducts, or outdoors",
+      "tempHumidity": "Temperature & Humidity",
+      "tempHumidityDesc": "Monitor both temperature and relative humidity",
+      "airQuality": "Air Quality (CO₂, VOC, PM)",
+      "airQualityDesc": "Measure CO₂, VOC, or particulate matter",
+      "pressure": "Pressure",
+      "pressureDesc": "Monitor differential or absolute pressure"
+    },
+    "buttons": {
+      "back": "Back",
+      "continue": "Continue"
+    },
+    "browse": {
+      "heading": "Or Browse by Category",
+      "temperature": "Temperature Sensors",
+      "humidity": "Humidity Sensors",
+      "wireless": "Wireless Products",
+      "airQuality": "Air Quality"
+    }
+  }
+}

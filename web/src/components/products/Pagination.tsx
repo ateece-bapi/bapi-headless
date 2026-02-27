@@ -65,6 +65,14 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
 
   return (
     <div className="mt-12 flex flex-col items-center gap-6">
+      {/* Skip Link for Keyboard Users */}
+      <a
+        href="#product-results"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary-600 focus:px-6 focus:py-3 focus:text-sm focus:font-semibold focus:text-white focus:shadow-2xl focus:ring-4 focus:ring-primary-500/50 focus:outline-none"
+      >
+        Skip to product results
+      </a>
+
       {/* Page Info */}
       <div className="text-sm text-neutral-600">
         Page <span className="font-bold text-primary-600">{currentPage}</span> of{' '}

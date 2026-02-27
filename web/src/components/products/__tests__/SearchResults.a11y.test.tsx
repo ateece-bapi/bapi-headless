@@ -616,6 +616,38 @@ describe('ProductGrid - Product Cards', () => {
   });
 });
 
+describe('ProductGrid - Skip Link Target (WCAG 2.4.1 Bypass Blocks)', () => {
+  it('has target anchor for pagination skip link', () => {
+    const { container } = render(<ProductGrid products={mockProducts} locale="en" />);
+
+    // Grid should have id="product-results" for skip link targeting
+    const grid = container.querySelector('#product-results');
+    expect(grid).toBeInTheDocument();
+
+    // Verify it's the actual grid element
+    expect(grid).toHaveClass('grid');
+    expect(grid?.tagName).toBe('DIV');
+  });
+
+  it('target anchor is keyboard focusable with tabIndex=-1', () => {
+    const { container } = render(<ProductGrid products={mockProducts} locale="en" />);
+
+    const grid = container.querySelector('#product-results');
+    expect(grid).toBeInTheDocument();
+
+    // tabIndex="-1" allows programmatic focus without adding to tab order
+    expect(grid).toHaveAttribute('tabIndex', '-1');
+  });
+
+  it('empty state does not have skip link target', () => {
+    const { container } = render(<ProductGrid products={[]} locale="en" />);
+
+    // Empty state should not have the grid, so no skip link target
+    const grid = container.querySelector('#product-results');
+    expect(grid).not.toBeInTheDocument();
+  });
+});
+
 // ============================================================================
 // TESTS: ProductFilters Component
 // ============================================================================
@@ -832,6 +864,56 @@ describe('Pagination - Navigation Structure', () => {
     pageButtons.forEach((button) => {
       expect(button).toBeInTheDocument();
     });
+  });
+
+  it('has skip link to product results for keyboard users', () => {
+    render(<Pagination currentPage={2} totalPages={5} totalProducts={50} />);
+
+    // Skip link should exist (even if visually hidden)
+    const skipLink = screen.getByText(/skip to product results/i);
+    expect(skipLink).toBeInTheDocument();
+    expect(skipLink).toHaveAttribute('href', '#product-results');
+
+    // Verify sr-only class for visual hiding
+    expect(skipLink).toHaveClass('sr-only');
+    // Verify it becomes visible on focus
+    expect(skipLink).toHaveClass('focus:not-sr-only');
+  });
+});
+
+describe('Pagination - Skip Links (WCAG 2.4.1 Bypass Blocks)', () => {
+  it('skip link has proper ARIA and styling for focus visibility', () => {
+    render(<Pagination currentPage={2} totalPages={5} totalProducts={50} />);
+
+    const skipLink = screen.getByText(/skip to product results/i);
+
+    // Verify link exists and is properly labeled
+    expect(skipLink).toBeInTheDocument();
+    expect(skipLink.tagName).toBe('A');
+    expect(skipLink).toHaveAttribute('href', '#product-results');
+
+    // Verify accessibility classes (sr-only with focus override)
+    expect(skipLink.className).toContain('sr-only');
+    expect(skipLink.className).toContain('focus:not-sr-only');
+    expect(skipLink.className).toContain('focus:absolute');
+
+    // Verify proper z-index for visibility
+    expect(skipLink.className).toContain('focus:z-50');
+
+    // Verify accessible focus styling (high contrast, ring)
+    expect(skipLink.className).toContain('focus:bg-primary-600');
+    expect(skipLink.className).toContain('focus:text-white');
+    expect(skipLink.className).toContain('focus:ring-4');
+  });
+
+  it('skip link targets correct anchor ID', () => {
+    render(<Pagination currentPage={2} totalPages={5} totalProducts={50} />);
+
+    const skipLink = screen.getByText(/skip to product results/i);
+    const href = skipLink.getAttribute('href');
+
+    // Verify it points to #product-results (the ID added to ProductGrid)
+    expect(href).toBe('#product-results');
   });
 });
 

@@ -162,9 +162,15 @@ WCAG 2.1 Level AAA is the highest level but not typically required. Consider the
 ```css
 @media (prefers-contrast: high) {
   /* Use only neutral-900 (#282829) and neutral-100 (#f5f5f5) */
-  .text-neutral-600 { @apply text-neutral-900; }
-  .text-neutral-500 { @apply text-neutral-900; }
-  .bg-neutral-50 { @apply bg-white; }
+  .text-neutral-600 {
+    color: #282829; /* neutral-900 */
+  }
+  .text-neutral-500 {
+    color: #282829; /* neutral-900 */
+  }
+  .bg-neutral-50 {
+    background-color: #ffffff; /* white */
+  }
 }
 ```
 

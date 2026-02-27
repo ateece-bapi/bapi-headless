@@ -204,7 +204,7 @@ describe('SearchDropdown - Automated Accessibility (WCAG 2.1 AA)', () => {
   });
 
   // FIXED: SearchDropdown now uses conditional role logic
-  // Loading state: role="status" with nested role="status" aria-live="assertive"
+  // Loading state: role="status" with aria-busy (no longer role="listbox")
   // This provides proper status semantics without requiring role="option" children
   it('has no automated accessibility violations (loading state)', async () => {
     const { container } = render(
@@ -213,6 +213,26 @@ describe('SearchDropdown - Automated Accessibility (WCAG 2.1 AA)', () => {
         isLoading={true}
         isOpen={true}
         query="temp"
+        onSelect={vi.fn()}
+        onViewAll={vi.fn()}
+        onClose={vi.fn()}
+      />
+    );
+
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  // REGRESSION TEST: Loading state with stale results from previous query
+  // When isLoading=true while results.length > 0, must use role="status" not role="listbox"
+  // This prevents ARIA violation where listbox has no visible option children during loading
+  it('has no automated accessibility violations (loading with stale results)', async () => {
+    const { container } = render(
+      <SearchDropdown
+        results={mockSearchResults}
+        isLoading={true}
+        isOpen={true}
+        query="new search"
         onSelect={vi.fn()}
         onViewAll={vi.fn()}
         onClose={vi.fn()}
@@ -240,6 +260,8 @@ describe('SearchDropdown - ARIA Attributes', () => {
 
     const listbox = screen.getByRole('listbox', { name: /search results/i });
     expect(listbox).toBeInTheDocument();
+    // Verify ID exists for aria-controls association from SearchInput
+    expect(listbox).toHaveAttribute('id', 'search-dropdown');
   });
 
   it('loading state has accessible loading indicator', () => {
@@ -259,6 +281,28 @@ describe('SearchDropdown - ARIA Attributes', () => {
     // Loader icon should be present
     const loader = screen.getByText(/searching/i).previousElementSibling;
     expect(loader).toHaveClass('animate-spin');
+  });
+
+  it('loading state with stale results uses status role and aria-busy', () => {
+    render(
+      <SearchDropdown
+        results={mockSearchResults}
+        isLoading={true}
+        isOpen={true}
+        query="new search"
+        onSelect={vi.fn()}
+        onViewAll={vi.fn()}
+        onClose={vi.fn()}
+      />
+    );
+
+    // Should use role="status" not role="listbox" when loading (even with stale results)
+    const status = screen.getByRole('status');
+    expect(status).toBeInTheDocument();
+    expect(status).toHaveAttribute('aria-busy', 'true');
+
+    // Should NOT have listbox role during loading
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
   });
 
   it('empty state has descriptive no results message', () => {

@@ -639,6 +639,19 @@ describe('ProductGrid - Skip Link Target (WCAG 2.4.1 Bypass Blocks)', () => {
     expect(grid).toHaveAttribute('tabIndex', '-1');
   });
 
+  it('target anchor has focus-visible styles for WCAG 2.4.7 (Focus Visible)', () => {
+    const { container } = render(<ProductGrid products={mockProducts} locale="en" />);
+
+    const grid = container.querySelector('#product-results');
+    expect(grid).toBeInTheDocument();
+
+    // Verify focus-visible styles are present for when users activate skip link
+    expect(grid?.className).toContain('focus-visible:outline-none');
+    expect(grid?.className).toContain('focus-visible:ring-2');
+    expect(grid?.className).toContain('focus-visible:ring-primary-500');
+    expect(grid?.className).toContain('focus-visible:ring-offset-4');
+  });
+
   it('empty state does not have skip link target', () => {
     const { container } = render(<ProductGrid products={[]} locale="en" />);
 
@@ -897,8 +910,8 @@ describe('Pagination - Skip Links (WCAG 2.4.1 Bypass Blocks)', () => {
     expect(skipLink.className).toContain('focus:not-sr-only');
     expect(skipLink.className).toContain('focus:absolute');
 
-    // Verify proper z-index for visibility
-    expect(skipLink.className).toContain('focus:z-50');
+    // Verify proper z-index for visibility (uses dedicated skip-link utility)
+    expect(skipLink.className).toContain('focus:z-skip-link');
 
     // Verify accessible focus styling (high contrast, ring)
     expect(skipLink.className).toContain('focus:bg-primary-600');

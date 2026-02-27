@@ -68,7 +68,7 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
       {/* Skip Link for Keyboard Users */}
       <a
         href="#product-results"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary-600 focus:px-6 focus:py-3 focus:text-sm focus:font-semibold focus:text-white focus:shadow-2xl focus:ring-4 focus:ring-primary-500/50 focus:outline-none"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-skip-link focus:rounded-lg focus:bg-primary-600 focus:px-6 focus:py-3 focus:text-sm focus:font-semibold focus:text-white focus:shadow-2xl focus:ring-4 focus:ring-primary-500/50 focus:outline-none"
       >
         Skip to product results
       </a>

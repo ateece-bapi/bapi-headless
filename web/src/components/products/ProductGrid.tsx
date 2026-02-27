@@ -101,7 +101,7 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
       <div
         id="product-results"
         tabIndex={-1}
-        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        className="grid grid-cols-1 gap-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
       >
         {products.map((product) => (
           <ProductCard

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useId } from 'react';
 import { Search, X, Command } from 'lucide-react';
 import { useSearch } from '@/hooks/useSearch';
 import { useKeyboardShortcut } from '@/hooks/useKeyboardShortcut';
@@ -8,6 +8,7 @@ import { SearchDropdown } from './SearchDropdown';
 
 export function SearchInput() {
   const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownId = useId();
   const {
     query,
     results,
@@ -63,7 +64,7 @@ export function SearchInput() {
           className="w-full rounded-lg border border-neutral-300 py-2.5 pl-10 pr-20 text-sm text-neutral-900 transition-all placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
           aria-label="Search products"
           aria-expanded={isOpen}
-          aria-controls="search-dropdown"
+          aria-controls={dropdownId}
           aria-autocomplete="list"
         />
 
@@ -87,6 +88,7 @@ export function SearchInput() {
       </div>
 
       <SearchDropdown
+        id={dropdownId}
         results={results}
         isLoading={isLoading}
         isOpen={isOpen}

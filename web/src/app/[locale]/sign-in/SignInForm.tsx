@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useToast } from '@/components/ui/Toast';
+import { TwoFactorVerify } from '@/components/auth/TwoFactorVerify';
 import { Eye, EyeOff, Lock, User, ShieldCheck } from 'lucide-react';
 import logger from '@/lib/logger';
 
@@ -17,6 +18,10 @@ export function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  
+  // 2FA state
+  const [showTwoFactor, setShowTwoFactor] = useState(false);
+  const [tempToken, setTempToken] = useState<string>('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,6 +46,15 @@ export function SignInForm() {
       const data = await response.json();
 
       if (response.ok) {
+        // Check if 2FA is required
+        if (data.requires2FA && data.tempToken) {
+          logger.info('2FA required for user', { username });
+          setTempToken(data.tempToken);
+          setShowTwoFactor(true);
+          return;
+        }
+
+        // Standard login (no 2FA)
         showToast('success', 'Welcome Back!', 'Successfully signed in');
 
         // Redirect to intended page or account dashboard
@@ -75,6 +89,27 @@ export function SignInForm() {
       setIsLoading(false);
     }
   };
+
+  /**
+   * Handle cancellation of 2FA flow - return to login
+   */
+  const handleTwoFactorCancel = () => {
+    setShowTwoFactor(false);
+    setTempToken('');
+    setPassword('');
+  };
+
+  // Show 2FA verification if required
+  if (showTwoFactor && tempToken) {
+    const redirect = searchParams?.get('redirect') || '/account';
+    return (
+      <TwoFactorVerify
+        tempToken={tempToken}
+        redirectTo={redirect}
+        onCancel={handleTwoFactorCancel}
+      />
+    );
+  }
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

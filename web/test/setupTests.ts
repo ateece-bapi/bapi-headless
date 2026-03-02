@@ -3,6 +3,9 @@ import { server } from './msw/server';
 import { toHaveNoViolations } from 'jest-axe';
 import { expect } from 'vitest';
 
+// Set JWT_SECRET for 2FA tests (required for JWT token signing/verification)
+process.env.JWT_SECRET = 'test-secret-key-for-testing-only';
+
 // Extend Vitest's expect with jest-axe accessibility matchers
 // Note: jest-axe is the industry standard and works perfectly with Vitest
 expect.extend(toHaveNoViolations);

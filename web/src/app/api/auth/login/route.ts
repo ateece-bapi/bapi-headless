@@ -83,6 +83,32 @@ export async function POST(request: NextRequest) {
 
     const { authToken, refreshToken, user } = data.login;
 
+    // Check if user has 2FA enabled
+    if (user.twoFactorEnabled) {
+      // Create temporary token (valid for 5 minutes)
+      const tempToken = Buffer.from(
+        JSON.stringify({
+          userId: String(user.databaseId),
+          username: user.username,
+          authToken,
+          refreshToken,
+          exp: Date.now() + 5 * 60 * 1000, // 5 minutes
+        })
+      ).toString('base64');
+
+      logger.debug('2FA required for user', {
+        userId: user.databaseId,
+        username: user.username,
+      });
+
+      return NextResponse.json({
+        success: false,
+        requires2FA: true,
+        tempToken,
+        message: 'Two-factor authentication required',
+      });
+    }
+
     // Enhanced cookie options with BFF pattern security
     const isProd = process.env.NODE_ENV === 'production';
     const cookieOptions = {

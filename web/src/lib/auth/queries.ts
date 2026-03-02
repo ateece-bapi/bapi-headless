@@ -36,6 +36,7 @@ export const LOGIN_MUTATION = `
         email
         name
         username
+        twoFactorEnabled
       }
     }
   }
@@ -85,6 +86,7 @@ export interface LoginResponse {
       email: string;
       name: string;
       username: string;
+      twoFactorEnabled: boolean;
     };
   };
 }

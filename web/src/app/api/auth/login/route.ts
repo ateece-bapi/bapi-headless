@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
 import logger from '@/lib/logger';
 import { LOGIN_MUTATION, type LoginResponse } from '@/lib/auth/queries';
+import { checkRateLimit, recordFailedAttempt, clearAttempts } from '@/lib/auth/rate-limit';
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
@@ -10,6 +12,8 @@ const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
  *
  * Authenticates user with WordPress using WPGraphQL JWT Authentication.
  * Token is stored in httpOnly cookie for security.
+ * 
+ * Rate Limiting: 5 failed attempts = 15-minute lockout (brute force protection)
  */
 export async function POST(request: NextRequest) {
   try {
@@ -19,6 +23,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Missing credentials', message: 'Username and password are required' },
         { status: 400 }
+      );
+    }
+
+    // Rate limiting check (IP + username)
+    const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+                     request.headers.get('x-real-ip') || 
+                     'unknown';
+    const rateLimitIdentifier = `${username.toLowerCase()}_${clientIp}`;
+    
+    const rateLimitCheck = checkRateLimit(rateLimitIdentifier);
+    
+    if (!rateLimitCheck.allowed) {
+      logger.warn('Rate limit exceeded', { username, ip: clientIp, ...rateLimitCheck });
+      
+      return NextResponse.json(
+        {
+          error: 'Rate limit exceeded',
+          message: rateLimitCheck.message || 'Too many failed login attempts',
+        },
+        { status: 429 }
       );
     }
 
@@ -37,7 +61,14 @@ export async function POST(request: NextRequest) {
     const { data, errors }: { data: LoginResponse; errors?: any[] } = await response.json();
 
     if (errors || !data?.login?.authToken) {
-      logger.error('WordPress authentication failed', { errors });
+      // Record failed attempt for rate limiting
+      recordFailedAttempt(rateLimitIdentifier);
+      
+      logger.error('WordPress authentication failed', { 
+        username, 
+        ip: clientIp,
+        errors 
+      });
 
       return NextResponse.json(
         {
@@ -48,7 +79,47 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Clear rate limit attempts on successful authentication
+    clearAttempts(rateLimitIdentifier);
+
     const { authToken, refreshToken, user } = data.login;
+
+    // Check if user has 2FA enabled
+    if (user.twoFactorEnabled) {
+      // Create cryptographically signed temporary token (valid for 5 minutes)
+      const jwtSecret = process.env.JWT_SECRET || process.env.NEXTAUTH_SECRET;
+      
+      if (!jwtSecret) {
+        logger.error('JWT_SECRET not configured');
+        return NextResponse.json(
+          { error: 'Server configuration error', message: 'Authentication service misconfigured' },
+          { status: 500 }
+        );
+      }
+
+      const tempToken = jwt.sign(
+        {
+          userId: String(user.databaseId),
+          username: user.username,
+          authToken,
+          refreshToken,
+        },
+        jwtSecret,
+        { expiresIn: '5m' }
+      );
+
+      logger.debug('2FA required for user', {
+        userId: user.databaseId,
+        username: user.username,
+      });
+
+      return NextResponse.json({
+        success: false,
+        requires2FA: true,
+        tempToken,
+        message: 'Two-factor authentication required',
+      });
+    }
 
     // Enhanced cookie options with BFF pattern security
     const isProd = process.env.NODE_ENV === 'production';

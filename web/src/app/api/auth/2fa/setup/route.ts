@@ -13,6 +13,9 @@ import logger from '@/lib/logger';
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
+/**
+ * Handle POST request to initiate 2FA setup
+ */
 export async function POST(request: NextRequest) {
   try {
     // Must be authenticated
@@ -22,6 +25,37 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Not authenticated', message: 'Please sign in to enable 2FA' },
         { status: 401 }
+      );
+    }
+
+    // Check if user already has 2FA enabled
+    // Query WordPress for current 2FA status
+    const checkQuery = `
+      query CheckTwoFactorStatus {
+        viewer {
+          twoFactorEnabled
+        }
+      }
+    `;
+
+    const checkResponse = await fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${request.cookies.get('auth_token')?.value}`,
+      },
+      body: JSON.stringify({ query: checkQuery }),
+    });
+
+    const { data: checkData } = await checkResponse.json();
+
+    if (checkData?.viewer?.twoFactorEnabled) {
+      return NextResponse.json(
+        {
+          error: '2FA already enabled',
+          message: 'Two-factor authentication is already active. Disable it first to re-setup.',
+        },
+        { status: 400 }
       );
     }
 

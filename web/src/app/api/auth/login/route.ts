@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
 import logger from '@/lib/logger';
 import { LOGIN_MUTATION, type LoginResponse } from '@/lib/auth/queries';
 import { checkRateLimit, recordFailedAttempt, clearAttempts } from '@/lib/auth/rate-limit';
@@ -85,16 +86,27 @@ export async function POST(request: NextRequest) {
 
     // Check if user has 2FA enabled
     if (user.twoFactorEnabled) {
-      // Create temporary token (valid for 5 minutes)
-      const tempToken = Buffer.from(
-        JSON.stringify({
+      // Create cryptographically signed temporary token (valid for 5 minutes)
+      const jwtSecret = process.env.JWT_SECRET || process.env.NEXTAUTH_SECRET;
+      
+      if (!jwtSecret) {
+        logger.error('JWT_SECRET not configured');
+        return NextResponse.json(
+          { error: 'Server configuration error', message: 'Authentication service misconfigured' },
+          { status: 500 }
+        );
+      }
+
+      const tempToken = jwt.sign(
+        {
           userId: String(user.databaseId),
           username: user.username,
           authToken,
           refreshToken,
-          exp: Date.now() + 5 * 60 * 1000, // 5 minutes
-        })
-      ).toString('base64');
+        },
+        jwtSecret,
+        { expiresIn: '5m' }
+      );
 
       logger.debug('2FA required for user', {
         userId: user.databaseId,

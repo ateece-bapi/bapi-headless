@@ -8,7 +8,9 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
 import { verifyTwoFactorCode } from '@/lib/auth/two-factor';
+import { checkRateLimit, recordFailedAttempt, clearAttempts } from '@/lib/auth/rate-limit';
 import logger from '@/lib/logger';
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
@@ -18,24 +20,31 @@ interface TempTokenPayload {
   username: string;
   authToken: string;
   refreshToken: string;
-  exp: number;
+  iat?: number; // JWT issued at
+  exp?: number; // JWT expiration
 }
 
 /**
- * Verify temporary token from initial login
+ * Verify cryptographically signed temporary token from initial login
  */
 function verifyTempToken(token: string): TempTokenPayload | null {
   try {
-    // Decode base64 token (simple implementation)
-    const decoded = JSON.parse(Buffer.from(token, 'base64').toString('utf8'));
+    const jwtSecret = process.env.JWT_SECRET || process.env.NEXTAUTH_SECRET;
     
-    // Check expiration (5 minutes)
-    if (decoded.exp < Date.now()) {
+    if (!jwtSecret) {
+      logger.error('JWT_SECRET not configured');
       return null;
     }
-    
+
+    // Verify JWT signature and expiration
+    const decoded = jwt.verify(token, jwtSecret) as TempTokenPayload;
     return decoded;
-  } catch {
+  } catch (error) {
+    if (error instanceof jwt.TokenExpiredError) {
+      logger.debug('Temp token expired');
+    } else if (error instanceof jwt.JsonWebTokenError) {
+      logger.warn('Invalid temp token signature');
+    }
     return null;
   }
 }
@@ -51,6 +60,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Missing parameters', message: 'Token and code are required' },
         { status: 400 }
+      );
+    }
+
+    // Rate limiting check (prevent 2FA brute force)
+    // Use tempToken as identifier (5 failed attempts = lockout)
+    const rateLimitIdentifier = `2fa_verify_${tempToken.substring(0, 20)}`;
+    const rateLimitCheck = checkRateLimit(rateLimitIdentifier);
+    
+    if (!rateLimitCheck.allowed) {
+      logger.warn('2FA verification rate limit exceeded', { ...rateLimitCheck });
+      
+      return NextResponse.json(
+        {
+          error: 'Rate limit exceeded',
+          message: rateLimitCheck.message || 'Too many failed verification attempts',
+        },
+        { status: 429 }
       );
     }
 
@@ -166,6 +192,9 @@ export async function POST(request: NextRequest) {
     }
 
     if (!isValid) {
+      // Record failed attempt for rate limiting
+      recordFailedAttempt(rateLimitIdentifier);
+      
       logger.warn('Invalid 2FA code during login', {
         userId: tokenPayload.userId,
         useBackupCode,
@@ -181,6 +210,9 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
+
+    // Clear rate limit on successful verification
+    clearAttempts(rateLimitIdentifier);
 
     // Code is valid - complete login by setting auth cookies
     const isProd = process.env.NODE_ENV === 'production';

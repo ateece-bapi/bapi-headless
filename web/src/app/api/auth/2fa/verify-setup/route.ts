@@ -14,6 +14,9 @@ import logger from '@/lib/logger';
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
+/**
+ * Handle POST request to verify setup and enable 2FA
+ */
 export async function POST(request: NextRequest) {
   try {
     const { code } = await request.json();

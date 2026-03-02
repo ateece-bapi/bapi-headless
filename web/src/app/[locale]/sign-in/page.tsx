@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   description: 'Sign in to your BAPI account to access orders, favorites, and quotes.',
 };
 
-export default function SignInPage() {
+type SignInPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function SignInPage({ params }: SignInPageProps) {
+  const { locale } = await params;
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-neutral-50 via-primary-50/30 to-neutral-50 px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -36,7 +41,7 @@ export default function SignInPage() {
             </div>
           }
         >
-          <SignInForm />
+          <SignInForm locale={locale} />
         </Suspense>
 
         {/* Help Text */}

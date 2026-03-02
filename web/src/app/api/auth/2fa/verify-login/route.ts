@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
 
     // Get user's 2FA secret from WordPress
     const getUserQuery = `
-      query GetUserTwoFactor($userId: Int!) {
+      query GetUserTwoFactor($userId: ID!) {
         user(id: $userId, idType: DATABASE_ID) {
           id
           twoFactorSecret
@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         query: getUserQuery,
         variables: {
-          userId: parseInt(tokenPayload.userId),
+          userId: tokenPayload.userId,
         },
       }),
     });
@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
     if (useBackupCode) {
       // Verify and consume backup code via GraphQL mutation
       const useBackupCodeMutation = `
-        mutation UseTwoFactorBackupCode($code: String!, $userId: Int!) {
+        mutation UseTwoFactorBackupCode($code: String!, $userId: ID!) {
           useTwoFactorBackupCode(
             input: {
               code: $code
@@ -165,7 +165,7 @@ export async function POST(request: NextRequest) {
           query: useBackupCodeMutation,
           variables: {
             code,
-            userId: parseInt(tokenPayload.userId),
+            userId: tokenPayload.userId,
           },
         }),
       });

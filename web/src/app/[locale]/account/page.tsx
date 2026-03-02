@@ -15,7 +15,12 @@ import {
 import Link from 'next/link';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 
-export default async function AccountPage() {
+type AccountPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function AccountPage({ params }: AccountPageProps) {
+  const { locale } = await params;
   const { user } = await getServerAuth();
 
   if (!user) {
@@ -34,42 +39,42 @@ export default async function AccountPage() {
       title: 'Profile',
       description: 'Manage your account information and preferences',
       icon: User,
-      href: '/account/profile',
+      href: `/${locale}/account/profile`,
       color: 'primary',
     },
     {
       title: 'Order History',
       description: 'View your past orders and track shipments',
       icon: Package,
-      href: '/account/orders',
+      href: `/${locale}/account/orders`,
       color: 'primary',
     },
     {
       title: 'Saved Products',
       description: 'Access your favorite products and wishlists',
       icon: Heart,
-      href: '/account/favorites',
+      href: `/${locale}/account/favorites`,
       color: 'accent',
     },
     {
       title: 'Quote Requests',
       description: 'Manage your custom quote requests',
       icon: FileText,
-      href: '/account/quotes',
+      href: `/${locale}/account/quotes`,
       color: 'primary',
     },
     {
       title: 'Shopping Cart',
       description: 'View and manage items in your cart',
       icon: ShoppingBag,
-      href: '/cart',
+      href: `/${locale}/cart`,
       color: 'primary',
     },
     {
       title: 'Account Settings',
       description: 'Update your password and security settings',
       icon: Settings,
-      href: '/account/settings',
+      href: `/${locale}/account/settings`,
       color: 'neutral',
     },
   ];
@@ -132,7 +137,7 @@ export default async function AccountPage() {
                     {profile.orderHistory.length} orders
                   </p>
                   <Link
-                    href="/account/orders"
+                    href={`/${locale}/account/orders`}
                     className="text-sm text-primary-600 hover:text-primary-700"
                   >
                     View all →
@@ -151,7 +156,7 @@ export default async function AccountPage() {
                     {profile.savedQuotes.length} quotes
                   </p>
                   <Link
-                    href="/account/quotes"
+                    href={`/${locale}/account/quotes`}
                     className="text-sm text-primary-600 hover:text-primary-700"
                   >
                     View all →

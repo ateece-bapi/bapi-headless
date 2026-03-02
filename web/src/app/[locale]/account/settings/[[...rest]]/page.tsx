@@ -4,11 +4,16 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import UserProfileClient from './UserProfileClient';
 
-export default async function SettingsPage() {
+type SettingsPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function SettingsPage({ params }: SettingsPageProps) {
+  const { locale } = await params;
   const { user } = await getServerAuth();
 
   if (!user) {
-    redirect('/sign-in');
+    redirect(`/${locale}/sign-in`);
   }
 
   return (
@@ -17,7 +22,7 @@ export default async function SettingsPage() {
       <section className="w-full border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href="/account"
+            href={`/${locale}/account`}
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
@@ -47,13 +52,13 @@ export default async function SettingsPage() {
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/support"
+                href={`/${locale}/support`}
                 className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
               >
                 Contact Support
               </Link>
               <Link
-                href="/resources"
+                href={`/${locale}/resources`}
                 className="inline-flex items-center justify-center rounded-lg border border-primary-300 px-4 py-2 text-sm font-semibold text-primary-700 transition-colors hover:bg-white"
               >
                 Help Center

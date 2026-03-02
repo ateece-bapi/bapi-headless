@@ -54,6 +54,7 @@ export const GET_CURRENT_USER_QUERY = `
       email
       name
       username
+      twoFactorEnabled
       roles {
         nodes {
           name
@@ -98,6 +99,7 @@ export interface GetCurrentUserResponse {
     email: string;
     name: string;
     username: string;
+    twoFactorEnabled: boolean;
     roles: {
       nodes: Array<{
         name: string;

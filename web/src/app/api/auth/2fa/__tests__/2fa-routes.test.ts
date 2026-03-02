@@ -18,6 +18,21 @@ import { POST as loginPOST } from '../../login/route';
 import { getCurrentTOTP } from '@/lib/auth/two-factor';
 import type { NextRequest } from 'next/server';
 
+// Mock auth module at module level
+vi.mock('@/lib/auth/server', () => ({
+  getCurrentUser: vi.fn(),
+}));
+
+// Mock next/headers at module level
+vi.mock('next/headers', () => ({
+  cookies: vi.fn(() => ({
+    set: vi.fn(),
+    get: vi.fn((name: string) =>
+      name === 'auth_token' ? { value: 'mock-auth-token' } : undefined
+    ),
+  })),
+}));
+
 /**
  * Mock fetch for WordPress GraphQL calls
  */
@@ -178,31 +193,18 @@ const createMockRequest = (body: any, cookies: Record<string, string> = {}): Nex
 };
 
 describe('2FA API Routes - Integration Tests', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     // Mock fetch globally
     global.fetch = createMockFetch() as any;
 
-    // Mock getCurrentUser to return authenticated user
-    vi.mock('@/lib/auth/server', () => ({
-      getCurrentUser: vi.fn(() =>
-        Promise.resolve({
-          id: '1',
-          email: 'test@example.com',
-          displayName: 'Test User',
-          username: 'testuser',
-        })
-      ),
-    }));
-
-    // Mock cookies() from next/headers
-    vi.mock('next/headers', () => ({
-      cookies: vi.fn(() => ({
-        set: vi.fn(),
-        get: vi.fn((name: string) =>
-          name === 'auth_token' ? { value: 'mock-auth-token' } : undefined
-        ),
-      })),
-    }));
+    // Set default return value for getCurrentUser
+    const { getCurrentUser } = await import('@/lib/auth/server');
+    vi.mocked(getCurrentUser).mockResolvedValue({
+      id: '1',
+      email: 'test@example.com',
+      displayName: 'Test User',
+      username: 'testuser',
+    });
   });
 
   describe('POST /api/auth/2fa/setup', () => {
@@ -223,10 +225,9 @@ describe('2FA API Routes - Integration Tests', () => {
     });
 
     it('returns 401 if user is not authenticated', async () => {
-      // Mock getCurrentUser to return null
-      vi.mocked(await import('@/lib/auth/server')).getCurrentUser = vi.fn(() =>
-        Promise.resolve(null)
-      );
+      // Mock getCurrentUser to return null for this test only
+      const { getCurrentUser } = await import('@/lib/auth/server');
+      vi.mocked(getCurrentUser).mockResolvedValueOnce(null);
 
       const request = createMockRequest({});
       const response = await setupPOST(request);

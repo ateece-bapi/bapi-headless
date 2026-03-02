@@ -1,21 +1,54 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { TwoFactorSettings } from '@/components/auth/TwoFactorSettings';
+import { useToast } from '@/components/ui/Toast';
+
 /**
  * User profile settings component
- *
- * TODO: Implement custom profile editor after Clerk removal.
- * For now, shows placeholder message.
+ * Includes Two-Factor Authentication settings
  */
 export default function UserProfileClient() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const { showToast } = useToast();
+
+  // Fetch user's 2FA status on mount
+  useEffect(() => {
+    async function fetchTwoFactorStatus() {
+      try {
+        const response = await fetch('/api/auth/me');
+        if (response.ok) {
+          const data = await response.json();
+          setTwoFactorEnabled(data.user?.twoFactorEnabled || false);
+        }
+      } catch (error) {
+        console.error('Failed to fetch 2FA status:', error);
+        showToast('error', 'Error', 'Failed to load security settings');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchTwoFactorStatus();
+  }, [showToast]);
+
+  if (isLoading) {
+    return (
+      <div className="mx-auto max-w-2xl">
+        <div className="flex min-h-[200px] items-center justify-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-200 border-t-primary-600" />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="mx-auto max-w-2xl rounded-lg bg-white p-6 shadow">
-      <h2 className="mb-4 text-2xl font-bold text-neutral-900">Profile Settings</h2>
-      <p className="text-neutral-600">
-        Profile settings page is being rebuilt after Clerk removal.
-      </p>
-      <p className="mt-2 text-neutral-600">
-        For now, please contact support to update your profile.
-      </p>
+    <div className="mx-auto max-w-2xl">
+      <TwoFactorSettings 
+        isEnabled={twoFactorEnabled}
+        onStatusChange={setTwoFactorEnabled}
+      />
     </div>
   );
 }

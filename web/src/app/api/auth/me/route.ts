@@ -56,6 +56,7 @@ export async function GET(request: NextRequest) {
         email: viewer.email,
         displayName: viewer.name,
         username: viewer.username,
+        twoFactorEnabled: viewer.twoFactorEnabled,
         roles,
       },
     });

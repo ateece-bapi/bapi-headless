@@ -8,7 +8,11 @@ import { TwoFactorVerify } from '@/components/auth/TwoFactorVerify';
 import { Eye, EyeOff, Lock, User, ShieldCheck } from 'lucide-react';
 import logger from '@/lib/logger';
 
-export function SignInForm() {
+type SignInFormProps = {
+  locale: string;
+};
+
+export function SignInForm({ locale }: SignInFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { showToast } = useToast();
@@ -58,7 +62,7 @@ export function SignInForm() {
         showToast('success', 'Welcome Back!', 'Successfully signed in');
 
         // Redirect to intended page or account dashboard
-        const redirect = searchParams?.get('redirect') || '/account';
+        const redirect = searchParams?.get('redirect') || `/${locale}/account`;
 
         // Force full page reload to ensure cookies are sent to server
         // Client-side navigation (router.push) doesn't send httpOnly cookies
@@ -101,7 +105,7 @@ export function SignInForm() {
 
   // Show 2FA verification if required
   if (showTwoFactor && tempToken) {
-    const redirect = searchParams?.get('redirect') || '/account';
+    const redirect = searchParams?.get('redirect') || `/${locale}/account`;
     return (
       <TwoFactorVerify
         tempToken={tempToken}

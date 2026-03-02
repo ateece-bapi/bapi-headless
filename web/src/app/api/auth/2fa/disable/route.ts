@@ -162,7 +162,7 @@ export async function POST(request: NextRequest) {
 
     // Both password and code are valid - disable 2FA
     const disableMutation = `
-      mutation DisableTwoFactor($userId: Int!) {
+      mutation DisableTwoFactor($userId: ID!) {
         disableTwoFactor(
           input: {
             userId: $userId
@@ -183,7 +183,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         query: disableMutation,
         variables: {
-          userId: user.databaseId,
+          userId: String(user.databaseId),
         },
       }),
     });

@@ -199,7 +199,7 @@ const createMockFetch = () => {
 
   // Expose mockData as a property so tests can modify it
   (mockFn as any).mockData = mockData;
-  
+
   return mockFn;
 };
 

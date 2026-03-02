@@ -25,7 +25,7 @@
   - **Location:** `/www/bapiheadlessstaging_582/public/wp-content/mu-plugins/`
   - **Verification:** `wp plugin list --status=must-use` confirmed loaded
 - ✅ **Encryption Key:** Generated and configured in wp-config.php
-  - **Key:** `9Ug1UBGliWJ1ZNLCK4xYEnnHi30Fdg9FgCAWeuv4ns0=` (base64, 32 bytes)
+  - **Key:** `[REDACTED - stored securely in wp-config.php]` (base64, 32 bytes)
   - **Constant:** `WORDPRESS_TWO_FACTOR_ENCRYPTION_KEY`
   - **Issue:** Encountered PHP syntax error (stray `<?php` tag), restored from backup
   - **Fix:** Used sed command to insert key cleanly

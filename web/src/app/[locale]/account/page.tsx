@@ -24,7 +24,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
   const { user } = await getServerAuth();
 
   if (!user) {
-    redirect('/sign-in');
+    redirect(`/${locale}/sign-in`);
   }
 
   // Get user's display name from WordPress

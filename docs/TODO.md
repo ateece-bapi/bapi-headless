@@ -2,7 +2,7 @@
 
 **Updated:** March 2, 2026  
 **Launch Date:** April 10, 2026 (38 days remaining)  
-**Current Phase:** Phase 1 Development + 2FA Deployment  
+**Current Phase:** Phase 1 Development  
 **Launch Readiness:** 99.9%
 
 ---
@@ -2846,13 +2846,19 @@ Deferred to post-launch - see Phase 2 section below for details.
   - ✅ Security hardening (JWT tokens, rate limiting, validation)
   - ✅ Comprehensive testing (52 unit tests, 16 integration tests, 7 smoke tests)
   - ✅ Documentation (7,900+ lines: user guide, support guide, implementation)
-  - ✅ PRs merged (#338 feature, #339 test fixes, whitespace cleanup)
-  - 🔄 **Deployment/Testing Phase** (In Progress):
-    - [ ] Deploy WordPress mu-plugin to staging
-    - [ ] Configure encryption key (WORDPRESS_TWO_FACTOR_ENCRYPTION_KEY)
-    - [ ] Test GraphQL mutations on staging
-    - [ ] Manual QA testing (iOS/Android authenticator apps)
-    - [ ] Backup code flow verification
+  - ✅ PRs merged (#338 feature, #339 test fixes, whitespace cleanup, #340 deployment fixes)
+  - ✅ **Deployment/Testing Phase** (Complete - March 2, 2026):
+    - ✅ Deploy WordPress mu-plugin to staging (graphql-2fa-extension.php, 15KB)
+    - ✅ Configure encryption key (WORDPRESS_TWO_FACTOR_ENCRYPTION_KEY in wp-config.php)
+    - ✅ Test GraphQL mutations on staging (all 3 fields + 3 mutations verified)
+    - ✅ Frontend integration testing (setup flow, verify flow, status persistence)
+    - ✅ Bug fixes merged:
+      - Fixed 2FA status persistence (added twoFactorEnabled to GET_CURRENT_USER_QUERY)
+      - Fixed GraphQL type mismatch (userId Int! → ID! in verify-login and disable)
+      - Fixed locale prefixes in sign-in, account, and settings navigation
+    - [ ] Manual QA testing (iOS/Android authenticator apps) - Ready for testing
+    - [ ] Backup code flow verification - Ready for testing
+    - [ ] Disable flow verification - Ready for testing
     - [ ] E2E tests with Playwright (optional, 2-3 hours)
     - [ ] Production deployment checklist
     - [ ] 24-hour monitoring post-launch

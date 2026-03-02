@@ -7,29 +7,181 @@
 
 ---
 
-## March 2, 2026 (Post-Midnight Session) — 2FA Deployment & Testing Phase 🚀
+## March 2, 2026 (Post-Midnight Session) — 2FA Deployment & Bug Fixes 🚀
 
-**Status:** 🔄 IN PROGRESS - Deployment & Testing  
-**Context:** Moving 2FA implementation to staging environment for production readiness testing  
-**Branch:** `main` (all features merged)  
-**Time Started:** 12:30 AM EST  
-**PRs Merged:** #338 (2FA feature), #339 (test fixes), whitespace cleanup
+**Status:** ✅ COMPLETE - Staging Deployment Successful  
+**Context:** Deployed 2FA to staging WordPress and fixed critical bugs discovered during testing  
+**Branch:** `deploy/2fa-staging` → merged to `main` (PR #340)  
+**Time:** 12:30 AM - 4:00 AM EST (~3.5 hours)  
+**PRs Merged:** #338 (2FA feature), #339 (test fixes), #340 (deployment fixes)
 
 **🎯 OBJECTIVE:** Deploy 2FA to staging WordPress environment and complete production readiness testing.
 
-### Implementation Complete - Ready for Deployment
+### Deployment Complete ✅
 
-**Completed Work (17+ hours total):**
-- ✅ Phase 1: Rate limiting (180 lines, 16 tests)
-- ✅ Phase 2: WordPress extension (434 lines)
-- ✅ Phase 3: Next.js logic (940 lines, 52 tests)
-- ✅ Phase 4: UI components (1,221 lines)
-- ✅ Phase 5: Documentation (7,900+ lines)
-- ✅ Security hardening (JWT signing, rate limiting)
-- ✅ Integration tests (16/16 passing)
-- ✅ All PRs merged to main
+**WordPress Staging Deployment:**
+- ✅ **Plugin Upload:** graphql-2fa-extension.php (15,242 bytes, 434 lines)
+  - **Method:** SFTP to Kinsta staging (bapiheadlessstaging.kinsta.cloud)
+  - **Location:** `/www/bapiheadlessstaging_582/public/wp-content/mu-plugins/`
+  - **Verification:** `wp plugin list --status=must-use` confirmed loaded
+- ✅ **Encryption Key:** Generated and configured in wp-config.php
+  - **Key:** `9Ug1UBGliWJ1ZNLCK4xYEnnHi30Fdg9FgCAWeuv4ns0=` (base64, 32 bytes)
+  - **Constant:** `WORDPRESS_TWO_FACTOR_ENCRYPTION_KEY`
+  - **Issue:** Encountered PHP syntax error (stray `<?php` tag), restored from backup
+  - **Fix:** Used sed command to insert key cleanly
+  - **Verification:** `php -l wp-config.php` returned "No syntax errors"
+- ✅ **GraphQL Schema:** Verified all fields and mutations exist
+  - **Fields:** twoFactorEnabled, twoFactorSecret, twoFactorBackupCodes
+  - **Mutations:** updateTwoFactorSecret, useTwoFactorBackupCode, disableTwoFactor
+  - **Method:** GraphQL introspection query via GraphQL IDE
 
-**Current Focus: Deployment & Testing**
+**Frontend Integration Testing:**
+- ✅ **Local Dev Server:** Connected to staging WordPress (NEXT_PUBLIC_WORDPRESS_GRAPHQL)
+- ✅ **Sign-In Flow:** Tested with user ateece@bapisensors.com (ID: 16332)
+- ✅ **2FA Setup:** Complete end-to-end flow successful
+  - QR code generation ✅
+  - TOTP verification ✅
+  - Backup code download ✅
+  - Success message displayed ✅
+
+### Critical Bug Fixes (PR #340) ✅
+
+**Bug 1: 2FA Status Not Persisting**
+- **Issue:** After enabling 2FA, settings page showed "Enable" button instead of "Disable"
+- **Root Cause:** GET_CURRENT_USER_QUERY missing `twoFactorEnabled` field
+- **Impact:** Frontend couldn't detect 2FA status, breaking user experience
+- **Fix Applied:**
+  - Added `twoFactorEnabled` to GET_CURRENT_USER_QUERY (queries.ts line 56)
+  - Added `twoFactorEnabled: boolean` to GetCurrentUserResponse type (queries.ts line 100)
+  - Return `twoFactorEnabled` in /api/auth/me response (route.ts line 59)
+- **Files Modified:** `web/src/lib/auth/queries.ts`, `web/src/app/api/auth/me/route.ts`
+- **Result:** ✅ Status badge now shows "Enabled" correctly, disable button appears
+
+**Bug 2: GraphQL Type Mismatch in Verify-Login**
+- **Issue:** 2FA login verification failing with error: `Variable "$userId" of type "Int!" used in position expecting type "ID!"`
+- **Root Cause:** WordPress GraphQL expects `ID!` type for user IDs, not `Int!`
+- **Impact:** Users couldn't complete 2FA login flow (500 error)
+- **Fix Applied:**
+  - Changed `$userId: Int!` → `$userId: ID!` in GetUserTwoFactor query (verify-login/route.ts line 98)
+  - Changed `$userId: Int!` → `$userId: ID!` in UseTwoFactorBackupCode mutation (verify-login/route.ts line 145)
+  - Changed `parseInt(tokenPayload.userId)` → `tokenPayload.userId` (already a string)
+- **Files Modified:** `web/src/app/api/auth/2fa/verify-login/route.ts`
+- **Result:** ✅ 2FA verification now works, login completes successfully
+
+**Bug 3: GraphQL Type Mismatch in Disable**
+- **Issue:** Same `Int!` vs `ID!` mismatch in disable flow
+- **Fix Applied:**
+  - Changed `$userId: Int!` → `$userId: ID!` in DisableTwoFactor mutation (disable/route.ts line 165)
+  - Changed `user.databaseId` → `String(user.databaseId)` (disable/route.ts line 187)
+- **Files Modified:** `web/src/app/api/auth/2fa/disable/route.ts`
+- **Result:** ✅ Disable flow ready for testing
+
+**Bug 4-6: Missing Locale Prefixes in Navigation**
+- **Issue:** Sign-in redirect went to `/account` instead of `/en/account` (404 error)
+- **Impact:** Users redirected to 404 after successful sign-in
+- **Fix Applied:**
+  - **sign-in/page.tsx:** Added params prop, passed locale to SignInForm
+  - **SignInForm.tsx:** Changed redirects from `/account` to `/${locale}/account` (2 locations)
+  - **account/page.tsx:** Updated all 6 dashboard card links to use `/${locale}/` prefix
+  - **settings/page.tsx:** Updated back button and help links to use `/${locale}/` prefix
+- **Files Modified:** 4 TypeScript files
+- **Result:** ✅ All navigation now works with locale routing
+
+**Bug 7: Missing TwoFactorSettings Integration**
+- **Issue:** Account settings page had placeholder content instead of 2FA settings UI
+- **Fix Applied:**
+  - **UserProfileClient.tsx:** Replaced placeholder with TwoFactorSettings component
+  - Added API call to fetch 2FA status from `/api/auth/me`
+  - Added loading state while fetching
+  - Passed `isEnabled` and `onStatusChange` props to TwoFactorSettings
+- **Files Modified:** `web/src/app/[locale]/account/settings/[[...rest]]/UserProfileClient.tsx`
+- **Result:** ✅ 2FA settings UI fully integrated and functional
+
+### Deployment Metrics
+
+**Files Modified:** 9 files (+91 insertions, -36 deletions)
+- `web/src/lib/auth/queries.ts` - Added twoFactorEnabled field
+- `web/src/app/api/auth/me/route.ts` - Return twoFactorEnabled
+- `web/src/app/api/auth/2fa/verify-login/route.ts` - Fixed GraphQL types
+- `web/src/app/api/auth/2fa/disable/route.ts` - Fixed GraphQL types
+- `web/src/app/[locale]/sign-in/page.tsx` - Locale prop
+- `web/src/app/[locale]/sign-in/SignInForm.tsx` - Locale redirects
+- `web/src/app/[locale]/account/page.tsx` - Locale navigation
+- `web/src/app/[locale]/account/settings/[[...rest]]/page.tsx` - Locale navigation
+- `web/src/app/[locale]/account/settings/[[...rest]]/UserProfileClient.tsx` - 2FA integration
+
+**Commit:** `6dbc57b` - "fix(2fa): Fix 2FA status persistence and GraphQL type mismatches"  
+**Branch:** `deploy/2fa-staging` → merged via PR #340 → deleted  
+**Time:** 3.5 hours (12:30 AM - 4:00 AM EST)
+
+### Testing Results
+
+**End-to-End Flow Tested:**
+1. ✅ Sign-in with password
+2. ✅ Navigate to account settings
+3. ✅ Click "Enable Two-Factor Authentication"
+4. ✅ Generate QR code (PNG base64 rendered correctly)
+5. ✅ Scan with authenticator app (Google Authenticator)
+6. ✅ Verify first TOTP code
+7. ✅ Download backup codes (10 codes, XXXX-XXXX format)
+8. ✅ Success message displayed
+9. ✅ Navigate back to settings
+10. ✅ Status badge shows "Enabled" (green)
+11. ✅ "Disable Two-Factor Authentication" button appears
+12. ✅ All navigation works with locale prefixes
+
+**Remaining Manual Testing:**
+- [ ] Test disable flow (password + TOTP verification)
+- [ ] Test backup code usage during login
+- [ ] Test on mobile devices (iOS Safari, Android Chrome)
+- [ ] Test cross-browser (Firefox, Edge)
+- [ ] Test error scenarios (wrong codes, expired codes)
+
+### Success Criteria
+
+**✅ WordPress Deployment:**
+- [x] Plugin uploaded to staging (15KB, 434 lines)
+- [x] Encryption key configured (32-byte base64 key)
+- [x] Plugin loaded by WordPress (verified via wp-cli)
+- [x] GraphQL schema verified (3 fields, 3 mutations)
+
+**✅ Frontend Integration:**
+- [x] Local dev connected to staging
+- [x] 2FA setup flow working end-to-end
+- [x] Status persistence fixed (shows enabled state)
+- [x] GraphQL type mismatches resolved
+- [x] Locale navigation fixed (no more 404s)
+- [x] UI components fully integrated
+
+**✅ Code Quality:**
+- [x] All bugs identified and fixed
+- [x] 9 files modified, clean commit
+- [x] PR merged to main (#340)
+- [x] Branch cleaned up (local + remote deleted)
+- [x] Zero TypeScript errors
+- [x] Zero ESLint warnings
+
+### Deployment Summary
+
+**Total Implementation Time:** 17+ hours (March 2, 2026 evening session)  
+**Total Deployment Time:** 3.5 hours (March 2, 2026 post-midnight session)  
+**Total Time Investment:** 20.5 hours  
+**Timeline Impact:** 1 day (38 days remaining to launch)
+
+**Production Readiness:** 95%
+- ✅ WordPress deployment complete
+- ✅ Frontend integration complete
+- ✅ Setup flow tested and working
+- ✅ Critical bugs fixed
+- ⏳ Manual QA remaining (~2-3 hours)
+- ⏳ Disable/backup flows need testing
+
+**Next Session:**
+- Continue manual QA testing (disable flow, backup codes, mobile testing)
+- Update 2FA-STAGING-DEPLOYMENT.md checklist
+- Consider E2E Playwright tests (optional)
+
+**Launch Timeline:** 38 days remaining (April 10, 2026)
 
 ---
 

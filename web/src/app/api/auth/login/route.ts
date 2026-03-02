@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import logger from '@/lib/logger';
 import { LOGIN_MUTATION, type LoginResponse } from '@/lib/auth/queries';
+import { checkRateLimit, recordFailedAttempt, clearAttempts } from '@/lib/auth/rate-limit';
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
@@ -10,6 +11,8 @@ const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
  *
  * Authenticates user with WordPress using WPGraphQL JWT Authentication.
  * Token is stored in httpOnly cookie for security.
+ * 
+ * Rate Limiting: 5 failed attempts = 15-minute lockout (brute force protection)
  */
 export async function POST(request: NextRequest) {
   try {
@@ -19,6 +22,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Missing credentials', message: 'Username and password are required' },
         { status: 400 }
+      );
+    }
+
+    // Rate limiting check (IP + username)
+    const clientIp = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+                     request.headers.get('x-real-ip') || 
+                     'unknown';
+    const rateLimitIdentifier = `${username.toLowerCase()}_${clientIp}`;
+    
+    const rateLimitCheck = checkRateLimit(rateLimitIdentifier);
+    
+    if (!rateLimitCheck.allowed) {
+      logger.warn('Rate limit exceeded', { username, ip: clientIp, ...rateLimitCheck });
+      
+      return NextResponse.json(
+        {
+          error: 'Rate limit exceeded',
+          message: rateLimitCheck.message || 'Too many failed login attempts',
+        },
+        { status: 429 }
       );
     }
 
@@ -37,7 +60,14 @@ export async function POST(request: NextRequest) {
     const { data, errors }: { data: LoginResponse; errors?: any[] } = await response.json();
 
     if (errors || !data?.login?.authToken) {
-      logger.error('WordPress authentication failed', { errors });
+      // Record failed attempt for rate limiting
+      recordFailedAttempt(rateLimitIdentifier);
+      
+      logger.error('WordPress authentication failed', { 
+        username, 
+        ip: clientIp,
+        errors 
+      });
 
       return NextResponse.json(
         {
@@ -47,6 +77,9 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
+
+    // Clear rate limit attempts on successful authentication
+    clearAttempts(rateLimitIdentifier);
 
     const { authToken, refreshToken, user } = data.login;
 

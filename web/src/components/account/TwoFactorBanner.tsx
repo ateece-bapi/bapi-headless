@@ -22,38 +22,34 @@ const DISMISS_DURATION_DAYS = 7; // Show again after 7 days if still not enabled
  */
 export default function TwoFactorBanner({ locale, isEnabled }: TwoFactorBannerProps) {
   const t = useTranslations('account.twoFactorBanner');
-  
-  // Calculate visibility outside of useEffect to avoid cascading renders
-  const shouldShowBanner = () => {
-    // Don't show if 2FA is already enabled
-    if (isEnabled) return false;
-    
-    // Check if banner was dismissed
-    if (typeof window === 'undefined') return false;
-    
-    const dismissed = localStorage.getItem(STORAGE_KEY);
-    if (dismissed) {
-      const dismissedDate = new Date(dismissed);
-      const now = new Date();
-      const daysSinceDismissed = Math.floor(
-        (now.getTime() - dismissedDate.getTime()) / (1000 * 60 * 60 * 24)
-      );
-
-      // Show again after DISMISS_DURATION_DAYS
-      if (daysSinceDismissed < DISMISS_DURATION_DAYS) {
-        return false;
-      }
-    }
-    
-    return true;
-  };
-  
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     // Set visibility after mount to avoid hydration mismatch
-    setIsVisible(shouldShowBanner());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Calculate visibility inside effect to satisfy exhaustive-deps
+    const shouldShow = () => {
+      // Don't show if 2FA is already enabled
+      if (isEnabled) return false;
+      
+      // Check if banner was dismissed
+      const dismissed = localStorage.getItem(STORAGE_KEY);
+      if (dismissed) {
+        const dismissedDate = new Date(dismissed);
+        const now = new Date();
+        const daysSinceDismissed = Math.floor(
+          (now.getTime() - dismissedDate.getTime()) / (1000 * 60 * 60 * 24)
+        );
+
+        // Show again after DISMISS_DURATION_DAYS
+        if (daysSinceDismissed < DISMISS_DURATION_DAYS) {
+          return false;
+        }
+      }
+      
+      return true;
+    };
+    
+    setIsVisible(shouldShow());
   }, [isEnabled]);
 
   const handleDismiss = () => {
@@ -68,7 +64,7 @@ export default function TwoFactorBanner({ locale, isEnabled }: TwoFactorBannerPr
   return (
     <div
       className="relative mb-6 overflow-hidden rounded-lg border border-primary-200 bg-linear-to-r from-primary-50 to-accent-50 p-6"
-      role="alert"
+      role="status"
       aria-live="polite"
     >
       <div className="flex items-start gap-4">

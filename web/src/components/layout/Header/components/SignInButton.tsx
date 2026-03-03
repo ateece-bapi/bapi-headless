@@ -92,7 +92,7 @@ const SignInButton: React.FC = () => {
         {showMenu && (
           <div className="absolute right-0 z-50 mt-2 w-48 rounded-xl border-2 border-neutral-200 bg-white py-2 shadow-xl">
             <Link
-              href="/account"
+              href={`/${locale}/account`}
               className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-50"
               onClick={() => setShowMenu(false)}
             >
@@ -100,7 +100,7 @@ const SignInButton: React.FC = () => {
               Dashboard
             </Link>
             <Link
-              href="/account/settings"
+              href={`/${locale}/account/settings`}
               className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-50"
               onClick={() => setShowMenu(false)}
             >
@@ -108,7 +108,7 @@ const SignInButton: React.FC = () => {
               Settings
             </Link>
             <Link
-              href="/account/settings"
+              href={`/${locale}/account/settings`}
               className={`flex items-center gap-2 px-4 py-2 text-sm transition-colors hover:bg-neutral-50 ${
                 user.twoFactorEnabled ? 'text-green-600' : 'text-primary-600'
               }`}

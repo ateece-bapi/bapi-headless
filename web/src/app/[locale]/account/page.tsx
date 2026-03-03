@@ -232,7 +232,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
           <h2 className="mb-6 text-2xl font-bold text-neutral-900">Account Management</h2>
           
           {/* Two-Factor Authentication Banner */}
-          <AccountDashboardClient locale={locale} userId={user.id} />
+          <AccountDashboardClient locale={locale} />
           
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {dashboardSections.map((section) => {

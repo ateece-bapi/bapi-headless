@@ -5,10 +5,9 @@ import TwoFactorBanner from '@/components/account/TwoFactorBanner';
 
 interface AccountDashboardClientProps {
   locale: string;
-  userId: string;
 }
 
-export default function AccountDashboardClient({ locale, userId }: AccountDashboardClientProps) {
+export default function AccountDashboardClient({ locale }: AccountDashboardClientProps) {
   const [twoFactorEnabled, setTwoFactorEnabled] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +17,11 @@ export default function AccountDashboardClient({ locale, userId }: AccountDashbo
         const response = await fetch('/api/auth/me');
         if (response.ok) {
           const data = await response.json();
-          setTwoFactorEnabled(data.twoFactorEnabled || false);
+          // /api/auth/me returns { user: { twoFactorEnabled } }
+          setTwoFactorEnabled(!!data?.user?.twoFactorEnabled);
+        } else {
+          // Safe default when the request fails (e.g. 401/500)
+          setTwoFactorEnabled(false);
         }
       } catch (error) {
         console.error('Failed to fetch 2FA status:', error);
@@ -29,7 +32,7 @@ export default function AccountDashboardClient({ locale, userId }: AccountDashbo
     }
 
     fetchTwoFactorStatus();
-  }, [userId]);
+  }, []);
 
   // Don't render anything while loading
   if (loading || twoFactorEnabled === null) {

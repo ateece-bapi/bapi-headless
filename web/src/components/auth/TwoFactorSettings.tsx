@@ -121,7 +121,9 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
         setDisableCode('');
       }
     } catch (error) {
-      logger.error('2FA disable error', error as Error);
+      // Normalize error to actual Error instance for proper logging
+      const normalizedError = error instanceof Error ? error : new Error(String(error));
+      logger.error('2FA disable error', normalizedError);
       showToast('error', t('disable.toast.connectionError.title'), t('disable.toast.connectionError.message'));
     } finally {
       setIsLoading(false);

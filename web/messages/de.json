@@ -1970,6 +1970,40 @@
       "actions": {
         "editProfile": "Edit Profile"
       }
+    },
+    "orders": {
+      "title": "Order History",
+      "subtitle": "View and track all your orders",
+      "backToDashboard": "Back to Dashboard",
+      "mockDataBanner": "Development Mode: Showing mock order data",
+      "error": "Failed to load order history",
+      "empty": {
+        "title": "No Orders Yet",
+        "descriptionWithAccount": "You haven't placed any orders yet. Start shopping to see your order history here.",
+        "descriptionWithoutAccount": "Your account is being set up. Order history will appear here once available.",
+        "browseProducts": "Browse Products"
+      },
+      "count": {
+        "orders": "{count} Orders",
+        "order": "{count} Order"
+      },
+      "orderNumber": "Order #",
+      "placedOn": "Placed on",
+      "items": "{count} items",
+      "moreItems": "+{count}",
+      "actions": {
+        "viewDetails": "View Details",
+        "invoice": "Invoice"
+      },
+      "status": {
+        "pending": "Pending",
+        "processing": "Processing",
+        "on-hold": "On Hold",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "refunded": "Refunded",
+        "failed": "Failed"
+      }
     }
   },
   "cart": {

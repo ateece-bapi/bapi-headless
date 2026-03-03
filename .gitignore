@@ -40,6 +40,9 @@ cms/wp-content/themes/twentytwenty*/
 # Cookies and session files
 cookies.txt
 
+# Deployment scripts with sensitive credentials
+sftp-upload.sh
+
 # DDEV
 .ddev/
 

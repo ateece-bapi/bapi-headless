@@ -25,7 +25,7 @@
 
 **Methods:**
 - [x] **Option A:** Kinsta SFTP upload ✅
-  - Host: 35.224.70.159:17338
+  - Host: [REDACTED - see team vault]
   - Path: `/www/bapiheadlessstaging_582/public/wp-content/mu-plugins/`
   - Upload: `graphql-2fa-extension.php` (15,242 bytes)
   
@@ -69,7 +69,7 @@ define('TWO_FACTOR_ENCRYPTION_KEY', 'YOUR-GENERATED-KEY-HERE');
 - [x] SSH + nano/vim ✅
 
 **Status:** ✅ COMPLETE (March 2, 2026 - 2:23 PM EST)  
-**Key Generated:** ✅ `9Ug1UBGliWJ1ZNLCK4xYEnnHi30Fdg9FgCAWeuv4ns0=`  
+**Key Generated:** ✅ `[REDACTED - see secure vault]`  
 **Key Added:** ✅ Yes (verified with grep)  
 **Notes:** 
 - Generated using `php -r "echo base64_encode(random_bytes(32));"`

@@ -18,10 +18,11 @@ export default function UserProfileClient() {
     async function fetchTwoFactorStatus() {
       try {
         const response = await fetch('/api/auth/me');
-        if (response.ok) {
-          const data = await response.json();
-          setTwoFactorEnabled(data.user?.twoFactorEnabled || false);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch 2FA status: ${response.status}`);
         }
+        const data = await response.json();
+        setTwoFactorEnabled(data.user?.twoFactorEnabled || false);
       } catch (error) {
         console.error('Failed to fetch 2FA status:', error);
         showToast('error', 'Error', 'Failed to load security settings');

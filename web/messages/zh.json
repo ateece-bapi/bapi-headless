@@ -1902,6 +1902,56 @@
       "enableButton": "立即启用2FA",
       "learnMoreButton": "了解更多",
       "dismissLabel": "关闭横幅"
+    },
+    "dashboard": {
+      "welcomeBack": "Welcome back, {displayName}!",
+      "subtitle": "Manage your account, orders, and preferences from your dashboard",
+      "mockDataBanner": "Development Mode: Showing mock data for testing",
+      "accountManagement": "Account Management",
+      "recentActivity": "Recent Activity",
+      "viewAllOrders": "View all orders →",
+      "company": "Company",
+      "accountNumber": "Account #",
+      "recentOrders": "Recent Orders",
+      "ordersCount": "{count} orders",
+      "viewAll": "View all →",
+      "savedQuotes": "Saved Quotes",
+      "quotesCount": "{count} quotes",
+      "moreItems": "+ {count} more item",
+      "moreItemsPlural": "+ {count} more items",
+      "sections": {
+        "profile": {
+          "title": "Profile",
+          "description": "Manage your account information and preferences"
+        },
+        "orderHistory": {
+          "title": "Order History",
+          "description": "View your past orders and track shipments"
+        },
+        "savedProducts": {
+          "title": "Saved Products",
+          "description": "Access your favorite products and wishlists"
+        },
+        "quoteRequests": {
+          "title": "Quote Requests",
+          "description": "Manage your custom quote requests"
+        },
+        "shoppingCart": {
+          "title": "Shopping Cart",
+          "description": "View and manage items in your cart"
+        },
+        "accountSettings": {
+          "title": "Account Settings",
+          "description": "Update your password and security settings"
+        }
+      },
+      "orderStatus": {
+        "delivered": "Delivered",
+        "shipped": "Shipped",
+        "processing": "Processing",
+        "pending": "Pending",
+        "cancelled": "Cancelled"
+      }
     }
   },
   "cart": {

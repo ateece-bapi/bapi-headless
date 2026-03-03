@@ -1263,6 +1263,88 @@
           "title": "Error",
           "message": "Failed to load security settings"
         }
+      },
+      "twoFactorSettings": {
+        "title": "Two-Factor Authentication",
+        "subtitle": "Add an extra layer of security to your account",
+        "status": {
+          "enabled": "Enabled",
+          "disabled": "Disabled",
+          "active": "Active",
+          "enabledDescription": "Your account is protected with two-factor authentication. You need your password and a verification code to sign in.",
+          "disabledDescription": "Two-factor authentication is not enabled. Enable it to add an extra layer of security to your account."
+        },
+        "whyEnable": {
+          "title": "Why Enable 2FA?",
+          "reasons": {
+            "unauthorized": "Protect your account from unauthorized access",
+            "stuffing": "Prevent credential stuffing attacks",
+            "sensitive": "Add security for sensitive operations",
+            "standards": "Meet industry security standards"
+          }
+        },
+        "whatYouNeed": {
+          "title": "What You'll Need",
+          "description": "An authenticator app like Google Authenticator, Authy, 1Password, or Microsoft Authenticator on your phone or computer."
+        },
+        "backupCodes": {
+          "title": "Keep Your Backup Codes Safe",
+          "description": "Make sure you've saved your backup codes in a secure location. If you lose access to your authenticator app, backup codes are the only way to access your account."
+        },
+        "securityTip": {
+          "title": "Security Tip",
+          "description": "Two-factor authentication significantly improves account security. Even if someone obtains your password, they won't be able to access your account without access to your authenticator app."
+        },
+        "enable": {
+          "button": "Enable Two-Factor Authentication"
+        },
+        "disable": {
+          "button": "Disable Two-Factor Authentication",
+          "warning": {
+            "title": "Are you sure?",
+            "description": "Disabling 2FA will make your account less secure. You'll only need your password to sign in."
+          },
+          "form": {
+            "passwordLabel": "Confirm Your Password",
+            "passwordPlaceholder": "Enter your password",
+            "codeLabel": "Verification Code",
+            "codePlaceholder": "000000",
+            "codeHelp": "Enter the code from your authenticator app",
+            "showPassword": "Show password",
+            "hidePassword": "Hide password",
+            "cancel": "Cancel",
+            "submit": "Disable 2FA",
+            "submitting": "Disabling..."
+          },
+          "toast": {
+            "success": {
+              "title": "2FA Disabled",
+              "message": "Two-factor authentication has been turned off"
+            },
+            "error": {
+              "title": "Unable to Disable",
+              "defaultMessage": "Verification failed. Please try again."
+            },
+            "connectionError": {
+              "title": "Connection Error",
+              "message": "Unable to disable 2FA"
+            },
+            "requiredFields": {
+              "title": "Required Fields",
+              "message": "Please enter your password and verification code"
+            },
+            "invalidCode": {
+              "title": "Invalid Code",
+              "message": "Please enter a 6-digit code"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "2FA Enabled",
+            "message": "Your account is now protected with two-factor authentication"
+          }
+        }
       }
     },
     "twoFactorBanner": {

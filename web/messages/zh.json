@@ -1950,28 +1950,28 @@
     },
     "dashboard": {
       "welcomeBack": "欢迎回来, {displayName}!",
-      "subtitle": "从您的仪表板管理您的账户、订单和偏好",
-      "mockDataBanner": "开发模式: 显示模拟数据以进行测试",
+      "subtitle": "从您的仪表板管理您的帐户、订单和偏好设置",
+      "mockDataBanner": "开发模式: 显示用于测试的模拟数据",
       "accountManagement": "账户管理",
-      "recentActivity": "最近的活动",
+      "recentActivity": "最近活动",
       "viewAllOrders": "查看所有订单 →",
       "company": "公司",
-      "accountNumber": "账户 #",
-      "recentOrders": "最近的订单",
+      "accountNumber": "帐户 #",
+      "recentOrders": "最近订单",
       "ordersCount": "{count} 个订单",
       "viewAll": "查看全部 →",
-      "savedQuotes": "保存的报价",
+      "savedQuotes": "已保存的报价",
       "quotesCount": "{count} 个报价",
-      "moreItems": "+ 多 {count} 件商品",
-      "moreItemsPlural": "+ 多 {count} 件商品",
+      "moreItems": "+ 另外 {count} 项",
+      "moreItemsPlural": "+ 另外 {count} 项",
       "sections": {
         "profile": {
           "title": "个人资料",
-          "description": "管理您的账户信息和偏好"
+          "description": "管理您的帐户信息和首选项"
         },
         "orderHistory": {
           "title": "订单历史记录",
-          "description": "查看您过去的订单并跟踪发货情况"
+          "description": "查看您以前的订单并跟踪货件"
         },
         "savedProducts": {
           "title": "保存的产品",
@@ -1983,10 +1983,10 @@
         },
         "shoppingCart": {
           "title": "购物车",
-          "description": "查看和管理购物车中的商品"
+          "description": "查看并管理您购物车中的物品"
         },
         "accountSettings": {
-          "title": "账户设置",
+          "title": "帐户设置",
           "description": "更新您的密码和安全设置"
         }
       },
@@ -1994,21 +1994,21 @@
         "delivered": "已交付",
         "shipped": "已发货",
         "processing": "处理中",
-        "pending": "等待中",
+        "pending": "待处理",
         "cancelled": "已取消"
       }
     },
     "profile": {
       "title": "个人资料",
-      "backToDashboard": "回到仪表板",
+      "backToDashboard": "返回仪表盘",
       "fields": {
         "displayName": "显示名称",
         "username": "用户名",
-        "email": "电子邮件地址"
+        "email": "电子邮箱地址"
       },
       "accountInfo": {
         "title": "账户信息",
-        "userId": "用户 ID:",
+        "userId": "用户ID:",
         "usernameLabel": "用户名:",
         "notSet": "未设置"
       },
@@ -2017,24 +2017,24 @@
       }
     },
     "orders": {
-      "title": "订单历史",
-      "subtitle": "查看和跟踪您的所有订单",
+      "title": "订单历史记录",
+      "subtitle": "查看并追踪您的所有订单",
       "backToDashboard": "返回仪表板",
       "mockDataBanner": "开发模式: 显示模拟订单数据",
-      "error": "未能加载订单历史",
+      "error": "无法加载订单历史记录",
       "empty": {
         "title": "还没有订单",
-        "descriptionWithAccount": "您还没有下过任何订单。开始购物即可查看您的订单历史。",
-        "descriptionWithoutAccount": "您的账户正在设置中。订单历史将在可用时显示在这里。",
-        "browseProducts": "浏览商品"
+        "descriptionWithAccount": "您还没有下过任何订单。开始购物即可查看订单历史记录。",
+        "descriptionWithoutAccount": "您的账户正在设置中。订单历史记录将在可用时显示在这里。",
+        "browseProducts": "浏览产品"
       },
       "count": {
-        "orders": "{count} 订单",
-        "order": "{count} 订单"
+        "orders": "{count}个订单",
+        "order": "{count}个订单"
       },
-      "orderNumber": "订单号 #",
-      "placedOn": "下单时间",
-      "items": "{count} 件商品",
+      "orderNumber": "订单号",
+      "placedOn": "下单日期",
+      "items": "{count}件商品",
       "moreItems": "+{count}",
       "actions": {
         "viewDetails": "查看详情",
@@ -2043,7 +2043,7 @@
       "status": {
         "pending": "待处理",
         "processing": "处理中",
-        "on-hold": "已暂停",
+        "on-hold": "暂停",
         "completed": "已完成",
         "cancelled": "已取消",
         "refunded": "已退款",
@@ -2052,39 +2052,39 @@
     },
     "favorites": {
       "title": "已保存的产品",
-      "backToDashboard": "返回控制面板",
+      "backToDashboard": "返回仪表板",
       "count": {
-        "products": "{count} 个已保存的产品",
-        "product": "{count} 个已保存的产品"
+        "products": "{count} 件产品已保存",
+        "product": "{count} 件产品已保存"
       },
       "empty": {
         "title": "尚未保存任何产品",
-        "description": "开始保存您最喜欢的产品,以便稍后快速访问。在任何产品页面上点击心形图标即可将其添加到收藏夹。",
+        "description": "开始保存您最喜欢的产品,以便稍后快速访问。在任何产品页面上单击心形图标即可将其添加到收藏夹。",
         "browseProducts": "浏览产品",
         "testFavorites": "测试收藏夹"
       },
       "productId": "ID:",
-      "noImage": "无图像",
+      "noImage": "无图片",
       "viewProduct": "查看产品"
     },
     "quotes": {
-      "title": "报价申请",
-      "subtitle": "跟踪和管理您的定制报价申请",
-      "backToDashboard": "返回仪表盘",
+      "title": "报价请求",
+      "subtitle": "跟踪和管理您的自定义报价请求",
+      "backToDashboard": "返回仪表板",
       "mockDataBanner": "显示模拟报价数据",
-      "newQuoteRequest": "新报价申请",
+      "newQuoteRequest": "新的报价请求",
       "empty": {
-        "title": "尚未有报价申请",
-        "description": "为批量订单、特殊配置或技术咨询申请定制报价。",
-        "submitQuote": "提交报价申请",
+        "title": "还没有报价请求",
+        "description": "请求批量订单、特殊配置或技术咨询的自定义报价",
+        "submitQuote": "提交报价请求",
         "infoCards": {
           "customSolutions": {
             "title": "定制解决方案",
-            "description": "为您的具体应用需求获取量身定制的价格"
+            "description": "针对您特定的应用需求获得定制价格"
           },
           "fastResponse": {
             "title": "快速响应",
-            "description": "我们的团队通常在24个工作小时内做出响应"
+            "description": "我们的团队通常在 24 个工作时内响应"
           },
           "expertSupport": {
             "title": "专家支持",
@@ -2092,17 +2092,17 @@
           }
         }
       },
-      "quoteNumber": "报价单 #",
+      "quoteNumber": "报价 #",
       "created": "创建于:",
       "expires": "到期于:",
-      "items": "商品:",
+      "items": "项目:",
       "itemCount": {
-        "items": "{count} 个商品",
-        "item": "{count} 个商品"
+        "items": "{count} 项",
+        "item": "{count} 项"
       },
       "actions": {
         "viewDetails": "查看详情",
-        "cancelRequest": "取消申请"
+        "cancelRequest": "取消请求"
       },
       "status": {
         "pending": "待处理",
@@ -2113,11 +2113,11 @@
     },
     "settings": {
       "title": "账户设置",
-      "subtitle": "管理您的个人资料、安全性和账户偏好",
-      "backToDashboard": "返回到仪表板",
+      "subtitle": "管理您的个人资料、安全性和账户首选项",
+      "backToDashboard": "返回仪表板",
       "help": {
         "title": "需要帮助?",
-        "description": "如果您在账户设置方面遇到问题,我们的支持团队随时欢迎您的咨询。",
+        "description": "如果您在处理账户设置时遇到困难,我们的支持团队随时待命提供帮助。",
         "contactSupport": "联系支持",
         "helpCenter": "帮助中心"
       },
@@ -2131,6 +2131,88 @@
         "toastError": {
           "title": "错误",
           "message": "无法加载安全设置"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "双因素身份验证",
+        "subtitle": "为您的账户添加额外的安全层",
+        "status": {
+          "enabled": "已启用",
+          "disabled": "已禁用",
+          "active": "活跃",
+          "enabledDescription": "您的账户受双因素身份验证保护。您需要密码和验证码才能登录。",
+          "disabledDescription": "双因素身份验证未启用。启用它可为您的账户添加额外的安全层。"
+        },
+        "whyEnable": {
+          "title": "为什么启用2FA?",
+          "reasons": {
+            "unauthorized": "保护您的账户免受未经授权的访问",
+            "stuffing": "防止凭据填充攻击",
+            "sensitive": "为敏感操作添加安全性",
+            "standards": "满足行业安全标准"
+          }
+        },
+        "whatYouNeed": {
+          "title": "您需要什么",
+          "description": "手机或电脑上的身份验证器应用程序,如Google Authenticator、Authy、1Password或Microsoft Authenticator。"
+        },
+        "backupCodes": {
+          "title": "保管好您的备份代码",
+          "description": "确保您已将备份代码保存在安全的位置。如果您无法访问您的身份验证器应用程序,这些备份代码是访问您账户的唯一方式。"
+        },
+        "securityTip": {
+          "title": "安全提示",
+          "description": "双因素身份验证大大提高了账户安全性。即使有人获得您的密码,也无法在没有您的身份验证器应用程序的情况下访问您的账户。"
+        },
+        "enable": {
+          "button": "启用双因素身份验证"
+        },
+        "disable": {
+          "button": "禁用双因素身份验证",
+          "warning": {
+            "title": "您确定吗?",
+            "description": "禁用2FA将使您的账户安全性降低。您只需要密码就可以登录。"
+          },
+          "form": {
+            "passwordLabel": "确认您的密码",
+            "passwordPlaceholder": "输入您的密码",
+            "codeLabel": "验证码",
+            "codePlaceholder": "000000",
+            "codeHelp": "输入您的身份验证器应用程序中的代码",
+            "showPassword": "显示密码",
+            "hidePassword": "隐藏密码",
+            "cancel": "取消",
+            "submit": "禁用2FA",
+            "submitting": "正在禁用..."
+          },
+          "toast": {
+            "success": {
+              "title": "2FA已禁用",
+              "message": "双因素身份验证已关闭"
+            },
+            "error": {
+              "title": "无法禁用",
+              "defaultMessage": "验证失败。请再试一次。"
+            },
+            "connectionError": {
+              "title": "连接错误",
+              "message": "无法禁用2FA"
+            },
+            "requiredFields": {
+              "title": "必填字段",
+              "message": "请输入您的密码和验证码"
+            },
+            "invalidCode": {
+              "title": "无效代码",
+              "message": "请输入6位数代码"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "2FA已启用",
+            "message": "您的账户现已受到双因素身份验证的保护"
+          }
         }
       }
     }

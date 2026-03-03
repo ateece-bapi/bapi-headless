@@ -1951,7 +1951,7 @@
     "dashboard": {
       "welcomeBack": "Willkommen zurück, {displayName}!",
       "subtitle": "Verwalten Sie Ihr Konto, Bestellungen und Einstellungen über Ihr Dashboard",
-      "mockDataBanner": "Entwicklungsmodus: Zeigt Beispieldaten für Tests an",
+      "mockDataBanner": "Entwicklungsmodus: Mock-Daten für Tests werden angezeigt",
       "accountManagement": "Kontoverwaltung",
       "recentActivity": "Letzte Aktivität",
       "viewAllOrders": "Alle Bestellungen anzeigen →",
@@ -1971,7 +1971,7 @@
         },
         "orderHistory": {
           "title": "Bestellverlauf",
-          "description": "Sehen Sie Ihre vorherigen Bestellungen und verfolgen Sie die Lieferungen"
+          "description": "Sehen Sie Ihre bisherigen Bestellungen und verfolgen Sie Sendungen"
         },
         "savedProducts": {
           "title": "Gespeicherte Produkte",
@@ -1983,7 +1983,7 @@
         },
         "shoppingCart": {
           "title": "Warenkorb",
-          "description": "Zeigen und verwalten Sie die Artikel in Ihrem Warenkorb"
+          "description": "Sehen und verwalten Sie Artikel in Ihrem Warenkorb"
         },
         "accountSettings": {
           "title": "Kontoeinstellungen",
@@ -2018,21 +2018,21 @@
     },
     "orders": {
       "title": "Bestellverlauf",
-      "subtitle": "Zeigen und verfolgen Sie all Ihre Bestellungen",
+      "subtitle": "Zeigen und verfolgen Sie alle Ihre Bestellungen",
       "backToDashboard": "Zurück zum Dashboard",
-      "mockDataBanner": "Entwicklungsmodus: Zeigt Beispielbestelldaten an",
+      "mockDataBanner": "Entwicklungsmodus: Mock-Bestelldaten werden angezeigt",
       "error": "Fehler beim Laden des Bestellverlaufs",
       "empty": {
         "title": "Noch keine Bestellungen",
         "descriptionWithAccount": "Sie haben noch keine Bestellungen aufgegeben. Beginnen Sie mit dem Einkaufen, um Ihren Bestellverlauf hier zu sehen.",
-        "descriptionWithoutAccount": "Ihr Konto wird eingerichtet. Der Bestellverlauf wird hier erscheinen, sobald er verfügbar ist.",
+        "descriptionWithoutAccount": "Ihr Konto wird eingerichtet. Der Bestellverlauf wird hier angezeigt, sobald er verfügbar ist.",
         "browseProducts": "Produkte durchsuchen"
       },
       "count": {
         "orders": "{count} Bestellungen",
         "order": "{count} Bestellung"
       },
-      "orderNumber": "Bestellung Nr.",
+      "orderNumber": "Bestellnummer",
       "placedOn": "Aufgegeben am",
       "items": "{count} Artikel",
       "moreItems": "+{count}",
@@ -2054,33 +2054,33 @@
       "title": "Gespeicherte Produkte",
       "backToDashboard": "Zurück zum Dashboard",
       "count": {
-        "products": "{count} Produkte gespeichert",
-        "product": "{count} Produkt gespeichert"
+        "products": "{count} gespeicherte Produkte",
+        "product": "{count} gespeichertes Produkt"
       },
       "empty": {
         "title": "Noch keine gespeicherten Produkte",
-        "description": "Beginnen Sie mit dem Speichern Ihrer Lieblingsprodukte, um später schnell auf sie zugreifen zu können. Klicken Sie auf das Herzsymbol auf einer beliebigen Produktseite, um es zu Ihren Favoriten hinzuzufügen.",
+        "description": "Beginnen Sie, Ihre Lieblingsprodukte zu speichern, um später schnell darauf zugreifen zu können. Klicken Sie auf dem Produktdetailseite auf das Herz-Symbol, um es zu Ihren Favoriten hinzuzufügen.",
         "browseProducts": "Produkte durchsuchen",
         "testFavorites": "Favoriten testen"
       },
       "productId": "ID:",
       "noImage": "Kein Bild",
-      "viewProduct": "Produkt ansehen"
+      "viewProduct": "Produkt anzeigen"
     },
     "quotes": {
       "title": "Angebotsanfragen",
-      "subtitle": "Verfolgen und verwalten Sie Ihre Anfragen für maßgeschneiderte Angebote",
+      "subtitle": "Verfolgen und verwalten Sie Ihre individuellen Angebotsanfragen",
       "backToDashboard": "Zurück zum Dashboard",
-      "mockDataBanner": "Zeige unechte Angebotsdaten an",
+      "mockDataBanner": "Zeigt gefälschte Angebotsverträge an",
       "newQuoteRequest": "Neue Angebotsanfrage",
       "empty": {
         "title": "Noch keine Angebotsanfragen",
-        "description": "Fordern Sie ein maßgeschneidertes Angebot für Großaufträge, Sonderkonfigurationen oder technische Beratungen an.",
+        "description": "Fordern Sie ein individuelles Angebot für Großaufträge, Sonderkonfigurationen oder technische Beratungen an.",
         "submitQuote": "Angebotsanfrage einreichen",
         "infoCards": {
           "customSolutions": {
-            "title": "Maßgeschneiderte Lösungen",
-            "description": "Erhalten Sie individualisierte Preise für Ihre spezifischen Anwendungsanforderungen"
+            "title": "Individuelle Lösungen",
+            "description": "Erhalten Sie angepasste Preise für Ihre spezifischen Anwendungsanforderungen"
           },
           "fastResponse": {
             "title": "Schnelle Reaktion",
@@ -2092,9 +2092,9 @@
           }
         }
       },
-      "quoteNumber": "Angebots-Nr.",
-      "created": "Erstellt am:",
-      "expires": "Läuft ab am:",
+      "quoteNumber": "Angebot Nr.",
+      "created": "Erstellt:",
+      "expires": "Läuft ab:",
       "items": "Artikel:",
       "itemCount": {
         "items": "{count} Artikel",
@@ -2106,7 +2106,7 @@
       },
       "status": {
         "pending": "Ausstehend",
-        "reviewing": "Wird geprüft",
+        "reviewing": "Wird überprüft",
         "quoted": "Angebot erstellt",
         "declined": "Abgelehnt"
       }
@@ -2116,21 +2116,103 @@
       "subtitle": "Verwalten Sie Ihr Profil, Ihre Sicherheit und Ihre Kontoeinstellungen",
       "backToDashboard": "Zurück zum Dashboard",
       "help": {
-        "title": "Brauchen Sie Hilfe?",
-        "description": "Wenn Sie Probleme mit Ihren Kontoeinstellungen haben, steht Ihnen unser Support-Team gerne zur Verfügung.",
-        "contactSupport": "Support kontaktieren",
+        "title": "Benötigen Sie Hilfe?",
+        "description": "Wenn Sie Probleme mit Ihren Kontoeinstellungen haben, steht unser Support-Team Ihnen gerne zur Verfügung.",
+        "contactSupport": "Kontaktieren Sie den Support",
         "helpCenter": "Hilfecenter"
       },
       "userProfile": {
         "loading": "Sicherheitseinstellungen werden geladen...",
         "error": {
           "title": "Sicherheitseinstellungen konnten nicht geladen werden",
-          "description": "Wir konnten Ihren Status der Zwei-Faktor-Authentifizierung nicht abrufen. Bitte versuchen Sie, die Seite zu aktualisieren.",
+          "description": "Wir konnten Ihren Zwei-Faktor-Authentifizierungsstatus nicht abrufen. Bitte versuchen Sie, die Seite zu aktualisieren.",
           "retry": "Erneut versuchen"
         },
         "toastError": {
           "title": "Fehler",
           "message": "Sicherheitseinstellungen konnten nicht geladen werden"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "Zwei-Faktor-Authentifizierung",
+        "subtitle": "Fügen Sie Ihrem Konto eine zusätzliche Sicherheitsebene hinzu",
+        "status": {
+          "enabled": "Aktiviert",
+          "disabled": "Deaktiviert",
+          "active": "Aktiv",
+          "enabledDescription": "Ihr Konto ist mit der Zwei-Faktor-Authentifizierung geschützt. Sie benötigen Ihr Passwort und einen Verifizierungscode, um sich anzumelden.",
+          "disabledDescription": "Die Zwei-Faktor-Authentifizierung ist nicht aktiviert. Aktivieren Sie sie, um Ihrem Konto eine zusätzliche Sicherheitsebene hinzuzufügen."
+        },
+        "whyEnable": {
+          "title": "Warum sollte ich 2FA aktivieren?",
+          "reasons": {
+            "unauthorized": "Schützen Sie Ihr Konto vor unbefugtem Zugriff",
+            "stuffing": "Verhindern Sie Credential Stuffing-Angriffe",
+            "sensitive": "Erhöhen Sie die Sicherheit für sensible Vorgänge",
+            "standards": "Erfüllen Sie branchenübliche Sicherheitsstandards"
+          }
+        },
+        "whatYouNeed": {
+          "title": "Das benötigen Sie",
+          "description": "Eine Authentifizierungs-App wie Google Authenticator, Authy, 1Password oder Microsoft Authenticator auf Ihrem Smartphone oder Computer."
+        },
+        "backupCodes": {
+          "title": "Bewahren Sie Ihre Backup-Codes sicher auf",
+          "description": "Stellen Sie sicher, dass Sie Ihre Backup-Codes an einem sicheren Ort aufbewahrt haben. Wenn Sie den Zugriff auf Ihre Authentifizierungs-App verlieren, sind diese Backup-Codes der einzige Weg, um auf Ihr Konto zuzugreifen."
+        },
+        "securityTip": {
+          "title": "Sicherheitshinweis",
+          "description": "Die Zwei-Faktor-Authentifizierung verbessert die Kontosicherheit erheblich. Selbst wenn jemand Ihr Passwort erlangt, können sie nicht auf Ihr Konto zugreifen, ohne Zugriff auf Ihre Authentifizierungs-App zu haben."
+        },
+        "enable": {
+          "button": "Zwei-Faktor-Authentifizierung aktivieren"
+        },
+        "disable": {
+          "button": "Zwei-Faktor-Authentifizierung deaktivieren",
+          "warning": {
+            "title": "Sind Sie sicher?",
+            "description": "Das Deaktivieren der 2FA macht Ihr Konto weniger sicher. Sie benötigen dann nur noch Ihr Passwort, um sich anzumelden."
+          },
+          "form": {
+            "passwordLabel": "Bestätigen Sie Ihr Passwort",
+            "passwordPlaceholder": "Geben Sie Ihr Passwort ein",
+            "codeLabel": "Verifizierungscode",
+            "codePlaceholder": "000000",
+            "codeHelp": "Geben Sie den Code aus Ihrer Authentifizierungs-App ein",
+            "showPassword": "Passwort anzeigen",
+            "hidePassword": "Passwort verbergen",
+            "cancel": "Abbrechen",
+            "submit": "2FA deaktivieren",
+            "submitting": "Wird deaktiviert..."
+          },
+          "toast": {
+            "success": {
+              "title": "2FA deaktiviert",
+              "message": "Die Zwei-Faktor-Authentifizierung wurde deaktiviert"
+            },
+            "error": {
+              "title": "Deaktivierung nicht möglich",
+              "defaultMessage": "Verifizierung fehlgeschlagen. Bitte versuchen Sie es erneut."
+            },
+            "connectionError": {
+              "title": "Verbindungsfehler",
+              "message": "2FA konnte nicht deaktiviert werden"
+            },
+            "requiredFields": {
+              "title": "Erforderliche Felder",
+              "message": "Bitte geben Sie Ihr Passwort und den Verifizierungscode ein"
+            },
+            "invalidCode": {
+              "title": "Ungültiger Code",
+              "message": "Bitte geben Sie einen 6-stelligen Code ein"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "2FA aktiviert",
+            "message": "Ihr Konto ist nun mit der Zwei-Faktor-Authentifizierung geschützt"
+          }
         }
       }
     }

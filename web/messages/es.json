@@ -1950,57 +1950,57 @@
     },
     "dashboard": {
       "welcomeBack": "¡Bienvenido de vuelta, {displayName}!",
-      "subtitle": "Administre su cuenta, pedidos y preferencias desde su panel de control",
+      "subtitle": "Gestiona tu cuenta, pedidos y preferencias desde tu panel de control",
       "mockDataBanner": "Modo de desarrollo: Mostrando datos ficticios para pruebas",
-      "accountManagement": "Gestión de cuenta",
+      "accountManagement": "Gestión de la cuenta",
       "recentActivity": "Actividad reciente",
       "viewAllOrders": "Ver todos los pedidos →",
       "company": "Empresa",
-      "accountNumber": "Cuenta #",
+      "accountNumber": "Número de cuenta",
       "recentOrders": "Pedidos recientes",
       "ordersCount": "{count} pedidos",
       "viewAll": "Ver todo →",
-      "savedQuotes": "Cotizaciones guardadas",
-      "quotesCount": "{count} cotizaciones",
+      "savedQuotes": "Presupuestos guardados",
+      "quotesCount": "{count} presupuestos",
       "moreItems": "+ {count} artículo más",
       "moreItemsPlural": "+ {count} artículos más",
       "sections": {
         "profile": {
           "title": "Perfil",
-          "description": "Administre la información y las preferencias de su cuenta"
+          "description": "Gestiona tu información y preferencias de cuenta"
         },
         "orderHistory": {
           "title": "Historial de pedidos",
-          "description": "Ver sus pedidos anteriores y realizar un seguimiento de los envíos"
+          "description": "Ver tus pedidos anteriores y realizar un seguimiento de los envíos"
         },
         "savedProducts": {
           "title": "Productos guardados",
-          "description": "Acceda a sus productos y listas de deseos favoritos"
+          "description": "Accede a tus productos y listas de deseos favoritos"
         },
         "quoteRequests": {
-          "title": "Solicitudes de cotización",
-          "description": "Administrar sus solicitudes de cotización personalizadas"
+          "title": "Solicitudes de presupuesto",
+          "description": "Gestiona tus solicitudes de presupuesto personalizadas"
         },
         "shoppingCart": {
           "title": "Carrito de compras",
-          "description": "Ver y administrar los artículos en su carrito"
+          "description": "Ver y gestionar los artículos de tu carrito"
         },
         "accountSettings": {
           "title": "Configuración de la cuenta",
-          "description": "Actualizar su contraseña y configuración de seguridad"
+          "description": "Actualizar tu contraseña y configuración de seguridad"
         }
       },
       "orderStatus": {
         "delivered": "Entregado",
         "shipped": "Enviado",
-        "processing": "Procesando",
+        "processing": "En proceso",
         "pending": "Pendiente",
         "cancelled": "Cancelado"
       }
     },
     "profile": {
       "title": "Perfil",
-      "backToDashboard": "Volver al Tablero",
+      "backToDashboard": "Volver al panel de control",
       "fields": {
         "displayName": "Nombre para mostrar",
         "username": "Nombre de usuario",
@@ -2018,21 +2018,21 @@
     },
     "orders": {
       "title": "Historial de pedidos",
-      "subtitle": "Ver y hacer seguimiento a todos tus pedidos",
+      "subtitle": "Ver y rastrear todos tus pedidos",
       "backToDashboard": "Volver al panel de control",
-      "mockDataBanner": "Modo de desarrollo: Mostrando datos de pedidos simulados",
+      "mockDataBanner": "Modo de desarrollo: mostrando datos de pedidos simulados",
       "error": "No se pudo cargar el historial de pedidos",
       "empty": {
         "title": "Aún no hay pedidos",
-        "descriptionWithAccount": "Aún no has realizado ningún pedido. Comienza a comprar para ver tu historial de pedidos aquí.",
-        "descriptionWithoutAccount": "Tu cuenta está siendo configurada. El historial de pedidos aparecerá aquí una vez esté disponible.",
+        "descriptionWithAccount": "Todavía no has realizado ningún pedido. Comienza a comprar para ver tu historial de pedidos aquí.",
+        "descriptionWithoutAccount": "Tu cuenta está siendo configurada. El historial de pedidos aparecerá aquí una vez disponible.",
         "browseProducts": "Explorar productos"
       },
       "count": {
-        "orders": "{count} Pedidos",
-        "order": "{count} Pedido"
+        "orders": "{count} pedidos",
+        "order": "{count} pedido"
       },
-      "orderNumber": "Pedido #",
+      "orderNumber": "Pedido n.º",
       "placedOn": "Realizado el",
       "items": "{count} artículos",
       "moreItems": "+{count}",
@@ -2052,14 +2052,14 @@
     },
     "favorites": {
       "title": "Productos Guardados",
-      "backToDashboard": "Volver al Panel de Control",
+      "backToDashboard": "Volver al Tablero",
       "count": {
         "products": "{count} Productos Guardados",
         "product": "{count} Producto Guardado"
       },
       "empty": {
         "title": "Aún no hay Productos Guardados",
-        "description": "Comienza a guardar tus productos favoritos para acceder a ellos rápidamente. Haz clic en el icono de corazón en cualquier página de producto para agregarlo a tus favoritos.",
+        "description": "Comienza a guardar tus productos favoritos para poder acceder a ellos rápidamente. Haz clic en el icono de corazón en cualquier página de producto para agregarlo a tus favoritos.",
         "browseProducts": "Explorar Productos",
         "testFavorites": "Probar Favoritos"
       },
@@ -2068,31 +2068,31 @@
       "viewProduct": "Ver Producto"
     },
     "quotes": {
-      "title": "Solicitudes de Presupuesto",
-      "subtitle": "Rastree y gestione sus solicitudes de presupuesto personalizadas",
-      "backToDashboard": "Volver al Panel de Control",
-      "mockDataBanner": "Mostrando datos de presupuesto simulados",
-      "newQuoteRequest": "Nueva Solicitud de Presupuesto",
+      "title": "Solicitudes de Cotización",
+      "subtitle": "Realiza un seguimiento y gestiona tus solicitudes de cotización personalizada",
+      "backToDashboard": "Volver al Tablero",
+      "mockDataBanner": "Mostrando datos de cotización ficticios",
+      "newQuoteRequest": "Nueva Solicitud de Cotización",
       "empty": {
-        "title": "Aún No Hay Solicitudes de Presupuesto",
-        "description": "Solicite un presupuesto personalizado para pedidos a granel, configuraciones especiales o consultas técnicas.",
-        "submitQuote": "Enviar Solicitud de Presupuesto",
+        "title": "Aún no hay Solicitudes de Cotización",
+        "description": "Solicita una cotización personalizada para pedidos a granel, configuraciones especiales o consultas técnicas.",
+        "submitQuote": "Enviar Solicitud de Cotización",
         "infoCards": {
           "customSolutions": {
             "title": "Soluciones Personalizadas",
-            "description": "Obtenga precios a medida para sus requisitos de aplicación específicos"
+            "description": "Obtén precios a la medida para tus requisitos de aplicación específicos"
           },
           "fastResponse": {
             "title": "Respuesta Rápida",
-            "description": "Nuestro equipo suele responder dentro de las 24 horas hábiles"
+            "description": "Nuestro equipo generalmente responde en un plazo de 24 horas hábiles"
           },
           "expertSupport": {
             "title": "Soporte de Expertos",
-            "description": "Trabaje directamente con nuestros especialistas técnicos"
+            "description": "Trabaja directamente con nuestros especialistas técnicos"
           }
         }
       },
-      "quoteNumber": "Presupuesto #",
+      "quoteNumber": "Cotización #",
       "created": "Creado:",
       "expires": "Expira:",
       "items": "Artículos:",
@@ -2107,30 +2107,112 @@
       "status": {
         "pending": "Pendiente",
         "reviewing": "Revisando",
-        "quoted": "Presupuestado",
-        "declined": "Declinado"
+        "quoted": "Cotizado",
+        "declined": "Rechazado"
       }
     },
     "settings": {
-      "title": "Ajustes de la cuenta",
-      "subtitle": "Administra tu perfil, seguridad y preferencias de la cuenta",
-      "backToDashboard": "Volver al panel de control",
+      "title": "Configuración de la Cuenta",
+      "subtitle": "Administra tu perfil, seguridad y preferencias de cuenta",
+      "backToDashboard": "Volver al Panel de Control",
       "help": {
-        "title": "¿Necesitas ayuda?",
+        "title": "¿Necesitas Ayuda?",
         "description": "Si tienes problemas con la configuración de tu cuenta, nuestro equipo de soporte está aquí para ayudarte.",
-        "contactSupport": "Contactar con el servicio de asistencia",
-        "helpCenter": "Centro de ayuda"
+        "contactSupport": "Contactar Soporte",
+        "helpCenter": "Centro de Ayuda"
       },
       "userProfile": {
-        "loading": "Cargando la configuración de seguridad...",
+        "loading": "Cargando configuración de seguridad...",
         "error": {
-          "title": "No se pueden cargar los ajustes de seguridad",
-          "description": "No pudimos recuperar el estado de tu autenticación de dos factores. Por favor, intenta recargar la página.",
+          "title": "No se Pueden Cargar las Configuraciones de Seguridad",
+          "description": "No pudimos recuperar el estado de tu autenticación de dos factores. Intenta recargar la página.",
           "retry": "Reintentar"
         },
         "toastError": {
           "title": "Error",
-          "message": "No se pudieron cargar los ajustes de seguridad"
+          "message": "No se pudieron cargar las configuraciones de seguridad"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "Autenticación de Dos Factores",
+        "subtitle": "Agrega una capa extra de seguridad a tu cuenta",
+        "status": {
+          "enabled": "Habilitado",
+          "disabled": "Deshabilitado",
+          "active": "Activo",
+          "enabledDescription": "Tu cuenta está protegida con autenticación de dos factores. Necesitas tu contraseña y un código de verificación para iniciar sesión.",
+          "disabledDescription": "La autenticación de dos factores no está habilitada. Actívala para agregar una capa extra de seguridad a tu cuenta."
+        },
+        "whyEnable": {
+          "title": "¿Por Qué Habilitar Autenticación de Dos Factores?",
+          "reasons": {
+            "unauthorized": "Protege tu cuenta contra accesos no autorizados",
+            "stuffing": "Prevenir ataques de saturación de credenciales",
+            "sensitive": "Agrega seguridad para operaciones sensibles",
+            "standards": "Cumplir con los estándares de seguridad de la industria"
+          }
+        },
+        "whatYouNeed": {
+          "title": "Lo Que Necesitarás",
+          "description": "Una aplicación de autenticador como Google Authenticator, Authy, 1Password o Microsoft Authenticator en tu teléfono o computadora."
+        },
+        "backupCodes": {
+          "title": "Mantén Tus Códigos de Respaldo a Salvo",
+          "description": "Asegúrate de haber guardado tus códigos de respaldo en un lugar seguro. Si pierdes acceso a tu aplicación de autenticador, los códigos de respaldo son la única forma de acceder a tu cuenta."
+        },
+        "securityTip": {
+          "title": "Consejo de Seguridad",
+          "description": "La autenticación de dos factores mejora significativamente la seguridad de la cuenta. Incluso si alguien obtiene tu contraseña, no podrán acceder a tu cuenta sin tener acceso a tu aplicación de autenticador."
+        },
+        "enable": {
+          "button": "Habilitar Autenticación de Dos Factores"
+        },
+        "disable": {
+          "button": "Deshabilitar Autenticación de Dos Factores",
+          "warning": {
+            "title": "¿Estás seguro?",
+            "description": "Deshabilitar la autenticación de dos factores hará que tu cuenta sea menos segura. Solo necesitarás tu contraseña para iniciar sesión."
+          },
+          "form": {
+            "passwordLabel": "Confirma Tu Contraseña",
+            "passwordPlaceholder": "Ingresa tu contraseña",
+            "codeLabel": "Código de Verificación",
+            "codePlaceholder": "000000",
+            "codeHelp": "Ingresa el código de tu aplicación de autenticador",
+            "showPassword": "Mostrar contraseña",
+            "hidePassword": "Ocultar contraseña",
+            "cancel": "Cancelar",
+            "submit": "Deshabilitar Autenticación de Dos Factores",
+            "submitting": "Deshabilitando..."
+          },
+          "toast": {
+            "success": {
+              "title": "Autenticación de Dos Factores Deshabilitada",
+              "message": "La autenticación de dos factores se ha desactivado"
+            },
+            "error": {
+              "title": "No se Puede Deshabilitar",
+              "defaultMessage": "La verificación falló. Intenta nuevamente."
+            },
+            "connectionError": {
+              "title": "Error de Conexión",
+              "message": "No se pudo deshabilitar la autenticación de dos factores"
+            },
+            "requiredFields": {
+              "title": "Campos Obligatorios",
+              "message": "Por favor, ingresa tu contraseña y código de verificación"
+            },
+            "invalidCode": {
+              "title": "Código Inválido",
+              "message": "Por favor, ingresa un código de 6 dígitos"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "Autenticación de Dos Factores Habilitada",
+            "message": "Tu cuenta ahora está protegida con autenticación de dos factores"
+          }
         }
       }
     }

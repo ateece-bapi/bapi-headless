@@ -644,7 +644,7 @@
     },
     "dashboard": {
       "welcomeBack": "Witamy z powrotem, {displayName}!",
-      "subtitle": "Zarządzaj swoim kontem, zamówieniami i preferencjami z panelu nawigacyjnego",
+      "subtitle": "Zarządzaj swoim kontem, zamówieniami i preferencjami z panelu",
       "mockDataBanner": "Tryb programistyczny: Pokazywanie danych testowych",
       "accountManagement": "Zarządzanie kontem",
       "recentActivity": "Ostatnia aktywność",
@@ -653,11 +653,11 @@
       "accountNumber": "Numer konta",
       "recentOrders": "Ostatnie zamówienia",
       "ordersCount": "{count} zamówień",
-      "viewAll": "Zobacz wszystkie →",
+      "viewAll": "Zobacz wszystko →",
       "savedQuotes": "Zapisane wyceny",
       "quotesCount": "{count} wycen",
-      "moreItems": "+ {count} więcej przedmiot",
-      "moreItemsPlural": "+ {count} więcej przedmiotów",
+      "moreItems": "+ {count} więcej pozycji",
+      "moreItemsPlural": "+ {count} więcej pozycji",
       "sections": {
         "profile": {
           "title": "Profil",
@@ -665,7 +665,7 @@
         },
         "orderHistory": {
           "title": "Historia zamówień",
-          "description": "Zobacz swoje poprzednie zamówienia i śledź przesyłki"
+          "description": "Przeglądaj swoje poprzednie zamówienia i śledź przesyłki"
         },
         "savedProducts": {
           "title": "Zapisane produkty",
@@ -673,21 +673,21 @@
         },
         "quoteRequests": {
           "title": "Zapytania ofertowe",
-          "description": "Zarządzaj własnymi zapytaniami ofertowymi"
+          "description": "Zarządzaj swoimi niestandardowymi zapytaniami ofertowymi"
         },
         "shoppingCart": {
           "title": "Koszyk",
-          "description": "Zobacz i zarządzaj przedmiotami w koszyku"
+          "description": "Przeglądaj i zarządzaj elementami w koszyku"
         },
         "accountSettings": {
           "title": "Ustawienia konta",
-          "description": "Zaktualizuj hasło i ustawienia bezpieczeństwa"
+          "description": "Aktualizuj hasło i ustawienia bezpieczeństwa"
         }
       },
       "orderStatus": {
         "delivered": "Dostarczone",
         "shipped": "Wysłane",
-        "processing": "W trakcie realizacji",
+        "processing": "Przetwarzanie",
         "pending": "Oczekujące",
         "cancelled": "Anulowane"
       }
@@ -696,7 +696,7 @@
       "title": "Profil",
       "backToDashboard": "Wróć do pulpitu",
       "fields": {
-        "displayName": "Nazwa wyświetlana",
+        "displayName": "Wyświetlana nazwa",
         "username": "Nazwa użytkownika",
         "email": "Adres e-mail"
       },
@@ -711,32 +711,32 @@
       }
     },
     "orders": {
-      "title": "Historia zam??wie??",
-      "subtitle": "Wy??wietl i oledź wszystkie swoje zam??wienia",
-      "backToDashboard": "Wr???? do panelu",
-      "mockDataBanner": "Tryb programistyczny: Pokazywanie pozornych danych zam??wie??",
-      "error": "Nie uda??o si?? za??adowa?? historii zam??wie??",
+      "title": "Historia Zamówień",
+      "subtitle": "Zobacz i śledź wszystkie swoje zamówienia",
+      "backToDashboard": "Wróć do Panelu Sterowania",
+      "mockDataBanner": "Tryb Programistyczny: Pokazywanie przykładowych danych zamówień",
+      "error": "Nie udało się załadować historii zamówień",
       "empty": {
-        "title": "Brak zam??wie??",
-        "descriptionWithAccount": "Nie z???o??y??e?? jeszcze ??adnego zam??wienia. Zacznij robi?? zakupy, aby zobaczy?? tutaj histori?? swoich zam??wie??.",
-        "descriptionWithoutAccount": "Twoje konto jest w trakcie konfiguracji. Historia zam??wie?? pojawi si?? tutaj, gdy b??dzie dost??pna.",
-        "browseProducts": "Przegl??daj produkty"
+        "title": "Brak Zamówień",
+        "descriptionWithAccount": "Nie złożyłeś jeszcze żadnego zamówienia. Rozpocznij zakupy, aby zobaczyć historię zamówień tutaj.",
+        "descriptionWithoutAccount": "Twoje konto jest właśnie konfigurowane. Historia zamówień pojawi się tutaj, gdy tylko będzie dostępna.",
+        "browseProducts": "Przeglądaj Produkty"
       },
       "count": {
-        "orders": "{count} Zam??wienia",
-        "order": "{count} Zam??wienie"
+        "orders": "{count} Zamówienia",
+        "order": "{count} Zamówienie"
       },
-      "orderNumber": "Zam??wienie nr",
-      "placedOn": "Zł????one ",
-      "items": "{count} przedmiotów",
+      "orderNumber": "Zamówienie nr",
+      "placedOn": "Złożone dnia",
+      "items": "{count} produktów",
       "moreItems": "+{count}",
       "actions": {
-        "viewDetails": "Zobacz szczeg????y",
+        "viewDetails": "Wyświetl Szczegóły",
         "invoice": "Faktura"
       },
       "status": {
-        "pending": "W toku",
-        "processing": "W realizacji",
+        "pending": "Oczekujące",
+        "processing": "W Trakcie Realizacji",
         "on-hold": "Wstrzymane",
         "completed": "Zrealizowane",
         "cancelled": "Anulowane",
@@ -746,73 +746,73 @@
     },
     "favorites": {
       "title": "Zapisane produkty",
-      "backToDashboard": "Wróć do pulpitu",
+      "backToDashboard": "Wróć do panelu administracyjnego",
       "count": {
-        "products": "{count} Zapisane produkty",
+        "products": "{count} Zapisanych produktów",
         "product": "{count} Zapisany produkt"
       },
       "empty": {
-        "title": "Brak zapisanych produktów",
-        "description": "Zacznij zapisywać swoje ulubione produkty, aby szybko do nich powrócić. Kliknij ikonę serca na dowolnej stronie produktu, aby dodać go do ulubionych.",
+        "title": "Nie zapisano jeszcze żadnych produktów",
+        "description": "Zacznij zapisywać swoje ulubione produkty, aby mieć do nich szybki dostęp później. Kliknij ikonę serca na dowolnej stronie produktu, aby dodać go do ulubionych.",
         "browseProducts": "Przeglądaj produkty",
-        "testFavorites": "Testuj ulubione"
+        "testFavorites": "Przetestuj ulubione"
       },
       "productId": "ID:",
       "noImage": "Brak obrazu",
       "viewProduct": "Wyświetl produkt"
     },
     "quotes": {
-      "title": "Zapytania Ofertowe",
-      "subtitle": "Śledź i zarządzaj swoimi niestandardowymi zapytaniami ofertowymi",
-      "backToDashboard": "Wróć do panelu",
-      "mockDataBanner": "Pokazywanie danych ofertowych z próbki",
-      "newQuoteRequest": "Nowe Zapytanie Ofertowe",
+      "title": "Zapytania ofertowe",
+      "subtitle": "Śledź i zarządzaj swoimi indywidualnymi zapytaniami ofertowymi",
+      "backToDashboard": "Powrót do panelu",
+      "mockDataBanner": "Pokazywanie danych przykładowych ofert",
+      "newQuoteRequest": "Nowe zapytanie ofertowe",
       "empty": {
-        "title": "Brak Zapytań Ofertowych",
-        "description": "Poproś o niestandardową ofertę na zamówienia zbiorcze, specjalne konfiguracje lub konsultacje techniczne.",
-        "submitQuote": "Prześlij Zapytanie Ofertowe",
+        "title": "Brak zapytań ofertowych",
+        "description": "Złóż zapytanie ofertowe na zamówienia hurtowe, specjalne konfiguracje lub konsultacje techniczne.",
+        "submitQuote": "Złóż zapytanie ofertowe",
         "infoCards": {
           "customSolutions": {
-            "title": "Indywidualne Rozwiązania",
-            "description": "Uzyskaj dostosowane ceny dla swoich konkretnych wymagań aplikacyjnych"
+            "title": "Indywidualne rozwiązania",
+            "description": "Uzyskaj dostosowane ceny dla Twoich konkretnych wymagań"
           },
           "fastResponse": {
-            "title": "Szybka Odpowiedź",
+            "title": "Szybka odpowiedź",
             "description": "Nasz zespół zwykle odpowiada w ciągu 24 godzin roboczych"
           },
           "expertSupport": {
-            "title": "Wsparcie Ekspertów",
-            "description": "Współpracuj bezpośrednio z naszymi specjalistami technicznymi"
+            "title": "Wsparcie ekspertów",
+            "description": "Pracuj bezpośrednio z naszymi specjalistami technicznymi"
           }
         }
       },
-      "quoteNumber": "Oferta Nr",
+      "quoteNumber": "Oferta #",
       "created": "Utworzono:",
       "expires": "Wygasa:",
-      "items": "Przedmioty:",
+      "items": "Produkty:",
       "itemCount": {
-        "items": "{count} przedmioty",
-        "item": "{count} przedmiot"
+        "items": "{count} produktów",
+        "item": "{count} produkt"
       },
       "actions": {
-        "viewDetails": "Wyświetl Szczegóły",
-        "cancelRequest": "Anuluj Zapytanie"
+        "viewDetails": "Wyświetl szczegóły",
+        "cancelRequest": "Anuluj zapytanie"
       },
       "status": {
-        "pending": "Oczekujące",
-        "reviewing": "Sprawdzanie",
-        "quoted": "Wycenione",
-        "declined": "Odrzucone"
+        "pending": "Oczekująca",
+        "reviewing": "W trakcie weryfikacji",
+        "quoted": "Oferta przygotowana",
+        "declined": "Odrzucona"
       }
     },
     "settings": {
       "title": "Ustawienia Konta",
       "subtitle": "Zarządzaj swoim profilem, bezpieczeństwem i preferencjami konta",
-      "backToDashboard": "Wróć do Panelu Kontrolnego",
+      "backToDashboard": "Wróć do Pulpitu",
       "help": {
         "title": "Potrzebujesz Pomocy?",
-        "description": "Jeśli masz problemy z ustawieniami konta, nasz zespół wsparcia jest tutaj, aby pomóc.",
-        "contactSupport": "Skontaktuj się ze Wsparciem",
+        "description": "Jeśli masz problemy z ustawieniami swojego konta, nasz zespół pomocy technicznej jest tu, aby ci pomóc.",
+        "contactSupport": "Skontaktuj się z Pomocą Techniczną",
         "helpCenter": "Centrum Pomocy"
       },
       "userProfile": {
@@ -820,11 +820,93 @@
         "error": {
           "title": "Nie można Załadować Ustawień Bezpieczeństwa",
           "description": "Nie mogliśmy pobrać statusu uwierzytelniania dwuskładnikowego. Spróbuj odświeżyć stronę.",
-          "retry": "Spróbuj ponownie"
+          "retry": "Spróbuj Ponownie"
         },
         "toastError": {
           "title": "Błąd",
           "message": "Nie udało się załadować ustawień bezpieczeństwa"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "Uwierzytelnianie Dwuskładnikowe",
+        "subtitle": "Dodaj dodatkową warstwę bezpieczeństwa do swojego konta",
+        "status": {
+          "enabled": "Włączone",
+          "disabled": "Wyłączone",
+          "active": "Aktywne",
+          "enabledDescription": "Twoje konto jest chronione uwierzytelnianiem dwuskładnikowym. Potrzebujesz hasła i kodu weryfikacyjnego, aby się zalogować.",
+          "disabledDescription": "Uwierzytelnianie dwuskładnikowe nie jest włączone. Włącz je, aby dodać dodatkową warstwę bezpieczeństwa do swojego konta."
+        },
+        "whyEnable": {
+          "title": "Dlaczego Włączyć 2FA?",
+          "reasons": {
+            "unauthorized": "Chroń swoje konto przed nieautoryzowanym dostępem",
+            "stuffing": "Zapobiegaj atakom credential stuffing",
+            "sensitive": "Dodaj zabezpieczenia dla wrażliwych operacji",
+            "standards": "Spełnij standardy bezpieczeństwa branżowego"
+          }
+        },
+        "whatYouNeed": {
+          "title": "Czego Będziesz Potrzebować",
+          "description": "Aplikację uwierzytelniającą, taką jak Google Authenticator, Authy, 1Password lub Microsoft Authenticator na Twoim telefonie lub komputerze."
+        },
+        "backupCodes": {
+          "title": "Zachowaj Swoje Kody Zapasowe w Bezpiecznym Miejscu",
+          "description": "Upewnij się, że zapisałeś swoje kody zapasowe w bezpiecznej lokalizacji. Jeśli stracisz dostęp do swojej aplikacji uwierzytelniającej, kody zapasowe będą jedynym sposobem na uzyskanie dostępu do Twojego konta."
+        },
+        "securityTip": {
+          "title": "Wskazówka Dotycząca Bezpieczeństwa",
+          "description": "Uwierzytelnianie dwuskładnikowe znacznie poprawia bezpieczeństwo konta. Nawet jeśli ktoś zdobędzie Twoje hasło, nie będzie mógł uzyskać dostępu do Twojego konta bez dostępu do Twojej aplikacji uwierzytelniającej."
+        },
+        "enable": {
+          "button": "Włącz Uwierzytelnianie Dwuskładnikowe"
+        },
+        "disable": {
+          "button": "Wyłącz Uwierzytelnianie Dwuskładnikowe",
+          "warning": {
+            "title": "Jesteś pewien?",
+            "description": "Wyłączenie 2FA sprawi, że Twoje konto będzie mniej bezpieczne. Będziesz potrzebować tylko hasła, aby się zalogować."
+          },
+          "form": {
+            "passwordLabel": "Potwierdź Swoje Hasło",
+            "passwordPlaceholder": "Wprowadź swoje hasło",
+            "codeLabel": "Kod Weryfikacyjny",
+            "codePlaceholder": "000000",
+            "codeHelp": "Wprowadź kod z Twojej aplikacji uwierzytelniającej",
+            "showPassword": "Pokaż hasło",
+            "hidePassword": "Ukryj hasło",
+            "cancel": "Anuluj",
+            "submit": "Wyłącz 2FA",
+            "submitting": "Wyłączanie..."
+          },
+          "toast": {
+            "success": {
+              "title": "2FA Wyłączone",
+              "message": "Uwierzytelnianie dwuskładnikowe zostało wyłączone"
+            },
+            "error": {
+              "title": "Nie Można Wyłączyć",
+              "defaultMessage": "Weryfikacja nie powiodła się. Spróbuj ponownie."
+            },
+            "connectionError": {
+              "title": "Błąd Połączenia",
+              "message": "Nie można wyłączyć 2FA"
+            },
+            "requiredFields": {
+              "title": "Wymagane Pola",
+              "message": "Wprowadź swoje hasło i kod weryfikacyjny"
+            },
+            "invalidCode": {
+              "title": "Nieprawidłowy Kod",
+              "message": "Wprowadź 6-cyfrowy kod"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "2FA Włączone",
+            "message": "Twoje konto jest teraz chronione przez uwierzytelnianie dwuskładnikowe"
+          }
         }
       }
     }

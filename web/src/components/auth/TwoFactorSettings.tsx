@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { useTranslations } from 'next-intl';
 import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
 import { TwoFactorSetup } from './TwoFactorSetup';
@@ -40,6 +41,7 @@ type ViewMode = 'status' | 'setup' | 'disable';
  * - View current status
  */
 export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettingsProps) {
+  const t = useTranslations('account.settings.twoFactorSettings');
   const { showToast } = useToast();
   const [currentView, setCurrentView] = useState<ViewMode>('status');
   const [localIsEnabled, setLocalIsEnabled] = useState(isEnabled);
@@ -55,7 +57,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
   const handleSetupComplete = () => {
     setLocalIsEnabled(true);
     setCurrentView('status');
-    showToast('success', '2FA Enabled', 'Your account is now protected with two-factor authentication');
+    showToast('success', t('toast.setupComplete.title'), t('toast.setupComplete.message'));
     
     if (onStatusChange) {
       onStatusChange(true);
@@ -74,12 +76,12 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
     e.preventDefault();
 
     if (!disablePassword || !disableCode) {
-      showToast('warning', 'Required Fields', 'Please enter your password and verification code');
+      showToast('warning', t('disable.toast.requiredFields.title'), t('disable.toast.requiredFields.message'));
       return;
     }
 
     if (!/^\d{6}$/.test(disableCode)) {
-      showToast('warning', 'Invalid Code', 'Please enter a 6-digit code');
+      showToast('warning', t('disable.toast.invalidCode.title'), t('disable.toast.invalidCode.message'));
       return;
     }
 
@@ -103,7 +105,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
         setShowDisableForm(false);
         setDisablePassword('');
         setDisableCode('');
-        showToast('success', '2FA Disabled', 'Two-factor authentication has been turned off');
+        showToast('success', t('disable.toast.success.title'), t('disable.toast.success.message'));
         
         if (onStatusChange) {
           onStatusChange(false);
@@ -115,12 +117,12 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
         }, 2000);
       } else {
         logger.warn('2FA disable failed', { error: data.message });
-        showToast('error', 'Unable to Disable', data.message || 'Verification failed. Please try again.');
+        showToast('error', t('disable.toast.error.title'), data.message || t('disable.toast.error.defaultMessage'));
         setDisableCode('');
       }
     } catch (error) {
       logger.error('2FA disable error', { error });
-      showToast('error', 'Connection Error', 'Unable to disable 2FA');
+      showToast('error', t('disable.toast.connectionError.title'), t('disable.toast.connectionError.message'));
     } finally {
       setIsLoading(false);
     }
@@ -138,12 +140,12 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
 
   // Status View
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="mx-auto max-w-2xl space-y-6 py-8">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-neutral-900">Two-Factor Authentication</h2>
+        <h2 className="text-2xl font-bold text-neutral-900">{t('title')}</h2>
         <p className="mt-2 text-neutral-600">
-          Add an extra layer of security to your account
+          {t('subtitle')}
         </p>
       </div>
 
@@ -171,19 +173,19 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
           <div className="flex-1">
             <div className="flex items-center gap-3">
               <h3 className="text-lg font-bold text-neutral-900">
-                {localIsEnabled ? 'Enabled' : 'Disabled'}
+                {localIsEnabled ? t('status.enabled') : t('status.disabled')}
               </h3>
               {localIsEnabled && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-success-600 px-3 py-1 text-xs font-bold text-white">
                   <CheckCircle className="h-3 w-3" />
-                  Active
+                  {t('status.active')}
                 </span>
               )}
             </div>
             <p className="mt-1 text-sm text-neutral-700">
               {localIsEnabled
-                ? 'Your account is protected with two-factor authentication. You need your password and a verification code to sign in.'
-                : 'Two-factor authentication is not enabled. Enable it to add an extra layer of security to your account.'}
+                ? t('status.enabledDescription')
+                : t('status.disabledDescription')}
             </p>
           </div>
         </div>
@@ -196,12 +198,12 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
             <div className="flex items-start gap-4">
               <Shield className="h-6 w-6 shrink-0 text-primary-600" />
               <div>
-                <h3 className="font-semibold text-neutral-900">Why Enable 2FA?</h3>
+                <h3 className="font-semibold text-neutral-900">{t('whyEnable.title')}</h3>
                 <ul className="mt-2 space-y-1 text-sm text-neutral-700">
-                  <li>• Protect your account from unauthorized access</li>
-                  <li>• Prevent credential stuffing attacks</li>
-                  <li>• Add security for sensitive operations</li>
-                  <li>• Meet industry security standards</li>
+                  <li>• {t('whyEnable.reasons.unauthorized')}</li>
+                  <li>• {t('whyEnable.reasons.stuffing')}</li>
+                  <li>• {t('whyEnable.reasons.sensitive')}</li>
+                  <li>• {t('whyEnable.reasons.standards')}</li>
                 </ul>
               </div>
             </div>
@@ -211,10 +213,9 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
             <div className="flex items-start gap-4">
               <Key className="h-6 w-6 shrink-0 text-neutral-900" />
               <div>
-                <h3 className="font-semibold text-neutral-900">What You&apos;ll Need</h3>
+                <h3 className="font-semibold text-neutral-900">{t('whatYouNeed.title')}</h3>
                 <p className="mt-1 text-sm text-neutral-700">
-                  An authenticator app like Google Authenticator, Authy, 1Password, or Microsoft
-                  Authenticator on your phone or computer.
+                  {t('whatYouNeed.description')}
                 </p>
               </div>
             </div>
@@ -228,10 +229,9 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
           <div className="flex items-start gap-4">
             <AlertTriangle className="h-6 w-6 shrink-0 text-error-600" />
             <div>
-              <h3 className="font-semibold text-neutral-900">Keep Your Backup Codes Safe</h3>
+              <h3 className="font-semibold text-neutral-900">{t('backupCodes.title')}</h3>
               <p className="mt-1 text-sm text-neutral-700">
-                Make sure you&apos;ve saved your backup codes in a secure location. If you lose access to
-                your authenticator app, backup codes are the only way to access your account.
+                {t('backupCodes.description')}
               </p>
             </div>
           </div>
@@ -247,7 +247,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
           className="justify-center gap-2"
         >
           <Shield className="h-5 w-5" />
-          Enable Two-Factor Authentication
+          {t('enable.button')}
         </Button>
       ) : (
         <>
@@ -259,7 +259,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
               className="justify-center gap-2 border-error-300 text-error-700 hover:border-error-400 hover:bg-error-50"
             >
               <ShieldOff className="h-5 w-5" />
-              Disable Two-Factor Authentication
+              {t('disable.button')}
             </Button>
           ) : (
             <div className="space-y-4 rounded-xl border-2 border-error-200 bg-error-50 p-6">
@@ -267,9 +267,9 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
               <div className="flex items-start gap-3">
                 <AlertTriangle className="h-5 w-5 shrink-0 text-error-600" />
                 <div className="text-sm">
-                  <p className="font-semibold text-neutral-900">Are you sure?</p>
+                  <p className="font-semibold text-neutral-900">{t('disable.warning.title')}</p>
                   <p className="mt-1 text-neutral-700">
-                    Disabling 2FA will make your account less secure. You&apos;ll only need your password to sign in.
+                    {t('disable.warning.description')}
                   </p>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                 {/* Password */}
                 <div>
                   <label htmlFor="disable-password" className="mb-2 block text-sm font-semibold text-neutral-900">
-                    Confirm Your Password
+                    {t('disable.form.passwordLabel')}
                   </label>
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
@@ -290,7 +290,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                       type={showPassword ? 'text' : 'password'}
                       value={disablePassword}
                       onChange={(e) => setDisablePassword(e.target.value)}
-                      placeholder="Enter your password"
+                      placeholder={t('disable.form.passwordPlaceholder')}
                       className="block w-full appearance-none rounded-xl border-2 border-neutral-300 py-3 pl-12 pr-12 text-neutral-900 placeholder-neutral-400 transition-all hover:border-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 disabled:cursor-not-allowed disabled:bg-neutral-100"
                       disabled={isLoading}
                       autoComplete="current-password"
@@ -301,7 +301,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-400 hover:text-neutral-600"
                       tabIndex={-1}
-                      aria-label={showPassword ? 'Hide password' : 'Show password'}
+                      aria-label={showPassword ? t('disable.form.hidePassword') : t('disable.form.showPassword')}
                     >
                       {showPassword ? (
                         <EyeOff className="h-5 w-5" />
@@ -315,7 +315,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                 {/* Verification Code */}
                 <div>
                   <label htmlFor="disable-code" className="mb-2 block text-sm font-semibold text-neutral-900">
-                    Verification Code
+                    {t('disable.form.codeLabel')}
                   </label>
                   <input
                     id="disable-code"
@@ -325,7 +325,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                     maxLength={6}
                     value={disableCode}
                     onChange={(e) => setDisableCode(e.target.value.replace(/\D/g, ''))}
-                    placeholder="000000"
+                    placeholder={t('disable.form.codePlaceholder')}
                     className="block w-full appearance-none rounded-xl border-2 border-neutral-300 px-4 py-3 text-center text-xl font-bold tracking-widest text-neutral-900 placeholder-neutral-400 transition-all hover:border-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 disabled:cursor-not-allowed disabled:bg-neutral-100"
                     disabled={isLoading}
                     autoComplete="off"
@@ -333,7 +333,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                     aria-label="Six digit verification code"
                   />
                   <p className="mt-2 text-sm text-neutral-600">
-                    Enter the code from your authenticator app
+                    {t('disable.form.codeHelp')}
                   </p>
                 </div>
 
@@ -350,7 +350,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                     disabled={isLoading}
                     fullWidth
                   >
-                    Cancel
+                    {t('disable.form.cancel')}
                   </Button>
                   <Button
                     type="submit"
@@ -358,7 +358,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                     disabled={isLoading || !disablePassword || disableCode.length !== 6}
                     fullWidth
                   >
-                    {isLoading ? 'Disabling...' : 'Disable 2FA'}
+                    {isLoading ? t('disable.form.submitting') : t('disable.form.submit')}
                   </Button>
                 </div>
               </form>
@@ -374,11 +374,9 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
             <Lock className="h-5 w-5 text-primary-600" />
           </div>
           <div>
-            <h3 className="font-semibold text-neutral-900">Security Tip</h3>
+            <h3 className="font-semibold text-neutral-900">{t('securityTip.title')}</h3>
             <p className="mt-1 text-sm text-neutral-700">
-              Two-factor authentication significantly improves account security. Even if someone
-              obtains your password, they won&apos;t be able to access your account without access to
-              your authenticator app.
+              {t('securityTip.description')}
             </p>
           </div>
         </div>

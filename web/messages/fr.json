@@ -1950,16 +1950,16 @@
     },
     "dashboard": {
       "welcomeBack": "Bienvenue de retour, {displayName} !",
-      "subtitle": "Gérez votre compte, vos commandes et vos préférences à partir de votre tableau de bord",
-      "mockDataBanner": "Mode Développement : Affichage des données factices pour les tests",
+      "subtitle": "Gérez votre compte, vos commandes et vos préférences depuis votre tableau de bord",
+      "mockDataBanner": "Mode de développement : affichage des données fictives pour les tests",
       "accountManagement": "Gestion du compte",
       "recentActivity": "Activité récente",
-      "viewAllOrders": "Voir toutes les commandes →",
+      "viewAllOrders": "Afficher toutes les commandes →",
       "company": "Entreprise",
-      "accountNumber": "Numéro de compte",
+      "accountNumber": "Compte n°",
       "recentOrders": "Commandes récentes",
       "ordersCount": "{count} commandes",
-      "viewAll": "Tout voir →",
+      "viewAll": "Tout afficher →",
       "savedQuotes": "Devis enregistrés",
       "quotesCount": "{count} devis",
       "moreItems": "+ {count} élément supplémentaire",
@@ -1967,15 +1967,15 @@
       "sections": {
         "profile": {
           "title": "Profil",
-          "description": "Gérez les informations de votre compte et vos préférences"
+          "description": "Gérez les informations et les préférences de votre compte"
         },
         "orderHistory": {
           "title": "Historique des commandes",
-          "description": "Consultez vos commandes passées et suivez les envois"
+          "description": "Consultez vos commandes passées et suivez les expéditions"
         },
         "savedProducts": {
           "title": "Produits enregistrés",
-          "description": "Accédez à vos produits préférés et à vos listes de souhaits"
+          "description": "Accédez à vos produits et listes de souhaits préférés"
         },
         "quoteRequests": {
           "title": "Demandes de devis",
@@ -1983,7 +1983,7 @@
         },
         "shoppingCart": {
           "title": "Panier d'achat",
-          "description": "Affichez et gérez les articles de votre panier"
+          "description": "Consultez et gérez les articles dans votre panier"
         },
         "accountSettings": {
           "title": "Paramètres du compte",
@@ -1993,7 +1993,7 @@
       "orderStatus": {
         "delivered": "Livré",
         "shipped": "Expédié",
-        "processing": "En cours de traitement",
+        "processing": "En traitement",
         "pending": "En attente",
         "cancelled": "Annulé"
       }
@@ -2008,8 +2008,8 @@
       },
       "accountInfo": {
         "title": "Informations sur le compte",
-        "userId": "ID utilisateur :",
-        "usernameLabel": "Nom d'utilisateur :",
+        "userId": "ID utilisateur:",
+        "usernameLabel": "Nom d'utilisateur:",
         "notSet": "Non défini"
       },
       "actions": {
@@ -2018,9 +2018,9 @@
     },
     "orders": {
       "title": "Historique des commandes",
-      "subtitle": "Afficher et suivre toutes vos commandes",
+      "subtitle": "Voir et suivre toutes vos commandes",
       "backToDashboard": "Retour au tableau de bord",
-      "mockDataBanner": "Mode de développement : affichage des données de commandes fictives",
+      "mockDataBanner": "Mode de développement : affichage des données de commande factices",
       "error": "Échec du chargement de l'historique des commandes",
       "empty": {
         "title": "Aucune commande pour le moment",
@@ -2051,27 +2051,27 @@
       }
     },
     "favorites": {
-      "title": "Produits Sauvegardés",
-      "backToDashboard": "Retour au Tableau de Bord",
+      "title": "Produits enregistrés",
+      "backToDashboard": "Retour au tableau de bord",
       "count": {
-        "products": "{count} Produits Sauvegardés",
-        "product": "{count} Produit Sauvegardé"
+        "products": "{count} produits enregistrés",
+        "product": "{count} produit enregistré"
       },
       "empty": {
-        "title": "Aucun Produit Sauvegardé Pour le Moment",
-        "description": "Commencez à sauvegarder vos produits préférés pour y accéder rapidement plus tard. Cliquez sur l'icône en forme de cœur sur n'importe quelle page de produit pour l'ajouter à vos favoris.",
-        "browseProducts": "Parcourir les Produits",
-        "testFavorites": "Tester les Favoris"
+        "title": "Aucun produit enregistré pour le moment",
+        "description": "Commencez à enregistrer vos produits préférés pour y accéder rapidement plus tard. Cliquez sur l'icône en forme de cœur sur n'importe quelle page de produit pour l'ajouter à vos favoris.",
+        "browseProducts": "Parcourir les produits",
+        "testFavorites": "Tester les favoris"
       },
       "productId": "ID :",
-      "noImage": "Aucune image",
-      "viewProduct": "Voir le Produit"
+      "noImage": "Pas d'image",
+      "viewProduct": "Voir le produit"
     },
     "quotes": {
       "title": "Demandes de devis",
-      "subtitle": "Suivez et gérez vos demandes de devis personnalisés",
+      "subtitle": "Suivez et gérez vos demandes de devis personnalisées",
       "backToDashboard": "Retour au tableau de bord",
-      "mockDataBanner": "Affichage des données de devis factices",
+      "mockDataBanner": "Affichage des données de devis fictives",
       "newQuoteRequest": "Nouvelle demande de devis",
       "empty": {
         "title": "Aucune demande de devis pour le moment",
@@ -2084,7 +2084,7 @@
           },
           "fastResponse": {
             "title": "Réponse rapide",
-            "description": "Notre équipe répond généralement dans les 24 heures ouvrables"
+            "description": "Notre équipe vous répond généralement dans les 24 heures ouvrables"
           },
           "expertSupport": {
             "title": "Assistance d'experts",
@@ -2107,14 +2107,14 @@
       "status": {
         "pending": "En attente",
         "reviewing": "En cours d'examen",
-        "quoted": "Devis établi",
+        "quoted": "Devisé",
         "declined": "Refusé"
       }
     },
     "settings": {
       "title": "Paramètres du compte",
       "subtitle": "Gérez votre profil, votre sécurité et vos préférences de compte",
-      "backToDashboard": "Retour au tableau de bord",
+      "backToDashboard": "Retourner au tableau de bord",
       "help": {
         "title": "Besoin d'aide ?",
         "description": "Si vous rencontrez des problèmes avec les paramètres de votre compte, notre équipe d'assistance est là pour vous aider.",
@@ -2131,6 +2131,88 @@
         "toastError": {
           "title": "Erreur",
           "message": "Échec du chargement des paramètres de sécurité"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "Authentification à deux facteurs",
+        "subtitle": "Ajoutez une couche de sécurité supplémentaire à votre compte",
+        "status": {
+          "enabled": "Activée",
+          "disabled": "Désactivée",
+          "active": "Active",
+          "enabledDescription": "Votre compte est protégé par l'authentification à deux facteurs. Vous avez besoin de votre mot de passe et d'un code de vérification pour vous connecter.",
+          "disabledDescription": "L'authentification à deux facteurs n'est pas activée. Activez-la pour ajouter une couche de sécurité supplémentaire à votre compte."
+        },
+        "whyEnable": {
+          "title": "Pourquoi activer l'authentification à deux facteurs ?",
+          "reasons": {
+            "unauthorized": "Protégez votre compte contre les accès non autorisés",
+            "stuffing": "Empêchez les attaques par bourrage d'identifiants",
+            "sensitive": "Ajoutez de la sécurité pour les opérations sensibles",
+            "standards": "Respectez les normes de sécurité du secteur"
+          }
+        },
+        "whatYouNeed": {
+          "title": "Ce dont vous aurez besoin",
+          "description": "Une application d'authentification comme Google Authenticator, Authy, 1Password ou Microsoft Authenticator sur votre téléphone ou votre ordinateur."
+        },
+        "backupCodes": {
+          "title": "Conservez vos codes de sauvegarde en sécurité",
+          "description": "Assurez-vous d'avoir enregistré vos codes de sauvegarde dans un endroit sûr. Si vous perdez l'accès à votre application d'authentification, les codes de sauvegarde sont le seul moyen d'accéder à votre compte."
+        },
+        "securityTip": {
+          "title": "Conseil de sécurité",
+          "description": "L'authentification à deux facteurs améliore considérablement la sécurité du compte. Même si quelqu'un obtient votre mot de passe, il ne pourra pas accéder à votre compte sans avoir accès à votre application d'authentification."
+        },
+        "enable": {
+          "button": "Activer l'authentification à deux facteurs"
+        },
+        "disable": {
+          "button": "Désactiver l'authentification à deux facteurs",
+          "warning": {
+            "title": "Êtes-vous sûr ?",
+            "description": "Désactiver l'authentification à deux facteurs rendra votre compte moins sécurisé. Vous aurez seulement besoin de votre mot de passe pour vous connecter."
+          },
+          "form": {
+            "passwordLabel": "Confirmez votre mot de passe",
+            "passwordPlaceholder": "Entrez votre mot de passe",
+            "codeLabel": "Code de vérification",
+            "codePlaceholder": "000000",
+            "codeHelp": "Entrez le code de votre application d'authentification",
+            "showPassword": "Afficher le mot de passe",
+            "hidePassword": "Masquer le mot de passe",
+            "cancel": "Annuler",
+            "submit": "Désactiver l'authentification à deux facteurs",
+            "submitting": "Désactivation en cours..."
+          },
+          "toast": {
+            "success": {
+              "title": "Authentification à deux facteurs désactivée",
+              "message": "L'authentification à deux facteurs a été désactivée"
+            },
+            "error": {
+              "title": "Impossible de désactiver",
+              "defaultMessage": "La vérification a échoué. Veuillez réessayer."
+            },
+            "connectionError": {
+              "title": "Erreur de connexion",
+              "message": "Impossible de désactiver l'authentification à deux facteurs"
+            },
+            "requiredFields": {
+              "title": "Champs obligatoires",
+              "message": "Veuillez entrer votre mot de passe et votre code de vérification"
+            },
+            "invalidCode": {
+              "title": "Code invalide",
+              "message": "Veuillez entrer un code à 6 chiffres"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "Authentification à deux facteurs activée",
+            "message": "Votre compte est désormais protégé par l'authentification à deux facteurs"
+          }
         }
       }
     }

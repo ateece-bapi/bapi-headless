@@ -41,7 +41,7 @@ async function getCurrentUser(authToken: string) {
   const { data, errors } = await response.json();
 
   if (errors || !data?.viewer) {
-    logger.error('Failed to get current user for 2FA disable', { errors, hasViewer: !!data?.viewer });
+    logger.error('Failed to get current user for 2FA disable', undefined, { errors, hasViewer: !!data?.viewer });
     throw new Error('User not authenticated');
   }
 

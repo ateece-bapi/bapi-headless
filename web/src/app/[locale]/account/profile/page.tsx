@@ -2,12 +2,19 @@ import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Mail, User as UserIcon, AtSign } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 
-export default async function ProfilePage() {
+type ProfilePageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function ProfilePage({ params }: ProfilePageProps) {
+  const { locale } = await params;
+  const t = await getTranslations('account.profile');
   const { user } = await getServerAuth();
 
   if (!user) {
-    redirect('/sign-in');
+    redirect(`/${locale}/sign-in`);
   }
 
   return (
@@ -16,13 +23,13 @@ export default async function ProfilePage() {
       <section className="w-full border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href="/account"
+            href={`/${locale}/account`}
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-            Back to Dashboard
+            {t('backToDashboard')}
           </Link>
-          <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">Profile</h1>
+          <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>
         </div>
       </section>
 
@@ -57,7 +64,7 @@ export default async function ProfilePage() {
                     <UserIcon className="h-5 w-5 text-primary-600" strokeWidth={2} />
                   </div>
                   <div>
-                    <p className="mb-1 text-sm font-semibold text-neutral-700">Display Name</p>
+                    <p className="mb-1 text-sm font-semibold text-neutral-700">{t('fields.displayName')}</p>
                     <p className="text-base text-neutral-900">
                       {user.displayName || user.username}
                     </p>
@@ -70,7 +77,7 @@ export default async function ProfilePage() {
                     <AtSign className="h-5 w-5 text-accent-600" strokeWidth={2} />
                   </div>
                   <div>
-                    <p className="mb-1 text-sm font-semibold text-neutral-700">Username</p>
+                    <p className="mb-1 text-sm font-semibold text-neutral-700">{t('fields.username')}</p>
                     <p className="text-base text-neutral-900">{user.username}</p>
                   </div>
                 </div>
@@ -81,7 +88,7 @@ export default async function ProfilePage() {
                     <Mail className="h-5 w-5 text-green-600" strokeWidth={2} />
                   </div>
                   <div>
-                    <p className="mb-1 text-sm font-semibold text-neutral-700">Email Address</p>
+                    <p className="mb-1 text-sm font-semibold text-neutral-700">{t('fields.email')}</p>
                     <p className="text-base text-neutral-900">{user.email}</p>
                   </div>
                 </div>
@@ -89,15 +96,15 @@ export default async function ProfilePage() {
 
               {/* Additional Info */}
               <div className="mt-6 border-t border-neutral-200 pt-6">
-                <h3 className="mb-4 text-lg font-bold text-neutral-900">Account Information</h3>
+                <h3 className="mb-4 text-lg font-bold text-neutral-900">{t('accountInfo.title')}</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-neutral-600">User ID:</span>
+                    <span className="text-neutral-600">{t('accountInfo.userId')}</span>
                     <span className="font-mono text-xs text-neutral-900">{user.id}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-neutral-600">Username:</span>
-                    <span className="text-neutral-900">{user.username || 'Not set'}</span>
+                    <span className="text-neutral-600">{t('accountInfo.usernameLabel')}</span>
+                    <span className="text-neutral-900">{user.username || t('accountInfo.notSet')}</span>
                   </div>
                 </div>
               </div>
@@ -105,16 +112,16 @@ export default async function ProfilePage() {
               {/* Action Buttons */}
               <div className="mt-6 flex flex-col gap-4 border-t border-neutral-200 pt-6 sm:flex-row">
                 <Link
-                  href="/account/settings"
+                  href={`/${locale}/account/settings`}
                   className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 font-bold text-white shadow-sm transition-all duration-300 hover:bg-primary-700 hover:shadow-md"
                 >
-                  Edit Profile
+                  {t('actions.editProfile')}
                 </Link>
                 <Link
-                  href="/account"
+                  href={`/${locale}/account`}
                   className="inline-flex items-center justify-center rounded-lg border border-neutral-300 px-6 py-3 font-semibold text-neutral-700 transition-all duration-300 hover:border-primary-600 hover:bg-white hover:text-primary-600"
                 >
-                  Back to Dashboard
+                  {t('backToDashboard')}
                 </Link>
               </div>
             </div>

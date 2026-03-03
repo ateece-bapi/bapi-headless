@@ -3,6 +3,7 @@
 import { useState, FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { useToast } from '@/components/ui/Toast';
 import { TwoFactorVerify } from '@/components/auth/TwoFactorVerify';
 import { Eye, EyeOff, Lock, User, ShieldCheck } from 'lucide-react';
@@ -16,6 +17,7 @@ export function SignInForm({ locale }: SignInFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { showToast } = useToast();
+  const t = useTranslations('auth.signInPage');
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +33,7 @@ export function SignInForm({ locale }: SignInFormProps) {
     e.preventDefault();
 
     if (!username || !password) {
-      showToast('warning', 'Missing Fields', 'Please enter both username and password');
+      showToast('warning', t('toast.missingFields.title'), t('toast.missingFields.message'));
       return;
     }
 
@@ -59,7 +61,7 @@ export function SignInForm({ locale }: SignInFormProps) {
         }
 
         // Standard login (no 2FA)
-        showToast('success', 'Welcome Back!', 'Successfully signed in');
+        showToast('success', t('toast.welcomeBack.title'), t('toast.welcomeBack.message'));
 
         // Redirect to intended page or account dashboard
         const redirect = searchParams?.get('redirect') || `/${locale}/account`;
@@ -74,7 +76,7 @@ export function SignInForm({ locale }: SignInFormProps) {
         logger.warn('Sign in failed', { username, error: data.message });
 
         // Decode HTML entities from WordPress error messages
-        const errorMessage = data.message || 'Invalid username or password';
+        const errorMessage = data.message || t('toast.signInFailed.defaultMessage');
         const decodedMessage = errorMessage
           .replace(/&lt;/g, '<')
           .replace(/&gt;/g, '>')
@@ -84,11 +86,11 @@ export function SignInForm({ locale }: SignInFormProps) {
           // Strip HTML tags for clean error message
           .replace(/<[^>]*>/g, '');
 
-        showToast('error', 'Sign In Failed', decodedMessage);
+        showToast('error', t('toast.signInFailed.title'), decodedMessage);
       }
     } catch (error) {
       logger.error('Sign in error', { error });
-      showToast('error', 'Connection Error', 'Unable to connect to server. Please try again.');
+      showToast('error', t('toast.connectionError.title'), t('toast.connectionError.message'));
     } finally {
       setIsLoading(false);
     }
@@ -116,7 +118,7 @@ export function SignInForm({ locale }: SignInFormProps) {
   }
 
   return (
-    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+    <form className="mt-8 space-y-6" onSubmit={handleSubmit} suppressHydrationWarning>
       <div className="space-y-6 rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-xl lg:p-10">
         {/* Username Field */}
         <div>
@@ -125,7 +127,7 @@ export function SignInForm({ locale }: SignInFormProps) {
             className="mb-2 flex items-center gap-2 text-sm font-semibold text-neutral-900"
           >
             <User className="h-4 w-4 text-primary-500" />
-            Username or Email
+            {t('form.usernameLabel')}
           </label>
           <input
             id="username"
@@ -136,9 +138,9 @@ export function SignInForm({ locale }: SignInFormProps) {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="relative block w-full appearance-none rounded-xl border-2 border-neutral-300 px-4 py-3.5 text-base text-neutral-900 placeholder-neutral-400 transition-all hover:border-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 disabled:cursor-not-allowed disabled:bg-neutral-50"
-            placeholder="Enter your username or email"
+            placeholder={t('form.usernamePlaceholder')}
             disabled={isLoading}
-            aria-label="Username or email address"
+            aria-label={t('form.usernameAriaLabel')}
           />
         </div>
 
@@ -149,7 +151,7 @@ export function SignInForm({ locale }: SignInFormProps) {
             className="mb-2 flex items-center gap-2 text-sm font-semibold text-neutral-900"
           >
             <Lock className="h-4 w-4 text-primary-500" />
-            Password
+            {t('form.passwordLabel')}
           </label>
           <div className="relative">
             <input
@@ -161,15 +163,15 @@ export function SignInForm({ locale }: SignInFormProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="relative block w-full appearance-none rounded-xl border-2 border-neutral-300 px-4 py-3.5 pr-12 text-base text-neutral-900 placeholder-neutral-400 transition-all hover:border-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 disabled:cursor-not-allowed disabled:bg-neutral-50"
-              placeholder="Enter your password"
+              placeholder={t('form.passwordPlaceholder')}
               disabled={isLoading}
-              aria-label="Password"
+              aria-label={t('form.passwordAriaLabel')}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-2 text-neutral-500 transition-colors hover:text-neutral-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
-              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              aria-label={showPassword ? t('form.hidePassword') : t('form.showPassword')}
               disabled={isLoading}
             >
               {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -193,7 +195,7 @@ export function SignInForm({ locale }: SignInFormProps) {
               htmlFor="remember-me"
               className="ml-2 block cursor-pointer select-none text-sm text-neutral-700 transition-colors hover:text-neutral-900"
             >
-              Remember me
+              {t('form.rememberMe')}
             </label>
           </div>
 
@@ -202,7 +204,7 @@ export function SignInForm({ locale }: SignInFormProps) {
               href="/contact"
               className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
             >
-              Forgot password?
+              {t('form.forgotPassword')}
             </Link>
           </div>
         </div>
@@ -236,12 +238,12 @@ export function SignInForm({ locale }: SignInFormProps) {
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 />
               </svg>
-              <span>Signing in...</span>
+              <span>{t('form.submittingButton')}</span>
             </>
           ) : (
             <>
               <ShieldCheck className="h-5 w-5" />
-              <span>Sign In</span>
+              <span>{t('form.submitButton')}</span>
             </>
           )}
         </button>
@@ -251,17 +253,17 @@ export function SignInForm({ locale }: SignInFormProps) {
       <div className="space-y-3 text-center">
         <div className="flex items-center justify-center gap-2 text-sm text-neutral-600">
           <Lock className="h-4 w-4 text-primary-500" />
-          <span className="font-medium">Secure encrypted connection</span>
+          <span className="font-medium">{t('security.secureConnection')}</span>
         </div>
 
         {/* Help Text */}
         <p className="text-sm text-neutral-500">
-          Need help?{' '}
+          {t('security.needHelp')}{' '}
           <Link
             href="/contact"
             className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
           >
-            Contact Support
+            {t('security.contactSupport')}
           </Link>
         </p>
       </div>

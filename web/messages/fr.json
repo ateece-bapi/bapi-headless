@@ -1877,8 +1877,8 @@
     "checkoutFailed": "Échec de la commande. Veuillez réessayer."
   },
   "auth": {
-    "signIn": "Se connecter",
-    "signOut": "Se déconnecter",
+    "signIn": "Connexion",
+    "signOut": "Déconnexion",
     "signUp": "S'inscrire",
     "profile": "Profil",
     "account": "Mon compte",
@@ -1888,12 +1888,57 @@
     "favorites": "Favoris",
     "quotes": "Devis",
     "addresses": "Adresses",
-    "paymentMethods": "Modes de paiement",
+    "paymentMethods": "Moyens de paiement",
     "welcome": "Bienvenue",
-    "welcomeBack": "Bienvenue à nouveau",
+    "welcomeBack": "Ravi de vous revoir",
     "loginRequired": "Veuillez vous connecter pour continuer",
-    "logout": "Se déconnecter",
-    "myProfile": "Mon profil"
+    "logout": "Déconnexion",
+    "myProfile": "Mon profil",
+    "signInPage": {
+      "title": "Ravi de vous revoir",
+      "subtitle": "Connectez-vous pour accéder à vos commandes, produits enregistrés et demandes de devis",
+      "form": {
+        "usernameLabel": "Nom d'utilisateur ou email",
+        "usernamePlaceholder": "Saisissez votre nom d'utilisateur ou email",
+        "usernameAriaLabel": "Nom d'utilisateur ou adresse email",
+        "passwordLabel": "Mot de passe",
+        "passwordPlaceholder": "Saisissez votre mot de passe",
+        "passwordAriaLabel": "Mot de passe",
+        "showPassword": "Afficher le mot de passe",
+        "hidePassword": "Masquer le mot de passe",
+        "rememberMe": "Se souvenir de moi",
+        "forgotPassword": "Mot de passe oublié ?",
+        "submitButton": "Connexion",
+        "submittingButton": "Connexion en cours..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "Champs manquants",
+          "message": "Veuillez saisir un nom d'utilisateur et un mot de passe"
+        },
+        "welcomeBack": {
+          "title": "Ravi de vous revoir !",
+          "message": "Connexion réussie"
+        },
+        "signInFailed": {
+          "title": "Échec de la connexion",
+          "defaultMessage": "Nom d'utilisateur ou mot de passe incorrect"
+        },
+        "connectionError": {
+          "title": "Erreur de connexion",
+          "message": "Impossible de se connecter au serveur. Veuillez réessayer."
+        }
+      },
+      "security": {
+        "secureConnection": "Connexion sécurisée et chiffrée",
+        "needHelp": "Besoin d'aide ?",
+        "contactSupport": "Contacter le support"
+      },
+      "noAccount": {
+        "text": "Vous n'avez pas de compte ?",
+        "contactSales": "Contactez votre représentant commercial"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {
@@ -1902,6 +1947,274 @@
       "enableButton": "Activer l'A2F maintenant",
       "learnMoreButton": "En savoir plus",
       "dismissLabel": "Fermer la bannière"
+    },
+    "dashboard": {
+      "welcomeBack": "Bienvenue de retour, {displayName} !",
+      "subtitle": "Gérez votre compte, vos commandes et vos préférences depuis votre tableau de bord",
+      "mockDataBanner": "Mode de développement : affichage des données fictives pour les tests",
+      "accountManagement": "Gestion du compte",
+      "recentActivity": "Activité récente",
+      "viewAllOrders": "Afficher toutes les commandes →",
+      "company": "Entreprise",
+      "accountNumber": "Compte n°",
+      "recentOrders": "Commandes récentes",
+      "ordersCount": "{count} commandes",
+      "viewAll": "Tout afficher →",
+      "savedQuotes": "Devis enregistrés",
+      "quotesCount": "{count} devis",
+      "moreItems": "+ {count} élément supplémentaire",
+      "moreItemsPlural": "+ {count} éléments supplémentaires",
+      "sections": {
+        "profile": {
+          "title": "Profil",
+          "description": "Gérez les informations et les préférences de votre compte"
+        },
+        "orderHistory": {
+          "title": "Historique des commandes",
+          "description": "Consultez vos commandes passées et suivez les expéditions"
+        },
+        "savedProducts": {
+          "title": "Produits enregistrés",
+          "description": "Accédez à vos produits et listes de souhaits préférés"
+        },
+        "quoteRequests": {
+          "title": "Demandes de devis",
+          "description": "Gérez vos demandes de devis personnalisées"
+        },
+        "shoppingCart": {
+          "title": "Panier d'achat",
+          "description": "Consultez et gérez les articles dans votre panier"
+        },
+        "accountSettings": {
+          "title": "Paramètres du compte",
+          "description": "Mettez à jour votre mot de passe et vos paramètres de sécurité"
+        }
+      },
+      "orderStatus": {
+        "delivered": "Livré",
+        "shipped": "Expédié",
+        "processing": "En traitement",
+        "pending": "En attente",
+        "cancelled": "Annulé"
+      }
+    },
+    "profile": {
+      "title": "Profil",
+      "backToDashboard": "Retour au tableau de bord",
+      "fields": {
+        "displayName": "Nom d'affichage",
+        "username": "Nom d'utilisateur",
+        "email": "Adresse e-mail"
+      },
+      "accountInfo": {
+        "title": "Informations sur le compte",
+        "userId": "ID utilisateur:",
+        "usernameLabel": "Nom d'utilisateur:",
+        "notSet": "Non défini"
+      },
+      "actions": {
+        "editProfile": "Modifier le profil"
+      }
+    },
+    "orders": {
+      "title": "Historique des commandes",
+      "subtitle": "Voir et suivre toutes vos commandes",
+      "backToDashboard": "Retour au tableau de bord",
+      "mockDataBanner": "Mode de développement : affichage des données de commande factices",
+      "error": "Échec du chargement de l'historique des commandes",
+      "empty": {
+        "title": "Aucune commande pour le moment",
+        "descriptionWithAccount": "Vous n'avez encore passé aucune commande. Commencez à faire des achats pour voir votre historique de commandes ici.",
+        "descriptionWithoutAccount": "Votre compte est en cours de configuration. L'historique des commandes apparaîtra ici une fois disponible.",
+        "browseProducts": "Parcourir les produits"
+      },
+      "count": {
+        "orders": "{count} commandes",
+        "order": "{count} commande"
+      },
+      "orderNumber": "Commande n°",
+      "placedOn": "Passée le",
+      "items": "{count} articles",
+      "moreItems": "+{count}",
+      "actions": {
+        "viewDetails": "Voir les détails",
+        "invoice": "Facture"
+      },
+      "status": {
+        "pending": "En attente",
+        "processing": "En cours de traitement",
+        "on-hold": "En attente",
+        "completed": "Terminée",
+        "cancelled": "Annulée",
+        "refunded": "Remboursée",
+        "failed": "Échec"
+      }
+    },
+    "favorites": {
+      "title": "Produits enregistrés",
+      "backToDashboard": "Retour au tableau de bord",
+      "count": {
+        "products": "{count} produits enregistrés",
+        "product": "{count} produit enregistré"
+      },
+      "empty": {
+        "title": "Aucun produit enregistré pour le moment",
+        "description": "Commencez à enregistrer vos produits préférés pour y accéder rapidement plus tard. Cliquez sur l'icône en forme de cœur sur n'importe quelle page de produit pour l'ajouter à vos favoris.",
+        "browseProducts": "Parcourir les produits",
+        "testFavorites": "Tester les favoris"
+      },
+      "productId": "ID :",
+      "noImage": "Pas d'image",
+      "viewProduct": "Voir le produit"
+    },
+    "quotes": {
+      "title": "Demandes de devis",
+      "subtitle": "Suivez et gérez vos demandes de devis personnalisées",
+      "backToDashboard": "Retour au tableau de bord",
+      "mockDataBanner": "Affichage des données de devis fictives",
+      "newQuoteRequest": "Nouvelle demande de devis",
+      "empty": {
+        "title": "Aucune demande de devis pour le moment",
+        "description": "Demandez un devis personnalisé pour des commandes en gros, des configurations spéciales ou des consultations techniques.",
+        "submitQuote": "Soumettre une demande de devis",
+        "infoCards": {
+          "customSolutions": {
+            "title": "Solutions sur mesure",
+            "description": "Obtenez des tarifs adaptés à vos besoins spécifiques"
+          },
+          "fastResponse": {
+            "title": "Réponse rapide",
+            "description": "Notre équipe vous répond généralement dans les 24 heures ouvrables"
+          },
+          "expertSupport": {
+            "title": "Assistance d'experts",
+            "description": "Travaillez directement avec nos spécialistes techniques"
+          }
+        }
+      },
+      "quoteNumber": "Devis n°",
+      "created": "Créé le :",
+      "expires": "Expire le :",
+      "items": "Articles :",
+      "itemCount": {
+        "items": "{count} articles",
+        "item": "{count} article"
+      },
+      "actions": {
+        "viewDetails": "Voir les détails",
+        "cancelRequest": "Annuler la demande"
+      },
+      "status": {
+        "pending": "En attente",
+        "reviewing": "En cours d'examen",
+        "quoted": "Devisé",
+        "declined": "Refusé"
+      }
+    },
+    "settings": {
+      "title": "Paramètres du compte",
+      "subtitle": "Gérez votre profil, votre sécurité et vos préférences de compte",
+      "backToDashboard": "Retourner au tableau de bord",
+      "help": {
+        "title": "Besoin d'aide ?",
+        "description": "Si vous rencontrez des problèmes avec les paramètres de votre compte, notre équipe d'assistance est là pour vous aider.",
+        "contactSupport": "Contacter le support",
+        "helpCenter": "Centre d'aide"
+      },
+      "userProfile": {
+        "loading": "Chargement des paramètres de sécurité...",
+        "error": {
+          "title": "Impossible de charger les paramètres de sécurité",
+          "description": "Nous n'avons pas pu récupérer votre statut d'authentification à deux facteurs. Veuillez essayer de rafraîchir la page.",
+          "retry": "Réessayer"
+        },
+        "toastError": {
+          "title": "Erreur",
+          "message": "Échec du chargement des paramètres de sécurité"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "Authentification à deux facteurs",
+        "subtitle": "Ajoutez une couche de sécurité supplémentaire à votre compte",
+        "status": {
+          "enabled": "Activée",
+          "disabled": "Désactivée",
+          "active": "Active",
+          "enabledDescription": "Votre compte est protégé par l'authentification à deux facteurs. Vous avez besoin de votre mot de passe et d'un code de vérification pour vous connecter.",
+          "disabledDescription": "L'authentification à deux facteurs n'est pas activée. Activez-la pour ajouter une couche de sécurité supplémentaire à votre compte."
+        },
+        "whyEnable": {
+          "title": "Pourquoi activer l'authentification à deux facteurs ?",
+          "reasons": {
+            "unauthorized": "Protégez votre compte contre les accès non autorisés",
+            "stuffing": "Empêchez les attaques par bourrage d'identifiants",
+            "sensitive": "Ajoutez de la sécurité pour les opérations sensibles",
+            "standards": "Respectez les normes de sécurité du secteur"
+          }
+        },
+        "whatYouNeed": {
+          "title": "Ce dont vous aurez besoin",
+          "description": "Une application d'authentification comme Google Authenticator, Authy, 1Password ou Microsoft Authenticator sur votre téléphone ou votre ordinateur."
+        },
+        "backupCodes": {
+          "title": "Conservez vos codes de sauvegarde en sécurité",
+          "description": "Assurez-vous d'avoir enregistré vos codes de sauvegarde dans un endroit sûr. Si vous perdez l'accès à votre application d'authentification, les codes de sauvegarde sont le seul moyen d'accéder à votre compte."
+        },
+        "securityTip": {
+          "title": "Conseil de sécurité",
+          "description": "L'authentification à deux facteurs améliore considérablement la sécurité du compte. Même si quelqu'un obtient votre mot de passe, il ne pourra pas accéder à votre compte sans avoir accès à votre application d'authentification."
+        },
+        "enable": {
+          "button": "Activer l'authentification à deux facteurs"
+        },
+        "disable": {
+          "button": "Désactiver l'authentification à deux facteurs",
+          "warning": {
+            "title": "Êtes-vous sûr ?",
+            "description": "Désactiver l'authentification à deux facteurs rendra votre compte moins sécurisé. Vous aurez seulement besoin de votre mot de passe pour vous connecter."
+          },
+          "form": {
+            "passwordLabel": "Confirmez votre mot de passe",
+            "passwordPlaceholder": "Entrez votre mot de passe",
+            "codeLabel": "Code de vérification",
+            "codePlaceholder": "000000",
+            "codeHelp": "Entrez le code de votre application d'authentification",
+            "showPassword": "Afficher le mot de passe",
+            "hidePassword": "Masquer le mot de passe",
+            "cancel": "Annuler",
+            "submit": "Désactiver l'authentification à deux facteurs",
+            "submitting": "Désactivation en cours..."
+          },
+          "toast": {
+            "success": {
+              "title": "Authentification à deux facteurs désactivée",
+              "message": "L'authentification à deux facteurs a été désactivée"
+            },
+            "error": {
+              "title": "Impossible de désactiver",
+              "defaultMessage": "La vérification a échoué. Veuillez réessayer."
+            },
+            "connectionError": {
+              "title": "Erreur de connexion",
+              "message": "Impossible de désactiver l'authentification à deux facteurs"
+            },
+            "requiredFields": {
+              "title": "Champs obligatoires",
+              "message": "Veuillez entrer votre mot de passe et votre code de vérification"
+            },
+            "invalidCode": {
+              "title": "Code invalide",
+              "message": "Veuillez entrer un code à 6 chiffres"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "Authentification à deux facteurs activée",
+            "message": "Votre compte est désormais protégé par l'authentification à deux facteurs"
+          }
+        }
+      }
     }
   },
   "cart": {

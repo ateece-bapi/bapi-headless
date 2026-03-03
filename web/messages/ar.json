@@ -1879,21 +1879,66 @@
   "auth": {
     "signIn": "تسجيل الدخول",
     "signOut": "تسجيل الخروج",
-    "signUp": "التسجيل",
+    "signUp": "إنشاء حساب",
     "profile": "الملف الشخصي",
     "account": "حسابي",
     "dashboard": "لوحة القيادة",
     "settings": "الإعدادات",
     "orders": "الطلبات",
     "favorites": "المفضلة",
-    "quotes": "عروض الأسعار",
+    "quotes": "العروض",
     "addresses": "العناوين",
     "paymentMethods": "طرق الدفع",
-    "welcome": "مرحبًا",
-    "welcomeBack": "مرحبًا بعودتك",
-    "loginRequired": "الرجاء تسجيل الدخول للمتابعة",
+    "welcome": "مرحبا",
+    "welcomeBack": "مرحبا بعودتك",
+    "loginRequired": "يرجى تسجيل الدخول للمتابعة",
     "logout": "تسجيل الخروج",
-    "myProfile": "ملفي الشخصي"
+    "myProfile": "ملفي الشخصي",
+    "signInPage": {
+      "title": "مرحبا بعودتك",
+      "subtitle": "سجّل الدخول للوصول إلى طلباتك وعناصرك المحفوظة وطلبات العرض الخاصة بك",
+      "form": {
+        "usernameLabel": "اسم المستخدم أو البريد الإلكتروني",
+        "usernamePlaceholder": "أدخل اسم المستخدم أو البريد الإلكتروني الخاص بك",
+        "usernameAriaLabel": "اسم المستخدم أو عنوان البريد الإلكتروني",
+        "passwordLabel": "كلمة المرور",
+        "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
+        "passwordAriaLabel": "كلمة المرور",
+        "showPassword": "إظهار كلمة المرور",
+        "hidePassword": "إخفاء كلمة المرور",
+        "rememberMe": "تذكرني",
+        "forgotPassword": "نسيت كلمة المرور؟",
+        "submitButton": "تسجيل الدخول",
+        "submittingButton": "جار تسجيل الدخول..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "حقول مفقودة",
+          "message": "يرجى إدخال اسم المستخدم وكلمة المرور"
+        },
+        "welcomeBack": {
+          "title": "مرحبا بعودتك!",
+          "message": "تم تسجيل الدخول بنجاح"
+        },
+        "signInFailed": {
+          "title": "فشل تسجيل الدخول",
+          "defaultMessage": "اسم المستخدم أو كلمة المرور غير صحيحة"
+        },
+        "connectionError": {
+          "title": "خطأ في الاتصال",
+          "message": "تعذر الاتصال بالخادم. يرجى المحاولة مرة أخرى."
+        }
+      },
+      "security": {
+        "secureConnection": "اتصال مشفر آمن",
+        "needHelp": "هل تحتاج إلى المساعدة؟",
+        "contactSupport": "اتصل بالدعم الفني"
+      },
+      "noAccount": {
+        "text": "ليس لديك حساب؟",
+        "contactSales": "اتصل بممثل المبيعات الخاص بك"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {
@@ -1902,6 +1947,274 @@
       "enableButton": "قم بتفعيل المصادقة ذات عاملين الآن",
       "learnMoreButton": "معرفة المزيد",
       "dismissLabel": "إغلاق اللافتة"
+    },
+    "dashboard": {
+      "welcomeBack": "أهلا بك مرة أخرى، {displayName}!",
+      "subtitle": "قم بإدارة حسابك وطلباتك وتفضيلاتك من لوحة التحكم الخاصة بك",
+      "mockDataBanner": "وضع التطوير: عرض بيانات نمطية للاختبار",
+      "accountManagement": "إدارة الحساب",
+      "recentActivity": "النشاطات الأخيرة",
+      "viewAllOrders": "عرض جميع الطلبات →",
+      "company": "الشركة",
+      "accountNumber": "رقم الحساب",
+      "recentOrders": "الطلبات الأخيرة",
+      "ordersCount": "{count} طلبات",
+      "viewAll": "عرض الكل →",
+      "savedQuotes": "العروض المحفوظة",
+      "quotesCount": "{count} عروض",
+      "moreItems": "+ {count} عنصر آخر",
+      "moreItemsPlural": "+ {count} عناصر أخرى",
+      "sections": {
+        "profile": {
+          "title": "الملف الشخصي",
+          "description": "إدارة معلومات الحساب والتفضيلات الخاصة بك"
+        },
+        "orderHistory": {
+          "title": "سجل الطلبات",
+          "description": "عرض طلباتك السابقة وتتبع الشحنات"
+        },
+        "savedProducts": {
+          "title": "المنتجات المحفوظة",
+          "description": "الوصول إلى المنتجات المفضلة لديك وقوائم الرغبات"
+        },
+        "quoteRequests": {
+          "title": "طلبات العرض",
+          "description": "إدارة طلبات العروض المخصصة الخاصة بك"
+        },
+        "shoppingCart": {
+          "title": "سلة التسوق",
+          "description": "عرض وإدارة العناصر الموجودة في سلتك"
+        },
+        "accountSettings": {
+          "title": "إعدادات الحساب",
+          "description": "تحديث كلمة المرور وإعدادات الأمان الخاصة بك"
+        }
+      },
+      "orderStatus": {
+        "delivered": "تم التسليم",
+        "shipped": "تم الشحن",
+        "processing": "قيد المعالجة",
+        "pending": "قيد الانتظار",
+        "cancelled": "تم الإلغاء"
+      }
+    },
+    "profile": {
+      "title": "الملف الشخصي",
+      "backToDashboard": "العودة إلى لوحة التحكم",
+      "fields": {
+        "displayName": "الاسم الذي يظهر",
+        "username": "اسم المستخدم",
+        "email": "عنوان البريد الإلكتروني"
+      },
+      "accountInfo": {
+        "title": "معلومات الحساب",
+        "userId": "معرف المستخدم:",
+        "usernameLabel": "اسم المستخدم:",
+        "notSet": "غير محدد"
+      },
+      "actions": {
+        "editProfile": "تحرير الملف الشخصي"
+      }
+    },
+    "orders": {
+      "title": "سجل الطلبات",
+      "subtitle": "عرض وتتبع جميع طلباتك",
+      "backToDashboard": "العودة إلى لوحة التحكم",
+      "mockDataBanner": "وضع التطوير: عرض بيانات طلب تجريبية",
+      "error": "فشل في تحميل سجل الطلبات",
+      "empty": {
+        "title": "لا توجد طلبات حتى الآن",
+        "descriptionWithAccount": "لم تقم بوضع أي طلبات بعد. ابدأ بالتسوق لترى سجل طلباتك هنا.",
+        "descriptionWithoutAccount": "يتم إعداد حسابك. سيظهر سجل الطلبات هنا عند توفره.",
+        "browseProducts": "تصفح المنتجات"
+      },
+      "count": {
+        "orders": "{count} طلبات",
+        "order": "{count} طلب"
+      },
+      "orderNumber": "طلب #",
+      "placedOn": "تم وضعه في",
+      "items": "{count} عناصر",
+      "moreItems": "+{count}",
+      "actions": {
+        "viewDetails": "عرض التفاصيل",
+        "invoice": "الفاتورة"
+      },
+      "status": {
+        "pending": "قيد الانتظار",
+        "processing": "قيد المعالجة",
+        "on-hold": "معلق",
+        "completed": "مكتمل",
+        "cancelled": "ملغي",
+        "refunded": "مستردة",
+        "failed": "فشل"
+      }
+    },
+    "favorites": {
+      "title": "المنتجات المفضلة",
+      "backToDashboard": "العودة إلى لوحة التحكم",
+      "count": {
+        "products": "{count} منتجات محفوظة",
+        "product": "{count} منتج محفوظ"
+      },
+      "empty": {
+        "title": "لا توجد منتجات محفوظة بعد",
+        "description": "ابدأ في حفظ منتجاتك المفضلة لتتمكن من الوصول إليها بسرعة. انقر على رمز القلب على أي صفحة منتج لإضافته إلى المفضلة الخاصة بك.",
+        "browseProducts": "تصفح المنتجات",
+        "testFavorites": "اختبار المفضلة"
+      },
+      "productId": "المعرف:",
+      "noImage": "لا توجد صورة",
+      "viewProduct": "عرض المنتج"
+    },
+    "quotes": {
+      "title": "طلبات العرض السعري",
+      "subtitle": "تتبع وإدارة طلبات العروض السعرية المخصصة الخاصة بك",
+      "backToDashboard": "العودة إلى لوحة القيادة",
+      "mockDataBanner": "عرض بيانات العرض السعري الافتراضية",
+      "newQuoteRequest": "طلب عرض سعري جديد",
+      "empty": {
+        "title": "لا توجد طلبات عروض سعرية حتى الآن",
+        "description": "اطلب عرض سعري مخصص للطلبات الضخمة أو التكوينات الخاصة أو الاستشارات الفنية.",
+        "submitQuote": "إرسال طلب عرض سعري",
+        "infoCards": {
+          "customSolutions": {
+            "title": "حلول مخصصة",
+            "description": "احصل على أسعار مخصصة لمتطلبات التطبيق الخاص بك"
+          },
+          "fastResponse": {
+            "title": "استجابة سريعة",
+            "description": "يستجيب فريقنا عادةً في غضون 24 ساعة عمل"
+          },
+          "expertSupport": {
+            "title": "دعم من الخبراء",
+            "description": "العمل مباشرةً مع متخصصينا الفنيين"
+          }
+        }
+      },
+      "quoteNumber": "رقم العرض السعري: ",
+      "created": "تم الإنشاء:",
+      "expires": "ينتهي صلاحيته:",
+      "items": "العناصر:",
+      "itemCount": {
+        "items": "{count} عناصر",
+        "item": "{count} عنصر"
+      },
+      "actions": {
+        "viewDetails": "عرض التفاصيل",
+        "cancelRequest": "إلغاء الطلب"
+      },
+      "status": {
+        "pending": "قيد الانتظار",
+        "reviewing": "قيد المراجعة",
+        "quoted": "تم تقديم عرض سعري",
+        "declined": "تم الرفض"
+      }
+    },
+    "settings": {
+      "title": "إعدادات الحساب",
+      "subtitle": "إدارة ملفك الشخصي وإعدادات الأمان والحساب الخاصة بك",
+      "backToDashboard": "العودة إلى لوحة التحكم",
+      "help": {
+        "title": "هل تحتاج إلى مساعدة؟",
+        "description": "إذا كنت تواجه مشكلة مع إعدادات حسابك، ففريق الدعم لدينا هنا لمساعدتك.",
+        "contactSupport": "اتصل بالدعم",
+        "helpCenter": "مركز المساعدة"
+      },
+      "userProfile": {
+        "loading": "جارٍ تحميل إعدادات الأمان...",
+        "error": {
+          "title": "تعذر تحميل إعدادات الأمان",
+          "description": "لم نتمكن من استرداد حالة المصادقة الثنائية الخاصة بك. يرجى المحاولة تحديث الصفحة.",
+          "retry": "إعادة المحاولة"
+        },
+        "toastError": {
+          "title": "خطأ",
+          "message": "تعذر تحميل إعدادات الأمان"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "المصادقة الثنائية",
+        "subtitle": "إضافة طبقة أمان إضافية إلى حسابك",
+        "status": {
+          "enabled": "ممكّن",
+          "disabled": "معطّل",
+          "active": "نشط",
+          "enabledDescription": "تم حماية حسابك بواسطة المصادقة الثنائية. تحتاج إلى كلمة المرور ورمز التحقق لتسجيل الدخول.",
+          "disabledDescription": "لم يتم تمكين المصادقة الثنائية. قم بتمكينها لإضافة طبقة أمان إضافية إلى حسابك."
+        },
+        "whyEnable": {
+          "title": "لماذا تمكين المصادقة الثنائية؟",
+          "reasons": {
+            "unauthorized": "حماية حسابك من الوصول غير المصرح به",
+            "stuffing": "منع هجمات الاختراق بالضبط",
+            "sensitive": "إضافة الأمان للعمليات الحساسة",
+            "standards": "تلبية معايير الأمان في الصناعة"
+          }
+        },
+        "whatYouNeed": {
+          "title": "ما ستحتاجه",
+          "description": "تطبيق المصادقة مثل Google Authenticator أو Authy أو 1Password أو Microsoft Authenticator على هاتفك أو جهاز الكمبيوتر الخاص بك."
+        },
+        "backupCodes": {
+          "title": "احتفظ بأكواد النسخ الاحتياطي الخاصة بك في مكان آمن",
+          "description": "تأكد من حفظ أكواد النسخ الاحتياطي الخاصة بك في موقع آمن. إذا فقدت الوصول إلى تطبيق المصادقة الخاص بك، فإن أكواد النسخ الاحتياطي هي الطريقة الوحيدة للوصول إلى حسابك."
+        },
+        "securityTip": {
+          "title": "نصيحة أمنية",
+          "description": "تحسّن المصادقة الثنائية كثيرًا من أمان الحساب. حتى إذا حصل شخص ما على كلمة مرورك، فلن يتمكن من الوصول إلى حسابك دون الوصول إلى تطبيق المصادقة الخاص بك."
+        },
+        "enable": {
+          "button": "تمكين المصادقة الثنائية"
+        },
+        "disable": {
+          "button": "تعطيل المصادقة الثنائية",
+          "warning": {
+            "title": "هل أنت متأكد؟",
+            "description": "تعطيل المصادقة الثنائية سيجعل حسابك أقل أمانًا. ستحتاج فقط إلى كلمة المرور الخاصة بك لتسجيل الدخول."
+          },
+          "form": {
+            "passwordLabel": "تأكيد كلمة المرور الخاصة بك",
+            "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
+            "codeLabel": "رمز التحقق",
+            "codePlaceholder": "000000",
+            "codeHelp": "أدخل الرمز من تطبيق المصادقة الخاص بك",
+            "showPassword": "إظهار كلمة المرور",
+            "hidePassword": "إخفاء كلمة المرور",
+            "cancel": "إلغاء",
+            "submit": "تعطيل المصادقة الثنائية",
+            "submitting": "جارٍ التعطيل..."
+          },
+          "toast": {
+            "success": {
+              "title": "تم تعطيل المصادقة الثنائية",
+              "message": "تم إيقاف تشغيل المصادقة الثنائية"
+            },
+            "error": {
+              "title": "تعذر التعطيل",
+              "defaultMessage": "فشل التحقق. يرجى المحاولة مرة أخرى."
+            },
+            "connectionError": {
+              "title": "خطأ في الاتصال",
+              "message": "تعذر تعطيل المصادقة الثنائية"
+            },
+            "requiredFields": {
+              "title": "الحقول المطلوبة",
+              "message": "الرجاء إدخال كلمة المرور الخاصة بك ورمز التحقق"
+            },
+            "invalidCode": {
+              "title": "رمز غير صالح",
+              "message": "الرجاء إدخال رمز مكون من 6 أرقام"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "تم تمكين المصادقة الثنائية",
+            "message": "تم الآن حماية حسابك بواسطة المصادقة الثنائية"
+          }
+        }
+      }
     }
   },
   "cart": {

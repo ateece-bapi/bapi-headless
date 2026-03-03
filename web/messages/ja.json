@@ -1877,23 +1877,68 @@
     "checkoutFailed": "チェックアウトに失敗しました。再度お試しください。"
   },
   "auth": {
-    "signIn": "ログイン",
-    "signOut": "ログアウト",
-    "signUp": "新規登録",
-    "profile": "プロフィール",
+    "signIn": "サインイン",
+    "signOut": "サインアウト",
+    "signUp": "サインアップ",
+    "profile": "プロファイル",
     "account": "マイアカウント",
     "dashboard": "ダッシュボード",
     "settings": "設定",
-    "orders": "注文履歴",
+    "orders": "注文",
     "favorites": "お気に入り",
-    "quotes": "見積もり",
+    "quotes": "見積",
     "addresses": "住所",
     "paymentMethods": "支払い方法",
     "welcome": "ようこそ",
-    "welcomeBack": "おかえりなさいませ",
+    "welcomeBack": "おかえりなさい",
     "loginRequired": "続行するにはサインインしてください",
-    "logout": "ログアウト",
-    "myProfile": "マイプロフィール"
+    "logout": "サインアウト",
+    "myProfile": "マイプロファイル",
+    "signInPage": {
+      "title": "おかえりなさい",
+      "subtitle": "注文、保存された製品、見積依頼にアクセスするためにサインインしてください",
+      "form": {
+        "usernameLabel": "ユーザー名またはメールアドレス",
+        "usernamePlaceholder": "ユーザー名またはメールアドレスを入力してください",
+        "usernameAriaLabel": "ユーザー名またはメールアドレス",
+        "passwordLabel": "パスワード",
+        "passwordPlaceholder": "パスワードを入力してください",
+        "passwordAriaLabel": "パスワード",
+        "showPassword": "パスワードを表示",
+        "hidePassword": "パスワードを非表示",
+        "rememberMe": "ログイン情報を保持する",
+        "forgotPassword": "パスワードを忘れた",
+        "submitButton": "サインイン",
+        "submittingButton": "サインイン中..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "未入力の項目があります",
+          "message": "ユーザー名とパスワードの両方を入力してください"
+        },
+        "welcomeBack": {
+          "title": "おかえりなさい!",
+          "message": "サインインに成功しました"
+        },
+        "signInFailed": {
+          "title": "サインインに失敗しました",
+          "defaultMessage": "ユーザー名またはパスワードが正しくありません"
+        },
+        "connectionError": {
+          "title": "接続エラー",
+          "message": "サーバーに接続できませんでした。もう一度お試しください。"
+        }
+      },
+      "security": {
+        "secureConnection": "安全な暗号化された接続",
+        "needHelp": "ご不明な点がございますか?",
+        "contactSupport": "サポートにお問い合わせください"
+      },
+      "noAccount": {
+        "text": "アカウントをお持ちでない場合は",
+        "contactSales": "営業担当者にお問い合わせください"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {
@@ -1902,6 +1947,274 @@
       "enableButton": "今すぐ2FAを有効にする",
       "learnMoreButton": "詳細を見る",
       "dismissLabel": "バナーを閉じる"
+    },
+    "dashboard": {
+      "welcomeBack": "{displayName}さん、おかえりなさい!",
+      "subtitle": "ダッシュボードからアカウント、注文、設定を管理できます",
+      "mockDataBanner": "開発モード: テスト用のモックデータを表示しています",
+      "accountManagement": "アカウント管理",
+      "recentActivity": "最近の活動",
+      "viewAllOrders": "すべての注文を見る →",
+      "company": "会社",
+      "accountNumber": "アカウント番号",
+      "recentOrders": "最近の注文",
+      "ordersCount": "{count}件の注文",
+      "viewAll": "すべて見る →",
+      "savedQuotes": "保存された見積",
+      "quotesCount": "{count}件の見積",
+      "moreItems": "+ {count}個の商品",
+      "moreItemsPlural": "+ {count}個の商品",
+      "sections": {
+        "profile": {
+          "title": "プロフィール",
+          "description": "アカウント情報と設定を管理する"
+        },
+        "orderHistory": {
+          "title": "注文履歴",
+          "description": "過去の注文を確認し、配送状況を追跡する"
+        },
+        "savedProducts": {
+          "title": "保存された商品",
+          "description": "お気に入りの商品とウィッシュリストにアクセスする"
+        },
+        "quoteRequests": {
+          "title": "見積依頼",
+          "description": "カスタムの見積依頼を管理する"
+        },
+        "shoppingCart": {
+          "title": "ショッピングカート",
+          "description": "カートの商品を確認し、管理する"
+        },
+        "accountSettings": {
+          "title": "アカウント設定",
+          "description": "パスワードとセキュリティ設定を更新する"
+        }
+      },
+      "orderStatus": {
+        "delivered": "配送済み",
+        "shipped": "出荷済み",
+        "processing": "処理中",
+        "pending": "保留中",
+        "cancelled": "キャンセル"
+      }
+    },
+    "profile": {
+      "title": "プロフィール",
+      "backToDashboard": "ダッシュボードに戻る",
+      "fields": {
+        "displayName": "表示名",
+        "username": "ユーザー名",
+        "email": "メールアドレス"
+      },
+      "accountInfo": {
+        "title": "アカウント情報",
+        "userId": "ユーザーID:",
+        "usernameLabel": "ユーザー名:",
+        "notSet": "未設定"
+      },
+      "actions": {
+        "editProfile": "プロフィールを編集する"
+      }
+    },
+    "orders": {
+      "title": "注文履歴",
+      "subtitle": "すべての注文を表示して追跡する",
+      "backToDashboard": "ダッシュボードに戻る",
+      "mockDataBanner": "開発モード: モックの注文データを表示しています",
+      "error": "注文履歴の読み込みに失敗しました",
+      "empty": {
+        "title": "注文がまだありません",
+        "descriptionWithAccount": "まだ注文したことがありません。ショッピングを始めると、ここに注文履歴が表示されます。",
+        "descriptionWithoutAccount": "お客様のアカウントの設定が完了しています。注文履歴は利用可能になり次第ここに表示されます。",
+        "browseProducts": "製品を閲覧する"
+      },
+      "count": {
+        "orders": "{count}件の注文",
+        "order": "{count}件の注文"
+      },
+      "orderNumber": "注文番号",
+      "placedOn": "注文日",
+      "items": "{count}個の商品",
+      "moreItems": "+{count}個",
+      "actions": {
+        "viewDetails": "詳細を表示",
+        "invoice": "請求書"
+      },
+      "status": {
+        "pending": "保留中",
+        "processing": "処理中",
+        "on-hold": "保留中",
+        "completed": "完了",
+        "cancelled": "キャンセル",
+        "refunded": "返金済み",
+        "failed": "失敗"
+      }
+    },
+    "favorites": {
+      "title": "保存された製品",
+      "backToDashboard": "ダッシュボードに戻る",
+      "count": {
+        "products": "{count}件の製品が保存されました",
+        "product": "{count}件の製品が保存されました"
+      },
+      "empty": {
+        "title": "まだ保存された製品はありません",
+        "description": "お気に入りの製品を保存して、後で簡単にアクセスできるようにしましょう。製品ページのハートのアイコンをクリックすると、お気に入りに追加できます。",
+        "browseProducts": "製品を閲覧する",
+        "testFavorites": "お気に入りをテストする"
+      },
+      "productId": "ID：",
+      "noImage": "画像なし",
+      "viewProduct": "製品を表示する"
+    },
+    "quotes": {
+      "title": "見積依頼",
+      "subtitle": "カスタム見積依頼の追跡と管理",
+      "backToDashboard": "ダッシュボードに戻る",
+      "mockDataBanner": "見積データのモックを表示しています",
+      "newQuoteRequest": "新規見積依頼",
+      "empty": {
+        "title": "まだ見積依頼がありません",
+        "description": "大量注文、特別な仕様、またはテクニカルコンサルティングのためのカスタム見積をリクエストしてください。",
+        "submitQuote": "見積依頼を提出する",
+        "infoCards": {
+          "customSolutions": {
+            "title": "Custom Solutions",
+            "description": "お客様の用途要件に合わせたプライシングをご提案いたします"
+          },
+          "fastResponse": {
+            "title": "迅速な対応",
+            "description": "通常、弊社のチームは営業日24時間以内に回答いたします"
+          },
+          "expertSupport": {
+            "title": "専門家サポート",
+            "description": "テクニカルスペシャリストと直接お打ち合わせいただけます"
+          }
+        }
+      },
+      "quoteNumber": "見積番号:",
+      "created": "作成日:",
+      "expires": "有効期限:",
+      "items": "アイテム:",
+      "itemCount": {
+        "items": "{count}アイテム",
+        "item": "{count}アイテム"
+      },
+      "actions": {
+        "viewDetails": "詳細を見る",
+        "cancelRequest": "リクエストをキャンセルする"
+      },
+      "status": {
+        "pending": "保留中",
+        "reviewing": "レビュー中",
+        "quoted": "見積済み",
+        "declined": "却下"
+      }
+    },
+    "settings": {
+      "title": "アカウント設定",
+      "subtitle": "プロファイル、セキュリティ、アカウントの設定を管理する",
+      "backToDashboard": "ダッシュボードに戻る",
+      "help": {
+        "title": "ヘルプが必要ですか?",
+        "description": "アカウントの設定でお困りの場合は、サポートチームがお手伝いさせていただきます。",
+        "contactSupport": "サポートに連絡する",
+        "helpCenter": "ヘルプセンター"
+      },
+      "userProfile": {
+        "loading": "セキュリティ設定を読み込んでいます...",
+        "error": {
+          "title": "セキュリティ設定を読み込めません",
+          "description": "二段階認証の状態を取得できませんでした。ページを更新してもう一度試してください。",
+          "retry": "再試行"
+        },
+        "toastError": {
+          "title": "エラー",
+          "message": "セキュリティ設定の読み込みに失敗しました"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "二段階認証",
+        "subtitle": "アカウントにセキュリティ層を追加する",
+        "status": {
+          "enabled": "有効",
+          "disabled": "無効",
+          "active": "アクティブ",
+          "enabledDescription": "アカウントは二段階認証で保護されています。サインインには、パスワードと認証コードが必要です。",
+          "disabledDescription": "二段階認証が有効になっていません。アカウントのセキュリティを強化するために、有効にしてください。"
+        },
+        "whyEnable": {
+          "title": "なぜ2FAを有効にするべきですか?",
+          "reasons": {
+            "unauthorized": "不正アクセスからアカウントを守る",
+            "stuffing": "クレデンシャル攻撃を防ぐ",
+            "sensitive": "重要な操作にセキュリティを追加する",
+            "standards": "業界のセキュリティ基準を満たす"
+          }
+        },
+        "whatYouNeed": {
+          "title": "必要なもの",
+          "description": "スマートフォンやコンピューターにGoogle Authenticator、Authy、1Password、Microsoft Authenticatorなどの認証アプリが必要です。"
+        },
+        "backupCodes": {
+          "title": "バックアップコードを安全に保管する",
+          "description": "バックアップコードを安全な場所に保存することを確認してください。認証アプリにアクセスできなくなった場合、バックアップコードはアカウントにアクセするための唯一の方法です。"
+        },
+        "securityTip": {
+          "title": "セキュリティのヒント",
+          "description": "二段階認証を使用するとアカウントのセキュリティが大幅に向上します。パスワードが盗まれても、認証アプリにアクセスできなければアカウントにアクセスできません。"
+        },
+        "enable": {
+          "button": "二段階認証を有効にする"
+        },
+        "disable": {
+          "button": "二段階認証を無効にする",
+          "warning": {
+            "title": "本当によろしいですか?",
+            "description": "2FAを無効にするとアカウントのセキュリティが低下します。サインインにはパスワードのみが必要になります。"
+          },
+          "form": {
+            "passwordLabel": "パスワードを確認する",
+            "passwordPlaceholder": "パスワードを入力",
+            "codeLabel": "認証コード",
+            "codePlaceholder": "000000",
+            "codeHelp": "認証アプリから取得したコードを入力してください",
+            "showPassword": "パスワードを表示する",
+            "hidePassword": "パスワードを隠す",
+            "cancel": "キャンセル",
+            "submit": "2FAを無効にする",
+            "submitting": "無効化中..."
+          },
+          "toast": {
+            "success": {
+              "title": "2FA無効化",
+              "message": "二段階認証が無効になりました"
+            },
+            "error": {
+              "title": "無効化できません",
+              "defaultMessage": "認証に失敗しました。もう一度お試しください。"
+            },
+            "connectionError": {
+              "title": "接続エラー",
+              "message": "2FAを無効にできませんでした"
+            },
+            "requiredFields": {
+              "title": "必須項目",
+              "message": "パスワードと認証コードを入力してください"
+            },
+            "invalidCode": {
+              "title": "無効なコード",
+              "message": "6桁のコードを入力してください"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "2FA有効化完了",
+            "message": "アカウントは二段階認証で保護されるようになりました"
+          }
+        }
+      }
     }
   },
   "cart": {

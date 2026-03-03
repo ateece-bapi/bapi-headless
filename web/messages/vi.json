@@ -1893,7 +1893,52 @@
     "welcomeBack": "Chào mừng trở lại",
     "loginRequired": "Vui lòng đăng nhập để tiếp tục",
     "logout": "Đăng xuất",
-    "myProfile": "Hồ sơ của tôi"
+    "myProfile": "Hồ sơ của tôi",
+    "signInPage": {
+      "title": "Chào mừng trở lại",
+      "subtitle": "Đăng nhập để truy cập đơn hàng, sản phẩm đã lưu, và yêu cầu báo giá của bạn",
+      "form": {
+        "usernameLabel": "Tên đăng nhập hoặc Email",
+        "usernamePlaceholder": "Nhập tên đăng nhập hoặc email của bạn",
+        "usernameAriaLabel": "Tên đăng nhập hoặc địa chỉ email",
+        "passwordLabel": "Mật khẩu",
+        "passwordPlaceholder": "Nhập mật khẩu của bạn",
+        "passwordAriaLabel": "Mật khẩu",
+        "showPassword": "Hiện mật khẩu",
+        "hidePassword": "Ẩn mật khẩu",
+        "rememberMe": "Ghi nhớ tôi",
+        "forgotPassword": "Quên mật khẩu?",
+        "submitButton": "Đăng nhập",
+        "submittingButton": "Đang đăng nhập..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "Thiếu thông tin",
+          "message": "Vui lòng nhập cả tên đăng nhập và mật khẩu"
+        },
+        "welcomeBack": {
+          "title": "Chào mừng trở lại!",
+          "message": "Đăng nhập thành công"
+        },
+        "signInFailed": {
+          "title": "Đăng nhập không thành công",
+          "defaultMessage": "Tên đăng nhập hoặc mật khẩu không hợp lệ"
+        },
+        "connectionError": {
+          "title": "Lỗi kết nối",
+          "message": "Không thể kết nối với máy chủ. Vui lòng thử lại."
+        }
+      },
+      "security": {
+        "secureConnection": "Kết nối mã hóa an toàn",
+        "needHelp": "Cần trợ giúp?",
+        "contactSupport": "Liên hệ với Hỗ trợ"
+      },
+      "noAccount": {
+        "text": "Chưa có tài khoản?",
+        "contactSales": "Liên hệ với đại diện kinh doanh của bạn"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {
@@ -1902,6 +1947,274 @@
       "enableButton": "Kích hoạt 2FA ngay bây giờ",
       "learnMoreButton": "Tìm hiểu thêm",
       "dismissLabel": "Đóng biểu ngữ"
+    },
+    "dashboard": {
+      "welcomeBack": "Chào mừng trở lại, {displayName}!",
+      "subtitle": "Quản lý tài khoản, đơn hàng và tùy chỉnh của bạn từ bảng điều khiển",
+      "mockDataBanner": "Chế độ phát triển: Hiển thị dữ liệu giả lập để kiểm tra",
+      "accountManagement": "Quản lý tài khoản",
+      "recentActivity": "Hoạt động gần đây",
+      "viewAllOrders": "Xem tất cả đơn hàng →",
+      "company": "Công ty",
+      "accountNumber": "Số tài khoản",
+      "recentOrders": "Đơn hàng gần đây",
+      "ordersCount": "{count} đơn hàng",
+      "viewAll": "Xem tất cả →",
+      "savedQuotes": "Báo giá đã lưu",
+      "quotesCount": "{count} báo giá",
+      "moreItems": "+ {count} mặt hàng khác",
+      "moreItemsPlural": "+ {count} mặt hàng khác",
+      "sections": {
+        "profile": {
+          "title": "Hồ sơ",
+          "description": "Quản lý thông tin tài khoản và tùy chỉnh của bạn"
+        },
+        "orderHistory": {
+          "title": "Lịch sử đơn hàng",
+          "description": "Xem các đơn hàng trước đây và theo dõi vận chuyển"
+        },
+        "savedProducts": {
+          "title": "Sản phẩm đã lưu",
+          "description": "Truy cập các sản phẩm và danh sách yêu thích của bạn"
+        },
+        "quoteRequests": {
+          "title": "Yêu cầu báo giá",
+          "description": "Quản lý các yêu cầu báo giá tùy chỉnh của bạn"
+        },
+        "shoppingCart": {
+          "title": "Giỏ hàng",
+          "description": "Xem và quản lý các mặt hàng trong giỏ hàng của bạn"
+        },
+        "accountSettings": {
+          "title": "Cài đặt tài khoản",
+          "description": "Cập nhật mật khẩu và cài đặt bảo mật của bạn"
+        }
+      },
+      "orderStatus": {
+        "delivered": "Đã giao",
+        "shipped": "Đã gửi",
+        "processing": "Đang xử lý",
+        "pending": "Đang chờ xử lý",
+        "cancelled": "Đã hủy"
+      }
+    },
+    "profile": {
+      "title": "Hồ sơ",
+      "backToDashboard": "Trở lại bảng điều khiển",
+      "fields": {
+        "displayName": "Tên hiển thị",
+        "username": "Tên người dùng",
+        "email": "Địa chỉ email"
+      },
+      "accountInfo": {
+        "title": "Thông tin tài khoản",
+        "userId": "ID người dùng:",
+        "usernameLabel": "Tên người dùng:",
+        "notSet": "Chưa được thiết lập"
+      },
+      "actions": {
+        "editProfile": "Chỉnh sửa hồ sơ"
+      }
+    },
+    "orders": {
+      "title": "Lịch sử đơn hàng",
+      "subtitle": "Xem và theo dõi tất cả đơn hàng của bạn",
+      "backToDashboard": "Quay lại Bảng điều khiển",
+      "mockDataBanner": "Chế độ phát triển: Đang hiển thị dữ liệu đơn hàng mẫu",
+      "error": "Không thể tải lịch sử đơn hàng",
+      "empty": {
+        "title": "Chưa có đơn hàng nào",
+        "descriptionWithAccount": "Bạn chưa đặt bất kỳ đơn hàng nào. Hãy bắt đầu mua sắm để xem lịch sử đơn hàng của bạn tại đây.",
+        "descriptionWithoutAccount": "Tài khoản của bạn đang được thiết lập. Lịch sử đơn hàng sẽ xuất hiện tại đây khi có sẵn.",
+        "browseProducts": "Duyệt sản phẩm"
+      },
+      "count": {
+        "orders": "{count} Đơn hàng",
+        "order": "{count} Đơn hàng"
+      },
+      "orderNumber": "Đơn hàng #",
+      "placedOn": "Đặt vào",
+      "items": "{count} mặt hàng",
+      "moreItems": "+{count}",
+      "actions": {
+        "viewDetails": "Xem chi tiết",
+        "invoice": "Hóa đơn"
+      },
+      "status": {
+        "pending": "Đang chờ xử lý",
+        "processing": "Đang xử lý",
+        "on-hold": "Đang giữ",
+        "completed": "Hoàn thành",
+        "cancelled": "Đã hủy",
+        "refunded": "Đã hoàn tiền",
+        "failed": "Lỗi"
+      }
+    },
+    "favorites": {
+      "title": "Sản phẩm đã lưu",
+      "backToDashboard": "Quay lại Bảng điều khiển",
+      "count": {
+        "products": "{count} Sản phẩm đã lưu",
+        "product": "{count} Sản phẩm đã lưu"
+      },
+      "empty": {
+        "title": "Chưa có sản phẩm nào được lưu",
+        "description": "Bắt đầu lưu các sản phẩm yêu thích của bạn để truy cập chúng nhanh chóng sau này. Nhấp vào biểu tượng trái tim trên trang sản phẩm để thêm nó vào mục yêu thích của bạn.",
+        "browseProducts": "Duyệt sản phẩm",
+        "testFavorites": "Kiểm tra mục yêu thích"
+      },
+      "productId": "ID:",
+      "noImage": "Không có hình ảnh",
+      "viewProduct": "Xem sản phẩm"
+    },
+    "quotes": {
+      "title": "Yêu Cầu Báo Giá",
+      "subtitle": "Theo dõi và quản lý các yêu cầu báo giá tùy chỉnh của bạn",
+      "backToDashboard": "Quay lại Bảng Điều Khiển",
+      "mockDataBanner": "Hiện thị dữ liệu báo giá mẫu",
+      "newQuoteRequest": "Yêu Cầu Báo Giá Mới",
+      "empty": {
+        "title": "Chưa Có Yêu Cầu Báo Giá Nào",
+        "description": "Yêu cầu báo giá tùy chỉnh cho đơn hàng số lượng lớn, cấu hình đặc biệt hoặc tư vấn kỹ thuật.",
+        "submitQuote": "Gửi Yêu Cầu Báo Giá",
+        "infoCards": {
+          "customSolutions": {
+            "title": "Giải Pháp Tùy Chỉnh",
+            "description": "Nhận giá cả phù hợp cho yêu cầu ứng dụng cụ thể của bạn"
+          },
+          "fastResponse": {
+            "title": "Phản Hồi Nhanh Chóng",
+            "description": "Nhóm của chúng tôi thường phản hồi trong vòng 24 giờ làm việc"
+          },
+          "expertSupport": {
+            "title": "Hỗ Trợ Chuyên Gia",
+            "description": "Làm việc trực tiếp với các chuyên gia kỹ thuật của chúng tôi"
+          }
+        }
+      },
+      "quoteNumber": "Báo Giá #",
+      "created": "Được Tạo:",
+      "expires": "Hết Hạn:",
+      "items": "Mặt Hàng:",
+      "itemCount": {
+        "items": "{count} mặt hàng",
+        "item": "{count} mặt hàng"
+      },
+      "actions": {
+        "viewDetails": "Xem Chi Tiết",
+        "cancelRequest": "Hủy Yêu Cầu"
+      },
+      "status": {
+        "pending": "Đang Chờ",
+        "reviewing": "Đang Xem Xét",
+        "quoted": "Đã Báo Giá",
+        "declined": "Đã Từ Chối"
+      }
+    },
+    "settings": {
+      "title": "Cài đặt tài khoản",
+      "subtitle": "Quản lý hồ sơ, bảo mật và tùy chỉnh tài khoản của bạn",
+      "backToDashboard": "Quay lại Bảng điều khiển",
+      "help": {
+        "title": "Cần trợ giúp?",
+        "description": "Nếu bạn gặp sự cố với cài đặt tài khoản của mình, nhóm hỗ trợ của chúng tôi luôn sẵn sàng giúp đỡ.",
+        "contactSupport": "Liên hệ hỗ trợ",
+        "helpCenter": "Trung tâm trợ giúp"
+      },
+      "userProfile": {
+        "loading": "Đang tải cài đặt bảo mật...",
+        "error": {
+          "title": "Không thể tải cài đặt bảo mật",
+          "description": "Chúng tôi không thể truy xuất trạng thái xác thực hai yếu tố của bạn. Vui lòng thử làm mới trang.",
+          "retry": "Thử lại"
+        },
+        "toastError": {
+          "title": "Lỗi",
+          "message": "Không thể tải cài đặt bảo mật"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "Xác thực hai yếu tố",
+        "subtitle": "Thêm một lớp bảo mật cho tài khoản của bạn",
+        "status": {
+          "enabled": "Đã bật",
+          "disabled": "Đã tắt",
+          "active": "Đang hoạt động",
+          "enabledDescription": "Tài khoản của bạn đã được bảo vệ bằng xác thực hai yếu tố. Bạn cần mật khẩu và mã xác minh để đăng nhập.",
+          "disabledDescription": "Xác thực hai yếu tố chưa được bật. Hãy bật nó để thêm lớp bảo mật cho tài khoản của bạn."
+        },
+        "whyEnable": {
+          "title": "Tại sao nên bật 2FA?",
+          "reasons": {
+            "unauthorized": "Bảo vệ tài khoản của bạn khỏi truy cập trái phép",
+            "stuffing": "Ngăn chặn các cuộc tấn công gửi thông tin đăng nhập bừa bãi",
+            "sensitive": "Thêm bảo mật cho các hoạt động nhạy cảm",
+            "standards": "Đáp ứng các tiêu chuẩn bảo mật của ngành"
+          }
+        },
+        "whatYouNeed": {
+          "title": "Bạn cần gì",
+          "description": "Một ứng dụng xác thực như Google Authenticator, Authy, 1Password hoặc Microsoft Authenticator trên điện thoại hoặc máy tính của bạn."
+        },
+        "backupCodes": {
+          "title": "Giữ mã sao lưu an toàn",
+          "description": "Hãy chắc chắn rằng bạn đã lưu các mã sao lưu ở một nơi an toàn. Nếu bạn không thể truy cập ứng dụng xác thực, mã sao lưu là cách duy nhất để truy cập tài khoản của bạn."
+        },
+        "securityTip": {
+          "title": "Mẹo bảo mật",
+          "description": "Xác thực hai yếu tố cải thiện đáng kể bảo mật tài khoản. Ngay cả khi ai đó có được mật khẩu của bạn, họ cũng không thể truy cập tài khoản của bạn mà không có quyền truy cập vào ứng dụng xác thực của bạn."
+        },
+        "enable": {
+          "button": "Bật Xác thực Hai yếu tố"
+        },
+        "disable": {
+          "button": "Tắt Xác thực Hai yếu tố",
+          "warning": {
+            "title": "Bạn có chắc chứ?",
+            "description": "Tắt 2FA sẽ làm tài khoản của bạn ít an toàn hơn. Bạn chỉ cần mật khẩu để đăng nhập."
+          },
+          "form": {
+            "passwordLabel": "Xác nhận mật khẩu của bạn",
+            "passwordPlaceholder": "Nhập mật khẩu của bạn",
+            "codeLabel": "Mã xác minh",
+            "codePlaceholder": "000000",
+            "codeHelp": "Nhập mã từ ứng dụng xác thực của bạn",
+            "showPassword": "Hiển thị mật khẩu",
+            "hidePassword": "Ẩn mật khẩu",
+            "cancel": "Hủy",
+            "submit": "Tắt 2FA",
+            "submitting": "Đang tắt..."
+          },
+          "toast": {
+            "success": {
+              "title": "2FA đã tắt",
+              "message": "Xác thực hai yếu tố đã được tắt"
+            },
+            "error": {
+              "title": "Không thể tắt",
+              "defaultMessage": "Xác minh không thành công. Vui lòng thử lại."
+            },
+            "connectionError": {
+              "title": "Lỗi kết nối",
+              "message": "Không thể tắt 2FA"
+            },
+            "requiredFields": {
+              "title": "Trường bắt buộc",
+              "message": "Vui lòng nhập mật khẩu và mã xác minh của bạn"
+            },
+            "invalidCode": {
+              "title": "Mã không hợp lệ",
+              "message": "Vui lòng nhập mã 6 chữ số"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "2FA đã bật",
+            "message": "Tài khoản của bạn bây giờ được bảo vệ bằng xác thực hai yếu tố"
+          }
+        }
+      }
     }
   },
   "cart": {

@@ -6,6 +6,7 @@ import logger from '@/lib/logger';
 import { authenticatedGraphqlClient } from '@/lib/graphql/authenticated-client';
 import { GET_CUSTOMER_ORDERS } from '@/lib/graphql/queries/customer-orders';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
+import { getTranslations } from 'next-intl/server';
 
 interface Order {
   id: string;
@@ -29,11 +30,17 @@ interface Order {
   };
 }
 
-export default async function OrdersPage() {
+type OrdersPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function OrdersPage({ params }: OrdersPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations('account.orders');
   const { user } = await getServerAuth();
 
   if (!user) {
-    redirect('/sign-in');
+    redirect(`/${locale}/sign-in`);
   }
 
   // Check for mock data first
@@ -91,7 +98,7 @@ export default async function OrdersPage() {
             <div className="flex items-center gap-2 text-sm text-yellow-800">
               <AlertCircle className="h-4 w-4" />
               <span>
-                <strong>Development Mode:</strong> Showing mock order data
+                <strong>Development Mode:</strong> {t('mockDataBanner')}
               </span>
             </div>
           </div>
@@ -102,14 +109,14 @@ export default async function OrdersPage() {
       <section className="bg-linear-to-r w-full from-primary-600 to-primary-700 text-white">
         <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href="/account"
+            href={`/${locale}/account`}
             className="mb-6 inline-flex items-center gap-2 font-semibold text-white/90 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-            Back to Dashboard
+            {t('backToDashboard')}
           </Link>
-          <h1 className="text-3xl font-bold lg:text-4xl">Order History</h1>
-          <p className="mt-2 text-white/90">View and track all your orders</p>
+          <h1 className="text-3xl font-bold lg:text-4xl">{t('title')}</h1>
+          <p className="mt-2 text-white/90">{t('subtitle')}</p>
         </div>
       </section>
 
@@ -118,7 +125,7 @@ export default async function OrdersPage() {
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
           {error ? (
             <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center">
-              <p className="text-red-800">{error}</p>
+              <p className="text-red-800">{t('error')}</p>
             </div>
           ) : orders.length === 0 ? (
             /* Empty State */
@@ -128,17 +135,17 @@ export default async function OrdersPage() {
                   <Package className="h-10 w-10 text-primary-600" strokeWidth={2} />
                 </div>
               </div>
-              <h2 className="mb-3 text-2xl font-bold text-neutral-900">No Orders Yet</h2>
+              <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('empty.title')}</h2>
               <p className="mx-auto mb-8 max-w-md text-neutral-600">
                 {wpCustomerId
-                  ? "You haven't placed any orders yet. Start shopping to see your order history here."
-                  : 'Your account is being set up. Order history will appear here once available.'}
+                  ? t('empty.descriptionWithAccount')
+                  : t('empty.descriptionWithoutAccount')}
               </p>
               <Link
-                href="/products"
+                href={`/${locale}/products`}
                 className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-700 hover:shadow-lg"
               >
-                Browse Products
+                {t('empty.browseProducts')}
               </Link>
             </div>
           ) : (
@@ -146,7 +153,9 @@ export default async function OrdersPage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-neutral-900">
-                  {orders.length} {orders.length === 1 ? 'Order' : 'Orders'}
+                  {orders.length === 1
+                    ? t('count.order', { count: orders.length })
+                    : t('count.orders', { count: orders.length })}
                 </h2>
               </div>
 
@@ -160,13 +169,13 @@ export default async function OrdersPage() {
                       <div>
                         <div className="mb-2 flex items-center gap-3">
                           <h3 className="text-xl font-bold text-neutral-900">
-                            Order #{order.orderNumber}
+                            {t('orderNumber')}{order.orderNumber}
                           </h3>
-                          {getStatusBadge(order.status)}
+                          {getStatusBadge(order.status, t)}
                         </div>
                         <p className="text-sm text-neutral-600">
-                          Placed on{' '}
-                          {new Date(order.date).toLocaleDateString('en-US', {
+                          {t('placedOn')}{' '}
+                          {new Date(order.date).toLocaleDateString(locale, {
                             month: 'long',
                             day: 'numeric',
                             year: 'numeric',
@@ -176,8 +185,9 @@ export default async function OrdersPage() {
                       <div className="text-right">
                         <p className="text-2xl font-bold text-primary-600">{order.total}</p>
                         <p className="text-sm text-neutral-600">
-                          {order.lineItems.nodes.reduce((sum, item) => sum + item.quantity, 0)}{' '}
-                          items
+                          {t('items', {
+                            count: order.lineItems.nodes.reduce((sum, item) => sum + item.quantity, 0)
+                          })}
                         </p>
                       </div>
                     </div>
@@ -204,7 +214,7 @@ export default async function OrdersPage() {
                       ))}
                       {order.lineItems.nodes.length > 4 && (
                         <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg bg-neutral-100 text-sm font-semibold text-neutral-600">
-                          +{order.lineItems.nodes.length - 4}
+                          {t('moreItems', { count: order.lineItems.nodes.length - 4 })}
                         </div>
                       )}
                     </div>
@@ -212,18 +222,18 @@ export default async function OrdersPage() {
                     {/* Actions */}
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <Link
-                        href={`/account/orders/${order.databaseId}`}
+                        href={`/${locale}/account/orders/${order.databaseId}`}
                         className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                       >
                         <Eye className="h-4 w-4" strokeWidth={2.5} />
-                        View Details
+                        {t('actions.viewDetails')}
                       </Link>
                       <button
                         type="button"
                         className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-50"
                       >
                         <Download className="h-4 w-4" strokeWidth={2.5} />
-                        Invoice
+                        {t('actions.invoice')}
                       </button>
                     </div>
                   </div>
@@ -238,7 +248,7 @@ export default async function OrdersPage() {
 }
 
 // Helper function for status badges
-function getStatusBadge(status: string) {
+function getStatusBadge(status: string, t: (key: string) => string) {
   const styles: Record<string, string> = {
     pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
     processing: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -249,7 +259,7 @@ function getStatusBadge(status: string) {
     failed: 'bg-red-100 text-red-800 border-red-200',
   };
 
-  const label = status.replace('-', ' ');
+  const translationKey = `status.${status}`;
 
   return (
     <span
@@ -257,7 +267,7 @@ function getStatusBadge(status: string) {
         styles[status] || 'border-neutral-200 bg-neutral-100 text-neutral-800'
       }`}
     >
-      {label}
+      {t(translationKey)}
     </span>
   );
 }

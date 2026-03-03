@@ -3,12 +3,19 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, FileText, Clock, CheckCircle, XCircle, Plus, AlertCircle } from 'lucide-react';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
+import { getTranslations } from 'next-intl/server';
 
-export default async function QuotesPage() {
+type QuotesPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function QuotesPage({ params }: QuotesPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations('account.quotes');
   const { user } = await getServerAuth();
 
   if (!user) {
-    redirect('/sign-in');
+    redirect(`/${locale}/sign-in`);
   }
 
   // Get mock data if enabled
@@ -36,7 +43,7 @@ export default async function QuotesPage() {
             <div className="flex items-center gap-2 text-sm text-yellow-800">
               <AlertCircle className="h-4 w-4" />
               <span>
-                <strong>Development Mode:</strong> Showing mock quote data
+                <strong>Development Mode:</strong> {t('mockDataBanner')}
               </span>
             </div>
           </div>
@@ -47,23 +54,23 @@ export default async function QuotesPage() {
       <section className="bg-linear-to-r w-full from-primary-600 to-primary-700 text-white">
         <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href="/account"
+            href={`/${locale}/account`}
             className="mb-6 inline-flex items-center gap-2 font-semibold text-white/90 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-            Back to Dashboard
+            {t('backToDashboard')}
           </Link>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-3xl font-bold lg:text-4xl">Quote Requests</h1>
-              <p className="mt-2 text-white/90">Track and manage your custom quote requests</p>
+              <h1 className="text-3xl font-bold lg:text-4xl">{t('title')}</h1>
+              <p className="mt-2 text-white/90">{t('subtitle')}</p>
             </div>
             <Link
-              href="/request-quote"
+              href={`/${locale}/request-quote`}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-primary-700 shadow-lg transition-all hover:bg-neutral-50 hover:shadow-xl"
             >
               <Plus className="h-5 w-5" strokeWidth={2.5} />
-              New Quote Request
+              {t('newQuoteRequest')}
             </Link>
           </div>
         </div>
@@ -80,17 +87,16 @@ export default async function QuotesPage() {
                   <FileText className="h-10 w-10 text-primary-600" strokeWidth={2} />
                 </div>
               </div>
-              <h2 className="mb-3 text-2xl font-bold text-neutral-900">No Quote Requests Yet</h2>
+              <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('empty.title')}</h2>
               <p className="mx-auto mb-8 max-w-md text-neutral-600">
-                Request a custom quote for bulk orders, special configurations, or technical
-                consultations.
+                {t('empty.description')}
               </p>
               <Link
-                href="/request-quote"
+                href={`/${locale}/request-quote`}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-700 hover:shadow-lg"
               >
                 <Plus className="h-5 w-5" strokeWidth={2.5} />
-                Submit Quote Request
+                {t('empty.submitQuote')}
               </Link>
 
               {/* Info Cards */}
@@ -99,27 +105,27 @@ export default async function QuotesPage() {
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100">
                     <FileText className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
-                  <h3 className="mb-2 font-bold text-neutral-900">Custom Solutions</h3>
+                  <h3 className="mb-2 font-bold text-neutral-900">{t('empty.infoCards.customSolutions.title')}</h3>
                   <p className="text-sm text-neutral-600">
-                    Get tailored pricing for your specific application requirements
+                    {t('empty.infoCards.customSolutions.description')}
                   </p>
                 </div>
                 <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100">
                     <Clock className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
-                  <h3 className="mb-2 font-bold text-neutral-900">Fast Response</h3>
+                  <h3 className="mb-2 font-bold text-neutral-900">{t('empty.infoCards.fastResponse.title')}</h3>
                   <p className="text-sm text-neutral-600">
-                    Our team typically responds within 24 business hours
+                    {t('empty.infoCards.fastResponse.description')}
                   </p>
                 </div>
                 <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100">
                     <CheckCircle className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
-                  <h3 className="mb-2 font-bold text-neutral-900">Expert Support</h3>
+                  <h3 className="mb-2 font-bold text-neutral-900">{t('empty.infoCards.expertSupport.title')}</h3>
                   <p className="text-sm text-neutral-600">
-                    Work directly with our technical specialists
+                    {t('empty.infoCards.expertSupport.description')}
                   </p>
                 </div>
               </div>
@@ -136,13 +142,13 @@ export default async function QuotesPage() {
                     <div className="flex-1">
                       <div className="mb-3 flex items-center gap-3">
                         <h3 className="text-xl font-bold text-neutral-900">Quote #{quote.id}</h3>
-                        {getStatusBadge(quote.status)}
+                        {getStatusBadge(quote.status, t)}
                       </div>
                       <div className="mb-4 flex flex-wrap gap-4 text-sm">
                         <div>
-                          <span className="text-neutral-500">Created:</span>{' '}
+                          <span className="text-neutral-500">{t('created')}</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {new Date(quote.date).toLocaleDateString('en-US', {
+                            {new Date(quote.date).toLocaleDateString(locale, {
                               month: 'short',
                               day: 'numeric',
                               year: 'numeric',
@@ -150,9 +156,9 @@ export default async function QuotesPage() {
                           </span>
                         </div>
                         <div>
-                          <span className="text-neutral-500">Expires:</span>{' '}
+                          <span className="text-neutral-500">{t('expires')}</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {new Date(quote.expiresAt).toLocaleDateString('en-US', {
+                            {new Date(quote.expiresAt).toLocaleDateString(locale, {
                               month: 'short',
                               day: 'numeric',
                               year: 'numeric',
@@ -160,9 +166,9 @@ export default async function QuotesPage() {
                           </span>
                         </div>
                         <div>
-                          <span className="text-neutral-500">Items:</span>{' '}
+                          <span className="text-neutral-500">{t('items')}</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {quote.itemCount} {quote.itemCount === 1 ? 'item' : 'items'}
+                            {quote.itemCount === 1 ? t('itemCount.item', { count: quote.itemCount }) : t('itemCount.items', { count: quote.itemCount })}
                           </span>
                         </div>
                       </div>
@@ -172,14 +178,14 @@ export default async function QuotesPage() {
                         href={`/account/quotes/${quote.id}`}
                         className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                       >
-                        View Details
+                        {t('actions.viewDetails')}
                       </Link>
                       {quote.status === 'pending' && (
                         <button
                           type="button"
                           className="inline-flex items-center justify-center rounded-lg border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-50"
                         >
-                          Cancel Request
+                          {t('actions.cancelRequest')}
                         </button>
                       )}
                     </div>
@@ -195,7 +201,7 @@ export default async function QuotesPage() {
 }
 
 // Helper function for status badges
-function getStatusBadge(status: QuoteStatus) {
+function getStatusBadge(status: QuoteStatus, t: (key: string) => string) {
   const styles = {
     pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
     reviewing: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -215,7 +221,7 @@ function getStatusBadge(status: QuoteStatus) {
       className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold ${styles[status]}`}
     >
       {icons[status]}
-      {status.charAt(0).toUpperCase() + status.slice(1)}
+      {t(`status.${status}`)}
     </span>
   );
 }

@@ -15,6 +15,7 @@ import {
 import Link from 'next/link';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 import AccountDashboardClient from '@/components/account/AccountDashboardClient';
+import { getTranslations } from 'next-intl/server';
 
 type AccountPageProps = {
   params: Promise<{ locale: string }>;
@@ -23,6 +24,7 @@ type AccountPageProps = {
 export default async function AccountPage({ params }: AccountPageProps) {
   const { locale } = await params;
   const { user } = await getServerAuth();
+  const t = await getTranslations('account.dashboard');
 
   if (!user) {
     redirect(`/${locale}/sign-in`);
@@ -37,43 +39,43 @@ export default async function AccountPage({ params }: AccountPageProps) {
 
   const dashboardSections = [
     {
-      title: 'Profile',
-      description: 'Manage your account information and preferences',
+      title: t('sections.profile.title'),
+      description: t('sections.profile.description'),
       icon: User,
       href: `/${locale}/account/profile`,
       color: 'primary',
     },
     {
-      title: 'Order History',
-      description: 'View your past orders and track shipments',
+      title: t('sections.orderHistory.title'),
+      description: t('sections.orderHistory.description'),
       icon: Package,
       href: `/${locale}/account/orders`,
       color: 'primary',
     },
     {
-      title: 'Saved Products',
-      description: 'Access your favorite products and wishlists',
+      title: t('sections.savedProducts.title'),
+      description: t('sections.savedProducts.description'),
       icon: Heart,
       href: `/${locale}/account/favorites`,
       color: 'accent',
     },
     {
-      title: 'Quote Requests',
-      description: 'Manage your custom quote requests',
+      title: t('sections.quoteRequests.title'),
+      description: t('sections.quoteRequests.description'),
       icon: FileText,
       href: `/${locale}/account/quotes`,
       color: 'primary',
     },
     {
-      title: 'Shopping Cart',
-      description: 'View and manage items in your cart',
+      title: t('sections.shoppingCart.title'),
+      description: t('sections.shoppingCart.description'),
       icon: ShoppingBag,
       href: `/${locale}/cart`,
       color: 'primary',
     },
     {
-      title: 'Account Settings',
-      description: 'Update your password and security settings',
+      title: t('sections.accountSettings.title'),
+      description: t('sections.accountSettings.description'),
       icon: Settings,
       href: `/${locale}/account/settings`,
       color: 'neutral',
@@ -89,7 +91,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
             <div className="flex items-center gap-2 text-sm text-yellow-800">
               <AlertCircle className="h-4 w-4" />
               <span>
-                <strong>Development Mode:</strong> Showing mock data for testing
+                <strong>{t('mockDataBanner')}</strong>
               </span>
             </div>
           </div>
@@ -101,10 +103,10 @@ export default async function AccountPage({ params }: AccountPageProps) {
         <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 lg:py-16 xl:px-12">
           <div className="max-w-3xl">
             <h1 className="mb-4 text-4xl font-bold text-neutral-900 lg:text-5xl">
-              Welcome back, {displayName}!
+              {t('welcomeBack', { displayName })}
             </h1>
             <p className="text-lg text-neutral-600 lg:text-xl">
-              Manage your account, orders, and preferences from your dashboard
+              {t('subtitle')}
             </p>
           </div>
         </div>
@@ -121,9 +123,9 @@ export default async function AccountPage({ params }: AccountPageProps) {
                   <Building2 className="h-6 w-6 text-primary-600" />
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-500">Company</p>
+                  <p className="mb-1 text-sm text-neutral-500">{t('company')}</p>
                   <p className="font-semibold text-neutral-900">{profile.companyName}</p>
-                  <p className="text-sm text-neutral-600">Account #{profile.accountNumber}</p>
+                  <p className="text-sm text-neutral-600">{t('accountNumber')} {profile.accountNumber}</p>
                 </div>
               </div>
 
@@ -133,15 +135,15 @@ export default async function AccountPage({ params }: AccountPageProps) {
                   <Package className="h-6 w-6 text-primary-600" />
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-500">Recent Orders</p>
+                  <p className="mb-1 text-sm text-neutral-500">{t('recentOrders')}</p>
                   <p className="font-semibold text-neutral-900">
-                    {profile.orderHistory.length} orders
+                    {t('ordersCount', { count: profile.orderHistory.length })}
                   </p>
                   <Link
                     href={`/${locale}/account/orders`}
                     className="text-sm text-primary-600 hover:text-primary-700"
                   >
-                    View all →
+                    {t('viewAll')}
                   </Link>
                 </div>
               </div>
@@ -152,15 +154,15 @@ export default async function AccountPage({ params }: AccountPageProps) {
                   <FileText className="h-6 w-6 text-accent-600" />
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-500">Saved Quotes</p>
+                  <p className="mb-1 text-sm text-neutral-500">{t('savedQuotes')}</p>
                   <p className="font-semibold text-neutral-900">
-                    {profile.savedQuotes.length} quotes
+                    {t('quotesCount', { count: profile.savedQuotes.length })}
                   </p>
                   <Link
                     href={`/${locale}/account/quotes`}
                     className="text-sm text-primary-600 hover:text-primary-700"
                   >
-                    View all →
+                    {t('viewAll')}
                   </Link>
                 </div>
               </div>
@@ -173,7 +175,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
       {profile && profile.orderHistory.length > 0 && (
         <section className="w-full py-8">
           <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
-            <h2 className="mb-6 text-2xl font-bold text-neutral-900">Recent Activity</h2>
+            <h2 className="mb-6 text-2xl font-bold text-neutral-900">{t('recentActivity')}</h2>
             <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white shadow-sm">
               {profile.orderHistory.slice(0, 3).map((order) => (
                 <div key={order.orderId} className="p-6 transition-colors hover:bg-neutral-50">
@@ -195,7 +197,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                                 : 'bg-gray-100 text-gray-800'
                         }`}
                       >
-                        {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                        {t(`orderStatus.${order.status}`)}
                       </span>
                     </div>
                   </div>
@@ -204,10 +206,11 @@ export default async function AccountPage({ params }: AccountPageProps) {
                       <p key={idx} className="text-sm text-neutral-600">
                         {item.quantity}x {item.name} ({item.sku})
                       </p>
-                    ))}
-                    {order.items.length > 2 && (
+                    ))}                    {order.items.length > 2 && (
                       <p className="text-sm text-neutral-500">
-                        + {order.items.length - 2} more item{order.items.length - 2 > 1 ? 's' : ''}
+                        {order.items.length - 2 === 1
+                          ? t('moreItems', { count: order.items.length - 2 })
+                          : t('moreItemsPlural', { count: order.items.length - 2 })}
                       </p>
                     )}
                   </div>
@@ -216,10 +219,10 @@ export default async function AccountPage({ params }: AccountPageProps) {
             </div>
             <div className="mt-4 text-center">
               <Link
-                href="/account/orders"
+                href={`/${locale}/account/orders`}
                 className="inline-flex items-center gap-2 font-medium text-primary-600 hover:text-primary-700"
               >
-                View all orders →
+                {t('viewAllOrders')}
               </Link>
             </div>
           </div>
@@ -229,7 +232,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
       {/* Dashboard Grid */}
       <section className="w-full py-12 lg:py-16">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
-          <h2 className="mb-6 text-2xl font-bold text-neutral-900">Account Management</h2>
+          <h2 className="mb-6 text-2xl font-bold text-neutral-900">{t('accountManagement')}</h2>
           
           {/* Two-Factor Authentication Banner */}
           <AccountDashboardClient locale={locale} />

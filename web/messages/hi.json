@@ -571,23 +571,68 @@
     "checkoutFailed": "Checkout failed. Please try again."
   },
   "auth": {
-    "signIn": "Sign In",
-    "signOut": "Sign Out",
-    "signUp": "Sign Up",
-    "profile": "Profile",
-    "account": "My Account",
-    "dashboard": "Dashboard",
-    "settings": "Settings",
-    "orders": "Orders",
-    "favorites": "Favorites",
-    "quotes": "Quotes",
-    "addresses": "Addresses",
-    "paymentMethods": "Payment Methods",
-    "welcome": "Welcome",
-    "welcomeBack": "Welcome back",
-    "loginRequired": "Please sign in to continue",
-    "logout": "Sign Out",
-    "myProfile": "My Profile"
+    "signIn": "प्रवेश करें",
+    "signOut": "प्रवेश करें",
+    "signUp": "नामांकन करें",
+    "profile": "प्रोफ़ाइल",
+    "account": "मेरा खाता",
+    "dashboard": "डैशबोर्ड",
+    "settings": "सेटिंग्स",
+    "orders": "ऑर्डर",
+    "favorites": "पसंदीदा",
+    "quotes": "कोट्स",
+    "addresses": "पते",
+    "paymentMethods": "भुगतान विधियाँ",
+    "welcome": "स्वागत हैं",
+    "welcomeBack": "वापस स्वागत हैं",
+    "loginRequired": "कृपया जारी रखने के लिए प्रवेश करें",
+    "logout": "प्रवेश करें",
+    "myProfile": "मेरी प्रोफ़ाइल",
+    "signInPage": {
+      "title": "वापस स्वागत हैं",
+      "subtitle": "अपने ऑर्डर, सहेजे गए उत्पाद और कोट अनुरोध तक पहुंचने के लिए प्रवेश करें",
+      "form": {
+        "usernameLabel": "उपयोगकर्ता नाम या ईमेल",
+        "usernamePlaceholder": "अपना उपयोगकर्ता नाम या ईमेल दर्ज करें",
+        "usernameAriaLabel": "उपयोगकर्ता नाम या ईमेल पता",
+        "passwordLabel": "पासवर्ड",
+        "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
+        "passwordAriaLabel": "पासवर्ड",
+        "showPassword": "पासवर्ड दिखाएं",
+        "hidePassword": "पासवर्ड छिपाएं",
+        "rememberMe": "मुझे याद रखें",
+        "forgotPassword": "पासवर्ड भूल गए?",
+        "submitButton": "प्रवेश करें",
+        "submittingButton": "प्रवेश किया जा रहा है..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "खाली फ़ील्ड",
+          "message": "कृपया उपयोगकर्ता नाम और पासवर्ड दर्ज करें"
+        },
+        "welcomeBack": {
+          "title": "वापस स्वागत हैं!",
+          "message": "सफलतापूर्वक प्रवेश किया"
+        },
+        "signInFailed": {
+          "title": "प्रवेश विफल",
+          "defaultMessage": "अमान्य उपयोगकर्ता नाम या पासवर्ड"
+        },
+        "connectionError": {
+          "title": "कनेक्शन त्रुटि",
+          "message": "सर्वर से कनेक्ट करने में असमर्थ। कृपया पुन: प्रयास करें।"
+        }
+      },
+      "security": {
+        "secureConnection": "सुरक्षित एन्क्रिप्टेड कनेक्शन",
+        "needHelp": "मदद की ज़रूरत है?",
+        "contactSupport": "सहायता से संपर्क करें"
+      },
+      "noAccount": {
+        "text": "खाता नहीं है?",
+        "contactSales": "अपने बिक्री प्रतिनिधि से संपर्क करें"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {
@@ -596,6 +641,274 @@
       "enableButton": "अभी 2FA सक्षम करें",
       "learnMoreButton": "अधिक जानें",
       "dismissLabel": "बैनर बंद करें"
+    },
+    "dashboard": {
+      "welcomeBack": "{displayName} का स्वागत है!",
+      "subtitle": "अपने डैशबोर्ड से अपना खाता, ऑर्डर और प्राथमिकताएं प्रबंधित करें",
+      "mockDataBanner": "विकास मोड: परीक्षण के लिए मॉक डेटा दिखाया जा रहा है",
+      "accountManagement": "खाता प्रबंधन",
+      "recentActivity": "हाल की गतिविधि",
+      "viewAllOrders": "सभी ऑर्डर देखें →",
+      "company": "कंपनी",
+      "accountNumber": "खाता #",
+      "recentOrders": "हाल के ऑर्डर",
+      "ordersCount": "{count} ऑर्डर",
+      "viewAll": "सभी देखें →",
+      "savedQuotes": "सहेजे गए कोट",
+      "quotesCount": "{count} कोट",
+      "moreItems": "+ और {count} आइटम",
+      "moreItemsPlural": "+ और {count} आइटम",
+      "sections": {
+        "profile": {
+          "title": "प्रोफ़ाइल",
+          "description": "अपने खाता जानकारी और प्राथमिकताओं का प्रबंधन करें"
+        },
+        "orderHistory": {
+          "title": "ऑर्डर इतिहास",
+          "description": "अपने पिछले ऑर्डर देखें और शिपमेंट ट्रैक करें"
+        },
+        "savedProducts": {
+          "title": "सहेजे गए उत्पाद",
+          "description": "अपने पसंदीदा उत्पादों और विशलिस्ट तक पहुंचें"
+        },
+        "quoteRequests": {
+          "title": "कोट अनुरोध",
+          "description": "अपने कस्टम कोट अनुरोधों का प्रबंधन करें"
+        },
+        "shoppingCart": {
+          "title": "शॉपिंग कार्ट",
+          "description": "अपने कार्ट में आइटम देखें और प्रबंधित करें"
+        },
+        "accountSettings": {
+          "title": "खाता सेटिंग्स",
+          "description": "अपना पासवर्ड और सुरक्षा सेटिंग्स अपडेट करें"
+        }
+      },
+      "orderStatus": {
+        "delivered": "पहुंचा दिया गया",
+        "shipped": "शिप किया गया",
+        "processing": "प्रोसेस हो रहा है",
+        "pending": "लंबित",
+        "cancelled": "रद्द किया गया"
+      }
+    },
+    "profile": {
+      "title": "प्रोफ़ाइल",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
+      "fields": {
+        "displayName": "प्रदर्शन नाम",
+        "username": "उपयोगकर्ता नाम",
+        "email": "ईमेल पता"
+      },
+      "accountInfo": {
+        "title": "खाता जानकारी",
+        "userId": "उपयोगकर्ता आईडी:",
+        "usernameLabel": "उपयोगकर्ता नाम:",
+        "notSet": "सेट नहीं है"
+      },
+      "actions": {
+        "editProfile": "प्रोफ़ाइल संपादित करें"
+      }
+    },
+    "orders": {
+      "title": "आदेश इतिहास",
+      "subtitle": "अपने सभी आदेशों को देखें और ट्रैक करें",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
+      "mockDataBanner": "विकास मोड: मॉक आदेश डेटा दिखाया जा रहा है",
+      "error": "आदेश इतिहास लोड करने में विफल",
+      "empty": {
+        "title": "अभी तक कोई आदेश नहीं",
+        "descriptionWithAccount": "आपने अभी तक कोई आदेश नहीं दिया है। अपना आदेश इतिहास यहां देखने के लिए खरीदारी शुरू करें।",
+        "descriptionWithoutAccount": "आपका खाता सेट किया जा रहा है। आदेश इतिहास जब उपलब्ध होगा, तो यहां दिखाया जाएगा।",
+        "browseProducts": "उत्पाद ब्राउज़ करें"
+      },
+      "count": {
+        "orders": "{count} आदेश",
+        "order": "{count} आदेश"
+      },
+      "orderNumber": "आदेश #",
+      "placedOn": "दिनांक",
+      "items": "{count} आइटम",
+      "moreItems": "+{count}",
+      "actions": {
+        "viewDetails": "विवरण देखें",
+        "invoice": "चालान"
+      },
+      "status": {
+        "pending": "लंबित",
+        "processing": "प्रक्रियाधीन",
+        "on-hold": "होल्ड पर",
+        "completed": "पूर्ण",
+        "cancelled": "रद्द",
+        "refunded": "रिफंड किया गया",
+        "failed": "विफल"
+      }
+    },
+    "favorites": {
+      "title": "सुरक्षित उत्पाद",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
+      "count": {
+        "products": "{count} उत्पाद सुरक्षित किए गए",
+        "product": "{count} उत्पाद सुरक्षित किया गया"
+      },
+      "empty": {
+        "title": "अभी तक कोई उत्पाद सुरक्षित नहीं किया गया",
+        "description": "अपने पसंदीदा उत्पादों को सुरक्षित करके बाद में उन तक जल्दी पहुंच प्राप्त करें। किसी भी उत्पाद पृष्ठ पर दिल के चिह्न पर क्लिक करके उसे अपने पसंदीदा में जोड़ें।",
+        "browseProducts": "उत्पादों ब्राउज़ करें",
+        "testFavorites": "पसंदीदा का परीक्षण करें"
+      },
+      "productId": "ID:",
+      "noImage": "कोई छवि नहीं",
+      "viewProduct": "उत्पाद देखें"
+    },
+    "quotes": {
+      "title": "कोट अनुरोध",
+      "subtitle": "अपने कस्टम कोट अनुरोधों को ट्रैक और प्रबंधित करें",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
+      "mockDataBanner": "मॉक कोट डेटा दिखा रहा है",
+      "newQuoteRequest": "नया कोट अनुरोध",
+      "empty": {
+        "title": "अभी तक कोई कोट अनुरोध नहीं है",
+        "description": "बड़े ऑर्डर, विशेष कॉन्फ़िगरेशन या तकनीकी परामर्श के लिए कस्टम कोट का अनुरोध करें।",
+        "submitQuote": "कोट अनुरोध जमा करें",
+        "infoCards": {
+          "customSolutions": {
+            "title": "कस्टम समाधान",
+            "description": "अपनी विशिष्ट अनुप्रयोग आवश्यकताओं के लिए कस्टमाइज़्ड मूल्य प्राप्त करें"
+          },
+          "fastResponse": {
+            "title": "जल्दी प्रतिक्रिया",
+            "description": "हमारी टीम आमतौर पर 24 कार्य घंटों के भीतर प्रतिक्रिया देती है"
+          },
+          "expertSupport": {
+            "title": "विशेषज्ञ समर्थन",
+            "description": "हमारे तकनीकी विशेषज्ञों के साथ सीधे काम करें"
+          }
+        }
+      },
+      "quoteNumber": "कोट #",
+      "created": "बनाया गया:",
+      "expires": "समाप्त हो गया:",
+      "items": "आइटम:",
+      "itemCount": {
+        "items": "{count} आइटम",
+        "item": "{count} आइटम"
+      },
+      "actions": {
+        "viewDetails": "विवरण देखें",
+        "cancelRequest": "अनुरोध रद्द करें"
+      },
+      "status": {
+        "pending": "लंबित",
+        "reviewing": "समीक्षा कर रहा है",
+        "quoted": "कोट किया",
+        "declined": "अस्वीकृत"
+      }
+    },
+    "settings": {
+      "title": "खाता सेटिंग्स",
+      "subtitle": "अपने प्रोफ़ाइल, सुरक्षा और खाता प्राथमिकताओं का प्रबंधन करें",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
+      "help": {
+        "title": "क्या आपकी मदद चाहिए?",
+        "description": "अगर आप अपनी खाता सेटिंग्स के साथ कठिनाई का सामना कर रहे हैं, तो हमारी सहायता टीम यहां है कि आपकी मदद करे।",
+        "contactSupport": "सहायता से संपर्क करें",
+        "helpCenter": "सहायता केंद्र"
+      },
+      "userProfile": {
+        "loading": "सुरक्षा सेटिंग्स लोड हो रही है...",
+        "error": {
+          "title": "सुरक्षा सेटिंग्स लोड करने में असमर्थ",
+          "description": "हम आपकी दो-कारक प्रमाणीकरण स्थिति प्राप्त नहीं कर सके। कृपया पृष्ठ को फिर से लोड करने का प्रयास करें।",
+          "retry": "पुनः प्रयास करें"
+        },
+        "toastError": {
+          "title": "त्रुटि",
+          "message": "सुरक्षा सेटिंग्स लोड करने में विफल"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "दो-कारक प्रमाणीकरण",
+        "subtitle": "अपने खाते में अतिरिक्त सुरक्षा स्तर जोड़ें",
+        "status": {
+          "enabled": "सक्षम",
+          "disabled": "अक्षम",
+          "active": "सक्रिय",
+          "enabledDescription": "आपका खाता दो-कारक प्रमाणीकरण से संरक्षित है। साइन इन करने के लिए आपको अपना पासवर्ड और सत्यापन कोड की आवश्यकता होगी।",
+          "disabledDescription": "दो-कारक प्रमाणीकरण सक्षम नहीं है। अपने खाते में अतिरिक्त सुरक्षा स्तर जोड़ने के लिए इसे सक्षम करें।"
+        },
+        "whyEnable": {
+          "title": "2FA क्यों सक्षम करें?",
+          "reasons": {
+            "unauthorized": "अनधिकृत पहुंच से अपने खाते की सुरक्षा करें",
+            "stuffing": "क्रेडेंशियल स्टफिंग हमलों से बचाव करें",
+            "sensitive": "संवेदनशील कार्यों के लिए सुरक्षा जोड़ें",
+            "standards": "उद्योग सुरक्षा मानकों को पूरा करें"
+          }
+        },
+        "whatYouNeed": {
+          "title": "आपको क्या चाहिए",
+          "description": "आपके फोन या कंप्यूटर पर Google Authenticator, Authy, 1Password या Microsoft Authenticator जैसी एक प्रमाणकर्ता ऐप।"
+        },
+        "backupCodes": {
+          "title": "अपने बैकअप कोड सुरक्षित रखें",
+          "description": "यह सुनिश्चित करें कि आपने अपने बैकअप कोड को सुरक्षित स्थान पर सुरक्षित रखा है। अगर आप अपने प्रमाणकर्ता ऐप तक पहुंच खो देते हैं, तो बैकअप कोड ही आपके खाते तक पहुंचने का एकमात्र तरीका हैं।"
+        },
+        "securityTip": {
+          "title": "सुरक्षा युक्ति",
+          "description": "दो-कारक प्रमाणीकरण खाता सुरक्षा को काफी बढ़ा देता है। यहां तक कि अगर कोई व्यक्ति आपका पासवर्ड प्राप्त कर लेता है, तो वह आपके प्रमाणकर्ता ऐप तक पहुंच नहीं पाएगा, इसलिए वह आपके खाते तक नहीं पहुंच सकता।"
+        },
+        "enable": {
+          "button": "दो-कारक प्रमाणीकरण सक्षम करें"
+        },
+        "disable": {
+          "button": "दो-कारक प्रमाणीकरण अक्षम करें",
+          "warning": {
+            "title": "क्या आप सुनिश्चित हैं?",
+            "description": "2FA को अक्षम करने से आपके खाते की सुरक्षा कम हो जाएगी। साइन इन करने के लिए आपको केवल अपना पासवर्ड की आवश्यकता होगी।"
+          },
+          "form": {
+            "passwordLabel": "अपना पासवर्ड पुष्टि करें",
+            "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
+            "codeLabel": "सत्यापन कोड",
+            "codePlaceholder": "000000",
+            "codeHelp": "अपने प्रमाणकर्ता ऐप से कोड दर्ज करें",
+            "showPassword": "पासवर्ड दिखाएं",
+            "hidePassword": "पासवर्ड छिपाएं",
+            "cancel": "रद्द करें",
+            "submit": "2FA अक्षम करें",
+            "submitting": "अक्षम हो रहा है..."
+          },
+          "toast": {
+            "success": {
+              "title": "2FA अक्षम",
+              "message": "दो-कारक प्रमाणीकरण बंद कर दिया गया है"
+            },
+            "error": {
+              "title": "अक्षम करने में असमर्थ",
+              "defaultMessage": "सत्यापन विफल हो गया। कृपया पुनः प्रयास करें।"
+            },
+            "connectionError": {
+              "title": "कनेक्शन त्रुटि",
+              "message": "2FA को अक्षम करने में असमर्थ"
+            },
+            "requiredFields": {
+              "title": "आवश्यक फ़ील्ड",
+              "message": "कृपया अपना पासवर्ड और सत्यापन कोड दर्ज करें"
+            },
+            "invalidCode": {
+              "title": "अवैध कोड",
+              "message": "कृपया 6 अंकों का कोड दर्ज करें"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "2FA सक्षम",
+            "message": "अब आपका खाता दो-कारक प्रमाणीकरण से संरक्षित है"
+          }
+        }
+      }
     }
   },
   "cart": {

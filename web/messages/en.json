@@ -1031,7 +1031,52 @@
     "welcomeBack": "Welcome back",
     "loginRequired": "Please sign in to continue",
     "logout": "Sign Out",
-    "myProfile": "My Profile"
+    "myProfile": "My Profile",
+    "signInPage": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to access your orders, saved products, and quote requests",
+      "form": {
+        "usernameLabel": "Username or Email",
+        "usernamePlaceholder": "Enter your username or email",
+        "usernameAriaLabel": "Username or email address",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "passwordAriaLabel": "Password",
+        "showPassword": "Show password",
+        "hidePassword": "Hide password",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot password?",
+        "submitButton": "Sign In",
+        "submittingButton": "Signing in..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "Missing Fields",
+          "message": "Please enter both username and password"
+        },
+        "welcomeBack": {
+          "title": "Welcome Back!",
+          "message": "Successfully signed in"
+        },
+        "signInFailed": {
+          "title": "Sign In Failed",
+          "defaultMessage": "Invalid username or password"
+        },
+        "connectionError": {
+          "title": "Connection Error",
+          "message": "Unable to connect to server. Please try again."
+        }
+      },
+      "security": {
+        "secureConnection": "Secure encrypted connection",
+        "needHelp": "Need help?",
+        "contactSupport": "Contact Support"
+      },
+      "noAccount": {
+        "text": "Don't have an account?",
+        "contactSales": "Contact your sales representative"
+      }
+    }
   },
   "account": {
     "dashboard": {

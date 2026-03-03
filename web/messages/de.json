@@ -1884,7 +1884,7 @@
     "account": "Mein Konto",
     "dashboard": "Dashboard",
     "settings": "Einstellungen",
-    "orders": "Aufträge",
+    "orders": "Bestellungen",
     "favorites": "Favoriten",
     "quotes": "Angebote",
     "addresses": "Adressen",
@@ -1893,7 +1893,52 @@
     "welcomeBack": "Willkommen zurück",
     "loginRequired": "Bitte melden Sie sich an, um fortzufahren",
     "logout": "Abmelden",
-    "myProfile": "Mein Profil"
+    "myProfile": "Mein Profil",
+    "signInPage": {
+      "title": "Willkommen zurück",
+      "subtitle": "Melden Sie sich an, um auf Ihre Bestellungen, gespeicherten Produkte und Angebotsanfragen zuzugreifen",
+      "form": {
+        "usernameLabel": "Benutzername oder E-Mail",
+        "usernamePlaceholder": "Geben Sie Ihren Benutzernamen oder Ihre E-Mail-Adresse ein",
+        "usernameAriaLabel": "Benutzername oder E-Mail-Adresse",
+        "passwordLabel": "Passwort",
+        "passwordPlaceholder": "Geben Sie Ihr Passwort ein",
+        "passwordAriaLabel": "Passwort",
+        "showPassword": "Passwort anzeigen",
+        "hidePassword": "Passwort verbergen",
+        "rememberMe": "Anmeldung merken",
+        "forgotPassword": "Passwort vergessen?",
+        "submitButton": "Anmelden",
+        "submittingButton": "Anmelden..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "Fehlende Felder",
+          "message": "Bitte geben Sie Benutzername und Passwort ein"
+        },
+        "welcomeBack": {
+          "title": "Willkommen zurück!",
+          "message": "Erfolgreich angemeldet"
+        },
+        "signInFailed": {
+          "title": "Anmeldung fehlgeschlagen",
+          "defaultMessage": "Ungültiger Benutzername oder Passwort"
+        },
+        "connectionError": {
+          "title": "Verbindungsfehler",
+          "message": "Verbindung zum Server konnte nicht hergestellt werden. Bitte versuchen Sie es erneut."
+        }
+      },
+      "security": {
+        "secureConnection": "Sichere, verschlüsselte Verbindung",
+        "needHelp": "Benötigen Sie Hilfe?",
+        "contactSupport": "Wenden Sie sich an den Support"
+      },
+      "noAccount": {
+        "text": "Sie haben noch kein Konto?",
+        "contactSales": "Wenden Sie sich an Ihren Vertriebsmitarbeiter"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

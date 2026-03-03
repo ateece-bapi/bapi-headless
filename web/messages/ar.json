@@ -1879,21 +1879,66 @@
   "auth": {
     "signIn": "تسجيل الدخول",
     "signOut": "تسجيل الخروج",
-    "signUp": "التسجيل",
+    "signUp": "إنشاء حساب",
     "profile": "الملف الشخصي",
     "account": "حسابي",
     "dashboard": "لوحة القيادة",
     "settings": "الإعدادات",
     "orders": "الطلبات",
     "favorites": "المفضلة",
-    "quotes": "عروض الأسعار",
+    "quotes": "العروض",
     "addresses": "العناوين",
     "paymentMethods": "طرق الدفع",
-    "welcome": "مرحبًا",
-    "welcomeBack": "مرحبًا بعودتك",
-    "loginRequired": "الرجاء تسجيل الدخول للمتابعة",
+    "welcome": "مرحبا",
+    "welcomeBack": "مرحبا بعودتك",
+    "loginRequired": "يرجى تسجيل الدخول للمتابعة",
     "logout": "تسجيل الخروج",
-    "myProfile": "ملفي الشخصي"
+    "myProfile": "ملفي الشخصي",
+    "signInPage": {
+      "title": "مرحبا بعودتك",
+      "subtitle": "سجّل الدخول للوصول إلى طلباتك وعناصرك المحفوظة وطلبات العرض الخاصة بك",
+      "form": {
+        "usernameLabel": "اسم المستخدم أو البريد الإلكتروني",
+        "usernamePlaceholder": "أدخل اسم المستخدم أو البريد الإلكتروني الخاص بك",
+        "usernameAriaLabel": "اسم المستخدم أو عنوان البريد الإلكتروني",
+        "passwordLabel": "كلمة المرور",
+        "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
+        "passwordAriaLabel": "كلمة المرور",
+        "showPassword": "إظهار كلمة المرور",
+        "hidePassword": "إخفاء كلمة المرور",
+        "rememberMe": "تذكرني",
+        "forgotPassword": "نسيت كلمة المرور؟",
+        "submitButton": "تسجيل الدخول",
+        "submittingButton": "جار تسجيل الدخول..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "حقول مفقودة",
+          "message": "يرجى إدخال اسم المستخدم وكلمة المرور"
+        },
+        "welcomeBack": {
+          "title": "مرحبا بعودتك!",
+          "message": "تم تسجيل الدخول بنجاح"
+        },
+        "signInFailed": {
+          "title": "فشل تسجيل الدخول",
+          "defaultMessage": "اسم المستخدم أو كلمة المرور غير صحيحة"
+        },
+        "connectionError": {
+          "title": "خطأ في الاتصال",
+          "message": "تعذر الاتصال بالخادم. يرجى المحاولة مرة أخرى."
+        }
+      },
+      "security": {
+        "secureConnection": "اتصال مشفر آمن",
+        "needHelp": "هل تحتاج إلى المساعدة؟",
+        "contactSupport": "اتصل بالدعم الفني"
+      },
+      "noAccount": {
+        "text": "ليس لديك حساب؟",
+        "contactSales": "اتصل بممثل المبيعات الخاص بك"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

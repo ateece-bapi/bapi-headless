@@ -574,7 +574,7 @@
     "signIn": "เข้าสู่ระบบ",
     "signOut": "ออกจากระบบ",
     "signUp": "ลงทะเบียน",
-    "profile": "ข้อมูลส่วนตัว",
+    "profile": "โปรไฟล์",
     "account": "บัญชีของฉัน",
     "dashboard": "แดชบอร์ด",
     "settings": "การตั้งค่า",
@@ -587,7 +587,52 @@
     "welcomeBack": "ยินดีต้อนรับกลับ",
     "loginRequired": "กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ",
     "logout": "ออกจากระบบ",
-    "myProfile": "ข้อมูลส่วนตัวของฉัน"
+    "myProfile": "โปรไฟล์ของฉัน",
+    "signInPage": {
+      "title": "ยินดีต้อนรับกลับ",
+      "subtitle": "เข้าสู่ระบบเพื่อเข้าถึงคำสั่งซื้อ ผลิตภัณฑ์ที่บันทึกไว้ และคำขอใบเสนอราคา",
+      "form": {
+        "usernameLabel": "ชื่อผู้ใช้หรืออีเมล",
+        "usernamePlaceholder": "ป้อนชื่อผู้ใช้หรืออีเมลของคุณ",
+        "usernameAriaLabel": "ชื่อผู้ใช้หรืออีเมลแอดเดรส",
+        "passwordLabel": "รหัสผ่าน",
+        "passwordPlaceholder": "ป้อนรหัสผ่านของคุณ",
+        "passwordAriaLabel": "รหัสผ่าน",
+        "showPassword": "แสดงรหัสผ่าน",
+        "hidePassword": "ซ่อนรหัสผ่าน",
+        "rememberMe": "จดจำฉัน",
+        "forgotPassword": "ลืมรหัสผ่าน?",
+        "submitButton": "เข้าสู่ระบบ",
+        "submittingButton": "กำลังเข้าสู่ระบบ..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "ป้อนข้อมูลไม่ครบ",
+          "message": "กรุณาป้อนทั้งชื่อผู้ใช้และรหัสผ่าน"
+        },
+        "welcomeBack": {
+          "title": "ยินดีต้อนรับกลับ!",
+          "message": "เข้าสู่ระบบสำเร็จ"
+        },
+        "signInFailed": {
+          "title": "เข้าสู่ระบบล้มเหลว",
+          "defaultMessage": "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"
+        },
+        "connectionError": {
+          "title": "ข้อผิดพลาดการเชื่อมต่อ",
+          "message": "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาลองใหม่อีกครั้ง"
+        }
+      },
+      "security": {
+        "secureConnection": "การเชื่อมต่อที่ปลอดภัยและเข้ารหัส",
+        "needHelp": "ต้องการความช่วยเหลือ?",
+        "contactSupport": "ติดต่อฝ่ายสนับสนุน"
+      },
+      "noAccount": {
+        "text": "ยังไม่มีบัญชี?",
+        "contactSales": "ติดต่อตัวแทนขายของคุณ"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

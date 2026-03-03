@@ -576,18 +576,63 @@
     "signUp": "Zarejestruj się",
     "profile": "Profil",
     "account": "Moje Konto",
-    "dashboard": "Pulpit",
+    "dashboard": "Panel Kontrolny",
     "settings": "Ustawienia",
     "orders": "Zamówienia",
     "favorites": "Ulubione",
     "quotes": "Oferty",
     "addresses": "Adresy",
     "paymentMethods": "Metody Płatności",
-    "welcome": "Witamy",
-    "welcomeBack": "Witamy ponownie",
+    "welcome": "Witaj",
+    "welcomeBack": "Witaj ponownie",
     "loginRequired": "Zaloguj się, aby kontynuować",
     "logout": "Wyloguj się",
-    "myProfile": "Mój Profil"
+    "myProfile": "Mój Profil",
+    "signInPage": {
+      "title": "Witaj ponownie",
+      "subtitle": "Zaloguj się, aby uzyskać dostęp do Twoich zamówień, zapisanych produktów i zapytań ofertowych",
+      "form": {
+        "usernameLabel": "Nazwa użytkownika lub email",
+        "usernamePlaceholder": "Wprowadź nazwę użytkownika lub email",
+        "usernameAriaLabel": "Nazwa użytkownika lub adres email",
+        "passwordLabel": "Hasło",
+        "passwordPlaceholder": "Wprowadź hasło",
+        "passwordAriaLabel": "Hasło",
+        "showPassword": "Pokaż hasło",
+        "hidePassword": "Ukryj hasło",
+        "rememberMe": "Zapamiętaj mnie",
+        "forgotPassword": "Zapomniałeś hasła?",
+        "submitButton": "Zaloguj się",
+        "submittingButton": "Logowanie..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "Brakujące pola",
+          "message": "Wprowadź zarówno nazwę użytkownika, jak i hasło"
+        },
+        "welcomeBack": {
+          "title": "Witaj ponownie!",
+          "message": "Logowanie powiodło się"
+        },
+        "signInFailed": {
+          "title": "Logowanie nieudane",
+          "defaultMessage": "Nieprawidłowa nazwa użytkownika lub hasło"
+        },
+        "connectionError": {
+          "title": "Błąd połączenia",
+          "message": "Nie można połączyć się z serwerem. Spróbuj ponownie."
+        }
+      },
+      "security": {
+        "secureConnection": "Bezpieczne szyfrowane połączenie",
+        "needHelp": "Potrzebujesz pomocy?",
+        "contactSupport": "Skontaktuj się z pomocą techniczną"
+      },
+      "noAccount": {
+        "text": "Nie masz jeszcze konta?",
+        "contactSales": "Skontaktuj się z przedstawicielem handlowym"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

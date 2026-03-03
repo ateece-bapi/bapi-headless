@@ -1877,23 +1877,68 @@
     "checkoutFailed": "チェックアウトに失敗しました。再度お試しください。"
   },
   "auth": {
-    "signIn": "ログイン",
-    "signOut": "ログアウト",
-    "signUp": "新規登録",
-    "profile": "プロフィール",
+    "signIn": "サインイン",
+    "signOut": "サインアウト",
+    "signUp": "サインアップ",
+    "profile": "プロファイル",
     "account": "マイアカウント",
     "dashboard": "ダッシュボード",
     "settings": "設定",
-    "orders": "注文履歴",
+    "orders": "注文",
     "favorites": "お気に入り",
-    "quotes": "見積もり",
+    "quotes": "見積",
     "addresses": "住所",
     "paymentMethods": "支払い方法",
     "welcome": "ようこそ",
-    "welcomeBack": "おかえりなさいませ",
+    "welcomeBack": "おかえりなさい",
     "loginRequired": "続行するにはサインインしてください",
-    "logout": "ログアウト",
-    "myProfile": "マイプロフィール"
+    "logout": "サインアウト",
+    "myProfile": "マイプロファイル",
+    "signInPage": {
+      "title": "おかえりなさい",
+      "subtitle": "注文、保存された製品、見積依頼にアクセスするためにサインインしてください",
+      "form": {
+        "usernameLabel": "ユーザー名またはメールアドレス",
+        "usernamePlaceholder": "ユーザー名またはメールアドレスを入力してください",
+        "usernameAriaLabel": "ユーザー名またはメールアドレス",
+        "passwordLabel": "パスワード",
+        "passwordPlaceholder": "パスワードを入力してください",
+        "passwordAriaLabel": "パスワード",
+        "showPassword": "パスワードを表示",
+        "hidePassword": "パスワードを非表示",
+        "rememberMe": "ログイン情報を保持する",
+        "forgotPassword": "パスワードを忘れた",
+        "submitButton": "サインイン",
+        "submittingButton": "サインイン中..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "未入力の項目があります",
+          "message": "ユーザー名とパスワードの両方を入力してください"
+        },
+        "welcomeBack": {
+          "title": "おかえりなさい!",
+          "message": "サインインに成功しました"
+        },
+        "signInFailed": {
+          "title": "サインインに失敗しました",
+          "defaultMessage": "ユーザー名またはパスワードが正しくありません"
+        },
+        "connectionError": {
+          "title": "接続エラー",
+          "message": "サーバーに接続できませんでした。もう一度お試しください。"
+        }
+      },
+      "security": {
+        "secureConnection": "安全な暗号化された接続",
+        "needHelp": "ご不明な点がございますか?",
+        "contactSupport": "サポートにお問い合わせください"
+      },
+      "noAccount": {
+        "text": "アカウントをお持ちでない場合は",
+        "contactSales": "営業担当者にお問い合わせください"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

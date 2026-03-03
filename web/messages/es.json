@@ -1888,12 +1888,57 @@
     "favorites": "Favoritos",
     "quotes": "Cotizaciones",
     "addresses": "Direcciones",
-    "paymentMethods": "Métodos de pago",
+    "paymentMethods": "Formas de pago",
     "welcome": "Bienvenido",
     "welcomeBack": "Bienvenido de vuelta",
-    "loginRequired": "Por favor, inicie sesión para continuar",
+    "loginRequired": "Por favor, inicia sesión para continuar",
     "logout": "Cerrar sesión",
-    "myProfile": "Mi perfil"
+    "myProfile": "Mi perfil",
+    "signInPage": {
+      "title": "Bienvenido de vuelta",
+      "subtitle": "Inicia sesión para acceder a tus pedidos, productos guardados y solicitudes de cotización",
+      "form": {
+        "usernameLabel": "Usuario o correo electrónico",
+        "usernamePlaceholder": "Ingresa tu usuario o correo electrónico",
+        "usernameAriaLabel": "Usuario o dirección de correo electrónico",
+        "passwordLabel": "Contraseña",
+        "passwordPlaceholder": "Ingresa tu contraseña",
+        "passwordAriaLabel": "Contraseña",
+        "showPassword": "Mostrar contraseña",
+        "hidePassword": "Ocultar contraseña",
+        "rememberMe": "Recordarme",
+        "forgotPassword": "¿Olvidaste la contraseña?",
+        "submitButton": "Iniciar sesión",
+        "submittingButton": "Iniciando sesión..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "Campos faltantes",
+          "message": "Por favor, ingresa el usuario y la contraseña"
+        },
+        "welcomeBack": {
+          "title": "¡Bienvenido de vuelta!",
+          "message": "Inicio de sesión exitoso"
+        },
+        "signInFailed": {
+          "title": "Inicio de sesión fallido",
+          "defaultMessage": "Usuario o contraseña inválidos"
+        },
+        "connectionError": {
+          "title": "Error de conexión",
+          "message": "No se pudo conectar al servidor. Por favor, inténtalo de nuevo."
+        }
+      },
+      "security": {
+        "secureConnection": "Conexión segura y encriptada",
+        "needHelp": "¿Necesitas ayuda?",
+        "contactSupport": "Contactar al soporte"
+      },
+      "noAccount": {
+        "text": "¿No tienes una cuenta?",
+        "contactSales": "Contacta a tu representante de ventas"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

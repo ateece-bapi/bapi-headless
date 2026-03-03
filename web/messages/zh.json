@@ -1882,18 +1882,63 @@
     "signUp": "注册",
     "profile": "个人资料",
     "account": "我的账户",
-    "dashboard": "仪表板",
+    "dashboard": "仪表盘",
     "settings": "设置",
     "orders": "订单",
     "favorites": "收藏夹",
-    "quotes": "报价单",
+    "quotes": "报价",
     "addresses": "地址",
     "paymentMethods": "支付方式",
     "welcome": "欢迎",
     "welcomeBack": "欢迎回来",
     "loginRequired": "请登录以继续",
     "logout": "退出登录",
-    "myProfile": "我的个人资料"
+    "myProfile": "我的个人资料",
+    "signInPage": {
+      "title": "欢迎回来",
+      "subtitle": "登录以访问您的订单、保存的产品和报价请求",
+      "form": {
+        "usernameLabel": "用户名或电子邮箱",
+        "usernamePlaceholder": "输入您的用户名或电子邮箱",
+        "usernameAriaLabel": "用户名或电子邮箱地址",
+        "passwordLabel": "密码",
+        "passwordPlaceholder": "输入您的密码",
+        "passwordAriaLabel": "密码",
+        "showPassword": "显示密码",
+        "hidePassword": "隐藏密码",
+        "rememberMe": "记住我",
+        "forgotPassword": "忘记密码?",
+        "submitButton": "登录",
+        "submittingButton": "登录中..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "缺少必填项",
+          "message": "请输入用户名和密码"
+        },
+        "welcomeBack": {
+          "title": "欢迎回来!",
+          "message": "登录成功"
+        },
+        "signInFailed": {
+          "title": "登录失败",
+          "defaultMessage": "用户名或密码无效"
+        },
+        "connectionError": {
+          "title": "连接错误",
+          "message": "无法连接到服务器,请重试."
+        }
+      },
+      "security": {
+        "secureConnection": "安全加密连接",
+        "needHelp": "需要帮助?",
+        "contactSupport": "联系支持"
+      },
+      "noAccount": {
+        "text": "还没有账户?",
+        "contactSales": "联系您的销售代表"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

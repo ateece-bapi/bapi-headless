@@ -1893,7 +1893,52 @@
     "welcomeBack": "Chào mừng trở lại",
     "loginRequired": "Vui lòng đăng nhập để tiếp tục",
     "logout": "Đăng xuất",
-    "myProfile": "Hồ sơ của tôi"
+    "myProfile": "Hồ sơ của tôi",
+    "signInPage": {
+      "title": "Chào mừng trở lại",
+      "subtitle": "Đăng nhập để truy cập đơn hàng, sản phẩm đã lưu, và yêu cầu báo giá của bạn",
+      "form": {
+        "usernameLabel": "Tên đăng nhập hoặc Email",
+        "usernamePlaceholder": "Nhập tên đăng nhập hoặc email của bạn",
+        "usernameAriaLabel": "Tên đăng nhập hoặc địa chỉ email",
+        "passwordLabel": "Mật khẩu",
+        "passwordPlaceholder": "Nhập mật khẩu của bạn",
+        "passwordAriaLabel": "Mật khẩu",
+        "showPassword": "Hiện mật khẩu",
+        "hidePassword": "Ẩn mật khẩu",
+        "rememberMe": "Ghi nhớ tôi",
+        "forgotPassword": "Quên mật khẩu?",
+        "submitButton": "Đăng nhập",
+        "submittingButton": "Đang đăng nhập..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "Thiếu thông tin",
+          "message": "Vui lòng nhập cả tên đăng nhập và mật khẩu"
+        },
+        "welcomeBack": {
+          "title": "Chào mừng trở lại!",
+          "message": "Đăng nhập thành công"
+        },
+        "signInFailed": {
+          "title": "Đăng nhập không thành công",
+          "defaultMessage": "Tên đăng nhập hoặc mật khẩu không hợp lệ"
+        },
+        "connectionError": {
+          "title": "Lỗi kết nối",
+          "message": "Không thể kết nối với máy chủ. Vui lòng thử lại."
+        }
+      },
+      "security": {
+        "secureConnection": "Kết nối mã hóa an toàn",
+        "needHelp": "Cần trợ giúp?",
+        "contactSupport": "Liên hệ với Hỗ trợ"
+      },
+      "noAccount": {
+        "text": "Chưa có tài khoản?",
+        "contactSales": "Liên hệ với đại diện kinh doanh của bạn"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

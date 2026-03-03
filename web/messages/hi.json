@@ -571,23 +571,68 @@
     "checkoutFailed": "Checkout failed. Please try again."
   },
   "auth": {
-    "signIn": "Sign In",
-    "signOut": "Sign Out",
-    "signUp": "Sign Up",
-    "profile": "Profile",
-    "account": "My Account",
-    "dashboard": "Dashboard",
-    "settings": "Settings",
-    "orders": "Orders",
-    "favorites": "Favorites",
-    "quotes": "Quotes",
-    "addresses": "Addresses",
-    "paymentMethods": "Payment Methods",
-    "welcome": "Welcome",
-    "welcomeBack": "Welcome back",
-    "loginRequired": "Please sign in to continue",
-    "logout": "Sign Out",
-    "myProfile": "My Profile"
+    "signIn": "प्रवेश करें",
+    "signOut": "प्रवेश करें",
+    "signUp": "नामांकन करें",
+    "profile": "प्रोफ़ाइल",
+    "account": "मेरा खाता",
+    "dashboard": "डैशबोर्ड",
+    "settings": "सेटिंग्स",
+    "orders": "ऑर्डर",
+    "favorites": "पसंदीदा",
+    "quotes": "कोट्स",
+    "addresses": "पते",
+    "paymentMethods": "भुगतान विधियाँ",
+    "welcome": "स्वागत हैं",
+    "welcomeBack": "वापस स्वागत हैं",
+    "loginRequired": "कृपया जारी रखने के लिए प्रवेश करें",
+    "logout": "प्रवेश करें",
+    "myProfile": "मेरी प्रोफ़ाइल",
+    "signInPage": {
+      "title": "वापस स्वागत हैं",
+      "subtitle": "अपने ऑर्डर, सहेजे गए उत्पाद और कोट अनुरोध तक पहुंचने के लिए प्रवेश करें",
+      "form": {
+        "usernameLabel": "उपयोगकर्ता नाम या ईमेल",
+        "usernamePlaceholder": "अपना उपयोगकर्ता नाम या ईमेल दर्ज करें",
+        "usernameAriaLabel": "उपयोगकर्ता नाम या ईमेल पता",
+        "passwordLabel": "पासवर्ड",
+        "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
+        "passwordAriaLabel": "पासवर्ड",
+        "showPassword": "पासवर्ड दिखाएं",
+        "hidePassword": "पासवर्ड छिपाएं",
+        "rememberMe": "मुझे याद रखें",
+        "forgotPassword": "पासवर्ड भूल गए?",
+        "submitButton": "प्रवेश करें",
+        "submittingButton": "प्रवेश किया जा रहा है..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "खाली फ़ील्ड",
+          "message": "कृपया उपयोगकर्ता नाम और पासवर्ड दर्ज करें"
+        },
+        "welcomeBack": {
+          "title": "वापस स्वागत हैं!",
+          "message": "सफलतापूर्वक प्रवेश किया"
+        },
+        "signInFailed": {
+          "title": "प्रवेश विफल",
+          "defaultMessage": "अमान्य उपयोगकर्ता नाम या पासवर्ड"
+        },
+        "connectionError": {
+          "title": "कनेक्शन त्रुटि",
+          "message": "सर्वर से कनेक्ट करने में असमर्थ। कृपया पुन: प्रयास करें।"
+        }
+      },
+      "security": {
+        "secureConnection": "सुरक्षित एन्क्रिप्टेड कनेक्शन",
+        "needHelp": "मदद की ज़रूरत है?",
+        "contactSupport": "सहायता से संपर्क करें"
+      },
+      "noAccount": {
+        "text": "खाता नहीं है?",
+        "contactSales": "अपने बिक्री प्रतिनिधि से संपर्क करें"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

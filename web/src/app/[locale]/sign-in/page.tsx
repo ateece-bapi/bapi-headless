@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
 import { SignInForm } from './SignInForm';
 import { Building2 } from 'lucide-react';
 
@@ -15,6 +16,8 @@ type SignInPageProps = {
 
 export default async function SignInPage({ params }: SignInPageProps) {
   const { locale } = await params;
+  const t = await getTranslations('auth.signInPage');
+  
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-neutral-50 via-primary-50/30 to-neutral-50 px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -26,10 +29,10 @@ export default async function SignInPage({ params }: SignInPageProps) {
             </div>
           </div>
           <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-neutral-900">
-            Welcome Back
+            {t('title')}
           </h1>
           <p className="mx-auto mt-3 max-w-sm text-base text-neutral-600">
-            Sign in to access your orders, saved products, and quote requests
+            {t('subtitle')}
           </p>
         </div>
 
@@ -47,12 +50,12 @@ export default async function SignInPage({ params }: SignInPageProps) {
         {/* Help Text */}
         <div className="space-y-3 border-t border-neutral-200 pt-4 text-center">
           <p className="text-sm text-neutral-600">
-            Don&apos;t have an account?{' '}
+            {t('noAccount.text')}{' '}
             <Link
               href="/contact"
               className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
             >
-              Contact your sales representative
+              {t('noAccount.contactSales')}
             </Link>
           </p>
         </div>

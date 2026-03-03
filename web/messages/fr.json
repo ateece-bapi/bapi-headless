@@ -1877,8 +1877,8 @@
     "checkoutFailed": "Échec de la commande. Veuillez réessayer."
   },
   "auth": {
-    "signIn": "Se connecter",
-    "signOut": "Se déconnecter",
+    "signIn": "Connexion",
+    "signOut": "Déconnexion",
     "signUp": "S'inscrire",
     "profile": "Profil",
     "account": "Mon compte",
@@ -1888,12 +1888,57 @@
     "favorites": "Favoris",
     "quotes": "Devis",
     "addresses": "Adresses",
-    "paymentMethods": "Modes de paiement",
+    "paymentMethods": "Moyens de paiement",
     "welcome": "Bienvenue",
-    "welcomeBack": "Bienvenue à nouveau",
+    "welcomeBack": "Ravi de vous revoir",
     "loginRequired": "Veuillez vous connecter pour continuer",
-    "logout": "Se déconnecter",
-    "myProfile": "Mon profil"
+    "logout": "Déconnexion",
+    "myProfile": "Mon profil",
+    "signInPage": {
+      "title": "Ravi de vous revoir",
+      "subtitle": "Connectez-vous pour accéder à vos commandes, produits enregistrés et demandes de devis",
+      "form": {
+        "usernameLabel": "Nom d'utilisateur ou email",
+        "usernamePlaceholder": "Saisissez votre nom d'utilisateur ou email",
+        "usernameAriaLabel": "Nom d'utilisateur ou adresse email",
+        "passwordLabel": "Mot de passe",
+        "passwordPlaceholder": "Saisissez votre mot de passe",
+        "passwordAriaLabel": "Mot de passe",
+        "showPassword": "Afficher le mot de passe",
+        "hidePassword": "Masquer le mot de passe",
+        "rememberMe": "Se souvenir de moi",
+        "forgotPassword": "Mot de passe oublié ?",
+        "submitButton": "Connexion",
+        "submittingButton": "Connexion en cours..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "Champs manquants",
+          "message": "Veuillez saisir un nom d'utilisateur et un mot de passe"
+        },
+        "welcomeBack": {
+          "title": "Ravi de vous revoir !",
+          "message": "Connexion réussie"
+        },
+        "signInFailed": {
+          "title": "Échec de la connexion",
+          "defaultMessage": "Nom d'utilisateur ou mot de passe incorrect"
+        },
+        "connectionError": {
+          "title": "Erreur de connexion",
+          "message": "Impossible de se connecter au serveur. Veuillez réessayer."
+        }
+      },
+      "security": {
+        "secureConnection": "Connexion sécurisée et chiffrée",
+        "needHelp": "Besoin d'aide ?",
+        "contactSupport": "Contacter le support"
+      },
+      "noAccount": {
+        "text": "Vous n'avez pas de compte ?",
+        "contactSales": "Contactez votre représentant commercial"
+      }
+    }
   },
   "account": {
     "twoFactorBanner": {

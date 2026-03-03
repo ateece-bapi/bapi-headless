@@ -646,6 +646,24 @@
         "pending": "Pending",
         "cancelled": "Cancelled"
       }
+    },
+    "profile": {
+      "title": "Profile",
+      "backToDashboard": "Back to Dashboard",
+      "fields": {
+        "displayName": "Display Name",
+        "username": "Username",
+        "email": "Email Address"
+      },
+      "accountInfo": {
+        "title": "Account Information",
+        "userId": "User ID:",
+        "usernameLabel": "Username:",
+        "notSet": "Not set"
+      },
+      "actions": {
+        "editProfile": "Edit Profile"
+      }
     }
   },
   "cart": {

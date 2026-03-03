@@ -1084,6 +1084,24 @@
         "cancelled": "Cancelled"
       }
     },
+    "profile": {
+      "title": "Profile",
+      "backToDashboard": "Back to Dashboard",
+      "fields": {
+        "displayName": "Display Name",
+        "username": "Username",
+        "email": "Email Address"
+      },
+      "accountInfo": {
+        "title": "Account Information",
+        "userId": "User ID:",
+        "usernameLabel": "Username:",
+        "notSet": "Not set"
+      },
+      "actions": {
+        "editProfile": "Edit Profile"
+      }
+    },
     "twoFactorBanner": {
       "title": "Secure Your Account with Two-Factor Authentication",
       "description": "Add an extra layer of security to protect your account and business data. Enable 2FA in just 2 minutes using your smartphone.",

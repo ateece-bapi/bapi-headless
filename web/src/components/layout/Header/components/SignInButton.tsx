@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { User, LogOut, Settings, Package, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/Toast';
 import logger from '@/lib/logger';
 
@@ -25,11 +25,7 @@ const SignInButton: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
-  const params = useParams();
   const { showToast } = useToast();
-
-  // Extract locale early for use in sign-in link
-  const locale = (params?.locale as string) || 'en';
 
   useEffect(() => {
     checkAuth();
@@ -92,7 +88,7 @@ const SignInButton: React.FC = () => {
         {showMenu && (
           <div className="absolute right-0 z-50 mt-2 w-48 rounded-xl border-2 border-neutral-200 bg-white py-2 shadow-xl">
             <Link
-              href={`/${locale}/account`}
+              href="/account"
               className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-50"
               onClick={() => setShowMenu(false)}
             >
@@ -100,7 +96,7 @@ const SignInButton: React.FC = () => {
               Dashboard
             </Link>
             <Link
-              href={`/${locale}/account/settings`}
+              href="/account/settings"
               className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-50"
               onClick={() => setShowMenu(false)}
             >
@@ -108,7 +104,7 @@ const SignInButton: React.FC = () => {
               Settings
             </Link>
             <Link
-              href={`/${locale}/account/settings`}
+              href="/account/settings"
               className={`flex items-center gap-2 px-4 py-2 text-sm transition-colors hover:bg-neutral-50 ${
                 user.twoFactorEnabled ? 'text-green-600' : 'text-primary-600'
               }`}
@@ -134,7 +130,7 @@ const SignInButton: React.FC = () => {
 
   return (
     <Link
-      href={`/${locale}/sign-in`}
+      href="/sign-in"
       className="group relative flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
       aria-label="Sign in to your account"
     >

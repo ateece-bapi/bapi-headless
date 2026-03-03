@@ -21,11 +21,11 @@
 
 **WordPress Staging Deployment:**
 - ✅ **Plugin Upload:** graphql-2fa-extension.php (15,242 bytes, 434 lines)
-  - **Method:** SFTP to Kinsta staging (bapiheadlessstaging.kinsta.cloud)
-  - **Location:** `/www/bapiheadlessstaging_582/public/wp-content/mu-plugins/`
+  - **Method:** SFTP to Kinsta staging
+  - **Location:** `/wp-content/mu-plugins/`
   - **Verification:** `wp plugin list --status=must-use` confirmed loaded
 - ✅ **Encryption Key:** Generated and configured in wp-config.php
-  - **Key:** `[REDACTED - stored securely in wp-config.php]` (base64, 32 bytes)
+  - **Key:** `[REDACTED - rotated after exposure, stored in secure vault]` (base64, 32 bytes)
   - **Constant:** `WORDPRESS_TWO_FACTOR_ENCRYPTION_KEY`
   - **Issue:** Encountered PHP syntax error (stray `<?php` tag), restored from backup
   - **Fix:** Used sed command to insert key cleanly
@@ -20083,8 +20083,8 @@ wp option get wposes_settings --format=json
 
 **1. Install wp-ses Plugin on Staging** ✅
 ```bash
-ssh -p 17338 bapiheadlessstaging@35.224.70.159
-cd /www/bapiheadlessstaging_582/public
+# SSH to Kinsta staging (credentials in vault)
+cd /www/[KINSTA_STAGING_SITE]/public
 wp plugin install wp-ses --activate
 ```
 - Plugin installed: WP Offload SES Lite 1.7.2
@@ -20255,8 +20255,8 @@ git checkout -b feat/email-testing-configuration
 
 **2. Installed WP Mail Logging Plugin** ✅
 ```bash
-ssh -p 17338 bapiheadlessstaging@35.224.70.159
-cd /www/bapiheadlessstaging_582/public
+# SSH to Kinsta staging (credentials in vault)
+cd /www/[KINSTA_STAGING_SITE]/public
 wp plugin install wp-mail-logging --activate
 ```
 
@@ -20971,7 +20971,7 @@ Infrastructure consistency between staging and production is critical. Using the
 - Created backup: `repo-backup.bundle` (600+ MB)
 
 **WordPress Backend Verification** ✅
-- SSH'd into Kinsta server: 35.224.70.159:17338
+- SSH'd into Kinsta staging server
 - Verified all performance plugins installed and active:
   - WPGraphQL Smart Cache 2.0.1 (1-hour cache, network cache enabled)
   - Redis Object Cache 2.7.0 (Connected via PhpRedis 6.2.0, Redis 7.2.5)
@@ -24207,7 +24207,7 @@ All routes building successfully ✅
   - Registered application_note post type with GraphQL exposure
   - Configuration: graphql_single_name='applicationNote', graphql_plural_name='applicationNotes'
   - Supports: title, editor, excerpt, thumbnail, custom-fields, revisions
-  - Deployed via SCP to Kinsta (bapiheadlessstaging@35.224.70.159:17338)
+  - Deployed via SCP to Kinsta staging
   - Flushed WordPress cache and permalinks
 
 - **GraphQL Integration:**

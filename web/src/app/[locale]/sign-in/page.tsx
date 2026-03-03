@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { SignInForm } from './SignInForm';

@@ -12,7 +12,7 @@ import {
   MapPin,
   CreditCard,
 } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 import AccountDashboardClient from '@/components/account/AccountDashboardClient';
 import { getTranslations } from 'next-intl/server';
@@ -206,7 +206,8 @@ export default async function AccountPage({ params }: AccountPageProps) {
                       <p key={idx} className="text-sm text-neutral-600">
                         {item.quantity}x {item.name} ({item.sku})
                       </p>
-                    ))}                    {order.items.length > 2 && (
+                    ))}
+                    {order.items.length > 2 && (
                       <p className="text-sm text-neutral-500">
                         {order.items.length - 2 === 1
                           ? t('moreItems', { count: order.items.length - 2 })

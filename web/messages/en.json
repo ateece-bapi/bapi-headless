@@ -1309,6 +1309,7 @@
             "passwordPlaceholder": "Enter your password",
             "codeLabel": "Verification Code",
             "codePlaceholder": "000000",
+            "codeAriaLabel": "Six digit verification code",
             "codeHelp": "Enter the code from your authenticator app",
             "showPassword": "Show password",
             "hidePassword": "Hide password",

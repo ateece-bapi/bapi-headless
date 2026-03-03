@@ -2178,6 +2178,7 @@
             "passwordPlaceholder": "أدخل كلمة المرور الخاصة بك",
             "codeLabel": "رمز التحقق",
             "codePlaceholder": "000000",
+            "codeAriaLabel": "رمز التحقق المكون من ستة أرقام",
             "codeHelp": "أدخل الرمز من تطبيق المصادقة الخاص بك",
             "showPassword": "إظهار كلمة المرور",
             "hidePassword": "إخفاء كلمة المرور",

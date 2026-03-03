@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { Link } from '@/lib/navigation';
 import { useTranslations } from 'next-intl';
 import { useToast } from '@/components/ui/Toast';
 import { TwoFactorVerify } from '@/components/auth/TwoFactorVerify';
@@ -14,7 +14,6 @@ type SignInFormProps = {
 };
 
 export function SignInForm({ locale }: SignInFormProps) {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const { showToast } = useToast();
   const t = useTranslations('auth.signInPage');
@@ -89,7 +88,7 @@ export function SignInForm({ locale }: SignInFormProps) {
         showToast('error', t('toast.signInFailed.title'), decodedMessage);
       }
     } catch (error) {
-      logger.error('Sign in error', { error });
+      logger.error('Sign in error', error as Error, { username });
       showToast('error', t('toast.connectionError.title'), t('toast.connectionError.message'));
     } finally {
       setIsLoading(false);
@@ -118,7 +117,7 @@ export function SignInForm({ locale }: SignInFormProps) {
   }
 
   return (
-    <form className="mt-8 space-y-6" onSubmit={handleSubmit} suppressHydrationWarning>
+    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
       <div className="space-y-6 rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-xl lg:p-10">
         {/* Username Field */}
         <div>
@@ -260,7 +259,7 @@ export function SignInForm({ locale }: SignInFormProps) {
         <p className="text-sm text-neutral-500">
           {t('security.needHelp')}{' '}
           <Link
-            href="/contact"
+            href={`/${locale}/contact`}
             className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
           >
             {t('security.contactSupport')}

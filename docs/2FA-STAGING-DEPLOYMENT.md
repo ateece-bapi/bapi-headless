@@ -26,7 +26,7 @@
 **Methods:**
 - [x] **Option A:** Kinsta SFTP upload ✅
   - Host: [REDACTED - see team vault]
-  - Path: `/www/bapiheadlessstaging_582/public/wp-content/mu-plugins/`
+  - Path: `/www/[KINSTA_STAGING_SITE]/public/wp-content/mu-plugins/`
   - Upload: `graphql-2fa-extension.php` (15,242 bytes)
   
 - [ ] **Option B:** Git deployment (if configured)
@@ -71,6 +71,7 @@ define('TWO_FACTOR_ENCRYPTION_KEY', 'YOUR-GENERATED-KEY-HERE');
 **Status:** ✅ COMPLETE (March 2, 2026 - 2:23 PM EST)  
 **Key Generated:** ✅ `[REDACTED - see secure vault]`  
 **Key Added:** ✅ Yes (verified with grep)  
+**Key Rotation:** ✅ Original key was rotated after being committed to git history (March 3, 2026)  
 **Notes:** 
 - Generated using `php -r "echo base64_encode(random_bytes(32));"`
 - Edited wp-config.php via SSH with nano

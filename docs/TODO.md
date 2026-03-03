@@ -1,7 +1,7 @@
 # BAPI Headless - Project Roadmap & TODO
 
-**Updated:** March 2, 2026  
-**Launch Date:** April 10, 2026 (38 days remaining)  
+**Updated:** March 3, 2026  
+**Launch Date:** April 10, 2026 (37 days remaining)  
 **Current Phase:** Phase 1 Development  
 **Launch Readiness:** 99.9%
 
@@ -2837,7 +2837,7 @@ Deferred to post-launch - see Phase 2 section below for details.
   - [ ] Pull-to-refresh for order history
   - [ ] Native app-like feel
 
-- ✅ **Two-Factor Authentication (2FA/MFA)** — Implementation Complete (March 2, 2026)
+- ✅ **Two-Factor Authentication (2FA/MFA)** — Implementation Complete (March 2-3, 2026)
   - ✅ Custom TOTP implementation (RFC 6238 standard)
   - ✅ Rate limiting (5 attempts = 15-minute lockout)
   - ✅ WordPress GraphQL extension (3 fields, 3 mutations, Libsodium encryption)
@@ -2846,7 +2846,7 @@ Deferred to post-launch - see Phase 2 section below for details.
   - ✅ Security hardening (JWT tokens, rate limiting, validation)
   - ✅ Comprehensive testing (52 unit tests, 16 integration tests, 7 smoke tests)
   - ✅ Documentation (7,900+ lines: user guide, support guide, implementation)
-  - ✅ PRs merged (#338 feature, #339 test fixes, whitespace cleanup, #340 deployment fixes)
+  - ✅ PRs merged (#338 feature, #339 test fixes, #340 deployment fixes, #342-347 refinements)
   - ✅ **Deployment/Testing Phase** (Complete - March 3, 2026):
     - ✅ Deploy WordPress mu-plugin to staging (graphql-2fa-extension.php, 15KB)
     - ✅ Configure encryption key (WORDPRESS_TWO_FACTOR_ENCRYPTION_KEY in wp-config.php)
@@ -2864,6 +2864,21 @@ Deferred to post-launch - see Phase 2 section below for details.
       - Improved error state handling in UserProfileClient (explicit retry button)
     - ✅ **Disable flow verification** (March 3, 2026) - Tested and working on staging/production
     - ✅ **Production deployment** (March 3, 2026) - JWT_SECRET added to Vercel, 2FA working on staging
+    - ✅ **Soft onboarding implementation** (March 3, 2026) - PR #345
+      - TwoFactorBanner component with 7-day dismissal
+      - AccountDashboardClient for 2FA status fetching
+      - SignInButton 2FA status indicator in user dropdown
+      - Complete i18n support across 11 languages
+    - ✅ **Copilot review fixes** (March 3, 2026) - PR #346 (5 issues)
+      - Fixed critical API response parsing bug (data.twoFactorEnabled → data?.user?.twoFactorEnabled)
+      - Removed unused userId prop from AccountDashboardClient
+      - Eliminated linter suppression in TwoFactorBanner
+      - Corrected ARIA role from alert to status for accessibility
+      - Added locale prefixes to navigation links
+    - ✅ **Locale-aware Link refactor** (March 3, 2026) - PR #347
+      - Replaced manual locale prefixing with next-intl's Link from @/lib/navigation
+      - Removed duplicate locale logic from SignInButton
+      - Improved routing consistency across application
     - [ ] **Remaining Manual QA Testing** (2-3 hours):
       - [ ] **Re-enable Flow** (30 min):
         1. Disable 2FA (password + TOTP required)

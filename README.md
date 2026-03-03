@@ -34,6 +34,7 @@ This project demonstrates a modern headless CMS architecture:
 │  • TypeScript + Tailwind CSS                                 │
 │  • Zustand State Management                                  │
 │  • WordPress JWT Authentication                              │
+│  • Two-Factor Authentication (TOTP)                          │
 │  • next-intl (11 Languages)                                  │
 │  • BAPI Brand Color System                                   │
 └────────────────────────┬────────────────────────────────────┘
@@ -43,6 +44,7 @@ This project demonstrates a modern headless CMS architecture:
 ┌─────────────────────────────────────────────────────────────┐
 │  WordPress/WooCommerce (Kinsta)                              │
 │  • WPGraphQL + WPGraphQL for WooCommerce                     │
+│  • 2FA GraphQL Extension (mu-plugin)                         │
 │  • Product Catalog Management                                │
 │  • Content Management System                                 │
 └─────────────────────────────────────────────────────────────┘
@@ -139,6 +141,7 @@ bapi-headless/
 - ⚡ **95% Faster Product Pages** - Optimized from 2-3s to <100ms with React cache(), parallel queries, and Smart Cache
 - �️ **WebP Image Optimization** - 60% size reduction (88.52 MB → 35.44 MB) across 26 images, hero image alone reduced from 60 MB to 9.4 MB
 - 🔐 **WordPress JWT Authentication** - Native WordPress users, HTTP-only cookies, protected routes
+- 🔒 **Two-Factor Authentication (2FA)** - TOTP-based security with backup codes, soft onboarding, 11-language support
 - 👤 **Complete User Dashboard** - 6-page account system (dashboard, profile, orders, favorites, quotes, settings)
 - 🛍️ **Real Order History** - Display WooCommerce orders via authenticated GraphQL
 - 🤖 **AI Chatbot** - Claude-powered technical support with product search, multilingual support (11 languages), and human handoff capability
@@ -170,7 +173,8 @@ bapi-headless/
 - 🛍️ **WooCommerce** - Complete e-commerce functionality
 - 🔌 **WPGraphQL** - Modern GraphQL API for WordPress
 - 🔐 **Authenticated GraphQL** - Customer-specific data via WordPress Application Passwords
-- 📦 **WooCommerce REST API** - Direct order creation via `/wp-json/wc/v3/orders`
+- � **2FA GraphQL Extension** - Custom must-use plugin for two-factor authentication (TOTP, backup codes, Libsodium encryption)
+- �📦 **WooCommerce REST API** - Direct order creation via `/wp-json/wc/v3/orders`
 - 📦 **Customer Order Integration** - Real-time order history from WooCommerce
 - ⚡ **Smart Cache** - WPGraphQL response caching with automatic invalidation
 - 🌐 **CDN-Cacheable** - GET request support with proper Cache-Control headers
@@ -231,6 +235,9 @@ bapi-headless/
    # WordPress Authentication (for authenticated GraphQL queries)
    WORDPRESS_APPLICATION_USERNAME=your-username
    WORDPRESS_APPLICATION_PASSWORD=your-app-password
+   
+   # Two-Factor Authentication (required for 2FA login flow)
+   JWT_SECRET=your-secure-random-string
    ```
 
 4. **Generate GraphQL types**
@@ -268,6 +275,8 @@ See [`web/COLOR_SYSTEM.md`](./web/COLOR_SYSTEM.md) for complete color documentat
 - **[Color System](./web/COLOR_SYSTEM.md)** - Complete brand color guidelines
 - **[Storybook & Chromatic](./docs/CHROMATIC-QUICK-START.md)** - Visual regression testing setup (122+ stories)
 - **[WordPress Authentication](./docs/WORDPRESS-BACKEND-SETUP.md)** - JWT authentication setup and configuration
+- **[Two-Factor Authentication](./docs/USER-GUIDE-2FA.md)** - User guide for 2FA setup and usage
+- **[2FA Implementation](./docs/WORDPRESS-2FA-EXTENSION-SETUP.md)** - Technical guide for 2FA WordPress extension
 - **[Translation Guide](./docs/PHASE1-TRANSLATION-GUIDE.md)** - 11-language i18n implementation
 - **[WordPress User Migration](./docs/BULK-USER-MIGRATION.md)** - Bulk import guide for existing customers
 - **[GraphQL Setup](./web/GRAPHQL_SETUP.md)** - GraphQL client configuration
@@ -406,6 +415,9 @@ NEXT_PUBLIC_APP_URL=https://your-site.vercel.app
 # WordPress JWT Authentication (required for protected routes)
 WORDPRESS_API_USER=your-wordpress-username
 WORDPRESS_API_PASSWORD=your-wordpress-app-password
+
+# Two-Factor Authentication (required for 2FA login flow)
+JWT_SECRET=your-secure-random-string
 
 # Stripe Payment (test mode)
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your-key

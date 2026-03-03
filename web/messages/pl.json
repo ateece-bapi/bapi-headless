@@ -589,6 +589,15 @@
     "logout": "Wyloguj się",
     "myProfile": "Mój Profil"
   },
+  "account": {
+    "twoFactorBanner": {
+      "title": "Zabezpiecz swoje konto za pomocą uwierzytelniania dwuskładnikowego",
+      "description": "Dodaj dodatkową warstwę zabezpieczeń, aby chronić swoje konto i dane firmowe. Włącz 2FA w zaledwie 2 minuty za pomocą smartfona.",
+      "enableButton": "Włącz 2FA teraz",
+      "learnMoreButton": "Dowiedz się więcej",
+      "dismissLabel": "Zamknij baner"
+    }
+  },
   "cart": {
     "title": "Koszyk zakupowy",
     "empty": "Twój koszyk jest pusty",

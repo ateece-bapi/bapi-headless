@@ -1895,6 +1895,15 @@
     "logout": "ログアウト",
     "myProfile": "マイプロフィール"
   },
+  "account": {
+    "twoFactorBanner": {
+      "title": "二要素認証でアカウントを保護する",
+      "description": "アカウントとビジネスデータを保護するために、追加のセキュリティレイヤーを追加します。スマートフォンを使用して、わずか2分で2FAを有効にできます。",
+      "enableButton": "今すぐ2FAを有効にする",
+      "learnMoreButton": "詳細を見る",
+      "dismissLabel": "バナーを閉じる"
+    }
+  },
   "cart": {
     "title": "ショッピングカート",
     "empty": "カートが空です",

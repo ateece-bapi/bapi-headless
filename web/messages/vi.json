@@ -1895,6 +1895,15 @@
     "logout": "Đăng xuất",
     "myProfile": "Hồ sơ của tôi"
   },
+  "account": {
+    "twoFactorBanner": {
+      "title": "Bảo mật tài khoản của bạn với xác thực hai yếu tố",
+      "description": "Thêm một lớp bảo mật bổ sung để bảo vệ tài khoản và dữ liệu doanh nghiệp của bạn. Kích hoạt 2FA chỉ trong 2 phút bằng điện thoại thông minh của bạn.",
+      "enableButton": "Kích hoạt 2FA ngay bây giờ",
+      "learnMoreButton": "Tìm hiểu thêm",
+      "dismissLabel": "Đóng biểu ngữ"
+    }
+  },
   "cart": {
     "title": "Giỏ hàng",
     "empty": "Giỏ hàng của bạn trống",

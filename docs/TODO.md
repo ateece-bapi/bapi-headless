@@ -2864,9 +2864,42 @@ Deferred to post-launch - see Phase 2 section below for details.
       - Improved error state handling in UserProfileClient (explicit retry button)
     - ✅ **Disable flow verification** (March 3, 2026) - Tested and working on staging/production
     - ✅ **Production deployment** (March 3, 2026) - JWT_SECRET added to Vercel, 2FA working on staging
-    - [ ] Manual QA testing (iOS/Android authenticator apps) - Ready for testing
-    - [ ] Backup code flow verification - Ready for testing
-    - [ ] Re-enable flow verification (after disabling) - Ready for testing
+    - [ ] **Remaining Manual QA Testing** (2-3 hours):
+      - [ ] **Re-enable Flow** (30 min):
+        1. Disable 2FA (password + TOTP required)
+        2. Verify status badge shows "Disabled"
+        3. Sign out and sign in (should not prompt for TOTP)
+        4. Re-enable 2FA (should generate NEW QR code)
+        5. Remove old authenticator entry, scan new QR
+        6. Verify new TOTP code
+        7. Sign out/in to verify new TOTP works
+        8. Verify old TOTP codes no longer work
+      - [ ] **Backup Code Login Flow** (30 min):
+        1. Enable 2FA and download backup codes
+        2. Sign out
+        3. Sign in with password
+        4. Use backup code instead of TOTP on verification screen
+        5. Verify successful login
+        6. Check that used backup code is consumed (one-time use)
+        7. Try using same backup code again (should fail)
+      - [ ] **Mobile Authenticator Apps** (1 hour):
+        1. Test with Google Authenticator (iOS/Android)
+        2. Test with Microsoft Authenticator
+        3. Test with Authy
+        4. Test with 1Password
+        5. Verify QR code scanning works on mobile devices
+        6. Verify TOTP generation matches across apps
+      - [ ] **Error Scenarios** (30 min):
+        1. Wrong TOTP code (should show "Invalid code" error)
+        2. Expired TOTP code (after 30 seconds)
+        3. Rate limiting (5 failed attempts = 15-min lockout)
+        4. Invalid backup code format
+        5. Expired JWT token during 2FA login
+      - [ ] **Cross-browser Testing** (30 min):
+        1. Safari (macOS/iOS)
+        2. Firefox
+        3. Edge
+        4. Chrome (already tested)
     - [ ] E2E tests with Playwright (optional, 2-3 hours)
     - [ ] 24-hour monitoring post-launch
 

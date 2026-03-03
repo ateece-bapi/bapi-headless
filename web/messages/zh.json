@@ -2021,6 +2021,50 @@
       "productId": "ID:",
       "noImage": "No image",
       "viewProduct": "View Product"
+    },
+    "quotes": {
+      "title": "Quote Requests",
+      "subtitle": "Track and manage your custom quote requests",
+      "backToDashboard": "Back to Dashboard",
+      "mockDataBanner": "Showing mock quote data",
+      "newQuoteRequest": "New Quote Request",
+      "empty": {
+        "title": "No Quote Requests Yet",
+        "description": "Request a custom quote for bulk orders, special configurations, or technical consultations.",
+        "submitQuote": "Submit Quote Request",
+        "infoCards": {
+          "customSolutions": {
+            "title": "Custom Solutions",
+            "description": "Get tailored pricing for your specific application requirements"
+          },
+          "fastResponse": {
+            "title": "Fast Response",
+            "description": "Our team typically responds within 24 business hours"
+          },
+          "expertSupport": {
+            "title": "Expert Support",
+            "description": "Work directly with our technical specialists"
+          }
+        }
+      },
+      "quoteNumber": "Quote #",
+      "created": "Created:",
+      "expires": "Expires:",
+      "items": "Items:",
+      "itemCount": {
+        "items": "{count} items",
+        "item": "{count} item"
+      },
+      "actions": {
+        "viewDetails": "View Details",
+        "cancelRequest": "Cancel Request"
+      },
+      "status": {
+        "pending": "Pending",
+        "reviewing": "Reviewing",
+        "quoted": "Quoted",
+        "declined": "Declined"
+      }
     }
   },
   "cart": {

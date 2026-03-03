@@ -2178,6 +2178,7 @@
             "passwordPlaceholder": "Nhập mật khẩu của bạn",
             "codeLabel": "Mã xác minh",
             "codePlaceholder": "000000",
+            "codeAriaLabel": "Mã xác minh sáu chữ số",
             "codeHelp": "Nhập mã từ ứng dụng xác thực của bạn",
             "showPassword": "Hiển thị mật khẩu",
             "hidePassword": "Ẩn mật khẩu",

@@ -1,6 +1,6 @@
 import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ArrowLeft, Package, Eye, Download, AlertCircle } from 'lucide-react';
 import logger from '@/lib/logger';
 import { authenticatedGraphqlClient } from '@/lib/graphql/authenticated-client';
@@ -97,9 +97,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
           <div className="mx-auto max-w-container px-4 py-3 sm:px-6 lg:px-8 xl:px-12">
             <div className="flex items-center gap-2 text-sm text-yellow-800">
               <AlertCircle className="h-4 w-4" />
-              <span>
-                <strong>Development Mode:</strong> {t('mockDataBanner')}
-              </span>
+              <span>{t('mockDataBanner')}</span>
             </div>
           </div>
         </div>

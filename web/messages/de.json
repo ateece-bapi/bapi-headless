@@ -2178,6 +2178,7 @@
             "passwordPlaceholder": "Geben Sie Ihr Passwort ein",
             "codeLabel": "Verifizierungscode",
             "codePlaceholder": "000000",
+            "codeAriaLabel": "Sechsstelliger Verifizierungscode",
             "codeHelp": "Geben Sie den Code aus Ihrer Authentifizierungs-App ein",
             "showPassword": "Passwort anzeigen",
             "hidePassword": "Passwort verbergen",

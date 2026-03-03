@@ -1,6 +1,6 @@
 import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ArrowLeft, FileText, Clock, CheckCircle, XCircle, Plus, AlertCircle } from 'lucide-react';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 import { getTranslations } from 'next-intl/server';
@@ -42,9 +42,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
           <div className="mx-auto max-w-container px-4 py-3 sm:px-6 lg:px-8 xl:px-12">
             <div className="flex items-center gap-2 text-sm text-yellow-800">
               <AlertCircle className="h-4 w-4" />
-              <span>
-                <strong>Development Mode:</strong> {t('mockDataBanner')}
-              </span>
+              <span>{t('mockDataBanner')}</span>
             </div>
           </div>
         </div>
@@ -54,7 +52,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
       <section className="bg-linear-to-r w-full from-primary-600 to-primary-700 text-white">
         <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href={`/${locale}/account`}
+            href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-white/90 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
@@ -66,7 +64,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
               <p className="mt-2 text-white/90">{t('subtitle')}</p>
             </div>
             <Link
-              href={`/${locale}/request-quote`}
+              href="/request-quote"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-primary-700 shadow-lg transition-all hover:bg-neutral-50 hover:shadow-xl"
             >
               <Plus className="h-5 w-5" strokeWidth={2.5} />
@@ -141,7 +139,9 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                     <div className="flex-1">
                       <div className="mb-3 flex items-center gap-3">
-                        <h3 className="text-xl font-bold text-neutral-900">Quote #{quote.id}</h3>
+                        <h3 className="text-xl font-bold text-neutral-900">
+                          {t('quoteNumber', { number: quote.id })}
+                        </h3>
                         {getStatusBadge(quote.status, t)}
                       </div>
                       <div className="mb-4 flex flex-wrap gap-4 text-sm">

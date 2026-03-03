@@ -69,7 +69,7 @@ export default async function LocaleLayout({
   const websiteSchema = generateWebSiteSchema(siteUrl, 'BAPI - Building Automation Products Inc.');
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale}>
       <head>
         {/* Inline critical CSS for hero image container */}
         <style
@@ -95,7 +95,7 @@ export default async function LocaleLayout({
         {/* Structured Data for SEO */}
         <StructuredData schema={[organizationSchema, websiteSchema]} />
       </head>
-      <body className={`${roboto.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body className={`${roboto.variable} font-sans antialiased`}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ToastProvider>
             <>

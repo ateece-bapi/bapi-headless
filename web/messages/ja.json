@@ -2079,7 +2079,7 @@
         "submitQuote": "見積依頼を提出する",
         "infoCards": {
           "customSolutions": {
-            "title": "Custom Solutions",
+            "title": "カスタムソリューション",
             "description": "お客様の用途要件に合わせたプライシングをご提案いたします"
           },
           "fastResponse": {

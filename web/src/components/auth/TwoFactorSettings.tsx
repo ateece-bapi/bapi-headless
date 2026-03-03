@@ -121,7 +121,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
         setDisableCode('');
       }
     } catch (error) {
-      logger.error('2FA disable error', { error });
+      logger.error('2FA disable error', error as Error);
       showToast('error', t('disable.toast.connectionError.title'), t('disable.toast.connectionError.message'));
     } finally {
       setIsLoading(false);
@@ -330,7 +330,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                     disabled={isLoading}
                     autoComplete="off"
                     required
-                    aria-label="Six digit verification code"
+                    aria-label={t('disable.form.codeAriaLabel')}
                   />
                   <p className="mt-2 text-sm text-neutral-600">
                     {t('disable.form.codeHelp')}

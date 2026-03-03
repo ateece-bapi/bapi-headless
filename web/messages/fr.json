@@ -1895,6 +1895,15 @@
     "logout": "Se déconnecter",
     "myProfile": "Mon profil"
   },
+  "account": {
+    "twoFactorBanner": {
+      "title": "Sécurisez votre compte avec l'authentification à deux facteurs",
+      "description": "Ajoutez une couche de sécurité supplémentaire pour protéger votre compte et vos données professionnelles. Activez l'A2F en seulement 2 minutes avec votre smartphone.",
+      "enableButton": "Activer l'A2F maintenant",
+      "learnMoreButton": "En savoir plus",
+      "dismissLabel": "Fermer la bannière"
+    }
+  },
   "cart": {
     "title": "Panier d'achat",
     "empty": "Votre panier est vide",

@@ -1895,6 +1895,15 @@
     "logout": "Cerrar sesión",
     "myProfile": "Mi perfil"
   },
+  "account": {
+    "twoFactorBanner": {
+      "title": "Asegure su cuenta con autenticación de dos factores",
+      "description": "Agregue una capa adicional de seguridad para proteger su cuenta y datos empresariales. Active 2FA en solo 2 minutos usando su smartphone.",
+      "enableButton": "Activar 2FA ahora",
+      "learnMoreButton": "Más información",
+      "dismissLabel": "Cerrar banner"
+    }
+  },
   "cart": {
     "title": "Carrito de compras",
     "empty": "Su carrito está vacío",

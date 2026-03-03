@@ -589,6 +589,15 @@
     "logout": "Sign Out",
     "myProfile": "My Profile"
   },
+  "account": {
+    "twoFactorBanner": {
+      "title": "दो-कारक प्रमाणीकरण के साथ अपने खाते को सुरक्षित करें",
+      "description": "अपने खाते और व्यापार डेटा की सुरक्षा के लिए सुरक्षा की एक अतिरिक्त परत जोड़ें। अपने स्मार्टफोन का उपयोग करके केवल 2 मिनट में 2FA सक्षम करें।",
+      "enableButton": "अभी 2FA सक्षम करें",
+      "learnMoreButton": "अधिक जानें",
+      "dismissLabel": "बैनर बंद करें"
+    }
+  },
   "cart": {
     "title": "Shopping Cart",
     "empty": "Your cart is empty",

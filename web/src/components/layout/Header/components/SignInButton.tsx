@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { User, LogOut, Settings, Package } from 'lucide-react';
+import { User, LogOut, Settings, Package, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useToast } from '@/components/ui/Toast';
@@ -12,6 +12,7 @@ interface AuthUser {
   email: string;
   displayName: string;
   username: string;
+  twoFactorEnabled?: boolean;
 }
 
 /**
@@ -105,6 +106,17 @@ const SignInButton: React.FC = () => {
             >
               <Settings className="h-4 w-4" />
               Settings
+            </Link>
+            <Link
+              href="/account/settings"
+              className={`flex items-center gap-2 px-4 py-2 text-sm transition-colors hover:bg-neutral-50 ${
+                user.twoFactorEnabled ? 'text-green-600' : 'text-primary-600'
+              }`}
+              onClick={() => setShowMenu(false)}
+              aria-label={user.twoFactorEnabled ? '2FA is enabled' : 'Enable two-factor authentication'}
+            >
+              <ShieldCheck className="h-4 w-4" />
+              {user.twoFactorEnabled ? '✓ 2FA Enabled' : '🔒 Enable 2FA'}
             </Link>
             <hr className="my-2 border-neutral-200" />
             <button

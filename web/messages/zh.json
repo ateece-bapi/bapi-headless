@@ -1895,6 +1895,15 @@
     "logout": "退出登录",
     "myProfile": "我的个人资料"
   },
+  "account": {
+    "twoFactorBanner": {
+      "title": "使用双因素身份验证保护您的帐户",
+      "description": "添加额外的安全层来保护您的帐户和业务数据。使用智能手机仅需2分钟即可启用2FA。",
+      "enableButton": "立即启用2FA",
+      "learnMoreButton": "了解更多",
+      "dismissLabel": "关闭横幅"
+    }
+  },
   "cart": {
     "title": "购物车",
     "empty": "您的购物车是空的",

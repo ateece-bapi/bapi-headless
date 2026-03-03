@@ -1895,6 +1895,15 @@
     "logout": "Abmelden",
     "myProfile": "Mein Profil"
   },
+  "account": {
+    "twoFactorBanner": {
+      "title": "Sichern Sie Ihr Konto mit Zwei-Faktor-Authentifizierung",
+      "description": "Fügen Sie eine zusätzliche Sicherheitsebene hinzu, um Ihr Konto und Ihre Geschäftsdaten zu schützen. Aktivieren Sie 2FA in nur 2 Minuten mit Ihrem Smartphone.",
+      "enableButton": "2FA jetzt aktivieren",
+      "learnMoreButton": "Mehr erfahren",
+      "dismissLabel": "Banner schließen"
+    }
+  },
   "cart": {
     "title": "Warenkorb",
     "empty": "Ihr Warenkorb ist leer",

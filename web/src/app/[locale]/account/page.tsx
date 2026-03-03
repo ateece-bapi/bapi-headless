@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
+import AccountDashboardClient from '@/components/account/AccountDashboardClient';
 
 type AccountPageProps = {
   params: Promise<{ locale: string }>;
@@ -229,6 +230,10 @@ export default async function AccountPage({ params }: AccountPageProps) {
       <section className="w-full py-12 lg:py-16">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
           <h2 className="mb-6 text-2xl font-bold text-neutral-900">Account Management</h2>
+          
+          {/* Two-Factor Authentication Banner */}
+          <AccountDashboardClient locale={locale} userId={user.id} />
+          
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {dashboardSections.map((section) => {
               const IconComponent = section.icon;

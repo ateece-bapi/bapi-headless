@@ -142,13 +142,13 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                     <div className="flex-1">
                       <div className="mb-3 flex items-center gap-3">
                         <h3 className="text-xl font-bold text-neutral-900">Quote #{quote.id}</h3>
-                        {getStatusBadge(quote.status)}
+                        {getStatusBadge(quote.status, t)}
                       </div>
                       <div className="mb-4 flex flex-wrap gap-4 text-sm">
                         <div>
-                          <span className="text-neutral-500">Created:</span>{' '}
+                          <span className="text-neutral-500">{t('created')}</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {new Date(quote.date).toLocaleDateString('en-US', {
+                            {new Date(quote.date).toLocaleDateString(locale, {
                               month: 'short',
                               day: 'numeric',
                               year: 'numeric',
@@ -156,9 +156,9 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                           </span>
                         </div>
                         <div>
-                          <span className="text-neutral-500">Expires:</span>{' '}
+                          <span className="text-neutral-500">{t('expires')}</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {new Date(quote.expiresAt).toLocaleDateString('en-US', {
+                            {new Date(quote.expiresAt).toLocaleDateString(locale, {
                               month: 'short',
                               day: 'numeric',
                               year: 'numeric',
@@ -166,9 +166,9 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                           </span>
                         </div>
                         <div>
-                          <span className="text-neutral-500">Items:</span>{' '}
+                          <span className="text-neutral-500">{t('items')}</span>{' '}
                           <span className="font-medium text-neutral-700">
-                            {quote.itemCount} {quote.itemCount === 1 ? 'item' : 'items'}
+                            {quote.itemCount === 1 ? t('itemCount.item', { count: quote.itemCount }) : t('itemCount.items', { count: quote.itemCount })}
                           </span>
                         </div>
                       </div>
@@ -178,14 +178,14 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                         href={`/account/quotes/${quote.id}`}
                         className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                       >
-                        View Details
+                        {t('actions.viewDetails')}
                       </Link>
                       {quote.status === 'pending' && (
                         <button
                           type="button"
                           className="inline-flex items-center justify-center rounded-lg border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-50"
                         >
-                          Cancel Request
+                          {t('actions.cancelRequest')}
                         </button>
                       )}
                     </div>

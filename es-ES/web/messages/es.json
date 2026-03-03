@@ -1031,9 +1031,322 @@
     "welcomeBack": "Welcome back",
     "loginRequired": "Please sign in to continue",
     "logout": "Sign Out",
-    "myProfile": "My Profile"
+    "myProfile": "My Profile",
+    "signInPage": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to access your orders, saved products, and quote requests",
+      "form": {
+        "usernameLabel": "Username or Email",
+        "usernamePlaceholder": "Enter your username or email",
+        "usernameAriaLabel": "Username or email address",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "passwordAriaLabel": "Password",
+        "showPassword": "Show password",
+        "hidePassword": "Hide password",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot password?",
+        "submitButton": "Sign In",
+        "submittingButton": "Signing in..."
+      },
+      "toast": {
+        "missingFields": {
+          "title": "Missing Fields",
+          "message": "Please enter both username and password"
+        },
+        "welcomeBack": {
+          "title": "Welcome Back!",
+          "message": "Successfully signed in"
+        },
+        "signInFailed": {
+          "title": "Sign In Failed",
+          "defaultMessage": "Invalid username or password"
+        },
+        "connectionError": {
+          "title": "Connection Error",
+          "message": "Unable to connect to server. Please try again."
+        }
+      },
+      "security": {
+        "secureConnection": "Secure encrypted connection",
+        "needHelp": "Need help?",
+        "contactSupport": "Contact Support"
+      },
+      "noAccount": {
+        "text": "Don't have an account?",
+        "contactSales": "Contact your sales representative"
+      }
+    }
   },
   "account": {
+    "dashboard": {
+      "welcomeBack": "Welcome back, {displayName}!",
+      "subtitle": "Manage your account, orders, and preferences from your dashboard",
+      "mockDataBanner": "Development Mode: Showing mock data for testing",
+      "accountManagement": "Account Management",
+      "recentActivity": "Recent Activity",
+      "viewAllOrders": "View all orders →",
+      "company": "Company",
+      "accountNumber": "Account #",
+      "recentOrders": "Recent Orders",
+      "ordersCount": "{count} orders",
+      "viewAll": "View all →",
+      "savedQuotes": "Saved Quotes",
+      "quotesCount": "{count} quotes",
+      "moreItems": "+ {count} more item",
+      "moreItemsPlural": "+ {count} more items",
+      "sections": {
+        "profile": {
+          "title": "Profile",
+          "description": "Manage your account information and preferences"
+        },
+        "orderHistory": {
+          "title": "Order History",
+          "description": "View your past orders and track shipments"
+        },
+        "savedProducts": {
+          "title": "Saved Products",
+          "description": "Access your favorite products and wishlists"
+        },
+        "quoteRequests": {
+          "title": "Quote Requests",
+          "description": "Manage your custom quote requests"
+        },
+        "shoppingCart": {
+          "title": "Shopping Cart",
+          "description": "View and manage items in your cart"
+        },
+        "accountSettings": {
+          "title": "Account Settings",
+          "description": "Update your password and security settings"
+        }
+      },
+      "orderStatus": {
+        "delivered": "Delivered",
+        "shipped": "Shipped",
+        "processing": "Processing",
+        "pending": "Pending",
+        "cancelled": "Cancelled"
+      }
+    },
+    "profile": {
+      "title": "Profile",
+      "backToDashboard": "Back to Dashboard",
+      "fields": {
+        "displayName": "Display Name",
+        "username": "Username",
+        "email": "Email Address"
+      },
+      "accountInfo": {
+        "title": "Account Information",
+        "userId": "User ID:",
+        "usernameLabel": "Username:",
+        "notSet": "Not set"
+      },
+      "actions": {
+        "editProfile": "Edit Profile"
+      }
+    },
+    "orders": {
+      "title": "Order History",
+      "subtitle": "View and track all your orders",
+      "backToDashboard": "Back to Dashboard",
+      "mockDataBanner": "Development Mode: Showing mock order data",
+      "error": "Failed to load order history",
+      "empty": {
+        "title": "No Orders Yet",
+        "descriptionWithAccount": "You haven't placed any orders yet. Start shopping to see your order history here.",
+        "descriptionWithoutAccount": "Your account is being set up. Order history will appear here once available.",
+        "browseProducts": "Browse Products"
+      },
+      "count": {
+        "orders": "{count} Orders",
+        "order": "{count} Order"
+      },
+      "orderNumber": "Order #",
+      "placedOn": "Placed on",
+      "items": "{count} items",
+      "moreItems": "+{count}",
+      "actions": {
+        "viewDetails": "View Details",
+        "invoice": "Invoice"
+      },
+      "status": {
+        "pending": "Pending",
+        "processing": "Processing",
+        "on-hold": "On Hold",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "refunded": "Refunded",
+        "failed": "Failed"
+      }
+    },
+    "favorites": {
+      "title": "Saved Products",
+      "backToDashboard": "Back to Dashboard",
+      "count": {
+        "products": "{count} Products Saved",
+        "product": "{count} Product Saved"
+      },
+      "empty": {
+        "title": "No Saved Products Yet",
+        "description": "Start saving your favorite products to quickly access them later. Click the heart icon on any product page to add it to your favorites.",
+        "browseProducts": "Browse Products",
+        "testFavorites": "Test Favorites"
+      },
+      "productId": "ID:",
+      "noImage": "No image",
+      "viewProduct": "View Product"
+    },
+    "quotes": {
+      "title": "Quote Requests",
+      "subtitle": "Track and manage your custom quote requests",
+      "backToDashboard": "Back to Dashboard",
+      "mockDataBanner": "Showing mock quote data",
+      "newQuoteRequest": "New Quote Request",
+      "empty": {
+        "title": "No Quote Requests Yet",
+        "description": "Request a custom quote for bulk orders, special configurations, or technical consultations.",
+        "submitQuote": "Submit Quote Request",
+        "infoCards": {
+          "customSolutions": {
+            "title": "Custom Solutions",
+            "description": "Get tailored pricing for your specific application requirements"
+          },
+          "fastResponse": {
+            "title": "Fast Response",
+            "description": "Our team typically responds within 24 business hours"
+          },
+          "expertSupport": {
+            "title": "Expert Support",
+            "description": "Work directly with our technical specialists"
+          }
+        }
+      },
+      "quoteNumber": "Quote #",
+      "created": "Created:",
+      "expires": "Expires:",
+      "items": "Items:",
+      "itemCount": {
+        "items": "{count} items",
+        "item": "{count} item"
+      },
+      "actions": {
+        "viewDetails": "View Details",
+        "cancelRequest": "Cancel Request"
+      },
+      "status": {
+        "pending": "Pending",
+        "reviewing": "Reviewing",
+        "quoted": "Quoted",
+        "declined": "Declined"
+      }
+    },
+    "settings": {
+      "title": "Account Settings",
+      "subtitle": "Manage your profile, security, and account preferences",
+      "backToDashboard": "Back to Dashboard",
+      "help": {
+        "title": "Need Help?",
+        "description": "If you're having trouble with your account settings, our support team is here to help.",
+        "contactSupport": "Contact Support",
+        "helpCenter": "Help Center"
+      },
+      "userProfile": {
+        "loading": "Loading security settings...",
+        "error": {
+          "title": "Unable to Load Security Settings",
+          "description": "We couldn't retrieve your two-factor authentication status. Please try refreshing the page.",
+          "retry": "Retry"
+        },
+        "toastError": {
+          "title": "Error",
+          "message": "Failed to load security settings"
+        }
+      },
+      "twoFactorSettings": {
+        "title": "Two-Factor Authentication",
+        "subtitle": "Add an extra layer of security to your account",
+        "status": {
+          "enabled": "Enabled",
+          "disabled": "Disabled",
+          "active": "Active",
+          "enabledDescription": "Your account is protected with two-factor authentication. You need your password and a verification code to sign in.",
+          "disabledDescription": "Two-factor authentication is not enabled. Enable it to add an extra layer of security to your account."
+        },
+        "whyEnable": {
+          "title": "Why Enable 2FA?",
+          "reasons": {
+            "unauthorized": "Protect your account from unauthorized access",
+            "stuffing": "Prevent credential stuffing attacks",
+            "sensitive": "Add security for sensitive operations",
+            "standards": "Meet industry security standards"
+          }
+        },
+        "whatYouNeed": {
+          "title": "What You'll Need",
+          "description": "An authenticator app like Google Authenticator, Authy, 1Password, or Microsoft Authenticator on your phone or computer."
+        },
+        "backupCodes": {
+          "title": "Keep Your Backup Codes Safe",
+          "description": "Make sure you've saved your backup codes in a secure location. If you lose access to your authenticator app, backup codes are the only way to access your account."
+        },
+        "securityTip": {
+          "title": "Security Tip",
+          "description": "Two-factor authentication significantly improves account security. Even if someone obtains your password, they won't be able to access your account without access to your authenticator app."
+        },
+        "enable": {
+          "button": "Enable Two-Factor Authentication"
+        },
+        "disable": {
+          "button": "Disable Two-Factor Authentication",
+          "warning": {
+            "title": "Are you sure?",
+            "description": "Disabling 2FA will make your account less secure. You'll only need your password to sign in."
+          },
+          "form": {
+            "passwordLabel": "Confirm Your Password",
+            "passwordPlaceholder": "Enter your password",
+            "codeLabel": "Verification Code",
+            "codePlaceholder": "000000",
+            "codeHelp": "Enter the code from your authenticator app",
+            "showPassword": "Show password",
+            "hidePassword": "Hide password",
+            "cancel": "Cancel",
+            "submit": "Disable 2FA",
+            "submitting": "Disabling..."
+          },
+          "toast": {
+            "success": {
+              "title": "2FA Disabled",
+              "message": "Two-factor authentication has been turned off"
+            },
+            "error": {
+              "title": "Unable to Disable",
+              "defaultMessage": "Verification failed. Please try again."
+            },
+            "connectionError": {
+              "title": "Connection Error",
+              "message": "Unable to disable 2FA"
+            },
+            "requiredFields": {
+              "title": "Required Fields",
+              "message": "Please enter your password and verification code"
+            },
+            "invalidCode": {
+              "title": "Invalid Code",
+              "message": "Please enter a 6-digit code"
+            }
+          }
+        },
+        "toast": {
+          "setupComplete": {
+            "title": "2FA Enabled",
+            "message": "Your account is now protected with two-factor authentication"
+          }
+        }
+      }
+    },
     "twoFactorBanner": {
       "title": "Secure Your Account with Two-Factor Authentication",
       "description": "Add an extra layer of security to protect your account and business data. Enable 2FA in just 2 minutes using your smartphone.",

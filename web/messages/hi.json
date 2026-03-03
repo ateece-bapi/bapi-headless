@@ -759,6 +759,29 @@
         "quoted": "Quoted",
         "declined": "Declined"
       }
+    },
+    "settings": {
+      "title": "Account Settings",
+      "subtitle": "Manage your profile, security, and account preferences",
+      "backToDashboard": "Back to Dashboard",
+      "help": {
+        "title": "Need Help?",
+        "description": "If you're having trouble with your account settings, our support team is here to help.",
+        "contactSupport": "Contact Support",
+        "helpCenter": "Help Center"
+      },
+      "userProfile": {
+        "loading": "Loading security settings...",
+        "error": {
+          "title": "Unable to Load Security Settings",
+          "description": "We couldn't retrieve your two-factor authentication status. Please try refreshing the page.",
+          "retry": "Retry"
+        },
+        "toastError": {
+          "title": "Error",
+          "message": "Failed to load security settings"
+        }
+      }
     }
   },
   "cart": {

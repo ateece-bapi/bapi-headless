@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import UserProfileClient from './UserProfileClient';
+import { getTranslations } from 'next-intl/server';
 
 type SettingsPageProps = {
   params: Promise<{ locale: string }>;
@@ -10,6 +11,7 @@ type SettingsPageProps = {
 
 export default async function SettingsPage({ params }: SettingsPageProps) {
   const { locale } = await params;
+  const t = await getTranslations('account.settings');
   const { user } = await getServerAuth();
 
   if (!user) {
@@ -26,11 +28,11 @@ export default async function SettingsPage({ params }: SettingsPageProps) {
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-            Back to Dashboard
+            {t('backToDashboard')}
           </Link>
-          <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">Account Settings</h1>
+          <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>
           <p className="mt-2 text-neutral-600">
-            Manage your profile, security, and account preferences
+            {t('subtitle')}
           </p>
         </div>
       </section>
@@ -45,23 +47,22 @@ export default async function SettingsPage({ params }: SettingsPageProps) {
 
           {/* Help Section */}
           <div className="mt-8 rounded-lg border border-primary-200 bg-primary-50 p-6">
-            <h3 className="mb-2 font-bold text-primary-900">Need Help?</h3>
+            <h3 className="mb-2 font-bold text-primary-900">{t('help.title')}</h3>
             <p className="mb-4 text-sm text-primary-800">
-              If you&apos;re having trouble with your account settings, our support team is here to
-              help.
+              {t('help.description')}
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href={`/${locale}/support`}
                 className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
               >
-                Contact Support
+                {t('help.contactSupport')}
               </Link>
               <Link
                 href={`/${locale}/resources`}
                 className="inline-flex items-center justify-center rounded-lg border border-primary-300 px-4 py-2 text-sm font-semibold text-primary-700 transition-colors hover:bg-white"
               >
-                Help Center
+                {t('help.helpCenter')}
               </Link>
             </div>
           </div>

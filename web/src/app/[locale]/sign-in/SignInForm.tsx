@@ -88,7 +88,16 @@ export function SignInForm({ locale }: SignInFormProps) {
         showToast('error', t('toast.signInFailed.title'), decodedMessage);
       }
     } catch (error) {
-      logger.error('Sign in error', error as Error, { username });
+      // Normalize error to actual Error instance for proper logging
+      const normalizedError =
+        error instanceof Error
+          ? error
+          : new Error(
+              typeof error === 'string'
+                ? error
+                : `Non-Error thrown: ${JSON.stringify(error)}`
+            );
+      logger.error('Sign in error', normalizedError, { username });
       showToast('error', t('toast.connectionError.title'), t('toast.connectionError.message'));
     } finally {
       setIsLoading(false);
@@ -259,7 +268,7 @@ export function SignInForm({ locale }: SignInFormProps) {
         <p className="text-sm text-neutral-500">
           {t('security.needHelp')}{' '}
           <Link
-            href={`/${locale}/contact`}
+            href="/contact"
             className="font-semibold text-primary-500 transition-colors hover:text-primary-600 focus:underline focus:outline-none"
           >
             {t('security.contactSupport')}

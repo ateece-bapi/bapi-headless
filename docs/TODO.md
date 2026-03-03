@@ -2847,20 +2847,27 @@ Deferred to post-launch - see Phase 2 section below for details.
   - ✅ Comprehensive testing (52 unit tests, 16 integration tests, 7 smoke tests)
   - ✅ Documentation (7,900+ lines: user guide, support guide, implementation)
   - ✅ PRs merged (#338 feature, #339 test fixes, whitespace cleanup, #340 deployment fixes)
-  - ✅ **Deployment/Testing Phase** (Complete - March 2, 2026):
+  - ✅ **Deployment/Testing Phase** (Complete - March 3, 2026):
     - ✅ Deploy WordPress mu-plugin to staging (graphql-2fa-extension.php, 15KB)
     - ✅ Configure encryption key (WORDPRESS_TWO_FACTOR_ENCRYPTION_KEY in wp-config.php)
     - ✅ Test GraphQL mutations on staging (all 3 fields + 3 mutations verified)
     - ✅ Frontend integration testing (setup flow, verify flow, status persistence)
-    - ✅ Bug fixes merged:
+    - ✅ **Bug fixes merged (March 2-3, 2026):**
       - Fixed 2FA status persistence (added twoFactorEnabled to GET_CURRENT_USER_QUERY)
-      - Fixed GraphQL type mismatch (userId Int! → ID! in verify-login and disable)
+      - Fixed GraphQL type mismatch in verify-login (userId Int! → ID!) - PR #340
+      - Fixed GraphQL type mismatch in disable route (userId ID! → Int!) - PR #343
+      - Fixed logger.error signature (context as 3rd arg) - PR #344
       - Fixed locale prefixes in sign-in, account, and settings navigation
+    - ✅ **Security hardening (March 3, 2026):**
+      - Copilot security review issues resolved (encryption key rotation, error handling) - PR #342
+      - Redacted server credentials and staging paths from documentation
+      - Improved error state handling in UserProfileClient (explicit retry button)
+    - ✅ **Disable flow verification** (March 3, 2026) - Tested and working on staging/production
+    - ✅ **Production deployment** (March 3, 2026) - JWT_SECRET added to Vercel, 2FA working on staging
     - [ ] Manual QA testing (iOS/Android authenticator apps) - Ready for testing
     - [ ] Backup code flow verification - Ready for testing
-    - [ ] Disable flow verification - Ready for testing
+    - [ ] Re-enable flow verification (after disabling) - Ready for testing
     - [ ] E2E tests with Playwright (optional, 2-3 hours)
-    - [ ] Production deployment checklist
     - [ ] 24-hour monitoring post-launch
 
 **Next Steps for User Features:**

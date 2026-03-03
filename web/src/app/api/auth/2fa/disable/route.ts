@@ -41,6 +41,7 @@ async function getCurrentUser(authToken: string) {
   const { data, errors } = await response.json();
 
   if (errors || !data?.viewer) {
+    logger.error('Failed to get current user for 2FA disable', { errors, hasViewer: !!data?.viewer });
     throw new Error('User not authenticated');
   }
 
@@ -162,7 +163,7 @@ export async function POST(request: NextRequest) {
 
     // Both password and code are valid - disable 2FA
     const disableMutation = `
-      mutation DisableTwoFactor($userId: ID!) {
+      mutation DisableTwoFactor($userId: Int!) {
         disableTwoFactor(
           input: {
             userId: $userId
@@ -183,7 +184,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         query: disableMutation,
         variables: {
-          userId: String(user.databaseId),
+          userId: user.databaseId,
         },
       }),
     });

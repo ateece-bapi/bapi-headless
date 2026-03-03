@@ -8,19 +8,20 @@ const en = JSON.parse(fs.readFileSync(enPath, 'utf8'));
 // Language files to update
 const languages = ['de', 'fr', 'es', 'ja', 'zh', 'vi', 'ar', 'th', 'pl', 'hi'];
 
-console.log('Syncing account translations (dashboard, profile, orders)...\n');
+console.log('Syncing account translations (dashboard, profile, orders, favorites)...\n');
 
 languages.forEach(lang => {
   const langPath = path.join(__dirname, `../messages/${lang}.json`);
   const langData = JSON.parse(fs.readFileSync(langPath, 'utf8'));
   
-  // Copy the account section from English (dashboard, profile, and orders)
+  // Copy the account section from English
   if (!langData.account) {
     langData.account = {};
   }
   langData.account.dashboard = en.account.dashboard;
   langData.account.profile = en.account.profile;
   langData.account.orders = en.account.orders;
+  langData.account.favorites = en.account.favorites;
   
   // Write back
   fs.writeFileSync(langPath, JSON.stringify(langData, null, 2) + '\n', 'utf8');

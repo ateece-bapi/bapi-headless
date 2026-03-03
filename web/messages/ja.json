@@ -2004,6 +2004,23 @@
         "refunded": "Refunded",
         "failed": "Failed"
       }
+    },
+    "favorites": {
+      "title": "Saved Products",
+      "backToDashboard": "Back to Dashboard",
+      "count": {
+        "products": "{count} Products Saved",
+        "product": "{count} Product Saved"
+      },
+      "empty": {
+        "title": "No Saved Products Yet",
+        "description": "Start saving your favorite products to quickly access them later. Click the heart icon on any product page to add it to your favorites.",
+        "browseProducts": "Browse Products",
+        "testFavorites": "Test Favorites"
+      },
+      "productId": "ID:",
+      "noImage": "No image",
+      "viewProduct": "View Product"
     }
   },
   "cart": {

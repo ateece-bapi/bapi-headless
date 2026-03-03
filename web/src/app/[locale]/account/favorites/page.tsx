@@ -8,6 +8,7 @@ import { ArrowLeft, Heart } from 'lucide-react';
 import logger from '@/lib/logger';
 import FavoriteButton from '@/components/FavoriteButton';
 import { ProductCardSkeleton } from '@/components/skeletons';
+import { useTranslations } from 'next-intl';
 
 interface Favorite {
   id: string;
@@ -21,6 +22,7 @@ interface Favorite {
 }
 
 export default function FavoritesPage() {
+  const t = useTranslations('account.favorites');
   const { user, isLoaded } = useAuth();
   const router = useRouter();
   const params = useParams();
@@ -67,13 +69,13 @@ export default function FavoritesPage() {
         <section className="w-full border-b border-neutral-200 bg-white">
           <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
             <Link
-              href="/account"
+              href={`/${locale}/account`}
               className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
             >
               <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-              Back to Dashboard
+              {t('backToDashboard')}
             </Link>
-            <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">Saved Products</h1>
+            <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>
           </div>
         </section>
 
@@ -101,13 +103,13 @@ export default function FavoritesPage() {
       <section className="w-full border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href="/account"
+            href={`/${locale}/account`}
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
             <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-            Back to Dashboard
+            {t('backToDashboard')}
           </Link>
-          <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">Saved Products</h1>
+          <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>
         </div>
       </section>
 
@@ -120,23 +122,22 @@ export default function FavoritesPage() {
               <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-accent-50">
                 <Heart className="h-10 w-10 text-accent-500" strokeWidth={2} />
               </div>
-              <h2 className="mb-3 text-2xl font-bold text-neutral-900">No Saved Products Yet</h2>
+              <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('empty.title')}</h2>
               <p className="mx-auto mb-8 max-w-md text-neutral-600">
-                Start saving your favorite products to quickly access them later. Click the heart
-                icon on any product page to add it to your favorites.
+                {t('empty.description')}
               </p>
               <div className="flex justify-center gap-3">
                 <Link
-                  href="/products"
+                  href={`/${locale}/products`}
                   className="inline-flex items-center justify-center rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-md"
                 >
-                  Browse Products
+                  {t('empty.browseProducts')}
                 </Link>
                 <Link
-                  href="/test-favorites"
+                  href={`/${locale}/test-favorites`}
                   className="inline-flex items-center justify-center rounded-lg border-2 border-primary-600 px-6 py-3 font-bold text-primary-600 transition-all duration-300 hover:bg-primary-50"
                 >
-                  Test Favorites
+                  {t('empty.testFavorites')}
                 </Link>
               </div>
             </div>
@@ -145,7 +146,9 @@ export default function FavoritesPage() {
             <>
               <div className="mb-6">
                 <h2 className="text-xl font-bold text-neutral-900">
-                  {favorites.length} {favorites.length === 1 ? 'Product' : 'Products'} Saved
+                  {favorites.length === 1
+                    ? t('count.product', { count: favorites.length })
+                    : t('count.products', { count: favorites.length })}
                 </h2>
               </div>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -154,7 +157,7 @@ export default function FavoritesPage() {
                     key={favorite.id}
                     className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md"
                   >
-                    <Link href={`/en/product/${favorite.productSlug}`}>
+                    <Link href={`/${locale}/product/${favorite.productSlug}`}>
                       {favorite.productImage ? (
                         <div className="aspect-square overflow-hidden bg-neutral-100">
                           <img
@@ -165,17 +168,17 @@ export default function FavoritesPage() {
                         </div>
                       ) : (
                         <div className="flex aspect-square items-center justify-center bg-neutral-100">
-                          <div className="text-sm text-neutral-400">No image</div>
+                          <div className="text-sm text-neutral-400">{t('noImage')}</div>
                         </div>
                       )}
                     </Link>
                     <div className="p-4">
-                      <Link href={`/en/product/${favorite.productSlug}`}>
+                      <Link href={`/${locale}/product/${favorite.productSlug}`}>
                         <h3 className="mb-2 font-bold text-neutral-900 transition-colors hover:text-primary-600">
                           {favorite.productName}
                         </h3>
                       </Link>
-                      <p className="mb-3 text-sm text-neutral-600">ID: {favorite.productId}</p>
+                      <p className="mb-3 text-sm text-neutral-600">{t('productId')} {favorite.productId}</p>
                       {favorite.productPrice && (
                         <p className="mb-4 text-lg font-bold text-primary-600">
                           {favorite.productPrice}
@@ -183,10 +186,10 @@ export default function FavoritesPage() {
                       )}
                       <div className="flex gap-2">
                         <Link
-                          href={`/en/product/${favorite.productSlug}`}
+                          href={`/${locale}/product/${favorite.productSlug}`}
                           className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                         >
-                          View Product
+                          {t('viewProduct')}
                         </Link>
                         <div className="flex-shrink-0">
                           <FavoriteButton

@@ -116,7 +116,7 @@ export function SignInForm({ locale }: SignInFormProps) {
   }
 
   return (
-    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+    <form className="mt-8 space-y-6" onSubmit={handleSubmit} suppressHydrationWarning>
       <div className="space-y-6 rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-xl lg:p-10">
         {/* Username Field */}
         <div>

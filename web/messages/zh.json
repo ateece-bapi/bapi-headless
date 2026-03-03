@@ -1904,188 +1904,188 @@
       "dismissLabel": "关闭横幅"
     },
     "dashboard": {
-      "welcomeBack": "Welcome back, {displayName}!",
-      "subtitle": "Manage your account, orders, and preferences from your dashboard",
-      "mockDataBanner": "Development Mode: Showing mock data for testing",
-      "accountManagement": "Account Management",
-      "recentActivity": "Recent Activity",
-      "viewAllOrders": "View all orders →",
-      "company": "Company",
-      "accountNumber": "Account #",
-      "recentOrders": "Recent Orders",
-      "ordersCount": "{count} orders",
-      "viewAll": "View all →",
-      "savedQuotes": "Saved Quotes",
-      "quotesCount": "{count} quotes",
-      "moreItems": "+ {count} more item",
-      "moreItemsPlural": "+ {count} more items",
+      "welcomeBack": "欢迎回来, {displayName}!",
+      "subtitle": "从您的仪表板管理您的账户、订单和偏好",
+      "mockDataBanner": "开发模式: 显示模拟数据以进行测试",
+      "accountManagement": "账户管理",
+      "recentActivity": "最近的活动",
+      "viewAllOrders": "查看所有订单 →",
+      "company": "公司",
+      "accountNumber": "账户 #",
+      "recentOrders": "最近的订单",
+      "ordersCount": "{count} 个订单",
+      "viewAll": "查看全部 →",
+      "savedQuotes": "保存的报价",
+      "quotesCount": "{count} 个报价",
+      "moreItems": "+ 多 {count} 件商品",
+      "moreItemsPlural": "+ 多 {count} 件商品",
       "sections": {
         "profile": {
-          "title": "Profile",
-          "description": "Manage your account information and preferences"
+          "title": "个人资料",
+          "description": "管理您的账户信息和偏好"
         },
         "orderHistory": {
-          "title": "Order History",
-          "description": "View your past orders and track shipments"
+          "title": "订单历史记录",
+          "description": "查看您过去的订单并跟踪发货情况"
         },
         "savedProducts": {
-          "title": "Saved Products",
-          "description": "Access your favorite products and wishlists"
+          "title": "保存的产品",
+          "description": "访问您最喜欢的产品和愿望清单"
         },
         "quoteRequests": {
-          "title": "Quote Requests",
-          "description": "Manage your custom quote requests"
+          "title": "报价请求",
+          "description": "管理您的定制报价请求"
         },
         "shoppingCart": {
-          "title": "Shopping Cart",
-          "description": "View and manage items in your cart"
+          "title": "购物车",
+          "description": "查看和管理购物车中的商品"
         },
         "accountSettings": {
-          "title": "Account Settings",
-          "description": "Update your password and security settings"
+          "title": "账户设置",
+          "description": "更新您的密码和安全设置"
         }
       },
       "orderStatus": {
-        "delivered": "Delivered",
-        "shipped": "Shipped",
-        "processing": "Processing",
-        "pending": "Pending",
-        "cancelled": "Cancelled"
+        "delivered": "已交付",
+        "shipped": "已发货",
+        "processing": "处理中",
+        "pending": "等待中",
+        "cancelled": "已取消"
       }
     },
     "profile": {
-      "title": "Profile",
-      "backToDashboard": "Back to Dashboard",
+      "title": "个人资料",
+      "backToDashboard": "回到仪表板",
       "fields": {
-        "displayName": "Display Name",
-        "username": "Username",
-        "email": "Email Address"
+        "displayName": "显示名称",
+        "username": "用户名",
+        "email": "电子邮件地址"
       },
       "accountInfo": {
-        "title": "Account Information",
-        "userId": "User ID:",
-        "usernameLabel": "Username:",
-        "notSet": "Not set"
+        "title": "账户信息",
+        "userId": "用户 ID:",
+        "usernameLabel": "用户名:",
+        "notSet": "未设置"
       },
       "actions": {
-        "editProfile": "Edit Profile"
+        "editProfile": "编辑个人资料"
       }
     },
     "orders": {
-      "title": "Order History",
-      "subtitle": "View and track all your orders",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Development Mode: Showing mock order data",
-      "error": "Failed to load order history",
+      "title": "订单历史",
+      "subtitle": "查看和跟踪您的所有订单",
+      "backToDashboard": "返回仪表板",
+      "mockDataBanner": "开发模式: 显示模拟订单数据",
+      "error": "未能加载订单历史",
       "empty": {
-        "title": "No Orders Yet",
-        "descriptionWithAccount": "You haven't placed any orders yet. Start shopping to see your order history here.",
-        "descriptionWithoutAccount": "Your account is being set up. Order history will appear here once available.",
-        "browseProducts": "Browse Products"
+        "title": "还没有订单",
+        "descriptionWithAccount": "您还没有下过任何订单。开始购物即可查看您的订单历史。",
+        "descriptionWithoutAccount": "您的账户正在设置中。订单历史将在可用时显示在这里。",
+        "browseProducts": "浏览商品"
       },
       "count": {
-        "orders": "{count} Orders",
-        "order": "{count} Order"
+        "orders": "{count} 订单",
+        "order": "{count} 订单"
       },
-      "orderNumber": "Order #",
-      "placedOn": "Placed on",
-      "items": "{count} items",
+      "orderNumber": "订单号 #",
+      "placedOn": "下单时间",
+      "items": "{count} 件商品",
       "moreItems": "+{count}",
       "actions": {
-        "viewDetails": "View Details",
-        "invoice": "Invoice"
+        "viewDetails": "查看详情",
+        "invoice": "发票"
       },
       "status": {
-        "pending": "Pending",
-        "processing": "Processing",
-        "on-hold": "On Hold",
-        "completed": "Completed",
-        "cancelled": "Cancelled",
-        "refunded": "Refunded",
-        "failed": "Failed"
+        "pending": "待处理",
+        "processing": "处理中",
+        "on-hold": "已暂停",
+        "completed": "已完成",
+        "cancelled": "已取消",
+        "refunded": "已退款",
+        "failed": "失败"
       }
     },
     "favorites": {
-      "title": "Saved Products",
-      "backToDashboard": "Back to Dashboard",
+      "title": "已保存的产品",
+      "backToDashboard": "返回控制面板",
       "count": {
-        "products": "{count} Products Saved",
-        "product": "{count} Product Saved"
+        "products": "{count} 个已保存的产品",
+        "product": "{count} 个已保存的产品"
       },
       "empty": {
-        "title": "No Saved Products Yet",
-        "description": "Start saving your favorite products to quickly access them later. Click the heart icon on any product page to add it to your favorites.",
-        "browseProducts": "Browse Products",
-        "testFavorites": "Test Favorites"
+        "title": "尚未保存任何产品",
+        "description": "开始保存您最喜欢的产品,以便稍后快速访问。在任何产品页面上点击心形图标即可将其添加到收藏夹。",
+        "browseProducts": "浏览产品",
+        "testFavorites": "测试收藏夹"
       },
       "productId": "ID:",
-      "noImage": "No image",
-      "viewProduct": "View Product"
+      "noImage": "无图像",
+      "viewProduct": "查看产品"
     },
     "quotes": {
-      "title": "Quote Requests",
-      "subtitle": "Track and manage your custom quote requests",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Showing mock quote data",
-      "newQuoteRequest": "New Quote Request",
+      "title": "报价申请",
+      "subtitle": "跟踪和管理您的定制报价申请",
+      "backToDashboard": "返回仪表盘",
+      "mockDataBanner": "显示模拟报价数据",
+      "newQuoteRequest": "新报价申请",
       "empty": {
-        "title": "No Quote Requests Yet",
-        "description": "Request a custom quote for bulk orders, special configurations, or technical consultations.",
-        "submitQuote": "Submit Quote Request",
+        "title": "尚未有报价申请",
+        "description": "为批量订单、特殊配置或技术咨询申请定制报价。",
+        "submitQuote": "提交报价申请",
         "infoCards": {
           "customSolutions": {
-            "title": "Custom Solutions",
-            "description": "Get tailored pricing for your specific application requirements"
+            "title": "定制解决方案",
+            "description": "为您的具体应用需求获取量身定制的价格"
           },
           "fastResponse": {
-            "title": "Fast Response",
-            "description": "Our team typically responds within 24 business hours"
+            "title": "快速响应",
+            "description": "我们的团队通常在24个工作小时内做出响应"
           },
           "expertSupport": {
-            "title": "Expert Support",
-            "description": "Work directly with our technical specialists"
+            "title": "专家支持",
+            "description": "直接与我们的技术专家合作"
           }
         }
       },
-      "quoteNumber": "Quote #",
-      "created": "Created:",
-      "expires": "Expires:",
-      "items": "Items:",
+      "quoteNumber": "报价单 #",
+      "created": "创建于:",
+      "expires": "到期于:",
+      "items": "商品:",
       "itemCount": {
-        "items": "{count} items",
-        "item": "{count} item"
+        "items": "{count} 个商品",
+        "item": "{count} 个商品"
       },
       "actions": {
-        "viewDetails": "View Details",
-        "cancelRequest": "Cancel Request"
+        "viewDetails": "查看详情",
+        "cancelRequest": "取消申请"
       },
       "status": {
-        "pending": "Pending",
-        "reviewing": "Reviewing",
-        "quoted": "Quoted",
-        "declined": "Declined"
+        "pending": "待处理",
+        "reviewing": "审核中",
+        "quoted": "已报价",
+        "declined": "已拒绝"
       }
     },
     "settings": {
-      "title": "Account Settings",
-      "subtitle": "Manage your profile, security, and account preferences",
-      "backToDashboard": "Back to Dashboard",
+      "title": "账户设置",
+      "subtitle": "管理您的个人资料、安全性和账户偏好",
+      "backToDashboard": "返回到仪表板",
       "help": {
-        "title": "Need Help?",
-        "description": "If you're having trouble with your account settings, our support team is here to help.",
-        "contactSupport": "Contact Support",
-        "helpCenter": "Help Center"
+        "title": "需要帮助?",
+        "description": "如果您在账户设置方面遇到问题,我们的支持团队随时欢迎您的咨询。",
+        "contactSupport": "联系支持",
+        "helpCenter": "帮助中心"
       },
       "userProfile": {
-        "loading": "Loading security settings...",
+        "loading": "正在加载安全设置...",
         "error": {
-          "title": "Unable to Load Security Settings",
-          "description": "We couldn't retrieve your two-factor authentication status. Please try refreshing the page.",
-          "retry": "Retry"
+          "title": "无法加载安全设置",
+          "description": "我们无法检索您的双因素身份验证状态。请尝试刷新页面。",
+          "retry": "重试"
         },
         "toastError": {
-          "title": "Error",
-          "message": "Failed to load security settings"
+          "title": "错误",
+          "message": "无法加载安全设置"
         }
       }
     }

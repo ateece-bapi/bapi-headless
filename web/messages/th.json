@@ -598,188 +598,188 @@
       "dismissLabel": "ปิดแบนเนอร์"
     },
     "dashboard": {
-      "welcomeBack": "Welcome back, {displayName}!",
-      "subtitle": "Manage your account, orders, and preferences from your dashboard",
-      "mockDataBanner": "Development Mode: Showing mock data for testing",
-      "accountManagement": "Account Management",
-      "recentActivity": "Recent Activity",
-      "viewAllOrders": "View all orders →",
-      "company": "Company",
-      "accountNumber": "Account #",
-      "recentOrders": "Recent Orders",
-      "ordersCount": "{count} orders",
-      "viewAll": "View all →",
-      "savedQuotes": "Saved Quotes",
-      "quotesCount": "{count} quotes",
-      "moreItems": "+ {count} more item",
-      "moreItemsPlural": "+ {count} more items",
+      "welcomeBack": "ยินดีต้อนรับกลับ, {displayName}!",
+      "subtitle": "จัดการบัญชี, คำสั่งซื้อ และการตั้งค่าของคุณจากแดชบอร์ดของคุณ",
+      "mockDataBanner": "โหมดการพัฒนา: แสดงข้อมูลปลอมสำหรับการทดสอบ",
+      "accountManagement": "การจัดการบัญชี",
+      "recentActivity": "กิจกรรมล่าสุด",
+      "viewAllOrders": "ดูคำสั่งซื้อทั้งหมด →",
+      "company": "บริษัท",
+      "accountNumber": "บัญชี #",
+      "recentOrders": "คำสั่งซื้อล่าสุด",
+      "ordersCount": "{count} คำสั่งซื้อ",
+      "viewAll": "ดูทั้งหมด →",
+      "savedQuotes": "เก็บรักษาใบเสนอราคา",
+      "quotesCount": "{count} ใบเสนอราคา",
+      "moreItems": "+ {count} รายการเพิ่มเติม",
+      "moreItemsPlural": "+ {count} รายการเพิ่มเติม",
       "sections": {
         "profile": {
-          "title": "Profile",
-          "description": "Manage your account information and preferences"
+          "title": "โปรไฟล์",
+          "description": "จัดการข้อมูลและการตั้งค่าบัญชีของคุณ"
         },
         "orderHistory": {
-          "title": "Order History",
-          "description": "View your past orders and track shipments"
+          "title": "ประวัติการสั่งซื้อ",
+          "description": "ดูคำสั่งซื้อในอดีตของคุณและติดตามการจัดส่ง"
         },
         "savedProducts": {
-          "title": "Saved Products",
-          "description": "Access your favorite products and wishlists"
+          "title": "ผลิตภัณฑ์ที่บันทึกไว้",
+          "description": "เข้าถึงผลิตภัณฑ์ที่คุณชอบและรายการสิ่งที่ต้องการ"
         },
         "quoteRequests": {
-          "title": "Quote Requests",
-          "description": "Manage your custom quote requests"
+          "title": "คำขอใบเสนอราคา",
+          "description": "จัดการคำขอใบเสนอราคาที่กำหนดเอง"
         },
         "shoppingCart": {
-          "title": "Shopping Cart",
-          "description": "View and manage items in your cart"
+          "title": "ตะกร้าสินค้า",
+          "description": "ดูและจัดการรายการในตะกร้าของคุณ"
         },
         "accountSettings": {
-          "title": "Account Settings",
-          "description": "Update your password and security settings"
+          "title": "การตั้งค่าบัญชี",
+          "description": "อัปเดตรหัสผ่านและการตั้งค่าความปลอดภัยของคุณ"
         }
       },
       "orderStatus": {
-        "delivered": "Delivered",
-        "shipped": "Shipped",
-        "processing": "Processing",
-        "pending": "Pending",
-        "cancelled": "Cancelled"
+        "delivered": "ส่งมอบ",
+        "shipped": "จัดส่ง",
+        "processing": "กำลังดำเนินการ",
+        "pending": "รอดำเนินการ",
+        "cancelled": "ยกเลิก"
       }
     },
     "profile": {
-      "title": "Profile",
-      "backToDashboard": "Back to Dashboard",
+      "title": "โปรไฟล์",
+      "backToDashboard": "กลับไปยังแดชบอร์ด",
       "fields": {
-        "displayName": "Display Name",
-        "username": "Username",
-        "email": "Email Address"
+        "displayName": "ชื่อที่แสดง",
+        "username": "ชื่อผู้ใช้",
+        "email": "ที่อยู่อีเมล"
       },
       "accountInfo": {
-        "title": "Account Information",
-        "userId": "User ID:",
-        "usernameLabel": "Username:",
-        "notSet": "Not set"
+        "title": "ข้อมูลบัญชี",
+        "userId": "รหัสผู้ใช้:",
+        "usernameLabel": "ชื่อผู้ใช้:",
+        "notSet": "ไม่ได้ตั้งค่า"
       },
       "actions": {
-        "editProfile": "Edit Profile"
+        "editProfile": "แก้ไขโปรไฟล์"
       }
     },
     "orders": {
-      "title": "Order History",
-      "subtitle": "View and track all your orders",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Development Mode: Showing mock order data",
-      "error": "Failed to load order history",
+      "title": "ประวัติการสั่งซื้อ",
+      "subtitle": "ดูและติดตามคำสั่งซื้อทั้งหมดของคุณ",
+      "backToDashboard": "กลับสู่แดชบอร์ด",
+      "mockDataBanner": "โหมดการพัฒนา: แสดงข้อมูลการสั่งซื้อปลอม",
+      "error": "ไม่สามารถโหลดประวัติการสั่งซื้อ",
       "empty": {
-        "title": "No Orders Yet",
-        "descriptionWithAccount": "You haven't placed any orders yet. Start shopping to see your order history here.",
-        "descriptionWithoutAccount": "Your account is being set up. Order history will appear here once available.",
-        "browseProducts": "Browse Products"
+        "title": "ยังไม่มีคำสั่งซื้อ",
+        "descriptionWithAccount": "คุณยังไม่ได้วางคำสั่งซื้อ เริ่มช้อปปิ้งเพื่อดูประวัติการสั่งซื้อของคุณที่นี่",
+        "descriptionWithoutAccount": "บัญชีของคุณกำลังถูกตั้งค่า ประวัติการสั่งซื้อจะปรากฏที่นี่เมื่อพร้อมใช้งาน",
+        "browseProducts": "เรียกดูสินค้า"
       },
       "count": {
-        "orders": "{count} Orders",
-        "order": "{count} Order"
+        "orders": "{count} คำสั่งซื้อ",
+        "order": "{count} คำสั่งซื้อ"
       },
-      "orderNumber": "Order #",
-      "placedOn": "Placed on",
-      "items": "{count} items",
+      "orderNumber": "คำสั่งซื้อ #",
+      "placedOn": "วางเมื่อ",
+      "items": "{count} รายการ",
       "moreItems": "+{count}",
       "actions": {
-        "viewDetails": "View Details",
-        "invoice": "Invoice"
+        "viewDetails": "ดูรายละเอียด",
+        "invoice": "ใบแจ้งหนี้"
       },
       "status": {
-        "pending": "Pending",
-        "processing": "Processing",
-        "on-hold": "On Hold",
-        "completed": "Completed",
-        "cancelled": "Cancelled",
-        "refunded": "Refunded",
-        "failed": "Failed"
+        "pending": "รอดำเนินการ",
+        "processing": "กำลังดำเนินการ",
+        "on-hold": "ระงับชั่วคราว",
+        "completed": "เสร็จสิ้น",
+        "cancelled": "ยกเลิก",
+        "refunded": "ได้รับการคืนเงิน",
+        "failed": "ล้มเหลว"
       }
     },
     "favorites": {
-      "title": "Saved Products",
-      "backToDashboard": "Back to Dashboard",
+      "title": "ผลิตภัณฑ์ที่บันทึกไว้",
+      "backToDashboard": "กลับสู่หน้าควบคุม",
       "count": {
-        "products": "{count} Products Saved",
-        "product": "{count} Product Saved"
+        "products": "{count} ผลิตภัณฑ์ที่บันทึกไว้",
+        "product": "{count} ผลิตภัณฑ์ที่บันทึกไว้"
       },
       "empty": {
-        "title": "No Saved Products Yet",
-        "description": "Start saving your favorite products to quickly access them later. Click the heart icon on any product page to add it to your favorites.",
-        "browseProducts": "Browse Products",
-        "testFavorites": "Test Favorites"
+        "title": "ยังไม่มีผลิตภัณฑ์ที่บันทึกไว้",
+        "description": "เริ่มบันทึกผลิตภัณฑ์ที่คุณชื่นชอบเพื่อเข้าถึงได้อย่างรวดเร็วในภายหลัง คลิกที่ไอคอนหัวใจบนหน้าผลิตภัณฑ์ใด ๆ เพื่อเพิ่มเป็นรายการโปรด",
+        "browseProducts": "ดูผลิตภัณฑ์",
+        "testFavorites": "ทดสอบรายการโปรด"
       },
       "productId": "ID:",
-      "noImage": "No image",
-      "viewProduct": "View Product"
+      "noImage": "ไม่มีรูปภาพ",
+      "viewProduct": "ดูผลิตภัณฑ์"
     },
     "quotes": {
-      "title": "Quote Requests",
-      "subtitle": "Track and manage your custom quote requests",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Showing mock quote data",
-      "newQuoteRequest": "New Quote Request",
+      "title": "ใบเสนอราคา",
+      "subtitle": "ติดตามและจัดการใบเสนอราคาพิเศษของคุณ",
+      "backToDashboard": "กลับสู่หน้าหลัก",
+      "mockDataBanner": "กำลังแสดงข้อมูลใบเสนอราคาเพื่อการทดสอบ",
+      "newQuoteRequest": "ใบเสนอราคาใหม่",
       "empty": {
-        "title": "No Quote Requests Yet",
-        "description": "Request a custom quote for bulk orders, special configurations, or technical consultations.",
-        "submitQuote": "Submit Quote Request",
+        "title": "ยังไม่มีใบเสนอราคา",
+        "description": "ขอใบเสนอราคาพิเศษสำหรับคำสั่งซื้อแบบปริมาณมาก การกำหนดค่าพิเศษ หรือการปรึกษาทางเทคนิค",
+        "submitQuote": "ส่งใบเสนอราคา",
         "infoCards": {
           "customSolutions": {
-            "title": "Custom Solutions",
-            "description": "Get tailored pricing for your specific application requirements"
+            "title": "โซลูชันแบบกำหนดเอง",
+            "description": "ได้รับราคาที่ปรับให้เหมาะสมกับความต้องการของคุณ"
           },
           "fastResponse": {
-            "title": "Fast Response",
-            "description": "Our team typically responds within 24 business hours"
+            "title": "การตอบกลับอย่างรวดเร็ว",
+            "description": "ทีมงานของเราโดยปกติจะตอบกลับภายใน 24 ชั่วโมงทำการ"
           },
           "expertSupport": {
-            "title": "Expert Support",
-            "description": "Work directly with our technical specialists"
+            "title": "การสนับสนุนจากผู้เชี่ยวชาญ",
+            "description": "ทำงานร่วมกับผู้เชี่ยวชาญด้านเทคนิคโดยตรง"
           }
         }
       },
-      "quoteNumber": "Quote #",
-      "created": "Created:",
-      "expires": "Expires:",
-      "items": "Items:",
+      "quoteNumber": "ใบเสนอราคา #",
+      "created": "สร้างเมื่อ:",
+      "expires": "หมดอายุเมื่อ:",
+      "items": "รายการ:",
       "itemCount": {
-        "items": "{count} items",
-        "item": "{count} item"
+        "items": "{count} รายการ",
+        "item": "{count} รายการ"
       },
       "actions": {
-        "viewDetails": "View Details",
-        "cancelRequest": "Cancel Request"
+        "viewDetails": "ดูรายละเอียด",
+        "cancelRequest": "ยกเลิกคำขอ"
       },
       "status": {
-        "pending": "Pending",
-        "reviewing": "Reviewing",
-        "quoted": "Quoted",
-        "declined": "Declined"
+        "pending": "รอดำเนินการ",
+        "reviewing": "กำลังตรวจสอบ",
+        "quoted": "ได้รับใบเสนอราคา",
+        "declined": "ถูกปฏิเสธ"
       }
     },
     "settings": {
-      "title": "Account Settings",
-      "subtitle": "Manage your profile, security, and account preferences",
-      "backToDashboard": "Back to Dashboard",
+      "title": "การตั้งค่าบัญชี",
+      "subtitle": "จัดการโปรไฟล์, ความปลอดภัย และความชอบส่วนตัวของคุณ",
+      "backToDashboard": "กลับสู่แดชบอร์ด",
       "help": {
-        "title": "Need Help?",
-        "description": "If you're having trouble with your account settings, our support team is here to help.",
-        "contactSupport": "Contact Support",
-        "helpCenter": "Help Center"
+        "title": "ต้องการความช่วยเหลือ?",
+        "description": "หากคุณมีปัญหากับการตั้งค่าบัญชีของคุณ ทีมสนับสนุนของเราพร้อมให้ความช่วยเหลือ",
+        "contactSupport": "ติดต่อฝ่ายสนับสนุน",
+        "helpCenter": "ศูนย์ช่วยเหลือ"
       },
       "userProfile": {
-        "loading": "Loading security settings...",
+        "loading": "กำลังโหลดการตั้งค่าความปลอดภัย...",
         "error": {
-          "title": "Unable to Load Security Settings",
-          "description": "We couldn't retrieve your two-factor authentication status. Please try refreshing the page.",
-          "retry": "Retry"
+          "title": "ไม่สามารถโหลดการตั้งค่าความปลอดภัย",
+          "description": "เราไม่สามารถรับข้อมูลสถานะการรับรองความถูกต้องสองปัจจัยของคุณได้ โปรดลองรีเฟรชหน้าเว็บ",
+          "retry": "ลองใหม่"
         },
         "toastError": {
-          "title": "Error",
-          "message": "Failed to load security settings"
+          "title": "ผิดพลาด",
+          "message": "ไม่สามารถโหลดการตั้งค่าความปลอดภัย"
         }
       }
     }

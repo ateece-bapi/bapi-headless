@@ -598,188 +598,188 @@
       "dismissLabel": "बैनर बंद करें"
     },
     "dashboard": {
-      "welcomeBack": "Welcome back, {displayName}!",
-      "subtitle": "Manage your account, orders, and preferences from your dashboard",
-      "mockDataBanner": "Development Mode: Showing mock data for testing",
-      "accountManagement": "Account Management",
-      "recentActivity": "Recent Activity",
-      "viewAllOrders": "View all orders →",
-      "company": "Company",
-      "accountNumber": "Account #",
-      "recentOrders": "Recent Orders",
-      "ordersCount": "{count} orders",
-      "viewAll": "View all →",
-      "savedQuotes": "Saved Quotes",
-      "quotesCount": "{count} quotes",
-      "moreItems": "+ {count} more item",
-      "moreItemsPlural": "+ {count} more items",
+      "welcomeBack": "{displayName} को वापस आने पर स्वागत है!",
+      "subtitle": "अपने डैशबोर्ड से अपने खाते, आदेश और प्राथमिकताओं का प्रबंधन करें",
+      "mockDataBanner": "विकास मोड: परीक्षण के लिए नकली डेटा दिखाया जा रहा है",
+      "accountManagement": "खाता प्रबंधन",
+      "recentActivity": "हाल की गतिविधि",
+      "viewAllOrders": "सभी आदेश देखें →",
+      "company": "कंपनी",
+      "accountNumber": "खाता #",
+      "recentOrders": "हाल के आदेश",
+      "ordersCount": "{count} आदेश",
+      "viewAll": "सभी देखें →",
+      "savedQuotes": "सहेजे गए कोट",
+      "quotesCount": "{count} कोट",
+      "moreItems": "+ {count} और आइटम",
+      "moreItemsPlural": "+ {count} और आइटम्स",
       "sections": {
         "profile": {
-          "title": "Profile",
-          "description": "Manage your account information and preferences"
+          "title": "प्रोफ़ाइल",
+          "description": "अपने खाते की जानकारी और वरीयताओं का प्रबंधन करें"
         },
         "orderHistory": {
-          "title": "Order History",
-          "description": "View your past orders and track shipments"
+          "title": "आदेश इतिहास",
+          "description": "अपने पिछले आदेशों और शिपमेंट ट्रैक करें"
         },
         "savedProducts": {
-          "title": "Saved Products",
-          "description": "Access your favorite products and wishlists"
+          "title": "सहेजे गए उत्पाद",
+          "description": "अपने पसंदीदा उत्पादों और इच्छा-सूचियों तक पहुंचें"
         },
         "quoteRequests": {
-          "title": "Quote Requests",
-          "description": "Manage your custom quote requests"
+          "title": "कोट अनुरोध",
+          "description": "अपने कस्टम कोट अनुरोधों का प्रबंधन करें"
         },
         "shoppingCart": {
-          "title": "Shopping Cart",
-          "description": "View and manage items in your cart"
+          "title": "शॉपिंग कार्ट",
+          "description": "अपने कार्ट में आइटम्स देखें और प्रबंधित करें"
         },
         "accountSettings": {
-          "title": "Account Settings",
-          "description": "Update your password and security settings"
+          "title": "खाता सेटिंग्स",
+          "description": "अपना पासवर्ड और सुरक्षा सेटिंग्स अपडेट करें"
         }
       },
       "orderStatus": {
-        "delivered": "Delivered",
-        "shipped": "Shipped",
-        "processing": "Processing",
-        "pending": "Pending",
-        "cancelled": "Cancelled"
+        "delivered": "डिलीवर किया गया",
+        "shipped": "भेजा गया",
+        "processing": "प्रोसेस हो रहा है",
+        "pending": "लंबित",
+        "cancelled": "रद्द किया गया"
       }
     },
     "profile": {
-      "title": "Profile",
-      "backToDashboard": "Back to Dashboard",
+      "title": "प्रोफ़ाइल",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
       "fields": {
-        "displayName": "Display Name",
-        "username": "Username",
-        "email": "Email Address"
+        "displayName": "प्रदर्शन नाम",
+        "username": "उपयोगकर्ता नाम",
+        "email": "ईमेल पता"
       },
       "accountInfo": {
-        "title": "Account Information",
-        "userId": "User ID:",
-        "usernameLabel": "Username:",
-        "notSet": "Not set"
+        "title": "खाता जानकारी",
+        "userId": "उपयोगकर्ता ID:",
+        "usernameLabel": "उपयोगकर्ता नाम:",
+        "notSet": "सेट नहीं किया गया"
       },
       "actions": {
-        "editProfile": "Edit Profile"
+        "editProfile": "प्रोफ़ाइल संपादित करें"
       }
     },
     "orders": {
-      "title": "Order History",
-      "subtitle": "View and track all your orders",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Development Mode: Showing mock order data",
-      "error": "Failed to load order history",
+      "title": "ऑर्डर इतिहास",
+      "subtitle": "अपने सभी ऑर्डर देखें और ट्रैक करें",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
+      "mockDataBanner": "विकास मोड: मॉक ऑर्डर डेटा दिखाया जा रहा है",
+      "error": "ऑर्डर इतिहास लोड करने में विफल",
       "empty": {
-        "title": "No Orders Yet",
-        "descriptionWithAccount": "You haven't placed any orders yet. Start shopping to see your order history here.",
-        "descriptionWithoutAccount": "Your account is being set up. Order history will appear here once available.",
-        "browseProducts": "Browse Products"
+        "title": "अभी तक कोई ऑर्डर नहीं",
+        "descriptionWithAccount": "आपने अभी तक कोई ऑर्डर नहीं दिया है। अपना ऑर्डर इतिहास यहां देखने के लिए खरीदारी शुरू करें।",
+        "descriptionWithoutAccount": "आपका खाता सेटअप हो रहा है। ऑर्डर इतिहास तब दिखाई देगा जब उपलब्ध हो।",
+        "browseProducts": "उत्पाद ब्राउज़ करें"
       },
       "count": {
-        "orders": "{count} Orders",
-        "order": "{count} Order"
+        "orders": "{count} ऑर्डर",
+        "order": "{count} ऑर्डर"
       },
-      "orderNumber": "Order #",
-      "placedOn": "Placed on",
-      "items": "{count} items",
+      "orderNumber": "ऑर्डर #",
+      "placedOn": "पर दिया गया",
+      "items": "{count} आइटम",
       "moreItems": "+{count}",
       "actions": {
-        "viewDetails": "View Details",
-        "invoice": "Invoice"
+        "viewDetails": "विवरण देखें",
+        "invoice": "चालान"
       },
       "status": {
-        "pending": "Pending",
-        "processing": "Processing",
-        "on-hold": "On Hold",
-        "completed": "Completed",
-        "cancelled": "Cancelled",
-        "refunded": "Refunded",
-        "failed": "Failed"
+        "pending": "लंबित",
+        "processing": "प्रोसेसिंग",
+        "on-hold": "होल्ड पर",
+        "completed": "पूर्ण",
+        "cancelled": "रद्द",
+        "refunded": "वापस दिया गया",
+        "failed": "विफल"
       }
     },
     "favorites": {
-      "title": "Saved Products",
-      "backToDashboard": "Back to Dashboard",
+      "title": "सहेजे गए उत्पाद",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
       "count": {
-        "products": "{count} Products Saved",
-        "product": "{count} Product Saved"
+        "products": "{count} उत्पाद सहेजे गए",
+        "product": "{count} उत्पाद सहेजा गया"
       },
       "empty": {
-        "title": "No Saved Products Yet",
-        "description": "Start saving your favorite products to quickly access them later. Click the heart icon on any product page to add it to your favorites.",
-        "browseProducts": "Browse Products",
-        "testFavorites": "Test Favorites"
+        "title": "अभी तक कोई उत्पाद नहीं सहेजा गया",
+        "description": "अपने पसंदीदा उत्पादों को सहेजकर बाद में तेजी से उन तक पहुंचें। किसी भी उत्पाद पृष्ठ पर दिल के आइकन पर क्लिक करके उसे अपने पसंदीदा में जोड़ें।",
+        "browseProducts": "उत्पादों को ब्राउज़ करें",
+        "testFavorites": "पसंदीदा का परीक्षण करें"
       },
-      "productId": "ID:",
-      "noImage": "No image",
-      "viewProduct": "View Product"
+      "productId": "आईडी:",
+      "noImage": "कोई छवि नहीं",
+      "viewProduct": "उत्पाद देखें"
     },
     "quotes": {
-      "title": "Quote Requests",
-      "subtitle": "Track and manage your custom quote requests",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Showing mock quote data",
-      "newQuoteRequest": "New Quote Request",
+      "title": "कोट अनुरोध",
+      "subtitle": "अपने कस्टम कोट अनुरोधों को ट्रैक और प्रबंधित करें",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
+      "mockDataBanner": "मॉक कोट डेटा दिखाया जा रहा है",
+      "newQuoteRequest": "नया कोट अनुरोध",
       "empty": {
-        "title": "No Quote Requests Yet",
-        "description": "Request a custom quote for bulk orders, special configurations, or technical consultations.",
-        "submitQuote": "Submit Quote Request",
+        "title": "अभी तक कोई कोट अनुरोध नहीं है",
+        "description": "बड़ी मात्रा में ऑर्डर, विशेष कॉन्फ़िगरेशन या तकनीकी परामर्श के लिए कस्टम कोट का अनुरोध करें।",
+        "submitQuote": "कोट अनुरोध जमा करें",
         "infoCards": {
           "customSolutions": {
-            "title": "Custom Solutions",
-            "description": "Get tailored pricing for your specific application requirements"
+            "title": "कस्टम समाधान",
+            "description": "अपनी विशिष्ट अनुप्रयोग आवश्यकताओं के लिए कस्टमाइज़ किए गए मूल्य प्राप्त करें"
           },
           "fastResponse": {
-            "title": "Fast Response",
-            "description": "Our team typically responds within 24 business hours"
+            "title": "तेज़ प्रतिक्रिया",
+            "description": "हमारी टीम आमतौर पर 24 कार्य दिवसों के भीतर प्रतिक्रिया देती है"
           },
           "expertSupport": {
-            "title": "Expert Support",
-            "description": "Work directly with our technical specialists"
+            "title": "विशेषज्ञ सहायता",
+            "description": "हमारे तकनीकी विशेषज्ञों के साथ सीधे काम करें"
           }
         }
       },
-      "quoteNumber": "Quote #",
-      "created": "Created:",
-      "expires": "Expires:",
-      "items": "Items:",
+      "quoteNumber": "कोट #",
+      "created": "बनाया गया:",
+      "expires": "समाप्त होता है:",
+      "items": "आइटम:",
       "itemCount": {
-        "items": "{count} items",
-        "item": "{count} item"
+        "items": "{count} आइटम",
+        "item": "{count} आइटम"
       },
       "actions": {
-        "viewDetails": "View Details",
-        "cancelRequest": "Cancel Request"
+        "viewDetails": "विवरण देखें",
+        "cancelRequest": "अनुरोध रद्द करें"
       },
       "status": {
-        "pending": "Pending",
-        "reviewing": "Reviewing",
-        "quoted": "Quoted",
-        "declined": "Declined"
+        "pending": "लंबित",
+        "reviewing": "समीक्षा की जा रही है",
+        "quoted": "कोटेड",
+        "declined": "अस्वीकृत"
       }
     },
     "settings": {
-      "title": "Account Settings",
-      "subtitle": "Manage your profile, security, and account preferences",
-      "backToDashboard": "Back to Dashboard",
+      "title": "खाता सेटिंग्स",
+      "subtitle": "अपने प्रोफ़ाइल, सुरक्षा और खाता वरीयताओं का प्रबंधन करें",
+      "backToDashboard": "डैशबोर्ड पर वापस जाएं",
       "help": {
-        "title": "Need Help?",
-        "description": "If you're having trouble with your account settings, our support team is here to help.",
-        "contactSupport": "Contact Support",
-        "helpCenter": "Help Center"
+        "title": "मदद चाहिए?",
+        "description": "यदि आपको अपने खाता सेटिंग्स के साथ समस्या हो रही है, तो हमारी सहायता टीम यहाँ है कि आपकी मदद करे।",
+        "contactSupport": "समर्थन से संपर्क करें",
+        "helpCenter": "सहायता केंद्र"
       },
       "userProfile": {
-        "loading": "Loading security settings...",
+        "loading": "सुरक्षा सेटिंग्स लोड हो रही हैं...",
         "error": {
-          "title": "Unable to Load Security Settings",
-          "description": "We couldn't retrieve your two-factor authentication status. Please try refreshing the page.",
-          "retry": "Retry"
+          "title": "सुरक्षा सेटिंग्स लोड नहीं की जा सकी",
+          "description": "हम आपकी दो-कारक प्रमाणीकरण स्थिति प्राप्त नहीं कर सके। कृपया पृष्ठ को ताज़ा करने का प्रयास करें।",
+          "retry": "पुनः प्रयास करें"
         },
         "toastError": {
-          "title": "Error",
-          "message": "Failed to load security settings"
+          "title": "त्रुटि",
+          "message": "सुरक्षा सेटिंग्स लोड करने में विफल"
         }
       }
     }

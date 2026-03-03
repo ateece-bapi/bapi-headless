@@ -1904,188 +1904,188 @@
       "dismissLabel": "Đóng biểu ngữ"
     },
     "dashboard": {
-      "welcomeBack": "Welcome back, {displayName}!",
-      "subtitle": "Manage your account, orders, and preferences from your dashboard",
-      "mockDataBanner": "Development Mode: Showing mock data for testing",
-      "accountManagement": "Account Management",
-      "recentActivity": "Recent Activity",
-      "viewAllOrders": "View all orders →",
-      "company": "Company",
-      "accountNumber": "Account #",
-      "recentOrders": "Recent Orders",
-      "ordersCount": "{count} orders",
-      "viewAll": "View all →",
-      "savedQuotes": "Saved Quotes",
-      "quotesCount": "{count} quotes",
-      "moreItems": "+ {count} more item",
-      "moreItemsPlural": "+ {count} more items",
+      "welcomeBack": "Chào mừng trở lại, {displayName}!",
+      "subtitle": "Quản lý tài khoản, đơn hàng và tùy chọn của bạn từ bảng điều khiển của bạn",
+      "mockDataBanner": "Chế độ phát triển: Hiển thị dữ liệu giả lập để thử nghiệm",
+      "accountManagement": "Quản lý tài khoản",
+      "recentActivity": "Hoạt động gần đây",
+      "viewAllOrders": "Xem tất cả đơn hàng →",
+      "company": "Công ty",
+      "accountNumber": "Số tài khoản #",
+      "recentOrders": "Đơn hàng gần đây",
+      "ordersCount": "{count} đơn hàng",
+      "viewAll": "Xem tất cả →",
+      "savedQuotes": "Báo giá đã lưu",
+      "quotesCount": "{count} báo giá",
+      "moreItems": "+ {count} mục khác",
+      "moreItemsPlural": "+ {count} mục khác",
       "sections": {
         "profile": {
-          "title": "Profile",
-          "description": "Manage your account information and preferences"
+          "title": "Hồ sơ",
+          "description": "Quản lý thông tin và tùy chọn tài khoản của bạn"
         },
         "orderHistory": {
-          "title": "Order History",
-          "description": "View your past orders and track shipments"
+          "title": "Lịch sử đơn hàng",
+          "description": "Xem các đơn hàng trước đó và theo dõi lô hàng"
         },
         "savedProducts": {
-          "title": "Saved Products",
-          "description": "Access your favorite products and wishlists"
+          "title": "Sản phẩm đã lưu",
+          "description": "Truy cập các sản phẩm và danh sách yêu thích của bạn"
         },
         "quoteRequests": {
-          "title": "Quote Requests",
-          "description": "Manage your custom quote requests"
+          "title": "Yêu cầu báo giá",
+          "description": "Quản lý các yêu cầu báo giá tùy chỉnh của bạn"
         },
         "shoppingCart": {
-          "title": "Shopping Cart",
-          "description": "View and manage items in your cart"
+          "title": "Giỏ hàng",
+          "description": "Xem và quản lý các mặt hàng trong giỏ hàng của bạn"
         },
         "accountSettings": {
-          "title": "Account Settings",
-          "description": "Update your password and security settings"
+          "title": "Cài đặt tài khoản",
+          "description": "Cập nhật mật khẩu và cài đặt bảo mật của bạn"
         }
       },
       "orderStatus": {
-        "delivered": "Delivered",
-        "shipped": "Shipped",
-        "processing": "Processing",
-        "pending": "Pending",
-        "cancelled": "Cancelled"
+        "delivered": "Đã giao",
+        "shipped": "Đã gửi",
+        "processing": "Đang xử lý",
+        "pending": "Đang chờ",
+        "cancelled": "Đã hủy"
       }
     },
     "profile": {
-      "title": "Profile",
-      "backToDashboard": "Back to Dashboard",
+      "title": "Hồ sơ",
+      "backToDashboard": "Quay lại Bảng điều khiển",
       "fields": {
-        "displayName": "Display Name",
-        "username": "Username",
-        "email": "Email Address"
+        "displayName": "Tên hiển thị",
+        "username": "Tên người dùng",
+        "email": "Địa chỉ Email"
       },
       "accountInfo": {
-        "title": "Account Information",
-        "userId": "User ID:",
-        "usernameLabel": "Username:",
-        "notSet": "Not set"
+        "title": "Thông tin Tài khoản",
+        "userId": "ID Người dùng:",
+        "usernameLabel": "Tên người dùng:",
+        "notSet": "Chưa đặt"
       },
       "actions": {
-        "editProfile": "Edit Profile"
+        "editProfile": "Chỉnh sửa Hồ sơ"
       }
     },
     "orders": {
-      "title": "Order History",
-      "subtitle": "View and track all your orders",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Development Mode: Showing mock order data",
-      "error": "Failed to load order history",
+      "title": "Lịch sử đơn hàng",
+      "subtitle": "Xem và theo dõi tất cả đơn hàng của bạn",
+      "backToDashboard": "Quay lại bảng điều khiển",
+      "mockDataBanner": "Chế độ phát triển: Hiển thị dữ liệu đơn hàng ảo",
+      "error": "Không thể tải lịch sử đơn hàng",
       "empty": {
-        "title": "No Orders Yet",
-        "descriptionWithAccount": "You haven't placed any orders yet. Start shopping to see your order history here.",
-        "descriptionWithoutAccount": "Your account is being set up. Order history will appear here once available.",
-        "browseProducts": "Browse Products"
+        "title": "Chưa có đơn hàng nào",
+        "descriptionWithAccount": "Bạn chưa đặt đơn hàng nào. Bắt đầu mua sắm để xem lịch sử đơn hàng của bạn ở đây.",
+        "descriptionWithoutAccount": "Tài khoản của bạn đang được thiết lập. Lịch sử đơn hàng sẽ hiển thị ở đây khi có sẵn.",
+        "browseProducts": "Duyệt sản phẩm"
       },
       "count": {
-        "orders": "{count} Orders",
-        "order": "{count} Order"
+        "orders": "{count} Đơn hàng",
+        "order": "{count} Đơn hàng"
       },
-      "orderNumber": "Order #",
-      "placedOn": "Placed on",
-      "items": "{count} items",
+      "orderNumber": "Đơn hàng #",
+      "placedOn": "Đặt vào ngày",
+      "items": "{count} mặt hàng",
       "moreItems": "+{count}",
       "actions": {
-        "viewDetails": "View Details",
-        "invoice": "Invoice"
+        "viewDetails": "Xem chi tiết",
+        "invoice": "Hóa đơn"
       },
       "status": {
-        "pending": "Pending",
-        "processing": "Processing",
-        "on-hold": "On Hold",
-        "completed": "Completed",
-        "cancelled": "Cancelled",
-        "refunded": "Refunded",
-        "failed": "Failed"
+        "pending": "Đang chờ xử lý",
+        "processing": "Đang xử lý",
+        "on-hold": "Đang giữ",
+        "completed": "Hoàn thành",
+        "cancelled": "Đã hủy",
+        "refunded": "Đã hoàn tiền",
+        "failed": "Thất bại"
       }
     },
     "favorites": {
-      "title": "Saved Products",
-      "backToDashboard": "Back to Dashboard",
+      "title": "Sản phẩm đã lưu",
+      "backToDashboard": "Quay lại bảng điều khiển",
       "count": {
-        "products": "{count} Products Saved",
-        "product": "{count} Product Saved"
+        "products": "{count} Sản phẩm đã lưu",
+        "product": "{count} Sản phẩm đã lưu"
       },
       "empty": {
-        "title": "No Saved Products Yet",
-        "description": "Start saving your favorite products to quickly access them later. Click the heart icon on any product page to add it to your favorites.",
-        "browseProducts": "Browse Products",
-        "testFavorites": "Test Favorites"
+        "title": "Chưa có sản phẩm nào được lưu",
+        "description": "Bắt đầu lưu những sản phẩm yêu thích của bạn để dễ dàng truy cập sau này. Nhấp vào biểu tượng trái tim trên trang của bất kỳ sản phẩm nào để thêm vào mục ưa thích của bạn.",
+        "browseProducts": "Duyệt sản phẩm",
+        "testFavorites": "Kiểm tra mục ưa thích"
       },
       "productId": "ID:",
-      "noImage": "No image",
-      "viewProduct": "View Product"
+      "noImage": "Không có hình ảnh",
+      "viewProduct": "Xem sản phẩm"
     },
     "quotes": {
-      "title": "Quote Requests",
-      "subtitle": "Track and manage your custom quote requests",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Showing mock quote data",
-      "newQuoteRequest": "New Quote Request",
+      "title": "Yêu Cầu Báo Giá",
+      "subtitle": "Theo dõi và quản lý các yêu cầu báo giá tùy chỉnh của bạn",
+      "backToDashboard": "Quay lại Bảng Điều Khiển",
+      "mockDataBanner": "Hiển thị dữ liệu báo giá mẫu",
+      "newQuoteRequest": "Yêu Cầu Báo Giá Mới",
       "empty": {
-        "title": "No Quote Requests Yet",
-        "description": "Request a custom quote for bulk orders, special configurations, or technical consultations.",
-        "submitQuote": "Submit Quote Request",
+        "title": "Chưa Có Yêu Cầu Báo Giá",
+        "description": "Yêu cầu một báo giá tùy chỉnh cho đơn đặt hàng theo khối lượng, cấu hình đặc biệt hoặc tư vấn kỹ thuật.",
+        "submitQuote": "Gửi Yêu Cầu Báo Giá",
         "infoCards": {
           "customSolutions": {
-            "title": "Custom Solutions",
-            "description": "Get tailored pricing for your specific application requirements"
+            "title": "Giải Pháp Tùy Chỉnh",
+            "description": "Nhận giá cả phù hợp cho các yêu cầu ứng dụng cụ thể của bạn"
           },
           "fastResponse": {
-            "title": "Fast Response",
-            "description": "Our team typically responds within 24 business hours"
+            "title": "Phản Hồi Nhanh",
+            "description": "Nhóm của chúng tôi thường phản hồi trong vòng 24 giờ làm việc"
           },
           "expertSupport": {
-            "title": "Expert Support",
-            "description": "Work directly with our technical specialists"
+            "title": "Hỗ Trợ Chuyên Gia",
+            "description": "Làm việc trực tiếp với các chuyên gia kỹ thuật của chúng tôi"
           }
         }
       },
-      "quoteNumber": "Quote #",
-      "created": "Created:",
-      "expires": "Expires:",
-      "items": "Items:",
+      "quoteNumber": "Mã Báo Giá #",
+      "created": "Được Tạo Vào:",
+      "expires": "Hết Hạn Vào:",
+      "items": "Mặt Hàng:",
       "itemCount": {
-        "items": "{count} items",
-        "item": "{count} item"
+        "items": "{count} mặt hàng",
+        "item": "{count} mặt hàng"
       },
       "actions": {
-        "viewDetails": "View Details",
-        "cancelRequest": "Cancel Request"
+        "viewDetails": "Xem Chi Tiết",
+        "cancelRequest": "Hủy Yêu Cầu"
       },
       "status": {
-        "pending": "Pending",
-        "reviewing": "Reviewing",
-        "quoted": "Quoted",
-        "declined": "Declined"
+        "pending": "Đang Chờ Xử Lý",
+        "reviewing": "Đang Xem Xét",
+        "quoted": "Đã Báo Giá",
+        "declined": "Đã Từ Chối"
       }
     },
     "settings": {
-      "title": "Account Settings",
-      "subtitle": "Manage your profile, security, and account preferences",
-      "backToDashboard": "Back to Dashboard",
+      "title": "Cài đặt tài khoản",
+      "subtitle": "Quản lý hồ sơ, bảo mật và tùy chọn tài khoản của bạn",
+      "backToDashboard": "Quay lại bảng điều khiển",
       "help": {
-        "title": "Need Help?",
-        "description": "If you're having trouble with your account settings, our support team is here to help.",
-        "contactSupport": "Contact Support",
-        "helpCenter": "Help Center"
+        "title": "Cần hỗ trợ?",
+        "description": "Nếu bạn gặp sự cố với cài đặt tài khoản của mình, đội ngũ hỗ trợ của chúng tôi sẵn sàng giúp đỡ.",
+        "contactSupport": "Liên hệ hỗ trợ",
+        "helpCenter": "Trung tâm trợ giúp"
       },
       "userProfile": {
-        "loading": "Loading security settings...",
+        "loading": "Đang tải cài đặt bảo mật...",
         "error": {
-          "title": "Unable to Load Security Settings",
-          "description": "We couldn't retrieve your two-factor authentication status. Please try refreshing the page.",
-          "retry": "Retry"
+          "title": "Không thể tải cài đặt bảo mật",
+          "description": "Chúng tôi không thể lấy trạng thái xác thực hai yếu tố của bạn. Vui lòng thử làm mới trang.",
+          "retry": "Thử lại"
         },
         "toastError": {
-          "title": "Error",
-          "message": "Failed to load security settings"
+          "title": "Lỗi",
+          "message": "Không thể tải cài đặt bảo mật"
         }
       }
     }

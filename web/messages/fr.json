@@ -1904,188 +1904,188 @@
       "dismissLabel": "Fermer la bannière"
     },
     "dashboard": {
-      "welcomeBack": "Welcome back, {displayName}!",
-      "subtitle": "Manage your account, orders, and preferences from your dashboard",
-      "mockDataBanner": "Development Mode: Showing mock data for testing",
-      "accountManagement": "Account Management",
-      "recentActivity": "Recent Activity",
-      "viewAllOrders": "View all orders →",
-      "company": "Company",
-      "accountNumber": "Account #",
-      "recentOrders": "Recent Orders",
-      "ordersCount": "{count} orders",
-      "viewAll": "View all →",
-      "savedQuotes": "Saved Quotes",
-      "quotesCount": "{count} quotes",
-      "moreItems": "+ {count} more item",
-      "moreItemsPlural": "+ {count} more items",
+      "welcomeBack": "Bienvenue de retour, {displayName} !",
+      "subtitle": "Gérez votre compte, vos commandes et vos préférences à partir de votre tableau de bord",
+      "mockDataBanner": "Mode Développement : Affichage des données factices pour les tests",
+      "accountManagement": "Gestion du compte",
+      "recentActivity": "Activité récente",
+      "viewAllOrders": "Voir toutes les commandes →",
+      "company": "Entreprise",
+      "accountNumber": "Numéro de compte",
+      "recentOrders": "Commandes récentes",
+      "ordersCount": "{count} commandes",
+      "viewAll": "Tout voir →",
+      "savedQuotes": "Devis enregistrés",
+      "quotesCount": "{count} devis",
+      "moreItems": "+ {count} élément supplémentaire",
+      "moreItemsPlural": "+ {count} éléments supplémentaires",
       "sections": {
         "profile": {
-          "title": "Profile",
-          "description": "Manage your account information and preferences"
+          "title": "Profil",
+          "description": "Gérez les informations de votre compte et vos préférences"
         },
         "orderHistory": {
-          "title": "Order History",
-          "description": "View your past orders and track shipments"
+          "title": "Historique des commandes",
+          "description": "Consultez vos commandes passées et suivez les envois"
         },
         "savedProducts": {
-          "title": "Saved Products",
-          "description": "Access your favorite products and wishlists"
+          "title": "Produits enregistrés",
+          "description": "Accédez à vos produits préférés et à vos listes de souhaits"
         },
         "quoteRequests": {
-          "title": "Quote Requests",
-          "description": "Manage your custom quote requests"
+          "title": "Demandes de devis",
+          "description": "Gérez vos demandes de devis personnalisées"
         },
         "shoppingCart": {
-          "title": "Shopping Cart",
-          "description": "View and manage items in your cart"
+          "title": "Panier d'achat",
+          "description": "Affichez et gérez les articles de votre panier"
         },
         "accountSettings": {
-          "title": "Account Settings",
-          "description": "Update your password and security settings"
+          "title": "Paramètres du compte",
+          "description": "Mettez à jour votre mot de passe et vos paramètres de sécurité"
         }
       },
       "orderStatus": {
-        "delivered": "Delivered",
-        "shipped": "Shipped",
-        "processing": "Processing",
-        "pending": "Pending",
-        "cancelled": "Cancelled"
+        "delivered": "Livré",
+        "shipped": "Expédié",
+        "processing": "En cours de traitement",
+        "pending": "En attente",
+        "cancelled": "Annulé"
       }
     },
     "profile": {
-      "title": "Profile",
-      "backToDashboard": "Back to Dashboard",
+      "title": "Profil",
+      "backToDashboard": "Retour au tableau de bord",
       "fields": {
-        "displayName": "Display Name",
-        "username": "Username",
-        "email": "Email Address"
+        "displayName": "Nom d'affichage",
+        "username": "Nom d'utilisateur",
+        "email": "Adresse e-mail"
       },
       "accountInfo": {
-        "title": "Account Information",
-        "userId": "User ID:",
-        "usernameLabel": "Username:",
-        "notSet": "Not set"
+        "title": "Informations sur le compte",
+        "userId": "ID utilisateur :",
+        "usernameLabel": "Nom d'utilisateur :",
+        "notSet": "Non défini"
       },
       "actions": {
-        "editProfile": "Edit Profile"
+        "editProfile": "Modifier le profil"
       }
     },
     "orders": {
-      "title": "Order History",
-      "subtitle": "View and track all your orders",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Development Mode: Showing mock order data",
-      "error": "Failed to load order history",
+      "title": "Historique des commandes",
+      "subtitle": "Afficher et suivre toutes vos commandes",
+      "backToDashboard": "Retour au tableau de bord",
+      "mockDataBanner": "Mode de développement : affichage des données de commandes fictives",
+      "error": "Échec du chargement de l'historique des commandes",
       "empty": {
-        "title": "No Orders Yet",
-        "descriptionWithAccount": "You haven't placed any orders yet. Start shopping to see your order history here.",
-        "descriptionWithoutAccount": "Your account is being set up. Order history will appear here once available.",
-        "browseProducts": "Browse Products"
+        "title": "Aucune commande pour le moment",
+        "descriptionWithAccount": "Vous n'avez encore passé aucune commande. Commencez à faire des achats pour voir votre historique de commandes ici.",
+        "descriptionWithoutAccount": "Votre compte est en cours de configuration. L'historique des commandes apparaîtra ici une fois disponible.",
+        "browseProducts": "Parcourir les produits"
       },
       "count": {
-        "orders": "{count} Orders",
-        "order": "{count} Order"
+        "orders": "{count} commandes",
+        "order": "{count} commande"
       },
-      "orderNumber": "Order #",
-      "placedOn": "Placed on",
-      "items": "{count} items",
+      "orderNumber": "Commande n°",
+      "placedOn": "Passée le",
+      "items": "{count} articles",
       "moreItems": "+{count}",
       "actions": {
-        "viewDetails": "View Details",
-        "invoice": "Invoice"
+        "viewDetails": "Voir les détails",
+        "invoice": "Facture"
       },
       "status": {
-        "pending": "Pending",
-        "processing": "Processing",
-        "on-hold": "On Hold",
-        "completed": "Completed",
-        "cancelled": "Cancelled",
-        "refunded": "Refunded",
-        "failed": "Failed"
+        "pending": "En attente",
+        "processing": "En cours de traitement",
+        "on-hold": "En attente",
+        "completed": "Terminée",
+        "cancelled": "Annulée",
+        "refunded": "Remboursée",
+        "failed": "Échec"
       }
     },
     "favorites": {
-      "title": "Saved Products",
-      "backToDashboard": "Back to Dashboard",
+      "title": "Produits Sauvegardés",
+      "backToDashboard": "Retour au Tableau de Bord",
       "count": {
-        "products": "{count} Products Saved",
-        "product": "{count} Product Saved"
+        "products": "{count} Produits Sauvegardés",
+        "product": "{count} Produit Sauvegardé"
       },
       "empty": {
-        "title": "No Saved Products Yet",
-        "description": "Start saving your favorite products to quickly access them later. Click the heart icon on any product page to add it to your favorites.",
-        "browseProducts": "Browse Products",
-        "testFavorites": "Test Favorites"
+        "title": "Aucun Produit Sauvegardé Pour le Moment",
+        "description": "Commencez à sauvegarder vos produits préférés pour y accéder rapidement plus tard. Cliquez sur l'icône en forme de cœur sur n'importe quelle page de produit pour l'ajouter à vos favoris.",
+        "browseProducts": "Parcourir les Produits",
+        "testFavorites": "Tester les Favoris"
       },
-      "productId": "ID:",
-      "noImage": "No image",
-      "viewProduct": "View Product"
+      "productId": "ID :",
+      "noImage": "Aucune image",
+      "viewProduct": "Voir le Produit"
     },
     "quotes": {
-      "title": "Quote Requests",
-      "subtitle": "Track and manage your custom quote requests",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Showing mock quote data",
-      "newQuoteRequest": "New Quote Request",
+      "title": "Demandes de devis",
+      "subtitle": "Suivez et gérez vos demandes de devis personnalisés",
+      "backToDashboard": "Retour au tableau de bord",
+      "mockDataBanner": "Affichage des données de devis factices",
+      "newQuoteRequest": "Nouvelle demande de devis",
       "empty": {
-        "title": "No Quote Requests Yet",
-        "description": "Request a custom quote for bulk orders, special configurations, or technical consultations.",
-        "submitQuote": "Submit Quote Request",
+        "title": "Aucune demande de devis pour le moment",
+        "description": "Demandez un devis personnalisé pour des commandes en gros, des configurations spéciales ou des consultations techniques.",
+        "submitQuote": "Soumettre une demande de devis",
         "infoCards": {
           "customSolutions": {
-            "title": "Custom Solutions",
-            "description": "Get tailored pricing for your specific application requirements"
+            "title": "Solutions sur mesure",
+            "description": "Obtenez des tarifs adaptés à vos besoins spécifiques"
           },
           "fastResponse": {
-            "title": "Fast Response",
-            "description": "Our team typically responds within 24 business hours"
+            "title": "Réponse rapide",
+            "description": "Notre équipe répond généralement dans les 24 heures ouvrables"
           },
           "expertSupport": {
-            "title": "Expert Support",
-            "description": "Work directly with our technical specialists"
+            "title": "Assistance d'experts",
+            "description": "Travaillez directement avec nos spécialistes techniques"
           }
         }
       },
-      "quoteNumber": "Quote #",
-      "created": "Created:",
-      "expires": "Expires:",
-      "items": "Items:",
+      "quoteNumber": "Devis n°",
+      "created": "Créé le :",
+      "expires": "Expire le :",
+      "items": "Articles :",
       "itemCount": {
-        "items": "{count} items",
-        "item": "{count} item"
+        "items": "{count} articles",
+        "item": "{count} article"
       },
       "actions": {
-        "viewDetails": "View Details",
-        "cancelRequest": "Cancel Request"
+        "viewDetails": "Voir les détails",
+        "cancelRequest": "Annuler la demande"
       },
       "status": {
-        "pending": "Pending",
-        "reviewing": "Reviewing",
-        "quoted": "Quoted",
-        "declined": "Declined"
+        "pending": "En attente",
+        "reviewing": "En cours d'examen",
+        "quoted": "Devis établi",
+        "declined": "Refusé"
       }
     },
     "settings": {
-      "title": "Account Settings",
-      "subtitle": "Manage your profile, security, and account preferences",
-      "backToDashboard": "Back to Dashboard",
+      "title": "Paramètres du compte",
+      "subtitle": "Gérez votre profil, votre sécurité et vos préférences de compte",
+      "backToDashboard": "Retour au tableau de bord",
       "help": {
-        "title": "Need Help?",
-        "description": "If you're having trouble with your account settings, our support team is here to help.",
-        "contactSupport": "Contact Support",
-        "helpCenter": "Help Center"
+        "title": "Besoin d'aide ?",
+        "description": "Si vous rencontrez des problèmes avec les paramètres de votre compte, notre équipe d'assistance est là pour vous aider.",
+        "contactSupport": "Contacter le support",
+        "helpCenter": "Centre d'aide"
       },
       "userProfile": {
-        "loading": "Loading security settings...",
+        "loading": "Chargement des paramètres de sécurité...",
         "error": {
-          "title": "Unable to Load Security Settings",
-          "description": "We couldn't retrieve your two-factor authentication status. Please try refreshing the page.",
-          "retry": "Retry"
+          "title": "Impossible de charger les paramètres de sécurité",
+          "description": "Nous n'avons pas pu récupérer votre statut d'authentification à deux facteurs. Veuillez essayer de rafraîchir la page.",
+          "retry": "Réessayer"
         },
         "toastError": {
-          "title": "Error",
-          "message": "Failed to load security settings"
+          "title": "Erreur",
+          "message": "Échec du chargement des paramètres de sécurité"
         }
       }
     }

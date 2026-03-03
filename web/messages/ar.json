@@ -1904,188 +1904,188 @@
       "dismissLabel": "إغلاق اللافتة"
     },
     "dashboard": {
-      "welcomeBack": "Welcome back, {displayName}!",
-      "subtitle": "Manage your account, orders, and preferences from your dashboard",
-      "mockDataBanner": "Development Mode: Showing mock data for testing",
-      "accountManagement": "Account Management",
-      "recentActivity": "Recent Activity",
-      "viewAllOrders": "View all orders →",
-      "company": "Company",
-      "accountNumber": "Account #",
-      "recentOrders": "Recent Orders",
-      "ordersCount": "{count} orders",
-      "viewAll": "View all →",
-      "savedQuotes": "Saved Quotes",
-      "quotesCount": "{count} quotes",
-      "moreItems": "+ {count} more item",
-      "moreItemsPlural": "+ {count} more items",
+      "welcomeBack": "!أهلا بك مرة أخرى، {displayName}",
+      "subtitle": "إدارة حسابك وطلباتك وتفضيلاتك من لوحة التحكم الخاصة بك",
+      "mockDataBanner": "وضع التطوير: عرض بيانات محاكاة لأغراض الاختبار",
+      "accountManagement": "إدارة الحساب",
+      "recentActivity": "النشاط الأخير",
+      "viewAllOrders": "عرض جميع الطلبات →",
+      "company": "الشركة",
+      "accountNumber": "رقم الحساب",
+      "recentOrders": "الطلبات الأخيرة",
+      "ordersCount": "{count} طلب",
+      "viewAll": "عرض الكل →",
+      "savedQuotes": "عروض الأسعار المحفوظة",
+      "quotesCount": "{count} عرض أسعار",
+      "moreItems": "+ {count} عنصر آخر",
+      "moreItemsPlural": "+ {count} عناصر أخرى",
       "sections": {
         "profile": {
-          "title": "Profile",
-          "description": "Manage your account information and preferences"
+          "title": "الملف الشخصي",
+          "description": "إدارة معلومات حسابك وتفضيلاتك"
         },
         "orderHistory": {
-          "title": "Order History",
-          "description": "View your past orders and track shipments"
+          "title": "سجل الطلبات",
+          "description": "عرض طلباتك السابقة ومتابعة الشحنات"
         },
         "savedProducts": {
-          "title": "Saved Products",
-          "description": "Access your favorite products and wishlists"
+          "title": "المنتجات المحفوظة",
+          "description": "الوصول إلى منتجاتك المفضلة وقوائم الأمنيات"
         },
         "quoteRequests": {
-          "title": "Quote Requests",
-          "description": "Manage your custom quote requests"
+          "title": "طلبات عروض الأسعار",
+          "description": "إدارة طلبات عروض الأسعار المخصصة الخاصة بك"
         },
         "shoppingCart": {
-          "title": "Shopping Cart",
-          "description": "View and manage items in your cart"
+          "title": "سلة التسوق",
+          "description": "عرض وإدارة العناصر في سلة التسوق الخاصة بك"
         },
         "accountSettings": {
-          "title": "Account Settings",
-          "description": "Update your password and security settings"
+          "title": "إعدادات الحساب",
+          "description": "تحديث كلمة المرور وإعدادات الأمان الخاصة بك"
         }
       },
       "orderStatus": {
-        "delivered": "Delivered",
-        "shipped": "Shipped",
-        "processing": "Processing",
-        "pending": "Pending",
-        "cancelled": "Cancelled"
+        "delivered": "تم التسليم",
+        "shipped": "تم الشحن",
+        "processing": "قيد المعالجة",
+        "pending": "قيد الانتظار",
+        "cancelled": "تم الإلغاء"
       }
     },
     "profile": {
-      "title": "Profile",
-      "backToDashboard": "Back to Dashboard",
+      "title": "الملف الشخصي",
+      "backToDashboard": "العودة إلى لوحة القيادة",
       "fields": {
-        "displayName": "Display Name",
-        "username": "Username",
-        "email": "Email Address"
+        "displayName": "الاسم الذي يظهر",
+        "username": "اسم المستخدم",
+        "email": "عنوان البريد الإلكتروني"
       },
       "accountInfo": {
-        "title": "Account Information",
-        "userId": "User ID:",
-        "usernameLabel": "Username:",
-        "notSet": "Not set"
+        "title": "معلومات الحساب",
+        "userId": "معرف المستخدم:",
+        "usernameLabel": "اسم المستخدم:",
+        "notSet": "غير محدد"
       },
       "actions": {
-        "editProfile": "Edit Profile"
+        "editProfile": "تعديل الملف الشخصي"
       }
     },
     "orders": {
-      "title": "Order History",
-      "subtitle": "View and track all your orders",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Development Mode: Showing mock order data",
-      "error": "Failed to load order history",
+      "title": "تاريخ الطلبات",
+      "subtitle": "عرض وتتبع جميع طلباتك",
+      "backToDashboard": "العودة إلى لوحة القيادة",
+      "mockDataBanner": "وضع التطوير: عرض بيانات طلب وهمية",
+      "error": "فشل في تحميل تاريخ الطلبات",
       "empty": {
-        "title": "No Orders Yet",
-        "descriptionWithAccount": "You haven't placed any orders yet. Start shopping to see your order history here.",
-        "descriptionWithoutAccount": "Your account is being set up. Order history will appear here once available.",
-        "browseProducts": "Browse Products"
+        "title": "لا يوجد طلبات حتى الآن",
+        "descriptionWithAccount": "لم تقم بإرسال أي طلبات بعد. ابدأ التسوق لترى تاريخ طلباتك هنا.",
+        "descriptionWithoutAccount": "يتم إعداد حسابك. سوف يظهر تاريخ الطلبات هنا بمجرد توفره.",
+        "browseProducts": "تصفح المنتجات"
       },
       "count": {
-        "orders": "{count} Orders",
-        "order": "{count} Order"
+        "orders": "{count} طلبات",
+        "order": "{count} طلب"
       },
-      "orderNumber": "Order #",
-      "placedOn": "Placed on",
-      "items": "{count} items",
+      "orderNumber": "طلب رقم",
+      "placedOn": "تم الإرسال في",
+      "items": "{count} عناصر",
       "moreItems": "+{count}",
       "actions": {
-        "viewDetails": "View Details",
-        "invoice": "Invoice"
+        "viewDetails": "عرض التفاصيل",
+        "invoice": "الفاتورة"
       },
       "status": {
-        "pending": "Pending",
-        "processing": "Processing",
-        "on-hold": "On Hold",
-        "completed": "Completed",
-        "cancelled": "Cancelled",
-        "refunded": "Refunded",
-        "failed": "Failed"
+        "pending": "قيد الانتظار",
+        "processing": "قيد المعالجة",
+        "on-hold": "معلق",
+        "completed": "مكتمل",
+        "cancelled": "ملغي",
+        "refunded": "تم الاسترداد",
+        "failed": "فشل"
       }
     },
     "favorites": {
-      "title": "Saved Products",
-      "backToDashboard": "Back to Dashboard",
+      "title": "المنتجات المفضلة",
+      "backToDashboard": "العودة إلى لوحة القيادة",
       "count": {
-        "products": "{count} Products Saved",
-        "product": "{count} Product Saved"
+        "products": "{count} منتجات محفوظة",
+        "product": "{count} منتج محفوظ"
       },
       "empty": {
-        "title": "No Saved Products Yet",
-        "description": "Start saving your favorite products to quickly access them later. Click the heart icon on any product page to add it to your favorites.",
-        "browseProducts": "Browse Products",
-        "testFavorites": "Test Favorites"
+        "title": "لا توجد منتجات محفوظة حتى الآن",
+        "description": "ابدأ في حفظ منتجاتك المفضلة للوصول إليها بسرعة لاحقًا. انقر على رمز القلب في أي صفحة منتج لإضافته إلى المفضلة الخاصة بك.",
+        "browseProducts": "تصفح المنتجات",
+        "testFavorites": "اختبار المفضلات"
       },
-      "productId": "ID:",
-      "noImage": "No image",
-      "viewProduct": "View Product"
+      "productId": "الرقم التعريفي:",
+      "noImage": "لا توجد صورة",
+      "viewProduct": "عرض المنتج"
     },
     "quotes": {
-      "title": "Quote Requests",
-      "subtitle": "Track and manage your custom quote requests",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Showing mock quote data",
-      "newQuoteRequest": "New Quote Request",
+      "title": "طلبات العرض",
+      "subtitle": "تتبع وإدارة طلبات عروض الأسعار الخاصة بك",
+      "backToDashboard": "العودة إلى لوحة القيادة",
+      "mockDataBanner": "عرض بيانات العرض الوهمية",
+      "newQuoteRequest": "طلب عرض جديد",
       "empty": {
-        "title": "No Quote Requests Yet",
-        "description": "Request a custom quote for bulk orders, special configurations, or technical consultations.",
-        "submitQuote": "Submit Quote Request",
+        "title": "لا توجد طلبات عرض حتى الآن",
+        "description": "اطلب عرض أسعار مخصص للطلبات الضخمة أو التهيئات الخاصة أو الاستشارات التقنية.",
+        "submitQuote": "إرسال طلب عرض",
         "infoCards": {
           "customSolutions": {
-            "title": "Custom Solutions",
-            "description": "Get tailored pricing for your specific application requirements"
+            "title": "الحلول المخصصة",
+            "description": "احصل على تسعير مصمم خصيصًا لمتطلبات التطبيق الخاص بك"
           },
           "fastResponse": {
-            "title": "Fast Response",
-            "description": "Our team typically responds within 24 business hours"
+            "title": "استجابة سريعة",
+            "description": "عادة ما يستجيب فريقنا في غضون 24 ساعة عمل"
           },
           "expertSupport": {
-            "title": "Expert Support",
-            "description": "Work directly with our technical specialists"
+            "title": "الدعم الخبير",
+            "description": "العمل مباشرة مع متخصصينا التقنيين"
           }
         }
       },
-      "quoteNumber": "Quote #",
-      "created": "Created:",
-      "expires": "Expires:",
-      "items": "Items:",
+      "quoteNumber": "العرض رقم",
+      "created": "تم الإنشاء:",
+      "expires": "تنتهي صلاحيته:",
+      "items": "العناصر:",
       "itemCount": {
-        "items": "{count} items",
-        "item": "{count} item"
+        "items": "{count} عناصر",
+        "item": "{count} عنصر"
       },
       "actions": {
-        "viewDetails": "View Details",
-        "cancelRequest": "Cancel Request"
+        "viewDetails": "عرض التفاصيل",
+        "cancelRequest": "إلغاء الطلب"
       },
       "status": {
-        "pending": "Pending",
-        "reviewing": "Reviewing",
-        "quoted": "Quoted",
-        "declined": "Declined"
+        "pending": "قيد الانتظار",
+        "reviewing": "قيد المراجعة",
+        "quoted": "تم تقديم العرض",
+        "declined": "تم الرفض"
       }
     },
     "settings": {
-      "title": "Account Settings",
-      "subtitle": "Manage your profile, security, and account preferences",
-      "backToDashboard": "Back to Dashboard",
+      "title": "إعدادات الحساب",
+      "subtitle": "إدارة ملفك الشخصي والأمان وتفضيلات الحساب",
+      "backToDashboard": "العودة إلى لوحة القيادة",
       "help": {
-        "title": "Need Help?",
-        "description": "If you're having trouble with your account settings, our support team is here to help.",
-        "contactSupport": "Contact Support",
-        "helpCenter": "Help Center"
+        "title": "هل تحتاج إلى مساعدة؟",
+        "description": "إذا كنت تواجه مشكلة مع إعدادات حسابك، ففريق الدعم الخاص بنا هنا للمساعدة.",
+        "contactSupport": "اتصل بالدعم",
+        "helpCenter": "مركز المساعدة"
       },
       "userProfile": {
-        "loading": "Loading security settings...",
+        "loading": "جارٍ تحميل إعدادات الأمان...",
         "error": {
-          "title": "Unable to Load Security Settings",
-          "description": "We couldn't retrieve your two-factor authentication status. Please try refreshing the page.",
-          "retry": "Retry"
+          "title": "تعذر تحميل إعدادات الأمان",
+          "description": "لم نتمكن من استرداد حالة المصادقة الثنائية الخاصة بك. الرجاء محاولة تحديث الصفحة.",
+          "retry": "إعادة المحاولة"
         },
         "toastError": {
-          "title": "Error",
-          "message": "Failed to load security settings"
+          "title": "خطأ",
+          "message": "فشل في تحميل إعدادات الأمان"
         }
       }
     }

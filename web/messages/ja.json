@@ -1904,188 +1904,188 @@
       "dismissLabel": "バナーを閉じる"
     },
     "dashboard": {
-      "welcomeBack": "Welcome back, {displayName}!",
-      "subtitle": "Manage your account, orders, and preferences from your dashboard",
-      "mockDataBanner": "Development Mode: Showing mock data for testing",
-      "accountManagement": "Account Management",
-      "recentActivity": "Recent Activity",
-      "viewAllOrders": "View all orders →",
-      "company": "Company",
-      "accountNumber": "Account #",
-      "recentOrders": "Recent Orders",
-      "ordersCount": "{count} orders",
-      "viewAll": "View all →",
-      "savedQuotes": "Saved Quotes",
-      "quotesCount": "{count} quotes",
-      "moreItems": "+ {count} more item",
-      "moreItemsPlural": "+ {count} more items",
+      "welcomeBack": "{displayName}さん、お帰りなさい!",
+      "subtitle": "ダッシュボードからアカウント、注文、設定を管理できます",
+      "mockDataBanner": "開発モード: テスト用のモックデータを表示しています",
+      "accountManagement": "アカウント管理",
+      "recentActivity": "最近の活動",
+      "viewAllOrders": "すべての注文を表示 →",
+      "company": "会社",
+      "accountNumber": "アカウント番号",
+      "recentOrders": "最近の注文",
+      "ordersCount": "{count}件の注文",
+      "viewAll": "すべて表示 →",
+      "savedQuotes": "保存された見積",
+      "quotesCount": "{count}件の見積",
+      "moreItems": "+ {count}件の追加アイテム",
+      "moreItemsPlural": "+ {count}件の追加アイテム",
       "sections": {
         "profile": {
-          "title": "Profile",
-          "description": "Manage your account information and preferences"
+          "title": "プロフィール",
+          "description": "アカウント情報と設定を管理します"
         },
         "orderHistory": {
-          "title": "Order History",
-          "description": "View your past orders and track shipments"
+          "title": "注文履歴",
+          "description": "過去の注文を確認し、出荷状況を追跡できます"
         },
         "savedProducts": {
-          "title": "Saved Products",
-          "description": "Access your favorite products and wishlists"
+          "title": "保存したプロダクト",
+          "description": "お気に入りのプロダクトとウィッシュリストにアクセスできます"
         },
         "quoteRequests": {
-          "title": "Quote Requests",
-          "description": "Manage your custom quote requests"
+          "title": "見積依頼",
+          "description": "カスタム見積依頼を管理できます"
         },
         "shoppingCart": {
-          "title": "Shopping Cart",
-          "description": "View and manage items in your cart"
+          "title": "ショッピングカート",
+          "description": "カートの商品を表示および管理できます"
         },
         "accountSettings": {
-          "title": "Account Settings",
-          "description": "Update your password and security settings"
+          "title": "アカウント設定",
+          "description": "パスワードとセキュリティ設定を更新できます"
         }
       },
       "orderStatus": {
-        "delivered": "Delivered",
-        "shipped": "Shipped",
-        "processing": "Processing",
-        "pending": "Pending",
-        "cancelled": "Cancelled"
+        "delivered": "配送済",
+        "shipped": "出荷済",
+        "processing": "処理中",
+        "pending": "保留中",
+        "cancelled": "キャンセル"
       }
     },
     "profile": {
-      "title": "Profile",
-      "backToDashboard": "Back to Dashboard",
+      "title": "プロファイル",
+      "backToDashboard": "ダッシュボードに戻る",
       "fields": {
-        "displayName": "Display Name",
-        "username": "Username",
-        "email": "Email Address"
+        "displayName": "表示名",
+        "username": "ユーザー名",
+        "email": "メールアドレス"
       },
       "accountInfo": {
-        "title": "Account Information",
-        "userId": "User ID:",
-        "usernameLabel": "Username:",
-        "notSet": "Not set"
+        "title": "アカウント情報",
+        "userId": "ユーザーID:",
+        "usernameLabel": "ユーザー名:",
+        "notSet": "設定されていません"
       },
       "actions": {
-        "editProfile": "Edit Profile"
+        "editProfile": "プロファイルを編集"
       }
     },
     "orders": {
-      "title": "Order History",
-      "subtitle": "View and track all your orders",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Development Mode: Showing mock order data",
-      "error": "Failed to load order history",
+      "title": "注文履歴",
+      "subtitle": "すべての注文を表示して追跡",
+      "backToDashboard": "ダッシュボードに戻る",
+      "mockDataBanner": "開発モード: モックの注文データを表示しています",
+      "error": "注文履歴の読み込みに失敗しました",
       "empty": {
-        "title": "No Orders Yet",
-        "descriptionWithAccount": "You haven't placed any orders yet. Start shopping to see your order history here.",
-        "descriptionWithoutAccount": "Your account is being set up. Order history will appear here once available.",
-        "browseProducts": "Browse Products"
+        "title": "注文はまだありません",
+        "descriptionWithAccount": "まだ注文を行っていません。注文履歴をここで確認するためには、買い物を始める必要があります。",
+        "descriptionWithoutAccount": "アカウントの設定中です。注文履歴は利用可能になり次第表示されます。",
+        "browseProducts": "製品を閲覧する"
       },
       "count": {
-        "orders": "{count} Orders",
-        "order": "{count} Order"
+        "orders": "{count}件の注文",
+        "order": "{count}件の注文"
       },
-      "orderNumber": "Order #",
-      "placedOn": "Placed on",
-      "items": "{count} items",
-      "moreItems": "+{count}",
+      "orderNumber": "注文番号",
+      "placedOn": "注文日",
+      "items": "{count}個の商品",
+      "moreItems": "+{count}個",
       "actions": {
-        "viewDetails": "View Details",
-        "invoice": "Invoice"
+        "viewDetails": "詳細を見る",
+        "invoice": "請求書"
       },
       "status": {
-        "pending": "Pending",
-        "processing": "Processing",
-        "on-hold": "On Hold",
-        "completed": "Completed",
-        "cancelled": "Cancelled",
-        "refunded": "Refunded",
-        "failed": "Failed"
+        "pending": "保留中",
+        "processing": "処理中",
+        "on-hold": "保留中",
+        "completed": "完了",
+        "cancelled": "キャンセル",
+        "refunded": "払い戻し",
+        "failed": "失敗"
       }
     },
     "favorites": {
-      "title": "Saved Products",
-      "backToDashboard": "Back to Dashboard",
+      "title": "保存された製品",
+      "backToDashboard": "ダッシュボードに戻る",
       "count": {
-        "products": "{count} Products Saved",
-        "product": "{count} Product Saved"
+        "products": "{count} 保存された製品",
+        "product": "{count} 保存された製品"
       },
       "empty": {
-        "title": "No Saved Products Yet",
-        "description": "Start saving your favorite products to quickly access them later. Click the heart icon on any product page to add it to your favorites.",
-        "browseProducts": "Browse Products",
-        "testFavorites": "Test Favorites"
+        "title": "保存された製品はまだありません",
+        "description": "お気に入りの製品を保存して、後で簡単にアクセスできるようにしましょう。製品ページのハートアイコンをクリックして、お気に入りに追加できます。",
+        "browseProducts": "製品を閲覧する",
+        "testFavorites": "お気に入りをテストする"
       },
       "productId": "ID:",
-      "noImage": "No image",
-      "viewProduct": "View Product"
+      "noImage": "画像なし",
+      "viewProduct": "製品を表示する"
     },
     "quotes": {
-      "title": "Quote Requests",
-      "subtitle": "Track and manage your custom quote requests",
-      "backToDashboard": "Back to Dashboard",
-      "mockDataBanner": "Showing mock quote data",
-      "newQuoteRequest": "New Quote Request",
+      "title": "見積書リクエスト",
+      "subtitle": "カスタム見積書リクエストを追跡し、管理する",
+      "backToDashboard": "ダッシュボードに戻る",
+      "mockDataBanner": "モックの見積データを表示しています",
+      "newQuoteRequest": "新しい見積書リクエスト",
       "empty": {
-        "title": "No Quote Requests Yet",
-        "description": "Request a custom quote for bulk orders, special configurations, or technical consultations.",
-        "submitQuote": "Submit Quote Request",
+        "title": "まだ見積書リクエストはありません",
+        "description": "大量注文、特別な設定、またはテクニカルコンサルテーションのためのカスタム見積を依頼してください。",
+        "submitQuote": "見積書リクエストを提出する",
         "infoCards": {
           "customSolutions": {
-            "title": "Custom Solutions",
-            "description": "Get tailored pricing for your specific application requirements"
+            "title": "カスタムソリューション",
+            "description": "あなたの特定のアプリケーション要件に合わせた価格設定を取得する"
           },
           "fastResponse": {
-            "title": "Fast Response",
-            "description": "Our team typically responds within 24 business hours"
+            "title": "迅速な対応",
+            "description": "通常、弊社のチームは営業日内に24時間以内に対応します"
           },
           "expertSupport": {
-            "title": "Expert Support",
-            "description": "Work directly with our technical specialists"
+            "title": "エキスパートサポート",
+            "description": "テクニカルスペシャリストと直接連携する"
           }
         }
       },
-      "quoteNumber": "Quote #",
-      "created": "Created:",
-      "expires": "Expires:",
-      "items": "Items:",
+      "quoteNumber": "見積書番号:",
+      "created": "作成日:",
+      "expires": "有効期限:",
+      "items": "アイテム:",
       "itemCount": {
-        "items": "{count} items",
-        "item": "{count} item"
+        "items": "{count}件のアイテム",
+        "item": "{count}件のアイテム"
       },
       "actions": {
-        "viewDetails": "View Details",
-        "cancelRequest": "Cancel Request"
+        "viewDetails": "詳細を表示",
+        "cancelRequest": "リクエストをキャンセルする"
       },
       "status": {
-        "pending": "Pending",
-        "reviewing": "Reviewing",
-        "quoted": "Quoted",
-        "declined": "Declined"
+        "pending": "保留中",
+        "reviewing": "審査中",
+        "quoted": "見積済み",
+        "declined": "却下"
       }
     },
     "settings": {
-      "title": "Account Settings",
-      "subtitle": "Manage your profile, security, and account preferences",
-      "backToDashboard": "Back to Dashboard",
+      "title": "アカウント設定",
+      "subtitle": "プロファイル、セキュリティ、アカウントの設定を管理する",
+      "backToDashboard": "ダッシュボードに戻る",
       "help": {
-        "title": "Need Help?",
-        "description": "If you're having trouble with your account settings, our support team is here to help.",
-        "contactSupport": "Contact Support",
-        "helpCenter": "Help Center"
+        "title": "ヘルプが必要ですか?",
+        "description": "アカウント設定でお困りの場合は、サポートチームがお手伝いいたします。",
+        "contactSupport": "サポートに連絡する",
+        "helpCenter": "ヘルプセンター"
       },
       "userProfile": {
-        "loading": "Loading security settings...",
+        "loading": "セキュリティ設定を読み込み中...",
         "error": {
-          "title": "Unable to Load Security Settings",
-          "description": "We couldn't retrieve your two-factor authentication status. Please try refreshing the page.",
-          "retry": "Retry"
+          "title": "セキュリティ設定を読み込めません",
+          "description": "二段階認証の状態を取得できませんでした。ページを更新してください。",
+          "retry": "再試行"
         },
         "toastError": {
-          "title": "Error",
-          "message": "Failed to load security settings"
+          "title": "エラー",
+          "message": "セキュリティ設定の読み込みに失敗しました"
         }
       }
     }

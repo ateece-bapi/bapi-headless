@@ -3,7 +3,8 @@
 import { Fragment, useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { useRouter, usePathname } from '@/lib/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { useToast } from '@/components/ui/Toast';
 import { LANGUAGES } from '@/types/region';
 import type { LanguageCode } from '@/types/region';
 import { LANGUAGE_GROUPS } from '@/lib/constants/languageGroups';
@@ -14,6 +15,8 @@ export function LanguageSelectorV2() {
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale() as LanguageCode;
+  const t = useTranslations('ui.languageChanged');
+  const { showToast } = useToast();
 
   // Prevent hydration mismatch by only rendering Headless UI on client
   useEffect(() => {
@@ -21,6 +24,19 @@ export function LanguageSelectorV2() {
   }, []);
 
   const handleLanguageChange = (newLocale: LanguageCode) => {
+    // Guard clause: prevent unnecessary action if same locale selected
+    if (newLocale === currentLocale) {
+      return;
+    }
+
+    const languageName = LANGUAGES[newLocale].nativeName;
+
+    // Show toast notification with setTimeout to ensure it's visible
+    // Toast appears in current language before navigation
+    setTimeout(() => {
+      showToast('success', t('title'), t('message', { language: languageName }), 2500);
+    }, 100);
+
     // Use next-intl's router which handles locale switching automatically
     router.replace(pathname, { locale: newLocale });
   };

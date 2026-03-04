@@ -2293,5 +2293,11 @@
     "pageNavigation": "ページナビゲーション",
     "loading": "コンテンツを読み込み中",
     "searchResults": "検索結果"
+  },
+  "ui": {
+    "languageChanged": {
+      "title": "言語の変更",
+      "message": "{language}に言語を変更しました"
+    }
   }
 }

@@ -1,7 +1,8 @@
 'use client';
 
 import { useRouter, usePathname } from '@/lib/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { useToast } from '@/components/ui/Toast';
 import { LANGUAGES } from '@/types/region';
 import type { LanguageCode } from '@/types/region';
 
@@ -9,13 +10,25 @@ export function LanguageSelector() {
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale() as LanguageCode;
+  const { showToast } = useToast();
+  const t = useTranslations('ui.languageChanged');
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value as LanguageCode;
 
+    // Guard clause: prevent unnecessary action if same locale selected
+    if (newLocale === currentLocale) return;
+
     // Use next-intl's router which handles locale switching automatically
     // Just push the current pathname - the router will add the new locale prefix
     router.replace(pathname, { locale: newLocale });
+
+    // Show toast in NEW language after a small delay to ensure locale context is updated
+    // This ensures the toast message appears in the language the user just selected
+    setTimeout(() => {
+      const languageName = LANGUAGES[newLocale].nativeName;
+      showToast('success', t('title'), t('message', { language: languageName }), 2500);
+    }, 100);
   };
 
   return (

@@ -2293,5 +2293,11 @@
       "wireless": "ผลิตภัณฑ์ไร้สาย",
       "airQuality": "คุณภาพอากาศ"
     }
+  },
+  "ui": {
+    "languageChanged": {
+      "title": "เปลี่ยนภาษา",
+      "message": "เปลี่ยนภาษาเป็น {language}"
+    }
   }
 }

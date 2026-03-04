@@ -2293,5 +2293,11 @@
     "pageNavigation": "Navegación de página",
     "loading": "Cargando contenido",
     "searchResults": "Resultados de búsqueda"
+  },
+  "ui": {
+    "languageChanged": {
+      "title": "Idioma cambiado",
+      "message": "Idioma cambiado a {language}"
+    }
   }
 }

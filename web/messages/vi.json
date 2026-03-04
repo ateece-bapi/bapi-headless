@@ -2294,5 +2294,11 @@
     "pageNavigation": "Điều hướng trang",
     "loading": "Đang tải nội dung",
     "searchResults": "Kết quả tìm kiếm"
+  },
+  "ui": {
+    "languageChanged": {
+      "title": "Đã thay đổi ngôn ngữ",
+      "message": "Đã chuyển sang ngôn ngữ {language}"
+    }
   }
 }

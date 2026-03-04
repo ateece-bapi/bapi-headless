@@ -2293,5 +2293,11 @@
       "wireless": "वायरलेस उत्पाद",
       "airQuality": "वायु गुणवत्ता"
     }
+  },
+  "ui": {
+    "languageChanged": {
+      "title": "भाषा बदल गई",
+      "message": "{language} में भाषा बदल गई"
+    }
   }
 }

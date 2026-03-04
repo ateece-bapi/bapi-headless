@@ -24,7 +24,7 @@ function getStripeInstance() {
   }
 
   return new Stripe(secretKey, {
-    apiVersion: '2026-02-25.clover',
+    apiVersion: '2025-12-15.clover',
   });
 }
 

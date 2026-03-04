@@ -120,7 +120,6 @@
     "lint-staged": "^16.2.7",
     "msw": "^2.12.3",
     "msw-storybook-addon": "^2.0.6",
-    "playwright": "^1.58.0",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "sharp": "^0.34.5",

@@ -1,0 +1,206 @@
+import { test, expect } from '@playwright/test';
+import { injectAxe, checkA11y } from 'axe-playwright';
+
+/**
+ * Language Selector E2E Tests
+ * 
+ * Tests the language switching functionality including:
+ * - Language dropdown interaction
+ * - Toast notification appearance
+ * - URL locale change
+ * - Page content translation
+ * - Accessibility compliance
+ */
+
+test.describe('Language Selector', () => {
+  test.beforeEach(async ({ page }) => {
+    // Start on the homepage
+    await page.goto('/');
+    
+    // Wait for page to be fully loaded
+    await page.waitForLoadState('networkidle');
+  });
+
+  test('should display language selector with current language', async ({ page }) => {
+    // Find the language selector button (Headless UI Listbox)
+    const languageButton = page.getByRole('button', { name: /select language/i });
+    await expect(languageButton).toBeVisible();
+    
+    // Should show English by default
+    await expect(languageButton).toContainText('English');
+    
+    // Should have the English flag emoji
+    await expect(languageButton).toContainText('🇺🇸');
+  });
+
+  test('should open language dropdown on click', async ({ page }) => {
+    // Click the language selector button
+    const languageButton = page.getByRole('button', { name: /select language/i });
+    await languageButton.click();
+    
+    // Wait for dropdown menu to appear
+    const dropdown = page.getByRole('listbox');
+    await expect(dropdown).toBeVisible();
+    
+    // Should contain all 11 languages
+    const options = page.getByRole('option');
+    await expect(options).toHaveCount(11);
+  });
+
+  test('should change language and show toast notification', async ({ page }) => {
+    // Click the language selector button
+    const languageButton = page.getByRole('button', { name: /select language/i });
+    await languageButton.click();
+    
+    // Wait for dropdown to open
+    await page.waitForSelector('[role="listbox"]');
+    
+    // Select Spanish
+    await page.getByRole('option', { name: /español/i }).click();
+    
+    // Wait a moment for toast to appear (100ms delay + render time)
+    await page.waitForTimeout(200);
+    
+    // Check that toast notification appeared
+    const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /language changed/i });
+    await expect(toast).toBeVisible();
+    
+    // Toast should show the target language
+    await expect(toast).toContainText('Español');
+    
+    // URL should change to Spanish locale
+    await expect(page).toHaveURL('/es-ES');
+    
+    // Wait for toast to disappear (2.5s duration)
+    await page.waitForTimeout(3000);
+    await expect(toast).not.toBeVisible();
+  });
+
+  test('should translate page content when language changes', async ({ page }) => {
+    // Initial page should be in English
+    await expect(page).toHaveURL('/en');
+    
+    // Change to Spanish
+    const languageButton = page.getByRole('button', { name: /select language/i });
+    await languageButton.click();
+    await page.getByRole('option', { name: /español/i }).click();
+    
+    // Wait for navigation
+    await page.waitForURL('/es-ES');
+    await page.waitForLoadState('networkidle');
+    
+    // Language selector should now show Spanish
+    const updatedButton = page.getByRole('button', { name: /select language/i });
+    await expect(updatedButton).toContainText('Español');
+  });
+
+  test('should not show toast when selecting same language', async ({ page }) => {
+    // Click the language selector
+    const languageButton = page.getByRole('button', { name: /select language/i });
+    await languageButton.click();
+    
+    // Select English (current language)
+    await page.getByRole('option', { name: /english/i }).click();
+    
+    // Wait a moment
+    await page.waitForTimeout(300);
+    
+    // Toast should NOT appear (guard clause)
+    const toast = page.locator('[role="alert"], [role="status"]');
+    await expect(toast).not.toBeVisible();
+    
+    // URL should remain on English
+    await expect(page).toHaveURL('/en');
+  });
+
+  test('should work across multiple language switches', async ({ page }) => {
+    // English → Spanish
+    await page.getByRole('button', { name: /select language/i }).click();
+    await page.getByRole('option', { name: /español/i }).click();
+    await page.waitForURL('/es-ES');
+    
+    // Spanish → German
+    await page.getByRole('button', { name: /select language/i }).click();
+    await page.getByRole('option', { name: /deutsch/i }).click();
+    await page.waitForURL('/de');
+    
+    // German → Japanese
+    await page.getByRole('button', { name: /select language/i }).click();
+    await page.getByRole('option', { name: /日本語/i }).click();
+    await page.waitForURL('/ja');
+    
+    // Verify final state
+    const languageButton = page.getByRole('button', { name: /select language/i });
+    await expect(languageButton).toContainText('日本語');
+  });
+
+  test('should be keyboard accessible', async ({ page }) => {
+    // Tab to the language selector
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab'); // May need multiple tabs depending on layout
+    
+    // Press Enter to open dropdown
+    await page.keyboard.press('Enter');
+    
+    // Wait for dropdown
+    await page.waitForSelector('[role="listbox"]');
+    
+    // Navigate with arrow keys
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('ArrowDown');
+    
+    // Select with Enter
+    await page.keyboard.press('Enter');
+    
+    // Should have navigated to a different language
+    await page.waitForTimeout(500);
+    const currentUrl = page.url();
+    expect(currentUrl).not.toContain('/en');
+  });
+
+  test('should pass accessibility checks', async ({ page }) => {
+    // Inject axe-core
+    await injectAxe(page);
+    
+    // Check accessibility of initial state
+    await checkA11y(page, undefined, {
+      detailedReport: true,
+      detailedReportOptions: {
+        html: true,
+      },
+    });
+    
+    // Open dropdown
+    await page.getByRole('button', { name: /select language/i }).click();
+    
+    // Check accessibility of open state
+    await checkA11y(page, undefined, {
+      detailedReport: true,
+      detailedReportOptions: {
+        html: true,
+      },
+    });
+  });
+
+  test('should work on mobile viewport', async ({ page }) => {
+    // Set mobile viewport
+    await page.setViewportSize({ width: 375, height: 667 });
+    
+    // Navigate to page
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    
+    // Language selector should be visible on mobile
+    const languageButton = page.getByRole('button', { name: /select language/i });
+    await expect(languageButton).toBeVisible();
+    
+    // Should work the same as desktop
+    await languageButton.click();
+    await page.getByRole('option', { name: /español/i }).click();
+    
+    // Toast should appear
+    await page.waitForTimeout(200);
+    const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /language changed/i });
+    await expect(toast).toBeVisible();
+  });
+});

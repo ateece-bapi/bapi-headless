@@ -58,3 +58,8 @@ storybook-static
 # Sentry Config File
 .env.sentry-build-plugin
 package-lock.json
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/

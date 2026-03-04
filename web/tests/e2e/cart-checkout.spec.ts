@@ -322,7 +322,17 @@ async function addProductToCart(page: Page) {
   await page.waitForLoadState('networkidle');
 
   // Step 2: From the category page, open the first actual product
-  const firstProductLink = page.locator('a[href*="/product/"]').first();
+  let firstProductLink = page.locator('a[href*="/product/"]').first();
+  
+  // Some categories render only subcategory links (e.g. /{locale}/products/{parentSlug}/{childSlug})
+  // and no direct product links. In that case, click into the first subcategory, then choose a product.
+  if ((await firstProductLink.count()) === 0) {
+    const firstSubcategoryLink = page.locator('a[href*="/products/"]').first();
+    await firstSubcategoryLink.click();
+    await page.waitForLoadState('networkidle');
+    firstProductLink = page.locator('a[href*="/product/"]').first();
+  }
+  
   await firstProductLink.click();
   await page.waitForURL(/\/product\/.+/);
   await page.waitForLoadState('networkidle');

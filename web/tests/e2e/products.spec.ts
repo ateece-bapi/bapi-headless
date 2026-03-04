@@ -64,10 +64,22 @@ test.describe('Product Pages', () => {
       await page.waitForLoadState('networkidle');
 
       // Then click the first product link within that category
-      const productLinks = page.locator('a[href*="/product/"]');
-      const productCount = await productLinks.count();
+      let productLinks = page.locator('a[href*="/product/"]');
+      let productCount = await productLinks.count();
 
-      // Assert that the category has at least one product so the test fails if the journey is broken
+      // Some categories have subcategories (render a[href*="/products/"]) instead of products
+      // If no product links found, navigate to first subcategory
+      if (productCount === 0) {
+        const subcategoryLink = page.locator('a[href*="/products/"]').first();
+        await subcategoryLink.click();
+        await page.waitForLoadState('networkidle');
+        
+        // Now look for product links in the subcategory
+        productLinks = page.locator('a[href*="/product/"]');
+        productCount = await productLinks.count();
+      }
+
+      // Assert that we found at least one product so the test fails if the journey is broken
       expect(productCount).toBeGreaterThan(0);
 
       const firstProduct = productLinks.first();
@@ -104,9 +116,20 @@ test.describe('Product Pages', () => {
       await firstCategory.click();
       await page.waitForLoadState('networkidle');
       
-      // Click first product link in that category
-      const firstProduct = page.locator('a[href*="/product/"]').first();
-      await firstProduct.click();
+      // Check if category has subcategories (parent category) or products (leaf category)
+      let firstProductLink = page.locator('a[href*="/product/"]').first();
+      const productLinkCount = await page.locator('a[href*="/product/"]').count();
+      
+      // If no product links found, this is a parent category with subcategories
+      if (productLinkCount === 0) {
+        const firstSubcategoryLink = page.locator('a[href*="/products/"]').first();
+        await firstSubcategoryLink.click();
+        await page.waitForLoadState('networkidle');
+        firstProductLink = page.locator('a[href*="/product/"]').first();
+      }
+      
+      // Click first product link
+      await firstProductLink.click();
       
       // Wait for product detail page (/product/...)
       await page.waitForURL(/\/product\/.+/);

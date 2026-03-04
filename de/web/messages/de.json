@@ -26,6 +26,12 @@
     "apply": "Apply",
     "reset": "Reset"
   },
+  "ui": {
+    "languageChanged": {
+      "title": "Language Changed",
+      "message": "Language changed to {language}"
+    }
+  },
   "nav": {
     "products": "Products",
     "applications": "Applications",

@@ -70,10 +70,17 @@ test.describe('Product Pages', () => {
       // Some categories have subcategories (render a[href*="/products/"]) instead of products
       // If no product links found, navigate to first subcategory
       if (productCount === 0) {
-        const subcategoryLink = page.locator('a[href*="/products/"]').first();
-        await subcategoryLink.click();
+        const subcategoryLinks = page.locator('a[href*="/products/"]');
+        const subcategoryCount = await subcategoryLinks.count();
+
+        // Fail fast with a clear assertion if the category is completely empty
+        expect(subcategoryCount).toBeGreaterThan(0);
+
+        const firstSubcategoryLink = subcategoryLinks.first();
+        await expect(firstSubcategoryLink).toBeVisible();
+        await firstSubcategoryLink.click();
         await page.waitForLoadState('networkidle');
-        
+
         // Now look for product links in the subcategory
         productLinks = page.locator('a[href*="/product/"]');
         productCount = await productLinks.count();
@@ -122,11 +129,21 @@ test.describe('Product Pages', () => {
       
       // If no product links found, this is a parent category with subcategories
       if (productLinkCount === 0) {
-        const firstSubcategoryLink = page.locator('a[href*="/products/"]').first();
+        const subcategoryLinks = page.locator('a[href*="/products/"]');
+        const subcategoryCount = await subcategoryLinks.count();
+        expect(subcategoryCount).toBeGreaterThan(0);
+
+        const firstSubcategoryLink = subcategoryLinks.first();
+        await expect(firstSubcategoryLink).toBeVisible();
         await firstSubcategoryLink.click();
         await page.waitForLoadState('networkidle');
         firstProductLink = page.locator('a[href*="/product/"]').first();
       }
+      
+      // After potential fallback, assert that at least one product link exists
+      const finalProductLinkCount = await page.locator('a[href*="/product/"]').count();
+      expect(finalProductLinkCount).toBeGreaterThan(0);
+      await expect(firstProductLink).toBeVisible();
       
       // Click first product link
       await firstProductLink.click();

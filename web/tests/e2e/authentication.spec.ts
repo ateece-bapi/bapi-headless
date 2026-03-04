@@ -235,17 +235,14 @@ test.describe('Authentication', () => {
       await page.goto('/forgot-password');
       
       // Wait for page load
-      await page.waitForTimeout(1000);
+      await page.waitForLoadState('networkidle');
       
       const heading = page.getByRole('heading', { name: /forgot password|reset password/i });
+      await expect(heading).toBeVisible();
       
-      if (await heading.isVisible()) {
-        await expect(heading).toBeVisible();
-        
-        // Email input should be visible
-        const emailInput = page.getByLabel(/email/i);
-        await expect(emailInput).toBeVisible();
-      }
+      // Email input should be visible
+      const emailInput = page.getByLabel(/email/i);
+      await expect(emailInput).toBeVisible();
     });
   });
 

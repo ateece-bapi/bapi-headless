@@ -69,7 +69,7 @@ test.describe('Language Selector', () => {
     await expect(toast).toContainText('Español');
     
     // URL should change to Spanish locale
-    await expect(page).toHaveURL('/es-ES');
+    await expect(page).toHaveURL('/es');
     
     // Wait for toast to disappear (2.5s duration)
     await page.waitForTimeout(3000);
@@ -86,7 +86,7 @@ test.describe('Language Selector', () => {
     await page.getByRole('option', { name: /español/i }).click();
     
     // Wait for navigation
-    await page.waitForURL('/es-ES');
+    await page.waitForURL('/es');
     await page.waitForLoadState('networkidle');
     
     // Language selector should now show Spanish
@@ -117,7 +117,7 @@ test.describe('Language Selector', () => {
     // English → Spanish
     await page.getByRole('button', { name: /select language/i }).click();
     await page.getByRole('option', { name: /español/i }).click();
-    await page.waitForURL('/es-ES');
+    await page.waitForURL('/es');
     
     // Spanish → German
     await page.getByRole('button', { name: /select language/i }).click();

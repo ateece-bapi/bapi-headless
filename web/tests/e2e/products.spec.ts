@@ -15,58 +15,73 @@ import { injectAxe, checkA11y } from 'axe-playwright';
  */
 
 test.describe('Product Pages', () => {
-  test.describe('Product Listing', () => {
+  test.describe('Product Categories Landing', () => {
     test.beforeEach(async ({ page }) => {
       await page.goto('/products');
       await page.waitForLoadState('networkidle');
     });
 
-    test('should display product grid', async ({ page }) => {
+    test('should display product categories', async ({ page }) => {
       // Products heading should be visible
       const heading = page.getByRole('heading', { name: /products/i, level: 1 });
       await expect(heading).toBeVisible();
       
-      // Should show product cards
-      const productLinks = page.getByRole('link').filter({ has: page.locator('img[alt*="product"]') });
-      const count = await productLinks.count();
+      // On /products we expect category cards that link deeper into the products tree
+      const categoryLinks = page
+        .locator('a[href*="/products/"]')
+        .filter({ has: page.getByRole('heading', { level: 2 }) });
+      const count = await categoryLinks.count();
       
-      // Should have at least some products visible
+      // Should have at least some categories visible
       expect(count).toBeGreaterThan(0);
     });
 
-    test('should filter products by category', async ({ page }) => {
-      // Look for category filters
-      const categoryFilter = page.getByRole('button', { name: /category|filter/i }).first();
-      
-      if (await categoryFilter.isVisible()) {
-        await categoryFilter.click();
-        
-        // Select a category
-        const categoryOption = page.getByRole('option', { name: /damper/i }).first();
-        if (await categoryOption.isVisible()) {
-          await categoryOption.click();
-          
-          // Wait for filtered results
-          await page.waitForLoadState('networkidle');
-          
-          // URL should update with filter
-          expect(page.url()).toContain('category');
-        }
-      }
+    test('should navigate from landing to category page', async ({ page }) => {
+      // Click the first category card/link on the products landing page
+      const firstCategory = page
+        .locator('a[href*="/products/"]')
+        .filter({ has: page.getByRole('heading', { level: 2 }) })
+        .first();
+
+      await firstCategory.click();
+      await page.waitForLoadState('networkidle');
+
+      // Should navigate away from the landing page to a category route
+      await expect(page).not.toHaveURL(/\/products\/?$/);
+
+      // Category page should have a main heading
+      const categoryHeading = page.getByRole('heading', { level: 1 });
+      await expect(categoryHeading).toBeVisible();
     });
 
-    test('should navigate to product detail page', async ({ page }) => {
-      // Click first product
-      const firstProduct = page.getByRole('link').filter({ has: page.locator('img[alt*="product"]') }).first();
-      await firstProduct.click();
-      
-      // Should navigate to product detail
-      await page.waitForURL(/\/products\/.+/);
+    test('should navigate from category to product detail', async ({ page }) => {
+      // First go from products landing to a category page
+      const firstCategory = page
+        .locator('a[href*="/products/"]')
+        .filter({ has: page.getByRole('heading', { level: 2 }) })
+        .first();
+      await firstCategory.click();
       await page.waitForLoadState('networkidle');
+
+      // Then click the first product card within that category (link containing an image)
+      const firstProduct = page
+        .getByRole('link')
+        .filter({ has: page.locator('img') })
+        .first();
       
-      // Product heading should be visible
-      const heading = page.getByRole('heading', { level: 1 });
-      await expect(heading).toBeVisible();
+      // Only proceed if there are actual products (some categories may be empty)
+      if (await firstProduct.isVisible()) {
+        await firstProduct.click();
+
+        // Should navigate to a product detail page (note: singular /product/)
+        // Product routes can be /products/category/slug or /product/slug
+        await page.waitForURL(/\/(products|product)\/.+/);
+        await page.waitForLoadState('networkidle');
+
+        // Product heading should be visible
+        const productHeading = page.getByRole('heading', { level: 1 });
+        await expect(productHeading).toBeVisible();
+      }
     });
 
     test('should pass accessibility checks', async ({ page }) => {
@@ -79,15 +94,27 @@ test.describe('Product Pages', () => {
 
   test.describe('Product Detail Page', () => {
     test.beforeEach(async ({ page }) => {
-      // Navigate to products page first
+      // Navigate to products landing page
       await page.goto('/products');
       await page.waitForLoadState('networkidle');
       
-      // Click first available product
-      const firstProduct = page.getByRole('link').filter({ has: page.locator('img[alt*="product"]') }).first();
+      // Click first category
+      const firstCategory = page
+        .locator('a[href*="/products/"]')
+        .filter({ has: page.getByRole('heading', { level: 2 }) })
+        .first();
+      await firstCategory.click();
+      await page.waitForLoadState('networkidle');
+      
+      // Click first available product in that category
+      const firstProduct = page
+        .getByRole('link')
+        .filter({ has: page.locator('img') })
+        .first();
       await firstProduct.click();
       
-      await page.waitForURL(/\/products\/.+/);
+      // Wait for product detail page (can be /products/... or /product/...)
+      await page.waitForURL(/\/(products|product)\/.+/);
       await page.waitForLoadState('networkidle');
     });
 

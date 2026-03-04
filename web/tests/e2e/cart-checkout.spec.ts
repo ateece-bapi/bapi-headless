@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
+import type { Page } from '@playwright/test';
 
 /**
  * Cart & Checkout E2E Tests
@@ -307,15 +308,26 @@ test.describe('Checkout Process', () => {
 /**
  * Helper function to add a product to cart
  */
-async function addProductToCart(page: any) {
-  // Navigate to products
+async function addProductToCart(page: Page) {
+  // Navigate to products landing page
   await page.goto('/products');
   await page.waitForLoadState('networkidle');
-  
-  // Click first product
-  const firstProduct = page.getByRole('link').filter({ has: page.locator('img[alt*="product"]') }).first();
-  await firstProduct.click();
-  await page.waitForURL(/\/products\/.+/);
+
+  // Step 1: Click a category from the landing page
+  const firstCategory = page
+    .locator('a[href*="/products/"]')
+    .filter({ has: page.getByRole('heading', { level: 2 }) })
+    .first();
+  await firstCategory.click();
+  await page.waitForLoadState('networkidle');
+
+  // Step 2: From the category page, open the first actual product
+  const firstProductLink = page
+    .getByRole('link')
+    .filter({ has: page.locator('img') })
+    .first();
+  await firstProductLink.click();
+  await page.waitForURL(/\/(products|product)\/.+/);
   await page.waitForLoadState('networkidle');
   
   // Add to cart

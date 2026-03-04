@@ -414,7 +414,7 @@ test('should have good Core Web Vitals', async ({ page }) => {
 ### Test All Languages
 
 ```typescript
-const LANGUAGES = ['en', 'es-ES', 'de', 'fr', 'ja', 'zh-CN'];
+const LANGUAGES = ['en', 'es', 'de', 'fr', 'ja', 'zh', 'vi', 'ar', 'th', 'pl', 'hi'];
 
 for (const locale of LANGUAGES) {
   test(`should work in ${locale}`, async ({ page }) => {

@@ -66,10 +66,16 @@ test.describe('Homepage', () => {
       // Type search query
       await searchInput.fill('damper');
       
-      // Should show search results or suggestions
+      // Wait for search debounce and UI update
       await page.waitForTimeout(500); // Debounce
       
-      // Note: Specific assertions depend on your search implementation
+      // After typing, verify search UI responds (results container or input has value)
+      await expect(searchInput).toHaveValue('damper');
+      
+      // NOTE: Specific result assertions depend on search implementation
+      // When search results are implemented, add assertions like:
+      // const resultsRegion = page.getByRole('region', { name: /search results/i });
+      // await expect(resultsRegion).toBeVisible();
     }
   });
 

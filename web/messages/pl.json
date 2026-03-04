@@ -2293,5 +2293,11 @@
       "wireless": "Produkty Bezprzewodowe",
       "airQuality": "Jakość Powietrza"
     }
+  },
+  "ui": {
+    "languageChanged": {
+      "title": "Zmieniono język",
+      "message": "Język został zmieniony na {language}"
+    }
   }
 }

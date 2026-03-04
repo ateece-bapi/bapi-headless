@@ -2293,5 +2293,11 @@
     "pageNavigation": "页面导航",
     "loading": "正在加载内容",
     "searchResults": "搜索结果"
+  },
+  "ui": {
+    "languageChanged": {
+      "title": "语言已更改",
+      "message": "语言已更改为 {language}"
+    }
   }
 }

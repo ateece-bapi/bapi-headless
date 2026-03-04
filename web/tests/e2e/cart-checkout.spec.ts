@@ -327,11 +327,21 @@ async function addProductToCart(page: Page) {
   // Some categories render only subcategory links (e.g. /{locale}/products/{parentSlug}/{childSlug})
   // and no direct product links. In that case, click into the first subcategory, then choose a product.
   if ((await firstProductLink.count()) === 0) {
-    const firstSubcategoryLink = page.locator('a[href*="/products/"]').first();
+    const subcategoryLinks = page.locator('a[href*="/products/"]');
+    const subcategoryCount = await subcategoryLinks.count();
+    expect(subcategoryCount).toBeGreaterThan(0);
+
+    const firstSubcategoryLink = subcategoryLinks.first();
+    await expect(firstSubcategoryLink).toBeVisible();
     await firstSubcategoryLink.click();
     await page.waitForLoadState('networkidle');
     firstProductLink = page.locator('a[href*="/product/"]').first();
   }
+  
+  // After potential fallback, assert that at least one product link exists
+  const finalProductLinkCount = await page.locator('a[href*="/product/"]').count();
+  expect(finalProductLinkCount).toBeGreaterThan(0);
+  await expect(firstProductLink).toBeVisible();
   
   await firstProductLink.click();
   await page.waitForURL(/\/product\/.+/);

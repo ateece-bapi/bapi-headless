@@ -26,9 +26,9 @@ test.describe('Product Pages', () => {
       const heading = page.getByRole('heading', { name: /products/i, level: 1 });
       await expect(heading).toBeVisible();
       
-      // On /products we expect category cards that link deeper into the products tree
+      // On /products we expect category cards that link to /categories/{slug}
       const categoryLinks = page
-        .locator('a[href*="/products/"]')
+        .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) });
       const count = await categoryLinks.count();
       
@@ -39,7 +39,7 @@ test.describe('Product Pages', () => {
     test('should navigate from landing to category page', async ({ page }) => {
       // Click the first category card/link on the products landing page
       const firstCategory = page
-        .locator('a[href*="/products/"]')
+        .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
 
@@ -57,31 +57,29 @@ test.describe('Product Pages', () => {
     test('should navigate from category to product detail', async ({ page }) => {
       // First go from products landing to a category page
       const firstCategory = page
-        .locator('a[href*="/products/"]')
+        .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
       await firstCategory.click();
       await page.waitForLoadState('networkidle');
 
-      // Then click the first product card within that category (link containing an image)
-      const firstProduct = page
-        .getByRole('link')
-        .filter({ has: page.locator('img') })
-        .first();
-      
-      // Only proceed if there are actual products (some categories may be empty)
-      if (await firstProduct.isVisible()) {
-        await firstProduct.click();
+      // Then click the first product link within that category
+      const productLinks = page.locator('a[href*="/product/"]');
+      const productCount = await productLinks.count();
 
-        // Should navigate to a product detail page (note: singular /product/)
-        // Product routes can be /products/category/slug or /product/slug
-        await page.waitForURL(/\/(products|product)\/.+/);
-        await page.waitForLoadState('networkidle');
+      // Assert that the category has at least one product so the test fails if the journey is broken
+      expect(productCount).toBeGreaterThan(0);
 
-        // Product heading should be visible
-        const productHeading = page.getByRole('heading', { level: 1 });
-        await expect(productHeading).toBeVisible();
-      }
+      const firstProduct = productLinks.first();
+      await firstProduct.click();
+
+      // Should navigate to a product detail page (/product/...)
+      await page.waitForURL(/\/product\/.+/);
+      await page.waitForLoadState('networkidle');
+
+      // Product heading should be visible
+      const productHeading = page.getByRole('heading', { level: 1 });
+      await expect(productHeading).toBeVisible();
     });
 
     test('should pass accessibility checks', async ({ page }) => {
@@ -100,21 +98,18 @@ test.describe('Product Pages', () => {
       
       // Click first category
       const firstCategory = page
-        .locator('a[href*="/products/"]')
+        .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
       await firstCategory.click();
       await page.waitForLoadState('networkidle');
       
-      // Click first available product in that category
-      const firstProduct = page
-        .getByRole('link')
-        .filter({ has: page.locator('img') })
-        .first();
+      // Click first product link in that category
+      const firstProduct = page.locator('a[href*="/product/"]').first();
       await firstProduct.click();
       
-      // Wait for product detail page (can be /products/... or /product/...)
-      await page.waitForURL(/\/(products|product)\/.+/);
+      // Wait for product detail page (/product/...)
+      await page.waitForURL(/\/product\/.+/);
       await page.waitForLoadState('networkidle');
     });
 

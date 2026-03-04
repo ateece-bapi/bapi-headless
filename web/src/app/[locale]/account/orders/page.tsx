@@ -90,7 +90,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Mock Data Banner */}
       {useMockData && (
         <div className="w-full border-b border-yellow-200 bg-yellow-50">
@@ -241,7 +241,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
           )}
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

@@ -79,7 +79,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   // Fetch latest 3 news posts
   const posts = await getPosts({ perPage: 3 });
   return (
-    <main className="min-h-screen">
+    <>
       {/* Hero Section - Simplified with ONE primary CTA */}
       <Hero translations={heroTranslations} />
 
@@ -553,6 +553,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }

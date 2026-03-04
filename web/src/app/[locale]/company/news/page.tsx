@@ -28,7 +28,7 @@ export default async function NewsPage() {
   const posts = await getPosts({ perPage: 20 });
 
   return (
-    <main className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30">
+    <div className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30">
       {/* Hero Section */}
       <section className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
         {/* Background decoration */}
@@ -169,6 +169,6 @@ export default async function NewsPage() {
           </div>
         )}
       </section>
-    </main>
+    </div>
   );
 }

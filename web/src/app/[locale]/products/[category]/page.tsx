@@ -97,7 +97,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const productCount = categoryInfo.count ?? products.length;
 
   return (
-    <main className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Breadcrumbs */}
       <div className="border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
@@ -260,6 +260,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

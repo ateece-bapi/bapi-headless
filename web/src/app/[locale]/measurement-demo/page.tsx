@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function MeasurementDemoPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 py-12">
       <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center">
           <h1 className="mb-4 text-4xl font-bold text-neutral-900">
@@ -46,6 +46,6 @@ export default function MeasurementDemoPage() {
           </ul>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

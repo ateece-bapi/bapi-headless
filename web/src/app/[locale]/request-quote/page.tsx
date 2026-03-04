@@ -134,7 +134,7 @@ export default function RequestQuotePage() {
   }
 
   return (
-    <main className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Header */}
       <section className="bg-linear-to-r w-full from-primary-600 to-primary-700 text-white">
         <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
@@ -459,6 +459,6 @@ export default function RequestQuotePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -83,7 +83,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
   ];
 
   return (
-    <main className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Mock Data Banner */}
       {mockEnabled && profile && (
         <div className="w-full border-b border-yellow-200 bg-yellow-50">
@@ -275,6 +275,6 @@ export default async function AccountPage({ params }: AccountPageProps) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

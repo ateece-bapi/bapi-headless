@@ -44,7 +44,7 @@ export const revalidate = 3600;
 export default async function CompanyPage() {
   const t = await getTranslations('companyPages.about');
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <PageContainer size="narrow">
@@ -269,6 +269,6 @@ export default async function CompanyPage() {
           </div>
         </PageContainer>
       </section>
-    </main>
+    </div>
   );
 }

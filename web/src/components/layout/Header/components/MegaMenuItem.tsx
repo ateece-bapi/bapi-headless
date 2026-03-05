@@ -307,7 +307,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                         {item.megaMenu.featured.title.includes('WAM™') ? (
                           <>
                             <Radio className="mx-auto mb-2 h-16 w-16 text-accent-600" />
-                            <p className="text-xs font-semibold text-accent-700">
+                            <p className="text-xs font-semibold text-neutral-900">
                               Wireless Monitoring
                             </p>
                           </>

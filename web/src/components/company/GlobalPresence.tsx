@@ -288,7 +288,7 @@ export function GlobalPresence({
                     {translation?.type || FACILITY_TYPE_LABELS[location.type]}
                   </span>
                   {location.status === 'opening-soon' && (
-                    <span className="rounded bg-accent-50 px-2 py-1 font-medium text-accent-700">
+                    <span className="rounded bg-accent-50 px-2 py-1 font-medium text-neutral-900">
                       {translation?.status || 'Opening Soon'}
                     </span>
                   )}

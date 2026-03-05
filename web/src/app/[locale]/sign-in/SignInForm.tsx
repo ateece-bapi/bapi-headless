@@ -178,7 +178,7 @@ export function SignInForm({ locale }: SignInFormProps) {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-2 text-neutral-700 transition-colors hover:text-neutral-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-2 text-neutral-700 transition-colors hover:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-primary-500"
               aria-label={showPassword ? t('form.hidePassword') : t('form.showPassword')}
               disabled={isLoading}
             >

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { useCart, useCartDrawer } from '@/store';
 
 const CartDrawer = () => {
@@ -25,7 +25,7 @@ const CartDrawer = () => {
           <h2 className="text-xl font-bold text-neutral-900">Shopping Cart</h2>
           <button
             onClick={closeCart}
-            className="text-neutral-700 transition hover:text-neutral-700"
+            className="text-neutral-700 transition hover:text-neutral-900"
             aria-label="Close cart"
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

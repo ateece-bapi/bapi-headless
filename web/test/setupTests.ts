@@ -33,3 +33,19 @@ vi.mock('next/image', () => ({
 		return React.createElement('img', { src: resolvedSrc, alt, className, style });
 	},
 }));
+
+// Mock @/lib/navigation (next-intl) for i18n Link support in all tests
+vi.mock('@/lib/navigation', () => ({
+	Link: (props: unknown) => {
+		const p = props as { href?: string; children?: React.ReactNode; className?: string };
+		const { href, children, className } = p;
+		return React.createElement('a', { href, className }, children);
+	},
+	useRouter: () => ({
+		push: vi.fn(),
+		replace: vi.fn(),
+		prefetch: vi.fn(),
+	}),
+	usePathname: () => '/en',
+	redirect: vi.fn(),
+}));

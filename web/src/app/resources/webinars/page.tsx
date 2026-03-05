@@ -39,7 +39,7 @@ export default function WebinarsPage() {
                   best practices, new technologies, and product deep-dives. This feature will be
                   available in Phase 2.
                 </p>
-                <p className="text-neutral-600">
+                <p className="text-neutral-700">
                   Check back soon for upcoming webinar schedules and recordings.
                 </p>
               </div>
@@ -52,17 +52,17 @@ export default function WebinarsPage() {
               <div className="rounded-xl bg-neutral-50 p-6">
                 <Monitor className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Product Training</h3>
-                <p className="text-sm text-neutral-600">In-depth product overviews</p>
+                <p className="text-sm text-neutral-700">In-depth product overviews</p>
               </div>
               <div className="rounded-xl bg-neutral-50 p-6">
                 <Users className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Best Practices</h3>
-                <p className="text-sm text-neutral-600">Industry standards and tips</p>
+                <p className="text-sm text-neutral-700">Industry standards and tips</p>
               </div>
               <div className="rounded-xl bg-neutral-50 p-6">
                 <Calendar className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Live Q&A Sessions</h3>
-                <p className="text-sm text-neutral-600">Interactive expert discussions</p>
+                <p className="text-sm text-neutral-700">Interactive expert discussions</p>
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function WebinarsPage() {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">Stay Updated</h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Contact us to receive notifications about upcoming webinars
           </p>
           <a

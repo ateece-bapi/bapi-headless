@@ -146,7 +146,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               {t('categories.title')}
             </h2>
-            <p className="mx-auto max-w-2xl text-lg text-neutral-600">{t('categories.subtitle')}</p>
+            <p className="mx-auto max-w-2xl text-lg text-neutral-700">{t('categories.subtitle')}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
@@ -238,7 +238,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     </h3>
 
                     {/* Description */}
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-600">
+                    <p className="mb-4 text-sm leading-relaxed text-neutral-700">
                       {category.description}
                     </p>
 
@@ -312,10 +312,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <h3 className="mb-4 text-xl font-bold text-neutral-900">
                 {t('whyBapi.warranty.title')}
               </h3>
-              <p className="text-sm leading-relaxed text-neutral-600">
+              <p className="text-sm leading-relaxed text-neutral-700">
                 {t('whyBapi.warranty.description')}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+              <p className="mt-3 text-sm leading-relaxed text-neutral-700">
                 {t('whyBapi.warranty.footnote')}
               </p>
             </div>
@@ -334,10 +334,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <h3 className="mb-4 text-xl font-bold text-neutral-900">
                 {t('whyBapi.bapiBackedTitle')}
               </h3>
-              <p className="text-sm leading-relaxed text-neutral-600">
+              <p className="text-sm leading-relaxed text-neutral-700">
                 {t('whyBapi.bapiBackedDescription')}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+              <p className="mt-3 text-sm leading-relaxed text-neutral-700">
                 {t('whyBapi.bapiBackedFootnote')}
               </p>
             </div>
@@ -356,10 +356,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <h3 className="mb-4 text-xl font-bold text-neutral-900">
                 {t('whyBapi.bapiOriginal.title')}
               </h3>
-              <p className="text-sm leading-relaxed text-neutral-600">
+              <p className="text-sm leading-relaxed text-neutral-700">
                 {t('whyBapi.bapiOriginal.description')}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+              <p className="mt-3 text-sm leading-relaxed text-neutral-700">
                 {t('whyBapi.bapiOriginal.footnote')}
               </p>
             </div>
@@ -427,7 +427,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 {t('news.badge')}
               </div>
               <h2 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('news.title')}</h2>
-              <p className="mt-2 text-lg text-neutral-600">{t('news.subtitle')}</p>
+              <p className="mt-2 text-lg text-neutral-700">{t('news.subtitle')}</p>
             </div>
             <Link
               href="/company/news"
@@ -441,7 +441,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {posts.length === 0 ? (
             <div className="rounded-2xl border-2 border-dashed border-neutral-300 bg-neutral-50 p-12 text-center">
               <Newspaper className="mx-auto mb-4 h-16 w-16 text-neutral-400" />
-              <p className="text-lg text-neutral-600">{t('news.noArticles')}</p>
+              <p className="text-lg text-neutral-700">{t('news.noArticles')}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -468,7 +468,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   {/* Content */}
                   <div className="p-6">
                     {/* Date Badge */}
-                    <div className="mb-3 flex items-center gap-2 text-sm text-neutral-600">
+                    <div className="mb-3 flex items-center gap-2 text-sm text-neutral-700">
                       <Calendar className="h-4 w-4 text-primary-500" />
                       <time dateTime={post.date || ''}>
                         {post.date
@@ -489,7 +489,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     {/* Excerpt */}
                     {post.excerpt && (
                       <div
-                        className="mb-4 line-clamp-3 text-sm text-neutral-600"
+                        className="mb-4 line-clamp-3 text-sm text-neutral-700"
                         dangerouslySetInnerHTML={{ __html: post.excerpt }}
                       />
                     )}

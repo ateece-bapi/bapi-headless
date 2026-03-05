@@ -109,7 +109,7 @@ export function ProductSort({ totalProducts }: ProductSortProps) {
   return (
     <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
       {/* Product Count */}
-      <div className="flex items-center gap-2 text-sm text-neutral-600">
+      <div className="flex items-center gap-2 text-sm text-neutral-700">
         <svg
           className="h-5 w-5 text-primary-500"
           fill="none"

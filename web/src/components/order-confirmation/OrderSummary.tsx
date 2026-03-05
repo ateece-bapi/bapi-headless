@@ -28,17 +28,17 @@ export default function OrderSummary({
       {/* Totals */}
       <div className="mb-6 space-y-3 border-b border-neutral-200 pb-6">
         <div className="flex justify-between text-sm">
-          <span className="text-neutral-600">Subtotal</span>
+          <span className="text-neutral-700">Subtotal</span>
           <span className="font-semibold text-neutral-900">{subtotal}</span>
         </div>
 
         <div className="flex justify-between text-sm">
-          <span className="text-neutral-600">Shipping</span>
+          <span className="text-neutral-700">Shipping</span>
           <span className="font-semibold text-neutral-900">{shipping}</span>
         </div>
 
         <div className="flex justify-between text-sm">
-          <span className="text-neutral-600">Tax</span>
+          <span className="text-neutral-700">Tax</span>
           <span className="font-semibold text-neutral-900">{tax}</span>
         </div>
       </div>
@@ -57,13 +57,13 @@ export default function OrderSummary({
 
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-neutral-600">Payment Method</span>
+            <span className="text-neutral-700">Payment Method</span>
             <span className="font-semibold text-neutral-900">{paymentMethod}</span>
           </div>
 
           {transactionId && (
             <div className="flex flex-col gap-1">
-              <span className="text-neutral-600">Transaction ID</span>
+              <span className="text-neutral-700">Transaction ID</span>
               <span className="break-all font-mono text-xs text-neutral-900">{transactionId}</span>
             </div>
           )}

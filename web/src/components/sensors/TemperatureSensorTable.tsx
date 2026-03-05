@@ -136,9 +136,9 @@ export function TemperatureSensorTable({ labels }: TemperatureSensorTableProps =
               return (
                 <tr key={sensor.type}>
                   <td className="px-6 py-4 text-neutral-900">{sensor.type}</td>
-                  <td className="px-6 py-4 text-neutral-600">{range}</td>
-                  <td className="px-6 py-4 text-neutral-600">{formattedAccuracy}</td>
-                  <td className="px-6 py-4 text-neutral-600">{sensor.output}</td>
+                  <td className="px-6 py-4 text-neutral-700">{range}</td>
+                  <td className="px-6 py-4 text-neutral-700">{formattedAccuracy}</td>
+                  <td className="px-6 py-4 text-neutral-700">{sensor.output}</td>
                 </tr>
               );
             })}

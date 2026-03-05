@@ -56,7 +56,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                 className={`relative flex items-center gap-2 border-b-2 px-6 py-4 font-semibold transition-all ${
                   isActive
                     ? 'border-primary-700 bg-white text-primary-700'
-                    : 'border-transparent text-neutral-600 hover:bg-neutral-100 hover:text-primary-600'
+                    : 'border-transparent text-neutral-700 hover:bg-neutral-100 hover:text-primary-600'
                 } `}
                 onClick={() => setActiveTab(tab.key)}
               >

@@ -110,7 +110,7 @@ export default function ProductAvailability({
           message: 'Contact us for availability',
           bgColor: 'bg-neutral-50',
           textColor: 'text-neutral-700',
-          iconColor: 'text-neutral-600',
+          iconColor: 'text-neutral-700',
         };
     }
   };

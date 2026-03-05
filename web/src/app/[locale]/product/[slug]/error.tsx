@@ -50,7 +50,7 @@ export default function ProductError({
 
         <h2 className="mb-3 text-2xl font-bold text-neutral-900">Unable to load product</h2>
 
-        <p className="mb-6 text-base text-neutral-600">
+        <p className="mb-6 text-base text-neutral-700">
           We couldn&apos;t load this product. It may have been removed or there could be a temporary
           issue.
         </p>

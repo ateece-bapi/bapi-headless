@@ -30,7 +30,7 @@ export default function WhyBAPIPage() {
             <div className="rounded-xl bg-neutral-50 p-8">
               <Award className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">Proven Quality</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 Every BAPI product is designed and manufactured to the highest standards. We stand
                 behind our work with industry-leading warranties and rigorous testing.
               </p>
@@ -39,7 +39,7 @@ export default function WhyBAPIPage() {
             <div className="rounded-xl bg-neutral-50 p-8">
               <Users className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">Expert Support</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 Our technical support team works directly with engineers and contractors to ensure
                 successful installations and optimal performance.
               </p>
@@ -48,7 +48,7 @@ export default function WhyBAPIPage() {
             <div className="rounded-xl bg-neutral-50 p-8">
               <TrendingUp className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">Continuous Innovation</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 We invest in R&D to bring you the latest technology, from wireless sensors to
                 cloud-based monitoring solutions.
               </p>
@@ -57,7 +57,7 @@ export default function WhyBAPIPage() {
             <div className="rounded-xl bg-neutral-50 p-8">
               <Target className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">Made in USA</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 All BAPI products are designed and manufactured in Wisconsin, ensuring quality
                 control and supporting American manufacturing.
               </p>

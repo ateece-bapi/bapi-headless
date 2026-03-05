@@ -67,7 +67,7 @@ const ColorSwatch = ({
       </div>
       <div className="mt-2 text-center">
         <div className="text-sm font-semibold text-neutral-900">{name}</div>
-        {subtitle && <div className="mt-1 text-xs text-neutral-600">{subtitle}</div>}
+        {subtitle && <div className="mt-1 text-xs text-neutral-700">{subtitle}</div>}
       </div>
     </div>
   );
@@ -87,7 +87,7 @@ const ColorFamily = ({
 }) => (
   <div className="mb-12">
     <h2 className="mb-2 text-2xl font-bold text-neutral-900">{title}</h2>
-    <p className="mb-6 text-neutral-600">{description}</p>
+    <p className="mb-6 text-neutral-700">{description}</p>
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       {colors.map((color) => (
         <ColorSwatch key={color.name} {...color} />
@@ -106,7 +106,7 @@ export const AllColors: Story = {
         {/* Hero Section */}
         <div className="mb-12">
           <h1 className="mb-4 text-4xl font-bold text-neutral-900">BAPI Color System</h1>
-          <p className="mb-8 text-lg text-neutral-600">
+          <p className="mb-8 text-lg text-neutral-700">
             Official 2026 BAPI Brand Standards for digital applications
           </p>
 
@@ -115,7 +115,7 @@ export const AllColors: Story = {
             <div className="rounded-lg bg-neutral-50 p-6 text-center md:col-span-6">
               <div className="mb-2 text-5xl font-bold text-neutral-500">60%</div>
               <div className="text-xl font-semibold text-neutral-900">White & Gray</div>
-              <div className="mt-2 text-sm text-neutral-600">Backgrounds, surfaces, subtle UI</div>
+              <div className="mt-2 text-sm text-neutral-700">Backgrounds, surfaces, subtle UI</div>
             </div>
             <div className="rounded-lg bg-primary-500 p-6 text-center md:col-span-3">
               <div className="mb-2 text-5xl font-bold text-white">30%</div>
@@ -206,7 +206,7 @@ export const AllColors: Story = {
         {/* Semantic Colors */}
         <div className="mb-12">
           <h2 className="mb-2 text-2xl font-bold text-neutral-900">Semantic Colors</h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Purpose-specific colors for conveying state and meaning
           </p>
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
@@ -232,7 +232,7 @@ export const AllColors: Story = {
         {/* Gradients */}
         <div className="mb-12">
           <h2 className="mb-2 text-2xl font-bold text-neutral-900">Official BAPI Gradients</h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             2026 Brand Guide specifications for buttons and graphical elements
           </p>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -245,7 +245,7 @@ export const AllColors: Story = {
               >
                 Accent Gradient
               </div>
-              <div className="mt-3 text-sm text-neutral-600">
+              <div className="mt-3 text-sm text-neutral-700">
                 <div className="mt-2 rounded bg-neutral-100 p-2 font-mono">
                   bg-bapi-accent-gradient
                 </div>
@@ -261,7 +261,7 @@ export const AllColors: Story = {
               >
                 Primary Gradient
               </div>
-              <div className="mt-3 text-sm text-neutral-600">
+              <div className="mt-3 text-sm text-neutral-700">
                 <div className="mt-2 rounded bg-neutral-100 p-2 font-mono">
                   bg-bapi-primary-gradient
                 </div>
@@ -274,7 +274,7 @@ export const AllColors: Story = {
         {/* Accessibility */}
         <div className="mb-12">
           <h2 className="mb-2 text-2xl font-bold text-neutral-900">Accessibility & Contrast</h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             All color combinations meet WCAG 2.1 Level AA standards
           </p>
           <div className="overflow-x-auto rounded-lg bg-neutral-50 p-6">
@@ -322,7 +322,7 @@ export const AllColors: Story = {
         {/* Usage Examples */}
         <div>
           <h2 className="mb-2 text-2xl font-bold text-neutral-900">Usage Examples</h2>
-          <p className="mb-6 text-neutral-600">Common patterns and component implementations</p>
+          <p className="mb-6 text-neutral-700">Common patterns and component implementations</p>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="rounded-lg bg-neutral-50 p-6">
               <h3 className="mb-4 font-semibold text-neutral-900">Primary Button</h3>

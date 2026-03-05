@@ -123,7 +123,7 @@ export default function FavoritesPage() {
                 <Heart className="h-10 w-10 text-accent-500" strokeWidth={2} />
               </div>
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('empty.title')}</h2>
-              <p className="mx-auto mb-8 max-w-md text-neutral-600">
+              <p className="mx-auto mb-8 max-w-md text-neutral-700">
                 {t('empty.description')}
               </p>
               <div className="flex justify-center gap-3">
@@ -178,7 +178,7 @@ export default function FavoritesPage() {
                           {favorite.productName}
                         </h3>
                       </Link>
-                      <p className="mb-3 text-sm text-neutral-600">{t('productId')} {favorite.productId}</p>
+                      <p className="mb-3 text-sm text-neutral-700">{t('productId')} {favorite.productId}</p>
                       {favorite.productPrice && (
                         <p className="mb-4 text-lg font-bold text-primary-600">
                           {favorite.productPrice}

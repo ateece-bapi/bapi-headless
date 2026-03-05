@@ -423,7 +423,7 @@ export const AllFormComponents: StoryObj = {
       <div className="space-y-8">
         <div>
           <h2 className="mb-6 text-2xl font-bold text-neutral-900">Configure Your Sensor</h2>
-          <p className="text-neutral-600">
+          <p className="text-neutral-700">
             Use the form components below to customize your temperature sensor
           </p>
         </div>

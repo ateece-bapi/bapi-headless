@@ -126,7 +126,7 @@ export default async function CompanyPage() {
           <h2 className="mb-4 text-balance text-center text-3xl font-bold text-neutral-900">
             {t('coreValues.title')}
           </h2>
-          <p className="mb-8 text-center text-lg text-neutral-600">{t('coreValues.subtitle')}</p>
+          <p className="mb-8 text-center text-lg text-neutral-700">{t('coreValues.subtitle')}</p>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
@@ -134,7 +134,7 @@ export default async function CompanyPage() {
               <h3 className="mb-3 text-xl font-bold text-neutral-900">
                 {t('coreValues.qualityFirst.title')}
               </h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 {t('coreValues.qualityFirst.description')}
               </p>
             </div>
@@ -144,7 +144,7 @@ export default async function CompanyPage() {
               <h3 className="mb-3 text-xl font-bold text-neutral-900">
                 {t('coreValues.customerFocus.title')}
               </h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 {t('coreValues.customerFocus.description')}
               </p>
             </div>
@@ -154,7 +154,7 @@ export default async function CompanyPage() {
               <h3 className="mb-3 text-xl font-bold text-neutral-900">
                 {t('coreValues.innovation.title')}
               </h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 {t('coreValues.innovation.description')}
               </p>
             </div>
@@ -179,7 +179,7 @@ export default async function CompanyPage() {
               <h3 className="mb-4 text-xl font-bold text-neutral-900">
                 {t('location.locationCard.title')}
               </h3>
-              <div className="space-y-2 leading-relaxed text-neutral-600">
+              <div className="space-y-2 leading-relaxed text-neutral-700">
                 <p className="font-semibold">{t('location.locationCard.companyName')}</p>
                 <p>{t('location.locationCard.street')}</p>
                 <p>{t('location.locationCard.city')}</p>
@@ -195,7 +195,7 @@ export default async function CompanyPage() {
               </h3>
               <div className="space-y-4">
                 <div>
-                  <p className="mb-1 text-sm text-neutral-600">
+                  <p className="mb-1 text-sm text-neutral-700">
                     {t('location.contactCard.phoneLabel')}
                   </p>
                   <a
@@ -206,7 +206,7 @@ export default async function CompanyPage() {
                   </a>
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-600">
+                  <p className="mb-1 text-sm text-neutral-700">
                     {t('location.contactCard.emailLabel')}
                   </p>
                   <a
@@ -217,7 +217,7 @@ export default async function CompanyPage() {
                   </a>
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-600">
+                  <p className="mb-1 text-sm text-neutral-700">
                     {t('location.contactCard.hoursLabel')}
                   </p>
                   <p className="text-neutral-900">{t('location.contactCard.hoursDays')}</p>
@@ -250,21 +250,21 @@ export default async function CompanyPage() {
               className="duration-normal rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500 hover:shadow-md"
             >
               <h4 className="font-bold text-neutral-900">{t('quickLinks.whyBapi.title')}</h4>
-              <p className="mt-1 text-sm text-neutral-600">{t('quickLinks.whyBapi.description')}</p>
+              <p className="mt-1 text-sm text-neutral-700">{t('quickLinks.whyBapi.description')}</p>
             </Link>
             <Link
               href="/company/news"
               className="duration-normal rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500 hover:shadow-md"
             >
               <h4 className="font-bold text-neutral-900">{t('quickLinks.news.title')}</h4>
-              <p className="mt-1 text-sm text-neutral-600">{t('quickLinks.news.description')}</p>
+              <p className="mt-1 text-sm text-neutral-700">{t('quickLinks.news.description')}</p>
             </Link>
             <Link
               href="/company/careers"
               className="duration-normal rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500 hover:shadow-md"
             >
               <h4 className="font-bold text-neutral-900">{t('quickLinks.careers.title')}</h4>
-              <p className="mt-1 text-sm text-neutral-600">{t('quickLinks.careers.description')}</p>
+              <p className="mt-1 text-sm text-neutral-700">{t('quickLinks.careers.description')}</p>
             </Link>
           </div>
         </PageContainer>

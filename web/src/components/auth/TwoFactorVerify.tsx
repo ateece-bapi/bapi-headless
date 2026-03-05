@@ -199,7 +199,7 @@ export function TwoFactorVerify({
         <h2 className="text-2xl font-bold text-neutral-900">
           Two-Factor Authentication
         </h2>
-        <p className="mt-2 text-neutral-600">
+        <p className="mt-2 text-neutral-700">
           {inputMode === 'totp'
             ? 'Enter the code from your authenticator app'
             : 'Enter one of your backup codes'}
@@ -230,7 +230,7 @@ export function TwoFactorVerify({
               {inputMode === 'totp' ? 'Verification Code' : 'Backup Code'}
             </label>
             {inputMode === 'totp' && (
-              <div className="flex items-center gap-2 text-sm text-neutral-600">
+              <div className="flex items-center gap-2 text-sm text-neutral-700">
                 <Clock className="h-4 w-4" />
                 <span>{timeRemaining}s</span>
               </div>
@@ -259,7 +259,7 @@ export function TwoFactorVerify({
             )}
           </div>
 
-          <p className="mt-2 text-sm text-neutral-600">
+          <p className="mt-2 text-sm text-neutral-700">
             {inputMode === 'totp'
               ? 'The code changes every 30 seconds'
               : 'Each backup code can only be used once'}

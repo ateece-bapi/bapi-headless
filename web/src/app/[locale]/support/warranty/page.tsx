@@ -95,7 +95,7 @@ export default async function WarrantyPage({ params }: Props) {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('cta.heading')}</h2>
-          <p className="mb-6 text-neutral-600">{t('cta.description')}</p>
+          <p className="mb-6 text-neutral-700">{t('cta.description')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href={`/${locale}/support/contact`}

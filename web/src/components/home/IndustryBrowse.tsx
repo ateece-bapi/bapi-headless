@@ -83,7 +83,7 @@ export default function IndustryBrowse() {
                 className={`rounded-full px-6 py-2 text-sm font-semibold transition-all duration-300 lg:text-base ${
                   browseMode === 'industry'
                     ? 'bg-accent-500 text-neutral-900 shadow-sm'
-                    : 'text-neutral-600 hover:text-neutral-900'
+                    : 'text-neutral-700 hover:text-neutral-900'
                 }`}
               >
                 Industry
@@ -93,7 +93,7 @@ export default function IndustryBrowse() {
                 className={`rounded-full px-6 py-2 text-sm font-semibold transition-all duration-300 lg:text-base ${
                   browseMode === 'sensor-type'
                     ? 'bg-accent-500 text-neutral-900 shadow-sm'
-                    : 'text-neutral-600 hover:text-neutral-900'
+                    : 'text-neutral-700 hover:text-neutral-900'
                 }`}
               >
                 Sensor Type

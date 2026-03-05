@@ -132,7 +132,7 @@ export function MobileFilterDrawer({
             className="rounded-lg p-2 transition-colors hover:bg-neutral-100"
             aria-label="Close filters"
           >
-            <X className="h-6 w-6 text-neutral-600" />
+            <X className="h-6 w-6 text-neutral-700" />
           </button>
         </div>
 

@@ -31,7 +31,7 @@ export default async function SignInPage({ params }: SignInPageProps) {
           <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-neutral-900">
             {t('title')}
           </h1>
-          <p className="mx-auto mt-3 max-w-sm text-base text-neutral-600">
+          <p className="mx-auto mt-3 max-w-sm text-base text-neutral-700">
             {t('subtitle')}
           </p>
         </div>
@@ -49,7 +49,7 @@ export default async function SignInPage({ params }: SignInPageProps) {
 
         {/* Help Text */}
         <div className="space-y-3 border-t border-neutral-200 pt-4 text-center">
-          <p className="text-sm text-neutral-600">
+          <p className="text-sm text-neutral-700">
             {t('noAccount.text')}{' '}
             <Link
               href="/contact"

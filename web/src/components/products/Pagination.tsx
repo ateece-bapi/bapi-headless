@@ -74,7 +74,7 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
       </a>
 
       {/* Page Info */}
-      <div className="text-sm text-neutral-600">
+      <div className="text-sm text-neutral-700">
         Page <span className="font-bold text-primary-600">{currentPage}</span> of{' '}
         <span className="font-bold text-neutral-900">{totalPages}</span>
       </div>
@@ -148,7 +148,7 @@ export function Pagination({ currentPage, totalPages, totalProducts }: Paginatio
       {/* Jump to Page (for large page counts) */}
       {totalPages > 10 && (
         <div className="flex items-center gap-3 text-sm">
-          <label htmlFor="jump-to-page" className="font-medium text-neutral-600">
+          <label htmlFor="jump-to-page" className="font-medium text-neutral-700">
             Jump to page:
           </label>
           <input

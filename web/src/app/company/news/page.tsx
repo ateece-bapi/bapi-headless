@@ -32,7 +32,7 @@ export default function NewsPage() {
                   <h2 className="mb-3 text-2xl font-bold text-neutral-900">
                     BAPI Launches New Wireless Product Line
                   </h2>
-                  <p className="mb-4 text-neutral-600">
+                  <p className="mb-4 text-neutral-700">
                     We&apos;re excited to announce the expansion of our wireless sensor line with
                     improved battery life and enhanced connectivity features...
                   </p>
@@ -51,7 +51,7 @@ export default function NewsPage() {
                   <h2 className="mb-3 text-2xl font-bold text-neutral-900">
                     BAPI Celebrates 40 Years in Business
                   </h2>
-                  <p className="mb-4 text-neutral-600">
+                  <p className="mb-4 text-neutral-700">
                     Four decades of innovation in building automation. Thank you to our customers
                     and partners...
                   </p>

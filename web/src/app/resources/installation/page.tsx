@@ -69,7 +69,7 @@ export default function InstallationPage() {
               >
                 <FileText className="mb-4 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">{guide.title}</h3>
-                <p className="mb-4 text-neutral-600">{guide.description}</p>
+                <p className="mb-4 text-neutral-700">{guide.description}</p>
                 <button className="inline-flex items-center gap-2 font-semibold text-primary-500 hover:text-primary-600">
                   <Download className="h-4 w-4" />
                   Download PDF
@@ -83,7 +83,7 @@ export default function InstallationPage() {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">Need Installation Support?</h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Our technical team is here to help with any installation questions
           </p>
           <Link

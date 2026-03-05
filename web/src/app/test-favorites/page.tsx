@@ -40,7 +40,7 @@ export default async function FavoritesTestPage() {
       <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="mb-8">
           <h1 className="mb-2 text-3xl font-bold text-neutral-900">Test Favorites Feature</h1>
-          <p className="mb-4 text-neutral-600">
+          <p className="mb-4 text-neutral-700">
             Click the heart icons below to add/remove products from your favorites
           </p>
           <Link

@@ -37,7 +37,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ title, description, taglines,
       {/* FIXED: Mobile-first tagline scaling - text-lg to text-4xl */}
       <div
         className={clsx(
-          'mb-4 max-w-4xl px-4 pb-2 font-bold text-neutral-600',
+          'mb-4 max-w-4xl px-4 pb-2 font-bold text-neutral-700',
           // Mobile to lg: centered with mx-auto
           'mx-auto',
           // xl+: remove auto margins for left alignment

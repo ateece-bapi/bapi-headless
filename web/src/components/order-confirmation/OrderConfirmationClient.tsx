@@ -125,7 +125,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
       <div className="flex min-h-screen items-center justify-center bg-neutral-50">
         <div className="text-center">
           <Loader2 className="mx-auto mb-4 h-12 w-12 animate-spin text-primary-500" />
-          <p className="text-lg text-neutral-600">Loading order details...</p>
+          <p className="text-lg text-neutral-700">Loading order details...</p>
         </div>
       </div>
     );
@@ -137,7 +137,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
         <div className="max-w-md text-center">
           <Package className="mx-auto mb-4 h-16 w-16 text-neutral-400" />
           <h1 className="mb-2 text-2xl font-bold text-neutral-900">Order Not Found</h1>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             We couldn&apos;t find the order you&apos;re looking for.
           </p>
           <Link
@@ -163,7 +163,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
 
           <h1 className="mb-2 text-3xl font-bold text-neutral-900 sm:text-4xl">Order Confirmed!</h1>
 
-          <p className="mb-6 text-lg text-neutral-600">
+          <p className="mb-6 text-lg text-neutral-700">
             Thank you for your order. We&apos;ve received your purchase and will process it shortly.
           </p>
 
@@ -180,19 +180,19 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
           <div className="rounded-xl bg-white p-6 text-center shadow">
             <Package className="mx-auto mb-3 h-8 w-8 text-primary-500" />
             <h3 className="mb-1 font-semibold text-neutral-900">Processing</h3>
-            <p className="text-sm text-neutral-600">Your order is being prepared</p>
+            <p className="text-sm text-neutral-700">Your order is being prepared</p>
           </div>
 
           <div className="rounded-xl bg-white p-6 text-center shadow">
             <Truck className="mx-auto mb-3 h-8 w-8 text-neutral-400" />
             <h3 className="mb-1 font-semibold text-neutral-900">Shipping Soon</h3>
-            <p className="text-sm text-neutral-600">You&apos;ll receive tracking info</p>
+            <p className="text-sm text-neutral-700">You&apos;ll receive tracking info</p>
           </div>
 
           <div className="rounded-xl bg-white p-6 text-center shadow">
             <CreditCard className="mx-auto mb-3 h-8 w-8 text-green-500" />
             <h3 className="mb-1 font-semibold text-neutral-900">Payment Confirmed</h3>
-            <p className="text-sm text-neutral-600">Transaction successful</p>
+            <p className="text-sm text-neutral-700">Transaction successful</p>
           </div>
         </div>
 

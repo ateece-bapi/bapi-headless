@@ -31,7 +31,7 @@ export default async function SettingsPage({ params }: SettingsPageProps) {
             {t('backToDashboard')}
           </Link>
           <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>
-          <p className="mt-2 text-neutral-600">
+          <p className="mt-2 text-neutral-700">
             {t('subtitle')}
           </p>
         </div>

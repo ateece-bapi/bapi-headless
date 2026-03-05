@@ -133,7 +133,7 @@ function ChallengesSection({
           <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             Common Challenges
           </h2>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             We understand the unique challenges you face in your facility
           </p>
         </div>
@@ -163,7 +163,7 @@ function ChallengesSection({
                 </div>
                 <div className="flex-1">
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">{challenge.title}</h3>
-                  <p className="text-neutral-600">{challenge.description}</p>
+                  <p className="text-neutral-700">{challenge.description}</p>
                 </div>
               </div>
             </div>
@@ -186,7 +186,7 @@ function SolutionsSection({ solutions }: { solutions: ApplicationLandingPageData
           <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             How BAPI Solves These Challenges
           </h2>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             Proven solutions backed by 40+ years of engineering expertise
           </p>
         </div>
@@ -210,7 +210,7 @@ function SolutionsSection({ solutions }: { solutions: ApplicationLandingPageData
                       {solution.features.map((feature, fIndex) => (
                         <li
                           key={fIndex}
-                          className="flex items-start gap-2 text-sm text-neutral-600"
+                          className="flex items-start gap-2 text-sm text-neutral-700"
                         >
                           <ChevronRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-500" />
                           <span>{feature}</span>
@@ -244,7 +244,7 @@ function ProductCategoriesSection({
           <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             Recommended Products
           </h2>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             Purpose-built sensors and controllers for your application
           </p>
         </div>
@@ -264,7 +264,7 @@ function ProductCategoriesSection({
                 <h3 className="duration-normal mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                   {category.name}
                 </h3>
-                <p className="mb-4 text-sm text-neutral-600">{category.description}</p>
+                <p className="mb-4 text-sm text-neutral-700">{category.description}</p>
                 <div className="duration-normal mt-auto flex items-center gap-2 text-sm font-semibold text-primary-500 transition-colors group-hover:text-primary-600">
                   <span>Explore Products</span>
                   <ChevronRight className="h-4 w-4" />
@@ -290,7 +290,7 @@ function BenefitsSection({ benefits }: { benefits: ApplicationLandingPageData['b
           <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             Benefits You&apos;ll See
           </h2>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             Real business outcomes that impact your bottom line
           </p>
         </div>
@@ -306,7 +306,7 @@ function BenefitsSection({ benefits }: { benefits: ApplicationLandingPageData['b
                 <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent-600" />
                 <div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
-                  <p className="text-sm text-neutral-600">{benefit.description}</p>
+                  <p className="text-sm text-neutral-700">{benefit.description}</p>
                 </div>
               </div>
             </div>
@@ -329,7 +329,7 @@ function ExamplesSection({ examples }: { examples: ApplicationLandingPageData['e
           <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
             Real-World Success Stories
           </h2>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             See how organizations like yours achieved measurable results
           </p>
         </div>
@@ -357,7 +357,7 @@ function ExamplesSection({ examples }: { examples: ApplicationLandingPageData['e
               <div className="p-6">
                 <h3 className="mb-3 text-xl font-bold text-neutral-900">{example.title}</h3>
 
-                <p className="mb-4 text-neutral-600">{example.description}</p>
+                <p className="mb-4 text-neutral-700">{example.description}</p>
 
                 {/* Result */}
                 <div className="border-success-200 flex items-start gap-2 rounded-lg border bg-success-50 p-3 text-sm">

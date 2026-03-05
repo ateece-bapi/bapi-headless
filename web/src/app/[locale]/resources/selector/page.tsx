@@ -51,32 +51,32 @@ export default async function ProductSelectorPage({ params }: Props) {
                   <div className="h-2 w-16 rounded bg-neutral-200"></div>
                 </div>
               </div>
-              <p className="text-neutral-600">{t('steps.question')}</p>
+              <p className="text-neutral-700">{t('steps.question')}</p>
             </div>
 
             <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.temperature')}</h3>
-                <p className="text-sm text-neutral-600">{t('options.temperatureDesc')}</p>
+                <p className="text-sm text-neutral-700">{t('options.temperatureDesc')}</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.tempHumidity')}</h3>
-                <p className="text-sm text-neutral-600">{t('options.tempHumidityDesc')}</p>
+                <p className="text-sm text-neutral-700">{t('options.tempHumidityDesc')}</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.airQuality')}</h3>
-                <p className="text-sm text-neutral-600">{t('options.airQualityDesc')}</p>
+                <p className="text-sm text-neutral-700">{t('options.airQualityDesc')}</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.pressure')}</h3>
-                <p className="text-sm text-neutral-600">{t('options.pressureDesc')}</p>
+                <p className="text-sm text-neutral-700">{t('options.pressureDesc')}</p>
               </button>
             </div>
 

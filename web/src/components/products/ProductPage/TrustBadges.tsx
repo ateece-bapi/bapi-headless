@@ -65,7 +65,7 @@ export default function TrustBadges({ className = '' }: TrustBadgesProps) {
                 <Icon className="h-8 w-8" strokeWidth={1.5} />
               </div>
               <div className="text-sm font-semibold text-neutral-900">{badge.label}</div>
-              <div className="text-xs text-neutral-600">{badge.description}</div>
+              <div className="text-xs text-neutral-700">{badge.description}</div>
             </div>
           );
         })}

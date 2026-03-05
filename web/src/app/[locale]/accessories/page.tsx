@@ -134,7 +134,7 @@ export default function AccessoriesPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Accessory Categories
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Everything you need for professional sensor installations
             </p>
           </div>
@@ -175,7 +175,7 @@ export default function AccessoriesPage() {
                 </div>
 
                 <h3 className="mb-3 text-2xl font-bold text-neutral-900">{category.title}</h3>
-                <p className="mb-6 text-neutral-600">{category.description}</p>
+                <p className="mb-6 text-neutral-700">{category.description}</p>
 
                 <ul className="mb-8 space-y-3">
                   {category.features.map((feature, i) => (
@@ -243,7 +243,7 @@ export default function AccessoriesPage() {
                   <product.icon className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-neutral-900">{product.title}</h3>
-                <p className="text-sm text-neutral-600">{product.description}</p>
+                <p className="text-sm text-neutral-700">{product.description}</p>
               </div>
             ))}
           </div>
@@ -292,7 +292,7 @@ export default function AccessoriesPage() {
                 <div className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-accent-500" />
                 <div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
-                  <p className="text-neutral-600">{benefit.description}</p>
+                  <p className="text-neutral-700">{benefit.description}</p>
                 </div>
               </div>
             ))}

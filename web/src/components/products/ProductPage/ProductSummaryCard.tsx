@@ -88,7 +88,7 @@ export default function ProductSummaryCard({
               />
             </svg>
           </div>
-          <p className="mb-2 font-medium text-neutral-600">Configure Product</p>
+          <p className="mb-2 font-medium text-neutral-700">Configure Product</p>
           <p className="text-sm text-neutral-500">
             Select your specifications below to see pricing and part number
           </p>
@@ -213,13 +213,13 @@ export default function ProductSummaryCard({
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-xs uppercase tracking-wide text-neutral-600">Multiplier</div>
+                <div className="text-xs uppercase tracking-wide text-neutral-700">Multiplier</div>
                 <div className="text-xl font-bold text-neutral-700">
                   {product.multiplier || '1.0'}
                 </div>
               </div>
             </div>
-            <div className="border-t border-primary-200 pt-2 text-xs text-neutral-600">
+            <div className="border-t border-primary-200 pt-2 text-xs text-neutral-700">
               List Price: <span className="font-semibold">{displayPrice}</span> × Qty:{' '}
               <span className="font-semibold">{quantity}</span> × Multiplier:{' '}
               <span className="font-semibold">{product.multiplier || '1.0'}</span>
@@ -262,7 +262,7 @@ export default function ProductSummaryCard({
               </button>
             </div>
             {typeof product.stockQuantity === 'number' && (
-              <div className="mt-2 flex items-center gap-1 text-xs text-neutral-600">
+              <div className="mt-2 flex items-center gap-1 text-xs text-neutral-700">
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"

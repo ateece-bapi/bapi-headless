@@ -522,7 +522,7 @@ export default function WhereToBuyPage() {
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           {filteredDistributors.length === 0 ? (
             <div className="py-16 text-center">
-              <p className="text-xl text-neutral-600">
+              <p className="text-xl text-neutral-700">
                 No distributors found matching your criteria.
               </p>
               <button
@@ -538,7 +538,7 @@ export default function WhereToBuyPage() {
           ) : (
             <>
               <div className="mb-8">
-                <p className="text-neutral-600">
+                <p className="text-neutral-700">
                   Showing{' '}
                   <span className="font-semibold text-neutral-900">
                     {filteredDistributors.length}
@@ -608,7 +608,7 @@ export default function WhereToBuyPage() {
                       </div>
 
                       {distributor.description && (
-                        <p className="mb-4 line-clamp-2 text-sm text-neutral-600">
+                        <p className="mb-4 line-clamp-2 text-sm text-neutral-700">
                           {distributor.description}
                         </p>
                       )}

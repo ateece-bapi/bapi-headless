@@ -134,7 +134,7 @@ export default function TestInstrumentsPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Blu-Test Product Line
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Professional-grade test instruments for every diagnostic need
             </p>
           </div>
@@ -180,7 +180,7 @@ export default function TestInstrumentsPage() {
                 </div>
 
                 <h3 className="mb-3 text-2xl font-bold text-neutral-900">{product.title}</h3>
-                <p className="mb-6 text-neutral-600">{product.description}</p>
+                <p className="mb-6 text-neutral-700">{product.description}</p>
 
                 <ul className="mb-8 space-y-3">
                   {product.features.map((feature, i) => (
@@ -215,7 +215,7 @@ export default function TestInstrumentsPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Powerful Mobile App
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Free iOS and Android app for real-time readings and reporting
             </p>
           </div>
@@ -259,7 +259,7 @@ export default function TestInstrumentsPage() {
                 </div>
                 <div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">{feature.title}</h3>
-                  <p className="text-neutral-600">{feature.description}</p>
+                  <p className="text-neutral-700">{feature.description}</p>
                 </div>
               </div>
             ))}
@@ -305,7 +305,7 @@ export default function TestInstrumentsPage() {
                 className="rounded-xl border border-neutral-200 bg-white p-8 shadow-md transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
               >
                 <h3 className="mb-4 text-2xl font-bold text-neutral-900">{useCase.title}</h3>
-                <p className="mb-6 text-neutral-600">{useCase.description}</p>
+                <p className="mb-6 text-neutral-700">{useCase.description}</p>
                 <ul className="space-y-2">
                   {useCase.benefits.map((benefit, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-neutral-700">

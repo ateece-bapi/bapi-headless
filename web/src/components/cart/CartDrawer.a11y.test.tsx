@@ -321,11 +321,11 @@ describe('CartDrawer Accessibility', () => {
 
       render(<CartDrawer />);
 
-      // The variation attributes container has text-neutral-600
+      // The variation attributes container has text-neutral-700
       const whiteText = screen.getByText('White');
-      const variationContainer = whiteText.closest('.text-neutral-600');
+      const variationContainer = whiteText.closest('.text-neutral-700');
       expect(variationContainer).toBeInTheDocument();
-      expect(variationContainer).toHaveClass('text-neutral-600');
+      expect(variationContainer).toHaveClass('text-neutral-700');
       // neutral-600 (#797a7c) on white - verified by jest-axe
     });
 
@@ -341,7 +341,7 @@ describe('CartDrawer Accessibility', () => {
       render(<CartDrawer />);
 
       const price = screen.getByText('$149.00');
-      expect(price).toHaveClass('text-neutral-600');
+      expect(price).toHaveClass('text-neutral-700');
       // neutral-600 (#797a7c) on white - verified by jest-axe
     });
   });

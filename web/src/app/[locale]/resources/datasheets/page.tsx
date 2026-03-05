@@ -91,7 +91,7 @@ export default async function DatasheetsPage({ params }: Props) {
                       {item.categories.map((cat, idx) => (
                         <span
                           key={idx}
-                          className="rounded bg-neutral-100 px-2 py-0.5 text-xs text-neutral-600"
+                          className="rounded bg-neutral-100 px-2 py-0.5 text-xs text-neutral-700"
                         >
                           {cat}
                         </span>
@@ -99,7 +99,7 @@ export default async function DatasheetsPage({ params }: Props) {
                     </div>
                   </div>
                 </div>
-                <p className="mb-4 line-clamp-2 text-sm text-neutral-600">{item.description}</p>
+                <p className="mb-4 line-clamp-2 text-sm text-neutral-700">{item.description}</p>
                 <div className="mb-4 flex items-center justify-between text-xs text-neutral-500">
                   <span>
                     {item.pages} {t('grid.pagesLabel')}
@@ -143,7 +143,7 @@ export default async function DatasheetsPage({ params }: Props) {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('bulkDownload.heading')}</h2>
-          <p className="mb-6 text-neutral-600">{t('bulkDownload.description')}</p>
+          <p className="mb-6 text-neutral-700">{t('bulkDownload.description')}</p>
           <button className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600">
             <Download className="h-5 w-5" />
             {t('bulkDownload.button')}

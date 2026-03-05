@@ -237,7 +237,7 @@ export function ResourceList({ resources }: ResourceListProps) {
       {/* Toolbar: Results Count, Sort, View Toggle */}
       <div className="flex flex-col justify-between gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center">
         <div className="flex flex-wrap items-center gap-4">
-          <p className="text-sm text-neutral-600">
+          <p className="text-sm text-neutral-700">
             Showing{' '}
             <span className="font-semibold text-neutral-900">
               {filteredAndSortedResources.length}
@@ -285,7 +285,7 @@ export function ResourceList({ resources }: ResourceListProps) {
               className={`rounded p-2 transition-colors ${
                 viewMode === 'grid'
                   ? 'bg-primary-600 text-white'
-                  : 'text-neutral-600 hover:bg-neutral-100'
+                  : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
               <Grid3x3 className="h-4 w-4" />
@@ -297,7 +297,7 @@ export function ResourceList({ resources }: ResourceListProps) {
               className={`rounded p-2 transition-colors ${
                 viewMode === 'list'
                   ? 'bg-primary-600 text-white'
-                  : 'text-neutral-600 hover:bg-neutral-100'
+                  : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
               <List className="h-4 w-4" />
@@ -313,7 +313,7 @@ export function ResourceList({ resources }: ResourceListProps) {
             <FileText className="h-10 w-10 text-neutral-400" />
           </div>
           <h3 className="mb-2 text-xl font-bold text-neutral-900">No documents found</h3>
-          <p className="mx-auto mb-6 max-w-md text-neutral-600">
+          <p className="mx-auto mb-6 max-w-md text-neutral-700">
             {searchQuery
               ? `We couldn't find any documents matching "${searchQuery}". Try adjusting your search or filters.`
               : 'No documents match your selected filters. Try selecting different categories or clearing filters.'}
@@ -372,7 +372,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                 {/* Description */}
                 {resource.description && (
                   <p
-                    className="mb-4 line-clamp-2 min-h-[2.5rem] text-sm text-neutral-600"
+                    className="mb-4 line-clamp-2 min-h-[2.5rem] text-sm text-neutral-700"
                     dangerouslySetInnerHTML={{ __html: resource.description }}
                   />
                 )}

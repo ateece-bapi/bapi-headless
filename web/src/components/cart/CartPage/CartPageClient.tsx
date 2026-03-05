@@ -301,7 +301,7 @@ export default function CartPageClient() {
       <div className="mx-auto max-w-content px-4 py-16 text-center sm:px-6 lg:px-8">
         <ShoppingCart className="mx-auto mb-6 h-24 w-24 text-neutral-300" />
         <h1 className="mb-4 text-3xl font-bold text-neutral-900">{t('cartPage.empty.title')}</h1>
-        <p className="mb-8 text-lg text-neutral-600">{t('cartPage.empty.description')}</p>
+        <p className="mb-8 text-lg text-neutral-700">{t('cartPage.empty.description')}</p>
         <Link
           href={`/${locale}/products`}
           className="btn-bapi-primary inline-flex items-center gap-2 rounded-xl px-8 py-4 font-semibold"

@@ -104,9 +104,9 @@ export default function VariationComparisonTool({
           )}
         </div>
         {isOpen ? (
-          <ChevronUp className="h-5 w-5 text-neutral-600" />
+          <ChevronUp className="h-5 w-5 text-neutral-700" />
         ) : (
-          <ChevronDown className="h-5 w-5 text-neutral-600" />
+          <ChevronDown className="h-5 w-5 text-neutral-700" />
         )}
       </button>
 
@@ -115,7 +115,7 @@ export default function VariationComparisonTool({
         <div id="comparison-tool-content" className="bg-white p-6">
           {/* Instructions & Progress */}
           <div className="mb-4">
-            <p className="mb-2 text-sm text-neutral-600">
+            <p className="mb-2 text-sm text-neutral-700">
               Select 2-4 variations to compare side-by-side. Differences are highlighted in yellow.
             </p>
             {selectedVariations.length < 2 && (
@@ -179,7 +179,7 @@ export default function VariationComparisonTool({
                           `Variation ${variation.databaseId}`}
                       </div>
                       {variation.attributes?.nodes && variation.attributes.nodes.length > 0 && (
-                        <div className="mb-2 text-xs text-neutral-600">
+                        <div className="mb-2 text-xs text-neutral-700">
                           {variation.attributes.nodes.map((attr) => attr.value).join(' • ')}
                         </div>
                       )}
@@ -271,7 +271,7 @@ export default function VariationComparisonTool({
                       return (
                         <td
                           key={variation.id}
-                          className={`px-4 py-3 font-mono text-sm text-neutral-600 ${
+                          className={`px-4 py-3 font-mono text-sm text-neutral-700 ${
                             isDifferent ? 'bg-accent-50' : ''
                           }`}
                         >

@@ -72,15 +72,15 @@ export default function CaseStudiesPage() {
                     <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
                       <div>
                         <h3 className="mb-2 font-bold text-neutral-900">Challenge</h3>
-                        <p className="text-sm text-neutral-600">{study.challenge}</p>
+                        <p className="text-sm text-neutral-700">{study.challenge}</p>
                       </div>
                       <div>
                         <h3 className="mb-2 font-bold text-neutral-900">Solution</h3>
-                        <p className="text-sm text-neutral-600">{study.solution}</p>
+                        <p className="text-sm text-neutral-700">{study.solution}</p>
                       </div>
                       <div>
                         <h3 className="mb-2 font-bold text-neutral-900">Results</h3>
-                        <p className="text-sm text-neutral-600">{study.results}</p>
+                        <p className="text-sm text-neutral-700">{study.results}</p>
                       </div>
                     </div>
                     <button className="font-semibold text-primary-500 hover:text-primary-600">
@@ -97,7 +97,7 @@ export default function CaseStudiesPage() {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">Ready to Start Your Project?</h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Let us help you design a solution for your building
           </p>
           <Link

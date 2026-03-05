@@ -190,7 +190,7 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
 
         {/* Totals Breakdown */}
         <div className="space-y-3 text-sm">
-          <div className="flex justify-between text-neutral-600">
+          <div className="flex justify-between text-neutral-700">
             <span>{t('cartPage.summary.subtotal')}</span>
             <span className="font-medium">${subtotal.toFixed(2)}</span>
           </div>
@@ -202,7 +202,7 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
             </div>
           )}
 
-          <div className="flex justify-between text-neutral-600">
+          <div className="flex justify-between text-neutral-700">
             <span>{t('cartPage.summary.shipping')}</span>
             <span className="font-medium">
               {shipping > 0
@@ -211,7 +211,7 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
             </span>
           </div>
 
-          <div className="flex justify-between text-neutral-600">
+          <div className="flex justify-between text-neutral-700">
             <span>{t('cartPage.summary.tax')}</span>
             <span className="font-medium">
               {tax > 0 ? `$${tax.toFixed(2)}` : t('cartPage.summary.calculatedAtCheckout')}

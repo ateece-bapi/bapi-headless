@@ -38,14 +38,14 @@ export default function ProductSelectorPage() {
                   <div className="h-2 w-16 rounded bg-neutral-200"></div>
                 </div>
               </div>
-              <p className="text-neutral-600">What type of measurement do you need?</p>
+              <p className="text-neutral-700">What type of measurement do you need?</p>
             </div>
 
             <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Temperature Only</h3>
-                <p className="text-sm text-neutral-600">
+                <p className="text-sm text-neutral-700">
                   Measure temperature in spaces, ducts, or outdoors
                 </p>
               </button>
@@ -53,7 +53,7 @@ export default function ProductSelectorPage() {
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Temperature & Humidity</h3>
-                <p className="text-sm text-neutral-600">
+                <p className="text-sm text-neutral-700">
                   Monitor both temperature and relative humidity
                 </p>
               </button>
@@ -61,13 +61,13 @@ export default function ProductSelectorPage() {
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Air Quality (CO₂, VOC, PM)</h3>
-                <p className="text-sm text-neutral-600">Measure CO₂, VOC, or particulate matter</p>
+                <p className="text-sm text-neutral-700">Measure CO₂, VOC, or particulate matter</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
                 <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Pressure</h3>
-                <p className="text-sm text-neutral-600">
+                <p className="text-sm text-neutral-700">
                   Monitor differential or absolute pressure
                 </p>
               </button>

@@ -259,7 +259,7 @@ export function SignInForm({ locale }: SignInFormProps) {
 
       {/* Security Notice */}
       <div className="space-y-3 text-center">
-        <div className="flex items-center justify-center gap-2 text-sm text-neutral-600">
+        <div className="flex items-center justify-center gap-2 text-sm text-neutral-700">
           <Lock className="h-4 w-4 text-primary-500" />
           <span className="font-medium">{t('security.secureConnection')}</span>
         </div>

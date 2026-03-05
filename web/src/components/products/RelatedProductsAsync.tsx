@@ -31,7 +31,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                 <h2 className="text-3xl font-bold text-neutral-900">
                   {t('productPage.related.title')}
                 </h2>
-                <p className="mt-1 text-neutral-600">Products frequently purchased together</p>
+                <p className="mt-1 text-neutral-700">Products frequently purchased together</p>
               </div>
             </div>
           </div>

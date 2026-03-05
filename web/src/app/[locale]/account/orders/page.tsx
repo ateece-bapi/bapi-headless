@@ -134,7 +134,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
                 </div>
               </div>
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('empty.title')}</h2>
-              <p className="mx-auto mb-8 max-w-md text-neutral-600">
+              <p className="mx-auto mb-8 max-w-md text-neutral-700">
                 {wpCustomerId
                   ? t('empty.descriptionWithAccount')
                   : t('empty.descriptionWithoutAccount')}
@@ -171,7 +171,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
                           </h3>
                           {getStatusBadge(order.status, t)}
                         </div>
-                        <p className="text-sm text-neutral-600">
+                        <p className="text-sm text-neutral-700">
                           {t('placedOn')}{' '}
                           {new Date(order.date).toLocaleDateString(locale, {
                             month: 'long',
@@ -182,7 +182,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
                       </div>
                       <div className="text-right">
                         <p className="text-2xl font-bold text-primary-600">{order.total}</p>
-                        <p className="text-sm text-neutral-600">
+                        <p className="text-sm text-neutral-700">
                           {t('items', {
                             count: order.lineItems.nodes.reduce((sum, item) => sum + item.quantity, 0)
                           })}
@@ -211,7 +211,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
                         </div>
                       ))}
                       {order.lineItems.nodes.length > 4 && (
-                        <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg bg-neutral-100 text-sm font-semibold text-neutral-600">
+                        <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg bg-neutral-100 text-sm font-semibold text-neutral-700">
                           {t('moreItems', { count: order.lineItems.nodes.length - 4 })}
                         </div>
                       )}

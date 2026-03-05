@@ -389,7 +389,7 @@ export const AllVariants: Story = {
         <Button variant="ghost">Ghost</Button>
         <Button variant="danger">Danger</Button>
       </div>
-      <div className="text-sm text-neutral-600">
+      <div className="text-sm text-neutral-700">
         <p>
           <strong>Primary:</strong> BAPI Blue - main actions
         </p>

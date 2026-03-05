@@ -1,0 +1,187 @@
+
+> web@0.1.0 test:e2e:chromium /home/ateece/bapi-headless/web
+> playwright test --project=chromium tests/e2e/homepage.spec.ts
+
+
+Running 12 tests using 11 workers
+
+  ✓   5 [chromium] › tests/e2e/homepage.spec.ts:165:7 › Homepage › should have proper meta tags for SEO (15.7s)
+  ✓   3 [chromium] › tests/e2e/homepage.spec.ts:22:7 › Homepage › should load homepage successfully (15.9s)
+  ✓   2 [chromium] › tests/e2e/homepage.spec.ts:118:7 › Homepage › should display sign in button for unauthenticated users (16.0s)
+  ✓   1 [chromium] › tests/e2e/homepage.spec.ts:109:7 › Homepage › should show cart button (16.1s)
+  ✓   4 [chromium] › tests/e2e/homepage.spec.ts:31:7 › Homepage › should display header with navigation (24.3s)
+  ✓   7 [chromium] › tests/e2e/homepage.spec.ts:45:7 › Homepage › should display language and region selectors (24.6s)
+  ✓   8 [chromium] › tests/e2e/homepage.spec.ts:55:7 › Homepage › should have functional search (24.8s)
+  ✘   9 [chromium] › tests/e2e/homepage.spec.ts:82:7 › Homepage › should navigate to products page (31.7s)
+  ✘  10 [chromium] › tests/e2e/homepage.spec.ts:96:7 › Homepage › should have working footer links (31.9s)
+  ✘  11 [chromium] › tests/e2e/homepage.spec.ts:152:7 › Homepage › should pass accessibility checks (32.0s)
+  ✘   6 [chromium] › tests/e2e/homepage.spec.ts:128:7 › Homepage › should be responsive on mobile (38.5s)
+  ✘  12 [chromium] › tests/e2e/homepage.spec.ts:179:7 › Homepage › should load quickly (performance) (30.4s)
+
+
+  1) [chromium] › tests/e2e/homepage.spec.ts:82:7 › Homepage › should navigate to products page ────
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      15 |
+      16 | test.describe('Homepage', () => {
+    > 17 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      18 |     await page.goto('/');
+      19 |     await page.waitForLoadState('networkidle');
+      20 |   });
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:17:8
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - navigating to "http://localhost:3000/", waiting until "load"[22m
+
+
+      16 | test.describe('Homepage', () => {
+      17 |   test.beforeEach(async ({ page }) => {
+    > 18 |     await page.goto('/');
+         |                ^
+      19 |     await page.waitForLoadState('networkidle');
+      20 |   });
+      21 |
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:18:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-navigate-to-products-page-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-navigate-to-products-page-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-Homepage-should-navigate-to-products-page-chromium/error-context.md
+
+  2) [chromium] › tests/e2e/homepage.spec.ts:96:7 › Homepage › should have working footer links ────
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      15 |
+      16 | test.describe('Homepage', () => {
+    > 17 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      18 |     await page.goto('/');
+      19 |     await page.waitForLoadState('networkidle');
+      20 |   });
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:17:8
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - navigating to "http://localhost:3000/", waiting until "load"[22m
+
+
+      16 | test.describe('Homepage', () => {
+      17 |   test.beforeEach(async ({ page }) => {
+    > 18 |     await page.goto('/');
+         |                ^
+      19 |     await page.waitForLoadState('networkidle');
+      20 |   });
+      21 |
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:18:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-have-working-footer-links-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-have-working-footer-links-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-Homepage-should-have-working-footer-links-chromium/error-context.md
+
+  3) [chromium] › tests/e2e/homepage.spec.ts:128:7 › Homepage › should be responsive on mobile ─────
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.waitForLoadState: Test timeout of 30000ms exceeded.
+
+      132 |     // Reload page
+      133 |     await page.goto('/');
+    > 134 |     await page.waitForLoadState('networkidle');
+          |                ^
+      135 |     
+      136 |     // Mobile menu button should be visible
+      137 |     const mobileMenuButton = page.getByRole('button', { name: /menu/i });
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:134:16
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-be-responsive-on-mobile-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-Homepage-should-be-responsive-on-mobile-chromium/error-context.md
+
+  4) [chromium] › tests/e2e/homepage.spec.ts:152:7 › Homepage › should pass accessibility checks ───
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      15 |
+      16 | test.describe('Homepage', () => {
+    > 17 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      18 |     await page.goto('/');
+      19 |     await page.waitForLoadState('networkidle');
+      20 |   });
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:17:8
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - navigating to "http://localhost:3000/", waiting until "load"[22m
+
+
+      16 | test.describe('Homepage', () => {
+      17 |   test.beforeEach(async ({ page }) => {
+    > 18 |     await page.goto('/');
+         |                ^
+      19 |     await page.waitForLoadState('networkidle');
+      20 |   });
+      21 |
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:18:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-pass-accessibility-checks-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-pass-accessibility-checks-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-Homepage-should-pass-accessibility-checks-chromium/error-context.md
+
+  5) [chromium] › tests/e2e/homepage.spec.ts:179:7 › Homepage › should load quickly (performance) ──
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.waitForLoadState: Test timeout of 30000ms exceeded.
+
+      181 |     
+      182 |     await page.goto('/');
+    > 183 |     await page.waitForLoadState('networkidle');
+          |                ^
+      184 |     
+      185 |     const loadTime = Date.now() - startTime;
+      186 |     
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:183:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-load-quickly-performance--chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-load-quickly-performance--chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-Homepage-should-load-quickly-performance--chromium/error-context.md
+
+  5 failed
+    [chromium] › tests/e2e/homepage.spec.ts:82:7 › Homepage › should navigate to products page ─────
+    [chromium] › tests/e2e/homepage.spec.ts:96:7 › Homepage › should have working footer links ─────
+    [chromium] › tests/e2e/homepage.spec.ts:128:7 › Homepage › should be responsive on mobile ──────
+    [chromium] › tests/e2e/homepage.spec.ts:152:7 › Homepage › should pass accessibility checks ────
+    [chromium] › tests/e2e/homepage.spec.ts:179:7 › Homepage › should load quickly (performance) ───
+  7 passed (1.1m)
+
+[36m  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.[39m

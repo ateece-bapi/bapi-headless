@@ -99,11 +99,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 <h3 className="mb-4 text-lg font-bold text-neutral-900">{t('accountInfo.title')}</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-neutral-600">{t('accountInfo.userId')}</span>
+                    <span className="text-neutral-700">{t('accountInfo.userId')}</span>
                     <span className="font-mono text-xs text-neutral-900">{user.id}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-neutral-600">{t('accountInfo.usernameLabel')}</span>
+                    <span className="text-neutral-700">{t('accountInfo.usernameLabel')}</span>
                     <span className="text-neutral-900">{user.username || t('accountInfo.notSet')}</span>
                   </div>
                 </div>

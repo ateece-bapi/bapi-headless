@@ -64,7 +64,7 @@ const CartDrawer = () => {
 
                     {/* Show variation details if present */}
                     {item.selectedAttributes && Object.keys(item.selectedAttributes).length > 0 && (
-                      <div className="mt-1 space-y-0.5 text-xs text-neutral-600">
+                      <div className="mt-1 space-y-0.5 text-xs text-neutral-700">
                         {Object.entries(item.selectedAttributes).map(([attr, value]) => (
                           <div key={attr}>
                             <span className="font-medium capitalize">
@@ -83,7 +83,7 @@ const CartDrawer = () => {
                       </p>
                     )}
 
-                    <p className="mt-1 text-sm text-neutral-600">{item.price}</p>
+                    <p className="mt-1 text-sm text-neutral-700">{item.price}</p>
                     <div className="mt-2 flex items-center gap-2">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1, item.variationId)}

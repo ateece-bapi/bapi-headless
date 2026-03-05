@@ -212,7 +212,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
           <h2 className="text-2xl font-bold text-neutral-900">
             Enable Two-Factor Authentication
           </h2>
-          <p className="mt-2 text-neutral-600">
+          <p className="mt-2 text-neutral-700">
             Add an extra layer of security to your account
           </p>
         </div>
@@ -304,7 +304,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
             <QrCode className="h-8 w-8 text-primary-600" />
           </div>
           <h2 className="text-2xl font-bold text-neutral-900">Scan QR Code</h2>
-          <p className="mt-2 text-neutral-600">
+          <p className="mt-2 text-neutral-700">
             Open your authenticator app and scan this code
           </p>
         </div>
@@ -319,7 +319,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
               className="h-64 w-64"
             />
           </div>
-          <p className="mt-4 text-sm text-neutral-600">
+          <p className="mt-4 text-sm text-neutral-700">
             Scan this QR code with your authenticator app
           </p>
         </div>
@@ -333,7 +333,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
             </div>
           </summary>
           <div className="border-t-2 border-neutral-200 px-6 py-4">
-            <p className="mb-3 text-sm text-neutral-600">
+            <p className="mb-3 text-sm text-neutral-700">
               Enter this secret key in your authenticator app:
             </p>
             <div className="flex gap-2">
@@ -378,7 +378,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
                 autoFocus
                 aria-label="Six digit verification code"
               />
-              <p className="mt-2 text-sm text-neutral-600">
+              <p className="mt-2 text-sm text-neutral-700">
                 The code changes every 30 seconds
               </p>
             </div>
@@ -413,7 +413,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
             <Key className="h-8 w-8 text-neutral-900" />
           </div>
           <h2 className="text-2xl font-bold text-neutral-900">Save Your Backup Codes</h2>
-          <p className="mt-2 text-neutral-600">
+          <p className="mt-2 text-neutral-700">
             Keep these codes safe - they&apos;re your account recovery method
           </p>
         </div>
@@ -496,7 +496,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
           <Check className="h-10 w-10 text-success-600" />
         </div>
         <h2 className="text-3xl font-bold text-neutral-900">All Set!</h2>
-        <p className="text-lg text-neutral-600">
+        <p className="text-lg text-neutral-700">
           Two-factor authentication is now enabled on your account
         </p>
         <div className="rounded-xl border-2 border-success-200 bg-success-50 p-6">

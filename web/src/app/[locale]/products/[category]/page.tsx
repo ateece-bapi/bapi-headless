@@ -102,11 +102,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <div className="border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <nav className="flex items-center space-x-2 text-sm">
-            <Link href={`/${locale}`} className="text-neutral-600 hover:text-primary-500">
+            <Link href={`/${locale}`} className="text-neutral-700 hover:text-primary-500">
               Home
             </Link>
             <ChevronRight className="h-4 w-4 text-neutral-400" />
-            <Link href={`/${locale}/products`} className="text-neutral-600 hover:text-primary-500">
+            <Link href={`/${locale}/products`} className="text-neutral-700 hover:text-primary-500">
               Products
             </Link>
             <ChevronRight className="h-4 w-4 text-neutral-400" />
@@ -156,7 +156,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     {subcat.name}
                   </h3>
                   {subcat.description && (
-                    <p className="mb-4 line-clamp-2 text-sm text-neutral-600">
+                    <p className="mb-4 line-clamp-2 text-sm text-neutral-700">
                       {subcat.description}
                     </p>
                   )}
@@ -219,7 +219,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                       </h3>
                       {'shortDescription' in product && product.shortDescription && (
                         <p
-                          className="line-clamp-2 text-sm text-neutral-600"
+                          className="line-clamp-2 text-sm text-neutral-700"
                           dangerouslySetInnerHTML={{
                             __html: product.shortDescription,
                           }}
@@ -240,7 +240,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           <h2 className="mb-4 text-2xl font-bold text-neutral-900 lg:text-3xl">
             Need Help Finding the Right Product?
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-neutral-600">
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-neutral-700">
             Our technical team can help you select the perfect sensor for your application.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">

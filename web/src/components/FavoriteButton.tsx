@@ -159,7 +159,7 @@ export default function FavoriteButton({
         className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
           isFavorited
             ? 'border-2 border-red-200 bg-red-50 text-red-600 hover:bg-red-100'
-            : 'border-2 border-neutral-300 bg-white text-neutral-600 hover:border-red-300 hover:text-red-600'
+            : 'border-2 border-neutral-300 bg-white text-neutral-700 hover:border-red-300 hover:text-red-600'
         }`}
       >
         <Heart

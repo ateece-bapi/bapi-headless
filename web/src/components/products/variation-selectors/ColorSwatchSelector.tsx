@@ -79,7 +79,7 @@ export default function ColorSwatchSelector({
 
       {/* Selected indicator */}
       {value && (
-        <div className="mt-2 text-xs text-neutral-600">
+        <div className="mt-2 text-xs text-neutral-700">
           Selected: <span className="font-semibold text-neutral-900">{value}</span>
         </div>
       )}

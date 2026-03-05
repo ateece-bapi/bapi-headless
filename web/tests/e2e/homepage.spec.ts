@@ -153,16 +153,11 @@ test.describe('Homepage', () => {
     // Inject axe-core
     await injectAxe(page);
     
-    // Check accessibility (temporarily exclude color-contrast - to be fixed in separate branch)
+    // Check accessibility (all WCAG AA violations fixed ✅)
     await checkA11y(page, undefined, {
       detailedReport: true,
       detailedReportOptions: {
         html: true,
-      },
-      axeOptions: {
-        rules: {
-          'color-contrast': { enabled: false },
-        },
       },
     });
   });

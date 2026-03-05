@@ -32,7 +32,7 @@ export default async function ApplicationCategoryPage({ params }: ApplicationCat
       <section className="border-b border-neutral-200 bg-gradient-to-br from-primary-50 via-white to-primary-50/30">
         <div className="mx-auto max-w-content px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           {/* Breadcrumbs */}
-          <nav className="mb-8 flex items-center text-sm text-neutral-600">
+          <nav className="mb-8 flex items-center text-sm text-neutral-700">
             <Link href="/" className="transition-colors hover:text-primary-600">
               Home
             </Link>
@@ -47,7 +47,7 @@ export default async function ApplicationCategoryPage({ params }: ApplicationCat
           <h1 className="mb-6 text-4xl font-bold text-neutral-900 sm:text-5xl lg:text-6xl">
             {category.name}
           </h1>
-          <p className="max-w-3xl text-xl leading-relaxed text-neutral-600">
+          <p className="max-w-3xl text-xl leading-relaxed text-neutral-700">
             {category.description}
           </p>
         </div>
@@ -70,7 +70,7 @@ export default async function ApplicationCategoryPage({ params }: ApplicationCat
                 {subcategory.name}
               </h3>
 
-              <p className="mb-5 text-sm leading-relaxed text-neutral-600">
+              <p className="mb-5 text-sm leading-relaxed text-neutral-700">
                 {subcategory.description}
               </p>
 

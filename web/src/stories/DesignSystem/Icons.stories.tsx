@@ -329,7 +329,7 @@ export const AllIcons: Story = {
         {/* Header */}
         <div className="space-y-2">
           <h1 className="text-4xl font-bold text-neutral-950">Icon Library</h1>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             {Object.values(icons).reduce((sum, cat) => sum + cat.length, 0)} lucide-react icons used
             across BAPI Headless
           </p>
@@ -361,7 +361,7 @@ export const AllIcons: Story = {
         </div>
 
         {/* Results count */}
-        <p className="text-sm text-neutral-600">
+        <p className="text-sm text-neutral-700">
           Showing {totalCount} icon{totalCount !== 1 ? 's' : ''}
         </p>
 
@@ -389,7 +389,7 @@ export const AllIcons: Story = {
         ) : (
           <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 py-12">
             <Search className="mb-2 h-12 w-12 text-neutral-400" />
-            <p className="text-neutral-600">No icons found matching "{searchQuery}"</p>
+            <p className="text-neutral-700">No icons found matching "{searchQuery}"</p>
           </div>
         )}
 
@@ -425,7 +425,7 @@ export const SizeVariants: Story = {
   render: () => (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold text-neutral-950">Icon Sizes</h2>
-      <p className="text-neutral-600">
+      <p className="text-neutral-700">
         Standard icon sizes used across BAPI Headless based on context
       </p>
 
@@ -433,7 +433,7 @@ export const SizeVariants: Story = {
         {/* Small - 16px */}
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Small (16px)</h3>
-          <p className="mb-4 text-sm text-neutral-600">
+          <p className="mb-4 text-sm text-neutral-700">
             Used for: Inline text icons, badges, compact UI elements
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
@@ -451,7 +451,7 @@ export const SizeVariants: Story = {
         {/* Medium - 24px (default) */}
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Medium (24px) - Default</h3>
-          <p className="mb-4 text-sm text-neutral-600">
+          <p className="mb-4 text-sm text-neutral-700">
             Used for: Buttons, navigation, form fields, most UI elements
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
@@ -469,7 +469,7 @@ export const SizeVariants: Story = {
         {/* Large - 32px */}
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Large (32px)</h3>
-          <p className="mb-4 text-sm text-neutral-600">
+          <p className="mb-4 text-sm text-neutral-700">
             Used for: Hero sections, feature cards, prominent CTAs
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
@@ -487,7 +487,7 @@ export const SizeVariants: Story = {
         {/* Extra Large - 48px */}
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Extra Large (48px)</h3>
-          <p className="mb-4 text-sm text-neutral-600">
+          <p className="mb-4 text-sm text-neutral-700">
             Used for: Empty states, large feature displays, marketing sections
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
@@ -511,7 +511,7 @@ export const ColorVariants: Story = {
   render: () => (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold text-neutral-950">Icon Colors</h2>
-      <p className="text-neutral-600">
+      <p className="text-neutral-700">
         Use semantic color tokens from BAPI color system for consistent icon coloring
       </p>
 
@@ -623,7 +623,7 @@ export const CommonUseCases: Story = {
   render: () => (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold text-neutral-950">Common Use Cases</h2>
-      <p className="text-neutral-600">Real-world examples of icon usage across BAPI Headless</p>
+      <p className="text-neutral-700">Real-world examples of icon usage across BAPI Headless</p>
 
       <div className="space-y-8">
         {/* Cart Button with Badge */}
@@ -856,7 +856,7 @@ export const BAPIBrandedIcons: Story = {
       <div className="space-y-8">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold text-neutral-950">BAPI Branded Product Icons</h1>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             Official brand-standard product category icons from the 2024 BAPI Brand Guide
           </p>
         </div>
@@ -999,7 +999,7 @@ export const BAPIBrandedIcons: Story = {
           <h2 className="mb-4 text-2xl font-semibold text-neutral-950">
             Lucide Fallbacks (Development Only)
           </h2>
-          <p className="mb-4 text-sm text-neutral-600">
+          <p className="mb-4 text-sm text-neutral-700">
             Use these lucide-react icons during development when brand assets aren&apos;t available
           </p>
           <div className="rounded-lg border border-neutral-200 bg-white p-6">
@@ -1067,7 +1067,7 @@ export const PRODUCT_CATEGORIES = [
           <h3 className="mb-4 text-xl font-semibold text-neutral-900">
             Space Constraints (6 Icons)
           </h3>
-          <p className="mb-4 text-sm text-neutral-600">
+          <p className="mb-4 text-sm text-neutral-700">
             If space allows only 6 icons, you may eliminate <strong>one</strong> of the following:
           </p>
           <div className="mb-4 space-y-2 text-sm">

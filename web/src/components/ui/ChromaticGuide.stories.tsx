@@ -49,7 +49,7 @@ export const WhatIsChromatic: StoryObj = {
           <h1 className="mb-4 text-4xl font-bold text-neutral-900">
             Chromatic Visual Regression Testing
           </h1>
-          <p className="text-xl text-neutral-600">
+          <p className="text-xl text-neutral-700">
             Automated screenshot testing for Storybook components
           </p>
         </div>
@@ -164,7 +164,7 @@ export const PRWorkflow: StoryObj = {
       <div className="mx-auto max-w-4xl space-y-8">
         <div className="rounded-xl bg-white p-8 shadow-lg">
           <h1 className="mb-4 text-3xl font-bold text-neutral-900">Pull Request Workflow</h1>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             How Chromatic integrates into your development process
           </p>
         </div>
@@ -205,15 +205,15 @@ export const PRWorkflow: StoryObj = {
             <div className="ml-13 mt-3 grid gap-3 md:grid-cols-3">
               <div className="rounded-lg bg-neutral-100 p-3 text-center">
                 <div className="font-bold">Desktop</div>
-                <div className="text-sm text-neutral-600">1200x800</div>
+                <div className="text-sm text-neutral-700">1200x800</div>
               </div>
               <div className="rounded-lg bg-neutral-100 p-3 text-center">
                 <div className="font-bold">Tablet</div>
-                <div className="text-sm text-neutral-600">768x1024</div>
+                <div className="text-sm text-neutral-700">768x1024</div>
               </div>
               <div className="rounded-lg bg-neutral-100 p-3 text-center">
                 <div className="font-bold">Mobile</div>
-                <div className="text-sm text-neutral-600">375x667</div>
+                <div className="text-sm text-neutral-700">375x667</div>
               </div>
             </div>
           </div>
@@ -272,7 +272,7 @@ export const PRWorkflow: StoryObj = {
             <div className="ml-13 rounded-lg bg-neutral-100 p-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded border-2 border-neutral-300 bg-white p-4 text-center">
-                  <div className="mb-2 text-sm font-bold text-neutral-600">Baseline</div>
+                  <div className="mb-2 text-sm font-bold text-neutral-700">Baseline</div>
                   <div className="text-neutral-500">Previous approved state</div>
                 </div>
                 <div className="rounded border-2 border-primary-500 bg-primary-50 p-4 text-center">
@@ -280,7 +280,7 @@ export const PRWorkflow: StoryObj = {
                   <div className="text-neutral-700">Your PR changes</div>
                 </div>
               </div>
-              <div className="mt-4 text-sm text-neutral-600">
+              <div className="mt-4 text-sm text-neutral-700">
                 Differences highlighted in red overlay
               </div>
             </div>
@@ -334,7 +334,7 @@ export const SetupInstructions: StoryObj = {
       <div className="mx-auto max-w-4xl space-y-8">
         <div className="rounded-xl bg-white p-8 shadow-lg">
           <h1 className="mb-4 text-3xl font-bold text-neutral-900">Chromatic Setup Guide</h1>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             Get visual regression testing running in 5 minutes
           </p>
         </div>
@@ -490,7 +490,7 @@ export const BestPractices: StoryObj = {
       <div className="mx-auto max-w-4xl space-y-8">
         <div className="rounded-xl bg-white p-8 shadow-lg">
           <h1 className="mb-4 text-3xl font-bold text-neutral-900">Chromatic Best Practices</h1>
-          <p className="text-lg text-neutral-600">Tips for effective visual regression testing</p>
+          <p className="text-lg text-neutral-700">Tips for effective visual regression testing</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">

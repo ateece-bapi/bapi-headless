@@ -186,7 +186,7 @@ function FilterGroup({ title, options, activeValues, filterType, onChange }: Fil
                   className="h-4 w-4 cursor-pointer rounded border-neutral-300 text-primary-500 transition-colors duration-150 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 />
                 <span
-                  className={`flex-1 text-sm transition-colors duration-200 ${isActive ? 'font-medium text-neutral-900' : 'text-neutral-600 group-hover:text-neutral-900'}`}
+                  className={`flex-1 text-sm transition-colors duration-200 ${isActive ? 'font-medium text-neutral-900' : 'text-neutral-700 group-hover:text-neutral-900'}`}
                 >
                   {option.name}
                 </span>

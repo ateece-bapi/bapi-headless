@@ -243,7 +243,7 @@ export default function RealWorldInstallationsPage() {
                   <h2 className="mb-4 text-3xl font-extrabold text-neutral-900 sm:text-4xl lg:text-5xl">
                     {category.title}
                   </h2>
-                  <p className="mx-auto max-w-2xl text-lg text-neutral-600 sm:text-xl">
+                  <p className="mx-auto max-w-2xl text-lg text-neutral-700 sm:text-xl">
                     {category.description}
                   </p>
                 </div>
@@ -286,7 +286,7 @@ export default function RealWorldInstallationsPage() {
                                 <h4 className="mb-2 text-xl font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                                   {image.title}
                                 </h4>
-                                <p className="text-sm leading-relaxed text-neutral-600">
+                                <p className="text-sm leading-relaxed text-neutral-700">
                                   {image.caption}
                                 </p>
                               </div>
@@ -331,7 +331,7 @@ export default function RealWorldInstallationsPage() {
                           <h3 className="mb-2 text-xl font-bold text-neutral-900 transition-colors duration-300 group-hover:text-primary-600">
                             {image.title}
                           </h3>
-                          <p className="text-sm leading-relaxed text-neutral-600">
+                          <p className="text-sm leading-relaxed text-neutral-700">
                             {image.caption}
                           </p>
                         </div>
@@ -361,7 +361,7 @@ export default function RealWorldInstallationsPage() {
           <h2 className="mb-6 text-3xl font-extrabold text-neutral-900 sm:text-4xl">
             Ready to Implement BAPI Solutions?
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-neutral-600">
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-neutral-700">
             Our team of experts can help you design the perfect sensor solution for your facility
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">

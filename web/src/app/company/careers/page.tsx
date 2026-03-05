@@ -25,7 +25,7 @@ export default function CareersPage() {
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900">Why Work at BAPI?</h2>
-            <p className="text-lg text-neutral-600">
+            <p className="text-lg text-neutral-700">
               Join a team that values innovation, quality, and customer success
             </p>
           </div>
@@ -34,23 +34,23 @@ export default function CareersPage() {
             <div className="rounded-xl bg-neutral-50 p-6 text-center">
               <Users className="mx-auto mb-3 h-10 w-10 text-primary-500" />
               <h3 className="mb-2 font-bold text-neutral-900">Great Team</h3>
-              <p className="text-sm text-neutral-600">Work with talented professionals</p>
+              <p className="text-sm text-neutral-700">Work with talented professionals</p>
             </div>
             <div className="rounded-xl bg-neutral-50 p-6 text-center">
               <MapPin className="mx-auto mb-3 h-10 w-10 text-primary-500" />
               <h3 className="mb-2 font-bold text-neutral-900">Wisconsin Location</h3>
-              <p className="text-sm text-neutral-600">Beautiful Gays Mills, WI</p>
+              <p className="text-sm text-neutral-700">Beautiful Gays Mills, WI</p>
             </div>
             <div className="rounded-xl bg-neutral-50 p-6 text-center">
               <Briefcase className="mx-auto mb-3 h-10 w-10 text-primary-500" />
               <h3 className="mb-2 font-bold text-neutral-900">Growth Opportunities</h3>
-              <p className="text-sm text-neutral-600">Advance your career</p>
+              <p className="text-sm text-neutral-700">Advance your career</p>
             </div>
           </div>
 
           <div className="rounded-xl bg-neutral-50 p-8 text-center">
             <h3 className="mb-4 text-xl font-bold text-neutral-900">Current Openings</h3>
-            <p className="mb-6 text-neutral-600">
+            <p className="mb-6 text-neutral-700">
               Contact us to learn about current career opportunities
             </p>
             <a

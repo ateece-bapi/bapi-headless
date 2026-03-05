@@ -34,7 +34,7 @@ export default function AirQualityPage() {
             >
               <Gauge className="mb-4 h-12 w-12 text-primary-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">CO₂ Sensors</h3>
-              <p className="mb-4 text-neutral-600">
+              <p className="mb-4 text-neutral-700">
                 NDIR technology for accurate carbon dioxide measurement in demand control
                 ventilation applications.
               </p>
@@ -50,7 +50,7 @@ export default function AirQualityPage() {
             >
               <AlertCircle className="mb-4 h-12 w-12 text-primary-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">VOC Sensors</h3>
-              <p className="mb-4 text-neutral-600">
+              <p className="mb-4 text-neutral-700">
                 Volatile organic compound sensors for monitoring indoor air quality and controlling
                 ventilation.
               </p>
@@ -66,7 +66,7 @@ export default function AirQualityPage() {
             >
               <Wind className="mb-4 h-12 w-12 text-primary-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">PM Sensors</h3>
-              <p className="mb-4 text-neutral-600">
+              <p className="mb-4 text-neutral-700">
                 Particulate matter sensors for PM2.5 and PM10 monitoring in cleanrooms and sensitive
                 environments.
               </p>
@@ -90,7 +90,7 @@ export default function AirQualityPage() {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <CheckCircle className="mb-4 h-10 w-10 text-green-600" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Health & Comfort</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 Poor indoor air quality can cause headaches, fatigue, and reduced productivity.
                 Monitoring ensures occupant comfort and well-being.
               </p>
@@ -99,7 +99,7 @@ export default function AirQualityPage() {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <TrendingUp className="mb-4 h-10 w-10 text-green-600" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Energy Savings</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 Demand control ventilation based on actual occupancy and air quality can reduce HVAC
                 energy consumption by 20-30%.
               </p>
@@ -108,7 +108,7 @@ export default function AirQualityPage() {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <CheckCircle className="mb-4 h-10 w-10 text-green-600" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Building Codes</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 Many building codes now require CO₂ monitoring for demand control ventilation in
                 commercial spaces with variable occupancy.
               </p>
@@ -117,7 +117,7 @@ export default function AirQualityPage() {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <TrendingUp className="mb-4 h-10 w-10 text-green-600" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Green Certifications</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 LEED and WELL certifications reward buildings with advanced air quality monitoring
                 and control systems.
               </p>
@@ -136,24 +136,24 @@ export default function AirQualityPage() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-xl bg-neutral-50 p-6 text-center">
               <h4 className="mb-2 font-bold text-neutral-900">Schools & Universities</h4>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Improve student performance with better air quality
               </p>
             </div>
 
             <div className="rounded-xl bg-neutral-50 p-6 text-center">
               <h4 className="mb-2 font-bold text-neutral-900">Office Buildings</h4>
-              <p className="text-sm text-neutral-600">Boost productivity and reduce sick days</p>
+              <p className="text-sm text-neutral-700">Boost productivity and reduce sick days</p>
             </div>
 
             <div className="rounded-xl bg-neutral-50 p-6 text-center">
               <h4 className="mb-2 font-bold text-neutral-900">Healthcare Facilities</h4>
-              <p className="text-sm text-neutral-600">Maintain critical air quality standards</p>
+              <p className="text-sm text-neutral-700">Maintain critical air quality standards</p>
             </div>
 
             <div className="rounded-xl bg-neutral-50 p-6 text-center">
               <h4 className="mb-2 font-bold text-neutral-900">Retail & Hospitality</h4>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Create comfortable environments for customers
               </p>
             </div>

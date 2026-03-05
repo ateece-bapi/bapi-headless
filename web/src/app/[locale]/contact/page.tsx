@@ -461,7 +461,7 @@ export default function ContactPage() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h3 className="mb-1 text-sm font-semibold text-neutral-900">Business Hours</h3>
-                    <p className="text-xs text-neutral-600">Monday - Friday</p>
+                    <p className="text-xs text-neutral-700">Monday - Friday</p>
                     <p className="text-sm font-medium text-neutral-900">8:00 AM - 5:00 PM CST</p>
                   </div>
                 </div>
@@ -475,7 +475,7 @@ export default function ContactPage() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h3 className="mb-1 text-sm font-semibold text-neutral-900">Address</h3>
-                    <p className="text-xs leading-relaxed text-neutral-600">
+                    <p className="text-xs leading-relaxed text-neutral-700">
                       750 North Royal Avenue
                       <br />
                       Gays Mills, WI 54631
@@ -497,7 +497,7 @@ export default function ContactPage() {
             <h2 className="mb-2 text-2xl font-bold text-neutral-900 lg:text-3xl">
               Meet Our Global Sales Team
             </h2>
-            <p className="mx-auto max-w-2xl text-base text-neutral-600">
+            <p className="mx-auto max-w-2xl text-base text-neutral-700">
               Our experienced team is ready to help you find the right building automation solutions
               for your project worldwide.
             </p>
@@ -1062,7 +1062,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="mb-2 text-2xl font-bold text-neutral-900">Visit Our Facility</h2>
-            <p className="text-base text-neutral-600">
+            <p className="text-base text-neutral-700">
               Located in Gays Mills, Wisconsin - Made in USA since 1993
             </p>
           </div>
@@ -1075,7 +1075,7 @@ export default function ContactPage() {
                   <MapPin className="h-7 w-7 text-neutral-500" />
                 </div>
                 <p className="mb-1 text-sm font-medium text-neutral-700">750 North Royal Avenue</p>
-                <p className="mb-4 text-sm text-neutral-600">Gays Mills, WI 54631</p>
+                <p className="mb-4 text-sm text-neutral-700">Gays Mills, WI 54631</p>
                 <a
                   href="https://maps.google.com/?q=750+North+Royal+Avenue+Gays+Mills+WI+54631"
                   target="_blank"

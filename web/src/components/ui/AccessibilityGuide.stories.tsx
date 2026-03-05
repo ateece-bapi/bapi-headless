@@ -60,7 +60,7 @@ export const AccessibleButton: StoryObj = {
   render: () => (
     <div className="space-y-4 p-8">
       <h2 className="text-2xl font-bold text-neutral-900">✅ Accessible Button</h2>
-      <p className="text-neutral-600">
+      <p className="text-neutral-700">
         Proper button with text label, focus ring, and semantic HTML
       </p>
       <button
@@ -100,7 +100,7 @@ export const InaccessibleButton: StoryObj = {
   render: () => (
     <div className="space-y-4 p-8">
       <h2 className="text-2xl font-bold text-neutral-900">❌ Inaccessible Button (Bad Example)</h2>
-      <p className="text-neutral-600">Common accessibility mistakes to avoid</p>
+      <p className="text-neutral-700">Common accessibility mistakes to avoid</p>
       <div
         onClick={() => alert('Clicked!')}
         style={{
@@ -283,7 +283,7 @@ export const ColorContrastExamples: StoryObj = {
   render: () => (
     <div className="space-y-6 p-8">
       <h2 className="text-2xl font-bold text-neutral-900">Color Contrast Testing</h2>
-      <p className="text-neutral-600">WCAG AA requires 4.5:1 for normal text, 3:1 for large text</p>
+      <p className="text-neutral-700">WCAG AA requires 4.5:1 for normal text, 3:1 for large text</p>
 
       <div className="space-y-4">
         <div className="rounded-lg border-2 border-green-200 bg-green-50 p-4">
@@ -347,7 +347,7 @@ export const ARIAExamples: StoryObj = {
   render: () => (
     <div className="space-y-6 p-8">
       <h2 className="text-2xl font-bold text-neutral-900">ARIA Labels and Roles</h2>
-      <p className="text-neutral-600">Proper use of ARIA for accessibility</p>
+      <p className="text-neutral-700">Proper use of ARIA for accessibility</p>
 
       <div className="space-y-4">
         <div className="rounded-lg border-2 border-green-200 bg-green-50 p-4">
@@ -442,7 +442,7 @@ export const KeyboardNavigation: StoryObj = {
   render: () => (
     <div className="space-y-6 p-8">
       <h2 className="text-2xl font-bold text-neutral-900">Keyboard Navigation Test</h2>
-      <p className="text-neutral-600">Try navigating with keyboard only (no mouse)</p>
+      <p className="text-neutral-700">Try navigating with keyboard only (no mouse)</p>
 
       <div className="space-y-4">
         <button className="w-full rounded-lg bg-primary-500 px-6 py-3 text-left text-white transition-colors hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50">
@@ -501,7 +501,7 @@ export const AccessibilitySummary: StoryObj = {
         <h2 className="mb-3 text-3xl font-bold text-neutral-900">
           Accessibility Testing with Storybook
         </h2>
-        <p className="text-lg text-neutral-600">
+        <p className="text-lg text-neutral-700">
           Complete guide to WCAG 2.1 Level AA compliance using @storybook/addon-a11y
         </p>
       </div>
@@ -539,7 +539,7 @@ export const AccessibilitySummary: StoryObj = {
             </span>
             <div>
               <p className="font-semibold">Open Accessibility Tab</p>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Located at bottom of Storybook UI, next to Actions and Controls
               </p>
             </div>
@@ -550,7 +550,7 @@ export const AccessibilitySummary: StoryObj = {
             </span>
             <div>
               <p className="font-semibold">Review Violations</p>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Red = fail, Yellow = incomplete, Green = pass. Click for details.
               </p>
             </div>
@@ -561,7 +561,7 @@ export const AccessibilitySummary: StoryObj = {
             </span>
             <div>
               <p className="font-semibold">Test Keyboard Navigation</p>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Use Tab, Enter, Space to navigate. Focus rings must be visible.
               </p>
             </div>
@@ -572,7 +572,7 @@ export const AccessibilitySummary: StoryObj = {
             </span>
             <div>
               <p className="font-semibold">Fix Violations</p>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Follow remediation guidance. Re-check until all tests pass.
               </p>
             </div>

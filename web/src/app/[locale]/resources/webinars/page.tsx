@@ -49,7 +49,7 @@ export default async function WebinarsPage({ params }: Props) {
                   {t('comingSoon.heading')}
                 </h2>
                 <p className="mb-4 text-neutral-700">{t('comingSoon.description')}</p>
-                <p className="text-neutral-600">{t('comingSoon.note')}</p>
+                <p className="text-neutral-700">{t('comingSoon.note')}</p>
               </div>
             </div>
           </div>
@@ -60,17 +60,17 @@ export default async function WebinarsPage({ params }: Props) {
               <div className="rounded-xl bg-neutral-50 p-6">
                 <Monitor className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('topics.training')}</h3>
-                <p className="text-sm text-neutral-600">{t('topics.trainingDesc')}</p>
+                <p className="text-sm text-neutral-700">{t('topics.trainingDesc')}</p>
               </div>
               <div className="rounded-xl bg-neutral-50 p-6">
                 <Users className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('topics.bestPractices')}</h3>
-                <p className="text-sm text-neutral-600">{t('topics.bestPracticesDesc')}</p>
+                <p className="text-sm text-neutral-700">{t('topics.bestPracticesDesc')}</p>
               </div>
               <div className="rounded-xl bg-neutral-50 p-6">
                 <Calendar className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('topics.liveQA')}</h3>
-                <p className="text-sm text-neutral-600">{t('topics.liveQADesc')}</p>
+                <p className="text-sm text-neutral-700">{t('topics.liveQADesc')}</p>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@ export default async function WebinarsPage({ params }: Props) {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('stayUpdated.heading')}</h2>
-          <p className="mb-6 text-neutral-600">{t('stayUpdated.description')}</p>
+          <p className="mb-6 text-neutral-700">{t('stayUpdated.description')}</p>
           <a
             href="mailto:sales@bapihvac.com"
             className="inline-block rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600"

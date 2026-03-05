@@ -47,8 +47,8 @@ export default async function ContactSupportPage({ params }: Props) {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all hover:border-primary-500 hover:shadow-lg">
               <Phone className="mb-4 h-12 w-12 text-primary-500" />
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('phone.title')}</h2>
-              <p className="mb-4 text-neutral-600">{t('phone.description')}</p>
-              <div className="mb-4 flex items-center gap-2 text-neutral-600">
+              <p className="mb-4 text-neutral-700">{t('phone.description')}</p>
+              <div className="mb-4 flex items-center gap-2 text-neutral-700">
                 <Clock className="h-5 w-5" />
                 <span>{t('phone.hours')}</span>
               </div>
@@ -64,7 +64,7 @@ export default async function ContactSupportPage({ params }: Props) {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all hover:border-primary-500 hover:shadow-lg">
               <Mail className="mb-4 h-12 w-12 text-primary-500" />
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('email.title')}</h2>
-              <p className="mb-4 text-neutral-600">{t('email.description')}</p>
+              <p className="mb-4 text-neutral-700">{t('email.description')}</p>
               <a
                 href="mailto:sales@bapihvac.com"
                 className="text-xl font-bold text-primary-500 hover:text-primary-600"
@@ -78,7 +78,7 @@ export default async function ContactSupportPage({ params }: Props) {
           <div className="mt-8 rounded-xl border-2 border-neutral-200 bg-neutral-50 p-8">
             <MapPin className="mb-4 h-12 w-12 text-primary-500" />
             <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('location.title')}</h2>
-            <address className="not-italic text-neutral-600">
+            <address className="not-italic text-neutral-700">
               <p className="font-semibold">Building Automation Products, Inc.</p>
               <p>750 North Royal Avenue</p>
               <p>Gays Mills, WI 54631</p>
@@ -92,7 +92,7 @@ export default async function ContactSupportPage({ params }: Props) {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('resources.heading')}</h2>
-          <p className="mb-6 text-neutral-600">{t('resources.description')}</p>
+          <p className="mb-6 text-neutral-700">{t('resources.description')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href={`/${locale}/support`}

@@ -27,12 +27,12 @@ export default function ShippingDetails({ shippingAddress, billingAddress }: Shi
         <p className="font-semibold text-neutral-900">
           {address.firstName} {address.lastName}
         </p>
-        <p className="text-neutral-600">{address.address1}</p>
-        {address.address2 && <p className="text-neutral-600">{address.address2}</p>}
-        <p className="text-neutral-600">
+        <p className="text-neutral-700">{address.address1}</p>
+        {address.address2 && <p className="text-neutral-700">{address.address2}</p>}
+        <p className="text-neutral-700">
           {address.city}, {address.state} {address.postcode}
         </p>
-        <p className="text-neutral-600">{address.country}</p>
+        <p className="text-neutral-700">{address.country}</p>
       </>
     );
   };

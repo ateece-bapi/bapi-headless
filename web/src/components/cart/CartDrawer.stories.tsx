@@ -51,7 +51,7 @@ const meta: Meta<typeof CartDrawer> = {
         {/* Simulated page content */}
         <div className="p-8">
           <h1 className="text-2xl font-bold text-neutral-900">Product Page</h1>
-          <p className="mt-2 text-neutral-600">
+          <p className="mt-2 text-neutral-700">
             Cart drawer appears as an overlay on the right side when opened.
           </p>
         </div>

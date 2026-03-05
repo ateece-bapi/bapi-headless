@@ -12,12 +12,15 @@ import { injectAxe, checkA11y } from 'axe-playwright';
  * - Product images and media
  * - Breadcrumb navigation
  * - Accessibility compliance
+ * 
+ * IMPORTANT: All routes must include locale prefix (e.g., /en/products)
+ * due to next-intl i18n routing. Routes without locale prefix will 404.
  */
 
 test.describe('Product Pages', () => {
   test.describe('Product Categories Landing', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/products');
+      await page.goto('/en/products');
       await page.waitForLoadState('networkidle');
     });
 
@@ -112,7 +115,7 @@ test.describe('Product Pages', () => {
   test.describe('Product Detail Page', () => {
     test.beforeEach(async ({ page }) => {
       // Navigate to products landing page
-      await page.goto('/products');
+      await page.goto('/en/products');
       await page.waitForLoadState('networkidle');
       
       // Click first category

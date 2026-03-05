@@ -41,10 +41,16 @@ vi.mock('@/lib/navigation', () => ({
 			href?: string;
 			children?: React.ReactNode;
 			className?: string;
+			locale?: string;
+			prefetch?: boolean;
+			replace?: boolean;
+			scroll?: boolean;
+			shallow?: boolean;
 			[key: string]: unknown;
 		};
-		const { href, children, className, ...rest } = p;
-		return React.createElement('a', { href, className, ...rest }, children);
+		// Strip out Next.js/next-intl Link-only props to avoid React DOM warnings
+		const { href, children, className, locale, prefetch, replace, scroll, shallow, ...anchorProps } = p;
+		return React.createElement('a', { href, className, ...anchorProps }, children);
 	},
 	useRouter: () => ({
 		push: vi.fn(),

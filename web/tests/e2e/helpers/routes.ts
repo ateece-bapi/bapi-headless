@@ -5,8 +5,16 @@
  * Avoids hardcoding locale prefixes throughout test files.
  */
 
+/**
+ * Normalize locale values from env/inputs by trimming whitespace and
+ * stripping any leading/trailing slashes (e.g. '/en/' -> 'en').
+ */
+export function normalizeLocale(locale: string): string {
+  return locale.trim().replace(/^\/+|\/+$/g, '');
+}
+
 // Default test locale (can be overridden via environment variable)
-export const DEFAULT_LOCALE = process.env.E2E_LOCALE || 'en';
+export const DEFAULT_LOCALE = normalizeLocale(process.env.E2E_LOCALE || 'en');
 
 /**
  * Build a locale-prefixed route for testing
@@ -15,16 +23,17 @@ export const DEFAULT_LOCALE = process.env.E2E_LOCALE || 'en';
  * @returns Locale-prefixed route (e.g., '/en/products')
  */
 export function buildRoute(path: string, locale: string = DEFAULT_LOCALE): string {
+  const normalizedLocale = normalizeLocale(locale);
   // Ensure path starts with /
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  return `/${locale}${normalizedPath}`;
+  return `/${normalizedLocale}${normalizedPath}`;
 }
 
 /**
  * Common test routes with locale prefix
  */
 export const routes = {
-  home: (locale: string = DEFAULT_LOCALE) => `/${locale}`,
+  home: (locale: string = DEFAULT_LOCALE) => `/${normalizeLocale(locale)}`,
   products: (locale: string = DEFAULT_LOCALE) => buildRoute('/products', locale),
   category: (slug: string, locale: string = DEFAULT_LOCALE) => buildRoute(`/categories/${slug}`, locale),
   subcategory: (category: string, subSlug: string, locale: string = DEFAULT_LOCALE) =>

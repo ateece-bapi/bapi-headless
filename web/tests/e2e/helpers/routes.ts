@@ -37,6 +37,8 @@ export function buildRoute(path: string, locale: string = DEFAULT_LOCALE): strin
 export const routes = {
   home: (locale: string = DEFAULT_LOCALE) => `/${normalizeLocale(locale)}`,
   products: (locale: string = DEFAULT_LOCALE) => buildRoute('/products', locale),
+  cart: (locale: string = DEFAULT_LOCALE) => buildRoute('/cart', locale),
+  checkout: (locale: string = DEFAULT_LOCALE) => buildRoute('/checkout', locale),
   category: (slug: string, locale: string = DEFAULT_LOCALE) => buildRoute(`/categories/${slug}`, locale),
   subcategory: (category: string, subSlug: string, locale: string = DEFAULT_LOCALE) =>
     buildRoute(`/products/${category}/${subSlug}`, locale),

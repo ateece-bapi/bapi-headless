@@ -1214,12 +1214,22 @@ fix(e2e): Add locale prefix to product test URLs
 - Product categories landing tests now passing (4/4 across browsers)
 - Accessibility checks passing for product pages
 
-commit 6bac5b6
+commit 6bac5b6 (superseded by PR #370)
 fix(e2e): Add animation timing waits to product E2E tests
 
-- Add 1000ms wait after /en/products navigation for page fade + card animations
-- Add 500ms waits after category/subcategory navigation
+- Initial implementation: Added fixed 1000ms/500ms waits for animations
+- Later improved in PR #370: Replaced with deterministic toBeVisible() waits
 - Fixes 'element hidden' errors caused by opacity-0 during transitions
+- Current approach: Wait for specific elements rather than fixed delays
+
+commit 429afae (PR #370)
+fix(tests): Replace fixed timeouts with deterministic waits
+
+- Replaced all waitForTimeout(1000/500) with expect().toBeVisible() checks
+- Created routes.ts helper for centralized locale handling
+- Updated Link mock to strip Next.js-specific props (avoid React warnings)
+- Tests now wait for actual UI state rather than arbitrary time delays
+- More stable across machines/browsers, faster when UI is ready
 
 Root cause: next-intl requires [locale] dynamic segment in all routes
 Impact: Unblocks critical e-commerce E2E validation for April 10 launch

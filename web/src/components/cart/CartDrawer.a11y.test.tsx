@@ -327,7 +327,8 @@ describe('CartDrawer Accessibility', () => {
       const variationContainer = whiteText.closest('.text-neutral-700');
       expect(variationContainer).toBeInTheDocument();
       expect(variationContainer).toHaveClass('text-neutral-700');
-      // neutral-600 (#797a7c) on white - verified by jest-axe
+      // text-neutral-700 (#5e5f60) on white = 6.40:1 ratio ✓ PASS WCAG AA
+      // Updated March 2026: neutral-600 deprecated (4.30:1 fails AA)
     });
 
     it('part number / SKU has sufficient contrast', () => {
@@ -344,7 +345,8 @@ describe('CartDrawer Accessibility', () => {
 
       const price = screen.getByText('$149.00');
       expect(price).toHaveClass('text-neutral-700');
-      // neutral-600 (#797a7c) on white - verified by jest-axe
+      // text-neutral-700 (#5e5f60) on white = 6.40:1 ratio ✓ PASS WCAG AA
+      // Updated March 2026: neutral-600 deprecated (4.30:1 fails AA)
     });
   });
 

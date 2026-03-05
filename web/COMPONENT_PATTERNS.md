@@ -254,7 +254,7 @@ test('main has meaningful content', async ({ page }) => {
 
 ## Enforcement
 
-### ESLint Rule (See .eslintrc.js)
+### ESLint Rule (See web/eslint.config.mjs)
 
 Prevents `<main>` usage in page components:
 ```js

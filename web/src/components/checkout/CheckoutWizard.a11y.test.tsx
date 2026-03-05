@@ -725,7 +725,8 @@ describe('CheckoutWizard Accessibility', () => {
 
       const helpText = screen.getByText(/16-digit card number/i);
       expect(helpText).toHaveClass('text-neutral-700');
-      // neutral-600 (#797a7c) on white - verified by jest-axe
+      // text-neutral-700 (#5e5f60) on white = 6.40:1 ratio ✓ PASS WCAG AA
+      // Updated March 2026: neutral-600 deprecated (4.30:1 fails AA)
     });
   });
 

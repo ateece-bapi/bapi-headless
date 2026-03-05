@@ -62,7 +62,7 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
       featuredImage: page.featuredImage?.node?.sourceUrl,
     };
   } catch (error) {
-    logger.warn('WordPress unavailable, page not found', { slug, error });
+    logger.warn('WordPress page fetch failed', { slug, error });
     return null;
   }
 }
@@ -175,7 +175,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       featuredImage: post.featuredImage?.node?.sourceUrl,
     };
   } catch (error) {
-    logger.warn('WordPress unavailable, post not found', { slug, error });
+    logger.warn('WordPress post fetch failed', { slug, error });
     return null;
   }
 }

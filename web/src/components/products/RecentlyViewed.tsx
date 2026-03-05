@@ -62,7 +62,7 @@ export default function RecentlyViewed({
     return (
       <div className="py-12 text-center">
         <History className="mx-auto mb-4 h-12 w-12 text-neutral-400" />
-        <p className="text-lg text-neutral-600">No recently viewed products</p>
+        <p className="text-lg text-neutral-700">No recently viewed products</p>
         <p className="mt-2 text-sm text-neutral-500">Products you view will appear here</p>
       </div>
     );
@@ -78,7 +78,7 @@ export default function RecentlyViewed({
         {showClearButton && products.length > 0 && (
           <button
             onClick={clearHistory}
-            className="flex items-center gap-2 text-sm text-neutral-600 transition-colors hover:text-error-500"
+            className="flex items-center gap-2 text-sm text-neutral-700 transition-colors hover:text-error-500"
             aria-label="Clear viewing history"
           >
             <Trash2 className="h-4 w-4" />

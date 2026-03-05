@@ -46,7 +46,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
       {/* Review Header */}
       <div>
         <h2 className="mb-2 text-2xl font-bold text-neutral-900">{t('title')}</h2>
-        <p className="text-neutral-600">{t('description')}</p>
+        <p className="text-neutral-700">{t('description')}</p>
       </div>
 
       {/* Shipping Address */}
@@ -99,7 +99,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
         </div>
         <div className="ml-9 text-sm text-neutral-700">
           {billingAddress.sameAsShipping ? (
-            <p className="italic text-neutral-600">{t('sameAsShipping')}</p>
+            <p className="italic text-neutral-700">{t('sameAsShipping')}</p>
           ) : (
             <div className="space-y-1">
               <p className="font-medium">
@@ -134,10 +134,10 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
         <div className="ml-9 text-sm text-neutral-700">
           <p className="font-medium">{paymentMethod?.title || t('notSelected')}</p>
           {paymentMethod?.id === 'credit_card' && (
-            <p className="mt-1 text-xs text-neutral-600">{t('paymentNotes.creditCard')}</p>
+            <p className="mt-1 text-xs text-neutral-700">{t('paymentNotes.creditCard')}</p>
           )}
           {paymentMethod?.id === 'paypal' && (
-            <p className="mt-1 text-xs text-neutral-600">{t('paymentNotes.paypal')}</p>
+            <p className="mt-1 text-xs text-neutral-700">{t('paymentNotes.paypal')}</p>
           )}
         </div>
       </div>

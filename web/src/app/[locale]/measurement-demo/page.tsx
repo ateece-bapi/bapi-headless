@@ -15,7 +15,7 @@ export default function MeasurementDemoPage() {
           <h1 className="mb-4 text-4xl font-bold text-neutral-900">
             Measurement Unit Localization
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-neutral-600">
+          <p className="mx-auto max-w-2xl text-lg text-neutral-700">
             Automatic conversion of temperature, dimensions, and weight based on user region and
             locale
           </p>

@@ -85,7 +85,7 @@ export default async function InstallationPage({ params }: Props) {
               >
                 <FileText className="mb-4 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">{guide.title}</h3>
-                <p className="mb-4 text-neutral-600">{guide.description}</p>
+                <p className="mb-4 text-neutral-700">{guide.description}</p>
                 <button className="inline-flex items-center gap-2 font-semibold text-primary-500 hover:text-primary-600">
                   <Download className="h-4 w-4" />
                   {t('downloadButton')}
@@ -99,7 +99,7 @@ export default async function InstallationPage({ params }: Props) {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('support.heading')}</h2>
-          <p className="mb-6 text-neutral-600">{t('support.description')}</p>
+          <p className="mb-6 text-neutral-700">{t('support.description')}</p>
           <Link
             href="/support"
             className="inline-block rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600"

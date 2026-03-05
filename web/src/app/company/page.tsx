@@ -98,7 +98,7 @@ export default function CompanyPage() {
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
               <Target className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Quality First</h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 Every product is designed and manufactured to the highest standards. We stand behind
                 our work with industry-leading warranties and support.
               </p>
@@ -107,7 +107,7 @@ export default function CompanyPage() {
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
               <Users className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Customer Focus</h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 Our technical support team works directly with engineers and contractors to ensure
                 successful installations and optimal performance.
               </p>
@@ -116,7 +116,7 @@ export default function CompanyPage() {
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg md:col-span-2">
               <Award className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Innovation</h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 We continuously improve our products with the latest technology, from wireless
                 sensors to cloud-based monitoring solutions.
               </p>
@@ -137,7 +137,7 @@ export default function CompanyPage() {
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
               <MapPin className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
               <h3 className="mb-4 text-xl font-bold text-neutral-900">Our Location</h3>
-              <div className="space-y-2 leading-relaxed text-neutral-600">
+              <div className="space-y-2 leading-relaxed text-neutral-700">
                 <p className="font-semibold">Building Automation Products Inc.</p>
                 <p>750 North Royal Avenue</p>
                 <p>Gays Mills, WI 54631</p>
@@ -151,7 +151,7 @@ export default function CompanyPage() {
               <h3 className="mb-4 text-xl font-bold text-neutral-900">Get in Touch</h3>
               <div className="space-y-4">
                 <div>
-                  <p className="mb-1 text-sm text-neutral-600">Phone</p>
+                  <p className="mb-1 text-sm text-neutral-700">Phone</p>
                   <a
                     href="tel:+17158561203"
                     className="duration-normal text-lg font-bold text-primary-500 transition-colors hover:text-primary-600"
@@ -160,7 +160,7 @@ export default function CompanyPage() {
                   </a>
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-600">Email</p>
+                  <p className="mb-1 text-sm text-neutral-700">Email</p>
                   <a
                     href="mailto:sales@bapihvac.com"
                     className="duration-normal text-lg font-bold text-primary-500 transition-colors hover:text-primary-600"
@@ -169,7 +169,7 @@ export default function CompanyPage() {
                   </a>
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-600">Hours</p>
+                  <p className="mb-1 text-sm text-neutral-700">Hours</p>
                   <p className="text-neutral-900">Monday - Friday</p>
                   <p className="text-neutral-900">8:00 AM - 5:00 PM CST</p>
                 </div>
@@ -200,21 +200,21 @@ export default function CompanyPage() {
               className="duration-normal rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500 hover:shadow-md"
             >
               <h4 className="font-bold text-neutral-900">Why Choose BAPI</h4>
-              <p className="mt-1 text-sm text-neutral-600">Quality, reliability, and support</p>
+              <p className="mt-1 text-sm text-neutral-700">Quality, reliability, and support</p>
             </Link>
             <Link
               href="/company/news"
               className="duration-normal rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500 hover:shadow-md"
             >
               <h4 className="font-bold text-neutral-900">News & Updates</h4>
-              <p className="mt-1 text-sm text-neutral-600">Latest company announcements</p>
+              <p className="mt-1 text-sm text-neutral-700">Latest company announcements</p>
             </Link>
             <Link
               href="/company/careers"
               className="duration-normal rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all hover:border-primary-500 hover:shadow-md"
             >
               <h4 className="font-bold text-neutral-900">Careers</h4>
-              <p className="mt-1 text-sm text-neutral-600">Join our team</p>
+              <p className="mt-1 text-sm text-neutral-700">Join our team</p>
             </Link>
           </div>
         </PageContainer>

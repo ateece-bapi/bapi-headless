@@ -31,7 +31,7 @@ export default function MeasurementDemo() {
         <h2 className="mb-4 text-2xl font-bold text-neutral-900">
           Measurement Unit Conversion Demo
         </h2>
-        <p className="text-neutral-600">
+        <p className="text-neutral-700">
           Current locale: <span className="font-semibold">{locale}</span>
         </p>
       </div>
@@ -98,19 +98,19 @@ export default function MeasurementDemo() {
         <h3 className="mb-3 text-lg font-semibold text-neutral-900">💡 Usage in Product Specs</h3>
         <div className="space-y-3">
           <div>
-            <p className="text-sm font-medium text-neutral-600">Operating Temperature:</p>
+            <p className="text-sm font-medium text-neutral-700">Operating Temperature:</p>
             <p className="text-lg text-neutral-900">
               {formatTemperatureRange(-40, 85, 'celsius', locale)}
             </p>
           </div>
           <div>
-            <p className="text-sm font-medium text-neutral-600">Dimensions (L x W x H):</p>
+            <p className="text-sm font-medium text-neutral-700">Dimensions (L x W x H):</p>
             <p className="text-lg text-neutral-900">
               {formatDimensions(11.4, 7.1, 3.0, 'centimeters', locale)}
             </p>
           </div>
           <div>
-            <p className="text-sm font-medium text-neutral-600">Weight:</p>
+            <p className="text-sm font-medium text-neutral-700">Weight:</p>
             <p className="text-lg text-neutral-900">{formatWeight(0.3, 'pounds', locale)}</p>
           </div>
         </div>

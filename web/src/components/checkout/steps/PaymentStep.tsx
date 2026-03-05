@@ -24,7 +24,7 @@ const StripeProvider = dynamic(
     loading: () => (
       <div className="flex items-center justify-center py-8">
         <Loader2 className="h-6 w-6 animate-spin text-primary-500" />
-        <span className="ml-2 text-neutral-600">Loading payment form...</span>
+        <span className="ml-2 text-neutral-700">Loading payment form...</span>
       </div>
     ),
     ssr: false,
@@ -227,7 +227,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
                   }`}
                 />
                 <h3 className="mb-1 text-lg font-semibold text-neutral-900">{method.title}</h3>
-                <p className="text-sm text-neutral-600">{method.description}</p>
+                <p className="text-sm text-neutral-700">{method.description}</p>
               </button>
             );
           })}
@@ -242,14 +242,14 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
           {isLoadingIntent ? (
             <div className="flex items-center justify-center py-8">
               <Loader2 className="h-8 w-8 animate-spin text-primary-500" />
-              <span className="ml-3 text-neutral-600">{t('cardDetails.settingUp')}</span>
+              <span className="ml-3 text-neutral-700">{t('cardDetails.settingUp')}</span>
             </div>
           ) : clientSecret ? (
             <StripeProvider clientSecret={clientSecret}>
               <StripePaymentForm onSuccess={handleStripeSuccess} onError={handleStripeError} />
             </StripeProvider>
           ) : (
-            <div className="py-8 text-center text-neutral-600">{t('cardDetails.loadError')}</div>
+            <div className="py-8 text-center text-neutral-700">{t('cardDetails.loadError')}</div>
           )}
 
           {/* Security Note */}
@@ -266,7 +266,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       {/* PayPal Info */}
       {selectedMethod === 'paypal' && (
         <div className="space-y-4 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
-          <p className="text-sm text-neutral-600">{t('paypal.redirectMessage')}</p>
+          <p className="text-sm text-neutral-700">{t('paypal.redirectMessage')}</p>
 
           <button
             type="button"

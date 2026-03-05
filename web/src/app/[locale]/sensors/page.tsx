@@ -130,7 +130,7 @@ export default function SensorsPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Sensor Technologies
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Comprehensive sensing solutions for every building automation application
             </p>
           </div>
@@ -186,7 +186,7 @@ export default function SensorsPage() {
                 </div>
 
                 <h3 className="mb-3 text-2xl font-bold text-neutral-900">{sensor.title}</h3>
-                <p className="mb-6 text-neutral-600">{sensor.description}</p>
+                <p className="mb-6 text-neutral-700">{sensor.description}</p>
 
                 <ul className="mb-8 space-y-3">
                   {sensor.features.map((feature, i) => (
@@ -221,7 +221,7 @@ export default function SensorsPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Industry Applications
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Trusted by facilities worldwide for mission-critical monitoring
             </p>
           </div>
@@ -257,7 +257,7 @@ export default function SensorsPage() {
                   <app.icon className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-neutral-900">{app.title}</h3>
-                <p className="text-sm text-neutral-600">{app.description}</p>
+                <p className="text-sm text-neutral-700">{app.description}</p>
               </div>
             ))}
           </div>
@@ -308,7 +308,7 @@ export default function SensorsPage() {
                 <div className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-accent-500" />
                 <div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">{feature.title}</h3>
-                  <p className="text-neutral-600">{feature.description}</p>
+                  <p className="text-neutral-700">{feature.description}</p>
                 </div>
               </div>
             ))}

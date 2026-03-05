@@ -360,7 +360,7 @@ export const FloatingAction: Story = {
             {Array.from({ length: 20 }).map((_, i) => (
               <div key={i} className="rounded-lg bg-white p-4 shadow">
                 <h3 className="font-semibold">Product {i + 1}</h3>
-                <p className="mt-2 text-neutral-600">Product description and details...</p>
+                <p className="mt-2 text-neutral-700">Product description and details...</p>
               </div>
             ))}
           </div>

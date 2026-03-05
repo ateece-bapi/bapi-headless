@@ -38,7 +38,7 @@ export default function ApplicationsPage() {
             <h1 className="mb-6 text-4xl font-bold text-neutral-900 sm:text-5xl lg:text-6xl">
               Find Sensors by Application
             </h1>
-            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl leading-relaxed text-neutral-700">
               Discover the right sensors for your specific use case. Browse by application area to
               find products designed for your industry and environment.
             </p>
@@ -67,7 +67,7 @@ export default function ApplicationsPage() {
                   {category.name}
                 </h2>
 
-                <p className="mb-5 text-sm leading-relaxed text-neutral-600">
+                <p className="mb-5 text-sm leading-relaxed text-neutral-700">
                   {category.description}
                 </p>
 
@@ -106,7 +106,7 @@ export default function ApplicationsPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Why Shop by Application?
             </h2>
-            <p className="mx-auto max-w-2xl text-lg text-neutral-600">
+            <p className="mx-auto max-w-2xl text-lg text-neutral-700">
               Find the perfect sensor faster by browsing products organized for your specific needs
             </p>
           </div>
@@ -117,7 +117,7 @@ export default function ApplicationsPage() {
                 <Zap className="h-8 w-8 text-white" />
               </div>
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Faster Discovery</h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 Find the right sensor for your specific use case without browsing through sensor
                 types.
               </p>
@@ -128,7 +128,7 @@ export default function ApplicationsPage() {
                 <Target className="h-8 w-8 text-white" />
               </div>
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Better Decisions</h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 See products in context with application-specific guidance and recommendations.
               </p>
             </div>
@@ -138,7 +138,7 @@ export default function ApplicationsPage() {
                 <CheckCircle className="h-8 w-8 text-white" />
               </div>
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Right Solution</h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 Products are pre-filtered for your environment, mounting, and industry requirements.
               </p>
             </div>

@@ -33,7 +33,7 @@ export default function DropdownSelector({
       >
         {label}
       </label>
-      {description && <p className="mb-2 text-xs text-neutral-600">{description}</p>}
+      {description && <p className="mb-2 text-xs text-neutral-700">{description}</p>}
 
       <div className="relative">
         <select
@@ -43,7 +43,7 @@ export default function DropdownSelector({
           className={`w-full appearance-none rounded-lg border-2 bg-white px-4 py-3.5 pr-12 text-base transition-all ${
             value
               ? 'border-accent-500 font-semibold text-neutral-900 shadow-sm'
-              : 'border-neutral-300 text-neutral-600'
+              : 'border-neutral-300 text-neutral-700'
           } cursor-pointer hover:border-accent-400 focus:border-accent-500 focus:outline-none focus:ring-4 focus:ring-accent-500/20`}
         >
           <option value="">Choose an option</option>
@@ -67,7 +67,7 @@ export default function DropdownSelector({
         <div className="mt-2 rounded border border-neutral-200 bg-neutral-50 p-2">
           <span className="text-xs font-semibold text-neutral-700">Selected:</span>
           <p className="mt-1 text-sm text-neutral-900">{getShortLabel(value)}</p>
-          <p className="mt-1 text-xs text-neutral-600">{value}</p>
+          <p className="mt-1 text-xs text-neutral-700">{value}</p>
         </div>
       )}
     </div>

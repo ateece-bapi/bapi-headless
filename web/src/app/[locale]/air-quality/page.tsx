@@ -136,7 +136,7 @@ export default function AirQualityPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Air Quality Monitoring Solutions
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Comprehensive sensing for healthier, more efficient buildings
             </p>
           </div>
@@ -192,7 +192,7 @@ export default function AirQualityPage() {
                 </div>
 
                 <h3 className="mb-3 text-2xl font-bold text-neutral-900">{sensor.title}</h3>
-                <p className="mb-6 text-neutral-600">{sensor.description}</p>
+                <p className="mb-6 text-neutral-700">{sensor.description}</p>
 
                 <ul className="mb-8 space-y-3">
                   {sensor.features.map((feature, i) => (
@@ -272,7 +272,7 @@ export default function AirQualityPage() {
                 </div>
                 <div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
-                  <p className="text-neutral-600">{benefit.description}</p>
+                  <p className="text-neutral-700">{benefit.description}</p>
                 </div>
               </div>
             ))}
@@ -329,7 +329,7 @@ export default function AirQualityPage() {
                 className="rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
               >
                 <h3 className="mb-2 text-lg font-bold text-neutral-900">{app.title}</h3>
-                <p className="text-sm text-neutral-600">{app.description}</p>
+                <p className="text-sm text-neutral-700">{app.description}</p>
               </div>
             ))}
           </div>

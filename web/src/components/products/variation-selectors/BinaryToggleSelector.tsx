@@ -36,7 +36,7 @@ export default function BinaryToggleSelector({
         <label className="block text-sm font-semibold uppercase tracking-wide text-neutral-700">
           {label}
         </label>
-        {description && <p className="mt-1 text-xs text-neutral-600">{description}</p>}
+        {description && <p className="mt-1 text-xs text-neutral-700">{description}</p>}
       </div>
 
       <div className="flex items-center gap-4">
@@ -48,7 +48,7 @@ export default function BinaryToggleSelector({
             className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
               !isPositiveSelected
                 ? 'bg-white text-neutral-900 shadow-sm'
-                : 'text-neutral-600 hover:text-neutral-900'
+                : 'text-neutral-700 hover:text-neutral-900'
             } `}
             aria-pressed={!isPositiveSelected}
           >
@@ -61,7 +61,7 @@ export default function BinaryToggleSelector({
             className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
               isPositiveSelected
                 ? 'bg-primary-600 text-white shadow-md'
-                : 'text-neutral-600 hover:text-neutral-900'
+                : 'text-neutral-700 hover:text-neutral-900'
             } `}
             aria-pressed={isPositiveSelected}
           >
@@ -74,7 +74,7 @@ export default function BinaryToggleSelector({
           <div
             className={`h-2 w-2 rounded-full transition-colors ${isPositiveSelected ? 'bg-green-500' : 'bg-neutral-400'} `}
           />
-          <span className="text-xs font-medium text-neutral-600">{value || 'Not selected'}</span>
+          <span className="text-xs font-medium text-neutral-700">{value || 'Not selected'}</span>
         </div>
       </div>
     </div>

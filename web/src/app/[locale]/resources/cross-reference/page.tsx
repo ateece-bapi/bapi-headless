@@ -109,7 +109,7 @@ export default async function CrossReferencePage({ params }: Props) {
                     {t('popularSection.competitorLabel')}
                   </div>
                   <div className="font-bold text-neutral-900">Honeywell C7400A2100</div>
-                  <div className="text-sm text-neutral-600">Room Temperature Sensor</div>
+                  <div className="text-sm text-neutral-700">Room Temperature Sensor</div>
                 </div>
                 <div className="flex justify-center">
                   <RefreshCw className="h-6 w-6 text-primary-500" />
@@ -119,7 +119,7 @@ export default async function CrossReferencePage({ params }: Props) {
                     {t('popularSection.bapiLabel')}
                   </div>
                   <div className="font-bold text-primary-500">BA/10K-2-R</div>
-                  <div className="text-sm text-neutral-600">10K Type 2 Room Sensor</div>
+                  <div className="text-sm text-neutral-700">10K Type 2 Room Sensor</div>
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@ export default async function CrossReferencePage({ params }: Props) {
                     {t('popularSection.competitorLabel')}
                   </div>
                   <div className="font-bold text-neutral-900">Johnson Controls TE-6000</div>
-                  <div className="text-sm text-neutral-600">Temperature & Humidity Sensor</div>
+                  <div className="text-sm text-neutral-700">Temperature & Humidity Sensor</div>
                 </div>
                 <div className="flex justify-center">
                   <RefreshCw className="h-6 w-6 text-primary-500" />
@@ -141,7 +141,7 @@ export default async function CrossReferencePage({ params }: Props) {
                     {t('popularSection.bapiLabel')}
                   </div>
                   <div className="font-bold text-primary-500">BA/RH-AS-R2</div>
-                  <div className="text-sm text-neutral-600">RH & Temp Room Sensor</div>
+                  <div className="text-sm text-neutral-700">RH & Temp Room Sensor</div>
                 </div>
               </div>
             </div>
@@ -153,7 +153,7 @@ export default async function CrossReferencePage({ params }: Props) {
       <section className="py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('helpSection.heading')}</h2>
-          <p className="mb-6 text-neutral-600">{t('helpSection.description')}</p>
+          <p className="mb-6 text-neutral-700">{t('helpSection.description')}</p>
           <Link
             href="/contact"
             className="inline-block rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"

@@ -56,7 +56,7 @@ export default function OrderItems({ items }: OrderItemsProps) {
             {/* Product Details */}
             <div className="min-w-0 flex-1">
               <h3 className="mb-1 line-clamp-2 font-semibold text-neutral-900">{item.name}</h3>
-              <p className="text-sm text-neutral-600">Quantity: {item.quantity}</p>
+              <p className="text-sm text-neutral-700">Quantity: {item.quantity}</p>
             </div>
 
             {/* Price */}

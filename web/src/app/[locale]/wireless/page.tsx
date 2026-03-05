@@ -137,7 +137,7 @@ export default function WirelessPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Wireless Product Line
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Complete wireless monitoring solutions for every application
             </p>
           </div>
@@ -178,7 +178,7 @@ export default function WirelessPage() {
                 </div>
 
                 <h3 className="mb-3 text-2xl font-bold text-neutral-900">{product.title}</h3>
-                <p className="mb-6 text-neutral-600">{product.description}</p>
+                <p className="mb-6 text-neutral-700">{product.description}</p>
 
                 <ul className="mb-8 space-y-3">
                   {product.features.map((feature, i) => (
@@ -213,7 +213,7 @@ export default function WirelessPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Powerful Cloud Platform
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Monitor, analyze, and manage all your sensors from anywhere
             </p>
           </div>
@@ -259,7 +259,7 @@ export default function WirelessPage() {
                 </div>
                 <div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">{feature.title}</h3>
-                  <p className="text-neutral-600">{feature.description}</p>
+                  <p className="text-neutral-700">{feature.description}</p>
                 </div>
               </div>
             ))}
@@ -274,7 +274,7 @@ export default function WirelessPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Real-World Installations
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               See WAM wireless sensors protecting assets in convenience stores, restaurants, and
               food service operations
             </p>

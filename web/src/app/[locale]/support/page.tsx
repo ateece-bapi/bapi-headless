@@ -68,7 +68,7 @@ export default async function SupportPage() {
               <h3 className="mb-2 text-xl font-bold text-neutral-900">
                 {t('quickActions.contactSupport.title')}
               </h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 {t('quickActions.contactSupport.description')}
               </p>
             </Link>
@@ -81,7 +81,7 @@ export default async function SupportPage() {
               <h3 className="mb-2 text-xl font-bold text-neutral-900">
                 {t('quickActions.applicationNotes.title')}
               </h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 {t('quickActions.applicationNotes.description')}
               </p>
             </Link>
@@ -94,7 +94,7 @@ export default async function SupportPage() {
               <h3 className="mb-2 text-xl font-bold text-neutral-900">
                 {t('quickActions.rmaRequest.title')}
               </h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 {t('quickActions.rmaRequest.description')}
               </p>
             </Link>
@@ -116,7 +116,7 @@ export default async function SupportPage() {
               <h3 className="mb-3 text-xl font-bold text-neutral-900">
                 {t('resources.technicalDocs.title')}
               </h3>
-              <ul className="space-y-2 text-neutral-600">
+              <ul className="space-y-2 text-neutral-700">
                 <li>
                   <Link
                     href="/application-notes"
@@ -158,7 +158,7 @@ export default async function SupportPage() {
               <h3 className="mb-3 text-xl font-bold text-neutral-900">
                 {t('resources.toolsUtilities.title')}
               </h3>
-              <ul className="space-y-2 text-neutral-600">
+              <ul className="space-y-2 text-neutral-700">
                 <li>
                   <Link
                     href="/resources/selector"
@@ -200,7 +200,7 @@ export default async function SupportPage() {
               <h3 className="mb-3 text-xl font-bold text-neutral-900">
                 {t('resources.serviceReturns.title')}
               </h3>
-              <ul className="space-y-2 text-neutral-600">
+              <ul className="space-y-2 text-neutral-700">
                 <li>
                   <Link
                     href="/rma-request"
@@ -236,7 +236,7 @@ export default async function SupportPage() {
         <PageContainer size="content">
           <div className="mb-8 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900">{t('contact.title')}</h2>
-            <p className="text-lg text-neutral-600">{t('contact.subtitle')}</p>
+            <p className="text-lg text-neutral-700">{t('contact.subtitle')}</p>
           </div>
 
           <div className="duration-normal rounded-xl bg-white p-8 shadow-lg transition-all hover:shadow-xl">
@@ -246,7 +246,7 @@ export default async function SupportPage() {
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">
                   {t('contact.phone.title')}
                 </h3>
-                <p className="mb-2 text-neutral-600">{t('contact.phone.hours')}</p>
+                <p className="mb-2 text-neutral-700">{t('contact.phone.hours')}</p>
                 <a
                   href="tel:+17158561203"
                   className="duration-normal text-2xl font-bold text-primary-500 transition-colors hover:text-primary-600"
@@ -260,7 +260,7 @@ export default async function SupportPage() {
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">
                   {t('contact.email.title')}
                 </h3>
-                <p className="mb-2 text-neutral-600">{t('contact.email.description')}</p>
+                <p className="mb-2 text-neutral-700">{t('contact.email.description')}</p>
                 <a
                   href="mailto:sales@bapihvac.com"
                   className="duration-normal text-lg font-semibold text-primary-500 transition-colors hover:text-primary-600"

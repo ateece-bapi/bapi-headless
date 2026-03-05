@@ -84,7 +84,7 @@ export default function ProductComponentsTestPage() {
         {/* Page Header */}
         <div className="text-center">
           <h1 className="mb-4 text-5xl font-bold text-neutral-900">Product Components Demo</h1>
-          <p className="text-xl text-neutral-600">
+          <p className="text-xl text-neutral-700">
             Phase 1: Enhanced product pages with professional UX
           </p>
         </div>
@@ -94,7 +94,7 @@ export default function ProductComponentsTestPage() {
           <h2 className="mb-6 text-3xl font-bold text-neutral-900">
             1. Product Gallery with Lightbox
           </h2>
-          <p className="mb-8 text-neutral-600">
+          <p className="mb-8 text-neutral-700">
             Interactive gallery with zoom, keyboard navigation (arrow keys, ESC), and touch gestures
             for mobile.
           </p>
@@ -108,7 +108,7 @@ export default function ProductComponentsTestPage() {
           <h2 className="mb-6 text-3xl font-bold text-neutral-900">
             2. Quantity Selector with Validation
           </h2>
-          <p className="mb-8 text-neutral-600">
+          <p className="mb-8 text-neutral-700">
             Increment/decrement buttons with min/max limits, manual input, and stock validation.
           </p>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -122,7 +122,7 @@ export default function ProductComponentsTestPage() {
                 onChange={setQuantity}
                 stockStatus="instock"
               />
-              <p className="mt-2 text-sm text-neutral-600">Current quantity: {quantity}</p>
+              <p className="mt-2 text-sm text-neutral-700">Current quantity: {quantity}</p>
             </div>
 
             {/* Low stock state */}
@@ -164,7 +164,7 @@ export default function ProductComponentsTestPage() {
           <h2 className="mb-6 text-3xl font-bold text-neutral-900">
             3. Product Availability Indicators
           </h2>
-          <p className="mb-8 text-neutral-600">
+          <p className="mb-8 text-neutral-700">
             Visual stock status indicators with colors, icons, and messaging.
           </p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -199,7 +199,7 @@ export default function ProductComponentsTestPage() {
           <h2 className="mb-6 text-3xl font-bold text-neutral-900">
             4. Product Specifications Table
           </h2>
-          <p className="mb-8 text-neutral-600">
+          <p className="mb-8 text-neutral-700">
             Professional specifications table with collapsible sections, search, and download
             functionality.
           </p>

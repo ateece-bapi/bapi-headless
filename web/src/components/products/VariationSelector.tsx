@@ -297,7 +297,7 @@ export default function VariationSelector({
                     </div>
                     <div className="space-y-4">
                       <div>
-                        <p className="mb-2 text-xs uppercase tracking-wide text-neutral-600">
+                        <p className="mb-2 text-xs uppercase tracking-wide text-neutral-700">
                           Part Number
                         </p>
                         <p className="inline-block rounded-lg border-2 border-accent-400 bg-white px-4 py-3 font-mono text-xl font-bold text-neutral-900 shadow-sm">
@@ -305,7 +305,7 @@ export default function VariationSelector({
                         </p>
                       </div>
                       <div>
-                        <p className="mb-2 text-xs uppercase tracking-wide text-neutral-600">
+                        <p className="mb-2 text-xs uppercase tracking-wide text-neutral-700">
                           Your Price
                         </p>
                         <p className="text-4xl font-bold text-primary-700">

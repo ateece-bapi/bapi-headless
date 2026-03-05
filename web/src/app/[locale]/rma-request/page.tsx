@@ -33,28 +33,28 @@ export default function RMARequestPage() {
                 1
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">Submit Request</h3>
-              <p className="text-sm text-neutral-600">Fill out the RMA form below</p>
+              <p className="text-sm text-neutral-700">Fill out the RMA form below</p>
             </div>
             <div className="text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 2
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">Receive RMA Number</h3>
-              <p className="text-sm text-neutral-600">We&apos;ll email your RMA within 24 hours</p>
+              <p className="text-sm text-neutral-700">We&apos;ll email your RMA within 24 hours</p>
             </div>
             <div className="text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 3
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">Ship Product</h3>
-              <p className="text-sm text-neutral-600">Return product with RMA number</p>
+              <p className="text-sm text-neutral-700">Return product with RMA number</p>
             </div>
             <div className="text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 4
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">Resolution</h3>
-              <p className="text-sm text-neutral-600">Repair, replace, or credit</p>
+              <p className="text-sm text-neutral-700">Repair, replace, or credit</p>
             </div>
           </div>
         </div>
@@ -346,7 +346,7 @@ export default function RMARequestPage() {
                 >
                   Submit RMA Request
                 </button>
-                <p className="mt-3 text-center text-sm text-neutral-600">
+                <p className="mt-3 text-center text-sm text-neutral-700">
                   You will receive an RMA number within 24 business hours
                 </p>
               </div>
@@ -360,13 +360,13 @@ export default function RMARequestPage() {
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="mb-6 text-center">
             <h3 className="mb-2 text-2xl font-bold text-neutral-900">Return Shipping Address</h3>
-            <p className="text-neutral-600">Ship products with RMA number to:</p>
+            <p className="text-neutral-700">Ship products with RMA number to:</p>
           </div>
           <div className="mx-auto max-w-md rounded-xl bg-white p-6 text-center shadow-lg">
             <p className="font-semibold text-neutral-900">Building Automation Products Inc.</p>
-            <p className="text-neutral-600">750 North Royal Avenue</p>
-            <p className="text-neutral-600">Gays Mills, WI 54631</p>
-            <p className="text-neutral-600">USA</p>
+            <p className="text-neutral-700">750 North Royal Avenue</p>
+            <p className="text-neutral-700">Gays Mills, WI 54631</p>
+            <p className="text-neutral-700">USA</p>
             <p className="mt-4 text-sm text-neutral-500">
               <strong>Important:</strong> Write RMA number on outside of box
             </p>
@@ -378,7 +378,7 @@ export default function RMARequestPage() {
       <section className="py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h3 className="mb-3 text-xl font-bold text-neutral-900">Questions About Returns?</h3>
-          <p className="mb-4 text-neutral-600">Contact our customer service team for assistance</p>
+          <p className="mb-4 text-neutral-700">Contact our customer service team for assistance</p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <a
               href="tel:+17158561203"

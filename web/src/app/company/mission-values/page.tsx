@@ -37,7 +37,7 @@ export default function MissionValuesPage() {
             <div className="rounded-xl bg-neutral-50 p-8">
               <Target className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Quality First</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 We never compromise on quality. Every product meets rigorous standards before it
                 reaches our customers.
               </p>
@@ -46,7 +46,7 @@ export default function MissionValuesPage() {
             <div className="rounded-xl bg-neutral-50 p-8">
               <Users className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Customer Focus</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 Our customers&apos; success is our success. We listen, respond, and support every
                 project.
               </p>
@@ -55,7 +55,7 @@ export default function MissionValuesPage() {
             <div className="rounded-xl bg-neutral-50 p-8">
               <Lightbulb className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Innovation</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 We continuously improve our products with the latest technology and customer
                 feedback.
               </p>
@@ -64,7 +64,7 @@ export default function MissionValuesPage() {
             <div className="rounded-xl bg-neutral-50 p-8">
               <Heart className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Integrity</h3>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 We operate with honesty, transparency, and respect in all our relationships.
               </p>
             </div>

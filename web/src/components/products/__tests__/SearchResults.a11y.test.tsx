@@ -479,8 +479,8 @@ describe('SearchDropdown - Color Contrast', () => {
     );
 
     const loadingText = screen.getByText(/searching/i);
-    // text-neutral-600 on white background - passes automated checks
-    expect(loadingText).toHaveClass('text-neutral-600');
+    // text-neutral-700 on white background - passes automated checks
+    expect(loadingText).toHaveClass('text-neutral-700');
   });
 
   it('empty state text has sufficient contrast', () => {
@@ -498,8 +498,8 @@ describe('SearchDropdown - Color Contrast', () => {
     );
 
     const heading = screen.getByText(/no products found/i);
-    // font-medium text-neutral-600 on white - passes automated checks
-    expect(heading).toHaveClass('text-neutral-600');
+    // font-medium text-neutral-700 on white - passes automated checks
+    expect(heading).toHaveClass('text-neutral-700');
   });
 
   it('result items have sufficient contrast (hover state)', () => {

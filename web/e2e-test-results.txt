@@ -1,0 +1,1883 @@
+
+> web@0.1.0 test:e2e:chromium /home/ateece/bapi-headless/web
+> playwright test --project=chromium
+
+
+Running 69 tests using 11 workers
+
+┌─────────┬─────────────────────┬────────────┬─────────────────────────────────────────────────────┬───────┐
+│ (index) │ id                  │ impact     │ description                                         │ nodes │
+├─────────┼─────────────────────┼────────────┼─────────────────────────────────────────────────────┼───────┤
+│ 0       │ [32m'html-has-lang'[39m     │ [32m'serious'[39m  │ [32m'Ensure every HTML document has a lang attribute'[39m   │ [33m1[39m     │
+│ 1       │ [32m'landmark-one-main'[39m │ [32m'moderate'[39m │ [32m'Ensure the document has a main landmark'[39m           │ [33m1[39m     │
+│ 2       │ [32m'region'[39m            │ [32m'moderate'[39m │ [32m'Ensure all page content is contained by landmarks'[39m │ [33m2[39m     │
+└─────────┴─────────────────────┴────────────┴─────────────────────────────────────────────────────┴───────┘
+┌─────────┬─────────────────────────────────────┬────────────┐
+│ (index) │ target                              │ violations │
+├─────────┼─────────────────────────────────────┼────────────┤
+│ 0       │ [32m'["#__next_error__"]'[39m               │ [32m'[0,1]'[39m    │
+│ 1       │ [32m'["h1"]'[39m                            │ [32m'[2]'[39m      │
+│ 2       │ [32m'["div:nth-child(15) > div > div"]'[39m │ [32m'[2]'[39m      │
+└─────────┴─────────────────────────────────────┴────────────┘
+  ✘   5 [chromium] › tests/e2e/authentication.spec.ts:125:9 › Authentication › Sign In › should pass accessibility checks (5.0s)
+  ✓   7 [chromium] › tests/e2e/authentication.spec.ts:99:9 › Authentication › Sign In › should have forgot password link (5.2s)
+[2m[WebServer] [22mFailed to proxy https://o4510828355518464.ingest.us.sentry.io/api/4510828357091328/envelope/?o=4510828355518464&p=4510828357091328&r=us&hsts=0 AggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mAggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mFailed to proxy https://o4510828355518464.ingest.us.sentry.io/api/4510828357091328/envelope/?o=4510828355518464&p=4510828357091328&r=us&hsts=0 AggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mAggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mFailed to proxy https://o4510828355518464.ingest.us.sentry.io/api/4510828357091328/envelope/?o=4510828355518464&p=4510828357091328&r=us&hsts=0 AggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mAggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mFailed to proxy https://o4510828355518464.ingest.us.sentry.io/api/4510828357091328/envelope/?o=4510828355518464&p=4510828357091328&r=us&hsts=0 AggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mAggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+  ✓   3 [chromium] › tests/e2e/authentication.spec.ts:112:9 › Authentication › Sign In › should have sign up link (6.6s)
+  ✓   1 [chromium] › tests/e2e/authentication.spec.ts:172:9 › Authentication › Sign Up › should validate password requirements (7.2s)
+[2m[WebServer] [22mFailed to proxy https://o4510828355518464.ingest.us.sentry.io/api/4510828357091328/envelope/?o=4510828355518464&p=4510828357091328&r=us&hsts=0 AggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mAggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+  ✓  12 [chromium] › tests/e2e/authentication.spec.ts:216:9 › Authentication › Account Pages (Authenticated) › should access account page when authenticated (2.5s)
+  -   9 [chromium] › tests/e2e/authentication.spec.ts:188:9 › Authentication › Sign Up › should pass accessibility checks
+  -   8 [chromium] › tests/e2e/authentication.spec.ts:152:9 › Authentication › Sign Up › should display sign up page
+  ✘  13 [chromium] › tests/e2e/authentication.spec.ts:203:9 › Authentication › Account Pages (Authenticated) › should redirect to sign-in when accessing protected routes (1.8s)
+  ✓  15 [chromium] › tests/e2e/authentication.spec.ts:250:9 › Authentication › Two-Factor Authentication › should display 2FA setup option in account settings (1.6s)
+  ✘  11 [chromium] › tests/e2e/authentication.spec.ts:82:9 › Authentication › Sign In › should show/hide password (10.2s)
+  ✘   6 [chromium] › tests/e2e/authentication.spec.ts:24:9 › Authentication › Sign In › should display sign in page (11.7s)
+  ✘   4 [chromium] › tests/e2e/authentication.spec.ts:132:9 › Authentication › Sign In › should be responsive on mobile (12.4s)
+  ✘  14 [chromium] › tests/e2e/authentication.spec.ts:234:9 › Authentication › Password Reset › should display password reset page (6.8s)
+  ✓  16 [chromium] › tests/e2e/authentication.spec.ts:274:7 › Navigation for Authenticated Users › should show appropriate nav items based on auth state (9.0s)
+  ✘  17 [chromium] › tests/e2e/cart-checkout.spec.ts:27:7 › Shopping Cart › should start with empty cart (22.6s)
+  ✘  10 [chromium] › tests/e2e/authentication.spec.ts:42:9 › Authentication › Sign In › should validate empty form submission (32.1s)
+  ✘   2 [chromium] › tests/e2e/authentication.spec.ts:58:9 › Authentication › Sign In › should validate invalid email format (32.1s)
+  ✘  18 [chromium] › tests/e2e/cart-checkout.spec.ts:33:7 › Shopping Cart › should add item to cart from product page (30.9s)
+  ✘  19 [chromium] › tests/e2e/cart-checkout.spec.ts:76:7 › Shopping Cart › should display cart items with correct information (31.2s)
+  ✘  20 [chromium] › tests/e2e/cart-checkout.spec.ts:60:7 › Shopping Cart › should open cart drawer/modal (31.1s)
+  ✘  21 [chromium] › tests/e2e/cart-checkout.spec.ts:94:7 › Shopping Cart › should update item quantity (30.6s)
+  ✘  22 [chromium] › tests/e2e/cart-checkout.spec.ts:117:7 › Shopping Cart › should remove item from cart (30.8s)
+  ✘  23 [chromium] › tests/e2e/cart-checkout.spec.ts:142:7 › Shopping Cart › should persist cart across page navigation (30.5s)
+  ✘  24 [chromium] › tests/e2e/cart-checkout.spec.ts:155:7 › Shopping Cart › should calculate cart totals correctly (30.7s)
+  ✘  25 [chromium] › tests/e2e/cart-checkout.spec.ts:183:7 › Shopping Cart › should pass accessibility checks (30.9s)
+  ✓  33 [chromium] › tests/e2e/homepage.spec.ts:31:7 › Homepage › should display header with navigation (10.4s)
+  ✓  32 [chromium] › tests/e2e/homepage.spec.ts:22:7 › Homepage › should load homepage successfully (12.1s)
+  ✓  34 [chromium] › tests/e2e/homepage.spec.ts:45:7 › Homepage › should display language and region selectors (10.4s)
+[2m[WebServer] [22mFailed to proxy https://o4510828355518464.ingest.us.sentry.io/api/4510828357091328/envelope/?o=4510828355518464&p=4510828357091328&r=us&hsts=0 AggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mAggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+  ✓  35 [chromium] › tests/e2e/homepage.spec.ts:55:7 › Homepage › should have functional search (12.0s)
+  ✓  36 [chromium] › tests/e2e/homepage.spec.ts:82:7 › Homepage › should navigate to products page (12.3s)
+  ✓  37 [chromium] › tests/e2e/homepage.spec.ts:96:7 › Homepage › should have working footer links (7.4s)
+  ✘  26 [chromium] › tests/e2e/cart-checkout.spec.ts:208:7 › Checkout Process › should navigate to checkout from cart (31.2s)
+  ✓  39 [chromium] › tests/e2e/homepage.spec.ts:118:7 › Homepage › should display sign in button for unauthenticated users (8.6s)
+  ✘  28 [chromium] › tests/e2e/cart-checkout.spec.ts:233:7 › Checkout Process › should display checkout wizard/steps (31.0s)
+  ✘  27 [chromium] › tests/e2e/cart-checkout.spec.ts:245:7 › Checkout Process › should validate shipping information (31.3s)
+┌─────────┬─────────────────────┬────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬───────┐
+│ (index) │ id                  │ impact     │ description                                                                                                      │ nodes │
+├─────────┼─────────────────────┼────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────┤
+│ 0       │ [32m'aria-allowed-attr'[39m │ [32m'critical'[39m │ [32m"Ensure an element's role supports its ARIA attributes"[39m                                                          │ [33m1[39m     │
+│ 1       │ [32m'color-contrast'[39m    │ [32m'serious'[39m  │ [32m'Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds'[39m │ [33m37[39m    │
+│ 2       │ [32m'landmark-unique'[39m   │ [32m'moderate'[39m │ [32m'Ensure landmarks are unique'[39m                                                                                    │ [33m1[39m     │
+└─────────┴─────────────────────┴────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────┘
+┌─────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬────────────┐
+│ (index) │ target                                                                                                                                                         │ html                                                                                                                                                                                                       │ violations │
+├─────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ 0       │ [32m'["input[aria-controls=\\"_R_qb9l5rlb_\\"]"]'[39m                                                                                                                  │ [32m'<input type="search" placeholder="Search products..." class="w-full rounded-lg bo..." aria-label="Search products" aria-expanded="false" aria-controls="_R_qb9l5rlb_" aria-autocomplete="list" value="">'[39m │ [32m'[0]'[39m      │
+│ 1       │ [32m'[".ml-auto.text-neutral-500.gap-1\\\\.5 > .text-\\\\[10px\\\\].uppercase"]'[39m                                                                                   │ [32m'<span class="text-[10px] uppercase">USD</span>'[39m                                                                                                                                                           │ [32m'[1]'[39m      │
+│ 2       │ [32m'[".max-w-7xl.sm\\\\:px-6.lg\\\\:px-8 > .mb-12.text-center > .max-w-2xl.mx-auto.text-lg"]'[39m                                                                     │ [32m'<p class="mx-auto max-w-2xl text-lg text-neutral-600">Browse by sensor type to find the perfect solution for your building automation project</p>'[39m                                                        │ [32m'[1]'[39m      │
+│ 3       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(1) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">High-accuracy temperature measurement</p>'[39m                                                                                                       │ [32m'[1]'[39m      │
+│ 4       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(2) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Precise relative humidity monitoring</p>'[39m                                                                                                        │ [32m'[1]'[39m      │
+│ 5       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(3) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Differential &amp; static pressure</p>'[39m                                                                                                          │ [32m'[1]'[39m      │
+│ 6       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(4) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">CO₂, VOC, and particulate monitoring</p>'[39m                                                                                                        │ [32m'[1]'[39m      │
+│ 7       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(5) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">WAM™ cloud-connected monitoring</p>'[39m                                                                                                             │ [32m'[1]'[39m      │
+│ 8       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(6) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Mounting hardware &amp; enclosures</p>'[39m                                                                                                          │ [32m'[1]'[39m      │
+│ 9       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(7) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Calibration &amp; verification tools</p>'[39m                                                                                                        │ [32m'[1]'[39m      │
+│ 10      │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(8) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Modular I/O and control</p>'[39m                                                                                                                     │ [32m'[1]'[39m      │
+│ 11      │ [32m'[".focus-within\\\\:ring-4.focus-within\\\\:ring-primary-500\\\\/50.hover\\\\:-translate-y-1:nth-child(2) > .text-neutral-600.leading-relaxed:nth-child(3)"]'[39m │ [32m'<p class="text-sm leading-relaxed text-neutral-600">Most sensor manufacturers will replace their defective products, but only BAPI has the confidence to go beyond the industry standard.</p>'[39m            │ [32m'[1]'[39m      │
+│ 12      │ [32m'[".focus-within\\\\:ring-4.focus-within\\\\:ring-primary-500\\\\/50.hover\\\\:-translate-y-1:nth-child(2) > .mt-3.text-neutral-600.leading-relaxed"]'[39m         │ [32m'<p class="mt-3 text-sm leading-relaxed text-neutral-600">'[39m                                                                                                                                                │ [32m'[1]'[39m      │
+│ 13      │ [32m'[".focus-within\\\\:ring-4.focus-within\\\\:ring-primary-500\\\\/50.hover\\\\:-translate-y-1:nth-child(3) > .text-neutral-600.leading-relaxed:nth-child(3)"]'[39m │ [32m'<p class="text-sm leading-relaxed text-neutral-600">At BAPI, we strive to be leaders in our industry by providing innovative, high quality products and services designed with you in mind.</p>'[39m          │ [32m'[1]'[39m      │
+│ 14      │ [32m'[".focus-within\\\\:ring-4.focus-within\\\\:ring-primary-500\\\\/50.hover\\\\:-translate-y-1:nth-child(3) > .mt-3.text-neutral-600.leading-relaxed"]'[39m         │ [32m'<p class="mt-3 text-sm leading-relaxed text-neutral-600">'[39m                                                                                                                                                │ [32m'[1]'[39m      │
+│ 15      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(1) > .gap-3.mb-4.items-start > .flex-1 > .gap-1.text-neutral-600.text-sm > span"]'[39m                            │ [32m'<span>Gays Mills<!-- -->,<!-- --> <!-- -->USA</span>'[39m                                                                                                                                                     │ [32m'[1]'[39m      │
+│ 16      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(1) > .mb-3.text-neutral-600"]'[39m                                                                                │ [32m'<p class="mb-3 text-sm text-neutral-600">Corporate headquarters and primary manufacturing facility</p>'[39m                                                                                                   │ [32m'[1]'[39m      │
+│ 17      │ [32m'[".gap-2.text-xs.items-center > .ml-auto.text-neutral-500"]'[39m                                                                                                  │ [32m'<span class="ml-auto text-neutral-500">Est. 1993</span>'[39m                                                                                                                                                  │ [32m'[1]'[39m      │
+│ 18      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(2) > .gap-3.mb-4.items-start > .flex-1 > .gap-1.text-neutral-600.text-sm > span"]'[39m                            │ [32m'<span>Nowa Wola<!-- -->,<!-- --> <!-- -->Poland</span>'[39m                                                                                                                                                   │ [32m'[1]'[39m      │
+│ 19      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(2) > .mb-3.text-neutral-600"]'[39m                                                                                │ [32m'<p class="mb-3 text-sm text-neutral-600">European production facility, office, and customer service center</p>'[39m                                                                                           │ [32m'[1]'[39m      │
+│ 20      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(3) > .gap-3.mb-4.items-start > .flex-1 > .gap-1.text-neutral-600.text-sm > span"]'[39m                            │ [32m'<span>Da Nang<!-- -->,<!-- --> <!-- -->Vietnam</span>'[39m                                                                                                                                                    │ [32m'[1]'[39m      │
+│ 21      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(3) > .mb-3.text-neutral-600"]'[39m                                                                                │ [32m'<p class="mb-3 text-sm text-neutral-600">New manufacturing facility and office serving Asian markets</p>'[39m                                                                                                 │ [32m'[1]'[39m      │
+│ 22      │ [32m'[".bg-accent-50"]'[39m                                                                                                                                            │ [32m'<span class="rounded bg-accent-50 px-2 py-1 font-medium text-accent-700">Opening Soon</span>'[39m                                                                                                             │ [32m'[1]'[39m      │
+│ 23      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(4) > .gap-3.mb-4.items-start > .flex-1 > .gap-1.text-neutral-600.text-sm > span"]'[39m                            │ [32m'<span>Aldershot<!-- -->,<!-- --> <!-- -->United Kingdom</span>'[39m                                                                                                                                           │ [32m'[1]'[39m      │
+│ 24      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(4) > .mb-3.text-neutral-600"]'[39m                                                                                │ [32m'<p class="mb-3 text-sm text-neutral-600">European sales and customer support hub</p>'[39m                                                                                                                     │ [32m'[1]'[39m      │
+│ 25      │ [32m'[".mt-2.text-lg.text-neutral-600"]'[39m                                                                                                                           │ [32m'<p class="mt-2 text-lg text-neutral-600">Latest updates, product announcements, and industry insights</p>'[39m                                                                                                │ [32m'[1]'[39m      │
+│ 26      │ [32m'["time[datetime=\\"2025-10-13T09:25:30\\"]"]'[39m                                                                                                                 │ [32m'<time datetime="2025-10-13T09:25:30">Oct 13, 2025</time>'[39m                                                                                                                                                 │ [32m'[1]'[39m      │
+│ 27      │ [32m'["article:nth-child(1) > .p-6 > .line-clamp-3.mb-4.text-neutral-600 > p"]'[39m                                                                                    │ [32m'<p>'[39m                                                                                                                                                                                                      │ [32m'[1]'[39m      │
+│ 28      │ [32m'["time[datetime=\\"2025-09-18T11:47:31\\"]"]'[39m                                                                                                                 │ [32m'<time datetime="2025-09-18T11:47:31">Sep 18, 2025</time>'[39m                                                                                                                                                 │ [32m'[1]'[39m      │
+│ 29      │ [32m'["article:nth-child(2) > .p-6 > .line-clamp-3.mb-4.text-neutral-600 > p"]'[39m                                                                                    │ [32m'<p>'[39m                                                                                                                                                                                                      │ [32m'[1]'[39m      │
+│ 30      │ [32m'["time[datetime=\\"2025-08-27T12:11:29\\"]"]'[39m                                                                                                                 │ [32m'<time datetime="2025-08-27T12:11:29">Aug 27, 2025</time>'[39m                                                                                                                                                 │ [32m'[1]'[39m      │
+│ 31      │ [32m'["article:nth-child(3) > .p-6 > .line-clamp-3.mb-4.text-neutral-600 > p"]'[39m                                                                                    │ [32m'<p>'[39m                                                                                                                                                                                                      │ [32m'[1]'[39m      │
+│ 32      │ [32m'[".max-w-sm.text-neutral-600.leading-relaxed"]'[39m                                                                                                               │ [32m'<p class="max-w-sm text-sm leading-relaxed text-neutral-600">Trusted by engineers worldwide for mission-critical facilities since 1993</p>'[39m                                                               │ [32m'[1]'[39m      │
+│ 33      │ [32m'[".mt-2.font-medium.text-neutral-600"]'[39m                                                                                                                       │ [32m'<p class="mt-2 text-xs font-medium text-neutral-600">Recognized for innovation and excellence in building automation technology</p>'[39m                                                                      │ [32m'[1]'[39m      │
+│ 34      │ [32m'[".sm\\\\:items-center.pt-6.sm\\\\:flex-row > .space-y-1\\\\.5.font-medium > p:nth-child(1)"]'[39m                                                                │ [32m'<p>© 2026 Building Automation Products, Inc. All rights reserved.</p>'[39m                                                                                                                                    │ [32m'[1]'[39m      │
+│ 35      │ [32m'[".space-y-1\\\\.5.font-medium > .text-neutral-500"]'[39m                                                                                                         │ [32m'<p class="text-neutral-500">BAPI® is a registered trademark of Building Automation Products, Inc.</p>'[39m                                                                                                    │ [32m'[1]'[39m      │
+│ 36      │ [32m'["a[href$=\\"privacy\\"]"]'[39m                                                                                                                                   │ [32m'<a class="font-semibold transition-all duration-300 hover:translate-x-1 hover:text-primary-600" href="/en/privacy">Privacy Policy</a>'[39m                                                                    │ [32m'[1]'[39m      │
+│ 37      │ [32m'["a[href$=\\"terms\\"]"]'[39m                                                                                                                                     │ [32m'<a class="font-semibold transition-all duration-300 hover:translate-x-1 hover:text-primary-600" href="/en/terms">Terms of Use</a>'[39m                                                                        │ [32m'[1]'[39m      │
+│ 38      │ [32m'[".pb-12 > nav:nth-child(2)"]'[39m                                                                                                                                │ [32m'<nav class="group flex flex-col gap-3">'[39m                                                                                                                                                                  │ [32m'[2]'[39m      │
+└─────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────┘
+  ✓  42 [chromium] › tests/e2e/homepage.spec.ts:162:7 › Homepage › should have proper meta tags for SEO (6.5s)
+  ✘  41 [chromium] › tests/e2e/homepage.spec.ts:149:7 › Homepage › should pass accessibility checks (7.7s)
+  ✘  38 [chromium] › tests/e2e/homepage.spec.ts:109:7 › Homepage › should show cart button (13.9s)
+  ✓  43 [chromium] › tests/e2e/language-selector.spec.ts:24:7 › Language Selector › should display language selector with current language (8.0s)
+  ✘  29 [chromium] › tests/e2e/cart-checkout.spec.ts:268:7 › Checkout Process › should display order summary (31.2s)
+  ✘  30 [chromium] › tests/e2e/cart-checkout.spec.ts:284:7 › Checkout Process › should be responsive on mobile (31.5s)
+  ✘  31 [chromium] › tests/e2e/cart-checkout.spec.ts:297:7 › Checkout Process › should pass accessibility checks (31.3s)
+  ✘  40 [chromium] › tests/e2e/homepage.spec.ts:128:7 › Homepage › should be responsive on mobile (17.0s)
+  ✓  45 [chromium] › tests/e2e/language-selector.spec.ts:36:7 › Language Selector › should open language dropdown on click (10.4s)
+[2m[WebServer] [22mFailed to proxy https://o4510828355518464.ingest.us.sentry.io/api/4510828357091328/envelope/?o=4510828355518464&p=4510828357091328&r=us&hsts=0 AggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mAggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+  ✘  52 [chromium] › tests/e2e/products.spec.ts:24:9 › Product Pages › Product Categories Landing › should display product categories (9.7s)
+  ✘  46 [chromium] › tests/e2e/language-selector.spec.ts:50:7 › Language Selector › should change language and show toast notification (19.4s)
+  ✓  47 [chromium] › tests/e2e/language-selector.spec.ts:79:7 › Language Selector › should translate page content when language changes (20.6s)
+[2m[WebServer] [22mFailed to proxy https://o4510828355518464.ingest.us.sentry.io/api/4510828357091328/envelope/?o=4510828355518464&p=4510828357091328&r=us&hsts=0 AggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+[2m[WebServer] [22mAggregateError: 
+[2m[WebServer] [22m    at [3mignore-listed frames[23m {
+[2m[WebServer] [22m  code: [32m'ETIMEDOUT'[39m
+[2m[WebServer] [22m}
+  ✘  44 [chromium] › tests/e2e/homepage.spec.ts:176:7 › Homepage › should load quickly (performance) (25.3s)
+┌─────────┬─────────────────────┬────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬───────┐
+│ (index) │ id                  │ impact     │ description                                                                                                      │ nodes │
+├─────────┼─────────────────────┼────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────┤
+│ 0       │ [32m'aria-allowed-attr'[39m │ [32m'critical'[39m │ [32m"Ensure an element's role supports its ARIA attributes"[39m                                                          │ [33m1[39m     │
+│ 1       │ [32m'color-contrast'[39m    │ [32m'serious'[39m  │ [32m'Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds'[39m │ [33m37[39m    │
+│ 2       │ [32m'landmark-unique'[39m   │ [32m'moderate'[39m │ [32m'Ensure landmarks are unique'[39m                                                                                    │ [33m1[39m     │
+└─────────┴─────────────────────┴────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────┘
+┌─────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬────────────┐
+│ (index) │ target                                                                                                                                                         │ html                                                                                                                                                                                                       │ violations │
+├─────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ 0       │ [32m'["input[aria-controls=\\"_R_qb9l5rlb_\\"]"]'[39m                                                                                                                  │ [32m'<input type="search" placeholder="Search products..." class="w-full rounded-lg bo..." aria-label="Search products" aria-expanded="false" aria-controls="_R_qb9l5rlb_" aria-autocomplete="list" value="">'[39m │ [32m'[0]'[39m      │
+│ 1       │ [32m'[".ml-auto.text-neutral-500.gap-1\\\\.5 > .text-\\\\[10px\\\\].uppercase"]'[39m                                                                                   │ [32m'<span class="text-[10px] uppercase">USD</span>'[39m                                                                                                                                                           │ [32m'[1]'[39m      │
+│ 2       │ [32m'[".max-w-7xl.sm\\\\:px-6.lg\\\\:px-8 > .mb-12.text-center > .max-w-2xl.mx-auto.text-lg"]'[39m                                                                     │ [32m'<p class="mx-auto max-w-2xl text-lg text-neutral-600">Browse by sensor type to find the perfect solution for your building automation project</p>'[39m                                                        │ [32m'[1]'[39m      │
+│ 3       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(1) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">High-accuracy temperature measurement</p>'[39m                                                                                                       │ [32m'[1]'[39m      │
+│ 4       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(2) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Precise relative humidity monitoring</p>'[39m                                                                                                        │ [32m'[1]'[39m      │
+│ 5       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(3) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Differential &amp; static pressure</p>'[39m                                                                                                          │ [32m'[1]'[39m      │
+│ 6       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(4) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">CO₂, VOC, and particulate monitoring</p>'[39m                                                                                                        │ [32m'[1]'[39m      │
+│ 7       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(5) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">WAM™ cloud-connected monitoring</p>'[39m                                                                                                             │ [32m'[1]'[39m      │
+│ 8       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(6) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Mounting hardware &amp; enclosures</p>'[39m                                                                                                          │ [32m'[1]'[39m      │
+│ 9       │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(7) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Calibration &amp; verification tools</p>'[39m                                                                                                        │ [32m'[1]'[39m      │
+│ 10      │ [32m'[".focus\\\\:ring-primary-500\\\\/50.focus\\\\:border-primary-500.focus\\\\:ring-4:nth-child(8) > .p-6 > .mb-4.text-neutral-600.leading-relaxed"]'[39m            │ [32m'<p class="mb-4 text-sm leading-relaxed text-neutral-600">Modular I/O and control</p>'[39m                                                                                                                     │ [32m'[1]'[39m      │
+│ 11      │ [32m'[".focus-within\\\\:ring-4.focus-within\\\\:ring-primary-500\\\\/50.hover\\\\:-translate-y-1:nth-child(2) > .text-neutral-600.leading-relaxed:nth-child(3)"]'[39m │ [32m'<p class="text-sm leading-relaxed text-neutral-600">Most sensor manufacturers will replace their defective products, but only BAPI has the confidence to go beyond the industry standard.</p>'[39m            │ [32m'[1]'[39m      │
+│ 12      │ [32m'[".focus-within\\\\:ring-4.focus-within\\\\:ring-primary-500\\\\/50.hover\\\\:-translate-y-1:nth-child(2) > .mt-3.text-neutral-600.leading-relaxed"]'[39m         │ [32m'<p class="mt-3 text-sm leading-relaxed text-neutral-600">'[39m                                                                                                                                                │ [32m'[1]'[39m      │
+│ 13      │ [32m'[".focus-within\\\\:ring-4.focus-within\\\\:ring-primary-500\\\\/50.hover\\\\:-translate-y-1:nth-child(3) > .text-neutral-600.leading-relaxed:nth-child(3)"]'[39m │ [32m'<p class="text-sm leading-relaxed text-neutral-600">At BAPI, we strive to be leaders in our industry by providing innovative, high quality products and services designed with you in mind.</p>'[39m          │ [32m'[1]'[39m      │
+│ 14      │ [32m'[".focus-within\\\\:ring-4.focus-within\\\\:ring-primary-500\\\\/50.hover\\\\:-translate-y-1:nth-child(3) > .mt-3.text-neutral-600.leading-relaxed"]'[39m         │ [32m'<p class="mt-3 text-sm leading-relaxed text-neutral-600">'[39m                                                                                                                                                │ [32m'[1]'[39m      │
+│ 15      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(1) > .gap-3.mb-4.items-start > .flex-1 > .gap-1.text-neutral-600.text-sm > span"]'[39m                            │ [32m'<span>Gays Mills<!-- -->,<!-- --> <!-- -->USA</span>'[39m                                                                                                                                                     │ [32m'[1]'[39m      │
+│ 16      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(1) > .mb-3.text-neutral-600"]'[39m                                                                                │ [32m'<p class="mb-3 text-sm text-neutral-600">Corporate headquarters and primary manufacturing facility</p>'[39m                                                                                                   │ [32m'[1]'[39m      │
+│ 17      │ [32m'[".gap-2.text-xs.items-center > .ml-auto.text-neutral-500"]'[39m                                                                                                  │ [32m'<span class="ml-auto text-neutral-500">Est. 1993</span>'[39m                                                                                                                                                  │ [32m'[1]'[39m      │
+│ 18      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(2) > .gap-3.mb-4.items-start > .flex-1 > .gap-1.text-neutral-600.text-sm > span"]'[39m                            │ [32m'<span>Nowa Wola<!-- -->,<!-- --> <!-- -->Poland</span>'[39m                                                                                                                                                   │ [32m'[1]'[39m      │
+│ 19      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(2) > .mb-3.text-neutral-600"]'[39m                                                                                │ [32m'<p class="mb-3 text-sm text-neutral-600">European production facility, office, and customer service center</p>'[39m                                                                                           │ [32m'[1]'[39m      │
+│ 20      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(3) > .gap-3.mb-4.items-start > .flex-1 > .gap-1.text-neutral-600.text-sm > span"]'[39m                            │ [32m'<span>Da Nang<!-- -->,<!-- --> <!-- -->Vietnam</span>'[39m                                                                                                                                                    │ [32m'[1]'[39m      │
+│ 21      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(3) > .mb-3.text-neutral-600"]'[39m                                                                                │ [32m'<p class="mb-3 text-sm text-neutral-600">New manufacturing facility and office serving Asian markets</p>'[39m                                                                                                 │ [32m'[1]'[39m      │
+│ 22      │ [32m'[".bg-accent-50"]'[39m                                                                                                                                            │ [32m'<span class="rounded bg-accent-50 px-2 py-1 font-medium text-accent-700">Opening Soon</span>'[39m                                                                                                             │ [32m'[1]'[39m      │
+│ 23      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(4) > .gap-3.mb-4.items-start > .flex-1 > .gap-1.text-neutral-600.text-sm > span"]'[39m                            │ [32m'<span>Aldershot<!-- -->,<!-- --> <!-- -->United Kingdom</span>'[39m                                                                                                                                           │ [32m'[1]'[39m      │
+│ 24      │ [32m'[".hover\\\\:shadow-lg.rounded-xl.p-6:nth-child(4) > .mb-3.text-neutral-600"]'[39m                                                                                │ [32m'<p class="mb-3 text-sm text-neutral-600">European sales and customer support hub</p>'[39m                                                                                                                     │ [32m'[1]'[39m      │
+│ 25      │ [32m'[".mt-2.text-lg.text-neutral-600"]'[39m                                                                                                                           │ [32m'<p class="mt-2 text-lg text-neutral-600">Latest updates, product announcements, and industry insights</p>'[39m                                                                                                │ [32m'[1]'[39m      │
+│ 26      │ [32m'["time[datetime=\\"2025-10-13T09:25:30\\"]"]'[39m                                                                                                                 │ [32m'<time datetime="2025-10-13T09:25:30">Oct 13, 2025</time>'[39m                                                                                                                                                 │ [32m'[1]'[39m      │
+│ 27      │ [32m'["article:nth-child(1) > .p-6 > .line-clamp-3.mb-4.text-neutral-600 > p"]'[39m                                                                                    │ [32m'<p>'[39m                                                                                                                                                                                                      │ [32m'[1]'[39m      │
+│ 28      │ [32m'["time[datetime=\\"2025-09-18T11:47:31\\"]"]'[39m                                                                                                                 │ [32m'<time datetime="2025-09-18T11:47:31">Sep 18, 2025</time>'[39m                                                                                                                                                 │ [32m'[1]'[39m      │
+│ 29      │ [32m'["article:nth-child(2) > .p-6 > .line-clamp-3.mb-4.text-neutral-600 > p"]'[39m                                                                                    │ [32m'<p>'[39m                                                                                                                                                                                                      │ [32m'[1]'[39m      │
+│ 30      │ [32m'["time[datetime=\\"2025-08-27T12:11:29\\"]"]'[39m                                                                                                                 │ [32m'<time datetime="2025-08-27T12:11:29">Aug 27, 2025</time>'[39m                                                                                                                                                 │ [32m'[1]'[39m      │
+│ 31      │ [32m'["article:nth-child(3) > .p-6 > .line-clamp-3.mb-4.text-neutral-600 > p"]'[39m                                                                                    │ [32m'<p>'[39m                                                                                                                                                                                                      │ [32m'[1]'[39m      │
+│ 32      │ [32m'[".max-w-sm.text-neutral-600.leading-relaxed"]'[39m                                                                                                               │ [32m'<p class="max-w-sm text-sm leading-relaxed text-neutral-600">Trusted by engineers worldwide for mission-critical facilities since 1993</p>'[39m                                                               │ [32m'[1]'[39m      │
+│ 33      │ [32m'[".mt-2.font-medium.text-neutral-600"]'[39m                                                                                                                       │ [32m'<p class="mt-2 text-xs font-medium text-neutral-600">Recognized for innovation and excellence in building automation technology</p>'[39m                                                                      │ [32m'[1]'[39m      │
+│ 34      │ [32m'[".sm\\\\:items-center.pt-6.sm\\\\:flex-row > .space-y-1\\\\.5.font-medium > p:nth-child(1)"]'[39m                                                                │ [32m'<p>© 2026 Building Automation Products, Inc. All rights reserved.</p>'[39m                                                                                                                                    │ [32m'[1]'[39m      │
+│ 35      │ [32m'[".space-y-1\\\\.5.font-medium > .text-neutral-500"]'[39m                                                                                                         │ [32m'<p class="text-neutral-500">BAPI® is a registered trademark of Building Automation Products, Inc.</p>'[39m                                                                                                    │ [32m'[1]'[39m      │
+│ 36      │ [32m'["a[href$=\\"privacy\\"]"]'[39m                                                                                                                                   │ [32m'<a class="font-semibold transition-all duration-300 hover:translate-x-1 hover:text-primary-600" href="/en/privacy">Privacy Policy</a>'[39m                                                                    │ [32m'[1]'[39m      │
+│ 37      │ [32m'["a[href$=\\"terms\\"]"]'[39m                                                                                                                                     │ [32m'<a class="font-semibold transition-all duration-300 hover:translate-x-1 hover:text-primary-600" href="/en/terms">Terms of Use</a>'[39m                                                                        │ [32m'[1]'[39m      │
+│ 38      │ [32m'[".pb-12 > nav:nth-child(2)"]'[39m                                                                                                                                │ [32m'<nav class="group flex flex-col gap-3">'[39m                                                                                                                                                                  │ [32m'[2]'[39m      │
+└─────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────┘
+  ✘  49 [chromium] › tests/e2e/language-selector.spec.ts:97:7 › Language Selector › should not show toast when selecting same language (20.4s)
+  ✘  51 [chromium] › tests/e2e/language-selector.spec.ts:161:7 › Language Selector › should pass accessibility checks (17.3s)
+┌─────────┬─────────────────────┬────────────┬─────────────────────────────────────────────────────┬───────┐
+│ (index) │ id                  │ impact     │ description                                         │ nodes │
+├─────────┼─────────────────────┼────────────┼─────────────────────────────────────────────────────┼───────┤
+│ 0       │ [32m'html-has-lang'[39m     │ [32m'serious'[39m  │ [32m'Ensure every HTML document has a lang attribute'[39m   │ [33m1[39m     │
+│ 1       │ [32m'landmark-one-main'[39m │ [32m'moderate'[39m │ [32m'Ensure the document has a main landmark'[39m           │ [33m1[39m     │
+│ 2       │ [32m'region'[39m            │ [32m'moderate'[39m │ [32m'Ensure all page content is contained by landmarks'[39m │ [33m2[39m     │
+└─────────┴─────────────────────┴────────────┴─────────────────────────────────────────────────────┴───────┘
+┌─────────┬─────────────────────────────────────┬────────────┐
+│ (index) │ target                              │ violations │
+├─────────┼─────────────────────────────────────┼────────────┤
+│ 0       │ [32m'["#__next_error__"]'[39m               │ [32m'[0,1]'[39m    │
+│ 1       │ [32m'["h1"]'[39m                            │ [32m'[2]'[39m      │
+│ 2       │ [32m'["div:nth-child(15) > div > div"]'[39m │ [32m'[2]'[39m      │
+└─────────┴─────────────────────────────────────┴────────────┘
+  ✘  56 [chromium] › tests/e2e/products.spec.ts:104:9 › Product Pages › Product Categories Landing › should pass accessibility checks (5.0s)
+  ✓  48 [chromium] › tests/e2e/language-selector.spec.ts:116:7 › Language Selector › should work across multiple language switches (29.2s)
+  ✘  53 [chromium] › tests/e2e/language-selector.spec.ts:185:7 › Language Selector › should work on mobile viewport (26.1s)
+  ✘  50 [chromium] › tests/e2e/language-selector.spec.ts:137:7 › Language Selector › should be keyboard accessible (30.4s)
+  ✘  54 [chromium] › tests/e2e/products.spec.ts:57:9 › Product Pages › Product Categories Landing › should navigate from category to product detail (31.3s)
+  ✘  55 [chromium] › tests/e2e/products.spec.ts:39:9 › Product Pages › Product Categories Landing › should navigate from landing to category page (31.5s)
+  ✘  57 [chromium] › tests/e2e/products.spec.ts:156:9 › Product Pages › Product Detail Page › should display product information (31.3s)
+  ✘  58 [chromium] › tests/e2e/products.spec.ts:174:9 › Product Pages › Product Detail Page › should display breadcrumb navigation (31.4s)
+  ✘  59 [chromium] › tests/e2e/products.spec.ts:189:9 › Product Pages › Product Detail Page › should show product SKU or part number (31.4s)
+  ✘  60 [chromium] › tests/e2e/products.spec.ts:198:9 › Product Pages › Product Detail Page › should add product to cart (31.5s)
+  ✘  61 [chromium] › tests/e2e/products.spec.ts:222:9 › Product Pages › Product Detail Page › should display product images gallery (31.5s)
+  ✘  62 [chromium] › tests/e2e/products.spec.ts:235:9 › Product Pages › Product Detail Page › should show product description (31.6s)
+  ✘  63 [chromium] › tests/e2e/products.spec.ts:244:9 › Product Pages › Product Detail Page › should display related products (31.6s)
+  ✘  64 [chromium] › tests/e2e/products.spec.ts:256:9 › Product Pages › Product Detail Page › should be responsive on mobile (31.3s)
+  ✘  65 [chromium] › tests/e2e/products.spec.ts:273:9 › Product Pages › Product Detail Page › should pass accessibility checks (31.4s)
+  ✘  66 [chromium] › tests/e2e/products.spec.ts:280:9 › Product Pages › Product Detail Page › should handle quantity selection (31.5s)
+  ✘  67 [chromium] › tests/e2e/products.spec.ts:302:9 › Product Pages › Product Detail Page › should display product specifications (31.3s)
+  ✘  68 [chromium] › tests/e2e/products.spec.ts:318:9 › Product Pages › Product Search › should search for products (30.3s)
+  ✘  69 [chromium] › tests/e2e/products.spec.ts:338:9 › Product Pages › Product Search › should show no results message for invalid search (30.3s)
+
+
+  1) [chromium] › tests/e2e/authentication.spec.ts:24:9 › Authentication › Sign In › should display sign in page 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: /sign in|log in/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: /sign in|log in/i })[22m
+
+
+      25 |       // Sign in heading should be visible
+      26 |       const heading = page.getByRole('heading', { name: /sign in|log in/i });
+    > 27 |       await expect(heading).toBeVisible();
+         |                             ^
+      28 |       
+      29 |       // Email input should be visible
+      30 |       const emailInput = page.getByLabel(/email/i);
+        at /home/ateece/bapi-headless/web/tests/e2e/authentication.spec.ts:27:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-1b17b-should-display-sign-in-page-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-1b17b-should-display-sign-in-page-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authentication-Authenticat-1b17b-should-display-sign-in-page-chromium/error-context.md
+
+  2) [chromium] › tests/e2e/authentication.spec.ts:42:9 › Authentication › Sign In › should validate empty form submission 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for getByRole('button', { name: /sign in|log in|submit/i })[22m
+
+
+      43 |       // Click submit without filling form
+      44 |       const submitButton = page.getByRole('button', { name: /sign in|log in|submit/i });
+    > 45 |       await submitButton.click();
+         |                          ^
+      46 |       
+      47 |       // Wait for validation
+      48 |       await page.waitForTimeout(500);
+        at /home/ateece/bapi-headless/web/tests/e2e/authentication.spec.ts:45:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-eae79-idate-empty-form-submission-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-eae79-idate-empty-form-submission-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authentication-Authenticat-eae79-idate-empty-form-submission-chromium/error-context.md
+
+  3) [chromium] › tests/e2e/authentication.spec.ts:58:9 › Authentication › Sign In › should validate invalid email format 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for getByLabel(/email/i)[22m
+
+
+      59 |       // Enter invalid email
+      60 |       const emailInput = page.getByLabel(/email/i);
+    > 61 |       await emailInput.fill('invalid-email');
+         |                        ^
+      62 |       
+      63 |       // Enter password
+      64 |       const passwordInput = page.getByLabel(/password/i);
+        at /home/ateece/bapi-headless/web/tests/e2e/authentication.spec.ts:61:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-73f4a-lidate-invalid-email-format-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-73f4a-lidate-invalid-email-format-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authentication-Authenticat-73f4a-lidate-invalid-email-format-chromium/error-context.md
+
+  4) [chromium] › tests/e2e/authentication.spec.ts:82:9 › Authentication › Sign In › should show/hide password 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveAttribute[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByLabel(/password/i)
+    Expected: [32m"password"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toHaveAttribute" with timeout 5000ms[22m
+    [2m  - waiting for getByLabel(/password/i)[22m
+
+
+      84 |       
+      85 |       // Initially should be type="password"
+    > 86 |       await expect(passwordInput).toHaveAttribute('type', 'password');
+         |                                   ^
+      87 |       
+      88 |       // Look for show/hide password toggle
+      89 |       const toggleButton = page.getByRole('button', { name: /show|hide|toggle password/i });
+        at /home/ateece/bapi-headless/web/tests/e2e/authentication.spec.ts:86:35
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-3afd5-n-should-show-hide-password-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-3afd5-n-should-show-hide-password-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authentication-Authenticat-3afd5-n-should-show-hide-password-chromium/error-context.md
+
+  5) [chromium] › tests/e2e/authentication.spec.ts:125:9 › Authentication › Sign In › should pass accessibility checks 
+
+    AssertionError: 3 accessibility violations were detected
+
+    3 !== 0
+
+        at testResultDependsOnViolations (/home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/utils.js:16:26)
+        at /home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/index.js:143:51
+        at fulfilled (/home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/index.js:28:58)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-f449e-d-pass-accessibility-checks-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-f449e-d-pass-accessibility-checks-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authentication-Authenticat-f449e-d-pass-accessibility-checks-chromium/error-context.md
+
+  6) [chromium] › tests/e2e/authentication.spec.ts:132:9 › Authentication › Sign In › should be responsive on mobile 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: /sign in|log in/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: /sign in|log in/i })[22m
+
+
+      137 |       // Form should be visible on mobile
+      138 |       const heading = page.getByRole('heading', { name: /sign in|log in/i });
+    > 139 |       await expect(heading).toBeVisible();
+          |                             ^
+      140 |       
+      141 |       const emailInput = page.getByLabel(/email/i);
+      142 |       await expect(emailInput).toBeVisible();
+        at /home/ateece/bapi-headless/web/tests/e2e/authentication.spec.ts:139:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-7e7eb-uld-be-responsive-on-mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-7e7eb-uld-be-responsive-on-mobile-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authentication-Authenticat-7e7eb-uld-be-responsive-on-mobile-chromium/error-context.md
+
+  7) [chromium] › tests/e2e/authentication.spec.ts:203:9 › Authentication › Account Pages (Authenticated) › should redirect to sign-in when accessing protected routes 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoMatch[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected pattern: [32m/sign-in|login|auth/[39m
+    Received string:  [31m"http://localhost:3000/account"[39m
+
+      211 |       
+      212 |       // Should be on sign-in page or show auth prompt
+    > 213 |       expect(currentUrl).toMatch(/sign-in|login|auth/);
+          |                          ^
+      214 |     });
+      215 |
+      216 |     test('should access account page when authenticated', async ({ page }) => {
+        at /home/ateece/bapi-headless/web/tests/e2e/authentication.spec.ts:213:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-39281--accessing-protected-routes-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-39281--accessing-protected-routes-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authentication-Authenticat-39281--accessing-protected-routes-chromium/error-context.md
+
+  8) [chromium] › tests/e2e/authentication.spec.ts:234:9 › Authentication › Password Reset › should display password reset page 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: /forgot password|reset password/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: /forgot password|reset password/i })[22m
+
+
+      239 |       
+      240 |       const heading = page.getByRole('heading', { name: /forgot password|reset password/i });
+    > 241 |       await expect(heading).toBeVisible();
+          |                             ^
+      242 |       
+      243 |       // Email input should be visible
+      244 |       const emailInput = page.getByLabel(/email/i);
+        at /home/ateece/bapi-headless/web/tests/e2e/authentication.spec.ts:241:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-fbe62-display-password-reset-page-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/authentication-Authenticat-fbe62-display-password-reset-page-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/authentication-Authenticat-fbe62-display-password-reset-page-chromium/error-context.md
+
+  9) [chromium] › tests/e2e/cart-checkout.spec.ts:27:7 › Shopping Cart › should start with empty cart 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByRole('button', { name: /cart/i }).first()
+    Expected substring: [32m"0"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('button', { name: /cart/i }).first()[22m
+
+
+      28 |     // Cart button should show 0 items
+      29 |     const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    > 30 |     await expect(cartButton).toContainText('0');
+         |                              ^
+      31 |   });
+      32 |
+      33 |   test('should add item to cart from product page', async ({ page }) => {
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:30:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-start-with-empty-cart-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-start-with-empty-cart-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Shopping-Cart-should-start-with-empty-cart-chromium/error-context.md
+
+  10) [chromium] › tests/e2e/cart-checkout.spec.ts:33:7 › Shopping Cart › should add item to cart from product page 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for getByRole('link').filter({ has: locator('img[alt*="product"]') }).first()[22m
+
+
+      38 |     // Click first product
+      39 |     const firstProduct = page.getByRole('link').filter({ has: page.locator('img[alt*="product"]') }).first();
+    > 40 |     await firstProduct.click();
+         |                        ^
+      41 |     await page.waitForURL(/\/products\/.+/);
+      42 |     await page.waitForLoadState('networkidle');
+      43 |     
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:40:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Car-27a96-m-to-cart-from-product-page-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Car-27a96-m-to-cart-from-product-page-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Shopping-Car-27a96-m-to-cart-from-product-page-chromium/error-context.md
+
+  11) [chromium] › tests/e2e/cart-checkout.spec.ts:60:7 › Shopping Cart › should open cart drawer/modal 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:62:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-open-cart-drawer-modal-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-open-cart-drawer-modal-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Shopping-Cart-should-open-cart-drawer-modal-chromium/error-context.md
+
+  12) [chromium] › tests/e2e/cart-checkout.spec.ts:76:7 › Shopping Cart › should display cart items with correct information 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:78:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Car-38c1a-ms-with-correct-information-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Car-38c1a-ms-with-correct-information-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Shopping-Car-38c1a-ms-with-correct-information-chromium/error-context.md
+
+  13) [chromium] › tests/e2e/cart-checkout.spec.ts:94:7 › Shopping Cart › should update item quantity 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:96:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-update-item-quantity-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-update-item-quantity-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Shopping-Cart-should-update-item-quantity-chromium/error-context.md
+
+  14) [chromium] › tests/e2e/cart-checkout.spec.ts:117:7 › Shopping Cart › should remove item from cart 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:119:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-remove-item-from-cart-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-remove-item-from-cart-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Shopping-Cart-should-remove-item-from-cart-chromium/error-context.md
+
+  15) [chromium] › tests/e2e/cart-checkout.spec.ts:142:7 › Shopping Cart › should persist cart across page navigation 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:144:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Car-242f3-cart-across-page-navigation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Car-242f3-cart-across-page-navigation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Shopping-Car-242f3-cart-across-page-navigation-chromium/error-context.md
+
+  16) [chromium] › tests/e2e/cart-checkout.spec.ts:155:7 › Shopping Cart › should calculate cart totals correctly 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:157:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Car-64cd5-ulate-cart-totals-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Car-64cd5-ulate-cart-totals-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Shopping-Car-64cd5-ulate-cart-totals-correctly-chromium/error-context.md
+
+  17) [chromium] › tests/e2e/cart-checkout.spec.ts:183:7 › Shopping Cart › should pass accessibility checks 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:184:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-pass-accessibility-checks-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Shopping-Cart-should-pass-accessibility-checks-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Shopping-Cart-should-pass-accessibility-checks-chromium/error-context.md
+
+  18) [chromium] › tests/e2e/cart-checkout.spec.ts:208:7 › Checkout Process › should navigate to checkout from cart 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      196 |
+      197 | test.describe('Checkout Process', () => {
+    > 198 |   test.beforeEach(async ({ page }) => {
+          |        ^
+      199 |     // Start fresh
+      200 |     await page.goto('/');
+      201 |     await page.evaluate(() => localStorage.clear());
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:198:8
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:205:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-e3444-igate-to-checkout-from-cart-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-e3444-igate-to-checkout-from-cart-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Checkout-Pro-e3444-igate-to-checkout-from-cart-chromium/error-context.md
+
+  19) [chromium] › tests/e2e/cart-checkout.spec.ts:233:7 › Checkout Process › should display checkout wizard/steps 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      196 |
+      197 | test.describe('Checkout Process', () => {
+    > 198 |   test.beforeEach(async ({ page }) => {
+          |        ^
+      199 |     // Start fresh
+      200 |     await page.goto('/');
+      201 |     await page.evaluate(() => localStorage.clear());
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:198:8
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:205:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-a1152-splay-checkout-wizard-steps-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-a1152-splay-checkout-wizard-steps-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Checkout-Pro-a1152-splay-checkout-wizard-steps-chromium/error-context.md
+
+  20) [chromium] › tests/e2e/cart-checkout.spec.ts:245:7 › Checkout Process › should validate shipping information 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      196 |
+      197 | test.describe('Checkout Process', () => {
+    > 198 |   test.beforeEach(async ({ page }) => {
+          |        ^
+      199 |     // Start fresh
+      200 |     await page.goto('/');
+      201 |     await page.evaluate(() => localStorage.clear());
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:198:8
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:205:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-24ab6-lidate-shipping-information-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-24ab6-lidate-shipping-information-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Checkout-Pro-24ab6-lidate-shipping-information-chromium/error-context.md
+
+  21) [chromium] › tests/e2e/cart-checkout.spec.ts:268:7 › Checkout Process › should display order summary 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      196 |
+      197 | test.describe('Checkout Process', () => {
+    > 198 |   test.beforeEach(async ({ page }) => {
+          |        ^
+      199 |     // Start fresh
+      200 |     await page.goto('/');
+      201 |     await page.evaluate(() => localStorage.clear());
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:198:8
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:205:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Process-should-display-order-summary-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Process-should-display-order-summary-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Checkout-Process-should-display-order-summary-chromium/error-context.md
+
+  22) [chromium] › tests/e2e/cart-checkout.spec.ts:284:7 › Checkout Process › should be responsive on mobile 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      196 |
+      197 | test.describe('Checkout Process', () => {
+    > 198 |   test.beforeEach(async ({ page }) => {
+          |        ^
+      199 |     // Start fresh
+      200 |     await page.goto('/');
+      201 |     await page.evaluate(() => localStorage.clear());
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:198:8
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:205:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-fdf2c-uld-be-responsive-on-mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-fdf2c-uld-be-responsive-on-mobile-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Checkout-Pro-fdf2c-uld-be-responsive-on-mobile-chromium/error-context.md
+
+  23) [chromium] › tests/e2e/cart-checkout.spec.ts:297:7 › Checkout Process › should pass accessibility checks 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      196 |
+      197 | test.describe('Checkout Process', () => {
+    > 198 |   test.beforeEach(async ({ page }) => {
+          |        ^
+      199 |     // Start fresh
+      200 |     await page.goto('/');
+      201 |     await page.evaluate(() => localStorage.clear());
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:198:8
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      319 |     .filter({ has: page.getByRole('heading', { level: 2 }) })
+      320 |     .first();
+    > 321 |   await firstCategory.click();
+          |                       ^
+      322 |   await page.waitForLoadState('networkidle');
+      323 |
+      324 |   // Step 2: From the category page, open the first actual product
+        at addProductToCart (/home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:321:23)
+        at /home/ateece/bapi-headless/web/tests/e2e/cart-checkout.spec.ts:205:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-88c2b-d-pass-accessibility-checks-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/cart-checkout-Checkout-Pro-88c2b-d-pass-accessibility-checks-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/cart-checkout-Checkout-Pro-88c2b-d-pass-accessibility-checks-chromium/error-context.md
+
+  24) [chromium] › tests/e2e/homepage.spec.ts:109:7 › Homepage › should show cart button ───────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('button', { name: /cart/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('button', { name: /cart/i })[22m
+
+
+      110 |     // Cart button should be visible in header
+      111 |     const cartButton = page.getByRole('button', { name: /cart/i });
+    > 112 |     await expect(cartButton).toBeVisible();
+          |                              ^
+      113 |     
+      114 |     // Should show item count (0 initially)
+      115 |     await expect(cartButton).toContainText('0');
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:112:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-show-cart-button-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-show-cart-button-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-Homepage-should-show-cart-button-chromium/error-context.md
+
+  25) [chromium] › tests/e2e/homepage.spec.ts:128:7 › Homepage › should be responsive on mobile ────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('navigation').filter({ hasText: /products/i })
+    Expected: visible
+    Error: strict mode violation: getByRole('navigation').filter({ hasText: /products/i }) resolved to 2 elements:
+        1) <nav id="mobile-menu" aria-label="Mobile navigation" class="animate-in slide-in-from-top-2 absolute left-0 right-0 top-full z-50 max-h-[calc(100vh-200px)] overflow-y-auto border-t border-neutral-200 bg-white shadow-lg duration-200 lg:hidden">…</nav> aka getByRole('navigation', { name: 'Mobile navigation' })
+        2) <nav class="group flex flex-col gap-3">…</nav> aka getByText('ProductsAll SensorsWireless')
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('navigation').filter({ hasText: /products/i })[22m
+
+
+      144 |     await page.waitForTimeout(500); // Animation
+      145 |     const mobileNav = page.getByRole('navigation').filter({ hasText: /products/i });
+    > 146 |     await expect(mobileNav).toBeVisible();
+          |                             ^
+      147 |   });
+      148 |
+      149 |   test('should pass accessibility checks', async ({ page }) => {
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:146:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-be-responsive-on-mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-be-responsive-on-mobile-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-Homepage-should-be-responsive-on-mobile-chromium/error-context.md
+
+  26) [chromium] › tests/e2e/homepage.spec.ts:149:7 › Homepage › should pass accessibility checks ──
+
+    AssertionError: 3 accessibility violations were detected
+
+    3 !== 0
+
+        at testResultDependsOnViolations (/home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/utils.js:16:26)
+        at /home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/index.js:143:51
+        at fulfilled (/home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/index.js:28:58)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-pass-accessibility-checks-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-pass-accessibility-checks-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-Homepage-should-pass-accessibility-checks-chromium/error-context.md
+
+  27) [chromium] › tests/e2e/homepage.spec.ts:176:7 › Homepage › should load quickly (performance) ─
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: < [32m5000[39m
+    Received:   [31m14877[39m
+
+      183 |     
+      184 |     // Page should load within 5 seconds (generous for e2e)
+    > 185 |     expect(loadTime).toBeLessThan(5000);
+          |                      ^
+      186 |   });
+      187 | });
+      188 |
+        at /home/ateece/bapi-headless/web/tests/e2e/homepage.spec.ts:185:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-load-quickly-performance--chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/homepage-Homepage-should-load-quickly-performance--chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/homepage-Homepage-should-load-quickly-performance--chromium/error-context.md
+
+  28) [chromium] › tests/e2e/language-selector.spec.ts:50:7 › Language Selector › should change language and show toast notification 
+
+    Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Expected: [32m"http://localhost:3000/e[7ms[27m"[39m
+    Received: [31m"http://localhost:3000/e[7mn[27m"[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveURL" with timeout 5000ms[22m
+    [2m    9 × unexpected value "http://localhost:3000/en"[22m
+
+
+      70 |     
+      71 |     // URL should change to Spanish locale
+    > 72 |     await expect(page).toHaveURL('/es');
+         |                        ^
+      73 |     
+      74 |     // Wait for toast to disappear (2.5s duration)
+      75 |     await page.waitForTimeout(3000);
+        at /home/ateece/bapi-headless/web/tests/e2e/language-selector.spec.ts:72:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/language-selector-Language-67c2a-and-show-toast-notification-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/language-selector-Language-67c2a-and-show-toast-notification-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/language-selector-Language-67c2a-and-show-toast-notification-chromium/error-context.md
+
+  29) [chromium] › tests/e2e/language-selector.spec.ts:97:7 › Language Selector › should not show toast when selecting same language 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).not.[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  locator('[role="alert"], [role="status"]')
+    Expected: not visible
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "not toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[role="alert"], [role="status"]')[22m
+    [2m    9 × locator resolved to <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div>[22m
+    [2m      - unexpected value "visible"[22m
+
+
+      108 |     // Toast should NOT appear (guard clause)
+      109 |     const toast = page.locator('[role="alert"], [role="status"]');
+    > 110 |     await expect(toast).not.toBeVisible();
+          |                             ^
+      111 |     
+      112 |     // URL should remain on English
+      113 |     await expect(page).toHaveURL('/en');
+        at /home/ateece/bapi-headless/web/tests/e2e/language-selector.spec.ts:110:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/language-selector-Language-67cd1-hen-selecting-same-language-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/language-selector-Language-67cd1-hen-selecting-same-language-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/language-selector-Language-67cd1-hen-selecting-same-language-chromium/error-context.md
+
+  30) [chromium] › tests/e2e/language-selector.spec.ts:137:7 › Language Selector › should be keyboard accessible 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('[role="listbox"]') to be visible[22m
+
+
+      144 |     
+      145 |     // Wait for dropdown
+    > 146 |     await page.waitForSelector('[role="listbox"]');
+          |                ^
+      147 |     
+      148 |     // Navigate with arrow keys
+      149 |     await page.keyboard.press('ArrowDown');
+        at /home/ateece/bapi-headless/web/tests/e2e/language-selector.spec.ts:146:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/language-selector-Language-beb3c-ould-be-keyboard-accessible-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/language-selector-Language-beb3c-ould-be-keyboard-accessible-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/language-selector-Language-beb3c-ould-be-keyboard-accessible-chromium/error-context.md
+
+  31) [chromium] › tests/e2e/language-selector.spec.ts:161:7 › Language Selector › should pass accessibility checks 
+
+    AssertionError: 3 accessibility violations were detected
+
+    3 !== 0
+
+        at testResultDependsOnViolations (/home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/utils.js:16:26)
+        at /home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/index.js:143:51
+        at fulfilled (/home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/index.js:28:58)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/language-selector-Language-3c277-d-pass-accessibility-checks-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/language-selector-Language-3c277-d-pass-accessibility-checks-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/language-selector-Language-3c277-d-pass-accessibility-checks-chromium/error-context.md
+
+  32) [chromium] › tests/e2e/language-selector.spec.ts:185:7 › Language Selector › should work on mobile viewport 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('button', { name: /select language/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('button', { name: /select language/i })[22m
+
+
+      193 |     // Language selector should be visible on mobile
+      194 |     const languageButton = page.getByRole('button', { name: /select language/i });
+    > 195 |     await expect(languageButton).toBeVisible();
+          |                                  ^
+      196 |     
+      197 |     // Should work the same as desktop
+      198 |     await languageButton.click();
+        at /home/ateece/bapi-headless/web/tests/e2e/language-selector.spec.ts:195:34
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/language-selector-Language-8713a-uld-work-on-mobile-viewport-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/language-selector-Language-8713a-uld-work-on-mobile-viewport-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/language-selector-Language-8713a-uld-work-on-mobile-viewport-chromium/error-context.md
+
+  33) [chromium] › tests/e2e/products.spec.ts:24:9 › Product Pages › Product Categories Landing › should display product categories 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: /products/i, level: 1 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: /products/i, level: 1 })[22m
+
+
+      25 |       // Products heading should be visible
+      26 |       const heading = page.getByRole('heading', { name: /products/i, level: 1 });
+    > 27 |       await expect(heading).toBeVisible();
+         |                             ^
+      28 |       
+      29 |       // On /products we expect category cards that link to /categories/{slug}
+      30 |       const categoryLinks = page
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:27:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-c4c27--display-product-categories-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-c4c27--display-product-categories-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-c4c27--display-product-categories-chromium/error-context.md
+
+  34) [chromium] › tests/e2e/products.spec.ts:39:9 › Product Pages › Product Categories Landing › should navigate from landing to category page 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      44 |         .first();
+      45 |
+    > 46 |       await firstCategory.click();
+         |                           ^
+      47 |       await page.waitForLoadState('networkidle');
+      48 |
+      49 |       // Should navigate away from the landing page to a category route
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:46:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-aae24-om-landing-to-category-page-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-aae24-om-landing-to-category-page-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-aae24-om-landing-to-category-page-chromium/error-context.md
+
+  35) [chromium] › tests/e2e/products.spec.ts:57:9 › Product Pages › Product Categories Landing › should navigate from category to product detail 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      61 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      62 |         .first();
+    > 63 |       await firstCategory.click();
+         |                           ^
+      64 |       await page.waitForLoadState('networkidle');
+      65 |
+      66 |       // Then click the first product link within that category
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:63:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-bcda1--category-to-product-detail-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-bcda1--category-to-product-detail-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-bcda1--category-to-product-detail-chromium/error-context.md
+
+  36) [chromium] › tests/e2e/products.spec.ts:104:9 › Product Pages › Product Categories Landing › should pass accessibility checks 
+
+    AssertionError: 3 accessibility violations were detected
+
+    3 !== 0
+
+        at testResultDependsOnViolations (/home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/utils.js:16:26)
+        at /home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/index.js:143:51
+        at fulfilled (/home/ateece/bapi-headless/web/node_modules/axe-playwright/dist/index.js:28:58)
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-8feef-d-pass-accessibility-checks-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-8feef-d-pass-accessibility-checks-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-8feef-d-pass-accessibility-checks-chromium/error-context.md
+
+  37) [chromium] › tests/e2e/products.spec.ts:156:9 › Product Pages › Product Detail Page › should display product information 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-7886d-display-product-information-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-7886d-display-product-information-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-7886d-display-product-information-chromium/error-context.md
+
+  38) [chromium] › tests/e2e/products.spec.ts:174:9 › Product Pages › Product Detail Page › should display breadcrumb navigation 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-7c877-splay-breadcrumb-navigation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-7c877-splay-breadcrumb-navigation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-7c877-splay-breadcrumb-navigation-chromium/error-context.md
+
+  39) [chromium] › tests/e2e/products.spec.ts:189:9 › Product Pages › Product Detail Page › should show product SKU or part number 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-2cd77--product-SKU-or-part-number-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-2cd77--product-SKU-or-part-number-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-2cd77--product-SKU-or-part-number-chromium/error-context.md
+
+  40) [chromium] › tests/e2e/products.spec.ts:198:9 › Product Pages › Product Detail Page › should add product to cart 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-30cb6--should-add-product-to-cart-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-30cb6--should-add-product-to-cart-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-30cb6--should-add-product-to-cart-chromium/error-context.md
+
+  41) [chromium] › tests/e2e/products.spec.ts:222:9 › Product Pages › Product Detail Page › should display product images gallery 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-59879-play-product-images-gallery-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-59879-play-product-images-gallery-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-59879-play-product-images-gallery-chromium/error-context.md
+
+  42) [chromium] › tests/e2e/products.spec.ts:235:9 › Product Pages › Product Detail Page › should show product description 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-3f3a3-ld-show-product-description-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-3f3a3-ld-show-product-description-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-3f3a3-ld-show-product-description-chromium/error-context.md
+
+  43) [chromium] › tests/e2e/products.spec.ts:244:9 › Product Pages › Product Detail Page › should display related products 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-43b3f-ld-display-related-products-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-43b3f-ld-display-related-products-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-43b3f-ld-display-related-products-chromium/error-context.md
+
+  44) [chromium] › tests/e2e/products.spec.ts:256:9 › Product Pages › Product Detail Page › should be responsive on mobile 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-46625-uld-be-responsive-on-mobile-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-46625-uld-be-responsive-on-mobile-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-46625-uld-be-responsive-on-mobile-chromium/error-context.md
+
+  45) [chromium] › tests/e2e/products.spec.ts:273:9 › Product Pages › Product Detail Page › should pass accessibility checks 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-b9540-d-pass-accessibility-checks-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-b9540-d-pass-accessibility-checks-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-b9540-d-pass-accessibility-checks-chromium/error-context.md
+
+  46) [chromium] › tests/e2e/products.spec.ts:280:9 › Product Pages › Product Detail Page › should handle quantity selection 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-87961-d-handle-quantity-selection-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-87961-d-handle-quantity-selection-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-87961-d-handle-quantity-selection-chromium/error-context.md
+
+  47) [chromium] › tests/e2e/products.spec.ts:302:9 › Product Pages › Product Detail Page › should display product specifications 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      111 |
+      112 |   test.describe('Product Detail Page', () => {
+    > 113 |     test.beforeEach(async ({ page }) => {
+          |          ^
+      114 |       // Navigate to products landing page
+      115 |       await page.goto('/products');
+      116 |       await page.waitForLoadState('networkidle');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:113:10
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('a[href*="/categories/"]').filter({ has: getByRole('heading', { level: 2 }) }).first()[22m
+
+
+      121 |         .filter({ has: page.getByRole('heading', { level: 2 }) })
+      122 |         .first();
+    > 123 |       await firstCategory.click();
+          |                           ^
+      124 |       await page.waitForLoadState('networkidle');
+      125 |       
+      126 |       // Check if category has subcategories (parent category) or products (leaf category)
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:123:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-e9341-play-product-specifications-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-e9341-play-product-specifications-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-e9341-play-product-specifications-chromium/error-context.md
+
+  48) [chromium] › tests/e2e/products.spec.ts:318:9 › Product Pages › Product Search › should search for products 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for getByRole('button', { name: /search/i })[22m
+
+
+      319 |       // Open search
+      320 |       const searchButton = page.getByRole('button', { name: /search/i });
+    > 321 |       await searchButton.click();
+          |                          ^
+      322 |       
+      323 |       // Type search query
+      324 |       const searchInput = page.getByRole('searchbox');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:321:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-648e2--should-search-for-products-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-648e2--should-search-for-products-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-648e2--should-search-for-products-chromium/error-context.md
+
+  49) [chromium] › tests/e2e/products.spec.ts:338:9 › Product Pages › Product Search › should show no results message for invalid search 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for getByRole('button', { name: /search/i })[22m
+
+
+      339 |       // Open search
+      340 |       const searchButton = page.getByRole('button', { name: /search/i });
+    > 341 |       await searchButton.click();
+          |                          ^
+      342 |       
+      343 |       // Type nonsense query
+      344 |       const searchInput = page.getByRole('searchbox');
+        at /home/ateece/bapi-headless/web/tests/e2e/products.spec.ts:341:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-78140--message-for-invalid-search-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/products-Product-Pages-Pro-78140--message-for-invalid-search-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/products-Product-Pages-Pro-78140--message-for-invalid-search-chromium/error-context.md
+
+  49 failed
+    [chromium] › tests/e2e/authentication.spec.ts:24:9 › Authentication › Sign In › should display sign in page 
+    [chromium] › tests/e2e/authentication.spec.ts:42:9 › Authentication › Sign In › should validate empty form submission 
+    [chromium] › tests/e2e/authentication.spec.ts:58:9 › Authentication › Sign In › should validate invalid email format 
+    [chromium] › tests/e2e/authentication.spec.ts:82:9 › Authentication › Sign In › should show/hide password 
+    [chromium] › tests/e2e/authentication.spec.ts:125:9 › Authentication › Sign In › should pass accessibility checks 
+    [chromium] › tests/e2e/authentication.spec.ts:132:9 › Authentication › Sign In › should be responsive on mobile 
+    [chromium] › tests/e2e/authentication.spec.ts:203:9 › Authentication › Account Pages (Authenticated) › should redirect to sign-in when accessing protected routes 
+    [chromium] › tests/e2e/authentication.spec.ts:234:9 › Authentication › Password Reset › should display password reset page 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:27:7 › Shopping Cart › should start with empty cart 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:33:7 › Shopping Cart › should add item to cart from product page 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:60:7 › Shopping Cart › should open cart drawer/modal 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:76:7 › Shopping Cart › should display cart items with correct information 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:94:7 › Shopping Cart › should update item quantity 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:117:7 › Shopping Cart › should remove item from cart 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:142:7 › Shopping Cart › should persist cart across page navigation 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:155:7 › Shopping Cart › should calculate cart totals correctly 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:183:7 › Shopping Cart › should pass accessibility checks 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:208:7 › Checkout Process › should navigate to checkout from cart 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:233:7 › Checkout Process › should display checkout wizard/steps 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:245:7 › Checkout Process › should validate shipping information 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:268:7 › Checkout Process › should display order summary 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:284:7 › Checkout Process › should be responsive on mobile 
+    [chromium] › tests/e2e/cart-checkout.spec.ts:297:7 › Checkout Process › should pass accessibility checks 
+    [chromium] › tests/e2e/homepage.spec.ts:109:7 › Homepage › should show cart button ─────────────
+    [chromium] › tests/e2e/homepage.spec.ts:128:7 › Homepage › should be responsive on mobile ──────
+    [chromium] › tests/e2e/homepage.spec.ts:149:7 › Homepage › should pass accessibility checks ────
+    [chromium] › tests/e2e/homepage.spec.ts:176:7 › Homepage › should load quickly (performance) ───
+    [chromium] › tests/e2e/language-selector.spec.ts:50:7 › Language Selector › should change language and show toast notification 
+    [chromium] › tests/e2e/language-selector.spec.ts:97:7 › Language Selector › should not show toast when selecting same language 
+    [chromium] › tests/e2e/language-selector.spec.ts:137:7 › Language Selector › should be keyboard accessible 
+    [chromium] › tests/e2e/language-selector.spec.ts:161:7 › Language Selector › should pass accessibility checks 
+    [chromium] › tests/e2e/language-selector.spec.ts:185:7 › Language Selector › should work on mobile viewport 
+    [chromium] › tests/e2e/products.spec.ts:24:9 › Product Pages › Product Categories Landing › should display product categories 
+    [chromium] › tests/e2e/products.spec.ts:39:9 › Product Pages › Product Categories Landing › should navigate from landing to category page 
+    [chromium] › tests/e2e/products.spec.ts:57:9 › Product Pages › Product Categories Landing › should navigate from category to product detail 
+    [chromium] › tests/e2e/products.spec.ts:104:9 › Product Pages › Product Categories Landing › should pass accessibility checks 
+    [chromium] › tests/e2e/products.spec.ts:156:9 › Product Pages › Product Detail Page › should display product information 
+    [chromium] › tests/e2e/products.spec.ts:174:9 › Product Pages › Product Detail Page › should display breadcrumb navigation 
+    [chromium] › tests/e2e/products.spec.ts:189:9 › Product Pages › Product Detail Page › should show product SKU or part number 
+    [chromium] › tests/e2e/products.spec.ts:198:9 › Product Pages › Product Detail Page › should add product to cart 
+    [chromium] › tests/e2e/products.spec.ts:222:9 › Product Pages › Product Detail Page › should display product images gallery 
+    [chromium] › tests/e2e/products.spec.ts:235:9 › Product Pages › Product Detail Page › should show product description 
+    [chromium] › tests/e2e/products.spec.ts:244:9 › Product Pages › Product Detail Page › should display related products 
+    [chromium] › tests/e2e/products.spec.ts:256:9 › Product Pages › Product Detail Page › should be responsive on mobile 
+    [chromium] › tests/e2e/products.spec.ts:273:9 › Product Pages › Product Detail Page › should pass accessibility checks 
+    [chromium] › tests/e2e/products.spec.ts:280:9 › Product Pages › Product Detail Page › should handle quantity selection 
+    [chromium] › tests/e2e/products.spec.ts:302:9 › Product Pages › Product Detail Page › should display product specifications 
+    [chromium] › tests/e2e/products.spec.ts:318:9 › Product Pages › Product Search › should search for products 
+    [chromium] › tests/e2e/products.spec.ts:338:9 › Product Pages › Product Search › should show no results message for invalid search 
+  2 skipped
+  18 passed (2.8m)
+
+[36m  Serving HTML report at http://localhost:46439. Press Ctrl+C to quit.[39m

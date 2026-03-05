@@ -330,7 +330,7 @@ export default function CheckoutPageClient({ locale }: CheckoutPageClientProps) 
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">{t('header.title')}</h1>
-        <p className="mt-2 text-neutral-600">
+        <p className="mt-2 text-neutral-700">
           {3 - currentStep + 1 === 1
             ? t('header.stepsRemaining', { count: 3 - currentStep + 1 })
             : t('header.stepsRemainingPlural', { count: 3 - currentStep + 1 })}

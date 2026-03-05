@@ -33,7 +33,7 @@ export default function RegionSelector() {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <div className="mb-2 text-sm font-medium uppercase tracking-wide text-neutral-600">
+      <div className="mb-2 text-sm font-medium uppercase tracking-wide text-neutral-700">
         Region
       </div>
       <button

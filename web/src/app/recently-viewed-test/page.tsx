@@ -91,7 +91,7 @@ export default function RecentlyViewedTestPage() {
           <h1 className="mb-4 text-4xl font-bold text-neutral-900">
             Recently Viewed Products - Test Page
           </h1>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             Test the recently viewed products functionality with sample data
           </p>
         </div>
@@ -101,15 +101,15 @@ export default function RecentlyViewedTestPage() {
           <h2 className="mb-4 text-xl font-bold text-neutral-900">Store Status</h2>
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <p className="text-sm text-neutral-600">Products in History</p>
+              <p className="text-sm text-neutral-700">Products in History</p>
               <p className="text-2xl font-bold text-primary-500">{count}</p>
             </div>
             <div>
-              <p className="text-sm text-neutral-600">Status</p>
+              <p className="text-sm text-neutral-700">Status</p>
               <p className="text-2xl font-bold text-neutral-900">{isEmpty ? 'Empty' : 'Active'}</p>
             </div>
             <div>
-              <p className="text-sm text-neutral-600">Max Capacity</p>
+              <p className="text-sm text-neutral-700">Max Capacity</p>
               <p className="text-2xl font-bold text-neutral-900">10</p>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function RecentlyViewedTestPage() {
           <h2 className="mb-4 text-xl font-bold text-neutral-900">Test Actions</h2>
           <div className="space-y-4">
             <div>
-              <p className="mb-2 text-sm text-neutral-600">Add Sample Products:</p>
+              <p className="mb-2 text-sm text-neutral-700">Add Sample Products:</p>
               <div className="flex flex-wrap gap-2">
                 {sampleProducts.map((product) => (
                   <button
@@ -135,7 +135,7 @@ export default function RecentlyViewedTestPage() {
             </div>
 
             <div>
-              <p className="mb-2 text-sm text-neutral-600">Bulk Actions:</p>
+              <p className="mb-2 text-sm text-neutral-700">Bulk Actions:</p>
               <div className="flex gap-2">
                 <button
                   onClick={() => sampleProducts.forEach(handleAddProduct)}
@@ -157,7 +157,7 @@ export default function RecentlyViewedTestPage() {
         {/* Exclude product test */}
         <div className="mb-8 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
           <h2 className="mb-4 text-xl font-bold text-neutral-900">Test Exclude Current Product</h2>
-          <p className="mb-4 text-neutral-600">
+          <p className="mb-4 text-neutral-700">
             Simulate viewing a product page where the current product should be excluded from the
             list:
           </p>
@@ -187,7 +187,7 @@ export default function RecentlyViewedTestPage() {
             ))}
           </div>
           {selectedProduct && (
-            <p className="text-sm text-neutral-600">
+            <p className="text-sm text-neutral-700">
               Currently excluding:{' '}
               <strong>{products.find((p) => p.id === selectedProduct)?.name}</strong>
             </p>
@@ -208,7 +208,7 @@ export default function RecentlyViewedTestPage() {
           <div className="grid gap-8 md:grid-cols-3">
             <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm md:col-span-2">
               <h2 className="mb-6 text-xl font-bold text-neutral-900">Main Content</h2>
-              <p className="text-neutral-600">This would be the main product content area.</p>
+              <p className="text-neutral-700">This would be the main product content area.</p>
             </div>
 
             <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">

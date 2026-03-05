@@ -57,7 +57,7 @@ export default async function ApplicationSubcategoryPage({
       <section className="border-b border-neutral-200 bg-gradient-to-br from-primary-50 to-white">
         <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           {/* Breadcrumbs */}
-          <nav className="mb-6 text-sm text-neutral-600">
+          <nav className="mb-6 text-sm text-neutral-700">
             {breadcrumbs.map((crumb, index) => (
               <span key={crumb.href}>
                 {index > 0 && <span className="mx-2">/</span>}
@@ -75,7 +75,7 @@ export default async function ApplicationSubcategoryPage({
           <h1 className="mb-4 text-4xl font-bold text-neutral-900 lg:text-5xl">
             {subcategory.name}
           </h1>
-          <p className="max-w-3xl text-lg text-neutral-600">{subcategory.description}</p>
+          <p className="max-w-3xl text-lg text-neutral-700">{subcategory.description}</p>
 
           {/* Application Context Badges */}
           {subcategory.filters && Object.keys(subcategory.filters).length > 0 && (
@@ -97,12 +97,12 @@ export default async function ApplicationSubcategoryPage({
       <section className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-3xl font-bold text-neutral-900">Products for {subcategory.name}</h2>
-          <div className="text-neutral-600">{products.length} products</div>
+          <div className="text-neutral-700">{products.length} products</div>
         </div>
 
         {/* WordPress Categories Info (temporary - for debugging) */}
         <div className="mb-8 rounded-lg border border-neutral-200 bg-neutral-50 p-4">
-          <p className="text-sm text-neutral-600">
+          <p className="text-sm text-neutral-700">
             <span className="font-medium">Fetching from WordPress categories:</span>{' '}
             {wpCategories.join(', ')}
           </p>
@@ -113,7 +113,7 @@ export default async function ApplicationSubcategoryPage({
 
         {products.length === 0 ? (
           <div className="py-12 text-center">
-            <p className="mb-4 text-neutral-600">No products found for this application yet.</p>
+            <p className="mb-4 text-neutral-700">No products found for this application yet.</p>
             <Link
               href={`/applications/${categorySlug}`}
               className="font-medium text-primary-600 hover:text-primary-700"
@@ -147,7 +147,7 @@ export default async function ApplicationSubcategoryPage({
                   </h3>
 
                   {product.shortDescription && (
-                    <p className="mb-3 line-clamp-2 text-sm text-neutral-600">
+                    <p className="mb-3 line-clamp-2 text-sm text-neutral-700">
                       {product.shortDescription.replace(/<[^>]*>/g, '')}
                     </p>
                   )}
@@ -201,7 +201,7 @@ export default async function ApplicationSubcategoryPage({
             Back to {category.name}
           </Link>
 
-          <Link href="/applications" className="text-neutral-600 hover:text-primary-600">
+          <Link href="/applications" className="text-neutral-700 hover:text-primary-600">
             View All Applications
           </Link>
         </div>

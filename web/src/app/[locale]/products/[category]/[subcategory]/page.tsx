@@ -212,7 +212,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
           <div className="min-w-0 flex-1">
             {/* Sort Controls */}
             <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-4">
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 {products.length} {products.length === 1 ? 'product' : 'products'}
               </p>
               <ProductSortDropdown />

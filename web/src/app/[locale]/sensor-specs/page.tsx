@@ -35,7 +35,7 @@ export default function SensorSpecsPage() {
             >
               <Thermometer className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Temperature</h3>
-              <p className="mt-1 text-sm text-neutral-600">Thermistors & RTDs</p>
+              <p className="mt-1 text-sm text-neutral-700">Thermistors & RTDs</p>
             </a>
             <a
               href="#humidity"
@@ -43,7 +43,7 @@ export default function SensorSpecsPage() {
             >
               <Droplet className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Humidity</h3>
-              <p className="mt-1 text-sm text-neutral-600">RH Sensors</p>
+              <p className="mt-1 text-sm text-neutral-700">RH Sensors</p>
             </a>
             <a
               href="#pressure"
@@ -51,7 +51,7 @@ export default function SensorSpecsPage() {
             >
               <Gauge className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Pressure</h3>
-              <p className="mt-1 text-sm text-neutral-600">Differential & Absolute</p>
+              <p className="mt-1 text-sm text-neutral-700">Differential & Absolute</p>
             </a>
             <a
               href="#air-quality"
@@ -59,7 +59,7 @@ export default function SensorSpecsPage() {
             >
               <Wind className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Air Quality</h3>
-              <p className="mt-1 text-sm text-neutral-600">CO₂, VOC, PM</p>
+              <p className="mt-1 text-sm text-neutral-700">CO₂, VOC, PM</p>
             </a>
           </div>
         </div>
@@ -108,21 +108,21 @@ export default function SensorSpecsPage() {
                 <tbody className="divide-y divide-neutral-200">
                   <tr>
                     <td className="px-6 py-4 text-neutral-900">Capacitive RH Sensor</td>
-                    <td className="px-6 py-4 text-neutral-600">0-100% RH</td>
-                    <td className="px-6 py-4 text-neutral-600">±2% (10-90%RH)</td>
-                    <td className="px-6 py-4 text-neutral-600">0-5V, 0-10V, 4-20mA</td>
+                    <td className="px-6 py-4 text-neutral-700">0-100% RH</td>
+                    <td className="px-6 py-4 text-neutral-700">±2% (10-90%RH)</td>
+                    <td className="px-6 py-4 text-neutral-700">0-5V, 0-10V, 4-20mA</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 text-neutral-900">High Accuracy RH</td>
-                    <td className="px-6 py-4 text-neutral-600">0-100% RH</td>
-                    <td className="px-6 py-4 text-neutral-600">±1.5% (10-90%RH)</td>
-                    <td className="px-6 py-4 text-neutral-600">0-5V, 0-10V, 4-20mA</td>
+                    <td className="px-6 py-4 text-neutral-700">0-100% RH</td>
+                    <td className="px-6 py-4 text-neutral-700">±1.5% (10-90%RH)</td>
+                    <td className="px-6 py-4 text-neutral-700">0-5V, 0-10V, 4-20mA</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 text-neutral-900">Wireless RH Sensor</td>
-                    <td className="px-6 py-4 text-neutral-600">0-100% RH</td>
-                    <td className="px-6 py-4 text-neutral-600">±2% (10-90%RH)</td>
-                    <td className="px-6 py-4 text-neutral-600">Wireless (900MHz)</td>
+                    <td className="px-6 py-4 text-neutral-700">0-100% RH</td>
+                    <td className="px-6 py-4 text-neutral-700">±2% (10-90%RH)</td>
+                    <td className="px-6 py-4 text-neutral-700">Wireless (900MHz)</td>
                   </tr>
                 </tbody>
               </table>
@@ -165,15 +165,15 @@ export default function SensorSpecsPage() {
                 <tbody className="divide-y divide-neutral-200">
                   <tr>
                     <td className="px-6 py-4 text-neutral-900">Differential Pressure</td>
-                    <td className="px-6 py-4 text-neutral-600">0-0.25&quot; to 0-10&quot;</td>
-                    <td className="px-6 py-4 text-neutral-600">±1% FS</td>
-                    <td className="px-6 py-4 text-neutral-600">0-5V, 0-10V, 4-20mA</td>
+                    <td className="px-6 py-4 text-neutral-700">0-0.25&quot; to 0-10&quot;</td>
+                    <td className="px-6 py-4 text-neutral-700">±1% FS</td>
+                    <td className="px-6 py-4 text-neutral-700">0-5V, 0-10V, 4-20mA</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 text-neutral-900">Absolute Pressure</td>
-                    <td className="px-6 py-4 text-neutral-600">0-30 PSI</td>
-                    <td className="px-6 py-4 text-neutral-600">±0.5% FS</td>
-                    <td className="px-6 py-4 text-neutral-600">0-5V, 0-10V, 4-20mA</td>
+                    <td className="px-6 py-4 text-neutral-700">0-30 PSI</td>
+                    <td className="px-6 py-4 text-neutral-700">±0.5% FS</td>
+                    <td className="px-6 py-4 text-neutral-700">0-5V, 0-10V, 4-20mA</td>
                   </tr>
                 </tbody>
               </table>
@@ -216,21 +216,21 @@ export default function SensorSpecsPage() {
                 <tbody className="divide-y divide-neutral-200">
                   <tr>
                     <td className="px-6 py-4 text-neutral-900">CO₂ Sensor (NDIR)</td>
-                    <td className="px-6 py-4 text-neutral-600">0-2000 PPM</td>
-                    <td className="px-6 py-4 text-neutral-600">±50 PPM ±5% reading</td>
-                    <td className="px-6 py-4 text-neutral-600">0-5V, 0-10V, 4-20mA</td>
+                    <td className="px-6 py-4 text-neutral-700">0-2000 PPM</td>
+                    <td className="px-6 py-4 text-neutral-700">±50 PPM ±5% reading</td>
+                    <td className="px-6 py-4 text-neutral-700">0-5V, 0-10V, 4-20mA</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 text-neutral-900">VOC Sensor</td>
-                    <td className="px-6 py-4 text-neutral-600">0-2000 PPB</td>
-                    <td className="px-6 py-4 text-neutral-600">±10% reading</td>
-                    <td className="px-6 py-4 text-neutral-600">0-10V, Modbus</td>
+                    <td className="px-6 py-4 text-neutral-700">0-2000 PPB</td>
+                    <td className="px-6 py-4 text-neutral-700">±10% reading</td>
+                    <td className="px-6 py-4 text-neutral-700">0-10V, Modbus</td>
                   </tr>
                   <tr>
                     <td className="px-6 py-4 text-neutral-900">PM2.5/PM10</td>
-                    <td className="px-6 py-4 text-neutral-600">0-500 μg/m³</td>
-                    <td className="px-6 py-4 text-neutral-600">±15% reading</td>
-                    <td className="px-6 py-4 text-neutral-600">0-10V, Modbus</td>
+                    <td className="px-6 py-4 text-neutral-700">0-500 μg/m³</td>
+                    <td className="px-6 py-4 text-neutral-700">±15% reading</td>
+                    <td className="px-6 py-4 text-neutral-700">0-10V, Modbus</td>
                   </tr>
                 </tbody>
               </table>
@@ -252,7 +252,7 @@ export default function SensorSpecsPage() {
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">
             Download Complete Specifications
           </h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Get the full technical specification guide for all BAPI sensors
           </p>
           <button className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">

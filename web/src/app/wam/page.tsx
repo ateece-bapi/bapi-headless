@@ -113,7 +113,7 @@ export default function WAMPage() {
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">What is WAM?</h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               WAM™ (Wireless Asset Monitoring) is BAPI&apos;s complete solution for protecting
               temperature-sensitive equipment and inventory from costly failures.
             </p>
@@ -148,7 +148,7 @@ export default function WAMPage() {
                   <feature.icon className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="mb-3 text-xl font-bold text-neutral-900">{feature.title}</h3>
-                <p className="leading-relaxed text-neutral-600">{feature.description}</p>
+                <p className="leading-relaxed text-neutral-700">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -160,7 +160,7 @@ export default function WAMPage() {
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">How It Works</h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Simple setup, powerful protection. WAM™ connects your assets to the cloud in four easy
               steps.
             </p>
@@ -202,7 +202,7 @@ export default function WAMPage() {
                     <step.icon className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-neutral-600">{step.description}</p>
+                  <p className="text-sm leading-relaxed text-neutral-700">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -230,7 +230,7 @@ export default function WAMPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Why Choose WAM?
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Trusted by enterprises, healthcare facilities, and data centers worldwide for
               mission-critical monitoring.
             </p>
@@ -283,7 +283,7 @@ export default function WAMPage() {
                   <benefit.icon className="h-7 w-7 text-white" />
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
-                <p className="text-sm leading-relaxed text-neutral-600">{benefit.description}</p>
+                <p className="text-sm leading-relaxed text-neutral-700">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -297,7 +297,7 @@ export default function WAMPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Industries We Serve
             </h2>
-            <p className="text-xl text-neutral-600">
+            <p className="text-xl text-neutral-700">
               WAM™ protects critical assets across diverse industries
             </p>
           </div>
@@ -331,7 +331,7 @@ export default function WAMPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Wireless Products
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Complete range of wireless sensors for temperature, humidity, pressure, and more
             </p>
           </div>
@@ -365,7 +365,7 @@ export default function WAMPage() {
                 <h3 className="mb-3 text-xl font-bold text-neutral-900 transition-colors group-hover:text-primary-500">
                   {product.title}
                 </h3>
-                <p className="mb-4 text-neutral-600">{product.description}</p>
+                <p className="mb-4 text-neutral-700">{product.description}</p>
                 <div className="flex items-center gap-2 font-semibold text-primary-500">
                   Learn More
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -393,7 +393,7 @@ export default function WAMPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Real-World Installations
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               See WAM™ in action protecting food safety and valuable assets across convenience
               stores, grocery stores, and food service operations
             </p>
@@ -733,7 +733,7 @@ export default function WAMPage() {
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Powerful Cloud Dashboard
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-neutral-600">
+            <p className="mx-auto max-w-3xl text-xl text-neutral-700">
               Monitor temperatures, view trends, and receive alerts from anywhere with our intuitive
               web-based dashboard
             </p>
@@ -801,7 +801,7 @@ export default function WAMPage() {
                   <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                     {dashboard.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-neutral-600">
+                  <p className="text-sm leading-relaxed text-neutral-700">
                     {dashboard.description}
                   </p>
                 </div>
@@ -841,7 +841,7 @@ export default function WAMPage() {
                   <feature.icon className="h-6 w-6 text-white" />
                 </div>
                 <h4 className="mb-2 font-bold text-neutral-900">{feature.title}</h4>
-                <p className="text-sm text-neutral-600">{feature.description}</p>
+                <p className="text-sm text-neutral-700">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -861,7 +861,7 @@ export default function WAMPage() {
                 <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
                   Ready to Get Started?
                 </h2>
-                <p className="mb-6 text-lg text-neutral-600">
+                <p className="mb-6 text-lg text-neutral-700">
                   Let us show you how WAM™ can protect your assets and prevent costly failures. Fill
                   out the form and we&apos;ll contact you to schedule a personalized demo.
                 </p>
@@ -871,7 +871,7 @@ export default function WAMPage() {
                     <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
                       <h4 className="font-bold text-neutral-900">Free Consultation</h4>
-                      <p className="text-sm text-neutral-600">
+                      <p className="text-sm text-neutral-700">
                         Talk to our monitoring experts about your specific needs
                       </p>
                     </div>
@@ -880,7 +880,7 @@ export default function WAMPage() {
                     <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
                       <h4 className="font-bold text-neutral-900">Custom Pricing</h4>
-                      <p className="text-sm text-neutral-600">
+                      <p className="text-sm text-neutral-700">
                         Flexible plans based on your monitoring requirements
                       </p>
                     </div>
@@ -889,7 +889,7 @@ export default function WAMPage() {
                     <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
                       <h4 className="font-bold text-neutral-900">Fast Implementation</h4>
-                      <p className="text-sm text-neutral-600">
+                      <p className="text-sm text-neutral-700">
                         Be up and running in days, not weeks
                       </p>
                     </div>

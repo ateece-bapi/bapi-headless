@@ -352,7 +352,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                     </div>
                     <div className="text-xs">
                       <p className="font-bold text-neutral-900">Used by 1,000+ facilities</p>
-                      <p className="text-neutral-600">Trusted worldwide</p>
+                      <p className="text-neutral-700">Trusted worldwide</p>
                     </div>
                   </div>
 
@@ -409,7 +409,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
               </div>
               <div>
                 <p className="text-sm font-bold text-neutral-900">Need help choosing?</p>
-                <p className="mt-0.5 text-xs text-neutral-600">
+                <p className="mt-0.5 text-xs text-neutral-700">
                   Our product selector tool can help you find the right sensor
                 </p>
               </div>

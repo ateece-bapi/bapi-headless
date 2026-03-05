@@ -498,7 +498,7 @@ describe('ProductTabs - Color Contrast', () => {
     const inactiveTabs = tabs.filter(tab => tab.getAttribute('aria-selected') === 'false');
 
     inactiveTabs.forEach(tab => {
-      expect(tab).toHaveClass('text-neutral-600');
+      expect(tab).toHaveClass('text-neutral-700');
       // neutral-600 (#797a7c) on neutral-50 - verified by jest-axe
     });
   });

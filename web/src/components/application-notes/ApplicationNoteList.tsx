@@ -137,7 +137,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
       {/* Toolbar: Results Count, Sort, View Toggle */}
       <div className="flex flex-col justify-between gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center">
         <div className="flex flex-wrap items-center gap-4">
-          <p className="text-sm text-neutral-600">
+          <p className="text-sm text-neutral-700">
             Showing{' '}
             <span className="font-semibold text-neutral-900">{filteredAndSortedNotes.length}</span>{' '}
             of <span className="font-semibold text-neutral-900">{applicationNotes.length}</span>{' '}
@@ -184,7 +184,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
               className={`rounded p-2 transition-colors ${
                 viewMode === 'grid'
                   ? 'bg-primary-600 text-white'
-                  : 'text-neutral-600 hover:bg-neutral-100'
+                  : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
               <Grid3x3 className="h-4 w-4" />
@@ -196,7 +196,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
               className={`rounded p-2 transition-colors ${
                 viewMode === 'list'
                   ? 'bg-primary-600 text-white'
-                  : 'text-neutral-600 hover:bg-neutral-100'
+                  : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
               <List className="h-4 w-4" />
@@ -212,7 +212,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
             <BookOpen className="h-10 w-10 text-neutral-400" />
           </div>
           <h3 className="mb-2 text-xl font-bold text-neutral-900">No articles found</h3>
-          <p className="mx-auto mb-6 max-w-md text-neutral-600">
+          <p className="mx-auto mb-6 max-w-md text-neutral-700">
             {searchQuery
               ? `We couldn't find any articles matching "${searchQuery}". Try a different search term.`
               : 'No application notes match your criteria. Try clearing your search.'}
@@ -248,7 +248,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
 
                   {note.excerpt && (
                     <p
-                      className="mb-4 line-clamp-3 text-sm text-neutral-600"
+                      className="mb-4 line-clamp-3 text-sm text-neutral-700"
                       dangerouslySetInnerHTML={{ __html: note.excerpt }}
                     />
                   )}
@@ -295,7 +295,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
                   </h3>
                   {note.excerpt && (
                     <p
-                      className="mb-2 line-clamp-2 text-sm text-neutral-600"
+                      className="mb-2 line-clamp-2 text-sm text-neutral-700"
                       dangerouslySetInnerHTML={{ __html: note.excerpt }}
                     />
                   )}

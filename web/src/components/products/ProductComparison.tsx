@@ -168,7 +168,7 @@ export default function ProductComparison({
                   return (
                     <td
                       key={product.id}
-                      className="border-b border-neutral-200 p-4 text-center text-neutral-600"
+                      className="border-b border-neutral-200 p-4 text-center text-neutral-700"
                     >
                       {sku || 'N/A'}
                     </td>
@@ -218,7 +218,7 @@ export default function ProductComparison({
                 {products.map((product) => (
                   <td
                     key={product.id}
-                    className="border-b border-neutral-200 p-4 text-center text-neutral-600"
+                    className="border-b border-neutral-200 p-4 text-center text-neutral-700"
                   >
                     {product.__typename === 'SimpleProduct' ? 'Simple Product' : 'Variable Product'}
                   </td>
@@ -229,7 +229,7 @@ export default function ProductComparison({
               <tr className="transition-colors hover:bg-neutral-50">
                 <td className="p-4 font-medium text-neutral-700">Description</td>
                 {products.map((product) => (
-                  <td key={product.id} className="p-4 text-sm text-neutral-600">
+                  <td key={product.id} className="p-4 text-sm text-neutral-700">
                     {product.shortDescription ? (
                       <div
                         className="line-clamp-3"

@@ -50,7 +50,7 @@ export default function FavoritesError({
 
         <h2 className="mb-3 text-2xl font-bold text-neutral-900">Unable to load favorites</h2>
 
-        <p className="mb-6 text-base text-neutral-600">
+        <p className="mb-6 text-base text-neutral-700">
           We couldn&apos;t retrieve your saved products. This might be a temporary issue.
         </p>
 

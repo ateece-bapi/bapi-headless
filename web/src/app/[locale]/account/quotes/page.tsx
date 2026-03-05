@@ -86,7 +86,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                 </div>
               </div>
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('empty.title')}</h2>
-              <p className="mx-auto mb-8 max-w-md text-neutral-600">
+              <p className="mx-auto mb-8 max-w-md text-neutral-700">
                 {t('empty.description')}
               </p>
               <Link
@@ -104,7 +104,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                     <FileText className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
                   <h3 className="mb-2 font-bold text-neutral-900">{t('empty.infoCards.customSolutions.title')}</h3>
-                  <p className="text-sm text-neutral-600">
+                  <p className="text-sm text-neutral-700">
                     {t('empty.infoCards.customSolutions.description')}
                   </p>
                 </div>
@@ -113,7 +113,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                     <Clock className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
                   <h3 className="mb-2 font-bold text-neutral-900">{t('empty.infoCards.fastResponse.title')}</h3>
-                  <p className="text-sm text-neutral-600">
+                  <p className="text-sm text-neutral-700">
                     {t('empty.infoCards.fastResponse.description')}
                   </p>
                 </div>
@@ -122,7 +122,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                     <CheckCircle className="h-6 w-6 text-primary-600" strokeWidth={2} />
                   </div>
                   <h3 className="mb-2 font-bold text-neutral-900">{t('empty.infoCards.expertSupport.title')}</h3>
-                  <p className="text-sm text-neutral-600">
+                  <p className="text-sm text-neutral-700">
                     {t('empty.infoCards.expertSupport.description')}
                   </p>
                 </div>

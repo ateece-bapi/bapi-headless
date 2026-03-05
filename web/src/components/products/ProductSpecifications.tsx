@@ -110,7 +110,7 @@ export default function ProductSpecifications({
   if (specifications.length === 0) {
     return (
       <div className="rounded-xl bg-neutral-50 p-8 text-center">
-        <p className="text-neutral-600">{t('productPage.specifications.noSpecsAvailable')}</p>
+        <p className="text-neutral-700">{t('productPage.specifications.noSpecsAvailable')}</p>
       </div>
     );
   }
@@ -180,9 +180,9 @@ export default function ProductSpecifications({
                     {group.specs.length} {group.specs.length === 1 ? 'spec' : 'specs'}
                   </span>
                   {isExpanded ? (
-                    <ChevronUp className="h-5 w-5 text-neutral-600" />
+                    <ChevronUp className="h-5 w-5 text-neutral-700" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-neutral-600" />
+                    <ChevronDown className="h-5 w-5 text-neutral-700" />
                   )}
                 </div>
               </button>
@@ -215,7 +215,7 @@ export default function ProductSpecifications({
       {/* No results message */}
       {filteredSpecifications.length === 0 && searchQuery && (
         <div className="rounded-xl bg-neutral-50 p-8 text-center">
-          <p className="text-neutral-600">
+          <p className="text-neutral-700">
             No specifications found matching &quot;{searchQuery}&quot;
           </p>
           <button

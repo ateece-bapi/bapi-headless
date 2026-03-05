@@ -234,7 +234,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </div>
 
                   {subcategory.description && (
-                    <p className="mb-6 line-clamp-3 text-base leading-relaxed text-neutral-600">
+                    <p className="mb-6 line-clamp-3 text-base leading-relaxed text-neutral-700">
                       {subcategory.description}
                     </p>
                   )}
@@ -286,7 +286,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             <div className="flex-1">
               {/* Sort Dropdown */}
               <div className="mb-6 flex items-center justify-between">
-                <p className="text-sm text-neutral-600">
+                <p className="text-sm text-neutral-700">
                   {t('categoryPage.products.showing', { count: products.length })}
                 </p>
                 <ProductSortDropdown />
@@ -310,14 +310,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href={`/${locale}/products`}
-              className="text-sm text-neutral-600 transition-colors hover:text-primary-500"
+              className="text-sm text-neutral-700 transition-colors hover:text-primary-500"
             >
               {t('categoryPage.quickLinks.backToProducts')}
             </Link>
             <span className="text-neutral-300">|</span>
             <Link
               href={`/${locale}/contact`}
-              className="text-sm text-neutral-600 transition-colors hover:text-primary-500"
+              className="text-sm text-neutral-700 transition-colors hover:text-primary-500"
             >
               {t('categoryPage.quickLinks.needHelp')}
             </Link>

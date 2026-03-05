@@ -39,19 +39,19 @@ export default function WirelessSiteVerificationPage() {
             <div className="rounded-xl bg-neutral-50 p-6">
               <Signal className="mb-3 h-10 w-10 text-primary-500" />
               <h3 className="mb-2 font-bold text-neutral-900">Signal Strength Testing</h3>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Measure signal strength at proposed sensor locations
               </p>
             </div>
             <div className="rounded-xl bg-neutral-50 p-6">
               <MapPin className="mb-3 h-10 w-10 text-primary-500" />
               <h3 className="mb-2 font-bold text-neutral-900">Coverage Mapping</h3>
-              <p className="text-sm text-neutral-600">Create coverage maps for your facility</p>
+              <p className="text-sm text-neutral-700">Create coverage maps for your facility</p>
             </div>
             <div className="rounded-xl bg-neutral-50 p-6">
               <CheckCircle className="mb-3 h-10 w-10 text-primary-500" />
               <h3 className="mb-2 font-bold text-neutral-900">Deployment Validation</h3>
-              <p className="text-sm text-neutral-600">Verify successful sensor installations</p>
+              <p className="text-sm text-neutral-700">Verify successful sensor installations</p>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function WirelessSiteVerificationPage() {
                 1
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">Plan Layout</h3>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Identify sensor locations on facility floor plan
               </p>
             </div>
@@ -80,7 +80,7 @@ export default function WirelessSiteVerificationPage() {
                 2
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">Test Signals</h3>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Use verification kit to test signal at each location
               </p>
             </div>
@@ -90,7 +90,7 @@ export default function WirelessSiteVerificationPage() {
                 3
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">Document Results</h3>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Record signal strength readings and coverage
               </p>
             </div>
@@ -100,7 +100,7 @@ export default function WirelessSiteVerificationPage() {
                 4
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">Optimize</h3>
-              <p className="text-sm text-neutral-600">
+              <p className="text-sm text-neutral-700">
                 Adjust locations or add repeaters as needed
               </p>
             </div>
@@ -139,9 +139,9 @@ export default function WirelessSiteVerificationPage() {
                     <td className="px-6 py-4 font-mono text-neutral-900">-70 dBm or better</td>
                     <td className="px-6 py-4">
                       <div className="font-semibold text-green-700">Excellent</div>
-                      <div className="text-sm text-neutral-600">Very strong signal</div>
+                      <div className="text-sm text-neutral-700">Very strong signal</div>
                     </td>
-                    <td className="px-6 py-4 text-neutral-600">Optimal for sensor deployment</td>
+                    <td className="px-6 py-4 text-neutral-700">Optimal for sensor deployment</td>
                     <td className="px-6 py-4 text-center">
                       <CheckCircle className="mx-auto h-6 w-6 text-green-600" />
                     </td>
@@ -150,9 +150,9 @@ export default function WirelessSiteVerificationPage() {
                     <td className="px-6 py-4 font-mono text-neutral-900">-71 to -80 dBm</td>
                     <td className="px-6 py-4">
                       <div className="font-semibold text-green-700">Good</div>
-                      <div className="text-sm text-neutral-600">Strong signal</div>
+                      <div className="text-sm text-neutral-700">Strong signal</div>
                     </td>
-                    <td className="px-6 py-4 text-neutral-600">Suitable for most applications</td>
+                    <td className="px-6 py-4 text-neutral-700">Suitable for most applications</td>
                     <td className="px-6 py-4 text-center">
                       <CheckCircle className="mx-auto h-6 w-6 text-green-600" />
                     </td>
@@ -161,9 +161,9 @@ export default function WirelessSiteVerificationPage() {
                     <td className="px-6 py-4 font-mono text-neutral-900">-81 to -90 dBm</td>
                     <td className="px-6 py-4">
                       <div className="font-semibold text-amber-700">Fair</div>
-                      <div className="text-sm text-neutral-600">Acceptable signal</div>
+                      <div className="text-sm text-neutral-700">Acceptable signal</div>
                     </td>
-                    <td className="px-6 py-4 text-neutral-600">
+                    <td className="px-6 py-4 text-neutral-700">
                       May work, but consider optimization
                     </td>
                     <td className="px-6 py-4 text-center">
@@ -174,9 +174,9 @@ export default function WirelessSiteVerificationPage() {
                     <td className="px-6 py-4 font-mono text-neutral-900">-91 dBm or worse</td>
                     <td className="px-6 py-4">
                       <div className="font-semibold text-red-700">Poor</div>
-                      <div className="text-sm text-neutral-600">Weak signal</div>
+                      <div className="text-sm text-neutral-700">Weak signal</div>
                     </td>
-                    <td className="px-6 py-4 text-neutral-600">Relocate sensor or add repeater</td>
+                    <td className="px-6 py-4 text-neutral-700">Relocate sensor or add repeater</td>
                     <td className="px-6 py-4 text-center">
                       <AlertTriangle className="mx-auto h-6 w-6 text-red-600" />
                     </td>
@@ -194,7 +194,7 @@ export default function WirelessSiteVerificationPage() {
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
             <div>
               <h2 className="mb-4 text-3xl font-bold text-neutral-900">Site Verification Kit</h2>
-              <p className="mb-6 text-lg text-neutral-600">
+              <p className="mb-6 text-lg text-neutral-700">
                 BAPI offers a complete site verification kit that includes everything you need to
                 test and validate your wireless deployment before installation.
               </p>
@@ -204,28 +204,28 @@ export default function WirelessSiteVerificationPage() {
                   <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-semibold text-neutral-900">Test Transmitter</div>
-                    <div className="text-sm text-neutral-600">Portable unit for signal testing</div>
+                    <div className="text-sm text-neutral-700">Portable unit for signal testing</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-semibold text-neutral-900">Base Station Display</div>
-                    <div className="text-sm text-neutral-600">Shows real-time RSSI values</div>
+                    <div className="text-sm text-neutral-700">Shows real-time RSSI values</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-semibold text-neutral-900">Documentation Templates</div>
-                    <div className="text-sm text-neutral-600">Forms for recording results</div>
+                    <div className="text-sm text-neutral-700">Forms for recording results</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-semibold text-neutral-900">User Guide</div>
-                    <div className="text-sm text-neutral-600">Step-by-step instructions</div>
+                    <div className="text-sm text-neutral-700">Step-by-step instructions</div>
                   </div>
                 </div>
               </div>
@@ -248,7 +248,7 @@ export default function WirelessSiteVerificationPage() {
 
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-8">
               <h3 className="mb-4 text-xl font-bold text-neutral-900">Kit Includes:</h3>
-              <ul className="space-y-3 text-neutral-600">
+              <ul className="space-y-3 text-neutral-700">
                 <li className="flex items-start">
                   <span className="mr-2 text-primary-500">•</span>
                   <span>BA/WSP-T Test Transmitter</span>
@@ -348,7 +348,7 @@ export default function WirelessSiteVerificationPage() {
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">
             Need Help with Site Verification?
           </h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Our technical support team can guide you through the verification process
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">

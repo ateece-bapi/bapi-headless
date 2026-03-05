@@ -43,7 +43,7 @@ export default async function ChatAnalyticsPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-neutral-900">AI Chat Analytics</h1>
-          <p className="mt-2 text-neutral-600">
+          <p className="mt-2 text-neutral-700">
             Monitor chatbot performance, user engagement, and product recommendations
           </p>
         </div>

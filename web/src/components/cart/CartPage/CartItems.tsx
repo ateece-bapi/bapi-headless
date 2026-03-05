@@ -139,7 +139,7 @@ export default function CartItems({
                 </Link>
 
                 {/* Variation Details */}
-                {variation && <p className="mt-1 text-sm text-neutral-600">{variation.name}</p>}
+                {variation && <p className="mt-1 text-sm text-neutral-700">{variation.name}</p>}
 
                 {/* Stock Status */}
                 <div className="mt-2">

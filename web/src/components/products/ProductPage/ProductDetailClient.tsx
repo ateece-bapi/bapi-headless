@@ -144,7 +144,7 @@ export default function ProductDetailClient({
                   <Package className="h-6 w-6 text-primary-600" />
                   <span>{product.name}</span>
                 </h2>
-                <p className="ml-9 mt-1 text-sm text-neutral-600">
+                <p className="ml-9 mt-1 text-sm text-neutral-700">
                   Configure your specifications below
                 </p>
               </div>
@@ -175,7 +175,7 @@ export default function ProductDetailClient({
           </div>
         </main>
         <footer className="border-t border-neutral-200 bg-white py-8">
-          <div className="container mx-auto px-4 text-center text-neutral-600">
+          <div className="container mx-auto px-4 text-center text-neutral-700">
             <p>&copy; 2025 BAPI. All rights reserved.</p>
           </div>
         </footer>

@@ -49,7 +49,7 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
           </div>
 
           <h3 className="mb-3 text-2xl font-bold text-neutral-900">No Products Found</h3>
-          <p className="mb-6 leading-relaxed text-neutral-600">
+          <p className="mb-6 leading-relaxed text-neutral-700">
             We couldn&apos;t find any products matching your current filters. Try adjusting your
             selection or browse all products.
           </p>
@@ -216,7 +216,7 @@ function ProductCard({
           {isInComparison ? (
             <CheckSquare className="h-5 w-5 text-primary-600" />
           ) : (
-            <Square className="h-5 w-5 text-neutral-600" />
+            <Square className="h-5 w-5 text-neutral-700" />
           )}
         </button>
 
@@ -302,7 +302,7 @@ function ProductCard({
         {/* Short Description */}
         {isSimpleProduct && (product as SimpleProduct).shortDescription && (
           <div
-            className="mb-4 line-clamp-2 flex-1 text-sm leading-relaxed text-neutral-600"
+            className="mb-4 line-clamp-2 flex-1 text-sm leading-relaxed text-neutral-700"
             dangerouslySetInnerHTML={{
               __html: (product as SimpleProduct).shortDescription || '',
             }}
@@ -330,7 +330,7 @@ function ProductCard({
                 )}
             </div>
           ) : (
-            <div className="mb-4 text-sm font-medium text-neutral-600">Contact for Pricing</div>
+            <div className="mb-4 text-sm font-medium text-neutral-700">Contact for Pricing</div>
           )}
 
           {/* CTA Button with BAPI gradient */}

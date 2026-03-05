@@ -55,7 +55,7 @@ const TypographyExample = ({
       <Tag className={className}>{children}</Tag>
       <div className="mt-4 rounded-lg bg-neutral-50 p-4">
         <div className="mb-1 text-sm font-semibold text-neutral-900">{description}</div>
-        <code className="font-mono text-xs text-neutral-600">{tailwind}</code>
+        <code className="font-mono text-xs text-neutral-700">{tailwind}</code>
       </div>
     </div>
   );
@@ -71,7 +71,7 @@ export const AllTypography: Story = {
         {/* Hero */}
         <div className="mb-12">
           <h1 className="mb-4 text-4xl font-bold text-neutral-900">Typography System</h1>
-          <p className="text-lg text-neutral-600">
+          <p className="text-lg text-neutral-700">
             Professional, accessible text styles for the BAPI Headless platform using Roboto font
             family.
           </p>
@@ -85,7 +85,7 @@ export const AllTypography: Story = {
               <div className="mb-2 font-sans text-2xl font-semibold text-neutral-900">
                 Roboto Sans-Serif
               </div>
-              <div className="mb-4 text-sm text-neutral-600">Primary font for all UI text</div>
+              <div className="mb-4 text-sm text-neutral-700">Primary font for all UI text</div>
               <div className="text-neutral-700">
                 ABCDEFGHIJKLMNOPQRSTUVWXYZ
                 <br />
@@ -93,7 +93,7 @@ export const AllTypography: Story = {
                 <br />
                 0123456789
               </div>
-              <code className="mt-3 block font-mono text-xs text-neutral-600">
+              <code className="mt-3 block font-mono text-xs text-neutral-700">
                 font-family: 'Roboto', Arial, Helvetica, sans-serif
               </code>
             </div>
@@ -101,7 +101,7 @@ export const AllTypography: Story = {
               <div className="mb-2 font-mono text-2xl font-semibold text-neutral-900">
                 Roboto Mono
               </div>
-              <div className="mb-4 text-sm text-neutral-600">
+              <div className="mb-4 text-sm text-neutral-700">
                 Monospace for code and technical data
               </div>
               <div className="font-mono text-neutral-700">
@@ -111,7 +111,7 @@ export const AllTypography: Story = {
                 <br />
                 0123456789 &lt;/&gt; {} []
               </div>
-              <code className="mt-3 block font-mono text-xs text-neutral-600">
+              <code className="mt-3 block font-mono text-xs text-neutral-700">
                 font-family: 'Roboto Mono', 'Consolas', monospace
               </code>
             </div>
@@ -216,9 +216,9 @@ export const AllTypography: Story = {
 
           <TypographyExample
             tag="p"
-            className="text-sm leading-normal text-neutral-600"
+            className="text-sm leading-normal text-neutral-700"
             description="Small Body Text - for captions and secondary info"
-            tailwind="text-sm text-neutral-600 leading-normal"
+            tailwind="text-sm text-neutral-700 leading-normal"
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -244,31 +244,31 @@ export const AllTypography: Story = {
               <span className="flex-1 text-2xl font-light text-neutral-900">
                 Light (300) - Rarely used
               </span>
-              <code className="font-mono text-xs text-neutral-600">font-light</code>
+              <code className="font-mono text-xs text-neutral-700">font-light</code>
             </div>
             <div className="flex items-baseline gap-4 border-b border-neutral-200 pb-4">
               <span className="flex-1 text-2xl font-normal text-neutral-900">
                 Normal (400) - Body text default
               </span>
-              <code className="font-mono text-xs text-neutral-600">font-normal</code>
+              <code className="font-mono text-xs text-neutral-700">font-normal</code>
             </div>
             <div className="flex items-baseline gap-4 border-b border-neutral-200 pb-4">
               <span className="flex-1 text-2xl font-medium text-neutral-900">
                 Medium (500) - Emphasis within text
               </span>
-              <code className="font-mono text-xs text-neutral-600">font-medium</code>
+              <code className="font-mono text-xs text-neutral-700">font-medium</code>
             </div>
             <div className="flex items-baseline gap-4 border-b border-neutral-200 pb-4">
               <span className="flex-1 text-2xl font-semibold text-neutral-900">
                 Semibold (600) - Subheadings
               </span>
-              <code className="font-mono text-xs text-neutral-600">font-semibold</code>
+              <code className="font-mono text-xs text-neutral-700">font-semibold</code>
             </div>
             <div className="flex items-baseline gap-4 pb-4">
               <span className="flex-1 text-2xl font-bold text-neutral-900">
                 Bold (700) - Headings and strong emphasis
               </span>
-              <code className="font-mono text-xs text-neutral-600">font-bold</code>
+              <code className="font-mono text-xs text-neutral-700">font-bold</code>
             </div>
           </div>
         </div>
@@ -289,7 +289,7 @@ export const AllTypography: Story = {
             <p className="text-neutral-700">
               <strong>neutral-700:</strong> Body text - default paragraph text
             </p>
-            <p className="text-neutral-600">
+            <p className="text-neutral-700">
               <strong>neutral-600:</strong> Secondary text - captions and descriptions
             </p>
             <p className="text-neutral-500">
@@ -318,7 +318,7 @@ export const AllTypography: Story = {
                 </a>{' '}
                 for clear affordance.
               </p>
-              <code className="font-mono text-xs text-neutral-600">
+              <code className="font-mono text-xs text-neutral-700">
                 text-primary-500 hover:text-primary-600 underline
               </code>
             </div>
@@ -332,7 +332,7 @@ export const AllTypography: Story = {
                 </code>{' '}
                 for inline code snippets.
               </p>
-              <code className="font-mono text-xs text-neutral-600">
+              <code className="font-mono text-xs text-neutral-700">
                 bg-neutral-200 text-neutral-900 px-2 py-1 rounded font-mono text-sm
               </code>
             </div>
@@ -345,7 +345,7 @@ export const AllTypography: Story = {
   return true;
 }`}
               </pre>
-              <code className="mt-2 block font-mono text-xs text-neutral-600">
+              <code className="mt-2 block font-mono text-xs text-neutral-700">
                 bg-neutral-900 text-neutral-100 p-4 rounded font-mono text-sm
               </code>
             </div>
@@ -416,7 +416,7 @@ export const AllTypography: Story = {
             <h1 className="mb-4 text-4xl font-bold text-neutral-900">
               Building Automation Temperature Sensors
             </h1>
-            <p className="mb-6 text-lg text-neutral-600">Precision sensors for HVAC applications</p>
+            <p className="mb-6 text-lg text-neutral-700">Precision sensors for HVAC applications</p>
             <h2 className="mb-3 text-2xl font-semibold text-neutral-900">Product Features</h2>
             <p className="mb-4 text-base leading-relaxed text-neutral-700">
               Our temperature sensors deliver reliable, accurate measurements for commercial and
@@ -488,7 +488,7 @@ export const TextColors: Story = {
         <p className="text-lg text-neutral-900">neutral-900 - Primary text (headings)</p>
         <p className="text-lg text-neutral-800">neutral-800 - Strong emphasis</p>
         <p className="text-lg text-neutral-700">neutral-700 - Body text (default)</p>
-        <p className="text-lg text-neutral-600">neutral-600 - Secondary text</p>
+        <p className="text-lg text-neutral-700">neutral-600 - Secondary text</p>
         <p className="text-lg text-neutral-500">neutral-500 - Tertiary text</p>
         <p className="text-lg text-neutral-400">neutral-400 - Placeholder text</p>
         <p className="text-lg text-neutral-300">neutral-300 - Disabled text</p>
@@ -513,7 +513,7 @@ export const ResponsiveText: Story = {
           it reaches its maximum size for optimal readability.
         </p>
         <div className="mt-6 rounded-lg bg-neutral-50 p-4">
-          <code className="font-mono text-xs text-neutral-600">
+          <code className="font-mono text-xs text-neutral-700">
             text-base md:text-lg lg:text-xl
           </code>
         </div>

@@ -96,7 +96,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
           <Search className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
           <h1 className="mb-4 text-3xl font-bold text-neutral-900">{t('emptyQuery.title')}</h1>
-          <p className="mb-8 text-lg text-neutral-600">{t('emptyQuery.description')}</p>
+          <p className="mb-8 text-lg text-neutral-700">{t('emptyQuery.description')}</p>
           <Link
             href={`/${locale}/products`}
             className="inline-flex items-center justify-center rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
@@ -145,7 +145,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
             <h1 className="mb-2 text-3xl font-bold text-neutral-900 lg:text-4xl">
               {t('results.title')}
             </h1>
-            <p className="text-lg text-neutral-600">
+            <p className="text-lg text-neutral-700">
               {results.length === 1
                 ? t('results.resultsCount', { count: results.length, query })
                 : t('results.resultsCountPlural', { count: results.length, query })}
@@ -156,7 +156,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
             <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center">
               <Search className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('noResults.title')}</h2>
-              <p className="mb-6 text-neutral-600">{t('noResults.description', { query })}</p>
+              <p className="mb-6 text-neutral-700">{t('noResults.description', { query })}</p>
               <div className="flex flex-col justify-center gap-4 sm:flex-row">
                 <Link
                   href={`/${locale}/products`}
@@ -207,7 +207,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
 
                     {product.shortDescription && (
                       <div
-                        className="mb-3 line-clamp-2 text-sm text-neutral-600"
+                        className="mb-3 line-clamp-2 text-sm text-neutral-700"
                         dangerouslySetInnerHTML={{
                           __html: sanitizeWordPressContent(product.shortDescription),
                         }}

@@ -85,15 +85,15 @@ export default async function CaseStudiesPage({ params }: Props) {
                     <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
                       <div>
                         <h3 className="mb-2 font-bold text-neutral-900">{t('labels.challenge')}</h3>
-                        <p className="text-sm text-neutral-600">{study.challenge}</p>
+                        <p className="text-sm text-neutral-700">{study.challenge}</p>
                       </div>
                       <div>
                         <h3 className="mb-2 font-bold text-neutral-900">{t('labels.solution')}</h3>
-                        <p className="text-sm text-neutral-600">{study.solution}</p>
+                        <p className="text-sm text-neutral-700">{study.solution}</p>
                       </div>
                       <div>
                         <h3 className="mb-2 font-bold text-neutral-900">{t('labels.results')}</h3>
-                        <p className="text-sm text-neutral-600">{study.results}</p>
+                        <p className="text-sm text-neutral-700">{study.results}</p>
                       </div>
                     </div>
                     <button
@@ -114,7 +114,7 @@ export default async function CaseStudiesPage({ params }: Props) {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('cta.heading')}</h2>
-          <p className="mb-6 text-neutral-600">{t('cta.description')}</p>
+          <p className="mb-6 text-neutral-700">{t('cta.description')}</p>
           <Link
             href="/request-quote"
             className="inline-block rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600"

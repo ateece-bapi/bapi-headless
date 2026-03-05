@@ -94,7 +94,7 @@ vi.mock('./steps/PaymentStep', () => ({
           aria-describedby="card-help"
           className="border border-neutral-300 text-neutral-900"
         />
-        <p id="card-help" className="text-xs text-neutral-600">
+        <p id="card-help" className="text-xs text-neutral-700">
           Enter your 16-digit card number
         </p>
 
@@ -112,7 +112,7 @@ vi.mock('./steps/PaymentStep', () => ({
           maxLength={4}
           className="border border-neutral-300 text-neutral-900"
         />
-        <p id="cvv-help" className="text-xs text-neutral-600">
+        <p id="cvv-help" className="text-xs text-neutral-700">
           3 or 4 digit security code on the back of your card
         </p>
 
@@ -155,7 +155,7 @@ vi.mock('./steps/ReviewStep', () => ({
         {isProcessing ? 'Processing...' : 'Place Order'}
       </button>
       {isProcessing && (
-        <div role="status" aria-live="polite" className="text-sm text-neutral-600">
+        <div role="status" aria-live="polite" className="text-sm text-neutral-700">
           Processing your order...
         </div>
       )}
@@ -722,7 +722,7 @@ describe('CheckoutWizard Accessibility', () => {
       );
 
       const helpText = screen.getByText(/16-digit card number/i);
-      expect(helpText).toHaveClass('text-neutral-600');
+      expect(helpText).toHaveClass('text-neutral-700');
       // neutral-600 (#797a7c) on white - verified by jest-axe
     });
   });

@@ -103,7 +103,7 @@ export function GlobalPresence({
           <h2 className="mb-4 text-4xl font-bold text-neutral-900">
             {title || 'Our Global Presence'}
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-neutral-600">
+          <p className="mx-auto max-w-2xl text-lg text-neutral-700">
             {subtitle ||
               'From our headquarters in Wisconsin to facilities across three continents, BAPI serves customers worldwide with local expertise and global reach.'}
           </p>
@@ -197,7 +197,7 @@ export function GlobalPresence({
                         <div className="mb-1 font-semibold text-neutral-900">
                           {translation?.name || tooltip.location.name}
                         </div>
-                        <div className="mb-2 text-sm text-neutral-600">
+                        <div className="mb-2 text-sm text-neutral-700">
                           {translation?.city || tooltip.location.city}
                           <br />
                           {translation?.country || tooltip.location.country}
@@ -269,7 +269,7 @@ export function GlobalPresence({
                     <h3 className="mb-1 font-bold text-neutral-900">
                       {translation?.name || location.name}
                     </h3>
-                    <div className="flex items-center gap-1 text-sm text-neutral-600">
+                    <div className="flex items-center gap-1 text-sm text-neutral-700">
                       <MapPin className="h-4 w-4" />
                       <span>
                         {translation?.city || location.city},{' '}
@@ -279,7 +279,7 @@ export function GlobalPresence({
                   </div>
                 </div>
 
-                <p className="mb-3 text-sm text-neutral-600">
+                <p className="mb-3 text-sm text-neutral-700">
                   {translation?.description || location.description}
                 </p>
 
@@ -305,7 +305,7 @@ export function GlobalPresence({
 
         {/* Call to Action */}
         <div className="mt-12 text-center">
-          <p className="mb-4 text-neutral-600">
+          <p className="mb-4 text-neutral-700">
             {locationTranslations?.cta.text ||
               'Looking for local support or partnership opportunities?'}
           </p>

@@ -105,7 +105,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
             <h1 className="mb-4 text-4xl font-bold text-neutral-900 lg:text-5xl">
               {t('welcomeBack', { displayName })}
             </h1>
-            <p className="text-lg text-neutral-600 lg:text-xl">
+            <p className="text-lg text-neutral-700 lg:text-xl">
               {t('subtitle')}
             </p>
           </div>
@@ -125,7 +125,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                 <div>
                   <p className="mb-1 text-sm text-neutral-500">{t('company')}</p>
                   <p className="font-semibold text-neutral-900">{profile.companyName}</p>
-                  <p className="text-sm text-neutral-600">{t('accountNumber')} {profile.accountNumber}</p>
+                  <p className="text-sm text-neutral-700">{t('accountNumber')} {profile.accountNumber}</p>
                 </div>
               </div>
 
@@ -203,7 +203,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                   </div>
                   <div className="space-y-1">
                     {order.items.slice(0, 2).map((item, idx) => (
-                      <p key={idx} className="text-sm text-neutral-600">
+                      <p key={idx} className="text-sm text-neutral-700">
                         {item.quantity}x {item.name} ({item.sku})
                       </p>
                     ))}
@@ -251,7 +251,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                 section.color === 'accent'
                   ? 'text-accent-600'
                   : section.color === 'neutral'
-                    ? 'text-neutral-600'
+                    ? 'text-neutral-700'
                     : 'text-primary-600';
               const hoverBorder =
                 section.color === 'accent' ? 'hover:border-accent-500' : 'hover:border-primary-500';
@@ -268,7 +268,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                     <IconComponent className={`h-7 w-7 ${iconColor}`} strokeWidth={2} />
                   </div>
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">{section.title}</h3>
-                  <p className="text-sm leading-relaxed text-neutral-600">{section.description}</p>
+                  <p className="text-sm leading-relaxed text-neutral-700">{section.description}</p>
                 </Link>
               );
             })}

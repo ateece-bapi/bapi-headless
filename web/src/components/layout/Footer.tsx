@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
                 {t('brand.tagline')}
               </span>
             </p>
-            <p className="max-w-sm text-sm leading-relaxed text-neutral-600">
+            <p className="max-w-sm text-sm leading-relaxed text-neutral-700">
               {t('brand.description')}
             </p>
 
@@ -127,7 +127,7 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={item.name}
-                    className="flex h-11 w-11 transform items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-neutral-600 shadow-md transition-all duration-300 hover:scale-110 hover:border-primary-600 hover:bg-gradient-to-br hover:from-primary-600 hover:to-primary-700 hover:text-white hover:shadow-xl"
+                    className="flex h-11 w-11 transform items-center justify-center rounded-lg border-2 border-neutral-300 bg-white text-neutral-700 shadow-md transition-all duration-300 hover:scale-110 hover:border-primary-600 hover:bg-gradient-to-br hover:from-primary-600 hover:to-primary-700 hover:text-white hover:shadow-xl"
                   >
                     <IconComponent className="h-5 w-5" strokeWidth={2.5} />
                   </a>
@@ -209,7 +209,7 @@ const Footer: React.FC = () => {
                 title="AHR Expo Innovation Award Winner"
               />
             </div>
-            <p className="mt-2 text-xs font-medium text-neutral-600">{t('awards.description')}</p>
+            <p className="mt-2 text-xs font-medium text-neutral-700">{t('awards.description')}</p>
           </div>
 
           {/* Certifications */}
@@ -270,7 +270,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Copyright & Legal */}
-        <div className="flex flex-col items-start justify-between gap-4 pt-6 text-xs text-neutral-600 sm:flex-row sm:items-center">
+        <div className="flex flex-col items-start justify-between gap-4 pt-6 text-xs text-neutral-700 sm:flex-row sm:items-center">
           <div className="space-y-1.5 font-medium">
             <p>{t('legal.copyright', { year: new Date().getFullYear() })}</p>
             <p className="text-neutral-500">{t('legal.trademark')}</p>

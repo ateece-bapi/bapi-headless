@@ -234,7 +234,7 @@ export default function ProductVariationTestPage() {
           <h1 className="mb-2 text-4xl font-bold text-neutral-900">
             Product Variation Selector Test
           </h1>
-          <p className="text-neutral-600">
+          <p className="text-neutral-700">
             Enhanced UI for selecting product variations with visual feedback, stock status
             indicators, and dynamic price updates.
           </p>

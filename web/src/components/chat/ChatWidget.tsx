@@ -456,7 +456,7 @@ export default function ChatWidget() {
                         ? '¡Solicitud enviada!'
                         : 'Request Sent!'}
                   </h4>
-                  <p className="text-neutral-600">
+                  <p className="text-neutral-700">
                     {locale === 'de'
                       ? 'Unser Team wird sich in Kürze bei Ihnen melden.'
                       : locale === 'es'

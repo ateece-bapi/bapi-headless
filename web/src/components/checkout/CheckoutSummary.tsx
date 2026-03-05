@@ -43,7 +43,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
     <div className="sticky top-4 overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Header */}
       <div className="flex items-center gap-2 border-b border-neutral-200 bg-neutral-50 px-6 py-4">
-        <ShoppingCart className="h-5 w-5 text-neutral-600" />
+        <ShoppingCart className="h-5 w-5 text-neutral-700" />
         <h2 className="text-lg font-semibold text-neutral-900">{t('title')}</h2>
       </div>
 
@@ -85,7 +85,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
                       {product.name}
                     </h4>
                     {variation && (
-                      <p className="mt-0.5 text-xs text-neutral-600">{variation.name}</p>
+                      <p className="mt-0.5 text-xs text-neutral-700">{variation.name}</p>
                     )}
                     <div className="mt-1 flex items-center justify-between">
                       <span className="text-xs text-neutral-500">
@@ -110,7 +110,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
 
         {/* Totals */}
         <div className="space-y-3 border-t border-neutral-200 pt-4">
-          <div className="flex justify-between text-sm text-neutral-600">
+          <div className="flex justify-between text-sm text-neutral-700">
             <span>{t('subtotal')}</span>
             <span className="font-medium">${subtotal.toFixed(2)}</span>
           </div>
@@ -122,14 +122,14 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
             </div>
           )}
 
-          <div className="flex justify-between text-sm text-neutral-600">
+          <div className="flex justify-between text-sm text-neutral-700">
             <span>{t('shipping')}</span>
             <span className="font-medium">
               {shipping > 0 ? `$${shipping.toFixed(2)}` : t('calculatedAtCheckout')}
             </span>
           </div>
 
-          <div className="flex justify-between text-sm text-neutral-600">
+          <div className="flex justify-between text-sm text-neutral-700">
             <span>{t('tax')}</span>
             <span className="font-medium">
               {tax > 0 ? `$${tax.toFixed(2)}` : t('calculatedAtCheckout')}

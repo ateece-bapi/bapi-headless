@@ -45,7 +45,7 @@ export default function SupportPage() {
             >
               <MessageSquare className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
               <h3 className="mb-2 text-xl font-bold text-neutral-900">Contact Support</h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 Speak with our technical support team
               </p>
             </Link>
@@ -56,7 +56,7 @@ export default function SupportPage() {
             >
               <FileText className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
               <h3 className="mb-2 text-xl font-bold text-neutral-900">Application Notes</h3>
-              <p className="leading-relaxed text-neutral-600">
+              <p className="leading-relaxed text-neutral-700">
                 Technical guides and installation instructions
               </p>
             </Link>
@@ -67,7 +67,7 @@ export default function SupportPage() {
             >
               <Package className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
               <h3 className="mb-2 text-xl font-bold text-neutral-900">RMA Request</h3>
-              <p className="leading-relaxed text-neutral-600">Return merchandise authorization</p>
+              <p className="leading-relaxed text-neutral-700">Return merchandise authorization</p>
             </Link>
           </div>
         </PageContainer>
@@ -85,7 +85,7 @@ export default function SupportPage() {
             <div className="duration-normal rounded-xl bg-neutral-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
               <BookOpen className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Technical Documentation</h3>
-              <ul className="space-y-2 text-neutral-600">
+              <ul className="space-y-2 text-neutral-700">
                 <li>
                   <Link
                     href="/application-notes"
@@ -125,7 +125,7 @@ export default function SupportPage() {
             <div className="duration-normal rounded-xl bg-neutral-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
               <Wrench className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Tools & Utilities</h3>
-              <ul className="space-y-2 text-neutral-600">
+              <ul className="space-y-2 text-neutral-700">
                 <li>
                   <Link
                     href="/resources/selector"
@@ -165,7 +165,7 @@ export default function SupportPage() {
             <div className="duration-normal rounded-xl bg-neutral-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
               <AlertCircle className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Service & Returns</h3>
-              <ul className="space-y-2 text-neutral-600">
+              <ul className="space-y-2 text-neutral-700">
                 <li>
                   <Link
                     href="/rma-request"
@@ -201,7 +201,7 @@ export default function SupportPage() {
         <PageContainer size="content">
           <div className="mb-8 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900">Need Direct Support?</h2>
-            <p className="text-lg text-neutral-600">Our technical support team is ready to help</p>
+            <p className="text-lg text-neutral-700">Our technical support team is ready to help</p>
           </div>
 
           <div className="duration-normal rounded-xl bg-white p-8 shadow-lg transition-all hover:shadow-xl">
@@ -209,7 +209,7 @@ export default function SupportPage() {
               <div className="group">
                 <Phone className="duration-normal mb-3 h-8 w-8 text-primary-500 transition-transform group-hover:scale-110" />
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">Phone Support</h3>
-                <p className="mb-2 text-neutral-600">Monday - Friday, 8am - 5pm CST</p>
+                <p className="mb-2 text-neutral-700">Monday - Friday, 8am - 5pm CST</p>
                 <a
                   href="tel:+17158561203"
                   className="duration-normal text-2xl font-bold text-primary-500 transition-colors hover:text-primary-600"
@@ -221,7 +221,7 @@ export default function SupportPage() {
               <div className="group">
                 <Mail className="duration-normal mb-3 h-8 w-8 text-primary-500 transition-transform group-hover:scale-110" />
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">Email Support</h3>
-                <p className="mb-2 text-neutral-600">Technical questions and support</p>
+                <p className="mb-2 text-neutral-700">Technical questions and support</p>
                 <a
                   href="mailto:sales@bapihvac.com"
                   className="duration-normal text-lg font-semibold text-primary-500 transition-colors hover:text-primary-600"

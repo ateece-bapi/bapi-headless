@@ -72,7 +72,7 @@ export default function ChatAnalyticsDashboard() {
         <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-neutral-600">Total Conversations</p>
+              <p className="text-sm font-medium text-neutral-700">Total Conversations</p>
               <p className="mt-2 text-3xl font-bold text-neutral-900">
                 {metrics.totalConversations.toLocaleString()}
               </p>
@@ -87,7 +87,7 @@ export default function ChatAnalyticsDashboard() {
         <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-neutral-600">Avg Response Time</p>
+              <p className="text-sm font-medium text-neutral-700">Avg Response Time</p>
               <p className="mt-2 text-3xl font-bold text-neutral-900">
                 {(metrics.averageResponseTime / 1000).toFixed(2)}s
               </p>
@@ -102,7 +102,7 @@ export default function ChatAnalyticsDashboard() {
         <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-neutral-600">Satisfaction Rate</p>
+              <p className="text-sm font-medium text-neutral-700">Satisfaction Rate</p>
               <p className="mt-2 text-3xl font-bold text-neutral-900">{satisfactionRate}%</p>
               <p className="mt-1 text-xs text-neutral-500">
                 {metrics.positiveFeedback} 👍 / {metrics.negativeFeedback} 👎
@@ -118,7 +118,7 @@ export default function ChatAnalyticsDashboard() {
         <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-neutral-600">Estimated Cost</p>
+              <p className="text-sm font-medium text-neutral-700">Estimated Cost</p>
               <p className="mt-2 text-3xl font-bold text-neutral-900">
                 ${metrics.estimatedCost.toFixed(2)}
               </p>
@@ -127,7 +127,7 @@ export default function ChatAnalyticsDashboard() {
               </p>
             </div>
             <div className="rounded-lg bg-neutral-100 p-3">
-              <DollarSign className="h-6 w-6 text-neutral-600" />
+              <DollarSign className="h-6 w-6 text-neutral-700" />
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@ export default function ChatAnalyticsDashboard() {
                         }}
                       />
                     </div>
-                    <span className="w-12 text-right text-sm text-neutral-600">{count}</span>
+                    <span className="w-12 text-right text-sm text-neutral-700">{count}</span>
                   </div>
                 </div>
               ))}
@@ -200,7 +200,7 @@ export default function ChatAnalyticsDashboard() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {Object.entries(metrics.toolUsage).map(([tool, count]) => (
             <div key={tool} className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
-              <p className="text-sm text-neutral-600">{tool}</p>
+              <p className="text-sm text-neutral-700">{tool}</p>
               <p className="mt-1 text-2xl font-bold text-neutral-900">{count}</p>
             </div>
           ))}
@@ -222,7 +222,7 @@ export default function ChatAnalyticsDashboard() {
             </div>
             <div>
               <p className="text-3xl font-bold text-green-600">{metrics.positiveFeedback}</p>
-              <p className="text-sm text-neutral-600">Positive Feedback</p>
+              <p className="text-sm text-neutral-700">Positive Feedback</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -231,7 +231,7 @@ export default function ChatAnalyticsDashboard() {
             </div>
             <div>
               <p className="text-3xl font-bold text-red-600">{metrics.negativeFeedback}</p>
-              <p className="text-sm text-neutral-600">Negative Feedback</p>
+              <p className="text-sm text-neutral-700">Negative Feedback</p>
             </div>
           </div>
         </div>

@@ -410,7 +410,7 @@ export const InteractionTestsSummary: StoryObj = {
         <h2 className="mb-3 text-2xl font-bold text-neutral-900">
           Interaction Tests with @storybook/test
         </h2>
-        <p className="text-neutral-600">
+        <p className="text-neutral-700">
           7 automated interaction tests demonstrating user behavior verification
         </p>
       </div>
@@ -440,19 +440,19 @@ export const InteractionTestsSummary: StoryObj = {
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
               <p className="font-semibold text-neutral-900">userEvent</p>
-              <p className="text-neutral-600">Simulates user interactions</p>
+              <p className="text-neutral-700">Simulates user interactions</p>
             </div>
             <div>
               <p className="font-semibold text-neutral-900">within</p>
-              <p className="text-neutral-600">Queries elements in scope</p>
+              <p className="text-neutral-700">Queries elements in scope</p>
             </div>
             <div>
               <p className="font-semibold text-neutral-900">expect</p>
-              <p className="text-neutral-600">Assertions for testing</p>
+              <p className="text-neutral-700">Assertions for testing</p>
             </div>
             <div>
               <p className="font-semibold text-neutral-900">fn</p>
-              <p className="text-neutral-600">Mock function tracking</p>
+              <p className="text-neutral-700">Mock function tracking</p>
             </div>
           </div>
         </div>

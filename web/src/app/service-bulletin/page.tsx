@@ -75,15 +75,15 @@ export default function ServiceBulletinPage() {
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">
                     Firmware Update for Wireless Sensors
                   </h3>
-                  <p className="mb-4 text-neutral-600">
+                  <p className="mb-4 text-neutral-700">
                     Important firmware update available for all BA/W series wireless sensors. This
                     update improves battery life and communication reliability.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-600">
+                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-700">
                       Wireless Products
                     </span>
-                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-600">
+                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-700">
                       Firmware
                     </span>
                   </div>
@@ -108,15 +108,15 @@ export default function ServiceBulletinPage() {
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">
                     Temperature Sensor Calibration Guidelines
                   </h3>
-                  <p className="mb-4 text-neutral-600">
+                  <p className="mb-4 text-neutral-700">
                     Updated calibration procedures for BA/10K series temperature sensors. Includes
                     new testing protocols and accuracy specifications.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-600">
+                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-700">
                       Temperature Sensors
                     </span>
-                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-600">
+                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-700">
                       Calibration
                     </span>
                   </div>
@@ -140,15 +140,15 @@ export default function ServiceBulletinPage() {
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">
                     WAM Cloud Platform Enhancements
                   </h3>
-                  <p className="mb-4 text-neutral-600">
+                  <p className="mb-4 text-neutral-700">
                     New features and improvements to the WAM cloud monitoring platform, including
                     enhanced reporting and mobile app updates.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-600">
+                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-700">
                       Software
                     </span>
-                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-600">
+                    <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-700">
                       WAM
                     </span>
                   </div>
@@ -185,7 +185,7 @@ export default function ServiceBulletinPage() {
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">
             Get Service Bulletin Notifications
           </h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Stay informed about important updates for your BAPI products
           </p>
           <div className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">

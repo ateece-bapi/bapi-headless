@@ -458,7 +458,7 @@ export const InProductCard: Story = {
           <h3 className="mb-1 text-lg font-semibold text-neutral-900">
             BA/T10K-3-U Temperature Sensor
           </h3>
-          <p className="mb-2 text-sm text-neutral-600">10K Type III Thermistor</p>
+          <p className="mb-2 text-sm text-neutral-700">10K Type III Thermistor</p>
           <div className="mb-3 text-xl font-bold text-primary-500">$49.00</div>
         </div>
         <Story />

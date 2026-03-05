@@ -275,7 +275,7 @@ export default function ProductDetailClient({
               disabled={product?.stockStatus !== 'IN_STOCK'}
               aria-disabled={product?.stockStatus !== 'IN_STOCK'}
             />
-            <div className="text-sm text-neutral-600" aria-live="polite">
+            <div className="text-sm text-neutral-700" aria-live="polite">
               {product?.stockStatus ?? ''}
             </div>
           </div>

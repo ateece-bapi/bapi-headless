@@ -157,7 +157,7 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
               <h3 className="mb-1 text-xl font-semibold text-neutral-900 transition-colors group-hover:text-primary-700">
                 {t('appNotesCta.title')}
               </h3>
-              <p className="text-neutral-600">{t('appNotesCta.description')}</p>
+              <p className="text-neutral-700">{t('appNotesCta.description')}</p>
             </div>
           </div>
         </Link>

@@ -131,7 +131,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
         </h1>
 
         {/* Part number with better visibility */}
-        <div className="mb-4 flex items-center gap-2 text-base text-neutral-600">
+        <div className="mb-4 flex items-center gap-2 text-base text-neutral-700">
           <span className="text-neutral-500">{t('productPage.summary.partNumber')}:</span>
           <span className="font-semibold text-neutral-900">
             {product.partNumber || product.sku || 'N/A'}
@@ -143,7 +143,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
             {product.shortDescription}
           </div>
         )}
-        {product.specs && <div className="mb-6 text-neutral-600">{product.specs}</div>}
+        {product.specs && <div className="mb-6 text-neutral-700">{product.specs}</div>}
 
         {/* Pricing section with better visual prominence */}
         <div className="mb-6 rounded-lg border border-neutral-200 bg-neutral-50 p-4">

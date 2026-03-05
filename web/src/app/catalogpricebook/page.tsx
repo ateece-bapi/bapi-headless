@@ -36,7 +36,7 @@ export default function CatalogPricebookPage() {
                 </div>
                 <div>
                   <h2 className="mb-2 text-2xl font-bold text-neutral-900">Product Catalog 2026</h2>
-                  <p className="text-neutral-600">
+                  <p className="text-neutral-700">
                     Complete catalog featuring all BAPI sensors, controls, and accessories with
                     technical specifications, dimensions, and ordering information.
                   </p>
@@ -45,19 +45,19 @@ export default function CatalogPricebookPage() {
 
               <div className="mb-6 space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-600">Version:</span>
+                  <span className="text-neutral-700">Version:</span>
                   <span className="font-semibold text-neutral-900">2026.1 (January 2026)</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-600">Pages:</span>
+                  <span className="text-neutral-700">Pages:</span>
                   <span className="font-semibold text-neutral-900">124 pages</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-600">File Size:</span>
+                  <span className="text-neutral-700">File Size:</span>
                   <span className="font-semibold text-neutral-900">8.5 MB</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-600">Format:</span>
+                  <span className="text-neutral-700">Format:</span>
                   <span className="font-semibold text-neutral-900">PDF</span>
                 </div>
               </div>
@@ -82,7 +82,7 @@ export default function CatalogPricebookPage() {
                 </div>
                 <div>
                   <h2 className="mb-2 text-2xl font-bold text-neutral-900">Price Book 2026</h2>
-                  <p className="text-neutral-600">
+                  <p className="text-neutral-700">
                     Current list pricing for all BAPI products. Contact your sales representative
                     for volume discounts and project pricing.
                   </p>
@@ -91,19 +91,19 @@ export default function CatalogPricebookPage() {
 
               <div className="mb-6 space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-600">Version:</span>
+                  <span className="text-neutral-700">Version:</span>
                   <span className="font-semibold text-neutral-900">2026.1 (January 2026)</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-600">Pages:</span>
+                  <span className="text-neutral-700">Pages:</span>
                   <span className="font-semibold text-neutral-900">32 pages</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-600">File Size:</span>
+                  <span className="text-neutral-700">File Size:</span>
                   <span className="font-semibold text-neutral-900">2.1 MB</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-neutral-600">Format:</span>
+                  <span className="text-neutral-700">Format:</span>
                   <span className="font-semibold text-neutral-900">PDF</span>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export default function CatalogPricebookPage() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div className="rounded-xl border border-neutral-200 bg-white p-6">
               <h3 className="mb-2 font-bold text-neutral-900">Product Selection Guide</h3>
-              <p className="mb-4 text-sm text-neutral-600">
+              <p className="mb-4 text-sm text-neutral-700">
                 Quick reference guide to help you select the right sensors for your application.
               </p>
               <button className="text-sm font-semibold text-primary-500 hover:text-primary-600">
@@ -143,7 +143,7 @@ export default function CatalogPricebookPage() {
 
             <div className="rounded-xl border border-neutral-200 bg-white p-6">
               <h3 className="mb-2 font-bold text-neutral-900">Technical Specifications</h3>
-              <p className="mb-4 text-sm text-neutral-600">
+              <p className="mb-4 text-sm text-neutral-700">
                 Detailed technical specs for all BAPI sensors and controls.
               </p>
               <button className="text-sm font-semibold text-primary-500 hover:text-primary-600">
@@ -153,7 +153,7 @@ export default function CatalogPricebookPage() {
 
             <div className="rounded-xl border border-neutral-200 bg-white p-6">
               <h3 className="mb-2 font-bold text-neutral-900">Installation Guides</h3>
-              <p className="mb-4 text-sm text-neutral-600">
+              <p className="mb-4 text-sm text-neutral-700">
                 Step-by-step installation instructions for BAPI products.
               </p>
               <button className="text-sm font-semibold text-primary-500 hover:text-primary-600">
@@ -171,7 +171,7 @@ export default function CatalogPricebookPage() {
             <h2 className="mb-3 text-2xl font-bold text-neutral-900">
               Need Help Finding the Right Products?
             </h2>
-            <p className="mb-6 text-neutral-600">
+            <p className="mb-6 text-neutral-700">
               Our technical sales team can help you select the best sensors for your project
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
@@ -196,7 +196,7 @@ export default function CatalogPricebookPage() {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h3 className="mb-3 text-xl font-bold text-neutral-900">Stay Updated</h3>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Get notified when we release new catalog versions and pricing updates
           </p>
           <div className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">

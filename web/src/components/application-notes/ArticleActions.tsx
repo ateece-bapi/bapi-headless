@@ -38,7 +38,7 @@ export function ArticleActions({ title }: ArticleActionsProps) {
     <div className="flex items-center gap-2">
       <button
         onClick={handlePrint}
-        className="rounded-lg p-2 text-neutral-600 transition-colors hover:bg-primary-50 hover:text-primary-600"
+        className="rounded-lg p-2 text-neutral-700 transition-colors hover:bg-primary-50 hover:text-primary-600"
         aria-label="Print article"
         title="Print"
       >
@@ -46,7 +46,7 @@ export function ArticleActions({ title }: ArticleActionsProps) {
       </button>
       <button
         onClick={handleShare}
-        className="rounded-lg p-2 text-neutral-600 transition-colors hover:bg-primary-50 hover:text-primary-600"
+        className="rounded-lg p-2 text-neutral-700 transition-colors hover:bg-primary-50 hover:text-primary-600"
         aria-label="Share article"
         title="Share"
       >

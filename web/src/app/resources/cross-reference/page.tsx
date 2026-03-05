@@ -90,7 +90,7 @@ export default function CrossReferencePage() {
                 <div>
                   <div className="mb-1 text-xs text-neutral-500">Competitor</div>
                   <div className="font-bold text-neutral-900">Honeywell C7400A2100</div>
-                  <div className="text-sm text-neutral-600">Room Temperature Sensor</div>
+                  <div className="text-sm text-neutral-700">Room Temperature Sensor</div>
                 </div>
                 <div className="flex justify-center">
                   <RefreshCw className="h-6 w-6 text-primary-500" />
@@ -98,7 +98,7 @@ export default function CrossReferencePage() {
                 <div>
                   <div className="mb-1 text-xs text-neutral-500">BAPI Equivalent</div>
                   <div className="font-bold text-primary-500">BA/10K-2-R</div>
-                  <div className="text-sm text-neutral-600">10K Type 2 Room Sensor</div>
+                  <div className="text-sm text-neutral-700">10K Type 2 Room Sensor</div>
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function CrossReferencePage() {
                 <div>
                   <div className="mb-1 text-xs text-neutral-500">Competitor</div>
                   <div className="font-bold text-neutral-900">Johnson Controls TE-6000</div>
-                  <div className="text-sm text-neutral-600">Temperature & Humidity Sensor</div>
+                  <div className="text-sm text-neutral-700">Temperature & Humidity Sensor</div>
                 </div>
                 <div className="flex justify-center">
                   <RefreshCw className="h-6 w-6 text-primary-500" />
@@ -116,7 +116,7 @@ export default function CrossReferencePage() {
                 <div>
                   <div className="mb-1 text-xs text-neutral-500">BAPI Equivalent</div>
                   <div className="font-bold text-primary-500">BA/RH-AS-R2</div>
-                  <div className="text-sm text-neutral-600">RH & Temp Room Sensor</div>
+                  <div className="text-sm text-neutral-700">RH & Temp Room Sensor</div>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function CrossReferencePage() {
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">
             Can&apos;t Find What You&apos;re Looking For?
           </h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Contact our technical sales team for assistance with cross-referencing
           </p>
           <Link

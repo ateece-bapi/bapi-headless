@@ -50,7 +50,7 @@ export default function ErrorBoundary({
 
         <h2 className="mb-3 text-2xl font-bold text-neutral-900">Something went wrong</h2>
 
-        <p className="mb-6 text-base text-neutral-600">
+        <p className="mb-6 text-base text-neutral-700">
           We encountered an unexpected error. Our team has been notified and is working on a fix.
         </p>
 

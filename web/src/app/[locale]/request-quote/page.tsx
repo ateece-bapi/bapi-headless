@@ -110,7 +110,7 @@ export default function RequestQuotePage() {
             </div>
           </div>
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">Quote Request Submitted!</h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             We&apos;ve received your request and our team will review it shortly. You&apos;ll
             receive a response within 24 business hours.
           </p>
@@ -351,7 +351,7 @@ export default function RequestQuotePage() {
             {/* File Attachments */}
             <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm lg:p-8">
               <h2 className="mb-2 text-xl font-bold text-neutral-900">Attachments (Optional)</h2>
-              <p className="mb-6 text-sm text-neutral-600">
+              <p className="mb-6 text-sm text-neutral-700">
                 Upload technical drawings, specifications, or other relevant documents (Max 10MB per
                 file)
               </p>

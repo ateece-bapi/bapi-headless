@@ -40,7 +40,7 @@ export default function VideosPage() {
                   installation guides, and technical tutorials. This feature will be available in
                   Phase 2.
                 </p>
-                <p className="text-neutral-600">
+                <p className="text-neutral-700">
                   In the meantime, contact our technical support team for product assistance.
                 </p>
               </div>
@@ -53,17 +53,17 @@ export default function VideosPage() {
               <div className="rounded-xl bg-neutral-50 p-6">
                 <Play className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Product Demos</h3>
-                <p className="text-sm text-neutral-600">Features and capabilities</p>
+                <p className="text-sm text-neutral-700">Features and capabilities</p>
               </div>
               <div className="rounded-xl bg-neutral-50 p-6">
                 <Video className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Installation Guides</h3>
-                <p className="text-sm text-neutral-600">Step-by-step tutorials</p>
+                <p className="text-sm text-neutral-700">Step-by-step tutorials</p>
               </div>
               <div className="rounded-xl bg-neutral-50 p-6">
                 <Play className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Technical Training</h3>
-                <p className="text-sm text-neutral-600">Advanced topics</p>
+                <p className="text-sm text-neutral-700">Advanced topics</p>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function VideosPage() {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">Need Support Now?</h2>
-          <p className="mb-6 text-neutral-600">
+          <p className="mb-6 text-neutral-700">
             Contact our technical team for immediate assistance
           </p>
           <Link

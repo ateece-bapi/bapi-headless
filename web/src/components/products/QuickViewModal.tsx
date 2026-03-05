@@ -113,7 +113,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             {/* SKU and Stock Status */}
             <div className="mb-4 flex items-center gap-3">
               {sku && (
-                <div className="flex items-center gap-1.5 text-sm text-neutral-600">
+                <div className="flex items-center gap-1.5 text-sm text-neutral-700">
                   <Package className="h-4 w-4" />
                   <span>SKU: {sku}</span>
                 </div>
@@ -140,7 +140,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             {/* Short Description */}
             {product.shortDescription && (
               <div
-                className="mb-6 line-clamp-4 text-neutral-600"
+                className="mb-6 line-clamp-4 text-neutral-700"
                 dangerouslySetInnerHTML={{ __html: product.shortDescription }}
               />
             )}

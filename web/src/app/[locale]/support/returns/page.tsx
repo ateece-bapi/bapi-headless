@@ -51,28 +51,28 @@ export default async function ReturnsPage({ params }: Props) {
                 1
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">{t('process.step1.title')}</h3>
-              <p className="text-sm text-neutral-600">{t('process.step1.description')}</p>
+              <p className="text-sm text-neutral-700">{t('process.step1.description')}</p>
             </div>
             <div className="text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 2
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">{t('process.step2.title')}</h3>
-              <p className="text-sm text-neutral-600">{t('process.step2.description')}</p>
+              <p className="text-sm text-neutral-700">{t('process.step2.description')}</p>
             </div>
             <div className="text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 3
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">{t('process.step3.title')}</h3>
-              <p className="text-sm text-neutral-600">{t('process.step3.description')}</p>
+              <p className="text-sm text-neutral-700">{t('process.step3.description')}</p>
             </div>
             <div className="text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-xl font-bold text-white">
                 4
               </div>
               <h3 className="mb-2 font-bold text-neutral-900">{t('process.step4.title')}</h3>
-              <p className="text-sm text-neutral-600">{t('process.step4.description')}</p>
+              <p className="text-sm text-neutral-700">{t('process.step4.description')}</p>
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@ export default async function ReturnsPage({ params }: Props) {
       <section className="py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">{t('cta.heading')}</h2>
-          <p className="mb-6 text-neutral-600">{t('cta.description')}</p>
+          <p className="mb-6 text-neutral-700">{t('cta.description')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href={`/${locale}/support/contact`}

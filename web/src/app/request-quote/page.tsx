@@ -30,17 +30,17 @@ export default function RequestQuotePage() {
             <div className="text-center">
               <Clock className="mx-auto mb-3 h-12 w-12 text-primary-500" />
               <h3 className="mb-2 text-lg font-bold text-neutral-900">Fast Response</h3>
-              <p className="text-neutral-600">Quote within 24-48 business hours</p>
+              <p className="text-neutral-700">Quote within 24-48 business hours</p>
             </div>
             <div className="text-center">
               <CheckCircle className="mx-auto mb-3 h-12 w-12 text-primary-500" />
               <h3 className="mb-2 text-lg font-bold text-neutral-900">Accurate Pricing</h3>
-              <p className="text-neutral-600">Detailed pricing for your exact needs</p>
+              <p className="text-neutral-700">Detailed pricing for your exact needs</p>
             </div>
             <div className="text-center">
               <Mail className="mx-auto mb-3 h-12 w-12 text-primary-500" />
               <h3 className="mb-2 text-lg font-bold text-neutral-900">Direct Contact</h3>
-              <p className="text-neutral-600">Work with our sales team directly</p>
+              <p className="text-neutral-700">Work with our sales team directly</p>
             </div>
           </div>
         </div>
@@ -246,7 +246,7 @@ export default function RequestQuotePage() {
                 >
                   Submit Quote Request
                 </button>
-                <p className="mt-3 text-center text-sm text-neutral-600">
+                <p className="mt-3 text-center text-sm text-neutral-700">
                   We&apos;ll respond within 24-48 business hours
                 </p>
               </div>
@@ -259,7 +259,7 @@ export default function RequestQuotePage() {
       <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h3 className="mb-3 text-xl font-bold text-neutral-900">Prefer to Speak with Someone?</h3>
-          <p className="mb-4 text-neutral-600">
+          <p className="mb-4 text-neutral-700">
             Call our sales team directly at{' '}
             <a
               href="tel:+17158561203"

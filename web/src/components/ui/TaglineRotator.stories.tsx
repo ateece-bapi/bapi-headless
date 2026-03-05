@@ -138,7 +138,7 @@ export const AccessibilityTest: Story = {
   decorators: [
     (Story) => (
       <div className="rounded-xl bg-neutral-100 p-8">
-        <div className="mb-4 text-sm text-neutral-600">
+        <div className="mb-4 text-sm text-neutral-700">
           Screen readers will announce each tagline change.
         </div>
         <Story />

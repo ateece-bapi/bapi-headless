@@ -104,7 +104,7 @@ export default async function ApplicationNotesPage() {
               <h2 className="mb-2 text-xl font-semibold text-neutral-900">
                 Expert Guidance from Industry Leaders
               </h2>
-              <p className="text-neutral-600">
+              <p className="text-neutral-700">
                 Our application notes are written by BAPI&apos;s engineering team with decades of
                 combined experience. Each article provides practical, field-tested solutions to
                 common challenges in sensor installation, calibration, and maintenance.
@@ -122,7 +122,7 @@ export default async function ApplicationNotesPage() {
             <h3 className="mb-2 text-xl font-semibold text-neutral-900">
               No application notes available
             </h3>
-            <p className="text-neutral-600">Check back soon for technical articles and guides.</p>
+            <p className="text-neutral-700">Check back soon for technical articles and guides.</p>
           </div>
         ) : (
           <ApplicationNoteList applicationNotes={applicationNotes} />

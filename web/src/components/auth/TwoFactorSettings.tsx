@@ -146,7 +146,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold text-neutral-900">{t('title')}</h2>
-        <p className="mt-2 text-neutral-600">
+        <p className="mt-2 text-neutral-700">
           {t('subtitle')}
         </p>
       </div>
@@ -167,7 +167,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
               </div>
             ) : (
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-200">
-                <ShieldOff className="h-6 w-6 text-neutral-600" />
+                <ShieldOff className="h-6 w-6 text-neutral-700" />
               </div>
             )}
           </div>
@@ -301,7 +301,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-400 hover:text-neutral-600"
+                      className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-400 hover:text-neutral-700"
                       tabIndex={-1}
                       aria-label={showPassword ? t('disable.form.hidePassword') : t('disable.form.showPassword')}
                     >
@@ -334,7 +334,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                     required
                     aria-label={t('disable.form.codeAriaLabel')}
                   />
-                  <p className="mt-2 text-sm text-neutral-600">
+                  <p className="mt-2 text-sm text-neutral-700">
                     {t('disable.form.codeHelp')}
                   </p>
                 </div>

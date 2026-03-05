@@ -30,7 +30,7 @@ export default function RadioGroupSelector({
         <label className="block text-sm font-semibold uppercase tracking-wide text-neutral-700">
           {label}
         </label>
-        {description && <p className="mt-1 text-xs text-neutral-600">{description}</p>}
+        {description && <p className="mt-1 text-xs text-neutral-700">{description}</p>}
       </div>
 
       <div className="space-y-2">

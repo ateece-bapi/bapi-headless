@@ -276,7 +276,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
             <h2 className="mb-4 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Critical Challenges & BAPI Solutions
             </h2>
-            <p className="mx-auto max-w-3xl text-lg text-neutral-600">
+            <p className="mx-auto max-w-3xl text-lg text-neutral-700">
               Engineered sensor solutions for your specific requirements
             </p>
           </div>
@@ -348,7 +348,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
             <h2 className="mb-6 text-3xl font-bold text-neutral-900 lg:text-4xl">
               Ready to Optimize Your Facility?
             </h2>
-            <p className="mb-8 text-lg text-neutral-600">
+            <p className="mb-8 text-lg text-neutral-700">
               Let&apos;s discuss how BAPI sensors can solve your specific challenges.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
@@ -373,7 +373,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       {/* Coming Soon: Case Studies */}
       <section className="w-full border-t border-neutral-200 bg-neutral-100 py-12">
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-neutral-600">
+          <p className="text-neutral-700">
             <span className="font-semibold">Case Studies Coming Soon:</span> Real-world
             implementations, ROI data, and customer testimonials
           </p>

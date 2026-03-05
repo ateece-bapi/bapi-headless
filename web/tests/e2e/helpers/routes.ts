@@ -8,9 +8,11 @@
 /**
  * Normalize locale values from env/inputs by trimming whitespace and
  * stripping any leading/trailing slashes (e.g. '/en/' -> 'en').
+ * Falls back to 'en' if the result is empty (e.g. '/', '   ').
  */
 export function normalizeLocale(locale: string): string {
-  return locale.trim().replace(/^\/+|\/+$/g, '');
+  const normalized = locale.trim().replace(/^\/+|\/+$/g, '');
+  return normalized || 'en';
 }
 
 // Default test locale (can be overridden via environment variable)

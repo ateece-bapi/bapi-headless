@@ -12,13 +12,19 @@ import { injectAxe, checkA11y } from 'axe-playwright';
  * - Product images and media
  * - Breadcrumb navigation
  * - Accessibility compliance
+ * 
+ * IMPORTANT: All routes must include locale prefix (e.g., /en/products)
+ * due to next-intl i18n routing. Routes without locale prefix will 404.
  */
 
 test.describe('Product Pages', () => {
   test.describe('Product Categories Landing', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/products');
+      await page.goto('/en/products');
       await page.waitForLoadState('networkidle');
+      // Wait for page fade + staggered card animations to complete
+      // Page fade: 500ms, Card delays: 75ms * 8 = 600ms, Total: ~1000ms
+      await page.waitForTimeout(1000);
     });
 
     test('should display product categories', async ({ page }) => {
@@ -45,6 +51,8 @@ test.describe('Product Pages', () => {
 
       await firstCategory.click();
       await page.waitForLoadState('networkidle');
+      // Wait for category page animations
+      await page.waitForTimeout(500);
 
       // Should navigate away from the landing page to a category route
       await expect(page).not.toHaveURL(/\/products\/?$/);
@@ -62,6 +70,8 @@ test.describe('Product Pages', () => {
         .first();
       await firstCategory.click();
       await page.waitForLoadState('networkidle');
+      // Wait for category page animations
+      await page.waitForTimeout(500);
 
       // Then click the first product link within that category
       let productLinks = page.locator('a[href*="/product/"]');
@@ -80,6 +90,8 @@ test.describe('Product Pages', () => {
         await expect(firstSubcategoryLink).toBeVisible();
         await firstSubcategoryLink.click();
         await page.waitForLoadState('networkidle');
+        // Wait for subcategory page animations
+        await page.waitForTimeout(500);
 
         // Now look for product links in the subcategory
         productLinks = page.locator('a[href*="/product/"]');
@@ -112,8 +124,10 @@ test.describe('Product Pages', () => {
   test.describe('Product Detail Page', () => {
     test.beforeEach(async ({ page }) => {
       // Navigate to products landing page
-      await page.goto('/products');
+      await page.goto('/en/products');
       await page.waitForLoadState('networkidle');
+      // Wait for page fade + staggered card animations to complete
+      await page.waitForTimeout(1000);
       
       // Click first category
       const firstCategory = page
@@ -122,6 +136,8 @@ test.describe('Product Pages', () => {
         .first();
       await firstCategory.click();
       await page.waitForLoadState('networkidle');
+      // Wait for category page animations
+      await page.waitForTimeout(500);
       
       // Check if category has subcategories (parent category) or products (leaf category)
       let firstProductLink = page.locator('a[href*="/product/"]').first();
@@ -137,6 +153,8 @@ test.describe('Product Pages', () => {
         await expect(firstSubcategoryLink).toBeVisible();
         await firstSubcategoryLink.click();
         await page.waitForLoadState('networkidle');
+        // Wait for subcategory page animations
+        await page.waitForTimeout(500);
         firstProductLink = page.locator('a[href*="/product/"]').first();
       }
       

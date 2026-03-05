@@ -227,7 +227,7 @@ export const AllTypography: Story = {
 
           <TypographyExample
             tag="p"
-            className="text-xs leading-normal text-neutral-500"
+            className="text-xs leading-normal text-neutral-700"
             description="Extra Small Text - for labels and metadata"
             tailwind="text-xs text-neutral-500 leading-normal"
           >
@@ -292,7 +292,7 @@ export const AllTypography: Story = {
             <p className="text-neutral-700">
               <strong>neutral-600:</strong> Secondary text - captions and descriptions
             </p>
-            <p className="text-neutral-500">
+            <p className="text-neutral-700">
               <strong>neutral-500:</strong> Tertiary text - metadata and labels
             </p>
             <p className="text-neutral-400">
@@ -489,7 +489,7 @@ export const TextColors: Story = {
         <p className="text-lg text-neutral-800">neutral-800 - Strong emphasis</p>
         <p className="text-lg text-neutral-700">neutral-700 - Body text (default)</p>
         <p className="text-lg text-neutral-700">neutral-600 - Secondary text</p>
-        <p className="text-lg text-neutral-500">neutral-500 - Tertiary text</p>
+        <p className="text-lg text-neutral-700">neutral-500 - Tertiary text</p>
         <p className="text-lg text-neutral-400">neutral-400 - Placeholder text</p>
         <p className="text-lg text-neutral-300">neutral-300 - Disabled text</p>
       </div>

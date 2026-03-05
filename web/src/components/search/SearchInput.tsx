@@ -76,12 +76,12 @@ export function SearchInput() {
               className="rounded p-1.5 transition-colors hover:bg-neutral-100"
               aria-label="Clear search"
             >
-              <X className="h-4 w-4 text-neutral-500" />
+              <X className="h-4 w-4 text-neutral-700" />
             </button>
           )}
 
           {!query && (
-            <kbd className="hidden items-center gap-1 rounded border border-neutral-200 bg-neutral-100 px-2 py-1 text-xs font-semibold text-neutral-500 sm:inline-flex">
+            <kbd className="hidden items-center gap-1 rounded border border-neutral-200 bg-neutral-100 px-2 py-1 text-xs font-semibold text-neutral-700 sm:inline-flex">
               <Command className="h-3 w-3" />K
             </kbd>
           )}

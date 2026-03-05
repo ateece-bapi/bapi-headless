@@ -303,8 +303,9 @@ describe('CartDrawer Accessibility', () => {
       render(<CartDrawer />);
 
       const emptyMessage = screen.getByText(/your cart is empty/i);
-      expect(emptyMessage).toHaveClass('text-neutral-500');
-      // neutral-500 (#97999b) on white - verified WCAG AA compliant by jest-axe
+      expect(emptyMessage).toHaveClass('text-neutral-700');
+      // text-neutral-700 on white = 6.40:1 ratio ✓ PASS WCAG AA
+      // Updated March 2026: neutral-500 deprecated (2.86:1 fails AA)
     });
 
     it('variation attributes have sufficient contrast', () => {
@@ -333,8 +334,9 @@ describe('CartDrawer Accessibility', () => {
       render(<CartDrawer />);
 
       const partNumber = screen.getByText(/TS-101-BLU/i);
-      expect(partNumber).toHaveClass('text-neutral-500');
-      // neutral-500 (#97999b) on white - verified by jest-axe
+      expect(partNumber).toHaveClass('text-neutral-700');
+      // text-neutral-700 on white = 6.40:1 ratio ✓ PASS WCAG AA
+      // Updated March 2026: neutral-500 deprecated (2.86:1 fails AA)
     });
 
     it('price display has sufficient contrast', () => {
@@ -351,9 +353,9 @@ describe('CartDrawer Accessibility', () => {
       render(<CartDrawer />);
 
       const closeButton = screen.getByLabelText(/close cart/i);
-      expect(closeButton).toHaveClass('text-neutral-500');
-      // text-neutral-500 on white = ~4.59:1 ratio ✓ PASS
-      // Hover: text-neutral-700 (#404040) = ~8.59:1 ratio ✓ PASS
+      expect(closeButton).toHaveClass('text-neutral-700');
+      // text-neutral-700 on white = 6.40:1 ratio ✓ PASS WCAG AA
+      // Updated March 2026: neutral-500 deprecated (2.86:1 fails AA)
     });
 
     it('quantity buttons have sufficient contrast', () => {

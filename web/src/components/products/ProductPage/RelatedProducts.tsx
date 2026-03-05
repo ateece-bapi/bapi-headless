@@ -38,7 +38,7 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({ related }) => {
               />
             )}
             <div className="mb-1 text-sm font-medium text-neutral-900">{product.name}</div>
-            <div className="mb-1 text-xs text-neutral-500">
+            <div className="mb-1 text-xs text-neutral-700">
               Part #: {product.partNumber || product.sku || 'N/A'}
             </div>
             {product.price && (

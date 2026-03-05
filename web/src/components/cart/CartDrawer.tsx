@@ -25,7 +25,7 @@ const CartDrawer = () => {
           <h2 className="text-xl font-bold text-neutral-900">Shopping Cart</h2>
           <button
             onClick={closeCart}
-            className="text-neutral-500 transition hover:text-neutral-700"
+            className="text-neutral-700 transition hover:text-neutral-700"
             aria-label="Close cart"
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,7 +42,7 @@ const CartDrawer = () => {
         {/* Cart Items */}
         <div className="flex-1 overflow-y-auto p-4">
           {isEmpty ? (
-            <p className="mt-8 text-center text-neutral-500">Your cart is empty</p>
+            <p className="mt-8 text-center text-neutral-700">Your cart is empty</p>
           ) : (
             <div className="space-y-4">
               {items.map((item) => (
@@ -78,7 +78,7 @@ const CartDrawer = () => {
 
                     {/* Show part number or variation SKU if available */}
                     {(item.partNumber || item.variationSku) && (
-                      <p className="mt-1 font-mono text-xs text-neutral-500">
+                      <p className="mt-1 font-mono text-xs text-neutral-700">
                         {item.partNumber || item.variationSku}
                       </p>
                     )}

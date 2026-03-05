@@ -85,7 +85,7 @@ export default async function DatasheetsPage({ params }: Props) {
                     <FileText className="h-8 w-8 text-primary-500" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="mb-1 text-xs text-neutral-500">{item.model}</div>
+                    <div className="mb-1 text-xs text-neutral-700">{item.model}</div>
                     <h3 className="mb-1 line-clamp-2 font-bold text-neutral-900">{item.name}</h3>
                     <div className="flex flex-wrap gap-1">
                       {item.categories.map((cat, idx) => (
@@ -100,7 +100,7 @@ export default async function DatasheetsPage({ params }: Props) {
                   </div>
                 </div>
                 <p className="mb-4 line-clamp-2 text-sm text-neutral-700">{item.description}</p>
-                <div className="mb-4 flex items-center justify-between text-xs text-neutral-500">
+                <div className="mb-4 flex items-center justify-between text-xs text-neutral-700">
                   <span>
                     {item.pages} {t('grid.pagesLabel')}
                   </span>
@@ -148,7 +148,7 @@ export default async function DatasheetsPage({ params }: Props) {
             <Download className="h-5 w-5" />
             {t('bulkDownload.button')}
           </button>
-          <p className="mt-3 text-sm text-neutral-500">{t('bulkDownload.packageInfo')}</p>
+          <p className="mt-3 text-sm text-neutral-700">{t('bulkDownload.packageInfo')}</p>
         </div>
       </section>
     </div>

@@ -294,7 +294,7 @@ export default function ChatWidget() {
                   </div>
                   <p
                     className={`mt-1 text-xs ${
-                      message.role === 'user' ? 'text-white/70' : 'text-neutral-500'
+                      message.role === 'user' ? 'text-white/70' : 'text-neutral-700'
                     }`}
                   >
                     {message.timestamp.toLocaleTimeString(locale, {
@@ -313,7 +313,7 @@ export default function ChatWidget() {
                       className={`rounded-lg p-1.5 transition-colors ${
                         message.feedbackGiven === 'positive'
                           ? 'bg-green-100 text-green-600'
-                          : 'text-neutral-500 hover:bg-neutral-200 hover:text-green-600'
+                          : 'text-neutral-700 hover:bg-neutral-200 hover:text-green-600'
                       } disabled:opacity-50`}
                       aria-label="Helpful"
                       title="This was helpful"
@@ -326,7 +326,7 @@ export default function ChatWidget() {
                       className={`rounded-lg p-1.5 transition-colors ${
                         message.feedbackGiven === 'negative'
                           ? 'bg-red-100 text-red-600'
-                          : 'text-neutral-500 hover:bg-neutral-200 hover:text-red-600'
+                          : 'text-neutral-700 hover:bg-neutral-200 hover:text-red-600'
                       } disabled:opacity-50`}
                       aria-label="Not helpful"
                       title="This wasn't helpful"
@@ -334,7 +334,7 @@ export default function ChatWidget() {
                       <ThumbsDown className="h-4 w-4" />
                     </button>
                     {message.feedbackGiven && (
-                      <span className="ml-1 text-xs text-neutral-500">
+                      <span className="ml-1 text-xs text-neutral-700">
                         {locale === 'de'
                           ? 'Danke für Ihr Feedback!'
                           : locale === 'es'

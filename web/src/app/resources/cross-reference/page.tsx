@@ -88,7 +88,7 @@ export default function CrossReferencePage() {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-3">
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">Competitor</div>
+                  <div className="mb-1 text-xs text-neutral-700">Competitor</div>
                   <div className="font-bold text-neutral-900">Honeywell C7400A2100</div>
                   <div className="text-sm text-neutral-700">Room Temperature Sensor</div>
                 </div>
@@ -96,7 +96,7 @@ export default function CrossReferencePage() {
                   <RefreshCw className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">BAPI Equivalent</div>
+                  <div className="mb-1 text-xs text-neutral-700">BAPI Equivalent</div>
                   <div className="font-bold text-primary-500">BA/10K-2-R</div>
                   <div className="text-sm text-neutral-700">10K Type 2 Room Sensor</div>
                 </div>
@@ -106,7 +106,7 @@ export default function CrossReferencePage() {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-3">
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">Competitor</div>
+                  <div className="mb-1 text-xs text-neutral-700">Competitor</div>
                   <div className="font-bold text-neutral-900">Johnson Controls TE-6000</div>
                   <div className="text-sm text-neutral-700">Temperature & Humidity Sensor</div>
                 </div>
@@ -114,7 +114,7 @@ export default function CrossReferencePage() {
                   <RefreshCw className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">BAPI Equivalent</div>
+                  <div className="mb-1 text-xs text-neutral-700">BAPI Equivalent</div>
                   <div className="font-bold text-primary-500">BA/RH-AS-R2</div>
                   <div className="text-sm text-neutral-700">RH & Temp Room Sensor</div>
                 </div>

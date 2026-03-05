@@ -88,7 +88,7 @@ export default async function CompanyPage() {
               <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
                 {t('stats.years.value')}
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-500 transition-colors group-hover:text-neutral-900">
+              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
                 {t('stats.years.label')}
               </div>
             </div>
@@ -96,7 +96,7 @@ export default async function CompanyPage() {
               <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
                 {t('stats.products.value')}
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-500 transition-colors group-hover:text-neutral-900">
+              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
                 {t('stats.products.label')}
               </div>
             </div>
@@ -104,7 +104,7 @@ export default async function CompanyPage() {
               <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
                 {t('stats.madeInUsa.value')}
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-500 transition-colors group-hover:text-neutral-900">
+              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
                 {t('stats.madeInUsa.label')}
               </div>
             </div>
@@ -112,7 +112,7 @@ export default async function CompanyPage() {
               <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
                 {t('stats.distribution.value')}
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-500 transition-colors group-hover:text-neutral-900">
+              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
                 {t('stats.distribution.label')}
               </div>
             </div>

@@ -84,7 +84,7 @@ export default function ProductSortDropdown() {
       >
         <span className="flex items-center gap-2">
           <svg
-            className="h-4 w-4 text-neutral-500"
+            className="h-4 w-4 text-neutral-700"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

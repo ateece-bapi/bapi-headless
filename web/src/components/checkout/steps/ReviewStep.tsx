@@ -222,7 +222,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
       </div>
 
       {/* Security Notice */}
-      <div className="flex items-center justify-center gap-2 pt-4 text-sm text-neutral-500">
+      <div className="flex items-center justify-center gap-2 pt-4 text-sm text-neutral-700">
         <span className="text-xl">🔒</span>
         <span>{t('security')}</span>
       </div>

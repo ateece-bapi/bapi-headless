@@ -73,7 +73,7 @@ export default function ApplicationsPage() {
 
                 {/* Subcategory Count */}
                 <div className="flex items-center justify-between border-t border-neutral-100 pt-4 text-sm">
-                  <span className="font-medium text-neutral-500">
+                  <span className="font-medium text-neutral-700">
                     {Object.keys(category.subcategories).length} subcategories
                   </span>
                   <div className="flex items-center font-medium text-primary-600 transition-all group-hover:gap-2">

@@ -365,7 +365,7 @@ export default function RequestQuotePage() {
                     <p className="text-sm font-semibold text-neutral-700">
                       Click to upload or drag and drop
                     </p>
-                    <p className="text-xs text-neutral-500">PDF, DOC, XLS, JPG, PNG (Max 10MB)</p>
+                    <p className="text-xs text-neutral-700">PDF, DOC, XLS, JPG, PNG (Max 10MB)</p>
                   </div>
                   <input
                     id="file-upload"
@@ -391,7 +391,7 @@ export default function RequestQuotePage() {
                             <p className="truncate text-sm font-medium text-neutral-900">
                               {file.name}
                             </p>
-                            <p className="text-xs text-neutral-500">
+                            <p className="text-xs text-neutral-700">
                               {(file.size / 1024).toFixed(1)} KB
                             </p>
                           </div>

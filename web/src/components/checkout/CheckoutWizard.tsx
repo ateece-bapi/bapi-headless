@@ -58,7 +58,7 @@ export default function CheckoutWizard({
                       ? 'bg-success-500 text-white'
                       : currentStep === step.number
                         ? 'bg-primary-500 text-white'
-                        : 'bg-neutral-200 text-neutral-500'
+                        : 'bg-neutral-200 text-neutral-700'
                   } `}
                 >
                   {currentStep > step.number ? (
@@ -70,12 +70,12 @@ export default function CheckoutWizard({
                 <div className="mt-2 text-center">
                   <div
                     className={`text-xs font-semibold sm:text-sm ${
-                      currentStep >= step.number ? 'text-neutral-900' : 'text-neutral-500'
+                      currentStep >= step.number ? 'text-neutral-900' : 'text-neutral-700'
                     } `}
                   >
                     {step.title}
                   </div>
-                  <div className="hidden text-xs text-neutral-500 sm:block">{step.description}</div>
+                  <div className="hidden text-xs text-neutral-700 sm:block">{step.description}</div>
                 </div>
               </div>
 

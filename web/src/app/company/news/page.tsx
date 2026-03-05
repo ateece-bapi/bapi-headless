@@ -28,7 +28,7 @@ export default function NewsPage() {
               <div className="mb-4 flex items-start gap-4">
                 <Calendar className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
                 <div>
-                  <div className="mb-2 text-sm text-neutral-500">January 15, 2026</div>
+                  <div className="mb-2 text-sm text-neutral-700">January 15, 2026</div>
                   <h2 className="mb-3 text-2xl font-bold text-neutral-900">
                     BAPI Launches New Wireless Product Line
                   </h2>
@@ -47,7 +47,7 @@ export default function NewsPage() {
               <div className="mb-4 flex items-start gap-4">
                 <Calendar className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
                 <div>
-                  <div className="mb-2 text-sm text-neutral-500">December 10, 2025</div>
+                  <div className="mb-2 text-sm text-neutral-700">December 10, 2025</div>
                   <h2 className="mb-3 text-2xl font-bold text-neutral-900">
                     BAPI Celebrates 40 Years in Business
                   </h2>

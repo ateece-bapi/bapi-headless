@@ -69,8 +69,8 @@ export default function ServiceBulletinPage() {
                     <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
                       IMPORTANT
                     </span>
-                    <span className="text-sm text-neutral-500">SB-2026-001</span>
-                    <span className="text-sm text-neutral-500">January 15, 2026</span>
+                    <span className="text-sm text-neutral-700">SB-2026-001</span>
+                    <span className="text-sm text-neutral-700">January 15, 2026</span>
                   </div>
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">
                     Firmware Update for Wireless Sensors
@@ -102,8 +102,8 @@ export default function ServiceBulletinPage() {
                     <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800">
                       INFO
                     </span>
-                    <span className="text-sm text-neutral-500">SB-2025-012</span>
-                    <span className="text-sm text-neutral-500">December 20, 2025</span>
+                    <span className="text-sm text-neutral-700">SB-2025-012</span>
+                    <span className="text-sm text-neutral-700">December 20, 2025</span>
                   </div>
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">
                     Temperature Sensor Calibration Guidelines
@@ -134,8 +134,8 @@ export default function ServiceBulletinPage() {
                     <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-800">
                       UPDATE
                     </span>
-                    <span className="text-sm text-neutral-500">SB-2025-011</span>
-                    <span className="text-sm text-neutral-500">November 5, 2025</span>
+                    <span className="text-sm text-neutral-700">SB-2025-011</span>
+                    <span className="text-sm text-neutral-700">November 5, 2025</span>
                   </div>
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">
                     WAM Cloud Platform Enhancements

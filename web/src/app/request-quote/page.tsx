@@ -268,7 +268,7 @@ export default function RequestQuotePage() {
               (715) 856-1203
             </a>
           </p>
-          <p className="text-sm text-neutral-500">Monday - Friday, 8am - 5pm CST</p>
+          <p className="text-sm text-neutral-700">Monday - Friday, 8am - 5pm CST</p>
         </div>
       </section>
     </main>

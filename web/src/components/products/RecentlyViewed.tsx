@@ -63,7 +63,7 @@ export default function RecentlyViewed({
       <div className="py-12 text-center">
         <History className="mx-auto mb-4 h-12 w-12 text-neutral-400" />
         <p className="text-lg text-neutral-700">No recently viewed products</p>
-        <p className="mt-2 text-sm text-neutral-500">Products you view will appear here</p>
+        <p className="mt-2 text-sm text-neutral-700">Products you view will appear here</p>
       </div>
     );
   }
@@ -152,7 +152,7 @@ export default function RecentlyViewed({
 
       {/* Show more indicator */}
       {displayProducts.length > maxDisplay && (
-        <p className="text-center text-sm text-neutral-500">
+        <p className="text-center text-sm text-neutral-700">
           +{displayProducts.length - maxDisplay} more in your history
         </p>
       )}

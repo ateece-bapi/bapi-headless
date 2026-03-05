@@ -105,7 +105,7 @@ export default async function CrossReferencePage({ params }: Props) {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-3">
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">
+                  <div className="mb-1 text-xs text-neutral-700">
                     {t('popularSection.competitorLabel')}
                   </div>
                   <div className="font-bold text-neutral-900">Honeywell C7400A2100</div>
@@ -115,7 +115,7 @@ export default async function CrossReferencePage({ params }: Props) {
                   <RefreshCw className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">
+                  <div className="mb-1 text-xs text-neutral-700">
                     {t('popularSection.bapiLabel')}
                   </div>
                   <div className="font-bold text-primary-500">BA/10K-2-R</div>
@@ -127,7 +127,7 @@ export default async function CrossReferencePage({ params }: Props) {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
               <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-3">
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">
+                  <div className="mb-1 text-xs text-neutral-700">
                     {t('popularSection.competitorLabel')}
                   </div>
                   <div className="font-bold text-neutral-900">Johnson Controls TE-6000</div>
@@ -137,7 +137,7 @@ export default async function CrossReferencePage({ params }: Props) {
                   <RefreshCw className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
-                  <div className="mb-1 text-xs text-neutral-500">
+                  <div className="mb-1 text-xs text-neutral-700">
                     {t('popularSection.bapiLabel')}
                   </div>
                   <div className="font-bold text-primary-500">BA/RH-AS-R2</div>

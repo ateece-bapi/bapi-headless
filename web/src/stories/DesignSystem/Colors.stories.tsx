@@ -113,7 +113,7 @@ export const AllColors: Story = {
           {/* Brand Distribution */}
           <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-10">
             <div className="rounded-lg bg-neutral-50 p-6 text-center md:col-span-6">
-              <div className="mb-2 text-5xl font-bold text-neutral-500">60%</div>
+              <div className="mb-2 text-5xl font-bold text-neutral-700">60%</div>
               <div className="text-xl font-semibold text-neutral-900">White & Gray</div>
               <div className="mt-2 text-sm text-neutral-700">Backgrounds, surfaces, subtle UI</div>
             </div>

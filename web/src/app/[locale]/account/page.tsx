@@ -123,7 +123,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                   <Building2 className="h-6 w-6 text-primary-600" />
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-500">{t('company')}</p>
+                  <p className="mb-1 text-sm text-neutral-700">{t('company')}</p>
                   <p className="font-semibold text-neutral-900">{profile.companyName}</p>
                   <p className="text-sm text-neutral-700">{t('accountNumber')} {profile.accountNumber}</p>
                 </div>
@@ -135,7 +135,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                   <Package className="h-6 w-6 text-primary-600" />
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-500">{t('recentOrders')}</p>
+                  <p className="mb-1 text-sm text-neutral-700">{t('recentOrders')}</p>
                   <p className="font-semibold text-neutral-900">
                     {t('ordersCount', { count: profile.orderHistory.length })}
                   </p>
@@ -154,7 +154,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                   <FileText className="h-6 w-6 text-accent-600" />
                 </div>
                 <div>
-                  <p className="mb-1 text-sm text-neutral-500">{t('savedQuotes')}</p>
+                  <p className="mb-1 text-sm text-neutral-700">{t('savedQuotes')}</p>
                   <p className="font-semibold text-neutral-900">
                     {t('quotesCount', { count: profile.savedQuotes.length })}
                   </p>
@@ -182,7 +182,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                   <div className="mb-3 flex items-start justify-between">
                     <div>
                       <h3 className="font-semibold text-neutral-900">{order.orderId}</h3>
-                      <p className="text-sm text-neutral-500">{order.date}</p>
+                      <p className="text-sm text-neutral-700">{order.date}</p>
                     </div>
                     <div className="text-right">
                       <p className="font-semibold text-neutral-900">${order.total.toFixed(2)}</p>
@@ -208,7 +208,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                       </p>
                     ))}
                     {order.items.length > 2 && (
-                      <p className="text-sm text-neutral-500">
+                      <p className="text-sm text-neutral-700">
                         {order.items.length - 2 === 1
                           ? t('moreItems', { count: order.items.length - 2 })
                           : t('moreItemsPlural', { count: order.items.length - 2 })}

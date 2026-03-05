@@ -440,7 +440,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
                 key={code}
                 className="rounded-lg border-2 border-neutral-200 bg-neutral-50 px-4 py-3 text-center"
               >
-                <span className="text-xs text-neutral-500">#{index + 1}</span>
+                <span className="text-xs text-neutral-700">#{index + 1}</span>
                 <code className="mt-1 block font-mono text-base font-semibold text-neutral-900">
                   {code}
                 </code>

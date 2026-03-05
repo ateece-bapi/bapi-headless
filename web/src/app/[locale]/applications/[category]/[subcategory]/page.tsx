@@ -106,7 +106,7 @@ export default async function ApplicationSubcategoryPage({
             <span className="font-medium">Fetching from WordPress categories:</span>{' '}
             {wpCategories.join(', ')}
           </p>
-          <p className="mt-1 text-xs text-neutral-500">
+          <p className="mt-1 text-xs text-neutral-700">
             (This is temporary debug info - will be removed in production)
           </p>
         </div>

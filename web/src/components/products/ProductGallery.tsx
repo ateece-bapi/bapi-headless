@@ -132,7 +132,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
   if (!currentImage) {
     return (
       <div className="flex aspect-square items-center justify-center rounded-xl bg-neutral-100">
-        <p className="text-neutral-500">No image available</p>
+        <p className="text-neutral-700">No image available</p>
       </div>
     );
   }

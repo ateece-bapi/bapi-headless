@@ -185,7 +185,7 @@ const AddToCartButton = ({
       showSuccess
         ? 'bg-success-500 hover:bg-success-600 text-white shadow-sm hover:shadow-md'
         : disabled
-          ? 'bg-neutral-300 text-neutral-500 shadow-sm'
+          ? 'bg-neutral-300 text-neutral-700 shadow-sm'
           : 'btn-bapi-accent'
     }
     ${className}

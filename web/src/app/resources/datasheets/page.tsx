@@ -69,7 +69,7 @@ export default function DatasheetsPage() {
                     <FileText className="h-8 w-8 text-primary-500" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="mb-1 text-xs text-neutral-500">{item.model}</div>
+                    <div className="mb-1 text-xs text-neutral-700">{item.model}</div>
                     <h3 className="mb-1 line-clamp-2 font-bold text-neutral-900">{item.name}</h3>
                     <div className="flex flex-wrap gap-1">
                       {item.categories.map((cat, idx) => (
@@ -84,7 +84,7 @@ export default function DatasheetsPage() {
                   </div>
                 </div>
                 <p className="mb-4 line-clamp-2 text-sm text-neutral-700">{item.description}</p>
-                <div className="mb-4 flex items-center justify-between text-xs text-neutral-500">
+                <div className="mb-4 flex items-center justify-between text-xs text-neutral-700">
                   <span>{item.pages} pages</span>
                   <span>{item.size}</span>
                 </div>
@@ -132,7 +132,7 @@ export default function DatasheetsPage() {
             <Download className="h-5 w-5" />
             Download All Datasheets (ZIP)
           </button>
-          <p className="mt-3 text-sm text-neutral-500">
+          <p className="mt-3 text-sm text-neutral-700">
             Complete package • 125 MB • Updated January 2026
           </p>
         </div>

@@ -176,7 +176,7 @@ export default function ProductSpecifications({
               >
                 <h3 className="text-lg font-bold text-neutral-900">{group.title}</h3>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-neutral-500">
+                  <span className="text-sm text-neutral-700">
                     {group.specs.length} {group.specs.length === 1 ? 'spec' : 'specs'}
                   </span>
                   {isExpanded ? (

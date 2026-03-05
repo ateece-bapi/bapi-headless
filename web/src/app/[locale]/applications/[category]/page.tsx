@@ -77,7 +77,7 @@ export default async function ApplicationCategoryPage({ params }: ApplicationCat
               {/* Featured Products Preview */}
               {subcategory.featuredProducts && subcategory.featuredProducts.length > 0 && (
                 <div className="mb-5 flex flex-wrap items-center gap-2 border-t border-neutral-100 pt-4">
-                  <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                  <span className="text-xs font-medium uppercase tracking-wide text-neutral-700">
                     Featured:
                   </span>
                   {subcategory.featuredProducts.slice(0, 3).map((product, index) => (

@@ -49,7 +49,17 @@ vi.mock('@/lib/navigation', () => ({
 			[key: string]: unknown;
 		};
 		// Strip out Next.js/next-intl Link-only props to avoid React DOM warnings
-		const { href, children, className, locale, prefetch, replace, scroll, shallow, ...anchorProps } = p;
+		const {
+			href,
+			children,
+			className,
+			locale: _locale,
+			prefetch: _prefetch,
+			replace: _replace,
+			scroll: _scroll,
+			shallow: _shallow,
+			...anchorProps
+		} = p;
 		return React.createElement('a', { href, className, ...anchorProps }, children);
 	},
 	useRouter: () => ({

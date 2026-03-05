@@ -24,6 +24,21 @@ vi.mock('next/image', () => ({
   default: ({ src, alt, ...props }: any) => <img src={src} alt={alt} {...props} />,
 }));
 
+// Mock next-intl navigation for i18n Link support
+vi.mock('@/lib/navigation', () => ({
+  Link: ({ children, href, ...props }: any) => (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  ),
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+  usePathname: () => '/en',
+}));
+
 vi.mock('next/link', () => ({
   default: ({ href, children, ...props }: any) => (
     <a href={href} {...props}>
@@ -327,7 +342,8 @@ describe('CartDrawer Accessibility', () => {
       const variationContainer = whiteText.closest('.text-neutral-700');
       expect(variationContainer).toBeInTheDocument();
       expect(variationContainer).toHaveClass('text-neutral-700');
-      // neutral-600 (#797a7c) on white - verified by jest-axe
+      // text-neutral-700 (#5e5f60) on white = 6.40:1 ratio ✓ PASS WCAG AA
+      // Updated March 2026: neutral-600 deprecated (4.30:1 fails AA)
     });
 
     it('part number / SKU has sufficient contrast', () => {
@@ -344,7 +360,8 @@ describe('CartDrawer Accessibility', () => {
 
       const price = screen.getByText('$149.00');
       expect(price).toHaveClass('text-neutral-700');
-      // neutral-600 (#797a7c) on white - verified by jest-axe
+      // text-neutral-700 (#5e5f60) on white = 6.40:1 ratio ✓ PASS WCAG AA
+      // Updated March 2026: neutral-600 deprecated (4.30:1 fails AA)
     });
   });
 

@@ -182,15 +182,40 @@ grep -rn "text-neutral-500" src/ --include="*.tsx" | \
 
 ### Phase 3: Prevention
 
-**Add ESLint Rule:**
+**Add Automated Color-Contrast Checks (axe):**
 ```js
-// eslint.config.mjs
-{
-  'jsx-a11y/no-low-contrast-text': ['error', {
-    minimumContrast: 4.5,
-    ignoreElements: ['icon', 'svg'],
-  }],
-}
+// Note: eslint-plugin-jsx-a11y does NOT provide a built-in
+// "no-low-contrast-text" rule. Use axe (via jest-axe, Storybook
+// a11y addon, or Playwright axe-playwright) to enforce WCAG
+// color-contrast in CI/testing.
+
+// Example: Component test with jest-axe
+import { axe, toHaveNoViolations } from 'jest-axe';
+expect.extend(toHaveNoViolations);
+
+it('has no color-contrast violations', async () => {
+  const { container } = render(<MyComponent />);
+  const results = await axe(container, {
+    rules: {
+      'color-contrast': { enabled: true },
+    },
+  });
+  expect(results).toHaveNoViolations();
+});
+
+// Example: E2E test with axe-playwright
+import { checkA11y } from 'axe-playwright';
+
+test('page has no color-contrast violations', async ({ page }) => {
+  await page.goto('/products');
+  await checkA11y(page, undefined, {
+    axeOptions: {
+      rules: {
+        'color-contrast': { enabled: true },
+      },
+    },
+  });
+});
 ```
 
 **Update Component Library:**

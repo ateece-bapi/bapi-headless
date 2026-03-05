@@ -500,7 +500,8 @@ describe('ProductTabs - Color Contrast', () => {
 
     inactiveTabs.forEach(tab => {
       expect(tab).toHaveClass('text-neutral-700');
-      // neutral-600 (#797a7c) on neutral-50 - verified by jest-axe
+      // text-neutral-700 (#5e5f60) on neutral-50 (#fafafa) = 6.40:1 ✓ PASS WCAG AA
+      // Updated March 2026: neutral-600 deprecated (4.30:1 fails AA)
     });
   });
 

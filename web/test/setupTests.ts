@@ -37,9 +37,14 @@ vi.mock('next/image', () => ({
 // Mock @/lib/navigation (next-intl) for i18n Link support in all tests
 vi.mock('@/lib/navigation', () => ({
 	Link: (props: unknown) => {
-		const p = props as { href?: string; children?: React.ReactNode; className?: string };
-		const { href, children, className } = p;
-		return React.createElement('a', { href, className }, children);
+		const p = props as {
+			href?: string;
+			children?: React.ReactNode;
+			className?: string;
+			[key: string]: unknown;
+		};
+		const { href, children, className, ...rest } = p;
+		return React.createElement('a', { href, className, ...rest }, children);
 	},
 	useRouter: () => ({
 		push: vi.fn(),

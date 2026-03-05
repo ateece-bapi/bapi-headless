@@ -24,20 +24,7 @@ vi.mock('next/image', () => ({
   default: ({ src, alt, ...props }: any) => <img src={src} alt={alt} {...props} />,
 }));
 
-// Mock next-intl navigation for i18n Link support
-vi.mock('@/lib/navigation', () => ({
-  Link: ({ children, href, ...props }: any) => (
-    <a href={href} {...props}>
-      {children}
-    </a>
-  ),
-  useRouter: () => ({
-    push: vi.fn(),
-    replace: vi.fn(),
-    prefetch: vi.fn(),
-  }),
-  usePathname: () => '/en',
-}));
+// Note: Global @/lib/navigation mock from setupTests.ts is used (no duplicate needed)
 
 vi.mock('next/link', () => ({
   default: ({ href, children, ...props }: any) => (

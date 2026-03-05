@@ -78,13 +78,13 @@ export default function ProductConfigurator({
           ))}
         </form>
       ) : (
-        <div className="rounded bg-neutral-100 p-4 text-neutral-500">
+        <div className="rounded bg-neutral-100 p-4 text-neutral-700">
           No configuration options available.
         </div>
       )}
       {selectedVariation && (
         <div className="mt-4">
-          <div className="text-xs text-neutral-500">Variation Part Number</div>
+          <div className="text-xs text-neutral-700">Variation Part Number</div>
           <div className="text-lg font-medium text-neutral-900">
             {selectedVariation.partNumber || selectedVariation.sku || 'N/A'}
           </div>

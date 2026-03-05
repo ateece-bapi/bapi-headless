@@ -148,7 +148,7 @@ export default function CartItems({
                       <span className="h-2 w-2 rounded-full bg-success-600"></span>
                       {t('cartPage.stock.inStock')}
                       {displayProduct.stockQuantity && (
-                        <span className="text-neutral-500">
+                        <span className="text-neutral-700">
                           ({t('cartPage.stock.available', { count: displayProduct.stockQuantity })})
                         </span>
                       )}
@@ -206,12 +206,12 @@ export default function CartItems({
                 <div className="text-right">
                   <div className="text-xl font-bold text-neutral-900">{item.total}</div>
                   {isOnSale && displayProduct.regularPrice && (
-                    <div className="text-sm text-neutral-500 line-through">
+                    <div className="text-sm text-neutral-700 line-through">
                       {displayProduct.regularPrice}
                     </div>
                   )}
                   {item.quantity > 1 && (
-                    <div className="text-sm text-neutral-500">
+                    <div className="text-sm text-neutral-700">
                       {t('cartPage.items.priceEach', { price: displayProduct.price })}
                     </div>
                   )}
@@ -255,12 +255,12 @@ export default function CartItems({
               <div className="text-right sm:hidden">
                 <div className="text-xl font-bold text-neutral-900">{item.total}</div>
                 {isOnSale && displayProduct.regularPrice && (
-                  <div className="text-sm text-neutral-500 line-through">
+                  <div className="text-sm text-neutral-700 line-through">
                     {displayProduct.regularPrice}
                   </div>
                 )}
                 {item.quantity > 1 && (
-                  <div className="text-sm text-neutral-500">
+                  <div className="text-sm text-neutral-700">
                     {t('cartPage.items.priceEach', { price: displayProduct.price })}
                   </div>
                 )}

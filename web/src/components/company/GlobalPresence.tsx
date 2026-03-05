@@ -293,7 +293,7 @@ export function GlobalPresence({
                     </span>
                   )}
                   {location.established && (
-                    <span className="ml-auto text-neutral-500">
+                    <span className="ml-auto text-neutral-700">
                       {translation?.established || `Est. ${location.established}`}
                     </span>
                   )}

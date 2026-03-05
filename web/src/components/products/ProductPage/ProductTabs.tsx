@@ -80,7 +80,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                 dangerouslySetInnerHTML={{ __html: sanitizeDescription(product.description) }}
               />
             ) : (
-              <div className="py-16 text-center text-neutral-500">
+              <div className="py-16 text-center text-neutral-700">
                 <div className="flex flex-col items-center gap-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-neutral-100">
                     <BookOpen className="h-8 w-8 text-neutral-400" />
@@ -89,7 +89,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                     <p className="mb-1 text-lg font-semibold text-neutral-700">
                       No Description Available
                     </p>
-                    <p className="text-sm text-neutral-500">
+                    <p className="text-sm text-neutral-700">
                       {t('productPage.tabs.descriptionPlaceholder')}
                     </p>
                   </div>
@@ -139,7 +139,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                               <p className="truncate font-semibold text-neutral-900 transition-colors group-hover:text-primary-700">
                                 {doc.title}
                               </p>
-                              <p className="text-sm text-neutral-500">PDF Document</p>
+                              <p className="text-sm text-neutral-700">PDF Document</p>
                             </div>
                           </div>
                           <ExternalLink className="h-5 w-5 flex-shrink-0 text-neutral-400 transition-colors group-hover:text-primary-600" />
@@ -150,7 +150,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                 ))}
               </div>
             ) : (
-              <div className="py-12 text-center text-neutral-500">
+              <div className="py-12 text-center text-neutral-700">
                 <FileText className="mx-auto mb-4 h-12 w-12 text-neutral-300" />
                 <p className="mb-2 font-medium">{t('productPage.tabs.noDocumentsAvailable')}</p>
                 <p className="text-sm">
@@ -211,7 +211,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                               <p className="truncate text-lg font-bold text-neutral-900 transition-colors group-hover/link:text-primary-700">
                                 {vid.title}
                               </p>
-                              <p className="mt-1 text-sm text-neutral-500">Click to watch video</p>
+                              <p className="mt-1 text-sm text-neutral-700">Click to watch video</p>
                             </div>
                           </div>
                           <ExternalLink className="h-6 w-6 shrink-0 text-neutral-400 transition-colors group-hover/link:text-primary-600" />
@@ -231,7 +231,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                     <p className="mb-2 text-xl font-bold text-neutral-700">
                       {t('productPage.tabs.noVideosAvailable')}
                     </p>
-                    <p className="leading-relaxed text-neutral-500">
+                    <p className="leading-relaxed text-neutral-700">
                       Product videos and tutorials will be displayed here when available. Check back
                       soon for helpful video content about this product.
                     </p>

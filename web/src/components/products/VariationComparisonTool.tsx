@@ -126,7 +126,7 @@ export default function VariationComparisonTool({
                     style={{ width: `${(selectedVariations.length / 2) * 100}%` }}
                   />
                 </div>
-                <span className="whitespace-nowrap text-xs font-medium text-neutral-500">
+                <span className="whitespace-nowrap text-xs font-medium text-neutral-700">
                   {selectedVariations.length}/2 minimum
                 </span>
               </div>
@@ -310,7 +310,7 @@ export default function VariationComparisonTool({
 
           {/* Empty State */}
           {selectedVariations.length < 2 && (
-            <div className="py-12 text-center text-neutral-500">
+            <div className="py-12 text-center text-neutral-700">
               <GitCompare className="mx-auto mb-4 h-12 w-12 text-neutral-300" />
               <p className="text-sm">Select at least 2 variations to start comparing</p>
             </div>

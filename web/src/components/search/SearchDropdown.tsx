@@ -129,7 +129,7 @@ export function SearchDropdown({
         <div className="py-8 text-center">
           <Search className="mx-auto mb-3 h-12 w-12 text-neutral-300" />
           <p className="font-medium text-neutral-700">No products found for &quot;{query}&quot;</p>
-          <p className="mt-1 text-sm text-neutral-500">
+          <p className="mt-1 text-sm text-neutral-700">
             Try different keywords or browse categories
           </p>
         </div>
@@ -179,7 +179,7 @@ export function SearchDropdown({
                     >
                       {product.name}
                     </h4>
-                    {category && <p className="mt-0.5 text-xs text-neutral-500">{category.name}</p>}
+                    {category && <p className="mt-0.5 text-xs text-neutral-700">{category.name}</p>}
                   </div>
                   {product.price && (
                     <div

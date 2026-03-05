@@ -161,7 +161,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     </p>
                   )}
                   {subcat.count !== null && (
-                    <p className="mb-4 text-sm text-neutral-500">{subcat.count} products</p>
+                    <p className="mb-4 text-sm text-neutral-700">{subcat.count} products</p>
                   )}
                   <span className="inline-flex items-center font-semibold text-primary-500 transition-all group-hover:gap-2">
                     View Products

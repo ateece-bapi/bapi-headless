@@ -273,7 +273,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col items-start justify-between gap-4 pt-6 text-xs text-neutral-700 sm:flex-row sm:items-center">
           <div className="space-y-1.5 font-medium">
             <p>{t('legal.copyright', { year: new Date().getFullYear() })}</p>
-            <p className="text-neutral-500">{t('legal.trademark')}</p>
+            <p className="text-neutral-700">{t('legal.trademark')}</p>
           </div>
           <div className="flex gap-6">
             <Link

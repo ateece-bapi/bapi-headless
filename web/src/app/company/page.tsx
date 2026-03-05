@@ -55,7 +55,7 @@ export default function CompanyPage() {
               <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
                 40+
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-500 transition-colors group-hover:text-neutral-900">
+              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
                 Years in Business
               </div>
             </div>
@@ -63,7 +63,7 @@ export default function CompanyPage() {
               <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
                 600+
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-500 transition-colors group-hover:text-neutral-900">
+              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
                 Product Models
               </div>
             </div>
@@ -71,7 +71,7 @@ export default function CompanyPage() {
               <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
                 100%
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-500 transition-colors group-hover:text-neutral-900">
+              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
                 Made in USA
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function CompanyPage() {
               <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
                 Global
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-500 transition-colors group-hover:text-neutral-900">
+              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
                 Distribution
               </div>
             </div>

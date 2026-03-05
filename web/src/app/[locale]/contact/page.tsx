@@ -407,7 +407,7 @@ export default function ContactPage() {
                       <Send className="h-4 w-4" />
                       Send Message
                     </button>
-                    <p className="text-xs text-neutral-500">* Required fields</p>
+                    <p className="text-xs text-neutral-700">* Required fields</p>
                   </div>
                 </form>
               </div>
@@ -423,14 +423,14 @@ export default function ContactPage() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h3 className="mb-1 text-sm font-semibold text-neutral-900">Phone</h3>
-                    <p className="mb-1 text-xs text-neutral-500">Toll Free</p>
+                    <p className="mb-1 text-xs text-neutral-700">Toll Free</p>
                     <a
                       href="tel:+18005533027"
                       className="text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
                     >
                       (800) 553-3027
                     </a>
-                    <p className="mt-2 text-xs text-neutral-500">Fax: (715) 254-0720</p>
+                    <p className="mt-2 text-xs text-neutral-700">Fax: (715) 254-0720</p>
                   </div>
                 </div>
               </div>
@@ -688,7 +688,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌎</span>North America{' '}
-                  <span className="text-lg font-normal text-neutral-500">(10)</span>
+                  <span className="text-lg font-normal text-neutral-700">(10)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('north-america') ? '▼' : '▶'}
@@ -726,7 +726,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🇬🇧</span>United Kingdom{' '}
-                  <span className="text-lg font-normal text-neutral-500">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">(1)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('uk') ? '▼' : '▶'}
@@ -764,7 +764,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🇪🇺</span>Europe{' '}
-                  <span className="text-lg font-normal text-neutral-500">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">(1)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('europe') ? '▼' : '▶'}
@@ -802,7 +802,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌍</span>Middle East{' '}
-                  <span className="text-lg font-normal text-neutral-500">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">(1)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('middle-east') ? '▼' : '▶'}
@@ -840,7 +840,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🇮🇳</span>India{' '}
-                  <span className="text-lg font-normal text-neutral-500">(2)</span>
+                  <span className="text-lg font-normal text-neutral-700">(2)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('india') ? '▼' : '▶'}
@@ -878,7 +878,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌎</span>South America{' '}
-                  <span className="text-lg font-normal text-neutral-500">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">(1)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('south-america') ? '▼' : '▶'}
@@ -916,7 +916,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌍</span>Africa{' '}
-                  <span className="text-lg font-normal text-neutral-500">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">(1)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('africa') ? '▼' : '▶'}
@@ -954,7 +954,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🌏</span>Asia{' '}
-                  <span className="text-lg font-normal text-neutral-500">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">(1)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('asia') ? '▼' : '▶'}
@@ -992,7 +992,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🇦🇺</span>Australia & New Zealand{' '}
-                  <span className="text-lg font-normal text-neutral-500">(1)</span>
+                  <span className="text-lg font-normal text-neutral-700">(1)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('australia') ? '▼' : '▶'}
@@ -1030,7 +1030,7 @@ export default function ContactPage() {
               <h3 className="mb-6 flex items-center justify-between border-b-2 border-primary-500 pb-3 text-2xl font-bold text-neutral-900">
                 <span>
                   <span className="mr-2">🛠️</span>Technical Support{' '}
-                  <span className="text-lg font-normal text-neutral-500">(2)</span>
+                  <span className="text-lg font-normal text-neutral-700">(2)</span>
                 </span>
                 <span className="text-primary-500 lg:hidden">
                   {expandedSections.has('technical') ? '▼' : '▶'}
@@ -1072,7 +1072,7 @@ export default function ContactPage() {
             <div className="flex aspect-video items-center justify-center bg-neutral-100">
               <div className="p-8 text-center">
                 <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-neutral-200">
-                  <MapPin className="h-7 w-7 text-neutral-500" />
+                  <MapPin className="h-7 w-7 text-neutral-700" />
                 </div>
                 <p className="mb-1 text-sm font-medium text-neutral-700">750 North Royal Avenue</p>
                 <p className="mb-4 text-sm text-neutral-700">Gays Mills, WI 54631</p>

@@ -628,9 +628,10 @@ describe('CheckoutWizard Accessibility', () => {
         />
       );
 
-      const inactiveSteps = document.querySelectorAll('.bg-neutral-200.text-neutral-500');
+      const inactiveSteps = document.querySelectorAll('.bg-neutral-200.text-neutral-700');
       expect(inactiveSteps.length).toBeGreaterThan(0);
-      // neutral-500 (#97999b) on neutral-200 (#e8e8e9) - verified by jest-axe
+      // neutral-700 (#5e5f60) on neutral-200 (#e8e8e9) - WCAG AA compliant
+      // Updated March 2026: neutral-500 deprecated (2.86:1 fails AA)
     });
 
     it('step titles have sufficient contrast when active', () => {
@@ -665,8 +666,9 @@ describe('CheckoutWizard Accessibility', () => {
       );
 
       const paymentTitle = screen.getByText('Payment');
-      expect(paymentTitle.closest('div')).toHaveClass('text-neutral-500');
-      // neutral-500 (#97999b) on neutral-50 (#fafafa) - verified by jest-axe
+      expect(paymentTitle.closest('div')).toHaveClass('text-neutral-700');
+      // neutral-700 (#5e5f60) on neutral-50 (#fafafa) - WCAG AA compliant
+      // Updated March 2026: neutral-700 for accessibility (6.40:1 contrast)
     });
   });
 

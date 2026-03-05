@@ -104,7 +104,7 @@ export default function ChatAnalyticsDashboard() {
             <div>
               <p className="text-sm font-medium text-neutral-700">Satisfaction Rate</p>
               <p className="mt-2 text-3xl font-bold text-neutral-900">{satisfactionRate}%</p>
-              <p className="mt-1 text-xs text-neutral-500">
+              <p className="mt-1 text-xs text-neutral-700">
                 {metrics.positiveFeedback} 👍 / {metrics.negativeFeedback} 👎
               </p>
             </div>
@@ -122,7 +122,7 @@ export default function ChatAnalyticsDashboard() {
               <p className="mt-2 text-3xl font-bold text-neutral-900">
                 ${metrics.estimatedCost.toFixed(2)}
               </p>
-              <p className="mt-1 text-xs text-neutral-500">
+              <p className="mt-1 text-xs text-neutral-700">
                 {metrics.totalTokensUsed.toLocaleString()} tokens
               </p>
             </div>
@@ -189,7 +189,7 @@ export default function ChatAnalyticsDashboard() {
               ))}
             </div>
           ) : (
-            <p className="py-8 text-center text-neutral-500">No product recommendations yet</p>
+            <p className="py-8 text-center text-neutral-700">No product recommendations yet</p>
           )}
         </div>
       </div>
@@ -205,7 +205,7 @@ export default function ChatAnalyticsDashboard() {
             </div>
           ))}
           {Object.keys(metrics.toolUsage).length === 0 && (
-            <p className="col-span-3 py-4 text-center text-neutral-500">
+            <p className="col-span-3 py-4 text-center text-neutral-700">
               No tool usage recorded yet
             </p>
           )}

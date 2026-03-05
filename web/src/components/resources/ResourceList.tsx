@@ -204,14 +204,14 @@ export function ResourceList({ resources }: ResourceListProps) {
               aria-label="Clear search"
               className="absolute right-4 top-1/2 -translate-y-1/2 rounded p-1 transition-colors hover:bg-neutral-100"
             >
-              <X className="h-4 w-4 text-neutral-500" />
+              <X className="h-4 w-4 text-neutral-700" />
             </button>
           )}
         </div>
 
         {/* Category Filters */}
         <div className="mb-4 flex items-center gap-2">
-          <Filter className="h-5 w-5 text-neutral-500" />
+          <Filter className="h-5 w-5 text-neutral-700" />
           <span className="text-sm font-medium text-neutral-700">Filter by type:</span>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -273,7 +273,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                 </option>
               ))}
             </select>
-            <SortAsc className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
+            <SortAsc className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700" />
           </div>
 
           {/* View Toggle */}
@@ -378,7 +378,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                 )}
 
                 {/* Metadata */}
-                <div className="flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-500">
+                <div className="flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-700">
                   <div className="flex items-center gap-1">
                     <Calendar className="h-3.5 w-3.5" />
                     <span>{formatDate(resource.date)}</span>
@@ -436,7 +436,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                       <span>{categoryLabel}</span>
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-xs text-neutral-500">
+                  <div className="flex items-center gap-4 text-xs text-neutral-700">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       <span>{formatDate(resource.date)}</span>

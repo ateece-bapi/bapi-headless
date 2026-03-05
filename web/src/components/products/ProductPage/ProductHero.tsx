@@ -132,7 +132,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
 
         {/* Part number with better visibility */}
         <div className="mb-4 flex items-center gap-2 text-base text-neutral-700">
-          <span className="text-neutral-500">{t('productPage.summary.partNumber')}:</span>
+          <span className="text-neutral-700">{t('productPage.summary.partNumber')}:</span>
           <span className="font-semibold text-neutral-900">
             {product.partNumber || product.sku || 'N/A'}
           </span>
@@ -150,7 +150,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
           <div className="flex flex-col gap-3">
             {product.regularPrice && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-neutral-500">List Price:</span>
+                <span className="text-sm text-neutral-700">List Price:</span>
                 <span className="text-lg font-semibold text-neutral-700">
                   {convertWooCommercePrice(product.regularPrice, region.currency)}
                 </span>
@@ -158,7 +158,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
             )}
             {product.multiplier && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-neutral-500">
+                <span className="text-sm text-neutral-700">
                   {t('productPage.summary.multiplier')}:
                 </span>
                 <span className="text-lg font-semibold text-primary-600">{product.multiplier}</span>
@@ -166,7 +166,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
             )}
             {typeof product.stockQuantity === 'number' && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-neutral-500">In Stock:</span>
+                <span className="text-sm text-neutral-700">In Stock:</span>
                 <span className="text-lg font-semibold text-green-700">
                   {product.stockQuantity} units
                 </span>

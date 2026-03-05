@@ -184,9 +184,9 @@ export const PRWorkflow: StoryObj = {
             </p>
             <div className="ml-13 mt-3 rounded-lg bg-neutral-50 p-4 font-mono text-sm">
               <div>✓ GitHub Action: chromatic.yml</div>
-              <div className="text-neutral-500"> → Installs dependencies (pnpm)</div>
-              <div className="text-neutral-500"> → Builds Storybook (production)</div>
-              <div className="text-neutral-500"> → Uploads to Chromatic</div>
+              <div className="text-neutral-700"> → Installs dependencies (pnpm)</div>
+              <div className="text-neutral-700"> → Builds Storybook (production)</div>
+              <div className="text-neutral-700"> → Uploads to Chromatic</div>
             </div>
           </div>
 
@@ -273,7 +273,7 @@ export const PRWorkflow: StoryObj = {
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded border-2 border-neutral-300 bg-white p-4 text-center">
                   <div className="mb-2 text-sm font-bold text-neutral-700">Baseline</div>
-                  <div className="text-neutral-500">Previous approved state</div>
+                  <div className="text-neutral-700">Previous approved state</div>
                 </div>
                 <div className="rounded border-2 border-primary-500 bg-primary-50 p-4 text-center">
                   <div className="mb-2 text-sm font-bold text-primary-600">Current</div>

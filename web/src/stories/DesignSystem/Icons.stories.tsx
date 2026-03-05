@@ -278,7 +278,7 @@ const IconDisplay = ({
       <Icon size={size} color={color} strokeWidth={2} />
       <span className="text-xs font-medium text-neutral-700">{name}</span>
       {showUsage && usage && (
-        <span className="text-center text-[10px] text-neutral-500">{usage}</span>
+        <span className="text-center text-[10px] text-neutral-700">{usage}</span>
       )}
       {showCode && (
         <button
@@ -590,13 +590,13 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Neutral</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <Settings className="text-neutral-500" size={32} />
-            <Filter className="text-neutral-500" size={32} />
-            <Search className="text-neutral-500" size={32} />
-            <Menu className="text-neutral-500" size={32} />
+            <Settings className="text-neutral-700" size={32} />
+            <Filter className="text-neutral-700" size={32} />
+            <Search className="text-neutral-700" size={32} />
+            <Menu className="text-neutral-700" size={32} />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
-            &lt;Settings className="text-neutral-500" /&gt;
+            &lt;Settings className="text-neutral-700" /&gt;
           </pre>
         </div>
 
@@ -903,7 +903,7 @@ export const BAPIBrandedIcons: Story = {
                   </div>
                   <div className="text-center">
                     <div className="text-sm font-semibold text-neutral-900">{icon.name}</div>
-                    <div className="text-xs text-neutral-500">#{icon.order}</div>
+                    <div className="text-xs text-neutral-700">#{icon.order}</div>
                   </div>
                 </div>
               ))}
@@ -1013,7 +1013,7 @@ export const BAPIBrandedIcons: Story = {
                     </div>
                     <div className="text-center">
                       <div className="text-sm font-medium text-neutral-700">{icon.name}</div>
-                      <code className="text-xs text-neutral-500">
+                      <code className="text-xs text-neutral-700">
                         {icon.lucide.displayName || icon.lucide.name}
                       </code>
                     </div>

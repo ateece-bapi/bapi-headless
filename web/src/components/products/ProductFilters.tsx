@@ -191,7 +191,7 @@ function FilterGroup({ title, options, activeValues, filterType, onChange }: Fil
                   {option.name}
                 </span>
                 <span
-                  className={`rounded-full px-2 py-0.5 text-xs transition-colors duration-200 ${isActive ? 'bg-primary-100 text-primary-700' : 'bg-neutral-100 text-neutral-500 group-hover:bg-neutral-200'}`}
+                  className={`rounded-full px-2 py-0.5 text-xs transition-colors duration-200 ${isActive ? 'bg-primary-100 text-primary-700' : 'bg-neutral-100 text-neutral-700 group-hover:bg-neutral-200'}`}
                 >
                   {option.count}
                 </span>

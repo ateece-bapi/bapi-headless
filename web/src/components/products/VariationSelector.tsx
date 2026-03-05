@@ -312,7 +312,7 @@ export default function VariationSelector({
                           {convertWooCommercePrice(matchedVariation.price, region.currency)}
                         </p>
                         {basePrice && basePrice !== matchedVariation.price && (
-                          <span className="ml-3 text-base text-neutral-500 line-through">
+                          <span className="ml-3 text-base text-neutral-700 line-through">
                             {convertWooCommercePrice(basePrice, region.currency)}
                           </span>
                         )}

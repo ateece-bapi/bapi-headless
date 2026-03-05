@@ -167,7 +167,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
             Thank you for your order. We&apos;ve received your purchase and will process it shortly.
           </p>
 
-          <div className="inline-flex items-center gap-2 text-sm text-neutral-500">
+          <div className="inline-flex items-center gap-2 text-sm text-neutral-700">
             <span>Order Number:</span>
             <span className="font-mono text-lg font-bold text-neutral-900">
               {order.orderNumber}

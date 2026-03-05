@@ -363,9 +363,10 @@ describe('ProductConfigurator - Color Contrast', () => {
     render(<ProductConfigurator product={noVariationsProduct} />);
 
     const helperText = screen.getByText(/No configuration options/);
-    expect(helperText).toHaveClass('text-neutral-500');
+    expect(helperText).toHaveClass('text-neutral-700');
     const container = helperText.closest('div');
     expect(container).toHaveClass('bg-neutral-100');
+    // Updated March 2026: neutral-700 for WCAG AA compliance (6.40:1 contrast)
     // neutral-500 (#97999b) on neutral-100 (#f5f5f5) - verified by jest-axe
   });
 });
@@ -539,8 +540,9 @@ describe('ProductTabs - Color Contrast', () => {
     expect(heading.closest('p')).toHaveClass('text-neutral-700');
 
     const subtext = screen.getByText(/Product description coming soon/);
-    expect(subtext.closest('p')).toHaveClass('text-neutral-500');
-    // neutral-700 and neutral-500 on white - both verified WCAG AA compliant
+    expect(subtext.closest('p')).toHaveClass('text-neutral-700');
+    // neutral-700 on white = 6.40:1 ✓ WCAG AA compliant
+    // Updated March 2026: neutral-500 deprecated (2.86:1 fails AA)
   });
 });
 

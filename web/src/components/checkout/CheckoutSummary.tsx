@@ -88,7 +88,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
                       <p className="mt-0.5 text-xs text-neutral-700">{variation.name}</p>
                     )}
                     <div className="mt-1 flex items-center justify-between">
-                      <span className="text-xs text-neutral-500">
+                      <span className="text-xs text-neutral-700">
                         {t('qty')}: {item.quantity}
                       </span>
                       <span className="text-sm font-semibold text-neutral-900">{item.total}</span>
@@ -146,7 +146,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
 
         {/* Security Badge */}
         <div className="border-t border-neutral-200 pt-4">
-          <div className="flex items-center justify-center gap-2 text-sm text-neutral-500">
+          <div className="flex items-center justify-center gap-2 text-sm text-neutral-700">
             <span className="text-xl">🔒</span>
             <span>{t('secureCheckout')}</span>
           </div>

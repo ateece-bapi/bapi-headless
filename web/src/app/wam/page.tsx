@@ -1028,7 +1028,7 @@ export default function WAMPage() {
                     Request Demo
                   </button>
 
-                  <p className="text-center text-xs text-neutral-500">
+                  <p className="text-center text-xs text-neutral-700">
                     By submitting this form, you agree to our privacy policy and terms of service.
                   </p>
                 </form>

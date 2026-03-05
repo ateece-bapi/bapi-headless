@@ -89,7 +89,7 @@ export default function ProductSummaryCard({
             </svg>
           </div>
           <p className="mb-2 font-medium text-neutral-700">Configure Product</p>
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-neutral-700">
             Select your specifications below to see pricing and part number
           </p>
         </div>
@@ -195,7 +195,7 @@ export default function ProductSummaryCard({
 
           {/* Part Number - Styled with monospace */}
           <div className="mb-4">
-            <div className="mb-1 text-xs uppercase tracking-wide text-neutral-500">Part Number</div>
+            <div className="mb-1 text-xs uppercase tracking-wide text-neutral-700">Part Number</div>
             <code className="inline-block rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-2 font-mono text-sm font-semibold text-neutral-900">
               {displayPartNumber}
             </code>
@@ -230,7 +230,7 @@ export default function ProductSummaryCard({
           <div className="mb-6">
             <label
               htmlFor="quantity"
-              className="mb-2 block text-xs uppercase tracking-wide text-neutral-500"
+              className="mb-2 block text-xs uppercase tracking-wide text-neutral-700"
             >
               Quantity
             </label>

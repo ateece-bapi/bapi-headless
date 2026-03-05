@@ -57,7 +57,7 @@ const RegionSelector: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-500">
+      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-700">
         Region
       </span>
       <div className="group relative">
@@ -66,7 +66,7 @@ const RegionSelector: React.FC = () => {
         </label>
         {/* Globe icon */}
         <svg
-          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
+          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

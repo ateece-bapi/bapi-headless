@@ -322,7 +322,7 @@ function ProductCard({
                   : isVariableProduct
                     ? (product as VariableProduct).regularPrice
                     : null) && (
-                  <span className="text-sm text-neutral-500 line-through">
+                  <span className="text-sm text-neutral-700 line-through">
                     {isSimpleProduct
                       ? (product as SimpleProduct).regularPrice
                       : (product as VariableProduct).regularPrice}

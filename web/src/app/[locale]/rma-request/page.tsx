@@ -367,7 +367,7 @@ export default function RMARequestPage() {
             <p className="text-neutral-700">750 North Royal Avenue</p>
             <p className="text-neutral-700">Gays Mills, WI 54631</p>
             <p className="text-neutral-700">USA</p>
-            <p className="mt-4 text-sm text-neutral-500">
+            <p className="mt-4 text-sm text-neutral-700">
               <strong>Important:</strong> Write RMA number on outside of box
             </p>
           </div>

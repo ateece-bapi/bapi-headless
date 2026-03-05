@@ -62,12 +62,12 @@ const RegionSelectorV2: React.FC = () => {
   if (!mounted) {
     return (
       <div className="flex flex-col gap-0.5">
-        <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-500">
+        <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-700">
           Region
         </span>
         <div className="group relative flex w-full items-center gap-2 rounded-lg border border-neutral-300 bg-white py-2 pl-9 pr-10 text-sm font-medium text-neutral-700">
           <GlobeAltIcon
-            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 lg:left-3.5"
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700 lg:left-3.5"
             aria-hidden="true"
           />
           <span className="flex items-center gap-2">
@@ -76,7 +76,7 @@ const RegionSelectorV2: React.FC = () => {
             </span>
             <span className="block truncate">{currentRegion.name}</span>
           </span>
-          <span className="ml-auto flex items-center gap-1.5 text-neutral-500">
+          <span className="ml-auto flex items-center gap-1.5 text-neutral-700">
             <span className="text-xs font-semibold">{currentCurrency.symbol}</span>
             <span className="text-[10px] uppercase">{currentCurrency.code}</span>
           </span>
@@ -91,7 +91,7 @@ const RegionSelectorV2: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-500">
+      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-700">
         Region
       </span>
       <Listbox value={currentRegion.code} onChange={handleChange}>
@@ -103,7 +103,7 @@ const RegionSelectorV2: React.FC = () => {
             >
               {/* Globe Icon */}
               <GlobeAltIcon
-                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
+                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
                 aria-hidden="true"
               />
 
@@ -116,7 +116,7 @@ const RegionSelectorV2: React.FC = () => {
               </span>
 
               {/* Currency Symbol */}
-              <span className="ml-auto flex items-center gap-1.5 text-neutral-500">
+              <span className="ml-auto flex items-center gap-1.5 text-neutral-700">
                 <span className="text-xs font-semibold">{currentCurrency.symbol}</span>
                 <span className="text-[10px] uppercase">{currentCurrency.code}</span>
               </span>
@@ -141,7 +141,7 @@ const RegionSelectorV2: React.FC = () => {
                   <div key={group.id} className="py-1">
                     {/* Group Header */}
                     <div className="px-3 py-1.5">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-700">
                         {group.label}
                       </span>
                     </div>
@@ -189,7 +189,7 @@ const RegionSelectorV2: React.FC = () => {
                                 {/* Currency Info */}
                                 <div
                                   className={`flex items-center gap-1 text-xs ${
-                                    active ? 'text-primary-700' : 'text-neutral-500'
+                                    active ? 'text-primary-700' : 'text-neutral-700'
                                   }`}
                                 >
                                   <span className="font-semibold">{currency.symbol}</span>

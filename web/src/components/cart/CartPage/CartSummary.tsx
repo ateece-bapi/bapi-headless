@@ -238,12 +238,12 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
 
         {/* Security Badges */}
         <div className="border-t border-neutral-200 pt-4">
-          <p className="mb-3 text-center text-xs text-neutral-500">
+          <p className="mb-3 text-center text-xs text-neutral-700">
             {t('cartPage.summary.secureCheckout')}
           </p>
           <div className="flex items-center justify-center gap-4">
             <div className="text-2xl">🔒</div>
-            <div className="text-center text-xs text-neutral-500">
+            <div className="text-center text-xs text-neutral-700">
               {t('cartPage.summary.sslEncrypted')}
             </div>
           </div>

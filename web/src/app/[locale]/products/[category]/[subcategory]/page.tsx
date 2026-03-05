@@ -233,7 +233,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
 
             {/* Pagination (Coming soon) */}
             {hasNextPage && (
-              <div className="mt-8 text-center text-sm text-neutral-500">
+              <div className="mt-8 text-center text-sm text-neutral-700">
                 More products available...
               </div>
             )}

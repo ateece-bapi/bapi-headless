@@ -47,12 +47,12 @@ export function LanguageSelectorV2() {
   if (!mounted) {
     return (
       <div className="flex flex-col gap-0.5">
-        <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-500">
+        <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-700">
           Language
         </span>
         <div className="group relative flex w-full items-center gap-2 rounded-lg border border-neutral-300 bg-white py-2 pl-9 pr-10 text-sm font-medium text-neutral-700">
           <LanguageIcon
-            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 lg:left-3.5"
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700 lg:left-3.5"
             aria-hidden="true"
           />
           <span className="flex items-center gap-2">
@@ -72,7 +72,7 @@ export function LanguageSelectorV2() {
 
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-500">
+      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-700">
         Language
       </span>
       <Listbox value={currentLocale} onChange={handleLanguageChange}>
@@ -84,7 +84,7 @@ export function LanguageSelectorV2() {
             >
               {/* Language Icon */}
               <LanguageIcon
-                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
+                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700 transition-colors duration-150 group-hover:text-primary-600 lg:left-3.5"
                 aria-hidden="true"
               />
 
@@ -116,7 +116,7 @@ export function LanguageSelectorV2() {
                   <div key={group.id} className="py-1">
                     {/* Group Header */}
                     <div className="px-3 py-1.5">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-700">
                         {group.label}
                       </span>
                     </div>
@@ -160,7 +160,7 @@ export function LanguageSelectorV2() {
                                   </span>
                                   <span
                                     className={`text-xs ${
-                                      active ? 'text-primary-600' : 'text-neutral-500'
+                                      active ? 'text-primary-600' : 'text-neutral-700'
                                     }`}
                                   >
                                     {config.name}

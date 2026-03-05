@@ -234,11 +234,17 @@ Purpose-specific colors for user feedback (using BAPI palette where appropriate)
 ### Text Hierarchy
 
 ```tsx
-<h1 className="text-neutral-900">Main Heading</h1>
-<h2 className="text-neutral-800">Subheading</h2>
-<p className="text-neutral-600">Body text</p>
-<small className="text-neutral-500">Helper text</small>
+<h1 className="text-neutral-900">Main Heading (14.73:1 contrast)</h1>
+<h2 className="text-neutral-800">Subheading (9.76:1 contrast)</h2>
+<p className="text-neutral-700">Body text - WCAG AA standard (6.40:1 contrast)</p>
+<small className="text-neutral-700">Helper text - Use neutral-700 minimum</small>
+
+{/* DEPRECATED - Do not use for text content: */}
+{/* <small className="text-neutral-500">❌ WCAG VIOLATION (2.86:1)</small> */}
+{/* <p className="text-neutral-600">❌ DEPRECATED (4.30:1 fails AA)</p> */}
 ```
+
+**Accessibility Note:** All text content must use `text-neutral-700` or darker to meet WCAG 2.1 Level AA (4.5:1 minimum contrast). The `text-neutral-500` and `text-neutral-600` classes should **only** be used for decorative elements like icons and borders, never for readable text.
 
 ### Backgrounds & Surfaces (60% usage)
 
@@ -265,15 +271,109 @@ Purpose-specific colors for user feedback (using BAPI palette where appropriate)
 <div className="hover:border-primary-300">     {/* Interactive state */}
 ```
 
-## Accessibility
+## Accessibility & WCAG 2.1 Compliance
 
-All color combinations meet **WCAG 2.1 Level AA** requirements:
+**Last Updated:** March 5, 2026 (Site-wide accessibility audit)
 
-✅ **BAPI Blue (#1479BC) on white** - Pass (4.55:1 ratio)
-✅ **White text on BAPI Blue** - Pass (4.55:1 ratio)
-✅ **BAPI Yellow (#FFC843) with dark text** - Pass (sufficient contrast)
-✅ **Neutral-900 headings on white** - Pass (readable)
-✅ **Neutral-600 body text on white** - Pass (4.5:1 minimum)
+### WCAG 2.1 Level AA Requirements
+
+**Normal Text (< 18pt or < 14pt bold):**
+- Minimum contrast ratio: **4.5:1**
+- Applies to: Body text, labels, links, descriptions
+
+**Large Text (≥ 18pt or ≥ 14pt bold):**
+- Minimum contrast ratio: **3:1**
+- Applies to: Headings, hero text, large CTAs
+
+### BAPI Custom Neutral Colors - Contrast Analysis
+
+All neutral colors tested on **white background (#FFFFFF)**:
+
+| Color | Hex | Contrast | Normal Text | Large Text | Recommended Use |
+|-------|-----|----------|-------------|------------|-----------------|
+| `neutral-500` | `#97999b` | **2.86:1** | ❌ FAILS | ❌ FAILS | ⚠️ Icons, borders, decorative only |
+| `neutral-600` | `#797a7c` | **4.30:1** | ❌ FAILS | ✅ PASSES | ⚠️ **DEPRECATED** - Use 700+ for text |
+| `neutral-700` | `#5e5f60` | **6.40:1** | ✅ PASSES | ✅ PASSES | ✅ **Body text standard** |
+| `neutral-800` | `#434445` | **9.76:1** | ✅ PASSES | ✅ PASSES | ✅ Emphasized text |
+| `neutral-900` | `#282829` | **14.73:1** | ✅ PASSES | ✅ PASSES | ✅ Headings |
+
+**Critical Finding (March 2026 Audit):**
+- `neutral-600` previously used site-wide **FAILED WCAG AA** (4.30:1 vs 4.5:1 required)
+- 1,123 instances replaced with `neutral-700` across 157 files
+- `neutral-500` should **NEVER** be used for text content (2.86:1 contrast)
+
+### Approved Color Combinations
+
+✅ **Primary (BAPI Blue) Usage:**
+- `bg-primary-500 text-white` - 4.55:1 ✅ PASSES AA
+- `text-primary-500` on white - 4.55:1 ✅ PASSES AA
+- `bg-primary-600 text-white` - Higher contrast ✅ PASSES AA
+
+✅ **Accent (BAPI Yellow) Usage:**
+- `bg-accent-500 text-neutral-900` - High contrast ✅ PASSES AA
+- `bg-accent-600 text-neutral-900` - Hover state ✅ PASSES AA
+
+✅ **Text on White Background:**
+- `text-neutral-700` - **STANDARD for body text** (6.40:1)
+- `text-neutral-800` - Emphasized text (9.76:1)
+- `text-neutral-900` - Headings (14.73:1)
+
+❌ **Prohibited for Text Content:**
+- `text-neutral-500` - Too light (2.86:1) ❌ FAILS AA
+- `text-neutral-600` - Deprecated (4.30:1) ❌ FAILS AA
+
+### Safe Usage Guidelines
+
+#### ✅ DO Use neutral-700 or Darker for Text
+```tsx
+✅ <p className="text-neutral-700">Body text (6.40:1 contrast)</p>
+✅ <h2 className="text-neutral-800">Subheading (9.76:1 contrast)</h2>
+✅ <h1 className="text-neutral-900">Main heading (14.73:1 contrast)</h1>
+```
+
+#### ⚠️ neutral-500/600 Only for Non-Text Elements
+```tsx
+✅ <Icon className="text-neutral-500" /> {/* Decorative, not content */}
+✅ <div className="border-neutral-500" /> {/* Borders are exempt */}
+✅ <div className="bg-neutral-500" /> {/* Backgrounds with contrasting text */}
+
+❌ <p className="text-neutral-500">Body text</p> {/* WCAG VIOLATION */}
+❌ <span className="text-neutral-600">Label</span> {/* WCAG VIOLATION */}
+```
+
+#### Special Cases
+```tsx
+✅ <small className="text-sm text-neutral-700">
+     Metadata (still needs 4.5:1 for normal text)
+   </small>
+
+✅ <h2 className="text-2xl font-bold text-neutral-700">
+     Large text can use neutral-700+ (passes 3:1 for large text)
+   </h2>
+```
+
+### Testing Tools
+
+**Automated:**
+- `axe-playwright` in E2E tests (enabled site-wide)
+- ESLint plugin: `eslint-plugin-jsx-a11y`
+
+**Manual:**
+- WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/
+- Chrome DevTools: Lighthouse Accessibility Audit
+
+### Historical Context
+
+**March 2026 Site-Wide Accessibility Fixes:**
+1. ✅ Replaced 1,123 instances of `text-neutral-600` → `text-neutral-700`
+2. ✅ 157 files updated across entire codebase
+3. ✅ Established `neutral-700` as minimum standard for text
+4. ⏳ Identified 205 instances of `text-neutral-500` requiring audit
+
+**Design System Standard (Established March 2026):**
+- **Always use `neutral-700` or darker for text content**
+- neutral-500/600 reserved for decorative elements only
+- All new components must pass axe accessibility tests
 
 ## Color Distribution in Practice
 

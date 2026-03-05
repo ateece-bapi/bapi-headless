@@ -146,7 +146,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                       </div>
                       <div className="mb-4 flex flex-wrap gap-4 text-sm">
                         <div>
-                          <span className="text-neutral-500">{t('created')}</span>{' '}
+                          <span className="text-neutral-700">{t('created')}</span>{' '}
                           <span className="font-medium text-neutral-700">
                             {new Date(quote.date).toLocaleDateString(locale, {
                               month: 'short',
@@ -156,7 +156,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                           </span>
                         </div>
                         <div>
-                          <span className="text-neutral-500">{t('expires')}</span>{' '}
+                          <span className="text-neutral-700">{t('expires')}</span>{' '}
                           <span className="font-medium text-neutral-700">
                             {new Date(quote.expiresAt).toLocaleDateString(locale, {
                               month: 'short',
@@ -166,7 +166,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                           </span>
                         </div>
                         <div>
-                          <span className="text-neutral-500">{t('items')}</span>{' '}
+                          <span className="text-neutral-700">{t('items')}</span>{' '}
                           <span className="font-medium text-neutral-700">
                             {quote.itemCount === 1 ? t('itemCount.item', { count: quote.itemCount }) : t('itemCount.items', { count: quote.itemCount })}
                           </span>

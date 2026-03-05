@@ -1,6 +1,6 @@
 # BAPI Headless - Project Roadmap & TODO
 
-**Updated:** March 3, 2026  
+**Updated:** March 5, 2026  
 **Launch Date:** April 10, 2026 (37 days remaining)  
 **Current Phase:** Phase 1 Development  
 **Launch Readiness:** 99.9%
@@ -3164,6 +3164,30 @@ Deferred to post-launch - see Phase 2 section below for details.
 - [ ] Error boundary tests (graceful failures, fallback UI)
 - [ ] Integration tests (multi-component workflows)
 - [ ] E2E tests (critical user journeys: browse → add to cart → checkout)
+
+**E2E Test Failures (Documented: March 5, 2026):**
+- [ ] **Homepage E2E - Mobile Responsive Tests** (6 failures)
+  - Issue: Mobile navigation menu visibility/animation timing issues
+  - Browsers: chromium, firefox, webkit, Mobile Chrome
+  - Impact: Low (pre-existing, not blocking launch)
+  - Fix: Animation timeout adjustments (~30 minutes)
+  - Reference: DAILY-LOG.md Evening Session (March 5, 2026)
+  
+- [ ] **Homepage E2E - Performance Tests** (4 failures)
+  - Issue: Page load time exceeds 8-second threshold in E2E environment
+  - Browsers: chromium, firefox, webkit, Mobile Chrome
+  - Impact: Low (environmental, not production perf issue)
+  - Fix: Adjust threshold to 10-12 seconds for E2E (~15 minutes)
+  - Reference: DAILY-LOG.md Evening Session (March 5, 2026)
+  
+- [ ] **Homepage E2E - Webkit Timeouts** (10 failures)
+  - Issue: Safari-specific timeout issues across multiple tests
+  - Tests: navigation, language selectors, search, footer, cart, sign-in
+  - Impact: Medium (affects Safari testing coverage)
+  - Fix: Investigate Safari-specific timing (~2-3 hours)
+  - Reference: DAILY-LOG.md Evening Session (March 5, 2026)
+
+**Note:** All accessibility E2E tests passing (5/5 browsers, zero WCAG violations). Above failures are pre-existing environmental/timing issues deferred to post-launch Phase 2.
 
 ### General Technical Debt
 - [ ] Review and optimize bundle size

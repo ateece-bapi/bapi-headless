@@ -19,7 +19,7 @@ export default async function SettingsPage({ params }: SettingsPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-neutral-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Header */}
       <section className="w-full border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
@@ -68,6 +68,6 @@ export default async function SettingsPage({ params }: SettingsPageProps) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -86,7 +86,7 @@ export default function MainProductPage() {
   }, []);
 
   return (
-    <main
+    <div
       className={`bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30 transition-opacity duration-500 ${pageVisible ? 'opacity-100' : 'opacity-0'}`}
       data-testid="products-page-fade"
     >
@@ -306,6 +306,6 @@ export default function MainProductPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

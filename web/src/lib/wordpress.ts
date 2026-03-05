@@ -62,7 +62,7 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
       featuredImage: page.featuredImage?.node?.sourceUrl,
     };
   } catch (error) {
-    logger.error('Error fetching page', { slug, error });
+    logger.warn('WordPress unavailable, page not found', { slug, error });
     return null;
   }
 }
@@ -88,7 +88,7 @@ export async function getPages(first = 100): Promise<Page[]> {
       featuredImage: page.featuredImage?.node?.sourceUrl,
     }));
   } catch (error) {
-    logger.error('Error fetching pages', error);
+    logger.warn('WordPress unavailable, returning empty pages array', { error });
     return [];
   }
 }
@@ -130,7 +130,9 @@ export async function getPosts(
       featuredImage: post.featuredImage?.node?.sourceUrl,
     }));
   } catch (error) {
-    logger.error('Error fetching posts', error);
+    // Use warn instead of error during build time - WordPress backend might be unavailable
+    // Returning empty array is acceptable fallback behavior
+    logger.warn('WordPress unavailable, returning empty posts array', { error });
     return [];
   }
 }
@@ -173,7 +175,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       featuredImage: post.featuredImage?.node?.sourceUrl,
     };
   } catch (error) {
-    logger.error('Error fetching post', { slug, error });
+    logger.warn('WordPress unavailable, post not found', { slug, error });
     return null;
   }
 }

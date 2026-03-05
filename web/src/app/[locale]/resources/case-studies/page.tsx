@@ -52,7 +52,7 @@ export default async function CaseStudiesPage({ params }: Props) {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -123,6 +123,6 @@ export default async function CaseStudiesPage({ params }: Props) {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

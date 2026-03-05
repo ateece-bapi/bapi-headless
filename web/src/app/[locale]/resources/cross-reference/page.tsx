@@ -27,7 +27,7 @@ export default async function CrossReferencePage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'crossReferencePage' });
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
@@ -162,6 +162,6 @@ export default async function CrossReferencePage({ params }: Props) {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

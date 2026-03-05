@@ -62,6 +62,7 @@ export function SearchInput() {
           }}
           placeholder="Search products..."
           className="w-full rounded-lg border border-neutral-300 py-2.5 pl-10 pr-20 text-sm text-neutral-900 transition-all placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          role="combobox"
           aria-label="Search products"
           aria-expanded={isOpen}
           aria-controls={dropdownId}

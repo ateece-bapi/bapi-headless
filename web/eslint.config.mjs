@@ -47,6 +47,20 @@ const eslintConfig = defineConfig([...nextVitals, ...nextTs, {
     jsdoc: jsdoc,
   },
 },
+// Prevent duplicate <main> elements in page components
+// Layout.tsx provides <main id="main-content">, page.tsx files should NOT render their own
+{
+  files: ['**/page.tsx', '**/page.jsx'],
+  rules: {
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector: 'JSXOpeningElement[name.name="main"]',
+        message: 'Pages must NOT use <main> elements. The layout already provides <main id="main-content">. Use <section>, <div>, or React Fragment (<>) instead. See web/COMPONENT_PATTERNS.md for details.',
+      },
+    ],
+  },
+},
 // Relax rules for test and script files
 {
   files: ['**/*.test.{js,ts,jsx,tsx}', '**/*.spec.{js,ts,jsx,tsx}', 'scripts/**/*.{js,mjs}', '__tests__/**/*.js'],

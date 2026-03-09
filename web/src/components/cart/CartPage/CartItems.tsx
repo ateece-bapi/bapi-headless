@@ -144,8 +144,8 @@ export default function CartItems({
                 {/* Stock Status */}
                 <div className="mt-2">
                   {displayProduct.stockStatus === 'IN_STOCK' ? (
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-success-600">
-                      <span className="h-2 w-2 rounded-full bg-success-600"></span>
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-success-700">
+                      <span className="h-2 w-2 rounded-full bg-success-700"></span>
                       {t('cartPage.stock.inStock')}
                       {displayProduct.stockQuantity && (
                         <span className="text-neutral-700">

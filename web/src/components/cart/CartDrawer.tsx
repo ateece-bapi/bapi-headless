@@ -14,15 +14,21 @@ const CartDrawer = () => {
     <>
       {/* Backdrop - Semi-transparent neutral with subtle blue tint for brand cohesion */}
       <div
-        className="fixed inset-0 z-40 bg-gradient-to-br from-neutral-900/60 via-neutral-800/50 to-primary-900/40 backdrop-blur-sm transition-opacity duration-300"
+        className="fixed inset-0 z-modal-backdrop bg-gradient-to-br from-neutral-900/60 via-neutral-800/50 to-primary-900/40 backdrop-blur-sm transition-opacity duration-300"
         onClick={closeCart}
       />
 
       {/* Drawer */}
-      <div className="fixed right-0 top-0 z-50 flex h-full w-full max-w-md flex-col bg-white shadow-xl">
+      <div
+        role="dialog"
+        aria-labelledby="cart-drawer-title"
+        className="cart-drawer fixed right-0 top-0 z-modal flex h-full w-full max-w-md flex-col bg-white shadow-xl"
+      >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-neutral-200 p-4">
-          <h2 className="text-xl font-bold text-neutral-900">Shopping Cart</h2>
+          <h2 id="cart-drawer-title" className="text-xl font-bold text-neutral-900">
+            Shopping Cart
+          </h2>
           <button
             onClick={closeCart}
             className="text-neutral-700 transition hover:text-neutral-900"

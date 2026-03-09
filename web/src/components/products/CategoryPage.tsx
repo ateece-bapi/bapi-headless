@@ -16,7 +16,7 @@ export function CategoryPage({ category, products }: CategoryPageProps) {
   const cleanDescription = category.description ? category.description.replace(/<[^>]*>/g, '') : '';
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 to-primary-800">
         {/* Background decoration */}
@@ -28,7 +28,7 @@ export function CategoryPage({ category, products }: CategoryPageProps) {
           {/* Breadcrumb */}
           <nav
             className="mb-6 flex items-center gap-2 text-sm text-primary-100"
-            aria-label="Breadcrumb"
+            aria-label="Category navigation"
           >
             <Link href="/" className="transition-colors hover:text-white">
               Home
@@ -177,6 +177,6 @@ export function CategoryPage({ category, products }: CategoryPageProps) {
           </div>
         </section>
       )}
-    </main>
+    </div>
   );
 }

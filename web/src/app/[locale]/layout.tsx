@@ -111,7 +111,9 @@ export default async function LocaleLayout({
               <AutoRegionDetection />
 
               <Header />
-              <main id="main-content">{children}</main>
+              <main id="main-content" className="relative z-base">
+                {children}
+              </main>
               <Footer />
               <ChatWidgetClient />
             </>

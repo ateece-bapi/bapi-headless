@@ -169,10 +169,10 @@ describe('CartDrawer Accessibility', () => {
     it('renders drawer and backdrop when open', () => {
       render(<CartDrawer />);
 
-      const backdrop = document.querySelector('.fixed.inset-0.z-40');
+      const backdrop = document.querySelector('.fixed.inset-0.z-modal-backdrop');
       expect(backdrop).toBeInTheDocument();
 
-      const drawer = document.querySelector('.fixed.right-0.top-0.z-50');
+      const drawer = document.querySelector('.fixed.right-0.top-0.z-modal');
       expect(drawer).toBeInTheDocument();
     });
 
@@ -266,7 +266,7 @@ describe('CartDrawer Accessibility', () => {
       const user = userEvent.setup();
       render(<CartDrawer />);
 
-      const backdrop = document.querySelector('.fixed.inset-0.z-40') as HTMLElement;
+      const backdrop = document.querySelector('.fixed.inset-0.z-modal-backdrop') as HTMLElement;
       await user.click(backdrop);
       expect(mockCloseCart).toHaveBeenCalled();
     });

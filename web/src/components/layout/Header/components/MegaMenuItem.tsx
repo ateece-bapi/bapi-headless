@@ -144,7 +144,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
         onMouseEnter={onCancelTimers}
         onMouseLeave={onCloseWithGrace}
         className={clsx(
-          'absolute left-0 right-0 top-full z-50 mt-2',
+          'absolute left-0 right-0 top-full z-popover mt-2',
           'max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border-2 border-primary-500/20 bg-white shadow-2xl',
           'p-3 sm:p-4 md:p-5',
           'origin-top transition-all duration-300 ease-out',

@@ -2,8 +2,153 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** March 6, 2026  
-**Status:** Phase 1 Development - April 10, 2026 Go-Live (34 days remaining)
+**Updated:** March 9, 2026  
+**Status:** Phase 1 Development - April 10, 2026 Go-Live (32 days remaining)
+
+---
+
+## March 9, 2026 — Trade Show Calendar Planning & Phase 1 Kickoff 📅
+
+**Status:** 🚧 PLANNING COMPLETE - Implementation Starting  
+**Context:** BAPI attends many trade shows annually (AHR Expo, ISH, ASHRAE, etc.) and needs a dedicated calendar page  
+**Decision:** Company section placement, Phase 1 for April 10 launch  
+**Time:** Planning session (~2 hours)
+
+### 🎯 OBJECTIVE: Create Professional Trade Show Calendar
+
+**Business Need:**
+- BAPI attends 10-20+ trade shows per year
+- Events currently tracked in Asana (no public-facing calendar)
+- Customers need visibility into where/when to meet BAPI team
+- Must showcase booth numbers, registration links, event flyers
+
+**User Requirements Gathered:**
+1. ✅ **Navigation:** Company section (confirmed)
+2. ✅ **Phase:** Phase 1 priority for April 10 launch
+3. ✅ **Data Source:** Events in Asana → TypeScript static data for Phase 1
+4. ✅ **Required Fields:** Name, dates, location, booth #, description, image, PDF, contact
+5. ✅ **Registration:** External links only (no tracking)
+6. ✅ **Calendar Export:** Not in Phase 1
+7. ✅ **Detail Pages:** Card-only (no dedicated pages)
+8. ✅ **Multi-Language:** UI labels translated, content English-only
+
+### Senior-Level UI/UX Research Applied 💼
+
+**Question:** "What do senior level UI/UX and web developers do here for a calendar?"
+
+**Industry Research Findings:**
+- ✅ **B2B Standard:** Card-based grid layout (NOT full calendar grid)
+- ✅ **Why Cards Beat Calendar:**
+  1. Better information density (event cards hold booth #, location, CTAs, descriptions)
+  2. Mobile-first responsive (calendar grids break on mobile)
+  3. Sparse event distribution (10-20 shows/year doesn't need grid)
+  4. Chronological scanning (users want "what's next" linearly)
+  5. Faster implementation (no calendar library dependencies)
+
+**Design Pattern Recommendation:**
+```
+Hero Section (gradient, icon badge)
+  ↓
+Filter Tabs (Upcoming | Past | All)
+  ↓
+3-Column Card Grid (responsive)
+  ↓
+Event Cards (date, location, title, booth, CTAs)
+```
+
+**Competitors Analyzed:** Belimo, Siemens, Honeywell, AHR Expo official site
+
+### Implementation Strategy
+
+**Phase 1: TypeScript Static Data (4-6 hours)**  
+*Why:* Fastest path to April 10 deadline, events already in Asana
+- Create typed data model with TradeShow interface
+- Mock 8-10 realistic events (AHR Expo, ISH, ASHRAE, Greenbuild)
+- Reuse existing components: ProductCard patterns, BapiButton, News page hero
+- i18n: UI labels only (buttons, filters, headings)
+
+**Phase 2: WordPress Migration (Post-Launch, 8-12 hours)**  
+*When:* After launch when content team needs self-service editing
+- Custom post type following Application Notes pattern
+- GraphQL integration (WPGraphQL + ACF)
+- Full event translation (titles, descriptions) per locale
+- Content team training & documentation
+
+### Component Architecture Reuse
+
+**Existing Patterns to Leverage:**
+1. News page — Hero + card grid layout ✅
+2. ProductCard — Card hover effects, shadows ✅
+3. BapiButton — CTAs (blue/yellow) ✅
+4. Application Notes — GraphQL pattern for Phase 2 ✅
+
+**Icons Available (lucide-react):**
+- `Calendar`, `Clock` — Date/time information
+- `MapPin`, `Building` — Location, booth number
+- `User` — Contact person
+- `FileDown` — Download flyer
+- `ExternalLink` — Registration link
+
+### Files to Create (Phase 1)
+```
+web/src/lib/data/tradeShows.ts                        — Data model & mock events
+web/src/components/tradeShows/TradeShowCard.tsx       — Event card component
+web/src/components/tradeShows/TradeShowFilters.tsx    — Filter tabs
+web/src/app/[locale]/company/trade-shows/page.tsx     — Main page
+```
+
+### Files to Modify (Phase 1)
+```
+web/src/components/layout/Header/config.ts            — Add "Trade Shows" menu item (~line 395)
+web/public/locales/*/common.json                      — Add i18n keys (11 locales)
+web/public/pdfs/                                      — Add placeholder PDFs
+```
+
+### Verification Checklist (Pre-Launch)
+- [ ] Navigate to `/company/trade-shows` → all events display
+- [ ] Filter tabs work (Upcoming/Past/All with correct sorting)
+- [ ] Responsive: mobile (375px), tablet (768px), desktop (1440px)
+- [ ] Accessibility: Lighthouse score 90+, keyboard nav, screen reader
+- [ ] PDF downloads work OR graceful 404 handling
+- [ ] Registration links open in new tab with security attributes
+- [ ] Empty state displays when no upcoming events
+- [ ] SEO: title, meta description, OpenGraph tags
+- [ ] Cross-browser: Chrome, Safari, Firefox, Edge
+
+### Technical Decisions
+
+**Why Static Data for Phase 1:**
+1. ✅ 32 days to launch (testing started March 1)
+2. ✅ Events in Asana (no WordPress/API integration time)
+3. ✅ TypeScript = type-safe + fast (4-6 hrs vs 8-12 hrs WordPress)
+4. ✅ Can migrate to WordPress later with NO frontend changes
+5. ✅ Lower risk for Phase 1 deadline
+
+**Design Rationale:**
+- **Color Strategy:** BAPI Blue (primary CTAs), Yellow (secondary) — 60/30/10 rule
+- **Card Layout:** 3-column grid (responsive: 1 mobile, 2 tablet, 3 desktop)
+- **Date Format:** `toLocaleDateString()` with full month name for readability
+- **Booth Display:** Prominent with `Building` icon for quick trade show floor reference
+- **Contact Visibility:** Show contact person on card for pre-event inquiries
+
+### Branch & PR Strategy
+```bash
+# Branch naming
+feature/trade-show-calendar-phase1
+
+# PR will include
+- TypeScript data model + mock events
+- TradeShowCard + TradeShowFilters components
+- Trade shows page with hero + grid
+- Navigation config update
+- i18n translations (UI only)
+- Placeholder PDFs
+```
+
+### Next Steps
+1. ✅ Planning complete — user confirmed all Phase 1 decisions
+2. 🚧 Create feature branch: `feature/trade-show-calendar-phase1`
+3. ⏳ Begin implementation (Step 1: TypeScript data model)
 
 ---
 

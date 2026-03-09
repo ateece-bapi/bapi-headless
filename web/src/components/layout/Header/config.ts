@@ -476,6 +476,11 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
               description: t('company.aboutBapi.newsDesc'),
             },
             {
+              label: t('company.aboutBapi.tradeShows'),
+              href: '/company/trade-shows',
+              description: t('company.aboutBapi.tradeShowsDesc'),
+            },
+            {
               label: t('company.aboutBapi.careers'),
               href: '/company/careers',
               description: t('company.aboutBapi.careersDesc'),

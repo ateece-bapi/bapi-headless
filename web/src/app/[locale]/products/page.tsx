@@ -101,7 +101,7 @@ export default function MainProductPage() {
           {/* Breadcrumb */}
           <nav
             className="mb-8 flex items-center gap-2 text-sm text-primary-100"
-            aria-label="Breadcrumb"
+            aria-label="Products page navigation"
           >
             <Link href={`/${locale}`} className="transition-colors hover:text-white">
               {t('productsPage.breadcrumb.home')}

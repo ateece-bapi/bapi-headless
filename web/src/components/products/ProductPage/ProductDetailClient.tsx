@@ -101,7 +101,7 @@ export default function ProductDetailClient({
   return (
     <>
       <div className="min-h-screen bg-white">
-        <main className="py-12">
+        <div className="py-12">
           <div className="container mx-auto px-4">
             <Breadcrumbs items={buildBreadcrumbs()} />
 
@@ -173,7 +173,7 @@ export default function ProductDetailClient({
               product={{ iosAppUrl: product.iosAppUrl, androidAppUrl: product.androidAppUrl }}
             />
           </div>
-        </main>
+        </div>
         <footer className="border-t border-neutral-200 bg-white py-8">
           <div className="container mx-auto px-4 text-center text-neutral-700">
             <p>&copy; 2025 BAPI. All rights reserved.</p>

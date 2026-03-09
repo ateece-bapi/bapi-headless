@@ -86,7 +86,7 @@ const SignInButton: React.FC = () => {
         </button>
 
         {showMenu && (
-          <div className="absolute right-0 z-50 mt-2 w-48 rounded-xl border-2 border-neutral-200 bg-white py-2 shadow-xl">
+          <div className="absolute right-0 z-popover mt-2 w-48 rounded-xl border-2 border-neutral-200 bg-white py-2 shadow-xl">
             <Link
               href="/account"
               className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-50"

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { HeaderProps } from './types';
 import { HEADER_CONFIG } from './config';
@@ -22,12 +22,24 @@ import {
 export const Header: React.FC<HeaderProps> = ({ className }) => {
   const scrolled = useScrollDetection(HEADER_CONFIG.scrollThreshold);
   const mobileMenu = useMobileMenu();
-  const totalItems = useCartStore((state) => state.totalItems());
+  const [mounted, setMounted] = useState(false);
+  
+  // Get cart items directly instead of calling totalItems()
+  const items = useCartStore((state) => state.items);
+  const totalItems = items.reduce((total, item) => total + item.quantity, 0);
+  
+  // Track hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  // Only show cart count after client-side mount to avoid hydration mismatch
+  const displayCount = mounted ? totalItems : 0;
 
   return (
     <header
       className={clsx(
-        'sticky top-0 z-50 w-full border-b border-neutral-200 bg-white transition-shadow duration-300',
+        'sticky top-0 z-sticky w-full border-b border-neutral-200 bg-white transition-shadow duration-300',
         scrolled ? 'shadow-md' : 'shadow-sm',
         className
       )}
@@ -40,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           <LanguageSelector />
           <div className="mb-2 h-6 w-px bg-neutral-300" />
           <SignInButton />
-          <CartButton itemCount={totalItems} />
+          <CartButton itemCount={displayCount} />
         </div>
 
         {/* Bottom Row: Logo, Navigation, Search */}
@@ -59,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
             {/* Mobile-only Sign In and Cart (Region/Language in hamburger menu) */}
             <div className="flex items-center gap-2 lg:hidden">
               <SignInButton />
-              <CartButton itemCount={totalItems} />
+              <CartButton itemCount={displayCount} />
             </div>
             <MobileMenuButton isOpen={mobileMenu.isOpen} onClick={mobileMenu.toggle} />
           </div>

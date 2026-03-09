@@ -111,7 +111,7 @@ export function LanguageSelectorV2() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-50 mt-1 max-h-[400px] w-full min-w-[220px] overflow-auto rounded-lg border border-neutral-200 bg-white py-1 shadow-xl ring-1 ring-black/5 focus:outline-none lg:w-auto">
+              <Listbox.Options className="absolute z-popover mt-1 max-h-[400px] w-full min-w-[220px] overflow-auto rounded-lg border border-neutral-200 bg-white py-1 shadow-xl ring-1 ring-black/5 focus:outline-none lg:w-auto">
                 {LANGUAGE_GROUPS.map((group) => (
                   <div key={group.id} className="py-1">
                     {/* Group Header */}

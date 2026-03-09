@@ -30,7 +30,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     <>
       {/* Overlay */}
       <div
-        className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
+        className="fixed inset-0 z-fixed bg-black/20 backdrop-blur-sm lg:hidden"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -38,7 +38,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       {/* Menu */}
       <nav
         id="mobile-menu"
-        className="animate-in slide-in-from-top-2 absolute left-0 right-0 top-full z-50 max-h-[calc(100vh-200px)] overflow-y-auto border-t border-neutral-200 bg-white shadow-lg duration-200 lg:hidden"
+        className="animate-in slide-in-from-top-2 absolute left-0 right-0 top-full z-popover max-h-[calc(100vh-200px)] overflow-y-auto border-t border-neutral-200 bg-white shadow-lg duration-200 lg:hidden"
         aria-label="Mobile navigation"
       >
         <div className="mx-auto max-w-7xl px-4 py-4">

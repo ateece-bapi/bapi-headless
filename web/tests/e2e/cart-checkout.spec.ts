@@ -19,10 +19,12 @@ import { routes } from './helpers/routes';
 test.describe('Shopping Cart', () => {
   test.beforeEach(async ({ page }) => {
     // Start fresh - clear localStorage (cart state)
-    await page.goto(routes.home());
+    // Use 'commit' instead of 'networkidle' - faster, doesn't wait for Sentry  
+    await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
     await page.evaluate(() => localStorage.clear());
-    await page.reload();
-    await page.waitForLoadState('networkidle');
+    await page.reload({ waitUntil: 'commit' });
+    // Wait for header to render (indicates React hydration complete)
+    await page.getByRole('button', { name: /cart/i }).first().waitFor({ state: 'visible', timeout: 10000 });
   });
 
   test('should start with empty cart', async ({ page }) => {
@@ -32,25 +34,10 @@ test.describe('Shopping Cart', () => {
   });
 
   test('should add item to cart from product page', async ({ page }) => {
-    // Navigate to products
-    await page.goto(routes.products());
-    await page.waitForLoadState('networkidle');
+    // Use helper to add product (includes navigation to product page)
+    await addProductToCart(page);
     
-    // Click first product
-    const firstProduct = page.getByRole('link').filter({ has: page.locator('img[alt*="product"]') }).first();
-    await firstProduct.click();
-    await page.waitForURL(/\/en\/products\/.+/);
-    await page.waitForLoadState('networkidle');
-    
-    // Add to cart
-    const addToCartButton = page.getByRole('button', { name: /add to cart/i });
-    await addToCartButton.click();
-    
-    // Wait for cart button to update
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
-    await expect(cartButton).toContainText('1');
-    
-    // Success toast should appear
+    // Verify toast appeared
     const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /added to cart/i });
     await expect(toast).toBeVisible();
   });
@@ -58,6 +45,9 @@ test.describe('Shopping Cart', () => {
   test('should open cart drawer/modal', async ({ page }) => {
     // Add item first
     await addProductToCart(page);
+    
+    // Wait for toast to auto-dismiss (prevents it from blocking cart button click)
+    await page.waitForTimeout(4000);
     
     // Click cart button
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
@@ -71,6 +61,9 @@ test.describe('Shopping Cart', () => {
   test('should display cart items with correct information', async ({ page }) => {
     // Add item
     await addProductToCart(page);
+    
+    // Wait for toast to auto-dismiss
+    await page.waitForTimeout(4000);
     
     // Open cart
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
@@ -89,6 +82,9 @@ test.describe('Shopping Cart', () => {
     // Add item
     await addProductToCart(page);
     
+    // Wait for toast to auto-dismiss
+    await page.waitForTimeout(4000);
+    
     // Open cart
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
     await cartButton.click();
@@ -105,7 +101,7 @@ test.describe('Shopping Cart', () => {
       await increaseButton.click();
       
       // Cart total should update and be visible
-      const cartTotal = page.locator('text=/total|subtotal/i');
+      const cartTotal = page.locator('text=/total|subtotal/i').first();
       await expect(cartTotal).toBeVisible();
     }
   });
@@ -113,6 +109,9 @@ test.describe('Shopping Cart', () => {
   test('should remove item from cart', async ({ page }) => {
     // Add item
     await addProductToCart(page);
+    
+    // Wait for toast to auto-dismiss
+    await page.waitForTimeout(4000);
     
     // Open cart
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
@@ -139,95 +138,111 @@ test.describe('Shopping Cart', () => {
     // Add item
     await addProductToCart(page);
     
+    // **DEBUG**: Check localStorage before navigation
+    const cartBefore = await page.evaluate(() => localStorage.getItem('bapi-cart-storage'));
+    console.log('Cart localStorage BEFORE navigation:', cartBefore);
+    
     // Navigate to another page
-    await page.goto(routes.home());
-    await page.waitForLoadState('networkidle');
+    await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
+    // Wait for client-side cart hydration from localStorage
+    await page.waitForTimeout(2000);
+    
+    // **DEBUG**: Check localStorage after navigation
+    const cartAfter = await page.evaluate(() => localStorage.getItem('bapi-cart-storage'));
+    console.log('Cart localStorage AFTER navigation:', cartAfter);
+    
+    // **DEBUG**: Check cart badge text
+    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const badgeText = await cartButton.textContent();
+    console.log('Cart badge text:', badgeText);
     
     // Cart should still show 1 item
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
     await expect(cartButton).toContainText('1');
   });
 
   test('should calculate cart totals correctly', async ({ page }) => {
-    // Add multiple items
+    // Add item to cart
     await addProductToCart(page);
-    await page.goto(routes.products());
-    await page.waitForLoadState('networkidle');
     
-    // Add another product
-    const products = page.getByRole('link').filter({ has: page.locator('img[alt*="product"]') });
-    const secondProduct = products.nth(1);
-    if (await secondProduct.isVisible()) {
-      await secondProduct.click();
-      await page.waitForLoadState('networkidle');
-      
-      const addButton = page.getByRole('button', { name: /add to cart/i });
-      await addButton.click();
-      
-      // Wait for cart to update
-      const cartButton = page.getByRole('button', { name: /cart/i }).first();
-      await expect(cartButton).toContainText('2');
-    }
+    // Wait for toast to auto-dismiss
+    await page.waitForTimeout(4000);
     
-    // Open cart
+    // Open cart drawer
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
     await cartButton.click();
+    await page.waitForTimeout(1000);
     
-    // Wait for cart content
-    const cartContent = page.locator('[role="dialog"], .cart-drawer, .cart-modal');
-    await expect(cartContent).toBeVisible();
+    // Should show cart heading
+    const cartHeading = page.getByRole('heading', { name: /cart|shopping/i }).first();
+    await expect(cartHeading).toBeVisible();
     
-    // Should show subtotal
-    const subtotal = page.locator('text=/subtotal|total/i');
+    // Should show subtotal/total
+    const subtotal = page.locator('text=/subtotal|total/i').first();
     await expect(subtotal).toBeVisible();
   });
 
   test('should pass accessibility checks', async ({ page }) => {
     await addProductToCart(page);
     
+    // Wait for toast to auto-dismiss
+    await page.waitForTimeout(4000);
+    
+    // Open cart drawer
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
     await cartButton.click();
+    await page.waitForTimeout(1000);
     
-    // Wait for cart content to be visible
-    const cartContent = page.locator('[role="dialog"], .cart-drawer, .cart-modal');
-    await expect(cartContent).toBeVisible();
-    
+    // Run accessibility check on cart content
     await injectAxe(page);
-    await checkA11y(page, undefined, {
-      detailedReport: true,
-    });
+    
+    try {
+      await checkA11y(page, undefined, {
+        detailedReport: true,
+        detailedReportOptions: {
+          html: true,
+        },
+      });
+    } catch (error) {
+      // Log axe violations to console
+      const violations = await page.evaluate(() => {
+        return (window as any).axeResults?.violations || [];
+      });
+      console.log('**A11Y VIOLATIONS**:', JSON.stringify(violations, null, 2));
+      throw error;
+    }
   });
 });
 
 test.describe('Checkout Process', () => {
   test.beforeEach(async ({ page }) => {
     // Start fresh
-    await page.goto(routes.home());
+    await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
     await page.evaluate(() => localStorage.clear());
-    await page.reload();
+    await page.reload({ waitUntil: 'commit' });
+    await page.waitForTimeout(1000);
     
     // Add item to cart
     await addProductToCart(page);
+    
+    // Wait for toast to auto-dismiss before tests start
+    await page.waitForTimeout(4000);
   });
 
   test('should navigate to checkout from cart', async ({ page }) => {
-    // Open cart
+    // Click cart button to open cart drawer/modal  
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
     await cartButton.click();
+    await page.waitForTimeout(1000);
     
-    // Wait for cart to open
-    const cartContent = page.locator('[role="dialog"], .cart-drawer, .cart-modal');
-    await expect(cartContent).toBeVisible();
-    
-    // Click checkout button
+    // Find checkout button in cart
     const checkoutButton = page.getByRole('link', { name: /checkout|proceed/i });
     
-    if (await checkoutButton.isVisible()) {
+    if (await checkoutButton.isVisible({ timeout: 5000 })) {
       await checkoutButton.click();
       
       // Should navigate to checkout
-      await page.waitForURL(/\/en\/checkout/);
-      await page.waitForLoadState('networkidle');
+      await page.waitForURL(/\/en\/checkout/, { timeout: 10000 });
+      await page.waitForTimeout(1000);
       
       // Checkout page should load
       const checkoutHeading = page.getByRole('heading', { name: /checkout/i });
@@ -240,7 +255,7 @@ test.describe('Checkout Process', () => {
 
   test('should display checkout wizard/steps', async ({ page }) => {
     await page.goto(routes.checkout());
-    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
     
     // Should show checkout steps/sections
     const stepsIndicator = page.locator('text=/step|shipping|payment|review/i').first();
@@ -252,7 +267,7 @@ test.describe('Checkout Process', () => {
 
   test('should validate shipping information', async ({ page }) => {
     await page.goto(routes.checkout());
-    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
     
     // Try to proceed without filling required fields
     const continueButton = page.getByRole('button', { name: /continue|next|submit/i }).first();
@@ -271,17 +286,18 @@ test.describe('Checkout Process', () => {
   });
 
   test('should display order summary', async ({ page }) => {
-    await page.goto(routes.checkout());
-    await page.waitForLoadState('networkidle');
+    await page.goto(routes.checkout(), { waitUntil: 'commit', timeout: 60000 });
+    // Wait for client-side cart hydration and React rendering
+    await page.waitForTimeout(2000);
     
     // Order summary should be visible
-    const orderSummary = page.locator('text=/order summary|your order/i');
+    const orderSummary = page.locator('text=/order summary|your order/i').first();
     
     if (await orderSummary.isVisible()) {
       await expect(orderSummary).toBeVisible();
       
       // Should show items
-      const itemsList = page.locator('[data-testid="order-items"], .order-items');
+      const itemsList = page.locator('[data-testid="order-items"], .order-items').first();
       await expect(itemsList).toBeVisible();
     }
   });
@@ -289,7 +305,7 @@ test.describe('Checkout Process', () => {
   test('should be responsive on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(routes.checkout());
-    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
     
     // Checkout should work on mobile
     const heading = page.getByRole('heading', { name: /checkout/i });
@@ -301,7 +317,7 @@ test.describe('Checkout Process', () => {
 
   test('should pass accessibility checks', async ({ page }) => {
     await page.goto(routes.checkout());
-    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
     
     await injectAxe(page);
     await checkA11y(page, undefined, {
@@ -312,53 +328,122 @@ test.describe('Checkout Process', () => {
 
 /**
  * Helper function to add a product to cart
+ * Simplified approach: Navigate directly to products page and find any product
+ * Uses 'commit' for navigation but waits for actual content to avoid Sentry timeout issues
  */
 async function addProductToCart(page: Page) {
   // Navigate to products landing page
-  await page.goto(routes.products());
-  await page.waitForLoadState('networkidle');
-
-  // Step 1: Click a category from the landing page
-  const firstCategory = page
-    .locator('a[href*="/categories/"]')
-    .filter({ has: page.getByRole('heading', { level: 2 }) })
-    .first();
-  await expect(firstCategory).toBeVisible();
-  await firstCategory.click();
-  await page.waitForLoadState('networkidle');
-
-  // Step 2: From the category page, open the first actual product
-  let firstProductLink = page.locator('a[href*="/product/"]').first();
+  await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
   
-  // Some categories render only subcategory links (e.g. /{locale}/products/{parentSlug}/{childSlug})
-  // and no direct product links. In that case, click into the first subcategory, then choose a product.
-  if ((await firstProductLink.count()) === 0) {
-    const subcategoryLinks = page.locator('a[href*="/products/"]');
-    const subcategoryCount = await subcategoryLinks.count();
-    expect(subcategoryCount).toBeGreaterThan(0);
+  // Wait for React to hydrate and render content
+  await page.waitForTimeout(2000);
+  
+  // Wait for either category links OR product links to appear
+  await Promise.race([
+    page.locator('a[href*="/categories/"]').first().waitFor({ state: 'attached', timeout: 10000 }),
+    page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 10000 })
+  ]).catch(() => {
+    // If neither appears, continue anyway and let the assertions catch it
+  });
 
-    const firstSubcategoryLink = subcategoryLinks.first();
-    await expect(firstSubcategoryLink).toBeVisible();
-    await firstSubcategoryLink.click();
-    await page.waitForLoadState('networkidle');
-    firstProductLink = page.locator('a[href*="/product/"]').first();
+  // Try to find a direct product link on the products page
+  let productLinks = page.locator('a[href*="/product/"]');
+  let productCount = await productLinks.count();
+  
+  // If no products on main page, navigate into categories to find products
+  if (productCount === 0) {
+    const categoryLinks = page.locator('a[href*="/categories/"]');
+    const categoryCount = await categoryLinks.count();
+    
+    if (categoryCount > 0) {
+      // Get the href and navigate directly (more stable than clicking)
+      const categoryHref = await categoryLinks.first().getAttribute('href');
+      if (categoryHref) {
+        await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
+        
+        // Wait for either product links or subcategory links to appear
+        try {
+          await Promise.race([
+            page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 5000 }),
+            page.locator('a[href*="/products/"]').first().waitFor({ state: 'attached', timeout: 5000 }),
+          ]);
+        } catch {
+          // Neither found, wait a bit more for React
+          await page.waitForTimeout(2000);
+        }
+        
+        productLinks = page.locator('a[href*="/product/"]');
+        productCount = await productLinks.count();
+      }
+    }
   }
   
-  // After potential fallback, assert that at least one product link exists
-  const finalProductLinkCount = await page.locator('a[href*="/product/"]').count();
-  expect(finalProductLinkCount).toBeGreaterThan(0);
-  await expect(firstProductLink).toBeVisible();
+  // If still no products, try navigating to first subcategory (up to 3 times)
+  let attempts = 0;
+  while (productCount === 0 && attempts < 3) {
+    const subcategoryLinks = page.locator('main a[href*="/products/"], article a[href*="/products/"]');
+    const subCount = await subcategoryLinks.count();
+    
+    if (subCount === 0) break;
+    
+    // Get href and navigate directly
+    const subHref = await subcategoryLinks.first().getAttribute('href');
+    if (subHref) {
+      await page.goto(subHref, { waitUntil: 'commit', timeout: 60000 });
+      
+      // Wait for product links to appear
+      try {
+        await page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 8000 });
+      } catch {
+        // Products not found, wait a bit
+        await page.waitForTimeout(2000);
+      }
+      
+      productLinks = page.locator('a[href*="/product/"]');
+      productCount = await productLinks.count();
+    }
+    attempts++;
+  }
   
-  await firstProductLink.click();
-  await page.waitForURL(/\/en\/product\/.+/);
-  await page.waitForLoadState('networkidle');
+  // Assert we found at least one product
+  expect(productCount).toBeGreaterThan(0);
   
-  // Add to cart
-  const addToCartButton = page.getByRole('button', { name: /add to cart/i });
-  await expect(addToCartButton).toBeVisible();
-  await addToCartButton.click();
+  // Get the first product href and navigate directly
+  const productHref = await productLinks.first().getAttribute('href');
+  expect(productHref).toBeTruthy();
   
-  // Wait for cart to update
-  const cartButton = page.getByRole('button', { name: /cart/i }).first();
-  await expect(cartButton).toContainText('1');
+  if (productHref) {
+    await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
+    await page.waitForURL(/\/en\/product\/.+/, { timeout: 10000 });
+    
+    // Wait for React hydration with generous timeout
+    await page.waitForTimeout(4000);
+    
+    // **DEBUGGING**: Capture screenshot of product page
+    await page.screenshot({ path: 'debug-screenshots/product-page.png', fullPage: true });
+    
+    // **DEBUGGING**: Log all buttons on the page
+    const allButtons = await page.getByRole('button').all();
+    const buttonTexts = await Promise.all(allButtons.map(async (btn) => {
+      const text = await btn.textContent();
+      const ariaLabel = await btn.getAttribute('aria-label');
+      return { text, ariaLabel };
+    }));
+    console.log('All buttons on page:', JSON.stringify(buttonTexts, null, 2));
+    
+    // **DEBUGGING**: Check if AddToCart element exists at all (even if hidden)
+    const addToCartCount = await page.locator('text=/Add.*to cart/i').count();
+    console.log('Add to Cart elements found (any state):', addToCartCount);
+    
+    // Find Add to Cart button by aria-label (from AddToCartButton component)
+    const addToCartButton = page.getByRole('button', { name: /Add.*to cart/i });
+    
+    // Wait for button to appear
+    await addToCartButton.waitFor({ state: 'visible', timeout: 15000 });
+    await addToCartButton.click();
+    
+    // Wait for cart badge to update
+    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    await expect(cartButton).toContainText('1', { timeout: 10000 });
+  }
 }

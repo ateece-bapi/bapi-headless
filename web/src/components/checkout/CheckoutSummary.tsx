@@ -53,7 +53,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
           <h3 className="text-sm font-semibold uppercase tracking-wide text-neutral-700">
             {t('items', { count: cart.contents?.itemCount || 0 })}
           </h3>
-          <div className="max-h-64 space-y-3 overflow-y-auto">
+          <div className="max-h-64 space-y-3 overflow-y-auto" data-testid="order-items">
             {cart.contents?.nodes?.map((item: any) => {
               const product = item.product.node;
               const variation = item.variation?.node;

@@ -28,10 +28,10 @@ test.describe('Shopping Cart', () => {
   });
 
   test('should start with empty cart', async ({ page }) => {
-    // Cart badge should not be visible when empty (badge only renders when itemCount > 0)
+    // Test accessible name (screen reader announcement) for empty cart
+    // More robust than DOM text assertions for accessibility compliance
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    const badge = cartButton.locator('span').filter({ hasText: /^\d+$/ });
-    await expect(badge).not.toBeVisible();
+    await expect(cartButton).toHaveAccessibleName(/cart\s*\(empty\)/i);
   });
 
   test('should add item to cart from product page', async ({ page }) => {
@@ -130,10 +130,9 @@ test.describe('Shopping Cart', () => {
     const emptyMessage = page.locator('text=/empty|no items/i');
     await expect(emptyMessage).toBeVisible();
     
-    // Cart badge should not be visible when empty
+    // Verify cart accessible name indicates empty state
     const updatedCartButton = page.getByRole('link', { name: /cart/i }).first();
-    const badge = updatedCartButton.locator('span').filter({ hasText: /^\d+$/ });
-    await expect(badge).not.toBeVisible();
+    await expect(updatedCartButton).toHaveAccessibleName(/cart\s*\(empty\)/i);
   });
 
   test('should persist cart across page navigation', async ({ page }) => {
@@ -309,19 +308,32 @@ test.describe('Checkout Process', () => {
 /**
  * Helper: Wait for toast to disappear (dismiss timeout or user closes it)
  * More reliable than hardcoded waits
+ * 
+ * @param page - Playwright page object
+ * @param timeout - Total maximum wait time (ms). Allocated proportionally: 25% for appear, 75% for dismiss
  */
 async function waitForToastToDismiss(page: Page, timeout = 6000) {
   const toast = page.locator('[role="alert"], [role="status"]').first();
   
-  // First, wait for toast to appear (if it hasn't already)
-  await toast.waitFor({ state: 'attached', timeout: 2000 }).catch(() => {
-    // Toast may not appear at all, continue
-  });
+  // Allocate timeout proportionally to avoid exceeding caller's expectations
+  const appearTimeout = Math.floor(timeout * 0.25); // 25% for toast to appear
+  const dismissTimeout = timeout - appearTimeout;   // 75% for toast to dismiss
   
-  // Then wait for it to be hidden/removed
-  await toast.waitFor({ state: 'hidden', timeout }).catch(() => {
-    // Toast may already be gone, continue
-  });
+  // First, check if toast appears within the appear window
+  let toastAppeared = false;
+  await toast.waitFor({ state: 'attached', timeout: appearTimeout })
+    .then(() => { toastAppeared = true; })
+    .catch(() => {
+      // Toast may not appear at all, continue
+    });
+  
+  // Only wait for dismissal if toast actually appeared
+  // (prevents early resolution when toast attaches slightly late)
+  if (toastAppeared) {
+    await toast.waitFor({ state: 'hidden', timeout: dismissTimeout }).catch(() => {
+      // Toast may already be gone, continue
+    });
+  }
 }
 
 /**

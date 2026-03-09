@@ -24,13 +24,14 @@ test.describe('Shopping Cart', () => {
     await page.evaluate(() => localStorage.clear());
     await page.reload({ waitUntil: 'commit' });
     // Wait for header to render (indicates React hydration complete)
-    await page.getByRole('button', { name: /cart/i }).first().waitFor({ state: 'visible', timeout: 10000 });
+    await page.getByRole('link', { name: /cart/i }).first().waitFor({ state: 'visible', timeout: 10000 });
   });
 
   test('should start with empty cart', async ({ page }) => {
-    // Cart button should show 0 items
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
-    await expect(cartButton).toContainText('0');
+    // Cart badge should not be visible when empty (badge only renders when itemCount > 0)
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
+    const badge = cartButton.locator('span').filter({ hasText: /^\d+$/ });
+    await expect(badge).not.toBeVisible();
   });
 
   test('should add item to cart from product page', async ({ page }) => {
@@ -50,7 +51,7 @@ test.describe('Shopping Cart', () => {
     await waitForToastToDismiss(page);
     
     // Click cart button
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await cartButton.click();
     
     // Should show cart contents
@@ -66,7 +67,7 @@ test.describe('Shopping Cart', () => {
     await waitForToastToDismiss(page);
     
     // Open cart
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await cartButton.click();
     
     // Cart should show product name
@@ -86,7 +87,7 @@ test.describe('Shopping Cart', () => {
     await waitForToastToDismiss(page);
     
     // Open cart
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await cartButton.click();
     
     // Wait for cart content to be visible
@@ -114,7 +115,7 @@ test.describe('Shopping Cart', () => {
     await waitForToastToDismiss(page);
     
     // Open cart
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await cartButton.click();
     
     // Wait for cart content
@@ -129,9 +130,10 @@ test.describe('Shopping Cart', () => {
     const emptyMessage = page.locator('text=/empty|no items/i');
     await expect(emptyMessage).toBeVisible();
     
-    // Cart count should be 0
-    const updatedCartButton = page.getByRole('button', { name: /cart/i }).first();
-    await expect(updatedCartButton).toContainText('0');
+    // Cart badge should not be visible when empty
+    const updatedCartButton = page.getByRole('link', { name: /cart/i }).first();
+    const badge = updatedCartButton.locator('span').filter({ hasText: /^\d+$/ });
+    await expect(badge).not.toBeVisible();
   });
 
   test('should persist cart across page navigation', async ({ page }) => {
@@ -144,7 +146,7 @@ test.describe('Shopping Cart', () => {
     await page.waitForTimeout(2000);
     
     // Cart should still show 1 item
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await expect(cartButton).toContainText('1');
   });
 
@@ -156,7 +158,7 @@ test.describe('Shopping Cart', () => {
     await waitForToastToDismiss(page);
     
     // Open cart drawer
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await cartButton.click();
     await page.waitForTimeout(1000);
     
@@ -176,7 +178,7 @@ test.describe('Shopping Cart', () => {
     await waitForToastToDismiss(page);
     
     // Open cart drawer
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await cartButton.click();
     await page.waitForTimeout(1000);
     
@@ -208,7 +210,7 @@ test.describe('Checkout Process', () => {
 
   test('should navigate to checkout from cart', async ({ page }) => {
     // Click cart button to open cart drawer/modal  
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await cartButton.click();
     await page.waitForTimeout(1000);
     
@@ -310,9 +312,15 @@ test.describe('Checkout Process', () => {
  */
 async function waitForToastToDismiss(page: Page, timeout = 6000) {
   const toast = page.locator('[role="alert"], [role="status"]').first();
-  // Wait for toast to be hidden (if it exists)
+  
+  // First, wait for toast to appear (if it hasn't already)
+  await toast.waitFor({ state: 'attached', timeout: 2000 }).catch(() => {
+    // Toast may not appear at all, continue
+  });
+  
+  // Then wait for it to be hidden/removed
   await toast.waitFor({ state: 'hidden', timeout }).catch(() => {
-    // Toast may already be gone or never appeared, continue
+    // Toast may already be gone, continue
   });
 }
 
@@ -406,18 +414,15 @@ async function addProductToCart(page: Page) {
     await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
     await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/product/.+`), { timeout: 10000 });
     
-    // Wait for React hydration with generous timeout
-    await page.waitForTimeout(4000);
-    
     // Find Add to Cart button by aria-label (from AddToCartButton component)
     const addToCartButton = page.getByRole('button', { name: /Add.*to cart/i });
     
-    // Wait for button to appear
-    await addToCartButton.waitFor({ state: 'visible', timeout: 15000 });
+    // Wait for button to appear (replaces hardcoded 4s timeout + 15s wait)
+    await addToCartButton.waitFor({ state: 'visible', timeout: 20000 });
     await addToCartButton.click();
     
     // Wait for cart badge to update
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
+    const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await expect(cartButton).toContainText('1', { timeout: 10000 });
   }
 }

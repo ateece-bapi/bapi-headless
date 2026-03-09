@@ -1,22 +1,22 @@
 # BAPI Headless - Project Roadmap & TODO
 
 **Updated:** March 9, 2026  
-**Launch Date:** April 10, 2026 (33 days remaining)  
+**Launch Date:** April 10, 2026 (32 days remaining)  
 **Current Phase:** Phase 1 Development  
 **Launch Readiness:** 99.9%
 
 ---
 
-## ✅ Trade Show Calendar — Phase 1 Complete (March 9, 2026)
+## ✅ Trade Show Calendar — Phase 1 Complete + UX Enhancements (March 9, 2026)
 
-**Status:** ✅ COMPLETE - Real data from Asana imported 🎉  
-**Branch:** Merged to main (`feature/real-trade-show-data-2026`)  
+**Status:** ✅ COMPLETE - Real data + UX enhancements merged 🎉  
+**Branches:** Merged to main (`feature/real-trade-show-data-2026`, `feature/trade-shows-ux-enhancements`)  
 **Target:** Phase 1 (April 10 launch)  
-**Total Time:** ~4 hours (implementation + real data import)  
+**Total Time:** ~10 hours (implementation + real data import + UX enhancements + code review)  
 **Launch Ready:** Yes - live at `/[locale]/company/trade-shows`
 
 ### Objective
-Create a professional card-based trade show calendar under Company navigation section, enabling BAPI to showcase industry events where customers can connect with the team.
+Create a professional card-based trade show calendar under Company navigation section, enabling BAPI to showcase industry events where customers can connect with the team, with enhanced UX for customer awareness and SEO discoverability.
 
 ### Phase 1 Scope — ✅ All Completed
 - ✅ **UI Pattern:** Card-based grid (B2B industry standard) — NO calendar grid
@@ -26,6 +26,12 @@ Create a professional card-based trade show calendar under Company navigation se
 - ✅ **Event Details:** Card-only display with contact info, booth details, descriptions
 - ✅ **Multi-Language:** UI labels translated (6 major locales), event content English-only
 - ✅ **TBD Support:** Smart handling of events without confirmed dates
+- ✅ **Search:** Full-text search across title, city, country, description, venue
+- ✅ **Regional Filters:** Americas/EMEA/APAC with 15-country mapping
+- ✅ **Status Badges:** Live Now (pulse), Starting Soon, Past Event, Date TBD
+- ✅ **Date Prominence:** Enhanced with relative time hints (Today, Tomorrow, In X days)
+- ✅ **SEO:** JSON-LD Event schema for Google rich results
+- ✅ **Calendar Export:** RFC 5545 compliant .ics download functionality
 
 ### Implementation Steps — ✅ All Complete
 - ✅ **Step 1:** Create TypeScript data model (`web/src/lib/data/tradeShows.ts`)
@@ -37,12 +43,27 @@ Create a professional card-based trade show calendar under Company navigation se
 - ✅ **Step 7:** Add i18n translations for UI labels (en, de, es, fr, ja, zh)
 - ✅ **Step 8:** Design system integration (BAPI brand colors, responsive layout)
 - ✅ **Step 9:** Testing & deployment (merged to main via PR)
+- ✅ **Step 10:** Senior UX review and enhancement implementation
+- ✅ **Step 11:** Search + regional filter implementation
+- ✅ **Step 12:** Status badges + date prominence enhancements
+- ✅ **Step 13:** SEO structured data (JSON-LD Event schema)
+- ✅ **Step 14:** Calendar export (.ics download) with RFC 5545 compliance
+- ✅ **Step 15:** Code review fixes (9 Copilot issues resolved)
 
 ### Real Data Imported (March 9, 2026)
 - **33 Total Events:** HVAC/R Japan, AHR Expo, PTAK Warsaw, Acrex India, MCE Milan, Niagara Summit, Data Center World, Controls-Con, National Restaurant Show, TechEx, ARBS QLD, EBME Expo, Cold Chain Hub, Chillventa, Smart Buildings London, Big 5 Global, and more
 - **Regional Coverage:** North America (9), Europe (12), Asia-Pacific (8), Middle East (4)
 - **Contact Info:** Real regional managers from Asana (M Holder, J Shields, M Moss, T Wilder, Jan Zurawski, A Brooks, Jonathan Hillebrand, Courtney Meyer)
 - **CSV Export:** Stored at `docs/Sales_Event_Coordination.csv` for reference
+
+### UX Enhancements Completed (March 9, 2026)
+- **Search:** Full-text across 5 fields with clear button and results counter
+- **Regional Filters:** 3-region chip-based UI (Americas/EMEA/APAC)
+- **Status Badges:** 5 states with semantic colors and pulse animations
+- **Date Prominence:** Larger text + relative time hints
+- **SEO:** JSON-LD Event schema filtered for confirmed dates only
+- **Calendar Export:** RFC 5545 compliant with stable UIDs, line folding, proper timestamps
+- **Code Quality:** All 9 Copilot review issues addressed
 
 ### Known Items for Future Updates
 - [ ] Add actual booth numbers as they're confirmed with organizers
@@ -54,7 +75,6 @@ Create a professional card-based trade show calendar under Company navigation se
 - WordPress custom post type following Application Notes pattern
 - GraphQL integration for content management by non-technical staff
 - Full event translation (titles, descriptions) per locale
-- Calendar export functionality (.ics files)
 
 ---
 

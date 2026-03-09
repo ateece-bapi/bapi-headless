@@ -19,8 +19,10 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
   const dateRange = formatDateRange(show.startDate, show.endDate, locale);
   
   // Derive event status from endDate (events are "past" only when concluded)
-  const today = new Date().toISOString().split('T')[0];
-  const isPastEvent = show.endDate && show.endDate < today;
+  // Use local date to avoid UTC timezone issues
+  const now = new Date();
+  const todayLocal = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  const isPastEvent = !!show.endDate && show.endDate < todayLocal;
 
   return (
     <article

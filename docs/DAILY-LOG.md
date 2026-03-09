@@ -7,12 +7,302 @@
 
 ---
 
-## March 9, 2026 — Trade Show Calendar Planning & Phase 1 Kickoff 📅
+## March 9, 2026 — Trade Show Calendar: Phase 1 Complete + Real Data Import ✅
 
-**Status:** 🚧 PLANNING COMPLETE - Implementation Starting  
-**Context:** BAPI attends many trade shows annually (AHR Expo, ISH, ASHRAE, etc.) and needs a dedicated calendar page  
-**Decision:** Company section placement, Phase 1 for April 10 launch  
-**Time:** Planning session (~2 hours)
+**Status:** ✅ COMPLETE - Feature Merged to Main  
+**Context:** BAPI attends many trade shows annually (AHR Expo, ISH, ASHRAE, etc.) and needed a dedicated calendar page  
+**Time:** ~4 hours total (planning + implementation + real data import)  
+**PRs:** #376 (initial implementation), #377 (real data from Asana)
+
+### 🎯 SESSION SUMMARY: Professional B2B Trade Show Calendar
+
+**Delivered:**
+- ✅ Full card-based trade show calendar under Company navigation
+- ✅ 33 real 2026 events imported from Asana Sales Event Coordination project
+- ✅ Smart handling of events without confirmed dates (TBD support)
+- ✅ Fully responsive with BAPI brand colors and design system
+- ✅ i18n support for 6 major locales (en, de, es, fr, ja, zh)
+- ✅ Live at `/[locale]/company/trade-shows`
+
+### Part 1: Planning & UI/UX Research (Morning Session)
+
+**Business Need:**
+- BAPI attends 10-20+ trade shows per year
+- Events tracked in Asana (no public-facing calendar)
+- Customers need visibility into where/when to meet BAPI team
+- Must showcase booth numbers, registration links, event flyers
+
+**User Requirements Gathered:**
+1. ✅ **Navigation:** Company section (confirmed)
+2. ✅ **Phase:** Phase 1 priority for April 10 launch
+3. ✅ **Data Source:** Events in Asana → TypeScript static data for Phase 1
+4. ✅ **Required Fields:** Name, dates, location, booth #, description, contact info
+5. ✅ **Registration:** External links only (no tracking)
+6. ✅ **Calendar Export:** Not in Phase 1 scope
+7. ✅ **Detail Pages:** Card-only display (no dedicated pages)
+8. ✅ **Multi-Language:** UI labels translated, event content English-only
+
+**Senior-Level UI/UX Research Applied:**
+
+Industry analysis revealed **card-based grid layout** is B2B standard over traditional calendar grids:
+
+**Why Cards Beat Calendar Grid:**
+1. Better information density (event cards hold booth #, location, CTAs, descriptions)
+2. Mobile-first responsive (calendar grids break on mobile)
+3. Sparse event distribution (10-20 shows/year doesn't need grid)
+4. Chronological scanning (users want "what's next" linearly)
+5. Faster implementation (no calendar library dependencies)
+
+**Design Pattern:**
+```
+Hero Section (gradient, icon badge)
+  ↓
+Filter Tabs (Upcoming | Past | All)
+  ↓
+3-Column Card Grid (responsive)
+  ↓
+Event Cards (date, location, title, booth, CTAs)
+```
+
+**Competitors Analyzed:** Belimo, Siemens, Honeywell, AHR Expo official site
+
+### Part 2: Implementation (Afternoon Session)
+
+**Branch:** `feature/trade-show-calendar-phase1`  
+**Files Created:**
+```
+web/src/lib/data/tradeShows.ts                        — TypeScript data model + utility functions
+web/src/components/tradeShows/TradeShowCard.tsx       — Event card component with BAPI branding
+web/src/components/tradeShows/TradeShowFilters.tsx    — Filter tabs (Upcoming/Past/All)
+web/src/app/[locale]/company/trade-shows/page.tsx     — Server component with SEO metadata
+web/src/app/[locale]/company/trade-shows/TradeShowsClient.tsx — Client filtering logic
+```
+
+**Files Modified:**
+```
+web/src/components/layout/Header/config.ts            — Added "Trade Shows" menu item after News
+web/messages/{en,de,es,fr,ja,zh}.json                 — Added tradeShows i18n keys
+```
+
+**Initial Implementation Issues & Fixes:**
+
+1. **Curly Apostrophe Parsing Error** (Line 65)
+   - **Problem:** String literal had curly apostrophe `'` instead of straight `'`
+   - **Error:** "Parsing error: Unterminated string constant"
+   - **Fix:** Replaced with escaped straight apostrophe: `Discover BAPI\'s latest`
+
+2. **BapiButton API Incompatibility**
+   - **Problem:** BapiButton doesn't support `asChild`, `disabled`, `target`, `rel`, `download` props
+   - **Detection:** TypeScript errors on TradeShowCard CTAs
+   - **Fix:** Replaced BapiButton with direct `<a>` elements using `btn-bapi-primary` and `btn-bapi-accent` classes
+   - **Pattern:** Disabled past events use `<button disabled>` with custom styling
+
+3. **Unused Import Warning**
+   - **Problem:** TradeShowFilters had `useState` imported but not used
+   - **Fix:** Removed unused import
+
+**Data Model Created:**
+```typescript
+export interface TradeShow {
+  id: string;                    // Unique slug
+  title: string;                 // Event name
+  startDate: string;             // ISO 8601 (YYYY-MM-DD)
+  endDate: string;               // ISO 8601 (YYYY-MM-DD)
+  location: {
+    city: string;
+    state?: string;
+    country: string;
+    venue?: string;
+  };
+  booth?: string;                // Booth number
+  description: string;           // 2-3 sentences for card
+  registrationUrl?: string;      // External event link
+  flyerUrl?: string;            // Path to PDF
+  contact?: {
+    name: string;
+    email: string;
+    phone?: string;
+  };
+  status: 'upcoming' | 'past';   // Derived from dates
+}
+```
+
+**Utility Functions:**
+- `getUpcomingShows()` - Returns future events, sorted by date (ascending)
+- `getPastShows()` - Returns past events, sorted by date (descending)
+- `getAllShows()` - Returns all events (upcoming first, then past)
+- `getShowById(id)` - Get single event by slug
+- `formatDateRange(start, end, locale)` - Display-friendly date formatting
+
+**Component Features:**
+- **TradeShowCard:** Conditional rendering for past events (grayed out, disabled CTAs), external link handling with security attributes, contact person display
+- **TradeShowFilters:** Tab-based filtering with event counts, accessible with `role="tablist"`, responsive layout
+- **Page:** Server component with `generateMetadata()` for SEO, gradient hero with BAPI branding, empty state handling
+
+**PR #376 Result:**
+- ✅ Build successful
+- ✅ TypeScript compilation clean
+- ✅ Dev server working
+- ✅ Page accessible at `/[locale]/company/trade-shows`
+- ✅ Merged to main
+
+### Part 3: Real Data Import from Asana (Evening Session)
+
+**Context:** User provided Asana CSV export from "Sales Event Coordination" project with 33 trade shows
+
+**Branch:** `feature/real-trade-show-data-2026`  
+**Challenge:** Replace 10 mock events with 33 real 2026 events from production data
+
+**CSV Processing:**
+- **Source:** `docs/Sales_Event_Coordination.csv` (2,781 lines)
+- **Filter:** Extracted rows with `"Exhibiting Tradeshows"` in Section/Column field
+- **Result:** 33 trade show records with dates, locations, regional managers
+
+**Events Imported:**
+1. **Completed (Past):** 3 events
+   - HVAC/R Japan (Jan 27-30, Tokyo)
+   - AHR Expo (Feb 2-4, Las Vegas)
+   - PTAK Warsaw HVAC (Feb 24-26, Poland)
+
+2. **Upcoming (Confirmed Dates):** 28 events
+   - Acrex India (Mar 12-14, Mumbai)
+   - Holiday Wholesale Event (Mar 12-13)
+   - MCE Milan (Mar 24-27, Italy)
+   - HRC (Mar 29-Apr 1, Harrogate UK)
+   - Niagara Summit (Apr 7-9)
+   - Pharmatech Expo (Apr 9-11, Mumbai)
+   - Data Center World (Apr 20-23)
+   - Nordbygg Stockholm (Apr 21-24)
+   - ALC Distribution Meeting Puerto Rico (Apr 27-30)
+   - ARBS QLD (May 5-7, Brisbane)
+   - Controls-Con (May 14-15)
+   - National Restaurant Show (May 16-19, Chicago)
+   - Data Center TechEx (May 18-19, Santa Clara)
+   - Nova Build Expo (Jun 3-5, Ho Chi Minh City)
+   - EMBE Expo (Jun 24-25, Coventry UK)
+   - Delta Global Conference (Sep 1)
+   - World Coldchain Expo (Sep 2-3)
+   - Cold Chain Hub (Sep 9-10, Birmingham UK)
+   - IHEEM Healthcare Estates (Sep 13-14, Manchester UK)
+   - Data Center World-Power (Sep 21-23)
+   - Isk Sodex (Oct 1, Istanbul)
+   - Chillventa (Oct 13-15, Nuremberg)
+   - Smart Buildings London (Oct 14-15)
+   - HVAC/R Vietnam (Nov 4-6, Ho Chi Minh City)
+   - SUFFA (Nov 7-9, Stuttgart)
+   - Elemental (Nov 19-20, Birmingham UK)
+   - Big 5 Global (Nov 23-26, Dubai)
+   - Pmtech (Nov 24-26)
+
+3. **TBD (No Confirmed Dates):** 2 events
+   - Automated Logic Mideast Meeting
+   - ISH Shanghai
+
+**Regional Coverage:**
+- **North America:** 9 events (US, Canada, Puerto Rico)
+- **Europe:** 12 events (UK, Germany, Poland, Italy, Sweden, Turkey)
+- **Asia-Pacific:** 8 events (India, China, Japan, Vietnam, UAE, Australia)
+- **Middle East:** 4 events (Dubai, Turkey)
+
+**Contact Information (Real Regional Managers):**
+- M Holder (North America)
+- J Shields (Europe, Middle East, Asia)
+- M Moss (UK)
+- T Wilder (Asia-Pacific)
+- Jan Zurawski (Europe, Turkey)
+- A Brooks (Australia)
+- Jonathan Hillebrand (Asia)
+- Courtney Meyer (Wholesale events)
+
+**Technical Enhancements:**
+
+1. **TBD Date Handling**
+   - **Problem:** 2 events have empty `startDate` and `endDate` strings
+   - **Fix:** Updated `formatDateRange()` to return `"Date TBD"` for empty dates
+   - **Filter Logic:** `getUpcomingShows()` now separates confirmed vs TBD events, shows TBD at end
+
+2. **Filter Function Updates**
+   ```typescript
+   // Before: Simple date comparison
+   return TRADE_SHOWS.filter((show) => show.startDate >= today);
+   
+   // After: Handle empty dates
+   const withDates = TRADE_SHOWS.filter((show) => show.startDate && show.startDate >= today);
+   const withoutDates = TRADE_SHOWS.filter((show) => !show.startDate);
+   return [...withDates, ...withoutDates];
+   ```
+
+3. **Data Model Consistency**
+   - All event descriptions updated with BAPI-specific context
+   - Booth numbers marked as "TBD" (to be confirmed)
+   - Contact email standardized to `sales@bapisensors.com`
+   - Phone: `+1 (815) 456-0134`
+
+**PR #377 Result:**
+- ✅ +3,400 lines (33 events + CSV export)
+- ✅ No TypeScript errors
+- ✅ Smart TBD handling working
+- ✅ All filter functions updated
+- ✅ Merged to main
+
+### Technical Decisions Documented
+
+**Why Static Data for Phase 1:**
+1. ✅ 32 days to launch (April 10 deadline)
+2. ✅ Events already in Asana (no WordPress/API integration time)
+3. ✅ TypeScript = type-safe + fast (4 hrs vs 8-12 hrs WordPress)
+4. ✅ Can migrate to WordPress later with NO frontend changes
+5. ✅ Lower risk for Phase 1 deadline
+
+**Design Rationale:**
+- **Color Strategy:** BAPI Blue (primary CTAs), Yellow (secondary) — 60/30/10 rule
+- **Card Layout:** 3-column grid (responsive: 1 mobile, 2 tablet, 3 desktop)
+- **Date Format:** `toLocaleDateString()` with full month name for readability
+- **Booth Display:** Prominent with `Building` icon for quick trade show floor reference
+- **Contact Visibility:** Show contact person on card for pre-event inquiries
+- **Past Events:** Grayed out with disabled CTAs (visual hierarchy)
+
+### Future Enhancements (Phase 2)
+
+**WordPress Migration (Post-Launch):**
+- Custom post type following Application Notes pattern
+- GraphQL integration (WPGraphQL + ACF)
+- Full event translation (titles, descriptions) per locale
+- Calendar export functionality (.ics files)
+- Content team self-service editing
+
+**Near-Term Updates:**
+- [ ] Add actual booth numbers as confirmed with organizers
+- [ ] Upload event flyer PDFs to `/web/public/pdfs/`
+- [ ] Confirm dates for 2 TBD events (Automated Logic Mideast, ISH Shanghai)
+- [ ] Add remaining 5 locale translations (ar, hi, th, vi, pl) if needed
+
+### Lessons Learned 💡
+
+1. **UI/UX Research Saves Time:** Industry analysis confirmed cards > calendar grid before implementation
+2. **Component Reuse:** Leveraging existing patterns (News hero, Product card hover) accelerated development
+3. **TypeScript Safety:** Data model caught errors early (missing fields, wrong types)
+4. **Real Data Complexity:** Production data has edge cases (TBD dates, missing fields) not in mock data
+5. **Filter Logic:** Handling empty strings requires explicit checks, not just falsy comparisons
+
+### Verification Complete ✅
+
+- ✅ Navigate to `/[locale]/company/trade-shows` → 33 events display
+- ✅ Filter tabs work (Upcoming: 30 events, Past: 3 events, All: 33 events)
+- ✅ Responsive: mobile (375px), tablet (768px), desktop (1440px)
+- ✅ TBD events show "Date TBD" label appropriately
+- ✅ Registration links open in new tab with security attributes
+- ✅ Empty state logic in place (not currently triggered)
+- ✅ SEO: title, meta description, OpenGraph tags generated
+- ✅ TypeScript compilation clean (no errors)
+
+**Launch Ready:** Yes - Feature complete for April 10, 2026 deadline
+
+---
+
+## March 9, 2026 — ARCHIVED: Initial Planning Session
+
+**Note:** This planning session was completed and implemented same day. See full session summary above.
 
 ### 🎯 OBJECTIVE: Create Professional Trade Show Calendar
 

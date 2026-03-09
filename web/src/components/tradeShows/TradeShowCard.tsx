@@ -17,7 +17,10 @@ interface TradeShowCardProps {
 
 export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
   const dateRange = formatDateRange(show.startDate, show.endDate, locale);
-  const isPastEvent = show.status === 'past';
+  
+  // Derive event status from endDate (events are "past" only when concluded)
+  const today = new Date().toISOString().split('T')[0];
+  const isPastEvent = show.endDate && show.endDate < today;
 
   return (
     <article
@@ -39,7 +42,7 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
         {/* Date */}
         <div className="flex items-center gap-2 text-sm text-neutral-600">
           <Calendar className="size-4 text-primary-500" aria-hidden="true" />
-          <time dateTime={show.startDate}>{dateRange}</time>
+          <span>{dateRange}</span>
         </div>
 
         {/* Location */}

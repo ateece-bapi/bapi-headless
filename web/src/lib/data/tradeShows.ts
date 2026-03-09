@@ -12,9 +12,9 @@ export interface TradeShow {
   id: string;
   /** Event name/title */
   title: string;
-  /** Start date in ISO 8601 format (YYYY-MM-DD) */
+  /** Start date in ISO 8601 format (YYYY-MM-DD), or empty string for TBD events */
   startDate: string;
-  /** End date in ISO 8601 format (YYYY-MM-DD) */
+  /** End date in ISO 8601 format (YYYY-MM-DD), or empty string for TBD events */
   endDate: string;
   /** Location details */
   location: {
@@ -46,8 +46,6 @@ export interface TradeShow {
   };
   /** Featured image or event logo (optional) */
   featuredImage?: string;
-  /** Event status (derived from dates) */
-  status: 'upcoming' | 'past';
 }
 
 /**
@@ -76,7 +74,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'past',
   },
   {
     id: 'ahr-expo-2026',
@@ -99,7 +96,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'past',
   },
   {
     id: 'ptak-warsaw-hvac-2026',
@@ -120,7 +116,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'past',
   },
   
   // UPCOMING EVENTS (March - December 2026)
@@ -143,7 +138,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'holiday-wholesale-event-2026',
@@ -162,7 +156,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'mce-expocomfort-2026',
@@ -183,7 +176,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'hrc-2026',
@@ -204,7 +196,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'niagara-summit-2026',
@@ -224,7 +215,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'pharmatech-expo-2026',
@@ -245,7 +235,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'data-center-world-2026',
@@ -264,7 +253,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'nordbygg-stockholm-2026',
@@ -285,7 +273,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'alc-distribution-meeting-puerto-rico-2026',
@@ -304,7 +291,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'arbs-qld-2026',
@@ -326,7 +312,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'controls-con-2026',
@@ -346,7 +331,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'national-restaurant-show-2026',
@@ -368,7 +352,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'data-center-techex-2026',
@@ -390,7 +373,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'nova-build-expo-2026',
@@ -411,11 +393,10 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
-    id: 'embe-expo-2026',
-    title: 'EMBE Expo',
+    id: 'ebme-expo-2026',
+    title: 'EBME Expo',
     startDate: '2026-06-24',
     endDate: '2026-06-25',
     location: {
@@ -432,7 +413,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   
   // SEPTEMBER - DECEMBER 2026
@@ -453,7 +433,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'world-coldchain-expo-2026',
@@ -472,7 +451,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'cold-chain-hub-2026',
@@ -493,7 +471,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'iheem-healthcare-estates-2026',
@@ -513,7 +490,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'data-center-world-power-2026',
@@ -533,7 +509,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'isk-sodex-2026',
@@ -554,7 +529,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'chillventa-2026',
@@ -575,7 +549,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'smart-buildings-london-2026',
@@ -595,7 +568,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'hvacr-vietnam-2026',
@@ -615,7 +587,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'suffa-2026',
@@ -636,7 +607,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'elemental-2026',
@@ -656,7 +626,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'big-5-global-2026',
@@ -677,7 +646,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'pmtech-2026',
@@ -696,7 +664,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   
   // EVENTS WITHOUT CONFIRMED DATES
@@ -717,7 +684,6 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
   {
     id: 'ish-shanghai-2026',
@@ -738,12 +704,13 @@ export const TRADE_SHOWS: TradeShow[] = [
       email: 'sales@bapisensors.com',
       phone: '+1 (815) 456-0134',
     },
-    status: 'upcoming',
   },
 ];
 
 /**
  * Get all upcoming trade shows, sorted by date (ascending)
+ * Events are considered "upcoming" if their end date is in the future.
+ * This ensures multi-day events remain "upcoming" until they conclude.
  * Events without dates are shown last
  * @returns Array of upcoming TradeShow objects
  */
@@ -751,11 +718,12 @@ export function getUpcomingShows(): TradeShow[] {
   const today = new Date().toISOString().split('T')[0];
   
   // Separate events with and without dates
-  const withDates = TRADE_SHOWS.filter((show) => show.startDate && show.startDate >= today);
-  const withoutDates = TRADE_SHOWS.filter((show) => !show.startDate);
+  // Use endDate for classification to keep multi-day events "upcoming" until they end
+  const withDates = TRADE_SHOWS.filter((show) => show.endDate && show.endDate >= today);
+  const withoutDates = TRADE_SHOWS.filter((show) => !show.startDate || !show.endDate);
   
-  // Sort events with dates
-  withDates.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+  // Sort events with dates by startDate (parse as local time)
+  withDates.sort((a, b) => new Date(a.startDate + 'T00:00:00').getTime() - new Date(b.startDate + 'T00:00:00').getTime());
   
   // Return confirmed events first, then TBD events
   return [...withDates, ...withoutDates];
@@ -763,13 +731,14 @@ export function getUpcomingShows(): TradeShow[] {
 
 /**
  * Get all past trade shows, sorted by date (descending - most recent first)
- * Only returns events with confirmed dates that have passed
+ * Events are considered "past" only when their end date has passed.
+ * Only returns events with confirmed dates that have concluded
  * @returns Array of past TradeShow objects
  */
 export function getPastShows(): TradeShow[] {
   const today = new Date().toISOString().split('T')[0];
-  return TRADE_SHOWS.filter((show) => show.startDate && show.startDate < today).sort(
-    (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+  return TRADE_SHOWS.filter((show) => show.endDate && show.endDate < today).sort(
+    (a, b) => new Date(b.endDate + 'T00:00:00').getTime() - new Date(a.endDate + 'T00:00:00').getTime()
   );
 }
 
@@ -793,6 +762,7 @@ export function getShowById(id: string): TradeShow | undefined {
 /**
  * Format date range for display
  * Handles events without confirmed dates
+ * Parses dates as local time (not UTC) to avoid timezone off-by-one errors
  * @param startDate - ISO date string (or empty string for TBD)
  * @param endDate - ISO date string (or empty string for TBD)
  * @param locale - Locale string (default: 'en-US')
@@ -808,8 +778,10 @@ export function formatDateRange(
     return 'Date TBD';
   }
 
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  // Parse as local dates by appending T00:00:00 (no Z suffix)
+  // This prevents UTC parsing which can cause off-by-one for negative timezones
+  const start = new Date(startDate + 'T00:00:00');
+  const end = new Date(endDate + 'T00:00:00');
 
   const options: Intl.DateTimeFormatOptions = {
     month: 'long',
@@ -817,16 +789,14 @@ export function formatDateRange(
     year: 'numeric',
   };
 
-  // Same month and year - show abbreviated range
+  // Same month and year - show abbreviated range "January 26-28, 2026"
   if (
     start.getMonth() === end.getMonth() &&
     start.getFullYear() === end.getFullYear()
   ) {
-    const monthYear = start.toLocaleDateString(locale, {
-      month: 'long',
-      year: 'numeric',
-    });
-    return `${monthYear} ${start.getDate()}-${end.getDate()}`;
+    const month = start.toLocaleDateString(locale, { month: 'long' });
+    const year = start.getFullYear();
+    return `${month} ${start.getDate()}-${end.getDate()}, ${year}`;
   }
 
   // Different months or years - show full range

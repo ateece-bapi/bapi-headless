@@ -5,6 +5,11 @@
  * Displays BAPI's trade show calendar with filterable card grid.
  * Phase 1: Static data (TypeScript)
  * Phase 2: WordPress custom post type via GraphQL
+ *
+ * i18n Scope:
+ * - Phase 1: Navigation labels translated (messages/*.json: tradeShows.label/description)
+ * - Phase 2: Full page content + event metadata via next-intl
+ * Note: Page content/metadata currently hard-coded English for April 10 deadline
  */
 
 import { Calendar } from 'lucide-react';
@@ -100,7 +105,7 @@ export default async function TradeShowsPage({ params }: TradeShowsPageProps) {
           aria-hidden="true"
         />
         <div
-          className="absolute right-0 top-0 size-150 -translate-y-1/3 rounded-full bg-white/10 blur-3xl"
+          className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl"
           aria-hidden="true"
         />
 

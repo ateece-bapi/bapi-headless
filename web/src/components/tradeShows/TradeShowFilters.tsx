@@ -84,10 +84,12 @@ export function TradeShowFilters({
           return (
             <button
               key={filter.id}
+              id={`${filter.id}-tab`}
               type="button"
               role="tab"
               aria-selected={isActive}
-              aria-controls={`${filter.id}-events-panel`}
+              aria-controls="trade-shows-panel"
+              tabIndex={isActive ? 0 : -1}
               onClick={() => onFilterChange(filter.id)}
               className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 sm:flex-initial ${
                 isActive

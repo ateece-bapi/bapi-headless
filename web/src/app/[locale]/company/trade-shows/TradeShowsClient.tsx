@@ -17,6 +17,37 @@ import {
   type FilterType,
 } from '@/components/tradeShows/TradeShowFilters';
 
+// Regional mapping for filter (moved outside component to avoid repeated allocations)
+const REGION_MAP: Record<string, string> = {
+  // Americas
+  'USA': 'americas',
+  'Canada': 'americas',
+  'Puerto Rico': 'americas',
+  // EMEA (Europe, Middle East, Africa)
+  'United Kingdom': 'emea',
+  'Germany': 'emea',
+  'Italy': 'emea',
+  'Poland': 'emea',
+  'Sweden': 'emea',
+  'Turkey': 'emea',
+  'UAE': 'emea',
+  // APAC (Asia-Pacific)
+  'Japan': 'apac',
+  'China': 'apac',
+  'India': 'apac',
+  'Vietnam': 'apac',
+  'Australia': 'apac',
+};
+
+/**
+ * Get region for a country
+ * @param country - Country name
+ * @returns Region code or 'other'
+ */
+function getRegion(country: string): string {
+  return REGION_MAP[country] || 'other';
+}
+
 interface TradeShowsClientProps {
   upcomingShows: TradeShow[];
   pastShows: TradeShow[];
@@ -53,48 +84,23 @@ export function TradeShowsClient({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState<string>('all');
 
-  // Helper: Map countries to regions for filtering
-  const getRegion = (country: string): string => {
-    const regions: Record<string, string> = {
-      // Americas
-      'USA': 'americas',
-      'Canada': 'americas',
-      'Puerto Rico': 'americas',
-      // EMEA (Europe, Middle East, Africa)
-      'United Kingdom': 'emea',
-      'Germany': 'emea',
-      'Italy': 'emea',
-      'Poland': 'emea',
-      'Sweden': 'emea',
-      'Turkey': 'emea',
-      'UAE': 'emea',
-      // APAC (Asia-Pacific)
-      'Japan': 'apac',
-      'China': 'apac',
-      'India': 'apac',
-      'Vietnam': 'apac',
-      'Australia': 'apac',
-    };
-    return regions[country] || 'other';
-  };
-
-  // Get base filtered shows by time (upcoming/past/all)
-  const getBaseFilteredShows = (): TradeShow[] => {
+  // Apply search and regional filters (all logic inside useMemo for correct dependencies)
+  const filteredShows = useMemo(() => {
+    // Get base filtered shows by time (upcoming/past/all)
+    let shows: TradeShow[];
     switch (activeFilter) {
       case 'upcoming':
-        return upcomingShows;
+        shows = upcomingShows;
+        break;
       case 'past':
-        return pastShows;
+        shows = pastShows;
+        break;
       case 'all':
-        return allShows;
+        shows = allShows;
+        break;
       default:
-        return upcomingShows;
+        shows = upcomingShows;
     }
-  };
-
-  // Apply search and regional filters
-  const filteredShows = useMemo(() => {
-    let shows = getBaseFilteredShows();
 
     // Apply search filter
     if (searchQuery.trim()) {

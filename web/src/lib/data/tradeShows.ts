@@ -734,7 +734,6 @@ export function getEventStatus(
 
   const today = getTodayLocal();
   const start = new Date(startDate + 'T00:00:00');
-  const end = new Date(endDate + 'T00:00:00');
   const now = new Date(today + 'T00:00:00');
 
   // Event is happening now (between start and end dates)

@@ -3,7 +3,7 @@
  * @module lib/utils/icsGenerator
  *
  * Generates .ics calendar files for trade show events.
- * Browser-compatible - triggers download via data URI.
+ * Browser-compatible - triggers download via Blob and URL.createObjectURL().
  */
 
 import type { TradeShow } from '@/lib/data/tradeShows';
@@ -46,18 +46,42 @@ function escapeICalText(text: string): string {
 }
 
 /**
+ * Fold long lines per RFC 5545 (max 75 octets per line)
+ * Long lines must be split with CRLF + space continuation
+ */
+function foldLine(line: string): string {
+  const maxLength = 75;
+  if (line.length <= maxLength) return line;
+  
+  const result: string[] = [];
+  let remaining = line;
+  
+  // First line
+  result.push(remaining.slice(0, maxLength));
+  remaining = remaining.slice(maxLength);
+  
+  // Continuation lines (start with space)
+  while (remaining.length > 0) {
+    result.push(' ' + remaining.slice(0, maxLength - 1));
+    remaining = remaining.slice(maxLength - 1);
+  }
+  
+  return result.join('\r\n');
+}
+
+/**
  * Generate .ics file content for a trade show event
  * @param show - TradeShow object
- * @returns iCalendar formatted string
+ * @returns iCalendar formatted string, or null if event has no valid dates
  */
-export function generateICS(show: TradeShow): string {
-  const startDate = show.startDate
-    ? formatICalDate(show.startDate, '09:00:00')
-    : formatICalDate(new Date().toISOString().split('T')[0], '09:00:00');
-  
-  const endDate = show.endDate
-    ? formatICalDate(show.endDate, '17:00:00')
-    : formatICalDate(show.startDate || new Date().toISOString().split('T')[0], '17:00:00');
+export function generateICS(show: TradeShow): string | null {
+  // If the event has no start date, we cannot generate a valid calendar entry
+  if (!show.startDate) {
+    return null;
+  }
+
+  const startDate = formatICalDate(show.startDate, '09:00:00');
+  const endDate = formatICalDate(show.endDate ?? show.startDate, '17:00:00');
 
   // Build location string
   const locationParts = [show.location.venue, show.location.city];
@@ -81,11 +105,25 @@ export function generateICS(show: TradeShow): string {
     description += `\\n\\nRegister: ${escapeICalText(show.registrationUrl)}`;
   }
 
-  // Generate unique ID (use timestamp + title hash)
-  const uid = `${show.title.replace(/\s+/g, '-').toLowerCase()}-${Date.now()}@bapihvac.com`;
+  // Generate stable unique ID based on event data (title + dates + location)
+  // This prevents duplicate imports when downloading the same event multiple times
+  const uidBase = [
+    show.title.replace(/\s+/g, '-').toLowerCase(),
+    show.startDate,
+    show.endDate ?? show.startDate,
+    show.location.city.toLowerCase(),
+  ]
+    .filter(Boolean)
+    .join('_')
+    .replace(/[^a-z0-9_\-]/g, '');
+  const uid = `${uidBase}@bapihvac.com`;
 
-  // Build iCalendar file
-  const icsContent = [
+  // Get current UTC timestamp for DTSTAMP
+  const now = new Date();
+  const dtstamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+
+  // Build iCalendar file with line folding per RFC 5545
+  const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
     'PRODID:-//BAPI//Trade Shows Calendar//EN',
@@ -93,7 +131,7 @@ export function generateICS(show: TradeShow): string {
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
     `UID:${uid}`,
-    `DTSTAMP:${formatICalDate(new Date().toISOString().split('T')[0])}`,
+    `DTSTAMP:${dtstamp}`,
     `DTSTART:${startDate}`,
     `DTEND:${endDate}`,
     `SUMMARY:${escapeICalText(show.title)}`,
@@ -104,7 +142,10 @@ export function generateICS(show: TradeShow): string {
     ...(show.registrationUrl ? [`URL:${show.registrationUrl}`] : []),
     'END:VEVENT',
     'END:VCALENDAR',
-  ].join('\r\n');
+  ];
+
+  // Apply line folding to long lines
+  const icsContent = lines.map(line => foldLine(line)).join('\r\n');
 
   return icsContent;
 }
@@ -115,6 +156,13 @@ export function generateICS(show: TradeShow): string {
  */
 export function downloadICS(show: TradeShow): void {
   const icsContent = generateICS(show);
+  
+  // If event has no valid dates, cannot generate .ics
+  if (!icsContent) {
+    console.warn('Cannot generate .ics file: event has no valid dates');
+    return;
+  }
+  
   const blob = new Blob([icsContent], {
     type: 'text/calendar;charset=utf-8',
   });

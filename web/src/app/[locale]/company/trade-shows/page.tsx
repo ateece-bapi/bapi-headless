@@ -64,10 +64,12 @@ export default async function TradeShowsPage({ params }: TradeShowsPageProps) {
   const totalShows = TRADE_SHOWS.length;
 
   // Generate JSON-LD structured data for SEO
-  // Only include upcoming/future events for better search relevance
+  // Only include upcoming events with confirmed dates (filter out TBD)
   const eventsJsonLd = {
     '@context': 'https://schema.org',
-    '@graph': upcomingShows.map((show) => ({
+    '@graph': upcomingShows
+      .filter((show) => show.startDate && show.endDate)
+      .map((show) => ({
       '@type': 'Event',
       name: show.title,
       description: show.description,
@@ -150,7 +152,7 @@ export default async function TradeShowsPage({ params }: TradeShowsPageProps) {
           aria-hidden="true"
         />
         <div
-          className="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/3 rounded-full bg-white/10 blur-3xl"
+          className="absolute right-0 top-0 h-150 w-150 -translate-y-1/3 rounded-full bg-white/10 blur-3xl"
           aria-hidden="true"
         />
 

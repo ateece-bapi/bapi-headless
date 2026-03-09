@@ -58,6 +58,16 @@ Thumbs.db
 *.swp
 *.tmp
 
+# Build and test output files
+*-output.txt
+build-*.txt
+e2e-test-results*.txt
+experimental-*.txt
+import-results.json
+schema.json
+wordpress-users.json
+*.tsbuildinfo
+
 # local cookie dumps from testing / browser exports
 cookies.txt
 

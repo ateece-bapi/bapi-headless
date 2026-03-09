@@ -39,7 +39,7 @@ Create a professional card-based trade show calendar under Company navigation se
 - ✅ **Step 9:** Testing & deployment (merged to main via PR)
 
 ### Real Data Imported (March 9, 2026)
-- **33 Total Events:** HVAC/R Japan, AHR Expo, PTAK Warsaw, Acrex India, MCE Milan, Niagara Summit, Data Center World, Controls-Con, National Restaurant Show, TechEx, ARBS QLD, EMBE Expo, Cold Chain Hub, Chillventa, Smart Buildings London, Big 5 Global, and more
+- **33 Total Events:** HVAC/R Japan, AHR Expo, PTAK Warsaw, Acrex India, MCE Milan, Niagara Summit, Data Center World, Controls-Con, National Restaurant Show, TechEx, ARBS QLD, EBME Expo, Cold Chain Hub, Chillventa, Smart Buildings London, Big 5 Global, and more
 - **Regional Coverage:** North America (9), Europe (12), Asia-Pacific (8), Middle East (4)
 - **Contact Info:** Real regional managers from Asana (M Holder, J Shields, M Moss, T Wilder, Jan Zurawski, A Brooks, Jonathan Hillebrand, Courtney Meyer)
 - **CSV Export:** Stored at `docs/Sales_Event_Coordination.csv` for reference

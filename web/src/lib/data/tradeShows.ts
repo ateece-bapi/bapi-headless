@@ -708,6 +708,19 @@ export const TRADE_SHOWS: TradeShow[] = [
 ];
 
 /**
+ * Get today's date in local time as YYYY-MM-DD string
+ * Avoids UTC conversion which can cause off-by-one errors for users in different timezones
+ * @returns Local date string in ISO format (YYYY-MM-DD)
+ */
+function getTodayLocal(): string {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+/**
  * Get all upcoming trade shows, sorted by date (ascending)
  * Events are considered "upcoming" if their end date is in the future.
  * This ensures multi-day events remain "upcoming" until they conclude.
@@ -715,7 +728,7 @@ export const TRADE_SHOWS: TradeShow[] = [
  * @returns Array of upcoming TradeShow objects
  */
 export function getUpcomingShows(): TradeShow[] {
-  const today = new Date().toISOString().split('T')[0];
+  const today = getTodayLocal();
   
   // Separate events with and without dates
   // Use endDate for classification to keep multi-day events "upcoming" until they end
@@ -736,7 +749,7 @@ export function getUpcomingShows(): TradeShow[] {
  * @returns Array of past TradeShow objects
  */
 export function getPastShows(): TradeShow[] {
-  const today = new Date().toISOString().split('T')[0];
+  const today = getTodayLocal();
   return TRADE_SHOWS.filter((show) => show.endDate && show.endDate < today).sort(
     (a, b) => new Date(b.endDate + 'T00:00:00').getTime() - new Date(a.endDate + 'T00:00:00').getTime()
   );

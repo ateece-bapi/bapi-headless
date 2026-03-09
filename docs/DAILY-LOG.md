@@ -179,7 +179,7 @@ export interface TradeShow {
    - National Restaurant Show (May 16-19, Chicago)
    - Data Center TechEx (May 18-19, Santa Clara)
    - Nova Build Expo (Jun 3-5, Ho Chi Minh City)
-   - EMBE Expo (Jun 24-25, Coventry UK)
+   - EBME Expo (Jun 24-25, Coventry UK)
    - Delta Global Conference (Sep 1)
    - World Coldchain Expo (Sep 2-3)
    - Cold Chain Hub (Sep 9-10, Birmingham UK)

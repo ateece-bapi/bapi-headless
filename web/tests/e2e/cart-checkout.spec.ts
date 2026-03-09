@@ -28,10 +28,10 @@ test.describe('Shopping Cart', () => {
   });
 
   test('should start with empty cart', async ({ page }) => {
-    // Cart link should not display any item count when empty
-    // Tests accessible name instead of implementation details (more robust for "99+" badge)
+    // Test accessible name (screen reader announcement) for empty cart
+    // More robust than DOM text assertions for accessibility compliance
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    await expect(cartButton).not.toContainText(/\d/);
+    await expect(cartButton).toHaveAccessibleName(/cart\s*\(empty\)/i);
   });
 
   test('should add item to cart from product page', async ({ page }) => {
@@ -130,9 +130,9 @@ test.describe('Shopping Cart', () => {
     const emptyMessage = page.locator('text=/empty|no items/i');
     await expect(emptyMessage).toBeVisible();
     
-    // Cart link should not display any item count when empty
+    // Verify cart accessible name indicates empty state
     const updatedCartButton = page.getByRole('link', { name: /cart/i }).first();
-    await expect(updatedCartButton).not.toContainText(/\d/);
+    await expect(updatedCartButton).toHaveAccessibleName(/cart\s*\(empty\)/i);
   });
 
   test('should persist cart across page navigation', async ({ page }) => {
@@ -319,15 +319,21 @@ async function waitForToastToDismiss(page: Page, timeout = 6000) {
   const appearTimeout = Math.floor(timeout * 0.25); // 25% for toast to appear
   const dismissTimeout = timeout - appearTimeout;   // 75% for toast to dismiss
   
-  // First, wait for toast to appear (if it hasn't already)
-  await toast.waitFor({ state: 'attached', timeout: appearTimeout }).catch(() => {
-    // Toast may not appear at all, continue
-  });
+  // First, check if toast appears within the appear window
+  let toastAppeared = false;
+  await toast.waitFor({ state: 'attached', timeout: appearTimeout })
+    .then(() => { toastAppeared = true; })
+    .catch(() => {
+      // Toast may not appear at all, continue
+    });
   
-  // Then wait for it to be hidden/removed
-  await toast.waitFor({ state: 'hidden', timeout: dismissTimeout }).catch(() => {
-    // Toast may already be gone, continue
-  });
+  // Only wait for dismissal if toast actually appeared
+  // (prevents early resolution when toast attaches slightly late)
+  if (toastAppeared) {
+    await toast.waitFor({ state: 'hidden', timeout: dismissTimeout }).catch(() => {
+      // Toast may already be gone, continue
+    });
+  }
 }
 
 /**

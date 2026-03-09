@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
 import type { Page } from '@playwright/test';
-import { routes } from './helpers/routes';
+import { routes, DEFAULT_LOCALE } from './helpers/routes';
 
 /**
  * Cart & Checkout E2E Tests
@@ -47,7 +47,7 @@ test.describe('Shopping Cart', () => {
     await addProductToCart(page);
     
     // Wait for toast to auto-dismiss (prevents it from blocking cart button click)
-    await page.waitForTimeout(4000);
+    await waitForToastToDismiss(page);
     
     // Click cart button
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
@@ -63,7 +63,7 @@ test.describe('Shopping Cart', () => {
     await addProductToCart(page);
     
     // Wait for toast to auto-dismiss
-    await page.waitForTimeout(4000);
+    await waitForToastToDismiss(page);
     
     // Open cart
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
@@ -83,7 +83,7 @@ test.describe('Shopping Cart', () => {
     await addProductToCart(page);
     
     // Wait for toast to auto-dismiss
-    await page.waitForTimeout(4000);
+    await waitForToastToDismiss(page);
     
     // Open cart
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
@@ -111,7 +111,7 @@ test.describe('Shopping Cart', () => {
     await addProductToCart(page);
     
     // Wait for toast to auto-dismiss
-    await page.waitForTimeout(4000);
+    await waitForToastToDismiss(page);
     
     // Open cart
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
@@ -138,25 +138,13 @@ test.describe('Shopping Cart', () => {
     // Add item
     await addProductToCart(page);
     
-    // **DEBUG**: Check localStorage before navigation
-    const cartBefore = await page.evaluate(() => localStorage.getItem('bapi-cart-storage'));
-    console.log('Cart localStorage BEFORE navigation:', cartBefore);
-    
     // Navigate to another page
     await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
     // Wait for client-side cart hydration from localStorage
     await page.waitForTimeout(2000);
     
-    // **DEBUG**: Check localStorage after navigation
-    const cartAfter = await page.evaluate(() => localStorage.getItem('bapi-cart-storage'));
-    console.log('Cart localStorage AFTER navigation:', cartAfter);
-    
-    // **DEBUG**: Check cart badge text
-    const cartButton = page.getByRole('button', { name: /cart/i }).first();
-    const badgeText = await cartButton.textContent();
-    console.log('Cart badge text:', badgeText);
-    
     // Cart should still show 1 item
+    const cartButton = page.getByRole('button', { name: /cart/i }).first();
     await expect(cartButton).toContainText('1');
   });
 
@@ -165,7 +153,7 @@ test.describe('Shopping Cart', () => {
     await addProductToCart(page);
     
     // Wait for toast to auto-dismiss
-    await page.waitForTimeout(4000);
+    await waitForToastToDismiss(page);
     
     // Open cart drawer
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
@@ -185,7 +173,7 @@ test.describe('Shopping Cart', () => {
     await addProductToCart(page);
     
     // Wait for toast to auto-dismiss
-    await page.waitForTimeout(4000);
+    await waitForToastToDismiss(page);
     
     // Open cart drawer
     const cartButton = page.getByRole('button', { name: /cart/i }).first();
@@ -194,22 +182,12 @@ test.describe('Shopping Cart', () => {
     
     // Run accessibility check on cart content
     await injectAxe(page);
-    
-    try {
-      await checkA11y(page, undefined, {
-        detailedReport: true,
-        detailedReportOptions: {
-          html: true,
-        },
-      });
-    } catch (error) {
-      // Log axe violations to console
-      const violations = await page.evaluate(() => {
-        return (window as any).axeResults?.violations || [];
-      });
-      console.log('**A11Y VIOLATIONS**:', JSON.stringify(violations, null, 2));
-      throw error;
-    }
+    await checkA11y(page, undefined, {
+      detailedReport: true,
+      detailedReportOptions: {
+        html: true,
+      },
+    });
   });
 });
 
@@ -225,7 +203,7 @@ test.describe('Checkout Process', () => {
     await addProductToCart(page);
     
     // Wait for toast to auto-dismiss before tests start
-    await page.waitForTimeout(4000);
+    await waitForToastToDismiss(page);
   });
 
   test('should navigate to checkout from cart', async ({ page }) => {
@@ -241,7 +219,7 @@ test.describe('Checkout Process', () => {
       await checkoutButton.click();
       
       // Should navigate to checkout
-      await page.waitForURL(/\/en\/checkout/, { timeout: 10000 });
+      await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`), { timeout: 10000 });
       await page.waitForTimeout(1000);
       
       // Checkout page should load
@@ -325,6 +303,18 @@ test.describe('Checkout Process', () => {
     });
   });
 });
+
+/**
+ * Helper: Wait for toast to disappear (dismiss timeout or user closes it)
+ * More reliable than hardcoded waits
+ */
+async function waitForToastToDismiss(page: Page, timeout = 6000) {
+  const toast = page.locator('[role="alert"], [role="status"]').first();
+  // Wait for toast to be hidden (if it exists)
+  await toast.waitFor({ state: 'hidden', timeout }).catch(() => {
+    // Toast may already be gone or never appeared, continue
+  });
+}
 
 /**
  * Helper function to add a product to cart
@@ -414,26 +404,10 @@ async function addProductToCart(page: Page) {
   
   if (productHref) {
     await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForURL(/\/en\/product\/.+/, { timeout: 10000 });
+    await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/product/.+`), { timeout: 10000 });
     
     // Wait for React hydration with generous timeout
     await page.waitForTimeout(4000);
-    
-    // **DEBUGGING**: Capture screenshot of product page
-    await page.screenshot({ path: 'debug-screenshots/product-page.png', fullPage: true });
-    
-    // **DEBUGGING**: Log all buttons on the page
-    const allButtons = await page.getByRole('button').all();
-    const buttonTexts = await Promise.all(allButtons.map(async (btn) => {
-      const text = await btn.textContent();
-      const ariaLabel = await btn.getAttribute('aria-label');
-      return { text, ariaLabel };
-    }));
-    console.log('All buttons on page:', JSON.stringify(buttonTexts, null, 2));
-    
-    // **DEBUGGING**: Check if AddToCart element exists at all (even if hidden)
-    const addToCartCount = await page.locator('text=/Add.*to cart/i').count();
-    console.log('Add to Cart elements found (any state):', addToCartCount);
     
     // Find Add to Cart button by aria-label (from AddToCartButton component)
     const addToCartButton = page.getByRole('button', { name: /Add.*to cart/i });

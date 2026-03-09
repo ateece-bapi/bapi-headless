@@ -9,7 +9,6 @@
 import { Calendar, MapPin, Building, User, FileDown, ExternalLink } from 'lucide-react';
 import type { TradeShow } from '@/lib/data/tradeShows';
 import { formatDateRange } from '@/lib/data/tradeShows';
-import BapiButton from '@/components/ui/BapiButton';
 
 interface TradeShowCardProps {
   show: TradeShow;
@@ -109,45 +108,43 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
       {/* Action Buttons */}
       <div className="flex gap-3 border-t border-neutral-100 bg-neutral-50 p-4">
         {/* Register Button - Primary Action */}
-        {show.registrationUrl && (
-          <BapiButton
-            asChild
-            color="blue"
-            className="flex-1"
-            disabled={isPastEvent}
-            aria-label={`Register for ${show.title}`}
+        {show.registrationUrl && !isPastEvent && (
+          <a
+            href={show.registrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold rounded-xl btn-bapi-primary transition-all duration-300 ease-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-primary-600/50 active:scale-95 antialiased"
+            aria-label={`Register for ${show.title} (opens in new tab)`}
           >
-            <a
-              href={show.registrationUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2"
-            >
-              <span>{isPastEvent ? 'Event Ended' : 'Register'}</span>
-              {!isPastEvent && <ExternalLink className="size-4" aria-hidden="true" />}
-            </a>
-          </BapiButton>
+            <span>Register</span>
+            <ExternalLink className="size-4" aria-hidden="true" />
+          </a>
+        )}
+
+        {/* Past Event - Disabled Button */}
+        {show.registrationUrl && isPastEvent && (
+          <button
+            disabled
+            className="flex-1 inline-flex items-center justify-center px-8 py-4 text-lg font-bold rounded-xl bg-neutral-200 text-neutral-500 cursor-not-allowed"
+            aria-label={`${show.title} has ended`}
+          >
+            Event Ended
+          </button>
         )}
 
         {/* Download Flyer - Secondary Action */}
         {show.flyerUrl && (
-          <BapiButton
-            asChild
-            color="yellow"
-            className={show.registrationUrl ? 'w-auto' : 'flex-1'}
+          <a
+            href={show.flyerUrl}
+            download
+            className={`inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold rounded-xl btn-bapi-accent transition-all duration-300 ease-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-accent-500/50 active:scale-95 antialiased ${
+              show.registrationUrl ? 'w-auto' : 'flex-1'
+            }`}
             aria-label={`Download flyer for ${show.title}`}
           >
-            <a
-              href={show.flyerUrl}
-              download
-              className="flex items-center justify-center gap-2"
-            >
-              <FileDown className="size-4" aria-hidden="true" />
-              <span className={show.registrationUrl ? 'sr-only sm:not-sr-only' : ''}>
-                Flyer
-              </span>
-            </a>
-          </BapiButton>
+            <FileDown className="size-4" aria-hidden="true" />
+            <span className={show.registrationUrl ? 'hidden sm:inline' : ''}>Flyer</span>
+          </a>
         )}
       </div>
     </article>

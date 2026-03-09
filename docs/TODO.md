@@ -7,6 +7,49 @@
 
 ---
 
+## 📅 Trade Show Calendar — Phase 1 In Progress (March 9, 2026)
+
+**Status:** 🚧 IN PROGRESS - Phase 1 Implementation  
+**Branch:** `feature/trade-show-calendar-phase1`  
+**Target:** Phase 1 (April 10 launch)  
+**Estimated Time:** 4-6 hours  
+**Planning:** Session plan in memory
+
+### Objective
+Create a professional card-based trade show calendar under Company navigation section, enabling BAPI to showcase industry events where customers can connect with the team.
+
+### Phase 1 Scope — ✅ Confirmed Decisions
+- **UI Pattern:** Card-based grid (B2B industry standard) — NO calendar grid
+- **Data Source:** TypeScript static data (Asana events as mock data)
+- **Navigation:** Company section → "Trade Shows" menu item
+- **Registration:** External links only (no tracking in Phase 1)
+- **Calendar Export:** Not included in Phase 1
+- **Event Details:** Card-only display (no dedicated pages)
+- **Multi-Language:** UI labels translated, event content English-only
+
+### Implementation Steps
+- [ ] **Step 1:** Create TypeScript data model (`web/src/lib/data/tradeShows.ts`)
+- [ ] **Step 2:** Create TradeShowCard component (`web/src/components/tradeShows/TradeShowCard.tsx`)
+- [ ] **Step 3:** Create TradeShowFilters component (upcoming/past/all tabs)
+- [ ] **Step 4:** Create Trade Shows page (`web/src/app/[locale]/company/trade-shows/page.tsx`)
+- [ ] **Step 5:** Add navigation menu item (`web/src/components/layout/Header/config.ts`)
+- [ ] **Step 6:** Add mock trade show data (8-10 events, real shows: AHR Expo, ISH, ASHRAE)
+- [ ] **Step 7:** Add i18n translations for UI labels (11 locales)
+- [ ] **Step 8:** Add placeholder PDFs to `/public/pdfs/` directory
+- [ ] **Step 9:** Testing & refinement (responsive, accessibility, cross-browser)
+
+### Design Pattern References
+- **Hero Section:** Reuse News page gradient pattern
+- **Card Layout:** Adapt ProductCard hover effects
+- **CTAs:** BapiButton (blue=Register, yellow=Download)
+
+### Phase 2: WordPress Migration (Post-Launch)
+- WordPress custom post type following Application Notes pattern
+- GraphQL integration for content management by non-technical staff
+- Full event translation (titles, descriptions) per locale
+
+---
+
 ## ✅ E2E & Unit Test Suite — 100% Pass Rate (March 6-9, 2026)
 
 **Status:** ✅ COMPLETE - ALL TESTS PASSING 🎉  

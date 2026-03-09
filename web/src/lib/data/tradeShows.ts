@@ -721,6 +721,60 @@ function getTodayLocal(): string {
 }
 
 /**
+ * Get event status for UI badges
+ * @param startDate - Event start date (YYYY-MM-DD)
+ * @param endDate - Event end date (YYYY-MM-DD)
+ * @returns Event status: 'happening-now' | 'starting-soon' | 'upcoming' | 'past' | 'tbd'
+ */
+export function getEventStatus(
+  startDate: string,
+  endDate: string
+): 'happening-now' | 'starting-soon' | 'upcoming' | 'past' | 'tbd' {
+  if (!startDate || !endDate) return 'tbd';
+
+  const today = getTodayLocal();
+  const start = new Date(startDate + 'T00:00:00');
+  const end = new Date(endDate + 'T00:00:00');
+  const now = new Date(today + 'T00:00:00');
+
+  // Event is happening now (between start and end dates)
+  if (startDate <= today && today <= endDate) {
+    return 'happening-now';
+  }
+
+  // Event ended
+  if (endDate < today) {
+    return 'past';
+  }
+
+  // Event starts within 7 days
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const daysUntil = Math.ceil((start.getTime() - now.getTime()) / msPerDay);
+  if (daysUntil <= 7 && daysUntil > 0) {
+    return 'starting-soon';
+  }
+
+  // Event is upcoming (more than 7 days away)
+  return 'upcoming';
+}
+
+/**
+ * Get number of days until event starts
+ * @param startDate - Event start date (YYYY-MM-DD)
+ * @returns Number of days until event (positive = future, negative = past, NaN = invalid date)
+ */
+export function getDaysUntilEvent(startDate: string): number {
+  if (!startDate) return NaN;
+
+  const today = getTodayLocal();
+  const start = new Date(startDate + 'T00:00:00');
+  const now = new Date(today + 'T00:00:00');
+
+  const msPerDay = 1000 * 60 * 60 * 24;
+  return Math.ceil((start.getTime() - now.getTime()) / msPerDay);
+}
+
+/**
  * Get all upcoming trade shows, sorted by date (ascending)
  * Events are considered "upcoming" if their end date is in the future.
  * This ensures multi-day events remain "upcoming" until they conclude.

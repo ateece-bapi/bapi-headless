@@ -8,7 +8,8 @@
 
 import { Calendar, MapPin, Building, User, FileDown, ExternalLink } from 'lucide-react';
 import type { TradeShow } from '@/lib/data/tradeShows';
-import { formatDateRange } from '@/lib/data/tradeShows';
+import { formatDateRange, getEventStatus, getDaysUntilEvent } from '@/lib/data/tradeShows';
+import { CalendarDownloadButton } from './CalendarDownloadButton';
 
 interface TradeShowCardProps {
   show: TradeShow;
@@ -17,12 +18,23 @@ interface TradeShowCardProps {
 
 export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
   const dateRange = formatDateRange(show.startDate, show.endDate, locale);
-  
-  // Derive event status from endDate (events are "past" only when concluded)
-  // Use local date to avoid UTC timezone issues
-  const now = new Date();
-  const todayLocal = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-  const isPastEvent = !!show.endDate && show.endDate < todayLocal;
+  const status = getEventStatus(show.startDate, show.endDate);
+  const daysUntil = getDaysUntilEvent(show.startDate);
+  const isPastEvent = status === 'past';
+
+  // Format relative time for upcoming events
+  const getRelativeTime = () => {
+    if (status === 'tbd' || !show.startDate) return null;
+    if (status === 'happening-now') return 'Happening Now';
+    if (status === 'past') return null;
+    
+    if (daysUntil === 0) return 'Today';
+    if (daysUntil === 1) return 'Tomorrow';
+    if (daysUntil > 1 && daysUntil < 7) return `In ${daysUntil} days`;
+    return null;
+  };
+
+  const relativeTime = getRelativeTime();
 
   return (
     <article
@@ -34,17 +46,41 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
     >
       {/* Card Content */}
       <div className="flex flex-1 flex-col gap-4 p-6">
-        {/* Status Badge (for past events) */}
-        {isPastEvent && (
+        {/* Status Badges */}
+        {status === 'happening-now' && (
+          <div className="inline-flex w-fit items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700 animate-pulse">
+            <span className="size-2 rounded-full bg-green-500" aria-hidden="true"></span>
+            Live Now
+          </div>
+        )}
+        {status === 'starting-soon' && (
+          <div className="inline-flex w-fit items-center gap-2 rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-800">
+            <span className="size-2 rounded-full bg-yellow-500" aria-hidden="true"></span>
+            Starting Soon - {daysUntil} {daysUntil === 1 ? 'day' : 'days'}
+          </div>
+        )}
+        {status === 'past' && (
           <div className="inline-flex w-fit items-center gap-2 rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-600">
             Past Event
           </div>
         )}
+        {status === 'tbd' && (
+          <div className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
+            Date TBD
+          </div>
+        )}
 
-        {/* Date */}
-        <div className="flex items-center gap-2 text-sm text-neutral-600">
-          <Calendar className="size-4 text-primary-500" aria-hidden="true" />
-          <span>{dateRange}</span>
+        {/* Date - Enhanced Prominence */}
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2 text-base font-semibold text-neutral-900">
+            <Calendar className="size-5 text-primary-500" aria-hidden="true" />
+            <span>{dateRange}</span>
+          </div>
+          {relativeTime && (
+            <span className="ml-7 text-sm font-medium text-primary-600">
+              {relativeTime}
+            </span>
+          )}
         </div>
 
         {/* Location */}
@@ -150,6 +186,11 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
             <FileDown className="size-4" aria-hidden="true" />
             <span className={show.registrationUrl ? 'hidden sm:inline' : ''}>Flyer</span>
           </a>
+        )}
+
+        {/* Add to Calendar - Available for all events with valid dates */}
+        {show.startDate && (
+          <CalendarDownloadButton show={show} variant="compact" />
         )}
       </div>
     </article>

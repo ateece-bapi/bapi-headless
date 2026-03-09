@@ -63,6 +63,43 @@ export default async function TradeShowsPage({ params }: TradeShowsPageProps) {
   const pastShows = getPastShows();
   const totalShows = TRADE_SHOWS.length;
 
+  // Generate JSON-LD structured data for SEO
+  // Only include upcoming/future events for better search relevance
+  const eventsJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': upcomingShows.map((show) => ({
+      '@type': 'Event',
+      name: show.title,
+      description: show.description,
+      startDate: show.startDate ? `${show.startDate}T09:00:00` : undefined,
+      endDate: show.endDate ? `${show.endDate}T17:00:00` : undefined,
+      eventStatus: 'https://schema.org/EventScheduled',
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      location: {
+        '@type': 'Place',
+        name: show.location.venue || `${show.location.city}, ${show.location.country}`,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: show.location.city,
+          addressRegion: show.location.state,
+          addressCountry: show.location.country,
+        },
+      },
+      organizer: {
+        '@type': 'Organization',
+        name: 'Building Automation Products, Inc. (BAPI)',
+        url: 'https://www.bapihvac.com',
+      },
+      ...(show.registrationUrl && {
+        offers: {
+          '@type': 'Offer',
+          url: show.registrationUrl,
+          availability: 'https://schema.org/InStock',
+        },
+      }),
+    })),
+  };
+
   // TODO: Pull labels from i18n in Step 7
   const labels = {
     heroTitle: 'Trade Shows & Events',
@@ -92,6 +129,14 @@ export default async function TradeShowsPage({ params }: TradeShowsPageProps) {
 
   return (
     <div className="min-h-screen bg-neutral-50">
+      {/* JSON-LD Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(eventsJsonLd),
+        }}
+      />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-linear-to-br from-primary-600 to-primary-800">
         {/* Background Decorations */}

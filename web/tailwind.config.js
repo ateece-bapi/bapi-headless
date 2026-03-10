@@ -70,7 +70,7 @@ const config = {
         container: '1600px',
         content: '1200px',
         narrow: '800px',
-        prose: '680px', // Optimal for reading (~65-75 chars/line at 16px)
+        prose: '680px', // Optimized reading width for prose content
       },
       colors: {
         primary: {

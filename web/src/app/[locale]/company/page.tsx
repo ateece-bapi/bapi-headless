@@ -86,38 +86,19 @@ export default async function CompanyPage() {
       <section className="bg-linear-to-b from-neutral-50 to-white py-16">
         <PageContainer size="narrow">
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            <div className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
-              <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
-                {t('stats.years.value')}
+            {(['years', 'products', 'madeInUsa', 'distribution'] as const).map((statKey) => (
+              <div
+                key={statKey}
+                className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
+                  {t(`stats.${statKey}.value`)}
+                </div>
+                <div className="text-sm font-semibold tracking-wide text-neutral-600">
+                  {t(`stats.${statKey}.label`)}
+                </div>
               </div>
-              <div className="text-sm font-semibold tracking-wide text-neutral-600">
-                {t('stats.years.label')}
-              </div>
-            </div>
-            <div className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
-              <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
-                {t('stats.products.value')}
-              </div>
-              <div className="text-sm font-semibold tracking-wide text-neutral-600">
-                {t('stats.products.label')}
-              </div>
-            </div>
-            <div className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
-              <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
-                {t('stats.madeInUsa.value')}
-              </div>
-              <div className="text-sm font-semibold tracking-wide text-neutral-600">
-                {t('stats.madeInUsa.label')}
-              </div>
-            </div>
-            <div className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
-              <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
-                {t('stats.distribution.value')}
-              </div>
-              <div className="text-sm font-semibold tracking-wide text-neutral-600">
-                {t('stats.distribution.label')}
-              </div>
-            </div>
+            ))}
           </div>
         </PageContainer>
       </section>

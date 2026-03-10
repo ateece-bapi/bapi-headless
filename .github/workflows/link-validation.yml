@@ -1,0 +1,195 @@
+name: Link Validation
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+  pull_request:
+    branches:
+      - main
+      - staging
+  schedule:
+    # Run weekly on Mondays at 9:00 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  link-check:
+    name: Check Links
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Check internal links in source files
+        run: |
+          echo "🔍 Checking for empty href attributes..."
+          
+          # Check for empty href attributes
+          if grep -r 'href=""' web/src --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" | grep -v "test" | grep -v "stories"; then
+            echo "❌ Found empty href attributes!"
+            exit 1
+          else
+            echo "✅ No empty href attributes found"
+          fi
+          
+          # Check for href={} without value
+          if grep -r 'href={}' web/src --include="*.tsx" --include="*.ts" | grep -v "test" | grep -v "stories"; then
+            echo "❌ Found empty href objects!"
+            exit 1
+          else
+            echo "✅ No empty href objects found"
+          fi
+          
+          echo "✅ Internal link structure looks good!"
+          
+      - name: Check for broken internal Next.js Link components
+        run: |
+          echo "🔗 Validating Next.js Link components..."
+          
+          # Check for common Link mistakes
+          if grep -r '<Link href=' web/src --include="*.tsx" | grep 'href=""'; then
+            echo "❌ Found Link components with empty href!"
+            exit 1
+          fi
+          
+          echo "✅ Next.js Link components validated!"
+          
+      - name: Check for insecure HTTP links
+        run: |
+          echo "🔒 Checking for insecure HTTP links..."
+          
+          # Find HTTP links (excluding localhost, test fixtures, and comments)
+          INSECURE_LINKS=$(grep -r 'http://' web/src \
+            --include="*.tsx" \
+            --include="*.ts" \
+            --exclude="*.test.ts" \
+            --exclude="*.test.tsx" \
+            --exclude="*.stories.tsx" \
+            | grep -v "localhost" \
+            | grep -v "http://www.w3.org" \
+            | grep -v "xmlns=" \
+            | grep -v "//" \
+            | grep -v "test" || true)
+          
+          if [ ! -z "$INSECURE_LINKS" ]; then
+            echo "⚠️  Found HTTP links (consider using HTTPS if available):"
+            echo "$INSECURE_LINKS"
+            echo ""
+            echo "ℹ️  This is a warning, not blocking the build."
+          else
+            echo "✅ No insecure HTTP links found"
+          fi
+          
+      - name: Check for TODO/FIXME in link-related code
+        run: |
+          echo "📝 Checking for link-related TODOs..."
+          
+          LINK_TODOS=$(grep -r "TODO.*link\|FIXME.*link\|TODO.*href\|FIXME.*href" web/src \
+            --include="*.tsx" \
+            --include="*.ts" \
+            --exclude="*.test.ts" \
+            --exclude="*.test.tsx" || true)
+          
+          if [ ! -z "$LINK_TODOS" ]; then
+            echo "ℹ️  Found link-related TODOs:"
+            echo "$LINK_TODOS"
+            echo ""
+            echo "Consider addressing these before merging."
+          else
+            echo "✅ No link-related TODOs found"
+          fi
+          
+      - name: Validate mailto and tel links
+        run: |
+          echo "📧 Validating mailto and tel links..."
+          
+          # Check for malformed mailto links
+          if grep -r 'mailto:' web/src --include="*.tsx" | grep 'mailto:""' || \
+             grep -r 'mailto:' web/src --include="*.tsx" | grep 'mailto:$' ; then
+            echo "❌ Found malformed mailto links!"
+            exit 1
+          fi
+          
+          # Check for malformed tel links
+          if grep -r 'tel:' web/src --include="*.tsx" | grep 'tel:""' || \
+             grep -r 'tel:' web/src --include="*.tsx" | grep 'tel:$' ; then
+            echo "❌ Found malformed tel links!"
+            exit 1
+          fi
+          
+          echo "✅ Contact links validated!"
+          
+      - name: Summary
+        if: success()
+        run: |
+          echo "================================================"
+          echo "✅ Link validation completed successfully!"
+          echo "================================================"
+          echo ""
+          echo "Checks performed:"
+          echo "  ✓ Empty href attributes"
+          echo "  ✓ Empty href objects"
+          echo "  ✓ Next.js Link components"
+          echo "  ✓ Insecure HTTP links (warning only)"
+          echo "  ✓ Link-related TODOs (info only)"
+          echo "  ✓ Contact links (mailto/tel)"
+          echo ""
+          echo "All critical link validations passed! 🎉"
+
+  # Optional: Check external links on built site (runs less frequently to avoid rate limits)
+  external-link-check:
+    name: Check External Links (Manual)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'web/pnpm-lock.yaml'
+          
+      - name: Install dependencies
+        working-directory: ./web
+        run: pnpm install --frozen-lockfile
+        
+      - name: Build site
+        working-directory: ./web
+        run: pnpm run build
+        env:
+          NEXT_PUBLIC_WORDPRESS_GRAPHQL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'https://bapiheadlessstaging.kinsta.cloud/graphql' }}
+          
+      - name: Check external links with lychee
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: |
+            --verbose
+            --no-progress
+            --exclude-mail
+            --exclude localhost
+            --exclude 127.0.0.1
+            --exclude-path "**/node_modules/**"
+            --exclude-path "**/.next/**"
+            --max-retries 3
+            --timeout 30
+            './web/src/**/*.tsx'
+            './web/src/**/*.ts'
+          fail: false # Don't fail the build on external link issues
+          
+      - name: External link check summary
+        run: |
+          echo "ℹ️  External link check completed."
+          echo "This check does not block builds to avoid external service issues."
+          echo "Review the output above for any concerning broken external links."

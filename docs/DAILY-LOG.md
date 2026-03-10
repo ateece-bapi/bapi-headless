@@ -7,6 +7,228 @@
 
 ---
 
+## March 10, 2026 — CI Pipeline Enhancement: Automated Testing Integration ✅
+
+**Status:** ✅ COMPLETE - Priority 1 Option A Merged to Main  
+**Context:** Storybook/Chromatic/Playwright infrastructure review and CI integration  
+**Time:** ~3 hours  
+**Branch:** `feat/ci-automated-testing`  
+**PR:** Merged successfully (commit d6e913d)
+
+### 🎯 SESSION SUMMARY: Professional Testing Infrastructure
+
+**User Goal:** "Let's revisit our Storybook setup. We now have chromatic and playwright also setup. Please review."
+
+**Delivered:**
+- ✅ Comprehensive testing infrastructure review (Storybook + Chromatic + Playwright)
+- ✅ Priority 1 Option A: Added non-blocking Storybook accessibility tests to CI
+- ✅ Created issue documentation for Option B (E2E debugging)
+- ✅ Local testing verification before push
+- ✅ Professional decision-making for handling test failures
+
+### Infrastructure Review
+
+**Testing Stack Assessed:**
+- **Storybook 10.2.15:** Next.js 15 + Vite, 23 story files, MSW API mocking
+- **Chromatic 13.3.5:** Visual regression ready (needs token configuration)
+- **Playwright 1.58.2:** E2E testing configured (14 test suites, 5 browser projects)
+- **Vitest 4.0.18:** 1,202 unit tests passing
+- **axe-core:** WCAG 2.1 Level AA compliance via @storybook/test-runner
+
+**Review Results:** Grade A- (excellent infrastructure, needs activation)
+
+**Priorities Identified:**
+1. **Priority 1:** Add automated testing to CI pipeline ⭐ (COMPLETED)
+2. **Priority 2:** Set up Chromatic token and baselines (15-20 min)
+3. **Priority 3:** Fix Storybook accessibility violations (35 issues)
+4. **Priority 4:** Expand story coverage (23 → 40+ files)
+
+### Priority 1 Implementation: CI Integration
+
+**User Decision:** "Let us start with Priority 1 and then come back to the other priorities after"
+
+**Approach:** Professional testing before push
+- ✅ Ran unit tests locally: `pnpm test:ci` → 1,202 passing | 1 skipped (~6s)
+- ✅ Ran Storybook tests locally: `pnpm run test:storybook:ci` → 35 violations found (~45s)
+- ✅ Attempted E2E tests locally: `pnpm run test:e2e:chromium` → Tests timing out
+
+**Decision Point:** Option A vs Option B
+
+**Option A (IMPLEMENTED):** Make Storybook tests non-blocking
+- Add accessibility tests to CI with `continue-on-error: true`
+- Provides visibility without blocking development velocity
+- 35 known violations documented, can be fixed incrementally
+- E2E tests excluded from CI (need debugging first)
+
+**Option B (DEFERRED):** Debug E2E timeouts
+- Investigate why tests are failing (worked previously: 14/14 passing)
+- Fix root cause (dev server, environment, auth issues)
+- Add E2E tests to CI once stable
+- Tracked in `docs/ISSUE-E2E-CI-INTEGRATION.md`
+
+**User Choice:** "Option A, proceed. Then we will come back and do Option B!"
+
+### Changes Implemented
+
+**File Modified:** `.github/workflows/ci.yml`
+
+**CI Workflow Enhancements:**
+1. Renamed "Run tests" → "Run unit tests" (clarity)
+2. Added "Run Storybook accessibility tests" step:
+   ```yaml
+   - name: Run Storybook accessibility tests
+     run: pnpm run test:storybook:ci
+     continue-on-error: true  # Non-blocking for 35 known violations
+   ```
+3. Removed E2E tests (debugging needed before CI integration)
+
+**File Created:** `docs/ISSUE-E2E-CI-INTEGRATION.md`
+- Documents E2E timeout investigation
+- Provides debugging steps
+- Sets timeline: March 11-12, 2026 (1-2 hours)
+- Success criteria: 14/14 tests passing
+
+### Local Testing Results
+
+**Unit Tests:**
+```
+✓ 1202 tests passed (1 skipped)
+Duration: ~6 seconds
+Status: ✅ All passing
+```
+
+**Storybook Accessibility Tests:**
+```
+✓ 10 test suites passed
+✗ 13 test suites failed (35 violations)
+Duration: ~45 seconds
+Status: ⚠️ Non-blocking violations found
+```
+
+**Violation Categories:**
+- Color contrast issues
+- Missing ARIA labels
+- Form accessibility improvements needed
+- Button states requiring clarity
+
+**E2E Tests (Playwright):**
+```
+✗ Tests timing out (67 tests attempted, mostly failing)
+Status: 🔍 Needs investigation (Option B work)
+```
+
+### Git Operations
+
+**Branch Created:**
+```bash
+git checkout -b feat/ci-automated-testing
+```
+
+**Commit:**
+```
+feat: add non-blocking Storybook accessibility tests to CI
+
+- Add automated a11y testing with @storybook/test-runner
+- Make tests non-blocking (continue-on-error) for 35 known violations
+- Rename "Run tests" to "Run unit tests" for clarity
+- Create ISSUE-E2E-CI-INTEGRATION.md for E2E debugging work
+- E2E tests excluded from CI until timeout issues resolved
+```
+
+**Merge & Cleanup:**
+```bash
+git checkout main
+git pull origin main  # Fast-forward 7b2c48b..d6e913d
+git branch -d feat/ci-automated-testing
+git status  # Clean working tree
+```
+
+### Technical Decisions & Rationale
+
+**1. Non-Blocking Accessibility Tests**
+- **Decision:** Use `continue-on-error: true`
+- **Rationale:** 31 days to launch, need visibility without blocking velocity
+- **Impact:** Team sees violations in CI, can fix incrementally
+
+**2. Defer E2E Integration**
+- **Decision:** Exclude E2E tests from CI for now
+- **Rationale:** Tests timing out, need investigation before adding to pipeline
+- **Impact:** Prevents CI failures from flaky tests, maintains stability
+
+**3. Professional Testing Workflow**
+- **Decision:** Test locally before pushing
+- **Rationale:** Catch issues early, verify commands work correctly
+- **Impact:** Confident push, no surprises in CI
+
+**4. Issue Documentation**
+- **Decision:** Create dedicated doc for Option B work
+- **Rationale:** Clear handoff, investigation steps documented
+- **Impact:** Easy to resume E2E debugging tomorrow
+
+### Known Issues & Next Steps
+
+**35 Storybook Accessibility Violations (Non-Blocking):**
+- Components affected: Checkout, Cart, Product pages, Company pages
+- Fix priority: Checkout → Cart → Products → Company
+- Fix approach: By pattern (contrast → ARIA → forms)
+
+**E2E Tests Timing Out (Option B Work):**
+- 67 tests attempted, mostly failing
+- Possible causes: Dev server startup, missing env vars, auth issues
+- Investigation plan: `docs/ISSUE-E2E-CI-INTEGRATION.md`
+- Timeline: March 11-12, 2026 (1-2 hours)
+
+**Chromatic Setup Pending (Priority 2):**
+- Workflow configured: `.github/workflows/chromatic.yml`
+- Blocker: Needs `CHROMATIC_PROJECT_TOKEN` secret
+- Time estimate: 15-20 minutes
+- Action: Create account, add token, run baseline
+
+### Lessons Learned 💡
+
+1. **Test Before Push:** Local verification caught issues early (E2E timeouts)
+2. **Progressive Enhancement:** Non-blocking tests provide visibility without blocking
+3. **Separation of Concerns:** Different test types have different readiness states
+4. **Professional Handoffs:** Document blockers clearly for next session
+5. **Pragmatic Decisions:** Balance quality with velocity (31 days to launch)
+6. **Issue Tracking:** Dedicated docs prevent losing context between sessions
+
+### Metrics
+
+**Time Investment:**
+- Infrastructure review: ~45 minutes
+- Local testing: ~30 minutes
+- Implementation + documentation: ~1 hour
+- PR merge + cleanup: ~15 minutes
+- **Total: ~3 hours**
+
+**Testing Coverage:**
+- Unit tests: 1,202 passing (Vitest)
+- Storybook stories: 23 files
+- Accessibility tests: 186 automated checks
+- E2E tests: 14 suites (debugging needed)
+- Visual regression: Ready (needs token)
+
+**Quality Improvements:**
+- CI now includes automated accessibility testing
+- Clear documentation for E2E debugging work
+- Professional testing workflow established
+- Issue tracking for deferred work
+
+### Verification Complete ✅
+
+- ✅ CI workflow enhanced with Storybook accessibility tests
+- ✅ Tests run successfully in CI (non-blocking)
+- ✅ Unit tests: 1,202 passing locally and in CI
+- ✅ Storybook command works: `pnpm run test:storybook:ci`
+- ✅ Issue documentation created for Option B
+- ✅ Branch merged and cleaned up
+- ✅ Working tree clean on main branch
+
+**Ready for Option B:** Yes - Tomorrow morning we'll debug E2E timeouts following the investigation plan in `docs/ISSUE-E2E-CI-INTEGRATION.md`
+
+---
+
 ## March 10, 2026 — Link Security Audit & Automated Validation ✅
 
 **Status:** ✅ COMPLETE - 3 PRs Merged to Main  

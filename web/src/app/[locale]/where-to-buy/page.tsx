@@ -404,6 +404,172 @@ export default function WhereToBuyPage() {
       phone: '+31 (0)88 833 84 00',
       specialties: ['Building Automation'],
     },
+    // International Distributors
+    {
+      id: 'canada-controls',
+      name: 'Canada Controls',
+      tier: 'associate',
+      logo: '/images/distributors/canada-controls-logo-1.webp',
+      region: 'international',
+      location: 'Canada',
+      website: 'https://www.canadacontrols.com/',
+      phone: '289-374-0052',
+      specialties: ['Building Controls'],
+    },
+    {
+      id: 'combustion-depot-international',
+      name: 'Combustion Depot',
+      tier: 'associate',
+      logo: '/images/distributors/combustion-depot.png',
+      region: 'international',
+      location: 'Canada',
+      website: 'https://www.combustiondepot.com/',
+      phone: '1-866-494-4610',
+      specialties: ['Combustion Controls'],
+    },
+    {
+      id: 'controls-depot',
+      name: 'Controls Depot',
+      tier: 'associate',
+      logo: '/images/distributors/image-3.png',
+      region: 'international',
+      location: 'International',
+      website: 'https://controlsdepot.com/',
+      phone: '1-877-221-1477',
+      specialties: ['Building Controls'],
+    },
+    {
+      id: 'controls-traders',
+      name: 'Controls Traders',
+      tier: 'associate',
+      logo: '/images/distributors/controls-traders-logo.png',
+      region: 'international',
+      location: 'Australia, New Zealand',
+      website: 'https://www.controlstraders.com',
+      phone: '1300 740 140',
+      specialties: ['Building Controls'],
+    },
+    {
+      id: 'dore-electrics',
+      name: 'Dore Electrics',
+      tier: 'associate',
+      logo: '/images/distributors/DoreElec.webp',
+      region: 'international',
+      location: 'Australia',
+      website: 'https://www.doreelectrics.com.au/',
+      phone: '1300 003 673',
+      specialties: ['Building Controls'],
+    },
+    {
+      id: 'control-shop',
+      name: 'Control Shop',
+      tier: 'associate',
+      logo: '/images/distributors/ControlShop.png',
+      region: 'international',
+      location: 'New Zealand',
+      website: 'https://controlshop.co.nz/shop/',
+      phone: '+64 29 511 8777',
+      specialties: ['Building Controls'],
+    },
+    {
+      id: '8-made-co',
+      name: '8 Made Co. Ltd.',
+      tier: 'associate',
+      logo: '/images/distributors/8_made_co-logo-1.png',
+      region: 'international',
+      location: 'Thailand',
+      website: 'https://www.8made.net/',
+      phone: '+02 722 1362 3',
+      specialties: ['Building Automation'],
+    },
+    {
+      id: 'hvac-depot',
+      name: 'HVAC Depot',
+      tier: 'associate',
+      logo: '/images/distributors/hvac-depot-logo.png',
+      region: 'international',
+      location: 'Canada',
+      website: 'https://www.hvacdepot.ca',
+      phone: '1-866-494-4610',
+      specialties: ['HVAC Controls'],
+    },
+    {
+      id: 'furneco',
+      name: 'Furneco',
+      tier: 'associate',
+      logo: '/images/distributors/furneco-logo.png',
+      region: 'international',
+      location: 'Canada',
+      website: 'http://www.furneco.com',
+      phone: '450-347-2111',
+      specialties: ['Building Controls'],
+    },
+    {
+      id: 'marcontrol',
+      name: 'Marcontrol',
+      tier: 'associate',
+      logo: '/images/distributors/marcontrol-logo.png',
+      region: 'international',
+      location: 'China',
+      website: '',
+      phone: '852-2523-7149',
+      specialties: ['Building Controls'],
+    },
+    {
+      id: 'omega-engineering',
+      name: 'Omega Engineering',
+      tier: 'associate',
+      logo: '/images/distributors/omega-logo.png',
+      region: 'international',
+      location: 'India, Middle East, Africa',
+      website: 'http://www.omegaengg.com',
+      phone: '971-6-557-4497',
+      specialties: ['Building Automation'],
+    },
+    {
+      id: 'kele-singapore',
+      name: 'Kele - Singapore',
+      tier: 'associate',
+      logo: '/images/distributors/kele-logo.png',
+      region: 'international',
+      location: 'Singapore, Malaysia, Indonesia',
+      website: 'https://www.kele.com/content/contact-kele',
+      phone: '65-6282-9120',
+      specialties: ['Building Automation'],
+    },
+    {
+      id: 'taiyou-automation',
+      name: 'Taiyou Automation Pvt Ltd',
+      tier: 'associate',
+      logo: '/images/distributors/taiyouAuto.png',
+      region: 'international',
+      location: 'India',
+      website: 'https://www.taiyouindia.com/index.html',
+      phone: '044-26567060',
+      specialties: ['Building Automation'],
+    },
+    {
+      id: 'vace',
+      name: 'Vace',
+      tier: 'associate',
+      logo: '/images/distributors/vace-logo.png',
+      region: 'international',
+      location: 'Singapore',
+      website: 'http://www.vace.com.sg',
+      phone: '+65-6286-2186',
+      specialties: ['Building Controls'],
+    },
+    {
+      id: 'pacific-controls',
+      name: 'Pacific Controls',
+      tier: 'associate',
+      logo: '/images/distributors/pacific-controls-logo.png',
+      region: 'international',
+      location: 'Western Canada',
+      website: 'http://www.paccon.ca',
+      phone: '604-879-6711',
+      specialties: ['Building Controls'],
+    },
   ];
 
   // Filter distributors by region and search
@@ -426,7 +592,7 @@ export default function WhereToBuyPage() {
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
+      <section className="bg-linear-to-br from-primary-700 via-primary-600 to-primary-500 py-16 text-white lg:py-20">
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="mb-4 text-4xl font-bold lg:text-5xl">Where to Buy BAPI Products</h1>
@@ -556,12 +722,12 @@ export default function WhereToBuyPage() {
                     {/* Tier Badge */}
                     <div className="relative">
                       {distributor.tier === 'platinum' && (
-                        <div className="absolute right-3 top-3 z-10 rounded-full bg-gradient-to-r from-accent-500 to-accent-600 px-3 py-1.5 text-xs font-bold uppercase text-neutral-900 shadow-lg">
+                        <div className="absolute right-3 top-3 z-10 rounded-full bg-linear-to-r from-accent-500 to-accent-600 px-3 py-1.5 text-xs font-bold uppercase text-neutral-900 shadow-lg">
                           Platinum Dealer
                         </div>
                       )}
                       {distributor.tier === 'gold' && (
-                        <div className="absolute right-3 top-3 z-10 rounded-full bg-gradient-to-r from-accent-400 to-accent-500 px-3 py-1.5 text-xs font-bold uppercase text-neutral-900 shadow-lg">
+                        <div className="absolute right-3 top-3 z-10 rounded-full bg-linear-to-r from-accent-400 to-accent-500 px-3 py-1.5 text-xs font-bold uppercase text-neutral-900 shadow-lg">
                           Gold Dealer
                         </div>
                       )}
@@ -600,7 +766,7 @@ export default function WhereToBuyPage() {
                       </h3>
 
                       {/* Divider */}
-                      <div className="mb-3 h-px origin-left scale-x-0 transform bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 transition-transform duration-500 group-hover:scale-x-100"></div>
+                      <div className="mb-3 h-px origin-left scale-x-0 transform bg-linear-to-r from-primary-500 via-accent-500 to-primary-500 transition-transform duration-500 group-hover:scale-x-100"></div>
 
                       <div className="mb-4 flex items-center gap-2 text-neutral-700">
                         <MapPin className="h-4 w-4 text-primary-500" />
@@ -618,7 +784,7 @@ export default function WhereToBuyPage() {
                           {distributor.specialties.map((specialty) => (
                             <span
                               key={specialty}
-                              className="rounded-full border border-primary-200 bg-gradient-to-r from-primary-50 to-accent-50 px-3 py-1 text-xs font-bold text-primary-700"
+                              className="rounded-full border border-primary-200 bg-linear-to-r from-primary-50 to-accent-50 px-3 py-1 text-xs font-bold text-primary-700"
                             >
                               {specialty}
                             </span>
@@ -632,7 +798,7 @@ export default function WhereToBuyPage() {
                           href={distributor.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex w-full transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-700 px-4 py-2.5 font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
+                          className="flex w-full transform items-center justify-center gap-2 rounded-lg bg-linear-to-r from-primary-600 to-primary-700 px-4 py-2.5 font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
                         >
                           <Globe className="h-4 w-4" />
                           Visit Website
@@ -669,7 +835,7 @@ export default function WhereToBuyPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-primary-700 to-primary-600 py-12 text-white lg:py-16">
+      <section className="bg-linear-to-r from-primary-700 to-primary-600 py-12 text-white lg:py-16">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
             Interested in Becoming a Distributor?

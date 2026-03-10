@@ -46,18 +46,20 @@ export default async function CompanyPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <PageContainer size="narrow">
+      <section className="bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 py-12 text-white lg:py-16">
+        <PageContainer size="prose">
           <div className="text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
               <Building2 className="h-4 w-4" />
               {t('hero.badge')}
             </div>
-            <h1 className="mb-4 text-balance text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto mb-2 max-w-3xl text-balance text-xl text-primary-50">
+            <h1 className="mb-6 text-balance text-5xl font-bold leading-tight sm:text-6xl">
+              {t('hero.title')}
+            </h1>
+            <p className="mx-auto mb-4 text-balance text-xl font-medium text-primary-50 sm:text-2xl">
               {t('hero.subtitle')}
             </p>
-            <p className="mx-auto max-w-3xl text-balance text-lg text-primary-100">
+            <p className="mx-auto text-balance text-lg leading-relaxed text-primary-100">
               {t('hero.description')}
             </p>
           </div>
@@ -65,54 +67,54 @@ export default async function CompanyPage() {
       </section>
 
       {/* Company Overview */}
-      <section className="py-16">
-        <PageContainer size="narrow">
-          <div className="prose prose-lg max-w-none">
-            <h2 className="mb-6 text-center text-3xl font-bold text-neutral-900">
+      <section className="py-20">
+        <PageContainer size="prose">
+          <div className="mx-auto">
+            <h2 className="mb-8 text-center text-4xl font-bold text-neutral-900">
               {t('overview.title')}
             </h2>
-            <p className="mb-6 text-lg leading-relaxed text-neutral-700">
-              {t('overview.paragraph1')}
-            </p>
-            <p className="text-lg leading-relaxed text-neutral-700">{t('overview.paragraph2')}</p>
+            <div className="space-y-6 text-lg leading-relaxed text-neutral-700">
+              <p className="text-balance">{t('overview.paragraph1')}</p>
+              <p className="text-balance">{t('overview.paragraph2')}</p>
+            </div>
           </div>
-          <div className="mt-10 h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+          <div className="mt-12 h-px bg-linear-to-r from-transparent via-neutral-300 to-transparent" />
         </PageContainer>
       </section>
 
       {/* Key Stats */}
-      <section className="bg-neutral-50 py-12">
+      <section className="bg-linear-to-b from-neutral-50 to-white py-16">
         <PageContainer size="narrow">
-          <div className="grid grid-cols-2 gap-6">
-            <div className="group cursor-default text-center">
-              <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+            <div className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
+              <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
                 {t('stats.years.value')}
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
+              <div className="text-sm font-semibold tracking-wide text-neutral-600">
                 {t('stats.years.label')}
               </div>
             </div>
-            <div className="group cursor-default text-center">
-              <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
+            <div className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
+              <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
                 {t('stats.products.value')}
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
+              <div className="text-sm font-semibold tracking-wide text-neutral-600">
                 {t('stats.products.label')}
               </div>
             </div>
-            <div className="group cursor-default text-center">
-              <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
+            <div className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
+              <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
                 {t('stats.madeInUsa.value')}
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
+              <div className="text-sm font-semibold tracking-wide text-neutral-600">
                 {t('stats.madeInUsa.label')}
               </div>
             </div>
-            <div className="group cursor-default text-center">
-              <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
+            <div className="group cursor-default rounded-xl bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
+              <div className="mb-2 text-5xl font-bold text-primary-500 transition-transform group-hover:scale-105">
                 {t('stats.distribution.value')}
               </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
+              <div className="text-sm font-semibold tracking-wide text-neutral-600">
                 {t('stats.distribution.label')}
               </div>
             </div>
@@ -121,17 +123,19 @@ export default async function CompanyPage() {
       </section>
 
       {/* Core Values */}
-      <section className="py-16">
-        <PageContainer size="narrow">
-          <h2 className="mb-4 text-balance text-center text-3xl font-bold text-neutral-900">
+      <section className="py-20">
+        <PageContainer size="prose">
+          <h2 className="mb-4 text-balance text-center text-4xl font-bold text-neutral-900">
             {t('coreValues.title')}
           </h2>
-          <p className="mb-8 text-center text-lg text-neutral-700">{t('coreValues.subtitle')}</p>
+          <p className="mb-12 text-balance text-center text-lg text-neutral-600">
+            {t('coreValues.subtitle')}
+          </p>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
-              <Target className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
-              <h3 className="mb-3 text-xl font-bold text-neutral-900">
+            <div className="duration-normal group rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl">
+              <Target className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
+              <h3 className="mb-4 text-2xl font-bold text-neutral-900">
                 {t('coreValues.qualityFirst.title')}
               </h3>
               <p className="leading-relaxed text-neutral-700">
@@ -139,9 +143,9 @@ export default async function CompanyPage() {
               </p>
             </div>
 
-            <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
-              <Users className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
-              <h3 className="mb-3 text-xl font-bold text-neutral-900">
+            <div className="duration-normal group rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl">
+              <Users className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
+              <h3 className="mb-4 text-2xl font-bold text-neutral-900">
                 {t('coreValues.customerFocus.title')}
               </h3>
               <p className="leading-relaxed text-neutral-700">
@@ -149,9 +153,9 @@ export default async function CompanyPage() {
               </p>
             </div>
 
-            <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg md:col-span-2">
-              <Award className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
-              <h3 className="mb-3 text-xl font-bold text-neutral-900">
+            <div className="duration-normal group rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl md:col-span-2">
+              <Award className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
+              <h3 className="mb-4 text-2xl font-bold text-neutral-900">
                 {t('coreValues.innovation.title')}
               </h3>
               <p className="leading-relaxed text-neutral-700">
@@ -167,7 +171,7 @@ export default async function CompanyPage() {
 
       {/* Location & Contact */}
       <section className="bg-neutral-50 py-16">
-        <PageContainer size="narrow">
+        <PageContainer size="prose">
           <h2 className="mb-8 text-center text-3xl font-bold text-neutral-900">
             {t('location.title')}
           </h2>

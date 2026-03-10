@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-type PageContainerSize = 'container' | 'content' | 'narrow';
+type PageContainerSize = 'container' | 'content' | 'narrow' | 'prose';
 
 type PageContainerProps = {
   children: ReactNode;
@@ -12,6 +12,7 @@ const SIZE_CLASSES: Record<PageContainerSize, string> = {
   container: 'max-w-container',
   content: 'max-w-content',
   narrow: 'max-w-narrow',
+  prose: 'max-w-prose',
 };
 
 /**

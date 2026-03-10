@@ -53,6 +53,16 @@ next-env.d.ts
 
 # 404 checker results
 check-404s-results.txt
+
+# Build and test output files
+*-output.txt
+build-*.txt
+e2e-test-results*.txt
+experimental-*.txt
+import-results.json
+schema.json
+wordpress-users.json
+
 storybook-static
 
 # Sentry Config File

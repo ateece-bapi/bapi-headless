@@ -226,7 +226,7 @@
     "about": {
       "metadata": {
         "title": "About BAPI | BAPI",
-        "description": "Learn about BAPI's 40+ year history manufacturing precision sensor solutions for building automation systems worldwide."
+        "description": "Learn about BAPI's 30+ year history manufacturing precision sensor solutions for building automation systems worldwide."
       },
       "breadcrumb": {
         "home": "Home",
@@ -236,7 +236,7 @@
         "badge": "Est. 1993",
         "title": "Building Automation Products Inc.",
         "subtitle": "Precision Sensor Solutions for Building Automation",
-        "description": "For over 40 years, BAPI has been a leading manufacturer of precision sensors for building automation systems, trusted by engineers worldwide."
+        "description": "For over 30 years, BAPI has been a leading manufacturer of precision sensors for building automation systems, trusted by engineers worldwide."
       },
       "overview": {
         "title": "About BAPI",
@@ -245,7 +245,7 @@
       },
       "stats": {
         "years": {
-          "value": "40+",
+          "value": "30+",
           "label": "Years in Business"
         },
         "products": {

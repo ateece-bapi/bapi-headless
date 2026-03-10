@@ -63,7 +63,7 @@ Enabled public GraphQL introspection via WP-CLI:
 wp option update graphql_general_settings '{"public_introspection_enabled":"on"}' --format=json
 ```
 
-## � Schema Management
+## 📄 Schema Management
 
 The GraphQL schema is stored locally in `web/schema.json` (3.7MB) to avoid cache issues during code generation. This file is committed to the repository for consistency across development environments.
 
@@ -89,7 +89,7 @@ pnpm run codegen
 
 This regenerates TypeScript types in `src/lib/graphql/generated.ts` based on your queries and the updated schema.
 
-## �🚀 Usage Examples
+## 🚀 Usage Examples
 
 ### Fetch Products in Server Component
 ```typescript

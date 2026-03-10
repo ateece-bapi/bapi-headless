@@ -81,3 +81,4 @@ ci-preview-integration-*/
 
 # WordPress temp files
 cms/temp/
+*:Zone.Identifier

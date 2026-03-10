@@ -63,7 +63,33 @@ Enabled public GraphQL introspection via WP-CLI:
 wp option update graphql_general_settings '{"public_introspection_enabled":"on"}' --format=json
 ```
 
-## 🚀 Usage Examples
+## � Schema Management
+
+The GraphQL schema is stored locally in `web/schema.json` (3.7MB) to avoid cache issues during code generation. This file is committed to the repository for consistency across development environments.
+
+### Regenerating the Schema
+
+If the WordPress GraphQL schema changes (e.g., after plugin updates or custom field additions), regenerate the local schema:
+
+```bash
+cd web
+pnpm run schema:download
+```
+
+This will introspect the GraphQL endpoint defined in `NEXT_PUBLIC_WORDPRESS_GRAPHQL` and update `schema.json`.
+
+### After Schema Updates
+
+Always run code generation after updating the schema:
+
+```bash
+cd web
+pnpm run codegen
+```
+
+This regenerates TypeScript types in `src/lib/graphql/generated.ts` based on your queries and the updated schema.
+
+## �🚀 Usage Examples
 
 ### Fetch Products in Server Component
 ```typescript

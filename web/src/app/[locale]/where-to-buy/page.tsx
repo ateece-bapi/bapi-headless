@@ -102,7 +102,7 @@ export default function WhereToBuyPage() {
       logo: '/images/distributors/bcci.png',
       region: 'usa',
       location: 'National',
-      website: 'http://www.controlsconnection.com/',
+      website: 'https://www.controlsconnection.com/',
       phone: '1-770-296-9803',
       specialties: ['Building Controls', 'Construction'],
     },
@@ -500,7 +500,7 @@ export default function WhereToBuyPage() {
       logo: '/images/distributors/furneco-logo.png',
       region: 'international',
       location: 'Canada',
-      website: 'http://www.furneco.com',
+      website: 'https://www.furneco.com',
       phone: '450-347-2111',
       specialties: ['Building Controls'],
     },
@@ -511,7 +511,7 @@ export default function WhereToBuyPage() {
       logo: '/images/distributors/marcontrol-logo.png',
       region: 'international',
       location: 'China',
-      website: '',
+      website: 'https://www.marcontrol.com',
       phone: '852-2523-7149',
       specialties: ['Building Controls'],
     },
@@ -522,7 +522,7 @@ export default function WhereToBuyPage() {
       logo: '/images/distributors/omega-logo.png',
       region: 'international',
       location: 'India, Middle East, Africa',
-      website: 'http://www.omegaengg.com',
+      website: 'https://www.omegaengg.com',
       phone: '971-6-557-4497',
       specialties: ['Building Automation'],
     },
@@ -555,7 +555,7 @@ export default function WhereToBuyPage() {
       logo: '/images/distributors/vace-logo.png',
       region: 'international',
       location: 'Singapore',
-      website: 'http://www.vace.com.sg',
+      website: 'https://www.vace.com.sg',
       phone: '+65-6286-2186',
       specialties: ['Building Controls'],
     },
@@ -566,7 +566,7 @@ export default function WhereToBuyPage() {
       logo: '/images/distributors/pacific-controls-logo.png',
       region: 'international',
       location: 'Western Canada',
-      website: 'http://www.paccon.ca',
+      website: 'https://www.paccon.ca',
       phone: '604-879-6711',
       specialties: ['Building Controls'],
     },
@@ -794,15 +794,17 @@ export default function WhereToBuyPage() {
 
                       {/* Action Buttons */}
                       <div className="space-y-2">
-                        <a
-                          href={distributor.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex w-full transform items-center justify-center gap-2 rounded-lg bg-linear-to-r from-primary-600 to-primary-700 px-4 py-2.5 font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
-                        >
-                          <Globe className="h-4 w-4" />
-                          Visit Website
-                        </a>
+                        {distributor.website && (
+                          <a
+                            href={distributor.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex w-full transform items-center justify-center gap-2 rounded-lg bg-linear-to-r from-primary-600 to-primary-700 px-4 py-2.5 font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
+                          >
+                            <Globe className="h-4 w-4" />
+                            Visit Website
+                          </a>
+                        )}
 
                         <div className="grid grid-cols-2 gap-2">
                           {distributor.phone && (

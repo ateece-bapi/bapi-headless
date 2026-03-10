@@ -94,7 +94,7 @@ export function GlobalPresence({
 
   return (
     <section className="bg-linear-to-b from-white to-neutral-50 py-16">
-      <div className="container mx-auto px-4">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 text-center">
           <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-100">

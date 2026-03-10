@@ -47,7 +47,7 @@ export default async function SupportPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <PageContainer size="content">
+        <PageContainer size="narrow">
           <div className="text-center">
             <LifeBuoy className="duration-normal mx-auto mb-4 h-16 w-16 transition-transform hover:rotate-12 hover:scale-110" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
@@ -58,7 +58,7 @@ export default async function SupportPage() {
 
       {/* Quick Actions */}
       <section className="bg-neutral-50 py-12">
-        <PageContainer size="content">
+        <PageContainer size="narrow">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Link
               href="/contact"
@@ -104,7 +104,7 @@ export default async function SupportPage() {
 
       {/* Support Resources */}
       <section className="py-16">
-        <PageContainer size="content">
+        <PageContainer size="narrow">
           <h2 className="mb-8 text-center text-3xl font-bold text-neutral-900">
             {t('resources.title')}
           </h2>
@@ -233,7 +233,7 @@ export default async function SupportPage() {
 
       {/* Contact Section */}
       <section className="bg-neutral-50 py-16">
-        <PageContainer size="content">
+        <PageContainer size="narrow">
           <div className="mb-8 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900">{t('contact.title')}</h2>
             <p className="text-lg text-neutral-700">{t('contact.subtitle')}</p>

@@ -64,9 +64,11 @@ build-*.txt
 e2e-test-results*.txt
 experimental-*.txt
 import-results.json
-schema.json
 wordpress-users.json
 *.tsbuildinfo
+
+# NOTE: web/schema.json is needed by web/codegen.ts and should be committed.
+# Regenerate it with: cd web && pnpm run schema:download
 
 # local cookie dumps from testing / browser exports
 cookies.txt

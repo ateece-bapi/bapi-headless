@@ -60,8 +60,10 @@ build-*.txt
 e2e-test-results*.txt
 experimental-*.txt
 import-results.json
-schema.json
 wordpress-users.json
+
+# NOTE: schema.json is needed by codegen.ts and should be committed.
+# Regenerate it with: pnpm run schema:download
 
 storybook-static
 

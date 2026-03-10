@@ -24,6 +24,7 @@
     "test:storybook:ci": "concurrently -k -s first -n 'SB,TEST' -c 'magenta,blue' 'pnpm run build-storybook --quiet && npx http-server storybook-static --port 6006 --silent' 'wait-on tcp:127.0.0.1:6006 && pnpm run test:storybook'",
     "codegen": "graphql-codegen --config codegen.ts",
     "codegen:watch": "graphql-codegen --config codegen.ts --watch",
+    "schema:download": "node scripts/download-schema.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "optimize:families": "node scripts/optimize-images.mjs families",
     "audit:images": "node scripts/audit-images.mjs",

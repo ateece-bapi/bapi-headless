@@ -17,7 +17,7 @@ export default function WhereToBuyPage() {
     logo: string;
     region: 'usa' | 'europe' | 'international';
     location: string;
-    website: string;
+    website?: string; // Optional to handle distributors without websites
     phone?: string;
     email?: string;
     specialties?: string[];

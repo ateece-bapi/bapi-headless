@@ -71,7 +71,7 @@ jobs:
             | grep -v "localhost" \
             | grep -v "http://www.w3.org" \
             | grep -v "xmlns=" \
-            | grep -v "//" \
+            | grep -Ev '^\s*//' \
             | grep -v "test" || true)
           
           if [ ! -z "$INSECURE_LINKS" ]; then
@@ -106,17 +106,31 @@ jobs:
         run: |
           echo "📧 Validating mailto and tel links..."
           
-          # Check for malformed mailto links
-          if grep -r 'mailto:' web/src --include="*.tsx" | grep 'mailto:""' || \
-             grep -r 'mailto:' web/src --include="*.tsx" | grep 'mailto:$' ; then
-            echo "❌ Found malformed mailto links!"
+          # Check for malformed mailto links (empty mailto hrefs)
+          BAD_MAILTO_LINKS=$(grep -R --line-number \
+            --include="*.tsx" \
+            --include="*.jsx" \
+            -e 'href="mailto:"' \
+            -e "href={'mailto:'}" \
+            web/src || true)
+          
+          if [ -n "$BAD_MAILTO_LINKS" ]; then
+            echo "❌ Found malformed mailto links (empty mailto hrefs):"
+            echo "$BAD_MAILTO_LINKS"
             exit 1
           fi
           
-          # Check for malformed tel links
-          if grep -r 'tel:' web/src --include="*.tsx" | grep 'tel:""' || \
-             grep -r 'tel:' web/src --include="*.tsx" | grep 'tel:$' ; then
-            echo "❌ Found malformed tel links!"
+          # Check for malformed tel links (empty tel hrefs)
+          BAD_TEL_LINKS=$(grep -R --line-number \
+            --include="*.tsx" \
+            --include="*.jsx" \
+            -e 'href="tel:"' \
+            -e "href={'tel:'}" \
+            web/src || true)
+          
+          if [ -n "$BAD_TEL_LINKS" ]; then
+            echo "❌ Found malformed tel links (empty tel hrefs):"
+            echo "$BAD_TEL_LINKS"
             exit 1
           fi
           
@@ -152,7 +166,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
           
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -186,7 +200,7 @@ jobs:
             --timeout 30
             './web/src/**/*.tsx'
             './web/src/**/*.ts'
-          fail: false # Don't fail the build on external link issues
+          fail: false
           
       - name: External link check summary
         run: |

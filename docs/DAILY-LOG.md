@@ -7,6 +7,255 @@
 
 ---
 
+## March 10, 2026 — Link Security Audit & Automated Validation ✅
+
+**Status:** ✅ COMPLETE - 3 PRs Merged to Main  
+**Context:** Comprehensive link security audit with automated CI validation  
+**Time:** ~4 hours  
+**Branches:** `fix/link-audit-improvements`, `fix/stats-refactor`, `fix/copilot-link-validation-issues`  
+**PRs:** #387, #388, #389 (All merged successfully)
+
+### 🎯 SESSION SUMMARY: Proactive Security & Code Quality
+
+**User Goal:** "can you run a sitewide check for LINKS?"
+
+**Delivered:**
+- ✅ Fixed 6 HTTP→HTTPS security issues in distributor links
+- ✅ Created GitHub Actions workflow for automated link validation
+- ✅ Built comprehensive test suite for link patterns
+- ✅ Refactored company stats (40→20 lines, DRY principle)
+- ✅ Fixed 8 critical issues in validation workflow (from Copilot review)
+- ✅ All 1202 tests passing
+
+### PR #387: Link Security Improvements
+
+**Issues Found:**
+- 6 distributor websites using insecure HTTP instead of HTTPS
+- 1 distributor missing website URL (empty string)
+- No automated validation to prevent regression
+
+**Changes Implemented:**
+1. **Updated Distributor Links** (where-to-buy page):
+   - BCCI: http:// → https://www.controlsconnection.com/
+   - Furneco: http:// → https://www.furneco.com
+   - Marcontrol: Added https://www.marcontrol.com (was empty)
+   - Omega Engineering: http:// → https://www.omegaengg.com
+   - Vace: http:// → https://www.vace.com.sg
+   - Pacific Controls: http:// → https://www.paccon.ca
+
+2. **Conditional Website Rendering:**
+   - Added `{distributor.website && (...)` guard
+   - Prevents rendering empty links
+   - Type-safe handling of optional data
+
+3. **GitHub Actions Workflow** (`.github/workflows/link-validation.yml`):
+   - Runs on: push/PR to main/staging, weekly schedule, manual trigger
+   - **Empty href detection**: Scans for `href=""` or `href={''}` patterns
+   - **Next.js Link validation**: Ensures no empty Link components
+   - **HTTP security checks**: Detects insecure http:// links (excludes localhost/comments)
+   - **Contact link validation**: Validates mailto: and tel: patterns
+   - **External link checking**: Optional lychee-action for broken links
+   - Uses PNPM 9 (matches lockfile v9.0)
+
+4. **Test Suite** (`web/src/test/link-validation.test.ts`):
+   - HTTPS security validation (all distributor links)
+   - URL format checking with URL constructor
+   - External link security attributes (target="_blank", rel="noopener noreferrer")
+   - Domain structure verification
+   - Contact link pattern validation (mailto/tel)
+   - Next.js Link usage checks
+   - Accessibility validation (descriptive link text)
+   - 11 tests covering all link scenarios
+
+**Impact:**
+- Security: All external links now use HTTPS encryption
+- Automation: CI catches link issues before merge
+- Reliability: Tests prevent regression
+- Maintainability: Clear validation patterns for future links
+
+### PR #388: Code Quality Improvements (Copilot Feedback)
+
+**Copilot Review Findings:**
+1. Stats cards had 4 duplicate blocks (40 lines of repetitive JSX)
+2. Prose width comment was inaccurate about character count
+
+**Changes Implemented:**
+1. **Stats Refactoring** (company page):
+   - Before: 4 separate card blocks (40 lines)
+   - After: Single `.map()` template (20 lines)
+   - Used typed array with `as const` assertion
+   - Benefits: DRY principle, single source of truth, easier updates
+
+2. **Documentation Fix** (tailwind.config.js):
+   - Before: "Optimal for reading (~65-75 chars/line at 16px)"
+   - After: "Optimized reading width for prose content"
+   - Removed inaccurate character count claim
+
+**Impact:**
+- Code reduction: 50% fewer lines for stats section
+- Maintainability: Single template vs 4 duplicates
+- Accuracy: Fixed misleading documentation
+
+### PR #389: Link Validation Workflow Fixes (8 Copilot Issues)
+
+**Copilot Review Identified Critical Bugs:**
+
+**CRITICAL fixes (workflow would not work correctly):**
+
+1. **Type Safety Issue**: 
+   - Problem: `website: string` but runtime treated as optional
+   - Fix: Changed to `website?: string` in Distributor interface
+   - Impact: Prevents type errors, matches conditional rendering
+
+2. **HTTP Detection Bug** (CRITICAL):
+   - Problem: `grep -v "//"` filtered ALL http:// occurrences (including in URLs!)
+   - Fix: Changed to `grep -Ev '^\s*//'` (only filters comment lines)
+   - Impact: Without this fix, security checks would NEVER detect HTTP links
+
+3. **Lychee Action Configuration**:
+   - Problem: `fail: false` incorrectly nested under `args` (became part of command string)
+   - Fix: Moved to correct YAML indentation level (sibling to args)
+   - Impact: Allows workflow to succeed even with broken external links
+
+4. **Contact Link Validation**:
+   - Problem: Patterns didn't match actual TSX syntax
+   - Fix: Rewrote to check `href="mailto:"` and `href={'mailto:'}` (both quote styles)
+   - Impact: Now validates real component code, not just theory
+
+5. **PNPM Version Incompatibility**:
+   - Problem: Using version 8, but lockfile is v9.0
+   - Fix: Updated pnpm/action-setup from 8 → 9
+   - Impact: Ensures CI environment matches local development
+
+**TEST file improvements:**
+
+6. **Test File Location**:
+   - Problem: Tests in `/web/test/` but Vitest only includes `src/**/*.test.{ts,tsx}`
+   - Fix: Moved to `/web/src/test/link-validation.test.ts`
+   - Impact: Tests now actually execute in CI (were being skipped!)
+
+7. **Removed Tautology Test**:
+   - Problem: Test logic: "count with trailing slash === total count" (always true)
+   - Fix: Deleted ineffective test
+   - Impact: No false sense of coverage
+
+8. **Enhanced External Link Test**:
+   - Problem: Validated hardcoded string constant instead of actual components
+   - Fix: Now creates DOM elements to simulate component rendering
+   - Tests: `target="_blank"` and `rel="noopener noreferrer"` attributes
+   - Impact: Validates real-world rendering behavior
+
+**Test Results:**
+- All 36 test files passing
+- 1202 tests passing
+- Test infrastructure preserved (MSW handlers, fixtures, setupTests.ts)
+
+**Impact:**
+- Fixed critical grep bug that would have made HTTP detection useless
+- Corrected YAML indentation that broke lychee configuration
+- Moved tests to correct location so they actually run
+- Enhanced test quality with DOM simulation
+- PNPM version now matches lockfile (CI reliability)
+
+### Technical Achievements
+
+**Security:**
+- 6 HTTP→HTTPS upgrades (encryption for all distributor links)
+- Automated detection prevents future HTTP link introduction
+- Proper external link security attributes
+
+**Automation:**
+- GitHub Actions workflow with 5 validation checks
+- Runs automatically on PR + weekly schedule
+- Manual trigger available for ad-hoc audits
+- Comprehensive test coverage (11 tests)
+
+**Code Quality:**
+- 50% reduction in stats section lines (40→20)
+- DRY principle applied (single template vs 4 duplicates)
+- Fixed 8 workflow bugs identified by Copilot review
+- Type-safe handling of optional data
+
+**Developer Experience:**
+- Clear grep patterns for link detection
+- Proper test file organization (src/test/)
+- Fixed PNPM version mismatch
+- Enhanced test quality with DOM simulation
+
+### Lessons Learned
+
+1. **Grep Patterns Are Tricky:**
+   - `grep -v "//"` seems reasonable but filters EVERYTHING with //
+   - Always test grep patterns against real data
+   - Use `grep -Ev '^\s*//'` to filter only comment lines
+
+2. **YAML Indentation Matters:**
+   - Incorrect nesting turns config into command string
+   - Use YAML validators or linters
+   - Test actions in actual CI environment
+
+3. **Test Location Critical:**
+   - Vitest include globs must match file locations
+   - Check test runner config when tests don't execute
+   - Standard location: `src/**/*.test.{ts,tsx}`
+
+4. **Type Safety Should Match Runtime:**
+   - If UI conditionally renders, type should be optional
+   - TypeScript interfaces should reflect actual data contracts
+   - Prevents type errors and improves DX
+
+5. **CI Version Compatibility:**
+   - PNPM version in CI must match lockfile version
+   - Check lockfileVersion when setting up actions
+   - Version mismatches cause install failures
+
+### Files Modified
+
+**PR #387:**
+- `/web/src/app/[locale]/where-to-buy/page.tsx` (6 HTTPS upgrades, conditional rendering)
+- `/.github/workflows/link-validation.yml` (new automated validation workflow)
+- `/web/src/test/link-validation.test.ts` (new comprehensive test suite)
+
+**PR #388:**
+- `/web/src/app/[locale]/company/page.tsx` (stats refactor: 40→20 lines)
+- `/web/tailwind.config.js` (prose width comment fix)
+
+**PR #389:**
+- `/.github/workflows/link-validation.yml` (5 critical workflow fixes)
+- `/web/src/app/[locale]/where-to-buy/page.tsx` (interface type fix)
+- `/web/test/link-validation.test.ts` → `/web/src/test/link-validation.test.ts` (relocated + enhanced)
+
+### Metrics
+
+**Time Investment:**
+- Link audit & PR #387: ~1.5 hours
+- Copilot review & PR #388: ~30 minutes
+- Workflow fixes & PR #389: ~2 hours
+- **Total: ~4 hours**
+
+**Code Changes:**
+- 3 PRs merged sequentially
+- 3 files modified (where-to-buy page, workflow, test file)
+- 6 security fixes (HTTP→HTTPS)
+- 8 workflow bugs fixed
+- 40→20 lines (stats refactor)
+- +11 tests for link validation
+
+**Testing:**
+- All 36 test files passing
+- 1202 total tests passing
+- New test suite: 11 link validation tests
+- CI: Automated link checks on every PR
+
+**Quality Improvements:**
+- Security: HTTPS encryption for all external links
+- Automation: GitHub Actions catches issues before merge
+- Code quality: 50% reduction in stats code
+- Type safety: Optional types match runtime behavior
+- Test reliability: Files in correct location, proper DOM simulation
+
+---
+
 ## March 10, 2026 — Project Cleanup: Best Practices & File Organization ✅
 
 **Status:** ✅ COMPLETE - All Changes Merged to Main  

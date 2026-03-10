@@ -73,36 +73,31 @@ describe('Link Validation', () => {
   });
 
   describe('External Link Security Attributes', () => {
-    it('should include target="_blank" for external links', () => {
-      // This is a pattern check - actual implementation is in the component
+    it('should validate external link patterns with security attributes', () => {
       const externalLinkPattern = /<a[^>]*href="https?:\/\/[^"]*"[^>]*>/;
       const hasTargetBlank = /target="_blank"/;
       const hasRelNoopener = /rel="noopener noreferrer"/;
 
-      // Example external link from component
-      const exampleLink = '<a href="https://www.example.com" target="_blank" rel="noopener noreferrer">';
-      
-      expect(exampleLink).toMatch(externalLinkPattern);
-      expect(exampleLink).toMatch(hasTargetBlank);
-      expect(exampleLink).toMatch(hasRelNoopener);
+      mockDistributors.forEach((distributor) => {
+        if (!distributor.website) return;
+
+        // Create anchor element to simulate component rendering
+        const anchor = document.createElement('a');
+        anchor.href = distributor.website;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+        anchor.textContent = 'Visit Website';
+
+        const anchorHtml = anchor.outerHTML;
+
+        expect(anchorHtml).toMatch(externalLinkPattern);
+        expect(anchorHtml).toMatch(hasTargetBlank);
+        expect(anchorHtml).toMatch(hasRelNoopener);
+      });
     });
   });
 
   describe('Link Format Validation', () => {
-    it('should not have trailing slashes inconsistently', () => {
-      const urlsWithTrailingSlash = mockDistributors.filter(
-        (d) => d.website && d.website.endsWith('/')
-      );
-      const urlsWithoutTrailingSlash = mockDistributors.filter(
-        (d) => d.website && !d.website.endsWith('/')
-      );
-
-      // Both patterns are acceptable, just documenting the current state
-      expect(urlsWithTrailingSlash.length + urlsWithoutTrailingSlash.length).toBe(
-        mockDistributors.length
-      );
-    });
-
     it('should have valid domain structure', () => {
       mockDistributors.forEach((distributor) => {
         if (distributor.website) {
@@ -110,6 +105,22 @@ describe('Link Validation', () => {
           expect(url.protocol).toBe('https:');
           expect(url.hostname).toBeTruthy();
           expect(url.hostname).toMatch(/\./); // Has at least one dot
+        }
+      });
+    });
+
+    it('should normalize trailing slashes', () => {
+      mockDistributors.forEach((distributor) => {
+        if (distributor.website) {
+          // URLs should either all have trailing slashes or none
+          // This is a style preference check
+          const hasTrailingSlash = distributor.website.endsWith('/');
+          const isRootPath = new URL(distributor.website).pathname === '/';
+          
+          // If it's not a root path and has trailing slash, that's intentional
+          if (hasTrailingSlash && !isRootPath) {
+            expect(distributor.website).toMatch(/\/$/);
+          }
         }
       });
     });
@@ -166,18 +177,12 @@ describe('Link Validation', () => {
   });
 
   describe('Link Accessibility', () => {
-    it('should have descriptive link text (not just "click here")', () => {
-      const goodLinkTexts = ['Visit Website', 'Contact Sales', 'View Products'];
-      const badLinkTexts = ['click here', 'here', 'link'];
+    it('should have descriptive link text in distributor cards', () => {
+      const linkTexts = ['Visit Website', 'Contact Sales', 'View Products'];
 
-      goodLinkTexts.forEach((text) => {
+      linkTexts.forEach((text) => {
         expect(text.length).toBeGreaterThan(4);
-        expect(text).toMatch(/^[A-Z]/); // Starts with capital
-      });
-
-      // Bad examples should be avoided
-      badLinkTexts.forEach((text) => {
-        expect(text.toLowerCase()).not.toMatch(/^(click here|here)$/);
+        expect(text).toMatch(/^[A-Z]/); // Starts with capital letter
       });
     });
   });

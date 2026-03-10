@@ -44,8 +44,12 @@ jobs:
       - name: Run preview sanity
         run: node scripts/preview_sanity.mjs
 
-      - name: Run tests
+      - name: Run unit tests
         run: pnpm test
+
+      - name: Run Storybook accessibility tests
+        run: pnpm run test:storybook:ci
+        continue-on-error: true  # Non-blocking: Reports issues without failing CI
 
       - name: Build
         env:

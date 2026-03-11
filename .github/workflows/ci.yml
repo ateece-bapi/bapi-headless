@@ -51,8 +51,22 @@ jobs:
         run: pnpm run test:storybook:ci
         continue-on-error: true  # Non-blocking: Reports issues without failing CI
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('web/pnpm-lock.yaml') }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
       - name: Install Playwright browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install --with-deps chromium
+      
+      - name: Install Playwright system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps chromium
 
       - name: Run E2E tests
         run: pnpm exec playwright test --project=chromium
@@ -67,6 +81,17 @@ jobs:
           name: playwright-report
           path: web/playwright-report/
           retention-days: 7
+
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            web/.next/cache
+            web/.next/standalone
+          key: nextjs-${{ runner.os }}-${{ hashFiles('web/pnpm-lock.yaml') }}-${{ hashFiles('web/**/*.ts', 'web/**/*.tsx', 'web/**/*.js', 'web/**/*.jsx') }}
+          restore-keys: |
+            nextjs-${{ runner.os }}-${{ hashFiles('web/pnpm-lock.yaml') }}-
+            nextjs-${{ runner.os }}-
 
       - name: Build
         env:

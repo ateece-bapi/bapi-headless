@@ -21,24 +21,24 @@ export async function waitForAnimations(page: Page, timeout: number = 500): Prom
 /**
  * Wait for element to be stable (no animations, no DOM changes)
  * Uses Playwright's built-in actionability checks + custom stability verification
+ * @throws Error if element never stabilizes within timeout
  */
 export async function waitForStableElement(locator: Locator, timeout: number = 5000): Promise<void> {
   await locator.waitFor({ state: 'visible', timeout });
   
   // Wait for element to stop moving/changing
   let previousBoundingBox = await locator.boundingBox();
-  let attempts = 0;
-  const maxAttempts = 10;
+  const startTime = Date.now();
+  const checkInterval = 100;
   
-  while (attempts < maxAttempts) {
-    await new Promise(resolve => setTimeout(resolve, 100));
+  while (Date.now() - startTime < timeout) {
+    await new Promise(resolve => setTimeout(resolve, checkInterval));
     const currentBoundingBox = await locator.boundingBox();
     
     if (!previousBoundingBox || !currentBoundingBox) {
       // Element disappeared, wait for it to reappear
       await locator.waitFor({ state: 'visible', timeout: 1000 });
       previousBoundingBox = await locator.boundingBox();
-      attempts++;
       continue;
     }
     
@@ -54,13 +54,16 @@ export async function waitForStableElement(locator: Locator, timeout: number = 5
     }
     
     previousBoundingBox = currentBoundingBox;
-    attempts++;
   }
+  
+  // If we get here, element never stabilized
+  throw new Error(`Element did not stabilize within ${timeout}ms`);
 }
 
 /**
  * Safely click element with retry logic for animations and React re-renders
- * Handles: animations, Suspense boundaries, lazy loading
+ * Handles: animations, Suspense boundaries, lazy loading, transient errors
+ * Retries on common transient failures (detached, not clickable, etc.)
  */
 export async function safeClick(
   locator: Locator, 
@@ -68,21 +71,52 @@ export async function safeClick(
     waitForAnimations?: boolean;
     timeout?: number;
     force?: boolean;
+    retries?: number;
   } = {}
 ): Promise<void> {
   const { 
     waitForAnimations: shouldWaitForAnimations = true, 
     timeout = 10000,
-    force = false 
+    force = false,
+    retries = 3
   } = options;
   
-  await locator.waitFor({ state: 'visible', timeout });
+  let lastError: Error | undefined;
   
-  if (shouldWaitForAnimations) {
-    await waitForStableElement(locator, timeout);
+  for (let attempt = 0; attempt < retries; attempt++) {
+    try {
+      await locator.waitFor({ state: 'visible', timeout });
+      
+      if (shouldWaitForAnimations) {
+        await waitForStableElement(locator, timeout);
+      }
+      
+      await locator.click({ timeout, force });
+      return; // Success!
+    } catch (error) {
+      lastError = error as Error;
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      
+      // Check if it's a transient error worth retrying
+      const isTransient = 
+        errorMessage.includes('detached') ||
+        errorMessage.includes('not clickable') ||
+        errorMessage.includes('obscured') ||
+        errorMessage.includes('outside the viewport');
+      
+      if (isTransient && attempt < retries - 1) {
+        // Wait a bit before retrying
+        await new Promise(resolve => setTimeout(resolve, 500));
+        continue;
+      }
+      
+      // Non-transient error or last retry - throw
+      throw error;
+    }
   }
   
-  await locator.click({ timeout, force });
+  // Should never reach here, but just in case
+  throw lastError || new Error('Click failed after retries');
 }
 
 /**

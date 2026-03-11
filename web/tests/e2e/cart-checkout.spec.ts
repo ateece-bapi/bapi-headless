@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
 import type { Page } from '@playwright/test';
 import { routes, DEFAULT_LOCALE } from './helpers/routes';
+import { waitForFullPageLoad, safeClick, waitForStableElement } from './helpers/test-utils';
 
 /**
  * Cart & Checkout E2E Tests
@@ -25,6 +26,7 @@ test.describe('Shopping Cart', () => {
     await page.reload({ waitUntil: 'commit' });
     // Wait for header to render (indicates React hydration complete)
     await page.getByRole('link', { name: /cart/i }).first().waitFor({ state: 'visible', timeout: 10000 });
+    await waitForStableElement(page.getByRole('link', { name: /cart/i }).first());
   });
 
   test('should start with empty cart', async ({ page }) => {
@@ -52,7 +54,7 @@ test.describe('Shopping Cart', () => {
     
     // Click cart button
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    await cartButton.click();
+    await safeClick(cartButton);
     
     // Should show cart contents
     const cartHeading = page.getByRole('heading', { name: /cart|shopping cart/i });
@@ -68,7 +70,7 @@ test.describe('Shopping Cart', () => {
     
     // Open cart
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    await cartButton.click();
+    await safeClick(cartButton);
     
     // Cart should show product name
     const cartContent = page.locator('[role="dialog"], .cart-drawer, .cart-modal');
@@ -88,7 +90,7 @@ test.describe('Shopping Cart', () => {
     
     // Open cart
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    await cartButton.click();
+    await safeClick(cartButton);
     
     // Wait for cart content to be visible
     const cartContent = page.locator('[role="dialog"], .cart-drawer, .cart-modal');
@@ -99,7 +101,7 @@ test.describe('Shopping Cart', () => {
     
     if (await increaseButton.isVisible()) {
       // Increase quantity
-      await increaseButton.click();
+      await safeClick(increaseButton);
       
       // Cart total should update and be visible
       const cartTotal = page.locator('text=/total|subtotal/i').first();
@@ -116,7 +118,7 @@ test.describe('Shopping Cart', () => {
     
     // Open cart
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    await cartButton.click();
+    await safeClick(cartButton);
     
     // Wait for cart content
     const cartContent = page.locator('[role="dialog"], .cart-drawer, .cart-modal');
@@ -124,7 +126,7 @@ test.describe('Shopping Cart', () => {
     
     // Find remove button
     const removeButton = page.getByRole('button', { name: /remove|delete/i }).first();
-    await removeButton.click();
+    await safeClick(removeButton);
     
     // Cart should be empty
     const emptyMessage = page.locator('text=/empty|no items/i');
@@ -158,7 +160,7 @@ test.describe('Shopping Cart', () => {
     
     // Open cart drawer
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    await cartButton.click();
+    await safeClick(cartButton);
     await page.waitForTimeout(1000);
     
     // Should show cart heading
@@ -178,7 +180,7 @@ test.describe('Shopping Cart', () => {
     
     // Open cart drawer
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    await cartButton.click();
+    await safeClick(cartButton);
     await page.waitForTimeout(1000);
     
     // Run accessibility check on cart content
@@ -210,14 +212,14 @@ test.describe('Checkout Process', () => {
   test('should navigate to checkout from cart', async ({ page }) => {
     // Click cart button to open cart drawer/modal  
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
-    await cartButton.click();
+    await safeClick(cartButton);
     await page.waitForTimeout(1000);
     
     // Find checkout button in cart
     const checkoutButton = page.getByRole('link', { name: /checkout|proceed/i });
     
     if (await checkoutButton.isVisible({ timeout: 5000 })) {
-      await checkoutButton.click();
+      await safeClick(checkoutButton);
       
       // Should navigate to checkout
       await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`), { timeout: 10000 });
@@ -252,7 +254,7 @@ test.describe('Checkout Process', () => {
     const continueButton = page.getByRole('button', { name: /continue|next|submit/i }).first();
     
     if (await continueButton.isVisible()) {
-      await continueButton.click();
+      await safeClick(continueButton);
       
       // Should show validation errors
       const errorMessage = page.locator('text=/required|error|invalid/i').first();
@@ -431,7 +433,8 @@ async function addProductToCart(page: Page) {
     
     // Wait for button to appear (replaces hardcoded 4s timeout + 15s wait)
     await addToCartButton.waitFor({ state: 'visible', timeout: 20000 });
-    await addToCartButton.click();
+    await waitForStableElement(addToCartButton);
+    await safeClick(addToCartButton);
     
     // Wait for cart badge to update
     const cartButton = page.getByRole('link', { name: /cart/i }).first();

@@ -110,24 +110,43 @@ test.describe('Product Pages', () => {
       await page.goto(routes.products());
       await waitForFullPageLoad(page);
       
+      // Wait with extra timeout for initial page load
+      await page.waitForTimeout(1000);
+      
       // Wait for first category card to be visible and stable
       const firstCategoryCard = page
         .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
+      
+      // Add extra timeout for category cards to appear
+      await firstCategoryCard.waitFor({ state: 'visible', timeout: 10000 }).catch(async () => {
+        // Fallback: try alternative selectors
+        const altCard = page.locator('a[href*="/categories/"]').first();
+        await altCard.waitFor({ state: 'visible', timeout: 5000 });
+      });
+      
       await waitForStableElement(firstCategoryCard);
       await expect(firstCategoryCard).toBeVisible();
       
-      // Navigate to category page
+      // Navigate to category page with extra safety
       await safeClick(firstCategoryCard);
       await waitForFullPageLoad(page);
+      await page.waitForTimeout(800); // Extra wait for animations
       
       // Navigate through category hierarchy to find products (enterprise utility)
       const productLink = await navigateToProducts(page, 3);
+      await expect(productLink).toBeVisible();
       
-      // Navigate to product detail page
+      // Navigate to product detail page with extra stability
       await safeClick(productLink);
       await waitForFullPageLoad(page);
+      await page.waitForTimeout(500);
+      
+      // Verify we reached a product page before tests run
+      await expect(page).toHaveURL(/\/product\/.+/, { timeout: 10000 });
+      const productHeading = page.getByRole('heading', { level: 1 });
+      await expect(productHeading).toBeVisible({ timeout: 10000 });
     });
 
     test('should display product information', async ({ page }) => {
@@ -173,20 +192,21 @@ test.describe('Product Pages', () => {
     });
 
     test('should add product to cart', async ({ page }) => {
-      // Get initial cart count
-      const cartButton = page.getByRole('button', { name: /cart/i }).first();
-      const initialText = await cartButton.textContent();
+      // Get initial cart count (cart button is a LINK, not button)
+      const cartLink = page.getByRole('link', { name: /cart/i }).first();
+      await waitForStableElement(cartLink);
+      const initialText = await cartLink.textContent();
       const initialCount = parseInt(initialText?.match(/\d+/)?.[0] || '0');
       
       // Click add to cart
       const addToCartButton = page.getByRole('button', { name: /add to cart/i });
-      await addToCartButton.click();
+      await safeClick(addToCartButton);
       
       // Wait for cart to update
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(1000);
       
       // Cart count should increase
-      const updatedText = await cartButton.textContent();
+      const updatedText = await cartLink.textContent();
       const updatedCount = parseInt(updatedText?.match(/\d+/)?.[0] || '0');
       
       expect(updatedCount).toBe(initialCount + 1);
@@ -236,7 +256,7 @@ test.describe('Product Pages', () => {
       
       // Reload page
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       
       // Product information should still be visible
       const title = page.getByRole('heading', { level: 1 });
@@ -260,18 +280,19 @@ test.describe('Product Pages', () => {
       
       if (await quantityInput.isVisible()) {
         // Change quantity
+        await waitForStableElement(quantityInput);
         await quantityInput.fill('3');
         
         // Add to cart
         const addToCartButton = page.getByRole('button', { name: /add to cart/i });
-        await addToCartButton.click();
+        await safeClick(addToCartButton);
         
         // Wait for cart update
-        await page.waitForTimeout(500);
+        await page.waitForTimeout(1000);
         
-        // Cart should reflect quantity
-        const cartButton = page.getByRole('button', { name: /cart/i }).first();
-        const cartText = await cartButton.textContent();
+        // Cart should reflect quantity (cart is a LINK, not button)
+        const cartLink = page.getByRole('link', { name: /cart/i }).first();
+        const cartText = await cartLink.textContent();
         expect(cartText).toContain('3');
       }
     });
@@ -289,11 +310,12 @@ test.describe('Product Pages', () => {
   test.describe('Product Search', () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(routes.products());
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       
-      // Wait for header to be fully loaded
+      // Wait for header to be fully loaded and stable
       const header = page.locator('header');
       await expect(header).toBeVisible();
+      await waitForStableElement(header);
     });
 
     test('should search for products', async ({ page }) => {

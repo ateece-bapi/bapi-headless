@@ -1,18 +1,25 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
 import { routes } from './helpers/routes';
+import { 
+  safeClick, 
+  navigateToProducts, 
+  waitForFullPageLoad,
+  waitForAnimations,
+  waitForStableElement
+} from './helpers/test-utils';
 
 /**
- * Product Pages E2E Tests
+ * Product Pages E2E Tests (Enterprise-Level)
  * 
- * Tests product browsing and product detail pages:
- * - Product listing pages
- * - Product detail pages
- * - Product information display
- * - Add to cart functionality
- * - Product images and media
- * - Breadcrumb navigation
- * - Accessibility compliance
+ * Tests product browsing and product detail pages with proper handling of:
+ * - Animated category cards and transitions
+ * - Deep category nesting (3+ levels)
+ * - React Suspense boundaries
+ * - Lazy-loaded components
+ * - Element stability during interactions
+ * 
+ * Uses enterprise test utilities from ./helpers/test-utils.ts
  * 
  * IMPORTANT: All routes use locale helper (routes.products()) to avoid
  * hardcoding locale prefixes. next-intl requires locale in all routes.
@@ -22,12 +29,14 @@ test.describe('Product Pages', () => {
   test.describe('Product Categories Landing', () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(routes.products());
-      await page.waitForLoadState('networkidle');
-      // Wait for first category card to be visible (deterministic animation completion)
+      await waitForFullPageLoad(page);
+      
+      // Wait for first category card to be visible and stable
       const firstCategoryCard = page
         .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
+      await waitForStableElement(firstCategoryCard);
       await expect(firstCategoryCard).toBeVisible();
     });
 
@@ -53,8 +62,9 @@ test.describe('Product Pages', () => {
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
 
-      await firstCategory.click();
-      await page.waitForLoadState('networkidle');
+      await safeClick(firstCategory);
+      await waitForFullPageLoad(page);
+      
       // Wait for category page heading to be visible (deterministic)
       const categoryHeading = page.getByRole('heading', { level: 1 });
       await expect(categoryHeading).toBeVisible();
@@ -64,48 +74,24 @@ test.describe('Product Pages', () => {
     });
 
     test('should navigate from category to product detail', async ({ page }) => {
-      // First go from products landing to a category page
+      // Navigate from products landing to a category page
       const firstCategory = page
         .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
-      await firstCategory.click();
-      await page.waitForLoadState('networkidle');
+      
+      await safeClick(firstCategory);
+      await waitForFullPageLoad(page);
 
-      // Then click the first product link within that category
-      let productLinks = page.locator('a[href*="/product/"]');
-      let productCount = await productLinks.count();
+      // Navigate through category hierarchy to find products (enterprise utility)
+      const productLink = await navigateToProducts(page, 3);
+      
+      // Click product link
+      await safeClick(productLink);
+      await waitForFullPageLoad(page);
 
-      // Some categories have subcategories (render a[href*="/products/"]) instead of products
-      // If no product links found, navigate to first subcategory
-      if (productCount === 0) {
-        const subcategoryLinks = page.locator('a[href*="/products/"]');
-        const subcategoryCount = await subcategoryLinks.count();
-
-        // Fail fast with a clear assertion if the category is completely empty
-        expect(subcategoryCount).toBeGreaterThan(0);
-
-        const firstSubcategoryLink = subcategoryLinks.first();
-        await expect(firstSubcategoryLink).toBeVisible();
-        await firstSubcategoryLink.click();
-        await page.waitForLoadState('networkidle');
-
-        // Now look for product links in the subcategory
-        productLinks = page.locator('a[href*="/product/"]');
-        productCount = await productLinks.count();
-      }
-
-      // Assert that we found at least one product so the test fails if the journey is broken
-      expect(productCount).toBeGreaterThan(0);
-
-      const firstProduct = productLinks.first();
-      await firstProduct.click();
-
-      // Should navigate to a product detail page (/product/...)
-      await page.waitForURL(/\/product\/.+/);
-      await page.waitForLoadState('networkidle');
-
-      // Product heading should be visible
+      // Verify we're on a product detail page
+      await expect(page).toHaveURL(/\/product\/.+/);
       const productHeading = page.getByRole('heading', { level: 1 });
       await expect(productHeading).toBeVisible();
     });
@@ -122,47 +108,26 @@ test.describe('Product Pages', () => {
     test.beforeEach(async ({ page }) => {
       // Navigate to products landing page
       await page.goto(routes.products());
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       
-      // Wait for first category card to be visible (deterministic)
+      // Wait for first category card to be visible and stable
       const firstCategoryCard = page
         .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
+      await waitForStableElement(firstCategoryCard);
       await expect(firstCategoryCard).toBeVisible();
       
-      // Click first category
-      await firstCategoryCard.click();
-      await page.waitForLoadState('networkidle');
+      // Navigate to category page
+      await safeClick(firstCategoryCard);
+      await waitForFullPageLoad(page);
       
-      // Check if category has subcategories (parent category) or products (leaf category)
-      let firstProductLink = page.locator('a[href*="/product/"]').first();
-      const productLinkCount = await page.locator('a[href*="/product/"]').count();
+      // Navigate through category hierarchy to find products (enterprise utility)
+      const productLink = await navigateToProducts(page, 3);
       
-      // If no product links found, this is a parent category with subcategories
-      if (productLinkCount === 0) {
-        const subcategoryLinks = page.locator('a[href*="/products/"]');
-        const subcategoryCount = await subcategoryLinks.count();
-        expect(subcategoryCount).toBeGreaterThan(0);
-
-        const firstSubcategoryLink = subcategoryLinks.first();
-        await expect(firstSubcategoryLink).toBeVisible();
-        await firstSubcategoryLink.click();
-        await page.waitForLoadState('networkidle');
-        firstProductLink = page.locator('a[href*="/product/"]').first();
-      }
-      
-      // After potential fallback, assert that at least one product link exists
-      const finalProductLinkCount = await page.locator('a[href*="/product/"]').count();
-      expect(finalProductLinkCount).toBeGreaterThan(0);
-      await expect(firstProductLink).toBeVisible();
-      
-      // Click first product link
-      await firstProductLink.click();
-      
-      // Wait for product detail page (/product/...)
-      await page.waitForURL(/\/product\/.+/);
-      await page.waitForLoadState('networkidle');
+      // Navigate to product detail page
+      await safeClick(productLink);
+      await waitForFullPageLoad(page);
     });
 
     test('should display product information', async ({ page }) => {
@@ -323,24 +288,33 @@ test.describe('Product Pages', () => {
 
   test.describe('Product Search', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/');
+      await page.goto(routes.products());
       await page.waitForLoadState('networkidle');
+      
+      // Wait for header to be fully loaded
+      const header = page.locator('header');
+      await expect(header).toBeVisible();
     });
 
     test('should search for products', async ({ page }) => {
-      // Open search
-      const searchButton = page.getByRole('button', { name: /search/i });
-      await searchButton.click();
+      // Open search - try multiple possible search button patterns
+      const searchButton = page.getByRole('button', { name: /search/i }).or(
+        page.locator('button[aria-label*="search" i]')
+      ).or(
+        page.locator('[data-testid="search-button"]')
+      ).first();
       
-      // Type search query
+      await safeClick(searchButton);
+      
+      // Wait for search input to appear
       const searchInput = page.getByRole('searchbox');
+      await waitForStableElement(searchInput);
+      await expect(searchInput).toBeVisible();
       await searchInput.fill('damper actuator');
       
-      // Submit search or wait for results
+      // Submit search
       await page.keyboard.press('Enter');
-      
-      // Should navigate to search results
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       
       // Results should be displayed
       const results = page.locator('[data-testid="search-results"], .search-results, main');
@@ -348,17 +322,24 @@ test.describe('Product Pages', () => {
     });
 
     test('should show no results message for invalid search', async ({ page }) => {
-      // Open search
-      const searchButton = page.getByRole('button', { name: /search/i });
-      await searchButton.click();
+      // Open search - try multiple possible search button patterns
+      const searchButton = page.getByRole('button', { name: /search/i }).or(
+        page.locator('button[aria-label*="search" i]')
+      ).or(
+        page.locator('[data-testid="search-button"]')
+      ).first();
       
-      // Type nonsense query
+      await safeClick(searchButton);
+      
+      // Wait for search input to appear
       const searchInput = page.getByRole('searchbox');
+      await waitForStableElement(searchInput);
+      await expect(searchInput).toBeVisible();
       await searchInput.fill('xyzabc123notfound');
       await page.keyboard.press('Enter');
       
       // Should show no results message
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       const noResults = page.locator('text=/no results|nothing found|no products found/i');
       await expect(noResults).toBeVisible();
     });

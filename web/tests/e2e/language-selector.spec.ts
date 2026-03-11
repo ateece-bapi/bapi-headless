@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
-import { waitForFullPageLoad, safeClick, waitForStableElement } from './helpers/test-utils';
+import { waitForFullPageLoad, safeClick } from './helpers/test-utils';
 import { routes } from './helpers/routes';
 
 /**

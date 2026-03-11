@@ -5,7 +5,6 @@ import {
   safeClick, 
   navigateToProducts, 
   waitForFullPageLoad,
-  waitForAnimations,
   waitForStableElement
 } from './helpers/test-utils';
 
@@ -114,17 +113,19 @@ test.describe('Product Pages', () => {
       await page.waitForTimeout(1000);
       
       // Wait for first category card to be visible and stable
-      const firstCategoryCard = page
+      let firstCategoryCard = page
         .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
       
       // Add extra timeout for category cards to appear
-      await firstCategoryCard.waitFor({ state: 'visible', timeout: 10000 }).catch(async () => {
+      try {
+        await firstCategoryCard.waitFor({ state: 'visible', timeout: 10000 });
+      } catch {
         // Fallback: try alternative selectors
-        const altCard = page.locator('a[href*="/categories/"]').first();
-        await altCard.waitFor({ state: 'visible', timeout: 5000 });
-      });
+        firstCategoryCard = page.locator('a[href*="/categories/"]').first();
+        await firstCategoryCard.waitFor({ state: 'visible', timeout: 5000 });
+      }
       
       await waitForStableElement(firstCategoryCard);
       await expect(firstCategoryCard).toBeVisible();

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
 import type { Page } from '@playwright/test';
 import { routes, DEFAULT_LOCALE } from './helpers/routes';
-import { waitForFullPageLoad, safeClick, waitForStableElement } from './helpers/test-utils';
+import { safeClick, waitForStableElement } from './helpers/test-utils';
 
 /**
  * Cart & Checkout E2E Tests

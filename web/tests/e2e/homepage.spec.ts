@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
+import { waitForFullPageLoad, safeClick, waitForStableElement } from './helpers/test-utils';
+import { routes } from './helpers/routes';
 
 /**
  * Homepage E2E Tests
@@ -15,8 +17,8 @@ import { injectAxe, checkA11y } from 'axe-playwright';
 
 test.describe('Homepage', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.goto(routes.home());
+    await waitForFullPageLoad(page);
   });
 
   test('should load homepage successfully', async ({ page }) => {
@@ -57,11 +59,12 @@ test.describe('Homepage', () => {
     const searchButton = page.getByRole('button', { name: /search/i });
     
     if (await searchButton.isVisible()) {
-      await searchButton.click();
+      await safeClick(searchButton);
       
       // Wait for search input to appear
       const searchInput = page.getByRole('searchbox');
       await expect(searchInput).toBeVisible();
+      await waitForStableElement(searchInput);
       
       // Type search query
       await searchInput.fill('damper');
@@ -82,13 +85,13 @@ test.describe('Homepage', () => {
   test('should navigate to products page', async ({ page }) => {
     // Click Products link
     const productsLink = page.getByRole('link', { name: /products/i }).first();
-    await productsLink.click();
+    await safeClick(productsLink);
     
     // Should navigate to products page
     await page.waitForURL(/\/products/);
     
     // Products heading should be visible
-    await page.waitForLoadState('networkidle');
+    await waitForFullPageLoad(page);
     const heading = page.getByRole('heading', { level: 1 });
     await expect(heading).toBeVisible();
   });
@@ -121,7 +124,7 @@ test.describe('Homepage', () => {
     await expect(signInButton).toBeVisible();
     
     // Clicking should navigate to sign-in page
-    await signInButton.click();
+    await safeClick(signInButton);
     await page.waitForURL(/\/sign-in/);
   });
 
@@ -130,15 +133,15 @@ test.describe('Homepage', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     
     // Reload page
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.goto(routes.home());
+    await waitForFullPageLoad(page);
     
     // Mobile menu button should be visible
     const mobileMenuButton = page.getByRole('button', { name: /menu/i });
     await expect(mobileMenuButton).toBeVisible();
     
     // Click to open mobile menu
-    await mobileMenuButton.click();
+    await safeClick(mobileMenuButton);
     
     // Mobile navigation should appear (target by aria-label to avoid nested nav ambiguity)
     await page.waitForTimeout(500); // Animation
@@ -179,8 +182,8 @@ test.describe('Homepage', () => {
   test('should load quickly (performance)', async ({ page }) => {
     const startTime = Date.now();
     
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.goto(routes.home());
+    await waitForFullPageLoad(page);
     
     const loadTime = Date.now() - startTime;
     

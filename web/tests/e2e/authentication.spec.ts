@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
+import { waitForFullPageLoad, safeClick, waitForStableElement } from './helpers/test-utils';
+import { buildRoute } from './helpers/routes';
 
 /**
  * Authentication E2E Tests
@@ -17,8 +19,8 @@ import { injectAxe, checkA11y } from 'axe-playwright';
 test.describe('Authentication', () => {
   test.describe('Sign In', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/sign-in');
-      await page.waitForLoadState('networkidle');
+      await page.goto(buildRoute('/sign-in'));
+      await waitForFullPageLoad(page);
     });
 
     test('should display sign in page', async ({ page }) => {
@@ -42,7 +44,7 @@ test.describe('Authentication', () => {
     test('should validate empty form submission', async ({ page }) => {
       // Click submit without filling form
       const submitButton = page.getByRole('button', { name: /sign in|log in|submit/i });
-      await submitButton.click();
+      await safeClick(submitButton);
       
       // Wait for validation
       await page.waitForTimeout(500);
@@ -58,6 +60,7 @@ test.describe('Authentication', () => {
     test('should validate invalid email format', async ({ page }) => {
       // Enter invalid email
       const emailInput = page.getByLabel(/email/i);
+      await waitForStableElement(emailInput);
       await emailInput.fill('invalid-email');
       
       // Enter password
@@ -66,7 +69,7 @@ test.describe('Authentication', () => {
       
       // Submit
       const submitButton = page.getByRole('button', { name: /sign in|log in|submit/i });
-      await submitButton.click();
+      await safeClick(submitButton);
       
       // Wait for validation
       await page.waitForTimeout(500);
@@ -81,6 +84,7 @@ test.describe('Authentication', () => {
 
     test('should show/hide password', async ({ page }) => {
       const passwordInput = page.getByLabel(/password/i);
+      await waitForStableElement(passwordInput);
       
       // Initially should be type="password"
       await expect(passwordInput).toHaveAttribute('type', 'password');
@@ -89,7 +93,7 @@ test.describe('Authentication', () => {
       const toggleButton = page.getByRole('button', { name: /show|hide|toggle password/i });
       
       if (await toggleButton.isVisible()) {
-        await toggleButton.click();
+        await safeClick(toggleButton);
         
         // Should change to type="text"
         await expect(passwordInput).toHaveAttribute('type', 'text');
@@ -104,7 +108,7 @@ test.describe('Authentication', () => {
         await expect(forgotPasswordLink).toBeVisible();
         
         // Should navigate to password reset
-        await forgotPasswordLink.click();
+        await safeClick(forgotPasswordLink);
         await page.waitForURL(/\/forgot-password|\/reset-password/);
       }
     });
@@ -117,7 +121,7 @@ test.describe('Authentication', () => {
         await expect(signUpLink).toBeVisible();
         
         // Should navigate to sign up
-        await signUpLink.click();
+        await safeClick(signUpLink);
         await page.waitForURL(/\/sign-up|\/register/);
       }
     });
@@ -132,7 +136,7 @@ test.describe('Authentication', () => {
     test('should be responsive on mobile', async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 667 });
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       
       // Form should be visible on mobile
       const heading = page.getByRole('heading', { name: /sign in|log in/i });
@@ -145,8 +149,8 @@ test.describe('Authentication', () => {
 
   test.describe('Sign Up', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/sign-up');
-      await page.waitForLoadState('networkidle');
+      await page.goto(buildRoute('/sign-up'));
+      await waitForFullPageLoad(page);
     });
 
     test('should display sign up page', async ({ page }) => {

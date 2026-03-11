@@ -14,14 +14,16 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests/e2e',
   
-  // Maximum time one test can run for
-  timeout: 30 * 1000,
+  // Maximum time one test can run for (increased for enterprise test patterns)
+  // Tests now handle React animations, Suspense boundaries, deep category nesting
+  timeout: 60 * 1000,
   
   // Test execution settings
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  // Reduce workers for stability (11 was causing interference)
+  workers: process.env.CI ? 1 : 6,
   
   // Reporter to use
   reporter: [

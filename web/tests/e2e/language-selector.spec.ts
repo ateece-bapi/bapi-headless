@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
+import { waitForFullPageLoad, safeClick } from './helpers/test-utils';
+import { routes } from './helpers/routes';
 
 /**
  * Language Selector E2E Tests
@@ -15,10 +17,10 @@ import { injectAxe, checkA11y } from 'axe-playwright';
 test.describe('Language Selector', () => {
   test.beforeEach(async ({ page }) => {
     // Start on the homepage
-    await page.goto('/');
+    await page.goto(routes.home());
     
     // Wait for page to be fully loaded
-    await page.waitForLoadState('networkidle');
+    await waitForFullPageLoad(page);
   });
 
   test('should display language selector with current language', async ({ page }) => {
@@ -36,7 +38,7 @@ test.describe('Language Selector', () => {
   test('should open language dropdown on click', async ({ page }) => {
     // Click the language selector button
     const languageButton = page.getByRole('button', { name: /select language/i });
-    await languageButton.click();
+    await safeClick(languageButton);
     
     // Wait for dropdown menu to appear
     const dropdown = page.getByRole('listbox');
@@ -50,13 +52,13 @@ test.describe('Language Selector', () => {
   test('should change language and show toast notification', async ({ page }) => {
     // Click the language selector button
     const languageButton = page.getByRole('button', { name: /select language/i });
-    await languageButton.click();
+    await safeClick(languageButton);
     
     // Wait for dropdown to open
     await page.waitForSelector('[role="listbox"]');
     
     // Select Spanish
-    await page.getByRole('option', { name: /español/i }).click();
+    await safeClick(page.getByRole('option', { name: /español/i }));
     
     // Wait a moment for toast to appear (100ms delay + render time)
     await page.waitForTimeout(200);
@@ -82,12 +84,12 @@ test.describe('Language Selector', () => {
     
     // Change to Spanish
     const languageButton = page.getByRole('button', { name: /select language/i });
-    await languageButton.click();
-    await page.getByRole('option', { name: /español/i }).click();
+    await safeClick(languageButton);
+    await safeClick(page.getByRole('option', { name: /español/i }));
     
     // Wait for navigation
     await page.waitForURL('/es');
-    await page.waitForLoadState('networkidle');
+    await waitForFullPageLoad(page);
     
     // Language selector should now show Spanish
     const updatedButton = page.getByRole('button', { name: /select language/i });
@@ -97,10 +99,10 @@ test.describe('Language Selector', () => {
   test('should not show toast when selecting same language', async ({ page }) => {
     // Click the language selector
     const languageButton = page.getByRole('button', { name: /select language/i });
-    await languageButton.click();
+    await safeClick(languageButton);
     
     // Select English (current language)
-    await page.getByRole('option', { name: /english/i }).click();
+    await safeClick(page.getByRole('option', { name: /english/i }));
     
     // Wait a moment
     await page.waitForTimeout(300);
@@ -115,18 +117,18 @@ test.describe('Language Selector', () => {
 
   test('should work across multiple language switches', async ({ page }) => {
     // English → Spanish
-    await page.getByRole('button', { name: /select language/i }).click();
-    await page.getByRole('option', { name: /español/i }).click();
+    await safeClick(page.getByRole('button', { name: /select language/i }));
+    await safeClick(page.getByRole('option', { name: /español/i }));
     await page.waitForURL('/es');
     
     // Spanish → German
-    await page.getByRole('button', { name: /select language/i }).click();
-    await page.getByRole('option', { name: /deutsch/i }).click();
+    await safeClick(page.getByRole('button', { name: /select language/i }));
+    await safeClick(page.getByRole('option', { name: /deutsch/i }));
     await page.waitForURL('/de');
     
     // German → Japanese
-    await page.getByRole('button', { name: /select language/i }).click();
-    await page.getByRole('option', { name: /日本語/i }).click();
+    await safeClick(page.getByRole('button', { name: /select language/i }));
+    await safeClick(page.getByRole('option', { name: /日本語/i }));
     await page.waitForURL('/ja');
     
     // Verify final state
@@ -171,7 +173,7 @@ test.describe('Language Selector', () => {
     });
     
     // Open dropdown
-    await page.getByRole('button', { name: /select language/i }).click();
+    await safeClick(page.getByRole('button', { name: /select language/i }));
     
     // Check accessibility of open state
     await checkA11y(page, undefined, {
@@ -187,16 +189,16 @@ test.describe('Language Selector', () => {
     await page.setViewportSize({ width: 375, height: 667 });
     
     // Navigate to page
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.goto(routes.home());
+    await waitForFullPageLoad(page);
     
     // Language selector should be visible on mobile
     const languageButton = page.getByRole('button', { name: /select language/i });
     await expect(languageButton).toBeVisible();
     
     // Should work the same as desktop
-    await languageButton.click();
-    await page.getByRole('option', { name: /español/i }).click();
+    await safeClick(languageButton);
+    await safeClick(page.getByRole('option', { name: /español/i }));
     
     // Toast should appear
     await page.waitForTimeout(200);

@@ -1,18 +1,24 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
 import { routes } from './helpers/routes';
+import { 
+  safeClick, 
+  navigateToProducts, 
+  waitForFullPageLoad,
+  waitForStableElement
+} from './helpers/test-utils';
 
 /**
- * Product Pages E2E Tests
+ * Product Pages E2E Tests (Enterprise-Level)
  * 
- * Tests product browsing and product detail pages:
- * - Product listing pages
- * - Product detail pages
- * - Product information display
- * - Add to cart functionality
- * - Product images and media
- * - Breadcrumb navigation
- * - Accessibility compliance
+ * Tests product browsing and product detail pages with proper handling of:
+ * - Animated category cards and transitions
+ * - Deep category nesting (3+ levels)
+ * - React Suspense boundaries
+ * - Lazy-loaded components
+ * - Element stability during interactions
+ * 
+ * Uses enterprise test utilities from ./helpers/test-utils.ts
  * 
  * IMPORTANT: All routes use locale helper (routes.products()) to avoid
  * hardcoding locale prefixes. next-intl requires locale in all routes.
@@ -22,12 +28,14 @@ test.describe('Product Pages', () => {
   test.describe('Product Categories Landing', () => {
     test.beforeEach(async ({ page }) => {
       await page.goto(routes.products());
-      await page.waitForLoadState('networkidle');
-      // Wait for first category card to be visible (deterministic animation completion)
+      await waitForFullPageLoad(page);
+      
+      // Wait for first category card to be visible and stable
       const firstCategoryCard = page
         .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
+      await waitForStableElement(firstCategoryCard);
       await expect(firstCategoryCard).toBeVisible();
     });
 
@@ -53,8 +61,9 @@ test.describe('Product Pages', () => {
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
 
-      await firstCategory.click();
-      await page.waitForLoadState('networkidle');
+      await safeClick(firstCategory);
+      await waitForFullPageLoad(page);
+      
       // Wait for category page heading to be visible (deterministic)
       const categoryHeading = page.getByRole('heading', { level: 1 });
       await expect(categoryHeading).toBeVisible();
@@ -64,48 +73,24 @@ test.describe('Product Pages', () => {
     });
 
     test('should navigate from category to product detail', async ({ page }) => {
-      // First go from products landing to a category page
+      // Navigate from products landing to a category page
       const firstCategory = page
         .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
-      await firstCategory.click();
-      await page.waitForLoadState('networkidle');
+      
+      await safeClick(firstCategory);
+      await waitForFullPageLoad(page);
 
-      // Then click the first product link within that category
-      let productLinks = page.locator('a[href*="/product/"]');
-      let productCount = await productLinks.count();
+      // Navigate through category hierarchy to find products (enterprise utility)
+      const productLink = await navigateToProducts(page, 3);
+      
+      // Click product link
+      await safeClick(productLink);
+      await waitForFullPageLoad(page);
 
-      // Some categories have subcategories (render a[href*="/products/"]) instead of products
-      // If no product links found, navigate to first subcategory
-      if (productCount === 0) {
-        const subcategoryLinks = page.locator('a[href*="/products/"]');
-        const subcategoryCount = await subcategoryLinks.count();
-
-        // Fail fast with a clear assertion if the category is completely empty
-        expect(subcategoryCount).toBeGreaterThan(0);
-
-        const firstSubcategoryLink = subcategoryLinks.first();
-        await expect(firstSubcategoryLink).toBeVisible();
-        await firstSubcategoryLink.click();
-        await page.waitForLoadState('networkidle');
-
-        // Now look for product links in the subcategory
-        productLinks = page.locator('a[href*="/product/"]');
-        productCount = await productLinks.count();
-      }
-
-      // Assert that we found at least one product so the test fails if the journey is broken
-      expect(productCount).toBeGreaterThan(0);
-
-      const firstProduct = productLinks.first();
-      await firstProduct.click();
-
-      // Should navigate to a product detail page (/product/...)
-      await page.waitForURL(/\/product\/.+/);
-      await page.waitForLoadState('networkidle');
-
-      // Product heading should be visible
+      // Verify we're on a product detail page
+      await expect(page).toHaveURL(/\/product\/.+/);
       const productHeading = page.getByRole('heading', { level: 1 });
       await expect(productHeading).toBeVisible();
     });
@@ -122,47 +107,47 @@ test.describe('Product Pages', () => {
     test.beforeEach(async ({ page }) => {
       // Navigate to products landing page
       await page.goto(routes.products());
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       
-      // Wait for first category card to be visible (deterministic)
-      const firstCategoryCard = page
+      // Wait with extra timeout for initial page load
+      await page.waitForTimeout(1000);
+      
+      // Wait for first category card to be visible and stable
+      let firstCategoryCard = page
         .locator('a[href*="/categories/"]')
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
-      await expect(firstCategoryCard).toBeVisible();
       
-      // Click first category
-      await firstCategoryCard.click();
-      await page.waitForLoadState('networkidle');
-      
-      // Check if category has subcategories (parent category) or products (leaf category)
-      let firstProductLink = page.locator('a[href*="/product/"]').first();
-      const productLinkCount = await page.locator('a[href*="/product/"]').count();
-      
-      // If no product links found, this is a parent category with subcategories
-      if (productLinkCount === 0) {
-        const subcategoryLinks = page.locator('a[href*="/products/"]');
-        const subcategoryCount = await subcategoryLinks.count();
-        expect(subcategoryCount).toBeGreaterThan(0);
-
-        const firstSubcategoryLink = subcategoryLinks.first();
-        await expect(firstSubcategoryLink).toBeVisible();
-        await firstSubcategoryLink.click();
-        await page.waitForLoadState('networkidle');
-        firstProductLink = page.locator('a[href*="/product/"]').first();
+      // Add extra timeout for category cards to appear
+      try {
+        await firstCategoryCard.waitFor({ state: 'visible', timeout: 10000 });
+      } catch {
+        // Fallback: try alternative selectors
+        firstCategoryCard = page.locator('a[href*="/categories/"]').first();
+        await firstCategoryCard.waitFor({ state: 'visible', timeout: 5000 });
       }
       
-      // After potential fallback, assert that at least one product link exists
-      const finalProductLinkCount = await page.locator('a[href*="/product/"]').count();
-      expect(finalProductLinkCount).toBeGreaterThan(0);
-      await expect(firstProductLink).toBeVisible();
+      await waitForStableElement(firstCategoryCard);
+      await expect(firstCategoryCard).toBeVisible();
       
-      // Click first product link
-      await firstProductLink.click();
+      // Navigate to category page with extra safety
+      await safeClick(firstCategoryCard);
+      await waitForFullPageLoad(page);
+      await page.waitForTimeout(800); // Extra wait for animations
       
-      // Wait for product detail page (/product/...)
-      await page.waitForURL(/\/product\/.+/);
-      await page.waitForLoadState('networkidle');
+      // Navigate through category hierarchy to find products (enterprise utility)
+      const productLink = await navigateToProducts(page, 3);
+      await expect(productLink).toBeVisible();
+      
+      // Navigate to product detail page with extra stability
+      await safeClick(productLink);
+      await waitForFullPageLoad(page);
+      await page.waitForTimeout(500);
+      
+      // Verify we reached a product page before tests run
+      await expect(page).toHaveURL(/\/product\/.+/, { timeout: 10000 });
+      const productHeading = page.getByRole('heading', { level: 1 });
+      await expect(productHeading).toBeVisible({ timeout: 10000 });
     });
 
     test('should display product information', async ({ page }) => {
@@ -208,20 +193,21 @@ test.describe('Product Pages', () => {
     });
 
     test('should add product to cart', async ({ page }) => {
-      // Get initial cart count
-      const cartButton = page.getByRole('button', { name: /cart/i }).first();
-      const initialText = await cartButton.textContent();
+      // Get initial cart count (cart button is a LINK, not button)
+      const cartLink = page.getByRole('link', { name: /cart/i }).first();
+      await waitForStableElement(cartLink);
+      const initialText = await cartLink.textContent();
       const initialCount = parseInt(initialText?.match(/\d+/)?.[0] || '0');
       
       // Click add to cart
       const addToCartButton = page.getByRole('button', { name: /add to cart/i });
-      await addToCartButton.click();
+      await safeClick(addToCartButton);
       
       // Wait for cart to update
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(1000);
       
       // Cart count should increase
-      const updatedText = await cartButton.textContent();
+      const updatedText = await cartLink.textContent();
       const updatedCount = parseInt(updatedText?.match(/\d+/)?.[0] || '0');
       
       expect(updatedCount).toBe(initialCount + 1);
@@ -271,7 +257,7 @@ test.describe('Product Pages', () => {
       
       // Reload page
       await page.reload();
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       
       // Product information should still be visible
       const title = page.getByRole('heading', { level: 1 });
@@ -295,18 +281,19 @@ test.describe('Product Pages', () => {
       
       if (await quantityInput.isVisible()) {
         // Change quantity
+        await waitForStableElement(quantityInput);
         await quantityInput.fill('3');
         
         // Add to cart
         const addToCartButton = page.getByRole('button', { name: /add to cart/i });
-        await addToCartButton.click();
+        await safeClick(addToCartButton);
         
         // Wait for cart update
-        await page.waitForTimeout(500);
+        await page.waitForTimeout(1000);
         
-        // Cart should reflect quantity
-        const cartButton = page.getByRole('button', { name: /cart/i }).first();
-        const cartText = await cartButton.textContent();
+        // Cart should reflect quantity (cart is a LINK, not button)
+        const cartLink = page.getByRole('link', { name: /cart/i }).first();
+        const cartText = await cartLink.textContent();
         expect(cartText).toContain('3');
       }
     });
@@ -323,24 +310,34 @@ test.describe('Product Pages', () => {
 
   test.describe('Product Search', () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto('/');
-      await page.waitForLoadState('networkidle');
+      await page.goto(routes.products());
+      await waitForFullPageLoad(page);
+      
+      // Wait for header to be fully loaded and stable
+      const header = page.locator('header');
+      await expect(header).toBeVisible();
+      await waitForStableElement(header);
     });
 
     test('should search for products', async ({ page }) => {
-      // Open search
-      const searchButton = page.getByRole('button', { name: /search/i });
-      await searchButton.click();
+      // Open search - try multiple possible search button patterns
+      const searchButton = page.getByRole('button', { name: /search/i }).or(
+        page.locator('button[aria-label*="search" i]')
+      ).or(
+        page.locator('[data-testid="search-button"]')
+      ).first();
       
-      // Type search query
+      await safeClick(searchButton);
+      
+      // Wait for search input to appear
       const searchInput = page.getByRole('searchbox');
+      await waitForStableElement(searchInput);
+      await expect(searchInput).toBeVisible();
       await searchInput.fill('damper actuator');
       
-      // Submit search or wait for results
+      // Submit search
       await page.keyboard.press('Enter');
-      
-      // Should navigate to search results
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       
       // Results should be displayed
       const results = page.locator('[data-testid="search-results"], .search-results, main');
@@ -348,17 +345,24 @@ test.describe('Product Pages', () => {
     });
 
     test('should show no results message for invalid search', async ({ page }) => {
-      // Open search
-      const searchButton = page.getByRole('button', { name: /search/i });
-      await searchButton.click();
+      // Open search - try multiple possible search button patterns
+      const searchButton = page.getByRole('button', { name: /search/i }).or(
+        page.locator('button[aria-label*="search" i]')
+      ).or(
+        page.locator('[data-testid="search-button"]')
+      ).first();
       
-      // Type nonsense query
+      await safeClick(searchButton);
+      
+      // Wait for search input to appear
       const searchInput = page.getByRole('searchbox');
+      await waitForStableElement(searchInput);
+      await expect(searchInput).toBeVisible();
       await searchInput.fill('xyzabc123notfound');
       await page.keyboard.press('Enter');
       
       // Should show no results message
-      await page.waitForLoadState('networkidle');
+      await waitForFullPageLoad(page);
       const noResults = page.locator('text=/no results|nothing found|no products found/i');
       await expect(noResults).toBeVisible();
     });

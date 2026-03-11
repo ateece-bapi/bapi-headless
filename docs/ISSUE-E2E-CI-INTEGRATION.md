@@ -351,10 +351,54 @@ use: {
 ### Branch Status
 
 **Branch:** `feat/e2e-enterprise-test-improvements`  
-**Commits:** 3 total
+**Commits:** 5 total
   - `68b333d` - Phase 1: Enterprise test infrastructure
   - `184684d` - Phase 2-3: Applied utilities across all tests  
   - `ae8d671` - CI integration with continue-on-error
+  - `d1fd576` - Remove unused imports and fix fallback logic
+  - `8c12ad5` - Add error handling and retry logic to utilities
 **Status:** ✅ Complete and ready for merge  
-**Impact:** +250 lines utilities, ~180 lines test improvements, CI integration  
+**Impact:** +250 lines utilities, ~180 lines test improvements, CI integration, quality fixes  
 **Result:** 42.5% pass rate (45/106 tests), enterprise-level stability patterns, CI automated
+
+## Code Review & Quality Improvements (March 11, 2026)
+
+### GitHub Copilot PR Review
+After pushing the initial implementation, Copilot identified 8 issues:
+
+**Quick Fixes (Fixed in `d1fd576`):**
+1. ❌ Unused `waitForAnimations` import in products.spec.ts
+2. ❌ Unused `waitForStableElement` import in language-selector.spec.ts
+3. ❌ Unused `waitForFullPageLoad` import in cart-checkout.spec.ts
+4. ❌ Unused `expect` import in test-utils.ts
+5. ❌ Broken fallback logic in products.spec.ts - `altCard` created but never used
+
+**Quality Improvements (Fixed in `8c12ad5`):**
+6. ❌ `waitForStableElement` falls through silently if element never stabilizes
+7. ❌ `safeClick` lacks actual retry logic despite documentation claiming it
+8. ℹ️ Missing `NEXT_PUBLIC_WORDPRESS_GRAPHQL` env var in CI (acceptable with `continue-on-error: true`)
+
+### Fixes Implemented
+
+**Commit 1: Quick Wins (`d1fd576`)**
+- Removed 4 unused imports causing lint warnings
+- Fixed fallback logic to properly reassign `firstCategoryCard` locator
+- Changed from `const` to `let` to allow reassignment in catch block
+- Fallback now actually uses the alternative selector
+
+**Commit 2: Quality Improvements (`8c12ad5`)**
+- **waitForStableElement:**
+  - Now throws error if element never stabilizes within timeout
+  - Converted from fixed 10 attempts to timeout-based loop
+  - Makes test failures explicit instead of silent
+- **safeClick:**
+  - Added actual retry logic with configurable retries (default: 3)
+  - Detects transient errors: detached, not clickable, obscured, outside viewport
+  - Retries with 500ms backoff between attempts
+  - Only retries on transient errors, throws immediately for permanent failures
+
+**CI Environment Variables:**
+- Decided to keep `continue-on-error: true` without WordPress env vars
+- Tests validate infrastructure and frontend functionality
+- Backend integration tested in local/staging environments
+- Non-blocking CI approach acceptable for current phase

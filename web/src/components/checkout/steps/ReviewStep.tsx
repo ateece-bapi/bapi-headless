@@ -58,7 +58,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
           </div>
           <button
             onClick={() => onBack()}
-            className="text-sm font-medium text-primary-500 transition-colors hover:text-primary-600"
+            className="text-sm font-medium text-primary-700 transition-colors hover:text-primary-800"
           >
             {t('edit')}
           </button>
@@ -92,7 +92,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
           </div>
           <button
             onClick={() => onBack()}
-            className="text-sm font-medium text-primary-500 transition-colors hover:text-primary-600"
+            className="text-sm font-medium text-primary-700 transition-colors hover:text-primary-800"
           >
             {t('edit')}
           </button>
@@ -126,7 +126,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
           </div>
           <button
             onClick={() => onBack()}
-            className="text-sm font-medium text-primary-500 transition-colors hover:text-primary-600"
+            className="text-sm font-medium text-primary-700 transition-colors hover:text-primary-800"
           >
             {t('edit')}
           </button>
@@ -172,7 +172,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
               href="/terms"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-primary-500 underline hover:text-primary-600"
+              className="font-medium text-primary-700 underline hover:text-primary-800"
             >
               {t('terms.termsLink')}
             </a>{' '}
@@ -181,7 +181,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
               href="/privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-primary-500 underline hover:text-primary-600"
+              className="font-medium text-primary-700 underline hover:text-primary-800"
             >
               {t('terms.privacyLink')}
             </a>

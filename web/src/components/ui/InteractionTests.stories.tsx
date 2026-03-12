@@ -53,7 +53,7 @@ export const ToastAutoTrigger: StoryObj = {
           onClick={() =>
             showToast('success', 'Test Success', 'Automated test triggered this toast.')
           }
-          className="rounded-lg bg-green-500 px-6 py-3 text-white hover:bg-green-600"
+          className="rounded-lg bg-success-800 px-6 py-3 text-white hover:bg-success-900"
         >
           Trigger Toast
         </button>
@@ -111,7 +111,7 @@ export const ToastMultipleClicks: StoryObj = {
               `This is toast number ${clickCountRef.current}`
             );
           }}
-          className="rounded-lg bg-blue-500 px-6 py-3 text-white hover:bg-blue-600"
+          className="rounded-lg bg-info-800 px-6 py-3 text-white hover:bg-info-900"
         >
           Click Multiple Times
         </button>

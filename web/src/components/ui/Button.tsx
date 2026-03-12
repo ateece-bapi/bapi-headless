@@ -27,13 +27,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: [
-          'bg-primary-600 hover:bg-primary-700',
+          'bg-primary-800 hover:bg-primary-900',
           'text-white',
           'shadow-lg shadow-primary-600/30 hover:shadow-xl hover:shadow-primary-600/40',
           'focus:ring-primary-600/50',
         ],
         accent: [
-          'bg-accent-500 hover:bg-accent-600',
+          'bg-accent-600 hover:bg-accent-700',
           'text-neutral-900',
           'shadow-lg shadow-accent-500/30 hover:shadow-xl hover:shadow-accent-500/40',
           'focus:ring-accent-500/50',
@@ -50,7 +50,7 @@ const buttonVariants = cva(
           'focus:ring-primary-600/50',
         ],
         danger: [
-          'bg-error-500 hover:bg-error-600',
+          'bg-error-800 hover:bg-error-900',
           'text-white',
           'shadow-lg shadow-error-500/30 hover:shadow-xl hover:shadow-error-500/40',
           'focus:ring-error-500/50',

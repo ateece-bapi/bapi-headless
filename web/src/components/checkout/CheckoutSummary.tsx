@@ -102,7 +102,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
           {/* Edit Cart Link */}
           <Link
             href={`/${locale}/cart`}
-            className="text-sm font-medium text-primary-500 transition-colors hover:text-primary-600"
+            className="text-sm font-medium text-primary-700 transition-colors hover:text-primary-800"
           >
             {t('editCart')}
           </Link>
@@ -116,7 +116,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
           </div>
 
           {discount > 0 && (
-            <div className="flex justify-between text-sm text-success-600">
+            <div className="flex justify-between text-sm text-success-700">
               <span>{t('discount')}</span>
               <span className="font-medium">-${discount.toFixed(2)}</span>
             </div>

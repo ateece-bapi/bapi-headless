@@ -35,11 +35,11 @@ export function ProductHeroFast({ product }: ProductHeroProps) {
         <div>
           <h1 className="mb-4 text-4xl font-bold text-neutral-900">{product.name}</h1>
 
-          {price && <div className="mb-6 text-3xl font-bold text-primary-600">{price}</div>}
+          {price && <div className="mb-6 text-3xl font-bold text-primary-800">{price}</div>}
 
           {product.shortDescription && (
             <div
-              className="prose prose-sm mb-6 max-w-none text-neutral-600"
+              className="prose prose-sm mb-6 max-w-none text-neutral-700"
               dangerouslySetInnerHTML={{
                 __html: sanitizeWordPressContent(product.shortDescription),
               }}
@@ -47,7 +47,7 @@ export function ProductHeroFast({ product }: ProductHeroProps) {
           )}
 
           <div className="flex gap-4">
-            <button className="rounded-lg bg-primary-600 px-8 py-3 font-semibold text-white transition-colors hover:bg-primary-700">
+            <button className="rounded-lg bg-primary-800 px-8 py-3 font-semibold text-white transition-colors hover:bg-primary-900">
               Add to Cart
             </button>
           </div>

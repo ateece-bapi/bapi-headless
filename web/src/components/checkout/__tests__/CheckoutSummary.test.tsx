@@ -259,8 +259,8 @@ describe('CheckoutSummary', () => {
       render(<CheckoutSummary cart={mockCartWithItems} />);
 
       const editLink = screen.getByText('← Edit Cart');
-      expect(editLink).toHaveClass('text-primary-500');
-      expect(editLink).toHaveClass('hover:text-primary-600');
+      expect(editLink).toHaveClass('text-primary-700');
+      expect(editLink).toHaveClass('hover:text-primary-800');
     });
   });
 
@@ -438,7 +438,7 @@ describe('CheckoutSummary', () => {
       };
 
       const { container } = render(<CheckoutSummary cart={cartWithDiscount} />);
-      const discountElement = container.querySelector('.text-success-600');
+      const discountElement = container.querySelector('.text-success-700');
       expect(discountElement).toBeInTheDocument();
     });
   });

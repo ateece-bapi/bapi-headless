@@ -83,7 +83,7 @@ export default function CheckoutWizard({
               {index < steps.length - 1 && (
                 <div
                   className={`mx-2 h-0.5 flex-1 transition-all sm:mx-4 ${
-                    currentStep > step.number ? 'bg-success-500' : 'bg-neutral-200'
+                    currentStep > step.number ? 'bg-success-700' : 'bg-neutral-200'
                   } `}
                 />
               )}

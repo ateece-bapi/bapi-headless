@@ -68,7 +68,7 @@ vi.mock('./steps/ShippingStep', () => ({
           className="border border-neutral-300 text-neutral-900"
         />
 
-        <button type="button" onClick={onNext} className="bg-primary-500 text-white">
+        <button type="button" onClick={onNext} className="bg-primary-800 text-white">
           Continue to Payment
         </button>
       </form>
@@ -119,7 +119,7 @@ vi.mock('./steps/PaymentStep', () => ({
         <button type="button" onClick={onBack} className="border border-neutral-300 text-neutral-700">
           Back to Shipping
         </button>
-        <button type="button" onClick={onNext} className="bg-primary-500 text-white">
+        <button type="button" onClick={onNext} className="bg-primary-800 text-white">
           Continue to Review
         </button>
       </form>
@@ -307,7 +307,7 @@ describe('CheckoutWizard Accessibility', () => {
       // Find the step 2 circle (should have primary background)
       const stepCircles = screen.getAllByText('2');
       const activeCircle = stepCircles[0].closest('div');
-      expect(activeCircle).toHaveClass('bg-primary-500', 'text-white');
+      expect(activeCircle).toHaveClass('bg-primary-800', 'text-white');
     });
 
     it('shows checkmark for completed steps', () => {
@@ -324,7 +324,7 @@ describe('CheckoutWizard Accessibility', () => {
       );
 
       // Steps 1 and 2 should be completed (have success background)
-      const completedSteps = document.querySelectorAll('.bg-success-500');
+      const completedSteps = document.querySelectorAll('.bg-success-700');
       expect(completedSteps.length).toBeGreaterThanOrEqual(2);
     });
 
@@ -361,7 +361,7 @@ describe('CheckoutWizard Accessibility', () => {
 
       // First connector (before step 2) should be green (success)
       const connectors = container.querySelectorAll('.h-0\\.5.flex-1');
-      expect(connectors[0]).toHaveClass('bg-success-500');
+      expect(connectors[0]).toHaveClass('bg-success-700');
     });
   });
 
@@ -592,9 +592,9 @@ describe('CheckoutWizard Accessibility', () => {
         />
       );
 
-      const activeSteps = document.querySelectorAll('.bg-primary-500.text-white');
+      const activeSteps = document.querySelectorAll('.bg-primary-800.text-white');
       expect(activeSteps.length).toBeGreaterThan(0);
-      // primary-500 (#1479BC) with white text = ~4.53:1 ratio ✓ PASS AA (3:1 for large text)
+      // primary-800 (#065986 BAPI blue dark) with white text = ~4.53:1 ratio ✓ PASS AA (3:1 for large text)
     });
 
     it('completed steps have sufficient contrast (success background)', () => {
@@ -610,9 +610,9 @@ describe('CheckoutWizard Accessibility', () => {
         />
       );
 
-      const completedSteps = document.querySelectorAll('.bg-success-500.text-white');
+      const completedSteps = document.querySelectorAll('.bg-success-700.text-white');
       expect(completedSteps.length).toBeGreaterThanOrEqual(2);
-      // success-500 (#22c55e) with white text - verified WCAG AA compliant
+      // success-700 (#15803d green dark) with white text - verified WCAG AA compliant
     });
 
     it('inactive steps have sufficient contrast (neutral background)', () => {
@@ -745,7 +745,7 @@ describe('CheckoutWizard Accessibility', () => {
       );
 
       const continueButton = screen.getByRole('button', { name: /continue to payment/i });
-      expect(continueButton).toHaveClass('bg-primary-500', 'text-white');
+      expect(continueButton).toHaveClass('bg-primary-800', 'text-white');
       // White text on primary-500 (#1479BC) = ~4.53:1 ratio ✓ PASS AA (3:1 for large text)
     });
 
@@ -905,7 +905,7 @@ describe('CheckoutWizard Accessibility', () => {
 
       // Step 1 active
       let activeCircle = screen.getByText('1').closest('div');
-      expect(activeCircle).toHaveClass('bg-primary-500');
+      expect(activeCircle).toHaveClass('bg-primary-800');
 
       rerender(
         <CheckoutWizard
@@ -922,7 +922,7 @@ describe('CheckoutWizard Accessibility', () => {
       // Step 2 now active
       const step2Circles = screen.getAllByText('2');
       activeCircle = step2Circles[0].closest('div');
-      expect(activeCircle).toHaveClass('bg-primary-500');
+      expect(activeCircle).toHaveClass('bg-primary-800');
     });
 
     it('shows processing state when isProcessing is true', () => {

@@ -7,7 +7,7 @@ const CartButton = () => {
   const { openCart } = useCartDrawer();
 
   return (
-    <button onClick={openCart} className="transition hover:text-blue-600" aria-label="Open cart">
+    <button onClick={openCart} className="transition hover:text-primary-800" aria-label="Open cart">
       <CartIcon />
     </button>
   );

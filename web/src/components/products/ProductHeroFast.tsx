@@ -25,7 +25,7 @@ export function ProductHeroFast({ product }: ProductHeroProps) {
               sizes="(min-width: 768px) 50vw, 100vw"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-neutral-600">
+            <div className="flex h-full w-full items-center justify-center text-neutral-700">
               No Image Available
             </div>
           )}

@@ -292,7 +292,7 @@ export const Persistent: Story = {
               0
             )
           }
-          className="rounded-lg bg-accent-800 px-6 py-3 text-white hover:bg-accent-900"
+          className="rounded-lg bg-neutral-800 px-6 py-3 text-white hover:bg-neutral-900"
         >
           Trigger Persistent Toast (duration=0)
         </button>

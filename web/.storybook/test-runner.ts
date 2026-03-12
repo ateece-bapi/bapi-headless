@@ -67,9 +67,23 @@ const config: TestRunnerConfig = {
         console.error(`   Impact: ${violation.impact}`);
         console.error(`   WCAG: ${violation.tags.filter((t) => t.startsWith('wcag')).join(', ')}`);
         console.error(`   Help: ${violation.helpUrl}`);
-        console.error(`   Affected elements: ${violation.nodes.length}`);
-        violation.nodes.forEach((node) => {
-          console.error(`     - ${node.html}`);
+        console.error(`   Affected elements: ${violation.nodes.length}\n`);
+        
+        violation.nodes.forEach((node, index) => {
+          console.error(`   [${index + 1}] Target: ${node.target.join(', ')}`);
+          console.error(`       HTML: ${node.html.substring(0, 200)}${node.html.length > 200 ? '...' : ''}`);
+          
+          // Show additional context for color-contrast violations
+          if (violation.id === 'color-contrast' && node.any && node.any[0]) {
+            const contrastData = node.any[0].data;
+            if (contrastData) {
+              console.error(`       Foreground: ${contrastData.fgColor || 'N/A'}`);
+              console.error(`       Background: ${contrastData.bgColor || 'N/A'}`);
+              console.error(`       Contrast Ratio: ${contrastData.contrastRatio || 'N/A'}`);
+              console.error(`       Expected: ${contrastData.expectedContrastRatio || 'N/A'}`);
+            }
+          }
+          console.error('');
         });
       });
     }

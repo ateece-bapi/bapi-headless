@@ -830,25 +830,32 @@ export const BAPIBrandedIcons: Story = {
         order: 4,
       },
       {
+        name: 'Sensors',
+        file: 'Sensors_Icon',
+        lucide: Package,
+        color: 'Blue/Gray',
+        order: 5,
+      },
+      {
         name: 'Wireless',
         file: 'Wireless_Icon',
         lucide: Wifi,
         color: 'Green/Emerald',
-        order: 5,
+        order: 6,
       },
       {
         name: 'Accessories',
         file: 'Accessories_Icon',
         lucide: Package,
         color: 'Gray/Neutral',
-        order: 6,
+        order: 7,
       },
       {
         name: 'Test Instruments',
         file: 'Test_Instruments_Icon',
         lucide: FlaskConical,
         color: 'Cyan/Blue',
-        order: 7,
+        order: 8,
       },
     ];
 
@@ -871,7 +878,7 @@ export const BAPIBrandedIcons: Story = {
               </h3>
               <ul className="space-y-1 text-sm text-accent-800">
                 <li>
-                  ✓ Icons <strong>must always</strong> appear in this order: T → H → P → AQ → W → A
+                  ✓ Icons <strong>must always</strong> appear in this order: T → H → P → AQ → S → W → A
                   → TI
                 </li>
                 <li>✓ Icons must be equidistant horizontally or vertically</li>
@@ -890,7 +897,7 @@ export const BAPIBrandedIcons: Story = {
             Official Brand Icons (Mandatory Order)
           </h2>
           <div className="rounded-lg border border-neutral-200 bg-white p-8">
-            <div className="grid grid-cols-7 gap-6">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:grid-cols-8">
               {bapiIcons.map((icon) => (
                 <div key={icon.order} className="flex flex-col items-center gap-3">
                   <div className="relative h-16 w-16">
@@ -920,7 +927,7 @@ export const BAPIBrandedIcons: Story = {
             White Icons on Blue Background
           </h2>
           <div className="rounded-lg bg-primary-500 p-8">
-            <div className="grid grid-cols-7 gap-6">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:grid-cols-8">
               {bapiIcons.map((icon) => (
                 <div key={icon.order} className="flex flex-col items-center gap-3">
                   <div className="relative h-16 w-16">
@@ -1003,7 +1010,7 @@ export const BAPIBrandedIcons: Story = {
             Use these lucide-react icons during development when brand assets aren&apos;t available
           </p>
           <div className="rounded-lg border border-neutral-200 bg-white p-6">
-            <div className="grid grid-cols-7 gap-6">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:grid-cols-8">
               {bapiIcons.map((icon) => {
                 const LucideIcon = icon.lucide;
                 return (
@@ -1028,7 +1035,7 @@ export const BAPIBrandedIcons: Story = {
         <div>
           <h2 className="mb-4 text-2xl font-semibold text-neutral-950">Mega Menu Implementation</h2>
           <div className="rounded-lg border border-neutral-200 bg-white p-6">
-            <div className="grid grid-cols-4 gap-4 md:grid-cols-7">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:grid-cols-8">
               {bapiIcons.map((icon) => (
                 <button
                   key={icon.order}
@@ -1055,6 +1062,7 @@ export const PRODUCT_CATEGORIES = [
   { name: 'Humidity', icon: '/images/icons/Humidity_Icon.webp' },
   { name: 'Pressure', icon: '/images/icons/Pressure_Icon.webp' },
   { name: 'Air Quality', icon: '/images/icons/AirQuality_Icon.webp' },
+  { name: 'Sensors', icon: '/images/icons/Sensors_Icon.webp' },
   { name: 'Wireless', icon: '/images/icons/Wireless_Icon.webp' },
   { name: 'Accessories', icon: '/images/icons/Accessories_Icon.webp' },
   { name: 'Test Instruments', icon: '/images/icons/Test_Instruments_Icon.webp' },
@@ -1087,7 +1095,7 @@ export const PRODUCT_CATEGORIES = [
           <div className="rounded bg-accent-100 p-3 text-sm">
             <strong className="text-accent-900">Never eliminate:</strong>{' '}
             <span className="text-accent-800">
-              Temperature, Humidity, Pressure, Air Quality, Test Instruments
+              Temperature, Humidity, Pressure, Air Quality, Sensors, Test Instruments
             </span>
           </div>
         </div>
@@ -1132,6 +1140,285 @@ export const PRODUCT_CATEGORIES = [
               <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
               <span className="text-success-800">Appropriate size for context (32-64px)</span>
             </div>
+          </div>
+        </div>
+      </div>
+    );
+  },
+};
+
+// Story: Trust Badges and Brand Assets
+export const TrustBadges: Story = {
+  render: () => {
+    const trustBadges = [
+      {
+        name: '5-Year Warranty',
+        file: '5-year-warranty-icon',
+        usage: 'Product pages, quality assurance sections',
+        description: 'BAPI\'s industry-leading 5-year warranty badge',
+      },
+      {
+        name: 'BAPI Backed',
+        file: 'bapi-backed-logo',
+        usage: 'Footer, about pages, quality messaging',
+        description: 'Official BAPI quality assurance logo',
+      },
+      {
+        name: 'Certified Original',
+        file: 'certified-original-stamp',
+        usage: 'Product authentication, anti-counterfeiting',
+        description: 'Certified original product stamp',
+      },
+    ];
+
+    return (
+      <div className="space-y-8">
+        <div className="space-y-2">
+          <h1 className="text-4xl font-bold text-neutral-950">Trust Badges & Brand Assets</h1>
+          <p className="text-lg text-neutral-700">
+            Brand trust signals and quality assurance badges used across the BAPI platform
+          </p>
+        </div>
+
+        {/* Brand Trust Badges */}
+        <div>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">Quality Assurance Badges</h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {trustBadges.map((badge) => (
+              <div
+                key={badge.file}
+                className="flex flex-col items-center gap-4 rounded-lg border border-neutral-200 bg-white p-6"
+              >
+                <div className="relative h-32 w-32">
+                  <Image
+                    src={`/images/icons/${badge.file}.webp`}
+                    alt={badge.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="mb-1 text-lg font-semibold text-neutral-950">{badge.name}</h3>
+                  <p className="mb-2 text-sm text-neutral-700">{badge.description}</p>
+                  <p className="text-xs font-medium text-primary-600">{badge.usage}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Size Variants */}
+        <div>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">Size Guidelines</h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+              <h4 className="mb-3 text-sm font-semibold text-neutral-900">Small (64px)</h4>
+              <div className="relative mx-auto h-16 w-16">
+                <Image
+                  src="/images/icons/5-year-warranty-icon.webp"
+                  alt="5-Year Warranty"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <p className="mt-2 text-xs text-neutral-700">Inline badges</p>
+            </div>
+            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+              <h4 className="mb-3 text-sm font-semibold text-neutral-900">Medium (96px)</h4>
+              <div className="relative mx-auto h-24 w-24">
+                <Image
+                  src="/images/icons/5-year-warranty-icon.webp"
+                  alt="5-Year Warranty"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <p className="mt-2 text-xs text-neutral-700">Product cards</p>
+            </div>
+            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+              <h4 className="mb-3 text-sm font-semibold text-neutral-900">Large (128px)</h4>
+              <div className="relative mx-auto h-32 w-32">
+                <Image
+                  src="/images/icons/5-year-warranty-icon.webp"
+                  alt="5-Year Warranty"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <p className="mt-2 text-xs text-neutral-700">Feature sections</p>
+            </div>
+            <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-6">
+              <h4 className="mb-3 text-sm font-semibold text-neutral-900">X-Large (192px)</h4>
+              <div className="relative mx-auto h-48 w-48">
+                <Image
+                  src="/images/icons/5-year-warranty-icon.webp"
+                  alt="5-Year Warranty"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <p className="mt-2 text-xs text-neutral-700">Hero/landing</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Implementation Examples */}
+        <div>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">
+            Common Implementation Patterns
+          </h2>
+
+          {/* Product Page Badge Bar */}
+          <div className="mb-6">
+            <h3 className="mb-3 text-lg font-semibold text-neutral-900">Product Page Badge Bar</h3>
+            <div className="rounded-lg border border-neutral-200 bg-white p-6">
+              <div className="flex flex-wrap items-center justify-center gap-8">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="relative h-16 w-16">
+                    <Image
+                      src="/images/icons/5-year-warranty-icon.webp"
+                      alt="5-Year Warranty"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-xs font-medium text-neutral-700">5-Year Warranty</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="relative h-16 w-16">
+                    <Image
+                      src="/images/icons/certified-original-stamp.webp"
+                      alt="Certified Original"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-xs font-medium text-neutral-700">Certified Original</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="relative h-16 w-16">
+                    <Image
+                      src="/images/icons/bapi-backed-logo.webp"
+                      alt="BAPI Backed"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="text-xs font-medium text-neutral-700">BAPI Quality</span>
+                </div>
+              </div>
+            </div>
+            <pre className="mt-3 rounded bg-neutral-900 p-4 text-sm text-white">
+              {`<div className="flex gap-8 items-center">
+  <Image 
+    src="/images/icons/5-year-warranty-icon.webp" 
+    alt="5-Year Warranty" 
+    width={64} 
+    height={64} 
+  />
+  <Image 
+    src="/images/icons/certified-original-stamp.webp" 
+    alt="Certified Original" 
+    width={64} 
+    height={64} 
+  />
+</div>`}
+            </pre>
+          </div>
+
+          {/* Footer Trust Section */}
+          <div>
+            <h3 className="mb-3 text-lg font-semibold text-neutral-900">Footer Trust Section</h3>
+            <div className="rounded-lg bg-neutral-900 p-8">
+              <div className="flex flex-col items-center gap-4 text-center">
+                <div className="relative h-24 w-24">
+                  <Image
+                    src="/images/icons/bapi-backed-logo.webp"
+                    alt="BAPI Backed"
+                    fill
+                    className="object-contain brightness-0 invert"
+                  />
+                </div>
+                <h4 className="text-xl font-semibold text-white">BAPI Quality Guarantee</h4>
+                <p className="max-w-md text-sm text-neutral-300">
+                  Every BAPI product is backed by our industry-leading 5-year warranty and
+                  commitment to quality.
+                </p>
+              </div>
+            </div>
+            <pre className="mt-3 rounded bg-neutral-900 p-4 text-sm text-white">
+              {`<Image 
+  src="/images/icons/bapi-backed-logo.webp" 
+  alt="BAPI Backed"
+  className="brightness-0 invert"
+  width={96} 
+  height={96} 
+/>`}
+            </pre>
+          </div>
+        </div>
+
+        {/* Usage Guidelines */}
+        <div className="rounded-lg border-2 border-primary-500 bg-primary-50 p-6">
+          <h3 className="mb-4 text-xl font-semibold text-primary-900">Usage Guidelines</h3>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-primary-900">✓ Do</h4>
+              <ul className="space-y-1 text-sm text-primary-800">
+                <li>• Use WebP format for web performance</li>
+                <li>• Maintain original aspect ratios</li>
+                <li>• Provide descriptive alt text</li>
+                <li>• Use appropriate sizing for context</li>
+                <li>• Group related trust signals together</li>
+                <li>• Ensure sufficient contrast on backgrounds</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-error-900">✗ Don&apos;t</h4>
+              <ul className="space-y-1 text-sm text-error-800">
+                <li>• Distort or stretch badges</li>
+                <li>• Use low-resolution PNG when WebP available</li>
+                <li>• Overuse badges (3-4 max per section)</li>
+                <li>• Place on busy backgrounds</li>
+                <li>• Remove or crop important badge text</li>
+                <li>• Use badges as decorative elements</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* All Assets Reference */}
+        <div>
+          <h2 className="mb-4 text-2xl font-semibold text-neutral-950">Available Formats</h2>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-neutral-200 text-sm">
+              <thead className="bg-neutral-50">
+                <tr>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">Asset</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">WebP</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">PNG</th>
+                  <th className="px-4 py-3 text-left font-semibold text-neutral-900">Usage</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-200 bg-white">
+                {trustBadges.map((badge) => (
+                  <tr key={badge.file}>
+                    <td className="px-4 py-3 font-medium text-neutral-900">{badge.name}</td>
+                    <td className="px-4 py-3">
+                      <code className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-900">
+                        {badge.file}.webp
+                      </code>
+                    </td>
+                    <td className="px-4 py-3">
+                      <code className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-900">
+                        {badge.file}.png
+                      </code>
+                    </td>
+                    <td className="px-4 py-3 text-neutral-700">{badge.usage}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

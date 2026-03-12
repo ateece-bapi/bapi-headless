@@ -1056,17 +1056,15 @@ export const BAPIBrandedIcons: Story = {
             </div>
           </div>
           <pre className="mt-3 rounded bg-neutral-900 p-4 text-sm text-white">
-            {`// See: web/src/components/layout/Header/config.ts getMegaMenuItems()
-// Actual implementation uses 7 categories (Sensors in brand guidelines but not yet in menu):
-const categoryIcons = {
-  Temperature: '/images/icons/Temperature_Icon.webp',
-  Humidity: '/images/icons/Humidity_Icon.webp',
-  Pressure: '/images/icons/Pressure_Icon.webp',
-  'Air Quality': '/images/icons/AirQuality_Icon.webp',
-  Wireless: '/images/icons/Wireless_Icon.webp',
-  Accessories: '/images/icons/Accessories_Icon.webp',
-  'Test Instruments': '/images/icons/Test_Instruments_Icon.webp',
-};`}
+            {`// Illustrative pattern (actual implementation in getMegaMenuItems()):
+// See: web/src/components/layout/Header/config.ts for real structure
+// Icons are defined inline on each column object, not as a separate map
+const megaMenuColumns = [
+  { title: 'Temperature', icon: '/images/icons/Temperature_Icon.webp', ... },
+  { title: 'Humidity', icon: '/images/icons/Humidity_Icon.webp', ... },
+  { title: 'Pressure', icon: '/images/icons/Pressure_Icon.webp', ... },
+  // ...7 categories total (Sensors in brand guidelines but not yet in menu)
+];`}
           </pre>
         </div>
 

@@ -8,7 +8,7 @@
  * **MegaMenu Features:**
  * - 3 top-level items: Products (with dropdown), Support, Company
  * - Products dropdown with 7 product category columns
- * - Each column has BAPI brand icon + 4 product links
+ * - Each column has BAPI brand icon + 3–4 product links (up to 4 per category)
  * - Featured product showcase with badge
  * - Hover intent delay (80ms to open, 140ms to close)
  * - Keyboard navigation (ArrowDown, Enter, Space, Escape)
@@ -179,7 +179,7 @@ export const Overview: Story = {
 
               {/* Support */}
               <a
-                href="#support"
+                href="/support"
                 onClick={(e) => e.preventDefault()}
                 className="group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 transition-all duration-300 hover:bg-primary-600 hover:text-white hover:shadow-sm"
               >
@@ -189,7 +189,7 @@ export const Overview: Story = {
 
               {/* Company */}
               <a
-                href="#company"
+                href="/company"
                 onClick={(e) => e.preventDefault()}
                 className="group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 transition-all duration-300 hover:bg-primary-600 hover:text-white hover:shadow-sm"
               >
@@ -425,7 +425,7 @@ export const ClosedState: Story = {
 
           {/* Support */}
           <a
-            href="#support"
+            href="/support"
             onClick={(e) => e.preventDefault()}
             className="group relative inline-flex items-center rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 transition-all hover:bg-primary-600 hover:text-white"
           >
@@ -435,7 +435,7 @@ export const ClosedState: Story = {
 
           {/* Company */}
           <a
-            href="#company"
+            href="/company"
             onClick={(e) => e.preventDefault()}
             className="group relative inline-flex items-center rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 transition-all hover:bg-primary-600 hover:text-white"
           >
@@ -460,7 +460,7 @@ export const CategoryColumn: Story = {
       <div>
         <h2 className="mb-2 text-2xl font-bold text-neutral-950">Product Category Column</h2>
         <p className="text-neutral-700">
-          Each of the 8 product categories follows this structure
+          Each of the 7 product categories follows this structure
         </p>
       </div>
 
@@ -546,16 +546,22 @@ export const BrandCompliance: Story = {
             <h3 className="text-lg font-semibold text-accent-900">
               Mandatory Category Order (Never Reorder!)
             </h3>
+            <p className="text-sm text-accent-800 mb-2">
+              Current implementation uses 7 categories:
+            </p>
             <ol className="space-y-1 text-sm text-accent-800">
               <li>1. Temperature (Red/Orange)</li>
               <li>2. Humidity (Blue/Cyan)</li>
               <li>3. Pressure (Purple/Pink)</li>
               <li>4. Air Quality (Teal/Cyan)</li>
-              <li>5. Sensors (Blue/Gray)</li>
-              <li>6. Wireless (Green/Emerald)</li>
-              <li>7. Accessories (Gray/Neutral)</li>
-              <li>8. Test Instruments (Cyan/Blue)</li>
+              <li>5. Wireless (Green/Emerald)</li>
+              <li>6. Accessories (Gray/Neutral)</li>
+              <li>7. Test Instruments (Cyan/Blue)</li>
             </ol>
+            <p className="text-xs text-accent-700 mt-2 italic">
+              Note: Sensors (Blue/Gray) exists in brand guidelines as position #5,
+              but is not yet implemented in the mega menu.
+            </p>
           </div>
         </div>
       </div>
@@ -613,7 +619,7 @@ export const Accessibility: Story = {
     <div className="space-y-8 p-8">
       <div>
         <h2 className="mb-2 text-2xl font-bold text-neutral-950">Accessibility Features</h2>
-        <p className="text-neutral-700">WCAG 2.1 AA compliant with 29 automated tests passing</p>
+        <p className="text-neutral-700">WCAG 2.1 AA compliant with comprehensive automated test coverage</p>
       </div>
 
       {/* ARIA Attributes */}

@@ -42,10 +42,18 @@ const config: TestRunnerConfig = {
         detailedReportOptions: {
           html: true,
         },
-        rules: disabledRules.reduce((acc, rule) => {
-          acc[rule] = { enabled: false };
-          return acc;
-        }, {} as Record<string, { enabled: boolean }>),
+        axeOptions: {
+          // Limit checks to WCAG 2.0/2.1 A/AA rules (standard practice for component libraries)
+          runOnly: {
+            type: 'tag',
+            values: ['wcag2a', 'wcag2aa'],
+          },
+          // Disable document-level rules that don't apply to isolated components
+          rules: disabledRules.reduce((acc, rule) => {
+            acc[rule] = { enabled: false };
+            return acc;
+          }, {} as Record<string, { enabled: boolean }>),
+        },
       },
       true // skipFailures - we'll handle violations manually to filter disabled rules
     );

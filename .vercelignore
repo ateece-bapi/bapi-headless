@@ -1,0 +1,63 @@
+# Vercel Ignore File
+# Prevents unnecessary builds when only these files/directories change
+# See: https://vercel.com/docs/concepts/projects/overview#ignored-files
+
+# Documentation
+docs/**
+*.md
+README*
+CHANGELOG*
+LICENSE*
+
+# Development & CI
+.github/**
+.vscode/**
+.idea/**
+.editorconfig
+.gitignore
+.eslintignore
+.prettierignore
+
+# Tests (run in GitHub Actions, not Vercel)
+test/**
+tests/**
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+**/__tests__/**
+**/test-utils/**
+playwright-report/**
+test-results/**
+
+# Storybook (deployed separately to Chromatic)
+.storybook/**
+**/*.stories.ts
+**/*.stories.tsx
+storybook-static/**
+
+# Scripts (unless they affect build process)
+scripts/*.sh
+scripts/*.py
+scripts/*.mjs
+
+# Configuration files that don't affect runtime
+.prettierrc*
+.eslintrc*
+tsconfig.tsbuildinfo
+
+# Git
+.git/**
+.gitattributes
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Coverage reports
+coverage/**
+.nyc_output/**
+*.lcov

@@ -594,7 +594,7 @@ describe('CheckoutWizard Accessibility', () => {
 
       const activeSteps = document.querySelectorAll('.bg-primary-800.text-white');
       expect(activeSteps.length).toBeGreaterThan(0);
-      // primary-800 (#065986 BAPI blue dark) with white text = ~4.53:1 ratio ✓ PASS AA (3:1 for large text)
+      // primary-800 (#08304b BAPI blue dark) with white text = 13.68:1 contrast ✓ PASS AAA
     });
 
     it('completed steps have sufficient contrast (success background)', () => {
@@ -746,7 +746,7 @@ describe('CheckoutWizard Accessibility', () => {
 
       const continueButton = screen.getByRole('button', { name: /continue to payment/i });
       expect(continueButton).toHaveClass('bg-primary-800', 'text-white');
-      // White text on primary-500 (#1479BC) = ~4.53:1 ratio ✓ PASS AA (3:1 for large text)
+      // White text on primary-800 (#08304b) = 13.68:1 contrast ✓ PASS AAA
     });
 
     it('secondary action button has sufficient contrast', () => {

@@ -4,7 +4,7 @@
   "outputDirectory": "web/.next",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": "nextjs",
-  "ignoreCommand": "bash scripts/should-build.sh",
+  "ignoreCommand": "bash ./scripts/should-build.sh",
   "git": {
     "deploymentEnabled": {
       "main": true

@@ -36,10 +36,14 @@ test-results/**
 **/*.stories.tsx
 storybook-static/**
 
-# Scripts (unless they affect build process)
-scripts/*.sh
+# Scripts (excluding build-critical scripts)
+# Note: should-build.sh is required for Vercel's Ignored Build Step
 scripts/*.py
 scripts/*.mjs
+scripts/*translation*.sh
+scripts/*sync*.js
+scripts/*test*.sh
+scripts/*clean*.sh
 
 # Configuration files that don't affect runtime
 .prettierrc*

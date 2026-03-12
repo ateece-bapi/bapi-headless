@@ -60,36 +60,40 @@ jobs:
         run: pnpm run test:storybook:ci
         continue-on-error: true  # Non-blocking: Reports issues without failing CI
 
-      - name: Cache Playwright browsers
-        uses: actions/cache@v4
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('web/pnpm-lock.yaml') }}
-          restore-keys: |
-            playwright-${{ runner.os }}-
-
-      - name: Install Playwright browsers
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm exec playwright install --with-deps chromium
-      
-      - name: Install Playwright system dependencies
-        if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: pnpm exec playwright install-deps chromium
-
-      - name: Run E2E tests
-        run: pnpm exec playwright test --project=chromium
-        continue-on-error: true  # Non-blocking: Enterprise infrastructure in place, gradually improving
-        env:
-          CI: true
-
-      - name: Upload E2E test results
-        if: failure() || success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: web/playwright-report/
-          retention-days: 7
+      # E2E tests temporarily disabled - taking 1.5 hours in CI
+      # TODO: Re-enable after optimization (test sharding, mocking, timeout tuning)
+      # See: docs/ISSUE-E2E-CI-INTEGRATION.md for optimization plan
+      #
+      # - name: Cache Playwright browsers
+      #   uses: actions/cache@v4
+      #   id: playwright-cache
+      #   with:
+      #     path: ~/.cache/ms-playwright
+      #     key: playwright-${{ runner.os }}-${{ hashFiles('web/pnpm-lock.yaml') }}
+      #     restore-keys: |
+      #       playwright-${{ runner.os }}-
+      #
+      # - name: Install Playwright browsers
+      #   if: steps.playwright-cache.outputs.cache-hit != 'true'
+      #   run: pnpm exec playwright install --with-deps chromium
+      #
+      # - name: Install Playwright system dependencies
+      #   if: steps.playwright-cache.outputs.cache-hit == 'true'
+      #   run: pnpm exec playwright install-deps chromium
+      #
+      # - name: Run E2E tests
+      #   run: pnpm exec playwright test --project=chromium
+      #   continue-on-error: true
+      #   env:
+      #     CI: true
+      #
+      # - name: Upload E2E test results
+      #   if: failure() || success()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: playwright-report
+      #     path: web/playwright-report/
+      #     retention-days: 7
 
       - name: Build
         env:

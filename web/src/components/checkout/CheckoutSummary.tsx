@@ -73,7 +73,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
                         className="h-full w-full object-cover"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center text-xs text-neutral-400">
+                      <div className="flex h-full w-full items-center justify-center text-xs text-neutral-600">
                         {t('noImage')}
                       </div>
                     )}

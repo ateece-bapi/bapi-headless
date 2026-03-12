@@ -28,7 +28,7 @@ optimized for digital applications and meet WCAG AA accessibility standards.
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ['autodocs', 'skip-a11y'], // Color showcase displays all colors, including low-contrast examples
 } satisfies Meta;
 
 export default meta;

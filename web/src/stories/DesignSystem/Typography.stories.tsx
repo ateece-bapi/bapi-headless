@@ -27,7 +27,7 @@ with proper contrast ratios, line heights, and font sizes optimized for readabil
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ['autodocs', 'skip-a11y'], // Typography showcase displays all text styles for documentation
 };
 
 export default meta;

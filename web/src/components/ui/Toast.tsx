@@ -108,10 +108,10 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
   };
 
   const iconStyles = {
-    success: 'text-success-600',
-    error: 'text-error-600',
-    warning: 'text-warning-600',
-    info: 'text-info-600',
+    success: 'text-success-700', // Darker for better contrast on light background
+    error: 'text-error-700',
+    warning: 'text-warning-800', // Warning needs even darker due to yellow
+    info: 'text-info-700',
   };
 
   const Icon = icons[toast.type];

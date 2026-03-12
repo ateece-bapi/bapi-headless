@@ -1056,17 +1056,17 @@ export const BAPIBrandedIcons: Story = {
             </div>
           </div>
           <pre className="mt-3 rounded bg-neutral-900 p-4 text-sm text-white">
-            {`// Header mega menu config
-export const PRODUCT_CATEGORIES = [
-  { name: 'Temperature', icon: '/images/icons/Temperature_Icon.webp' },
-  { name: 'Humidity', icon: '/images/icons/Humidity_Icon.webp' },
-  { name: 'Pressure', icon: '/images/icons/Pressure_Icon.webp' },
-  { name: 'Air Quality', icon: '/images/icons/AirQuality_Icon.webp' },
-  { name: 'Sensors', icon: '/images/icons/Sensors_Icon.webp' },
-  { name: 'Wireless', icon: '/images/icons/Wireless_Icon.webp' },
-  { name: 'Accessories', icon: '/images/icons/Accessories_Icon.webp' },
-  { name: 'Test Instruments', icon: '/images/icons/Test_Instruments_Icon.webp' },
-];`}
+            {`// See: web/src/components/layout/Header/config.ts getMegaMenuItems()
+// Actual implementation uses 7 categories (Sensors in brand guidelines but not yet in menu):
+const categoryIcons = {
+  Temperature: '/images/icons/Temperature_Icon.webp',
+  Humidity: '/images/icons/Humidity_Icon.webp',
+  Pressure: '/images/icons/Pressure_Icon.webp',
+  'Air Quality': '/images/icons/AirQuality_Icon.webp',
+  Wireless: '/images/icons/Wireless_Icon.webp',
+  Accessories: '/images/icons/Accessories_Icon.webp',
+  'Test Instruments': '/images/icons/Test_Instruments_Icon.webp',
+};`}
           </pre>
         </div>
 

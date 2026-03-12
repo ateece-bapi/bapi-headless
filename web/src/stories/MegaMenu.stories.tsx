@@ -7,27 +7,28 @@
  *
  * **MegaMenu Features:**
  * - 3 top-level items: Products (with dropdown), Support, Company
- * - Products dropdown with 8 product category columns
+ * - Products dropdown with 7 product category columns
  * - Each column has BAPI brand icon + 4 product links
  * - Featured product showcase with badge
- * - Hover intent delay (150ms to open, 300ms to close)
- * - Keyboard navigation (Arrow keys, Enter, Escape)
+ * - Hover intent delay (80ms to open, 140ms to close)
+ * - Keyboard navigation (ArrowDown, Enter, Space, Escape)
  * - Focus management and ARIA attributes
  * - Outside click detection
  * - Smooth animations (300ms transitions)
  *
- * **Product Categories (Mandatory Order):**
+ * **Product Categories (Current Implementation):**
  * 1. Temperature (Red/Orange icon)
  * 2. Humidity (Blue/Cyan icon)
  * 3. Pressure (Purple/Pink icon)
  * 4. Air Quality (Teal/Cyan icon)
- * 5. Sensors (Blue/Gray icon)
- * 6. Wireless (Green/Emerald icon)
- * 7. Accessories (Gray/Neutral icon)
- * 8. Test Instruments (Cyan/Blue icon)
+ * 5. Wireless (Green/Emerald icon)
+ * 6. Accessories (Gray/Neutral icon)
+ * 7. Test Instruments (Cyan/Blue icon)
+ *
+ * Note: Sensors category exists in brand guidelines but not yet implemented in mega menu.
  *
  * **Accessibility:**
- * - WCAG 2.1 AA compliant (29 automated tests passing)
+ * - WCAG 2.1 AA compliant (comprehensive automated test coverage)
  * - Proper ARIA roles and attributes
  * - Keyboard navigation support
  * - Focus indicators
@@ -110,18 +111,6 @@ const productCategories = [
     ],
   },
   {
-    name: 'Sensors',
-    slug: 'sensors',
-    icon: '/images/icons/Sensors_Icon.webp',
-    color: 'Blue/Gray',
-    products: [
-      { name: 'Multi-point Sensors', desc: 'Monitor multiple locations' },
-      { name: 'Averaging Sensors', desc: 'Temperature averaging solutions' },
-      { name: 'Wireless Sensors', desc: 'Battery or solar powered' },
-      { name: 'Smart Sensors', desc: 'IoT-enabled monitoring' },
-    ],
-  },
-  {
     name: 'Wireless',
     slug: 'wireless',
     icon: '/images/icons/Wireless_Icon.webp',
@@ -190,7 +179,8 @@ export const Overview: Story = {
 
               {/* Support */}
               <a
-                href="/support"
+                href="#support"
+                onClick={(e) => e.preventDefault()}
                 className="group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 transition-all duration-300 hover:bg-primary-600 hover:text-white hover:shadow-sm"
               >
                 Support
@@ -199,7 +189,8 @@ export const Overview: Story = {
 
               {/* Company */}
               <a
-                href="/company"
+                href="#company"
+                onClick={(e) => e.preventDefault()}
                 className="group relative inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 transition-all duration-300 hover:bg-primary-600 hover:text-white hover:shadow-sm"
               >
                 Company
@@ -249,7 +240,7 @@ export const Overview: Story = {
 
                       {/* Product Links */}
                       <div className="space-y-1">
-                        {category.products.slice(0, 3).map((product, pidx) => (
+                        {category.products.slice(0, 4).map((product, pidx) => (
                           <a
                             key={pidx}
                             href="#"
@@ -365,30 +356,30 @@ export const Overview: Story = {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
               <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
-              <h3 className="mb-2 text-lg font-semibold text-neutral-900">8 Product Categories</h3>
+              <h3 className="mb-2 text-lg font-semibold text-neutral-900">7 Product Categories</h3>
               <p className="text-sm text-neutral-700">
-                Complete product taxonomy with BAPI brand icons in mandatory order
+                Complete product taxonomy with BAPI brand icons
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
               <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
               <h3 className="mb-2 text-lg font-semibold text-neutral-900">Hover Intent</h3>
               <p className="text-sm text-neutral-700">
-                150ms delay to open, 300ms delay to close for smooth UX
+                80ms delay to open, 140ms delay to close for smooth UX
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
               <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
               <h3 className="mb-2 text-lg font-semibold text-neutral-900">Keyboard Navigation</h3>
               <p className="text-sm text-neutral-700">
-                Full keyboard support: Arrow keys, Enter, Escape, Tab
+                Full keyboard support: ArrowDown, Enter, Space, Escape, Tab
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
               <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
               <h3 className="mb-2 text-lg font-semibold text-neutral-900">WCAG 2.1 AA</h3>
               <p className="text-sm text-neutral-700">
-                29 automated accessibility tests passing with jest-axe
+                Comprehensive automated accessibility tests with jest-axe
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
@@ -434,7 +425,8 @@ export const ClosedState: Story = {
 
           {/* Support */}
           <a
-            href="/support"
+            href="#support"
+            onClick={(e) => e.preventDefault()}
             className="group relative inline-flex items-center rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 transition-all hover:bg-primary-600 hover:text-white"
           >
             Support
@@ -443,7 +435,8 @@ export const ClosedState: Story = {
 
           {/* Company */}
           <a
-            href="/company"
+            href="#company"
+            onClick={(e) => e.preventDefault()}
             className="group relative inline-flex items-center rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 transition-all hover:bg-primary-600 hover:text-white"
           >
             Company
@@ -808,12 +801,12 @@ export const Implementation: Story = {
         <div className="space-y-3">
           <div className="flex items-center gap-3">
             <div className="w-32 text-sm font-semibold text-neutral-900">Open Delay:</div>
-            <code className="rounded bg-primary-100 px-3 py-1 text-primary-900">150ms</code>
+            <code className="rounded bg-primary-100 px-3 py-1 text-primary-900">80ms</code>
             <span className="text-sm text-neutral-700">Prevents accidental opens</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-32 text-sm font-semibold text-neutral-900">Close Delay:</div>
-            <code className="rounded bg-primary-100 px-3 py-1 text-primary-900">300ms</code>
+            <code className="rounded bg-primary-100 px-3 py-1 text-primary-900">140ms</code>
             <span className="text-sm text-neutral-700">Allows diagonal mouse movement</span>
           </div>
           <div className="flex items-center gap-3">

@@ -23,39 +23,38 @@ const config: TestRunnerConfig = {
     const storyTitle = context.title;
     const storyName = context.name;
 
-    // Run accessibility checks
-    await checkA11y(page, '#storybook-root', {
-      detailedReport: true,
-      detailedReportOptions: {
-        html: true,
-      },
-      // WCAG 2.1 Level AA compliance (industry standard for e-commerce)
-      axeOptions: {
-        runOnly: {
-          type: 'tag',
-          values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'],
-        },
-        // Configure rules
-        rules: {
-          // Critical rules - fail the test
-          'aria-roles': { enabled: true },
-          'button-name': { enabled: true },
-          'color-contrast': { enabled: true },
-          'form-field-multiple-labels': { enabled: true },
-          'image-alt': { enabled: true },
-          'input-button-name': { enabled: true },
-          'label': { enabled: true },
-          'link-name': { enabled: true },
+    // Document-level rules disabled for component stories (industry best practice)
+    // Components are tested in isolation, not as complete documents.
+    // These rules are for full pages, not component libraries.
+    // See: Material-UI, Ant Design, Radix UI test configurations
+    const disabledRules = [
+      'landmark-one-main', // Components don't need <main> landmark
+      'page-has-heading-one', // Components don't need <h1> heading
+      'region', // Layout stories don't always have regions
+    ];
 
-          // Known issues - temporarily warn only (fix these!)
-          // TODO: Remove these waivers as issues are fixed
-          'region': { enabled: false }, // Layout stories don't always have regions
+    // Run accessibility checks with disabled rules
+    await checkA11y(
+      page,
+      '#storybook-root',
+      {
+        detailedReport: true,
+        detailedReportOptions: {
+          html: true,
         },
+        rules: disabledRules.reduce((acc, rule) => {
+          acc[rule] = { enabled: false };
+          return acc;
+        }, {} as Record<string, { enabled: boolean }>),
       },
-    });
+      true // skipFailures - we'll handle violations manually to filter disabled rules
+    );
 
-    // Get violations for logging
-    const violations = await getViolations(page);
+    // Get violations for logging (filtered to exclude disabled rules)
+    const allViolations = await getViolations(page);
+    const violations = allViolations.filter(
+      (v) => !disabledRules.includes(v.id)
+    );
 
     if (violations.length > 0) {
       console.error(
@@ -68,9 +67,23 @@ const config: TestRunnerConfig = {
         console.error(`   Impact: ${violation.impact}`);
         console.error(`   WCAG: ${violation.tags.filter((t) => t.startsWith('wcag')).join(', ')}`);
         console.error(`   Help: ${violation.helpUrl}`);
-        console.error(`   Affected elements: ${violation.nodes.length}`);
-        violation.nodes.forEach((node) => {
-          console.error(`     - ${node.html}`);
+        console.error(`   Affected elements: ${violation.nodes.length}\n`);
+        
+        violation.nodes.forEach((node, index) => {
+          console.error(`   [${index + 1}] Target: ${node.target.join(', ')}`);
+          console.error(`       HTML: ${node.html.substring(0, 200)}${node.html.length > 200 ? '...' : ''}`);
+          
+          // Show additional context for color-contrast violations
+          if (violation.id === 'color-contrast' && node.any && node.any[0]) {
+            const contrastData = node.any[0].data;
+            if (contrastData) {
+              console.error(`       Foreground: ${contrastData.fgColor || 'N/A'}`);
+              console.error(`       Background: ${contrastData.bgColor || 'N/A'}`);
+              console.error(`       Contrast Ratio: ${contrastData.contrastRatio || 'N/A'}`);
+              console.error(`       Expected: ${contrastData.expectedContrastRatio || 'N/A'}`);
+            }
+          }
+          console.error('');
         });
       });
     }

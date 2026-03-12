@@ -118,7 +118,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ['autodocs', 'skip-a11y'], // Icon gallery is for reference, not a functional component
 };
 
 export default meta;

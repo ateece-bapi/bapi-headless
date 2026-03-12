@@ -313,7 +313,7 @@ export const HeaderMobile: Story = {
   decorators: [
     (Story) => (
       <div className="flex h-14 items-center justify-between bg-white px-4 shadow">
-        <button className="text-neutral-700">
+        <button className="text-neutral-700" aria-label="Menu">
           <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
@@ -367,7 +367,7 @@ export const FloatingAction: Story = {
         </div>
 
         {/* Floating cart button */}
-        <div className="fixed bottom-6 right-6 z-50 rounded-full bg-primary-600 p-4 text-white shadow-lg transition hover:bg-primary-700">
+        <div className="fixed bottom-6 right-6 z-50 rounded-full bg-primary-800 p-4 text-white shadow-lg transition hover:bg-primary-900">
           <Story />
         </div>
       </div>

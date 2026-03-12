@@ -20,7 +20,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const meta: Meta = {
   title: 'Tests/ChromaticGuide',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'skip-a11y'], // Documentation guide, not a functional component
   parameters: {
     layout: 'fullscreen',
     chromatic: {

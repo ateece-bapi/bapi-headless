@@ -55,9 +55,9 @@ export default function CheckoutWizard({
                 <div
                   className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold transition-all sm:h-12 sm:w-12 sm:text-base ${
                     currentStep > step.number
-                      ? 'bg-success-500 text-white'
+                      ? 'bg-success-700 text-white'
                       : currentStep === step.number
-                        ? 'bg-primary-500 text-white'
+                        ? 'bg-primary-800 text-white'
                         : 'bg-neutral-200 text-neutral-700'
                   } `}
                 >
@@ -83,7 +83,7 @@ export default function CheckoutWizard({
               {index < steps.length - 1 && (
                 <div
                   className={`mx-2 h-0.5 flex-1 transition-all sm:mx-4 ${
-                    currentStep > step.number ? 'bg-success-500' : 'bg-neutral-200'
+                    currentStep > step.number ? 'bg-success-700' : 'bg-neutral-200'
                   } `}
                 />
               )}

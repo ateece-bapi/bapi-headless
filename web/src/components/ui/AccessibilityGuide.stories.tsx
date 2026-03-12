@@ -20,7 +20,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const meta: Meta = {
   title: 'Tests/AccessibilityGuide',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'skip-a11y'], // Guide intentionally shows both good and bad accessibility examples
   parameters: {
     layout: 'centered',
     a11y: {

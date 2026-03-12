@@ -459,7 +459,7 @@ export const InProductCard: Story = {
             BA/T10K-3-U Temperature Sensor
           </h3>
           <p className="mb-2 text-sm text-neutral-700">10K Type III Thermistor</p>
-          <div className="mb-3 text-xl font-bold text-primary-500">$49.00</div>
+          <div className="mb-3 text-xl font-bold text-primary-800">$49.00</div>
         </div>
         <Story />
       </div>
@@ -489,16 +489,17 @@ export const WithQuantitySelector: Story = {
     (Story) => (
       <div className="flex items-stretch gap-3">
         <div className="flex items-center rounded-lg border border-neutral-300">
-          <button className="px-3 py-2 hover:bg-neutral-50" type="button">
+          <button className="px-3 py-2 hover:bg-neutral-50" type="button" aria-label="Decrease quantity">
             −
           </button>
           <input
             type="number"
             value="1"
             readOnly
+            aria-label="Quantity"
             className="w-16 border-x border-neutral-300 py-2 text-center"
           />
-          <button className="px-3 py-2 hover:bg-neutral-50" type="button">
+          <button className="px-3 py-2 hover:bg-neutral-50" type="button" aria-label="Increase quantity">
             +
           </button>
         </div>
@@ -533,7 +534,7 @@ export const MobileStickyBottom: Story = {
         <div className="h-full overflow-y-auto pb-20">
           <div className="p-4">
             <h2 className="mb-2 text-2xl font-bold">Product Title</h2>
-            <div className="mb-4 text-2xl font-bold text-primary-500">$49.00</div>
+            <div className="mb-4 text-2xl font-bold text-primary-800">$49.00</div>
             <p className="text-neutral-700">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Product description would
               appear here with all the technical details and specifications...

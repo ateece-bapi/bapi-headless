@@ -53,7 +53,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
           <h3 className="text-sm font-semibold uppercase tracking-wide text-neutral-700">
             {t('items', { count: cart.contents?.itemCount || 0 })}
           </h3>
-          <div className="max-h-64 space-y-3 overflow-y-auto" data-testid="order-items">
+          <div className="max-h-64 space-y-3 overflow-y-auto" data-testid="order-items" tabIndex={0}>
             {cart.contents?.nodes?.map((item: any) => {
               const product = item.product.node;
               const variation = item.variation?.node;
@@ -73,7 +73,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
                         className="h-full w-full object-cover"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center text-xs text-neutral-400">
+                      <div className="flex h-full w-full items-center justify-center text-xs text-neutral-700">
                         {t('noImage')}
                       </div>
                     )}
@@ -102,7 +102,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
           {/* Edit Cart Link */}
           <Link
             href={`/${locale}/cart`}
-            className="text-sm font-medium text-primary-500 transition-colors hover:text-primary-600"
+            className="text-sm font-medium text-primary-700 transition-colors hover:text-primary-800"
           >
             {t('editCart')}
           </Link>
@@ -116,7 +116,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
           </div>
 
           {discount > 0 && (
-            <div className="flex justify-between text-sm text-success-600">
+            <div className="flex justify-between text-sm text-success-700">
               <span>{t('discount')}</span>
               <span className="font-medium">-${discount.toFixed(2)}</span>
             </div>

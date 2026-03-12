@@ -197,7 +197,7 @@ describe('CheckoutWizard', () => {
 
       const stepCircles = container.querySelectorAll('.rounded-full');
       // First step should have primary color
-      expect(stepCircles[0]).toHaveClass('bg-primary-500');
+      expect(stepCircles[0]).toHaveClass('bg-primary-800');
     });
 
     it('highlights step 2 when current step is 2', () => {
@@ -215,7 +215,7 @@ describe('CheckoutWizard', () => {
 
       const stepCircles = container.querySelectorAll('.rounded-full');
       // Second step should have primary color
-      expect(stepCircles[1]).toHaveClass('bg-primary-500');
+      expect(stepCircles[1]).toHaveClass('bg-primary-800');
     });
 
     it('highlights step 3 when current step is 3', () => {
@@ -233,7 +233,7 @@ describe('CheckoutWizard', () => {
 
       const stepCircles = container.querySelectorAll('.rounded-full');
       // Third step should have primary color
-      expect(stepCircles[2]).toHaveClass('bg-primary-500');
+      expect(stepCircles[2]).toHaveClass('bg-primary-800');
     });
 
     it('applies neutral color to incomplete steps', () => {
@@ -329,8 +329,8 @@ describe('CheckoutWizard', () => {
 
       const stepCircles = container.querySelectorAll('.rounded-full');
       // Steps 1 and 2 should have success color
-      expect(stepCircles[0]).toHaveClass('bg-success-500');
-      expect(stepCircles[1]).toHaveClass('bg-success-500');
+      expect(stepCircles[0]).toHaveClass('bg-success-700');
+      expect(stepCircles[1]).toHaveClass('bg-success-700');
     });
 
     it('applies success color to connector after completed step', () => {
@@ -348,7 +348,7 @@ describe('CheckoutWizard', () => {
 
       const connectors = container.querySelectorAll('.h-0\\.5');
       // First connector should be success color
-      expect(connectors[0]).toHaveClass('bg-success-500');
+      expect(connectors[0]).toHaveClass('bg-success-700');
     });
 
     it('keeps neutral color on connectors for incomplete steps', () => {

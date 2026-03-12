@@ -40,7 +40,7 @@ function ToastDemo() {
         onClick={() =>
           showToast('success', 'Success!', 'Your action completed successfully.', 5000)
         }
-        className="flex items-center gap-2 rounded-lg bg-green-500 px-6 py-3 text-white transition-colors hover:bg-green-600"
+        className="flex items-center gap-2 rounded-lg bg-success-800 px-6 py-3 text-white transition-colors hover:bg-success-900"
       >
         <span>Show Success Toast</span>
       </button>
@@ -49,14 +49,14 @@ function ToastDemo() {
         onClick={() =>
           showToast('error', 'Error Occurred', 'Something went wrong. Please try again.', 6000)
         }
-        className="flex items-center gap-2 rounded-lg bg-red-500 px-6 py-3 text-white transition-colors hover:bg-red-600"
+        className="flex items-center gap-2 rounded-lg bg-error-800 px-6 py-3 text-white transition-colors hover:bg-error-900"
       >
         <span>Show Error Toast</span>
       </button>
 
       <button
         onClick={() => showToast('warning', 'Warning', 'This action cannot be undone.', 5000)}
-        className="flex items-center gap-2 rounded-lg bg-yellow-500 px-6 py-3 text-white transition-colors hover:bg-yellow-600"
+        className="flex items-center gap-2 rounded-lg bg-warning-900 px-6 py-3 text-white transition-colors hover:bg-warning-950"
       >
         <span>Show Warning Toast</span>
       </button>
@@ -65,7 +65,7 @@ function ToastDemo() {
         onClick={() =>
           showToast('info', 'Information', 'Here is some helpful information for you.', 4000)
         }
-        className="flex items-center gap-2 rounded-lg bg-blue-500 px-6 py-3 text-white transition-colors hover:bg-blue-600"
+        className="flex items-center gap-2 rounded-lg bg-info-800 px-6 py-3 text-white transition-colors hover:bg-info-900"
       >
         <span>Show Info Toast</span>
       </button>
@@ -82,7 +82,7 @@ function ToastDemo() {
             400
           );
         }}
-        className="rounded-lg bg-purple-500 px-6 py-3 text-white transition-colors hover:bg-purple-600"
+        className="rounded-lg bg-primary-800 px-6 py-3 text-white transition-colors hover:bg-primary-900"
       >
         Show Multiple Toasts (Stacking Test)
       </button>
@@ -91,7 +91,7 @@ function ToastDemo() {
         onClick={() =>
           showToast('success', 'No Auto-Dismiss', 'This toast will not auto-dismiss.', 0)
         }
-        className="rounded-lg bg-gray-500 px-6 py-3 text-white transition-colors hover:bg-gray-600"
+        className="rounded-lg bg-neutral-800 px-6 py-3 text-white transition-colors hover:bg-neutral-900"
       >
         Show Persistent Toast (duration=0)
       </button>
@@ -127,7 +127,7 @@ export const Success: Story = {
           onClick={() =>
             showToast('success', 'Product Added', 'BA/10K-3-O-12 added to cart successfully.', 5000)
           }
-          className="rounded-lg bg-green-500 px-6 py-3 text-white hover:bg-green-600"
+          className="rounded-lg bg-success-800 px-6 py-3 text-white hover:bg-success-900"
         >
           Trigger Success Toast
         </button>
@@ -161,7 +161,7 @@ export const Error: Story = {
               6000
             )
           }
-          className="rounded-lg bg-red-500 px-6 py-3 text-white hover:bg-red-600"
+          className="rounded-lg bg-error-800 px-6 py-3 text-white hover:bg-error-900"
         >
           Trigger Error Toast
         </button>
@@ -190,7 +190,7 @@ export const Warning: Story = {
           onClick={() =>
             showToast('warning', 'Low Stock', 'Only 3 units remaining for this product.', 5000)
           }
-          className="rounded-lg bg-yellow-500 px-6 py-3 text-white hover:bg-yellow-600"
+          className="rounded-lg bg-warning-900 px-6 py-3 text-white hover:bg-warning-950"
         >
           Trigger Warning Toast
         </button>
@@ -224,7 +224,7 @@ export const InfoToast: Story = {
               4000
             )
           }
-          className="rounded-lg bg-blue-500 px-6 py-3 text-white hover:bg-blue-600"
+          className="rounded-lg bg-info-800 px-6 py-3 text-white hover:bg-info-900"
         >
           Trigger Info Toast
         </button>
@@ -258,7 +258,7 @@ export const LongMessage: Story = {
               8000
             )
           }
-          className="rounded-lg bg-blue-500 px-6 py-3 text-white hover:bg-blue-600"
+          className="rounded-lg bg-info-800 px-6 py-3 text-white hover:bg-info-900"
         >
           Trigger Long Message Toast
         </button>
@@ -292,7 +292,7 @@ export const Persistent: Story = {
               0
             )
           }
-          className="rounded-lg bg-orange-500 px-6 py-3 text-white hover:bg-orange-600"
+          className="rounded-lg bg-neutral-800 px-6 py-3 text-white hover:bg-neutral-900"
         >
           Trigger Persistent Toast (duration=0)
         </button>

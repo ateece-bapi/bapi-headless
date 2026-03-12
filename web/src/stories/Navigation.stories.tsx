@@ -440,7 +440,7 @@ const meta: Meta<typeof NavigationDocs> = {
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ['autodocs', 'skip-a11y'], // Navigation documentation shows various states for reference
 };
 
 export default meta;

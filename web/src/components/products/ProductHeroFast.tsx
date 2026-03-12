@@ -14,7 +14,7 @@ export function ProductHeroFast({ product }: ProductHeroProps) {
     <section className="container mx-auto px-4 py-8">
       <div className="grid gap-12 md:grid-cols-2">
         {/* Image */}
-        <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-50">
+        <div className="relative aspect-square overflow-hidden rounded-2xl bg-neutral-50">
           {product.image?.sourceUrl ? (
             <Image
               src={product.image.sourceUrl}
@@ -25,7 +25,7 @@ export function ProductHeroFast({ product }: ProductHeroProps) {
               sizes="(min-width: 768px) 50vw, 100vw"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-gray-400">
+            <div className="flex h-full w-full items-center justify-center text-neutral-700">
               No Image Available
             </div>
           )}
@@ -33,13 +33,13 @@ export function ProductHeroFast({ product }: ProductHeroProps) {
 
         {/* Details */}
         <div>
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">{product.name}</h1>
+          <h1 className="mb-4 text-4xl font-bold text-neutral-900">{product.name}</h1>
 
-          {price && <div className="mb-6 text-3xl font-bold text-primary-600">{price}</div>}
+          {price && <div className="mb-6 text-3xl font-bold text-primary-800">{price}</div>}
 
           {product.shortDescription && (
             <div
-              className="prose prose-sm mb-6 max-w-none text-gray-600"
+              className="prose prose-sm mb-6 max-w-none text-neutral-700"
               dangerouslySetInnerHTML={{
                 __html: sanitizeWordPressContent(product.shortDescription),
               }}
@@ -47,7 +47,7 @@ export function ProductHeroFast({ product }: ProductHeroProps) {
           )}
 
           <div className="flex gap-4">
-            <button className="rounded-lg bg-primary-600 px-8 py-3 font-semibold text-white transition-colors hover:bg-primary-700">
+            <button className="rounded-lg bg-primary-800 px-8 py-3 font-semibold text-white transition-colors hover:bg-primary-900">
               Add to Cart
             </button>
           </div>

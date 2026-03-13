@@ -1,7 +1,6 @@
 import { NavLink, MegaMenuItem } from './types';
 import {
   Building2,
-  Factory,
   Wrench,
   LifeBuoy,
   Phone,
@@ -16,6 +15,7 @@ export const NAV_LINKS: NavLink[] = [];
  * Generate mega menu items with translations
  * @param t - Translation function from useTranslations('megaMenu')
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
   {
     label: t('products.label'),
@@ -29,22 +29,22 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.temperature.roomWallSensors'),
-              href: '/products',
+              href: '/products/temperature',
               description: t('products.temperature.roomWallSensorsDesc'),
             },
             {
               label: t('products.temperature.ductSensors'),
-              href: '/products',
+              href: '/products/temperature',
               description: t('products.temperature.ductSensorsDesc'),
             },
             {
               label: t('products.temperature.immersionWell'),
-              href: '/products',
+              href: '/products/temperature',
               description: t('products.temperature.immersionWellDesc'),
             },
             {
               label: t('products.temperature.outdoorSensors'),
-              href: '/products',
+              href: '/products/temperature',
               description: t('products.temperature.outdoorSensorsDesc'),
             },
           ],
@@ -56,22 +56,22 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.humidity.roomHumidity'),
-              href: '/products',
+              href: '/products/humidity',
               description: t('products.humidity.roomHumidityDesc'),
             },
             {
               label: t('products.humidity.ductHumidity'),
-              href: '/products',
+              href: '/products/humidity',
               description: t('products.humidity.ductHumidityDesc'),
             },
             {
               label: t('products.humidity.outdoorHumidity'),
-              href: '/products',
+              href: '/products/humidity',
               description: t('products.humidity.outdoorHumidityDesc'),
             },
             {
               label: t('products.humidity.comboSensors'),
-              href: '/products',
+              href: '/products/humidity',
               description: t('products.humidity.comboSensorsDesc'),
             },
           ],
@@ -83,17 +83,17 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.pressure.differential'),
-              href: '/products',
+              href: '/products/pressure',
               description: t('products.pressure.differentialDesc'),
             },
             {
               label: t('products.pressure.static'),
-              href: '/products',
+              href: '/products/pressure',
               description: t('products.pressure.staticDesc'),
             },
             {
               label: t('products.pressure.barometric'),
-              href: '/products',
+              href: '/products/pressure',
               description: t('products.pressure.barometricDesc'),
             },
           ],
@@ -105,17 +105,17 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.airQuality.co2'),
-              href: '/products',
+              href: '/products/air-quality',
               description: t('products.airQuality.co2Desc'),
             },
             {
               label: t('products.airQuality.voc'),
-              href: '/products',
+              href: '/products/air-quality',
               description: t('products.airQuality.vocDesc'),
             },
             {
               label: t('products.airQuality.particulate'),
-              href: '/products',
+              href: '/products/air-quality',
               description: t('products.airQuality.particulateDesc'),
             },
           ],

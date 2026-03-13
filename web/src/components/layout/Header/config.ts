@@ -14,6 +14,7 @@ export const NAV_LINKS: NavLink[] = [];
 /**
  * Generate mega menu items with translations
  * @param t - Translation function from useTranslations('megaMenu')
+ * Updated: March 13, 2026 - Fixed category links
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getMegaMenuItems = (t: any): MegaMenuItem[] => [

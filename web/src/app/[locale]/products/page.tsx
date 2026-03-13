@@ -8,60 +8,61 @@ import { ArrowRight, Sparkles, Award } from 'lucide-react';
 
 // Mock data for product categories - BRAND STANDARD ORDER
 // Per BAPI Brand Guide: Temperature, Humidity, Pressure, Air Quality, Wireless, Accessories, Test Instruments
+// Product counts verified via GraphQL: March 13, 2026
 const productCategories = [
   {
     nameKey: 'temperatureSensors',
     slug: 'temperature-sensors',
-    count: 119,
+    count: 113, // GraphQL verified
     image: '/products/temp_sensors.webp',
     icon: '/images/icons/Temperature_Icon.webp',
   },
   {
     nameKey: 'humiditySensors',
     slug: 'humidity-sensors',
-    count: 33,
+    count: 33, // GraphQL verified ✅
     image: '/products/humidity_sensors.webp',
     icon: '/images/icons/Humidity_Icon.webp',
   },
   {
     nameKey: 'pressureSensors',
     slug: 'pressure-sensors',
-    count: 39,
+    count: 29, // GraphQL verified
     image: '/products/pressure_sensors.webp',
     icon: '/images/icons/Pressure_Icon.webp',
   },
   {
     nameKey: 'airQualitySensors',
     slug: 'air-quality-sensors',
-    count: 32,
+    count: 30, // GraphQL verified
     image: '/products/air_quality_sensors.webp',
     icon: '/images/icons/AirQuality_Icon.webp',
   },
   {
     nameKey: 'wirelessSensors',
     slug: 'wireless-sensors',
-    count: 24,
+    count: 24, // Note: Maps to 'bluetooth-wireless' in WordPress (24 products)
     image: '/products/wireless_sensors.webp',
     icon: '/images/icons/Wireless_Icon.webp',
   },
   {
     nameKey: 'accessories',
     slug: 'accessories',
-    count: 45,
+    count: 74, // GraphQL verified
     image: '/products/accessories_products.webp',
     icon: '/images/icons/Accessories_Icon.webp',
   },
   {
     nameKey: 'testInstruments',
     slug: 'test-instruments',
-    count: 8,
+    count: 3, // GraphQL verified
     image: '/products/test_products.webp',
     icon: '/images/icons/Test_Instruments_Icon.webp',
   },
   {
     nameKey: 'etaLine',
     slug: 'eta-line',
-    count: 70,
+    count: 70, // GraphQL verified ✅
     image: '/products/eta_modules_products.webp',
     icon: '/images/icons/Sensors_Icon.webp',
   },

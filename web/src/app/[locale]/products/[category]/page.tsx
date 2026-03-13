@@ -12,12 +12,13 @@ import {
 import { ArrowRight, ChevronRight } from 'lucide-react';
 
 // Map short slugs to full category slugs
+// Updated March 13, 2026 based on GraphQL verification
 const CATEGORY_SLUG_MAP: Record<string, string> = {
   temperature: 'temperature-sensors',
   humidity: 'humidity-sensors',
   pressure: 'pressure-sensors',
   'air-quality': 'air-quality-sensors',
-  wireless: 'wireless-sensors',
+  wireless: 'bluetooth-wireless', // WordPress uses 'bluetooth-wireless' (24 products)
   accessories: 'accessories',
   'test-instruments': 'test-instruments',
   'current-sensors': 'current-sensors',

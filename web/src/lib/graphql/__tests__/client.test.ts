@@ -98,13 +98,13 @@ describe('GraphQL Client', () => {
   });
 
   describe('Method Selection (GET vs POST)', () => {
-    it('should default to POST or GET method when useGetMethod not specified', () => {
+    it('should default to GET method when useGetMethod not specified', () => {
       getGraphQLClient();
       const callArgs = MockedGraphQLClient.mock.calls[0];
       const options = callArgs[1];
       
-      // Default can be either GET or POST (implementation detail)
-      expect(['GET', 'POST', undefined].includes(options.method)).toBe(true);
+      // Default behavior: useGetMethod defaults to true, so method should be GET
+      expect(options.method).toBe('GET');
     });
 
     it('should explicitly specify POST method when useGetMethod is false', () => {

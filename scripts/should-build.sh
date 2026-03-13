@@ -37,6 +37,7 @@ if [ -z "$CHANGED_FILES" ]; then
 fi
 
 # Files/directories that don't require a build
+# NOTE: scripts/ intentionally NOT in this list - verification scripts can accompany production changes
 IGNORE_PATTERNS=(
   "^docs/"
   "\.md$"

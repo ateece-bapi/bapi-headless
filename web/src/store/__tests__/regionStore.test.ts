@@ -224,7 +224,8 @@ describe('regionStore', () => {
         languageCode: 'en',
       };
       
-      const migratedState = migrateFn(deprecatedState, 0); // version 0 triggers migration
+      // Zustand calls migrate when stored version < current version
+      const migratedState = migrateFn(deprecatedState);
       
       // Verify migration occurred correctly
       expect(migratedState.regionCode).toBe('sg');
@@ -244,7 +245,7 @@ describe('regionStore', () => {
         languageCode: 'de',
       };
       
-      const migratedState = migrateFn(validState, 0);
+      const migratedState = migrateFn(validState);
       
       // Verify state preserved (no change)
       expect(migratedState.regionCode).toBe('eu');
@@ -256,7 +257,7 @@ describe('regionStore', () => {
       const options = useRegionStore.persist.getOptions();
       const migrateFn = options.migrate;
       
-      const migratedState = migrateFn(undefined, 0);
+      const migratedState = migrateFn(undefined);
       
       // Verify defaults applied
       expect(migratedState.regionCode).toBe('us');

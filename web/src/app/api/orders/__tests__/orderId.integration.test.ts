@@ -123,8 +123,10 @@ describe('Order Details API - Integration Tests', () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const fetchCall = mockFetch.mock.calls[0];
       
-      // Derive expected URL from stubbed environment variable (avoids hard-coding)
-      const expectedBaseUrl = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.replace('/graphql', '') || '';
+      // Derive expected URL from environment variable (set globally in setupTests.ts)
+      // Assert env var is defined so test fails fast if global setup is broken
+      expect(process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL).toBeDefined();
+      const expectedBaseUrl = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL!.replace('/graphql', '');
       const expectedUrl = `${expectedBaseUrl}/wp-json/wc/v3/orders/421732`;
       expect(fetchCall[0]).toBe(expectedUrl);
       expect(fetchCall[1].headers.Authorization).toContain('Basic ');

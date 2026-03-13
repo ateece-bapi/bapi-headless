@@ -106,17 +106,16 @@ describe('regionStore', () => {
       expect(region.locale).toBe('en-GB');
     });
 
-    it('should persist region selection (uses zustand persist middleware)', () => {
+    it('should update region state when setRegion is called', () => {
       useRegionStore.getState().setRegion('eu');
       
-      // Verify state updated in memory
+      // Verify state updated correctly
       const { regionCode, region } = useRegionStore.getState();
       expect(regionCode).toBe('eu');
       expect(region.code).toBe('eu');
       
-      // Note: Zustand persist middleware handles localStorage automatically.
-      // Testing actual localStorage I/O would be testing library infrastructure,
-      // not our business logic. This test confirms setRegion works correctly.
+      // Note: Zustand persist middleware handles localStorage persistence automatically.
+      // This test focuses on business logic: setRegion updates state correctly.
     });
 
     it('should handle all available regions', () => {
@@ -148,16 +147,15 @@ describe('regionStore', () => {
       expect(languageCode).toBe('es');
     });
 
-    it('should persist language selection (uses zustand persist middleware)', () => {
+    it('should update language state when setLanguage is called', () => {
       useRegionStore.getState().setLanguage('de');
       
-      // Verify state updated in memory
+      // Verify state updated correctly
       const { languageCode } = useRegionStore.getState();
       expect(languageCode).toBe('de');
       
-      // Note: Zustand persist middleware handles localStorage automatically.
-      // Testing actual localStorage I/O would be testing library infrastructure,
-      // not our business logic. This test confirms setLanguage works correctly.
+      // Note: Zustand persist middleware handles localStorage persistence automatically.
+      // This test focuses on business logic: setLanguage updates state correctly.
     });
 
     it('should handle multiple language changes', () => {
@@ -212,21 +210,59 @@ describe('regionStore', () => {
   });
 
   describe('Migration from deprecated Asia region', () => {
-    it('should have migration logic for deprecated "asia" region', () => {
-      // Verify the migration function exists in store configuration
-      // @ts-expect-error - accessing internal persist API to verify configuration
-      const persistConfig = useRegionStore.persist;
+    it('should migrate deprecated "asia" region to "sg" (Singapore)', () => {
+      // Access the migrate function from persist configuration
+      // @ts-expect-error - accessing internal persist API to test migration logic
+      const options = useRegionStore.persist.getOptions();
+      const migrateFn = options.migrate;
       
-      expect(persistConfig).toBeDefined();
+      expect(migrateFn).toBeDefined();
       
-      // Note: The actual migration logic in regionStore.ts:
-      // - If regionCode === 'asia', migrates to 'sg' (Singapore)
-      // - Version bumped from 0 to 1
-      // - This is executed by Zustand persist middleware on rehydration
-      //
-      // Testing actual rehydration would require mocking Zustand internals,
-      // which tests library infrastructure rather than business logic.
-      // The migration code is visible in regionStore.ts for manual verification.
+      // Test migration with deprecated 'asia' region
+      const deprecatedState = {
+        regionCode: 'asia',
+        languageCode: 'en',
+      };
+      
+      // Zustand calls migrate when stored version < current version
+      const migratedState = migrateFn(deprecatedState);
+      
+      // Verify migration occurred correctly
+      expect(migratedState.regionCode).toBe('sg');
+      expect(migratedState.region).toEqual(REGIONS.sg);
+      expect(migratedState.languageCode).toBe('en');
+    });
+    
+    it('should preserve valid region codes during migration', () => {
+      // @ts-expect-error - accessing internal persist API
+      const options = useRegionStore.persist.getOptions();
+      const migrateFn = options.migrate;
+      
+      // Test with valid region (no migration needed)
+      const validState = {
+        regionCode: 'eu',
+        region: REGIONS.eu,
+        languageCode: 'de',
+      };
+      
+      const migratedState = migrateFn(validState);
+      
+      // Verify state preserved (no change)
+      expect(migratedState.regionCode).toBe('eu');
+      expect(migratedState.languageCode).toBe('de');
+    });
+    
+    it('should return default state when persisted state is undefined', () => {
+      // @ts-expect-error - accessing internal persist API
+      const options = useRegionStore.persist.getOptions();
+      const migrateFn = options.migrate;
+      
+      const migratedState = migrateFn(undefined);
+      
+      // Verify defaults applied
+      expect(migratedState.regionCode).toBe('us');
+      expect(migratedState.region).toEqual(REGIONS.us);
+      expect(migratedState.languageCode).toBe('en');
     });
   });
 

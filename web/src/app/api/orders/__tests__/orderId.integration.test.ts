@@ -123,7 +123,7 @@ describe('Order Details API - Integration Tests', () => {
       // Verify fetch was called with correct parameters
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const fetchCall = mockFetch.mock.calls[0];
-      expect(fetchCall[0]).toBe('/wp-json/wc/v3/orders/421732');
+      expect(fetchCall[0]).toBe('https://test.example.com/wp-json/wc/v3/orders/421732');
       expect(fetchCall[1].headers.Authorization).toContain('Basic ');
 
       // Verify Basic Auth header is correctly encoded

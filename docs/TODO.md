@@ -7,6 +7,61 @@
 
 ---
 
+## ✅ Test Suite Health Check: GraphQL Client + Region Store Business Logic Tests (March 13, 2026)
+
+**Status:** ✅ COMPLETE - 100% Clean Test Suite 🎉  
+**Time:** ~3 hours  
+**Deliverable:** +38 passing tests (1,202 → 1,240), 100% pass rate
+
+### Completed
+- ✅ Created test branch `test/suite-health-check-march-13`
+- ✅ Added 18 GraphQL client tests (configuration, caching, GET/POST selection)
+- ✅ Added 20 region store tests (region/language selection, MENA auto-switch)
+- ✅ Fixed 1 pre-existing order API test (URL expectation)
+- ✅ Set GraphQL endpoint in test setup (`NEXT_PUBLIC_WORDPRESS_GRAPHQL`)
+- ✅ All tests passing: 1,240/1,240 (100% pass rate)
+- ✅ 2 commits merged to main, branch deleted
+
+### Test Coverage Added
+**GraphQL Client Tests (18):**
+- Basic initialization and configuration
+- Cache tag system (single, multiple, empty)
+- Method selection (GET vs POST for CDN optimization)
+- Custom header injection and merging
+- Real-world usage patterns (products, auth, variants)
+
+**Region Store Tests (20):**
+- Default state initialization (US region, English language)
+- Region selection (10 regions with currency/locale/flag)
+- Language selection with persistence
+- MENA auto-switch to Arabic (business logic)
+- Migration handling for deprecated regions
+- State persistence validation
+
+### Technical Implementation
+- **Test Philosophy**: Focus on business logic, not library infrastructure
+- **Mock Strategy**: GraphQL client mocked, region store uses actual Zustand
+- **Environment Setup**: Added GraphQL endpoint to `test/setupTests.ts`
+- **Type Safety**: Tests match actual implementation (Region is Record, not array)
+- **Business Rules**: Tests validate our code's behavior (MENA auto-switch, etc.)
+
+### Impact
+- **Coverage**: 1,202 → 1,240 passing tests (+38, +3.2%)
+- **Quality**: 100% pass rate (was 99.9% with 1 failing test)
+- **Phase 1 Readiness**: Core GraphQL + i18n infrastructure fully tested
+- **Merge Ready**: Clean suite validates April 10 launch preparedness
+
+### Files Created/Modified
+- `web/src/lib/graphql/__tests__/client.test.ts` (NEW, 204 lines, 18 tests)
+- `web/src/store/__tests__/regionStore.test.ts` (NEW, 236 lines, 20 tests)
+- `web/test/setupTests.ts` (added GraphQL endpoint env var)
+- `web/src/app/api/orders/__tests__/orderId.integration.test.ts` (1 line fix)
+
+### Key Decision: Business Logic > Library Testing
+User questioned whether tests should focus on Zustand persist middleware. Decision: Tests now validate **our business logic** (region selection, MENA auto-switch, currency associations) rather than Zustand's infrastructure (localStorage serialization, hydration). This is the correct testing philosophy - we trust libraries to work and test our business rules.
+
+---
+
 ## ✅ Designer Onboarding: Chromatic + Figma Workflow Setup (March 13, 2026)
 
 **Status:** ✅ COMPLETE - Matt Onboarded 🎉  

@@ -2,8 +2,147 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** March 12, 2026  
-**Status:** Phase 1 Development - April 10, 2026 Go-Live (29 days remaining)
+**Updated:** March 13, 2026  
+**Status:** Phase 1 Development - April 10, 2026 Go-Live (28 days remaining)
+
+---
+
+## March 13, 2026 — Designer Onboarding: Chromatic + Figma Workflow Setup 🎨
+
+**Status:** ✅ COMPLETE - Matt Onboarded to Storybook 🎉  
+**Context:** Set up designer workflow with Chromatic for component review and Figma integration  
+**Time:** ~1 hour  
+**Deliverable:** Complete designer onboarding guide + PDF
+
+### 🎯 SESSION SUMMARY: Designer Collaboration Workflow
+
+**User Goal:** "Matt uses Figma. How is Matt's workflow going to work with Storybook and Chromatic?"
+
+**Delivered:**
+- ✅ Chromatic project already configured (186 stories, 23 components)
+- ✅ Matt invited as External Collaborator with Reviewer permissions
+- ✅ Published Storybook URL shared: `https://69790f14a4a9ebfab83a9f49-cyioytfxjg.chromatic.com`
+- ✅ Comprehensive Figma integration guide created: `docs/FIGMA-STORYBOOK-SETUP.md`
+- ✅ PDF generated for easy email sharing: `docs/FIGMA-STORYBOOK-SETUP.pdf` (194KB)
+- ✅ Onboarding email drafted and sent to Matt
+
+### Part 1: Chromatic Access Setup (15 minutes)
+
+**Verification:**
+- Chromatic project status: Active with 53 builds
+- Latest build: 186 stories across 23 components
+- GitHub integration: Working (builds on PR + main branch)
+- Visual regression: 102 changes detected in latest build
+
+**Matt's Access Configuration:**
+- Role: External Collaborator (Reviewer)
+- Permissions: View builds, comment on changes, approve/reject baselines
+- Access method: Invite link sent via email
+- Storybook URL: Permanent published URL for browsing components
+
+**Why Chromatic (not Vercel):**
+- Purpose-built for Storybook publishing
+- Visual regression testing built-in
+- Designer review workflow (approve/reject UI changes)
+- Figma plugin compatibility
+- Free tier: 5,000 snapshots/month
+
+### Part 2: Designer Workflow Documentation (30 minutes)
+
+**Created:** `docs/FIGMA-STORYBOOK-SETUP.md` (comprehensive guide)
+
+**Sections Covered:**
+1. **Storybook Connect Plugin** - Embed live components in Figma
+2. **Browser Side-by-Side** - Alternative workflow without plugin
+3. **Design Handoff Best Practices** - Component naming, references
+4. **PR Review Process** - Approving/rejecting visual changes
+5. **Component Naming Reference** - Matching Storybook structure
+6. **Keyboard Shortcuts** - Faster navigation
+7. **Troubleshooting** - Common issues and solutions
+8. **Quick Start Checklist** - Step-by-step setup
+
+**Key Features:**
+- Side-by-side design vs implementation comparison
+- Live component preview in Figma
+- Real-time hover states, animations, interactions
+- Accurate component specs (spacing, colors, typography)
+
+**Figma Plugin Integration:**
+- Storybook Connect (by Chromatic)
+- Embeds live components next to designs in Figma
+- Shows EXACTLY what developers built
+- Prevents design/implementation drift
+
+### Part 3: PDF Generation & Email (15 minutes)
+
+**PDF Creation:**
+```bash
+npx md-to-pdf docs/FIGMA-STORYBOOK-SETUP.md
+# Result: docs/FIGMA-STORYBOOK-SETUP.pdf (194KB)
+```
+
+**Email Sent to Matt:**
+- Subject: "Figma + Storybook Setup Guide (PDF attached)"
+- Included: Chromatic invite acceptance instructions
+- Included: Published Storybook URL
+- Attached: PDF setup guide
+- Action items: Quick Start Checklist
+
+### Technical Achievements
+
+**Designer Collaboration:**
+- Chromatic serves as single source of truth for components
+- Matt can browse 186 live, interactive components
+- Side-by-side comparison in Figma (design vs implementation)
+- PR review workflow prevents UI regressions
+
+**Workflow Benefits:**
+- Matt checks existing components BEFORE designing new ones
+- Uses Storybook component names in design handoff
+- Reviews developer work visually (approve/reject changes)
+- Faster development (fewer design/dev misalignments)
+
+**Files Created:**
+```
+docs/FIGMA-STORYBOOK-SETUP.md     - Complete designer guide (markdown)
+docs/FIGMA-STORYBOOK-SETUP.pdf    - Email-ready PDF (194KB)
+```
+
+### Matt's Next Steps
+
+**Immediate (from email):**
+1. Accept Chromatic invite
+2. Bookmark Storybook URL
+3. Browse components to familiarize
+4. Follow Quick Start Checklist
+
+**Optional Enhancement:**
+1. Install Storybook Connect plugin in Figma
+2. Link to Chromatic Storybook URL
+3. Embed components in Figma designs
+4. Get side-by-side comparison workflow
+
+**Ongoing:**
+- Review PRs when notified by Chromatic
+- Approve/reject visual changes
+- Leave design feedback on component changes
+- Reference Storybook when creating new designs
+
+### Key Takeaways
+
+**Designer-Developer Collaboration:**
+1. ✅ **Living Documentation** - Storybook shows what's actually built
+2. ✅ **Visual Review** - Chromatic catches unintended UI changes
+3. ✅ **Figma Integration** - Side-by-side comparison prevents drift
+4. ✅ **Component Reuse** - Designer sees existing components first
+
+**Professional Onboarding:**
+1. ✅ **Comprehensive Guide** - PDF with screenshots, examples, troubleshooting
+2. ✅ **Quick Start** - Checklist for immediate action
+3. ✅ **Access Control** - External Collaborator (Reviewer) = designer-appropriate permissions
+4. ✅ **Clear Communication** - Email with specific action items
+
+"Give designers the tools to see what's built, not just what's designed."
 
 ---
 

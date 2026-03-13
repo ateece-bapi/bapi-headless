@@ -1,9 +1,51 @@
 # BAPI Headless - Project Roadmap & TODO
 
-**Updated:** March 12, 2026  
-**Launch Date:** April 10, 2026 (29 days remaining)  
+**Updated:** March 13, 2026  
+**Launch Date:** April 10, 2026 (28 days remaining)  
 **Current Phase:** Phase 1 Development  
 **Launch Readiness:** 99.9%
+
+---
+
+## ✅ Designer Onboarding: Chromatic + Figma Workflow Setup (March 13, 2026)
+
+**Status:** ✅ COMPLETE - Matt Onboarded 🎉  
+**Time:** ~1 hour  
+**Deliverable:** Designer guide + PDF + Email sent
+
+### Completed
+- ✅ Chromatic project verified (186 stories, 23 components, 53 builds)
+- ✅ Matt invited as External Collaborator with Reviewer permissions
+- ✅ Published Storybook URL shared: `https://69790f14a4a9ebfab83a9f49-cyioytfxjg.chromatic.com`
+- ✅ Created comprehensive Figma integration guide: `docs/FIGMA-STORYBOOK-SETUP.md`
+- ✅ Generated PDF for email sharing: `docs/FIGMA-STORYBOOK-SETUP.pdf` (194KB)
+- ✅ Onboarding email drafted and sent to Matt
+
+### Technical Implementation
+- **Chromatic Role**: External Collaborator (Reviewer) - perfect for designers
+- **Permissions**: View builds, comment, approve/reject visual changes
+- **Workflow**: Figma → Storybook Connect plugin → side-by-side comparison
+- **GitHub Integration**: Automatic builds on PR + main branch
+- **Visual Regression**: Active (102 changes detected in latest build)
+
+### Guide Contents (PDF)
+- Storybook Connect plugin setup (embed components in Figma)
+- Browser side-by-side workflow (alternative without plugin)
+- PR review process (approve/reject visual changes)
+- Design handoff best practices (component naming, references)
+- Keyboard shortcuts for faster navigation
+- Troubleshooting common issues
+- Quick Start Checklist
+
+### Impact
+- **Designer Access**: Matt can now browse all live components
+- **Design/Dev Alignment**: Side-by-side comparison prevents drift
+- **PR Reviews**: Visual regression testing catches unintended changes
+- **Component Reuse**: Matt checks existing components before designing new ones
+
+### Files Created
+- `docs/FIGMA-STORYBOOK-SETUP.md` - Complete designer guide (markdown)
+- `docs/FIGMA-STORYBOOK-SETUP.pdf` - Email-ready PDF (194KB)
 
 ---
 
@@ -76,7 +118,7 @@
 ### Next Steps
 - 🔄 **Priority 3:** Fix 35 Storybook accessibility violations (incremental)
 - 🔄 **Priority 4:** Expand story coverage (25 → 40+ files)
-- 🔄 **Priority 5:** Set up Chromatic visual regression testing
+- ✅ **Priority 5:** ~~Set up Chromatic visual regression testing~~ (COMPLETE - March 13)
 
 ---
 
@@ -101,12 +143,12 @@
 - Documentation: Clear handoff for Option B work in `ISSUE-E2E-CI-INTEGRATION.md`
 - Decision Quality: Pragmatic handling of test failures (Option A vs Option B)
 
-### Next Steps (Tomorrow Morning)
+### Next Steps
 - 🔄 **Option B:** Debug E2E timeout issues (follow `docs/ISSUE-E2E-CI-INTEGRATION.md`)
   - Investigation steps documented
   - Timeline: 1-2 hours
   - Goal: Get 14/14 tests passing, add to CI
-- 🔄 **Priority 2:** Set up Chromatic token (15-20 min)
+- ✅ **Priority 2:** ~~Set up Chromatic token~~ (COMPLETE - March 13, designer onboarding done)
 - 🔄 **Priority 3:** Fix 35 Storybook accessibility violations (incremental)
 - 🔄 **Priority 4:** Expand story coverage (25 → 40+ files) - ✅ 2 files added March 12
 

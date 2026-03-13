@@ -35,8 +35,7 @@ describe('Order Details API - Integration Tests', () => {
     vi.clearAllMocks();
     global.fetch = mockFetch as any;
 
-    // Set required environment variables
-    vi.stubEnv('NEXT_PUBLIC_WORDPRESS_GRAPHQL', 'https://test.kinsta.cloud/graphql');
+    // Set required environment variables (beyond NEXT_PUBLIC_WORDPRESS_GRAPHQL which is set globally in setupTests.ts)
     vi.stubEnv('WORDPRESS_API_USER', 'test_user');
     vi.stubEnv('WORDPRESS_API_PASSWORD', 'test_password');
   });
@@ -123,7 +122,11 @@ describe('Order Details API - Integration Tests', () => {
       // Verify fetch was called with correct parameters
       expect(mockFetch).toHaveBeenCalledTimes(1);
       const fetchCall = mockFetch.mock.calls[0];
-      expect(fetchCall[0]).toBe('https://test.example.com/wp-json/wc/v3/orders/421732');
+      
+      // Derive expected URL from stubbed environment variable (avoids hard-coding)
+      const expectedBaseUrl = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.replace('/graphql', '') || '';
+      const expectedUrl = `${expectedBaseUrl}/wp-json/wc/v3/orders/421732`;
+      expect(fetchCall[0]).toBe(expectedUrl);
       expect(fetchCall[1].headers.Authorization).toContain('Basic ');
 
       // Verify Basic Auth header is correctly encoded

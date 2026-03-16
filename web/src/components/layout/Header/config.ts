@@ -14,7 +14,12 @@ export const NAV_LINKS: NavLink[] = [];
 /**
  * Generate mega menu items with translations
  * @param t - Translation function from useTranslations('megaMenu')
- * Updated: March 13, 2026 - Fixed category links
+ * Updated: March 16, 2026 - Updated with proper subcategory links after WordPress restructure
+ * 
+ * TEMPERATURE: Application-based subcategories (10 total, showing top 6 in mega-menu)
+ * HUMIDITY: Existing subcategories (Phase 2: will be application-based)
+ * PRESSURE: Existing subcategories (well-structured, no changes needed)
+ * AIR QUALITY: Generic category (Phase 2: will add subcategories)
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
@@ -30,23 +35,33 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.temperature.roomWallSensors'),
-              href: '/products/temperature',
+              href: '/products/temperature-sensors/temp-room-temp',
               description: t('products.temperature.roomWallSensorsDesc'),
             },
             {
               label: t('products.temperature.ductSensors'),
-              href: '/products/temperature',
+              href: '/products/temperature-sensors/temp-duct',
               description: t('products.temperature.ductSensorsDesc'),
             },
             {
               label: t('products.temperature.immersionWell'),
-              href: '/products/temperature',
+              href: '/products/temperature-sensors/temp-immersion',
               description: t('products.temperature.immersionWellDesc'),
             },
             {
               label: t('products.temperature.outdoorSensors'),
-              href: '/products/temperature',
+              href: '/products/temperature-sensors/temp-outside-air',
               description: t('products.temperature.outdoorSensorsDesc'),
+            },
+            {
+              label: t('products.temperature.averaging'),
+              href: '/products/temperature-sensors/temp-averaging',
+              description: t('products.temperature.averagingDesc'),
+            },
+            {
+              label: t('products.temperature.remoteProbes'),
+              href: '/products/temperature-sensors/temp-remote-probes-and-sensors',
+              description: t('products.temperature.remoteProbesDesc'),
             },
           ],
         },
@@ -57,22 +72,22 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.humidity.roomHumidity'),
-              href: '/products/humidity',
+              href: '/products/humidity-sensors/humidity-sensors',
               description: t('products.humidity.roomHumidityDesc'),
             },
             {
               label: t('products.humidity.ductHumidity'),
-              href: '/products/humidity',
+              href: '/products/humidity-sensors/humidity-duct',
               description: t('products.humidity.ductHumidityDesc'),
             },
             {
               label: t('products.humidity.outdoorHumidity'),
-              href: '/products/humidity',
+              href: '/products/humidity-sensors/humidity-sensors?application=outside-air',
               description: t('products.humidity.outdoorHumidityDesc'),
             },
             {
               label: t('products.humidity.comboSensors'),
-              href: '/products/humidity',
+              href: '/products/humidity-sensors/humidity-bapi-stat-4',
               description: t('products.humidity.comboSensorsDesc'),
             },
           ],
@@ -84,17 +99,17 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.pressure.differential'),
-              href: '/products/pressure',
+              href: '/products/pressure-sensors/pressure-differential-transmitters',
               description: t('products.pressure.differentialDesc'),
             },
             {
               label: t('products.pressure.static'),
-              href: '/products/pressure',
+              href: '/products/pressure-sensors/pressure-pickup-ports-and-probes',
               description: t('products.pressure.staticDesc'),
             },
             {
               label: t('products.pressure.barometric'),
-              href: '/products/pressure',
+              href: '/products/pressure-sensors/pressure-differential-switch',
               description: t('products.pressure.barometricDesc'),
             },
           ],
@@ -106,17 +121,17 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.airQuality.co2'),
-              href: '/products/air-quality',
+              href: '/products/air-quality-sensors?type=co2',
               description: t('products.airQuality.co2Desc'),
             },
             {
               label: t('products.airQuality.voc'),
-              href: '/products/air-quality',
+              href: '/products/air-quality-sensors?type=voc',
               description: t('products.airQuality.vocDesc'),
             },
             {
               label: t('products.airQuality.particulate'),
-              href: '/products/air-quality',
+              href: '/products/air-quality-sensors?type=particulate',
               description: t('products.airQuality.particulateDesc'),
             },
           ],

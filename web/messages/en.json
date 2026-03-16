@@ -61,7 +61,11 @@
         "immersionWell": "Immersion & Well",
         "immersionWellDesc": "Liquid temperature measurement",
         "outdoorSensors": "Outdoor Sensors",
-        "outdoorSensorsDesc": "Weather-resistant sensing"
+        "outdoorSensorsDesc": "Weather-resistant sensing",
+        "averaging": "Averaging Sensors",
+        "averagingDesc": "Large space temperature averaging",
+        "remoteProbes": "Remote Probes",
+        "remoteProbesDesc": "Separate sensing element probes"
       },
       "humidity": {
         "title": "Humidity",

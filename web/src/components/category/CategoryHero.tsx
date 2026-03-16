@@ -49,7 +49,7 @@ export default function CategoryHero({ category, breadcrumbs }: CategoryHeroProp
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-50 to-white py-12 lg:py-16">
+      <section className="bg-linear-to-r from-primary-50 to-white py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
             {/* Content */}

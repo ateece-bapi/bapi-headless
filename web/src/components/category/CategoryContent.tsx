@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import type { GetProductAttributesQuery } from '@/lib/graphql/generated';
 import SubcategoryQuickFilter from './SubcategoryQuickFilter';
+import SubcategoryCard from './SubcategoryCard';
 import FilterSidebar from './FilterSidebar';
 import ProductGridSection from './ProductGridSection';
 
@@ -47,14 +48,8 @@ interface Subcategory {
   count?: number | null;
 }
 
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-}
-
 interface CategoryContentProps {
-  category: Category;
+  categorySlugParam: string;
   subcategories: Subcategory[];
   products: Product[];
   filters: GetProductAttributesQuery;
@@ -78,6 +73,7 @@ interface ActiveFilters {
  * Manages filter state and URL synchronization for category browsing.
  */
 export default function CategoryContent({
+  categorySlugParam,
   subcategories,
   products,
   filters,
@@ -214,6 +210,29 @@ export default function CategoryContent({
   return (
     <div className="bg-white py-8 lg:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Subcategory Cards */}
+        {subcategories.length > 0 && (
+          <div className="mb-12">
+            <h2 className="mb-6 text-2xl font-bold text-neutral-900">
+              Browse by Category
+            </h2>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {subcategories.map((subcategory) => (
+                <SubcategoryCard
+                  key={subcategory.id}
+                  name={subcategory.name}
+                  slug={subcategory.slug}
+                  count={subcategory.count}
+                  description={null}
+                  image={null}
+                  categorySlug={categorySlugParam}
+                  locale={locale}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Quick Subcategory Filter */}
         {subcategories.length > 0 && (
           <div className="mb-8">

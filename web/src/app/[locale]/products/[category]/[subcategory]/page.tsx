@@ -196,7 +196,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
       <div className="mx-auto max-w-container px-4 py-8">
         <div className="flex flex-col gap-8 lg:flex-row">
           {/* Sidebar Filters (Desktop) */}
-          <aside className="hidden w-64 flex-shrink-0 lg:block">
+          <aside className="hidden w-64 shrink-0 lg:block">
             <div className="sticky top-4">
               <Suspense fallback={<div>Loading filters...</div>}>
                 <ProductFilters

@@ -126,7 +126,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <CategoryHero category={categoryInfo} breadcrumbs={breadcrumbs} />
 
         <CategoryContent
-          category={categoryInfo}
+          categorySlugParam={category}
           subcategories={subcategories}
           products={allProducts}
           filters={filters}

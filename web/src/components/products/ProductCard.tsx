@@ -3,40 +3,94 @@ import Image from 'next/image';
 import { ArrowRight, Package } from 'lucide-react';
 
 interface ProductCardProps {
-  id: string;
-  name: string;
-  slug: string;
-  partNumber?: string | null;
-  price?: string | null;
-  image?: {
-    sourceUrl: string;
-    altText?: string | null;
-  } | null;
-  shortDescription?: string | null;
+  product: {
+    id: string;
+    name: string;
+    slug: string;
+    partNumber?: string | null;
+    price?: string | null;
+    image?: {
+      sourceUrl?: string | null;
+      altText?: string | null;
+    } | null;
+    shortDescription?: string | null;
+  };
+  locale: string;
+  viewMode?: 'grid' | 'list';
   index?: number;
 }
 
-export function ProductCard({
-  id,
-  name,
-  slug,
-  partNumber,
-  price,
-  image,
-  shortDescription,
+export default function ProductCard({
+  product,
+  locale,
+  viewMode = 'grid',
   index = 0,
 }: ProductCardProps) {
-  // Get locale from params
-  const locale = 'en'; // Default to 'en' - component should receive this as prop if needed
+  const { id, name, slug, partNumber, price, image, shortDescription } = product;
 
   // Strip HTML from short description
   const cleanDescription = shortDescription
     ? shortDescription.replace(/<[^>]*>/g, '').slice(0, 120)
     : '';
 
+  if (viewMode === 'list') {
+    return (
+      <Link
+        href={`/${locale}/products/${slug}`}
+        className="group flex gap-6 overflow-hidden rounded-lg border border-neutral-200 bg-white p-4 transition-all hover:border-primary-500 hover:shadow-lg"
+      >
+        {/* Image */}
+        <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-50">
+          {image?.sourceUrl ? (
+            <Image
+              src={image.sourceUrl}
+              alt={image.altText || name}
+              fill
+              className="object-contain p-2"
+              sizes="128px"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center">
+              <Package className="h-12 w-12 text-neutral-300" />
+            </div>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="flex flex-1 flex-col">
+          <div className="mb-2 flex items-start justify-between gap-4">
+            <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary-600">
+              {name}
+            </h3>
+            {partNumber && (
+              <span className="rounded bg-neutral-100 px-2 py-1 text-xs font-semibold text-neutral-700">
+                {partNumber}
+              </span>
+            )}
+          </div>
+
+          {cleanDescription && (
+            <p className="mb-4 line-clamp-2 text-sm text-neutral-600">
+              {cleanDescription}
+            </p>
+          )}
+
+          <div className="mt-auto flex items-center justify-between">
+            {price && <span className="text-lg font-bold text-primary-600">{price}</span>}
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary-500">
+              View Details
+              <ArrowRight className="h-4 w-4" />
+            </span>
+          </div>
+        </div>
+      </Link>
+    );
+  }
+
+  // Grid view (default)
   return (
     <Link
-      href={`/${locale}/product/${slug}`}
+      href={`/${locale}/products/${slug}`}
       className="group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500"
       style={{
         animationDelay: `${index * 50}ms`,

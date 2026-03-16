@@ -1,15 +1,16 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import {
   GetProductCategoryWithChildrenDocument,
   GetProductCategoryWithChildrenQuery,
-  GetProductsWithFiltersDocument,
-  GetProductsWithFiltersQuery,
+  GetProductsByCategoryDocument,
+  GetProductsByCategoryQuery,
+  GetProductAttributesDocument,
+  GetProductAttributesQuery,
 } from '@/lib/graphql/generated';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import CategoryHero from '@/components/category/CategoryHero';
+import CategoryContent from '@/components/category/CategoryContent';
 
 // Map short slugs to full category slugs
 // Updated March 13, 2026 based on GraphQL verification
@@ -32,7 +33,9 @@ interface CategoryPageProps {
   }>;
 }
 
-export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
   const { category } = await params;
   const fullSlug = CATEGORY_SLUG_MAP[category] || category;
   const client = getGraphQLClient(['product-categories'], true);
@@ -51,10 +54,18 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     }
 
     return {
-      title: `${categoryData.name} | BAPI`,
+      title: `${categoryData.name} | Building Automation Products | BAPI`,
       description:
         categoryData.description ||
-        `Browse ${categoryData.name} from BAPI - Building Automation Products Inc.`,
+        `Shop ${categoryData.count || 0} ${categoryData.name} from BAPI. High-quality sensors for HVAC and building automation.`,
+      openGraph: {
+        title: categoryData.name,
+        description: categoryData.description || '',
+        images: categoryData.image?.sourceUrl
+          ? [categoryData.image.sourceUrl]
+          : [],
+        type: 'website',
+      },
     };
   } catch (error) {
     return {
@@ -69,35 +80,66 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   const client = getGraphQLClient(['products', `category-${fullSlug}`], true);
 
-  // Fetch category data with children
-  const categoryData = await client.request<GetProductCategoryWithChildrenQuery>(
-    GetProductCategoryWithChildrenDocument,
-    { slug: fullSlug }
-  );
+  try {
+    // Fetch all data in parallel for maximum performance
+    const [categoryData, productsData, attributesData] = await Promise.all([
+      client.request<GetProductCategoryWithChildrenQuery>(
+        GetProductCategoryWithChildrenDocument,
+        { slug: fullSlug }
+      ),
+      client.request<GetProductsByCategoryQuery>(
+        GetProductsByCategoryDocument,
+        { categorySlug: fullSlug, first: 200 }
+      ),
+      client.request<GetProductAttributesQuery>(GetProductAttributesDocument),
+    ]);
 
-  const categoryInfo = categoryData.productCategory;
+    const categoryInfo = categoryData.productCategory;
+    const productsResult = productsData.products;
+    const filters = attributesData;
 
-  if (!categoryInfo) {
+    if (!categoryInfo) {
+      notFound();
+    }
+
+    const subcategories = categoryInfo.children?.nodes || [];
+    const allProducts = productsResult?.nodes || [];
+
+    // Generate breadcrumbs
+    const breadcrumbs = [
+      {
+        label: 'Home',
+        href: `/${locale}`,
+      },
+      {
+        label: 'Products',
+        href: `/${locale}/products`,
+      },
+      {
+        label: categoryInfo.name,
+        href: `/${locale}/products/${category}`,
+      },
+    ];
+
+    return (
+      <div className="category-page min-h-screen bg-neutral-50">
+        <CategoryHero category={categoryInfo} breadcrumbs={breadcrumbs} />
+
+        <CategoryContent
+          category={categoryInfo}
+          subcategories={subcategories}
+          products={allProducts}
+          filters={filters}
+          locale={locale}
+          translations={{}}
+        />
+      </div>
+    );
+  } catch (error) {
+    console.error('Error loading category page:', error);
     notFound();
   }
-
-  // Get subcategories (children)
-  const subcategories = categoryInfo.children?.nodes || [];
-
-  // Fetch sample products for this category
-  const productsData = await client.request<GetProductsWithFiltersQuery>(
-    GetProductsWithFiltersDocument,
-    {
-      categorySlug: fullSlug,
-      first: 12,
-    }
-  );
-
-  const products = productsData.products?.nodes || [];
-  // Use category count if available, otherwise products length
-  const productCount = categoryInfo.count ?? products.length;
-
-  return (
+}
     <div className="min-h-screen bg-neutral-50">
       {/* Breadcrumbs */}
       <div className="border-b border-neutral-200 bg-white">

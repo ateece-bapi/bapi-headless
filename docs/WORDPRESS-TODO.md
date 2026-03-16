@@ -28,6 +28,33 @@
 
 ---
 
+## Important: Customer-Specific Products (B2B Segmentation)
+
+### 🔒 Product Visibility Rules
+
+**Products with (ALC) or (ACS) prefix are customer-specific:**
+
+- **(ALC) products** → Only visible to ALC customer group
+- **(ACS) products** → Only visible to ACS customer group
+- **All other products** → Visible to all customers
+
+**WordPress Fields Used:**
+- `customer_group1`, `customer_group2`, `customer_group3` (product meta)
+- User meta fields determine which customer group a logged-in user belongs to
+
+**Examples from Temperature Analysis:**
+- `(ALC) Submersible Averaging Temperature Sensor, Flexible` → ALC only
+- `(ACS) Strap Temperature Sensor` → ACS only  
+- `Novar UVC Compatible Aluminum Wall Plate Temperature Sensor` → All customers
+
+**Implementation Note:**  
+The frontend GraphQL queries should filter products based on authenticated user's customer group. Guest users see only non-prefixed products.
+
+**Migration Impact:**  
+When reassigning products to new categories, preserve existing `customer_group` meta fields. The number of products visible to general public is lower than total counts shown in analysis.
+
+---
+
 ## What You Need to Do (WordPress Admin)
 
 ### Step 1: Log into WordPress ⏱️ 30 minutes

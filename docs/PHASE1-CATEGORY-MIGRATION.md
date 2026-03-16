@@ -6,6 +6,35 @@
 
 ---
 
+## Important: Customer-Specific Products (B2B)
+
+### 🔒 Product Visibility Segmentation
+
+**BAPI uses customer group-based product visibility:**
+
+- **(ALC) Products** → Only visible to ALC customer group members
+- **(ACS) Products** → Only visible to ACS customer group members  
+- **Standard Products** → Visible to all customers (including guests)
+
+**WordPress Implementation:**
+- Products have `customer_group1/2/3` meta fields (see copilot-instructions.md)
+- ~5,438 WordPress users with native authentication
+- User accounts have customer group assignments
+- Frontend must filter GraphQL results based on authenticated user's group
+
+**Product Count Examples (Temperature):**
+```
+Total analyzed: 115 products
+├─ (ALC) prefixed: ~40 products (35%)
+├─ (ACS) prefixed: ~5 products (4%)
+└─ Public products: ~70 products (61%)
+```
+
+**Migration Consideration:**  
+When moving products between categories, **preserve existing customer_group meta fields**. The subcategory product counts will vary depending on logged-in user's customer group.
+
+---
+
 ## Analysis Summary (All Categories)
 
 | Category | Products | Tagged | Ready? | Action |

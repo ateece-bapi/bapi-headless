@@ -56,6 +56,46 @@ temperature-sensors/
 
 ---
 
+## Customer-Specific Product Visibility (B2B Segmentation)
+
+### 🔒 Important Business Rule
+
+**Products are segmented by customer group:**
+
+| Product Prefix | Visibility | Example |
+|----------------|------------|--------|
+| **(ALC)** | ALC customer group only | `(ALC) Immersion Temperature Transmitter, Stainless Steel Fitting` |
+| **(ACS)** | ACS customer group only | `(ACS) Thermobuffer Temperature Sensor` |
+| **No prefix** | All customers (public) | `Novar UVC Compatible Aluminum Wall Plate Temperature Sensor` |
+
+**WordPress Fields:**
+- Product meta: `customer_group1`, `customer_group2`, `customer_group3`
+- User meta: Customer group assignment
+- Pricing multipliers: `multiplier_buyresell`, `multiplier_humidpres`, `multiplier_mfg`
+
+**Frontend Implementation Required:**
+```graphql
+# GraphQL query should filter based on user context
+query GetProducts($customerGroup: String) {
+  products(where: { customerGroup: $customerGroup }) {
+    nodes {
+      name
+      customerGroup1
+      customerGroup2
+      # ...
+    }
+  }
+}
+```
+
+**Migration Impact:**
+- Preserve all `customer_group` meta fields when reassigning categories
+- Product counts shown in analysis are TOTAL (all groups combined)
+- Actual visible products depend on logged-in user's customer group
+- Guest users see only non-prefixed products (~60-70% of inventory)
+
+---
+
 ## Migration Steps
 
 ### Phase 1: Tag Missing Products (14 products)

@@ -7,7 +7,7 @@ interface Subcategory {
   count?: number | null;
 }
 
-interface SubcategoryQuickFilter Props {
+interface SubcategoryQuickFilterProps {
   subcategories: Subcategory[];
   activeSubcategories: string[];
   onChange: (subcategories: string[]) => void;

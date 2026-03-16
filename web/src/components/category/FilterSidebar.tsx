@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { X, SlidersHorizontal } from 'lucide-react';
+import type { GetProductAttributesQuery } from '@/lib/graphql/generated';
 import FilterGroup from './FilterGroup';
 import FilterCheckbox from './FilterCheckbox';
 
@@ -10,24 +11,6 @@ interface Subcategory {
   name: string;
   slug: string;
   count?: number | null;
-}
-
-interface AttributeTerm {
-  id: string;
-  name: string;
-  slug: string;
-  count?: number | null;
-}
-
-interface FilterData {
-  paApplications?: { nodes: AttributeTerm[] } | null;
-  paRoomEnclosureStyles?: { nodes: AttributeTerm[] } | null;
-  paTemperatureSensorOutputs?: { nodes: AttributeTerm[] } | null;
-  paDisplays?: { nodes: AttributeTerm[] } | null;
-  paHumidityApplications?: { nodes: AttributeTerm[] } | null;
-  paHumiditySensorOutputs?: { nodes: AttributeTerm[] } | null;
-  paPressureApplications?: { nodes: AttributeTerm[] } | null;
-  paAirQualitySensorTypes?: { nodes: AttributeTerm[] } | null;
 }
 
 interface ActiveFilters {
@@ -40,12 +23,16 @@ interface ActiveFilters {
 
 interface FilterSidebarProps {
   subcategories: Subcategory[];
-  filters: FilterData;
+  filters: GetProductAttributesQuery;
   activeFilters: ActiveFilters;
   onChange: (filters: ActiveFilters) => void;
   productCount: number;
 }
 
+/**
+ * FilterSidebar provides filtering controls for product categories and attributes.
+ * Includes subcategory, application, enclosure, output, and display filters.
+ */
 export default function FilterSidebar({
   subcategories,
   filters,
@@ -99,75 +86,85 @@ export default function FilterSidebar({
       {/* Application Filter */}
       {(filters.paApplications?.nodes.length ?? 0) > 0 && (
         <FilterGroup title="Application">
-          {filters.paApplications!.nodes.map((app) => (
-            <FilterCheckbox
-              key={app.id}
-              label={app.name}
-              count={app.count}
-              checked={activeFilters.application.includes(app.slug)}
-              onChange={(checked) => updateFilter('application', app.slug, checked)}
-            />
-          ))}
+          {filters.paApplications!.nodes
+            .filter((app) => app.name && app.slug)
+            .map((app) => (
+              <FilterCheckbox
+                key={app.id}
+                label={app.name!}
+                count={app.count}
+                checked={activeFilters.application.includes(app.slug!)}
+                onChange={(checked) => updateFilter('application', app.slug!, checked)}
+              />
+            ))}
         </FilterGroup>
       )}
 
       {/* Room Enclosure Style */}
       {(filters.paRoomEnclosureStyles?.nodes.length ?? 0) > 0 && (
         <FilterGroup title="Enclosure Style">
-          {filters.paRoomEnclosureStyles!.nodes.map((style) => (
-            <FilterCheckbox
-              key={style.id}
-              label={style.name}
-              count={style.count}
-              checked={activeFilters.enclosure.includes(style.slug)}
-              onChange={(checked) => updateFilter('enclosure', style.slug, checked)}
-            />
-          ))}
+          {filters.paRoomEnclosureStyles!.nodes
+            .filter((style) => style.name && style.slug)
+            .map((style) => (
+              <FilterCheckbox
+                key={style.id}
+                label={style.name!}
+                count={style.count}
+                checked={activeFilters.enclosure.includes(style.slug!)}
+                onChange={(checked) => updateFilter('enclosure', style.slug!, checked)}
+              />
+            ))}
         </FilterGroup>
       )}
 
       {/* Sensor Output */}
       {(filters.paTemperatureSensorOutputs?.nodes.length ?? 0) > 0 && (
         <FilterGroup title="Sensor Output">
-          {filters.paTemperatureSensorOutputs!.nodes.map((output) => (
-            <FilterCheckbox
-              key={output.id}
-              label={output.name}
-              count={output.count}
-              checked={activeFilters.output.includes(output.slug)}
-              onChange={(checked) => updateFilter('output', output.slug, checked)}
-            />
-          ))}
+          {filters.paTemperatureSensorOutputs!.nodes
+            .filter((output) => output.name && output.slug)
+            .map((output) => (
+              <FilterCheckbox
+                key={output.id}
+                label={output.name!}
+                count={output.count}
+                checked={activeFilters.output.includes(output.slug!)}
+                onChange=  {(checked) => updateFilter('output', output.slug!, checked)}
+              />
+            ))}
         </FilterGroup>
       )}
 
       {/* Humidity Sensor Output */}
       {(filters.paHumiditySensorOutputs?.nodes.length ?? 0) > 0 && (
         <FilterGroup title="Humidity Output">
-          {filters.paHumiditySensorOutputs!.nodes.map((output) => (
-            <FilterCheckbox
-              key={output.id}
-              label={output.name}
-              count={output.count}
-              checked={activeFilters.output.includes(output.slug)}
-              onChange={(checked) => updateFilter('output', output.slug, checked)}
-            />
-          ))}
+          {filters.paHumiditySensorOutputs!.nodes
+            .filter((output) => output.name && output.slug)
+            .map((output) => (
+              <FilterCheckbox
+                key={output.id}
+                label={output.name!}
+                count={output.count}
+                checked={activeFilters.output.includes(output.slug!)}
+                onChange={(checked) => updateFilter('output', output.slug!, checked)}
+              />
+            ))}
         </FilterGroup>
       )}
 
       {/* Display Options */}
       {(filters.paDisplays?.nodes.length ?? 0) > 0 && (
         <FilterGroup title="Display">
-          {filters.paDisplays!.nodes.map((display) => (
-            <FilterCheckbox
-              key={display.id}
-              label={display.name}
-              count={display.count}
-              checked={activeFilters.display.includes(display.slug)}
-              onChange={(checked) => updateFilter('display', display.slug, checked)}
-            />
-          ))}
+          {filters.paDisplays!.nodes
+            .filter((display) => display.name && display.slug)
+            .map((display) => (
+              <FilterCheckbox
+                key={display.id}
+                label={display.name!}
+                count={display.count}
+                checked={activeFilters.display.includes(display.slug!)}
+                onChange={(checked) => updateFilter('display', display.slug!, checked)}
+              />
+            ))}
         </FilterGroup>
       )}
 

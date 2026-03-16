@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import type { GetProductAttributesQuery } from '@/lib/graphql/generated';
 import SubcategoryQuickFilter from './SubcategoryQuickFilter';
 import FilterSidebar from './FilterSidebar';
 import ProductGridSection from './ProductGridSection';
@@ -52,22 +53,13 @@ interface Category {
   slug: string;
 }
 
-interface FilterData {
-  paApplications?: { nodes: any[] } | null;
-  paRoomEnclosureStyles?: { nodes: any[] } | null;
-  paTemperatureSensorOutputs?: { nodes: any[] } | null;
-  paDisplays?: { nodes: any[] } | null;
-  paHumidityApplications?: { nodes: any[] } | null;
-  paHumiditySensorOutputs?: { nodes: any[] } | null;
-}
-
 interface CategoryContentProps {
   category: Category;
   subcategories: Subcategory[];
   products: Product[];
-  filters: FilterData;
+  filters: GetProductAttributesQuery;
   locale: string;
-  translations: any;
+  translations: Record<string, string>;
 }
 
 type SortOption = 'name' | 'price-asc' | 'price-desc' | 'newest';
@@ -81,13 +73,15 @@ interface ActiveFilters {
   display: string[];
 }
 
+/**
+ * CategoryContent component displays a filterable and sortable product grid with sidebar filters.
+ * Manages filter state and URL synchronization for category browsing.
+ */
 export default function CategoryContent({
-  category,
   subcategories,
   products,
   filters,
   locale,
-  translations,
 }: CategoryContentProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -95,15 +89,15 @@ export default function CategoryContent({
 
   // Initialize filters from URL
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
-    subcategory: searchParams.getAll('subcategory'),
-    application: searchParams.getAll('application'),
-    enclosure: searchParams.getAll('enclosure'),
-    output: searchParams.getAll('output'),
-    display: searchParams.getAll('display'),
+    subcategory: searchParams?.getAll('subcategory') ?? [],
+    application: searchParams?.getAll('application') ?? [],
+    enclosure: searchParams?.getAll('enclosure') ?? [],
+    output: searchParams?.getAll('output') ?? [],
+    display: searchParams?.getAll('display') ?? [],
   });
 
   const [sortBy, setSortBy] = useState<SortOption>(
-    (searchParams.get('sort') as SortOption) || 'name'
+    (searchParams?.get('sort') as SortOption) || 'name'
   );
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
 
@@ -210,7 +204,7 @@ export default function CategoryContent({
 
     const params = new URLSearchParams();
     Object.entries(newFilters).forEach(([key, values]) => {
-      values.forEach((val) => params.append(key, val));
+      values.forEach((val: string) => params.append(key, val));
     });
     if (sortBy !== 'name') params.set('sort', sortBy);
 

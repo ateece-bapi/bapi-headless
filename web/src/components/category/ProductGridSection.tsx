@@ -30,6 +30,10 @@ interface ProductGridSectionProps {
   locale: string;
 }
 
+/**
+ * ProductGridSection displays a grid of products with sorting and view mode controls.
+ * Shows product count, sort dropdown, and grid/list view toggle.
+ */
 export default function ProductGridSection({
   products,
   totalCount,

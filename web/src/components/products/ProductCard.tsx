@@ -3,40 +3,94 @@ import Image from 'next/image';
 import { ArrowRight, Package } from 'lucide-react';
 
 interface ProductCardProps {
-  id: string;
-  name: string;
-  slug: string;
-  partNumber?: string | null;
-  price?: string | null;
-  image?: {
-    sourceUrl: string;
-    altText?: string | null;
-  } | null;
-  shortDescription?: string | null;
+  product: {
+    id: string;
+    name?: string | null;
+    slug?: string | null;
+    partNumber?: string | null;
+    price?: string | null;
+    image?: {
+      sourceUrl?: string | null;
+      altText?: string | null;
+    } | null;
+    shortDescription?: string | null;
+  };
+  locale: string;
+  viewMode?: 'grid' | 'list';
   index?: number;
 }
 
-export function ProductCard({
-  id,
-  name,
-  slug,
-  partNumber,
-  price,
-  image,
-  shortDescription,
+export default function ProductCard({
+  product,
+  locale,
+  viewMode = 'grid',
   index = 0,
 }: ProductCardProps) {
-  // Get locale from params
-  const locale = 'en'; // Default to 'en' - component should receive this as prop if needed
+  const { id, name, slug, partNumber, price, image, shortDescription } = product;
 
   // Strip HTML from short description
   const cleanDescription = shortDescription
     ? shortDescription.replace(/<[^>]*>/g, '').slice(0, 120)
     : '';
 
+  if (viewMode === 'list') {
+    return (
+      <Link
+        href={`/${locale}/products/${slug || 'unknown'}`}
+        className="group flex gap-6 overflow-hidden rounded-lg border border-neutral-200 bg-white p-4 transition-all hover:border-primary-500 hover:shadow-lg"
+      >
+        {/* Image */}
+        <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-50">
+          {image?.sourceUrl ? (
+            <Image
+              src={image.sourceUrl}
+              alt={image.altText || name || 'Product'}
+              fill
+              className="object-contain p-2"
+              sizes="128px"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center">
+              <Package className="h-12 w-12 text-neutral-300" />
+            </div>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="flex flex-1 flex-col">
+          <div className="mb-2 flex items-start justify-between gap-4">
+            <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary-600">
+              {name || 'Untitled Product'}
+            </h3>
+            {partNumber && (
+              <span className="rounded bg-neutral-100 px-2 py-1 text-xs font-semibold text-neutral-700">
+                {partNumber}
+              </span>
+            )}
+          </div>
+
+          {cleanDescription && (
+            <p className="mb-4 line-clamp-2 text-sm text-neutral-600">
+              {cleanDescription}
+            </p>
+          )}
+
+          <div className="mt-auto flex items-center justify-between">
+            {price && <span className="text-lg font-bold text-primary-600">{price}</span>}
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary-500">
+              View Details
+              <ArrowRight className="h-4 w-4" />
+            </span>
+          </div>
+        </div>
+      </Link>
+    );
+  }
+
+  // Grid view (default)
   return (
     <Link
-      href={`/${locale}/product/${slug}`}
+      href={`/${locale}/products/${slug || 'unknown'}`}
       className="group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500"
       style={{
         animationDelay: `${index * 50}ms`,
@@ -50,7 +104,7 @@ export function ProductCard({
         {image?.sourceUrl ? (
           <Image
             src={image.sourceUrl}
-            alt={image.altText || name}
+            alt={image.altText || name || 'Product'}
             fill
             className="object-contain p-4 drop-shadow-md transition-transform duration-500 group-hover:scale-110"
             sizes="(min-width: 1280px) 300px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -75,7 +129,7 @@ export function ProductCard({
       {/* Content */}
       <div className="relative p-6">
         <h3 className="relative mb-2 line-clamp-2 text-lg font-bold leading-tight text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
-          {name}
+          {name || 'Untitled Product'}
           {/* BAPI Yellow underline on hover */}
           <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
         </h3>
@@ -105,3 +159,6 @@ export function ProductCard({
     </Link>
   );
 }
+
+// Named export for tests and components that use named imports
+export { ProductCard };

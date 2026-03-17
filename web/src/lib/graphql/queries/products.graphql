@@ -367,7 +367,7 @@ query GetProductCategory($slug: ID!) {
   }
 }
 
-query GetProductsByCategory($categorySlug: String!, $first: Int = 10, $after: String) {
+query GetProductsByCategory($categorySlug: String!, $first: Int = 200, $after: String) {
   products(where: { category: $categorySlug }, first: $first, after: $after) {
     pageInfo {
       hasNextPage
@@ -388,6 +388,12 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 10, $after: St
             id
             name
             slug
+            parent {
+              node {
+                id
+                slug
+              }
+            }
           }
         }
       }
@@ -399,6 +405,14 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 10, $after: St
         stockStatus
         stockQuantity
         sku
+        attributes {
+          nodes {
+            id
+            name
+            label
+            options
+          }
+        }
       }
       ... on VariableProduct {
         price
@@ -406,6 +420,14 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 10, $after: St
         salePrice
         onSale
         stockStatus
+        attributes {
+          nodes {
+            id
+            name
+            label
+            options
+          }
+        }
       }
       image {
         id

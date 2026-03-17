@@ -37,6 +37,7 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     // Quality settings for different sizes
     // Next.js will use 75 by default, we set explicit qualities in components
+    qualities: [75, 85], // Support both default (75) and high quality (85)
   },
   
   // Redirects for legacy/misplaced URLs

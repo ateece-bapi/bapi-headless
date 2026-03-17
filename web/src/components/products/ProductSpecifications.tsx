@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Search, Download } from 'lucide-react';
+import { ChevronDownIcon, ChevronUpIcon, SearchIcon, DownloadIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 
 export interface SpecificationGroup {
@@ -122,7 +122,7 @@ export default function ProductSpecifications({
         {/* Search */}
         {searchable && (
           <div className="relative max-w-md flex-1">
-            <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+            <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
             <input
               type="text"
               placeholder="Search specifications..."
@@ -152,7 +152,7 @@ export default function ProductSpecifications({
               onClick={handleDownload}
               className="flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-primary-600"
             >
-              <Download className="h-4 w-4" />
+              <DownloadIcon className="h-4 w-4" />
               <span className="hidden sm:inline">{t('productPage.specifications.download')}</span>
             </button>
           )}
@@ -180,9 +180,9 @@ export default function ProductSpecifications({
                     {group.specs.length} {group.specs.length === 1 ? 'spec' : 'specs'}
                   </span>
                   {isExpanded ? (
-                    <ChevronUp className="h-5 w-5 text-neutral-700" />
+                    <ChevronUpIcon className="h-5 w-5 text-neutral-700" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-neutral-700" />
+                    <ChevronDownIcon className="h-5 w-5 text-neutral-700" />
                   )}
                 </div>
               </button>

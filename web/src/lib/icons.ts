@@ -42,6 +42,7 @@ import {
   Warning,
   HourglassEmpty,
   Loop,
+  Cancel,
   
   // Content & Media
   Image,
@@ -141,6 +142,7 @@ export { Remove as MinusIcon };
 export { Check as CheckIcon };
 export { CheckCircle as CheckCircleIcon };
 export { Error as AlertCircleIcon };
+export { Cancel as XCircleIcon };
 export { Info as InfoIcon };
 export { Warning as AlertTriangleIcon };
 export { HourglassEmpty as Loader2Icon };

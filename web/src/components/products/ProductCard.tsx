@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Package } from 'lucide-react';
+import { ArrowRightIcon, PackageIcon } from '@/lib/icons';
 
 interface ProductCardProps {
   product: {
@@ -51,7 +51,7 @@ export default function ProductCard({
             />
           ) : (
             <div className="flex h-full items-center justify-center">
-              <Package className="h-12 w-12 text-neutral-300" />
+              <PackageIcon className="h-12 w-12 text-neutral-300" />
             </div>
           )}
         </div>
@@ -79,7 +79,7 @@ export default function ProductCard({
             {price && <span className="text-lg font-bold text-primary-600">{price}</span>}
             <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary-500">
               View Details
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRightIcon className="h-4 w-4" />
             </span>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function ProductCard({
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
-            <Package className="h-20 w-20 text-gray-300" />
+            <PackageIcon className="h-20 w-20 text-gray-300" />
           </div>
         )}
 
@@ -150,7 +150,7 @@ export default function ProductCard({
         {/* View Details Link */}
         <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3">
           <span>View Details</span>
-          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </div>
       </div>
 

@@ -6,9 +6,10 @@ import type { GetProductsByCategoryQuery, GetProductCategoryQuery } from '@/lib/
 interface CategoryPageProps {
   category: NonNullable<GetProductCategoryQuery['productCategory']>;
   products: GetProductsByCategoryQuery['products'];
+  locale?: string;
 }
 
-export function CategoryPage({ category, products }: CategoryPageProps) {
+export function CategoryPage({ category, products, locale = 'en' }: CategoryPageProps) {
   const productNodes = products?.nodes || [];
   const hasProducts = productNodes.length > 0;
 
@@ -109,7 +110,7 @@ export function CategoryPage({ category, products }: CategoryPageProps) {
                       image: image,
                       shortDescription: product.shortDescription,
                     }}
-                    locale="en"
+                    locale={locale}
                     index={index}
                   />
                 );

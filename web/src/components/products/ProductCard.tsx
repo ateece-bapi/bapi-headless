@@ -36,7 +36,7 @@ export default function ProductCard({
   if (viewMode === 'list') {
     return (
       <Link
-        href={`/${locale}/products/${slug || 'unknown'}`}
+        href={`/${locale}/product/${slug || 'unknown'}`}
         className="group flex gap-6 overflow-hidden rounded-lg border border-neutral-200 bg-white p-4 transition-all hover:border-primary-500 hover:shadow-lg"
       >
         {/* Image */}
@@ -90,7 +90,7 @@ export default function ProductCard({
   // Grid view (default)
   return (
     <Link
-      href={`/${locale}/products/${slug || 'unknown'}`}
+      href={`/${locale}/product/${slug || 'unknown'}`}
       className="group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500"
       style={{
         animationDelay: `${index * 50}ms`,

@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronDown } from 'lucide-react';
+import { ChevronDownIcon } from '@/lib/icons';
 import { getShortLabel } from '@/lib/attributeDetection';
 
 interface DropdownSelectorProps {
@@ -56,7 +56,7 @@ export default function DropdownSelector({
 
         {/* Custom chevron icon */}
         <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2">
-          <ChevronDown
+          <ChevronDownIcon
             className={`h-5 w-5 transition-colors ${value ? 'text-accent-600' : 'text-neutral-400'} `}
           />
         </div>

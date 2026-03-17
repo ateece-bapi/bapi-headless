@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { Eye, Square, CheckSquare } from 'lucide-react';
+import { EyeIcon, SquareIcon, CheckSquareIcon } from '@/lib/icons';
 import type {
   GetProductsWithFiltersQuery,
   SimpleProduct,
@@ -214,9 +214,9 @@ function ProductCard({
           disabled={!canAddToComparison}
         >
           {isInComparison ? (
-            <CheckSquare className="h-5 w-5 text-primary-600" />
+            <CheckSquareIcon className="h-5 w-5 text-primary-600" />
           ) : (
-            <Square className="h-5 w-5 text-neutral-700" />
+            <SquareIcon className="h-5 w-5 text-neutral-700" />
           )}
         </button>
 
@@ -230,7 +230,7 @@ function ProductCard({
           className="rounded-lg bg-white/90 p-2 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50"
           aria-label="Quick view"
         >
-          <Eye className="h-5 w-5 text-primary-600" />
+          <EyeIcon className="h-5 w-5 text-primary-600" />
         </button>
       </div>
 

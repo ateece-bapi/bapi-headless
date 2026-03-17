@@ -13,7 +13,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { XIcon, ChevronLeftIcon, ChevronRightIcon, ZoomInIcon } from '@/lib/icons';
 
 export interface GalleryImage {
   sourceUrl: string;
@@ -119,7 +119,7 @@ export default function StorybookProductGallery({
           {/* Zoom overlay hint */}
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 transition-all duration-300 group-hover:bg-opacity-10">
             <div className="rounded-full bg-white p-3 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
-              <ZoomIn className="h-6 w-6 text-neutral-700" />
+              <ZoomInIcon className="h-6 w-6 text-neutral-700" />
             </div>
           </div>
 
@@ -135,7 +135,7 @@ export default function StorybookProductGallery({
                 className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 opacity-0 shadow-lg transition-all hover:bg-white group-hover:opacity-100"
                 aria-label="Previous image"
               >
-                <ChevronLeft className="h-6 w-6 text-neutral-700" />
+                <ChevronLeftIcon className="h-6 w-6 text-neutral-700" />
               </button>
               <button
                 onClick={(e) => {
@@ -146,7 +146,7 @@ export default function StorybookProductGallery({
                 className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 opacity-0 shadow-lg transition-all hover:bg-white group-hover:opacity-100"
                 aria-label="Next image"
               >
-                <ChevronRight className="h-6 w-6 text-neutral-700" />
+                <ChevronRightIcon className="h-6 w-6 text-neutral-700" />
               </button>
             </>
           )}
@@ -187,7 +187,7 @@ export default function StorybookProductGallery({
             className="absolute right-4 top-4 rounded-full bg-white/10 p-2 transition-colors hover:bg-white/20"
             aria-label="Close lightbox"
           >
-            <X className="h-8 w-8 text-white" />
+            <XIcon className="h-8 w-8 text-white" />
           </button>
 
           {/* Image counter */}
@@ -205,14 +205,14 @@ export default function StorybookProductGallery({
                 className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 transition-colors hover:bg-white/20"
                 aria-label="Previous image"
               >
-                <ChevronLeft className="h-8 w-8 text-white" />
+                <ChevronLeftIcon className="h-8 w-8 text-white" />
               </button>
               <button
                 onClick={goToNext}
                 className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 transition-colors hover:bg-white/20"
                 aria-label="Next image"
               >
-                <ChevronRight className="h-8 w-8 text-white" />
+                <ChevronRightIcon className="h-8 w-8 text-white" />
               </button>
             </>
           )}

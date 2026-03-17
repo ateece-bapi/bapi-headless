@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Package, Grid3x3, ChevronRight } from 'lucide-react';
+import { PackageIcon, Grid3x3Icon, ChevronRightIcon } from '@/lib/icons';
 import { ProductCard } from './ProductCard';
 import type { GetProductsByCategoryQuery, GetProductCategoryQuery } from '@/lib/graphql';
 
@@ -45,7 +45,7 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Grid3x3 className="h-4 w-4" />
+              <Grid3x3Icon className="h-4 w-4" />
               Product Category
             </div>
 
@@ -59,7 +59,7 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
 
             {/* Product Count */}
             <div className="inline-flex items-center gap-3 rounded-xl bg-white/10 px-6 py-3 backdrop-blur-sm">
-              <Package className="h-5 w-5 text-white" />
+              <PackageIcon className="h-5 w-5 text-white" />
               <span className="font-semibold text-white">
                 {category.count || productNodes.length} Product
                 {(category.count || productNodes.length) !== 1 ? 's' : ''}
@@ -121,7 +121,7 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
             {products?.pageInfo?.hasNextPage && (
               <div className="mt-12 text-center">
                 <div className="inline-flex items-center gap-2 rounded-lg bg-primary-50 px-6 py-3 text-primary-700">
-                  <Package className="h-5 w-5" />
+                  <PackageIcon className="h-5 w-5" />
                   <span className="font-medium">
                     More products available - pagination coming soon
                   </span>
@@ -133,7 +133,7 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
           /* Empty State */
           <div className="mx-auto max-w-2xl rounded-2xl bg-white p-12 text-center shadow-xl">
             <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
-              <Package className="h-10 w-10 text-gray-400" />
+              <PackageIcon className="h-10 w-10 text-gray-400" />
             </div>
             <h2 className="mb-3 text-3xl font-bold text-gray-900">No Products Yet</h2>
             <p className="mb-8 text-lg text-gray-600">

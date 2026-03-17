@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import logger from '@/lib/logger';
-import { ArrowRight, Package } from 'lucide-react';
+import { ArrowRightIcon, PackageIcon } from '@/lib/icons';
 
 type RelatedProductsAsyncProps = {
   productId: string;
@@ -25,7 +25,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
           <div className="mb-10 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-100">
-                <Package className="h-6 w-6 text-primary-600" />
+                <PackageIcon className="h-6 w-6 text-primary-600" />
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-neutral-900">
@@ -56,7 +56,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center">
-                      <Package className="h-16 w-16 text-neutral-300" />
+                      <PackageIcon className="h-16 w-16 text-neutral-300" />
                     </div>
                   )}
 
@@ -64,7 +64,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                   <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-primary-900/90 via-primary-900/50 to-transparent pb-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <div className="flex items-center gap-2 font-semibold text-white">
                       <span>View Details</span>
-                      <ArrowRight className="h-5 w-5" />
+                      <ArrowRightIcon className="h-5 w-5" />
                     </div>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                     <span className="text-sm font-semibold text-neutral-700 transition-colors group-hover:text-white">
                       {t('productPage.related.viewProduct')}
                     </span>
-                    <ArrowRight className="h-4 w-4 text-neutral-400 transition-colors group-hover:text-white" />
+                    <ArrowRightIcon className="h-4 w-4 text-neutral-400 transition-colors group-hover:text-white" />
                   </div>
                 </div>
               </Link>

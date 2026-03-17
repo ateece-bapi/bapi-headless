@@ -108,6 +108,14 @@ import {
   Home,
   MoreVert,
   MoreHoriz,
+  Compare,
+  Visibility,
+  CheckBox,
+  CheckBoxOutlineBlank,
+  TrendingUp,
+  History,
+  AutoAwesome,
+  EmojiEvents,
   
   // Special
   Mouse,
@@ -212,6 +220,14 @@ export { Work as BriefcaseIcon };
 export { Home as HomeIcon };
 export { MoreVert as MoreVerticalIcon };
 export { MoreHoriz as MoreHorizontalIcon };
+export { Compare as GitCompareIcon };
+export { Visibility as EyeIcon };
+export { CheckBox as CheckSquareIcon };
+export { CheckBoxOutlineBlank as SquareIcon };
+export { TrendingUp as TrendingUpIcon };
+export { History as HistoryIcon };
+export { AutoAwesome as SparklesIcon };
+export { EmojiEvents as AwardIcon };
 
 // Special Icons
 export { Mouse as MousePointerClickIcon };

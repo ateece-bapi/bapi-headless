@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { ArrowRight, Sparkles, Award } from 'lucide-react';
+import { ArrowRightIcon, SparklesIcon, AwardIcon } from '@/lib/icons';
 
 // Mock data for product categories - BRAND STANDARD ORDER
 // Per BAPI Brand Guide: Temperature, Humidity, Pressure, Air Quality, Wireless, Accessories, Test Instruments
@@ -114,7 +114,7 @@ export default function MainProductPage() {
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Sparkles className="h-4 w-4" />
+              <SparklesIcon className="h-4 w-4" />
               {t('productsPage.hero.badge')}
             </div>
 
@@ -216,7 +216,7 @@ export default function MainProductPage() {
                   {/* View Link */}
                   <div className="inline-flex items-center gap-2 border-b-2 border-transparent pb-0.5 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3 group-hover:border-primary-600">
                     <span>{t('productsPage.categories.viewProducts')}</span>
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
@@ -229,7 +229,7 @@ export default function MainProductPage() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-primary-700">
-                <Award className="h-4 w-4" />
+                <AwardIcon className="h-4 w-4" />
                 {t('productsPage.featured.badge')}
               </div>
 
@@ -246,7 +246,7 @@ export default function MainProductPage() {
                 className="bg-linear-to-r inline-flex items-center gap-2 rounded-xl from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 {t('productsPage.featured.viewButton')}
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRightIcon className="h-5 w-5" />
               </Link>
             </div>
 

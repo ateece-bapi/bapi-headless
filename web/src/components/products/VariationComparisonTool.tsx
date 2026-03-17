@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, GitCompare, Check, X } from 'lucide-react';
+import { ChevronDownIcon, ChevronUpIcon, GitCompareIcon, CheckIcon, XIcon } from '@/lib/icons';
 
 interface ProductVariation {
   id: string;
@@ -95,7 +95,7 @@ export default function VariationComparisonTool({
         aria-controls="comparison-tool-content"
       >
         <div className="flex items-center gap-3">
-          <GitCompare className="h-5 w-5 text-primary-600" />
+          <GitCompareIcon className="h-5 w-5 text-primary-600" />
           <span className="text-lg font-semibold text-neutral-900">Compare Variations</span>
           {selectedVariations.length > 0 && (
             <span className="rounded bg-primary-100 px-2 py-1 text-xs font-semibold text-primary-700">
@@ -104,9 +104,9 @@ export default function VariationComparisonTool({
           )}
         </div>
         {isOpen ? (
-          <ChevronUp className="h-5 w-5 text-neutral-700" />
+          <ChevronUpIcon className="h-5 w-5 text-neutral-700" />
         ) : (
-          <ChevronDown className="h-5 w-5 text-neutral-700" />
+          <ChevronDownIcon className="h-5 w-5 text-neutral-700" />
         )}
       </button>
 
@@ -253,7 +253,7 @@ export default function VariationComparisonTool({
                               inStock ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                             }`}
                           >
-                            {inStock ? <Check className="h-3 w-3" /> : <X className="h-3 w-3" />}
+                            {inStock ? <CheckIcon className="h-3 w-3" /> : <XIcon className="h-3 w-3" />}
                             {inStock ? 'In Stock' : 'Out of Stock'}
                           </span>
                         </td>
@@ -311,7 +311,7 @@ export default function VariationComparisonTool({
           {/* Empty State */}
           {selectedVariations.length < 2 && (
             <div className="py-12 text-center text-neutral-700">
-              <GitCompare className="mx-auto mb-4 h-12 w-12 text-neutral-300" />
+              <GitCompareIcon className="mx-auto mb-4 h-12 w-12 text-neutral-300" />
               <p className="text-sm">Select at least 2 variations to start comparing</p>
             </div>
           )}

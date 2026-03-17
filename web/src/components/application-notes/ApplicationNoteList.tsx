@@ -4,16 +4,16 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  BookOpen,
-  Search,
-  Calendar,
-  ArrowRight,
-  Filter,
-  X,
-  Grid3x3,
-  List,
-  SortAsc,
-} from 'lucide-react';
+  BookOpenIcon,
+  SearchIcon,
+  ClockIcon as CalendarIcon,
+  ArrowRightIcon,
+  SlidersHorizontalIcon as FilterIcon,
+  XIcon,
+  Grid3x3Icon,
+  ListIcon,
+  ArrowRightIcon as SortAscIcon,
+} from '@/lib/icons';
 
 interface ApplicationNote {
   id: string;
@@ -113,7 +113,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
       <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm">
         {/* Search Input */}
         <div className="relative mb-4">
-          <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+          <SearchIcon className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
           <input
             type="text"
             placeholder="Search application notes..."
@@ -128,7 +128,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
               aria-label="Clear search"
               className="absolute right-4 top-1/2 -translate-y-1/2 rounded p-1 transition-colors hover:bg-neutral-100"
             >
-              <X className="h-4 w-4 text-neutral-700" />
+              <XIcon className="h-4 w-4 text-neutral-700" />
             </button>
           )}
         </div>
@@ -148,7 +148,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
               onClick={clearSearch}
               className="flex items-center gap-1 text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
             >
-              <X className="h-4 w-4" />
+              <XIcon className="h-4 w-4" />
               Clear search
             </button>
           )}
@@ -172,7 +172,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
                 </option>
               ))}
             </select>
-            <SortAsc className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700" />
+            <SortAscIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700" />
           </div>
 
           {/* View Toggle */}
@@ -187,7 +187,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
                   : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
-              <Grid3x3 className="h-4 w-4" />
+              <Grid3x3Icon className="h-4 w-4" />
             </button>
             <button
               onClick={() => setViewMode('list')}
@@ -199,7 +199,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
                   : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
-              <List className="h-4 w-4" />
+              <ListIcon className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -209,7 +209,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
       {filteredAndSortedNotes.length === 0 ? (
         <div className="rounded-xl border-2 border-dashed border-neutral-300 bg-gradient-to-br from-neutral-50 to-neutral-100 py-20 text-center">
           <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-sm">
-            <BookOpen className="h-10 w-10 text-neutral-400" />
+            <BookOpenIcon className="h-10 w-10 text-neutral-400" />
           </div>
           <h3 className="mb-2 text-xl font-bold text-neutral-900">No articles found</h3>
           <p className="mx-auto mb-6 max-w-md text-neutral-700">
@@ -237,7 +237,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
               >
                 {/* Consistent Icon Header */}
                 <div className="flex h-48 items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100">
-                  <BookOpen className="duration-250 h-16 w-16 text-primary-600 transition-transform group-hover:scale-110" />
+                  <BookOpenIcon className="duration-250 h-16 w-16 text-primary-600 transition-transform group-hover:scale-110" />
                 </div>
 
                 {/* Content */}
@@ -256,7 +256,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
                   {/* Metadata */}
                   <div className="flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-700">
                     <div className="flex items-center gap-1">
-                      <Calendar className="h-3.5 w-3.5" />
+                      <CalendarIcon className="h-3.5 w-3.5" />
                       <span>{formatDate(note.date)}</span>
                     </div>
                     <span className="font-medium">{readingTime} min read</span>
@@ -265,7 +265,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
                   {/* Read More Button */}
                   <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary-600 group-hover:text-primary-700">
                     <span>Read Article</span>
-                    <ArrowRight className="duration-250 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRightIcon className="duration-250 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
@@ -285,7 +285,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
               >
                 {/* Icon Thumbnail */}
                 <div className="flex h-24 w-32 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary-50 to-primary-100">
-                  <BookOpen className="h-8 w-8 text-primary-600" />
+                  <BookOpenIcon className="h-8 w-8 text-primary-600" />
                 </div>
 
                 {/* Content */}
@@ -301,7 +301,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
                   )}
                   <div className="flex items-center gap-4 text-xs text-neutral-700">
                     <div className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
+                      <CalendarIcon className="h-3 w-3" />
                       <span>{formatDate(note.date)}</span>
                     </div>
                     <span>{readingTime} min read</span>
@@ -310,7 +310,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
 
                 {/* Arrow */}
                 <div className="flex flex-shrink-0 items-center">
-                  <ArrowRight className="h-5 w-5 text-neutral-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary-600" />
+                  <ArrowRightIcon className="h-5 w-5 text-neutral-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary-600" />
                 </div>
               </Link>
             );

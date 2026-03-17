@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useId } from 'react';
-import { Search, X, Command } from 'lucide-react';
+import { SearchIcon, XIcon, CommandIcon } from '@/lib/icons';
 import { useSearch } from '@/hooks/useSearch';
 import { useKeyboardShortcut } from '@/hooks/useKeyboardShortcut';
 import { SearchDropdown } from './SearchDropdown';
@@ -48,7 +48,7 @@ export function SearchInput() {
   return (
     <div className="relative w-full max-w-md">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+        <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
 
         <input
           ref={inputRef}
@@ -76,13 +76,13 @@ export function SearchInput() {
               className="rounded p-1.5 transition-colors hover:bg-neutral-100"
               aria-label="Clear search"
             >
-              <X className="h-4 w-4 text-neutral-700" />
+              <XIcon className="h-4 w-4 text-neutral-700" />
             </button>
           )}
 
           {!query && (
             <kbd className="hidden items-center gap-1 rounded border border-neutral-200 bg-neutral-100 px-2 py-1 text-xs font-semibold text-neutral-700 sm:inline-flex">
-              <Command className="h-3 w-3" />K
+              <CommandIcon className="h-3 w-3" />K
             </kbd>
           )}
         </div>

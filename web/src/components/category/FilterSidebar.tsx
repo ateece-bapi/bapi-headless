@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { X, SlidersHorizontal } from 'lucide-react';
+import { XIcon, SlidersHorizontalIcon } from '@/lib/icons';
 import type { GetProductAttributesQuery } from '@/lib/graphql/generated';
 import FilterGroup from './FilterGroup';
 import FilterCheckbox from './FilterCheckbox';
@@ -196,7 +196,7 @@ export default function FilterSidebar({
         className="mb-4 flex w-full items-center justify-between rounded-lg border border-neutral-300 bg-white px-4 py-3 lg:hidden"
       >
         <span className="flex items-center gap-2 font-medium text-neutral-900">
-          <SlidersHorizontal className="h-4 w-4" />
+          <SlidersHorizontalIcon className="h-4 w-4" />
           Filters
           {hasActiveFilters && (
             <span className="rounded-full bg-primary-500 px-2 py-0.5 text-xs text-white">
@@ -235,7 +235,7 @@ export default function FilterSidebar({
                   className="rounded-lg p-2 hover:bg-neutral-100"
                   aria-label="Close filters"
                 >
-                  <X className="h-5 w-5" />
+                  <XIcon className="h-5 w-5" />
                 </button>
               </div>
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/lib/navigation';
-import { User, LogOut, Settings, Package, ShieldCheck } from 'lucide-react';
+import { UserIcon, LogOutIcon, SettingsIcon, PackageIcon, ShieldCheckIcon } from '@/lib/icons';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/Toast';
@@ -81,7 +81,7 @@ const SignInButton: React.FC = () => {
           className="group flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
           aria-label="User menu"
         >
-          <User className="h-5 w-5" />
+          <UserIcon className="h-5 w-5" />
           <span className="hidden lg:inline">{user.displayName || user.username}</span>
         </button>
 
@@ -92,7 +92,7 @@ const SignInButton: React.FC = () => {
               className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-50"
               onClick={() => setShowMenu(false)}
             >
-              <Package className="h-4 w-4" />
+              <PackageIcon className="h-4 w-4" />
               Dashboard
             </Link>
             <Link
@@ -100,7 +100,7 @@ const SignInButton: React.FC = () => {
               className="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 transition-colors hover:bg-neutral-50"
               onClick={() => setShowMenu(false)}
             >
-              <Settings className="h-4 w-4" />
+              <SettingsIcon className="h-4 w-4" />
               Settings
             </Link>
             <Link
@@ -111,7 +111,7 @@ const SignInButton: React.FC = () => {
               onClick={() => setShowMenu(false)}
               aria-label={user.twoFactorEnabled ? '2FA is enabled' : 'Enable two-factor authentication'}
             >
-              <ShieldCheck className="h-4 w-4" />
+              <ShieldCheckIcon className="h-4 w-4" />
               {user.twoFactorEnabled ? '✓ 2FA Enabled' : '🔒 Enable 2FA'}
             </Link>
             <hr className="my-2 border-neutral-200" />
@@ -119,7 +119,7 @@ const SignInButton: React.FC = () => {
               onClick={handleSignOut}
               className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-red-600 transition-colors hover:bg-red-50"
             >
-              <LogOut className="h-4 w-4" />
+              <LogOutIcon className="h-4 w-4" />
               Sign Out
             </button>
           </div>
@@ -134,7 +134,7 @@ const SignInButton: React.FC = () => {
       className="group relative flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-3 py-2 text-sm font-semibold text-primary-500 shadow-sm transition-all duration-200 hover:border-primary-600 hover:bg-primary-50 hover:shadow-md lg:px-6 lg:text-base"
       aria-label="Sign in to your account"
     >
-      <User className="h-5 w-5" />
+      <UserIcon className="h-5 w-5" />
       <span className="hidden lg:inline">Sign In</span>
     </Link>
   );

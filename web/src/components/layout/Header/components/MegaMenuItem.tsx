@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import { Link } from '@/lib/navigation';
-import { ChevronDown, Radio } from 'lucide-react';
+import { ChevronDownIcon, RadioIcon } from '@/lib/icons';
 import clsx from 'clsx';
 import type { MegaMenuItem } from '../types';
 import { useOutsideClick } from '../hooks/useOutsideClick';
@@ -86,7 +86,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           )}
         >
           <span>{item.label}</span>
-          <ChevronDown
+          <ChevronDownIcon
             className={clsx(
               'h-4 w-4 transition-all duration-300 ease-out',
               isOpen ? 'rotate-180 scale-110' : 'rotate-0 scale-100'
@@ -121,7 +121,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
           )}
         >
           <span>{item.label}</span>
-          <ChevronDown
+          <ChevronDownIcon
             className={clsx(
               'h-4 w-4 transition-all duration-300 ease-out',
               isOpen ? 'rotate-180 scale-110' : 'rotate-0 scale-100'
@@ -280,7 +280,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                   <div className="inline-flex items-center gap-1.5 rounded-full bg-accent-500 px-3 py-1.5 text-xs font-black text-neutral-900 shadow-sm">
                     {item.megaMenu.featured.badge ? (
                       <>
-                        <Radio className="h-3 w-3" />
+                        <RadioIcon className="h-3 w-3" />
                         {item.megaMenu.featured.badge}
                       </>
                     ) : (
@@ -306,7 +306,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                       <div className="text-center">
                         {item.megaMenu.featured.title.includes('WAM™') ? (
                           <>
-                            <Radio className="mx-auto mb-2 h-16 w-16 text-accent-600" />
+                            <RadioIcon className="mx-auto mb-2 h-16 w-16 text-accent-600" />
                             <p className="text-xs font-semibold text-neutral-900">
                               Wireless Monitoring
                             </p>

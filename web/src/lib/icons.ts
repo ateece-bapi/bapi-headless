@@ -23,6 +23,7 @@ import {
   ExpandLess,
   ArrowForward,
   ArrowBack,
+  ArrowUpward,
   Search,
   
   // E-Commerce
@@ -116,6 +117,7 @@ import {
   History,
   AutoAwesome,
   EmojiEvents,
+  Settings,
   
   // Special
   Mouse,
@@ -123,6 +125,18 @@ import {
   QrCode,
   Key,
   Smartphone,
+  
+  // Social & Utility
+  YouTube,
+  LinkedIn,
+  Language,
+  Public,
+  Logout,
+  VerifiedUser,
+  Radio,
+  Build,
+  Support,
+  School,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -135,6 +149,7 @@ export { ChevronLeft as ChevronLeftIcon };
 export { ExpandLess as ChevronUpIcon };
 export { ArrowForward as ArrowRightIcon };
 export { ArrowBack as ArrowLeftIcon };
+export { ArrowUpward as ArrowUpIcon };
 export { Search as SearchIcon };
 
 // E-Commerce Icons
@@ -228,6 +243,7 @@ export { TrendingUp as TrendingUpIcon };
 export { History as HistoryIcon };
 export { AutoAwesome as SparklesIcon };
 export { EmojiEvents as AwardIcon };
+export { Settings as SettingsIcon };
 
 // Special Icons
 export { Mouse as MousePointerClickIcon };
@@ -235,6 +251,18 @@ export { Laptop as CommandIcon };
 export { QrCode as QrCodeIcon };
 export { Key as KeyIcon };
 export { Smartphone as SmartphoneIcon };
+
+// Social & Utility Icons
+export { YouTube as YoutubeIcon };
+export { LinkedIn as LinkedinIcon };
+export { Language as LanguagesIcon };
+export { Public as GlobeIcon };
+export { Logout as LogOutIcon };
+export { VerifiedUser as ShieldCheckIcon };
+export { Radio as RadioIcon };
+export { Build as WrenchIcon };
+export { Support as LifeBuoyIcon };
+export { School as GraduationCapIcon };
 
 // ========================================
 // Type Definitions

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from '@/lib/navigation';
-import { Linkedin, Youtube } from 'lucide-react';
+import { LinkedinIcon, YoutubeIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 
 // Footer sections now use translation keys - next-intl format
@@ -77,12 +77,12 @@ const social = [
   {
     name: 'LinkedIn',
     href: 'https://www.linkedin.com/company/bapi-building-automation-products-inc-/',
-    icon: Linkedin,
+    icon: LinkedinIcon,
   },
   {
     name: 'YouTube',
     href: 'https://www.youtube.com/@BAPIInc',
-    icon: Youtube,
+    icon: YoutubeIcon,
   },
 ];
 

@@ -108,7 +108,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                                 onClick={onClose}
                                 className="flex min-h-[44px] items-start gap-2 rounded-md border border-transparent px-3 py-2.5 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary-200 hover:bg-white hover:text-primary-700 hover:shadow-sm focus:outline-none focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1"
                               >
-                                <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-neutral-400" />
+                                <ChevronRightIcon className="mt-0.5 h-4 w-4 shrink-0 text-neutral-400" />
                                 <div>
                                   <div className="font-medium">{link.label}</div>
                                   {link.description && (

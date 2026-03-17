@@ -100,13 +100,16 @@ export function CategoryPage({ category, products }: CategoryPageProps) {
                 return (
                   <ProductCard
                     key={product.id}
-                    id={product.id}
-                    name={product.name || 'Unnamed Product'}
-                    slug={product.slug || ''}
-                    partNumber={partNumber}
-                    price={price}
-                    image={image}
-                    shortDescription={product.shortDescription}
+                    product={{
+                      id: product.id,
+                      name: product.name,
+                      slug: product.slug,
+                      partNumber: partNumber,
+                      price: price,
+                      image: image,
+                      shortDescription: product.shortDescription,
+                    }}
+                    locale="en"
                     index={index}
                   />
                 );

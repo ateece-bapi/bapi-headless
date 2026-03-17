@@ -6,8 +6,8 @@ import ProductCard from '@/components/products/ProductCard';
 interface Product {
   id: string;
   databaseId?: number | null;
-  name: string;
-  slug: string;
+  name?: string | null;
+  slug?: string | null;
   shortDescription?: string | null;
   price?: string | null;
   image?: {

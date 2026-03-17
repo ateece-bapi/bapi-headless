@@ -8,8 +8,8 @@ import FilterCheckbox from './FilterCheckbox';
 
 interface Subcategory {
   id: string;
-  name: string;
-  slug: string;
+  name?: string | null;
+  slug?: string | null;
   count?: number | null;
 }
 
@@ -71,15 +71,17 @@ export default function FilterSidebar({
       {/* Subcategories */}
       {subcategories.length > 0 && (
         <FilterGroup title="Category">
-          {subcategories.map((sub) => (
-            <FilterCheckbox
-              key={sub.id}
-              label={sub.name}
-              count={sub.count}
-              checked={activeFilters.subcategory.includes(sub.slug)}
-              onChange={(checked) => updateFilter('subcategory', sub.slug, checked)}
-            />
-          ))}
+          {subcategories
+            .filter((sub) => sub.name && sub.slug)
+            .map((sub) => (
+              <FilterCheckbox
+                key={sub.id}
+                label={sub.name!}
+                count={sub.count}
+                checked={activeFilters.subcategory.includes(sub.slug!)}
+                onChange={(checked) => updateFilter('subcategory', sub.slug!, checked)}
+              />
+            ))}
         </FilterGroup>
       )}
 

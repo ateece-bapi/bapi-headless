@@ -54,12 +54,12 @@ export async function generateMetadata({
     }
 
     return {
-      title: `${categoryData.name} | Building Automation Products | BAPI`,
+      title: `${categoryData.name || 'Products'} | Building Automation Products | BAPI`,
       description:
         categoryData.description ||
-        `Shop ${categoryData.count || 0} ${categoryData.name} from BAPI. High-quality sensors for HVAC and building automation.`,
+        `Shop ${categoryData.count || 0} ${categoryData.name || 'products'} from BAPI. High-quality sensors for HVAC and building automation.`,
       openGraph: {
-        title: categoryData.name,
+        title: categoryData.name || 'Products',
         description: categoryData.description || '',
         images: categoryData.image?.sourceUrl
           ? [categoryData.image.sourceUrl]
@@ -102,7 +102,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       notFound();
     }
 
-    const subcategories = categoryInfo.children?.nodes || [];
+    // Filter out subcategories with missing required fields
+    const subcategories = (categoryInfo.children?.nodes || []).filter(
+      (sub): sub is typeof sub & { name: string; slug: string } =>
+        !!sub.name && !!sub.slug
+    );
     const allProducts = productsResult?.nodes || [];
 
     // Generate breadcrumbs
@@ -116,7 +120,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         href: `/${locale}/products`,
       },
       {
-        label: categoryInfo.name,
+        label: categoryInfo.name || 'Category',
         href: `/${locale}/products/${category}`,
       },
     ];

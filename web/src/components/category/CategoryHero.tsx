@@ -9,10 +9,10 @@ interface BreadcrumbItem {
 
 interface CategoryHeroProps {
   category: {
-    name: string;
+    name?: string | null;
     description?: string | null;
     image?: {
-      sourceUrl: string;
+      sourceUrl?: string | null;
       altText?: string | null;
     } | null;
     count?: number | null;
@@ -59,7 +59,7 @@ export default function CategoryHero({ category, breadcrumbs }: CategoryHeroProp
             {/* Content */}
             <div className="lg:col-span-8">
               <h1 className="mb-4 text-4xl font-bold text-neutral-900 lg:text-5xl">
-                {category.name}
+                {category.name || 'Products'}
               </h1>
               {category.description && (
                 <p className="mb-4 text-lg text-neutral-700">{category.description}</p>
@@ -78,7 +78,7 @@ export default function CategoryHero({ category, breadcrumbs }: CategoryHeroProp
                 <div className="relative aspect-square w-full overflow-hidden rounded-lg shadow-lg">
                   <Image
                     src={category.image.sourceUrl}
-                    alt={category.image.altText || category.name}
+                    alt={category.image.altText || category.name || 'Product category'}
                     fill
                     className="object-contain p-4"
                     sizes="(max-width: 1024px) 100vw, 33vw"

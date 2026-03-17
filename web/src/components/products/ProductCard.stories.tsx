@@ -52,32 +52,8 @@ const meta: Meta<typeof ProductCard> = {
     },
   },
   tags: ['autodocs'],
-  argTypes: {
-    name: {
-      control: 'text',
-      description: 'Product name',
-    },
-    slug: {
-      control: 'text',
-      description: 'Product URL slug',
-    },
-    partNumber: {
-      control: 'text',
-      description: 'Part number (displayed in badge)',
-    },
-    price: {
-      control: 'text',
-      description: 'Product price (formatted string)',
-    },
-    shortDescription: {
-      control: 'text',
-      description: 'Product description (HTML stripped, truncated to 120 chars)',
-    },
-    index: {
-      control: { type: 'number', min: 0, max: 20 },
-      description: 'Animation delay index (50ms per index)',
-    },
-  },
+  // Note: argTypes removed since product is now a nested object
+  // Individual controls for nested properties are not practical in Storybook
 };
 
 export default meta;
@@ -92,17 +68,20 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    id: 'cHJvZHVjdDox',
-    name: 'Temperature Sensor Model TS-101',
-    slug: 'temperature-sensor-ts-101',
-    partNumber: 'TS-101-SS',
-    price: '$149.00',
-    image: {
-      sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=TS-101',
-      altText: 'Temperature Sensor TS-101',
+    product: {
+      id: 'cHJvZHVjdDox',
+      name: 'Temperature Sensor Model TS-101',
+      slug: 'temperature-sensor-ts-101',
+      partNumber: 'TS-101-SS',
+      price: '$149.00',
+      image: {
+        sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=TS-101',
+        altText: 'Temperature Sensor TS-101',
+      },
+      shortDescription:
+        '<p>High-precision temperature sensor with stainless steel construction. Ideal for HVAC monitoring and industrial applications. Range: -40°C to 100°C.</p>',
     },
-    shortDescription:
-      '<p>High-precision temperature sensor with stainless steel construction. Ideal for HVAC monitoring and industrial applications. Range: -40°C to 100°C.</p>',
+    locale: 'en',
     index: 0,
   },
   parameters: {
@@ -120,14 +99,17 @@ export const Default: Story = {
  */
 export const MissingImage: Story = {
   args: {
-    id: 'cHJvZHVjdDoy',
-    name: 'Humidity Sensor Model HS-205',
-    slug: 'humidity-sensor-hs-205',
-    partNumber: 'HS-205-IP65',
-    price: '$189.00',
-    image: null,
-    shortDescription:
-      'Advanced humidity sensor with IP65 protection. Perfect for outdoor and harsh environment monitoring.',
+    product: {
+      id: 'cHJvZHVjdDoy',
+      name: 'Humidity Sensor Model HS-205',
+      slug: 'humidity-sensor-hs-205',
+      partNumber: 'HS-205-IP65',
+      price: '$189.00',
+      image: null,
+      shortDescription:
+        'Advanced humidity sensor with IP65 protection. Perfect for outdoor and harsh environment monitoring.',
+    },
+    locale: 'en',
     index: 0,
   },
   parameters: {
@@ -145,17 +127,20 @@ export const MissingImage: Story = {
  */
 export const NoPartNumber: Story = {
   args: {
-    id: 'cHJvZHVjdDoz',
-    name: 'Pressure Transducer PT-300',
-    slug: 'pressure-transducer-pt-300',
-    partNumber: null,
-    price: '$299.00',
-    image: {
-      sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=PT-300',
-      altText: 'Pressure Transducer PT-300',
+    product: {
+      id: 'cHJvZHVjdDoz',
+      name: 'Pressure Transducer PT-300',
+      slug: 'pressure-transducer-pt-300',
+      partNumber: null,
+      price: '$299.00',
+      image: {
+        sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=PT-300',
+        altText: 'Pressure Transducer PT-300',
+      },
+      shortDescription:
+        'Industrial-grade pressure transducer with 4-20mA output. Suitable for hydraulic and pneumatic systems.',
     },
-    shortDescription:
-      'Industrial-grade pressure transducer with 4-20mA output. Suitable for hydraulic and pneumatic systems.',
+    locale: 'en',
     index: 0,
   },
   parameters: {
@@ -173,17 +158,20 @@ export const NoPartNumber: Story = {
  */
 export const NoPrice: Story = {
   args: {
-    id: 'cHJvZHVjdDo0',
-    name: 'Multi-Parameter Sensor System MPS-5000',
-    slug: 'multi-parameter-sensor-mps-5000',
-    partNumber: 'MPS-5K-PRO',
-    price: null,
-    image: {
-      sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=MPS-5000',
-      altText: 'Multi-Parameter Sensor System',
+    product: {
+      id: 'cHJvZHVjdDo0',
+      name: 'Multi-Parameter Sensor System MPS-5000',
+      slug: 'multi-parameter-sensor-mps-5000',
+      partNumber: 'MPS-5K-PRO',
+      price: null,
+      image: {
+        sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=MPS-5000',
+        altText: 'Multi-Parameter Sensor System',
+      },
+      shortDescription:
+        'Enterprise-grade sensor system measuring temperature, humidity, pressure, and air quality simultaneously. Custom configurations available.',
     },
-    shortDescription:
-      'Enterprise-grade sensor system measuring temperature, humidity, pressure, and air quality simultaneously. Custom configurations available.',
+    locale: 'en',
     index: 0,
   },
   parameters: {
@@ -201,16 +189,19 @@ export const NoPrice: Story = {
  */
 export const NoDescription: Story = {
   args: {
-    id: 'cHJvZHVjdDo1',
-    name: 'Air Quality Sensor AQS-400',
-    slug: 'air-quality-sensor-aqs-400',
-    partNumber: 'AQS-400-CO2',
-    price: '$249.00',
-    image: {
-      sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=AQS-400',
-      altText: 'Air Quality Sensor',
+    product: {
+      id: 'cHJvZHVjdDo1',
+      name: 'Air Quality Sensor AQS-400',
+      slug: 'air-quality-sensor-aqs-400',
+      partNumber: 'AQS-400-CO2',
+      price: '$249.00',
+      image: {
+        sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=AQS-400',
+        altText: 'Air Quality Sensor',
+      },
+      shortDescription: null,
     },
-    shortDescription: null,
+    locale: 'en',
     index: 0,
   },
   parameters: {
@@ -228,17 +219,20 @@ export const NoDescription: Story = {
  */
 export const LongTitle: Story = {
   args: {
-    id: 'cHJvZHVjdDo2',
-    name: 'Industrial Temperature and Humidity Sensor with Wireless Connectivity and Cloud Integration for Building Automation Systems',
-    slug: 'industrial-temp-humidity-sensor-wireless-cloud',
-    partNumber: 'ITH-WC-BA-5000',
-    price: '$399.00',
-    image: {
-      sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=ITH-WC',
-      altText: 'Wireless Sensor',
+    product: {
+      id: 'cHJvZHVjdDo2',
+      name: 'Industrial Temperature and Humidity Sensor with Wireless Connectivity and Cloud Integration for Building Automation Systems',
+      slug: 'industrial-temp-humidity-sensor-wireless-cloud',
+      partNumber: 'ITH-WC-BA-5000',
+      price: '$399.00',
+      image: {
+        sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=ITH-WC',
+        altText: 'Wireless Sensor',
+      },
+      shortDescription:
+        'Advanced sensor with wireless capability and cloud integration for real-time monitoring.',
     },
-    shortDescription:
-      'Advanced sensor with wireless capability and cloud integration for real-time monitoring.',
+    locale: 'en',
     index: 0,
   },
   parameters: {
@@ -256,17 +250,20 @@ export const LongTitle: Story = {
  */
 export const LongDescription: Story = {
   args: {
-    id: 'cHJvZHVjdDo3',
-    name: 'Wireless Data Logger DL-360',
-    slug: 'wireless-data-logger-dl-360',
-    partNumber: 'DL-360-WIFI',
-    price: '$599.00',
-    image: {
-      sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=DL-360',
-      altText: 'Wireless Data Logger',
+    product: {
+      id: 'cHJvZHVjdDo3',
+      name: 'Wireless Data Logger DL-360',
+      slug: 'wireless-data-logger-dl-360',
+      partNumber: 'DL-360-WIFI',
+      price: '$599.00',
+      image: {
+        sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=DL-360',
+        altText: 'Wireless Data Logger',
+      },
+      shortDescription:
+        '<p>Professional-grade wireless data logger with 16-channel input capability, real-time cloud synchronization, battery backup power supply, mobile app integration for iOS and Android, email and SMS alerts, customizable logging intervals, CSV export functionality, and enterprise-level security features including encrypted communications and user access controls.</p>',
     },
-    shortDescription:
-      '<p>Professional-grade wireless data logger with 16-channel input capability, real-time cloud synchronization, battery backup power supply, mobile app integration for iOS and Android, email and SMS alerts, customizable logging intervals, CSV export functionality, and enterprise-level security features including encrypted communications and user access controls.</p>',
+    locale: 'en',
     index: 0,
   },
   parameters: {
@@ -284,17 +281,20 @@ export const LongDescription: Story = {
  */
 export const PremiumProduct: Story = {
   args: {
-    id: 'cHJvZHVjdDo4',
-    name: 'Building Management System BMS-Pro',
-    slug: 'building-management-system-bms-pro',
-    partNumber: 'BMS-PRO-ENT',
-    price: '$2,499.00',
-    image: {
-      sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=BMS-PRO',
-      altText: 'Building Management System',
+    product: {
+      id: 'cHJvZHVjdDo4',
+      name: 'Building Management System BMS-Pro',
+      slug: 'building-management-system-bms-pro',
+      partNumber: 'BMS-PRO-ENT',
+      price: '$2,499.00',
+      image: {
+        sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=BMS-PRO',
+        altText: 'Building Management System',
+      },
+      shortDescription:
+        'Enterprise building management system with AI-powered analytics, predictive maintenance, and comprehensive integration capabilities.',
     },
-    shortDescription:
-      'Enterprise building management system with AI-powered analytics, predictive maintenance, and comprehensive integration capabilities.',
+    locale: 'en',
     index: 0,
   },
   parameters: {
@@ -318,55 +318,67 @@ export const ProductGrid: Story = {
   render: () => (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <ProductCard
-        id="prod-1"
-        name="Temperature Sensor TS-101"
-        slug="temperature-sensor-ts-101"
-        partNumber="TS-101-SS"
-        price="$149.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=TS-101',
-          altText: 'Temperature Sensor',
+        product={{
+          id: "prod-1",
+          name: "Temperature Sensor TS-101",
+          slug: "temperature-sensor-ts-101",
+          partNumber: "TS-101-SS",
+          price: "$149.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=TS-101',
+            altText: 'Temperature Sensor',
+          },
+          shortDescription: "High-precision temperature sensor with stainless steel construction.",
         }}
-        shortDescription="High-precision temperature sensor with stainless steel construction."
+        locale="en"
         index={0}
       />
       <ProductCard
-        id="prod-2"
-        name="Humidity Sensor HS-205"
-        slug="humidity-sensor-hs-205"
-        partNumber="HS-205-IP65"
-        price="$189.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=HS-205',
-          altText: 'Humidity Sensor',
+        product={{
+          id: "prod-2",
+          name: "Humidity Sensor HS-205",
+          slug: "humidity-sensor-hs-205",
+          partNumber: "HS-205-IP65",
+          price: "$189.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=HS-205',
+            altText: 'Humidity Sensor',
+          },
+          shortDescription: "Advanced humidity sensor with IP65 protection rating.",
         }}
-        shortDescription="Advanced humidity sensor with IP65 protection rating."
+        locale="en"
         index={1}
       />
       <ProductCard
-        id="prod-3"
-        name="Pressure Transducer PT-300"
-        slug="pressure-transducer-pt-300"
-        partNumber="PT-300-IND"
-        price="$299.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=PT-300',
-          altText: 'Pressure Transducer',
+        product={{
+          id: "prod-3",
+          name: "Pressure Transducer PT-300",
+          slug: "pressure-transducer-pt-300",
+          partNumber: "PT-300-IND",
+          price: "$299.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=PT-300',
+            altText: 'Pressure Transducer',
+          },
+          shortDescription: "Industrial-grade pressure transducer with 4-20mA output.",
         }}
-        shortDescription="Industrial-grade pressure transducer with 4-20mA output."
+        locale="en"
         index={2}
       />
       <ProductCard
-        id="prod-4"
-        name="Air Quality Sensor AQS-400"
-        slug="air-quality-sensor-aqs-400"
-        partNumber="AQS-400-CO2"
-        price="$249.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=AQS-400',
-          altText: 'Air Quality Sensor',
+        product={{
+          id: "prod-4",
+          name: "Air Quality Sensor AQS-400",
+          slug: "air-quality-sensor-aqs-400",
+          partNumber: "AQS-400-CO2",
+          price: "$249.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=AQS-400',
+            altText: 'Air Quality Sensor',
+          },
+          shortDescription: "CO2, VOC, and particulate matter monitoring sensor.",
         }}
-        shortDescription="CO2, VOC, and particulate matter monitoring sensor."
+        locale="en"
         index={3}
       />
     </div>
@@ -389,29 +401,35 @@ export const MobileView: Story = {
   render: () => (
     <div className="w-full max-w-sm space-y-4">
       <ProductCard
-        id="prod-mobile-1"
-        name="Temperature Sensor TS-101"
-        slug="temperature-sensor-ts-101"
-        partNumber="TS-101-SS"
-        price="$149.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=TS-101',
-          altText: 'Temperature Sensor',
+        product={{
+          id: "prod-mobile-1",
+          name: "Temperature Sensor TS-101",
+          slug: "temperature-sensor-ts-101",
+          partNumber: "TS-101-SS",
+          price: "$149.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=TS-101',
+            altText: 'Temperature Sensor',
+          },
+          shortDescription: "High-precision temperature sensor with stainless steel construction.",
         }}
-        shortDescription="High-precision temperature sensor with stainless steel construction."
+        locale="en"
         index={0}
       />
       <ProductCard
-        id="prod-mobile-2"
-        name="Humidity Sensor HS-205"
-        slug="humidity-sensor-hs-205"
-        partNumber="HS-205-IP65"
-        price="$189.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=HS-205',
-          altText: 'Humidity Sensor',
+        product={{
+          id: "prod-mobile-2",
+          name: "Humidity Sensor HS-205",
+          slug: "humidity-sensor-hs-205",
+          partNumber: "HS-205-IP65",
+          price: "$189.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=HS-205',
+            altText: 'Humidity Sensor',
+          },
+          shortDescription: "Advanced humidity sensor with IP65 protection.",
         }}
-        shortDescription="Advanced humidity sensor with IP65 protection."
+        locale="en"
         index={1}
       />
     </div>
@@ -436,55 +454,67 @@ export const TabletView: Story = {
   render: () => (
     <div className="grid grid-cols-2 gap-4">
       <ProductCard
-        id="prod-tablet-1"
-        name="Temperature Sensor TS-101"
-        slug="temperature-sensor-ts-101"
-        partNumber="TS-101-SS"
-        price="$149.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=TS-101',
-          altText: 'Temperature Sensor',
+        product={{
+          id: "prod-tablet-1",
+          name: "Temperature Sensor TS-101",
+          slug: "temperature-sensor-ts-101",
+          partNumber: "TS-101-SS",
+          price: "$149.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=TS-101',
+            altText: 'Temperature Sensor',
+          },
+          shortDescription: "High-precision temperature sensor.",
         }}
-        shortDescription="High-precision temperature sensor."
+        locale="en"
         index={0}
       />
       <ProductCard
-        id="prod-tablet-2"
-        name="Humidity Sensor HS-205"
-        slug="humidity-sensor-hs-205"
-        partNumber="HS-205-IP65"
-        price="$189.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=HS-205',
-          altText: 'Humidity Sensor',
+        product={{
+          id: "prod-tablet-2",
+          name: "Humidity Sensor HS-205",
+          slug: "humidity-sensor-hs-205",
+          partNumber: "HS-205-IP65",
+          price: "$189.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=HS-205',
+            altText: 'Humidity Sensor',
+          },
+          shortDescription: "Advanced humidity sensor.",
         }}
-        shortDescription="Advanced humidity sensor."
+        locale="en"
         index={1}
       />
       <ProductCard
-        id="prod-tablet-3"
-        name="Pressure Transducer PT-300"
-        slug="pressure-transducer-pt-300"
-        partNumber="PT-300-IND"
-        price="$299.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=PT-300',
-          altText: 'Pressure Transducer',
+        product={{
+          id: "prod-tablet-3",
+          name: "Pressure Transducer PT-300",
+          slug: "pressure-transducer-pt-300",
+          partNumber: "PT-300-IND",
+          price: "$299.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=PT-300',
+            altText: 'Pressure Transducer',
+          },
+          shortDescription: "Industrial-grade transducer.",
         }}
-        shortDescription="Industrial-grade transducer."
+        locale="en"
         index={2}
       />
       <ProductCard
-        id="prod-tablet-4"
-        name="Air Quality Sensor AQS-400"
-        slug="air-quality-sensor-aqs-400"
-        partNumber="AQS-400-CO2"
-        price="$249.00"
-        image={{
-          sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=AQS-400',
-          altText: 'Air Quality Sensor',
+        product={{
+          id: "prod-tablet-4",
+          name: "Air Quality Sensor AQS-400",
+          slug: "air-quality-sensor-aqs-400",
+          partNumber: "AQS-400-CO2",
+          price: "$249.00",
+          image: {
+            sourceUrl: 'https://placehold.co/600x600/1479BC/FFFFFF?text=AQS-400',
+            altText: 'Air Quality Sensor',
+          },
+          shortDescription: "CO2 and VOC monitoring.",
         }}
-        shortDescription="CO2 and VOC monitoring."
+        locale="en"
         index={3}
       />
     </div>
@@ -511,16 +541,19 @@ export const DesktopView: Story = {
       {Array.from({ length: 6 }).map((_, i) => (
         <ProductCard
           key={`prod-desk-${i}`}
-          id={`prod-desk-${i}`}
-          name={`Product ${i + 1}`}
-          slug={`product-${i + 1}`}
-          partNumber={`PRD-${String(i + 1).padStart(3, '0')}`}
-          price={`$${(99 + i * 50).toFixed(2)}`}
-          image={{
-            sourceUrl: `https://placehold.co/600x600/1479BC/FFFFFF?text=PRD-${i + 1}`,
-            altText: `Product ${i + 1}`,
+          product={{
+            id: `prod-desk-${i}`,
+            name: `Product ${i + 1}`,
+            slug: `product-${i + 1}`,
+            partNumber: `PRD-${String(i + 1).padStart(3, '0')}`,
+            price: `$${(99 + i * 50).toFixed(2)}`,
+            image: {
+              sourceUrl: `https://placehold.co/600x600/1479BC/FFFFFF?text=PRD-${i + 1}`,
+              altText: `Product ${i + 1}`,
+            },
+            shortDescription: `High-quality product ${i + 1} for industrial applications.`,
           }}
-          shortDescription={`High-quality product ${i + 1} for industrial applications.`}
+          locale="en"
           index={i}
         />
       ))}
@@ -549,16 +582,19 @@ export const CompactListView: Story = {
       {Array.from({ length: 3 }).map((_, i) => (
         <div key={`prod-list-${i}`} className="w-full max-w-2xl">
           <ProductCard
-            id={`prod-list-${i}`}
-            name={`Sensor Model ${i + 101}`}
-            slug={`sensor-${i + 101}`}
-            partNumber={`SEN-${i + 101}`}
-            price={`$${(149 + i * 50).toFixed(2)}`}
-            image={{
-              sourceUrl: `https://placehold.co/400x400/1479BC/FFFFFF?text=SEN-${i + 101}`,
-              altText: `Sensor ${i + 101}`,
+            product={{
+              id: `prod-list-${i}`,
+              name: `Sensor Model ${i + 101}`,
+              slug: `sensor-${i + 101}`,
+              partNumber: `SEN-${i + 101}`,
+              price: `$${(149 + i * 50).toFixed(2)}`,
+              image: {
+                sourceUrl: `https://placehold.co/400x400/1479BC/FFFFFF?text=SEN-${i + 101}`,
+                altText: `Sensor ${i + 101}`,
+              },
+              shortDescription: "Compact sensor for space-constrained applications.",
             }}
-            shortDescription="Compact sensor for space-constrained applications."
+            locale="en"
             index={i}
           />
         </div>

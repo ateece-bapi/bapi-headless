@@ -11,8 +11,8 @@ import ProductGridSection from './ProductGridSection';
 interface Product {
   id: string;
   databaseId?: number | null;
-  name: string;
-  slug: string;
+  name?: string | null;
+  slug?: string | null;
   shortDescription?: string | null;
   price?: string | null;
   partNumber?: string | null;
@@ -23,11 +23,11 @@ interface Product {
   productCategories?: {
     nodes: Array<{
       id: string;
-      slug: string;
+      slug?: string | null;
       parent?: {
         node?: {
           id: string;
-          slug: string;
+          slug?: string | null;
         } | null;
       } | null;
     }>;
@@ -35,16 +35,16 @@ interface Product {
   attributes?: {
     nodes: Array<{
       id: string;
-      name: string;
-      options?: string[] | null;
+      name?: string | null;
+      options?: Array<string | null | undefined> | null;
     }>;
   } | null;
 }
 
 interface Subcategory {
   id: string;
-  name: string;
-  slug: string;
+  name?: string | null;
+  slug?: string | null;
   count?: number | null;
 }
 
@@ -99,11 +99,18 @@ export default function CategoryContent({
 
   // Filter products based on active filters
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
+    return products
+      .filter(
+        (product): product is typeof product & { name: string; slug: string } =>
+          !!product.name && !!product.slug
+      ) // Only show products with valid name and slug
+      .filter((product) => {
       // Subcategory filter
       if (activeFilters.subcategory.length > 0) {
         const productCategories =
-          product.productCategories?.nodes.map((c) => c.slug) || [];
+          product.productCategories?.nodes
+            .map((c) => c.slug)
+            .filter((slug): slug is string => !!slug) || [];
         if (
           !activeFilters.subcategory.some((sub) => productCategories.includes(sub))
         ) {
@@ -117,9 +124,11 @@ export default function CategoryContent({
       // Application filter
       if (activeFilters.application.length > 0) {
         const appAttr = productAttributes.find(
-          (a) => a.name === 'pa_application' || a.name === 'Application'
+          (a) => a.name && (a.name === 'pa_application' || a.name === 'Application')
         );
-        const appValues = appAttr?.options || [];
+        const appValues = (appAttr?.options || []).filter(
+          (opt): opt is string => !!opt
+        );
         if (!activeFilters.application.some((app) => appValues.includes(app))) {
           return false;
         }
@@ -128,9 +137,11 @@ export default function CategoryContent({
       // Enclosure filter
       if (activeFilters.enclosure.length > 0) {
         const enclosureAttr = productAttributes.find(
-          (a) => a.name === 'pa_room-enclosure-style'
+          (a) => a.name && a.name === 'pa_room-enclosure-style'
         );
-        const enclosureValues = enclosureAttr?.options || [];
+        const enclosureValues = (enclosureAttr?.options || []).filter(
+          (opt): opt is string => !!opt
+        );
         if (
           !activeFilters.enclosure.some((enc) => enclosureValues.includes(enc))
         ) {
@@ -142,10 +153,13 @@ export default function CategoryContent({
       if (activeFilters.output.length > 0) {
         const outputAttr = productAttributes.find(
           (a) =>
-            a.name === 'pa_temperature-sensor-output' ||
-            a.name === 'pa_humidity-sensor-output'
+            a.name &&
+            (a.name === 'pa_temperature-sensor-output' ||
+              a.name === 'pa_humidity-sensor-output')
         );
-        const outputValues = outputAttr?.options || [];
+        const outputValues = (outputAttr?.options || []).filter(
+          (opt): opt is string => !!opt
+        );
         if (!activeFilters.output.some((out) => outputValues.includes(out))) {
           return false;
         }
@@ -153,8 +167,12 @@ export default function CategoryContent({
 
       // Display filter
       if (activeFilters.display.length > 0) {
-        const displayAttr = productAttributes.find((a) => a.name === 'pa_display');
-        const displayValues = displayAttr?.options || [];
+        const displayAttr = productAttributes.find(
+          (a) => a.name && a.name === 'pa_display'
+        );
+        const displayValues = (displayAttr?.options || []).filter(
+          (opt): opt is string => !!opt
+        );
         if (!activeFilters.display.some((disp) => displayValues.includes(disp))) {
           return false;
         }
@@ -182,7 +200,7 @@ export default function CategoryContent({
           return priceB - priceA;
         });
       case 'name':
-        return sorted.sort((a, b) => a.name.localeCompare(b.name));
+        return sorted.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
       case 'newest':
         return sorted.sort((a, b) => {
           const idA = a.databaseId || 0;
@@ -217,11 +235,13 @@ export default function CategoryContent({
               Browse by Category
             </h2>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {subcategories.map((subcategory) => (
+              {subcategories
+                .filter((sub) => sub.name && sub.slug) // Only show subcategories with valid name and slug
+                .map((subcategory) => (
                 <SubcategoryCard
                   key={subcategory.id}
-                  name={subcategory.name}
-                  slug={subcategory.slug}
+                  name={subcategory.name!} // We know it's defined because of filter
+                  slug={subcategory.slug!} // We know it's defined because of filter
                   count={subcategory.count}
                   description={null}
                   image={null}

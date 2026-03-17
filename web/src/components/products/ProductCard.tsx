@@ -5,8 +5,8 @@ import { ArrowRight, Package } from 'lucide-react';
 interface ProductCardProps {
   product: {
     id: string;
-    name: string;
-    slug: string;
+    name?: string | null;
+    slug?: string | null;
     partNumber?: string | null;
     price?: string | null;
     image?: {
@@ -36,7 +36,7 @@ export default function ProductCard({
   if (viewMode === 'list') {
     return (
       <Link
-        href={`/${locale}/products/${slug}`}
+        href={`/${locale}/products/${slug || 'unknown'}`}
         className="group flex gap-6 overflow-hidden rounded-lg border border-neutral-200 bg-white p-4 transition-all hover:border-primary-500 hover:shadow-lg"
       >
         {/* Image */}
@@ -44,7 +44,7 @@ export default function ProductCard({
           {image?.sourceUrl ? (
             <Image
               src={image.sourceUrl}
-              alt={image.altText || name}
+              alt={image.altText || name || 'Product'}
               fill
               className="object-contain p-2"
               sizes="128px"
@@ -60,7 +60,7 @@ export default function ProductCard({
         <div className="flex flex-1 flex-col">
           <div className="mb-2 flex items-start justify-between gap-4">
             <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary-600">
-              {name}
+              {name || 'Untitled Product'}
             </h3>
             {partNumber && (
               <span className="rounded bg-neutral-100 px-2 py-1 text-xs font-semibold text-neutral-700">
@@ -90,7 +90,7 @@ export default function ProductCard({
   // Grid view (default)
   return (
     <Link
-      href={`/${locale}/products/${slug}`}
+      href={`/${locale}/products/${slug || 'unknown'}`}
       className="group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500"
       style={{
         animationDelay: `${index * 50}ms`,
@@ -104,7 +104,7 @@ export default function ProductCard({
         {image?.sourceUrl ? (
           <Image
             src={image.sourceUrl}
-            alt={image.altText || name}
+            alt={image.altText || name || 'Product'}
             fill
             className="object-contain p-4 drop-shadow-md transition-transform duration-500 group-hover:scale-110"
             sizes="(min-width: 1280px) 300px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -129,7 +129,7 @@ export default function ProductCard({
       {/* Content */}
       <div className="relative p-6">
         <h3 className="relative mb-2 line-clamp-2 text-lg font-bold leading-tight text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
-          {name}
+          {name || 'Untitled Product'}
           {/* BAPI Yellow underline on hover */}
           <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
         </h3>

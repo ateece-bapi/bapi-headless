@@ -109,6 +109,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     );
     const allProducts = productsResult?.nodes || [];
 
+    // Warn if results are truncated due to pagination limit
+    if (productsResult?.pageInfo?.hasNextPage) {
+      console.warn(
+        `⚠️ Category "${categoryInfo.name}" has more than ${allProducts.length} products. ` +
+          `Results are truncated. Consider implementing pagination for categories with >200 products.`
+      );
+    }
+
     // Generate breadcrumbs
     const breadcrumbs = [
       {
@@ -135,7 +143,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           products={allProducts}
           filters={filters}
           locale={locale}
-          translations={{}}
         />
       </div>
     );

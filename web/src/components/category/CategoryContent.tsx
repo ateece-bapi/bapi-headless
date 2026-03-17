@@ -54,7 +54,6 @@ interface CategoryContentProps {
   products: Product[];
   filters: GetProductAttributesQuery;
   locale: string;
-  translations: Record<string, string>;
 }
 
 type SortOption = 'name' | 'price-asc' | 'price-desc' | 'newest';
@@ -99,6 +98,24 @@ export default function CategoryContent({
 
   // Filter products based on active filters
   const filteredProducts = useMemo(() => {
+    // Create slug-to-name maps from filter taxonomy data
+    // This allows us to convert user-selected slugs to display names for comparison
+    const applicationSlugToName = new Map(
+      filters.paApplications?.nodes.map((node) => [node.slug, node.name]) || []
+    );
+    const enclosureSlugToName = new Map(
+      filters.paRoomEnclosureStyles?.nodes.map((node) => [node.slug, node.name]) || []
+    );
+    const outputSlugToName = new Map(
+      [
+        ...(filters.paTemperatureSensorOutputs?.nodes || []),
+        ...(filters.paHumiditySensorOutputs?.nodes || []),
+      ].map((node) => [node.slug, node.name])
+    );
+    const displaySlugToName = new Map(
+      filters.paDisplays?.nodes.map((node) => [node.slug, node.name]) || []
+    );
+
     return products
       .filter(
         (product): product is typeof product & { name: string; slug: string } =>
@@ -129,7 +146,11 @@ export default function CategoryContent({
         const appValues = (appAttr?.options || []).filter(
           (opt): opt is string => !!opt
         );
-        if (!activeFilters.application.some((app) => appValues.includes(app))) {
+        // Convert selected slugs to names for comparison
+        const selectedNames = activeFilters.application
+          .map((slug) => applicationSlugToName.get(slug))
+          .filter((name): name is string => !!name);
+        if (!selectedNames.some((name) => appValues.includes(name))) {
           return false;
         }
       }
@@ -142,9 +163,11 @@ export default function CategoryContent({
         const enclosureValues = (enclosureAttr?.options || []).filter(
           (opt): opt is string => !!opt
         );
-        if (
-          !activeFilters.enclosure.some((enc) => enclosureValues.includes(enc))
-        ) {
+        // Convert selected slugs to names for comparison
+        const selectedNames = activeFilters.enclosure
+          .map((slug) => enclosureSlugToName.get(slug))
+          .filter((name): name is string => !!name);
+        if (!selectedNames.some((name) => enclosureValues.includes(name))) {
           return false;
         }
       }
@@ -160,7 +183,11 @@ export default function CategoryContent({
         const outputValues = (outputAttr?.options || []).filter(
           (opt): opt is string => !!opt
         );
-        if (!activeFilters.output.some((out) => outputValues.includes(out))) {
+        // Convert selected slugs to names for comparison
+        const selectedNames = activeFilters.output
+          .map((slug) => outputSlugToName.get(slug))
+          .filter((name): name is string => !!name);
+        if (!selectedNames.some((name) => outputValues.includes(name))) {
           return false;
         }
       }
@@ -173,14 +200,18 @@ export default function CategoryContent({
         const displayValues = (displayAttr?.options || []).filter(
           (opt): opt is string => !!opt
         );
-        if (!activeFilters.display.some((disp) => displayValues.includes(disp))) {
+        // Convert selected slugs to names for comparison
+        const selectedNames = activeFilters.display
+          .map((slug) => displaySlugToName.get(slug))
+          .filter((name): name is string => !!name);
+        if (!selectedNames.some((name) => displayValues.includes(name))) {
           return false;
         }
       }
 
       return true;
     });
-  }, [products, activeFilters]);
+  }, [products, activeFilters, filters]);
 
   // Sort products
   const sortedProducts = useMemo(() => {
@@ -189,14 +220,14 @@ export default function CategoryContent({
     switch (sortBy) {
       case 'price-asc':
         return sorted.sort((a, b) => {
-          const priceA = parseFloat(a.price || '0');
-          const priceB = parseFloat(b.price || '0');
+          const priceA = parseFloat((a.price || '0').replace(/[^0-9.]/g, ''));
+          const priceB = parseFloat((b.price || '0').replace(/[^0-9.]/g, ''));
           return priceA - priceB;
         });
       case 'price-desc':
         return sorted.sort((a, b) => {
-          const priceA = parseFloat(a.price || '0');
-          const priceB = parseFloat(b.price || '0');
+          const priceA = parseFloat((a.price || '0').replace(/[^0-9.]/g, ''));
+          const priceB = parseFloat((b.price || '0').replace(/[^0-9.]/g, ''));
           return priceB - priceA;
         });
       case 'name':
@@ -221,6 +252,19 @@ export default function CategoryContent({
       values.forEach((val: string) => params.append(key, val));
     });
     if (sortBy !== 'name') params.set('sort', sortBy);
+
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
+  // Update URL when sort changes
+  const handleSortChange = (newSort: SortOption) => {
+    setSortBy(newSort);
+
+    const params = new URLSearchParams();
+    Object.entries(activeFilters).forEach(([key, values]) => {
+      values.forEach((val: string) => params.append(key, val));
+    });
+    if (newSort !== 'name') params.set('sort', newSort);
 
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
@@ -285,7 +329,7 @@ export default function CategoryContent({
               totalCount={products.length}
               filteredCount={sortedProducts.length}
               sortBy={sortBy}
-              onSortChange={setSortBy}
+              onSortChange={handleSortChange}
               viewMode={viewMode}
               onViewModeChange={setViewMode}
               locale={locale}

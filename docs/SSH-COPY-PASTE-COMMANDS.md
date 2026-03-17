@@ -7,8 +7,12 @@
 
 ## STEP 1: Connect to Kinsta SSH
 
+> **Get SSH credentials from Kinsta MyKinsta dashboard:**
+> Sites → bapiheadlessstaging → Info → SFTP/SSH
+
 ```bash
-ssh bapiheadlessstaging@35.224.70.159 -p 17338
+ssh <SSH_USERNAME>@<STAGING_IP> -p <SSH_PORT>
+# Example: ssh bapiheadlessstaging@35.xxx.xxx.xxx -p 17338
 ```
 *Enter password when prompted, then press Enter*
 

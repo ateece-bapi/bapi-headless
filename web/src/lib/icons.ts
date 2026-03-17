@@ -12,128 +12,211 @@
  * import { ShoppingCartIcon, CheckIcon } from '@/lib/icons';
  */
 
-// ========================================
+// Import all MUI icons with their original names
+import {
+  // Navigation & UI
+  Menu,
+  Close,
+  ExpandMore,
+  ChevronRight,
+  ChevronLeft,
+  ExpandLess,
+  ArrowForward,
+  ArrowBack,
+  Search,
+  
+  // E-Commerce
+  ShoppingCart,
+  Favorite,
+  FavoriteBorder,
+  LocalOffer,
+  Delete,
+  Add,
+  Remove,
+  
+  // Status & Feedback
+  Check,
+  CheckCircle,
+  Error,
+  Info,
+  Warning,
+  HourglassEmpty,
+  Loop,
+  
+  // Content & Media
+  Image,
+  VideoLibrary,
+  Article,
+  Description,
+  PictureAsPdf,
+  Download,
+  Upload,
+  ZoomIn,
+  ZoomOut,
+  Rotate90DegreesCcw,
+  
+  // Communication
+  Email,
+  Phone,
+  Message,
+  Send,
+  Share,
+  Print,
+  ThumbUp,
+  ThumbDown,
+  Person,
+  
+  // Business & Location
+  Business,
+  LocationOn,
+  Inventory,
+  ViewModule,
+  ViewList,
+  Tune,
+  AccountCircle,
+  Group,
+  
+  // Product & Category
+  DeviceThermostat,
+  WaterDrop,
+  Speed,
+  Air,
+  Wifi,
+  Biotech,
+  Category,
+  
+  // Payment & Financial
+  CreditCard,
+  AttachMoney,
+  Money,
+  
+  // Security & Trust
+  Shield,
+  Lock,
+  LockOpen,
+  Verified,
+  
+  // Actions
+  Edit,
+  ContentCopy,
+  Refresh,
+  Schedule,
+  Link,
+  Bookmark,
+  Work,
+  Home,
+  MoreVert,
+  MoreHoriz,
+  
+  // Special
+  Mouse,
+  Laptop,
+  QrCode,
+  Key,
+  Smartphone,
+} from '@mui/icons-material';
+
+// Export with lucide-react compatible names
 // Navigation & UI Icons
-// ========================================
-export { Menu as MenuIcon } from '@mui/icons-material';
-export { Close as XIcon } from '@mui/icons-material';
-export { ExpandMore as ChevronDownIcon } from '@mui/icons-material';
-export { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
-export { ChevronLeft as ChevronLeftIcon } from '@mui/icons-material';
-export { ExpandLess as ChevronUpIcon } from '@mui/icons-material';
-export { ArrowForward as ArrowRightIcon } from '@mui/icons-material';
-export { ArrowBack as ArrowLeftIcon } from '@mui/icons-material';
-export { Search as SearchIcon } from '@mui/icons-material';
+export { Menu as MenuIcon };
+export { Close as XIcon };
+export { ExpandMore as ChevronDownIcon };
+export { ChevronRight as ChevronRightIcon };
+export { ChevronLeft as ChevronLeftIcon };
+export { ExpandLess as ChevronUpIcon };
+export { ArrowForward as ArrowRightIcon };
+export { ArrowBack as ArrowLeftIcon };
+export { Search as SearchIcon };
 
-// ========================================
 // E-Commerce Icons
-// ========================================
-export { ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
-export { Favorite as HeartIcon } from '@mui/icons-material';
-export { FavoriteBorder as HeartOutlineIcon } from '@mui/icons-material';
-export { LocalOffer as TagIcon } from '@mui/icons-material';
-export { Delete as Trash2Icon } from '@mui/icons-material';
-export { Add as PlusIcon } from '@mui/icons-material';
-export { Remove as MinusIcon } from '@mui/icons-material';
+export { ShoppingCart as ShoppingCartIcon };
+export { Favorite as HeartIcon };
+export { FavoriteBorder as HeartOutlineIcon };
+export { LocalOffer as TagIcon };
+export { Delete as Trash2Icon };
+export { Add as PlusIcon };
+export { Remove as MinusIcon };
 
-// ========================================
 // Status & Feedback Icons
-// ========================================
-export { Check as CheckIcon } from '@mui/icons-material';
-export { CheckCircle as CheckCircleIcon } from '@mui/icons-material';
-export { Error as AlertCircleIcon } from '@mui/icons-material';
-export { Info as InfoIcon } from '@mui/icons-material';
-export { Warning as AlertTriangleIcon } from '@mui/icons-material';
-export { HourglassEmpty as Loader2Icon } from '@mui/icons-material';
-export { Loop as RefreshCwIcon } from '@mui/icons-material';
+export { Check as CheckIcon };
+export { CheckCircle as CheckCircleIcon };
+export { Error as AlertCircleIcon };
+export { Info as InfoIcon };
+export { Warning as AlertTriangleIcon };
+export { HourglassEmpty as Loader2Icon };
+export { Loop as RefreshCwIcon };
 
-// ========================================
 // Content & Media Icons
-// ========================================
-export { Image as ImageIcon } from '@mui/icons-material';
-export { VideoLibrary as VideoIcon } from '@mui/icons-material';
-export { Article as FileTextIcon } from '@mui/icons-material';
-export { Description as FileIcon } from '@mui/icons-material';
-export { PictureAsPdf as FileDocumentIcon } from '@mui/icons-material';
-export { Download as DownloadIcon } from '@mui/icons-material';
-export { Upload as UploadIcon } from '@mui/icons-material';
-export { ZoomIn as ZoomInIcon } from '@mui/icons-material';
-export { ZoomOut as ZoomOutIcon } from '@mui/icons-material';
-export { Rotate90DegreesCcw as RotateCwIcon } from '@mui/icons-material';
+export { Image as ImageIcon };
+export { VideoLibrary as VideoIcon };
+export { Article as FileTextIcon };
+export { Description as FileIcon };
+export { PictureAsPdf as FileDocumentIcon };
+export { Download as DownloadIcon };
+export { Upload as UploadIcon };
+export { ZoomIn as ZoomInIcon };
+export { ZoomOut as ZoomOutIcon };
+export { Rotate90DegreesCcw as RotateCwIcon };
 
-// ========================================
 // Communication Icons
-// ========================================
-export { Email as MailIcon } from '@mui/icons-material';
-export { Phone as PhoneIcon } from '@mui/icons-material';
-export { Message as MessageCircleIcon } from '@mui/icons-material';
-export { Send as SendIcon } from '@mui/icons-material';
-export { Share as Share2Icon } from '@mui/icons-material';
-export { Print as PrinterIcon } from '@mui/icons-material';
-export { ThumbUp as ThumbsUpIcon } from '@mui/icons-material';
-export { ThumbDown as ThumbsDownIcon } from '@mui/icons-material';
-export { Person as UserCircleIcon } from '@mui/icons-material';
+export { Email as MailIcon };
+export { Phone as PhoneIcon };
+export { Message as MessageCircleIcon };
+export { Send as SendIcon };
+export { Share as Share2Icon };
+export { Print as PrinterIcon };
+export { ThumbUp as ThumbsUpIcon };
+export { ThumbDown as ThumbsDownIcon };
+export { Person as UserCircleIcon };
 
-// ========================================
 // Business & Location Icons
-// ========================================
-export { Business as Building2Icon } from '@mui/icons-material';
-export { LocationOn as MapPinIcon } from '@mui/icons-material';
-export { Inventory as PackageIcon } from '@mui/icons-material';
-export { ViewModule as Grid3x3Icon } from '@mui/icons-material';
-export { ViewList as ListIcon } from '@mui/icons-material';
-export { Tune as SlidersHorizontalIcon } from '@mui/icons-material';
-export { AccountCircle as UserIcon } from '@mui/icons-material';
-export { Group as UsersIcon } from '@mui/icons-material';
+export { Business as Building2Icon };
+export { LocationOn as MapPinIcon };
+export { Inventory as PackageIcon };
+export { ViewModule as Grid3x3Icon };
+export { ViewList as ListIcon };
+export { Tune as SlidersHorizontalIcon };
+export { AccountCircle as UserIcon };
+export { Group as UsersIcon };
 
-// ========================================
 // Product & Category Icons
-// ========================================
-export { DeviceThermostat as ThermometerIcon } from '@mui/icons-material';
-export { WaterDrop as DropletsIcon } from '@mui/icons-material';
-export { Speed as GaugeIcon } from '@mui/icons-material';
-export { Air as WindIcon } from '@mui/icons-material';
-export { Wifi as WifiIcon } from '@mui/icons-material';
-export { Biotech as FlaskConicalIcon } from '@mui/icons-material';
-export { Category as PackageCategoryIcon } from '@mui/icons-material';
+export { DeviceThermostat as ThermometerIcon };
+export { WaterDrop as DropletsIcon };
+export { Speed as GaugeIcon };
+export { Air as WindIcon };
+export { Wifi as WifiIcon };
+export { Biotech as FlaskConicalIcon };
+export { Category as PackageCategoryIcon };
 
-// ========================================
 // Payment & Financial Icons
-// ========================================
-export { CreditCard as CreditCardIcon } from '@mui/icons-material';
-export { AttachMoney as DollarSignIcon } from '@mui/icons-material';
-export { Money as BanknoteIcon } from '@mui/icons-material';
+export { CreditCard as CreditCardIcon };
+export { AttachMoney as DollarSignIcon };
+export { Money as BanknoteIcon };
 
-// ========================================
 // Security & Trust Icons
-// ========================================
-export { Shield as ShieldIcon } from '@mui/icons-material';
-export { Lock as LockIcon } from '@mui/icons-material';
-export { LockOpen as UnlockIcon } from '@mui/icons-material';
-export { Verified as VerifiedIcon } from '@mui/icons-material';
+export { Shield as ShieldIcon };
+export { Lock as LockIcon };
+export { LockOpen as UnlockIcon };
+export { Verified as VerifiedIcon };
 
-// ========================================
 // Action Icons
-// ========================================
-export { Edit as EditIcon } from '@mui/icons-material';
-export { ContentCopy as CopyIcon } from '@mui/icons-material';
-export { Refresh as RotateCcwIcon } from '@mui/icons-material';
-export { Schedule as ClockIcon } from '@mui/icons-material';
-export { Link as ExternalLinkIcon } from '@mui/icons-material';
-export { Bookmark as BookOpenIcon } from '@mui/icons-material';
-export { Work as BriefcaseIcon } from '@mui/icons-material';
-export { Home as HomeIcon } from '@mui/icons-material';
-export { MoreVert as MoreVerticalIcon } from '@mui/icons-material';
-export { MoreHoriz as MoreHorizontalIcon } from '@mui/icons-material';
+export { Edit as EditIcon };
+export { ContentCopy as CopyIcon };
+export { Refresh as RotateCcwIcon };
+export { Schedule as ClockIcon };
+export { Link as ExternalLinkIcon };
+export { Bookmark as BookOpenIcon };
+export { Work as BriefcaseIcon };
+export { Home as HomeIcon };
+export { MoreVert as MoreVerticalIcon };
+export { MoreHoriz as MoreHorizontalIcon };
 
-// ========================================
 // Special Icons
-// ========================================
-export { Mouse as MousePointerClickIcon } from '@mui/icons-material';
-export { Laptop as CommandIcon } from '@mui/icons-material';
-export { QrCode as QrCodeIcon } from '@mui/icons-material';
-export { Key as KeyIcon } from '@mui/icons-material';
-export { Smartphone as SmartphoneIcon } from '@mui/icons-material';
+export { Mouse as MousePointerClickIcon };
+export { Laptop as CommandIcon };
+export { QrCode as QrCodeIcon };
+export { Key as KeyIcon };
+export { Smartphone as SmartphoneIcon };
 
 // ========================================
 // Type Definitions

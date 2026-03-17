@@ -256,6 +256,19 @@ export default function CategoryContent({
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
+  // Update URL when sort changes
+  const handleSortChange = (newSort: SortOption) => {
+    setSortBy(newSort);
+
+    const params = new URLSearchParams();
+    Object.entries(activeFilters).forEach(([key, values]) => {
+      values.forEach((val: string) => params.append(key, val));
+    });
+    if (newSort !== 'name') params.set('sort', newSort);
+
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
   return (
     <div className="bg-white py-8 lg:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -316,7 +329,7 @@ export default function CategoryContent({
               totalCount={products.length}
               filteredCount={sortedProducts.length}
               sortBy={sortBy}
-              onSortChange={setSortBy}
+              onSortChange={handleSortChange}
               viewMode={viewMode}
               onViewModeChange={setViewMode}
               locale={locale}

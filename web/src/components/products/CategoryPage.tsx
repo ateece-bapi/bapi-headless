@@ -34,11 +34,11 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
             <Link href="/" className="transition-colors hover:text-white">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <Link href="/products" className="transition-colors hover:text-white">
               Products
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <span className="font-medium text-white">{category.name}</span>
           </nav>
 
@@ -145,7 +145,7 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
             >
               View All Categories
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRightIcon className="h-5 w-5" />
             </Link>
           </div>
         )}
@@ -175,7 +175,7 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
                 className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 Contact Support
-                <ChevronRight className="h-5 w-5" />
+                <ChevronRightIcon className="h-5 w-5" />
               </Link>
             </div>
           </div>

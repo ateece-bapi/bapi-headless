@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Button } from './Button';
-import { MousePointerClick, ShoppingCart, Download, Trash2 } from 'lucide-react';
+import {
+  MousePointerClickIcon,
+  ShoppingCartIcon,
+  DownloadIcon,
+  Trash2Icon,
+} from '@/lib/icons';
 
 /**
  * Modern Button component using Class Variance Authority (CVA)

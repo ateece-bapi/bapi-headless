@@ -302,7 +302,7 @@ export default function MainProductPage() {
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {t('productsPage.cta.button')}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>

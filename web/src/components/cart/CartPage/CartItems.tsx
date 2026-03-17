@@ -16,7 +16,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Trash2, Minus, Plus, X } from 'lucide-react';
+import { Trash2Icon, MinusIcon, PlusIcon, XIcon } from '@/lib/icons';
 
 interface CartItem {
   key: string;
@@ -90,7 +90,7 @@ export default function CartItems({
           className="flex items-center gap-2 text-sm font-medium text-error-600 transition-colors hover:text-error-700 disabled:cursor-not-allowed disabled:opacity-50"
           aria-label="Clear cart"
         >
-          <Trash2 className="h-4 w-4" />
+          <Trash2Icon className="h-4 w-4" />
           {t('cartPage.items.clearCart')}
         </button>
       </div>
@@ -175,7 +175,7 @@ export default function CartItems({
                       className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
                       aria-label={t('cartPage.quantity.decrease')}
                     >
-                      <Minus className="h-4 w-4" />
+                      <MinusIcon className="h-4 w-4" />
                     </button>
                     <span className="w-12 text-center text-base font-bold text-neutral-900">
                       {item.quantity}
@@ -186,7 +186,7 @@ export default function CartItems({
                       className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
                       aria-label={t('cartPage.quantity.increase')}
                     >
-                      <Plus className="h-4 w-4" />
+                      <PlusIcon className="h-4 w-4" />
                     </button>
                   </div>
 
@@ -195,7 +195,7 @@ export default function CartItems({
                     disabled={isUpdating}
                     className="ml-auto font-medium text-error-600 transition-colors hover:text-error-700 disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    <X className="h-5 w-5" />
+                    <XIcon className="h-5 w-5" />
                   </button>
                 </div>
               </div>
@@ -225,7 +225,7 @@ export default function CartItems({
                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
                     aria-label={t('cartPage.quantity.decrease')}
                   >
-                    <Minus className="h-4 w-4" />
+                    <MinusIcon className="h-4 w-4" />
                   </button>
                   <span className="w-12 text-center text-base font-bold text-neutral-900">
                     {item.quantity}
@@ -236,7 +236,7 @@ export default function CartItems({
                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 font-semibold text-neutral-700 transition-all duration-200 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300 disabled:hover:bg-neutral-100"
                     aria-label={t('cartPage.quantity.increase')}
                   >
-                    <Plus className="h-4 w-4" />
+                    <PlusIcon className="h-4 w-4" />
                   </button>
                 </div>
 
@@ -246,7 +246,7 @@ export default function CartItems({
                   disabled={isUpdating}
                   className="flex items-center gap-1 font-medium text-error-600 transition-colors hover:text-error-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  <X className="h-4 w-4" />
+                  <XIcon className="h-4 w-4" />
                   {t('cartPage.items.remove')}
                 </button>
               </div>

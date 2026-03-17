@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ShoppingCart, Check, Loader2 } from 'lucide-react';
+import { ShoppingCartIcon, CheckIcon, Loader2Icon } from '@/lib/icons';
 import { useCart, useCartDrawer } from '@/store';
 import type { CartItem } from '@/store';
 import { useToast } from '@/components/ui/Toast';
@@ -148,7 +148,7 @@ const AddToCartButton = ({
     if (loading) {
       return (
         <>
-          <Loader2 className="h-5 w-5 animate-spin" />
+          <Loader2Icon className="h-5 w-5 animate-spin" />
           <span>Adding...</span>
         </>
       );
@@ -157,7 +157,7 @@ const AddToCartButton = ({
     if (showSuccess) {
       return (
         <>
-          <Check className="h-5 w-5" />
+          <CheckIcon className="h-5 w-5" />
           <span>Added!</span>
         </>
       );
@@ -169,7 +169,7 @@ const AddToCartButton = ({
 
     return (
       <>
-        <ShoppingCart className="h-5 w-5" />
+        <ShoppingCartIcon className="h-5 w-5" />
         <span>Add to Cart</span>
       </>
     );

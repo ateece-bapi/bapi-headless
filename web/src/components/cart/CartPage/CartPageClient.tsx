@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
-import { ShoppingCart, ArrowLeft } from 'lucide-react';
+import { ShoppingCartIcon, ArrowLeftIcon } from '@/lib/icons';
 import CartItems from './CartItems';
 import CartSummary from './CartSummary';
 import { useToast } from '@/components/ui/Toast';
@@ -299,14 +299,14 @@ export default function CartPageClient() {
   if (!cart || cart.isEmpty) {
     return (
       <div className="mx-auto max-w-content px-4 py-16 text-center sm:px-6 lg:px-8">
-        <ShoppingCart className="mx-auto mb-6 h-24 w-24 text-neutral-300" />
+        <ShoppingCartIcon className="mx-auto mb-6 h-24 w-24 text-neutral-300" />
         <h1 className="mb-4 text-3xl font-bold text-neutral-900">{t('cartPage.empty.title')}</h1>
         <p className="mb-8 text-lg text-neutral-700">{t('cartPage.empty.description')}</p>
         <Link
           href={`/${locale}/products`}
           className="btn-bapi-primary inline-flex items-center gap-2 rounded-xl px-8 py-4 font-semibold"
         >
-          <ArrowLeft className="h-5 w-5" />
+          <ArrowLeftIcon className="h-5 w-5" />
           {t('cartPage.empty.button')}
         </Link>
       </div>
@@ -324,7 +324,7 @@ export default function CartPageClient() {
           href={`/${locale}/products`}
           className="flex items-center gap-2 font-medium text-primary-500 transition-colors hover:text-primary-600"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeftIcon className="h-4 w-4" />
           {t('cartPage.header.continueShopping')}
         </Link>
       </div>

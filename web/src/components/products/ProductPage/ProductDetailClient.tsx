@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { Package } from 'lucide-react';
+import { PackageIcon } from '@/lib/icons';
 import ProductHero from '@/components/products/ProductPage/ProductHero';
 import ProductSummaryCard from '@/components/products/ProductPage/ProductSummaryCard';
 import ProductTabs from '@/components/products/ProductPage/ProductTabs';
@@ -141,7 +141,7 @@ export default function ProductDetailClient({
             {product.attributes && product.attributes.length > 0 && (
               <div className="sticky top-0 z-10 -mx-4 mb-4 border-b-2 border-primary-500 bg-white px-4 py-4 shadow-md md:static md:mx-0 md:rounded-t-xl md:px-6 md:shadow-none">
                 <h2 className="flex items-center gap-3 text-xl font-bold text-neutral-900 md:text-2xl">
-                  <Package className="h-6 w-6 text-primary-600" />
+                  <PackageIcon className="h-6 w-6 text-primary-600" />
                   <span>{product.name}</span>
                 </h2>
                 <p className="ml-9 mt-1 text-sm text-neutral-700">

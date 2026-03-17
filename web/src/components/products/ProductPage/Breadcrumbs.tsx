@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRightIcon } from '@/lib/icons';
 
 interface BreadcrumbsProps {
   items: Array<{
@@ -70,7 +70,7 @@ export default function Breadcrumbs({ items, schema }: BreadcrumbsProps) {
                 </span>
               )}
               {idx < items.length - 1 && (
-                <ChevronRight className="mx-1 h-4 w-4 text-neutral-300" aria-hidden="true" />
+                <ChevronRightIcon className="mx-1 h-4 w-4 text-neutral-300" aria-hidden="true" />
               )}
             </li>
           ))}

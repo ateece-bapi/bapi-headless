@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { ZoomIn } from 'lucide-react';
+import { ZoomInIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 import { useRegion } from '@/store/regionStore';
 import { convertWooCommercePrice } from '@/lib/utils/currency';
@@ -92,7 +92,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
               {/* Zoom icon overlay */}
               <div className="duration-base absolute inset-0 flex items-center justify-center rounded-xl bg-black/0 transition-colors group-hover:bg-black/20">
                 <div className="duration-base rounded-full bg-white/90 p-3 opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
-                  <ZoomIn className="h-6 w-6 text-primary-500" />
+                  <ZoomInIcon className="h-6 w-6 text-primary-500" />
                 </div>
               </div>
             </button>

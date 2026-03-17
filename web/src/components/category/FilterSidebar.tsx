@@ -130,7 +130,7 @@ export default function FilterSidebar({
                 label={output.name!}
                 count={output.count}
                 checked={activeFilters.output.includes(output.slug!)}
-                onChange=  {(checked) => updateFilter('output', output.slug!, checked)}
+                onChange={(checked) => updateFilter('output', output.slug!, checked)}
               />
             ))}
         </FilterGroup>

@@ -135,7 +135,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           products={allProducts}
           filters={filters}
           locale={locale}
-          translations={{}}
         />
       </div>
     );

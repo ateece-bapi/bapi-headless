@@ -1,24 +1,27 @@
 # Kinsta SSH - Quick Start Commands
 
-**Your SSH Connection Details:**
-- **Host:** 35.224.70.159
-- **Port:** 17338
-- **Username:** bapiheadlessstaging
-- **Auth:** SSH key + password
+**Where to Find SSH Connection Details:**
+1. Log into Kinsta MyKinsta dashboard
+2. Navigate to: **Sites** → **bapiheadlessstaging** → **Info** → **SFTP/SSH**
+3. Copy the connection details:
+   - **Host:** `<STAGING_IP>`
+   - **Port:** `<SSH_PORT>`
+   - **Username:** `<SSH_USERNAME>`
+   - **Auth:** SSH key + password
 
 ---
 
 ## 1. Connect to SSH
 
 ```bash
-ssh bapiheadlessstaging@35.224.70.159 -p 17338
+ssh <SSH_USERNAME>@<STAGING_IP> -p <SSH_PORT>
 # Enter password when prompted
 ```
 
-**Or copy from Kinsta dashboard:**
+**Or with SSH config:**
 ```bash
-ssh bapiheadlessstaging -p 17338
-# (if you have SSH config set up)
+ssh <SSH_USERNAME> -p <SSH_PORT>
+# (if you have SSH config set up with Host alias)
 ```
 
 ---

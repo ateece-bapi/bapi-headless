@@ -54,7 +54,6 @@ interface CategoryContentProps {
   products: Product[];
   filters: GetProductAttributesQuery;
   locale: string;
-  translations: Record<string, string>;
 }
 
 type SortOption = 'name' | 'price-asc' | 'price-desc' | 'newest';

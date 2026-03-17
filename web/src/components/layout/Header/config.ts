@@ -72,22 +72,22 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.humidity.roomHumidity'),
-              href: '/products/humidity-sensors/humidity-sensors',
+              href: '/products/humidity-sensors/humidity-room',
               description: t('products.humidity.roomHumidityDesc'),
             },
             {
               label: t('products.humidity.ductHumidity'),
-              href: '/products/humidity-sensors/humidity-duct',
+              href: '/products/humidity-sensors/humidity-non-room',
               description: t('products.humidity.ductHumidityDesc'),
             },
             {
               label: t('products.humidity.outdoorHumidity'),
-              href: '/products/humidity-sensors/humidity-sensors?application=outside-air',
+              href: '/products/humidity-sensors/humidity-non-room',
               description: t('products.humidity.outdoorHumidityDesc'),
             },
             {
               label: t('products.humidity.comboSensors'),
-              href: '/products/humidity-sensors/humidity-bapi-stat-4',
+              href: '/products/humidity-sensors/humidity-room',
               description: t('products.humidity.comboSensorsDesc'),
             },
           ],
@@ -121,17 +121,17 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.airQuality.co2'),
-              href: '/products/air-quality-sensors?type=co2',
+              href: '/products/air-quality-sensors/carbon-dioxide',
               description: t('products.airQuality.co2Desc'),
             },
             {
               label: t('products.airQuality.voc'),
-              href: '/products/air-quality-sensors?type=voc',
+              href: '/products/air-quality-sensors/voc',
               description: t('products.airQuality.vocDesc'),
             },
             {
               label: t('products.airQuality.particulate'),
-              href: '/products/air-quality-sensors?type=particulate',
+              href: '/products/air-quality-sensors/particulate',
               description: t('products.airQuality.particulateDesc'),
             },
           ],

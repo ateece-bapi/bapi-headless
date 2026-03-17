@@ -20,6 +20,10 @@ interface CategoryHeroProps {
   breadcrumbs: BreadcrumbItem[];
 }
 
+/**
+ * CategoryHero displays the category header with breadcrumb navigation and category image.
+ * Renders category name, product count, and optional category image.
+ */
 export default function CategoryHero({ category, breadcrumbs }: CategoryHeroProps) {
   return (
     <>

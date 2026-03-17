@@ -159,3 +159,6 @@ export default function ProductCard({
     </Link>
   );
 }
+
+// Named export for tests and components that use named imports
+export { ProductCard };

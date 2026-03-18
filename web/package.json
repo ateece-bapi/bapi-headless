@@ -59,7 +59,6 @@
     "graphql-tag": "^2.12.6",
     "jsonwebtoken": "^9.0.3",
     "lodash-es": "^4.17.23",
-    "lucide-react": "^0.562.0",
     "next": "^16.0.7",
     "next-intl": "^4.6.1",
     "nprogress": "^0.2.0",

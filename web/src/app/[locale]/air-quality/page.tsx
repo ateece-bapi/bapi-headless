@@ -2,15 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import {
-  ArrowRight,
-  Wind,
-  Leaf,
-  Heart,
-  Building,
-  Users,
-  TrendingUp,
-  ChevronRight,
-} from 'lucide-react';
+  ArrowRightIcon,
+  WindIcon,
+  LeafIcon,
+  HeartIcon,
+  BuildingIcon,
+  UsersIcon,
+  TrendingUpIcon,
+  ChevronRightIcon,
+} from '@/lib/icons';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
@@ -35,18 +35,18 @@ export default function AirQualityPage() {
             <Link href="/" className="transition-colors hover:text-white">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <Link href="/products" className="transition-colors hover:text-white">
               Products
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <span className="font-medium text-white">Air Quality Sensors</span>
           </nav>
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-500/20 px-4 py-2 font-semibold text-accent-500 backdrop-blur">
-                <Wind className="h-4 w-4" />
+                <WindIcon className="h-4 w-4" />
                 <span>Indoor Air Quality</span>
               </div>
 
@@ -65,7 +65,7 @@ export default function AirQualityPage() {
                   className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Browse Air Quality Sensors
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRightIcon className="h-5 w-5" />
                 </Link>
                 <Link
                   href="/request-quote"
@@ -144,7 +144,7 @@ export default function AirQualityPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: Wind,
+                icon: WindIcon,
                 title: 'CO₂ Sensors',
                 description:
                   'Carbon dioxide monitoring for demand-controlled ventilation and occupancy-based HVAC.',
@@ -157,7 +157,7 @@ export default function AirQualityPage() {
                 link: '/products?category=co2-sensors',
               },
               {
-                icon: Leaf,
+                icon: LeafIcon,
                 title: 'VOC Sensors',
                 description:
                   'Volatile Organic Compound detection for air quality and contamination monitoring.',
@@ -170,7 +170,7 @@ export default function AirQualityPage() {
                 link: '/products?category=voc-sensors',
               },
               {
-                icon: Heart,
+                icon: HeartIcon,
                 title: 'IAQ Sensors',
                 description:
                   'Combined indoor air quality sensors measuring multiple parameters simultaneously.',
@@ -210,7 +210,7 @@ export default function AirQualityPage() {
                   className="-ml-2 inline-flex items-center gap-2 rounded-lg px-2 py-1 font-semibold text-primary-500 transition-all duration-300 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 group-hover:gap-4"
                 >
                   View Products
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRightIcon className="h-4 w-4" />
                 </Link>
 
                 <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
@@ -232,35 +232,35 @@ export default function AirQualityPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: Users,
+                icon: UsersIcon,
                 title: 'Occupant Health & Productivity',
                 description:
                   'Better air quality improves cognitive performance and reduces sick building syndrome',
               },
               {
-                icon: TrendingUp,
+                icon: TrendingUpIcon,
                 title: 'Energy Savings',
                 description:
                   'Demand-controlled ventilation reduces over-ventilation and HVAC costs by 20-30%',
               },
               {
-                icon: Building,
+                icon: BuildingIcon,
                 title: 'Code Compliance',
                 description: 'Meet ASHRAE 62.1, LEED, and WELL Building Standard requirements',
               },
               {
-                icon: Wind,
+                icon: WindIcon,
                 title: 'Optimized Ventilation',
                 description: 'Adjust fresh air based on actual occupancy and contamination levels',
               },
               {
-                icon: Heart,
+                icon: HeartIcon,
                 title: 'Post-Pandemic Confidence',
                 description:
                   'Demonstrate commitment to indoor air quality for occupants and visitors',
               },
               {
-                icon: Leaf,
+                icon: LeafIcon,
                 title: 'Sustainability',
                 description:
                   'Reduce carbon footprint while maintaining healthy indoor environments',
@@ -350,7 +350,7 @@ export default function AirQualityPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-2xl"
             >
               Browse Air Quality Sensors
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
             <Link
               href="/contact"

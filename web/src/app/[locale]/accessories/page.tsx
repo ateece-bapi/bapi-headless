@@ -2,15 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import {
-  ArrowRight,
-  Box,
-  Cable,
-  Wrench,
-  Shield,
-  Layers,
-  Package,
-  ChevronRight,
-} from 'lucide-react';
+  ArrowRightIcon,
+  BoxIcon,
+  CableIcon,
+  WrenchIcon,
+  ShieldIcon,
+  LayersIcon,
+  PackageIcon,
+  ChevronRightIcon,
+} from '@/lib/icons';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
@@ -35,18 +35,18 @@ export default function AccessoriesPage() {
             <Link href="/" className="transition-colors hover:text-white">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <Link href="/products" className="transition-colors hover:text-white">
               Products
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <span className="font-medium text-white">Accessories</span>
           </nav>
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-500/20 px-4 py-2 font-semibold text-accent-500 backdrop-blur">
-                <Package className="h-4 w-4" />
+                <PackageIcon className="h-4 w-4" />
                 <span>Installation Accessories</span>
               </div>
 
@@ -65,7 +65,7 @@ export default function AccessoriesPage() {
                   className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Browse Accessories
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRightIcon className="h-5 w-5" />
                 </Link>
                 <Link
                   href="/request-quote"
@@ -142,7 +142,7 @@ export default function AccessoriesPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: Box,
+                icon: BoxIcon,
                 title: 'Mounting Kits',
                 description:
                   'Universal and application-specific mounting hardware for clean, professional installations.',
@@ -150,7 +150,7 @@ export default function AccessoriesPage() {
                 link: '/products?category=mounting-kits',
               },
               {
-                icon: Shield,
+                icon: ShieldIcon,
                 title: 'Enclosures & Shields',
                 description:
                   'Protective housings, weather shields, and NEMA-rated enclosures for harsh environments.',
@@ -158,7 +158,7 @@ export default function AccessoriesPage() {
                 link: '/products?category=enclosures',
               },
               {
-                icon: Cable,
+                icon: CableIcon,
                 title: 'Cables & Wiring',
                 description:
                   'Pre-made sensor cables, extension cables, and wiring accessories for reliable connections.',
@@ -193,7 +193,7 @@ export default function AccessoriesPage() {
                   className="-ml-2 inline-flex items-center gap-2 rounded-lg px-2 py-1 font-semibold text-primary-500 transition-all duration-300 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 group-hover:gap-4"
                 >
                   View Products
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRightIcon className="h-4 w-4" />
                 </Link>
 
                 <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
@@ -215,22 +215,22 @@ export default function AccessoriesPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                icon: Wrench,
+                icon: WrenchIcon,
                 title: 'Installation Tools',
                 description: 'Specialized tools for sensor installation and commissioning',
               },
               {
-                icon: Layers,
+                icon: LayersIcon,
                 title: 'Averaging Elements',
                 description: 'Duct averaging sensors for large duct applications',
               },
               {
-                icon: Shield,
+                icon: ShieldIcon,
                 title: 'Replacement Parts',
                 description: 'Sensor elements, covers, and component replacements',
               },
               {
-                icon: Package,
+                icon: PackageIcon,
                 title: 'Custom Solutions',
                 description: 'Application-specific accessories and custom assemblies',
               },
@@ -314,7 +314,7 @@ export default function AccessoriesPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-2xl"
             >
               Browse All Accessories
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
             <Link
               href="/contact"

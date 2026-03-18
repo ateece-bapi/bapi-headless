@@ -171,6 +171,15 @@ import {
   ChatBubble,
   Factory as FactoryMUI,
   Adjust,
+  
+  // Batch 13 Icons (Product Type Pages - Sensors/Accessories/Wireless)
+  Inventory2,
+  Layers,
+  Grass,
+  LocalHospital,
+  Notifications,
+  BarChart,
+  BatteryFull,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -333,6 +342,15 @@ export { Computer as MonitorIcon };
 export { ChatBubble as MessageSquareIcon };
 export { FactoryMUI as FactoryIcon };
 export { Adjust as TargetIcon };
+
+// Batch 13 Icons (Product Type Pages - Sensors/Accessories/Wireless)
+export { Inventory2 as BoxIcon };
+export { Layers as LayersIcon };
+export { Grass as LeafIcon };
+export { LocalHospital as HospitalIcon };
+export { Notifications as BellIcon };
+export { BarChart as BarChart3Icon };
+export { BatteryFull as BatteryIcon };
 
 // ========================================
 // Type Definitions

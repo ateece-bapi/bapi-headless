@@ -16,7 +16,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { CheckCircle, Package, Truck, CreditCard, Home, ArrowRight, Loader2 } from 'lucide-react';
+import { CheckCircleIcon, PackageIcon, TruckIcon, CreditCardIcon, HomeIcon, ArrowRightIcon, Loader2Icon } from '@/lib/icons';
 import { useToast } from '@/components/ui/Toast';
 import { getUserErrorMessage, logError } from '@/lib/errors';
 import { useCartStore } from '@/store/cart';
@@ -124,7 +124,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
     return (
       <div className="flex min-h-screen items-center justify-center bg-neutral-50">
         <div className="text-center">
-          <Loader2 className="mx-auto mb-4 h-12 w-12 animate-spin text-primary-500" />
+          <Loader2Icon className="mx-auto mb-4 h-12 w-12 animate-spin text-primary-500" />
           <p className="text-lg text-neutral-700">Loading order details...</p>
         </div>
       </div>
@@ -135,7 +135,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
     return (
       <div className="flex min-h-screen items-center justify-center bg-neutral-50">
         <div className="max-w-md text-center">
-          <Package className="mx-auto mb-4 h-16 w-16 text-neutral-400" />
+          <PackageIcon className="mx-auto mb-4 h-16 w-16 text-neutral-400" />
           <h1 className="mb-2 text-2xl font-bold text-neutral-900">Order Not Found</h1>
           <p className="mb-6 text-neutral-700">
             We couldn&apos;t find the order you&apos;re looking for.
@@ -144,7 +144,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
             href="/"
             className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-bold text-white transition-colors hover:bg-primary-600"
           >
-            <Home className="h-5 w-5" />
+            <HomeIcon className="h-5 w-5" />
             Return Home
           </Link>
         </div>
@@ -158,7 +158,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
         {/* Success Header */}
         <div className="mb-8 rounded-xl bg-white p-8 text-center shadow-lg">
           <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-            <CheckCircle className="h-12 w-12 text-green-600" />
+            <CheckCircleIcon className="h-12 w-12 text-green-600" />
           </div>
 
           <h1 className="mb-2 text-3xl font-bold text-neutral-900 sm:text-4xl">Order Confirmed!</h1>
@@ -178,19 +178,19 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
         {/* Order Status Cards */}
         <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="rounded-xl bg-white p-6 text-center shadow">
-            <Package className="mx-auto mb-3 h-8 w-8 text-primary-500" />
+            <PackageIcon className="mx-auto mb-3 h-8 w-8 text-primary-500" />
             <h3 className="mb-1 font-semibold text-neutral-900">Processing</h3>
             <p className="text-sm text-neutral-700">Your order is being prepared</p>
           </div>
 
           <div className="rounded-xl bg-white p-6 text-center shadow">
-            <Truck className="mx-auto mb-3 h-8 w-8 text-neutral-400" />
+            <TruckIcon className="mx-auto mb-3 h-8 w-8 text-neutral-400" />
             <h3 className="mb-1 font-semibold text-neutral-900">Shipping Soon</h3>
             <p className="text-sm text-neutral-700">You&apos;ll receive tracking info</p>
           </div>
 
           <div className="rounded-xl bg-white p-6 text-center shadow">
-            <CreditCard className="mx-auto mb-3 h-8 w-8 text-green-500" />
+            <CreditCardIcon className="mx-auto mb-3 h-8 w-8 text-green-500" />
             <h3 className="mb-1 font-semibold text-neutral-900">Payment Confirmed</h3>
             <p className="text-sm text-neutral-700">Transaction successful</p>
           </div>
@@ -228,7 +228,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
             href="/"
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-neutral-200 px-8 py-4 font-bold text-neutral-900 transition-colors hover:bg-neutral-300"
           >
-            <Home className="h-5 w-5" />
+            <HomeIcon className="h-5 w-5" />
             Continue Shopping
           </Link>
 
@@ -237,7 +237,7 @@ export default function OrderConfirmationClient({ orderId }: OrderConfirmationCl
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary-500 px-8 py-4 font-bold text-white shadow-md transition-colors hover:bg-primary-600 hover:shadow-lg"
           >
             View Order Status
-            <ArrowRight className="h-5 w-5" />
+            <ArrowRightIcon className="h-5 w-5" />
           </Link>
         </div>
 

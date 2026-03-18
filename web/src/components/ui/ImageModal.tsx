@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { X, ZoomIn, ZoomOut, RotateCw } from 'lucide-react';
+import { XIcon, ZoomInIcon, ZoomOutIcon, RotateCwIcon } from '@/lib/icons';
 import Image from 'next/image';
 
 interface ImageModalProps {
@@ -106,7 +106,7 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
           className="rounded-lg bg-white p-2 shadow-lg transition-colors hover:bg-neutral-100"
           aria-label="Zoom out"
         >
-          <ZoomOut className="h-5 w-5 text-neutral-700" />
+          <ZoomOutIcon className="h-5 w-5 text-neutral-700" />
         </button>
         <button
           onClick={(e) => {
@@ -116,7 +116,7 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
           className="rounded-lg bg-white p-2 shadow-lg transition-colors hover:bg-neutral-100"
           aria-label="Zoom in"
         >
-          <ZoomIn className="h-5 w-5 text-neutral-700" />
+          <ZoomInIcon className="h-5 w-5 text-neutral-700" />
         </button>
         <button
           onClick={(e) => {
@@ -126,7 +126,7 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
           className="rounded-lg bg-white p-2 shadow-lg transition-colors hover:bg-neutral-100"
           aria-label="Rotate"
         >
-          <RotateCw className="h-5 w-5 text-neutral-700" />
+          <RotateCwIcon className="h-5 w-5 text-neutral-700" />
         </button>
         <button
           onClick={(e) => {
@@ -142,7 +142,7 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
           className="rounded-lg bg-white p-2 shadow-lg transition-colors hover:bg-neutral-100"
           aria-label="Close"
         >
-          <X className="h-5 w-5 text-neutral-700" />
+          <XIcon className="h-5 w-5 text-neutral-700" />
         </button>
       </div>
 

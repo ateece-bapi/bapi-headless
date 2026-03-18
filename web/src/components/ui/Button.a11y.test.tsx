@@ -12,7 +12,7 @@ import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { Button } from '@/components/ui/Button';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCartIcon } from '@/lib/icons';
 
 describe('Button - Accessibility Tests', () => {
   describe('Text Buttons', () => {
@@ -73,7 +73,7 @@ describe('Button - Accessibility Tests', () => {
     it('should have no violations - icon with text', async () => {
       const { container } = render(
         <Button variant="accent">
-          <ShoppingCart className="mr-2 h-5 w-5" />
+          <ShoppingCartIcon className="mr-2 h-5 w-5" />
           Add to Cart
         </Button>
       );
@@ -84,7 +84,7 @@ describe('Button - Accessibility Tests', () => {
     it('should have accessible name when icon-only with aria-label', async () => {
       const { container } = render(
         <Button variant="primary" aria-label="Add to cart">
-          <ShoppingCart className="h-5 w-5" />
+          <ShoppingCartIcon className="h-5 w-5" />
         </Button>
       );
       const results = await axe(container);

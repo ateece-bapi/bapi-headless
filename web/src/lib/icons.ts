@@ -34,6 +34,7 @@ import {
   Delete,
   Add,
   Remove,
+  LocalShipping,
   
   // Status & Feedback
   Check,
@@ -160,6 +161,7 @@ export { LocalOffer as TagIcon };
 export { Delete as Trash2Icon };
 export { Add as PlusIcon };
 export { Remove as MinusIcon };
+export { LocalShipping as TruckIcon };
 
 // Status & Feedback Icons
 export { Check as CheckIcon };

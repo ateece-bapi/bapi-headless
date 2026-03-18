@@ -3,7 +3,7 @@ import { Link } from '@/lib/navigation';
 import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { SignInForm } from './SignInForm';
-import { Building2 } from 'lucide-react';
+import { Building2Icon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Sign In - BAPI',
@@ -25,7 +25,7 @@ export default async function SignInPage({ params }: SignInPageProps) {
         <div className="text-center">
           <div className="flex justify-center">
             <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 shadow-xl ring-4 ring-primary-500/20">
-              <Building2 className="h-10 w-10 text-white" strokeWidth={2.5} />
+              <Building2Icon className="h-10 w-10 text-white" strokeWidth={2.5} />
             </div>
           </div>
           <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-neutral-900">

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Radio, Signal, MapPin, CheckCircle, AlertTriangle, Info } from 'lucide-react';
+import { RadioIcon, SignalIcon, MapPinIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Wireless Site Verification | BAPI',
@@ -15,7 +15,7 @@ export default function WirelessSiteVerificationPage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Radio className="mx-auto mb-4 h-16 w-16" />
+            <RadioIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Wireless Site Verification</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Verify signal strength and optimize your wireless sensor deployment
@@ -37,19 +37,19 @@ export default function WirelessSiteVerificationPage() {
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div className="rounded-xl bg-neutral-50 p-6">
-              <Signal className="mb-3 h-10 w-10 text-primary-500" />
+              <SignalIcon className="mb-3 h-10 w-10 text-primary-500" />
               <h3 className="mb-2 font-bold text-neutral-900">Signal Strength Testing</h3>
               <p className="text-sm text-neutral-700">
                 Measure signal strength at proposed sensor locations
               </p>
             </div>
             <div className="rounded-xl bg-neutral-50 p-6">
-              <MapPin className="mb-3 h-10 w-10 text-primary-500" />
+              <MapPinIcon className="mb-3 h-10 w-10 text-primary-500" />
               <h3 className="mb-2 font-bold text-neutral-900">Coverage Mapping</h3>
               <p className="text-sm text-neutral-700">Create coverage maps for your facility</p>
             </div>
             <div className="rounded-xl bg-neutral-50 p-6">
-              <CheckCircle className="mb-3 h-10 w-10 text-primary-500" />
+              <CheckCircleIcon className="mb-3 h-10 w-10 text-primary-500" />
               <h3 className="mb-2 font-bold text-neutral-900">Deployment Validation</h3>
               <p className="text-sm text-neutral-700">Verify successful sensor installations</p>
             </div>
@@ -143,7 +143,7 @@ export default function WirelessSiteVerificationPage() {
                     </td>
                     <td className="px-6 py-4 text-neutral-700">Optimal for sensor deployment</td>
                     <td className="px-6 py-4 text-center">
-                      <CheckCircle className="mx-auto h-6 w-6 text-green-600" />
+                      <CheckCircleIcon className="mx-auto h-6 w-6 text-green-600" />
                     </td>
                   </tr>
                   <tr>
@@ -154,7 +154,7 @@ export default function WirelessSiteVerificationPage() {
                     </td>
                     <td className="px-6 py-4 text-neutral-700">Suitable for most applications</td>
                     <td className="px-6 py-4 text-center">
-                      <CheckCircle className="mx-auto h-6 w-6 text-green-600" />
+                      <CheckCircleIcon className="mx-auto h-6 w-6 text-green-600" />
                     </td>
                   </tr>
                   <tr>
@@ -167,7 +167,7 @@ export default function WirelessSiteVerificationPage() {
                       May work, but consider optimization
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <AlertTriangle className="mx-auto h-6 w-6 text-amber-500" />
+                      <AlertTriangleIcon className="mx-auto h-6 w-6 text-amber-500" />
                     </td>
                   </tr>
                   <tr>
@@ -178,7 +178,7 @@ export default function WirelessSiteVerificationPage() {
                     </td>
                     <td className="px-6 py-4 text-neutral-700">Relocate sensor or add repeater</td>
                     <td className="px-6 py-4 text-center">
-                      <AlertTriangle className="mx-auto h-6 w-6 text-red-600" />
+                      <AlertTriangleIcon className="mx-auto h-6 w-6 text-red-600" />
                     </td>
                   </tr>
                 </tbody>
@@ -201,28 +201,28 @@ export default function WirelessSiteVerificationPage() {
 
               <div className="mb-6 space-y-4">
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
+                  <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-semibold text-neutral-900">Test Transmitter</div>
                     <div className="text-sm text-neutral-700">Portable unit for signal testing</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
+                  <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-semibold text-neutral-900">Base Station Display</div>
                     <div className="text-sm text-neutral-700">Shows real-time RSSI values</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
+                  <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-semibold text-neutral-900">Documentation Templates</div>
                     <div className="text-sm text-neutral-700">Forms for recording results</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
+                  <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-semibold text-neutral-900">User Guide</div>
                     <div className="text-sm text-neutral-700">Step-by-step instructions</div>
@@ -289,7 +289,7 @@ export default function WirelessSiteVerificationPage() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-6">
               <div className="flex items-start gap-3">
-                <Info className="mt-1 h-6 w-6 flex-shrink-0 text-blue-600" />
+                <InfoIcon className="mt-1 h-6 w-6 flex-shrink-0 text-blue-600" />
                 <div>
                   <h3 className="mb-2 font-bold text-blue-900">Test During Occupancy</h3>
                   <p className="text-sm text-blue-800">
@@ -302,7 +302,7 @@ export default function WirelessSiteVerificationPage() {
 
             <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-6">
               <div className="flex items-start gap-3">
-                <Info className="mt-1 h-6 w-6 flex-shrink-0 text-blue-600" />
+                <InfoIcon className="mt-1 h-6 w-6 flex-shrink-0 text-blue-600" />
                 <div>
                   <h3 className="mb-2 font-bold text-blue-900">Consider Obstructions</h3>
                   <p className="text-sm text-blue-800">
@@ -315,7 +315,7 @@ export default function WirelessSiteVerificationPage() {
 
             <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-6">
               <div className="flex items-start gap-3">
-                <Info className="mt-1 h-6 w-6 flex-shrink-0 text-blue-600" />
+                <InfoIcon className="mt-1 h-6 w-6 flex-shrink-0 text-blue-600" />
                 <div>
                   <h3 className="mb-2 font-bold text-blue-900">Document Everything</h3>
                   <p className="text-sm text-blue-800">
@@ -328,7 +328,7 @@ export default function WirelessSiteVerificationPage() {
 
             <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-6">
               <div className="flex items-start gap-3">
-                <Info className="mt-1 h-6 w-6 flex-shrink-0 text-blue-600" />
+                <InfoIcon className="mt-1 h-6 w-6 flex-shrink-0 text-blue-600" />
                 <div>
                   <h3 className="mb-2 font-bold text-blue-900">Use Repeaters When Needed</h3>
                   <p className="text-sm text-blue-800">

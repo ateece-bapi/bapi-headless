@@ -186,6 +186,9 @@ import {
   
   // Batch 15 Icons (Home/Search/Where-to-Buy Pages)
   Newspaper,
+  
+  // Batch 16 Icons (Sensor/Service/Auth/Wireless Pages)
+  SignalCellular4Bar,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -363,6 +366,9 @@ export { Headphones as HeadphonesIcon };
 
 // Batch 15 Icons (Home/Search/Where-to-Buy Pages)
 export { Newspaper as NewspaperIcon };
+
+// Batch 16 Icons (Sensor/Service/Auth/Wireless Pages)
+export { SignalCellular4Bar as SignalIcon };
 
 // ========================================
 // Type Definitions

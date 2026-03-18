@@ -112,6 +112,7 @@ import {
   MoreHoriz,
   Compare,
   Visibility,
+  VisibilityOff,
   CheckBox,
   CheckBoxOutlineBlank,
   TrendingUp,
@@ -119,6 +120,9 @@ import {
   AutoAwesome,
   EmojiEvents,
   Settings,
+  EventAvailable,
+  CalendarMonth,
+  Block,
   
   // Special
   Mouse,
@@ -180,6 +184,7 @@ export { Article as FileTextIcon };
 export { Description as FileIcon };
 export { PictureAsPdf as FileDocumentIcon };
 export { Download as DownloadIcon };
+export { Download as FileDownIcon };
 export { Upload as UploadIcon };
 export { ZoomIn as ZoomInIcon };
 export { ZoomOut as ZoomOutIcon };
@@ -198,6 +203,7 @@ export { Person as UserCircleIcon };
 
 // Business & Location Icons
 export { Business as Building2Icon };
+export { Business as BuildingIcon };
 export { LocationOn as MapPinIcon };
 export { Inventory as PackageIcon };
 export { ViewModule as Grid3x3Icon };
@@ -239,6 +245,7 @@ export { MoreVert as MoreVerticalIcon };
 export { MoreHoriz as MoreHorizontalIcon };
 export { Compare as GitCompareIcon };
 export { Visibility as EyeIcon };
+export { VisibilityOff as EyeOffIcon };
 export { CheckBox as CheckSquareIcon };
 export { CheckBoxOutlineBlank as SquareIcon };
 export { TrendingUp as TrendingUpIcon };
@@ -246,6 +253,9 @@ export { History as HistoryIcon };
 export { AutoAwesome as SparklesIcon };
 export { EmojiEvents as AwardIcon };
 export { Settings as SettingsIcon };
+export { EventAvailable as CalendarPlusIcon };
+export { CalendarMonth as CalendarIcon };
+export { Block as ShieldOffIcon };
 
 // Special Icons
 export { Mouse as MousePointerClickIcon };

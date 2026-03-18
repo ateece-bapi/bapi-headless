@@ -8,7 +8,7 @@
 
 'use client';
 
-import { Calendar, Clock, List } from 'lucide-react';
+import { CalendarIcon, ClockIcon, ListIcon } from '@/lib/icons';
 
 export type FilterType = 'upcoming' | 'past' | 'all';
 
@@ -47,25 +47,25 @@ export function TradeShowFilters({
     id: FilterType;
     label: string;
     count: number;
-    icon: typeof Calendar;
+    icon: typeof CalendarIcon;
   }> = [
     {
       id: 'upcoming',
       label: labels.upcoming,
       count: upcomingCount,
-      icon: Calendar,
+      icon: CalendarIcon,
     },
     {
       id: 'past',
       label: labels.past,
       count: pastCount,
-      icon: Clock,
+      icon: ClockIcon,
     },
     {
       id: 'all',
       label: labels.all,
       count: totalCount,
-      icon: List,
+      icon: ListIcon,
     },
   ];
 

@@ -8,7 +8,7 @@
 
 'use client';
 
-import { CalendarPlus } from 'lucide-react';
+import { CalendarPlusIcon } from '@/lib/icons';
 import type { TradeShow } from '@/lib/data/tradeShows';
 import { downloadICS } from '@/lib/utils/icsGenerator';
 
@@ -41,7 +41,7 @@ export function CalendarDownloadButton({
         aria-label={`Add ${show.title} to calendar`}
         title="Add to Calendar"
       >
-        <CalendarPlus className="size-5" aria-hidden="true" />
+        <CalendarPlusIcon className="size-5" aria-hidden="true" />
       </button>
     );
   }
@@ -53,7 +53,7 @@ export function CalendarDownloadButton({
       className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold rounded-xl border-2 border-primary-500 text-primary-600 hover:bg-primary-50 transition-all duration-300 ease-out focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-primary-600/50 active:scale-95 antialiased"
       aria-label={`Add ${show.title} to calendar`}
     >
-      <CalendarPlus className="size-4" aria-hidden="true" />
+      <CalendarPlusIcon className="size-4" aria-hidden="true" />
       <span>Add to Calendar</span>
     </button>
   );

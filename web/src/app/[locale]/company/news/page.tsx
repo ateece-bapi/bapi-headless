@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { getPosts } from '@/lib/wordpress';
 import Link from 'next/link';
-import { Newspaper, Calendar, ArrowRight, TrendingUp } from 'lucide-react';
+import { NewspaperIcon, CalendarIcon, ArrowRightIcon, TrendingUpIcon } from '@/lib/icons';
 import Image from 'next/image';
 import { locales } from '@/i18n';
 
@@ -53,7 +53,7 @@ export default async function NewsPage() {
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Newspaper className="h-4 w-4" />
+              <NewspaperIcon className="h-4 w-4" />
               {t('hero.badge')}
             </div>
 
@@ -73,7 +73,7 @@ export default async function NewsPage() {
         {posts.length === 0 ? (
           <div className="rounded-2xl bg-white p-12 text-center shadow-xl">
             <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
-              <Newspaper className="h-8 w-8 text-gray-400" />
+              <NewspaperIcon className="h-8 w-8 text-gray-400" />
             </div>
             <h2 className="mb-2 text-2xl font-bold text-gray-900">{t('empty.title')}</h2>
             <p className="text-lg text-gray-600">{t('empty.description')}</p>
@@ -103,7 +103,7 @@ export default async function NewsPage() {
                 <div className="flex flex-1 flex-col p-6">
                   {/* Date Badge */}
                   <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
-                    <Calendar className="h-4 w-4 text-primary-500" />
+                    <CalendarIcon className="h-4 w-4 text-primary-500" />
                     <time dateTime={post.date}>
                       {new Date(post.date).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -131,7 +131,7 @@ export default async function NewsPage() {
                     className="group/link inline-flex items-center gap-2 font-semibold text-primary-600 transition-all duration-300 hover:gap-3"
                   >
                     <span>{t('readMore')}</span>
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                    <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
                 </div>
 
@@ -151,7 +151,7 @@ export default async function NewsPage() {
             <div className="relative flex flex-col items-center justify-between gap-8 text-center lg:flex-row lg:text-left">
               <div>
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-                  <TrendingUp className="h-4 w-4" />
+                  <TrendingUpIcon className="h-4 w-4" />
                   {t('cta.badge')}
                 </div>
                 <h2 className="mb-3 text-3xl font-bold text-white lg:text-4xl">{t('cta.title')}</h2>
@@ -163,7 +163,7 @@ export default async function NewsPage() {
                 className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 {t('cta.button')}
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRightIcon className="h-5 w-5" />
               </Link>
             </div>
           </div>

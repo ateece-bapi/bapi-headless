@@ -4,17 +4,17 @@ import { getPageBySlug } from '@/lib/wordpress';
 import { GlobalPresence } from '@/components/company/GlobalPresence';
 import Link from 'next/link';
 import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  Headphones,
-  Globe,
-  Users,
-  Package,
-  ArrowRight,
-  Send,
-} from 'lucide-react';
+  MailIcon,
+  PhoneIcon,
+  MapPinIcon,
+  ClockIcon,
+  HeadphonesIcon,
+  GlobeIcon,
+  UsersIcon,
+  PackageIcon,
+  ArrowRightIcon,
+  SendIcon,
+} from '@/lib/icons';
 import { locales } from '@/i18n';
 
 // Generate static params for all locales - ensures each locale is built separately
@@ -64,7 +64,7 @@ export default async function ContactUsPage() {
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Mail className="h-4 w-4" />
+              <MailIcon className="h-4 w-4" />
               {t('hero.badge')}
             </div>
 
@@ -83,9 +83,9 @@ export default async function ContactUsPage() {
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <div className="mb-20 grid gap-8 md:grid-cols-3">
           {[
-            { key: 'phone', icon: Phone, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'email', icon: Mail, gradient: 'from-primary-500 to-primary-600' },
-            { key: 'visit', icon: MapPin, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'phone', icon: PhoneIcon, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'email', icon: MailIcon, gradient: 'from-primary-500 to-primary-600' },
+            { key: 'visit', icon: MapPinIcon, gradient: 'from-primary-600 to-primary-700' },
           ].map((method, index) => {
             const Icon = method.icon;
             const href =
@@ -131,7 +131,7 @@ export default async function ContactUsPage() {
                 </div>
 
                 {/* Arrow */}
-                <ArrowRight className="absolute bottom-6 right-6 h-5 w-5 text-gray-400 transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary-500" />
+                <ArrowRightIcon className="absolute bottom-6 right-6 h-5 w-5 text-gray-400 transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary-500" />
               </a>
             );
           })}
@@ -141,7 +141,7 @@ export default async function ContactUsPage() {
         <div className="mb-20">
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
-              <Users className="h-4 w-4" />
+              <UsersIcon className="h-4 w-4" />
               {t('departmentsSection.badge')}
             </div>
             <h2 className="mb-4 text-4xl font-bold text-gray-900">
@@ -154,10 +154,10 @@ export default async function ContactUsPage() {
 
           <div className="grid gap-6 md:grid-cols-2">
             {[
-              { key: 'sales', icon: Users },
-              { key: 'international', icon: Globe },
-              { key: 'distribution', icon: Package },
-              { key: 'technical', icon: Headphones },
+              { key: 'sales', icon: UsersIcon },
+              { key: 'international', icon: GlobeIcon },
+              { key: 'distribution', icon: PackageIcon },
+              { key: 'technical', icon: HeadphonesIcon },
             ].map((dept, index) => {
               const Icon = dept.icon;
               return (
@@ -183,7 +183,7 @@ export default async function ContactUsPage() {
                         href={`mailto:${t(`departmentsSection.${dept.key}.email`)}`}
                         className="inline-flex items-center gap-2 font-medium text-primary-600 transition-all duration-300 hover:gap-3"
                       >
-                        <Mail className="h-4 w-4" />
+                        <MailIcon className="h-4 w-4" />
                         {t(`departmentsSection.${dept.key}.email`)}
                       </a>
                     </div>
@@ -204,7 +204,7 @@ export default async function ContactUsPage() {
           <div className="mx-auto max-w-3xl">
             <div className="mb-8 text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
-                <Globe className="h-4 w-4" />
+                <GlobeIcon className="h-4 w-4" />
                 {t('internationalOffice.badge')}
               </div>
               <h2 className="mb-2 text-3xl font-bold text-gray-900">
@@ -217,7 +217,7 @@ export default async function ContactUsPage() {
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg from-primary-600 to-primary-700">
-                    <Phone className="h-5 w-5 text-white" />
+                    <PhoneIcon className="h-5 w-5 text-white" />
                   </div>
                   <div>
                     <div className="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-500">
@@ -234,7 +234,7 @@ export default async function ContactUsPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg from-primary-600 to-primary-700">
-                    <MapPin className="h-5 w-5 text-white" />
+                    <MapPinIcon className="h-5 w-5 text-white" />
                   </div>
                   <div>
                     <div className="mb-1 text-sm font-semibold uppercase tracking-wide text-gray-500">
@@ -268,7 +268,7 @@ export default async function ContactUsPage() {
 
           <div className="relative mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
-              <Clock className="h-8 w-8 text-white" />
+              <ClockIcon className="h-8 w-8 text-white" />
             </div>
 
             <h2 className="mb-4 text-3xl font-bold text-white lg:text-4xl">{t('cta.title')}</h2>

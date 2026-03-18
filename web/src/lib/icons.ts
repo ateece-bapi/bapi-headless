@@ -189,6 +189,13 @@ import {
   
   // Batch 16 Icons (Sensor/Service/Auth/Wireless Pages)
   SignalCellular4Bar,
+  
+  // Batch 17 Icons (Company Pages)
+  CardGiftcard,
+  Flight,
+  FitnessCenter,
+  Lightbulb,
+  Star,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -369,6 +376,14 @@ export { Newspaper as NewspaperIcon };
 
 // Batch 16 Icons (Sensor/Service/Auth/Wireless Pages)
 export { SignalCellular4Bar as SignalIcon };
+
+// Batch 17 Icons (Company Pages)
+export { CardGiftcard as GiftIcon };
+export { Flight as PlaneIcon };
+export { FitnessCenter as DumbbellIcon };
+export { Lightbulb as LightbulbIcon };
+export { Star as StarIcon };
+export { CheckCircle as CheckCircle2Icon }; // lucide-react variant alias
 
 // ========================================
 // Type Definitions

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wordpress';
 import Link from 'next/link';
-import { Star, Award, Shield, Clock, Users, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
+import { StarIcon, AwardIcon, ShieldIcon, ClockIcon, UsersIcon, ZapIcon, CheckCircle2Icon, ArrowRightIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { locales } from '@/i18n';
 
@@ -51,7 +51,7 @@ export default async function WhyBapiPage() {
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Star className="h-4 w-4" />
+              <StarIcon className="h-4 w-4" />
               {t('hero.badge')}
             </div>
 
@@ -92,12 +92,12 @@ export default async function WhyBapiPage() {
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
         <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
-            { key: 'warranty', icon: Shield, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'guarantee', icon: Award, gradient: 'from-primary-600 to-primary-400' },
-            { key: 'lifetime', icon: Clock, gradient: 'from-primary-700 to-primary-500' },
-            { key: 'testing', icon: Zap, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'customerFocus', icon: Users, gradient: 'from-primary-500 to-primary-700' },
-            { key: 'original', icon: Star, gradient: 'from-primary-700 to-primary-500' },
+            { key: 'warranty', icon: ShieldIcon, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'guarantee', icon: AwardIcon, gradient: 'from-primary-600 to-primary-400' },
+            { key: 'lifetime', icon: ClockIcon, gradient: 'from-primary-700 to-primary-500' },
+            { key: 'testing', icon: ZapIcon, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'customerFocus', icon: UsersIcon, gradient: 'from-primary-500 to-primary-700' },
+            { key: 'original', icon: StarIcon, gradient: 'from-primary-700 to-primary-500' },
           ].map((item, index) => {
             const Icon = item.icon;
             return (
@@ -143,7 +143,7 @@ export default async function WhyBapiPage() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
-                <CheckCircle2 className="h-4 w-4" />
+                <CheckCircle2Icon className="h-4 w-4" />
                 {t('qualitySection.badge')}
               </div>
 
@@ -169,7 +169,7 @@ export default async function WhyBapiPage() {
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <div className="bg-linear-to-br flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg from-primary-500 to-primary-600">
-                    <CheckCircle2 className="h-5 w-5 text-white" />
+                    <CheckCircle2Icon className="h-5 w-5 text-white" />
                   </div>
                   <span className="font-medium text-gray-900">
                     {t(`qualitySection.features.${key}`)}
@@ -196,7 +196,7 @@ export default async function WhyBapiPage() {
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {t('cta.button')}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>

@@ -9,7 +9,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Calendar as CalendarIcon, Search, X } from 'lucide-react';
+import { CalendarIcon, SearchIcon, XIcon } from '@/lib/icons';
 import type { TradeShow } from '@/lib/data/tradeShows';
 import { TradeShowCard } from '@/components/tradeShows/TradeShowCard';
 import {
@@ -130,7 +130,7 @@ export function TradeShowsClient({
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         {/* Search Input */}
         <div className="relative flex-1 max-w-md">
-          <Search 
+          <SearchIcon 
             className="absolute left-3 top-1/2 size-5 -translate-y-1/2 text-neutral-400" 
             aria-hidden="true"
           />
@@ -148,7 +148,7 @@ export function TradeShowsClient({
               className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600"
               aria-label="Clear search"
             >
-              <X className="size-4" />
+              <XIcon className="size-4" />
             </button>
           )}
         </div>

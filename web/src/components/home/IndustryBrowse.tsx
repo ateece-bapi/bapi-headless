@@ -3,23 +3,23 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import {
-  Wind,
-  Sprout,
-  UtensilsCrossed,
-  Truck,
-  HeartPulse,
-  ShoppingCart,
-  Beef,
-  Snowflake,
-  Thermometer,
-  Gauge,
-  Droplets,
-  Radio,
-  Waves,
-  Settings,
-  Cable,
-  Zap,
-} from 'lucide-react';
+  WindIcon,
+  SproutIcon,
+  UtensilsCrossedIcon,
+  TruckIcon,
+  HeartPulseIcon,
+  ShoppingCartIcon,
+  BeefIcon,
+  SnowflakeIcon,
+  ThermometerIcon,
+  GaugeIcon,
+  DropletsIcon,
+  RadioIcon,
+  WavesIcon,
+  SettingsIcon,
+  CableIcon,
+  ZapIcon,
+} from '@/lib/icons';
 
 type BrowseMode = 'industry' | 'sensor-type';
 
@@ -31,35 +31,35 @@ interface Card {
 }
 
 const industries: Card[] = [
-  { id: 'hvac', name: 'HVAC/R', icon: Wind, href: '/industries/hvac-r' },
-  { id: 'agriculture', name: 'Agriculture', icon: Sprout, href: '/industries/agriculture' },
+  { id: 'hvac', name: 'HVAC/R', icon: WindIcon, href: '/industries/hvac-r' },
+  { id: 'agriculture', name: 'Agriculture', icon: SproutIcon, href: '/industries/agriculture' },
   {
     id: 'food-service',
     name: 'Food Service',
-    icon: UtensilsCrossed,
+    icon: UtensilsCrossedIcon,
     href: '/industries/food-service',
   },
-  { id: 'transportation', name: 'Transportation', icon: Truck, href: '/industries/transportation' },
-  { id: 'healthcare', name: 'Healthcare', icon: HeartPulse, href: '/industries/healthcare' },
-  { id: 'grocery', name: 'Grocery', icon: ShoppingCart, href: '/industries/grocery' },
+  { id: 'transportation', name: 'Transportation', icon: TruckIcon, href: '/industries/transportation' },
+  { id: 'healthcare', name: 'Healthcare', icon: HeartPulseIcon, href: '/industries/healthcare' },
+  { id: 'grocery', name: 'Grocery', icon: ShoppingCartIcon, href: '/industries/grocery' },
   {
     id: 'meat-processing',
     name: 'Meat Processing',
-    icon: Beef,
+    icon: BeefIcon,
     href: '/industries/meat-processing',
   },
-  { id: 'cold-chain', name: 'Cold Chain', icon: Snowflake, href: '/industries/cold-chain' },
+  { id: 'cold-chain', name: 'Cold Chain', icon: SnowflakeIcon, href: '/industries/cold-chain' },
 ];
 
 const sensorTypes: Card[] = [
-  { id: 'temperature', name: 'Temperature', icon: Thermometer, href: '/products/temperature' },
-  { id: 'humidity', name: 'Humidity', icon: Droplets, href: '/products/humidity' },
-  { id: 'pressure', name: 'Pressure', icon: Gauge, href: '/products/pressure' },
-  { id: 'air-quality', name: 'Air Quality', icon: Wind, href: '/products/air-quality' },
-  { id: 'wireless', name: 'Wireless', icon: Radio, href: '/products/wireless' },
-  { id: 'current', name: 'Current Sensors', icon: Zap, href: '/products/current-sensors' },
-  { id: 'controllers', name: 'Controllers', icon: Settings, href: '/products/controllers' },
-  { id: 'accessories', name: 'Accessories', icon: Cable, href: '/products/accessories' },
+  { id: 'temperature', name: 'Temperature', icon: ThermometerIcon, href: '/products/temperature' },
+  { id: 'humidity', name: 'Humidity', icon: DropletsIcon, href: '/products/humidity' },
+  { id: 'pressure', name: 'Pressure', icon: GaugeIcon, href: '/products/pressure' },
+  { id: 'air-quality', name: 'Air Quality', icon: WindIcon, href: '/products/air-quality' },
+  { id: 'wireless', name: 'Wireless', icon: RadioIcon, href: '/products/wireless' },
+  { id: 'current', name: 'Current Sensors', icon: ZapIcon, href: '/products/current-sensors' },
+  { id: 'controllers', name: 'Controllers', icon: SettingsIcon, href: '/products/controllers' },
+  { id: 'accessories', name: 'Accessories', icon: CableIcon, href: '/products/accessories' },
 ];
 
 export default function IndustryBrowse() {

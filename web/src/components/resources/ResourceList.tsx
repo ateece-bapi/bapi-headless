@@ -2,22 +2,22 @@
 
 import { useState, useMemo } from 'react';
 import {
-  FileText,
-  Download,
-  Search,
-  Filter,
-  Calendar,
-  HardDrive,
-  BookOpen,
-  FileSpreadsheet,
-  ClipboardList,
-  Book,
-  File,
-  SortAsc,
-  Grid3x3,
-  List,
-  X,
-} from 'lucide-react';
+  FileTextIcon,
+  DownloadIcon,
+  SearchIcon,
+  FilterIcon,
+  CalendarIcon,
+  HardDriveIcon,
+  BookOpenIcon,
+  FileSpreadsheetIcon,
+  ClipboardListIcon,
+  BookIcon,
+  FileIcon,
+  SortAscIcon,
+  Grid3x3Icon,
+  ListIcon,
+  XIcon,
+} from '@/lib/icons';
 
 interface Resource {
   id: string;
@@ -52,13 +52,13 @@ function categorizeResource(resource: Resource): ResourceCategory {
 function getCategoryIcon(category: ResourceCategory) {
   switch (category) {
     case 'installation':
-      return BookOpen;
+      return BookOpenIcon;
     case 'datasheet':
-      return FileSpreadsheet;
+      return FileSpreadsheetIcon;
     case 'catalog':
-      return Book;
+      return BookIcon;
     default:
-      return File;
+      return FileIcon;
   }
 }
 
@@ -189,7 +189,7 @@ export function ResourceList({ resources }: ResourceListProps) {
       <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm">
         {/* Search Input */}
         <div className="relative mb-6">
-          <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+          <SearchIcon className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
           <input
             type="text"
             placeholder="Search documents..."
@@ -204,14 +204,14 @@ export function ResourceList({ resources }: ResourceListProps) {
               aria-label="Clear search"
               className="absolute right-4 top-1/2 -translate-y-1/2 rounded p-1 transition-colors hover:bg-neutral-100"
             >
-              <X className="h-4 w-4 text-neutral-700" />
+              <XIcon className="h-4 w-4 text-neutral-700" />
             </button>
           )}
         </div>
 
         {/* Category Filters */}
         <div className="mb-4 flex items-center gap-2">
-          <Filter className="h-5 w-5 text-neutral-700" />
+          <FilterIcon className="h-5 w-5 text-neutral-700" />
           <span className="text-sm font-medium text-neutral-700">Filter by type:</span>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -249,7 +249,7 @@ export function ResourceList({ resources }: ResourceListProps) {
               onClick={clearAllFilters}
               className="flex items-center gap-1 text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
             >
-              <X className="h-4 w-4" />
+              <XIcon className="h-4 w-4" />
               Clear all filters
             </button>
           )}
@@ -273,7 +273,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                 </option>
               ))}
             </select>
-            <SortAsc className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700" />
+            <SortAscIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-700" />
           </div>
 
           {/* View Toggle */}
@@ -288,7 +288,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                   : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
-              <Grid3x3 className="h-4 w-4" />
+              <Grid3x3Icon className="h-4 w-4" />
             </button>
             <button
               onClick={() => setViewMode('list')}
@@ -300,7 +300,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                   : 'text-neutral-700 hover:bg-neutral-100'
               }`}
             >
-              <List className="h-4 w-4" />
+              <ListIcon className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -310,7 +310,7 @@ export function ResourceList({ resources }: ResourceListProps) {
       {filteredAndSortedResources.length === 0 ? (
         <div className="rounded-xl border-2 border-dashed border-neutral-300 bg-gradient-to-br from-neutral-50 to-neutral-100 py-20 text-center">
           <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-sm">
-            <FileText className="h-10 w-10 text-neutral-400" />
+            <FileTextIcon className="h-10 w-10 text-neutral-400" />
           </div>
           <h3 className="mb-2 text-xl font-bold text-neutral-900">No documents found</h3>
           <p className="mx-auto mb-6 max-w-md text-neutral-700">
@@ -354,7 +354,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                 {/* Icon and Category Badge */}
                 <div className="mb-4 flex items-center justify-between">
                   <div className="duration-250 rounded-lg bg-primary-50 p-3 transition-colors group-hover:bg-primary-100">
-                    <FileText className="h-6 w-6 text-primary-600" />
+                    <FileTextIcon className="h-6 w-6 text-primary-600" />
                   </div>
                   <span
                     className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold ${getCategoryColor(category)} shadow-sm transition-colors`}
@@ -380,12 +380,12 @@ export function ResourceList({ resources }: ResourceListProps) {
                 {/* Metadata */}
                 <div className="flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-700">
                   <div className="flex items-center gap-1">
-                    <Calendar className="h-3.5 w-3.5" />
+                    <CalendarIcon className="h-3.5 w-3.5" />
                     <span>{formatDate(resource.date)}</span>
                   </div>
                   {resource.fileSize && (
                     <div className="flex items-center gap-1 font-medium">
-                      <HardDrive className="h-3.5 w-3.5" />
+                      <HardDriveIcon className="h-3.5 w-3.5" />
                       <span>{formatFileSize(resource.fileSize)}</span>
                     </div>
                   )}
@@ -393,7 +393,7 @@ export function ResourceList({ resources }: ResourceListProps) {
 
                 {/* Download Button */}
                 <div className="duration-250 mt-4 flex items-center justify-center gap-2 rounded-lg bg-primary-50 px-4 py-2 text-sm font-medium text-primary-600 transition-[background-color,color] group-hover:bg-primary-600 group-hover:text-white">
-                  <Download className="h-4 w-4" />
+                  <DownloadIcon className="h-4 w-4" />
                   <span>
                     Download PDF {resource.fileSize && `(${formatFileSize(resource.fileSize)})`}
                   </span>
@@ -420,7 +420,7 @@ export function ResourceList({ resources }: ResourceListProps) {
               >
                 {/* Icon */}
                 <div className="flex-shrink-0 rounded-lg bg-primary-50 p-3 transition-colors group-hover:bg-primary-100">
-                  <FileText className="h-6 w-6 text-primary-600" />
+                  <FileTextIcon className="h-6 w-6 text-primary-600" />
                 </div>
 
                 {/* Content */}
@@ -438,12 +438,12 @@ export function ResourceList({ resources }: ResourceListProps) {
                   </div>
                   <div className="flex items-center gap-4 text-xs text-neutral-700">
                     <div className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
+                      <CalendarIcon className="h-3 w-3" />
                       <span>{formatDate(resource.date)}</span>
                     </div>
                     {resource.fileSize && (
                       <div className="flex items-center gap-1">
-                        <HardDrive className="h-3 w-3" />
+                        <HardDriveIcon className="h-3 w-3" />
                         <span>{formatFileSize(resource.fileSize)}</span>
                       </div>
                     )}
@@ -452,7 +452,7 @@ export function ResourceList({ resources }: ResourceListProps) {
 
                 {/* Download Button */}
                 <div className="flex flex-shrink-0 items-center gap-2 rounded-lg bg-primary-50 px-4 py-2 text-sm font-medium text-primary-600 transition-all duration-200 group-hover:bg-primary-600 group-hover:text-white">
-                  <Download className="h-4 w-4" />
+                  <DownloadIcon className="h-4 w-4" />
                   <span className="hidden md:inline">Download</span>
                 </div>
               </a>

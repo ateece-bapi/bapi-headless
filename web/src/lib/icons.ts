@@ -142,6 +142,23 @@ import {
   Build,
   Support,
   School,
+  
+  // Additional Icons for Batch 9
+  PlayArrow,
+  Yard,
+  Restaurant,
+  MonitorHeart,
+  SetMeal,
+  AcUnit,
+  Waves,
+  Cable,
+  Bolt,
+  FilterList,
+  Storage,
+  TableChart,
+  Assignment,
+  MenuBook,
+  Sort,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -275,6 +292,23 @@ export { Radio as RadioIcon };
 export { Build as WrenchIcon };
 export { Support as LifeBuoyIcon };
 export { School as GraduationCapIcon };
+
+// Batch 9 Icons (Applications, Company, Contact, Home, Resources)
+export { PlayArrow as PlayIcon };
+export { Yard as SproutIcon };
+export { Restaurant as UtensilsCrossedIcon };
+export { MonitorHeart as HeartPulseIcon };
+export { SetMeal as BeefIcon };
+export { AcUnit as SnowflakeIcon };
+export { Waves as WavesIcon };
+export { Cable as CableIcon };
+export { Bolt as ZapIcon };
+export { FilterList as FilterIcon };
+export { Storage as HardDriveIcon };
+export { TableChart as FileSpreadsheetIcon };
+export { Assignment as ClipboardListIcon };
+export { MenuBook as BookIcon };
+export { Sort as SortAscIcon };
 
 // ========================================
 // Type Definitions

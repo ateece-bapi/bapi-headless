@@ -1016,13 +1016,11 @@ export const BAPIBrandedIcons: Story = {
                 return (
                   <div key={icon.order} className="flex flex-col items-center gap-3">
                     <div className="flex h-16 w-16 items-center justify-center">
-                      <LucideIcon className="text-primary-500" size={40} />
+                      <LucideIcon className="text-primary-500" sx={{ fontSize: 40 }} />
                     </div>
                     <div className="text-center">
                       <div className="text-sm font-medium text-neutral-700">{icon.name}</div>
-                      <code className="text-xs text-neutral-700">
-                        {icon.lucide.displayName || icon.lucide.name}
-                      </code>
+                      <code className="text-xs text-neutral-700">{icon.name}</code>
                     </div>
                   </div>
                 );

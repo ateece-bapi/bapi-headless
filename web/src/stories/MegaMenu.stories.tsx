@@ -170,7 +170,7 @@ export const Overview: Story = {
                   className="inline-flex items-center gap-1.5 rounded-md bg-primary-600 px-4 py-2.5 text-base font-semibold text-white shadow-md transition-all duration-300"
                 >
                   <span>Products</span>
-                  <ChevronDown
+                  <ChevronDownIcon
                     className="h-4 w-4 rotate-180 scale-110 transition-all duration-300"
                     aria-hidden="true"
                   />
@@ -291,7 +291,7 @@ export const Overview: Story = {
                     className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-primary-700"
                   >
                     Explore WAM™
-                    <ChevronDownIcon className="-rotate-90" size={16} />
+                    <ChevronDownIcon className="-rotate-90" sx={{ fontSize: 16 }} />
                   </a>
                 </div>
 
@@ -541,7 +541,7 @@ export const BrandCompliance: Story = {
       {/* Category Order Alert */}
       <div className="rounded-lg border-2 border-accent-500 bg-accent-50 p-6">
         <div className="flex items-start gap-3">
-          <AlertTriangleIcon className="mt-1 shrink-0 text-accent-600" size={24} />
+          <AlertTriangleIcon className="mt-1 shrink-0 text-accent-600" sx={{ fontSize: 24 }} />
           <div className="space-y-2">
             <h3 className="text-lg font-semibold text-accent-900">
               Mandatory Category Order (Never Reorder!)

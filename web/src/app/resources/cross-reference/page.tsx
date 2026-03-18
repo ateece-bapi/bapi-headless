@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { RefreshCw, Search } from 'lucide-react';
+import { RefreshCwIcon, SearchIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Cross Reference Tool | BAPI',
@@ -15,7 +15,7 @@ export default function CrossReferencePage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <RefreshCw className="mx-auto mb-4 h-16 w-16" />
+            <RefreshCwIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Cross Reference Tool</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Find BAPI equivalents for competitor products
@@ -60,7 +60,7 @@ export default function CrossReferencePage() {
                   Enter Competitor Model Number
                 </label>
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+                  <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
                   <input
                     type="text"
                     id="model"
@@ -71,7 +71,7 @@ export default function CrossReferencePage() {
               </div>
 
               <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
-                <Search className="h-5 w-5" />
+                <SearchIcon className="h-5 w-5" />
                 Find BAPI Equivalent
               </button>
             </div>
@@ -93,7 +93,7 @@ export default function CrossReferencePage() {
                   <div className="text-sm text-neutral-700">Room Temperature Sensor</div>
                 </div>
                 <div className="flex justify-center">
-                  <RefreshCw className="h-6 w-6 text-primary-500" />
+                  <RefreshCwIcon className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
                   <div className="mb-1 text-xs text-neutral-700">BAPI Equivalent</div>
@@ -111,7 +111,7 @@ export default function CrossReferencePage() {
                   <div className="text-sm text-neutral-700">Temperature & Humidity Sensor</div>
                 </div>
                 <div className="flex justify-center">
-                  <RefreshCw className="h-6 w-6 text-primary-500" />
+                  <RefreshCwIcon className="h-6 w-6 text-primary-500" />
                 </div>
                 <div>
                   <div className="mb-1 text-xs text-neutral-700">BAPI Equivalent</div>

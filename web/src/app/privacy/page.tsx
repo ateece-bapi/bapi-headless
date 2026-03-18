@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { FileText } from 'lucide-react';
+import { FileTextIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | BAPI',
@@ -12,7 +12,7 @@ export default function PrivacyPage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <FileText className="mx-auto mb-4 h-16 w-16" />
+            <FileTextIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Privacy Policy</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Last updated: January 30, 2026

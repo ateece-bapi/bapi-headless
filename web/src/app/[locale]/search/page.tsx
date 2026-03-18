@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, ArrowLeft } from 'lucide-react';
+import { SearchIcon, ArrowLeftIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getSearchBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
@@ -94,7 +94,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
     return (
       <div className="min-h-screen bg-neutral-50 py-16">
         <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
-          <Search className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
+          <SearchIcon className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
           <h1 className="mb-4 text-3xl font-bold text-neutral-900">{t('emptyQuery.title')}</h1>
           <p className="mb-8 text-lg text-neutral-700">{t('emptyQuery.description')}</p>
           <Link
@@ -139,7 +139,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
               href={`/${locale}/products`}
               className="mb-4 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeftIcon className="h-4 w-4" />
               {t('results.backToProducts')}
             </Link>
             <h1 className="mb-2 text-3xl font-bold text-neutral-900 lg:text-4xl">
@@ -154,7 +154,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
 
           {results.length === 0 ? (
             <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center">
-              <Search className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
+              <SearchIcon className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
               <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('noResults.title')}</h2>
               <p className="mb-6 text-neutral-700">{t('noResults.description', { query })}</p>
               <div className="flex flex-col justify-center gap-4 sm:flex-row">

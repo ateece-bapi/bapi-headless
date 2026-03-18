@@ -183,6 +183,9 @@ import {
   
   // Batch 14 Icons (Contact/Quote/RMA Pages)
   Headphones,
+  
+  // Batch 15 Icons (Home/Search/Where-to-Buy Pages)
+  Newspaper,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -357,6 +360,9 @@ export { BatteryFull as BatteryIcon };
 
 // Batch 14 Icons (Contact/Quote/RMA Pages)
 export { Headphones as HeadphonesIcon };
+
+// Batch 15 Icons (Home/Search/Where-to-Buy Pages)
+export { Newspaper as NewspaperIcon };
 
 // ========================================
 // Type Definitions

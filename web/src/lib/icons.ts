@@ -196,6 +196,11 @@ import {
   FitnessCenter,
   Lightbulb,
   Star,
+  
+  // Batch 19 Icons (App Notes/Solutions/WAM/SignIn Pages)
+  LocalActivity,
+  Cloud,
+  ShowChart,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -384,6 +389,13 @@ export { FitnessCenter as DumbbellIcon };
 export { Lightbulb as LightbulbIcon };
 export { Star as StarIcon };
 export { CheckCircle as CheckCircle2Icon }; // lucide-react variant alias
+
+// Batch 19 Icons (App Notes/Solutions/WAM/SignIn Pages)
+export { LocalActivity as ActivityIcon };
+export { Storage as ServerIcon }; // lucide-react variant alias (same as HardDriveIcon)
+export { Cloud as CloudIcon };
+export { ShowChart as LineChartIcon };
+// Note: FileDownIcon already exported in Content & Media Icons section (line 248)
 
 // ========================================
 // Type Definitions

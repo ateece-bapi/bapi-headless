@@ -6,7 +6,7 @@ import { Link } from '@/lib/navigation';
 import { useTranslations } from 'next-intl';
 import { useToast } from '@/components/ui/Toast';
 import { TwoFactorVerify } from '@/components/auth/TwoFactorVerify';
-import { Eye, EyeOff, Lock, User, ShieldCheck } from 'lucide-react';
+import { EyeIcon, EyeOffIcon, LockIcon, UserIcon, ShieldCheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 
 type SignInFormProps = {
@@ -134,7 +134,7 @@ export function SignInForm({ locale }: SignInFormProps) {
             htmlFor="username"
             className="mb-2 flex items-center gap-2 text-sm font-semibold text-neutral-900"
           >
-            <User className="h-4 w-4 text-primary-500" />
+            <UserIcon className="h-4 w-4 text-primary-500" />
             {t('form.usernameLabel')}
           </label>
           <input
@@ -158,7 +158,7 @@ export function SignInForm({ locale }: SignInFormProps) {
             htmlFor="password"
             className="mb-2 flex items-center gap-2 text-sm font-semibold text-neutral-900"
           >
-            <Lock className="h-4 w-4 text-primary-500" />
+            <LockIcon className="h-4 w-4 text-primary-500" />
             {t('form.passwordLabel')}
           </label>
           <div className="relative">
@@ -182,7 +182,7 @@ export function SignInForm({ locale }: SignInFormProps) {
               aria-label={showPassword ? t('form.hidePassword') : t('form.showPassword')}
               disabled={isLoading}
             >
-              {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              {showPassword ? <EyeOffIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -250,7 +250,7 @@ export function SignInForm({ locale }: SignInFormProps) {
             </>
           ) : (
             <>
-              <ShieldCheck className="h-5 w-5" />
+              <ShieldCheckIcon className="h-5 w-5" />
               <span>{t('form.submitButton')}</span>
             </>
           )}
@@ -260,7 +260,7 @@ export function SignInForm({ locale }: SignInFormProps) {
       {/* Security Notice */}
       <div className="space-y-3 text-center">
         <div className="flex items-center justify-center gap-2 text-sm text-neutral-700">
-          <Lock className="h-4 w-4 text-primary-500" />
+          <LockIcon className="h-4 w-4 text-primary-500" />
           <span className="font-medium">{t('security.secureConnection')}</span>
         </div>
 

@@ -159,6 +159,10 @@ import {
   Assignment,
   MenuBook,
   Sort,
+  
+  // Batch 10 Icons (Account Pages)
+  LocalMall,
+  AlternateEmail,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -309,6 +313,10 @@ export { TableChart as FileSpreadsheetIcon };
 export { Assignment as ClipboardListIcon };
 export { MenuBook as BookIcon };
 export { Sort as SortAscIcon };
+
+// Batch 10 Icons (Account Pages)
+export { LocalMall as ShoppingBagIcon };
+export { AlternateEmail as AtSignIcon };
 
 // ========================================
 // Type Definitions

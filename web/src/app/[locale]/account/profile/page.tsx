@@ -1,7 +1,7 @@
 import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Mail, User as UserIcon, AtSign } from 'lucide-react';
+import { ArrowLeftIcon, MailIcon, UserIcon, AtSignIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 
 type ProfilePageProps = {
@@ -26,7 +26,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             href={`/${locale}/account`}
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
-            <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
+            <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
             {t('backToDashboard')}
           </Link>
           <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>
@@ -74,7 +74,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 {/* Username */}
                 <div className="flex items-start gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-50">
-                    <AtSign className="h-5 w-5 text-accent-600" strokeWidth={2} />
+                    <AtSignIcon className="h-5 w-5 text-accent-600" strokeWidth={2} />
                   </div>
                   <div>
                     <p className="mb-1 text-sm font-semibold text-neutral-700">{t('fields.username')}</p>
@@ -85,7 +85,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 {/* Email */}
                 <div className="flex items-start gap-4 md:col-span-2">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-green-50">
-                    <Mail className="h-5 w-5 text-green-600" strokeWidth={2} />
+                    <MailIcon className="h-5 w-5 text-green-600" strokeWidth={2} />
                   </div>
                   <div>
                     <p className="mb-1 text-sm font-semibold text-neutral-700">{t('fields.email')}</p>

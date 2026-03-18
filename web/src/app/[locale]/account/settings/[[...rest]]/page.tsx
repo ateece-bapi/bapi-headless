@@ -1,7 +1,7 @@
 import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeftIcon } from '@/lib/icons';
 import UserProfileClient from './UserProfileClient';
 import { getTranslations } from 'next-intl/server';
 
@@ -27,7 +27,7 @@ export default async function SettingsPage({ params }: SettingsPageProps) {
             href={`/${locale}/account`}
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
-            <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
+            <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
             {t('backToDashboard')}
           </Link>
           <h1 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('title')}</h1>

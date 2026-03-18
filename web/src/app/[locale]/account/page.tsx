@@ -1,17 +1,17 @@
 import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import {
-  User,
-  Package,
-  Heart,
-  Settings,
-  FileText,
-  ShoppingBag,
-  AlertCircle,
-  Building2,
-  MapPin,
-  CreditCard,
-} from 'lucide-react';
+  UserIcon,
+  PackageIcon,
+  HeartIcon,
+  SettingsIcon,
+  FileTextIcon,
+  ShoppingBagIcon,
+  AlertCircleIcon,
+  Building2Icon,
+  MapPinIcon,
+  CreditCardIcon,
+} from '@/lib/icons';
 import { Link } from '@/lib/navigation';
 import { getMockUserData, isMockDataEnabled } from '@/lib/mock-user-data';
 import AccountDashboardClient from '@/components/account/AccountDashboardClient';
@@ -41,42 +41,42 @@ export default async function AccountPage({ params }: AccountPageProps) {
     {
       title: t('sections.profile.title'),
       description: t('sections.profile.description'),
-      icon: User,
+      icon: UserIcon,
       href: `/${locale}/account/profile`,
       color: 'primary',
     },
     {
       title: t('sections.orderHistory.title'),
       description: t('sections.orderHistory.description'),
-      icon: Package,
+      icon: PackageIcon,
       href: `/${locale}/account/orders`,
       color: 'primary',
     },
     {
       title: t('sections.savedProducts.title'),
       description: t('sections.savedProducts.description'),
-      icon: Heart,
+      icon: HeartIcon,
       href: `/${locale}/account/favorites`,
       color: 'accent',
     },
     {
       title: t('sections.quoteRequests.title'),
       description: t('sections.quoteRequests.description'),
-      icon: FileText,
+      icon: FileTextIcon,
       href: `/${locale}/account/quotes`,
       color: 'primary',
     },
     {
       title: t('sections.shoppingCart.title'),
       description: t('sections.shoppingCart.description'),
-      icon: ShoppingBag,
+      icon: ShoppingBagIcon,
       href: `/${locale}/cart`,
       color: 'primary',
     },
     {
       title: t('sections.accountSettings.title'),
       description: t('sections.accountSettings.description'),
-      icon: Settings,
+      icon: SettingsIcon,
       href: `/${locale}/account/settings`,
       color: 'neutral',
     },
@@ -89,7 +89,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
         <div className="w-full border-b border-yellow-200 bg-yellow-50">
           <div className="mx-auto max-w-container px-4 py-3 sm:px-6 lg:px-8 xl:px-12">
             <div className="flex items-center gap-2 text-sm text-yellow-800">
-              <AlertCircle className="h-4 w-4" />
+              <AlertCircleIcon className="h-4 w-4" />
               <span>
                 <strong>{t('mockDataBanner')}</strong>
               </span>
@@ -120,7 +120,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
               {/* Company Info */}
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-50">
-                  <Building2 className="h-6 w-6 text-primary-600" />
+                  <Building2Icon className="h-6 w-6 text-primary-600" />
                 </div>
                 <div>
                   <p className="mb-1 text-sm text-neutral-700">{t('company')}</p>
@@ -132,7 +132,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
               {/* Recent Orders */}
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-50">
-                  <Package className="h-6 w-6 text-primary-600" />
+                  <PackageIcon className="h-6 w-6 text-primary-600" />
                 </div>
                 <div>
                   <p className="mb-1 text-sm text-neutral-700">{t('recentOrders')}</p>
@@ -151,7 +151,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
               {/* Saved Quotes */}
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-accent-50">
-                  <FileText className="h-6 w-6 text-accent-600" />
+                  <FileTextIcon className="h-6 w-6 text-accent-600" />
                 </div>
                 <div>
                   <p className="mb-1 text-sm text-neutral-700">{t('savedQuotes')}</p>

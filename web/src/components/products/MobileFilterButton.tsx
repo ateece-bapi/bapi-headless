@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { SlidersHorizontal } from 'lucide-react';
+import { SlidersHorizontalIcon } from '@/lib/icons';
 import { MobileFilterDrawer } from './MobileFilterDrawer';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
 
@@ -39,7 +39,7 @@ export function MobileFilterButton({
         className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-colors hover:bg-primary-600"
         aria-label={`Open filters${activeFilterCount > 0 ? ` (${activeFilterCount} active)` : ''}`}
       >
-        <SlidersHorizontal className="h-5 w-5" />
+        <SlidersHorizontalIcon className="h-5 w-5" />
         <span>Filters</span>
         {activeFilterCount > 0 && (
           <span className="inline-flex h-6 min-w-[24px] items-center justify-center rounded-full bg-white px-2 text-sm font-bold text-primary-600">

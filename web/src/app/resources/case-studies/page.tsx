@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { FileText, Building2, Award, TrendingUp } from 'lucide-react';
+import { FileTextIcon, Building2Icon, AwardIcon, TrendingUpIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Case Studies | BAPI Resources',
@@ -16,7 +16,7 @@ export default function CaseStudiesPage() {
       challenge: 'Improve energy efficiency across 20 buildings while maintaining comfort',
       solution: 'Deployed 500+ BAPI sensors integrated with campus BMS',
       results: '22% energy savings, improved occupant comfort',
-      icon: Building2,
+      icon: Building2Icon,
     },
     {
       title: 'Healthcare Facility Air Quality',
@@ -24,7 +24,7 @@ export default function CaseStudiesPage() {
       challenge: 'Ensure optimal air quality and meet strict regulatory requirements',
       solution: 'Installed CO₂ and particulate sensors in critical areas',
       results: 'Maintained compliance, reduced complaints by 40%',
-      icon: Award,
+      icon: AwardIcon,
     },
     {
       title: 'Commercial Office Building Retrofit',
@@ -32,7 +32,7 @@ export default function CaseStudiesPage() {
       challenge: 'Modernize 30-year-old HVAC system controls',
       solution: 'Upgraded to wireless BAPI sensors with cloud monitoring',
       results: 'Installation time reduced by 60%, tenant satisfaction up 35%',
-      icon: TrendingUp,
+      icon: TrendingUpIcon,
     },
   ];
 
@@ -41,7 +41,7 @@ export default function CaseStudiesPage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <FileText className="mx-auto mb-4 h-16 w-16" />
+            <FileTextIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Case Studies</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Real-world success stories with BAPI solutions

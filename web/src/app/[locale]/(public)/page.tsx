@@ -6,14 +6,14 @@ import { getPosts } from '@/lib/wordpress';
 import { locales } from '@/i18n';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import {
-  ArrowRight,
-  Globe,
-  TrendingUp,
-  Package,
-  ShieldCheck,
-  Newspaper,
-  Calendar,
-} from 'lucide-react';
+  ArrowRightIcon,
+  GlobeIcon,
+  TrendingUpIcon,
+  PackageIcon,
+  ShieldCheckIcon,
+  NewspaperIcon,
+  CalendarIcon,
+} from '@/lib/icons';
 
 /**
  * Homepage - Main landing page for BAPI Headless E-Commerce
@@ -94,7 +94,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {/* 30+ Years */}
               <div className="group text-center">
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <TrendingUp className="h-7 w-7 text-white" strokeWidth={2.5} />
+                  <TrendingUpIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   {t('stats.yearsValue')}
@@ -105,7 +105,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {/* 608 Products */}
               <div className="group text-center">
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <Package className="h-7 w-7 text-white" strokeWidth={2.5} />
+                  <PackageIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   {t('stats.productsValue')}
@@ -116,7 +116,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {/* Global Reach */}
               <div className="group text-center">
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <Globe className="h-7 w-7 text-white" strokeWidth={2.5} />
+                  <GlobeIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   {t('stats.globalValue')}
@@ -127,7 +127,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {/* ISO 9001 */}
               <div className="group text-center">
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <ShieldCheck className="h-7 w-7 text-white" strokeWidth={2.5} />
+                  <ShieldCheckIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
                   {t('stats.isoValue')}
@@ -246,7 +246,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     <div className="flex items-center justify-between">
                       <span className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 transition-all group-hover:gap-2">
                         {t('categories.viewProducts')}
-                        <ArrowRight className="h-4 w-4" />
+                        <ArrowRightIcon className="h-4 w-4" />
                       </span>
                     </div>
                   </div>
@@ -261,7 +261,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               {t('categories.browseAll')}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>
@@ -423,7 +423,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="mb-10 flex items-center justify-between">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-semibold text-primary-600">
-                <Newspaper className="h-4 w-4" />
+                <NewspaperIcon className="h-4 w-4" />
                 {t('news.badge')}
               </div>
               <h2 className="text-3xl font-bold text-neutral-900 lg:text-4xl">{t('news.title')}</h2>
@@ -434,13 +434,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               className="hidden items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-primary-600 hover:shadow-xl md:inline-flex"
             >
               {t('news.viewAll')}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
 
           {posts.length === 0 ? (
             <div className="rounded-2xl border-2 border-dashed border-neutral-300 bg-neutral-50 p-12 text-center">
-              <Newspaper className="mx-auto mb-4 h-16 w-16 text-neutral-400" />
+              <NewspaperIcon className="mx-auto mb-4 h-16 w-16 text-neutral-400" />
               <p className="text-lg text-neutral-700">{t('news.noArticles')}</p>
             </div>
           ) : (
@@ -469,7 +469,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   <div className="p-6">
                     {/* Date Badge */}
                     <div className="mb-3 flex items-center gap-2 text-sm text-neutral-700">
-                      <Calendar className="h-4 w-4 text-primary-500" />
+                      <CalendarIcon className="h-4 w-4 text-primary-500" />
                       <time dateTime={post.date || ''}>
                         {post.date
                           ? new Date(post.date).toLocaleDateString(locale, {
@@ -501,7 +501,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                       aria-label={t('news.readMoreAriaLabel', { title: post.title })}
                     >
                       {t('news.readMore')}
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRightIcon className="h-4 w-4" />
                     </Link>
                   </div>
                 </article>
@@ -516,7 +516,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               {t('news.viewAll')}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>
@@ -538,7 +538,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               className="btn-bapi-accent inline-flex items-center justify-center gap-2 rounded-xl px-8 py-4 text-lg"
             >
               {t('finalCta.exploreProducts')}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
             <Link
               href="/contact"

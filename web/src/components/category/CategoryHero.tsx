@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRightIcon } from '@/lib/icons';
 
 interface BreadcrumbItem {
   label: string;
@@ -33,7 +33,7 @@ export default function CategoryHero({ category, breadcrumbs }: CategoryHeroProp
           <nav className="flex items-center space-x-2 text-sm" aria-label="Breadcrumb">
             {breadcrumbs.map((crumb, index) => (
               <div key={crumb.href} className="flex items-center">
-                {index > 0 && <ChevronRight className="mx-2 h-4 w-4 text-neutral-400" aria-hidden="true" />}
+                {index > 0 && <ChevronRightIcon className="mx-2 h-4 w-4 text-neutral-400" aria-hidden="true" />}
                 {index === breadcrumbs.length - 1 ? (
                   <span className="font-medium text-neutral-900" aria-current="page">
                     {crumb.label}

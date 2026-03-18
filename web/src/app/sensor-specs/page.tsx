@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Thermometer, Droplet, Wind, Gauge, Search, Download } from 'lucide-react';
+import { ThermometerIcon, DropletIcon, WindIcon, GaugeIcon, SearchIcon, DownloadIcon } from '@/lib/icons';
 import { TemperatureSensorTable } from '@/components/sensors/TemperatureSensorTable';
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function SensorSpecsPage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Thermometer className="mx-auto mb-4 h-16 w-16" />
+            <ThermometerIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">BAPI Sensors Overview</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Complete technical specifications for building automation sensors
@@ -33,7 +33,7 @@ export default function SensorSpecsPage() {
               href="#temperature"
               className="rounded-xl border-2 border-neutral-200 bg-white p-6 text-center transition-all hover:border-primary-500"
             >
-              <Thermometer className="mx-auto mb-2 h-10 w-10 text-primary-500" />
+              <ThermometerIcon className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Temperature</h3>
               <p className="mt-1 text-sm text-neutral-700">Thermistors & RTDs</p>
             </a>
@@ -41,7 +41,7 @@ export default function SensorSpecsPage() {
               href="#humidity"
               className="rounded-xl border-2 border-neutral-200 bg-white p-6 text-center transition-all hover:border-primary-500"
             >
-              <Droplet className="mx-auto mb-2 h-10 w-10 text-primary-500" />
+              <DropletIcon className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Humidity</h3>
               <p className="mt-1 text-sm text-neutral-700">RH Sensors</p>
             </a>
@@ -49,7 +49,7 @@ export default function SensorSpecsPage() {
               href="#pressure"
               className="rounded-xl border-2 border-neutral-200 bg-white p-6 text-center transition-all hover:border-primary-500"
             >
-              <Gauge className="mx-auto mb-2 h-10 w-10 text-primary-500" />
+              <GaugeIcon className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Pressure</h3>
               <p className="mt-1 text-sm text-neutral-700">Differential & Absolute</p>
             </a>
@@ -57,7 +57,7 @@ export default function SensorSpecsPage() {
               href="#air-quality"
               className="rounded-xl border-2 border-neutral-200 bg-white p-6 text-center transition-all hover:border-primary-500"
             >
-              <Wind className="mx-auto mb-2 h-10 w-10 text-primary-500" />
+              <WindIcon className="mx-auto mb-2 h-10 w-10 text-primary-500" />
               <h3 className="font-bold text-neutral-900">Air Quality</h3>
               <p className="mt-1 text-sm text-neutral-700">CO₂, VOC, PM</p>
             </a>
@@ -256,7 +256,7 @@ export default function SensorSpecsPage() {
             Get the full technical specification guide for all BAPI sensors
           </p>
           <button className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
-            <Download className="h-5 w-5" />
+            <DownloadIcon className="h-5 w-5" />
             Download Specs Guide (PDF)
           </button>
         </div>

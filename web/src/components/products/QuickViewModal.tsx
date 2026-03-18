@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
-import { X, ExternalLink, Package, DollarSign } from 'lucide-react';
+import { XIcon, ExternalLinkIcon, PackageIcon, DollarSignIcon } from '@/lib/icons';
 import { useRegion } from '@/store/regionStore';
 
 type Product = SimpleProduct | VariableProduct;
@@ -82,7 +82,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
           className="absolute right-4 top-4 z-10 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-200 hover:scale-110 hover:bg-white"
           aria-label="Close quick view"
         >
-          <X className="h-5 w-5 text-neutral-700" />
+          <XIcon className="h-5 w-5 text-neutral-700" />
         </button>
 
         <div className="grid gap-8 p-8 md:grid-cols-2">
@@ -114,7 +114,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             <div className="mb-4 flex items-center gap-3">
               {sku && (
                 <div className="flex items-center gap-1.5 text-sm text-neutral-700">
-                  <Package className="h-4 w-4" />
+                  <PackageIcon className="h-4 w-4" />
                   <span>SKU: {sku}</span>
                 </div>
               )}
@@ -132,7 +132,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             {/* Price */}
             {price && (
               <div className="mb-6 flex items-baseline gap-2">
-                <DollarSign className="h-5 w-5 text-primary-500" />
+                <DollarSignIcon className="h-5 w-5 text-primary-500" />
                 <span className="text-3xl font-bold text-primary-600">{price}</span>
               </div>
             )}
@@ -169,7 +169,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
                 onClick={onClose}
               >
                 View Full Details
-                <ExternalLink className="h-4 w-4" />
+                <ExternalLinkIcon className="h-4 w-4" />
               </Link>
             </div>
           </div>

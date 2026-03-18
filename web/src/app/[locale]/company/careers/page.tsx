@@ -2,22 +2,22 @@ import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wordpress';
 import Link from 'next/link';
 import {
-  Briefcase,
-  Heart,
-  Users,
-  TrendingUp,
-  Shield,
-  Gift,
-  Plane,
-  GraduationCap,
-  Dumbbell,
-  DollarSign,
-  FileText,
-  Mail,
-  ArrowRight,
-  CheckCircle2,
-  Sparkles,
-} from 'lucide-react';
+  BriefcaseIcon,
+  HeartIcon,
+  UsersIcon,
+  TrendingUpIcon,
+  ShieldIcon,
+  GiftIcon,
+  PlaneIcon,
+  GraduationCapIcon,
+  DumbbellIcon,
+  DollarSignIcon,
+  FileTextIcon,
+  MailIcon,
+  ArrowRightIcon,
+  CheckCircle2Icon,
+  SparklesIcon,
+} from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { locales } from '@/i18n';
 
@@ -42,37 +42,37 @@ export const dynamic = 'force-dynamic';
 
 const benefits = [
   {
-    icon: Shield,
+    icon: ShieldIcon,
     title: 'Health Insurance',
     description: 'Comprehensive health, dental, and vision coverage for you and your family.',
     gradient: 'from-primary-600 to-primary-700',
   },
   {
-    icon: DollarSign,
+    icon: DollarSignIcon,
     title: 'Competitive Compensation',
     description: 'Industry-leading salaries with regular performance reviews and merit increases.',
     gradient: 'from-primary-600 to-primary-700',
   },
   {
-    icon: Plane,
+    icon: PlaneIcon,
     title: 'Paid Holidays',
     description: 'Generous paid time off including holidays, vacation days, and personal time.',
     gradient: 'from-primary-600 to-primary-400',
   },
   {
-    icon: TrendingUp,
+    icon: TrendingUpIcon,
     title: '401(k) Match',
     description: 'Company match on retirement contributions to help secure your future.',
     gradient: 'from-primary-700 to-primary-500',
   },
   {
-    icon: Heart,
+    icon: HeartIcon,
     title: 'Life Insurance',
     description: 'Company-paid life insurance coverage with options for additional coverage.',
     gradient: 'from-primary-500 to-primary-700',
   },
   {
-    icon: GraduationCap,
+    icon: GraduationCapIcon,
     title: 'Professional Development',
     description: 'Continuous learning opportunities, training programs, and career advancement.',
     gradient: 'from-primary-700 to-primary-500',
@@ -138,7 +138,7 @@ export default async function CareersPage() {
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Briefcase className="h-4 w-4" />
+              <BriefcaseIcon className="h-4 w-4" />
               {t('hero.badge')}
             </div>
 
@@ -151,7 +151,7 @@ export default async function CareersPage() {
             </p>
 
             <div className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-6 py-3 backdrop-blur-sm">
-              <Sparkles className="h-5 w-5 text-yellow-300" />
+              <SparklesIcon className="h-5 w-5 text-yellow-300" />
               <span className="font-medium text-white">{t('hero.tagline')}</span>
             </div>
           </div>
@@ -162,14 +162,14 @@ export default async function CareersPage() {
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
-            { key: 'healthInsurance', icon: Shield, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'compensation', icon: DollarSign, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'paidHolidays', icon: Plane, gradient: 'from-primary-600 to-primary-400' },
-            { key: 'retirement', icon: TrendingUp, gradient: 'from-primary-700 to-primary-500' },
-            { key: 'lifeInsurance', icon: Heart, gradient: 'from-primary-500 to-primary-700' },
+            { key: 'healthInsurance', icon: ShieldIcon, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'compensation', icon: DollarSignIcon, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'paidHolidays', icon: PlaneIcon, gradient: 'from-primary-600 to-primary-400' },
+            { key: 'retirement', icon: TrendingUpIcon, gradient: 'from-primary-700 to-primary-500' },
+            { key: 'lifeInsurance', icon: HeartIcon, gradient: 'from-primary-500 to-primary-700' },
             {
               key: 'development',
-              icon: GraduationCap,
+              icon: GraduationCapIcon,
               gradient: 'from-primary-700 to-primary-500',
             },
           ].map((benefit, index) => {
@@ -216,7 +216,7 @@ export default async function CareersPage() {
         <div className="bg-linear-to-br mb-20 rounded-2xl from-gray-50 to-white p-10 shadow-lg lg:p-16">
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700">
-              <Gift className="h-4 w-4" />
+              <GiftIcon className="h-4 w-4" />
               {t('cultureSection.badge')}
             </div>
             <h2 className="mb-4 text-4xl font-bold text-gray-900">{t('cultureSection.title')}</h2>
@@ -246,7 +246,7 @@ export default async function CareersPage() {
                 <ul className="space-y-3">
                   {category.items.map((itemKey, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-500" />
+                      <CheckCircle2Icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-500" />
                       <span className="text-gray-700">
                         {t(`cultureSection.${category.key}.items.${itemKey}`)}
                       </span>
@@ -263,7 +263,7 @@ export default async function CareersPage() {
           <div className="mx-auto max-w-3xl">
             <div className="mb-10 text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-primary-700">
-                <FileText className="h-4 w-4" />
+                <FileTextIcon className="h-4 w-4" />
                 {t('applicationProcess.badge')}
               </div>
               <h2 className="mb-4 text-4xl font-bold text-gray-900">
@@ -321,7 +321,7 @@ export default async function CareersPage() {
                   href="mailto:careers@bapihvac.com"
                   className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-primary-600 transition-all duration-300 hover:shadow-lg"
                 >
-                  <Mail className="h-5 w-5" />
+                  <MailIcon className="h-5 w-5" />
                   {t('applicationProcess.email')}
                 </a>
                 <span className="text-primary-100">{t('applicationProcess.or')}</span>
@@ -352,7 +352,7 @@ export default async function CareersPage() {
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {t('cta.button')}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>

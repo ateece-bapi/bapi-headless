@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUpIcon } from '@/lib/icons';
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -54,7 +54,7 @@ export default function BackToTop() {
       }}
       className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-600 text-white shadow-xl transition-all duration-300 ease-out hover:scale-110 hover:bg-primary-700 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 md:h-14 md:w-14"
     >
-      <ArrowUp className="h-6 w-6 md:h-7 md:w-7" strokeWidth={2.5} />
+      <ArrowUpIcon className="h-6 w-6 md:h-7 md:w-7" />
     </button>,
     document.body
   );

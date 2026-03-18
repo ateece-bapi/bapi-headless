@@ -13,7 +13,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCartIcon } from '@/lib/icons';
 
 interface CheckoutSummaryProps {
   cart: any;
@@ -43,7 +43,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
     <div className="sticky top-4 overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Header */}
       <div className="flex items-center gap-2 border-b border-neutral-200 bg-neutral-50 px-6 py-4">
-        <ShoppingCart className="h-5 w-5 text-neutral-700" />
+        <ShoppingCartIcon className="h-5 w-5 text-neutral-700" />
         <h2 className="text-lg font-semibold text-neutral-900">{t('title')}</h2>
       </div>
 

@@ -12,7 +12,7 @@
  */
 
 import { useState } from 'react';
-import { ArrowLeft, MapPin, CreditCard, FileText, Loader2 } from 'lucide-react';
+import { ArrowLeftIcon, MapPinIcon, CreditCardIcon, FileTextIcon, Loader2Icon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 import type { CheckoutData } from '../CheckoutPageClient';
 import { useToast } from '@/components/ui/Toast';
@@ -52,7 +52,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
       {/* Shipping Address */}
       <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
         <div className="mb-4 flex items-start gap-3">
-          <MapPin className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
+          <MapPinIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
           <div className="flex-1">
             <h3 className="mb-1 text-lg font-semibold text-neutral-900">{t('shippingAddress')}</h3>
           </div>
@@ -86,7 +86,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
       {/* Billing Address */}
       <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
         <div className="mb-4 flex items-start gap-3">
-          <FileText className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
+          <FileTextIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
           <div className="flex-1">
             <h3 className="mb-1 text-lg font-semibold text-neutral-900">{t('billingAddress')}</h3>
           </div>
@@ -120,7 +120,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
       {/* Payment Method */}
       <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
         <div className="mb-4 flex items-start gap-3">
-          <CreditCard className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
+          <CreditCardIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
           <div className="flex-1">
             <h3 className="mb-1 text-lg font-semibold text-neutral-900">{t('paymentMethod')}</h3>
           </div>
@@ -197,7 +197,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
           disabled={isProcessing}
           className="flex items-center gap-2 rounded-xl bg-neutral-200 px-8 py-4 font-bold text-neutral-900 transition-colors hover:bg-neutral-300 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          <ArrowLeft className="h-5 w-5" />
+          <ArrowLeftIcon className="h-5 w-5" />
           {t('back')}
         </button>
 
@@ -209,7 +209,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
         >
           {isProcessing ? (
             <>
-              <Loader2 className="h-5 w-5 animate-spin" />
+              <Loader2Icon className="h-5 w-5 animate-spin" />
               {t('processing')}
             </>
           ) : (

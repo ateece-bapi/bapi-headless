@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useLocale } from 'next-intl';
-import { X, Send, MessageCircle, Loader2, ThumbsUp, ThumbsDown, UserCircle } from 'lucide-react';
+import { XIcon, SendIcon, MessageCircleIcon, Loader2Icon, ThumbsUpIcon, ThumbsDownIcon, UserCircleIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 
 interface Message {
@@ -232,7 +232,7 @@ export default function ChatWidget() {
           className="z-modal duration-base fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary-500 text-white shadow-lg transition-all hover:scale-110 hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
           aria-label="Open chat"
         >
-          <MessageCircle className="h-6 w-6" />
+          <MessageCircleIcon className="h-6 w-6" />
         </button>
       )}
 
@@ -243,7 +243,7 @@ export default function ChatWidget() {
           <div className="flex items-center justify-between bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 p-4 text-white">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-                <MessageCircle className="h-5 w-5" />
+                <MessageCircleIcon className="h-5 w-5" />
               </div>
               <div>
                 <h3 className="text-lg font-bold">BAPI Assistant</h3>
@@ -263,14 +263,14 @@ export default function ChatWidget() {
                       : 'Talk to human'
                 }
               >
-                <UserCircle className="h-5 w-5" />
+                <UserCircleIcon className="h-5 w-5" />
               </button>
               <button
                 onClick={() => setIsOpen(false)}
                 className="rounded-lg p-1.5 transition-colors hover:bg-white/20"
                 aria-label="Close chat"
               >
-                <X className="h-5 w-5" />
+                <XIcon className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -318,7 +318,7 @@ export default function ChatWidget() {
                       aria-label="Helpful"
                       title="This was helpful"
                     >
-                      <ThumbsUp className="h-4 w-4" />
+                      <ThumbsUpIcon className="h-4 w-4" />
                     </button>
                     <button
                       onClick={() => submitFeedback(message, 'negative')}
@@ -331,7 +331,7 @@ export default function ChatWidget() {
                       aria-label="Not helpful"
                       title="This wasn't helpful"
                     >
-                      <ThumbsDown className="h-4 w-4" />
+                      <ThumbsDownIcon className="h-4 w-4" />
                     </button>
                     {message.feedbackGiven && (
                       <span className="ml-1 text-xs text-neutral-700">
@@ -352,7 +352,7 @@ export default function ChatWidget() {
             {isLoading && (
               <div className="flex justify-start">
                 <div className="rounded-2xl border border-neutral-200 bg-white px-4 py-3">
-                  <Loader2 className="h-5 w-5 animate-spin text-primary-500" />
+                  <Loader2Icon className="h-5 w-5 animate-spin text-primary-500" />
                 </div>
               </div>
             )}
@@ -387,7 +387,7 @@ export default function ChatWidget() {
                 className="rounded-xl bg-primary-500 p-3 text-white transition-colors hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:bg-neutral-300"
                 aria-label="Send message"
               >
-                <Send className="h-5 w-5" />
+                <SendIcon className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -402,7 +402,7 @@ export default function ChatWidget() {
             <div className="rounded-t-2xl bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 p-6 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <UserCircle className="h-8 w-8" />
+                  <UserCircleIcon className="h-8 w-8" />
                   <div>
                     <h3 className="text-xl font-bold">
                       {locale === 'de'
@@ -425,7 +425,7 @@ export default function ChatWidget() {
                   className="rounded-lg p-1.5 transition-colors hover:bg-white/20"
                   aria-label="Close form"
                 >
-                  <X className="h-5 w-5" />
+                  <XIcon className="h-5 w-5" />
                 </button>
               </div>
             </div>
@@ -632,7 +632,7 @@ export default function ChatWidget() {
                     >
                       {handoffSubmitting ? (
                         <>
-                          <Loader2 className="h-5 w-5 animate-spin" />
+                          <Loader2Icon className="h-5 w-5 animate-spin" />
                           <span>
                             {locale === 'de'
                               ? 'Senden...'

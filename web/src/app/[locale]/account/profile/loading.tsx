@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeftIcon } from '@/lib/icons';
 
 export default function ProfileLoading() {
   return (
@@ -11,7 +11,7 @@ export default function ProfileLoading() {
             href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-white/90 transition-colors hover:text-white"
           >
-            <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
+            <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
             Back to Dashboard
           </Link>
           <h1 className="text-3xl font-bold lg:text-4xl">Profile</h1>

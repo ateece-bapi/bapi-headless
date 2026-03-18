@@ -1,14 +1,14 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Activity, Server, Building, Factory, CheckCircle, ArrowRight } from 'lucide-react';
+import { ActivityIcon, ServerIcon, BuildingIcon, FactoryIcon, CheckCircleIcon, ArrowRightIcon } from '@/lib/icons';
 
 // Solution data
 const solutions = {
   healthcare: {
     title: 'Healthcare Facilities',
     subtitle: 'Mission-Critical Environmental Control',
-    icon: Activity,
+    icon: ActivityIcon,
     hero: {
       tagline: 'Patient Safety Depends on Precision',
       description:
@@ -58,7 +58,7 @@ const solutions = {
   'data-centers': {
     title: 'Data Centers',
     subtitle: 'Optimize Cooling & Reduce PUE',
-    icon: Server,
+    icon: ServerIcon,
     hero: {
       tagline: 'Every Degree Matters for Efficiency',
       description:
@@ -107,7 +107,7 @@ const solutions = {
   'commercial-real-estate': {
     title: 'Commercial Real Estate',
     subtitle: 'Tenant Comfort & Energy Efficiency',
-    icon: Building,
+    icon: BuildingIcon,
     hero: {
       tagline: 'Optimize Occupant Experience & ROI',
       description:
@@ -156,7 +156,7 @@ const solutions = {
   'manufacturing-industrial': {
     title: 'Manufacturing & Industrial',
     subtitle: 'Process Control & Compliance',
-    icon: Factory,
+    icon: FactoryIcon,
     hero: {
       tagline: 'Precision for Production Environments',
       description:
@@ -332,7 +332,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
                   key={index}
                   className="flex items-start gap-3 rounded-lg border border-neutral-200 bg-white p-4"
                 >
-                  <CheckCircle className="mt-0.5 h-6 w-6 shrink-0 text-primary-500" />
+                  <CheckCircleIcon className="mt-0.5 h-6 w-6 shrink-0 text-primary-500" />
                   <span className="text-neutral-800">{feature}</span>
                 </div>
               ))}
@@ -357,7 +357,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
                 className="inline-flex items-center justify-center rounded-lg bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 shadow-md transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-lg"
               >
                 {solution.cta.primary}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRightIcon className="ml-2 h-5 w-5" />
               </Link>
               <Link
                 href="/products"

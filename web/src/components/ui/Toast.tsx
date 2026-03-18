@@ -1,7 +1,13 @@
 'use client';
 
 import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
-import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from 'lucide-react';
+import {
+  XIcon,
+  CheckCircleIcon,
+  AlertCircleIcon,
+  InfoIcon,
+  AlertTriangleIcon,
+} from '@/lib/icons';
 
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
 
@@ -94,10 +100,10 @@ interface ToastItemProps {
 
 function ToastItem({ toast, onClose }: ToastItemProps) {
   const icons = {
-    success: CheckCircle,
-    error: AlertCircle,
-    warning: AlertTriangle,
-    info: Info,
+    success: CheckCircleIcon,
+    error: AlertCircleIcon,
+    warning: AlertTriangleIcon,
+    info: InfoIcon,
   };
 
   const styles = {
@@ -139,7 +145,7 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
               onClick={() => onClose(toast.id)}
               aria-label="Close notification"
             >
-              <X className="h-5 w-5" aria-hidden="true" />
+              <XIcon className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
         </div>

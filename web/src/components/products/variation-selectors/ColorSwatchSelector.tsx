@@ -1,6 +1,6 @@
 'use client';
 
-import { Check } from 'lucide-react';
+import { CheckIcon } from '@/lib/icons';
 import { getColorHex } from '@/lib/attributeDetection';
 
 interface ColorSwatchSelectorProps {
@@ -58,7 +58,7 @@ export default function ColorSwatchSelector({
                 {/* Check mark for selected */}
                 {isSelected && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Check
+                    <CheckIcon
                       className={`h-5 w-5 ${isLightColor ? 'text-primary-600' : 'text-white'}`}
                       strokeWidth={3}
                     />

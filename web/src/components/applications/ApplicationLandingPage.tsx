@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { CheckCircle, ChevronRight, Package, Users, Home } from 'lucide-react';
+import { CheckCircleIcon, ChevronRightIcon, PackageIcon, UsersIcon, HomeIcon } from '@/lib/icons';
 import type { ApplicationLandingPageData } from '@/types/applications';
 
 /**
@@ -83,11 +83,11 @@ function HeroSection({
           <Link href="/" className="transition-colors hover:text-white">
             Home
           </Link>
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRightIcon className="h-4 w-4" />
           <Link href="/applications" className="transition-colors hover:text-white">
             Applications
           </Link>
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRightIcon className="h-4 w-4" />
           <span className="font-medium text-white">{appName}</span>
         </nav>
 
@@ -200,7 +200,7 @@ function SolutionsSection({ solutions }: { solutions: ApplicationLandingPageData
             >
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary-500">
-                  <CheckCircle className="h-6 w-6 text-white" />
+                  <CheckCircleIcon className="h-6 w-6 text-white" />
                 </div>
                 <div className="flex-1">
                   <h3 className="mb-2 text-xl font-bold text-neutral-900">{solution.title}</h3>
@@ -212,7 +212,7 @@ function SolutionsSection({ solutions }: { solutions: ApplicationLandingPageData
                           key={fIndex}
                           className="flex items-start gap-2 text-sm text-neutral-700"
                         >
-                          <ChevronRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-500" />
+                          <ChevronRightIcon className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-500" />
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -259,7 +259,7 @@ function ProductCategoriesSection({
             >
               <div className="flex flex-col items-center text-center">
                 <div className="duration-normal mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 transition-colors group-hover:bg-primary-500">
-                  <Package className="duration-normal h-8 w-8 text-primary-500 transition-colors group-hover:text-white" />
+                  <PackageIcon className="duration-normal h-8 w-8 text-primary-500 transition-colors group-hover:text-white" />
                 </div>
                 <h3 className="duration-normal mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                   {category.name}
@@ -267,7 +267,7 @@ function ProductCategoriesSection({
                 <p className="mb-4 text-sm text-neutral-700">{category.description}</p>
                 <div className="duration-normal mt-auto flex items-center gap-2 text-sm font-semibold text-primary-500 transition-colors group-hover:text-primary-600">
                   <span>Explore Products</span>
-                  <ChevronRight className="h-4 w-4" />
+                  <ChevronRightIcon className="h-4 w-4" />
                 </div>
               </div>
             </Link>
@@ -303,7 +303,7 @@ function BenefitsSection({ benefits }: { benefits: ApplicationLandingPageData['b
               className="rounded-xl border border-accent-200 bg-gradient-to-br from-accent-50 to-white p-6 shadow-lg"
             >
               <div className="flex items-start gap-3">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent-600" />
+                <CheckCircleIcon className="mt-1 h-6 w-6 flex-shrink-0 text-accent-600" />
                 <div>
                   <h3 className="mb-2 text-lg font-bold text-neutral-900">{benefit.title}</h3>
                   <p className="text-sm text-neutral-700">{benefit.description}</p>
@@ -361,7 +361,7 @@ function ExamplesSection({ examples }: { examples: ApplicationLandingPageData['e
 
                 {/* Result */}
                 <div className="border-success-200 flex items-start gap-2 rounded-lg border bg-success-50 p-3 text-sm">
-                  <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-success-500" />
+                  <CheckCircleIcon className="mt-0.5 h-4 w-4 flex-shrink-0 text-success-500" />
                   <span className="font-semibold text-neutral-700">{example.result}</span>
                 </div>
               </div>

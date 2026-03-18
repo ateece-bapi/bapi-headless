@@ -1,13 +1,13 @@
 import { NavLink, MegaMenuItem } from './types';
 import {
-  Building2,
-  Wrench,
-  LifeBuoy,
-  Phone,
-  BookOpen,
-  GraduationCap,
-  Users,
-} from 'lucide-react';
+  Building2Icon,
+  WrenchIcon,
+  LifeBuoyIcon,
+  PhoneIcon,
+  BookOpenIcon,
+  GraduationCapIcon,
+  UsersIcon,
+} from '@/lib/icons';
 
 export const NAV_LINKS: NavLink[] = [];
 
@@ -325,7 +325,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         {
           title: t('resources.technicalDocumentation.title'),
           slug: 'technical-documentation',
-          icon: BookOpen,
+          icon: BookOpenIcon,
           links: [
             {
               label: t('resources.technicalDocumentation.applicationNotes'),
@@ -353,7 +353,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         {
           title: t('resources.toolsGuides.title'),
           slug: 'tools-guides',
-          icon: Wrench,
+          icon: WrenchIcon,
           links: [
             {
               label: t('resources.toolsGuides.catalog'),
@@ -376,7 +376,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         {
           title: t('resources.learningCenter.title'),
           slug: 'learning-center',
-          icon: GraduationCap,
+          icon: GraduationCapIcon,
           links: [
             {
               label: t('resources.learningCenter.videos'),
@@ -414,7 +414,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         {
           title: t('support.getHelp.title'),
           slug: 'get-help',
-          icon: LifeBuoy,
+          icon: LifeBuoyIcon,
           links: [
             {
               label: t('support.getHelp.contactSupport'),
@@ -438,7 +438,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         {
           title: t('support.existingCustomers.title'),
           slug: 'existing-customers',
-          icon: Users,
+          icon: UsersIcon,
           links: [
             {
               label: t('support.existingCustomers.myAccount'),
@@ -474,7 +474,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         {
           title: t('company.aboutBapi.title'),
           slug: 'about-bapi',
-          icon: Building2,
+          icon: Building2Icon,
           links: [
             {
               label: t('company.aboutBapi.whyBapi'),
@@ -506,7 +506,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         {
           title: t('company.getInTouch.title'),
           slug: 'get-in-touch',
-          icon: Phone,
+          icon: PhoneIcon,
           links: [
             {
               label: t('company.getInTouch.contactSales'),

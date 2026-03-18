@@ -3,109 +3,109 @@ import { useState } from 'react';
 import Image from 'next/image';
 import {
   // Navigation
-  Menu,
-  X,
-  ChevronDown,
-  ChevronUp,
-  ChevronLeft,
-  ChevronRight,
-  ArrowRight,
-  ArrowLeft,
-  ArrowUp,
-  ExternalLink,
-  Home,
+  MenuIcon,
+  XIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ArrowRightIcon,
+  ArrowLeftIcon,
+  ArrowUpIcon,
+  ExternalLinkIcon,
+  HomeIcon,
   // Actions
-  Plus,
-  Minus,
-  Check,
-  ShoppingCart,
-  Heart,
-  GitCompare,
-  Share2,
-  Download,
-  Trash2,
-  ZoomIn,
-  ZoomOut,
-  RotateCw,
-  Printer,
-  Send,
-  Play,
-  Search,
-  Filter,
+  PlusIcon,
+  MinusIcon,
+  CheckIcon,
+  ShoppingCartIcon,
+  HeartIcon,
+  GitCompareIcon,
+  Share2Icon,
+  DownloadIcon,
+  Trash2Icon,
+  ZoomInIcon,
+  ZoomOutIcon,
+  RotateCwIcon,
+  PrinterIcon,
+  SendIcon,
+  PlayIcon,
+  SearchIcon,
+  FilterIcon,
   // Status/Feedback
-  CheckCircle,
-  AlertCircle,
-  XCircle,
-  Info,
-  AlertTriangle,
-  Loader2,
-  Clock,
-  History,
+  CheckCircleIcon,
+  AlertCircleIcon,
+  XCircleIcon,
+  InfoIcon,
+  AlertTriangleIcon,
+  Loader2Icon,
+  ClockIcon,
+  HistoryIcon,
   // Forms
-  Mail,
-  Phone,
-  User,
-  UserCircle,
-  MapPin,
-  CreditCard,
-  Banknote,
-  Lock,
-  LogOut,
-  Settings,
-  Command,
+  MailIcon,
+  PhoneIcon,
+  UserIcon,
+  UserCircleIcon,
+  MapPinIcon,
+  CreditCardIcon,
+  BanknoteIcon,
+  LockIcon,
+  LogOutIcon,
+  SettingsIcon,
+  CommandIcon,
   // Products
-  Package,
-  Tag,
-  DollarSign,
-  FileText,
-  Grid3x3,
-  List,
-  SortAsc,
-  SlidersHorizontal,
-  BookOpen,
-  Book,
-  FileSpreadsheet,
-  ClipboardList,
-  File,
-  HardDrive,
-  // BAPI Product Categories (Lucide fallbacks)
-  Thermometer,
-  Droplets,
-  Droplet,
-  Gauge,
-  Wind,
-  Waves,
-  Radio,
-  Wifi,
-  Cable,
-  FlaskConical,
+  PackageIcon,
+  TagIcon,
+  DollarSignIcon,
+  FileTextIcon,
+  Grid3x3Icon,
+  ListIcon,
+  SortAscIcon,
+  SlidersHorizontalIcon,
+  BookOpenIcon,
+  BookIcon,
+  FileSpreadsheetIcon,
+  ClipboardListIcon,
+  FileIcon,
+  HardDriveIcon,
+  // BAPI Product Categories (Material UI)
+  ThermometerIcon,
+  DropletsIcon,
+  DropletIcon,
+  GaugeIcon,
+  WindIcon,
+  WavesIcon,
+  RadioIcon,
+  WifiIcon,
+  CableIcon,
+  FlaskConicalIcon,
   // Industry
-  Building2,
-  Briefcase,
-  Truck,
-  HeartPulse,
-  Sprout,
-  UtensilsCrossed,
-  Beef,
-  Snowflake,
+  Building2Icon,
+  BriefcaseIcon,
+  TruckIcon,
+  HeartPulseIcon,
+  SproutIcon,
+  UtensilsCrossedIcon,
+  BeefIcon,
+  SnowflakeIcon,
   // Tech/System
-  Cloud,
-  Smartphone,
-  Bell,
-  LineChart,
-  TrendingUp,
-  Shield,
-  Zap,
-  Award,
-  Languages,
-  Globe,
+  CloudIcon,
+  SmartphoneIcon,
+  BellIcon,
+  LineChartIcon,
+  TrendingUpIcon,
+  ShieldIcon,
+  ZapIcon,
+  AwardIcon,
+  LanguagesIcon,
+  GlobeIcon,
   // Social
-  MessageCircle,
-  ThumbsUp,
-  ThumbsDown,
-  Linkedin,
-  Youtube,
-} from 'lucide-react';
+  MessageCircleIcon,
+  ThumbsUpIcon,
+  ThumbsDownIcon,
+  LinkedinIcon,
+  YoutubeIcon,
+} from '@/lib/icons';
 
 const meta: Meta = {
   title: 'Design System/Icons',
@@ -127,115 +127,115 @@ type Story = StoryObj;
 // Icon registry organized by category
 const icons = {
   Navigation: [
-    { name: 'Menu', icon: Menu, usage: 'Mobile menu toggle' },
-    { name: 'X', icon: X, usage: 'Close buttons, remove items' },
-    { name: 'ChevronDown', icon: ChevronDown, usage: 'Dropdown indicators' },
-    { name: 'ChevronUp', icon: ChevronUp, usage: 'Collapse indicators' },
-    { name: 'ChevronLeft', icon: ChevronLeft, usage: 'Previous navigation' },
-    { name: 'ChevronRight', icon: ChevronRight, usage: 'Next navigation' },
-    { name: 'ArrowRight', icon: ArrowRight, usage: 'Call-to-action arrows' },
-    { name: 'ArrowLeft', icon: ArrowLeft, usage: 'Back navigation' },
-    { name: 'ArrowUp', icon: ArrowUp, usage: 'Back to top button' },
-    { name: 'ExternalLink', icon: ExternalLink, usage: 'External links' },
-    { name: 'Home', icon: Home, usage: 'Home/dashboard link' },
+    { name: 'Menu', icon: MenuIcon, usage: 'Mobile menu toggle' },
+    { name: 'X', icon: XIcon, usage: 'Close buttons, remove items' },
+    { name: 'ChevronDown', icon: ChevronDownIcon, usage: 'Dropdown indicators' },
+    { name: 'ChevronUp', icon: ChevronUpIcon, usage: 'Collapse indicators' },
+    { name: 'ChevronLeft', icon: ChevronLeftIcon, usage: 'Previous navigation' },
+    { name: 'ChevronRight', icon: ChevronRightIcon, usage: 'Next navigation' },
+    { name: 'ArrowRight', icon: ArrowRightIcon, usage: 'Call-to-action arrows' },
+    { name: 'ArrowLeft', icon: ArrowLeftIcon, usage: 'Back navigation' },
+    { name: 'ArrowUp', icon: ArrowUpIcon, usage: 'Back to top button' },
+    { name: 'ExternalLink', icon: ExternalLinkIcon, usage: 'External links' },
+    { name: 'Home', icon: HomeIcon, usage: 'Home/dashboard link' },
   ],
   Actions: [
-    { name: 'Plus', icon: Plus, usage: 'Add item, increase quantity' },
-    { name: 'Minus', icon: Minus, usage: 'Remove item, decrease quantity' },
-    { name: 'Check', icon: Check, usage: 'Confirmation, selection indicator' },
-    { name: 'ShoppingCart', icon: ShoppingCart, usage: 'Cart button, checkout' },
-    { name: 'Heart', icon: Heart, usage: 'Favorite/wishlist toggle' },
-    { name: 'GitCompare', icon: GitCompare, usage: 'Product comparison' },
-    { name: 'Share2', icon: Share2, usage: 'Share content' },
-    { name: 'Download', icon: Download, usage: 'Download resources' },
-    { name: 'Trash2', icon: Trash2, usage: 'Delete actions' },
-    { name: 'ZoomIn', icon: ZoomIn, usage: 'Image zoom in' },
-    { name: 'ZoomOut', icon: ZoomOut, usage: 'Image zoom out' },
-    { name: 'RotateCw', icon: RotateCw, usage: 'Rotate image' },
-    { name: 'Printer', icon: Printer, usage: 'Print actions' },
-    { name: 'Send', icon: Send, usage: 'Submit chat/forms' },
-    { name: 'Play', icon: Play, usage: 'Video play buttons' },
-    { name: 'Search', icon: Search, usage: 'Search inputs' },
-    { name: 'Filter', icon: Filter, usage: 'Filter controls' },
+    { name: 'Plus', icon: PlusIcon, usage: 'Add item, increase quantity' },
+    { name: 'Minus', icon: MinusIcon, usage: 'Remove item, decrease quantity' },
+    { name: 'Check', icon: CheckIcon, usage: 'Confirmation, selection indicator' },
+    { name: 'ShoppingCart', icon: ShoppingCartIcon, usage: 'Cart button, checkout' },
+    { name: 'Heart', icon: HeartIcon, usage: 'Favorite/wishlist toggle' },
+    { name: 'GitCompare', icon: GitCompareIcon, usage: 'Product comparison' },
+    { name: 'Share2', icon: Share2Icon, usage: 'Share content' },
+    { name: 'Download', icon: DownloadIcon, usage: 'Download resources' },
+    { name: 'Trash2', icon: Trash2Icon, usage: 'Delete actions' },
+    { name: 'ZoomIn', icon: ZoomInIcon, usage: 'Image zoom in' },
+    { name: 'ZoomOut', icon: ZoomOutIcon, usage: 'Image zoom out' },
+    { name: 'RotateCw', icon: RotateCwIcon, usage: 'Rotate image' },
+    { name: 'Printer', icon: PrinterIcon, usage: 'Print actions' },
+    { name: 'Send', icon: SendIcon, usage: 'Submit chat/forms' },
+    { name: 'Play', icon: PlayIcon, usage: 'Video play buttons' },
+    { name: 'Search', icon: SearchIcon, usage: 'Search inputs' },
+    { name: 'Filter', icon: FilterIcon, usage: 'Filter controls' },
   ],
   Status: [
-    { name: 'CheckCircle', icon: CheckCircle, usage: 'Success states' },
-    { name: 'AlertCircle', icon: AlertCircle, usage: 'Warning states' },
-    { name: 'XCircle', icon: XCircle, usage: 'Error states' },
-    { name: 'Info', icon: Info, usage: 'Information tooltips' },
-    { name: 'AlertTriangle', icon: AlertTriangle, usage: 'Critical warnings' },
-    { name: 'Loader2', icon: Loader2, usage: 'Loading spinners' },
-    { name: 'Clock', icon: Clock, usage: 'Pending/scheduled' },
-    { name: 'History', icon: History, usage: 'Recently viewed' },
+    { name: 'CheckCircle', icon: CheckCircleIcon, usage: 'Success states' },
+    { name: 'AlertCircle', icon: AlertCircleIcon, usage: 'Warning states' },
+    { name: 'XCircle', icon: XCircleIcon, usage: 'Error states' },
+    { name: 'Info', icon: InfoIcon, usage: 'Information tooltips' },
+    { name: 'AlertTriangle', icon: AlertTriangleIcon, usage: 'Critical warnings' },
+    { name: 'Loader2', icon: Loader2Icon, usage: 'Loading spinners' },
+    { name: 'Clock', icon: ClockIcon, usage: 'Pending/scheduled' },
+    { name: 'History', icon: HistoryIcon, usage: 'Recently viewed' },
   ],
   Forms: [
-    { name: 'Mail', icon: Mail, usage: 'Email inputs' },
-    { name: 'Phone', icon: Phone, usage: 'Phone inputs' },
-    { name: 'User', icon: User, usage: 'User profile icon' },
-    { name: 'UserCircle', icon: UserCircle, usage: 'User avatar' },
-    { name: 'MapPin', icon: MapPin, usage: 'Address/location' },
-    { name: 'CreditCard', icon: CreditCard, usage: 'Payment methods' },
-    { name: 'Banknote', icon: Banknote, usage: 'Purchase order payment' },
-    { name: 'Lock', icon: Lock, usage: 'Secure/password fields' },
-    { name: 'LogOut', icon: LogOut, usage: 'Sign out button' },
-    { name: 'Settings', icon: Settings, usage: 'Settings/preferences' },
-    { name: 'Command', icon: Command, usage: 'Keyboard shortcuts' },
+    { name: 'Mail', icon: MailIcon, usage: 'Email inputs' },
+    { name: 'Phone', icon: PhoneIcon, usage: 'Phone inputs' },
+    { name: 'User', icon: UserIcon, usage: 'User profile icon' },
+    { name: 'UserCircle', icon: UserCircleIcon, usage: 'User avatar' },
+    { name: 'MapPin', icon: MapPinIcon, usage: 'Address/location' },
+    { name: 'CreditCard', icon: CreditCardIcon, usage: 'Payment methods' },
+    { name: 'Banknote', icon: BanknoteIcon, usage: 'Purchase order payment' },
+    { name: 'Lock', icon: LockIcon, usage: 'Secure/password fields' },
+    { name: 'LogOut', icon: LogOutIcon, usage: 'Sign out button' },
+    { name: 'Settings', icon: SettingsIcon, usage: 'Settings/preferences' },
+    { name: 'Command', icon: CommandIcon, usage: 'Keyboard shortcuts' },
   ],
   Products: [
-    { name: 'Package', icon: Package, usage: 'Products, orders' },
-    { name: 'Tag', icon: Tag, usage: 'Pricing, discounts' },
-    { name: 'DollarSign', icon: DollarSign, usage: 'Pricing display' },
-    { name: 'FileText', icon: FileText, usage: 'Documents, specs' },
-    { name: 'Grid3x3', icon: Grid3x3, usage: 'Grid view toggle' },
-    { name: 'List', icon: List, usage: 'List view toggle' },
-    { name: 'SortAsc', icon: SortAsc, usage: 'Sort controls' },
-    { name: 'SlidersHorizontal', icon: SlidersHorizontal, usage: 'Filter drawer' },
-    { name: 'BookOpen', icon: BookOpen, usage: 'Application notes' },
-    { name: 'Book', icon: Book, usage: 'Documentation' },
-    { name: 'FileSpreadsheet', icon: FileSpreadsheet, usage: 'Spreadsheets' },
-    { name: 'ClipboardList', icon: ClipboardList, usage: 'Order lists' },
-    { name: 'File', icon: File, usage: 'Generic files' },
-    { name: 'HardDrive', icon: HardDrive, usage: 'Resources' },
+    { name: 'Package', icon: PackageIcon, usage: 'Products, orders' },
+    { name: 'Tag', icon: TagIcon, usage: 'Pricing, discounts' },
+    { name: 'DollarSign', icon: DollarSignIcon, usage: 'Pricing display' },
+    { name: 'FileText', icon: FileTextIcon, usage: 'Documents, specs' },
+    { name: 'Grid3x3', icon: Grid3x3Icon, usage: 'Grid view toggle' },
+    { name: 'List', icon: ListIcon, usage: 'List view toggle' },
+    { name: 'SortAsc', icon: SortAscIcon, usage: 'Sort controls' },
+    { name: 'SlidersHorizontal', icon: SlidersHorizontalIcon, usage: 'Filter drawer' },
+    { name: 'BookOpen', icon: BookOpenIcon, usage: 'Application notes' },
+    { name: 'Book', icon: BookIcon, usage: 'Documentation' },
+    { name: 'FileSpreadsheet', icon: FileSpreadsheetIcon, usage: 'Spreadsheets' },
+    { name: 'ClipboardList', icon: ClipboardListIcon, usage: 'Order lists' },
+    { name: 'File', icon: FileIcon, usage: 'Generic files' },
+    { name: 'HardDrive', icon: HardDriveIcon, usage: 'Resources' },
   ],
   'BAPI Categories': [
-    { name: 'Thermometer', icon: Thermometer, usage: 'Temperature sensors' },
-    { name: 'Droplets', icon: Droplets, usage: 'Humidity sensors' },
-    { name: 'Droplet', icon: Droplet, usage: 'Humidity (alt)' },
-    { name: 'Gauge', icon: Gauge, usage: 'Pressure sensors' },
-    { name: 'Wind', icon: Wind, usage: 'Air quality sensors' },
-    { name: 'Waves', icon: Waves, usage: 'Air flow sensors' },
-    { name: 'Radio', icon: Radio, usage: 'Wireless sensors' },
-    { name: 'Wifi', icon: Wifi, usage: 'WiFi connectivity' },
-    { name: 'Cable', icon: Cable, usage: 'Wired accessories' },
+    { name: 'Thermometer', icon: ThermometerIcon, usage: 'Temperature sensors' },
+    { name: 'Droplets', icon: DropletsIcon, usage: 'Humidity sensors' },
+    { name: 'Droplet', icon: DropletIcon, usage: 'Humidity (alt)' },
+    { name: 'Gauge', icon: GaugeIcon, usage: 'Pressure sensors' },
+    { name: 'Wind', icon: WindIcon, usage: 'Air quality sensors' },
+    { name: 'Waves', icon: WavesIcon, usage: 'Air flow sensors' },
+    { name: 'Radio', icon: RadioIcon, usage: 'Wireless sensors' },
+    { name: 'Wifi', icon: WifiIcon, usage: 'WiFi connectivity' },
+    { name: 'Cable', icon: CableIcon, usage: 'Wired accessories' },
   ],
   Industry: [
-    { name: 'Building2', icon: Building2, usage: 'Buildings, companies' },
-    { name: 'Briefcase', icon: Briefcase, usage: 'Business, jobs' },
-    { name: 'Truck', icon: Truck, usage: 'Shipping, logistics' },
-    { name: 'HeartPulse', icon: HeartPulse, usage: 'Healthcare industry' },
-    { name: 'Sprout', icon: Sprout, usage: 'Agriculture/grow rooms' },
-    { name: 'UtensilsCrossed', icon: UtensilsCrossed, usage: 'Restaurants' },
-    { name: 'Beef', icon: Beef, usage: 'Food processing' },
-    { name: 'Snowflake', icon: Snowflake, usage: 'Refrigeration/cold chain' },
+    { name: 'Building2', icon: Building2Icon, usage: 'Buildings, companies' },
+    { name: 'Briefcase', icon: BriefcaseIcon, usage: 'Business, jobs' },
+    { name: 'Truck', icon: TruckIcon, usage: 'Shipping, logistics' },
+    { name: 'HeartPulse', icon: HeartPulseIcon, usage: 'Healthcare industry' },
+    { name: 'Sprout', icon: SproutIcon, usage: 'Agriculture/grow rooms' },
+    { name: 'UtensilsCrossed', icon: UtensilsCrossedIcon, usage: 'Restaurants' },
+    { name: 'Beef', icon: BeefIcon, usage: 'Food processing' },
+    { name: 'Snowflake', icon: SnowflakeIcon, usage: 'Refrigeration/cold chain' },
   ],
   System: [
-    { name: 'Cloud', icon: Cloud, usage: 'Cloud services' },
-    { name: 'Smartphone', icon: Smartphone, usage: 'Mobile apps' },
-    { name: 'Bell', icon: Bell, usage: 'Notifications/alerts' },
-    { name: 'LineChart', icon: LineChart, usage: 'Analytics/graphs' },
-    { name: 'TrendingUp', icon: TrendingUp, usage: 'Growth/trends' },
-    { name: 'Shield', icon: Shield, usage: 'Security/protection' },
-    { name: 'Zap', icon: Zap, usage: 'Performance/speed' },
-    { name: 'Award', icon: Award, usage: 'Achievements' },
-    { name: 'Languages', icon: Languages, usage: 'Language selector' },
-    { name: 'Globe', icon: Globe, usage: 'Region selector' },
+    { name: 'Cloud', icon: CloudIcon, usage: 'Cloud services' },
+    { name: 'Smartphone', icon: SmartphoneIcon, usage: 'Mobile apps' },
+    { name: 'Bell', icon: BellIcon, usage: 'Notifications/alerts' },
+    { name: 'LineChart', icon: LineChartIcon, usage: 'Analytics/graphs' },
+    { name: 'TrendingUp', icon: TrendingUpIcon, usage: 'Growth/trends' },
+    { name: 'Shield', icon: ShieldIcon, usage: 'Security/protection' },
+    { name: 'Zap', icon: ZapIcon, usage: 'Performance/speed' },
+    { name: 'Award', icon: AwardIcon, usage: 'Achievements' },
+    { name: 'Languages', icon: LanguagesIcon, usage: 'Language selector' },
+    { name: 'Globe', icon: GlobeIcon, usage: 'Region selector' },
   ],
   Social: [
-    { name: 'MessageCircle', icon: MessageCircle, usage: 'Chat/messages' },
-    { name: 'ThumbsUp', icon: ThumbsUp, usage: 'Like/helpful' },
-    { name: 'ThumbsDown', icon: ThumbsDown, usage: 'Dislike/not helpful' },
-    { name: 'Linkedin', icon: Linkedin, usage: 'LinkedIn social link' },
-    { name: 'Youtube', icon: Youtube, usage: 'YouTube social link' },
+    { name: 'MessageCircle', icon: MessageCircleIcon, usage: 'Chat/messages' },
+    { name: 'ThumbsUp', icon: ThumbsUpIcon, usage: 'Like/helpful' },
+    { name: 'ThumbsDown', icon: ThumbsDownIcon, usage: 'Dislike/not helpful' },
+    { name: 'Linkedin', icon: LinkedinIcon, usage: 'LinkedIn social link' },
+    { name: 'Youtube', icon: YoutubeIcon, usage: 'YouTube social link' },
   ],
 };
 
@@ -263,7 +263,7 @@ const IconDisplay = ({
 
   const copyCode = async () => {
     try {
-      await navigator.clipboard.writeText(`import { ${name} } from 'lucide-react';`);
+      await navigator.clipboard.writeText(`import { ${name} } from '@/lib/icons';`);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
@@ -275,7 +275,7 @@ const IconDisplay = ({
 
   return (
     <div className="group relative flex flex-col items-center gap-2 rounded-lg border border-neutral-200 p-4 transition-all hover:border-primary-500 hover:bg-neutral-50">
-      <Icon size={size} color={color} strokeWidth={2} />
+      <Icon sx={{ fontSize: size }} />
       <span className="text-xs font-medium text-neutral-700">{name}</span>
       {showUsage && usage && (
         <span className="text-center text-[10px] text-neutral-700">{usage}</span>
@@ -338,7 +338,7 @@ export const AllIcons: Story = {
         {/* Search & Filter */}
         <div className="flex flex-col gap-4 sm:flex-row">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+            <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
             <input
               type="text"
               placeholder="Search icons by name or usage..."
@@ -388,7 +388,7 @@ export const AllIcons: Story = {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 py-12">
-            <Search className="mb-2 h-12 w-12 text-neutral-400" />
+            <SearchIcon className="mb-2 h-12 w-12 text-neutral-400" />
             <p className="text-neutral-700">No icons found matching "{searchQuery}"</p>
           </div>
         )}
@@ -411,7 +411,7 @@ export const AllIcons: Story = {
               <strong>Accessibility:</strong> Provide <code>aria-label</code> for icon-only buttons
             </li>
             <li>
-              <strong>Import:</strong> <code>import {'{ IconName }'} from 'lucide-react';</code>
+              <strong>Import:</strong> <code>import {'{ IconName }'} from '@/lib/icons';</code>
             </li>
           </ul>
         </div>
@@ -437,11 +437,11 @@ export const SizeVariants: Story = {
             Used for: Inline text icons, badges, compact UI elements
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
-            <ShoppingCart size={16} />
-            <Check size={16} />
-            <Info size={16} />
-            <ArrowRight size={16} />
-            <Package size={16} />
+            <ShoppingCartIcon fontSize="small" />
+            <CheckIcon fontSize="small" />
+            <InfoIcon fontSize="small" />
+            <ArrowRightIcon fontSize="small" />
+            <PackageIcon fontSize="small" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart size={'{16}'} /&gt;
@@ -455,11 +455,11 @@ export const SizeVariants: Story = {
             Used for: Buttons, navigation, form fields, most UI elements
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
-            <ShoppingCart size={24} />
-            <Check size={24} />
-            <Info size={24} />
-            <ArrowRight size={24} />
-            <Package size={24} />
+            <ShoppingCartIcon fontSize="medium" />
+            <CheckIcon fontSize="medium" />
+            <InfoIcon fontSize="medium" />
+            <ArrowRightIcon fontSize="medium" />
+            <PackageIcon fontSize="medium" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart size={'{24}'} /&gt; {'//'} or &lt;ShoppingCart /&gt;
@@ -473,11 +473,11 @@ export const SizeVariants: Story = {
             Used for: Hero sections, feature cards, prominent CTAs
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
-            <ShoppingCart size={32} />
-            <Check size={32} />
-            <Info size={32} />
-            <ArrowRight size={32} />
-            <Package size={32} />
+            <ShoppingCartIcon fontSize="large" />
+            <CheckIcon fontSize="large" />
+            <InfoIcon fontSize="large" />
+            <ArrowRightIcon fontSize="large" />
+            <PackageIcon fontSize="large" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart size={'{32}'} /&gt;
@@ -491,11 +491,11 @@ export const SizeVariants: Story = {
             Used for: Empty states, large feature displays, marketing sections
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
-            <ShoppingCart size={48} />
-            <Check size={48} />
-            <Info size={48} />
-            <ArrowRight size={48} />
-            <Package size={48} />
+            <ShoppingCartIcon sx={{ fontSize: 48 }} />
+            <CheckIcon sx={{ fontSize: 48 }} />
+            <InfoIcon sx={{ fontSize: 48 }} />
+            <ArrowRightIcon sx={{ fontSize: 48 }} />
+            <PackageIcon sx={{ fontSize: 48 }} />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart size={'{48}'} /&gt;
@@ -520,10 +520,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Primary (BAPI Blue)</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <ShoppingCart className="text-primary-500" size={32} />
-            <CheckCircle className="text-primary-500" size={32} />
-            <Package className="text-primary-500" size={32} />
-            <Thermometer className="text-primary-500" size={32} />
+            <ShoppingCartIcon className="text-primary-500" fontSize="large" />
+            <CheckCircleIcon className="text-primary-500" fontSize="large" />
+            <PackageIcon className="text-primary-500" fontSize="large" />
+            <ThermometerIcon className="text-primary-500" fontSize="large" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart className="text-primary-500" /&gt;
@@ -534,10 +534,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Accent (BAPI Yellow)</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <AlertTriangle className="text-accent-500" size={32} />
-            <Bell className="text-accent-500" size={32} />
-            <Award className="text-accent-500" size={32} />
-            <Zap className="text-accent-500" size={32} />
+            <AlertTriangleIcon className="text-accent-500" fontSize="large" />
+            <BellIcon className="text-accent-500" fontSize="large" />
+            <AwardIcon className="text-accent-500" fontSize="large" />
+            <ZapIcon className="text-accent-500" fontSize="large" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;AlertTriangle className="text-accent-500" /&gt;
@@ -548,10 +548,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Success</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <CheckCircle className="text-success-500" size={32} />
-            <Check className="text-success-500" size={32} />
-            <ThumbsUp className="text-success-500" size={32} />
-            <Shield className="text-success-500" size={32} />
+            <CheckCircleIcon className="text-success-500" fontSize="large" />
+            <CheckIcon className="text-success-500" fontSize="large" />
+            <ThumbsUpIcon className="text-success-500" fontSize="large" />
+            <ShieldIcon className="text-success-500" fontSize="large" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;CheckCircle className="text-success-500" /&gt;
@@ -562,10 +562,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Warning</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <AlertCircle className="text-warning-500" size={32} />
-            <AlertTriangle className="text-warning-500" size={32} />
-            <Clock className="text-warning-500" size={32} />
-            <Info className="text-warning-500" size={32} />
+            <AlertCircleIcon className="text-warning-500" fontSize="large" />
+            <AlertTriangleIcon className="text-warning-500" fontSize="large" />
+            <ClockIcon className="text-warning-500" fontSize="large" />
+            <InfoIcon className="text-warning-500" fontSize="large" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;AlertCircle className="text-warning-500" /&gt;
@@ -576,10 +576,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Error</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <XCircle className="text-error-500" size={32} />
-            <X className="text-error-500" size={32} />
-            <AlertTriangle className="text-error-500" size={32} />
-            <Trash2 className="text-error-500" size={32} />
+            <XCircleIcon className="text-error-500" fontSize="large" />
+            <XIcon className="text-error-500" fontSize="large" />
+            <AlertTriangleIcon className="text-error-500" fontSize="large" />
+            <Trash2Icon className="text-error-500" fontSize="large" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;XCircle className="text-error-500" /&gt;
@@ -590,10 +590,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Neutral</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <Settings className="text-neutral-700" size={32} />
-            <Filter className="text-neutral-700" size={32} />
-            <Search className="text-neutral-700" size={32} />
-            <Menu className="text-neutral-700" size={32} />
+            <SettingsIcon className="text-neutral-700" fontSize="large" />
+            <FilterIcon className="text-neutral-700" fontSize="large" />
+            <SearchIcon className="text-neutral-700" fontSize="large" />
+            <MenuIcon className="text-neutral-700" fontSize="large" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;Settings className="text-neutral-700" /&gt;
@@ -604,10 +604,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">White on Dark</h3>
           <div className="flex items-center gap-6 rounded-lg bg-neutral-900 p-6">
-            <ShoppingCart className="text-white" size={32} />
-            <Package className="text-white" size={32} />
-            <Heart className="text-white" size={32} />
-            <User className="text-white" size={32} />
+            <ShoppingCartIcon className="text-white" fontSize="large" />
+            <PackageIcon className="text-white" fontSize="large" />
+            <HeartIcon className="text-white" fontSize="large" />
+            <UserIcon className="text-white" fontSize="large" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart className="text-white" /&gt;
@@ -634,7 +634,7 @@ export const CommonUseCases: Story = {
               type="button"
               className="relative inline-flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-white hover:bg-primary-600"
             >
-              <ShoppingCart size={20} />
+              <ShoppingCartIcon fontSize="small" />
               <span>Cart</span>
               <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-accent-500 text-xs font-bold text-neutral-900">
                 3
@@ -643,7 +643,7 @@ export const CommonUseCases: Story = {
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<button className="relative...">
-  <ShoppingCart size={20} />
+  <ShoppingCartIcon fontSize="small" />
   <span>Cart</span>
   <span className="absolute -right-2 -top-2...">3</span>
 </button>`}
@@ -659,13 +659,13 @@ export const CommonUseCases: Story = {
               className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-white opacity-75"
               disabled
             >
-              <Loader2 size={20} className="animate-spin" />
+              <Loader2Icon fontSize="small" className="animate-spin" />
               <span>Adding to Cart...</span>
             </button>
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<button disabled className="...opacity-75">
-  <Loader2 size={20} className="animate-spin" />
+  <Loader2Icon fontSize="small" className="animate-spin" />
   <span>Adding to Cart...</span>
 </button>`}
           </pre>
@@ -676,13 +676,13 @@ export const CommonUseCases: Story = {
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Success Notification</h3>
           <div className="rounded-lg border border-neutral-200 p-6">
             <div className="flex items-center gap-3 rounded-lg bg-success-50 p-4">
-              <CheckCircle className="text-success-500" size={24} />
+              <CheckCircleIcon className="text-success-500" fontSize="medium" />
               <span className="text-success-700">Product added to cart successfully!</span>
             </div>
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<div className="flex items-center gap-3 bg-success-50...">
-  <CheckCircle className="text-success-500" size={24} />
+  <CheckCircleIcon className="text-success-500" fontSize="medium" />
   <span>Product added to cart successfully!</span>
 </div>`}
           </pre>
@@ -697,28 +697,28 @@ export const CommonUseCases: Story = {
                 type="button"
                 className="rounded-lg border border-neutral-300 p-2 hover:border-primary-500 hover:text-primary-500"
               >
-                <Heart size={20} />
+                <HeartIcon fontSize="small" />
               </button>
               <button
                 type="button"
                 className="rounded-lg border border-neutral-300 p-2 hover:border-primary-500 hover:text-primary-500"
               >
-                <GitCompare size={20} />
+                <GitCompareIcon fontSize="small" />
               </button>
               <button
                 type="button"
                 className="flex-1 rounded-lg bg-primary-500 px-4 py-2 text-white hover:bg-primary-600"
               >
-                <ShoppingCart size={20} className="inline" /> Add to Cart
+                <ShoppingCartIcon fontSize="small" className="inline" /> Add to Cart
               </button>
             </div>
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<div className="flex gap-2">
-  <button><Heart size={20} /></button>
-  <button><GitCompare size={20} /></button>
+  <button><HeartIcon fontSize="small" /></button>
+  <button><GitCompareIcon fontSize="small" /></button>
   <button>
-    <ShoppingCart size={20} /> Add to Cart
+    <ShoppingCartIcon fontSize="small" /> Add to Cart
   </button>
 </div>`}
           </pre>
@@ -729,7 +729,7 @@ export const CommonUseCases: Story = {
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Search Input</h3>
           <div className="rounded-lg border border-neutral-200 p-6">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+              <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
               <input
                 type="text"
                 placeholder="Search products..."
@@ -739,7 +739,7 @@ export const CommonUseCases: Story = {
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<div className="relative">
-  <Search className="absolute left-3 top-1/2..." />
+  <SearchIcon className="absolute left-3 top-1/2..." />
   <input className="...pl-10..." />
 </div>`}
           </pre>
@@ -756,28 +756,28 @@ export const CommonUseCases: Story = {
                 type="button"
                 className="flex flex-col items-center gap-2 rounded-lg p-4 hover:bg-primary-50"
               >
-                <Thermometer className="text-primary-500" size={32} />
+                <ThermometerIcon className="text-primary-500" fontSize="large" />
                 <span className="text-sm font-medium">Temperature</span>
               </button>
               <button
                 type="button"
                 className="flex flex-col items-center gap-2 rounded-lg p-4 hover:bg-primary-50"
               >
-                <Droplets className="text-primary-500" size={32} />
+                <DropletsIcon className="text-primary-500" fontSize="large" />
                 <span className="text-sm font-medium">Humidity</span>
               </button>
               <button
                 type="button"
                 className="flex flex-col items-center gap-2 rounded-lg p-4 hover:bg-primary-50"
               >
-                <Gauge className="text-primary-500" size={32} />
+                <GaugeIcon className="text-primary-500" fontSize="large" />
                 <span className="text-sm font-medium">Pressure</span>
               </button>
               <button
                 type="button"
                 className="flex flex-col items-center gap-2 rounded-lg p-4 hover:bg-primary-50"
               >
-                <Wind className="text-primary-500" size={32} />
+                <WindIcon className="text-primary-500" fontSize="large" />
                 <span className="text-sm font-medium">Air Quality</span>
               </button>
             </div>
@@ -785,7 +785,7 @@ export const CommonUseCases: Story = {
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<div className="grid grid-cols-4 gap-4">
   <button className="flex flex-col items-center...">
-    <Thermometer className="text-primary-500" size={32} />
+    <ThermometerIcon className="text-primary-500" fontSize="large" />
     <span>Temperature</span>
   </button>
   {/* More categories... */}
@@ -804,56 +804,56 @@ export const BAPIBrandedIcons: Story = {
       {
         name: 'Temperature',
         file: 'Temperature_Icon',
-        lucide: Thermometer,
+        lucide: ThermometerIcon,
         color: 'Red/Orange',
         order: 1,
       },
       {
         name: 'Humidity',
         file: 'Humidity_Icon',
-        lucide: Droplets,
+        lucide: DropletsIcon,
         color: 'Blue/Cyan',
         order: 2,
       },
       {
         name: 'Pressure',
         file: 'Pressure_Icon',
-        lucide: Gauge,
+        lucide: GaugeIcon,
         color: 'Purple/Pink',
         order: 3,
       },
       {
         name: 'Air Quality',
         file: 'AirQuality_Icon',
-        lucide: Wind,
+        lucide: WindIcon,
         color: 'Teal/Cyan',
         order: 4,
       },
       {
         name: 'Sensors',
         file: 'Sensors_Icon',
-        lucide: Package,
+        lucide: PackageIcon,
         color: 'Blue/Gray',
         order: 5,
       },
       {
         name: 'Wireless',
         file: 'Wireless_Icon',
-        lucide: Wifi,
+        lucide: WifiIcon,
         color: 'Green/Emerald',
         order: 6,
       },
       {
         name: 'Accessories',
         file: 'Accessories_Icon',
-        lucide: Package,
+        lucide: PackageIcon,
         color: 'Gray/Neutral',
         order: 7,
       },
       {
         name: 'Test Instruments',
         file: 'Test_Instruments_Icon',
-        lucide: FlaskConical,
+        lucide: FlaskConicalIcon,
         color: 'Cyan/Blue',
         order: 8,
       },
@@ -871,7 +871,7 @@ export const BAPIBrandedIcons: Story = {
         {/* Brand Compliance Alert */}
         <div className="rounded-lg border-2 border-accent-500 bg-accent-50 p-6">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="mt-1 text-accent-600" size={24} />
+            <AlertTriangleIcon className="mt-1 text-accent-600" fontSize="medium" />
             <div>
               <h3 className="mb-2 text-lg font-semibold text-accent-900">
                 Brand Standard Requirements
@@ -1016,13 +1016,11 @@ export const BAPIBrandedIcons: Story = {
                 return (
                   <div key={icon.order} className="flex flex-col items-center gap-3">
                     <div className="flex h-16 w-16 items-center justify-center">
-                      <LucideIcon className="text-primary-500" size={40} />
+                      <LucideIcon className="text-primary-500" sx={{ fontSize: 40 }} />
                     </div>
                     <div className="text-center">
                       <div className="text-sm font-medium text-neutral-700">{icon.name}</div>
-                      <code className="text-xs text-neutral-700">
-                        {icon.lucide.displayName || icon.lucide.name}
-                      </code>
+                      <code className="text-xs text-neutral-700">{icon.name}</code>
                     </div>
                   </div>
                 );
@@ -1078,13 +1076,13 @@ const megaMenuColumns = [
           </p>
           <div className="mb-4 space-y-2 text-sm">
             <div className="flex items-center gap-2">
-              <X className="text-error-500" size={16} />
+              <XIcon className="text-error-500" fontSize="small" />
               <span>
                 <strong>Accessories</strong> - For technical/engineering audiences
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <X className="text-error-500" size={16} />
+              <XIcon className="text-error-500" fontSize="small" />
               <span>
                 <strong>Wireless</strong> - For traditional wired-sensor focused content
               </span>
@@ -1105,37 +1103,37 @@ const megaMenuColumns = [
           </h3>
           <div className="grid grid-cols-1 gap-2 text-sm md:grid-cols-2">
             <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
               <span className="text-success-800">
                 Icons in brand-standard order (T-H-P-AQ-W-A-TI)
               </span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
               <span className="text-success-800">Equidistant spacing (horizontal or vertical)</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
               <span className="text-success-800">Using WebP format for performance</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
               <span className="text-success-800">Original aspect ratio maintained</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
               <span className="text-success-800">Blue or white color scheme only</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
               <span className="text-success-800">Alt text for accessibility</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
               <span className="text-success-800">No combined categories</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle className="mt-0.5 flex-shrink-0 text-success-600" size={16} />
+              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
               <span className="text-success-800">Appropriate size for context (32-64px)</span>
             </div>
           </div>

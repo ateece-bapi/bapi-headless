@@ -40,8 +40,12 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",
     "@aws-sdk/client-ses": "^3.985.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
     "@sentry/nextjs": "^10.38.0",
     "@stripe/react-stripe-js": "^5.4.1",
     "@stripe/stripe-js": "^8.6.1",

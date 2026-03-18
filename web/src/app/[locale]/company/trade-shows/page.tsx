@@ -12,7 +12,7 @@
  * Note: Page content/metadata currently hard-coded English for April 10 deadline
  */
 
-import { Calendar } from 'lucide-react';
+import { CalendarIcon } from '@/lib/icons';
 import type { Metadata } from 'next';
 import { TradeShowsClient } from './TradeShowsClient';
 import { TRADE_SHOWS, getUpcomingShows, getPastShows } from '@/lib/data/tradeShows';
@@ -160,7 +160,7 @@ export default async function TradeShowsPage({ params }: TradeShowsPageProps) {
         <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
           {/* Badge */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-            <Calendar className="size-4" aria-hidden="true" />
+            <CalendarIcon className="size-4" aria-hidden="true" />
             <span>{labels.heroBadge}</span>
           </div>
 

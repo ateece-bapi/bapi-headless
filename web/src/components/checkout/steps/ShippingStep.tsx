@@ -10,7 +10,7 @@
  */
 
 import { useState } from 'react';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRightIcon, MapPinIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 import type { CheckoutData } from '../CheckoutPageClient';
 import { useToast } from '@/components/ui/Toast';
@@ -98,7 +98,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
       {/* Shipping Address Section */}
       <div>
         <div className="mb-6 flex items-center gap-2">
-          <MapPin className="h-6 w-6 text-primary-500" />
+          <MapPinIcon className="h-6 w-6 text-primary-500" />
           <h2 className="text-2xl font-bold text-neutral-900">{t('title')}</h2>
         </div>
 
@@ -305,7 +305,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
           className="btn-bapi-primary flex items-center gap-2 rounded-xl px-8 py-4"
         >
           {t('continueButton')}
-          <ArrowRight className="h-5 w-5" />
+          <ArrowRightIcon className="h-5 w-5" />
         </button>
       </div>
     </form>

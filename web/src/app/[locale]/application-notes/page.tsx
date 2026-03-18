@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { ApplicationNoteList } from '@/components/application-notes/ApplicationNoteList';
 import { GetApplicationNotesQuery, GetApplicationNotesDocument } from '@/lib/graphql/generated';
 import { getGraphQLClient } from '@/lib/graphql/client';
-import { BookOpen, Lightbulb } from 'lucide-react';
+import { BookOpenIcon, LightbulbIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 
 interface ApplicationNote {
@@ -62,7 +62,7 @@ export default async function ApplicationNotesPage() {
         </div>
         <div className="container relative mx-auto px-4 py-20 md:py-24">
           <div className="mb-6 flex items-center gap-3">
-            <BookOpen className="h-10 w-10" />
+            <BookOpenIcon className="h-10 w-10" />
             <span className="rounded-full bg-white/20 px-3 py-1 text-sm font-semibold uppercase tracking-wider">
               Technical Guidance
             </span>
@@ -98,7 +98,7 @@ export default async function ApplicationNotesPage() {
         <div className="container mx-auto px-4 py-12">
           <div className="flex max-w-4xl items-start gap-4">
             <div className="flex-shrink-0 rounded-lg bg-primary-50 p-3">
-              <Lightbulb className="h-6 w-6 text-primary-600" />
+              <LightbulbIcon className="h-6 w-6 text-primary-600" />
             </div>
             <div>
               <h2 className="mb-2 text-xl font-semibold text-neutral-900">
@@ -118,7 +118,7 @@ export default async function ApplicationNotesPage() {
       <div className="container mx-auto px-4 py-12">
         {applicationNotes.length === 0 ? (
           <div className="rounded-lg border border-neutral-200 bg-white py-20 text-center">
-            <BookOpen className="mx-auto mb-4 h-16 w-16 text-neutral-300" />
+            <BookOpenIcon className="mx-auto mb-4 h-16 w-16 text-neutral-300" />
             <h3 className="mb-2 text-xl font-semibold text-neutral-900">
               No application notes available
             </h3>

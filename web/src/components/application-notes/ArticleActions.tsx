@@ -1,6 +1,6 @@
 'use client';
 
-import { Share2, Printer } from 'lucide-react';
+import { Share2Icon, PrinterIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 
 interface ArticleActionsProps {
@@ -42,7 +42,7 @@ export function ArticleActions({ title }: ArticleActionsProps) {
         aria-label="Print article"
         title="Print"
       >
-        <Printer className="h-4 w-4" />
+        <PrinterIcon className="h-4 w-4" />
       </button>
       <button
         onClick={handleShare}
@@ -50,7 +50,7 @@ export function ArticleActions({ title }: ArticleActionsProps) {
         aria-label="Share article"
         title="Share"
       >
-        <Share2 className="h-4 w-4" />
+        <Share2Icon className="h-4 w-4" />
       </button>
     </div>
   );

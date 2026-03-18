@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Video, Play, Calendar, AlertCircle } from 'lucide-react';
+import { VideoIcon, PlayIcon, CalendarIcon, AlertCircleIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Video Library | BAPI Resources',
@@ -13,13 +13,13 @@ export default function VideosPage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Video className="mx-auto mb-4 h-16 w-16" />
+            <VideoIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Video Library</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Product demos, tutorials, and technical guides
             </p>
             <div className="mt-6 inline-flex items-center gap-2 rounded-lg bg-accent-500 px-4 py-2 font-semibold text-neutral-900">
-              <Calendar className="h-5 w-5" />
+              <CalendarIcon className="h-5 w-5" />
               Coming in Phase 2
             </div>
           </div>
@@ -30,7 +30,7 @@ export default function VideosPage() {
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="mb-12 rounded-xl border-2 border-primary-200 bg-primary-50 p-8">
             <div className="flex items-start gap-4">
-              <AlertCircle className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
+              <AlertCircleIcon className="mt-1 h-6 w-6 flex-shrink-0 text-primary-500" />
               <div>
                 <h2 className="mb-2 text-xl font-bold text-neutral-900">
                   Video Library Launching Soon
@@ -51,17 +51,17 @@ export default function VideosPage() {
             <h2 className="mb-8 text-2xl font-bold text-neutral-900">Planned Video Categories</h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               <div className="rounded-xl bg-neutral-50 p-6">
-                <Play className="mx-auto mb-3 h-10 w-10 text-primary-500" />
+                <PlayIcon className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Product Demos</h3>
                 <p className="text-sm text-neutral-700">Features and capabilities</p>
               </div>
               <div className="rounded-xl bg-neutral-50 p-6">
-                <Video className="mx-auto mb-3 h-10 w-10 text-primary-500" />
+                <VideoIcon className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Installation Guides</h3>
                 <p className="text-sm text-neutral-700">Step-by-step tutorials</p>
               </div>
               <div className="rounded-xl bg-neutral-50 p-6">
-                <Play className="mx-auto mb-3 h-10 w-10 text-primary-500" />
+                <PlayIcon className="mx-auto mb-3 h-10 w-10 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Technical Training</h3>
                 <p className="text-sm text-neutral-700">Advanced topics</p>
               </div>

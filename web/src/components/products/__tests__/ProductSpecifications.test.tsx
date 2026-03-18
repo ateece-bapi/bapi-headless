@@ -164,7 +164,7 @@ describe('ProductSpecifications Component', () => {
 
       fireEvent.click(technicalHeader);
 
-      const chevronDown = container.querySelector('.lucide-chevron-down');
+      const chevronDown = container.querySelector('.MuiSvgIcon-root');
       expect(chevronDown).toBeInTheDocument();
     });
 
@@ -173,7 +173,7 @@ describe('ProductSpecifications Component', () => {
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
-      const chevronUp = container.querySelectorAll('.lucide-chevron-up');
+      const chevronUp = container.querySelectorAll('.MuiSvgIcon-root');
       expect(chevronUp.length).toBeGreaterThan(0);
     });
   });

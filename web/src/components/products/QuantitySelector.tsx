@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Minus, Plus } from 'lucide-react';
+import { MinusIcon, PlusIcon } from '@/lib/icons';
 
 interface QuantitySelectorProps {
   /** Initial quantity value */
@@ -154,7 +154,7 @@ export default function QuantitySelector({
           } `}
           aria-label="Decrease quantity"
         >
-          <Minus className="h-4 w-4" />
+          <MinusIcon className="h-4 w-4" />
         </button>
 
         {/* Quantity input */}
@@ -186,7 +186,7 @@ export default function QuantitySelector({
           } `}
           aria-label="Increase quantity"
         >
-          <Plus className="h-4 w-4" />
+          <PlusIcon className="h-4 w-4" />
         </button>
 
         {/* Loading spinner */}

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Search, CheckCircle, ArrowRight } from 'lucide-react';
+import { SearchIcon, CheckCircleIcon, ArrowRightIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Product Selector Tool | BAPI',
@@ -15,7 +15,7 @@ export default function ProductSelectorPage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Search className="mx-auto mb-4 h-16 w-16" />
+            <SearchIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Product Selector</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Find the perfect sensor for your building automation project
@@ -43,7 +43,7 @@ export default function ProductSelectorPage() {
 
             <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
-                <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
+                <CheckCircleIcon className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Temperature Only</h3>
                 <p className="text-sm text-neutral-700">
                   Measure temperature in spaces, ducts, or outdoors
@@ -51,7 +51,7 @@ export default function ProductSelectorPage() {
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
-                <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
+                <CheckCircleIcon className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Temperature & Humidity</h3>
                 <p className="text-sm text-neutral-700">
                   Monitor both temperature and relative humidity
@@ -59,13 +59,13 @@ export default function ProductSelectorPage() {
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
-                <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
+                <CheckCircleIcon className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Air Quality (CO₂, VOC, PM)</h3>
                 <p className="text-sm text-neutral-700">Measure CO₂, VOC, or particulate matter</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
-                <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
+                <CheckCircleIcon className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">Pressure</h3>
                 <p className="text-sm text-neutral-700">
                   Monitor differential or absolute pressure
@@ -79,7 +79,7 @@ export default function ProductSelectorPage() {
               </button>
               <button className="flex items-center gap-2 rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
                 Continue
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRightIcon className="h-5 w-5" />
               </button>
             </div>
           </div>

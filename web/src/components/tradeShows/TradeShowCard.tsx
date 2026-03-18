@@ -6,7 +6,7 @@
  * Reuses ProductCard hover effects and BapiButton styling for brand consistency.
  */
 
-import { Calendar, MapPin, Building, User, FileDown, ExternalLink } from 'lucide-react';
+import { CalendarIcon, MapPinIcon, BuildingIcon, UserIcon, FileDownIcon, ExternalLinkIcon } from '@/lib/icons';
 import type { TradeShow } from '@/lib/data/tradeShows';
 import { formatDateRange, getEventStatus, getDaysUntilEvent } from '@/lib/data/tradeShows';
 import { CalendarDownloadButton } from './CalendarDownloadButton';
@@ -73,7 +73,7 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
         {/* Date - Enhanced Prominence */}
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2 text-base font-semibold text-neutral-900">
-            <Calendar className="size-5 text-primary-500" aria-hidden="true" />
+            <CalendarIcon className="size-5 text-primary-500" aria-hidden="true" />
             <span>{dateRange}</span>
           </div>
           {relativeTime && (
@@ -85,7 +85,7 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
 
         {/* Location */}
         <div className="flex items-center gap-2 text-sm text-neutral-600">
-          <MapPin className="size-4 text-primary-500" aria-hidden="true" />
+          <MapPinIcon className="size-4 text-primary-500" aria-hidden="true" />
           <span>
             {show.location.city}
             {show.location.state && `, ${show.location.state}`}, {show.location.country}
@@ -111,7 +111,7 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
         {/* Booth Number */}
         {show.booth && (
           <div className="flex items-center gap-2 rounded-lg bg-primary-50 px-3 py-2 text-sm font-medium text-primary-700">
-            <Building className="size-4" aria-hidden="true" />
+            <BuildingIcon className="size-4" aria-hidden="true" />
             <span>{show.booth}</span>
           </div>
         )}
@@ -124,7 +124,7 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
         {/* Contact Person */}
         {show.contact && (
           <div className="flex items-start gap-2 rounded-lg border border-neutral-200 bg-neutral-50 p-3 text-sm">
-            <User className="size-4 text-neutral-600 mt-0.5 shrink-0" aria-hidden="true" />
+            <UserIcon className="size-4 text-neutral-600 mt-0.5 shrink-0" aria-hidden="true" />
             <div className="flex flex-col gap-0.5">
               <span className="font-medium text-neutral-900">{show.contact.name}</span>
               <a
@@ -158,7 +158,7 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
             aria-label={`Register for ${show.title} (opens in new tab)`}
           >
             <span>Register</span>
-            <ExternalLink className="size-4" aria-hidden="true" />
+            <ExternalLinkIcon className="size-4" aria-hidden="true" />
           </a>
         )}
 
@@ -183,7 +183,7 @@ export function TradeShowCard({ show, locale = 'en' }: TradeShowCardProps) {
             }`}
             aria-label={`Download flyer for ${show.title}`}
           >
-            <FileDown className="size-4" aria-hidden="true" />
+            <FileDownIcon className="size-4" aria-hidden="true" />
             <span className={show.registrationUrl ? 'hidden sm:inline' : ''}>Flyer</span>
           </a>
         )}

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Briefcase, Heart } from 'lucide-react';
+import { BriefcaseIcon, HeartIcon } from '@/lib/icons';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
 import {
@@ -305,7 +305,7 @@ export default function ProductSummaryCard({
               className="flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-primary-500 px-4 py-3 text-sm font-semibold text-white shadow transition hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
               title="Add to Job Estimate"
             >
-              <Briefcase className="h-4 w-4" />
+              <BriefcaseIcon className="h-4 w-4" />
               <span className="hidden sm:inline">Job Estimate</span>
             </button>
             <button
@@ -317,7 +317,7 @@ export default function ProductSummaryCard({
               }`}
               title={isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
             >
-              <Heart className={`h-4 w-4 ${isFavorited ? 'fill-current' : ''}`} />
+              <HeartIcon className={`h-4 w-4 ${isFavorited ? 'fill-current' : ''}`} />
               <span className="hidden sm:inline">{isFavorited ? 'Favorited' : 'Favorite'}</span>
             </button>
           </div>

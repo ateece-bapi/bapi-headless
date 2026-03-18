@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, X, ArrowRight, Loader2 } from 'lucide-react';
+import { SearchIcon, XIcon, ArrowRightIcon, Loader2Icon } from '@/lib/icons';
 
 interface SearchProduct {
   id: string;
@@ -120,14 +120,14 @@ export function SearchDropdown({
     >
       {isLoading && (
         <div className="flex items-center justify-center py-8">
-          <Loader2 className="h-6 w-6 animate-spin text-primary-500" />
+          <Loader2Icon className="h-6 w-6 animate-spin text-primary-500" />
           <span className="ml-3 text-neutral-700">Searching...</span>
         </div>
       )}
 
       {!isLoading && results.length === 0 && query.length >= 2 && (
         <div className="py-8 text-center">
-          <Search className="mx-auto mb-3 h-12 w-12 text-neutral-300" />
+          <SearchIcon className="mx-auto mb-3 h-12 w-12 text-neutral-300" />
           <p className="font-medium text-neutral-700">No products found for &quot;{query}&quot;</p>
           <p className="mt-1 text-sm text-neutral-700">
             Try different keywords or browse categories
@@ -214,13 +214,13 @@ export function SearchDropdown({
           >
             {isNavigating ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2Icon className="h-4 w-4 animate-spin" />
                 <span>Loading results...</span>
               </>
             ) : (
               <>
                 <span>View all results for &quot;{query}&quot;</span>
-                <ArrowRight
+                <ArrowRightIcon
                   className={`h-4 w-4 transition-transform ${
                     selectedIndex === results.length ? 'translate-x-1' : ''
                   }`}

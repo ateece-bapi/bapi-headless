@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Mail, Phone, Play, X, MapPin, Briefcase } from 'lucide-react';
+import { MailIcon, PhoneIcon, PlayIcon, XIcon, MapPinIcon, BriefcaseIcon } from '@/lib/icons';
 
 interface SalesTeamCardProps {
   name: string;
@@ -63,7 +63,7 @@ export default function SalesTeamCard({
           {/* Video Badge - Always Visible */}
           {video && (
             <div className="absolute right-3 top-3 z-30 flex animate-pulse items-center gap-1.5 rounded-full bg-gradient-to-r from-accent-500 to-accent-600 px-3 py-1.5 text-xs font-bold text-neutral-900 shadow-lg">
-              <Play className="h-3.5 w-3.5" fill="currentColor" />
+              <PlayIcon className="h-3.5 w-3.5" fill="currentColor" />
               Watch Video
             </div>
           )}
@@ -83,7 +83,7 @@ export default function SalesTeamCard({
               aria-label={`Play introduction video for ${name}`}
             >
               <div className="mb-3 flex h-20 w-20 transform items-center justify-center rounded-full bg-white/95 shadow-xl transition-transform duration-300 group-hover/video:scale-110">
-                <Play className="ml-1 h-10 w-10 text-primary-600" fill="currentColor" />
+                <PlayIcon className="ml-1 h-10 w-10 text-primary-600" fill="currentColor" />
               </div>
               <span className="text-base font-bold tracking-wide text-white">
                 Watch Introduction
@@ -104,13 +104,13 @@ export default function SalesTeamCard({
 
           {/* Title with Icon */}
           <div className="mb-2 flex items-start gap-2">
-            <Briefcase className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-500" />
+            <BriefcaseIcon className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-500" />
             <p className="flex-1 text-sm font-semibold leading-tight text-neutral-700">{title}</p>
           </div>
 
           {/* Region Badge */}
           <div className="mb-4 flex items-center gap-2">
-            <MapPin className="h-4 w-4 flex-shrink-0 text-accent-500" />
+            <MapPinIcon className="h-4 w-4 flex-shrink-0 text-accent-500" />
             <span className="inline-block rounded-full border border-primary-200 bg-gradient-to-r from-primary-50 to-accent-50 px-3 py-1 text-xs font-bold text-primary-700">
               {region}
             </span>
@@ -123,7 +123,7 @@ export default function SalesTeamCard({
               className="flex flex-1 transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-700 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
               title={`Email ${name}`}
             >
-              <Mail className="h-4 w-4" />
+              <MailIcon className="h-4 w-4" />
               Email
             </a>
             <a
@@ -131,7 +131,7 @@ export default function SalesTeamCard({
               className="flex h-11 w-12 transform items-center justify-center rounded-lg border-2 border-accent-600 bg-accent-500 text-neutral-900 shadow-md transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-xl"
               title={`Call ${name}`}
             >
-              <Phone className="h-4 w-4" />
+              <PhoneIcon className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function SalesTeamCard({
               className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-white/20"
               aria-label="Close video"
             >
-              <X className="h-6 w-6" />
+              <XIcon className="h-6 w-6" />
             </button>
             <iframe
               src={`${video}${video.includes('?') ? '&' : '?'}autoplay=1`}

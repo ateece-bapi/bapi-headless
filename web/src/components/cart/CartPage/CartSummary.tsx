@@ -14,7 +14,7 @@
 import { useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Tag, X, ArrowRight } from 'lucide-react';
+import { TagIcon, XIcon, ArrowRightIcon } from '@/lib/icons';
 import { useToast } from '@/components/ui/Toast';
 import { getUserErrorMessage, logError } from '@/lib/errors';
 
@@ -151,7 +151,7 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
               disabled={isApplying || isUpdating || !couponCode.trim()}
               className="flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2 font-medium text-white transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              <Tag className="h-4 w-4" />
+              <TagIcon className="h-4 w-4" />
               {isApplying ? t('cartPage.coupon.applying') : t('cartPage.coupon.apply')}
             </button>
           </form>
@@ -169,7 +169,7 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
                 className="border-success-200 flex items-center justify-between rounded-lg border bg-success-50 px-3 py-2"
               >
                 <div className="flex items-center gap-2">
-                  <Tag className="h-4 w-4 text-success-600" />
+                  <TagIcon className="h-4 w-4 text-success-600" />
                   <span className="text-success-900 font-mono text-sm font-medium">
                     {coupon.code}
                   </span>
@@ -181,7 +181,7 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
                   className="text-success-600 transition-colors hover:text-success-700 disabled:cursor-not-allowed disabled:opacity-50"
                   aria-label={t('cartPage.coupon.remove')}
                 >
-                  <X className="h-4 w-4" />
+                  <XIcon className="h-4 w-4" />
                 </button>
               </div>
             ))}
@@ -233,7 +233,7 @@ export default function CartSummary({ cart, onApplyCoupon, isUpdating }: CartSum
           className="btn-bapi-accent flex w-full items-center justify-center gap-2 rounded-xl py-4 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {t('cartPage.summary.proceedToCheckout')}
-          <ArrowRight className="h-5 w-5" />
+          <ArrowRightIcon className="h-5 w-5" />
         </button>
 
         {/* Security Badges */}

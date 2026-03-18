@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
-import { ArrowRight, ArrowLeft, CreditCard, Banknote, Loader2 } from 'lucide-react';
+import { ArrowRightIcon, ArrowLeftIcon, CreditCardIcon, BanknoteIcon, Loader2Icon } from '@/lib/icons';
 import type { CheckoutData } from '../CheckoutPageClient';
 import { useToast } from '@/components/ui/Toast';
 
@@ -23,7 +23,7 @@ const StripeProvider = dynamic(
   {
     loading: () => (
       <div className="flex items-center justify-center py-8">
-        <Loader2 className="h-6 w-6 animate-spin text-primary-500" />
+        <Loader2Icon className="h-6 w-6 animate-spin text-primary-500" />
         <span className="ml-2 text-neutral-700">Loading payment form...</span>
       </div>
     ),
@@ -36,7 +36,7 @@ const StripePaymentForm = dynamic(
   {
     loading: () => (
       <div className="flex items-center justify-center py-4">
-        <Loader2 className="h-5 w-5 animate-spin text-primary-500" />
+        <Loader2Icon className="h-5 w-5 animate-spin text-primary-500" />
       </div>
     ),
     ssr: false,
@@ -63,13 +63,13 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
       id: 'credit_card',
       title: t('methods.creditCard.title'),
       description: t('methods.creditCard.description'),
-      icon: CreditCard,
+      icon: CreditCardIcon,
     },
     {
       id: 'paypal',
       title: t('methods.paypal.title'),
       description: t('methods.paypal.description'),
-      icon: Banknote,
+      icon: BanknoteIcon,
     },
   ];
 
@@ -241,7 +241,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
 
           {isLoadingIntent ? (
             <div className="flex items-center justify-center py-8">
-              <Loader2 className="h-8 w-8 animate-spin text-primary-500" />
+              <Loader2Icon className="h-8 w-8 animate-spin text-primary-500" />
               <span className="ml-3 text-neutral-700">{t('cardDetails.settingUp')}</span>
             </div>
           ) : clientSecret ? (
@@ -274,7 +274,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
             className="btn-bapi-primary flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3"
           >
             {t('paypal.continueButton')}
-            <ArrowRight className="h-5 w-5" />
+            <ArrowRightIcon className="h-5 w-5" />
           </button>
         </div>
       )}
@@ -287,7 +287,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
             onClick={onBack}
             className="flex items-center gap-2 rounded-xl bg-neutral-200 px-8 py-4 font-bold text-neutral-900 transition-colors hover:bg-neutral-300"
           >
-            <ArrowLeft className="h-5 w-5" />
+            <ArrowLeftIcon className="h-5 w-5" />
             {t('back')}
           </button>
         </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Shield, Package, RotateCcw, Clock, CheckCircle } from 'lucide-react';
+import { ShieldIcon, PackageIcon, RotateCcwIcon, ClockIcon, CheckCircleIcon } from '@/lib/icons';
 
 interface TrustBadgesProps {
   className?: string;
@@ -20,31 +20,31 @@ interface TrustBadgesProps {
 export default function TrustBadges({ className = '' }: TrustBadgesProps) {
   const badges = [
     {
-      icon: Shield,
+      icon: ShieldIcon,
       label: 'UL Listed',
       description: 'Certified Safe',
       color: 'text-primary-600',
     },
     {
-      icon: Package,
+      icon: PackageIcon,
       label: 'Made in USA',
       description: 'Quality Built',
       color: 'text-primary-600',
     },
     {
-      icon: Clock,
+      icon: ClockIcon,
       label: '5-Year Warranty',
       description: 'Full Coverage',
       color: 'text-green-600',
     },
     {
-      icon: RotateCcw,
+      icon: RotateCcwIcon,
       label: '30-Day Returns',
       description: 'Hassle Free',
       color: 'text-green-600',
     },
     {
-      icon: CheckCircle,
+      icon: CheckCircleIcon,
       label: 'Expert Support',
       description: 'Technical Help',
       color: 'text-primary-600',

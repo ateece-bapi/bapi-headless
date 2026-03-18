@@ -9,7 +9,7 @@
  * - Step 3: Review & Place Order
  */
 
-import { Check } from 'lucide-react';
+import { CheckIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 import ShippingStep from './steps/ShippingStep';
 import PaymentStep from './steps/PaymentStep';
@@ -62,7 +62,7 @@ export default function CheckoutWizard({
                   } `}
                 >
                   {currentStep > step.number ? (
-                    <Check className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <CheckIcon className="h-5 w-5 sm:h-6 sm:w-6" />
                   ) : (
                     step.number
                   )}

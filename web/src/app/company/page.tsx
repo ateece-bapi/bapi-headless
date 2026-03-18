@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Building2, Users, Target, Award, MapPin, Phone, Mail } from 'lucide-react';
+import { Building2Icon, UsersIcon, TargetIcon, AwardIcon, MapPinIcon, PhoneIcon, MailIcon } from '@/lib/icons';
 import PageContainer from '@/components/layout/PageContainer';
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function CompanyPage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <PageContainer size="narrow">
           <div className="text-center">
-            <Building2 className="duration-normal mx-auto mb-4 h-16 w-16 transition-transform hover:scale-110" />
+            <Building2Icon className="duration-normal mx-auto mb-4 h-16 w-16 transition-transform hover:scale-110" />
             <h1 className="mb-4 text-balance text-4xl font-bold sm:text-5xl">
               Building Automation Products Inc.
             </h1>
@@ -96,7 +96,7 @@ export default function CompanyPage() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
-              <Target className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
+              <TargetIcon className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Quality First</h3>
               <p className="leading-relaxed text-neutral-700">
                 Every product is designed and manufactured to the highest standards. We stand behind
@@ -105,7 +105,7 @@ export default function CompanyPage() {
             </div>
 
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
-              <Users className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
+              <UsersIcon className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Customer Focus</h3>
               <p className="leading-relaxed text-neutral-700">
                 Our technical support team works directly with engineers and contractors to ensure
@@ -114,7 +114,7 @@ export default function CompanyPage() {
             </div>
 
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg md:col-span-2">
-              <Award className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
+              <AwardIcon className="duration-normal mb-4 h-12 w-12 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Innovation</h3>
               <p className="leading-relaxed text-neutral-700">
                 We continuously improve our products with the latest technology, from wireless
@@ -135,7 +135,7 @@ export default function CompanyPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {/* Location */}
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-              <MapPin className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
+              <MapPinIcon className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
               <h3 className="mb-4 text-xl font-bold text-neutral-900">Our Location</h3>
               <div className="space-y-2 leading-relaxed text-neutral-700">
                 <p className="font-semibold">Building Automation Products Inc.</p>
@@ -147,7 +147,7 @@ export default function CompanyPage() {
 
             {/* Contact */}
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-              <Phone className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
+              <PhoneIcon className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
               <h3 className="mb-4 text-xl font-bold text-neutral-900">Get in Touch</h3>
               <div className="space-y-4">
                 <div>

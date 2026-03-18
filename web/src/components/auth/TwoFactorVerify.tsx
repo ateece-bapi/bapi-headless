@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
 import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
-import { Shield, Key, AlertCircle, Loader2, Clock } from 'lucide-react';
+import { ShieldIcon, KeyIcon, AlertCircleIcon, Loader2Icon, ClockIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 
 interface TwoFactorVerifyProps {
@@ -194,7 +194,7 @@ export function TwoFactorVerify({
       {/* Header */}
       <div className="text-center">
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100">
-          <Shield className="h-8 w-8 text-primary-600" />
+          <ShieldIcon className="h-8 w-8 text-primary-600" />
         </div>
         <h2 className="text-2xl font-bold text-neutral-900">
           Two-Factor Authentication
@@ -210,7 +210,7 @@ export function TwoFactorVerify({
       {attemptsRemaining !== null && attemptsRemaining <= 2 && (
         <div className="rounded-xl border-2 border-error-200 bg-error-50 p-4">
           <div className="flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 shrink-0 text-error-600" />
+            <AlertCircleIcon className="h-5 w-5 shrink-0 text-error-600" />
             <div className="text-sm">
               <p className="font-semibold text-neutral-900">Warning</p>
               <p className="mt-1 text-neutral-700">
@@ -231,7 +231,7 @@ export function TwoFactorVerify({
             </label>
             {inputMode === 'totp' && (
               <div className="flex items-center gap-2 text-sm text-neutral-700">
-                <Clock className="h-4 w-4" />
+                <ClockIcon className="h-4 w-4" />
                 <span>{timeRemaining}s</span>
               </div>
             )}
@@ -254,7 +254,7 @@ export function TwoFactorVerify({
             />
             {isLoading && (
               <div className="absolute inset-y-0 right-4 flex items-center">
-                <Loader2 className="h-6 w-6 animate-spin text-primary-600" />
+                <Loader2Icon className="h-6 w-6 animate-spin text-primary-600" />
               </div>
             )}
           </div>
@@ -278,7 +278,7 @@ export function TwoFactorVerify({
         >
           {isLoading ? (
             <span className="flex items-center justify-center gap-2">
-              <Loader2 className="h-5 w-5 animate-spin" />
+              <Loader2Icon className="h-5 w-5 animate-spin" />
               Verifying...
             </span>
           ) : (
@@ -295,7 +295,7 @@ export function TwoFactorVerify({
           disabled={isLoading}
           className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-neutral-300 px-4 py-3 font-semibold text-neutral-700 transition-all hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-500/20 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          <Key className="h-5 w-5" />
+          <KeyIcon className="h-5 w-5" />
           {inputMode === 'totp' ? 'Use a backup code instead' : 'Use authenticator app'}
         </button>
       </div>

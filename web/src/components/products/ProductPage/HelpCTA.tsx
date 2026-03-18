@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MessageCircle, Phone, Mail } from 'lucide-react';
+import { MessageCircleIcon, PhoneIcon, MailIcon } from '@/lib/icons';
 
 interface HelpCTAProps {
   className?: string;
@@ -32,21 +32,21 @@ export default function HelpCTA({ className = '' }: HelpCTAProps) {
               href="tel:+16507354800"
               className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white shadow transition hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
             >
-              <Phone className="h-5 w-5" />
+              <PhoneIcon className="h-5 w-5" />
               Call +1 (650) 735-4800
             </a>
             <a
               href="mailto:info@bapihvac.com"
               className="inline-flex items-center gap-2 rounded-lg border-2 border-primary-500 bg-white px-6 py-3 font-semibold text-primary-600 shadow-sm transition hover:bg-primary-50 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
             >
-              <Mail className="h-5 w-5" />
+              <MailIcon className="h-5 w-5" />
               Email Support
             </a>
           </div>
         </div>
         <div className="flex-shrink-0">
           <div className="rounded-full bg-white p-6 shadow-lg">
-            <MessageCircle className="h-12 w-12 text-primary-600" strokeWidth={1.5} />
+            <MessageCircleIcon className="h-12 w-12 text-primary-600" strokeWidth={1.5} />
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
 
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2Icon } from '@/lib/icons';
 
 interface StripePaymentFormProps {
   onSuccess: (paymentIntentId: string) => void;
@@ -68,7 +68,7 @@ export default function StripePaymentForm({ onSuccess, onError }: StripePaymentF
       >
         {isProcessing ? (
           <>
-            <Loader2 className="h-5 w-5 animate-spin" />
+            <Loader2Icon className="h-5 w-5 animate-spin" />
             Processing...
           </>
         ) : (

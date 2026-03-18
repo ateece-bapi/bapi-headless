@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, ReactNode } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDownIcon } from '@/lib/icons';
 
 interface FilterGroupProps {
   title: string;
@@ -20,7 +20,7 @@ export default function FilterGroup({ title, children, defaultOpen = true }: Fil
         aria-expanded={isOpen}
       >
         <span className="text-sm font-semibold text-neutral-900">{title}</span>
-        <ChevronDown
+        <ChevronDownIcon
           className={`h-4 w-4 text-neutral-500 transition-transform duration-200 ${
             isOpen ? 'rotate-180' : ''
           }`}

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Link } from '@/lib/navigation';
-import { ChevronRight, Globe, Languages } from 'lucide-react';
+import { ChevronRightIcon, GlobeIcon, LanguagesIcon } from '@/lib/icons';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
 import { getMegaMenuItems } from '../config';
@@ -45,7 +45,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           {/* Region & Language Settings - Mobile Only */}
           <div className="mb-4 space-y-3 rounded-lg border border-primary-200 bg-gradient-to-r from-primary-50 via-white to-primary-50 p-4">
             <div className="mb-2 flex items-center gap-2">
-              <Globe className="h-4 w-4 text-primary-600" />
+              <GlobeIcon className="h-4 w-4 text-primary-600" />
               <h3 className="text-sm font-bold text-neutral-900">Settings</h3>
             </div>
             <div className="flex flex-col gap-3">
@@ -65,7 +65,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                   aria-expanded={expandedIndex === index}
                 >
                   <span>{item.label}</span>
-                  <ChevronRight
+                  <ChevronRightIcon
                     className={clsx(
                       'h-5 w-5 text-neutral-400 transition-transform duration-200',
                       expandedIndex === index && 'rotate-90'
@@ -108,7 +108,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                                 onClick={onClose}
                                 className="flex min-h-[44px] items-start gap-2 rounded-md border border-transparent px-3 py-2.5 text-sm font-semibold text-neutral-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary-200 hover:bg-white hover:text-primary-700 hover:shadow-sm focus:outline-none focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1"
                               >
-                                <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-neutral-400" />
+                                <ChevronRightIcon className="mt-0.5 h-4 w-4 shrink-0 text-neutral-400" />
                                 <div>
                                   <div className="font-medium">{link.label}</div>
                                   {link.description && (

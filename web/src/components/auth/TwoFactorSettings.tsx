@@ -6,16 +6,16 @@ import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
 import { TwoFactorSetup } from './TwoFactorSetup';
 import {
-  Shield,
-  ShieldCheck,
-  ShieldOff,
-  Lock,
-  Key,
-  AlertTriangle,
-  CheckCircle,
-  Eye,
-  EyeOff,
-} from 'lucide-react';
+  ShieldIcon,
+  ShieldCheckIcon,
+  ShieldOffIcon,
+  LockIcon,
+  KeyIcon,
+  AlertTriangleIcon,
+  CheckCircleIcon,
+  EyeIcon,
+  EyeOffIcon,
+} from '@/lib/icons';
 import logger from '@/lib/logger';
 
 interface TwoFactorSettingsProps {
@@ -163,11 +163,11 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
           <div className="shrink-0">
             {localIsEnabled ? (
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-success-100">
-                <ShieldCheck className="h-6 w-6 text-success-600" />
+                <ShieldCheckIcon className="h-6 w-6 text-success-600" />
               </div>
             ) : (
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-200">
-                <ShieldOff className="h-6 w-6 text-neutral-700" />
+                <ShieldOffIcon className="h-6 w-6 text-neutral-700" />
               </div>
             )}
           </div>
@@ -179,7 +179,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
               </h3>
               {localIsEnabled && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-success-600 px-3 py-1 text-xs font-bold text-white">
-                  <CheckCircle className="h-3 w-3" />
+                  <CheckCircleIcon className="h-3 w-3" />
                   {t('status.active')}
                 </span>
               )}
@@ -198,7 +198,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
         <div className="space-y-4">
           <div className="rounded-xl border-2 border-primary-200 bg-primary-50 p-6">
             <div className="flex items-start gap-4">
-              <Shield className="h-6 w-6 shrink-0 text-primary-600" />
+              <ShieldIcon className="h-6 w-6 shrink-0 text-primary-600" />
               <div>
                 <h3 className="font-semibold text-neutral-900">{t('whyEnable.title')}</h3>
                 <ul className="mt-2 space-y-1 text-sm text-neutral-700">
@@ -213,7 +213,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
 
           <div className="rounded-xl border-2 border-accent-200 bg-accent-50 p-6">
             <div className="flex items-start gap-4">
-              <Key className="h-6 w-6 shrink-0 text-neutral-900" />
+              <KeyIcon className="h-6 w-6 shrink-0 text-neutral-900" />
               <div>
                 <h3 className="font-semibold text-neutral-900">{t('whatYouNeed.title')}</h3>
                 <p className="mt-1 text-sm text-neutral-700">
@@ -229,7 +229,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
       {localIsEnabled && (
         <div className="rounded-xl border-2 border-error-200 bg-error-50 p-6">
           <div className="flex items-start gap-4">
-            <AlertTriangle className="h-6 w-6 shrink-0 text-error-600" />
+            <AlertTriangleIcon className="h-6 w-6 shrink-0 text-error-600" />
             <div>
               <h3 className="font-semibold text-neutral-900">{t('backupCodes.title')}</h3>
               <p className="mt-1 text-sm text-neutral-700">
@@ -248,7 +248,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
           fullWidth
           className="justify-center gap-2"
         >
-          <Shield className="h-5 w-5" />
+          <ShieldIcon className="h-5 w-5" />
           {t('enable.button')}
         </Button>
       ) : (
@@ -260,14 +260,14 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
               fullWidth
               className="justify-center gap-2 border-error-300 text-error-700 hover:border-error-400 hover:bg-error-50"
             >
-              <ShieldOff className="h-5 w-5" />
+              <ShieldOffIcon className="h-5 w-5" />
               {t('disable.button')}
             </Button>
           ) : (
             <div className="space-y-4 rounded-xl border-2 border-error-200 bg-error-50 p-6">
               {/* Warning */}
               <div className="flex items-start gap-3">
-                <AlertTriangle className="h-5 w-5 shrink-0 text-error-600" />
+                <AlertTriangleIcon className="h-5 w-5 shrink-0 text-error-600" />
                 <div className="text-sm">
                   <p className="font-semibold text-neutral-900">{t('disable.warning.title')}</p>
                   <p className="mt-1 text-neutral-700">
@@ -285,7 +285,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                   </label>
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
-                      <Lock className="h-5 w-5 text-neutral-400" />
+                      <LockIcon className="h-5 w-5 text-neutral-400" />
                     </div>
                     <input
                       id="disable-password"
@@ -306,9 +306,9 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
                       aria-label={showPassword ? t('disable.form.hidePassword') : t('disable.form.showPassword')}
                     >
                       {showPassword ? (
-                        <EyeOff className="h-5 w-5" />
+                        <EyeOffIcon className="h-5 w-5" />
                       ) : (
-                        <Eye className="h-5 w-5" />
+                        <EyeIcon className="h-5 w-5" />
                       )}
                     </button>
                   </div>
@@ -373,7 +373,7 @@ export function TwoFactorSettings({ isEnabled, onStatusChange }: TwoFactorSettin
       <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
         <div className="flex items-start gap-4">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-100">
-            <Lock className="h-5 w-5 text-primary-600" />
+            <LockIcon className="h-5 w-5 text-primary-600" />
           </div>
           <div>
             <h3 className="font-semibold text-neutral-900">{t('securityTip.title')}</h3>

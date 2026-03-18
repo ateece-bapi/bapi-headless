@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { FileText, Clock, CheckCircle, Mail } from 'lucide-react';
+import { FileTextIcon, ClockIcon, CheckCircleIcon, MailIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Request a Quote | BAPI',
@@ -14,7 +14,7 @@ export default function RequestQuotePage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <FileText className="mx-auto mb-4 h-16 w-16" />
+            <FileTextIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Request a Quote</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Get custom pricing for your building automation project
@@ -28,17 +28,17 @@ export default function RequestQuotePage() {
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div className="text-center">
-              <Clock className="mx-auto mb-3 h-12 w-12 text-primary-500" />
+              <ClockIcon className="mx-auto mb-3 h-12 w-12 text-primary-500" />
               <h3 className="mb-2 text-lg font-bold text-neutral-900">Fast Response</h3>
               <p className="text-neutral-700">Quote within 24-48 business hours</p>
             </div>
             <div className="text-center">
-              <CheckCircle className="mx-auto mb-3 h-12 w-12 text-primary-500" />
+              <CheckCircleIcon className="mx-auto mb-3 h-12 w-12 text-primary-500" />
               <h3 className="mb-2 text-lg font-bold text-neutral-900">Accurate Pricing</h3>
               <p className="text-neutral-700">Detailed pricing for your exact needs</p>
             </div>
             <div className="text-center">
-              <Mail className="mx-auto mb-3 h-12 w-12 text-primary-500" />
+              <MailIcon className="mx-auto mb-3 h-12 w-12 text-primary-500" />
               <h3 className="mb-2 text-lg font-bold text-neutral-900">Direct Contact</h3>
               <p className="text-neutral-700">Work with our sales team directly</p>
             </div>

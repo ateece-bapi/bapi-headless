@@ -2,15 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import {
-  ArrowRight,
-  Wrench,
-  Smartphone,
-  Zap,
-  CheckCircle,
-  Search,
-  Shield,
-  ChevronRight,
-} from 'lucide-react';
+  ArrowRightIcon,
+  WrenchIcon,
+  SmartphoneIcon,
+  ZapIcon,
+  CheckCircleIcon,
+  SearchIcon,
+  ShieldIcon,
+  ChevronRightIcon,
+} from '@/lib/icons';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
@@ -35,18 +35,18 @@ export default function TestInstrumentsPage() {
             <Link href="/" className="transition-colors hover:text-white">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <Link href="/products" className="transition-colors hover:text-white">
               Products
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <span className="font-medium text-white">Test Instruments</span>
           </nav>
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-500/20 px-4 py-2 font-semibold text-accent-500 backdrop-blur">
-                <Smartphone className="h-4 w-4" />
+                <SmartphoneIcon className="h-4 w-4" />
                 <span>Bluetooth Test Equipment</span>
               </div>
 
@@ -65,7 +65,7 @@ export default function TestInstrumentsPage() {
                   className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Browse Blu-Test Products
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRightIcon className="h-5 w-5" />
                 </Link>
                 <Link
                   href="/request-quote"
@@ -142,7 +142,7 @@ export default function TestInstrumentsPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: Wrench,
+                icon: WrenchIcon,
                 title: 'Blu-Test Temperature',
                 description:
                   'Precision temperature reference with ±0.3°F accuracy for sensor verification and calibration.',
@@ -150,7 +150,7 @@ export default function TestInstrumentsPage() {
                 link: '/products?category=blu-test-temp',
               },
               {
-                icon: Smartphone,
+                icon: SmartphoneIcon,
                 title: 'Blu-Test Humidity',
                 description:
                   'Combined temperature and humidity reference for comprehensive sensor testing.',
@@ -163,7 +163,7 @@ export default function TestInstrumentsPage() {
                 link: '/products?category=blu-test-humidity',
               },
               {
-                icon: Zap,
+                icon: ZapIcon,
                 title: 'Blu-Test Pressure',
                 description:
                   'Digital manometer for differential pressure measurement and airflow diagnostics.',
@@ -198,7 +198,7 @@ export default function TestInstrumentsPage() {
                   className="-ml-2 inline-flex items-center gap-2 rounded-lg px-2 py-1 font-semibold text-primary-500 transition-all duration-300 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 group-hover:gap-4"
                 >
                   View Products
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRightIcon className="h-4 w-4" />
                 </Link>
 
                 <div className="absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl bg-gradient-to-r from-accent-500 via-primary-500 to-accent-500 transition-transform duration-500 group-hover:scale-x-100" />
@@ -223,32 +223,32 @@ export default function TestInstrumentsPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: Smartphone,
+                icon: SmartphoneIcon,
                 title: 'Real-Time Display',
                 description: 'See live sensor readings with large, easy-to-read numbers',
               },
               {
-                icon: CheckCircle,
+                icon: CheckCircleIcon,
                 title: 'Data Logging',
                 description: 'Record measurements over time for trend analysis',
               },
               {
-                icon: Search,
+                icon: SearchIcon,
                 title: 'Min/Max/Average',
                 description: 'Track statistical data during testing sessions',
               },
               {
-                icon: Shield,
+                icon: ShieldIcon,
                 title: 'Calibration Certificates',
                 description: 'Generate and export NIST-traceable documentation',
               },
               {
-                icon: Zap,
+                icon: ZapIcon,
                 title: 'Quick Compare',
                 description: 'Compare Blu-Test readings to installed sensors instantly',
               },
               {
-                icon: Smartphone,
+                icon: SmartphoneIcon,
                 title: 'Share Reports',
                 description: 'Email PDF reports directly from the app',
               },
@@ -334,7 +334,7 @@ export default function TestInstrumentsPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-2xl"
             >
               Browse Blu-Test Products
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
             <Link
               href="/contact"

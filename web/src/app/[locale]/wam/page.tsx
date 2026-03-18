@@ -2,20 +2,20 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  Radio,
-  Wifi,
-  Bell,
-  LineChart,
-  Shield,
-  Zap,
-  DollarSign,
-  TrendingUp,
-  CheckCircle,
-  ArrowRight,
-  Cloud,
-  Smartphone,
-  AlertTriangle,
-} from 'lucide-react';
+  RadioIcon,
+  WifiIcon,
+  BellIcon,
+  LineChartIcon,
+  ShieldIcon,
+  ZapIcon,
+  DollarSignIcon,
+  TrendingUpIcon,
+  CheckCircleIcon,
+  ArrowRightIcon,
+  CloudIcon,
+  SmartphoneIcon,
+  AlertTriangleIcon,
+} from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'WAM™ Wireless Asset Monitoring | BAPI',
@@ -35,7 +35,7 @@ export default function WAMPage() {
             {/* Left Column - Content */}
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm">
-                <Radio className="h-4 w-4" />
+                <RadioIcon className="h-4 w-4" />
                 <span className="text-sm font-semibold">WAM™ Wireless Asset Monitoring</span>
               </div>
 
@@ -55,7 +55,7 @@ export default function WAMPage() {
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-xl"
                 >
                   Request Demo
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRightIcon className="h-5 w-5" />
                 </a>
                 <a
                   href="#how-it-works"
@@ -68,15 +68,15 @@ export default function WAMPage() {
               {/* Trust Badges */}
               <div className="mt-12 flex flex-wrap gap-6 text-sm text-primary-100">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5" />
+                  <CheckCircleIcon className="h-5 w-5" />
                   <span>Made in USA</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5" />
+                  <CheckCircleIcon className="h-5 w-5" />
                   <span>ISO 9001 Certified</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5" />
+                  <CheckCircleIcon className="h-5 w-5" />
                   <span>30+ Years Experience</span>
                 </div>
               </div>
@@ -87,10 +87,10 @@ export default function WAMPage() {
               <div className="rounded-2xl border border-white/20 bg-white/10 p-8 backdrop-blur-lg">
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { icon: Wifi, label: 'Real-time Data', value: '24/7' },
-                    { icon: Bell, label: 'Instant Alerts', value: 'SMS/Email' },
-                    { icon: Cloud, label: 'Cloud Dashboard', value: 'Anywhere' },
-                    { icon: Shield, label: 'Prevent Losses', value: 'Proactive' },
+                    { icon: WifiIcon, label: 'Real-time Data', value: '24/7' },
+                    { icon: BellIcon, label: 'Instant Alerts', value: 'SMS/Email' },
+                    { icon: CloudIcon, label: 'Cloud Dashboard', value: 'Anywhere' },
+                    { icon: ShieldIcon, label: 'Prevent Losses', value: 'Proactive' },
                   ].map((stat) => (
                     <div
                       key={stat.label}
@@ -122,19 +122,19 @@ export default function WAMPage() {
           <div className="grid gap-8 md:grid-cols-3">
             {[
               {
-                icon: Radio,
+                icon: RadioIcon,
                 title: 'Wireless Sensors',
                 description:
                   'Battery-powered sensors transmit real-time temperature, humidity, and pressure data without complex wiring.',
               },
               {
-                icon: Cloud,
+                icon: CloudIcon,
                 title: 'Cloud Dashboard',
                 description:
                   'Web-based monitoring accessible from any device. View trends, set thresholds, and receive instant alerts.',
               },
               {
-                icon: Bell,
+                icon: BellIcon,
                 title: 'Smart Alerts',
                 description:
                   'Customizable notifications via SMS, email, or phone call when conditions exceed safe operating ranges.',
@@ -170,25 +170,25 @@ export default function WAMPage() {
             {[
               {
                 step: '1',
-                icon: Radio,
+                icon: RadioIcon,
                 title: 'Install Sensors',
                 description: 'Mount wireless sensors near critical equipment. No wiring needed.',
               },
               {
                 step: '2',
-                icon: Wifi,
+                icon: WifiIcon,
                 title: 'Connect Gateway',
                 description: 'Gateway receives sensor data and sends to secure cloud.',
               },
               {
                 step: '3',
-                icon: Cloud,
+                icon: CloudIcon,
                 title: 'Access Dashboard',
                 description: 'View real-time data and historical trends from any device.',
               },
               {
                 step: '4',
-                icon: Bell,
+                icon: BellIcon,
                 title: 'Receive Alerts',
                 description: 'Get instant notifications when conditions exceed thresholds.',
               },
@@ -214,7 +214,7 @@ export default function WAMPage() {
       <section className="bg-accent-500 py-6">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-4 text-neutral-900">
-            <AlertTriangle className="h-6 w-6 flex-shrink-0" />
+            <AlertTriangleIcon className="h-6 w-6 flex-shrink-0" />
             <p className="text-center text-lg font-semibold">
               Avoid costly losses from power outages or equipment failure with 24/7 asset monitoring
               from BAPI.
@@ -239,37 +239,37 @@ export default function WAMPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: DollarSign,
+                icon: DollarSignIcon,
                 title: 'Prevent Costly Failures',
                 description:
                   'Avoid equipment damage, inventory loss, and downtime. One prevented failure pays for the entire system.',
               },
               {
-                icon: Zap,
+                icon: ZapIcon,
                 title: 'Fast Installation',
                 description:
                   'Battery-powered sensors install in minutes. No electrician, no downtime, no disruption.',
               },
               {
-                icon: Smartphone,
+                icon: SmartphoneIcon,
                 title: 'Monitor Anywhere',
                 description:
                   'Check conditions from your phone, tablet, or computer. 24/7 access to live data and alerts.',
               },
               {
-                icon: LineChart,
+                icon: LineChartIcon,
                 title: 'Historical Trends',
                 description:
                   'Analyze patterns, prove compliance, and optimize operations with detailed reporting.',
               },
               {
-                icon: Shield,
+                icon: ShieldIcon,
                 title: 'Enterprise Security',
                 description:
                   'Bank-level encryption, secure cloud infrastructure, and data redundancy protect your information.',
               },
               {
-                icon: TrendingUp,
+                icon: TrendingUpIcon,
                 title: 'Scalable Solution',
                 description:
                   'Start with one sensor or deploy hundreds. Grows with your business needs.',
@@ -368,7 +368,7 @@ export default function WAMPage() {
                 <p className="mb-4 text-neutral-700">{product.description}</p>
                 <div className="flex items-center gap-2 font-semibold text-primary-500">
                   Learn More
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
             ))}
@@ -380,7 +380,7 @@ export default function WAMPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               View All Wireless Products
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>
@@ -720,7 +720,7 @@ export default function WAMPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               View All Installation Examples
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>
@@ -813,22 +813,22 @@ export default function WAMPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                icon: LineChart,
+                icon: LineChartIcon,
                 title: 'Temperature Trends',
                 description: 'Visualize temperature patterns over time',
               },
               {
-                icon: Bell,
+                icon: BellIcon,
                 title: 'Custom Alerts',
                 description: 'Set thresholds for instant notifications',
               },
               {
-                icon: Smartphone,
+                icon: SmartphoneIcon,
                 title: 'Mobile Access',
                 description: 'Monitor from any device, anywhere',
               },
               {
-                icon: TrendingUp,
+                icon: TrendingUpIcon,
                 title: 'Compliance Reports',
                 description: 'Export data for audits and compliance',
               },
@@ -865,7 +865,7 @@ export default function WAMPage() {
 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
+                    <CheckCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
                       <h4 className="font-bold text-neutral-900">Free Consultation</h4>
                       <p className="text-sm text-neutral-700">
@@ -874,7 +874,7 @@ export default function WAMPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
+                    <CheckCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
                       <h4 className="font-bold text-neutral-900">Custom Pricing</h4>
                       <p className="text-sm text-neutral-700">
@@ -883,7 +883,7 @@ export default function WAMPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
+                    <CheckCircleIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
                     <div>
                       <h4 className="font-bold text-neutral-900">Fast Implementation</h4>
                       <p className="text-sm text-neutral-700">

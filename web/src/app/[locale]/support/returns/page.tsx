@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
-import { Package, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
+import { PackageIcon, CheckCircleIcon, AlertCircleIcon, ArrowRightIcon } from '@/lib/icons';
 import { generatePageMetadata } from '@/lib/metadata';
 
 type Props = {
@@ -32,7 +32,7 @@ export default async function ReturnsPage({ params }: Props) {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Package className="mx-auto mb-4 h-16 w-16" />
+            <PackageIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
@@ -84,26 +84,26 @@ export default async function ReturnsPage({ params }: Props) {
           <h2 className="mb-6 text-2xl font-bold text-neutral-900">{t('requirements.title')}</h2>
           <div className="space-y-3">
             <div className="flex items-start gap-3">
-              <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
+              <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
               <span className="text-neutral-700">{t('requirements.rmaNumber')}</span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
+              <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
               <span className="text-neutral-700">{t('requirements.timeframe')}</span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
+              <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
               <span className="text-neutral-700">{t('requirements.invoice')}</span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
+              <CheckCircleIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary-500" />
               <span className="text-neutral-700">{t('requirements.packaging')}</span>
             </div>
           </div>
 
           <div className="mt-8 rounded-xl border-2 border-amber-200 bg-amber-50 p-6">
             <h3 className="mb-3 flex items-center text-lg font-bold text-amber-900">
-              <AlertCircle className="mr-2 h-5 w-5" />
+              <AlertCircleIcon className="mr-2 h-5 w-5" />
               {t('important.title')}
             </h3>
             <p className="text-sm text-amber-800">{t('important.description')}</p>
@@ -128,7 +128,7 @@ export default async function ReturnsPage({ params }: Props) {
               className="group/link inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-6 py-3 font-bold text-primary-500 transition-all hover:gap-3 hover:bg-primary-50"
             >
               <span>{t('cta.warrantyButton')}</span>
-              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover/link:translate-x-1" />
+              <ArrowRightIcon className="h-5 w-5 transition-transform duration-300 group-hover/link:translate-x-1" />
             </Link>
           </div>
         </div>

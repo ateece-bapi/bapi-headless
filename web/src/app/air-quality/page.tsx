@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Wind, Droplet, Gauge, AlertCircle, TrendingUp, CheckCircle } from 'lucide-react';
+import { WindIcon, DropletIcon, GaugeIcon, AlertCircleIcon, TrendingUpIcon, CheckCircleIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Air Quality Sensors | BAPI',
@@ -15,7 +15,7 @@ export default function AirQualityPage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Wind className="mx-auto mb-4 h-16 w-16" />
+            <WindIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Air Quality Sensors</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Monitor CO₂, VOC, and particulate matter for healthier indoor environments
@@ -32,7 +32,7 @@ export default function AirQualityPage() {
               href="/products?category=co2"
               className="rounded-xl bg-neutral-50 p-8 transition-all hover:-translate-y-1 hover:shadow-lg"
             >
-              <Gauge className="mb-4 h-12 w-12 text-primary-500" />
+              <GaugeIcon className="mb-4 h-12 w-12 text-primary-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">CO₂ Sensors</h3>
               <p className="mb-4 text-neutral-700">
                 NDIR technology for accurate carbon dioxide measurement in demand control
@@ -48,7 +48,7 @@ export default function AirQualityPage() {
               href="/products?category=voc"
               className="rounded-xl bg-neutral-50 p-8 transition-all hover:-translate-y-1 hover:shadow-lg"
             >
-              <AlertCircle className="mb-4 h-12 w-12 text-primary-500" />
+              <AlertCircleIcon className="mb-4 h-12 w-12 text-primary-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">VOC Sensors</h3>
               <p className="mb-4 text-neutral-700">
                 Volatile organic compound sensors for monitoring indoor air quality and controlling
@@ -64,7 +64,7 @@ export default function AirQualityPage() {
               href="/products?category=particulate"
               className="rounded-xl bg-neutral-50 p-8 transition-all hover:-translate-y-1 hover:shadow-lg"
             >
-              <Wind className="mb-4 h-12 w-12 text-primary-500" />
+              <WindIcon className="mb-4 h-12 w-12 text-primary-500" />
               <h3 className="mb-3 text-2xl font-bold text-neutral-900">PM Sensors</h3>
               <p className="mb-4 text-neutral-700">
                 Particulate matter sensors for PM2.5 and PM10 monitoring in cleanrooms and sensitive
@@ -88,7 +88,7 @@ export default function AirQualityPage() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
-              <CheckCircle className="mb-4 h-10 w-10 text-green-600" />
+              <CheckCircleIcon className="mb-4 h-10 w-10 text-green-600" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Health & Comfort</h3>
               <p className="text-neutral-700">
                 Poor indoor air quality can cause headaches, fatigue, and reduced productivity.
@@ -97,7 +97,7 @@ export default function AirQualityPage() {
             </div>
 
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
-              <TrendingUp className="mb-4 h-10 w-10 text-green-600" />
+              <TrendingUpIcon className="mb-4 h-10 w-10 text-green-600" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Energy Savings</h3>
               <p className="text-neutral-700">
                 Demand control ventilation based on actual occupancy and air quality can reduce HVAC
@@ -106,7 +106,7 @@ export default function AirQualityPage() {
             </div>
 
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
-              <CheckCircle className="mb-4 h-10 w-10 text-green-600" />
+              <CheckCircleIcon className="mb-4 h-10 w-10 text-green-600" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Building Codes</h3>
               <p className="text-neutral-700">
                 Many building codes now require CO₂ monitoring for demand control ventilation in
@@ -115,7 +115,7 @@ export default function AirQualityPage() {
             </div>
 
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-6">
-              <TrendingUp className="mb-4 h-10 w-10 text-green-600" />
+              <TrendingUpIcon className="mb-4 h-10 w-10 text-green-600" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Green Certifications</h3>
               <p className="text-neutral-700">
                 LEED and WELL certifications reward buildings with advanced air quality monitoring

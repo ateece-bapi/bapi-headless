@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { X, SlidersHorizontal } from 'lucide-react';
+import { XIcon, SlidersHorizontalIcon } from '@/lib/icons';
 import { ProductFilters } from './ProductFilters';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
 
@@ -116,7 +116,7 @@ export function MobileFilterDrawer({
         {/* Header */}
         <div className="flex flex-shrink-0 items-center justify-between border-b border-neutral-200 p-4">
           <div className="flex items-center gap-2">
-            <SlidersHorizontal className="h-5 w-5 text-primary-500" />
+            <SlidersHorizontalIcon className="h-5 w-5 text-primary-500" />
             <h2 id="mobile-filters-title" className="text-lg font-bold text-neutral-900">
               Filters
             </h2>
@@ -132,7 +132,7 @@ export function MobileFilterDrawer({
             className="rounded-lg p-2 transition-colors hover:bg-neutral-100"
             aria-label="Close filters"
           >
-            <X className="h-6 w-6 text-neutral-700" />
+            <XIcon className="h-6 w-6 text-neutral-700" />
           </button>
         </div>
 

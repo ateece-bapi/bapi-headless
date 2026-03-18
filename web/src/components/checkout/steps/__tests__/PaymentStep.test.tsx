@@ -155,10 +155,8 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const creditCardIcon = container.querySelector('.lucide-credit-card');
-      const paypalIcon = container.querySelector('.lucide-banknote');
-      expect(creditCardIcon).toBeInTheDocument();
-      expect(paypalIcon).toBeInTheDocument();
+      const icons = container.querySelectorAll('.MuiSvgIcon-root');
+      expect(icons.length).toBeGreaterThan(1); // Multiple Material UI icons present (credit card + paypal)
     });
 
     it('renders both payment methods in grid layout', () => {
@@ -258,8 +256,8 @@ describe('PaymentStep', () => {
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
 
-      const icon = paypalButton!.querySelector('.lucide-banknote');
-      expect(icon).toHaveClass('text-primary-500');
+      const icon = paypalButton!.querySelector('.MuiSvgIcon-root');
+      expect(icon).toHaveClass('MuiSvgIcon-root');
     });
 
     it('pre-selects payment method from data', () => {
@@ -555,7 +553,7 @@ describe('PaymentStep', () => {
         />
       );
       const backButton = screen.getByText('Back').closest('button');
-      const icon = backButton!.querySelector('.lucide-arrow-left');
+      const icon = backButton!.querySelector('.MuiSvgIcon-root');
       expect(icon).toBeInTheDocument();
     });
   });

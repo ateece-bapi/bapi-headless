@@ -39,6 +39,8 @@ const mockUseCart = () => ({
   items: [],
   totalItems: 0,
   totalPrice: 0,
+  subtotal: 0,
+  isEmpty: true,
   clearCart: vi.fn(),
   updateQuantity: vi.fn(),
   removeItem: vi.fn(),
@@ -47,6 +49,7 @@ const mockUseCart = () => ({
 const mockUseCartDrawer = () => ({
   openCart: mockOpenCart,
   closeCart: vi.fn(),
+  toggleCart: vi.fn(),
   isOpen: false,
 });
 

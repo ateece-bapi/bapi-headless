@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FileText, Building2, Award, TrendingUp, ArrowRight } from 'lucide-react';
+import { FileTextIcon, Building2Icon, AwardIcon, TrendingUpIcon, ArrowRightIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
 
@@ -31,7 +31,7 @@ export default async function CaseStudiesPage({ params }: Props) {
       challenge: 'Improve energy efficiency across 20 buildings while maintaining comfort',
       solution: 'Deployed 500+ BAPI sensors integrated with campus BMS',
       results: '22% energy savings, improved occupant comfort',
-      icon: Building2,
+      icon: Building2Icon,
     },
     {
       title: 'Healthcare Facility Air Quality',
@@ -39,7 +39,7 @@ export default async function CaseStudiesPage({ params }: Props) {
       challenge: 'Ensure optimal air quality and meet strict regulatory requirements',
       solution: 'Installed CO₂ and particulate sensors in critical areas',
       results: 'Maintained compliance, reduced complaints by 40%',
-      icon: Award,
+      icon: AwardIcon,
     },
     {
       title: 'Commercial Office Building Retrofit',
@@ -47,7 +47,7 @@ export default async function CaseStudiesPage({ params }: Props) {
       challenge: 'Modernize 30-year-old HVAC system controls',
       solution: 'Upgraded to wireless BAPI sensors with cloud monitoring',
       results: 'Installation time reduced by 60%, tenant satisfaction up 35%',
-      icon: TrendingUp,
+      icon: TrendingUpIcon,
     },
   ];
 
@@ -56,7 +56,7 @@ export default async function CaseStudiesPage({ params }: Props) {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <FileText className="mx-auto mb-4 h-16 w-16" />
+            <FileTextIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
@@ -101,7 +101,7 @@ export default async function CaseStudiesPage({ params }: Props) {
                       className="group/link inline-flex items-center gap-2 font-semibold text-primary-500 transition-all duration-300 hover:gap-3 hover:text-primary-600"
                     >
                       <span>{t('readMore')}</span>
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                      <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                     </button>
                   </div>
                 </div>

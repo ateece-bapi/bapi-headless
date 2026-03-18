@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { X, Package, DollarSign, CheckCircle, XCircle } from 'lucide-react';
+import { XIcon, PackageIcon, DollarSignIcon, CheckCircleIcon, XCircleIcon } from '@/lib/icons';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
 import { useRegion } from '@/store/regionStore';
@@ -86,7 +86,7 @@ export default function ProductComparison({
               className="rounded-full bg-white/20 p-2 transition-all duration-200 hover:bg-white/30"
               aria-label="Close comparison"
             >
-              <X className="h-5 w-5 text-white" />
+              <XIcon className="h-5 w-5 text-white" />
             </button>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function ProductComparison({
                         className="absolute -right-2 -top-2 rounded-full bg-error-500 p-1.5 text-white shadow-lg transition-all duration-200 hover:scale-110 hover:bg-error-600"
                         aria-label={`Remove ${product.name} from comparison`}
                       >
-                        <X className="h-4 w-4" />
+                        <XIcon className="h-4 w-4" />
                       </button>
 
                       {/* Product Image */}
@@ -140,7 +140,7 @@ export default function ProductComparison({
               <tr className="transition-colors hover:bg-neutral-50">
                 <td className="border-b border-neutral-200 p-4 font-medium text-neutral-700">
                   <div className="flex items-center gap-2">
-                    <DollarSign className="h-4 w-4 text-primary-500" />
+                    <DollarSignIcon className="h-4 w-4 text-primary-500" />
                     Price
                   </div>
                 </td>
@@ -158,7 +158,7 @@ export default function ProductComparison({
               <tr className="transition-colors hover:bg-neutral-50">
                 <td className="border-b border-neutral-200 p-4 font-medium text-neutral-700">
                   <div className="flex items-center gap-2">
-                    <Package className="h-4 w-4 text-primary-500" />
+                    <PackageIcon className="h-4 w-4 text-primary-500" />
                     SKU
                   </div>
                 </td>
@@ -195,12 +195,12 @@ export default function ProductComparison({
                       >
                         {inStock ? (
                           <>
-                            <CheckCircle className="h-4 w-4" />
+                            <CheckCircleIcon className="h-4 w-4" />
                             In Stock
                           </>
                         ) : (
                           <>
-                            <XCircle className="h-4 w-4" />
+                            <XCircleIcon className="h-4 w-4" />
                             Out of Stock
                           </>
                         )}

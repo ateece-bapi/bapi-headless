@@ -4,17 +4,17 @@ import { useState, FormEvent } from 'react';
 import { useToast } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
 import {
-  Shield,
-  QrCode,
-  Copy,
-  Download,
-  Check,
-  AlertCircle,
-  Smartphone,
-  Key,
-  Lock,
-  ChevronRight,
-} from 'lucide-react';
+  ShieldIcon,
+  QrCodeIcon,
+  CopyIcon,
+  DownloadIcon,
+  CheckIcon,
+  AlertCircleIcon,
+  SmartphoneIcon,
+  KeyIcon,
+  LockIcon,
+  ChevronRightIcon,
+} from '@/lib/icons';
 import logger from '@/lib/logger';
 
 interface TwoFactorSetupProps {
@@ -207,7 +207,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
         {/* Header */}
         <div className="text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100">
-            <Shield className="h-8 w-8 text-primary-600" />
+            <ShieldIcon className="h-8 w-8 text-primary-600" />
           </div>
           <h2 className="text-2xl font-bold text-neutral-900">
             Enable Two-Factor Authentication
@@ -222,7 +222,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
           <div className="rounded-xl border-2 border-primary-200 bg-primary-50 p-6">
             <div className="flex items-start gap-4">
               <div className="shrink-0">
-                <Smartphone className="h-6 w-6 text-primary-600" />
+                <SmartphoneIcon className="h-6 w-6 text-primary-600" />
               </div>
               <div>
                 <h3 className="font-semibold text-neutral-900">What You&apos;ll Need</h3>
@@ -236,21 +236,21 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
           <div className="rounded-xl border-2 border-accent-200 bg-accent-50 p-6">
             <div className="flex items-start gap-4">
               <div className="shrink-0">
-                <Lock className="h-6 w-6 text-neutral-900" />
+                <LockIcon className="h-6 w-6 text-neutral-900" />
               </div>
               <div>
                 <h3 className="font-semibold text-neutral-900">How It Works</h3>
                 <ul className="mt-2 space-y-1 text-sm text-neutral-700">
                   <li className="flex items-center gap-2">
-                    <ChevronRight className="h-4 w-4 shrink-0" />
+                    <ChevronRightIcon className="h-4 w-4 shrink-0" />
                     Scan a QR code with your authenticator app
                   </li>
                   <li className="flex items-center gap-2">
-                    <ChevronRight className="h-4 w-4 shrink-0" />
+                    <ChevronRightIcon className="h-4 w-4 shrink-0" />
                     Enter a 6-digit code to verify
                   </li>
                   <li className="flex items-center gap-2">
-                    <ChevronRight className="h-4 w-4 shrink-0" />
+                    <ChevronRightIcon className="h-4 w-4 shrink-0" />
                     Save backup codes for account recovery
                   </li>
                 </ul>
@@ -261,7 +261,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
           <div className="rounded-xl border-2 border-error-200 bg-error-50 p-6">
             <div className="flex items-start gap-4">
               <div className="shrink-0">
-                <AlertCircle className="h-6 w-6 text-error-600" />
+                <AlertCircleIcon className="h-6 w-6 text-error-600" />
               </div>
               <div>
                 <h3 className="font-semibold text-neutral-900">Important</h3>
@@ -301,7 +301,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
         {/* Header */}
         <div className="text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100">
-            <QrCode className="h-8 w-8 text-primary-600" />
+            <QrCodeIcon className="h-8 w-8 text-primary-600" />
           </div>
           <h2 className="text-2xl font-bold text-neutral-900">Scan QR Code</h2>
           <p className="mt-2 text-neutral-700">
@@ -328,7 +328,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
         <details className="group rounded-xl border-2 border-neutral-200 bg-neutral-50">
           <summary className="cursor-pointer px-6 py-4 font-semibold text-neutral-900 hover:text-primary-600">
             <div className="flex items-center gap-2">
-              <Key className="h-5 w-5" />
+              <KeyIcon className="h-5 w-5" />
               <span>Can&apos;t scan? Enter manually</span>
             </div>
           </summary>
@@ -347,9 +347,9 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
                 aria-label="Copy secret key"
               >
                 {copiedSecret ? (
-                  <Check className="h-5 w-5" />
+                  <CheckIcon className="h-5 w-5" />
                 ) : (
-                  <Copy className="h-5 w-5" />
+                  <CopyIcon className="h-5 w-5" />
                 )}
               </Button>
             </div>
@@ -410,7 +410,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
         {/* Header */}
         <div className="text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent-100">
-            <Key className="h-8 w-8 text-neutral-900" />
+            <KeyIcon className="h-8 w-8 text-neutral-900" />
           </div>
           <h2 className="text-2xl font-bold text-neutral-900">Save Your Backup Codes</h2>
           <p className="mt-2 text-neutral-700">
@@ -421,7 +421,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
         {/* Warning */}
         <div className="rounded-xl border-2 border-error-200 bg-error-50 p-6">
           <div className="flex items-start gap-4">
-            <AlertCircle className="h-6 w-6 shrink-0 text-error-600" />
+            <AlertCircleIcon className="h-6 w-6 shrink-0 text-error-600" />
             <div className="text-sm text-neutral-900">
               <p className="font-semibold">Important: Save these codes now!</p>
               <p className="mt-1 text-neutral-700">
@@ -459,12 +459,12 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
           >
             {copiedBackupCodes ? (
               <>
-                <Check className="h-5 w-5" />
+                <CheckIcon className="h-5 w-5" />
                 Copied to Clipboard
               </>
             ) : (
               <>
-                <Copy className="h-5 w-5" />
+                <CopyIcon className="h-5 w-5" />
                 Copy to Clipboard
               </>
             )}
@@ -476,7 +476,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
             fullWidth
             className="justify-center gap-2"
           >
-            <Download className="h-5 w-5" />
+            <DownloadIcon className="h-5 w-5" />
             Download as Text File
           </Button>
 
@@ -493,7 +493,7 @@ export function TwoFactorSetup({ onComplete, onCancel }: TwoFactorSetupProps) {
     return (
       <div className="mx-auto max-w-2xl space-y-6 text-center">
         <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-success-100">
-          <Check className="h-10 w-10 text-success-600" />
+          <CheckIcon className="h-10 w-10 text-success-600" />
         </div>
         <h2 className="text-3xl font-bold text-neutral-900">All Set!</h2>
         <p className="text-lg text-neutral-700">

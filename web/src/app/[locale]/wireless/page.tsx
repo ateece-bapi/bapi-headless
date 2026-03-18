@@ -2,15 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import {
-  ArrowRight,
-  Radio,
-  Wifi,
-  Bell,
-  BarChart3,
-  Battery,
-  Shield,
-  ChevronRight,
-} from 'lucide-react';
+  ArrowRightIcon,
+  RadioIcon,
+  WifiIcon,
+  BellIcon,
+  BarChart3Icon,
+  BatteryIcon,
+  ShieldIcon,
+  ChevronRightIcon,
+} from '@/lib/icons';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
@@ -35,18 +35,18 @@ export default function WirelessPage() {
             <Link href="/" className="transition-colors hover:text-white">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <Link href="/products" className="transition-colors hover:text-white">
               Products
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <span className="font-medium text-white">Wireless Asset Monitoring</span>
           </nav>
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-500/20 px-4 py-2 font-semibold text-accent-500 backdrop-blur">
-                <Radio className="h-4 w-4" />
+                <RadioIcon className="h-4 w-4" />
                 <span>Wireless Asset Monitoring</span>
               </div>
 
@@ -65,7 +65,7 @@ export default function WirelessPage() {
                   className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Explore WAM Solutions
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRightIcon className="h-5 w-5" />
                 </Link>
                 <Link
                   href="/request-quote"
@@ -145,7 +145,7 @@ export default function WirelessPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: Radio,
+                icon: RadioIcon,
                 title: 'WAM Temperature Sensors',
                 description:
                   'Wireless temperature monitoring for coolers, freezers, rooms, and outdoor environments.',
@@ -153,7 +153,7 @@ export default function WirelessPage() {
                 link: '/products?category=wireless-temperature',
               },
               {
-                icon: Wifi,
+                icon: WifiIcon,
                 title: 'WAM Humidity Sensors',
                 description:
                   'Combined temperature and humidity monitoring for climate-critical applications.',
@@ -161,7 +161,7 @@ export default function WirelessPage() {
                 link: '/products?category=wireless-humidity',
               },
               {
-                icon: Bell,
+                icon: BellIcon,
                 title: 'WAM Door Sensors',
                 description:
                   'Magnetic door switches for open/close monitoring and alert notification.',
@@ -196,7 +196,7 @@ export default function WirelessPage() {
                   className="-ml-2 inline-flex items-center gap-2 rounded-lg px-2 py-1 font-semibold text-primary-500 transition-all duration-300 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 group-hover:gap-4"
                 >
                   View Products
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRightIcon className="h-4 w-4" />
                 </Link>
 
                 <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
@@ -221,34 +221,34 @@ export default function WirelessPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: BarChart3,
+                icon: BarChart3Icon,
                 title: 'Real-Time Dashboards',
                 description:
                   'View live temperature data from all sensors on customizable dashboards',
               },
               {
-                icon: Bell,
+                icon: BellIcon,
                 title: 'Instant Alerts',
                 description:
                   'Get email, SMS, or push notifications when temperatures go out of range',
               },
               {
-                icon: Shield,
+                icon: ShieldIcon,
                 title: 'Compliance Reporting',
                 description: 'Automated reports for HACCP, FDA, and food safety compliance',
               },
               {
-                icon: Battery,
+                icon: BatteryIcon,
                 title: 'Battery Monitoring',
                 description: 'Track battery levels and receive low-battery alerts before failure',
               },
               {
-                icon: Wifi,
+                icon: WifiIcon,
                 title: 'Multi-Site Management',
                 description: 'Manage sensors across multiple locations from a single account',
               },
               {
-                icon: BarChart3,
+                icon: BarChart3Icon,
                 title: 'Historical Trends',
                 description: 'Analyze temperature patterns over days, weeks, or months',
               },
@@ -329,7 +329,7 @@ export default function WirelessPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-primary-600 hover:shadow-xl"
             >
               View All Installation Examples
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>
@@ -349,7 +349,7 @@ export default function WirelessPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:bg-accent-600 hover:shadow-2xl"
             >
               Explore WAM Solutions
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
             <Link
               href="/contact"

@@ -3,7 +3,7 @@
 import { useRecentlyViewed } from '@/store/recentlyViewed';
 import Link from 'next/link';
 import Image from 'next/image';
-import { X, History, Trash2 } from 'lucide-react';
+import { XIcon, HistoryIcon, Trash2Icon } from '@/lib/icons';
 
 interface RecentlyViewedProps {
   /** Current product ID to exclude from display */
@@ -61,7 +61,7 @@ export default function RecentlyViewed({
   if (limitedProducts.length === 0) {
     return (
       <div className="py-12 text-center">
-        <History className="mx-auto mb-4 h-12 w-12 text-neutral-400" />
+        <HistoryIcon className="mx-auto mb-4 h-12 w-12 text-neutral-400" />
         <p className="text-lg text-neutral-700">No recently viewed products</p>
         <p className="mt-2 text-sm text-neutral-700">Products you view will appear here</p>
       </div>
@@ -81,7 +81,7 @@ export default function RecentlyViewed({
             className="flex items-center gap-2 text-sm text-neutral-700 transition-colors hover:text-error-500"
             aria-label="Clear viewing history"
           >
-            <Trash2 className="h-4 w-4" />
+            <Trash2Icon className="h-4 w-4" />
             Clear All
           </button>
         )}
@@ -104,7 +104,7 @@ export default function RecentlyViewed({
               className="absolute right-2 top-2 z-10 rounded-full bg-white p-1.5 opacity-0 shadow-md transition-opacity hover:bg-error-50 hover:text-error-500 group-hover:opacity-100"
               aria-label={`Remove ${product.name} from history`}
             >
-              <X className="h-4 w-4" />
+              <XIcon className="h-4 w-4" />
             </button>
 
             {/* Product link */}

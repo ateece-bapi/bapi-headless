@@ -42,7 +42,7 @@
 
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Image from 'next/image';
-import { ChevronDown, CheckCircle, AlertTriangle } from 'lucide-react';
+import { ChevronDownIcon, CheckCircleIcon, AlertTriangleIcon } from '@/lib/icons';
 
 const meta: Meta = {
   title: 'Components/MegaMenu',
@@ -170,7 +170,7 @@ export const Overview: Story = {
                   className="inline-flex items-center gap-1.5 rounded-md bg-primary-600 px-4 py-2.5 text-base font-semibold text-white shadow-md transition-all duration-300"
                 >
                   <span>Products</span>
-                  <ChevronDown
+                  <ChevronDownIcon
                     className="h-4 w-4 rotate-180 scale-110 transition-all duration-300"
                     aria-hidden="true"
                   />
@@ -266,7 +266,7 @@ export const Overview: Story = {
                         className="group mt-3 inline-flex w-full items-center justify-between rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-700 transition-all hover:border-primary-400 hover:bg-primary-100"
                       >
                         <span>View All {category.name}</span>
-                        <ChevronDown className="h-3.5 w-3.5 -rotate-90 transition-transform group-hover:translate-x-0.5" />
+                        <ChevronDownIcon className="h-3.5 w-3.5 -rotate-90 transition-transform group-hover:translate-x-0.5" />
                       </a>
                     </div>
                   ))}
@@ -291,7 +291,7 @@ export const Overview: Story = {
                     className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-primary-700"
                   >
                     Explore WAM™
-                    <ChevronDown className="-rotate-90" size={16} />
+                    <ChevronDownIcon className="-rotate-90" sx={{ fontSize: 16 }} />
                   </a>
                 </div>
 
@@ -355,42 +355,42 @@ export const Overview: Story = {
           {/* Feature List */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
               <h3 className="mb-2 text-lg font-semibold text-neutral-900">7 Product Categories</h3>
               <p className="text-sm text-neutral-700">
                 Complete product taxonomy with BAPI brand icons
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
               <h3 className="mb-2 text-lg font-semibold text-neutral-900">Hover Intent</h3>
               <p className="text-sm text-neutral-700">
                 80ms delay to open, 140ms delay to close for smooth UX
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
               <h3 className="mb-2 text-lg font-semibold text-neutral-900">Keyboard Navigation</h3>
               <p className="text-sm text-neutral-700">
                 Full keyboard support: ArrowDown, Enter, Space, Escape, Tab
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
               <h3 className="mb-2 text-lg font-semibold text-neutral-900">WCAG 2.1 AA</h3>
               <p className="text-sm text-neutral-700">
                 Comprehensive automated accessibility tests with jest-axe
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
               <h3 className="mb-2 text-lg font-semibold text-neutral-900">Featured Products</h3>
               <p className="text-sm text-neutral-700">
                 Sidebar showcase with badge, description, and CTA
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircle className="mb-3 h-8 w-8 text-success-600" />
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
               <h3 className="mb-2 text-lg font-semibold text-neutral-900">Quick Actions</h3>
               <p className="text-sm text-neutral-700">
                 Contact sales, find distributor, technical support
@@ -420,7 +420,7 @@ export const ClosedState: Story = {
             className="inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-base font-semibold text-neutral-700 transition-all hover:bg-primary-600 hover:text-white"
           >
             <span>Products</span>
-            <ChevronDown className="h-4 w-4" aria-hidden="true" />
+            <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
           </button>
 
           {/* Support */}
@@ -513,7 +513,7 @@ export const CategoryColumn: Story = {
           className="group inline-flex w-full items-center justify-between rounded-lg border border-primary-200 bg-primary-50 px-3 py-2 text-xs font-bold text-primary-700 transition-all hover:border-primary-400 hover:bg-primary-100"
         >
           <span>View All Temperature</span>
-          <ChevronDown className="h-3.5 w-3.5 -rotate-90 transition-transform group-hover:translate-x-0.5" />
+          <ChevronDownIcon className="h-3.5 w-3.5 -rotate-90 transition-transform group-hover:translate-x-0.5" />
         </a>
       </div>
 
@@ -541,7 +541,7 @@ export const BrandCompliance: Story = {
       {/* Category Order Alert */}
       <div className="rounded-lg border-2 border-accent-500 bg-accent-50 p-6">
         <div className="flex items-start gap-3">
-          <AlertTriangle className="mt-1 shrink-0 text-accent-600" size={24} />
+          <AlertTriangleIcon className="mt-1 shrink-0 text-accent-600" sx={{ fontSize: 24 }} />
           <div className="space-y-2">
             <h3 className="text-lg font-semibold text-accent-900">
               Mandatory Category Order (Never Reorder!)

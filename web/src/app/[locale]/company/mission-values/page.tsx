@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wordpress';
 import Link from 'next/link';
-import { Target, Eye, Award, Users, Lightbulb, Shield, Heart, ArrowRight } from 'lucide-react';
+import { TargetIcon, EyeIcon, AwardIcon, UsersIcon, LightbulbIcon, ShieldIcon, HeartIcon, ArrowRightIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { locales } from '@/i18n';
 
@@ -23,35 +23,35 @@ export const revalidate = 3600;
 
 const coreValues = [
   {
-    icon: Users,
+    icon: UsersIcon,
     title: 'Quality',
     description:
       'We value our employees by encouraging open dialogue, a sense of community and work-life balance for a healthy culture.',
     gradient: 'from-primary-600 to-primary-700',
   },
   {
-    icon: Award,
+    icon: AwardIcon,
     title: 'Innovation',
     description:
       "We value processes and services that are metric driven to continually exceed our customers' expectations.",
     gradient: 'from-primary-600 to-primary-400',
   },
   {
-    icon: Lightbulb,
+    icon: LightbulbIcon,
     title: 'Collaborative Partnership',
     description:
       'We value new and improved solutions that are creative and unique, we continue to find ways to provide distinct advantages.',
     gradient: 'from-primary-700 to-primary-500',
   },
   {
-    icon: Shield,
+    icon: ShieldIcon,
     title: 'Integrity & Ethics',
     description:
       'We value our collaborative partnerships that lead to superior solutions and facilitate healthy, productive, and comfortable environments.',
     gradient: 'from-primary-600 to-primary-700',
   },
   {
-    icon: Heart,
+    icon: HeartIcon,
     title: 'Employees',
     description:
       'We value being deliberate, thoughtful and intentional with behaviors that match our every word.',
@@ -98,7 +98,7 @@ export default async function MissionValuesPage() {
           {/* Header */}
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Target className="h-4 w-4" />
+              <TargetIcon className="h-4 w-4" />
               {t('hero.badge')}
             </div>
 
@@ -122,7 +122,7 @@ export default async function MissionValuesPage() {
 
             <div className="relative">
               <div className="bg-linear-to-br mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl from-primary-600 to-primary-700 shadow-lg transition-transform duration-300 group-hover:scale-110">
-                <Target className="h-8 w-8 text-white" />
+                <TargetIcon className="h-8 w-8 text-white" />
               </div>
 
               <h2 className="mb-4 text-3xl font-bold text-gray-900">{t('mission.title')}</h2>
@@ -137,7 +137,7 @@ export default async function MissionValuesPage() {
 
             <div className="relative">
               <div className="bg-linear-to-br mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl from-primary-600 to-primary-400 shadow-lg transition-transform duration-300 group-hover:scale-110">
-                <Eye className="h-8 w-8 text-white" />
+                <EyeIcon className="h-8 w-8 text-white" />
               </div>
 
               <h2 className="mb-4 text-3xl font-bold text-gray-900">{t('vision.title')}</h2>
@@ -160,11 +160,11 @@ export default async function MissionValuesPage() {
         {/* Values Grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {[
-            { key: 'quality', icon: Users, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'innovation', icon: Award, gradient: 'from-primary-600 to-primary-400' },
-            { key: 'partnership', icon: Lightbulb, gradient: 'from-primary-700 to-primary-500' },
-            { key: 'integrity', icon: Shield, gradient: 'from-primary-600 to-primary-700' },
-            { key: 'employees', icon: Heart, gradient: 'from-primary-500 to-primary-700' },
+            { key: 'quality', icon: UsersIcon, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'innovation', icon: AwardIcon, gradient: 'from-primary-600 to-primary-400' },
+            { key: 'partnership', icon: LightbulbIcon, gradient: 'from-primary-700 to-primary-500' },
+            { key: 'integrity', icon: ShieldIcon, gradient: 'from-primary-600 to-primary-700' },
+            { key: 'employees', icon: HeartIcon, gradient: 'from-primary-500 to-primary-700' },
           ].map((value, index) => {
             const Icon = value.icon;
             return (
@@ -220,7 +220,7 @@ export default async function MissionValuesPage() {
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {t('cta.button')}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>

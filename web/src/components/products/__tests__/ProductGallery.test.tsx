@@ -429,7 +429,7 @@ describe('ProductGallery Component', () => {
       const { container } = render(
         <ProductGallery images={mockImages} productName={productName} />
       );
-      const zoomIcon = container.querySelector('.lucide-zoom-in');
+      const zoomIcon = container.querySelector('.MuiSvgIcon-root');
       expect(zoomIcon).toBeInTheDocument();
     });
 

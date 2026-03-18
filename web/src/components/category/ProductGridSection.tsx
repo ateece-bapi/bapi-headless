@@ -1,6 +1,6 @@
 'use client';
 
-import { Grid3x3, List } from 'lucide-react';
+import { Grid3x3Icon, ListIcon } from '@/lib/icons';
 import ProductCard from '@/components/products/ProductCard';
 
 interface Product {
@@ -84,7 +84,7 @@ export default function ProductGridSection({
               aria-label="Grid view"
               aria-pressed={viewMode === 'grid'}
             >
-              <Grid3x3 className="h-4 w-4" />
+              <Grid3x3Icon className="h-4 w-4" />
             </button>
             <button
               onClick={() => onViewModeChange('list')}
@@ -96,7 +96,7 @@ export default function ProductGridSection({
               aria-label="List view"
               aria-pressed={viewMode === 'list'}
             >
-              <List className="h-4 w-4" />
+              <ListIcon className="h-4 w-4" />
             </button>
           </div>
         </div>

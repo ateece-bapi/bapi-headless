@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Button } from './Button';
-import { MousePointerClick, ShoppingCart, Download, Trash2 } from 'lucide-react';
+import {
+  MousePointerClickIcon,
+  ShoppingCartIcon,
+  DownloadIcon,
+  Trash2Icon,
+} from '@/lib/icons';
 
 /**
  * Modern Button component using Class Variance Authority (CVA)
@@ -177,7 +182,7 @@ export const WithLeadingIcon: Story = {
     size: 'lg',
     children: (
       <>
-        <ShoppingCart className="h-5 w-5" />
+        <ShoppingCartIcon className="h-5 w-5" />
         <span>Add to Cart</span>
       </>
     ),
@@ -194,7 +199,7 @@ export const WithTrailingIcon: Story = {
     children: (
       <>
         <span>Download Specs</span>
-        <Download className="h-5 w-5" />
+        <DownloadIcon className="h-5 w-5" />
       </>
     ),
     className: 'gap-2',
@@ -208,7 +213,7 @@ export const IconOnly: Story = {
   args: {
     variant: 'ghost',
     size: 'md',
-    children: <MousePointerClick className="h-5 w-5" />,
+    children: <MousePointerClickIcon className="h-5 w-5" />,
     'aria-label': 'Click action',
   },
 };
@@ -221,7 +226,7 @@ export const DangerWithIcon: Story = {
     variant: 'danger',
     children: (
       <>
-        <Trash2 className="h-4 w-4" />
+        <Trash2Icon className="h-4 w-4" />
         <span>Remove Item</span>
       </>
     ),
@@ -318,7 +323,7 @@ export const ProductAddToCart: Story = {
     size: 'lg',
     children: (
       <>
-        <ShoppingCart className="h-5 w-5" />
+        <ShoppingCartIcon className="h-5 w-5" />
         <span>Add to Cart</span>
       </>
     ),

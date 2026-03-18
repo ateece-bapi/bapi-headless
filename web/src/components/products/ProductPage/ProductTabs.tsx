@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { FileText, Video, BookOpen, Download, ExternalLink } from 'lucide-react';
+import { FileTextIcon, VideoIcon, BookOpenIcon, DownloadIcon, ExternalLinkIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
 import { sanitizeDescription } from '@/lib/sanitizeDescription';
@@ -15,9 +15,9 @@ interface ProductTabsProps {
 }
 
 const TAB_LIST = [
-  { key: 'description', labelKey: 'productPage.tabs.description', icon: BookOpen },
-  { key: 'documents', labelKey: 'productPage.tabs.documents', icon: FileText },
-  { key: 'videos', labelKey: 'productPage.tabs.videos', icon: Video },
+  { key: 'description', labelKey: 'productPage.tabs.description', icon: BookOpenIcon },
+  { key: 'documents', labelKey: 'productPage.tabs.documents', icon: FileTextIcon },
+  { key: 'videos', labelKey: 'productPage.tabs.videos', icon: VideoIcon },
 ] as const;
 
 type TabType = (typeof TAB_LIST)[number]['key'];
@@ -83,7 +83,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
               <div className="py-16 text-center text-neutral-700">
                 <div className="flex flex-col items-center gap-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-neutral-100">
-                    <BookOpen className="h-8 w-8 text-neutral-400" />
+                    <BookOpenIcon className="h-8 w-8 text-neutral-400" />
                   </div>
                   <div>
                     <p className="mb-1 text-lg font-semibold text-neutral-700">
@@ -118,7 +118,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                 ).map(([category, docs]) => (
                   <div key={category}>
                     <div className="mb-4 flex items-center gap-2">
-                      <FileText className="h-6 w-6 text-primary-600" />
+                      <FileTextIcon className="h-6 w-6 text-primary-600" />
                       <h3 className="text-xl font-bold text-neutral-900">{category}</h3>
                     </div>
 
@@ -133,7 +133,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                         >
                           <div className="flex min-w-0 flex-1 items-center gap-3">
                             <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary-100 transition-colors group-hover:bg-primary-200">
-                              <FileText className="h-5 w-5 text-primary-600" />
+                              <FileTextIcon className="h-5 w-5 text-primary-600" />
                             </div>
                             <div className="min-w-0 flex-1">
                               <p className="truncate font-semibold text-neutral-900 transition-colors group-hover:text-primary-700">
@@ -142,7 +142,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                               <p className="text-sm text-neutral-700">PDF Document</p>
                             </div>
                           </div>
-                          <ExternalLink className="h-5 w-5 flex-shrink-0 text-neutral-400 transition-colors group-hover:text-primary-600" />
+                          <ExternalLinkIcon className="h-5 w-5 flex-shrink-0 text-neutral-400 transition-colors group-hover:text-primary-600" />
                         </a>
                       ))}
                     </div>
@@ -151,7 +151,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
               </div>
             ) : (
               <div className="py-12 text-center text-neutral-700">
-                <FileText className="mx-auto mb-4 h-12 w-12 text-neutral-300" />
+                <FileTextIcon className="mx-auto mb-4 h-12 w-12 text-neutral-300" />
                 <p className="mb-2 font-medium">{t('productPage.tabs.noDocumentsAvailable')}</p>
                 <p className="text-sm">
                   Specification documents will be displayed here when available.
@@ -205,7 +205,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                         >
                           <div className="flex min-w-0 flex-1 items-center gap-4">
                             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 shadow-md transition-transform group-hover/link:scale-110">
-                              <Video className="h-7 w-7 text-white" />
+                              <VideoIcon className="h-7 w-7 text-white" />
                             </div>
                             <div className="min-w-0 flex-1">
                               <p className="truncate text-lg font-bold text-neutral-900 transition-colors group-hover/link:text-primary-700">
@@ -214,7 +214,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                               <p className="mt-1 text-sm text-neutral-700">Click to watch video</p>
                             </div>
                           </div>
-                          <ExternalLink className="h-6 w-6 shrink-0 text-neutral-400 transition-colors group-hover/link:text-primary-600" />
+                          <ExternalLinkIcon className="h-6 w-6 shrink-0 text-neutral-400 transition-colors group-hover/link:text-primary-600" />
                         </a>
                       )}
                     </div>
@@ -225,7 +225,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
               <div className="py-20 text-center">
                 <div className="mx-auto flex max-w-md flex-col items-center gap-6">
                   <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-neutral-100 to-neutral-200">
-                    <Video className="h-10 w-10 text-neutral-400" />
+                    <VideoIcon className="h-10 w-10 text-neutral-400" />
                   </div>
                   <div>
                     <p className="mb-2 text-xl font-bold text-neutral-700">

@@ -8,7 +8,7 @@ import {
   getActiveFacilityTypes,
 } from '@/lib/constants/locations';
 import type { Location, FacilityType } from '@/lib/constants/locations';
-import { Building2, MapPin } from 'lucide-react';
+import { Building2Icon, MapPinIcon } from '@/lib/icons';
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -98,7 +98,7 @@ export function GlobalPresence({
         {/* Section Header */}
         <div className="mb-12 text-center">
           <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-100">
-            <Building2 className="h-8 w-8 text-primary-600" />
+            <Building2Icon className="h-8 w-8 text-primary-600" />
           </div>
           <h2 className="mb-4 text-4xl font-bold text-neutral-900">
             {title || 'Our Global Presence'}
@@ -270,7 +270,7 @@ export function GlobalPresence({
                       {translation?.name || location.name}
                     </h3>
                     <div className="flex items-center gap-1 text-sm text-neutral-700">
-                      <MapPin className="h-4 w-4" />
+                      <MapPinIcon className="h-4 w-4" />
                       <span>
                         {translation?.city || location.city},{' '}
                         {translation?.country || location.country}

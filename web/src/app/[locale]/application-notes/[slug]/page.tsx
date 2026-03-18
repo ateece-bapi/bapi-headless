@@ -7,7 +7,7 @@ import {
   GetApplicationNoteBySlugDocument,
 } from '@/lib/graphql/generated';
 import { getGraphQLClient } from '@/lib/graphql/client';
-import { ArrowLeft, Calendar, Clock, BookOpen, FileDown } from 'lucide-react';
+import { ArrowLeftIcon, CalendarIcon, ClockIcon, BookOpenIcon, FileDownIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import { ArticleActions } from '@/components/application-notes/ArticleActions';
 import { ReadingProgress } from '@/components/application-notes/ReadingProgress';
@@ -111,7 +111,7 @@ export default async function ApplicationNotePage({ params }: Props) {
               href="/application-notes"
               className="group inline-flex items-center gap-2 font-medium text-primary-600 transition-colors hover:text-primary-700"
             >
-              <ArrowLeft className="duration-250 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              <ArrowLeftIcon className="duration-250 h-4 w-4 transition-transform group-hover:-translate-x-1" />
               <span className="hidden sm:inline">Back to Application Notes</span>
               <span className="sm:hidden">Back</span>
             </Link>
@@ -134,17 +134,17 @@ export default async function ApplicationNotePage({ params }: Props) {
           <div className="container absolute bottom-0 left-0 right-0 mx-auto px-4 pb-12">
             <div className="max-w-4xl">
               <div className="mb-4 flex items-center gap-2 text-sm text-white/80">
-                <BookOpen className="h-4 w-4" />
+                <BookOpenIcon className="h-4 w-4" />
                 <span>Application Note</span>
               </div>
               <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">{note.title}</h1>
               <div className="flex items-center gap-6 text-sm text-white/80">
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
+                  <CalendarIcon className="h-4 w-4" />
                   <span>{note.date ? formatDate(note.date) : 'Date unknown'}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
+                  <ClockIcon className="h-4 w-4" />
                   <span>{readingTime} min read</span>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default async function ApplicationNotePage({ params }: Props) {
           <div className="container relative mx-auto px-4 py-16 md:py-20">
             <div className="max-w-4xl">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm text-white backdrop-blur-sm">
-                <BookOpen className="h-4 w-4" />
+                <BookOpenIcon className="h-4 w-4" />
                 <span>Application Note</span>
               </div>
               <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
@@ -168,11 +168,11 @@ export default async function ApplicationNotePage({ params }: Props) {
               </h1>
               <div className="flex flex-wrap items-center gap-6 text-sm text-primary-100">
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
+                  <CalendarIcon className="h-4 w-4" />
                   <span>{note.date ? formatDate(note.date) : 'Date unknown'}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
+                  <ClockIcon className="h-4 w-4" />
                   <span>{readingTime} min read</span>
                 </div>
                 {note.modified && note.date !== note.modified && (
@@ -193,7 +193,7 @@ export default async function ApplicationNotePage({ params }: Props) {
           {note.excerpt && (
             <div className="relative mb-10 rounded-r-lg border-l-4 border-primary-600 bg-gradient-to-r from-primary-50 to-blue-50 p-6 shadow-sm md:p-8">
               <div className="absolute right-4 top-4 text-primary-200">
-                <BookOpen className="h-8 w-8" />
+                <BookOpenIcon className="h-8 w-8" />
               </div>
               <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary-600">
                 Overview
@@ -219,7 +219,7 @@ export default async function ApplicationNotePage({ params }: Props) {
             </div>
             <div className="relative">
               <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
-                <BookOpen className="h-8 w-8" />
+                <BookOpenIcon className="h-8 w-8" />
               </div>
               <h3 className="mb-3 text-2xl font-bold md:text-3xl">Need More Technical Guidance?</h3>
               <p className="mx-auto mb-8 max-w-2xl text-lg text-primary-100">
@@ -233,7 +233,7 @@ export default async function ApplicationNotePage({ params }: Props) {
                 >
                   <span className="flex items-center justify-center gap-2">
                     View All Application Notes
-                    <ArrowLeft className="h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" />
+                    <ArrowLeftIcon className="h-4 w-4 rotate-180 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
                 <Link
@@ -241,7 +241,7 @@ export default async function ApplicationNotePage({ params }: Props) {
                   className="duration-250 group rounded-lg border-2 border-white/30 bg-primary-500/50 px-8 py-4 font-semibold text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-primary-500"
                 >
                   <span className="flex items-center justify-center gap-2">
-                    <FileDown className="h-4 w-4" />
+                    <FileDownIcon className="h-4 w-4" />
                     Download Resources
                   </span>
                 </Link>

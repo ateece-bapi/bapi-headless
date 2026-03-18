@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Package, TrendingUp, Clock, RotateCcw, Share2, Check } from 'lucide-react';
+import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
 import { findMatchingVariation, areAllAttributesSelected } from '@/lib/variations';
@@ -217,12 +217,12 @@ export default function VariationSelector({
                 >
                   {showShareConfirmation ? (
                     <>
-                      <Check className="h-4 w-4" />
+                      <CheckIcon className="h-4 w-4" />
                       <span className="font-medium">Copied!</span>
                     </>
                   ) : (
                     <>
-                      <Share2 className="h-4 w-4" />
+                      <Share2Icon className="h-4 w-4" />
                       <span className="hidden font-medium sm:inline">Share</span>
                     </>
                   )}
@@ -231,7 +231,7 @@ export default function VariationSelector({
                   onClick={handleClear}
                   className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm transition-colors hover:bg-white/20"
                 >
-                  <RotateCcw className="h-4 w-4" />
+                  <RotateCcwIcon className="h-4 w-4" />
                   <span className="hidden font-medium sm:inline">Reset</span>
                 </button>
               </>
@@ -289,7 +289,7 @@ export default function VariationSelector({
                   <div className="flex-1">
                     <div className="mb-3 flex items-center gap-2">
                       <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-500">
-                        <Package className="h-4 w-4 text-white" />
+                        <PackageIcon className="h-4 w-4 text-white" />
                       </div>
                       <p className="text-sm font-bold uppercase tracking-wider text-accent-800">
                         ✓ Selected Configuration
@@ -332,7 +332,7 @@ export default function VariationSelector({
                           <span className="font-bold text-green-800">In Stock</span>
                         </div>
                         <p className="flex items-center justify-end gap-1 text-xs text-green-700">
-                          <Clock className="h-3 w-3" />
+                          <ClockIcon className="h-3 w-3" />
                           Ships in 2-3 days
                         </p>
                       </div>

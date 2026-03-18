@@ -2,16 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import {
-  ArrowRight,
-  Thermometer,
-  Droplets,
-  Gauge,
-  Building2,
-  Factory,
-  Hospital,
-  ShoppingCart,
-  ChevronRight,
-} from 'lucide-react';
+  ArrowRightIcon,
+  ThermometerIcon,
+  DropletsIcon,
+  GaugeIcon,
+  Building2Icon,
+  FactoryIcon,
+  HospitalIcon,
+  ShoppingCartIcon,
+  ChevronRightIcon,
+} from '@/lib/icons';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 
 export const metadata: Metadata = {
@@ -36,11 +36,11 @@ export default function SensorsPage() {
             <Link href="/" className="transition-colors hover:text-white">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <Link href="/products" className="transition-colors hover:text-white">
               Products
             </Link>
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRightIcon className="h-4 w-4" />
             <span className="font-medium text-white">Sensors</span>
           </nav>
 
@@ -61,7 +61,7 @@ export default function SensorsPage() {
                   className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
                 >
                   Browse Sensors
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRightIcon className="h-5 w-5" />
                 </Link>
                 <Link
                   href="/request-quote"
@@ -138,7 +138,7 @@ export default function SensorsPage() {
           <div className="grid gap-8 md:grid-cols-3">
             {[
               {
-                icon: Thermometer,
+                icon: ThermometerIcon,
                 title: 'Temperature Sensors',
                 description:
                   'Precision thermistors and RTDs for accurate temperature monitoring in rooms, ducts, and outdoor environments.',
@@ -151,7 +151,7 @@ export default function SensorsPage() {
                 link: '/products?category=temperature',
               },
               {
-                icon: Droplets,
+                icon: DropletsIcon,
                 title: 'Humidity Sensors',
                 description:
                   'Reliable RH sensing for comfort control, process monitoring, and moisture management.',
@@ -164,7 +164,7 @@ export default function SensorsPage() {
                 link: '/products?category=humidity',
               },
               {
-                icon: Gauge,
+                icon: GaugeIcon,
                 title: 'Pressure Sensors',
                 description:
                   'Differential and static pressure transducers for air flow measurement and filter monitoring.',
@@ -204,7 +204,7 @@ export default function SensorsPage() {
                   className="-ml-2 inline-flex items-center gap-2 rounded-lg px-2 py-1 font-semibold text-primary-500 transition-all duration-300 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 group-hover:gap-4"
                 >
                   View Products
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRightIcon className="h-4 w-4" />
                 </Link>
 
                 <div className="bg-linear-to-r absolute left-0 right-0 top-0 h-1 origin-left scale-x-0 transform rounded-t-xl from-primary-400 via-primary-600 to-primary-400 transition-transform duration-500 group-hover:scale-x-100" />
@@ -229,22 +229,22 @@ export default function SensorsPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                icon: Building2,
+                icon: Building2Icon,
                 title: 'Commercial Buildings',
                 description: 'Office towers, retail, hospitality',
               },
               {
-                icon: Hospital,
+                icon: HospitalIcon,
                 title: 'Healthcare',
                 description: 'Hospitals, labs, clean rooms',
               },
               {
-                icon: Factory,
+                icon: FactoryIcon,
                 title: 'Industrial',
                 description: 'Manufacturing, warehouses, process',
               },
               {
-                icon: ShoppingCart,
+                icon: ShoppingCartIcon,
                 title: 'Retail & Food Service',
                 description: 'Grocery, restaurants, convenience',
               },
@@ -332,7 +332,7 @@ export default function SensorsPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-8 py-4 text-lg font-bold text-neutral-900 transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/50 focus:ring-offset-2 focus:ring-offset-primary-700"
             >
               Browse All Sensors
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRightIcon className="h-5 w-5" />
             </Link>
             <Link
               href="/contact"

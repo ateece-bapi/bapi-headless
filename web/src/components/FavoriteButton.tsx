@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Heart } from 'lucide-react';
+import { HeartIcon, HeartOutlineIcon } from '@/lib/icons';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter, useParams } from 'next/navigation';
 import { toast } from 'sonner';
@@ -162,7 +162,7 @@ export default function FavoriteButton({
             : 'border-2 border-neutral-300 bg-white text-neutral-700 hover:border-red-300 hover:text-red-600'
         }`}
       >
-        <Heart
+        <HeartIcon
           className={iconSizes[size]}
           fill={isFavorited ? 'currentColor' : 'none'}
           strokeWidth={2.5}
@@ -188,7 +188,7 @@ export default function FavoriteButton({
       }`}
       title={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
     >
-      <Heart
+      <HeartIcon
         className={iconSizes[size]}
         fill={isFavorited ? 'currentColor' : 'none'}
         strokeWidth={2.5}

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Phone, Mail, Globe, MapPin, Search } from 'lucide-react';
+import { PhoneIcon, MailIcon, GlobeIcon, MapPinIcon, SearchIcon } from '@/lib/icons';
 
 export default function WhereToBuyPage() {
   const [selectedRegion, setSelectedRegion] = useState<string>('all');
@@ -625,7 +625,7 @@ export default function WhereToBuyPage() {
             {/* Search Bar */}
             <div className="w-full lg:w-96">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+                <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
                 <input
                   type="text"
                   placeholder="Search by name or location..."
@@ -769,7 +769,7 @@ export default function WhereToBuyPage() {
                       <div className="mb-3 h-px origin-left scale-x-0 transform bg-linear-to-r from-primary-500 via-accent-500 to-primary-500 transition-transform duration-500 group-hover:scale-x-100"></div>
 
                       <div className="mb-4 flex items-center gap-2 text-neutral-700">
-                        <MapPin className="h-4 w-4 text-primary-500" />
+                        <MapPinIcon className="h-4 w-4 text-primary-500" />
                         <span className="text-sm font-medium">{distributor.location}</span>
                       </div>
 
@@ -801,7 +801,7 @@ export default function WhereToBuyPage() {
                             rel="noopener noreferrer"
                             className="flex w-full transform items-center justify-center gap-2 rounded-lg bg-linear-to-r from-primary-600 to-primary-700 px-4 py-2.5 font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-primary-700 hover:to-primary-800 hover:shadow-xl"
                           >
-                            <Globe className="h-4 w-4" />
+                            <GlobeIcon className="h-4 w-4" />
                             Visit Website
                           </a>
                         )}
@@ -812,7 +812,7 @@ export default function WhereToBuyPage() {
                               href={`tel:${distributor.phone}`}
                               className="flex transform items-center justify-center gap-2 rounded-lg border-2 border-accent-600 bg-accent-500 px-3 py-2 text-sm font-semibold text-neutral-900 shadow-md transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-xl"
                             >
-                              <Phone className="h-4 w-4" />
+                              <PhoneIcon className="h-4 w-4" />
                               Call
                             </a>
                           )}
@@ -821,7 +821,7 @@ export default function WhereToBuyPage() {
                               href={`mailto:${distributor.email}`}
                               className="flex transform items-center justify-center gap-2 rounded-lg border-2 border-neutral-300 bg-white px-3 py-2 text-sm font-semibold text-neutral-700 shadow-md transition-all duration-300 hover:scale-105 hover:border-primary-500 hover:bg-neutral-50 hover:text-primary-600 hover:shadow-xl"
                             >
-                              <Mail className="h-4 w-4" />
+                              <MailIcon className="h-4 w-4" />
                               Email
                             </a>
                           )}

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { CheckCircle, AlertCircle, XCircle, Clock } from 'lucide-react';
+import { CheckCircleIcon, AlertCircleIcon, XCircleIcon, ClockIcon } from '@/lib/icons';
 
 interface ProductAvailabilityProps {
   /** WooCommerce stock status */
@@ -44,7 +44,7 @@ export default function ProductAvailability({
         if (stockQuantity !== null && stockQuantity !== undefined) {
           if (stockQuantity <= lowStockThreshold && stockQuantity > 0) {
             return {
-              icon: AlertCircle,
+              icon: AlertCircleIcon,
               label: 'Low Stock',
               color: 'warning',
               message: `Only ${stockQuantity} left in stock`,
@@ -54,7 +54,7 @@ export default function ProductAvailability({
             };
           }
           return {
-            icon: CheckCircle,
+            icon: CheckCircleIcon,
             label: 'In Stock',
             color: 'success',
             message:
@@ -67,7 +67,7 @@ export default function ProductAvailability({
           };
         }
         return {
-          icon: CheckCircle,
+          icon: CheckCircleIcon,
           label: 'In Stock',
           color: 'success',
           message: 'Ready to ship',
@@ -78,7 +78,7 @@ export default function ProductAvailability({
 
       case 'outofstock':
         return {
-          icon: XCircle,
+          icon: XCircleIcon,
           label: 'Out of Stock',
           color: 'error',
           message: restockDate
@@ -91,7 +91,7 @@ export default function ProductAvailability({
 
       case 'onbackorder':
         return {
-          icon: Clock,
+          icon: ClockIcon,
           label: 'On Backorder',
           color: 'info',
           message: restockDate
@@ -104,7 +104,7 @@ export default function ProductAvailability({
 
       default:
         return {
-          icon: AlertCircle,
+          icon: AlertCircleIcon,
           label: 'Check Availability',
           color: 'neutral',
           message: 'Contact us for availability',

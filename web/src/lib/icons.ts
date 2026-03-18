@@ -274,6 +274,7 @@ export { Group as UsersIcon };
 // Product & Category Icons
 export { DeviceThermostat as ThermometerIcon };
 export { WaterDrop as DropletsIcon };
+export { WaterDrop as DropletIcon }; // Singular variant alias
 export { Speed as GaugeIcon };
 export { Air as WindIcon };
 export { Wifi as WifiIcon };

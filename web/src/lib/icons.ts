@@ -180,6 +180,9 @@ import {
   Notifications,
   BarChart,
   BatteryFull,
+  
+  // Batch 14 Icons (Contact/Quote/RMA Pages)
+  Headphones,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -351,6 +354,9 @@ export { LocalHospital as HospitalIcon };
 export { Notifications as BellIcon };
 export { BarChart as BarChart3Icon };
 export { BatteryFull as BatteryIcon };
+
+// Batch 14 Icons (Contact/Quote/RMA Pages)
+export { Headphones as HeadphonesIcon };
 
 // ========================================
 // Type Definitions

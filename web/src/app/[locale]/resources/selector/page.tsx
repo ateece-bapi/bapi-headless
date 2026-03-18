@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Search, CheckCircle, ArrowRight } from 'lucide-react';
+import { SearchIcon, CheckCircleIcon, ArrowRightIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
 
@@ -30,7 +30,7 @@ export default async function ProductSelectorPage({ params }: Props) {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Search className="mx-auto mb-4 h-16 w-16" />
+            <SearchIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
@@ -56,25 +56,25 @@ export default async function ProductSelectorPage({ params }: Props) {
 
             <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
-                <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
+                <CheckCircleIcon className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.temperature')}</h3>
                 <p className="text-sm text-neutral-700">{t('options.temperatureDesc')}</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
-                <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
+                <CheckCircleIcon className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.tempHumidity')}</h3>
                 <p className="text-sm text-neutral-700">{t('options.tempHumidityDesc')}</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
-                <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
+                <CheckCircleIcon className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.airQuality')}</h3>
                 <p className="text-sm text-neutral-700">{t('options.airQualityDesc')}</p>
               </button>
 
               <button className="rounded-xl border-2 border-neutral-300 p-6 text-left transition-all hover:border-primary-500 hover:bg-primary-50">
-                <CheckCircle className="mb-3 h-8 w-8 text-primary-500" />
+                <CheckCircleIcon className="mb-3 h-8 w-8 text-primary-500" />
                 <h3 className="mb-2 font-bold text-neutral-900">{t('options.pressure')}</h3>
                 <p className="text-sm text-neutral-700">{t('options.pressureDesc')}</p>
               </button>
@@ -86,7 +86,7 @@ export default async function ProductSelectorPage({ params }: Props) {
               </button>
               <button className="flex items-center gap-2 rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
                 {t('buttons.continue')}
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRightIcon className="h-5 w-5" />
               </button>
             </div>
           </div>

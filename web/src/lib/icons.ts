@@ -163,6 +163,9 @@ import {
   // Batch 10 Icons (Account Pages)
   LocalMall,
   AlternateEmail,
+  
+  // Batch 11 Icons (Resources Pages)
+  Computer,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -317,6 +320,9 @@ export { Sort as SortAscIcon };
 // Batch 10 Icons (Account Pages)
 export { LocalMall as ShoppingBagIcon };
 export { AlternateEmail as AtSignIcon };
+
+// Batch 11 Icons (Resources Pages)
+export { Computer as MonitorIcon };
 
 // ========================================
 // Type Definitions

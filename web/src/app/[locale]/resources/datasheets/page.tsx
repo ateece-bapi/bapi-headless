@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { FileText, Download, Search, Filter } from 'lucide-react';
+import { FileTextIcon, DownloadIcon, SearchIcon, FilterIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
 
@@ -31,7 +31,7 @@ export default async function DatasheetsPage({ params }: Props) {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <FileText className="mx-auto mb-4 h-16 w-16" />
+            <FileTextIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
@@ -44,7 +44,7 @@ export default async function DatasheetsPage({ params }: Props) {
           <div className="flex flex-col gap-4 md:flex-row">
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+                <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
                 <input
                   type="search"
                   placeholder={t('search.placeholder')}
@@ -63,7 +63,7 @@ export default async function DatasheetsPage({ params }: Props) {
                 <option value="controllers">{t('search.categories.controllers')}</option>
               </select>
               <button className="rounded-lg bg-primary-500 px-4 py-3 font-semibold text-white transition-colors hover:bg-primary-600">
-                <Filter className="h-5 w-5" />
+                <FilterIcon className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -82,7 +82,7 @@ export default async function DatasheetsPage({ params }: Props) {
               >
                 <div className="mb-4 flex items-start gap-4">
                   <div className="flex h-20 w-16 flex-shrink-0 items-center justify-center rounded bg-neutral-100">
-                    <FileText className="h-8 w-8 text-primary-500" />
+                    <FileTextIcon className="h-8 w-8 text-primary-500" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="mb-1 text-xs text-neutral-700">{item.model}</div>
@@ -107,7 +107,7 @@ export default async function DatasheetsPage({ params }: Props) {
                   <span>{item.size}</span>
                 </div>
                 <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent-500 px-4 py-2 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
-                  <Download className="h-4 w-4" />
+                  <DownloadIcon className="h-4 w-4" />
                   {t('grid.downloadButton')}
                 </button>
               </div>
@@ -145,7 +145,7 @@ export default async function DatasheetsPage({ params }: Props) {
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('bulkDownload.heading')}</h2>
           <p className="mb-6 text-neutral-700">{t('bulkDownload.description')}</p>
           <button className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600">
-            <Download className="h-5 w-5" />
+            <DownloadIcon className="h-5 w-5" />
             {t('bulkDownload.button')}
           </button>
           <p className="mt-3 text-sm text-neutral-700">{t('bulkDownload.packageInfo')}</p>

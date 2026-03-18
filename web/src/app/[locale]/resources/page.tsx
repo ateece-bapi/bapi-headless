@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { BookOpen } from 'lucide-react';
+import { BookOpenIcon } from '@/lib/icons';
 import { ResourceList } from '@/components/resources/ResourceList';
 import logger from '@/lib/logger';
 import { generatePageMetadata } from '@/lib/metadata';
@@ -151,7 +151,7 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
         >
           <div className="flex items-center gap-4">
             <div className="bg-linear-to-br duration-250 flex h-16 w-16 shrink-0 items-center justify-center rounded-lg from-primary-600 to-primary-700 transition-transform group-hover:scale-110">
-              <BookOpen className="h-8 w-8 text-white" />
+              <BookOpenIcon className="h-8 w-8 text-white" />
             </div>
             <div className="flex-1">
               <h3 className="mb-1 text-xl font-semibold text-neutral-900 transition-colors group-hover:text-primary-700">

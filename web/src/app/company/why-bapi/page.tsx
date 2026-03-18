@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Target, Award, Users, TrendingUp } from 'lucide-react';
+import { TargetIcon, AwardIcon, UsersIcon, TrendingUpIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Why Choose BAPI | Building Automation Products',

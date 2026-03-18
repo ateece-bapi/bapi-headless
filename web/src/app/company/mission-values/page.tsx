@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Target, Heart, Users, Lightbulb } from 'lucide-react';
+import { TargetIcon, HeartIcon, UsersIcon, LightbulbIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Mission & Values | BAPI',

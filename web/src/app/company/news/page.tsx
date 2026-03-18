@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Newspaper, Calendar, TrendingUp } from 'lucide-react';
+import { NewspaperIcon, CalendarIcon, TrendingUpIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'News & Updates | BAPI',

@@ -2,15 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import {
-  MessageCircle,
-  TrendingUp,
-  DollarSign,
-  Clock,
-  ThumbsUp,
-  ThumbsDown,
-  Package,
-  Zap,
-} from 'lucide-react';
+  MessageCircleIcon,
+  TrendingUpIcon,
+  DollarSignIcon,
+  ClockIcon,
+  ThumbsUpIcon,
+  ThumbsDownIcon,
+  PackageIcon,
+  ZapIcon,
+} from '@/lib/icons';
 import type { ChatMetricsSummary } from '@/lib/chat/analytics';
 
 export default function ChatAnalyticsDashboard() {
@@ -78,7 +78,7 @@ export default function ChatAnalyticsDashboard() {
               </p>
             </div>
             <div className="rounded-lg bg-primary-100 p-3">
-              <MessageCircle className="h-6 w-6 text-primary-600" />
+              <MessageCircleIcon className="h-6 w-6 text-primary-600" />
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function ChatAnalyticsDashboard() {
               </p>
             </div>
             <div className="rounded-lg bg-accent-100 p-3">
-              <Clock className="h-6 w-6 text-accent-600" />
+              <ClockIcon className="h-6 w-6 text-accent-600" />
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default function ChatAnalyticsDashboard() {
               </p>
             </div>
             <div className="rounded-lg bg-green-100 p-3">
-              <TrendingUp className="h-6 w-6 text-green-600" />
+              <TrendingUpIcon className="h-6 w-6 text-green-600" />
             </div>
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function ChatAnalyticsDashboard() {
               </p>
             </div>
             <div className="rounded-lg bg-neutral-100 p-3">
-              <DollarSign className="h-6 w-6 text-neutral-700" />
+              <DollarSignIcon className="h-6 w-6 text-neutral-700" />
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function ChatAnalyticsDashboard() {
         {/* Language Breakdown */}
         <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
           <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-neutral-900">
-            <Zap className="h-5 w-5 text-primary-500" />
+            <ZapIcon className="h-5 w-5 text-primary-500" />
             Language Distribution
           </h3>
           <div className="space-y-3">
@@ -166,7 +166,7 @@ export default function ChatAnalyticsDashboard() {
         {/* Top Products */}
         <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
           <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-neutral-900">
-            <Package className="h-5 w-5 text-accent-500" />
+            <PackageIcon className="h-5 w-5 text-accent-500" />
             Most Recommended Products
           </h3>
           {metrics.topProducts.length > 0 ? (
@@ -218,7 +218,7 @@ export default function ChatAnalyticsDashboard() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="flex items-center gap-4">
             <div className="rounded-full bg-green-100 p-4">
-              <ThumbsUp className="h-8 w-8 text-green-600" />
+              <ThumbsUpIcon className="h-8 w-8 text-green-600" />
             </div>
             <div>
               <p className="text-3xl font-bold text-green-600">{metrics.positiveFeedback}</p>
@@ -227,7 +227,7 @@ export default function ChatAnalyticsDashboard() {
           </div>
           <div className="flex items-center gap-4">
             <div className="rounded-full bg-red-100 p-4">
-              <ThumbsDown className="h-8 w-8 text-red-600" />
+              <ThumbsDownIcon className="h-8 w-8 text-red-600" />
             </div>
             <div>
               <p className="text-3xl font-bold text-red-600">{metrics.negativeFeedback}</p>

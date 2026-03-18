@@ -403,42 +403,39 @@ export { ShowChart as LineChartIcon };
 // ========================================
 
 /**
- * Base props for Material UI icons
- * All MUI icons support these props
+ * Material UI Icon Props
+ * 
+ * Note: This project is Tailwind-first and does NOT use MUI ThemeProvider.
+ * Use className for styling (recommended). MUI-specific props are listed for reference
+ * but will not work properly without MUI theme configuration.
  */
 export interface IconProps {
   /**
-   * CSS class name
+   * CSS class name (PRIMARY STYLING METHOD)
+   * Use Tailwind classes for size, color, spacing, etc.
+   * Example: className="h-6 w-6 text-primary-500 mb-4"
    */
   className?: string;
   
   /**
-   * Icon size (uses MUI fontSize prop)
-   * - 'small': 20px
-   * - 'medium': 24px (default)
-   * - 'large': 35px
-   * - 'inherit': inherits from parent
+   * Icon size - MUI fontSize prop (REQUIRES MUI THEME - not recommended)
+   * Use className with Tailwind sizing instead: "h-4 w-4", "h-6 w-6", etc.
    */
   fontSize?: 'small' | 'medium' | 'large' | 'inherit';
   
   /**
-   * Icon color (uses MUI color prop)
-   * - 'primary': theme primary color
-   * - 'secondary': theme secondary color
-   * - 'action': theme action color
-   * - 'disabled': theme disabled color
-   * - 'error': theme error color
-   * - 'inherit': inherits from parent
+   * Icon color - MUI color prop (REQUIRES MUI THEME - not recommended)
+   * Use className with Tailwind colors instead: "text-primary-500", etc.
    */
   color?: 'inherit' | 'primary' | 'secondary' | 'action' | 'disabled' | 'error';
   
   /**
-   * Inline styles
+   * Inline styles (use sparingly, prefer Tailwind classes)
    */
   style?: React.CSSProperties;
   
   /**
-   * ARIA label for accessibility
+   * ARIA label for accessibility (RECOMMENDED for icon-only buttons)
    */
   'aria-label'?: string;
   
@@ -449,18 +446,33 @@ export interface IconProps {
 }
 
 /**
- * Migration Notes:
+ * Material UI Icons + Tailwind Best Practices
  * 
- * Lucide → Material UI Size Mapping:
- * - Lucide: size={16|20|24} → MUI: fontSize="small|medium|large"
- * - Lucide: className="w-4 h-4" → MUI: fontSize="small"
- * - Lucide: className="w-5 h-5" → MUI: fontSize="medium"
- * - Lucide: className="w-6 h-6" → MUI: fontSize="large"
+ * This project uses MUI Icons as simple React components in a Tailwind-first design system.
+ * We do NOT use MUI ThemeProvider, so MUI-specific props (fontSize, color, sx) are not used.
  * 
- * Stroke Width:
- * - Lucide: strokeWidth prop → MUI: uses theme default (no direct equivalent)
- * - MUI icons are filled by default; use outlined variants if needed
+ * ✅ CORRECT: Use className for all styling (Tailwind standard)
+ * - Size: className="h-4 w-4" (16px), "h-5 w-5" (20px), "h-6 w-6" (24px), "h-14 w-14" (56px)
+ * - Color: className="text-primary-500", "text-accent-500", "text-neutral-700", etc.
+ * - Spacing: className="mb-4 mr-2 ml-3", etc.
+ * - Transitions: className="transition-transform duration-300 hover:scale-110"
+ * - Animation: className="animate-spin" (works perfectly with MUI icons)
  * 
- * Animation:
- * - Lucide: className="animate-spin" → Keep Tailwind class, works with MUI
+ * ❌ AVOID: MUI theme props (require MUI ThemeProvider which we don't use)
+ * - fontSize="small|medium|large" → Only works with MUI theme
+ * - color="primary|secondary" → Only works with MUI theme  
+ * - sx={{ ... }} → Requires MUI styling engine
+ * 
+ * Migration Pattern (Lucide → MUI Icons):
+ * - lucide size={16} → className="h-4 w-4"
+ * - lucide size={20} → className="h-5 w-5"
+ * - lucide size={24} → className="h-6 w-6"
+ * - lucide strokeWidth → Remove (MUI icons are filled SVGs, no stroke control)
+ * - Keep all existing Tailwind classes (colors, spacing, transitions)
+ * 
+ * Why This Approach:
+ * - MUI Icons are just React components that render SVG elements
+ * - They accept className like any React component
+ * - Tailwind is our design system, maintaining consistency across all components
+ * - This is the industry standard for MUI Icons + Tailwind (without MUI theme)
  */

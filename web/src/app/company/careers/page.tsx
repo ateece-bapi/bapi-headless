@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Briefcase, MapPin, Users } from 'lucide-react';
+import { BriefcaseIcon, MapPinIcon, UsersIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Careers at BAPI | Join Our Team',

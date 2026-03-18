@@ -2,16 +2,16 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import {
-  LifeBuoy,
-  FileText,
-  Wrench,
-  MessageSquare,
-  BookOpen,
-  AlertCircle,
-  Package,
-  Mail,
-  Phone,
-} from 'lucide-react';
+  LifeBuoyIcon,
+  FileTextIcon,
+  WrenchIcon,
+  MessageSquareIcon,
+  BookOpenIcon,
+  AlertCircleIcon,
+  PackageIcon,
+  MailIcon,
+  PhoneIcon,
+} from '@/lib/icons';
 import PageContainer from '@/components/layout/PageContainer';
 import { generatePageMetadata } from '@/lib/metadata';
 
@@ -49,7 +49,7 @@ export default async function SupportPage() {
       <section className="bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <PageContainer size="prose">
           <div className="text-center">
-            <LifeBuoy className="duration-normal mx-auto mb-4 h-16 w-16 transition-transform hover:rotate-12 hover:scale-110" />
+            <LifeBuoyIcon className="duration-normal mx-auto mb-4 h-16 w-16 transition-transform hover:rotate-12 hover:scale-110" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
             <p className="mx-auto max-w-3xl text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
@@ -64,7 +64,7 @@ export default async function SupportPage() {
               href="/contact"
               className="duration-normal group rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg"
             >
-              <MessageSquare className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
+              <MessageSquareIcon className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
               <h3 className="mb-2 text-xl font-bold text-neutral-900">
                 {t('quickActions.contactSupport.title')}
               </h3>
@@ -77,7 +77,7 @@ export default async function SupportPage() {
               href="/application-notes"
               className="duration-normal group rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg"
             >
-              <FileText className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
+              <FileTextIcon className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
               <h3 className="mb-2 text-xl font-bold text-neutral-900">
                 {t('quickActions.applicationNotes.title')}
               </h3>
@@ -90,7 +90,7 @@ export default async function SupportPage() {
               href="/rma-request"
               className="duration-normal group rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg"
             >
-              <Package className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
+              <PackageIcon className="duration-normal mb-3 h-10 w-10 text-primary-500 transition-transform group-hover:scale-110" />
               <h3 className="mb-2 text-xl font-bold text-neutral-900">
                 {t('quickActions.rmaRequest.title')}
               </h3>
@@ -112,7 +112,7 @@ export default async function SupportPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {/* Technical Documentation */}
             <div className="duration-normal rounded-xl bg-neutral-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
-              <BookOpen className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
+              <BookOpenIcon className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">
                 {t('resources.technicalDocs.title')}
               </h3>
@@ -154,7 +154,7 @@ export default async function SupportPage() {
 
             {/* Tools & Utilities */}
             <div className="duration-normal rounded-xl bg-neutral-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
-              <Wrench className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
+              <WrenchIcon className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">
                 {t('resources.toolsUtilities.title')}
               </h3>
@@ -196,7 +196,7 @@ export default async function SupportPage() {
 
             {/* Service & Returns */}
             <div className="duration-normal rounded-xl bg-neutral-50 p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
-              <AlertCircle className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
+              <AlertCircleIcon className="duration-normal mb-4 h-10 w-10 text-accent-500 transition-transform hover:scale-110" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">
                 {t('resources.serviceReturns.title')}
               </h3>
@@ -242,7 +242,7 @@ export default async function SupportPage() {
           <div className="duration-normal rounded-xl bg-white p-8 shadow-lg transition-all hover:shadow-xl">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <div className="group">
-                <Phone className="duration-normal mb-3 h-8 w-8 text-primary-500 transition-transform group-hover:scale-110" />
+                <PhoneIcon className="duration-normal mb-3 h-8 w-8 text-primary-500 transition-transform group-hover:scale-110" />
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">
                   {t('contact.phone.title')}
                 </h3>
@@ -256,7 +256,7 @@ export default async function SupportPage() {
               </div>
 
               <div className="group">
-                <Mail className="duration-normal mb-3 h-8 w-8 text-primary-500 transition-transform group-hover:scale-110" />
+                <MailIcon className="duration-normal mb-3 h-8 w-8 text-primary-500 transition-transform group-hover:scale-110" />
                 <h3 className="mb-2 text-xl font-bold text-neutral-900">
                   {t('contact.email.title')}
                 </h3>

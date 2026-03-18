@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeftIcon, ChevronRightIcon } from '@/lib/icons';
 import {
   applicationCategories,
   getApplicationCategorySlugs,
@@ -36,11 +36,11 @@ export default async function ApplicationCategoryPage({ params }: ApplicationCat
             <Link href="/" className="transition-colors hover:text-primary-600">
               Home
             </Link>
-            <ChevronRight className="mx-2 h-4 w-4 text-neutral-400" />
+            <ChevronRightIcon className="mx-2 h-4 w-4 text-neutral-400" />
             <Link href="/applications" className="transition-colors hover:text-primary-600">
               Applications
             </Link>
-            <ChevronRight className="mx-2 h-4 w-4 text-neutral-400" />
+            <ChevronRightIcon className="mx-2 h-4 w-4 text-neutral-400" />
             <span className="font-medium text-neutral-900">{category.name}</span>
           </nav>
 
@@ -96,7 +96,7 @@ export default async function ApplicationCategoryPage({ params }: ApplicationCat
                 <span className="font-medium text-primary-600 transition-all group-hover:gap-2">
                   View Products
                 </span>
-                <ChevronRight className="h-4 w-4 text-primary-600 transition-transform group-hover:translate-x-1" />
+                <ChevronRightIcon className="h-4 w-4 text-primary-600 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
           ))}
@@ -109,7 +109,7 @@ export default async function ApplicationCategoryPage({ params }: ApplicationCat
           href="/applications"
           className="group inline-flex items-center gap-2 font-medium text-primary-600 transition-colors hover:text-primary-700"
         >
-          <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
+          <ChevronLeftIcon className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
           <span>Back to All Applications</span>
         </Link>
       </section>

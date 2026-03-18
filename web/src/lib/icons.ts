@@ -166,6 +166,11 @@ import {
   
   // Batch 11 Icons (Resources Pages)
   Computer,
+  
+  // Batch 12 Icons (Company/Support/Applications Pages)
+  ChatBubble,
+  Factory as FactoryMUI,
+  Adjust,
 } from '@mui/icons-material';
 
 // Export with lucide-react compatible names
@@ -323,6 +328,11 @@ export { AlternateEmail as AtSignIcon };
 
 // Batch 11 Icons (Resources Pages)
 export { Computer as MonitorIcon };
+
+// Batch 12 Icons (Company/Support/Applications Pages)
+export { ChatBubble as MessageSquareIcon };
+export { FactoryMUI as FactoryIcon };
+export { Adjust as TargetIcon };
 
 // ========================================
 // Type Definitions

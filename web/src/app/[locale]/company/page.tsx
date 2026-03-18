@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Building2, Users, Target, Award, MapPin, Phone, Mail } from 'lucide-react';
+import { Building2Icon, UsersIcon, TargetIcon, AwardIcon, MapPinIcon, PhoneIcon, MailIcon } from '@/lib/icons';
 import PageContainer from '@/components/layout/PageContainer';
 import { GlobalPresence } from '@/components/company/GlobalPresence';
 import { generatePageMetadata } from '@/lib/metadata';
@@ -50,7 +50,7 @@ export default async function CompanyPage() {
         <PageContainer size="prose">
           <div className="text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Building2 className="h-4 w-4" />
+              <Building2Icon className="h-4 w-4" />
               {t('hero.badge')}
             </div>
             <h1 className="mb-6 text-balance text-5xl font-bold leading-tight sm:text-6xl">
@@ -115,7 +115,7 @@ export default async function CompanyPage() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div className="duration-normal group rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl">
-              <Target className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
+              <TargetIcon className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
               <h3 className="mb-4 text-2xl font-bold text-neutral-900">
                 {t('coreValues.qualityFirst.title')}
               </h3>
@@ -125,7 +125,7 @@ export default async function CompanyPage() {
             </div>
 
             <div className="duration-normal group rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl">
-              <Users className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
+              <UsersIcon className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
               <h3 className="mb-4 text-2xl font-bold text-neutral-900">
                 {t('coreValues.customerFocus.title')}
               </h3>
@@ -135,7 +135,7 @@ export default async function CompanyPage() {
             </div>
 
             <div className="duration-normal group rounded-2xl border-2 border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl md:col-span-2">
-              <Award className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
+              <AwardIcon className="mb-5 h-14 w-14 text-accent-500 transition-transform duration-300 group-hover:scale-110" />
               <h3 className="mb-4 text-2xl font-bold text-neutral-900">
                 {t('coreValues.innovation.title')}
               </h3>
@@ -160,7 +160,7 @@ export default async function CompanyPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {/* Location */}
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-              <MapPin className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
+              <MapPinIcon className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
               <h3 className="mb-4 text-xl font-bold text-neutral-900">
                 {t('location.locationCard.title')}
               </h3>
@@ -174,7 +174,7 @@ export default async function CompanyPage() {
 
             {/* Contact */}
             <div className="duration-normal rounded-xl border border-neutral-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-              <Phone className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
+              <PhoneIcon className="duration-normal mb-4 h-10 w-10 text-primary-500 transition-transform hover:scale-110" />
               <h3 className="mb-4 text-xl font-bold text-neutral-900">
                 {t('location.contactCard.title')}
               </h3>

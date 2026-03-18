@@ -1,25 +1,25 @@
 import Link from 'next/link';
 import {
-  Building2,
-  Factory,
-  Radio,
-  RefreshCw,
-  Wrench,
-  Zap,
-  Target,
-  CheckCircle,
-} from 'lucide-react';
+  Building2Icon,
+  FactoryIcon,
+  RadioIcon,
+  RefreshCwIcon,
+  WrenchIcon,
+  ZapIcon,
+  TargetIcon,
+  CheckCircleIcon,
+} from '@/lib/icons';
 import { applicationCategories } from '@/lib/navigation/applicationCategories';
 
 /**
  * Map category slugs to their Lucide icons
  */
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  'building-automation': Building2,
-  'industrial-process': Factory,
-  'wireless-remote': Radio,
-  'retrofit-replacement': RefreshCw,
-  'installation-support': Wrench,
+  'building-automation': Building2Icon,
+  'industrial-process': FactoryIcon,
+  'wireless-remote': RadioIcon,
+  'retrofit-replacement': RefreshCwIcon,
+  'installation-support': WrenchIcon,
 };
 
 /**
@@ -50,7 +50,7 @@ export default function ApplicationsPage() {
       <section className="mx-auto max-w-content px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {Object.entries(applicationCategories).map(([slug, category]) => {
-            const IconComponent = categoryIcons[slug] || Building2;
+            const IconComponent = categoryIcons[slug] || Building2Icon;
 
             return (
               <Link
@@ -114,7 +114,7 @@ export default function ApplicationsPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-12">
             <div className="text-center">
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 shadow-lg shadow-primary-500/20">
-                <Zap className="h-8 w-8 text-white" />
+                <ZapIcon className="h-8 w-8 text-white" />
               </div>
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Faster Discovery</h3>
               <p className="leading-relaxed text-neutral-700">
@@ -125,7 +125,7 @@ export default function ApplicationsPage() {
 
             <div className="text-center">
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 shadow-lg shadow-primary-500/20">
-                <Target className="h-8 w-8 text-white" />
+                <TargetIcon className="h-8 w-8 text-white" />
               </div>
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Better Decisions</h3>
               <p className="leading-relaxed text-neutral-700">
@@ -135,7 +135,7 @@ export default function ApplicationsPage() {
 
             <div className="text-center">
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 shadow-lg shadow-primary-500/20">
-                <CheckCircle className="h-8 w-8 text-white" />
+                <CheckCircleIcon className="h-8 w-8 text-white" />
               </div>
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Right Solution</h3>
               <p className="leading-relaxed text-neutral-700">

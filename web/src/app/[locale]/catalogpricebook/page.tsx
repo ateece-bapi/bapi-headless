@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Download, FileText, Printer, Mail } from 'lucide-react';
+import { DownloadIcon, FileTextIcon, PrinterIcon, MailIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {
   title: 'Catalog & Price Book | BAPI',
@@ -15,7 +15,7 @@ export default function CatalogPricebookPage() {
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <FileText className="mx-auto mb-4 h-16 w-16" />
+            <FileTextIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Catalog & Price Book</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">
               Download our complete product catalog and current pricing
@@ -32,7 +32,7 @@ export default function CatalogPricebookPage() {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all hover:border-primary-500">
               <div className="mb-6 flex items-start gap-4">
                 <div className="flex h-24 w-20 flex-shrink-0 items-center justify-center rounded bg-neutral-100">
-                  <FileText className="h-10 w-10 text-primary-500" />
+                  <FileTextIcon className="h-10 w-10 text-primary-500" />
                 </div>
                 <div>
                   <h2 className="mb-2 text-2xl font-bold text-neutral-900">Product Catalog 2026</h2>
@@ -64,11 +64,11 @@ export default function CatalogPricebookPage() {
 
               <div className="space-y-3">
                 <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
-                  <Download className="h-5 w-5" />
+                  <DownloadIcon className="h-5 w-5" />
                   Download Catalog (PDF)
                 </button>
                 <button className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-neutral-300 px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500">
-                  <Printer className="h-5 w-5" />
+                  <PrinterIcon className="h-5 w-5" />
                   Request Printed Copy
                 </button>
               </div>
@@ -78,7 +78,7 @@ export default function CatalogPricebookPage() {
             <div className="rounded-xl border-2 border-neutral-200 bg-white p-8 transition-all hover:border-primary-500">
               <div className="mb-6 flex items-start gap-4">
                 <div className="flex h-24 w-20 flex-shrink-0 items-center justify-center rounded bg-neutral-100">
-                  <FileText className="h-10 w-10 text-primary-500" />
+                  <FileTextIcon className="h-10 w-10 text-primary-500" />
                 </div>
                 <div>
                   <h2 className="mb-2 text-2xl font-bold text-neutral-900">Price Book 2026</h2>
@@ -110,11 +110,11 @@ export default function CatalogPricebookPage() {
 
               <div className="space-y-3">
                 <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent-500 px-6 py-3 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
-                  <Download className="h-5 w-5" />
+                  <DownloadIcon className="h-5 w-5" />
                   Download Price Book (PDF)
                 </button>
                 <button className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-neutral-300 px-6 py-3 font-semibold text-neutral-900 transition-colors hover:border-primary-500">
-                  <Mail className="h-5 w-5" />
+                  <MailIcon className="h-5 w-5" />
                   Request Quote
                 </button>
               </div>

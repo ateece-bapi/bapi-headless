@@ -2,6 +2,10 @@ import Link from 'next/link';
 import { ArrowLeftIcon } from '@/lib/icons';
 import { OrderCardSkeleton } from '@/components/skeletons';
 
+/**
+ * Loading skeleton for the orders list
+ * Displays placeholder content while orders are being fetched
+ */
 export default function OrdersLoading() {
   return (
     <main className="min-h-screen bg-neutral-50">

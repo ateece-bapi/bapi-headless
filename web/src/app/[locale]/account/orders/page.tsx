@@ -1,6 +1,7 @@
 import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
 import { Link } from '@/lib/navigation';
+import Image from 'next/image';
 import { ArrowLeftIcon, PackageIcon, EyeIcon, DownloadIcon, AlertCircleIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import { authenticatedGraphqlClient } from '@/lib/graphql/authenticated-client';
@@ -198,9 +199,11 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
                           className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-100"
                         >
                           {item.product.node.image?.sourceUrl ? (
-                            <img
+                            <Image
                               src={item.product.node.image.sourceUrl}
                               alt={item.product.node.name}
+                              width={64}
+                              height={64}
                               className="h-full w-full object-cover"
                             />
                           ) : (

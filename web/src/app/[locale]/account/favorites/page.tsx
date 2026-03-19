@@ -166,6 +166,7 @@ export default function FavoritesPage() {
                             alt={favorite.productName}
                             width={400}
                             height={400}
+                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                             className="h-full w-full object-cover transition-transform hover:scale-105"
                           />
                         </div>

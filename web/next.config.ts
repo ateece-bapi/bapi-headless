@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: '**.wordpress.org' },
       { protocol: 'https', hostname: '**.kinsta.cloud' },
       { protocol: 'https', hostname: '**.wp.com' },
+      // Test/placeholder image services (development/testing only)
+      { protocol: 'https', hostname: 'placehold.co' },
       // Add your CDN hostname(s) here if needed
       // { protocol: 'https', hostname: 'cdn.example.com' },
     ],

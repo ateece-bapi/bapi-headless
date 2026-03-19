@@ -247,7 +247,7 @@ export function shouldUseImperial(language: LanguageCode, region?: RegionCode): 
 /**
  * Get locale string from language code
  */
-function getLocaleFromLanguage(language: LanguageCode): string {
+export function getLocaleFromLanguage(language: LanguageCode): string {
   const localeMap: Record<LanguageCode, string> = {
     en: 'en-US',
     de: 'de-DE',

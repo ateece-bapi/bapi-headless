@@ -14,7 +14,6 @@ import {
 } from '@/lib/utils/regionLanguageMapping';
 import { REGION_GROUPS } from '@/lib/constants/regionGroups';
 import { ChevronDownIcon, GlobeAltIcon, CheckIcon } from '@heroicons/react/24/outline';
-import { REGIONS } from '@/types/region';
 
 const RegionSelectorV2: React.FC = () => {
   const [mounted, setMounted] = useState(false);

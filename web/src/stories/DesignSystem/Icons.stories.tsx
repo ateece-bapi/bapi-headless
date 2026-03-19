@@ -114,7 +114,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'Complete catalog of lucide-react icons used in BAPI Headless. All icons are from the lucide-react library with consistent stroke width (2px) and sizing.',
+          'Complete catalog of Material UI icons used in BAPI Headless. All icons are from @mui/icons-material with consistent sizing via Tailwind classes.',
       },
     },
   },
@@ -330,7 +330,7 @@ export const AllIcons: Story = {
         <div className="space-y-2">
           <h1 className="text-4xl font-bold text-neutral-950">Icon Library</h1>
           <p className="text-lg text-neutral-700">
-            {Object.values(icons).reduce((sum, cat) => sum + cat.length, 0)} lucide-react icons used
+            {Object.values(icons).reduce((sum, cat) => sum + cat.length, 0)} Material UI icons used
             across BAPI Headless
           </p>
         </div>
@@ -1001,13 +1001,13 @@ export const BAPIBrandedIcons: Story = {
           </div>
         </div>
 
-        {/* Lucide Fallbacks Comparison */}
+        {/* Material UI Fallbacks Comparison */}
         <div>
           <h2 className="mb-4 text-2xl font-semibold text-neutral-950">
-            Lucide Fallbacks (Development Only)
+            Material UI Fallbacks (Development Only)
           </h2>
           <p className="mb-4 text-sm text-neutral-700">
-            Use these lucide-react icons during development when brand assets aren&apos;t available
+            Use these Material UI icons during development when brand assets aren&apos;t available
           </p>
           <div className="rounded-lg border border-neutral-200 bg-white p-6">
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:grid-cols-8">

@@ -155,8 +155,11 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const icons = screen.getAllByTestId('payment-method-icon');
-      expect(icons.length).toBeGreaterThan(1); // Multiple payment method icons present
+      // Check for specific method icons instead of generic selector
+      const creditCardIcon = screen.getByTestId('payment-method-credit_card-icon');
+      const paypalIcon = screen.getByTestId('payment-method-paypal-icon');
+      expect(creditCardIcon).toBeInTheDocument();
+      expect(paypalIcon).toBeInTheDocument();
     });
 
     it('renders both payment methods in grid layout', () => {
@@ -256,7 +259,7 @@ describe('PaymentStep', () => {
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
 
-      const icon = screen.getAllByTestId('payment-method-icon')[1]; // PayPal icon
+      const icon = screen.getByTestId('payment-method-paypal-icon');
       expect(icon).toBeInTheDocument();
     });
 

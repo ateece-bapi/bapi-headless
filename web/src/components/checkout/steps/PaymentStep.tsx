@@ -225,7 +225,7 @@ export default function PaymentStep({ data, onNext, onBack, onUpdateData }: Paym
                   className={`mb-3 h-8 w-8 ${
                     selectedMethod === method.id ? 'text-primary-500' : 'text-neutral-400'
                   }`}
-                  data-testid="payment-method-icon"
+                  data-testid={`payment-method-${method.id}-icon`}
                 />
                 <h3 className="mb-1 text-lg font-semibold text-neutral-900">{method.title}</h3>
                 <p className="text-sm text-neutral-700">{method.description}</p>

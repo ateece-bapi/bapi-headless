@@ -52,7 +52,7 @@ export default function ReviewStep({ data, onBack, onPlaceOrder, isProcessing }:
       {/* Shipping Address */}
       <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-6">
         <div className="mb-4 flex items-start gap-3">
-          <MapPinIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" />
+          <MapPinIcon className="mt-0.5 h-6 w-6 flex-shrink-0 text-primary-500" data-testid="review-shipping-icon" />
           <div className="flex-1">
             <h3 className="mb-1 text-lg font-semibold text-neutral-900">{t('shippingAddress')}</h3>
           </div>

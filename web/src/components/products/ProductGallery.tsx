@@ -159,7 +159,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
             {/* Zoom overlay hint */}
             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 transition-all duration-300 group-hover:bg-opacity-10">
               <div className="rounded-full bg-white p-3 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
-                <ZoomInIcon className="h-6 w-6 text-neutral-700" />
+                <ZoomInIcon className="h-6 w-6 text-neutral-700" data-testid="zoom-image-icon" />
               </div>
             </div>
           </div>

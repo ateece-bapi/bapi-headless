@@ -234,7 +234,7 @@ export const Overview: Story = {
                           <h3 className="truncate text-sm font-bold text-neutral-900 group-hover:text-primary-700">
                             {category.name}
                           </h3>
-                          <p className="text-[10px] text-neutral-600">{category.color}</p>
+                          <p className="text-xs text-neutral-700">{category.color}</p>
                         </div>
                       </a>
 
@@ -251,7 +251,7 @@ export const Overview: Story = {
                                 <div className="text-xs font-semibold text-neutral-900 group-hover:text-primary-700">
                                   {product.name}
                                 </div>
-                                <div className="mt-0.5 text-[10px] leading-tight text-neutral-600">
+                                <div className="mt-0.5 text-xs leading-tight text-neutral-700">
                                   {product.desc}
                                 </div>
                               </div>
@@ -355,43 +355,43 @@ export const Overview: Story = {
           {/* Feature List */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
-              <h3 className="mb-2 text-lg font-semibold text-neutral-900">7 Product Categories</h3>
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" aria-hidden="true" />
+              <h2 className="mb-2 text-lg font-semibold text-neutral-900">7 Product Categories</h2>
               <p className="text-sm text-neutral-700">
                 Complete product taxonomy with BAPI brand icons
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
-              <h3 className="mb-2 text-lg font-semibold text-neutral-900">Hover Intent</h3>
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" aria-hidden="true" />
+              <h2 className="mb-2 text-lg font-semibold text-neutral-900">Hover Intent</h2>
               <p className="text-sm text-neutral-700">
                 80ms delay to open, 140ms delay to close for smooth UX
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
-              <h3 className="mb-2 text-lg font-semibold text-neutral-900">Keyboard Navigation</h3>
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" aria-hidden="true" />
+              <h2 className="mb-2 text-lg font-semibold text-neutral-900">Keyboard Navigation</h2>
               <p className="text-sm text-neutral-700">
                 Full keyboard support: ArrowDown, Enter, Space, Escape, Tab
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
-              <h3 className="mb-2 text-lg font-semibold text-neutral-900">WCAG 2.1 AA</h3>
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" aria-hidden="true" />
+              <h2 className="mb-2 text-lg font-semibold text-neutral-900">WCAG 2.1 AA</h2>
               <p className="text-sm text-neutral-700">
                 Comprehensive automated accessibility tests with jest-axe
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
-              <h3 className="mb-2 text-lg font-semibold text-neutral-900">Featured Products</h3>
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" aria-hidden="true" />
+              <h2 className="mb-2 text-lg font-semibold text-neutral-900">Featured Products</h2>
               <p className="text-sm text-neutral-700">
                 Sidebar showcase with badge, description, and CTA
               </p>
             </div>
             <div className="rounded-lg border border-neutral-200 bg-white p-6">
-              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" />
-              <h3 className="mb-2 text-lg font-semibold text-neutral-900">Quick Actions</h3>
+              <CheckCircleIcon className="mb-3 h-8 w-8 text-success-600" aria-hidden="true" />
+              <h2 className="mb-2 text-lg font-semibold text-neutral-900">Quick Actions</h2>
               <p className="text-sm text-neutral-700">
                 Contact sales, find distributor, technical support
               </p>
@@ -482,7 +482,7 @@ export const CategoryColumn: Story = {
             <h3 className="truncate text-sm font-bold text-neutral-900 group-hover:text-primary-700">
               Temperature
             </h3>
-            <p className="text-[10px] text-neutral-600">Red/Orange</p>
+            <p className="text-xs text-neutral-700">Red/Orange</p>
           </div>
         </a>
 
@@ -502,7 +502,7 @@ export const CategoryColumn: Story = {
               <div className="text-xs font-semibold text-neutral-900 group-hover:text-primary-700">
                 {name}
               </div>
-              <div className="mt-0.5 text-[10px] text-neutral-600">Product description</div>
+              <div className="mt-0.5 text-xs text-neutral-700">Product description</div>
             </a>
           ))}
         </div>
@@ -579,7 +579,7 @@ export const BrandCompliance: Story = {
               </div>
               <div className="text-center">
                 <div className="text-xs font-semibold text-neutral-900">{cat.name}</div>
-                <div className="text-[10px] text-neutral-600">#{idx + 1}</div>
+                <div className="text-xs text-neutral-700">#{idx + 1}</div>
               </div>
             </div>
           ))}

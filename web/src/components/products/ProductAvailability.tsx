@@ -122,7 +122,7 @@ export default function ProductAvailability({
     <div
       className={`inline-flex items-center gap-2 rounded-lg border-2 px-4 py-2 transition-all ${status.bgColor} border-${status.color}-200 `}
     >
-      <Icon className={`h-5 w-5 ${status.iconColor}`} aria-hidden="true" />
+      <Icon className={`h-5 w-5 ${status.iconColor}`} aria-hidden="true" data-testid="product-availability-icon" />
       <div className="flex flex-col">
         <span className={`text-sm font-semibold ${status.textColor}`}>{status.label}</span>
         {status.message && (

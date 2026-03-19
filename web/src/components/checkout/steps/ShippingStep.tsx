@@ -98,7 +98,7 @@ export default function ShippingStep({ data, onNext, onUpdateData }: ShippingSte
       {/* Shipping Address Section */}
       <div>
         <div className="mb-6 flex items-center gap-2">
-          <MapPinIcon className="h-6 w-6 text-primary-500" />
+          <MapPinIcon className="h-6 w-6 text-primary-500" data-testid="shipping-address-icon" />
           <h2 className="text-2xl font-bold text-neutral-900">{t('title')}</h2>
         </div>
 

@@ -1,4 +1,5 @@
 import { Roboto } from 'next/font/google';
+import { getLocale } from 'next-intl/server';
 import './globals.css';
 
 // Roboto font configuration
@@ -11,15 +12,18 @@ const roboto = Roboto({
 
 /**
  * Root layout - Required HTML structure for all routes
- * Locale-specific attributes are handled in nested [locale]/layout.tsx
+ * Uses server-side locale detection for accurate SSR lang attribute
  */
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Get locale from next-intl server-side (cookies/headers)
+  const locale = await getLocale();
+
   return (
-    <html suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${roboto.variable} font-sans antialiased`} suppressHydrationWarning>
         {children}
       </body>

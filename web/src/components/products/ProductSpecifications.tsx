@@ -180,9 +180,9 @@ export default function ProductSpecifications({
                     {group.specs.length} {group.specs.length === 1 ? 'spec' : 'specs'}
                   </span>
                   {isExpanded ? (
-                    <ChevronUpIcon className="h-5 w-5 text-neutral-700" />
+                    <ChevronUpIcon className="h-5 w-5 text-neutral-700" data-testid="collapse-specs-icon" />
                   ) : (
-                    <ChevronDownIcon className="h-5 w-5 text-neutral-700" />
+                    <ChevronDownIcon className="h-5 w-5 text-neutral-700" data-testid="expand-specs-icon" />
                   )}
                 </div>
               </button>

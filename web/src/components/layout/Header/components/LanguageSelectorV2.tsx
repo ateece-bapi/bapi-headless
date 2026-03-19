@@ -41,6 +41,8 @@ export function LanguageSelectorV2() {
     router.replace(pathname, { locale: newLocale });
   };
 
+  const currentLanguage = LANGUAGES[currentLocale];
+
   // Show placeholder during SSR to prevent hydration mismatch
   if (!mounted) {
     return (
@@ -55,9 +57,9 @@ export function LanguageSelectorV2() {
           />
           <span className="flex items-center gap-2">
             <span className="text-lg" aria-hidden="true">
-              🇺🇸
+              {currentLanguage.flag}
             </span>
-            <span className="block truncate">English</span>
+            <span className="block truncate">{currentLanguage.nativeName}</span>
           </span>
           <ChevronDownIcon
             className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400"
@@ -67,8 +69,6 @@ export function LanguageSelectorV2() {
       </div>
     );
   }
-
-  const currentLanguage = LANGUAGES[currentLocale];
 
   return (
     <div className="flex flex-col gap-0.5">

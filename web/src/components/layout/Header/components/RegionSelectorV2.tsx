@@ -56,6 +56,8 @@ const RegionSelectorV2: React.FC = () => {
     }
   };
 
+  const currentCurrency = CURRENCIES[currentRegion.currency];
+
   // Show placeholder during SSR to prevent hydration mismatch
   if (!mounted) {
     return (
@@ -70,13 +72,13 @@ const RegionSelectorV2: React.FC = () => {
           />
           <span className="flex items-center gap-2">
             <span className="text-lg" aria-hidden="true">
-              🇺🇸
+              {currentRegion.flag}
             </span>
-            <span className="block truncate">United States</span>
+            <span className="block truncate">{currentRegion.name}</span>
           </span>
           <span className="ml-auto flex items-center gap-1.5 text-neutral-700">
-            <span className="text-xs font-semibold">$</span>
-            <span className="text-xs uppercase">USD</span>
+            <span className="text-xs font-semibold">{currentCurrency.symbol}</span>
+            <span className="text-xs uppercase">{currentCurrency.code}</span>
           </span>
           <ChevronDownIcon
             className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400"
@@ -86,8 +88,6 @@ const RegionSelectorV2: React.FC = () => {
       </div>
     );
   }
-
-  const currentCurrency = CURRENCIES[currentRegion.currency];
 
   return (
     <div className="flex flex-col gap-0.5">

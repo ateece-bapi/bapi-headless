@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from '@/lib/navigation';
 import { LinkedinIcon, YoutubeIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
@@ -87,16 +87,19 @@ const social = [
 ];
 
 const Footer: React.FC = () => {
-  const [mounted, setMounted] = useState(false);
-  const t = useTranslations('footer');
+  // Try to get translations, with error boundary fallback
+  let t: any;
+  let hasTranslations = true;
   
-  // Prevent hydration mismatch and locale context errors
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  try {
+    t = useTranslations('footer');
+  } catch (error) {
+    // Locale context not ready - will render with fallback content
+    hasTranslations = false;
+  }
 
-  // Show minimal footer during SSR/initial render
-  if (!mounted) {
+  // If translations aren't available, show SSR-safe footer with static content
+  if (!hasTranslations) {
     return (
       <footer className="relative mt-16 w-full border-t border-neutral-200 bg-neutral-50">
         <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500"></div>

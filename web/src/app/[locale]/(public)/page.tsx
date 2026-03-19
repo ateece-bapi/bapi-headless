@@ -5,6 +5,8 @@ import { GlobalPresence } from '@/components/company/GlobalPresence';
 import { getPosts } from '@/lib/wordpress';
 import { locales } from '@/i18n';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocaleFromLanguage } from '@/lib/utils/locale';
+import type { LanguageCode } from '@/types/region';
 import {
   ArrowRightIcon,
   GlobeIcon,
@@ -54,21 +56,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const { locale } = await params;
   setRequestLocale(locale);
 
-  // Convert short locale codes to BCP 47 for date formatting
-  const localeMap: Record<string, string> = {
-    en: 'en-US',
-    de: 'de-DE',
-    fr: 'fr-FR',
-    es: 'es-ES',
-    ja: 'ja-JP',
-    zh: 'zh-CN',
-    vi: 'vi-VN',
-    ar: 'ar-SA',
-    th: 'th-TH',
-    pl: 'pl-PL',
-    hi: 'hi-IN',
-  };
-  const dateLocale = localeMap[locale] || 'en-US';
+  // Convert short locale codes to BCP 47 for date formatting (reuse existing utility)
+  const dateLocale = getLocaleFromLanguage(locale as LanguageCode);
 
   // Get translations
   const t = await getTranslations('home');

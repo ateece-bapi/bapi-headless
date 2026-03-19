@@ -14,6 +14,7 @@ import {
 } from '@/lib/utils/regionLanguageMapping';
 import { REGION_GROUPS } from '@/lib/constants/regionGroups';
 import { ChevronDownIcon, GlobeAltIcon, CheckIcon } from '@heroicons/react/24/outline';
+import { REGIONS } from '@/types/region';
 
 const RegionSelectorV2: React.FC = () => {
   const [mounted, setMounted] = useState(false);
@@ -72,13 +73,13 @@ const RegionSelectorV2: React.FC = () => {
           />
           <span className="flex items-center gap-2">
             <span className="text-lg" aria-hidden="true">
-              {currentRegion?.flag || '🇺🇸'}
+              {currentRegion?.flag || REGIONS.us.flag}
             </span>
-            <span className="block truncate">{currentRegion?.name || 'United States'}</span>
+            <span className="block truncate">{currentRegion?.name || REGIONS.us.name}</span>
           </span>
           <span className="ml-auto flex items-center gap-1.5 text-neutral-700">
-            <span className="text-xs font-semibold">{currentCurrency?.symbol || '$'}</span>
-            <span className="text-xs uppercase">{currentCurrency?.code || 'USD'}</span>
+            <span className="text-xs font-semibold">{currentCurrency?.symbol || CURRENCIES.USD.symbol}</span>
+            <span className="text-xs uppercase">{currentCurrency?.code || CURRENCIES.USD.code}</span>
           </span>
           <ChevronDownIcon
             className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400"

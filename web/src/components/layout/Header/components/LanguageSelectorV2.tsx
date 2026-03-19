@@ -57,9 +57,9 @@ export function LanguageSelectorV2() {
           />
           <span className="flex items-center gap-2">
             <span className="text-lg" aria-hidden="true">
-              {currentLanguage.flag}
+              {currentLanguage?.flag || '🇺🇸'}
             </span>
-            <span className="block truncate">{currentLanguage.nativeName}</span>
+            <span className="block truncate">{currentLanguage?.nativeName || 'English'}</span>
           </span>
           <ChevronDownIcon
             className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400"

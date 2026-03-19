@@ -54,6 +54,22 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const { locale } = await params;
   setRequestLocale(locale);
 
+  // Convert short locale codes to BCP 47 for date formatting
+  const localeMap: Record<string, string> = {
+    en: 'en-US',
+    de: 'de-DE',
+    fr: 'fr-FR',
+    es: 'es-ES',
+    ja: 'ja-JP',
+    zh: 'zh-CN',
+    vi: 'vi-VN',
+    ar: 'ar-SA',
+    th: 'th-TH',
+    pl: 'pl-PL',
+    hi: 'hi-IN',
+  };
+  const dateLocale = localeMap[locale] || 'en-US';
+
   // Get translations
   const t = await getTranslations('home');
 
@@ -472,7 +488,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                       <CalendarIcon className="h-4 w-4 text-primary-500" />
                       <time dateTime={post.date || ''}>
                         {post.date
-                          ? new Date(post.date).toLocaleDateString(locale, {
+                          ? new Date(post.date).toLocaleDateString(dateLocale, {
                               year: 'numeric',
                               month: 'short',
                               day: 'numeric',

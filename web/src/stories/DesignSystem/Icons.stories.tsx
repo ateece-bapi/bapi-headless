@@ -275,7 +275,7 @@ const IconDisplay = ({
 
   return (
     <div className="group relative flex flex-col items-center gap-2 rounded-lg border border-neutral-200 p-4 transition-all hover:border-primary-500 hover:bg-neutral-50">
-      <Icon sx={{ fontSize: size }} />
+      <Icon sx={{ fontSize: size }} aria-hidden="true" />
       <span className="text-xs font-medium text-neutral-700">{name}</span>
       {showUsage && usage && (
         <span className="text-center text-[10px] text-neutral-700">{usage}</span>
@@ -338,7 +338,7 @@ export const AllIcons: Story = {
         {/* Search & Filter */}
         <div className="flex flex-col gap-4 sm:flex-row">
           <div className="relative flex-1">
-            <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+            <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" aria-hidden="true" />
             <input
               type="text"
               placeholder="Search icons by name or usage..."
@@ -388,7 +388,7 @@ export const AllIcons: Story = {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-neutral-300 py-12">
-            <SearchIcon className="mb-2 h-12 w-12 text-neutral-400" />
+            <SearchIcon className="mb-2 h-12 w-12 text-neutral-400" aria-hidden="true" />
             <p className="text-neutral-700">No icons found matching "{searchQuery}"</p>
           </div>
         )}
@@ -437,11 +437,11 @@ export const SizeVariants: Story = {
             Used for: Inline text icons, badges, compact UI elements
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
-            <ShoppingCartIcon fontSize="small" />
-            <CheckIcon fontSize="small" />
-            <InfoIcon fontSize="small" />
-            <ArrowRightIcon fontSize="small" />
-            <PackageIcon fontSize="small" />
+            <ShoppingCartIcon fontSize="small" aria-hidden="true" />
+            <CheckIcon fontSize="small" aria-hidden="true" />
+            <InfoIcon fontSize="small" aria-hidden="true" />
+            <ArrowRightIcon fontSize="small" aria-hidden="true" />
+            <PackageIcon fontSize="small" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart size={'{16}'} /&gt;
@@ -455,11 +455,11 @@ export const SizeVariants: Story = {
             Used for: Buttons, navigation, form fields, most UI elements
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
-            <ShoppingCartIcon fontSize="medium" />
-            <CheckIcon fontSize="medium" />
-            <InfoIcon fontSize="medium" />
-            <ArrowRightIcon fontSize="medium" />
-            <PackageIcon fontSize="medium" />
+            <ShoppingCartIcon fontSize="medium" aria-hidden="true" />
+            <CheckIcon fontSize="medium" aria-hidden="true" />
+            <InfoIcon fontSize="medium" aria-hidden="true" />
+            <ArrowRightIcon fontSize="medium" aria-hidden="true" />
+            <PackageIcon fontSize="medium" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart size={'{24}'} /&gt; {'//'} or &lt;ShoppingCart /&gt;
@@ -473,11 +473,11 @@ export const SizeVariants: Story = {
             Used for: Hero sections, feature cards, prominent CTAs
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
-            <ShoppingCartIcon fontSize="large" />
-            <CheckIcon fontSize="large" />
-            <InfoIcon fontSize="large" />
-            <ArrowRightIcon fontSize="large" />
-            <PackageIcon fontSize="large" />
+            <ShoppingCartIcon fontSize="large" aria-hidden="true" />
+            <CheckIcon fontSize="large" aria-hidden="true" />
+            <InfoIcon fontSize="large" aria-hidden="true" />
+            <ArrowRightIcon fontSize="large" aria-hidden="true" />
+            <PackageIcon fontSize="large" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart size={'{32}'} /&gt;
@@ -491,11 +491,11 @@ export const SizeVariants: Story = {
             Used for: Empty states, large feature displays, marketing sections
           </p>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 p-6">
-            <ShoppingCartIcon sx={{ fontSize: 48 }} />
-            <CheckIcon sx={{ fontSize: 48 }} />
-            <InfoIcon sx={{ fontSize: 48 }} />
-            <ArrowRightIcon sx={{ fontSize: 48 }} />
-            <PackageIcon sx={{ fontSize: 48 }} />
+            <ShoppingCartIcon sx={{ fontSize: 48 }} aria-hidden="true" />
+            <CheckIcon sx={{ fontSize: 48 }} aria-hidden="true" />
+            <InfoIcon sx={{ fontSize: 48 }} aria-hidden="true" />
+            <ArrowRightIcon sx={{ fontSize: 48 }} aria-hidden="true" />
+            <PackageIcon sx={{ fontSize: 48 }} aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart size={'{48}'} /&gt;
@@ -520,10 +520,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Primary (BAPI Blue)</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <ShoppingCartIcon className="text-primary-500" fontSize="large" />
-            <CheckCircleIcon className="text-primary-500" fontSize="large" />
-            <PackageIcon className="text-primary-500" fontSize="large" />
-            <ThermometerIcon className="text-primary-500" fontSize="large" />
+            <ShoppingCartIcon className="text-primary-500" fontSize="large" aria-hidden="true" />
+            <CheckCircleIcon className="text-primary-500" fontSize="large" aria-hidden="true" />
+            <PackageIcon className="text-primary-500" fontSize="large" aria-hidden="true" />
+            <ThermometerIcon className="text-primary-500" fontSize="large" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart className="text-primary-500" /&gt;
@@ -534,10 +534,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Accent (BAPI Yellow)</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <AlertTriangleIcon className="text-accent-500" fontSize="large" />
-            <BellIcon className="text-accent-500" fontSize="large" />
-            <AwardIcon className="text-accent-500" fontSize="large" />
-            <ZapIcon className="text-accent-500" fontSize="large" />
+            <AlertTriangleIcon className="text-accent-500" fontSize="large" aria-hidden="true" />
+            <BellIcon className="text-accent-500" fontSize="large" aria-hidden="true" />
+            <AwardIcon className="text-accent-500" fontSize="large" aria-hidden="true" />
+            <ZapIcon className="text-accent-500" fontSize="large" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;AlertTriangle className="text-accent-500" /&gt;
@@ -548,10 +548,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Success</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <CheckCircleIcon className="text-success-500" fontSize="large" />
-            <CheckIcon className="text-success-500" fontSize="large" />
-            <ThumbsUpIcon className="text-success-500" fontSize="large" />
-            <ShieldIcon className="text-success-500" fontSize="large" />
+            <CheckCircleIcon className="text-success-500" fontSize="large" aria-hidden="true" />
+            <CheckIcon className="text-success-500" fontSize="large" aria-hidden="true" />
+            <ThumbsUpIcon className="text-success-500" fontSize="large" aria-hidden="true" />
+            <ShieldIcon className="text-success-500" fontSize="large" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;CheckCircle className="text-success-500" /&gt;
@@ -562,10 +562,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Warning</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <AlertCircleIcon className="text-warning-500" fontSize="large" />
-            <AlertTriangleIcon className="text-warning-500" fontSize="large" />
-            <ClockIcon className="text-warning-500" fontSize="large" />
-            <InfoIcon className="text-warning-500" fontSize="large" />
+            <AlertCircleIcon className="text-warning-500" fontSize="large" aria-hidden="true" />
+            <AlertTriangleIcon className="text-warning-500" fontSize="large" aria-hidden="true" />
+            <ClockIcon className="text-warning-500" fontSize="large" aria-hidden="true" />
+            <InfoIcon className="text-warning-500" fontSize="large" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;AlertCircle className="text-warning-500" /&gt;
@@ -576,10 +576,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Error</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <XCircleIcon className="text-error-500" fontSize="large" />
-            <XIcon className="text-error-500" fontSize="large" />
-            <AlertTriangleIcon className="text-error-500" fontSize="large" />
-            <Trash2Icon className="text-error-500" fontSize="large" />
+            <XCircleIcon className="text-error-500" fontSize="large" aria-hidden="true" />
+            <XIcon className="text-error-500" fontSize="large" aria-hidden="true" />
+            <AlertTriangleIcon className="text-error-500" fontSize="large" aria-hidden="true" />
+            <Trash2Icon className="text-error-500" fontSize="large" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;XCircle className="text-error-500" /&gt;
@@ -590,10 +590,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Neutral</h3>
           <div className="flex items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6">
-            <SettingsIcon className="text-neutral-700" fontSize="large" />
-            <FilterIcon className="text-neutral-700" fontSize="large" />
-            <SearchIcon className="text-neutral-700" fontSize="large" />
-            <MenuIcon className="text-neutral-700" fontSize="large" />
+            <SettingsIcon className="text-neutral-700" fontSize="large" aria-hidden="true" />
+            <FilterIcon className="text-neutral-700" fontSize="large" aria-hidden="true" />
+            <SearchIcon className="text-neutral-700" fontSize="large" aria-hidden="true" />
+            <MenuIcon className="text-neutral-700" fontSize="large" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;Settings className="text-neutral-700" /&gt;
@@ -604,10 +604,10 @@ export const ColorVariants: Story = {
         <div>
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">White on Dark</h3>
           <div className="flex items-center gap-6 rounded-lg bg-neutral-900 p-6">
-            <ShoppingCartIcon className="text-white" fontSize="large" />
-            <PackageIcon className="text-white" fontSize="large" />
-            <HeartIcon className="text-white" fontSize="large" />
-            <UserIcon className="text-white" fontSize="large" />
+            <ShoppingCartIcon className="text-white" fontSize="large" aria-hidden="true" />
+            <PackageIcon className="text-white" fontSize="large" aria-hidden="true" />
+            <HeartIcon className="text-white" fontSize="large" aria-hidden="true" />
+            <UserIcon className="text-white" fontSize="large" aria-hidden="true" />
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             &lt;ShoppingCart className="text-white" /&gt;
@@ -634,7 +634,7 @@ export const CommonUseCases: Story = {
               type="button"
               className="relative inline-flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-white hover:bg-primary-600"
             >
-              <ShoppingCartIcon fontSize="small" />
+              <ShoppingCartIcon fontSize="small" aria-hidden="true" />
               <span>Cart</span>
               <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-accent-500 text-xs font-bold text-neutral-900">
                 3
@@ -643,7 +643,7 @@ export const CommonUseCases: Story = {
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<button className="relative...">
-  <ShoppingCartIcon fontSize="small" />
+  <ShoppingCartIcon fontSize="small" aria-hidden="true" />
   <span>Cart</span>
   <span className="absolute -right-2 -top-2...">3</span>
 </button>`}
@@ -659,13 +659,13 @@ export const CommonUseCases: Story = {
               className="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-white opacity-75"
               disabled
             >
-              <Loader2Icon fontSize="small" className="animate-spin" />
+              <Loader2Icon fontSize="small" className="animate-spin" aria-hidden="true" />
               <span>Adding to Cart...</span>
             </button>
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<button disabled className="...opacity-75">
-  <Loader2Icon fontSize="small" className="animate-spin" />
+  <Loader2Icon fontSize="small" className="animate-spin" aria-hidden="true" />
   <span>Adding to Cart...</span>
 </button>`}
           </pre>
@@ -676,13 +676,13 @@ export const CommonUseCases: Story = {
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Success Notification</h3>
           <div className="rounded-lg border border-neutral-200 p-6">
             <div className="flex items-center gap-3 rounded-lg bg-success-50 p-4">
-              <CheckCircleIcon className="text-success-500" fontSize="medium" />
+              <CheckCircleIcon className="text-success-500" fontSize="medium" aria-hidden="true" />
               <span className="text-success-700">Product added to cart successfully!</span>
             </div>
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<div className="flex items-center gap-3 bg-success-50...">
-  <CheckCircleIcon className="text-success-500" fontSize="medium" />
+  <CheckCircleIcon className="text-success-500" fontSize="medium" aria-hidden="true" />
   <span>Product added to cart successfully!</span>
 </div>`}
           </pre>
@@ -695,30 +695,36 @@ export const CommonUseCases: Story = {
             <div className="flex items-center gap-2">
               <button
                 type="button"
+                aria-label="Add to favorites"
                 className="rounded-lg border border-neutral-300 p-2 hover:border-primary-500 hover:text-primary-500"
               >
-                <HeartIcon fontSize="small" />
+                <HeartIcon fontSize="small" aria-hidden="true" />
               </button>
               <button
                 type="button"
+                aria-label="Compare product"
                 className="rounded-lg border border-neutral-300 p-2 hover:border-primary-500 hover:text-primary-500"
               >
-                <GitCompareIcon fontSize="small" />
+                <GitCompareIcon fontSize="small" aria-hidden="true" />
               </button>
               <button
                 type="button"
                 className="flex-1 rounded-lg bg-primary-500 px-4 py-2 text-white hover:bg-primary-600"
               >
-                <ShoppingCartIcon fontSize="small" className="inline" /> Add to Cart
+                <ShoppingCartIcon fontSize="small" className="inline" aria-hidden="true" /> Add to Cart
               </button>
             </div>
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<div className="flex gap-2">
-  <button><HeartIcon fontSize="small" /></button>
-  <button><GitCompareIcon fontSize="small" /></button>
+  <button aria-label="Add to favorites">
+    <HeartIcon fontSize="small" aria-hidden="true" />
+  </button>
+  <button aria-label="Compare product">
+    <GitCompareIcon fontSize="small" aria-hidden="true" />
+  </button>
   <button>
-    <ShoppingCartIcon fontSize="small" /> Add to Cart
+    <ShoppingCartIcon fontSize="small" aria-hidden="true" /> Add to Cart
   </button>
 </div>`}
           </pre>
@@ -729,7 +735,7 @@ export const CommonUseCases: Story = {
           <h3 className="mb-4 text-xl font-semibold text-neutral-950">Search Input</h3>
           <div className="rounded-lg border border-neutral-200 p-6">
             <div className="relative">
-              <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
+              <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" aria-hidden="true" />
               <input
                 type="text"
                 placeholder="Search products..."
@@ -739,7 +745,7 @@ export const CommonUseCases: Story = {
           </div>
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<div className="relative">
-  <SearchIcon className="absolute left-3 top-1/2..." />
+  <SearchIcon className="absolute left-3 top-1/2..." aria-hidden="true" />
   <input className="...pl-10..." />
 </div>`}
           </pre>
@@ -756,28 +762,28 @@ export const CommonUseCases: Story = {
                 type="button"
                 className="flex flex-col items-center gap-2 rounded-lg p-4 hover:bg-primary-50"
               >
-                <ThermometerIcon className="text-primary-500" fontSize="large" />
+                <ThermometerIcon className="text-primary-500" fontSize="large" aria-hidden="true" />
                 <span className="text-sm font-medium">Temperature</span>
               </button>
               <button
                 type="button"
                 className="flex flex-col items-center gap-2 rounded-lg p-4 hover:bg-primary-50"
               >
-                <DropletsIcon className="text-primary-500" fontSize="large" />
+                <DropletsIcon className="text-primary-500" fontSize="large" aria-hidden="true" />
                 <span className="text-sm font-medium">Humidity</span>
               </button>
               <button
                 type="button"
                 className="flex flex-col items-center gap-2 rounded-lg p-4 hover:bg-primary-50"
               >
-                <GaugeIcon className="text-primary-500" fontSize="large" />
+                <GaugeIcon className="text-primary-500" fontSize="large" aria-hidden="true" />
                 <span className="text-sm font-medium">Pressure</span>
               </button>
               <button
                 type="button"
                 className="flex flex-col items-center gap-2 rounded-lg p-4 hover:bg-primary-50"
               >
-                <WindIcon className="text-primary-500" fontSize="large" />
+                <WindIcon className="text-primary-500" fontSize="large" aria-hidden="true" />
                 <span className="text-sm font-medium">Air Quality</span>
               </button>
             </div>
@@ -785,7 +791,7 @@ export const CommonUseCases: Story = {
           <pre className="mt-2 rounded bg-neutral-900 p-3 text-sm text-white">
             {`<div className="grid grid-cols-4 gap-4">
   <button className="flex flex-col items-center...">
-    <ThermometerIcon className="text-primary-500" fontSize="large" />
+    <ThermometerIcon className="text-primary-500" fontSize="large" aria-hidden="true" />
     <span>Temperature</span>
   </button>
   {/* More categories... */}
@@ -1103,37 +1109,37 @@ const megaMenuColumns = [
           </h3>
           <div className="grid grid-cols-1 gap-2 text-sm md:grid-cols-2">
             <div className="flex items-start gap-2">
-              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
+              <CheckCircleIcon className="mt-0.5 shrink-0 text-success-600" fontSize="small" aria-hidden="true" />
               <span className="text-success-800">
                 Icons in brand-standard order (T-H-P-AQ-W-A-TI)
               </span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
+              <CheckCircleIcon className="mt-0.5 shrink-0 text-success-600" fontSize="small" aria-hidden="true" />
               <span className="text-success-800">Equidistant spacing (horizontal or vertical)</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
+              <CheckCircleIcon className="mt-0.5 shrink-0 text-success-600" fontSize="small" aria-hidden="true" />
               <span className="text-success-800">Using WebP format for performance</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
+              <CheckCircleIcon className="mt-0.5 shrink-0 text-success-600" fontSize="small" aria-hidden="true" />
               <span className="text-success-800">Original aspect ratio maintained</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
+              <CheckCircleIcon className="mt-0.5 shrink-0 text-success-600" fontSize="small" aria-hidden="true" />
               <span className="text-success-800">Blue or white color scheme only</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
+              <CheckCircleIcon className="mt-0.5 shrink-0 text-success-600" fontSize="small" aria-hidden="true" />
               <span className="text-success-800">Alt text for accessibility</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
+              <CheckCircleIcon className="mt-0.5 shrink-0 text-success-600" fontSize="small" aria-hidden="true" />
               <span className="text-success-800">No combined categories</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircleIcon className="mt-0.5 flex-shrink-0 text-success-600" fontSize="small" />
+              <CheckCircleIcon className="mt-0.5 shrink-0 text-success-600" fontSize="small" aria-hidden="true" />
               <span className="text-success-800">Appropriate size for context (32-64px)</span>
             </div>
           </div>

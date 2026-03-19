@@ -157,15 +157,15 @@ describe('ProductSpecifications Component', () => {
     });
 
     it('shows chevron down icon when group is collapsed', () => {
-      const { container } = renderWithIntl(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
       const technicalHeader = screen.getByText('Technical Specifications');
 
       fireEvent.click(technicalHeader);
 
-      const chevronUp = screen.getByTestId('collapse-specs-icon');
-      expect(chevronUp).toBeInTheDocument();
+      const chevronDown = screen.getByTestId('expand-specs-icon');
+      expect(chevronDown).toBeInTheDocument();
     });
 
     it('shows chevron up icon when group is expanded', () => {
@@ -173,8 +173,8 @@ describe('ProductSpecifications Component', () => {
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
-      const chevronUp = screen.getByTestId('collapse-specs-icon');
-      expect(chevronUp).toBeInTheDocument();
+      const chevronUpIcons = screen.getAllByTestId('collapse-specs-icon');
+      expect(chevronUpIcons.length).toBeGreaterThan(0);
     });
   });
 

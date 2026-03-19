@@ -33,7 +33,7 @@ export function LanguageSelector() {
 
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-gray-500">
+      <span className="px-1 text-xs font-medium uppercase tracking-wider text-neutral-700">
         Language
       </span>
       <div className="group relative">

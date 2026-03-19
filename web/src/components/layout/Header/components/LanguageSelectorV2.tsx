@@ -47,7 +47,7 @@ export function LanguageSelectorV2() {
   if (!mounted) {
     return (
       <div className="flex flex-col gap-0.5">
-        <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-700">
+        <span className="px-1 text-xs font-medium uppercase tracking-wider text-neutral-700">
           Language
         </span>
         <div className="group relative flex w-full items-center gap-2 rounded-lg border border-neutral-300 bg-white py-2 pl-9 pr-10 text-sm font-medium text-neutral-700">
@@ -57,9 +57,9 @@ export function LanguageSelectorV2() {
           />
           <span className="flex items-center gap-2">
             <span className="text-lg" aria-hidden="true">
-              {currentLanguage.flag}
+              {currentLanguage?.flag || LANGUAGES.en.flag}
             </span>
-            <span className="block truncate">{currentLanguage.nativeName}</span>
+            <span className="block truncate">{currentLanguage?.nativeName || LANGUAGES.en.nativeName}</span>
           </span>
           <ChevronDownIcon
             className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400"
@@ -72,7 +72,7 @@ export function LanguageSelectorV2() {
 
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-700">
+      <span className="px-1 text-xs font-medium uppercase tracking-wider text-neutral-700">
         Language
       </span>
       <Listbox value={currentLocale} onChange={handleLanguageChange}>
@@ -116,7 +116,7 @@ export function LanguageSelectorV2() {
                   <div key={group.id} className="py-1">
                     {/* Group Header */}
                     <div className="px-3 py-1.5">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-700">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-neutral-700">
                         {group.label}
                       </span>
                     </div>

@@ -87,7 +87,31 @@ const social = [
 ];
 
 const Footer: React.FC = () => {
-  const t = useTranslations('footer');
+  // Try to get translations, with error boundary fallback
+  let t: any;
+  let hasTranslations = true;
+  
+  try {
+    t = useTranslations('footer');
+  } catch (error) {
+    // Locale context not ready - will render with fallback content
+    hasTranslations = false;
+  }
+
+  // If translations aren't available, show SSR-safe footer with static content
+  if (!hasTranslations) {
+    return (
+      <footer className="relative mt-16 w-full border-t border-neutral-200 bg-neutral-50">
+        <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500"></div>
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="text-center text-sm text-neutral-700">
+            © {new Date().getFullYear()} Building Automation Products, Inc.
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
   const footerSections = getFooterSections(t);
 
   return (

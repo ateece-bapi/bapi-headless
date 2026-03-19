@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@/lib/icons';
 
+/**
+ * Loading skeleton for the quotes list
+ * Displays placeholder content while quotes are being fetched
+ */
 export default function QuotesLoading() {
   return (
     <main className="min-h-screen bg-neutral-50">

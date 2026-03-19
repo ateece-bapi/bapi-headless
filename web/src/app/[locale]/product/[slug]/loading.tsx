@@ -1,3 +1,7 @@
+/**
+ * Loading skeleton for the product detail page
+ * Displays placeholder content while product data loads
+ */
 export default function ProductDetailLoading() {
   return (
     <div className="container mx-auto animate-pulse px-4 py-8">

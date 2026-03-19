@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeftIcon, HeartIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import FavoriteButton from '@/components/FavoriteButton';
@@ -39,7 +40,7 @@ export default function FavoritesPage() {
     }
 
     fetchFavorites();
-  }, [user, isLoaded, router]);
+  }, [user, isLoaded, router, locale]);
 
   const fetchFavorites = async () => {
     try {
@@ -160,9 +161,11 @@ export default function FavoritesPage() {
                     <Link href={`/${locale}/product/${favorite.productSlug}`}>
                       {favorite.productImage ? (
                         <div className="aspect-square overflow-hidden bg-neutral-100">
-                          <img
+                          <Image
                             src={favorite.productImage}
                             alt={favorite.productName}
+                            width={400}
+                            height={400}
                             className="h-full w-full object-cover transition-transform hover:scale-105"
                           />
                         </div>

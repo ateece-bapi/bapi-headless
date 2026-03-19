@@ -1,3 +1,7 @@
+/**
+ * Loading skeleton for the products list page
+ * Displays placeholder content while products are being fetched
+ */
 export default function ProductsLoading() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-primary-50/30 to-white px-6 py-16">

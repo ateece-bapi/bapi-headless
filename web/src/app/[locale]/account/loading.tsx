@@ -1,5 +1,9 @@
 import { DashboardCardSkeleton } from '@/components/skeletons';
 
+/**
+ * Loading skeleton for the account dashboard
+ * Displays placeholder content while the account page loads
+ */
 export default function AccountLoading() {
   return (
     <main className="min-h-screen bg-neutral-50">

@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@/lib/icons';
 
+/**
+ * Loading skeleton for the user profile page
+ * Displays placeholder content while profile data loads
+ */
 export default function ProfileLoading() {
   return (
     <main className="min-h-screen bg-neutral-50">

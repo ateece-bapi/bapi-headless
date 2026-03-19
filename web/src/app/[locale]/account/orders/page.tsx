@@ -204,6 +204,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
                               alt={item.product.node.name}
                               width={64}
                               height={64}
+                              sizes="64px"
                               className="h-full w-full object-cover"
                             />
                           ) : (

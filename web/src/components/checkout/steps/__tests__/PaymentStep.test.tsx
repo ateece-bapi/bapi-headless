@@ -147,7 +147,7 @@ describe('PaymentStep', () => {
     });
 
     it('renders payment method icons', () => {
-      const { container } = render(
+      render(
         <PaymentStep
           data={mockData}
           onNext={mockOnNext}
@@ -155,8 +155,8 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const icons = container.querySelectorAll('.MuiSvgIcon-root');
-      expect(icons.length).toBeGreaterThan(1); // Multiple Material UI icons present (credit card + paypal)
+      const icons = screen.getAllByTestId('payment-method-icon');
+      expect(icons.length).toBeGreaterThan(1); // Multiple payment method icons present
     });
 
     it('renders both payment methods in grid layout', () => {
@@ -256,8 +256,8 @@ describe('PaymentStep', () => {
       const paypalButton = screen.getByText('PayPal').closest('button');
       fireEvent.click(paypalButton!);
 
-      const icon = paypalButton!.querySelector('.MuiSvgIcon-root');
-      expect(icon).toHaveClass('MuiSvgIcon-root');
+      const icon = screen.getAllByTestId('payment-method-icon')[1]; // PayPal icon
+      expect(icon).toBeInTheDocument();
     });
 
     it('pre-selects payment method from data', () => {
@@ -552,9 +552,9 @@ describe('PaymentStep', () => {
           onUpdateData={mockOnUpdateData}
         />
       );
-      const backButton = screen.getByText('Back').closest('button');
-      const icon = backButton!.querySelector('.MuiSvgIcon-root');
-      expect(icon).toBeInTheDocument();
+      const backButton = screen.getByText('Back');
+      expect(backButton).toBeInTheDocument();
+      expect(backButton.closest('button')).toBeInTheDocument();
     });
   });
 

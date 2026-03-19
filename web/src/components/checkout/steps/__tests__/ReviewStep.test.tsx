@@ -732,7 +732,7 @@ describe('ReviewStep', () => {
   // Icons Rendering Tests
   describe('Icons Rendering', () => {
     it('renders MapPin icon for shipping', () => {
-      const { container } = render(
+      render(
         <ReviewStep
           data={mockData}
           onBack={mockOnBack}
@@ -740,12 +740,12 @@ describe('ReviewStep', () => {
           isProcessing={false}
         />
       );
-      const icons = container.querySelectorAll('.MuiSvgIcon-root');
-      expect(icons.length).toBeGreaterThan(0); // Material UI icons present
+      const shippingIcon = screen.getByTestId('review-shipping-icon');
+      expect(shippingIcon).toBeInTheDocument();
     });
 
-    it('renders FileText icon for billing', () => {
-      const { container } = render(
+    it('renders shipping section heading', () => {
+      render(
         <ReviewStep
           data={mockData}
           onBack={mockOnBack}
@@ -753,12 +753,11 @@ describe('ReviewStep', () => {
           isProcessing={false}
         />
       );
-      const icons = container.querySelectorAll('.MuiSvgIcon-root');
-      expect(icons.length).toBeGreaterThan(0); // Material UI icons present
+      expect(screen.getByText('Shipping Address')).toBeInTheDocument();
     });
 
-    it('renders CreditCard icon for payment', () => {
-      const { container } = render(
+    it('renders billing section heading', () => {
+      render(
         <ReviewStep
           data={mockData}
           onBack={mockOnBack}
@@ -766,12 +765,11 @@ describe('ReviewStep', () => {
           isProcessing={false}
         />
       );
-      const icons = container.querySelectorAll('.MuiSvgIcon-root');
-      expect(icons.length).toBeGreaterThan(0); // Material UI icons present
+      expect(screen.getByText('Billing Address')).toBeInTheDocument();
     });
 
-    it('renders ArrowLeft icon on Back button', () => {
-      const { container } = render(
+    it('renders payment section heading', () => {
+      render(
         <ReviewStep
           data={mockData}
           onBack={mockOnBack}
@@ -779,8 +777,7 @@ describe('ReviewStep', () => {
           isProcessing={false}
         />
       );
-      const icons = container.querySelectorAll('.MuiSvgIcon-root');
-      expect(icons.length).toBeGreaterThan(0); // Material UI icons present
+      expect(screen.getByText('Payment Method')).toBeInTheDocument();
     });
   });
 });

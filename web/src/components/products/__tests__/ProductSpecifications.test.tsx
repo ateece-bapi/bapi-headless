@@ -164,17 +164,17 @@ describe('ProductSpecifications Component', () => {
 
       fireEvent.click(technicalHeader);
 
-      const chevronDown = container.querySelector('.MuiSvgIcon-root');
-      expect(chevronDown).toBeInTheDocument();
+      const chevronUp = screen.getByTestId('collapse-specs-icon');
+      expect(chevronUp).toBeInTheDocument();
     });
 
     it('shows chevron up icon when group is expanded', () => {
-      const { container } = renderWithIntl(
+      renderWithIntl(
         <ProductSpecifications specifications={mockSpecifications} productName={productName} />
       );
 
-      const chevronUp = container.querySelectorAll('.MuiSvgIcon-root');
-      expect(chevronUp.length).toBeGreaterThan(0);
+      const chevronUp = screen.getByTestId('collapse-specs-icon');
+      expect(chevronUp).toBeInTheDocument();
     });
   });
 

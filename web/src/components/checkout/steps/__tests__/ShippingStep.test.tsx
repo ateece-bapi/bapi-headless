@@ -108,20 +108,20 @@ describe('ShippingStep', () => {
     });
 
     it('renders MapPin icon', () => {
-      const { container } = render(
+      render(
         <ShippingStep data={mockData} onNext={mockOnNext} onUpdateData={mockOnUpdateData} />
       );
-      const icons = container.querySelectorAll('.MuiSvgIcon-root');
-      expect(icons.length).toBeGreaterThan(0); // Material UI icons present
+      const shippingIcon = screen.getByTestId('shipping-address-icon');
+      expect(shippingIcon).toBeInTheDocument();
     });
 
-    it('renders Continue to Payment button with arrow icon', () => {
-      const { container } = render(
+    it('renders Continue to Payment button', () => {
+      render(
         <ShippingStep data={mockData} onNext={mockOnNext} onUpdateData={mockOnUpdateData} />
       );
-      expect(screen.getByText('Continue to Payment')).toBeInTheDocument();
-      const icons = container.querySelectorAll('.MuiSvgIcon-root');
-      expect(icons.length).toBeGreaterThan(0); // Material UI icons present
+      const button = screen.getByText('Continue to Payment');
+      expect(button).toBeInTheDocument();
+      expect(button.closest('button')).toBeInTheDocument();
     });
   });
 

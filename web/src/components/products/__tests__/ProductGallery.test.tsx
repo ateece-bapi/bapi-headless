@@ -426,10 +426,10 @@ describe('ProductGallery Component', () => {
 
   describe('Zoom Functionality', () => {
     it('shows zoom icon on hover', () => {
-      const { container } = render(
+      render(
         <ProductGallery images={mockImages} productName={productName} />
       );
-      const zoomIcon = container.querySelector('.MuiSvgIcon-root');
+      const zoomIcon = screen.getByTestId('zoom-image-icon');
       expect(zoomIcon).toBeInTheDocument();
     });
 

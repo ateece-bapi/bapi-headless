@@ -187,15 +187,33 @@ export async function waitForFullPageLoad(page: Page): Promise<void> {
   await waitForAnimations(page, 300);
   
   // Wait for images to load (important for product pages)
-  await page.evaluate(() => {
-    return Promise.all(
-      Array.from(document.images)
-        .filter(img => !img.complete)
-        .map(img => new Promise(resolve => {
-          img.onload = img.onerror = resolve;
-        }))
-    );
-  });
+  // Add timeout to prevent hanging on slow/failed image loads
+  try {
+    await page.evaluate(() => {
+      const IMAGE_LOAD_TIMEOUT = 10000; // 10 second timeout per image
+      
+      return Promise.all(
+        Array.from(document.images)
+          .filter(img => !img.complete)
+          .map(img => new Promise(resolve => {
+            // Set timeout to resolve even if image fails
+            const timeout = setTimeout(() => {
+              resolve('timeout');
+            }, IMAGE_LOAD_TIMEOUT);
+            
+            // Clear timeout on success/error
+            img.onload = img.onerror = () => {
+              clearTimeout(timeout);
+              resolve('loaded');
+            };
+          }))
+      );
+    });
+  } catch (error) {
+    // Image loading failed, but don't block test execution
+    // This can happen with external images, network issues, etc.
+    console.warn('Image loading timeout or error:', error);
+  }
 }
 
 /**

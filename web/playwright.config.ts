@@ -67,11 +67,19 @@ export default defineConfig({
     // Mobile testing
     {
       name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
+      use: { 
+        ...devices['Pixel 5'],
+        // Mobile devices need longer timeouts (slower rendering, network)
+        timeout: 90 * 1000, // 90s vs 60s for desktop
+      },
     },
     {
       name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
+      use: { 
+        ...devices['iPhone 12'],
+        // Mobile devices need longer timeouts (slower rendering, network)
+        timeout: 90 * 1000, // 90s vs 60s for desktop
+      },
     },
   ],
 

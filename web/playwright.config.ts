@@ -61,7 +61,11 @@ export default defineConfig({
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { 
+        ...devices['Desktop Safari'],
+        // Increase timeout - responsive test manually sets mobile viewport on webkit
+        timeout: 90 * 1000, // 90s to handle viewport changes + slow rendering
+      },
     },
 
     // Mobile testing

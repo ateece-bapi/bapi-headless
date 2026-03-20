@@ -7,6 +7,101 @@
 
 ---
 
+## 🔥 E2E Testing Plan — Launch Preparation (March 19, 2026 - Late Evening)
+
+**Status:** 🟡 PLANNING COMPLETE - Ready to Execute  
+**Priority:** ⚠️ **CRITICAL** — E2E testing is VITAL for launch quality  
+**Time:** ~1 hour (comprehensive plan creation)  
+**Document:** [E2E-TESTING-PLAN-LAUNCH-2026.md](./E2E-TESTING-PLAN-LAUNCH-2026.md)  
+**Context:** User emphasized: "Final E2E testing will be VERY important. We have 3 weeks until launch."
+
+### Overview
+Created comprehensive E2E testing strategy for final 21 days before April 10 launch. Quality-first approach (not pressured for exact date). Plan covers current status, coverage gaps, execution schedule, and success criteria.
+
+### Key Findings
+- ✅ **Current E2E Status:** 14/14 tests passing (March 6-9, 2026)
+- ✅ **Enterprise Infrastructure:** Rewritten March 11 with 250+ line utilities
+- ✅ **Test Coverage:** 39+ test cases across 5 spec files
+- ✅ **Browser Coverage:** Chromium, Firefox, WebKit, Mobile Chrome/Safari
+- ⚠️ **Coverage Gaps:** Payment flows, multi-locale checkout, real device testing
+
+### Testing Coverage Matrix
+| User Journey | Test Status | Priority |
+|--------------|-------------|----------|
+| Homepage Load | ✅ 13 tests passing | Critical |
+| Product Discovery | ✅ 6 tests passing | Critical |
+| Cart Management | ✅ 10 tests passing | Critical |
+| Language Switching | ✅ 3 tests passing | Critical |
+| **Payment Gateway** | ❌ Missing | 🔴 HIGH |
+| **Checkout Wizard** | ⚠️ Partial | 🔴 HIGH |
+| **Multi-Locale Checkout** | ⚠️ en-US only | 🔴 HIGH |
+| **Real Device Testing** | ⚠️ Emulated only | 🔴 HIGH |
+
+### High-Priority Gaps (Must Fix Before Launch)
+1. **Payment Integration E2E Tests** — Stripe checkout flow (test mode)
+2. **Complete Checkout Wizard** — All 4 steps with validation
+3. **Multi-Locale Testing** — Tier 1 locales (en-US, de-DE, es-ES, ja-JP)
+4. **Real Device Testing** — iOS Safari, Android Chrome (BrowserStack)
+
+### 21-Day Execution Plan
+**Week 1 (Mar 19-26):** Verification + high-priority gap filling
+- Run current E2E suite (verify 14/14 status)
+- Add payment gateway tests (Stripe test mode)
+- Expand checkout wizard coverage
+- Add multi-locale checkout tests
+
+**Week 2 (Mar 26-Apr 2):** Expand coverage + real devices
+- Add search & filtering tests
+- Add error state handling tests
+- Real device testing (iOS/Android)
+- Performance benchmarks
+
+**Week 3 (Apr 2-10):** Validation & sign-off
+- Daily automated E2E runs
+- Manual exploratory testing
+- Stakeholder demo (Apr 6)
+- Final regression + go-live decision
+
+### Success Criteria for Launch
+- ✅ 100% pass rate on all critical user journeys
+- ✅ Zero blocking bugs in Tier 1 locales (en-US, de-DE, es-ES, ja-JP)
+- ✅ Payment flows validated in Stripe test mode
+- ✅ Mobile devices tested on at least 2 real devices (iOS + Android)
+- ✅ Performance benchmarks met (LCP < 3s, FID < 100ms)
+- ✅ Accessibility compliance (WCAG AA, axe-core 0 violations)
+
+### Next Actions
+1. 🔲 Run full E2E suite to verify current 14/14 status
+2. 🔲 Create GitHub issues for 4 high-priority gaps
+3. 🔲 Set up BrowserStack account for real device testing
+4. 🔲 Write payment gateway E2E tests (Stripe test mode)
+
+### Resources Created
+- **E2E Testing Plan:** [E2E-TESTING-PLAN-LAUNCH-2026.md](./E2E-TESTING-PLAN-LAUNCH-2026.md)
+  - 39+ test cases documented
+  - Coverage matrix (flows × locales × devices)
+  - Risk assessment and mitigation strategies
+  - Monitoring and rollback plan
+  - Post-launch testing schedule
+
+### Technical Context
+**Test Infrastructure:**
+- Playwright with 5 browser targets (Chrome, Firefox, Safari, Mobile Chrome/Safari)
+- Enterprise utilities: `safeClick()`, `waitForStableElement()`, `navigateToProducts()`
+- 60s timeout per test (handles React animations, Suspense boundaries)
+- CI integration with retries (2x) and single worker for stability
+
+**Historic Achievements:**
+- March 6-9: E2E stabilization (8/15 → 14/14 passing)
+- March 11: Enterprise infrastructure rewrite (helpers/test-utils.ts)
+- Accessibility integration: axe-playwright for WCAG AA compliance
+
+**Quality Philosophy:**
+> "E2E testing I think is vital." — User  
+> Timeline is flexible to ensure comprehensive validation. Quality > arbitrary deadline.
+
+---
+
 ## ✅ Header Accessibility & SSR Hydration Fixes (March 19, 2026 - Evening)
 
 **Status:** ✅ COMPLETE - Merged to main 🎉  

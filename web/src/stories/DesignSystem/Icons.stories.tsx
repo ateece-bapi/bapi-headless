@@ -278,12 +278,12 @@ const IconDisplay = ({
       <Icon sx={{ fontSize: size }} aria-hidden="true" />
       <span className="text-xs font-medium text-neutral-700">{name}</span>
       {showUsage && usage && (
-        <span className="text-center text-[10px] text-neutral-700">{usage}</span>
+        <span className="text-center text-xs text-neutral-700">{usage}</span>
       )}
       {showCode && (
         <button
           onClick={copyCode}
-          className="mt-1 rounded bg-neutral-900 px-2 py-1 text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100"
+          className="mt-1 rounded bg-neutral-900 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100"
           type="button"
         >
           {copied ? 'Copied!' : 'Copy import'}

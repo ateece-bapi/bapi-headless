@@ -277,7 +277,7 @@ export const Overview: Story = {
               <div className="space-y-4 md:col-span-3">
                 {/* Featured Product */}
                 <div className="rounded-lg border-2 border-primary-200 bg-linear-to-br from-primary-50 via-white to-primary-50/30 p-4">
-                  <div className="mb-2 inline-block rounded-full bg-accent-500 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
+                  <div className="mb-2 inline-block rounded-full bg-accent-500 px-2 py-0.5 text-xs font-bold uppercase text-white">
                     NEW
                   </div>
                   <h3 className="mb-2 text-lg font-black text-neutral-900">

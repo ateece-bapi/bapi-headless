@@ -45,7 +45,7 @@ const NavigationDocs = () => (
           </h3>
           <div className="inline-block">
             <div className="flex flex-col gap-0.5">
-              <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-700">
+              <span className="px-1 text-xs font-medium uppercase tracking-wider text-neutral-700">
                 Language
               </span>
               <div className="group relative flex w-full items-center gap-2 rounded-lg border border-neutral-300 bg-white py-2 pl-9 pr-10 text-sm font-medium text-neutral-700 transition-all duration-150 hover:border-primary-500 hover:bg-neutral-50">
@@ -97,7 +97,7 @@ const NavigationDocs = () => (
             {/* Americas Group */}
             <div className="py-1">
               <div className="px-3 py-1.5">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-700">
+                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-700">
                   Americas
                 </span>
               </div>
@@ -143,7 +143,7 @@ const NavigationDocs = () => (
             {/* Europe Group */}
             <div className="border-t border-neutral-100 py-1">
               <div className="px-3 py-1.5">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-700">
+                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-700">
                   Europe
                 </span>
               </div>
@@ -198,7 +198,7 @@ const NavigationDocs = () => (
           </h3>
           <div className="inline-block">
             <div className="flex flex-col gap-0.5">
-              <span className="px-1 text-[10px] font-medium uppercase tracking-wider text-neutral-700">
+              <span className="px-1 text-xs font-medium uppercase tracking-wider text-neutral-700">
                 Region
               </span>
               <div className="group relative flex w-full items-center gap-2 rounded-lg border border-neutral-300 bg-white py-2 pl-9 pr-10 text-sm font-medium text-neutral-700 transition-all duration-150 hover:border-primary-500 hover:bg-neutral-50">
@@ -224,7 +224,7 @@ const NavigationDocs = () => (
                 </span>
                 <span className="ml-auto flex items-center gap-1.5 text-neutral-700">
                   <span className="text-xs font-semibold">$</span>
-                  <span className="text-[10px] uppercase">USD</span>
+                  <span className="text-xs uppercase">USD</span>
                 </span>
                 {/* Chevron */}
                 <svg
@@ -254,7 +254,7 @@ const NavigationDocs = () => (
             {/* Americas Group */}
             <div className="py-1">
               <div className="px-3 py-1.5">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-700">
+                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-700">
                   Americas
                 </span>
               </div>
@@ -297,7 +297,7 @@ const NavigationDocs = () => (
             {/* Europe Group */}
             <div className="border-t border-neutral-100 py-1">
               <div className="px-3 py-1.5">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-700">
+                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-700">
                   Europe
                 </span>
               </div>

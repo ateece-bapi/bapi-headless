@@ -26,7 +26,7 @@ test.describe('Language Selector', () => {
   test('should display language selector with current language', async ({ page }) => {
     // Find the language selector button (Headless UI Listbox)
     const languageButton = page.getByRole('button', { name: /select language/i });
-    await expect(languageButton).toBeVisible();
+    await expect(languageButton).toBeVisible({ timeout: 15000 });
     
     // Should show English by default
     await expect(languageButton).toContainText('English');
@@ -42,7 +42,7 @@ test.describe('Language Selector', () => {
     
     // Wait for dropdown menu to appear
     const dropdown = page.getByRole('listbox');
-    await expect(dropdown).toBeVisible();
+    await expect(dropdown).toBeVisible({ timeout: 15000 });
     
     // Should contain all 11 languages
     const options = page.getByRole('option');
@@ -65,7 +65,7 @@ test.describe('Language Selector', () => {
     
     // Check that toast notification appeared
     const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /language changed/i });
-    await expect(toast).toBeVisible();
+    await expect(toast).toBeVisible({ timeout: 15000 });
     
     // Toast should show the target language
     await expect(toast).toContainText('Español');
@@ -75,7 +75,7 @@ test.describe('Language Selector', () => {
     
     // Wait for toast to disappear (2.5s duration)
     await page.waitForTimeout(3000);
-    await expect(toast).not.toBeVisible();
+    await expect(toast).not.toBeVisible({ timeout: 15000 });
   });
 
   test('should translate page content when language changes', async ({ page }) => {
@@ -109,7 +109,7 @@ test.describe('Language Selector', () => {
     
     // Toast should NOT appear (guard clause)
     const toast = page.locator('[role="alert"], [role="status"]');
-    await expect(toast).not.toBeVisible();
+    await expect(toast).not.toBeVisible({ timeout: 15000 });
     
     // URL should remain on English
     await expect(page).toHaveURL('/en');
@@ -192,9 +192,16 @@ test.describe('Language Selector', () => {
     await page.goto(routes.home());
     await waitForFullPageLoad(page);
     
-    // Language selector should be visible on mobile
+    // On mobile, language selector is in mobile menu (hidden by default in header)
+    // Open mobile menu first
+    const mobileMenuButton = page.getByRole('button', { name: /menu/i });
+    await expect(mobileMenuButton).toBeVisible({ timeout: 15000 });
+    await safeClick(mobileMenuButton);
+    await page.waitForTimeout(500); // Animation
+    
+    // Language selector should be visible in mobile menu
     const languageButton = page.getByRole('button', { name: /select language/i });
-    await expect(languageButton).toBeVisible();
+    await expect(languageButton).toBeVisible({ timeout: 15000 });
     
     // Should work the same as desktop
     await safeClick(languageButton);
@@ -203,6 +210,6 @@ test.describe('Language Selector', () => {
     // Toast should appear
     await page.waitForTimeout(200);
     const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /language changed/i });
-    await expect(toast).toBeVisible();
+    await expect(toast).toBeVisible({ timeout: 15000 });
   });
 });

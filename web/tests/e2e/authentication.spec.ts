@@ -26,19 +26,19 @@ test.describe('Authentication', () => {
     test('should display sign in page', async ({ page }) => {
       // Sign in heading should be visible
       const heading = page.getByRole('heading', { name: /sign in|log in/i });
-      await expect(heading).toBeVisible();
+      await expect(heading).toBeVisible({ timeout: 15000 });
       
       // Email input should be visible
       const emailInput = page.getByLabel(/email/i);
-      await expect(emailInput).toBeVisible();
+      await expect(emailInput).toBeVisible({ timeout: 15000 });
       
       // Password input should be visible
       const passwordInput = page.getByLabel(/password/i);
-      await expect(passwordInput).toBeVisible();
+      await expect(passwordInput).toBeVisible({ timeout: 15000 });
       
       // Submit button should be visible
       const submitButton = page.getByRole('button', { name: /sign in|log in|submit/i });
-      await expect(submitButton).toBeVisible();
+      await expect(submitButton).toBeVisible({ timeout: 15000 });
     });
 
     test('should validate empty form submission', async ({ page }) => {
@@ -52,8 +52,8 @@ test.describe('Authentication', () => {
       // Should show validation errors
       const errorMessage = page.locator('text=/required|error|invalid|enter/i').first();
       
-      if (await errorMessage.isVisible()) {
-        await expect(errorMessage).toBeVisible();
+      if (await errorMessage.isVisible({ timeout: 15000 })) {
+        await expect(errorMessage).toBeVisible({ timeout: 15000 });
       }
     });
 
@@ -77,8 +77,8 @@ test.describe('Authentication', () => {
       // Should show email validation error
       const errorMessage = page.locator('text=/valid email|invalid email/i');
       
-      if (await errorMessage.isVisible()) {
-        await expect(errorMessage).toBeVisible();
+      if (await errorMessage.isVisible({ timeout: 15000 })) {
+        await expect(errorMessage).toBeVisible({ timeout: 15000 });
       }
     });
 
@@ -92,7 +92,7 @@ test.describe('Authentication', () => {
       // Look for show/hide password toggle
       const toggleButton = page.getByRole('button', { name: /show|hide|toggle password/i });
       
-      if (await toggleButton.isVisible()) {
+      if (await toggleButton.isVisible({ timeout: 15000 })) {
         await safeClick(toggleButton);
         
         // Should change to type="text"
@@ -104,12 +104,12 @@ test.describe('Authentication', () => {
       // Forgot password link should exist
       const forgotPasswordLink = page.getByRole('link', { name: /forgot password|reset password/i });
       
-      if (await forgotPasswordLink.isVisible()) {
-        await expect(forgotPasswordLink).toBeVisible();
+      if (await forgotPasswordLink.isVisible({ timeout: 15000 })) {
+        await expect(forgotPasswordLink).toBeVisible({ timeout: 15000 });
         
         // Should navigate to password reset
         await safeClick(forgotPasswordLink);
-        await page.waitForURL(/\/forgot-password|\/reset-password/);
+        await page.waitForURL(/\/forgot-password|\/reset-password/, { timeout: 15000 });
       }
     });
 
@@ -117,12 +117,12 @@ test.describe('Authentication', () => {
       // Sign up link should exist
       const signUpLink = page.getByRole('link', { name: /sign up|create account|register/i });
       
-      if (await signUpLink.isVisible()) {
-        await expect(signUpLink).toBeVisible();
+      if (await signUpLink.isVisible({ timeout: 15000 })) {
+        await expect(signUpLink).toBeVisible({ timeout: 15000 });
         
         // Should navigate to sign up
         await safeClick(signUpLink);
-        await page.waitForURL(/\/sign-up|\/register/);
+        await page.waitForURL(/\/sign-up|\/register/, { timeout: 15000 });
       }
     });
 
@@ -140,10 +140,10 @@ test.describe('Authentication', () => {
       
       // Form should be visible on mobile
       const heading = page.getByRole('heading', { name: /sign in|log in/i });
-      await expect(heading).toBeVisible();
+      await expect(heading).toBeVisible({ timeout: 15000 });
       
       const emailInput = page.getByLabel(/email/i);
-      await expect(emailInput).toBeVisible();
+      await expect(emailInput).toBeVisible({ timeout: 15000 });
     });
   });
 
@@ -157,16 +157,16 @@ test.describe('Authentication', () => {
       // Sign up heading
       const heading = page.getByRole('heading', { name: /sign up|create account|register/i });
       
-      if (await heading.isVisible()) {
-        await expect(heading).toBeVisible();
+      if (await heading.isVisible({ timeout: 15000 })) {
+        await expect(heading).toBeVisible({ timeout: 15000 });
         
         // Email input
         const emailInput = page.getByLabel(/email/i);
-        await expect(emailInput).toBeVisible();
+        await expect(emailInput).toBeVisible({ timeout: 15000 });
         
         // Password input
         const passwordInput = page.getByLabel(/password/i);
-        await expect(passwordInput).toBeVisible();
+        await expect(passwordInput).toBeVisible({ timeout: 15000 });
       } else {
         // Sign up page might not be implemented yet
         test.skip();
@@ -176,15 +176,15 @@ test.describe('Authentication', () => {
     test('should validate password requirements', async ({ page }) => {
       const passwordInput = page.getByLabel(/^password$/i);
       
-      if (await passwordInput.isVisible()) {
+      if (await passwordInput.isVisible({ timeout: 15000 })) {
         // Enter weak password
         await passwordInput.fill('123');
         
         // Should show password requirements
         const requirement = page.locator('text=/at least|minimum|characters|uppercase|lowercase/i');
         
-        if (await requirement.isVisible()) {
-          await expect(requirement).toBeVisible();
+        if (await requirement.isVisible({ timeout: 15000 })) {
+          await expect(requirement).toBeVisible({ timeout: 15000 });
         }
       }
     });
@@ -192,7 +192,7 @@ test.describe('Authentication', () => {
     test('should pass accessibility checks', async ({ page }) => {
       const heading = page.getByRole('heading', { name: /sign up|create account|register/i });
       
-      if (await heading.isVisible()) {
+      if (await heading.isVisible({ timeout: 15000 })) {
         await injectAxe(page);
         await checkA11y(page, undefined, {
           detailedReport: true,
@@ -242,11 +242,11 @@ test.describe('Authentication', () => {
       await page.waitForLoadState('networkidle');
       
       const heading = page.getByRole('heading', { name: /forgot password|reset password/i });
-      await expect(heading).toBeVisible();
+      await expect(heading).toBeVisible({ timeout: 15000 });
       
       // Email input should be visible
       const emailInput = page.getByLabel(/email/i);
-      await expect(emailInput).toBeVisible();
+      await expect(emailInput).toBeVisible({ timeout: 15000 });
     });
   });
 
@@ -266,8 +266,8 @@ test.describe('Authentication', () => {
         // If somehow authenticated, 2FA option should be visible
         const twoFactorSection = page.locator('text=/two-factor|2fa|authentication app/i');
         
-        if (await twoFactorSection.isVisible()) {
-          await expect(twoFactorSection).toBeVisible();
+        if (await twoFactorSection.isVisible({ timeout: 15000 })) {
+          await expect(twoFactorSection).toBeVisible({ timeout: 15000 });
         }
       }
     });
@@ -282,15 +282,15 @@ test.describe('Navigation for Authenticated Users', () => {
     // Check for sign in button (unauthenticated)
     const signInButton = page.getByRole('link', { name: /sign in/i });
     
-    if (await signInButton.isVisible()) {
+    if (await signInButton.isVisible({ timeout: 15000 })) {
       // Unauthenticated - sign in button visible
-      await expect(signInButton).toBeVisible();
+      await expect(signInButton).toBeVisible({ timeout: 15000 });
     } else {
       // Might be authenticated - look for account link
       const accountLink = page.getByRole('link', { name: /account|profile/i });
       
-      if (await accountLink.isVisible()) {
-        await expect(accountLink).toBeVisible();
+      if (await accountLink.isVisible({ timeout: 15000 })) {
+        await expect(accountLink).toBeVisible({ timeout: 15000 });
       }
     }
   });

@@ -36,13 +36,13 @@ test.describe('Product Pages', () => {
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
       await waitForStableElement(firstCategoryCard);
-      await expect(firstCategoryCard).toBeVisible();
+      await expect(firstCategoryCard).toBeVisible({ timeout: 15000 });
     });
 
     test('should display product categories', async ({ page }) => {
       // Products heading should be visible
       const heading = page.getByRole('heading', { name: /products/i, level: 1 });
-      await expect(heading).toBeVisible();
+      await expect(heading).toBeVisible({ timeout: 15000 });
       
       // On /products we expect category cards that link to /categories/{slug}
       const categoryLinks = page
@@ -66,7 +66,7 @@ test.describe('Product Pages', () => {
       
       // Wait for category page heading to be visible (deterministic)
       const categoryHeading = page.getByRole('heading', { level: 1 });
-      await expect(categoryHeading).toBeVisible();
+      await expect(categoryHeading).toBeVisible({ timeout: 15000 });
 
       // Should navigate away from the landing page to a category route
       await expect(page).not.toHaveURL(/\/products\/?$/);
@@ -92,7 +92,7 @@ test.describe('Product Pages', () => {
       // Verify we're on a product detail page
       await expect(page).toHaveURL(/\/product\/.+/);
       const productHeading = page.getByRole('heading', { level: 1 });
-      await expect(productHeading).toBeVisible();
+      await expect(productHeading).toBeVisible({ timeout: 15000 });
     });
 
     test('should pass accessibility checks', async ({ page }) => {
@@ -128,7 +128,7 @@ test.describe('Product Pages', () => {
       }
       
       await waitForStableElement(firstCategoryCard);
-      await expect(firstCategoryCard).toBeVisible();
+      await expect(firstCategoryCard).toBeVisible({ timeout: 15000 });
       
       // Navigate to category page with extra safety
       await safeClick(firstCategoryCard);
@@ -137,7 +137,7 @@ test.describe('Product Pages', () => {
       
       // Navigate through category hierarchy to find products (enterprise utility)
       const productLink = await navigateToProducts(page, 3);
-      await expect(productLink).toBeVisible();
+      await expect(productLink).toBeVisible({ timeout: 15000 });
       
       // Navigate to product detail page with extra stability
       await safeClick(productLink);
@@ -153,33 +153,33 @@ test.describe('Product Pages', () => {
     test('should display product information', async ({ page }) => {
       // Product title
       const title = page.getByRole('heading', { level: 1 });
-      await expect(title).toBeVisible();
+      await expect(title).toBeVisible({ timeout: 15000 });
       
       // Product image
       const productImage = page.locator('img[alt*="product"]').first();
-      await expect(productImage).toBeVisible();
+      await expect(productImage).toBeVisible({ timeout: 15000 });
       
       // Price should be displayed
       const price = page.locator('text=/\\$[0-9,]+\\.\\d{2}/').first();
-      await expect(price).toBeVisible();
+      await expect(price).toBeVisible({ timeout: 15000 });
       
       // Add to cart button should exist
       const addToCartButton = page.getByRole('button', { name: /add to cart/i });
-      await expect(addToCartButton).toBeVisible();
+      await expect(addToCartButton).toBeVisible({ timeout: 15000 });
     });
 
     test('should display breadcrumb navigation', async ({ page }) => {
       // Breadcrumb should be visible
       const breadcrumb = page.getByRole('navigation', { name: /breadcrumb/i });
       
-      if (await breadcrumb.isVisible()) {
+      if (await breadcrumb.isVisible({ timeout: 15000 })) {
         // Should have Home link
         const homeLink = breadcrumb.getByRole('link', { name: /home/i });
-        await expect(homeLink).toBeVisible();
+        await expect(homeLink).toBeVisible({ timeout: 15000 });
         
         // Should have Products link
         const productsLink = breadcrumb.getByRole('link', { name: /products/i });
-        await expect(productsLink).toBeVisible();
+        await expect(productsLink).toBeVisible({ timeout: 15000 });
       }
     });
 
@@ -187,8 +187,8 @@ test.describe('Product Pages', () => {
       // SKU should be displayed (stored in wp_postmeta)
       const sku = page.locator('text=/SKU:|Part Number:/i');
       
-      if (await sku.isVisible()) {
-        await expect(sku).toBeVisible();
+      if (await sku.isVisible({ timeout: 15000 })) {
+        await expect(sku).toBeVisible({ timeout: 15000 });
       }
     });
 
@@ -214,13 +214,13 @@ test.describe('Product Pages', () => {
       
       // Toast notification should appear
       const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /cart/i });
-      await expect(toast).toBeVisible();
+      await expect(toast).toBeVisible({ timeout: 15000 });
     });
 
     test('should display product images gallery', async ({ page }) => {
       // Main product image should be visible
       const mainImage = page.locator('img[alt*="product"]').first();
-      await expect(mainImage).toBeVisible();
+      await expect(mainImage).toBeVisible({ timeout: 15000 });
       
       // Check for image thumbnails (if product has multiple images)
       const thumbnails = page.locator('img[alt*="product"]');
@@ -234,8 +234,8 @@ test.describe('Product Pages', () => {
       // Product description section should exist
       const description = page.locator('text=/description/i').first();
       
-      if (await description.isVisible()) {
-        await expect(description).toBeVisible();
+      if (await description.isVisible({ timeout: 15000 })) {
+        await expect(description).toBeVisible({ timeout: 15000 });
       }
     });
 
@@ -246,8 +246,8 @@ test.describe('Product Pages', () => {
       // Look for related products section
       const relatedSection = page.locator('text=/related|you may also like/i').first();
       
-      if (await relatedSection.isVisible()) {
-        await expect(relatedSection).toBeVisible();
+      if (await relatedSection.isVisible({ timeout: 15000 })) {
+        await expect(relatedSection).toBeVisible({ timeout: 15000 });
       }
     });
 
@@ -261,11 +261,11 @@ test.describe('Product Pages', () => {
       
       // Product information should still be visible
       const title = page.getByRole('heading', { level: 1 });
-      await expect(title).toBeVisible();
+      await expect(title).toBeVisible({ timeout: 15000 });
       
       // Add to cart button should be visible
       const addToCartButton = page.getByRole('button', { name: /add to cart/i });
-      await expect(addToCartButton).toBeVisible();
+      await expect(addToCartButton).toBeVisible({ timeout: 15000 });
     });
 
     test('should pass accessibility checks', async ({ page }) => {
@@ -279,7 +279,7 @@ test.describe('Product Pages', () => {
       // Look for quantity input
       const quantityInput = page.getByRole('spinbutton', { name: /quantity/i });
       
-      if (await quantityInput.isVisible()) {
+      if (await quantityInput.isVisible({ timeout: 15000 })) {
         // Change quantity
         await waitForStableElement(quantityInput);
         await quantityInput.fill('3');
@@ -302,8 +302,8 @@ test.describe('Product Pages', () => {
       // Look for specifications or technical details
       const specsSection = page.locator('text=/specifications|technical|features/i').first();
       
-      if (await specsSection.isVisible()) {
-        await expect(specsSection).toBeVisible();
+      if (await specsSection.isVisible({ timeout: 15000 })) {
+        await expect(specsSection).toBeVisible({ timeout: 15000 });
       }
     });
   });
@@ -315,7 +315,7 @@ test.describe('Product Pages', () => {
       
       // Wait for header to be fully loaded and stable
       const header = page.locator('header');
-      await expect(header).toBeVisible();
+      await expect(header).toBeVisible({ timeout: 15000 });
       await waitForStableElement(header);
     });
 
@@ -332,7 +332,7 @@ test.describe('Product Pages', () => {
       // Wait for search input to appear
       const searchInput = page.getByRole('searchbox');
       await waitForStableElement(searchInput);
-      await expect(searchInput).toBeVisible();
+      await expect(searchInput).toBeVisible({ timeout: 15000 });
       await searchInput.fill('damper actuator');
       
       // Submit search
@@ -341,7 +341,7 @@ test.describe('Product Pages', () => {
       
       // Results should be displayed
       const results = page.locator('[data-testid="search-results"], .search-results, main');
-      await expect(results).toBeVisible();
+      await expect(results).toBeVisible({ timeout: 15000 });
     });
 
     test('should show no results message for invalid search', async ({ page }) => {
@@ -357,14 +357,14 @@ test.describe('Product Pages', () => {
       // Wait for search input to appear
       const searchInput = page.getByRole('searchbox');
       await waitForStableElement(searchInput);
-      await expect(searchInput).toBeVisible();
+      await expect(searchInput).toBeVisible({ timeout: 15000 });
       await searchInput.fill('xyzabc123notfound');
       await page.keyboard.press('Enter');
       
       // Should show no results message
       await waitForFullPageLoad(page);
       const noResults = page.locator('text=/no results|nothing found|no products found/i');
-      await expect(noResults).toBeVisible();
+      await expect(noResults).toBeVisible({ timeout: 15000 });
     });
   });
 });

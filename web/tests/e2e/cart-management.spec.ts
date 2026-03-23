@@ -603,7 +603,7 @@ async function addProductToCart(page: Page, forceDifferent: boolean = false): Pr
  */
 async function getCartTotal(page: Page): Promise<number> {
   const totalPatterns = [
-    page.locator('text=/total.*\\$\\d+/i'),
+    page.locator('text=/total.*\$[\d,]+/i'),
     page.locator('[data-testid*="total"]:has-text("$")'),
     page.locator('.total:has-text("$"), .cart-total:has-text("$")'),
   ];
@@ -612,9 +612,12 @@ async function getCartTotal(page: Page): Promise<number> {
     if (await pattern.first().isVisible({ timeout: 2000 }).catch(() => false)) {
       const totalText = await pattern.first().textContent();
       if (totalText) {
-        const match = totalText.match(/\$?\s*(\d+\.?\d*)/);
+        // Updated regex to handle thousands separators (e.g., "$1,234.56")
+        const match = totalText.match(/\$?\s*([\d,]+\.?\d*)/);
         if (match) {
-          return parseFloat(match[1]);
+          // Remove commas before parsing
+          const normalized = match[1].replace(/,/g, '');
+          return parseFloat(normalized);
         }
       }
     }

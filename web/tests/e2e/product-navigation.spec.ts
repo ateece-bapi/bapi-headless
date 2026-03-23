@@ -35,28 +35,27 @@ test.describe('Category Navigation', () => {
     
     // Find first category link
     const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+    await expect(categoryLink).toBeVisible({ timeout: 3000 });
     
-    if (await categoryLink.isVisible({ timeout: 3000 })) {
-      const categoryHref = await categoryLink.getAttribute('href');
-      expect(categoryHref).toBeTruthy();
-      
-      // Navigate to category
-      await safeClick(categoryLink);
-      await page.waitForTimeout(2000);
-      
-      // Should be on category page
-      expect(page.url()).toMatch(/\/categories?\/|\/category\//);
-      
-      // Should show products or subcategories
-      const productLinks = page.locator('a[href*="/product/"]');
-      const subCategoryLinks = page.locator('a[href*="/categories/"], a[href*="/category/"]');
-      
-      const productsCount = await productLinks.count();
-      const subCategoriesCount = await subCategoryLinks.count();
-      
-      // Category should show either products or subcategories
-      expect(productsCount + subCategoriesCount).toBeGreaterThan(0);
-    }
+    const categoryHref = await categoryLink.getAttribute('href');
+    expect(categoryHref).toBeTruthy();
+    
+    // Navigate to category
+    await safeClick(categoryLink);
+    await page.waitForTimeout(2000);
+    
+    // Should be on category page
+    expect(page.url()).toMatch(/\/categories?\/|\/category\//);
+    
+    // Should show products or subcategories
+    const productLinks = page.locator('a[href*="/product/"]');
+    const subCategoryLinks = page.locator('a[href*="/categories/"], a[href*="/category/"]');
+    
+    const productsCount = await productLinks.count();
+    const subCategoriesCount = await subCategoryLinks.count();
+    
+    // Category should show either products or subcategories
+    expect(productsCount + subCategoriesCount).toBeGreaterThan(0);
   });
 
   test('should display breadcrumb navigation on category page', async ({ page }) => {
@@ -65,23 +64,20 @@ test.describe('Category Navigation', () => {
     
     // Navigate to category
     const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
+    await expect(categoryLink).toBeVisible({ timeout: 3000 });
+    await safeClick(categoryLink);
+    await page.waitForTimeout(2000);
     
-    if (await categoryLink.isVisible({ timeout: 3000 })) {
-      await safeClick(categoryLink);
-      await page.waitForTimeout(2000);
-      
-      // Look for breadcrumb navigation
-      const breadcrumb = page.locator('nav[aria-label*="breadcrumb" i], [role="navigation"]:has-text("Home"), ol:has(a[href*="/"]):has(li)').first();
-      
-      if (await breadcrumb.isVisible({ timeout: 2000 })) {
-        // Breadcrumb should contain "Home" or "Products" link
-        const homeLink = breadcrumb.locator('a').first();
-        await expect(homeLink).toBeVisible();
-        
-        const breadcrumbText = await breadcrumb.textContent();
-        expect(breadcrumbText).toBeTruthy();
-      }
-    }
+    // Look for breadcrumb navigation
+    const breadcrumb = page.locator('nav[aria-label*="breadcrumb" i], [role="navigation"]:has-text("Home"), ol:has(a[href*="/"]):has(li)').first();
+    await expect(breadcrumb).toBeVisible({ timeout: 2000 });
+    
+    // Breadcrumb should contain "Home" or "Products" link
+    const homeLink = breadcrumb.locator('a').first();
+    await expect(homeLink).toBeVisible();
+    
+    const breadcrumbText = await breadcrumb.textContent();
+    expect(breadcrumbText).toBeTruthy();
   });
 
   test('should navigate through subcategories', async ({ page }) => {

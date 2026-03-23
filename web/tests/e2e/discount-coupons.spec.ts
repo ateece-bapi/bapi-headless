@@ -478,9 +478,22 @@ test.describe('Multi-Locale Coupon Display', () => {
  * Helper: Setup checkout with a product in cart
  */
 async function setupCheckoutWithProduct(page: Page, locale: string = 'en'): Promise<void> {
-  // Clear cart
+  // Clear cart but preserve region detection to prevent auto-redirect
   await page.goto(routes.home(locale), { waitUntil: 'commit', timeout: 60000 });
   await page.evaluate(() => localStorage.clear());
+  
+  // Set region/language to match the locale being tested (prevents auto-detection redirect)
+  await page.evaluate((localeCode) => {
+    localStorage.setItem('bapi-region-welcome-shown', 'true');
+    // Optionally set persisted language to match test locale
+    if (localeCode === 'es' || localeCode === 'fr' || localeCode === 'de' || localeCode === 'ja') {
+      localStorage.setItem('bapi-region-storage', JSON.stringify({
+        language: localeCode,
+        region: localeCode === 'de' ? 'eu' : 'us', // DE typically EUR/EU, others USD/US
+      }));
+    }
+  }, locale);
+  
   await page.reload({ waitUntil: 'commit' });
   await page.waitForTimeout(1000);
   
@@ -573,6 +586,7 @@ async function findCouponInput(page: Page): Promise<any> {
 
 /**
  * Helper: Apply coupon code
+ * @returns true if coupon was applied successfully (verified by success message or discount appearing)
  */
 async function applyCoupon(page: Page, code: string): Promise<boolean> {
   const couponInput = await findCouponInput(page);
@@ -585,25 +599,45 @@ async function applyCoupon(page: Page, code: string): Promise<boolean> {
   await couponInput.fill(code);
   await page.waitForTimeout(300);
   
-  // Find apply button
+  // Find and click apply button
   const applyButtons = [
     page.locator('button:has-text("Apply")'),
     page.locator('button[type="submit"]:near(input[name*="coupon"])'),
     page.locator('[data-testid*="apply-coupon"]'),
   ];
   
+  let clicked = false;
   for (const button of applyButtons) {
     if (await button.first().isVisible({ timeout: 1000 }).catch(() => false)) {
       await safeClick(button.first());
-      await page.waitForTimeout(2000);
+      clicked = true;
+      break;
+    }
+  }
+  
+  // If no button found, try pressing Enter
+  if (!clicked) {
+    await couponInput.press('Enter');
+  }
+  
+  // Wait for response
+  await page.waitForTimeout(2000);
+  
+  // Verify success by checking for success toast/message or discount line appearance
+  const successIndicators = [
+    page.locator('[role="alert"]:has-text("applied"), [role="status"]:has-text("applied")'),
+    page.locator('text=/coupon.*applied|discount.*applied/i'),
+    page.locator('[data-testid*="discount"], .discount, .coupon-discount'),
+  ];
+  
+  for (const indicator of successIndicators) {
+    if (await indicator.first().isVisible({ timeout: 1000 }).catch(() => false)) {
       return true;
     }
   }
   
-  // Try pressing Enter
-  await couponInput.press('Enter');
-  await page.waitForTimeout(2000);
-  return true;
+  // No success indicator found - coupon may not have been applied
+  return false;
 }
 
 /**
@@ -611,7 +645,7 @@ async function applyCoupon(page: Page, code: string): Promise<boolean> {
  */
 async function getCartTotal(page: Page): Promise<number> {
   const totalPatterns = [
-    page.locator('text=/total.*\\$\\d+/i'),
+    page.locator('text=/total.*\$[\d,]+/i'),
     page.locator('[data-testid*="total"]:has-text("$")'),
     page.locator('.total:has-text("$"), .cart-total:has-text("$")'),
   ];
@@ -620,9 +654,12 @@ async function getCartTotal(page: Page): Promise<number> {
     if (await pattern.first().isVisible({ timeout: 2000 }).catch(() => false)) {
       const totalText = await pattern.first().textContent();
       if (totalText) {
-        const match = totalText.match(/\$?\s*(\d+\.?\d*)/);
+        // Updated regex to handle thousands separators (e.g., "$1,234.56")
+        const match = totalText.match(/\$?\s*([\d,]+\.?\d*)/);
         if (match) {
-          return parseFloat(match[1]);
+          // Remove commas before parsing
+          const normalized = match[1].replace(/,/g, '');
+          return parseFloat(normalized);
         }
       }
     }

@@ -292,8 +292,9 @@ Configure these coupons in WordPress Admin → WooCommerce → Coupons:
 - Stripe Elements loadable in test environment
 
 ### 5. Translation Files
-- All 11 language files present in `/locales/` directory
-- Spanish (ES), French (FR), German (DE), Japanese (JA) translations complete
+- All language files present in `web/messages/` directory
+- Spanish (ES), French (FR), German (DE), Japanese (JA) translations complete (tested in E2E)
+- Additional supported locales: Arabic (AR), Hindi (HI), Thai (TH), Vietnamese (VI), Chinese (ZH)
 - Currency symbols configured per locale
 
 ### 6. Environment Variables
@@ -378,12 +379,16 @@ pnpm exec playwright test --reporter=html
 
 ### CI/CD
 
-Tests will automatically run on:
+**Current Status:** E2E tests are **temporarily disabled in the main GitHub Actions CI workflow** (see `.github/workflows/ci.yml` under the "E2E tests temporarily disabled" section). They **do not currently run automatically** on pushes, PRs, or merges.
+
+Until the E2E CI job is re-enabled, run the tests **manually** using the Playwright commands above (for example: `pnpm exec playwright test` or `pnpm exec playwright test --project=chromium`).
+
+**Planned behavior once re-enabled:** E2E tests will run in CI on:
 - Push to feature branch `feat/e2e-payment-flows`
-- Pull request creation/update
+- Pull request creation/update targeting `feat/e2e-payment-flows` or `main`
 - Merge to `main` branch
 
-**Expected CI Duration:** 20-40 minutes for 530 test executions
+**Expected CI Duration (when enabled):** 20-40 minutes for ~530 test executions
 
 ---
 

@@ -235,22 +235,23 @@ curl -X POST https://your-app.vercel.app/api/payment/create-intent \
 
 ### Required Language Files
 
-Ensure these files exist in `web/locales/`:
+Ensure these files exist in `web/messages/`:
 
 ```
-web/locales/
+web/messages/
 ├── en.json       (English - default)
-├── es.json       (Spanish)
-├── fr.json       (French)
-├── de.json       (German)
-├── it.json       (Italian)
-├── pt.json       (Portuguese)
-├── nl.json       (Dutch)
-├── pl.json       (Polish)
-├── cs.json       (Czech)
-├── ru.json       (Russian)
-└── zh.json       (Chinese)
+├── es.json       (Spanish - ES)
+├── fr.json       (French - FR)
+├── de.json       (German - DE)
+├── ja.json       (Japanese - JA)
+├── ar.json       (Arabic - AR)
+├── hi.json       (Hindi - HI)
+├── th.json       (Thai - TH)
+├── vi.json       (Vietnamese - VI)
+└── zh.json       (Chinese - ZH)
 ```
+
+**Note:** The E2E tests primarily focus on ES, FR, DE, and JA locales, but all language files should be present for complete multi-locale support.
 
 ### Minimum Translation Coverage
 
@@ -284,7 +285,9 @@ Each language file must include translations for:
 }
 ```
 
-**Validation:** Open app in each locale (`/es`, `/fr`, `/de`, `/ja`) and verify text displays in correct language.
+**Validation:** Open app in each tested locale (`/es`, `/fr`, `/de`, `/ja`) and verify text displays in correct language.
+
+**Important:** The current E2E test suite focuses on 4 key locales (ES, FR, DE, JA) rather than all supported languages. Additional locale coverage can be added in future test iterations.
 
 ---
 

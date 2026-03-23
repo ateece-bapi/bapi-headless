@@ -242,16 +242,14 @@ test.describe('Payment Method - PayPal Flow', () => {
   test('should proceed to review with PayPal selected', async ({ page }) => {
     const nextButton = page.getByRole('button', { name: /continue|next/i });
     
-    if (await nextButton.isVisible({ timeout: 500 })) {
-      await safeClick(nextButton);
-      await page.waitForTimeout(1000);
-      
-      // Should navigate to review step (Step 3)
-      const reviewHeading = page.getByRole('heading', { name: /review|place order/i });
-      await expect(reviewHeading).toBeVisible({ timeout: 3000 }).catch(() => {
-        // Review step may not be fully implemented yet
-      });
-    }
+    // Next/Continue button must be visible to progress to review
+    await expect(nextButton).toBeVisible({ timeout: 3000 });
+    await safeClick(nextButton);
+    await page.waitForTimeout(1000);
+    
+    // Should navigate to review step (Step 3)
+    const reviewHeading = page.getByRole('heading', { name: /review|place order/i });
+    await expect(reviewHeading).toBeVisible({ timeout: 3000 });
   });
 
   test('should display PayPal information message', async ({ page }) => {
@@ -314,16 +312,13 @@ test.describe('Full Checkout Wizard with Payment', () => {
       
       // Proceed to review
       const paymentNextButton = page.getByRole('button', { name: /continue|next/i });
-      if (await paymentNextButton.isVisible({ timeout: 500 })) {
-        await safeClick(paymentNextButton);
-        await page.waitForTimeout(1000);
-        
-        // Step 3: Verify on review step
-        const reviewHeading = page.getByRole('heading', { name: /review|place order/i });
-        await expect(reviewHeading).toBeVisible({ timeout: 3000 }).catch(() => {
-          // Review may not be fully implemented
-        });
-      }
+      await expect(paymentNextButton).toBeVisible({ timeout: 3000 });
+      await safeClick(paymentNextButton);
+      await page.waitForTimeout(1000);
+      
+      // Step 3: Verify on review step
+      const reviewHeading = page.getByRole('heading', { name: /review|place order/i });
+      await expect(reviewHeading).toBeVisible({ timeout: 3000 });
     }
   });
 

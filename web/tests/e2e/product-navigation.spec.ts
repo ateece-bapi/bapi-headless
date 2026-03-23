@@ -45,7 +45,7 @@ test.describe('Category Navigation', () => {
     await waitAfterNavigation(page);
     
     // Should be on category page
-    expect(page.url()).toMatch(/\/categories?\/|\/category\//);
+    await expect(page).toHaveURL(/\/categories?\/|\/ category\//);
     
     // Should show products or subcategories
     const productLinks = page.locator('a[href*="/product/"]');
@@ -103,7 +103,7 @@ test.describe('Category Navigation', () => {
         await waitAfterNavigation(page);
         
         // Should be on subcategory page
-        expect(page.url()).toMatch(/\/categories?\/|\/category\//);
+        await expect(page).toHaveURL(/\/categories?\/|\/category\//);
         
         // Breadcrumb should show hierarchy (Home > Category > Subcategory)
         const breadcrumbItems = page.locator('nav[aria-label*="breadcrumb" i] a, [role="navigation"] a');

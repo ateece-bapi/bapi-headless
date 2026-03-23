@@ -5,8 +5,7 @@ import {
   safeClick, 
   navigateToProducts, 
   waitForFullPageLoad,
-  waitForStableElement,
-  waitForPageReady
+  waitForStableElement
 } from './helpers/test-utils';
 
 /**

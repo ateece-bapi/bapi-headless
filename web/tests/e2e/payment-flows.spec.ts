@@ -2,8 +2,7 @@ import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
 import type { Page } from '@playwright/test';
 import { routes, DEFAULT_LOCALE } from './helpers/routes';
-import { safeClick, waitForStableElement } from './helpers/test-utils';
-import { waitForPageReady, waitAfterNavigation } from './helpers/test-utils';
+import { safeClick, waitForStableElement, waitForPageReady, waitAfterNavigation } from './helpers/test-utils';
 
 /**
  * Payment Flow E2E Tests (Phase A)
@@ -176,7 +175,6 @@ test.describe('Stripe Card Payment Form', () => {
   test('should show payment intent creation', async ({ page }) => {
     // Wait for payment intent to be created in background
     // This happens automatically when credit card is selected
-    await waitAfterNavigation(page);
     
     // Check that loading state cleared
     const loadingIndicator = page.locator('text=/setting up/i');

@@ -599,10 +599,8 @@ async function applyCoupon(page: Page, code: string): Promise<boolean> {
     await couponInput.press('Enter');
   }
   
-  // Wait for success indicators to appear
-  await waitForPageReady(page);
-  
-  // Verify success by checking for success toast/message or discount line appearance
+  // Wait for coupon application to complete (AJAX request + UI update)
+  // Check for success indicators with realistic timeout for AJAX completion
   const successIndicators = [
     page.locator('[role="alert"]:has-text("applied"), [role="status"]:has-text("applied")'),
     page.locator('text=/coupon.*applied|discount.*applied/i'),
@@ -610,7 +608,7 @@ async function applyCoupon(page: Page, code: string): Promise<boolean> {
   ];
   
   for (const indicator of successIndicators) {
-    if (await indicator.first().isVisible({ timeout: 1000 }).catch(() => false)) {
+    if (await indicator.first().isVisible({ timeout: 3000 }).catch(() => false)) {
       return true;
     }
   }

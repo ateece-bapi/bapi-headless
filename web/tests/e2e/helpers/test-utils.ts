@@ -43,25 +43,53 @@ export async function waitForPageReady(page: Page): Promise<void> {
 }
 
 /**
- * Wait for navigation to complete and page to be interactive
- * Use after clicking links or submitting forms
+ * Wait for navigation to complete and page to be interactive.
+ * 
+ * In Next.js client-side routing, traditional load events may not fire after
+ * the initial page load. To avoid flakiness, prefer passing either:
+ *  - expectedUrl: string | RegExp to wait for URL changes, or
+ *  - destinationLocator: Locator for an element on the destination view.
+ * 
+ * @param page - Playwright Page object
+ * @param options - Optional configuration
+ * @param options.expectedUrl - URL or pattern to wait for (recommended for navigation)
+ * @param options.destinationLocator - Element to wait for on destination page
+ * @param options.timeoutMs - Timeout for all waits (default: 10000ms)
  */
-export async function waitAfterNavigation(page: Page): Promise<void> {
+export async function waitAfterNavigation(
+  page: Page,
+  options?: {
+    expectedUrl?: string | RegExp;
+    destinationLocator?: Locator;
+    timeoutMs?: number;
+  }
+): Promise<void> {
+  const timeout = options?.timeoutMs ?? 10_000;
+
+  // Prefer explicit URL/locator-based waits when provided
+  if (options?.expectedUrl) {
+    await page.waitForURL(options.expectedUrl, { timeout });
+  } else if (options?.destinationLocator) {
+    await options.destinationLocator.waitFor({ state: 'visible', timeout });
+  }
+
   await waitForPageReady(page);
   
   // Ensure page is interactive (no loading spinners, skeletons gone)
-  await page.waitForFunction(
-    () => {
-      // Check for common loading indicators
-      const loadingIndicators = document.querySelectorAll(
-        '[aria-busy="true"], [aria-label*="Loading"], [data-loading="true"], .loading, .skeleton'
-      );
-      return loadingIndicators.length === 0;
-    },
-    { timeout: 5000 }
-  ).catch(() => {
-    // Loading indicators may not exist - that's fine
-  });
+  await page
+    .waitForFunction(
+      () => {
+        // Check for common loading indicators
+        const loadingIndicators = document.querySelectorAll(
+          '[aria-busy="true"], [aria-label*="Loading"], [data-loading="true"], .loading, .skeleton'
+        );
+        return loadingIndicators.length === 0;
+      },
+      { timeout }
+    )
+    .catch(() => {
+      // Loading indicators may not exist - that's fine
+    });
 }
 
 /**

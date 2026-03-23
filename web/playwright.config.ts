@@ -63,9 +63,9 @@ export default defineConfig({
       name: 'webkit',
       use: { 
         ...devices['Desktop Safari'],
-        // Increase timeout - responsive test manually sets mobile viewport on webkit
-        timeout: 90 * 1000, // 90s to handle viewport changes + slow rendering
       },
+      // Increase timeout - responsive test manually sets mobile viewport on webkit
+      timeout: 90 * 1000, // 90s to handle viewport changes + slow rendering
     },
 
     // Mobile testing
@@ -73,17 +73,17 @@ export default defineConfig({
       name: 'Mobile Chrome',
       use: { 
         ...devices['Pixel 5'],
-        // Mobile devices need longer timeouts (slower rendering, network)
-        timeout: 90 * 1000, // 90s vs 60s for desktop
       },
+      // Mobile devices need longer timeouts (slower rendering, network)
+      timeout: 90 * 1000, // 90s vs 60s for desktop
     },
     {
       name: 'Mobile Safari',
       use: { 
         ...devices['iPhone 12'],
-        // Mobile devices need longer timeouts (slower rendering, network)
-        timeout: 90 * 1000, // 90s vs 60s for desktop
       },
+      // Mobile devices need longer timeouts (slower rendering, network)
+      timeout: 90 * 1000, // 90s vs 60s for desktop
     },
   ],
 

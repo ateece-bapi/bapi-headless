@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
 import type { Page } from '@playwright/test';
 import { routes, DEFAULT_LOCALE } from './helpers/routes';
-import { safeClick, waitForStableElement } from './helpers/test-utils';
+import { safeClick, waitForStableElement, waitForPageReady, waitAfterNavigation } from './helpers/test-utils';
 
 /**
  * Cart & Checkout E2E Tests
@@ -144,7 +144,7 @@ test.describe('Shopping Cart', () => {
     // Navigate to another page
     await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
     // Wait for client-side cart hydration from localStorage
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Cart should still show 1 item
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
@@ -161,7 +161,7 @@ test.describe('Shopping Cart', () => {
     // Open cart drawer
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await safeClick(cartButton);
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     // Should show cart heading
     const cartHeading = page.getByRole('heading', { name: /cart|shopping/i }).first();
@@ -181,7 +181,7 @@ test.describe('Shopping Cart', () => {
     // Open cart drawer
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await safeClick(cartButton);
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     // Run accessibility check on cart content
     await injectAxe(page);
@@ -200,7 +200,7 @@ test.describe('Checkout Process', () => {
     await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
     await page.evaluate(() => localStorage.clear());
     await page.reload({ waitUntil: 'commit' });
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     // Add item to cart
     await addProductToCart(page);
@@ -213,7 +213,7 @@ test.describe('Checkout Process', () => {
     // Click cart button to open cart drawer/modal  
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await safeClick(cartButton);
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     // Find checkout button in cart
     const checkoutButton = page.getByRole('link', { name: /checkout|proceed/i });
@@ -223,7 +223,7 @@ test.describe('Checkout Process', () => {
       
       // Should navigate to checkout
       await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`));
-      await page.waitForTimeout(1000);
+      await waitForPageReady(page);
       
       // Checkout page should load
       const checkoutHeading = page.getByRole('heading', { name: /checkout/i });
@@ -236,7 +236,7 @@ test.describe('Checkout Process', () => {
 
   test('should display checkout wizard/steps', async ({ page }) => {
     await page.goto(routes.checkout());
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     // Should show checkout steps/sections
     const stepsIndicator = page.locator('text=/step|shipping|payment|review/i').first();
@@ -248,7 +248,7 @@ test.describe('Checkout Process', () => {
 
   test('should validate shipping information', async ({ page }) => {
     await page.goto(routes.checkout());
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     // Try to proceed without filling required fields
     const continueButton = page.getByRole('button', { name: /continue|next|submit/i }).first();
@@ -269,7 +269,7 @@ test.describe('Checkout Process', () => {
   test('should display order summary', async ({ page }) => {
     await page.goto(routes.checkout(), { waitUntil: 'commit', timeout: 60000 });
     // Wait for client-side cart hydration and React rendering
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Order summary should be visible
     const orderSummary = page.locator('text=/order summary|your order/i').first();
@@ -286,7 +286,7 @@ test.describe('Checkout Process', () => {
   test('should be responsive on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto(routes.checkout());
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     // Checkout should work on mobile
     const heading = page.getByRole('heading', { name: /checkout/i });
@@ -298,7 +298,7 @@ test.describe('Checkout Process', () => {
 
   test('should pass accessibility checks', async ({ page }) => {
     await page.goto(routes.checkout());
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     await injectAxe(page);
     await checkA11y(page, undefined, {
@@ -348,7 +348,7 @@ async function addProductToCart(page: Page) {
   await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
   
   // Wait for React to hydrate and render content
-  await page.waitForTimeout(2000);
+  await waitAfterNavigation(page);
   
   // Wait for either category links OR product links to appear
   await Promise.race([
@@ -381,7 +381,7 @@ async function addProductToCart(page: Page) {
           ]);
         } catch {
           // Neither found, wait a bit more for React
-          await page.waitForTimeout(2000);
+          await waitAfterNavigation(page);
         }
         
         productLinks = page.locator('a[href*="/product/"]');
@@ -408,7 +408,7 @@ async function addProductToCart(page: Page) {
         await page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 8000 });
       } catch {
         // Products not found, wait a bit
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
       }
       
       productLinks = page.locator('a[href*="/product/"]');

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
-import { waitForFullPageLoad, safeClick } from './helpers/test-utils';
+import { waitForFullPageLoad, safeClick, waitForPageReady } from './helpers/test-utils';
 import { routes } from './helpers/routes';
 
 /**
@@ -60,11 +60,9 @@ test.describe('Language Selector', () => {
     // Select Spanish
     await safeClick(page.getByRole('option', { name: /español/i }));
     
-    // Wait a moment for toast to appear (100ms delay + render time)
-    await page.waitForTimeout(200);
-    
     // Check that toast notification appeared
     const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /language changed/i });
+    await toast.waitFor({ state: 'visible', timeout: 2000 }).catch(() => {});
     await expect(toast).toBeVisible();
     
     // Toast should show the target language
@@ -74,7 +72,7 @@ test.describe('Language Selector', () => {
     await expect(page).toHaveURL('/es');
     
     // Wait for toast to disappear (2.5s duration)
-    await page.waitForTimeout(3000);
+    await toast.waitFor({ state: 'hidden', timeout: 4000 }).catch(() => {});
     await expect(toast).not.toBeVisible();
   });
 
@@ -103,9 +101,6 @@ test.describe('Language Selector', () => {
     
     // Select English (current language)
     await safeClick(page.getByRole('option', { name: /english/i }));
-    
-    // Wait a moment
-    await page.waitForTimeout(300);
     
     // Toast should NOT appear (guard clause)
     const toast = page.locator('[role="alert"], [role="status"]');
@@ -155,7 +150,7 @@ test.describe('Language Selector', () => {
     await page.keyboard.press('Enter');
     
     // Should have navigated to a different language
-    await page.waitForTimeout(500);
+    await waitForPageReady(page);
     const currentUrl = page.url();
     expect(currentUrl).not.toContain('/en');
   });
@@ -197,10 +192,10 @@ test.describe('Language Selector', () => {
     const mobileMenuButton = page.getByRole('button', { name: /menu/i });
     await expect(mobileMenuButton).toBeVisible();
     await safeClick(mobileMenuButton);
-    await page.waitForTimeout(500); // Animation
     
     // Language selector should be visible in mobile menu
     const languageButton = page.getByRole('button', { name: /select language/i });
+    await languageButton.waitFor({ state: 'visible', timeout: 2000 }).catch(() => {});
     await expect(languageButton).toBeVisible();
     
     // Should work the same as desktop
@@ -208,8 +203,8 @@ test.describe('Language Selector', () => {
     await safeClick(page.getByRole('option', { name: /español/i }));
     
     // Toast should appear
-    await page.waitForTimeout(200);
     const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /language changed/i });
+    await toast.waitFor({ state: 'visible', timeout: 2000 }).catch(() => {});
     await expect(toast).toBeVisible();
   });
 });

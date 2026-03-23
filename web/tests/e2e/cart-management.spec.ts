@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { routes } from './helpers/routes';
-import { safeClick, waitForStableElement } from './helpers/test-utils';
+import { safeClick, waitForStableElement, waitForPageReady, waitAfterNavigation } from './helpers/test-utils';
 
 /**
  * Cart Management Edge Cases E2E Tests (Phase G)
@@ -23,7 +23,7 @@ test.describe('Quantity Updates', () => {
   test('should increase item quantity in cart', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Get initial quantity
     const quantityInput = page.locator('input[type="number"], input[name*="quantity" i]').first();
@@ -37,7 +37,7 @@ test.describe('Quantity Updates', () => {
       
       if (await increaseButton.isVisible({ timeout: 2000 })) {
         await safeClick(increaseButton);
-        await page.waitForTimeout(1500);
+        await waitForPageReady(page);
         
         // Quantity should increase
         const newQty = await quantityInput.inputValue();
@@ -47,7 +47,7 @@ test.describe('Quantity Updates', () => {
       } else {
         // Try directly updating input
         await quantityInput.fill(String(initialQtyNum + 1));
-        await page.waitForTimeout(1500);
+        await waitForPageReady(page);
         
         const newQty = await quantityInput.inputValue();
         expect(parseInt(newQty)).toBe(initialQtyNum + 1);
@@ -58,21 +58,21 @@ test.describe('Quantity Updates', () => {
   test('should decrease item quantity in cart', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Increase quantity first to ensure we can decrease
     const quantityInput = page.locator('input[type="number"], input[name*="quantity" i]').first();
     
     if (await quantityInput.isVisible({ timeout: 3000 })) {
       await quantityInput.fill('2');
-      await page.waitForTimeout(1500);
+      await waitForPageReady(page);
       
       // Now decrease
       const decreaseButton = page.locator('button[aria-label*="decrease" i], button:has-text("-"), button[data-testid*="decrease"]').first();
       
       if (await decreaseButton.isVisible({ timeout: 2000 })) {
         await safeClick(decreaseButton);
-        await page.waitForTimeout(1500);
+        await waitForPageReady(page);
         
         const newQty = await quantityInput.inputValue();
         expect(parseInt(newQty)).toBe(1);
@@ -83,7 +83,7 @@ test.describe('Quantity Updates', () => {
   test('should update cart total when quantity changes', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const initialTotal = await getCartTotal(page);
     
@@ -92,7 +92,7 @@ test.describe('Quantity Updates', () => {
     
     if (await quantityInput.isVisible({ timeout: 3000 })) {
       await quantityInput.fill('2');
-      await page.waitForTimeout(2000);
+      await waitForPageReady(page);
       
       const newTotal = await getCartTotal(page);
       
@@ -104,14 +104,14 @@ test.describe('Quantity Updates', () => {
   test('should not allow quantity below minimum (1)', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const quantityInput = page.locator('input[type="number"], input[name*="quantity" i]').first();
     
     if (await quantityInput.isVisible({ timeout: 3000 })) {
       // Try to set quantity to 0
       await quantityInput.fill('0');
-      await page.waitForTimeout(1000);
+      await waitForPageReady(page);
       
       // Should either prevent or show error
       const qty = await quantityInput.inputValue();
@@ -125,14 +125,14 @@ test.describe('Quantity Updates', () => {
   test('should enforce maximum quantity limit', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const quantityInput = page.locator('input[type="number"], input[name*="quantity" i]').first();
     
     if (await quantityInput.isVisible({ timeout: 3000 })) {
       // Try to set very high quantity
       await quantityInput.fill('9999');
-      await page.waitForTimeout(1500);
+      await waitForPageReady(page);
       
       // Check for error message or capped quantity
       const errorMessage = page.locator('text=/maximum|limit|stock|available/i');
@@ -154,7 +154,7 @@ test.describe('Remove Items', () => {
   test('should remove single item from cart', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Count initial items
     const cartItems = page.locator('[data-testid*="cart-item"], .cart-item, tr[data-testid*="item"]');
@@ -167,7 +167,7 @@ test.describe('Remove Items', () => {
     
     if (await removeButton.isVisible({ timeout: 3000 })) {
       await safeClick(removeButton);
-      await page.waitForTimeout(2000);
+        await waitForPageReady(page);
       
       // Item count should decrease or show empty cart
       const newCount = await cartItems.count();
@@ -178,7 +178,7 @@ test.describe('Remove Items', () => {
   test('should display empty cart message after removing all items', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Remove all items
     const removeButtons = page.locator('button[aria-label*="remove" i], button:has-text("Remove")');
@@ -188,7 +188,7 @@ test.describe('Remove Items', () => {
       const button = removeButtons.first();
       if (await button.isVisible({ timeout: 1000 })) {
         await safeClick(button);
-        await page.waitForTimeout(1500);
+        await waitForPageReady(page);
       }
     }
     
@@ -203,7 +203,7 @@ test.describe('Remove Items', () => {
     await addProductToCart(page);
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const initialTotal = await getCartTotal(page);
     
@@ -212,7 +212,7 @@ test.describe('Remove Items', () => {
     
     if (await removeButton.isVisible({ timeout: 3000 })) {
       await safeClick(removeButton);
-      await page.waitForTimeout(2000);
+        await waitForPageReady(page);
       
       const newTotal = await getCartTotal(page);
       
@@ -224,7 +224,7 @@ test.describe('Remove Items', () => {
   test('should show confirmation before removing item', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const removeButton = page.locator('button[aria-label*="remove" i], button:has-text("Remove")').first();
     
@@ -254,10 +254,10 @@ test.describe('Empty Cart Handling', () => {
     await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
     await page.evaluate(() => localStorage.clear());
     await page.reload({ waitUntil: 'commit' });
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Should show empty cart message
     const emptyMessage = page.locator('text=/cart is empty|no items|empty cart/i');
@@ -269,10 +269,10 @@ test.describe('Empty Cart Handling', () => {
     await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
     await page.evaluate(() => localStorage.clear());
     await page.reload({ waitUntil: 'commit' });
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Checkout button should not be visible
     const checkoutButton = page.locator('button:has-text("Checkout"), a:has-text("Checkout")');
@@ -288,7 +288,7 @@ test.describe('Empty Cart Handling', () => {
     await page.reload({ waitUntil: 'commit' });
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Should show continue shopping link
     const continueLink = page.locator('a:has-text("Continue Shopping"), a:has-text("Shop"), a:has-text("Products")');
@@ -305,7 +305,7 @@ test.describe('Empty Cart Handling', () => {
     await page.reload({ waitUntil: 'commit' });
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const total = await getCartTotal(page);
     expect(total).toBe(0);
@@ -316,14 +316,14 @@ test.describe('Cart Persistence', () => {
   test('should persist cart items after page refresh', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const initialItems = await getCartItemCount(page);
     expect(initialItems).toBeGreaterThan(0);
     
     // Refresh page
     await page.reload({ waitUntil: 'commit' });
-    await page.waitForTimeout(2000);
+    await waitForPageReady(page);
     
     // Items should persist
     const itemsAfterRefresh = await getCartItemCount(page);
@@ -333,17 +333,17 @@ test.describe('Cart Persistence', () => {
   test('should persist cart items when navigating away and back', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const initialItems = await getCartItemCount(page);
     
     // Navigate to products page
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(1000);
+    await waitAfterNavigation(page);
     
     // Navigate back to cart
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Items should persist
     const itemsAfterNavigation = await getCartItemCount(page);
@@ -353,7 +353,7 @@ test.describe('Cart Persistence', () => {
   test('should persist cart across browser sessions (localStorage)', async ({ page, context }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const initialItems = await getCartItemCount(page);
     expect(initialItems).toBeGreaterThan(0);
@@ -366,7 +366,7 @@ test.describe('Cart Persistence', () => {
     const newPage = await newContext.newPage();
     
     await newPage.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await newPage.waitForTimeout(2000);
+    await waitAfterNavigation(newPage);
     
     // Items should persist in new session
     const itemsInNewSession = await getCartItemCount(newPage);
@@ -384,7 +384,7 @@ test.describe('Multiple Items Management', () => {
     await addProductToCart(page, true); // Force different product
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const itemCount = await getCartItemCount(page);
     expect(itemCount).toBeGreaterThanOrEqual(2);
@@ -395,7 +395,7 @@ test.describe('Multiple Items Management', () => {
     await addProductToCart(page);
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const total = await getCartTotal(page);
     
@@ -408,7 +408,7 @@ test.describe('Multiple Items Management', () => {
     await addProductToCart(page, true);
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const quantityInputs = page.locator('input[type="number"], input[name*="quantity" i]');
     const inputCount = await quantityInputs.count();
@@ -416,11 +416,11 @@ test.describe('Multiple Items Management', () => {
     if (inputCount >= 2) {
       // Update first item
       await quantityInputs.first().fill('2');
-      await page.waitForTimeout(1000);
+      await waitForPageReady(page);
       
       // Update second item
       await quantityInputs.nth(1).fill('3');
-      await page.waitForTimeout(1000);
+      await waitForPageReady(page);
       
       // Verify updates
       const firstQty = await quantityInputs.first().inputValue();
@@ -436,7 +436,7 @@ test.describe('Multiple Items Management', () => {
     await addProductToCart(page, true);
     
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const initialCount = await getCartItemCount(page);
     expect(initialCount).toBeGreaterThanOrEqual(2);
@@ -446,7 +446,7 @@ test.describe('Multiple Items Management', () => {
     
     if (await removeButton.isVisible({ timeout: 3000 })) {
       await safeClick(removeButton);
-      await page.waitForTimeout(2000);
+        await waitForPageReady(page);
       
       const newCount = await getCartItemCount(page);
       expect(newCount).toBe(initialCount - 1);
@@ -458,7 +458,7 @@ test.describe('Cart Validation', () => {
   test('should display product image in cart', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const productImage = page.locator('img[alt*="product" i], [data-testid*="product-image"] img').first();
     
@@ -471,7 +471,7 @@ test.describe('Cart Validation', () => {
   test('should display product name in cart', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const cartItems = page.locator('[data-testid*="cart-item"], .cart-item');
     
@@ -484,7 +484,7 @@ test.describe('Cart Validation', () => {
   test('should display individual item price', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const priceElements = page.locator('text=/\\$\\d+\\.?\\d*/');
     const priceCount = await priceElements.count();
@@ -496,7 +496,7 @@ test.describe('Cart Validation', () => {
   test('should display subtotal, tax, and total breakdown', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Look for order summary
     const subtotalLabel = page.locator('text=/subtotal/i');
@@ -514,7 +514,7 @@ test.describe('Cart Error Handling', () => {
   test('should handle network error gracefully when updating quantity', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Simulate network failure for update requests
     await page.route('**/api/cart/**', route => route.abort());
@@ -523,7 +523,7 @@ test.describe('Cart Error Handling', () => {
     
     if (await quantityInput.isVisible({ timeout: 3000 })) {
       await quantityInput.fill('5');
-      await page.waitForTimeout(2000);
+      await waitForPageReady(page);
       
       // Should show error message or revert to previous value
       const errorMessage = page.locator('[role="alert"]:has-text("error"), text=/error|failed/i');
@@ -540,7 +540,7 @@ test.describe('Cart Error Handling', () => {
   test('should handle out of stock items in cart', async ({ page }) => {
     await addProductToCart(page);
     await page.goto(routes.cart(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Look for out of stock warnings
     const stockWarning = page.locator('text=/out of stock|unavailable|not available/i');
@@ -564,7 +564,7 @@ test.describe('Cart Error Handling', () => {
  */
 async function addProductToCart(page: Page, forceDifferent: boolean = false): Promise<void> {
   await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-  await page.waitForTimeout(2000);
+  await waitAfterNavigation(page);
   
   let productLinks = page.locator('a[href*="/product/"]');
   let productCount = await productLinks.count();
@@ -573,7 +573,7 @@ async function addProductToCart(page: Page, forceDifferent: boolean = false): Pr
     const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
     if (await categoryLink.isVisible({ timeout: 3000 })) {
       await safeClick(categoryLink);
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       productLinks = page.locator('a[href*="/product/"]');
       productCount = await productLinks.count();
     }
@@ -584,13 +584,12 @@ async function addProductToCart(page: Page, forceDifferent: boolean = false): Pr
   
   if (productHref) {
     await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const addToCartButton = page.getByRole('button').filter({ hasText: /cart|carrito|panier/i });
     
     if (await addToCartButton.first().isVisible({ timeout: 3000 })) {
       await safeClick(addToCartButton.first());
-      await page.waitForTimeout(1500);
       
       // Wait for toast
       await waitForToastToDismiss(page);

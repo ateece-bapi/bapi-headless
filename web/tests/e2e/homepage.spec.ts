@@ -83,9 +83,6 @@ test.describe('Homepage', () => {
       // Type search query
       await searchInput.fill('damper');
       
-      // Wait for search debounce and UI update
-      await page.waitForTimeout(500); // Debounce
-      
       // After typing, verify search UI responds (results container or input has value)
       await expect(searchInput).toHaveValue('damper');
       
@@ -157,8 +154,8 @@ test.describe('Homepage', () => {
     await safeClick(mobileMenuButton);
     
     // Mobile navigation should appear
-    await page.waitForTimeout(500); // Animation
     const mobileNav = page.getByRole('navigation', { name: /mobile navigation/i });
+    await mobileNav.waitFor({ state: 'visible', timeout: 2000 });
     await expect(mobileNav).toBeVisible();
     
     // Verify Products link is present in mobile menu

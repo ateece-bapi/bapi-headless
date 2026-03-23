@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { routes } from './helpers/routes';
-import { safeClick, waitForStableElement } from './helpers/test-utils';
+import { safeClick, waitForStableElement, waitAfterNavigation, waitForPageReady } from './helpers/test-utils';
 
 /**
  * Product Navigation E2E Tests (Phase C)
@@ -19,7 +19,7 @@ import { safeClick, waitForStableElement } from './helpers/test-utils';
 test.describe('Category Navigation', () => {
   test('should display product categories on products page', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Should show categories or category links
     const categoryLinks = page.locator('a[href*="/categories/"], a[href*="/category/"]');
@@ -31,7 +31,7 @@ test.describe('Category Navigation', () => {
 
   test('should navigate to category page and display products', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Find first category link
     const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
@@ -42,10 +42,10 @@ test.describe('Category Navigation', () => {
     
     // Navigate to category
     await safeClick(categoryLink);
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Should be on category page
-    expect(page.url()).toMatch(/\/categories?\/|\/category\//);
+    await expect(page).toHaveURL(/\/categories?\/|\/ category\//);
     
     // Should show products or subcategories
     const productLinks = page.locator('a[href*="/product/"]');
@@ -60,13 +60,13 @@ test.describe('Category Navigation', () => {
 
   test('should display breadcrumb navigation on category page', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Navigate to category
     const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
     await expect(categoryLink).toBeVisible({ timeout: 3000 });
     await safeClick(categoryLink);
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Look for breadcrumb navigation
     const breadcrumb = page.locator('nav[aria-label*="breadcrumb" i], [role="navigation"]:has-text("Home"), ol:has(a[href*="/"]):has(li)').first();
@@ -81,15 +81,15 @@ test.describe('Category Navigation', () => {
   });
 
   test('should navigate through subcategories', async ({ page }) => {
-    await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await page.goto(routes.products(),{ waitUntil: 'commit', timeout: 60000 });
+    await waitAfterNavigation(page);
     
     // Navigate to first category
     const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
     
     if (await categoryLink.isVisible({ timeout: 3000 })) {
       await safeClick(categoryLink);
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Look for subcategories
       const subCategoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
@@ -100,10 +100,10 @@ test.describe('Category Navigation', () => {
         
         // Navigate to subcategory
         await safeClick(subCategoryLink);
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
         
         // Should be on subcategory page
-        expect(page.url()).toMatch(/\/categories?\/|\/category\//);
+        await expect(page).toHaveURL(/\/categories?\/|\/category\//);
         
         // Breadcrumb should show hierarchy (Home > Category > Subcategory)
         const breadcrumbItems = page.locator('nav[aria-label*="breadcrumb" i] a, [role="navigation"] a');
@@ -124,7 +124,7 @@ test.describe('Product Detail Pages', () => {
     
     if (productUrl) {
       await page.goto(productUrl, { waitUntil: 'commit', timeout: 60000 });
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Should display product name
       const productName = page.locator('h1, [data-testid="product-name"]').first();
@@ -146,7 +146,7 @@ test.describe('Product Detail Pages', () => {
     
     if (productUrl) {
       await page.goto(productUrl, { waitUntil: 'commit', timeout: 60000 });
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Look for product images
       const productImages = page.locator('img[alt*="product" i], [data-testid*="product-image"], main img').first();
@@ -165,7 +165,7 @@ test.describe('Product Detail Pages', () => {
     
     if (productUrl) {
       await page.goto(productUrl, { waitUntil: 'commit', timeout: 60000 });
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Look for description section
       const description = page.locator('[data-testid*="description"], section:has-text("Description"), .product-description, main p').first();
@@ -182,7 +182,7 @@ test.describe('Product Detail Pages', () => {
     
     if (productUrl) {
       await page.goto(productUrl, { waitUntil: 'commit', timeout: 60000 });
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Look for Add to Cart button (language agnostic)
       const addToCartButton = page.getByRole('button').filter({ hasText: /cart|carrito|panier|warenkorb/i });
@@ -205,11 +205,11 @@ test.describe('Product Detail Pages', () => {
     
     if (productUrl) {
       await page.goto(productUrl, { waitUntil: 'commit', timeout: 60000 });
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Scroll down to load related products (lazy loading)
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-      await page.waitForTimeout(1500);
+      await waitForPageReady(page);
       
       // Look for related/recommended products section
       const relatedSection = page.locator('section:has-text("Related"), section:has-text("Recommended"), [data-testid*="related"]').first();
@@ -229,7 +229,7 @@ test.describe('Product Detail Pages', () => {
     
     if (productUrl) {
       await page.goto(productUrl, { waitUntil: 'commit', timeout: 60000 });
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Look for tabs (Details, Specifications, Documents)
       const tabs = page.locator('[role="tab"], .tabs button, [data-testid*="tab"]');
@@ -242,10 +242,10 @@ test.describe('Product Detail Pages', () => {
         // Click second tab if exists
         if (tabCount > 1) {
           await safeClick(tabs.nth(1));
-          await page.waitForTimeout(500);
           
           // Tab panel should be visible
           const tabPanel = page.locator('[role="tabpanel"]:visible, [data-testid*="panel"]:visible').first();
+          await tabPanel.waitFor({ state: 'visible', timeout: 2000 }).catch(() => {});
           
           if (await tabPanel.isVisible({ timeout: 2000 })) {
             const panelText = await tabPanel.textContent();
@@ -260,7 +260,7 @@ test.describe('Product Detail Pages', () => {
 test.describe('Product Search', () => {
   test('should display search bar', async ({ page }) => {
     await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Look for search input
     const searchInput = page.locator('input[type="search"], input[placeholder*="Search" i], [role="searchbox"]').first();
@@ -270,7 +270,7 @@ test.describe('Product Search', () => {
 
   test('should search for products and display results', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Find search input
     const searchInput = page.locator('input[type="search"], input[placeholder*="Search" i], [role="searchbox"]').first();
@@ -278,11 +278,10 @@ test.describe('Product Search', () => {
     if (await searchInput.isVisible({ timeout: 3000 })) {
       // Search for common term (HVAC products)
       await searchInput.fill('valve');
-      await page.waitForTimeout(1000);
       
       // Press Enter or click search button
       await searchInput.press('Enter');
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Should show results or "no results" message
       const results = page.locator('a[href*="/product/"]');
@@ -298,7 +297,7 @@ test.describe('Product Search', () => {
 
   test('should clear search and return to all products', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Find search input
     const searchInput = page.locator('input[type="search"], input[placeholder*="Search" i], [role="searchbox"]').first();
@@ -307,12 +306,12 @@ test.describe('Product Search', () => {
       // Perform search
       await searchInput.fill('test search');
       await searchInput.press('Enter');
-      await page.waitForTimeout(1500);
+      await waitAfterNavigation(page);
       
       // Clear search
       await searchInput.clear();
       await searchInput.press('Enter');
-      await page.waitForTimeout(1500);
+      await waitAfterNavigation(page);
       
       // Should return to all products view
       const products = page.locator('a[href*="/product/"]');
@@ -327,7 +326,7 @@ test.describe('Product Search', () => {
 test.describe('Product Filtering & Sorting', () => {
   test('should display filter options', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Look for filter controls (price, category, etc.)
     const filterControls = page.locator('select, [role="combobox"], button:has-text("Filter"), [data-testid*="filter"]');
@@ -339,7 +338,7 @@ test.describe('Product Filtering & Sorting', () => {
 
   test('should sort products by price', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Look for sort dropdown
     const sortSelect = page.locator('select:has(option:text-matches("price|precio", "i")), [data-testid*="sort"]').first();
@@ -354,7 +353,7 @@ test.describe('Product Filtering & Sorting', () => {
       
       if (priceOption) {
         await sortSelect.selectOption({ label: priceOption });
-        await page.waitForTimeout(2000);
+        await waitForPageReady(page);
         
         // Products should reorder
         const sortedProducts = await page.locator('a[href*="/product/"]').first().textContent();
@@ -369,14 +368,14 @@ test.describe('Product Filtering & Sorting', () => {
 test.describe('Breadcrumb Navigation', () => {
   test('breadcrumb links should be clickable and functional', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Navigate to category
     const categoryLink = page.locator('a[href*="/categories/"], a[href*="/category/"]').first();
     
     if (await categoryLink.isVisible({ timeout: 3000 })) {
       await safeClick(categoryLink);
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Find breadcrumb
       const breadcrumb = page.locator('nav[aria-label*="breadcrumb" i], [role="navigation"]:has(a[href*="/"])').first();
@@ -392,7 +391,7 @@ test.describe('Breadcrumb Navigation', () => {
           const href = await firstLink.getAttribute('href');
           
           await safeClick(firstLink);
-          await page.waitForTimeout(2000);
+          await waitAfterNavigation(page);
           
           // Should navigate back
           expect(page.url()).not.toContain('undefined');
@@ -406,7 +405,7 @@ test.describe('Breadcrumb Navigation', () => {
     
     if (productUrl) {
       await page.goto(productUrl, { waitUntil: 'commit', timeout: 60000 });
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Find breadcrumb
       const breadcrumb = page.locator('nav[aria-label*="breadcrumb" i], [role="navigation"]:has(li)').first();
@@ -433,7 +432,7 @@ test.describe('Mobile Product Navigation', () => {
 
   test('should display mobile-friendly category navigation', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Categories should be visible on mobile
     const categoryLinks = page.locator('a[href*="/categories/"], a[href*="/category/"]');
@@ -444,7 +443,7 @@ test.describe('Mobile Product Navigation', () => {
 
   test('should display mobile-friendly product grid', async ({ page }) => {
     await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Products should display in mobile layout
     const productLinks = page.locator('a[href*="/product/"]');
@@ -458,7 +457,7 @@ test.describe('Mobile Product Navigation', () => {
 
   test('should show hamburger menu for navigation', async ({ page }) => {
     await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Look for mobile menu button
     const menuButton = page.locator('button[aria-label*="menu" i], button[aria-label*="navigation" i], [data-testid*="mobile-menu"]').first();
@@ -466,10 +465,10 @@ test.describe('Mobile Product Navigation', () => {
     if (await menuButton.isVisible({ timeout: 3000 })) {
       // Click to open mobile menu
       await safeClick(menuButton);
-      await page.waitForTimeout(500);
       
-      // Mobile menu should be visible
-      const mobileMenu = page.locator('nav[aria-label*="mobile" i], [role="navigation"]:visible, [data-testid*="mobile-menu"]:visible').first();
+      // Wait for menu to be visible
+      const mobileMenu = page.locator('[role="dialog"], [data-testid*="mobile-menu"], nav[aria-label*="mobile" i]').first();
+      await mobileMenu.waitFor({ state: 'visible', timeout: 2000 }).catch(() => {});
       
       if (await mobileMenu.isVisible({ timeout: 2000 })) {
         // Should contain navigation links
@@ -487,7 +486,7 @@ test.describe('Mega-Menu Integration', () => {
     test.skip(page.viewportSize()!.width < 768, 'Desktop only test');
     
     await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Find Products navigation link
     const productsNav = page.locator('nav a:has-text("Products"), [role="navigation"] a:has-text("Products")').first();
@@ -495,10 +494,10 @@ test.describe('Mega-Menu Integration', () => {
     if (await productsNav.isVisible({ timeout: 3000 })) {
       // Hover over products
       await productsNav.hover();
-      await page.waitForTimeout(500);
       
       // Look for mega menu or dropdown
       const megaMenu = page.locator('[role="menu"], .mega-menu, nav [role="navigation"] > div:visible').first();
+      await megaMenu.waitFor({ state: 'visible', timeout: 2000 }).catch(() => {});
       
       if (await megaMenu.isVisible({ timeout: 2000 })) {
         // Mega menu should contain category links
@@ -514,14 +513,17 @@ test.describe('Mega-Menu Integration', () => {
     test.skip(page.viewportSize()!.width < 768, 'Desktop only test');
     
     await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Find Products navigation
     const productsNav = page.locator('nav a:has-text("Products"), [role="navigation"] a:has-text("Products")').first();
     
     if (await productsNav.isVisible({ timeout: 3000 })) {
       await productsNav.hover();
-      await page.waitForTimeout(500);
+      
+      // Wait for menu to appear
+      const megaMenu = page.locator('[role="menu"], .mega-menu').first();
+      await megaMenu.waitFor({ state: 'visible', timeout: 2000 }).catch(() => {});
       
       // Look for category groups (Valves, Actuators, Sensors, etc.)
       const categoryGroups = page.locator('[role="menu"] section, .mega-menu section, [data-testid*="category-group"]');
@@ -537,7 +539,7 @@ test.describe('Mega-Menu Integration', () => {
  */
 async function findProductUrl(page: Page): Promise<string | null> {
   await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-  await page.waitForTimeout(2000);
+  await waitAfterNavigation(page);
   
   // Try to find product links
   let productLinks = page.locator('a[href*="/product/"]');
@@ -549,7 +551,7 @@ async function findProductUrl(page: Page): Promise<string | null> {
     
     if (await categoryLink.isVisible({ timeout: 3000 })) {
       await safeClick(categoryLink);
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       productLinks = page.locator('a[href*="/product/"]');
       productCount = await productLinks.count();

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
 import type { Page } from '@playwright/test';
 import { routes, DEFAULT_LOCALE } from './helpers/routes';
-import { safeClick, waitForStableElement } from './helpers/test-utils';
+import { safeClick, waitForStableElement, waitForPageReady, waitAfterNavigation } from './helpers/test-utils';
 
 /**
  * Payment Flow E2E Tests (Phase A)
@@ -71,7 +71,7 @@ test.describe('Payment Method Selection', () => {
     await expect(creditCardMethod).toHaveClass(/border-primary-500/);
     
     // Wait for Stripe form to load
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     // Switch to PayPal
     const paypalMethod = page.getByRole('button', { name: /paypal/i });
@@ -99,13 +99,13 @@ test.describe('Payment Method Selection', () => {
     const backButton = page.getByRole('button', { name: /back|previous/i });
     if (await backButton.isVisible({ timeout: 500 })) {
       await safeClick(backButton);
-      await page.waitForTimeout(500);
+      await waitForPageReady(page);
       
       // Navigate forward to payment step again
       const nextButton = page.getByRole('button', { name: /continue|next/i });
       if (await nextButton.isVisible({ timeout: 500 })) {
         await safeClick(nextButton);
-        await page.waitForTimeout(1000);
+        await waitForPageReady(page);
         
         // PayPal should still be selected
         await expect(paypalMethod).toHaveClass(/border-primary-500/);
@@ -144,7 +144,8 @@ test.describe('Stripe Card Payment Form', () => {
     }
     
     // Wait for Stripe iframe or form elements to appear
-    await page.waitForTimeout(3000); // Give Stripe time to initialize
+    const stripeIframe = page.locator('iframe[name^="__privateStripeFrame"]');
+    await stripeIframe.first().waitFor({ state: 'attached', timeout: 5000 }).catch(() => {});
     
     // Should show card details section
     const cardDetailsSection = page.locator('text=/card details|card number|payment details/i');
@@ -152,8 +153,9 @@ test.describe('Stripe Card Payment Form', () => {
   });
 
   test('should display Stripe payment form fields', async ({ page }) => {
-    // Wait for Stripe to initialize
-    await page.waitForTimeout(3000);
+    // Wait for Stripe iframe to initialize
+    const stripeIframe = page.locator('iframe[name^="__privateStripeFrame"]');
+    await stripeIframe.first().waitFor({ state: 'attached', timeout: 5000 }).catch(() => {});
     
     // Stripe Elements use iframes, so we check for iframe existence
     // Stripe typically creates iframes for card number, expiry, CVC
@@ -173,7 +175,6 @@ test.describe('Stripe Card Payment Form', () => {
   test('should show payment intent creation', async ({ page }) => {
     // Wait for payment intent to be created in background
     // This happens automatically when credit card is selected
-    await page.waitForTimeout(2000);
     
     // Check that loading state cleared
     const loadingIndicator = page.locator('text=/setting up/i');
@@ -245,7 +246,7 @@ test.describe('Payment Method - PayPal Flow', () => {
     // Next/Continue button must be visible to progress to review
     await expect(nextButton).toBeVisible({ timeout: 3000 });
     await safeClick(nextButton);
-    await page.waitForTimeout(1000);
+    await waitForPageReady(page);
     
     // Should navigate to review step (Step 3)
     const reviewHeading = page.getByRole('heading', { name: /review|place order/i });
@@ -292,29 +293,28 @@ test.describe('Full Checkout Wizard with Payment', () => {
       const countrySelect = page.locator('select[name="country"], select#country');
       if (await countrySelect.isVisible({ timeout: 500 })) {
         await countrySelect.selectOption('US');
+        await waitForPageReady(page);
       }
-      
-      await page.waitForTimeout(500);
     }
     
     // Navigate to payment step
     const nextButton = page.getByRole('button', { name: /continue|next/i });
     if (await nextButton.isVisible({ timeout: 500 })) {
       await safeClick(nextButton);
-      await page.waitForTimeout(1500);
+      await waitForPageReady(page);
     }
     
     // Step 2: Payment - Select PayPal (easier than Stripe for E2E)
     const paypalMethod = page.getByRole('button', { name: /paypal/i });
     if (await paypalMethod.isVisible({ timeout: 3000 })) {
       await safeClick(paypalMethod);
-      await page.waitForTimeout(500);
+      await waitForPageReady(page);
       
       // Proceed to review
       const paymentNextButton = page.getByRole('button', { name: /continue|next/i });
       await expect(paymentNextButton).toBeVisible({ timeout: 3000 });
       await safeClick(paymentNextButton);
-      await page.waitForTimeout(1000);
+      await waitForPageReady(page);
       
       // Step 3: Verify on review step
       const reviewHeading = page.getByRole('heading', { name: /review|place order/i });
@@ -330,7 +330,7 @@ test.describe('Full Checkout Wizard with Payment', () => {
     const backButton = page.getByRole('button', { name: /back|previous/i });
     if (await backButton.isVisible({ timeout: 500 })) {
       await safeClick(backButton);
-      await page.waitForTimeout(1000);
+      await waitForPageReady(page);
       
       // Should be back on shipping step
       const shippingHeading = page.locator('text=/shipping|delivery/i').first();
@@ -421,7 +421,7 @@ test.describe('Payment Error Handling', () => {
     await safeClick(creditCardMethod);
     
     // No error toasts should appear
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     const errorToast = page.locator('[role="alert"]').filter({ hasText: /error|failed/i });
     
     await expect(errorToast).not.toBeVisible({ timeout: 1000 }).catch(() => {
@@ -441,7 +441,7 @@ test.describe('Payment Error Handling', () => {
       const warning = page.locator('text=/select.*method|choose.*payment/i');
       
       // Wait briefly for validation to appear
-      await page.waitForTimeout(1000);
+      await waitForPageReady(page);
       
       // May show as toast or inline message
       const warningToast = page.locator('[role="alert"]').filter({ hasText: /select|choose/i });
@@ -467,11 +467,11 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
   await page.goto(routes.home(), { waitUntil: 'commit', timeout: 60000 });
   await page.evaluate(() => localStorage.clear());
   await page.reload({ waitUntil: 'commit' });
-  await page.waitForTimeout(1000);
+  await waitForPageReady(page);
   
   // Navigate to products page
   await page.goto(routes.products(), { waitUntil: 'commit', timeout: 60000 });
-  await page.waitForTimeout(2000);
+  await waitAfterNavigation(page);
   
   // Wait for content to load
   await Promise.race([
@@ -496,7 +496,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
       const categoryHref = await categoryLinks.first().getAttribute('href');
       if (categoryHref) {
         await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
         
         productLinks = page.locator('a[href*="/product/"]');
         productCount = await productLinks.count();
@@ -513,7 +513,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
       const subHref = await subcategoryLinks.first().getAttribute('href');
       if (subHref) {
         await page.goto(subHref, { waitUntil: 'commit', timeout: 60000 });
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
         
         productLinks = page.locator('a[href*="/product/"]');
         productCount = await productLinks.count();
@@ -532,7 +532,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
     if (!productHref) continue;
     
     await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Check for Add to Cart button
     const addToCartButton = page.getByRole('button', { name: /add to cart/i });
@@ -540,7 +540,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
     
     if (buttonVisible) {
       await safeClick(addToCartButton);
-      await page.waitForTimeout(1500);
+      await waitForPageReady(page);
       
       // Check if toast appeared (indicating success)
       const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /added to cart/i });
@@ -560,7 +560,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
   
   // Navigate to checkout
   await page.goto(routes.checkout(), { waitUntil: 'commit', timeout: 60000 });
-  await page.waitForTimeout(2000);
+  await waitAfterNavigation(page);
   
   // Verify not on empty cart page
   const emptyCartMessage = page.locator('text=/your cart is empty|cart is empty/i');
@@ -577,7 +577,7 @@ async function setupCheckoutWithProduct(page: Page): Promise<void> {
  */
 async function navigateToPaymentStep(page: Page): Promise<void> {
   // Wait for shipping form to be visible
-  await page.waitForTimeout(1000);
+  await waitForPageReady(page);
   
   // Fill all required shipping form fields
   const firstNameInput = page.locator('input[name="firstName"], input#firstName');
@@ -624,16 +624,14 @@ async function navigateToPaymentStep(page: Page): Promise<void> {
   const countrySelect = page.locator('select[name="country"], select#country');
   if (await countrySelect.isVisible({ timeout: 500 })) {
     await countrySelect.selectOption('US');
+    await waitForPageReady(page);  // Wait for form validation to process
   }
-  
-  // Wait a moment for form validation to process
-  await page.waitForTimeout(500);
   
   // Click Next/Continue button to proceed to payment step
   const nextButton = page.getByRole('button', { name: /continue|next/i });
   if (await nextButton.isVisible({ timeout: 1000 })) {
     await safeClick(nextButton);
-    await page.waitForTimeout(2000); // Wait for step transition
+    await waitForPageReady(page); // Wait for step transition
   }
   
   // Verify we're on payment step by checking for payment method buttons

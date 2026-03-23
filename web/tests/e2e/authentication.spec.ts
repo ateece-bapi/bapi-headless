@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
-import { waitForFullPageLoad, safeClick, waitForStableElement } from './helpers/test-utils';
+import { waitForFullPageLoad, safeClick, waitForStableElement, waitForPageReady } from './helpers/test-utils';
 import { buildRoute } from './helpers/routes';
 
 /**
@@ -46,9 +46,6 @@ test.describe('Authentication', () => {
       const submitButton = page.getByRole('button', { name: /sign in|log in|submit/i });
       await safeClick(submitButton);
       
-      // Wait for validation
-      await page.waitForTimeout(500);
-      
       // Should show validation errors
       const errorMessage = page.locator('text=/required|error|invalid|enter/i').first();
       
@@ -70,9 +67,6 @@ test.describe('Authentication', () => {
       // Submit
       const submitButton = page.getByRole('button', { name: /sign in|log in|submit/i });
       await safeClick(submitButton);
-      
-      // Wait for validation
-      await page.waitForTimeout(500);
       
       // Should show email validation error
       const errorMessage = page.locator('text=/valid email|invalid email/i');
@@ -208,8 +202,8 @@ test.describe('Authentication', () => {
       // Try to access account page without auth
       await page.goto('/account');
       
-      // Should redirect to sign-in
-      await page.waitForTimeout(1000);
+      // Wait for redirect to complete
+      await waitForPageReady(page);
       
       const currentUrl = page.url();
       
@@ -223,7 +217,7 @@ test.describe('Authentication', () => {
       
       // For now, just verify the redirect works
       await page.goto('/account');
-      await page.waitForTimeout(1000);
+      await waitForPageReady(page);
       
       const currentUrl = page.url();
       
@@ -254,7 +248,7 @@ test.describe('Authentication', () => {
     test('should display 2FA setup option in account settings', async ({ page }) => {
       // Navigate to account (will redirect to sign-in if not authenticated)
       await page.goto('/account/security');
-      await page.waitForTimeout(1000);
+      await waitForPageReady(page);
       
       // If we're on sign-in page, that's expected
       const currentUrl = page.url();

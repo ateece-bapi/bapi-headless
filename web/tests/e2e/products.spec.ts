@@ -109,9 +109,6 @@ test.describe('Product Pages', () => {
       await page.goto(routes.products());
       await waitForFullPageLoad(page);
       
-      // Wait with extra timeout for initial page load
-      await page.waitForTimeout(1000);
-      
       // Wait for first category card to be visible and stable
       let firstCategoryCard = page
         .locator('a[href*="/categories/"]')
@@ -133,7 +130,6 @@ test.describe('Product Pages', () => {
       // Navigate to category page with extra safety
       await safeClick(firstCategoryCard);
       await waitForFullPageLoad(page);
-      await page.waitForTimeout(800); // Extra wait for animations
       
       // Navigate through category hierarchy to find products (enterprise utility)
       const productLink = await navigateToProducts(page, 3);
@@ -142,7 +138,6 @@ test.describe('Product Pages', () => {
       // Navigate to product detail page with extra stability
       await safeClick(productLink);
       await waitForFullPageLoad(page);
-      await page.waitForTimeout(500);
       
       // Verify we reached a product page before tests run
       await expect(page).toHaveURL(/\/product\/.+/, { timeout: 10000 });
@@ -203,18 +198,16 @@ test.describe('Product Pages', () => {
       const addToCartButton = page.getByRole('button', { name: /add to cart/i });
       await safeClick(addToCartButton);
       
-      // Wait for cart to update
-      await page.waitForTimeout(1000);
+      // Wait for cart to update - check for toast notification
+      const toast = page.locator('[role="alert"], [role="status"]');
+      await toast.first().waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
+      await expect(toast.filter({ hasText: /cart/i })).toBeVisible();
       
       // Cart count should increase
       const updatedText = await cartLink.textContent();
       const updatedCount = parseInt(updatedText?.match(/\d+/)?.[0] || '0');
       
       expect(updatedCount).toBe(initialCount + 1);
-      
-      // Toast notification should appear
-      const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /cart/i });
-      await expect(toast).toBeVisible();
     });
 
     test('should display product images gallery', async ({ page }) => {
@@ -288,8 +281,9 @@ test.describe('Product Pages', () => {
         const addToCartButton = page.getByRole('button', { name: /add to cart/i });
         await safeClick(addToCartButton);
         
-        // Wait for cart update
-        await page.waitForTimeout(1000);
+        // Wait for cart update - check for toast
+        const toast = page.locator('[role="alert"], [role="status"]');
+        await toast.first().waitFor({ state: 'visible', timeout: 3000 }).catch(() => {});
         
         // Cart should reflect quantity (cart is a LINK, not button)
         const cartLink = page.getByRole('link', { name: /cart/i }).first();

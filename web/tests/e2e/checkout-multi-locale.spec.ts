@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { routes } from './helpers/routes';
-import { safeClick } from './helpers/test-utils';
+import { safeClick, waitAfterNavigation, waitForPageReady } from './helpers/test-utils';
 
 /**
  * Multi-Locale Checkout E2E Tests (Phase B)
@@ -28,7 +28,7 @@ test.describe('Multi-Locale Checkout Flow', () => {
     test.describe(`${locale.name} (${locale.code})`, () => {
       test(`should display checkout page in ${locale.name}`, async ({ page }) => {
         await page.goto(routes.checkout(locale.code), { waitUntil: 'commit', timeout: 60000 });
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
         
         // Should show checkout heading
         const heading = page.getByRole('heading', { level: 1 }).first();
@@ -107,20 +107,18 @@ test.describe('Multi-Locale Checkout Flow', () => {
         const nextButton = page.getByRole('button', { name: /continue|next|continuar|suivant|weiter|次へ/i });
         if (await nextButton.isVisible({ timeout: 1000 })) {
           await safeClick(nextButton);
-          await page.waitForTimeout(2000);
+          await waitAfterNavigation(page);
         }
         
         // Select payment method
         const paypalButton = page.getByRole('button', { name: /paypal/i });
         if (await paypalButton.isVisible({ timeout: 3000 })) {
           await safeClick(paypalButton);
-          await page.waitForTimeout(500);
           
           // Proceed to review
           const paymentNextButton = page.getByRole('button', { name: /continue|next|continuar|suivant|weiter|次へ/i });
           if (await paymentNextButton.isVisible({ timeout: 1000 })) {
             await safeClick(paymentNextButton);
-            await page.waitForTimeout(1000);
             
             // Should reach review step
             const reviewHeading = page.getByRole('heading', { name: /review|place|revisar|revoir|überprüfen|確認/i });
@@ -147,13 +145,12 @@ test.describe('Locale Switching During Checkout', () => {
     const languageSelector = page.locator('[aria-label*="language"], [data-testid*="language"]').first();
     if (await languageSelector.isVisible({ timeout: 2000 })) {
       await safeClick(languageSelector);
-      await page.waitForTimeout(500);
       
       // Click Spanish option
       const spanishOption = page.locator('text=/español|spanish|es/i').first();
       if (await spanishOption.isVisible({ timeout: 1000 })) {
         await safeClick(spanishOption);
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
         
         // Should still be on checkout page, just in Spanish
         expect(page.url()).toContain('/es/checkout');
@@ -176,19 +173,18 @@ test.describe('Locale Switching During Checkout', () => {
     const nextButton = page.getByRole('button', { name: /continue|next/i });
     if (await nextButton.isVisible({ timeout: 1000 })) {
       await safeClick(nextButton);
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // We're on payment step now
       // Switch to French
       const languageSelector = page.locator('[aria-label*="language"], [data-testid*="language"]').first();
       if (await languageSelector.isVisible({ timeout: 2000 })) {
         await safeClick(languageSelector);
-        await page.waitForTimeout(500);
         
         const frenchOption = page.locator('text=/français|french|fr/i').first();
         if (await frenchOption.isVisible({ timeout: 1000 })) {
           await safeClick(frenchOption);
-          await page.waitForTimeout(2000);
+          await waitAfterNavigation(page);
           
           // Should still be on payment step (Step 2)
           const paymentMethods = page.getByRole('button', { name: /credit card|paypal|carte/i });
@@ -249,7 +245,7 @@ test.describe('Currency & Regional Formatting', () => {
 test.describe('Translation Completeness', () => {
   test('should not display English fallback text in Spanish', async ({ page }) => {
     await page.goto(routes.checkout('es'), { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Check for obvious English words that should be translated
     const untranslatedWords = ['Checkout', 'Continue', 'Back', 'Next', 'Payment', 'Shipping'];
@@ -315,11 +311,11 @@ async function setupCheckoutWithProduct(page: Page, locale: string): Promise<voi
   }, locale);
   
   await page.reload({ waitUntil: 'commit' });
-  await page.waitForTimeout(1000);
+  await waitAfterNavigation(page);
   
   // Navigate to products page in specified locale
   await page.goto(routes.products(locale), { waitUntil: 'commit', timeout: 60000 });
-  await page.waitForTimeout(2000);
+  await waitAfterNavigation(page);
   
   // Find and add product (language-agnostic approach)
   let productAdded = false;
@@ -337,7 +333,7 @@ async function setupCheckoutWithProduct(page: Page, locale: string): Promise<voi
       const categoryHref = await categoryLinks.first().getAttribute('href');
       if (categoryHref) {
         await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
         
         productLinks = page.locator('a[href*="/product/"]');
         productCount = await productLinks.count();
@@ -351,7 +347,7 @@ async function setupCheckoutWithProduct(page: Page, locale: string): Promise<voi
     if (!productHref) continue;
     
     await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     // Look for Add to Cart button (language agnostic - uses button role)
     const addToCartButton = page.getByRole('button').filter({ hasText: /cart|carrito|panier|warenkorb|カート/i });
@@ -359,7 +355,6 @@ async function setupCheckoutWithProduct(page: Page, locale: string): Promise<voi
     
     if (buttonVisible) {
       await safeClick(addToCartButton.first());
-      await page.waitForTimeout(1500);
       
       // Check for toast (success indicator)
       const toast = page.locator('[role="alert"], [role="status"]');
@@ -379,7 +374,7 @@ async function setupCheckoutWithProduct(page: Page, locale: string): Promise<voi
   
   // Navigate to checkout
   await page.goto(routes.checkout(locale), { waitUntil: 'commit', timeout: 60000 });
-  await page.waitForTimeout(2000);
+  await waitAfterNavigation(page);
 }
 
 /**
@@ -392,7 +387,7 @@ async function navigateToPaymentStep(page: Page, locale: string): Promise<void> 
   const nextButton = page.getByRole('button', { name: /continue|next|continuar|suivant|weiter|次へ/i });
   if (await nextButton.isVisible({ timeout: 1000 })) {
     await safeClick(nextButton);
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
   }
 }
 
@@ -415,8 +410,6 @@ async function fillShippingForm(page: Page): Promise<void> {
     if (await countrySelect.isVisible({ timeout: 500 })) {
       await countrySelect.selectOption('US');
     }
-    
-    await page.waitForTimeout(500);
   }
 }
 

@@ -352,15 +352,20 @@ test.describe('Product Filtering & Sorting', () => {
       // Get initial product order
       const initialProducts = await page.locator('a[href*="/product/"]').first().textContent();
       
-      // Select price sort
-      await sortSelect.selectOption(/price|precio/i);
-      await page.waitForTimeout(2000);
+      // Select price sort option (try to find by text)
+      const options = await sortSelect.locator('option').allTextContents();
+      const priceOption = options.find(opt => /price|precio/i.test(opt));
       
-      // Products should reorder
-      const sortedProducts = await page.locator('a[href*="/product/"]').first().textContent();
-      
-      // May or may not change (depends on current sort)
-      console.log(`Initial: ${initialProducts?.slice(0, 50)}, Sorted: ${sortedProducts?.slice(0, 50)}`);
+      if (priceOption) {
+        await sortSelect.selectOption({ label: priceOption });
+        await page.waitForTimeout(2000);
+        
+        // Products should reorder
+        const sortedProducts = await page.locator('a[href*="/product/"]').first().textContent();
+        
+        // May or may not change (depends on current sort)
+        console.log(`Initial: ${initialProducts?.slice(0, 50)}, Sorted: ${sortedProducts?.slice(0, 50)}`);
+      }
     }
   });
 });

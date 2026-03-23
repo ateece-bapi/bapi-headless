@@ -52,7 +52,7 @@ test.describe('Authentication', () => {
       // Should show validation errors
       const errorMessage = page.locator('text=/required|error|invalid|enter/i').first();
       
-      if (await errorMessage.isVisible()) {
+      if (await errorMessage.isVisible({ timeout: 500 })) {
         await expect(errorMessage).toBeVisible();
       }
     });
@@ -77,7 +77,7 @@ test.describe('Authentication', () => {
       // Should show email validation error
       const errorMessage = page.locator('text=/valid email|invalid email/i');
       
-      if (await errorMessage.isVisible()) {
+      if (await errorMessage.isVisible({ timeout: 500 })) {
         await expect(errorMessage).toBeVisible();
       }
     });
@@ -92,7 +92,7 @@ test.describe('Authentication', () => {
       // Look for show/hide password toggle
       const toggleButton = page.getByRole('button', { name: /show|hide|toggle password/i });
       
-      if (await toggleButton.isVisible()) {
+      if (await toggleButton.isVisible({ timeout: 500 })) {
         await safeClick(toggleButton);
         
         // Should change to type="text"
@@ -104,7 +104,7 @@ test.describe('Authentication', () => {
       // Forgot password link should exist
       const forgotPasswordLink = page.getByRole('link', { name: /forgot password|reset password/i });
       
-      if (await forgotPasswordLink.isVisible()) {
+      if (await forgotPasswordLink.isVisible({ timeout: 500 })) {
         await expect(forgotPasswordLink).toBeVisible();
         
         // Should navigate to password reset
@@ -117,7 +117,7 @@ test.describe('Authentication', () => {
       // Sign up link should exist
       const signUpLink = page.getByRole('link', { name: /sign up|create account|register/i });
       
-      if (await signUpLink.isVisible()) {
+      if (await signUpLink.isVisible({ timeout: 500 })) {
         await expect(signUpLink).toBeVisible();
         
         // Should navigate to sign up
@@ -157,7 +157,7 @@ test.describe('Authentication', () => {
       // Sign up heading
       const heading = page.getByRole('heading', { name: /sign up|create account|register/i });
       
-      if (await heading.isVisible()) {
+      if (await heading.isVisible({ timeout: 500 })) {
         await expect(heading).toBeVisible();
         
         // Email input
@@ -176,14 +176,14 @@ test.describe('Authentication', () => {
     test('should validate password requirements', async ({ page }) => {
       const passwordInput = page.getByLabel(/^password$/i);
       
-      if (await passwordInput.isVisible()) {
+      if (await passwordInput.isVisible({ timeout: 500 })) {
         // Enter weak password
         await passwordInput.fill('123');
         
         // Should show password requirements
         const requirement = page.locator('text=/at least|minimum|characters|uppercase|lowercase/i');
         
-        if (await requirement.isVisible()) {
+        if (await requirement.isVisible({ timeout: 500 })) {
           await expect(requirement).toBeVisible();
         }
       }
@@ -192,7 +192,7 @@ test.describe('Authentication', () => {
     test('should pass accessibility checks', async ({ page }) => {
       const heading = page.getByRole('heading', { name: /sign up|create account|register/i });
       
-      if (await heading.isVisible()) {
+      if (await heading.isVisible({ timeout: 500 })) {
         await injectAxe(page);
         await checkA11y(page, undefined, {
           detailedReport: true,
@@ -266,7 +266,7 @@ test.describe('Authentication', () => {
         // If somehow authenticated, 2FA option should be visible
         const twoFactorSection = page.locator('text=/two-factor|2fa|authentication app/i');
         
-        if (await twoFactorSection.isVisible()) {
+        if (await twoFactorSection.isVisible({ timeout: 500 })) {
           await expect(twoFactorSection).toBeVisible();
         }
       }
@@ -282,14 +282,14 @@ test.describe('Navigation for Authenticated Users', () => {
     // Check for sign in button (unauthenticated)
     const signInButton = page.getByRole('link', { name: /sign in/i });
     
-    if (await signInButton.isVisible()) {
+    if (await signInButton.isVisible({ timeout: 500 })) {
       // Unauthenticated - sign in button visible
       await expect(signInButton).toBeVisible();
     } else {
       // Might be authenticated - look for account link
       const accountLink = page.getByRole('link', { name: /account|profile/i });
       
-      if (await accountLink.isVisible()) {
+      if (await accountLink.isVisible({ timeout: 500 })) {
         await expect(accountLink).toBeVisible();
       }
     }

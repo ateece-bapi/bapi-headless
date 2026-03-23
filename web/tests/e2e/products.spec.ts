@@ -172,7 +172,7 @@ test.describe('Product Pages', () => {
       // Breadcrumb should be visible
       const breadcrumb = page.getByRole('navigation', { name: /breadcrumb/i });
       
-      if (await breadcrumb.isVisible()) {
+      if (await breadcrumb.isVisible({ timeout: 500 })) {
         // Should have Home link
         const homeLink = breadcrumb.getByRole('link', { name: /home/i });
         await expect(homeLink).toBeVisible();
@@ -187,7 +187,7 @@ test.describe('Product Pages', () => {
       // SKU should be displayed (stored in wp_postmeta)
       const sku = page.locator('text=/SKU:|Part Number:/i');
       
-      if (await sku.isVisible()) {
+      if (await sku.isVisible({ timeout: 500 })) {
         await expect(sku).toBeVisible();
       }
     });
@@ -234,7 +234,7 @@ test.describe('Product Pages', () => {
       // Product description section should exist
       const description = page.locator('text=/description/i').first();
       
-      if (await description.isVisible()) {
+      if (await description.isVisible({ timeout: 500 })) {
         await expect(description).toBeVisible();
       }
     });
@@ -246,7 +246,7 @@ test.describe('Product Pages', () => {
       // Look for related products section
       const relatedSection = page.locator('text=/related|you may also like/i').first();
       
-      if (await relatedSection.isVisible()) {
+      if (await relatedSection.isVisible({ timeout: 500 })) {
         await expect(relatedSection).toBeVisible();
       }
     });
@@ -279,7 +279,7 @@ test.describe('Product Pages', () => {
       // Look for quantity input
       const quantityInput = page.getByRole('spinbutton', { name: /quantity/i });
       
-      if (await quantityInput.isVisible()) {
+      if (await quantityInput.isVisible({ timeout: 500 })) {
         // Change quantity
         await waitForStableElement(quantityInput);
         await quantityInput.fill('3');
@@ -302,7 +302,7 @@ test.describe('Product Pages', () => {
       // Look for specifications or technical details
       const specsSection = page.locator('text=/specifications|technical|features/i').first();
       
-      if (await specsSection.isVisible()) {
+      if (await specsSection.isVisible({ timeout: 500 })) {
         await expect(specsSection).toBeVisible();
       }
     });

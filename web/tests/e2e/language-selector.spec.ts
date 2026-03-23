@@ -192,7 +192,14 @@ test.describe('Language Selector', () => {
     await page.goto(routes.home());
     await waitForFullPageLoad(page);
     
-    // Language selector should be visible on mobile
+    // On mobile, language selector is in mobile menu (hidden by default in header)
+    // Open mobile menu first
+    const mobileMenuButton = page.getByRole('button', { name: /menu/i });
+    await expect(mobileMenuButton).toBeVisible();
+    await safeClick(mobileMenuButton);
+    await page.waitForTimeout(500); // Animation
+    
+    // Language selector should be visible in mobile menu
     const languageButton = page.getByRole('button', { name: /select language/i });
     await expect(languageButton).toBeVisible();
     

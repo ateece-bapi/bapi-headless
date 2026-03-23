@@ -99,7 +99,7 @@ test.describe('Shopping Cart', () => {
     // Find quantity controls
     const increaseButton = page.getByRole('button', { name: /increase|plus|\+/i }).first();
     
-    if (await increaseButton.isVisible()) {
+    if (await increaseButton.isVisible({ timeout: 500 })) {
       // Increase quantity
       await safeClick(increaseButton);
       
@@ -218,11 +218,11 @@ test.describe('Checkout Process', () => {
     // Find checkout button in cart
     const checkoutButton = page.getByRole('link', { name: /checkout|proceed/i });
     
-    if (await checkoutButton.isVisible({ timeout: 5000 })) {
+    if (await checkoutButton.isVisible({ timeout: 500 })) {
       await safeClick(checkoutButton);
       
       // Should navigate to checkout
-      await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`), { timeout: 10000 });
+      await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`));
       await page.waitForTimeout(1000);
       
       // Checkout page should load
@@ -241,7 +241,7 @@ test.describe('Checkout Process', () => {
     // Should show checkout steps/sections
     const stepsIndicator = page.locator('text=/step|shipping|payment|review/i').first();
     
-    if (await stepsIndicator.isVisible()) {
+    if (await stepsIndicator.isVisible({ timeout: 500 })) {
       await expect(stepsIndicator).toBeVisible();
     }
   });
@@ -253,14 +253,14 @@ test.describe('Checkout Process', () => {
     // Try to proceed without filling required fields
     const continueButton = page.getByRole('button', { name: /continue|next|submit/i }).first();
     
-    if (await continueButton.isVisible()) {
+    if (await continueButton.isVisible({ timeout: 500 })) {
       await safeClick(continueButton);
       
       // Should show validation errors
       const errorMessage = page.locator('text=/required|error|invalid/i').first();
       
       // Error should be visible (if validation implemented)
-      if (await errorMessage.isVisible()) {
+      if (await errorMessage.isVisible({ timeout: 500 })) {
         await expect(errorMessage).toBeVisible();
       }
     }
@@ -274,7 +274,7 @@ test.describe('Checkout Process', () => {
     // Order summary should be visible
     const orderSummary = page.locator('text=/order summary|your order/i').first();
     
-    if (await orderSummary.isVisible()) {
+    if (await orderSummary.isVisible({ timeout: 500 })) {
       await expect(orderSummary).toBeVisible();
       
       // Should show items
@@ -291,7 +291,7 @@ test.describe('Checkout Process', () => {
     // Checkout should work on mobile
     const heading = page.getByRole('heading', { name: /checkout/i });
     
-    if (await heading.isVisible()) {
+    if (await heading.isVisible({ timeout: 500 })) {
       await expect(heading).toBeVisible();
     }
   });

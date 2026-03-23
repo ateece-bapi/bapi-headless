@@ -47,7 +47,7 @@ test.describe('Homepage', () => {
   test('should display language and region selectors', async ({ page }, testInfo) => {
     // Wait for header to be fully rendered first
     const header = page.locator('header').first();
-    await expect(header).toBeVisible({ timeout: 15000 });
+    await expect(header).toBeVisible();
     
     // On mobile, selectors are in mobile menu (hidden by default). On desktop, they're in header.
     const isMobile = testInfo.project.name.includes('Mobile') || page.viewportSize()!.width < 1024;
@@ -55,18 +55,17 @@ test.describe('Homepage', () => {
     if (isMobile) {
       // Open mobile menu to access selectors
       const mobileMenuButton = page.getByRole('button', { name: /menu/i });
-      await expect(mobileMenuButton).toBeVisible({ timeout: 15000 });
-      await mobileMenuButton.click();
-      await page.waitForTimeout(500); // Animation
+      await expect(mobileMenuButton).toBeVisible();
+      await safeClick(mobileMenuButton);
     }
     
-    // Language selector should be visible (increase timeout for slow devices)
+    // Language selector should be visible
     const languageSelector = page.getByRole('button', { name: /select language/i });
-    await expect(languageSelector).toBeVisible({ timeout: 15000 });
+    await expect(languageSelector).toBeVisible();
     
-    // Region selector should be visible (increase timeout for slow devices)
+    // Region selector should be visible
     const regionSelector = page.getByRole('button', { name: /select region/i });
-    await expect(regionSelector).toBeVisible({ timeout: 15000 });
+    await expect(regionSelector).toBeVisible();
   });
 
   test('should have functional search', async ({ page }) => {
@@ -107,7 +106,7 @@ test.describe('Homepage', () => {
     
     // Products heading should be visible
     const heading = page.getByRole('heading', { level: 1 });
-    await expect(heading).toBeVisible({ timeout: 15000 });
+    await expect(heading).toBeVisible();
   });
 
   test('should have working footer links', async ({ page }) => {
@@ -150,17 +149,17 @@ test.describe('Homepage', () => {
     await page.goto(routes.home());
     await waitForFullPageLoad(page);
     
-    // Mobile menu button should be visible (longer timeout for slow devices)
+    // Mobile menu button should be visible
     const mobileMenuButton = page.getByRole('button', { name: /menu/i });
-    await expect(mobileMenuButton).toBeVisible({ timeout: 15000 });
+    await expect(mobileMenuButton).toBeVisible();
     
     // Click to open mobile menu
     await safeClick(mobileMenuButton);
     
-    // Mobile navigation should appear (longer wait for animation + rendering)
+    // Mobile navigation should appear
     await page.waitForTimeout(500); // Animation
     const mobileNav = page.getByRole('navigation', { name: /mobile navigation/i });
-    await expect(mobileNav).toBeVisible({ timeout: 15000 });
+    await expect(mobileNav).toBeVisible();
     
     // Verify Products link is present in mobile menu
     await expect(mobileNav.getByText(/products/i).first()).toBeVisible();
@@ -193,7 +192,7 @@ test.describe('Homepage', () => {
     await expect(canonical).toHaveAttribute('href', /.+/);
   });
 
-  test('should load quickly (performance)', async ({ page }, testInfo) => {
+  test('should load within acceptable CI timeout (performance baseline)', async ({ page }, testInfo) => {
     const startTime = Date.now();
     
     await page.goto(routes.home());
@@ -206,8 +205,8 @@ test.describe('Homepage', () => {
     const isMobile = testInfo.project.name.includes('Mobile');
     const threshold = isMobile ? 35000 : 30000; // 35s for mobile, 30s for desktop
     
-    // Page should load within threshold for E2E (includes network, server response, all assets)
-    // This threshold accounts for real-world conditions while still catching performance regressions
+    // This is a baseline check to prevent catastrophic regressions in CI environment
+    // Not a production performance target - use Lighthouse/real user monitoring for that
     expect(loadTime).toBeLessThan(threshold);
   });
 });

@@ -42,7 +42,7 @@ test.describe('Shopping Cart', () => {
     
     // Verify toast appeared
     const toast = page.locator('[role="alert"], [role="status"]').filter({ hasText: /added to cart/i });
-    await expect(toast).toBeVisible({ timeout: 15000 });
+    await expect(toast).toBeVisible();
   });
 
   test('should open cart drawer/modal', async ({ page }) => {
@@ -58,7 +58,7 @@ test.describe('Shopping Cart', () => {
     
     // Should show cart contents
     const cartHeading = page.getByRole('heading', { name: /cart|shopping cart/i });
-    await expect(cartHeading).toBeVisible({ timeout: 15000 });
+    await expect(cartHeading).toBeVisible();
   });
 
   test('should display cart items with correct information', async ({ page }) => {
@@ -74,11 +74,11 @@ test.describe('Shopping Cart', () => {
     
     // Cart should show product name
     const cartContent = page.locator('[role="dialog"], .cart-drawer, .cart-modal');
-    await expect(cartContent).toBeVisible({ timeout: 15000 });
+    await expect(cartContent).toBeVisible();
     
     // Should show item details (product name, price, quantity)
     const productName = cartContent.locator('text=/.{3,}/').first(); // Any text 3+ chars
-    await expect(productName).toBeVisible({ timeout: 15000 });
+    await expect(productName).toBeVisible();
   });
 
   test('should update item quantity', async ({ page }) => {
@@ -94,18 +94,18 @@ test.describe('Shopping Cart', () => {
     
     // Wait for cart content to be visible
     const cartContent = page.locator('[role="dialog"], .cart-drawer, .cart-modal');
-    await expect(cartContent).toBeVisible({ timeout: 15000 });
+    await expect(cartContent).toBeVisible();
     
     // Find quantity controls
     const increaseButton = page.getByRole('button', { name: /increase|plus|\+/i }).first();
     
-    if (await increaseButton.isVisible({ timeout: 15000 })) {
+    if (await increaseButton.isVisible({ timeout: 500 })) {
       // Increase quantity
       await safeClick(increaseButton);
       
       // Cart total should update and be visible
       const cartTotal = page.locator('text=/total|subtotal/i').first();
-      await expect(cartTotal).toBeVisible({ timeout: 15000 });
+      await expect(cartTotal).toBeVisible();
     }
   });
 
@@ -122,7 +122,7 @@ test.describe('Shopping Cart', () => {
     
     // Wait for cart content
     const cartContent = page.locator('[role="dialog"], .cart-drawer, .cart-modal');
-    await expect(cartContent).toBeVisible({ timeout: 15000 });
+    await expect(cartContent).toBeVisible();
     
     // Find remove button
     const removeButton = page.getByRole('button', { name: /remove|delete/i }).first();
@@ -130,7 +130,7 @@ test.describe('Shopping Cart', () => {
     
     // Cart should be empty
     const emptyMessage = page.locator('text=/empty|no items/i');
-    await expect(emptyMessage).toBeVisible({ timeout: 15000 });
+    await expect(emptyMessage).toBeVisible();
     
     // Verify cart accessible name indicates empty state
     const updatedCartButton = page.getByRole('link', { name: /cart/i }).first();
@@ -165,11 +165,11 @@ test.describe('Shopping Cart', () => {
     
     // Should show cart heading
     const cartHeading = page.getByRole('heading', { name: /cart|shopping/i }).first();
-    await expect(cartHeading).toBeVisible({ timeout: 15000 });
+    await expect(cartHeading).toBeVisible();
     
     // Should show subtotal/total
     const subtotal = page.locator('text=/subtotal|total/i').first();
-    await expect(subtotal).toBeVisible({ timeout: 15000 });
+    await expect(subtotal).toBeVisible();
   });
 
   test('should pass accessibility checks', async ({ page }) => {
@@ -218,16 +218,16 @@ test.describe('Checkout Process', () => {
     // Find checkout button in cart
     const checkoutButton = page.getByRole('link', { name: /checkout|proceed/i });
     
-    if (await checkoutButton.isVisible({ timeout: 15000 })) {
+    if (await checkoutButton.isVisible({ timeout: 500 })) {
       await safeClick(checkoutButton);
       
       // Should navigate to checkout
-      await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`), { timeout: 15000 });
+      await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/checkout`));
       await page.waitForTimeout(1000);
       
       // Checkout page should load
       const checkoutHeading = page.getByRole('heading', { name: /checkout/i });
-      await expect(checkoutHeading).toBeVisible({ timeout: 15000 });
+      await expect(checkoutHeading).toBeVisible();
     } else {
       // Skip if checkout not implemented yet
       test.skip();
@@ -241,8 +241,8 @@ test.describe('Checkout Process', () => {
     // Should show checkout steps/sections
     const stepsIndicator = page.locator('text=/step|shipping|payment|review/i').first();
     
-    if (await stepsIndicator.isVisible({ timeout: 15000 })) {
-      await expect(stepsIndicator).toBeVisible({ timeout: 15000 });
+    if (await stepsIndicator.isVisible({ timeout: 500 })) {
+      await expect(stepsIndicator).toBeVisible();
     }
   });
 
@@ -253,15 +253,15 @@ test.describe('Checkout Process', () => {
     // Try to proceed without filling required fields
     const continueButton = page.getByRole('button', { name: /continue|next|submit/i }).first();
     
-    if (await continueButton.isVisible({ timeout: 15000 })) {
+    if (await continueButton.isVisible({ timeout: 500 })) {
       await safeClick(continueButton);
       
       // Should show validation errors
       const errorMessage = page.locator('text=/required|error|invalid/i').first();
       
       // Error should be visible (if validation implemented)
-      if (await errorMessage.isVisible({ timeout: 15000 })) {
-        await expect(errorMessage).toBeVisible({ timeout: 15000 });
+      if (await errorMessage.isVisible({ timeout: 500 })) {
+        await expect(errorMessage).toBeVisible();
       }
     }
   });
@@ -274,12 +274,12 @@ test.describe('Checkout Process', () => {
     // Order summary should be visible
     const orderSummary = page.locator('text=/order summary|your order/i').first();
     
-    if (await orderSummary.isVisible({ timeout: 15000 })) {
-      await expect(orderSummary).toBeVisible({ timeout: 15000 });
+    if (await orderSummary.isVisible({ timeout: 500 })) {
+      await expect(orderSummary).toBeVisible();
       
       // Should show items
       const itemsList = page.locator('[data-testid="order-items"], .order-items').first();
-      await expect(itemsList).toBeVisible({ timeout: 15000 });
+      await expect(itemsList).toBeVisible();
     }
   });
 
@@ -291,8 +291,8 @@ test.describe('Checkout Process', () => {
     // Checkout should work on mobile
     const heading = page.getByRole('heading', { name: /checkout/i });
     
-    if (await heading.isVisible({ timeout: 15000 })) {
-      await expect(heading).toBeVisible({ timeout: 15000 });
+    if (await heading.isVisible({ timeout: 500 })) {
+      await expect(heading).toBeVisible();
     }
   });
 

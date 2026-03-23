@@ -25,6 +25,13 @@ export default defineConfig({
   // Reduce workers for stability (11 was causing interference)
   workers: process.env.CI ? 1 : 6,
   
+  // Centralized timeout for expect() assertions (root level)
+  // Increased from default 5s to handle React hydration, animations, Suspense boundaries
+  expect: {
+    // Default timeout for all expect() assertions (toBeVisible, toHaveText, etc.)
+    timeout: 15000, // 15s for assertions
+  },
+  
   // Reporter to use
   reporter: [
     ['html'],
@@ -36,6 +43,15 @@ export default defineConfig({
   use: {
     // Base URL for e2e tests
     baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
+    
+    // Centralized timeouts to reduce duplication across test files
+    // Increased from default 5s to handle React hydration, animations, Suspense boundaries
+    
+    // Timeout for individual actions (click, fill, etc.)
+    actionTimeout: 15000, // 15s for actions
+    
+    // Timeout for navigation operations (goto, waitForURL, etc.)
+    navigationTimeout: 15000, // 15s for navigation
     
     // Collect trace on first retry
     trace: 'on-first-retry',

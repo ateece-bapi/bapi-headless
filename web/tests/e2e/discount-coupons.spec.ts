@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { routes } from './helpers/routes';
-import { safeClick, waitForStableElement } from './helpers/test-utils';
+import { safeClick, waitForStableElement, waitAfterNavigation, waitForPageReady } from './helpers/test-utils';
 
 /**
  * Discount Codes & Coupons E2E Tests (Phase D)
@@ -58,7 +58,6 @@ test.describe('Apply Discount Codes', () => {
       
       if (await showCouponButton.isVisible({ timeout: 2000 })) {
         await safeClick(showCouponButton);
-        await page.waitForTimeout(500);
         
         // Input should now be visible
         const input = page.locator('input[name*="coupon" i], input[placeholder*="coupon" i]').first();
@@ -78,9 +77,7 @@ test.describe('Apply Discount Codes', () => {
       const applied = await applyCoupon(page, TEST_COUPONS.valid.percentage);
       
       if (applied) {
-        await page.waitForTimeout(1500);
-        
-        // Get new total
+        // Get new total (applyCoupon already verified the coupon was applied)
         const newTotal = await getCartTotal(page);
         
         // New total should be less than original
@@ -102,8 +99,6 @@ test.describe('Apply Discount Codes', () => {
       const applied = await applyCoupon(page, TEST_COUPONS.valid.fixedAmount);
       
       if (applied) {
-        await page.waitForTimeout(1500);
-        
         const newTotal = await getCartTotal(page);
         
         // New total should be less by approximately $5
@@ -152,8 +147,7 @@ test.describe('Apply Discount Codes', () => {
     const applied = await applyCoupon(page, TEST_COUPONS.valid.percentage);
     
     if (applied) {
-      await page.waitForTimeout(1500);
-      
+      // applyCoupon already verified success - cart should be updated
       // Look for order summary section
       const orderSummary = page.locator('[data-testid*="summary"], aside, .order-summary, section:has-text("Summary")').first();
       
@@ -215,7 +209,6 @@ test.describe('Invalid Coupon Handling', () => {
     const originalTotal = await getCartTotal(page);
     
     await applyCoupon(page, TEST_COUPONS.invalid.nonexistent);
-    await page.waitForTimeout(1500);
     
     const newTotal = await getCartTotal(page);
     
@@ -237,7 +230,6 @@ test.describe('Invalid Coupon Handling', () => {
       
       if (await applyButton.isVisible({ timeout: 1000 })) {
         await safeClick(applyButton);
-        await page.waitForTimeout(1000);
         
         // Should show validation error or button should be disabled
         const errorMessage = page.locator('text=/enter.*code|code.*required/i');
@@ -262,8 +254,6 @@ test.describe('Remove Discount Codes', () => {
     const applied = await applyCoupon(page, TEST_COUPONS.valid.percentage);
     
     if (applied) {
-      await page.waitForTimeout(1500);
-      
       const discountedTotal = await getCartTotal(page);
       expect(discountedTotal).toBeLessThan(originalTotal);
       
@@ -284,7 +274,6 @@ test.describe('Remove Discount Codes', () => {
       
       if (removeButton) {
         await safeClick(removeButton);
-        await page.waitForTimeout(1500);
         
         // Total should return to original
         const restoredTotal = await getCartTotal(page);
@@ -301,14 +290,11 @@ test.describe('Remove Discount Codes', () => {
     const applied = await applyCoupon(page, TEST_COUPONS.valid.percentage);
     
     if (applied) {
-      await page.waitForTimeout(1500);
-      
       // Remove coupon
       const removeButton = page.locator('button:has-text("Remove")').filter({ has: page.locator('text=/coupon/i') }).first();
       
       if (await removeButton.isVisible({ timeout: 2000 })) {
         await safeClick(removeButton);
-        await page.waitForTimeout(1500);
         
         // Discount line should disappear
         const discountLine = page.locator('text=/discount.*\\$/i');
@@ -373,8 +359,6 @@ test.describe('Coupon Restrictions', () => {
     const firstApplied = await applyCoupon(page, TEST_COUPONS.valid.percentage);
     
     if (firstApplied) {
-      await page.waitForTimeout(1500);
-      
       // Try to apply second coupon
       const secondApplied = await applyCoupon(page, TEST_COUPONS.valid.fixedAmount);
       
@@ -398,8 +382,6 @@ test.describe('Coupon Persistence', () => {
     const applied = await applyCoupon(page, TEST_COUPONS.valid.percentage);
     
     if (applied) {
-      await page.waitForTimeout(1500);
-      
       const discountedTotal = await getCartTotal(page);
       
       // Navigate to next step (shipping)
@@ -408,7 +390,7 @@ test.describe('Coupon Persistence', () => {
       const nextButton = page.getByRole('button', { name: /continue|next/i });
       if (await nextButton.isVisible({ timeout: 2000 })) {
         await safeClick(nextButton);
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
         
         // Check if discount still shows on payment step
         const discountLine = page.locator('text=/discount|coupon/i');
@@ -426,11 +408,9 @@ test.describe('Coupon Persistence', () => {
     const applied = await applyCoupon(page, TEST_COUPONS.valid.percentage);
     
     if (applied) {
-      await page.waitForTimeout(1500);
-      
       // Refresh page
       await page.reload({ waitUntil: 'commit' });
-      await page.waitForTimeout(2000);
+      await waitAfterNavigation(page);
       
       // Check if coupon is still applied
       const discountLine = page.locator('text=/discount|coupon/i');
@@ -462,8 +442,6 @@ test.describe('Multi-Locale Coupon Display', () => {
     const applied = await applyCoupon(page, TEST_COUPONS.valid.percentage);
     
     if (applied) {
-      await page.waitForTimeout(1500);
-      
       // Look for French discount text ("remise", "réduction")
       const discountLine = page.locator('text=/remise|réduction|coupon/i');
       
@@ -495,11 +473,11 @@ async function setupCheckoutWithProduct(page: Page, locale: string = 'en'): Prom
   }, locale);
   
   await page.reload({ waitUntil: 'commit' });
-  await page.waitForTimeout(1000);
+  await waitAfterNavigation(page);
   
   // Navigate to products
   await page.goto(routes.products(locale), { waitUntil: 'commit', timeout: 60000 });
-  await page.waitForTimeout(2000);
+  await waitAfterNavigation(page);
   
   // Find and add product
   let productAdded = false;
@@ -512,7 +490,7 @@ async function setupCheckoutWithProduct(page: Page, locale: string = 'en'): Prom
       const categoryHref = await categoryLink.getAttribute('href');
       if (categoryHref) {
         await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
         productLinks = page.locator('a[href*="/product/"]');
         productCount = await productLinks.count();
       }
@@ -524,17 +502,19 @@ async function setupCheckoutWithProduct(page: Page, locale: string = 'en'): Prom
     if (!productHref) continue;
     
     await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForTimeout(2000);
+    await waitAfterNavigation(page);
     
     const addToCartButton = page.getByRole('button').filter({ hasText: /cart|carrito|panier/i });
     const buttonVisible = await addToCartButton.first().isVisible({ timeout: 2000 }).catch(() => false);
     
     if (buttonVisible) {
       await safeClick(addToCartButton.first());
-      await page.waitForTimeout(1500);
       
+      // Wait for success toast
       const toast = page.locator('[role="alert"], [role="status"]');
-      if (await toast.first().isVisible({ timeout: 3000 })) {
+      const toastAppeared = await toast.first().waitFor({ state: 'visible', timeout: 3000 }).then(() => true).catch(() => false);
+      
+      if (toastAppeared) {
         await waitForToastToDismiss(page);
         productAdded = true;
         break;
@@ -548,7 +528,7 @@ async function setupCheckoutWithProduct(page: Page, locale: string = 'en'): Prom
   
   // Navigate to checkout
   await page.goto(routes.checkout(locale), { waitUntil: 'commit', timeout: 60000 });
-  await page.waitForTimeout(2000);
+  await waitAfterNavigation(page);
 }
 
 /**
@@ -572,10 +552,10 @@ async function findCouponInput(page: Page): Promise<any> {
   
   if (await showCouponButton.isVisible({ timeout: 2000 })) {
     await safeClick(showCouponButton);
-    await page.waitForTimeout(500);
     
+    // Wait for input to appear
     for (const input of couponInputs) {
-      if (await input.first().isVisible({ timeout: 1000 }).catch(() => false)) {
+      if (await input.first().isVisible({ timeout: 2000 }).catch(() => false)) {
         return input.first();
       }
     }
@@ -597,7 +577,6 @@ async function applyCoupon(page: Page, code: string): Promise<boolean> {
   }
   
   await couponInput.fill(code);
-  await page.waitForTimeout(300);
   
   // Find and click apply button
   const applyButtons = [
@@ -620,8 +599,8 @@ async function applyCoupon(page: Page, code: string): Promise<boolean> {
     await couponInput.press('Enter');
   }
   
-  // Wait for response
-  await page.waitForTimeout(2000);
+  // Wait for success indicators to appear
+  await waitForPageReady(page);
   
   // Verify success by checking for success toast/message or discount line appearance
   const successIndicators = [
@@ -687,8 +666,6 @@ async function fillShippingForm(page: Page): Promise<void> {
     if (await countrySelect.isVisible({ timeout: 500 })) {
       await countrySelect.selectOption('US');
     }
-    
-    await page.waitForTimeout(500);
   }
 }
 

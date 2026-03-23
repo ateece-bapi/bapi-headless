@@ -13,9 +13,55 @@ import { Page, Locator } from '@playwright/test';
 /**
  * Wait for animations to complete before interacting with element
  * Prevents "element detached from DOM" errors
+ * 
+ * NOTE: Prefer waitForStableElement() or waiting for specific elements when possible.
+ * This function uses a short delay as a last resort for animations.
  */
 export async function waitForAnimations(page: Page, timeout: number = 500): Promise<void> {
-  await page.waitForTimeout(timeout);
+  // Instead of arbitrary timeout, wait for network to stabilize
+  await page.waitForLoadState('domcontentloaded');
+  
+  // If animations are truly necessary, use a minimal wait
+  // Most modern CSS animations are 200-300ms max
+  if (timeout > 0) {
+    await new Promise(resolve => setTimeout(resolve, Math.min(timeout, 300)));
+  }
+}
+
+/**
+ * Wait for page to be ready after navigation
+ * Waits for DOM content loaded + network idle + visible content
+ */
+export async function waitForPageReady(page: Page): Promise<void> {
+  await page.waitForLoadState('domcontentloaded');
+  await page.waitForLoadState('load');
+  
+  // Wait for any lazy-loaded content (shorter timeout than full page load)
+  await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => {
+    // Network may not idle in development with HMR - that's OK
+  });
+}
+
+/**
+ * Wait for navigation to complete and page to be interactive
+ * Use after clicking links or submitting forms
+ */
+export async function waitAfterNavigation(page: Page): Promise<void> {
+  await waitForPageReady(page);
+  
+  // Ensure page is interactive (no loading spinners, skeletons gone)
+  await page.waitForFunction(
+    () => {
+      // Check for common loading indicators
+      const loadingIndicators = document.querySelectorAll(
+        '[aria-busy="true"], [aria-label*="Loading"], [data-loading="true"], .loading, .skeleton'
+      );
+      return loadingIndicators.length === 0;
+    },
+    { timeout: 5000 }
+  ).catch(() => {
+    // Loading indicators may not exist - that's fine
+  });
 }
 
 /**
@@ -131,7 +177,7 @@ export async function navigateToProducts(
   
   while (currentDepth < maxDepth) {
     // Wait for page to fully load
-    await waitForAnimations(page, 800);
+    await waitForPageReady(page);
     
     // Look for product links in main content area (not navigation)
     const productLinks = page.locator('main a[href*="/product/"], section a[href*="/product/"]');
@@ -180,11 +226,8 @@ export async function navigateToProducts(
  * More reliable than waitForLoadState alone
  */
 export async function waitForFullPageLoad(page: Page): Promise<void> {
-  await page.waitForLoadState('networkidle');
-  await page.waitForLoadState('domcontentloaded');
-  
-  // Wait for any React Suspense boundaries to resolve
-  await waitForAnimations(page, 300);
+  // Use the improved waitAfterNavigation helper
+  await waitAfterNavigation(page);
   
   // Wait for images to load (important for product pages)
   // Add timeout to prevent hanging on slow/failed image loads

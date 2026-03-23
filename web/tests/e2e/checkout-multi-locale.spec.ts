@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import { routes } from './helpers/routes';
-import { safeClick } from './helpers/test-utils';
+import { safeClick, waitAfterNavigation, waitForPageReady } from './helpers/test-utils';
 
 /**
  * Multi-Locale Checkout E2E Tests (Phase B)
@@ -28,7 +28,7 @@ test.describe('Multi-Locale Checkout Flow', () => {
     test.describe(`${locale.name} (${locale.code})`, () => {
       test(`should display checkout page in ${locale.name}`, async ({ page }) => {
         await page.goto(routes.checkout(locale.code), { waitUntil: 'commit', timeout: 60000 });
-        await page.waitForTimeout(2000);
+        await waitAfterNavigation(page);
         
         // Should show checkout heading
         const heading = page.getByRole('heading', { level: 1 }).first();

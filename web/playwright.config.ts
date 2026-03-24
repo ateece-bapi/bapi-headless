@@ -22,8 +22,9 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  // Reduce workers for stability (11 was causing interference)
-  workers: process.env.CI ? 1 : 6,
+  // Reduce workers for stability - dev server can't handle high parallelism
+  // 6 workers caused page.goto() timeouts due to Next.js dev server overload
+  workers: process.env.CI ? 1 : 2,
   
   // Centralized timeout for expect() assertions (root level)
   // Increased from default 5s to handle React hydration, animations, Suspense boundaries

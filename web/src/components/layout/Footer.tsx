@@ -161,10 +161,10 @@ const Footer: React.FC = () => {
           {/* Navigation Sections */}
           {footerSections.map((section) => (
             <nav key={section.titleKey} className="group flex flex-col gap-3" aria-label={t(section.titleKey)}>
-              <h3 className="relative mb-2 pb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600 lg:text-base">
+              <div className="relative mb-2 pb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600 lg:text-base">
                 {t(section.titleKey)}
                 <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-500 group-hover:w-full"></span>
-              </h3>
+              </div>
               <ul className="space-y-2.5">
                 {section.links.map((link) => (
                   <li key={link.href}>

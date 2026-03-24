@@ -24,6 +24,80 @@ import {
  * hardcoding locale prefixes. next-intl requires locale in all routes.
  */
 
+/**
+ * Helper to find and navigate to any product page
+ * Handles 3-level hierarchy: Landing → Category → Subcategory → Product
+ */
+async function navigateToAnyProduct(page: any): Promise<void> {
+  await waitForFullPageLoad(page);
+  
+  // Get all top-level category cards from products landing
+  // Products page uses <section> not <main>, so we need to search broadly
+  const topCategories = page.locator('a[href*="/categories/"]').filter({ 
+    has: page.getByRole('heading') 
+  });
+  const topCategoryCount = await topCategories.count();
+  
+  if (topCategoryCount === 0) {
+    throw new Error('No categories found on products landing page');
+  }
+  
+  // Try each top-level category
+  for (let i = 0; i < Math.min(topCategoryCount, 5); i++) {
+    // Navigate to this top-level category
+    await page.goto(routes.products());
+    await waitForFullPageLoad(page);
+    
+    const topCategory = topCategories.nth(i);
+    await safeClick(topCategory, { waitForAnimations: false, force: true });
+    await waitForFullPageLoad(page);
+    
+    // Check if this category has direct products
+    let productLinks = page.locator('main a[href*="/product/"], section a[href*="/product/"]');
+    let productCount = await productLinks.count();
+    
+    if (productCount > 0) {
+      // Found products! Click first one
+      await safeClick(productLinks.first());
+      await waitForFullPageLoad(page);
+      return;
+    }
+    
+    // No direct products, check for subcategories
+    const subcategories = page.locator('a[href*="/categories/"]').filter({ 
+      has: page.getByRole('heading') 
+    });
+    const subcategoryCount = await subcategories.count();
+    
+    if (subcategoryCount > 0) {
+      // Has subcategories, try the first few
+      for (let j = 0; j < Math.min(subcategoryCount, 3); j++) {
+        // Go back to parent category page
+        await page.goBack();
+        await waitForFullPageLoad(page);
+        
+        // Click subcategory
+        const subcategory = subcategories.nth(j);
+        await safeClick(subcategory, { waitForAnimations: false, force: true });
+        await waitForFullPageLoad(page);
+        
+        // Check for products in subcategory
+        productLinks = page.locator('main a[href*="/product/"], section a[href*="/product/"]');
+        productCount = await productLinks.count();
+        
+        if (productCount > 0) {
+          // Found products in subcategory!
+          await safeClick(productLinks.first());
+          await waitForFullPageLoad(page);
+          return;
+        }
+      }
+    }
+  }
+  
+  throw new Error('Could not find products in any category or subcategory');
+}
+
 test.describe('Product Pages', () => {
   test.describe('Product Categories Landing', () => {
     test.beforeEach(async ({ page }) => {
@@ -61,7 +135,9 @@ test.describe('Product Pages', () => {
         .filter({ has: page.getByRole('heading', { level: 2 }) })
         .first();
 
-      await safeClick(firstCategory);
+      // Skip animation waits for category cards (they often have hover effects)
+      // Force click to bypass actionability checks on animated elements
+      await safeClick(firstCategory, { waitForAnimations: false, force: true });
       await waitForFullPageLoad(page);
       
       // Wait for category page heading to be visible (deterministic)
@@ -73,38 +149,9 @@ test.describe('Product Pages', () => {
     });
 
     test('should navigate from category to product detail', async ({ page }) => {
-      // Navigate from products landing to a category page
-      const firstCategory = page
-        .locator('a[href*="/categories/"]')
-        .filter({ has: page.getByRole('heading', { level: 2 }) })
-        .first();
+      // Use the helper to navigate through categories to find a product
+      await navigateToAnyProduct(page);
       
-      await safeClick(firstCategory);
-      await waitForFullPageLoad(page);
-
-      // Look for product links on this category page (don't go deep)
-      // Products might be directly on category page or one level down
-      let productLink = page.locator('a[href*="/product/"]').first();
-      
-      // If no products on first category page, try clicking into a subcategory
-      const hasProducts = await productLink.count() > 0;
-      if (!hasProducts) {
-        // Try navigating one level deeper
-        const subcategory = page.locator('a[href*="/categories/"], a[href*="/products/"]').first();
-        if (await subcategory.count() > 0) {
-          await safeClick(subcategory);
-          await waitForFullPageLoad(page);
-          productLink = page.locator('a[href*="/product/"]').first();
-        }
-      }
-      
-      // Wait for product link to exist
-      await productLink.waitFor({ state: 'visible', timeout: 5000 });
-      
-      // Click product link
-      await safeClick(productLink);
-      await waitForFullPageLoad(page);
-
       // Verify we're on a product detail page
       await expect(page).toHaveURL(/\/product\/.+/);
       const productHeading = page.getByRole('heading', { level: 1 });
@@ -121,22 +168,11 @@ test.describe('Product Pages', () => {
 
   test.describe('Product Detail Page', () => {
     test.beforeEach(async ({ page }) => {
-      // Navigate to products landing and find first available product link
-      // This is simpler and more reliable than deep category navigation
+      // Navigate to products landing page
       await page.goto(routes.products());
-      await waitForFullPageLoad(page);
       
-      // Look for any product link on the page (products can appear in any section)
-      // Try multiple selectors to find product links
-      const productLink = page.locator('a[href*="/product/"]').first();
-      
-      // Wait for product link to be visible and stable
-      await productLink.waitFor({ state: 'visible', timeout: 10000 });
-      await waitForStableElement(productLink);
-      
-      // Click to navigate to product detail page
-      await safeClick(productLink);
-      await waitForFullPageLoad(page);
+      // Use helper to find and navigate to any product
+      await navigateToAnyProduct(page);
       
       // Verify we reached a product page
       await expect(page).toHaveURL(/\/product\/.+/, { timeout: 10000 });

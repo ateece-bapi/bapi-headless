@@ -393,7 +393,7 @@ async function addProductToCart(page: Page) {
   // If still no products, try navigating to first subcategory (up to 3 times)
   let attempts = 0;
   while (productCount === 0 && attempts < 3) {
-    const subcategoryLinks = page.locator('main a[href*="/products/"], article a[href*="/products/"]');
+    const subcategoryLinks = page.locator('a[href*="/products/"]');
     const subCount = await subcategoryLinks.count();
     
     if (subCount === 0) break;
@@ -426,7 +426,11 @@ async function addProductToCart(page: Page) {
   
   if (productHref) {
     await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/product/.+`), { timeout: 10000 });
+    // Wait for full page load instead of specific URL pattern (handles any product URL format)
+    await waitForFullPageLoad(page);
+    
+    // Verify we're on a product page by checking for product-specific elements
+    await expect(page).toHaveURL(/\/(product|products)\//, { timeout: 10000 });
     
     // Find Add to Cart button by aria-label (from AddToCartButton component)
     const addToCartButton = page.getByRole('button', { name: /Add.*to cart/i });

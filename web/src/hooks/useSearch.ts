@@ -121,7 +121,7 @@ export function useSearch(options: UseSearchOptions = {}) {
     (slug: string) => {
       setIsOpen(false);
       setQuery('');
-      router.push(`/products/${slug}`);
+      router.push(`/product/${slug}`);
     },
     [router]
   );

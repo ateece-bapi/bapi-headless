@@ -432,6 +432,38 @@ async function addProductToCart(page: Page) {
     // Verify we're on a product page by checking for product-specific elements
     await expect(page).toHaveURL(/\/(product|products)\//, { timeout: 10000 });
     
+    // Check if this is a variable product that requires configuration
+    // Look for "Configure Product" message or variation selectors
+    const configureMessage = page.getByText(/configure.*specifications|select.*specifications/i);
+    const hasConfigureMessage = await configureMessage.count() > 0;
+    
+    if (hasConfigureMessage) {
+      // This is a variable product - need to select variations
+      // Find all variation select/radio inputs and select the first option for each
+      const variationSelects = page.locator('select[id*="variation-"], select[id*="attribute-"]');
+      const selectCount = await variationSelects.count();
+      
+      for (let i = 0; i < selectCount; i++) {
+        const select = variationSelects.nth(i);
+        // Select the first non-empty option
+        await select.selectOption({ index: 1 }); // Index 0 is usually placeholder/empty
+        await page.waitForTimeout(500); // Brief wait for React state update
+      }
+      
+      // Also check for radio button variations
+      const variationRadios = page.locator('input[type="radio"][name*="variation-"], input[type="radio"][name*="attribute-"]');
+      const radioCount = await variationRadios.count();
+      
+      if (radioCount > 0) {
+        // Click first radio button (likely first variation option)
+        await safeClick(variationRadios.first());
+        await page.waitForTimeout(500);
+      }
+      
+      // Wait for "Configuration Complete" indicator or button to appear
+      await page.waitForTimeout(1000); // Give React time to update
+    }
+    
     // Find Add to Cart button by aria-label (from AddToCartButton component)
     const addToCartButton = page.getByRole('button', { name: /Add.*to cart/i });
     

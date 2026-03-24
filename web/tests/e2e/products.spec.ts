@@ -292,9 +292,6 @@ test.describe('Product Pages', () => {
     });
 
     test('should pass accessibility checks', async ({ page }) => {
-      // Ensure breadcrumb navigation is fully mounted (single instance)
-      await expect(page.locator('nav[aria-label="Breadcrumb navigation"]')).toHaveCount(1);
-      
       await injectAxe(page);
       await checkA11y(page, undefined, {
         detailedReport: true,

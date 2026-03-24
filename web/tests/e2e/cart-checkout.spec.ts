@@ -433,35 +433,50 @@ async function addProductToCart(page: Page) {
     await expect(page).toHaveURL(/\/(product|products)\//, { timeout: 10000 });
     
     // Check if this is a variable product that requires configuration
-    // Look for "Configure Product" message or variation selectors
+    // Look for "Configure Product" message in ProductSummaryCard
     const configureMessage = page.getByText(/configure.*specifications|select.*specifications/i);
     const hasConfigureMessage = await configureMessage.count() > 0;
     
     if (hasConfigureMessage) {
-      // This is a variable product - need to select variations
-      // Find all variation select/radio inputs and select the first option for each
-      const variationSelects = page.locator('select[id*="variation-"], select[id*="attribute-"]');
-      const selectCount = await variationSelects.count();
-      
-      for (let i = 0; i < selectCount; i++) {
-        const select = variationSelects.nth(i);
-        // Select the first non-empty option
-        await select.selectOption({ index: 1 }); // Index 0 is usually placeholder/empty
-        await page.waitForTimeout(500); // Brief wait for React state update
-      }
-      
-      // Also check for radio button variations
-      const variationRadios = page.locator('input[type="radio"][name*="variation-"], input[type="radio"][name*="attribute-"]');
-      const radioCount = await variationRadios.count();
+      // This is a variable product - need to select all variations
+      // Radio buttons are rendered by RadioGroupSelector with name={attributeLabel}
+      // Get all unique attribute names (Temperature, Probe, Enclosure, etc.)
+      const allRadios = page.locator('input[type="radio"]');
+      const radioCount = await allRadios.count();
       
       if (radioCount > 0) {
-        // Click first radio button (likely first variation option)
-        await safeClick(variationRadios.first());
-        await page.waitForTimeout(500);
+        // Group radio buttons by name attribute to find distinct attributes
+        const attributeNames = new Set<string>();
+        
+        for (let i = 0; i < radioCount; i++) {
+          const name = await allRadios.nth(i).getAttribute('name');
+          if (name) {
+            attributeNames.add(name);
+          }
+        }
+        
+        // For each attribute, click the first radio button
+        for (const attributeName of attributeNames) {
+          const firstRadioInGroup = page.locator(`input[type="radio"][name="${attributeName}"]`).first();
+          // Click the label rather than the hidden radio (radio has sr-only class)
+          const radioId = await firstRadioInGroup.getAttribute('id');
+          if (radioId) {
+            const label = page.locator(`label[for="${radioId}"]`);
+            await safeClick(label);
+            await page.waitForTimeout(300); // Brief wait for React state update
+          }
+        }
+        
+        // Wait for configuration to complete and show "Selected Configuration"
+        await page.waitForTimeout(1000); // Give React time to find matching variation
+        
+        // Verify configuration completed by checking for success message
+        const configComplete = page.getByText(/selected configuration|configuration complete/i);
+        await configComplete.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {
+          // If configuration didn't complete, log for debugging but continue
+          // Some products might not have all variation combinations available
+        });
       }
-      
-      // Wait for "Configuration Complete" indicator or button to appear
-      await page.waitForTimeout(1000); // Give React time to update
     }
     
     // Find Add to Cart button by aria-label (from AddToCartButton component)

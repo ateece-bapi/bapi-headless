@@ -182,8 +182,14 @@ test.describe('Shopping Cart', () => {
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await safeClick(cartButton);
     
-    // Wait for URL to change to cart page (ensures previous product page DOM is unmounted)
+    // Wait for URL to change and cart page to fully load
     await waitAfterNavigation(page, { expectedUrl: /\/cart\/?$/ });
+    
+    // Ensure cart heading is visible (cart page fully mounted)
+    await expect(page.getByRole('heading', { name: /shopping cart/i }).first()).toBeVisible();
+   
+    // Ensure product page breadcrumbs are not present (old DOM unmounted)
+    await expect(page.locator('nav[aria-label="Breadcrumb navigation"]')).toHaveCount(0);
     
     // Run accessibility check on cart content
     await injectAxe(page);

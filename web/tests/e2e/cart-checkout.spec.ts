@@ -435,47 +435,41 @@ async function addProductToCart(page: Page) {
     // Check if this is a variable product that requires configuration
     // Look for "Configure Product" message in ProductSummaryCard
     const configureMessage = page.getByText(/configure.*specifications|select.*specifications/i);
-    const hasConfigureMessage = await configureMessage.count() > 0;
+    const hasConfigureMessage = await Promise.race([
+      configureMessage.count().then(c => c > 0),
+      page.waitForTimeout(2000).then(() => false)
+    ]);
     
     if (hasConfigureMessage) {
       // This is a variable product - need to select all variations
-      // Radio buttons are rendered by RadioGroupSelector with name={attributeLabel}
-      // Get all unique attribute names (Temperature, Probe, Enclosure, etc.)
+      // Get all radio groups by finding first radio of each unique name
       const allRadios = page.locator('input[type="radio"]');
       const radioCount = await allRadios.count();
       
       if (radioCount > 0) {
-        // Group radio buttons by name attribute to find distinct attributes
-        const attributeNames = new Set<string>();
+        // Efficiently collect unique attribute names
+        const attributeNames = await page.evaluate(() => {
+          const radios = Array.from(document.querySelectorAll('input[type="radio"]'));
+          return [...new Set(radios.map(r => r.getAttribute('name')).filter(Boolean))];
+        });
         
-        for (let i = 0; i < radioCount; i++) {
-          const name = await allRadios.nth(i).getAttribute('name');
-          if (name) {
-            attributeNames.add(name);
-          }
-        }
-        
-        // For each attribute, click the first radio button
-        for (const attributeName of attributeNames) {
-          const firstRadioInGroup = page.locator(`input[type="radio"][name="${attributeName}"]`).first();
-          // Click the label rather than the hidden radio (radio has sr-only class)
-          const radioId = await firstRadioInGroup.getAttribute('id');
+        // Click first option for each attribute (max 3-4 typically)
+        for (const attributeName of attributeNames.slice(0, 5)) { // Limit to 5 max to prevent runaway
+          const firstRadio = page.locator(`input[type="radio"][name="${attributeName}"]`).first();
+          const radioId = await firstRadio.getAttribute('id');
           if (radioId) {
             const label = page.locator(`label[for="${radioId}"]`);
-            await safeClick(label);
-            await page.waitForTimeout(300); // Brief wait for React state update
+            // Click only if not already checked
+            const isChecked = await firstRadio.isChecked();
+            if (!isChecked) {
+              await label.click({ timeout: 2000 });
+              await page.waitForTimeout(200); // Minimal wait for React update
+            }
           }
         }
         
-        // Wait for configuration to complete and show "Selected Configuration"
-        await page.waitForTimeout(1000); // Give React time to find matching variation
-        
-        // Verify configuration completed by checking for success message
-        const configComplete = page.getByText(/selected configuration|configuration complete/i);
-        await configComplete.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {
-          // If configuration didn't complete, log for debugging but continue
-          // Some products might not have all variation combinations available
-        });
+        // Wait briefly for React to process and find matching variation
+        await page.waitForTimeout(500);
       }
     }
     

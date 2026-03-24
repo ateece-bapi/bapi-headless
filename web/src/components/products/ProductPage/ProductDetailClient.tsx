@@ -8,7 +8,6 @@ import ProductSummaryCard from '@/components/products/ProductPage/ProductSummary
 import ProductTabs from '@/components/products/ProductPage/ProductTabs';
 import RelatedProducts from '@/components/products/ProductPage/RelatedProducts';
 import AppLinks from '@/components/products/ProductPage/AppLinks';
-import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import TrustBadges from '@/components/products/ProductPage/TrustBadges';
 import HelpCTA from '@/components/products/ProductPage/HelpCTA';
 import { CartDrawer } from '@/components/cart';
@@ -72,39 +71,11 @@ export default function ProductDetailClient({
     }
   }, [product, addProduct]);
 
-  // Build breadcrumb items from product categories
-  const buildBreadcrumbs = (): Array<{ label: string; href?: string }> => {
-    const breadcrumbs: Array<{ label: string; href?: string }> = [
-      { label: 'Home', href: '/' },
-      { label: 'Products', href: '/products' },
-    ];
-
-    // Add only the first (primary) category if it exists
-    if (
-      product.productCategories &&
-      Array.isArray(product.productCategories) &&
-      product.productCategories.length > 0
-    ) {
-      const primaryCategory = product.productCategories[0];
-      breadcrumbs.push({
-        label: primaryCategory.name,
-        href: `/products/${primaryCategory.slug}`,
-      });
-    }
-
-    // Add the product name as the final item (no href)
-    breadcrumbs.push({ label: product.name });
-
-    return breadcrumbs;
-  };
-
   return (
     <>
       <div className="min-h-screen bg-white">
         <div className="py-12">
           <div className="container mx-auto px-4">
-            <Breadcrumbs items={buildBreadcrumbs()} />
-
             {/* Main Product Layout */}
             <div className="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
               {/* Left Column: Product Image */}

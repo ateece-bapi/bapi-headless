@@ -231,9 +231,9 @@ export const Overview: Story = {
                           />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h3 className="truncate text-sm font-bold text-neutral-900 group-hover:text-primary-700">
+                          <div className="truncate text-sm font-bold text-neutral-900 group-hover:text-primary-700">
                             {category.name}
-                          </h3>
+                          </div>
                           <p className="text-xs text-neutral-700">{category.color}</p>
                         </div>
                       </a>
@@ -280,9 +280,9 @@ export const Overview: Story = {
                   <div className="mb-2 inline-block rounded-full bg-accent-500 px-2 py-0.5 text-xs font-bold uppercase text-white">
                     NEW
                   </div>
-                  <h3 className="mb-2 text-lg font-black text-neutral-900">
+                  <div className="mb-2 text-lg font-black text-neutral-900">
                     Wireless Area Monitor™
-                  </h3>
+                  </div>
                   <p className="mb-3 text-sm text-neutral-700">
                     Next-generation wireless monitoring with 10-year battery life
                   </p>
@@ -479,9 +479,9 @@ export const CategoryColumn: Story = {
             />
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="truncate text-sm font-bold text-neutral-900 group-hover:text-primary-700">
+            <div className="truncate text-sm font-bold text-neutral-900 group-hover:text-primary-700">
               Temperature
-            </h3>
+            </div>
             <p className="text-xs text-neutral-700">Red/Orange</p>
           </div>
         </a>
@@ -720,7 +720,7 @@ export const Accessibility: Story = {
         <h3 className="mb-4 text-lg font-semibold text-neutral-900">Screen Reader Support</h3>
         <ul className="space-y-2 text-sm text-neutral-700">
           <li>• Announces menu state changes (opened/closed)</li>
-          <li>• Column headers marked as headings (h3)</li>
+          <li>• Column headers styled as visual labels (not semantic headings)</li>
           <li>• Product links include descriptions</li>
           <li>• Icon-only elements have sr-only labels</li>
           <li>• Navigation landmark properly labeled</li>

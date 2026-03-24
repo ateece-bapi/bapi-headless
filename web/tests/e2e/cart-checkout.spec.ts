@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { injectAxe, checkA11y } from 'axe-playwright';
 import type { Page } from '@playwright/test';
 import { routes, DEFAULT_LOCALE } from './helpers/routes';
-import { safeClick, waitForStableElement, waitForPageReady, waitAfterNavigation } from './helpers/test-utils';
+import { safeClick, waitForStableElement, waitForPageReady, waitAfterNavigation, waitForFullPageLoad } from './helpers/test-utils';
 
 /**
  * Cart & Checkout E2E Tests
@@ -178,10 +178,18 @@ test.describe('Shopping Cart', () => {
     // Wait for toast to auto-dismiss
     await waitForToastToDismiss(page);
     
-    // Open cart drawer
+    // Navigate to cart page
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await safeClick(cartButton);
-    await waitForPageReady(page);
+    
+    // Wait for URL to change and cart page to fully load
+    await waitAfterNavigation(page, { expectedUrl: /\/cart\/?$/ });
+    
+    // Ensure cart heading is visible (cart page fully mounted)
+    await expect(page.getByRole('heading', { name: /shopping cart/i }).first()).toBeVisible();
+   
+    // Ensure product page breadcrumbs are not present (old DOM unmounted)
+    await expect(page.locator('nav[aria-label="Breadcrumb navigation"]')).toHaveCount(0);
     
     // Run accessibility check on cart content
     await injectAxe(page);
@@ -393,7 +401,7 @@ async function addProductToCart(page: Page) {
   // If still no products, try navigating to first subcategory (up to 3 times)
   let attempts = 0;
   while (productCount === 0 && attempts < 3) {
-    const subcategoryLinks = page.locator('main a[href*="/products/"], article a[href*="/products/"]');
+    const subcategoryLinks = page.locator('a[href*="/products/"]');
     const subCount = await subcategoryLinks.count();
     
     if (subCount === 0) break;
@@ -426,7 +434,52 @@ async function addProductToCart(page: Page) {
   
   if (productHref) {
     await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
-    await page.waitForURL(new RegExp(`/${DEFAULT_LOCALE}/product/.+`), { timeout: 10000 });
+    // Wait for full page load instead of specific URL pattern (handles any product URL format)
+    await waitForFullPageLoad(page);
+    
+    // Verify we're on a product page by checking for product-specific elements
+    await expect(page).toHaveURL(/\/(product|products)\//, { timeout: 10000 });
+    
+    // Check if this is a variable product that requires configuration
+    // Look for "Configure Product" message in ProductSummaryCard
+    const configureMessage = page.getByText(/configure.*specifications|select.*specifications/i);
+    const hasConfigureMessage = await Promise.race([
+      configureMessage.count().then(c => c > 0),
+      page.waitForTimeout(2000).then(() => false)
+    ]);
+    
+    if (hasConfigureMessage) {
+      // This is a variable product - need to select all variations
+      // Get all radio groups by finding first radio of each unique name
+      const allRadios = page.locator('input[type="radio"]');
+      const radioCount = await allRadios.count();
+      
+      if (radioCount > 0) {
+        // Efficiently collect unique attribute names
+        const attributeNames = await page.evaluate(() => {
+          const radios = Array.from(document.querySelectorAll('input[type="radio"]'));
+          return [...new Set(radios.map(r => r.getAttribute('name')).filter(Boolean))];
+        });
+        
+        // Click first option for each attribute (max 3-4 typically)
+        for (const attributeName of attributeNames.slice(0, 5)) { // Limit to 5 max to prevent runaway
+          const firstRadio = page.locator(`input[type="radio"][name="${attributeName}"]`).first();
+          const radioId = await firstRadio.getAttribute('id');
+          if (radioId) {
+            const label = page.locator(`label[for="${radioId}"]`);
+            // Click only if not already checked
+            const isChecked = await firstRadio.isChecked();
+            if (!isChecked) {
+              await label.click({ timeout: 2000 });
+              await page.waitForTimeout(200); // Minimal wait for React update
+            }
+          }
+        }
+        
+        // Wait briefly for React to process and find matching variation
+        await page.waitForTimeout(500);
+      }
+    }
     
     // Find Add to Cart button by aria-label (from AddToCartButton component)
     const addToCartButton = page.getByRole('button', { name: /Add.*to cart/i });

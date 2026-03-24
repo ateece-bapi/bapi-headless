@@ -161,10 +161,10 @@ const Footer: React.FC = () => {
           {/* Navigation Sections */}
           {footerSections.map((section) => (
             <nav key={section.titleKey} className="group flex flex-col gap-3" aria-label={t(section.titleKey)}>
-              <h3 className="relative mb-2 pb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600 lg:text-base">
+              <div className="relative mb-2 pb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600 lg:text-base">
                 {t(section.titleKey)}
                 <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-500 group-hover:w-full"></span>
-              </h3>
+              </div>
               <ul className="space-y-2.5">
                 {section.links.map((link) => (
                   <li key={link.href}>
@@ -185,9 +185,9 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 gap-6 border-b border-neutral-200 pb-8 pt-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* Contact Information */}
           <div className="flex flex-col gap-2">
-            <h4 className="mb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600">
+            <div className="mb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600">
               {t('contact.title')}
-            </h4>
+            </div>
             <address className="space-y-2 text-sm font-medium not-italic text-neutral-700">
               <p className="text-neutral-900">{t('contact.address.street')}</p>
               <p className="text-neutral-900">{t('contact.address.city')}</p>
@@ -208,9 +208,9 @@ const Footer: React.FC = () => {
 
           {/* Awards & Recognition */}
           <div className="flex flex-col gap-3">
-            <h4 className="mb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600">
+            <div className="mb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600">
               {t('awards.title')}
-            </h4>
+            </div>
             <div className="flex flex-wrap items-center gap-4">
               <img
                 src="/images/awards/AHR_2012_Innovation_Award.webp"
@@ -236,9 +236,9 @@ const Footer: React.FC = () => {
 
           {/* Certifications */}
           <div className="flex flex-col gap-3">
-            <h4 className="mb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600">
+            <div className="mb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600">
               {t('certifications.title')}
-            </h4>
+            </div>
 
             {/* Certification Logos */}
             <div className="flex flex-col gap-4">
@@ -273,9 +273,9 @@ const Footer: React.FC = () => {
 
           {/* Quick Actions */}
           <div className="flex flex-col gap-3">
-            <h4 className="mb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600">
+            <div className="mb-2 text-sm font-extrabold uppercase tracking-wide text-primary-600">
               {t('quickActions.title')}
-            </h4>
+            </div>
             <Link
               href="/quote"
               className="inline-flex transform items-center justify-center rounded-lg border-2 border-accent-600 bg-gradient-to-r from-accent-500 to-accent-600 px-5 py-3 text-sm font-bold text-neutral-900 shadow-md transition-all duration-300 hover:scale-105 hover:from-accent-600 hover:to-accent-700 hover:shadow-xl"

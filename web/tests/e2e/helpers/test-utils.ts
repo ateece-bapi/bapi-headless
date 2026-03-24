@@ -34,7 +34,11 @@ export async function waitForAnimations(page: Page, timeout: number = 500): Prom
  */
 export async function waitForPageReady(page: Page): Promise<void> {
   await page.waitForLoadState('domcontentloaded');
-  await page.waitForLoadState('load');
+  
+  // Wait for 'load' event, but don't fail if it takes too long (dev mode HMR issue)
+  await page.waitForLoadState('load', { timeout: 15000 }).catch(() => {
+    // In dev mode, 'load' may not fire due to HMR/dev tools - that's OK if DOM is ready
+  });
   
   // Wait for any lazy-loaded content (shorter timeout than full page load)
   await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => {

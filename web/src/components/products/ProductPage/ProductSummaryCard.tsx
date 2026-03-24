@@ -112,7 +112,7 @@ export default function ProductSummaryCard({
 
       {/* Configuration Complete Indicator */}
       {isVariableProduct && variation && (
-        <div className="mb-4 flex items-center gap-2 rounded-lg bg-green-50 px-3 py-2 text-green-600">
+        <div className="mb-4 flex items-center gap-2 rounded-lg bg-green-50 px-3 py-2 text-green-800">
           <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"

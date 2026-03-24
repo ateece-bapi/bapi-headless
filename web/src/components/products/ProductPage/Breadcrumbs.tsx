@@ -53,7 +53,7 @@ export default function Breadcrumbs({ items, schema }: BreadcrumbsProps) {
       )}
 
       {/* Visual Breadcrumb Navigation */}
-      <nav className="mb-6 text-sm" aria-label="Product navigation">
+      <nav className="mb-6 text-sm" aria-label="Breadcrumb navigation">
         <ol className="flex flex-wrap items-center gap-2 text-neutral-700">
           {items.map((item, idx) => (
             <li key={`${idx}-${item.label}`} className="flex items-center">

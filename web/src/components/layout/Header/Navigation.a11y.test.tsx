@@ -1016,7 +1016,7 @@ describe('Breadcrumbs - Navigation Structure', () => {
   it('has proper navigation landmark with aria-label', () => {
     render(<Breadcrumbs items={mockBreadcrumbItems} />);
 
-    const nav = screen.getByLabelText(/product navigation/i);
+    const nav = screen.getByLabelText(/breadcrumb navigation/i);
     expect(nav).toBeInTheDocument();
     expect(nav.tagName).toBe('NAV');
   });

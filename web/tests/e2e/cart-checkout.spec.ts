@@ -178,10 +178,12 @@ test.describe('Shopping Cart', () => {
     // Wait for toast to auto-dismiss
     await waitForToastToDismiss(page);
     
-    // Open cart drawer
+    // Navigate to cart page
     const cartButton = page.getByRole('link', { name: /cart/i }).first();
     await safeClick(cartButton);
-    await waitForPageReady(page);
+    
+    // Wait for URL to change to cart page (ensures previous product page DOM is unmounted)
+    await waitAfterNavigation(page, { expectedUrl: /\/cart\/?$/ });
     
     // Run accessibility check on cart content
     await injectAxe(page);

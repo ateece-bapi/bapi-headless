@@ -105,41 +105,13 @@ test.describe('Product Pages', () => {
 
   test.describe('Product Detail Page', () => {
     test.beforeEach(async ({ page }) => {
-      // Navigate to products landing page
-      await page.goto(routes.products());
+      // Navigate directly to a known product page
+      // This is faster and more reliable than navigating through category hierarchy
+      // Navigation logic is tested in "Product Categories Landing" section above
+      await page.goto('/en/product/ba-adt-c1-220');
       await waitForFullPageLoad(page);
       
-      // Wait for first category card to be visible and stable
-      let firstCategoryCard = page
-        .locator('a[href*="/categories/"]')
-        .filter({ has: page.getByRole('heading', { level: 2 }) })
-        .first();
-      
-      // Add extra timeout for category cards to appear
-      try {
-        await firstCategoryCard.waitFor({ state: 'visible', timeout: 10000 });
-      } catch {
-        // Fallback: try alternative selectors
-        firstCategoryCard = page.locator('a[href*="/categories/"]').first();
-        await firstCategoryCard.waitFor({ state: 'visible', timeout: 5000 });
-      }
-      
-      await waitForStableElement(firstCategoryCard);
-      await expect(firstCategoryCard).toBeVisible();
-      
-      // Navigate to category page with extra safety
-      await safeClick(firstCategoryCard);
-      await waitForFullPageLoad(page);
-      
-      // Navigate through category hierarchy to find products (enterprise utility)
-      const productLink = await navigateToProducts(page, 3);
-      await expect(productLink).toBeVisible();
-      
-      // Navigate to product detail page with extra stability
-      await safeClick(productLink);
-      await waitForFullPageLoad(page);
-      
-      // Verify we reached a product page before tests run
+      // Verify we reached the product page
       await expect(page).toHaveURL(/\/product\/.+/, { timeout: 10000 });
       const productHeading = page.getByRole('heading', { level: 1 });
       await expect(productHeading).toBeVisible({ timeout: 10000 });

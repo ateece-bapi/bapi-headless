@@ -46,7 +46,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           <div className="mb-4 space-y-3 rounded-lg border border-primary-200 bg-gradient-to-r from-primary-50 via-white to-primary-50 p-4">
             <div className="mb-2 flex items-center gap-2">
               <GlobeIcon className="h-4 w-4 text-primary-600" />
-              <h3 className="text-sm font-bold text-neutral-900">Settings</h3>
+              <div className="text-sm font-bold text-neutral-900">Settings</div>
             </div>
             <div className="flex flex-col gap-3">
               <RegionSelector />
@@ -96,9 +96,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                               <IconComponent className="h-3 w-3 text-primary-700" />
                             </div>
                           )}
-                          <h3 className="text-xs font-black uppercase tracking-wider text-primary-800">
+                          <div className="text-xs font-black uppercase tracking-wider text-primary-800">
                             {column.title}
-                          </h3>
+                          </div>
                         </div>
                         <ul className="space-y-1">
                           {column.links.map((link) => (
@@ -143,9 +143,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                           FEATURED
                         </div>
 
-                        <h4 className="text-base font-black leading-tight text-neutral-900">
+                        <div className="text-base font-black leading-tight text-neutral-900">
                           {item.megaMenu.featured.title}
-                        </h4>
+                        </div>
 
                         <p className="text-xs leading-relaxed text-neutral-700">
                           {item.megaMenu.featured.description}

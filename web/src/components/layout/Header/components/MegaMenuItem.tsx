@@ -193,9 +193,9 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                           <IconComponent className="h-4 w-4 text-primary-700" />
                         </div>
                       ) : null}
-                      <h3 className="text-xs font-black uppercase tracking-wider text-primary-800 transition-colors duration-200 group-hover:text-primary-600">
+                      <div className="text-xs font-black uppercase tracking-wider text-primary-800 transition-colors duration-200 group-hover:text-primary-600">
                         {column.title}
-                      </h3>
+                      </div>
                     </Link>
                     <ul className="space-y-1.5">
                       {column.links.map((link, linkIndex) => (
@@ -334,9 +334,9 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-black leading-tight text-neutral-900">
+                  <div className="text-lg font-black leading-tight text-neutral-900">
                     {item.megaMenu.featured.title}
-                  </h3>
+                  </div>
 
                   {/* Description */}
                   <p className="text-sm leading-relaxed text-neutral-700">

@@ -477,9 +477,9 @@ describe('MegaMenuItem - Mega Menu Panel Content', () => {
     );
 
     // Column headers should be links
-    const temperatureHeader = screen.getByRole('heading', {
-      name: /temperature sensors/i,
-    });
+    const temperatureHeaders = screen.getAllByText(/temperature sensors/i);
+    // First match is the column header, second is "View All" link
+    const temperatureHeader = temperatureHeaders[0];
     expect(temperatureHeader.closest('a')).toBeInTheDocument();
     expect(temperatureHeader.closest('a')).toHaveAttribute(
       'href',
@@ -528,7 +528,7 @@ describe('MegaMenuItem - Mega Menu Panel Content', () => {
     expect(temperatureIcon.tagName).toBe('IMG');
   });
 
-  it('featured section has proper heading hierarchy', () => {
+  it('featured section title is displayed correctly', () => {
     render(
       <MegaMenuItemComponent
         item={mockMegaMenuItem}
@@ -542,9 +542,7 @@ describe('MegaMenuItem - Mega Menu Panel Content', () => {
       />
     );
 
-    const featuredTitle = screen.getByRole('heading', {
-      name: /featured: wam™ wireless system/i,
-    });
+    const featuredTitle = screen.getByText(/featured: wam™ wireless system/i);
     expect(featuredTitle).toBeInTheDocument();
   });
 
@@ -670,7 +668,9 @@ describe('MegaMenuItem - Color Contrast', () => {
       />
     );
 
-    const header = screen.getByRole('heading', { name: /temperature sensors/i });
+    const temperatureHeaders = screen.getAllByText(/temperature sensors/i);
+    // First match is the column header
+    const header = temperatureHeaders[0];
     // primary-800 text on white/primary-100 background
     // Verified by jest-axe in automated test
     expect(header.className).toContain('text-primary-800');
@@ -771,7 +771,9 @@ describe('MegaMenuItem - Focus Indicators', () => {
       />
     );
 
-    const header = screen.getByRole('heading', { name: /temperature sensors/i });
+    const temperatureHeaders = screen.getAllByText(/temperature sensors/i);
+    // First match is the column header
+    const header = temperatureHeaders[0];
     const headerLink = header.closest('a');
     expect(headerLink?.className).toContain('focus-visible:ring-2');
   });
@@ -875,13 +877,13 @@ describe('MobileMenu - Color Contrast', () => {
     expect(supportLink.className).toContain('text-neutral-900');
   });
 
-  it('settings section has proper contrast', () => {
+  it('settings section label has proper contrast', () => {
     render(<MobileMenu isOpen={true} onClose={vi.fn()} />);
 
-    const settingsHeading = screen.getByRole('heading', { name: /settings/i });
+    const settingsLabel = screen.getByText(/settings/i);
     // neutral-900 (#282829) on primary-50 background
     // Verified by jest-axe in automated test
-    expect(settingsHeading).toBeInTheDocument();
+    expect(settingsLabel).toBeInTheDocument();
   });
 });
 

@@ -5,7 +5,8 @@ import {
   safeClick, 
   navigateToProducts, 
   waitForFullPageLoad,
-  waitForStableElement
+  waitForStableElement,
+  waitAfterNavigation
 } from './helpers/test-utils';
 
 /**
@@ -26,76 +27,70 @@ import {
 
 /**
  * Helper to find and navigate to any product page
- * Handles 3-level hierarchy: Landing → Category → Subcategory → Product
+ * Simplified approach using direct navigation instead of clicking (more stable)
  */
 async function navigateToAnyProduct(page: any): Promise<void> {
-  await waitForFullPageLoad(page);
-  
-  // Get all top-level category cards from products landing
-  // Products page uses <section> not <main>, so we need to search broadly
-  const topCategories = page.locator('a[href*="/categories/"]').filter({ 
-    has: page.getByRole('heading') 
+  // Wait for either category links OR product links to appear
+  await Promise.race([
+    page.locator('a[href*="/categories/"]').first().waitFor({ state: 'attached', timeout: 10000 }),
+    page.locator('a[href*="/product/"]').first().waitFor({ state: 'attached', timeout: 10000 })
+  ]).catch(() => {
+    // If neither appears, continue anyway and let the assertions catch it
   });
-  const topCategoryCount = await topCategories.count();
+
+  // Try to find a direct product link on the products page
+  let productLinks = page.locator('a[href*="/product/"]');
+  let productCount = await productLinks.count();
   
-  if (topCategoryCount === 0) {
-    throw new Error('No categories found on products landing page');
-  }
-  
-  // Try each top-level category
-  for (let i = 0; i < Math.min(topCategoryCount, 5); i++) {
-    // Navigate to this top-level category
-    await page.goto(routes.products());
-    await waitForFullPageLoad(page);
+  // If no products on main page, navigate into categories to find products
+  if (productCount === 0) {
+    const categoryLinks = page.locator('a[href*="/categories/"]');
+    const categoryCount = await categoryLinks.count();
     
-    const topCategory = topCategories.nth(i);
-    await safeClick(topCategory, { waitForAnimations: false, force: true });
-    await waitForFullPageLoad(page);
-    
-    // Check if this category has direct products
-    let productLinks = page.locator('main a[href*="/product/"], section a[href*="/product/"]');
-    let productCount = await productLinks.count();
-    
-    if (productCount > 0) {
-      // Found products! Click first one
-      await safeClick(productLinks.first());
-      await waitForFullPageLoad(page);
-      return;
-    }
-    
-    // No direct products, check for subcategories
-    const subcategories = page.locator('a[href*="/categories/"]').filter({ 
-      has: page.getByRole('heading') 
-    });
-    const subcategoryCount = await subcategories.count();
-    
-    if (subcategoryCount > 0) {
-      // Has subcategories, try the first few
-      for (let j = 0; j < Math.min(subcategoryCount, 3); j++) {
-        // Go back to parent category page
-        await page.goBack();
-        await waitForFullPageLoad(page);
+    if (categoryCount > 0) {
+      // Get the href and navigate directly (more stable than clicking)
+      const categoryHref = await categoryLinks.first().getAttribute('href');
+      if (categoryHref) {
+        await page.goto(categoryHref, { waitUntil: 'commit', timeout: 60000 });
+        await waitAfterNavigation(page);
         
-        // Click subcategory
-        const subcategory = subcategories.nth(j);
-        await safeClick(subcategory, { waitForAnimations: false, force: true });
-        await waitForFullPageLoad(page);
-        
-        // Check for products in subcategory
-        productLinks = page.locator('main a[href*="/product/"], section a[href*="/product/"]');
+        productLinks = page.locator('a[href*="/product/"]');
         productCount = await productLinks.count();
-        
-        if (productCount > 0) {
-          // Found products in subcategory!
-          await safeClick(productLinks.first());
-          await waitForFullPageLoad(page);
-          return;
-        }
       }
     }
   }
   
-  throw new Error('Could not find products in any category or subcategory');
+  // If still no products, try navigating to first subcategory (up to 3 attempts)
+  let attempts = 0;
+  while (productCount === 0 && attempts < 3) {
+    const subcategoryLinks = page.locator('a[href*="/products/"]');
+    const subCount = await subcategoryLinks.count();
+    
+    if (subCount === 0) break;
+    
+    // Get href and navigate directly
+    const subHref = await subcategoryLinks.first().getAttribute('href');
+    if (subHref) {
+      await page.goto(subHref, { waitUntil: 'commit', timeout: 60000 });
+      await waitAfterNavigation(page);
+      
+      productLinks = page.locator('a[href*="/product/"]');
+      productCount = await productLinks.count();
+    }
+    attempts++;
+  }
+  
+  // Assert we found at least one product
+  expect(productCount).toBeGreaterThan(0);
+  
+  // Navigate to the first product
+  const productHref = await productLinks.first().getAttribute('href');
+  expect(productHref).toBeTruthy();
+  
+  if (productHref) {
+    await page.goto(productHref, { waitUntil: 'commit', timeout: 60000 });
+    await waitForFullPageLoad(page);
+  }
 }
 
 test.describe('Product Pages', () => {

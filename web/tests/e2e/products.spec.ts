@@ -82,8 +82,24 @@ test.describe('Product Pages', () => {
       await safeClick(firstCategory);
       await waitForFullPageLoad(page);
 
-      // Navigate through category hierarchy to find products (enterprise utility)
-      const productLink = await navigateToProducts(page, 3);
+      // Look for product links on this category page (don't go deep)
+      // Products might be directly on category page or one level down
+      let productLink = page.locator('a[href*="/product/"]').first();
+      
+      // If no products on first category page, try clicking into a subcategory
+      const hasProducts = await productLink.count() > 0;
+      if (!hasProducts) {
+        // Try navigating one level deeper
+        const subcategory = page.locator('a[href*="/categories/"], a[href*="/products/"]').first();
+        if (await subcategory.count() > 0) {
+          await safeClick(subcategory);
+          await waitForFullPageLoad(page);
+          productLink = page.locator('a[href*="/product/"]').first();
+        }
+      }
+      
+      // Wait for product link to exist
+      await productLink.waitFor({ state: 'visible', timeout: 5000 });
       
       // Click product link
       await safeClick(productLink);
@@ -105,13 +121,24 @@ test.describe('Product Pages', () => {
 
   test.describe('Product Detail Page', () => {
     test.beforeEach(async ({ page }) => {
-      // Navigate directly to a known product page
-      // This is faster and more reliable than navigating through category hierarchy
-      // Navigation logic is tested in "Product Categories Landing" section above
-      await page.goto('/en/product/ba-adt-c1-220');
+      // Navigate to products landing and find first available product link
+      // This is simpler and more reliable than deep category navigation
+      await page.goto(routes.products());
       await waitForFullPageLoad(page);
       
-      // Verify we reached the product page
+      // Look for any product link on the page (products can appear in any section)
+      // Try multiple selectors to find product links
+      const productLink = page.locator('a[href*="/product/"]').first();
+      
+      // Wait for product link to be visible and stable
+      await productLink.waitFor({ state: 'visible', timeout: 10000 });
+      await waitForStableElement(productLink);
+      
+      // Click to navigate to product detail page
+      await safeClick(productLink);
+      await waitForFullPageLoad(page);
+      
+      // Verify we reached a product page
       await expect(page).toHaveURL(/\/product\/.+/, { timeout: 10000 });
       const productHeading = page.getByRole('heading', { level: 1 });
       await expect(productHeading).toBeVisible({ timeout: 10000 });

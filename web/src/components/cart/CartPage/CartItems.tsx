@@ -159,8 +159,8 @@ export default function CartItems({
                       {t('cartPage.stock.outOfStock')}
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-warning-700">
-                      <span className="h-2 w-2 rounded-full bg-warning-700"></span>
+                    <span className="inline-flex items-center gap-1 text-sm font-medium text-warning-800">
+                      <span className="h-2 w-2 rounded-full bg-warning-800"></span>
                       {t('cartPage.stock.onBackorder')}
                     </span>
                   )}

@@ -1585,7 +1585,8 @@
         "name": "ETA Line",
         "description": "Modular I/O and control solutions"
       },
-      "viewProducts": "View Products"
+      "viewProducts": "View Products",
+      "viewCategoryLabel": "View {name} category ({count} products)"
     },
     "featured": {
       "badge": "Featured Product Line",

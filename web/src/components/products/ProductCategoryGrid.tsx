@@ -44,8 +44,10 @@ export function ProductCategoryGrid({ categories, locale }: ProductCategoryGridP
             style={{
               transitionDelay: showCards ? `${i * 75}ms` : '0ms',
             }}
-            tabIndex={0}
-            aria-label={`View ${t(`productsPage.categories.${cat.nameKey}.name`)} category (${cat.count} products)`}
+            aria-label={t('productsPage.categories.viewCategoryLabel', {
+              name: t(`productsPage.categories.${cat.nameKey}.name`),
+              count: cat.count,
+            })}
           >
             {/* Product Image */}
             <div className="bg-linear-to-br relative flex aspect-square w-full items-center justify-center overflow-hidden from-gray-50 to-white p-10">

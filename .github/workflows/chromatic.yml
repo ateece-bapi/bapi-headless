@@ -31,8 +31,6 @@ on:
 jobs:
   chromatic:
     runs-on: ubuntu-latest
-    # Skip if secret is not available (e.g., forks)
-    if: ${{ secrets.CHROMATIC_PROJECT_TOKEN != '' }}
     
     steps:
       - name: Checkout code
@@ -76,6 +74,7 @@ jobs:
           pnpm run build-storybook
       
       - name: Publish to Chromatic
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
         uses: chromaui/action@v11
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

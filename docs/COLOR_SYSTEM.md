@@ -4,14 +4,21 @@
 
 This document describes the BAPI brand color system implemented in Tailwind CSS. The system is based on the **2026 BAPI Brand Standards** using actual **web colors** (not Pantone - Pantone is for print media only).
 
-## Official BAPI Web Colors
+## Official BAPI Web Colors (2026 Brand Guide)
 
 ```
-BAPI Blue:   #1479BC  (Primary - 30% usage)
-BAPI Yellow: #FFC843  (Accent - 10% usage)  
-BAPI Gray:   #97999B  (Neutral - with white, 60% usage)
-BAPI White:  #FFFFFF  (Background - with gray, 60% usage)
+BAPI Blue (Web/Digital): #166fb9  (Primary - 30% usage)
+BAPI Yellow:            #ffc843  (Accent - 10% usage)  
+BAPI Gray:              #979990  (Neutral - with white, 60% usage)
+BAPI White:             #FFFFFF  (Background - with gray, 60% usage)
 ```
+
+**Note:** The 2026 Brand Guide specifies three BAPI Blues for different applications:
+- **Web/Digital:** #166fb9 (used in this codebase)
+- **Internal Printing:** #0063bc (darker)
+- **Business Cards/Booths:** #1479bc (lighter)
+
+We use the **Web/Digital** specification (#166fb9) throughout the digital platform.
 
 ## Official BAPI Gradients (2026 Brand Guide)
 
@@ -23,8 +30,8 @@ Hover:    #e6872c → #e6b43c (darker)
 
 **Blue Gradient (Primary)**
 ```
-Gradient: #044976 → #1479bc (135deg)
-Hover:    #033a5f → #106196 (darker)
+Gradient: #044976 → #166fb9 (135deg)
+Hover:    #033a5f → #125994 (darker)
 ```
 
 **Usage in Code:**
@@ -81,9 +88,9 @@ A senior developer approach to color tokens includes:
 
 ## Color Families
 
-### Primary Colors (BAPI Blue #1479BC)
+### Primary Colors (BAPI Blue #166fb9 - Web/Digital)
 
-The signature BAPI brand blue used for trust, professionalism, and primary actions:
+The signature BAPI brand blue for web and digital applications used for trust, professionalism, and primary actions:
 - Navigation and links
 - Primary interactive elements
 - Headings and key content
@@ -91,17 +98,17 @@ The signature BAPI brand blue used for trust, professionalism, and primary actio
 - **Usage: ~30% of visual elements**
 
 ```css
---color-primary-50: #e6f2f9   /* Lightest tint - backgrounds */
---color-primary-100: #cce5f3
---color-primary-200: #99cbe7
---color-primary-300: #66b1db
---color-primary-400: #3397cf
---color-primary-500: #1479bc  /* Base BAPI Blue */
---color-primary-600: #106196  /* Hover state */
---color-primary-700: #0c4971
---color-primary-800: #08304b
---color-primary-900: #041826
---color-primary-950: #020c13  /* Darkest shade */
+--color-primary-50: #e5f1f8   /* Lightest tint - backgrounds */
+--color-primary-100: #cce3f2
+--color-primary-200: #99c7e4
+--color-primary-300: #66abd7
+--color-primary-400: #338fc9
+--color-primary-500: #166fb9  /* Base BAPI Blue (Web/Digital) */
+--color-primary-600: #125994  /* Hover state */
+--color-primary-700: #0d436f
+--color-primary-800: #092c4a
+--color-primary-900: #041625
+--color-primary-950: #020b13  /* Darkest shade */
 ```
 
 **Usage in Tailwind:**
@@ -144,7 +151,7 @@ High-visibility accent color for drawing attention to key actions:
 </button>
 ```
 
-### Neutral Colors (BAPI Gray #97999B + White)
+### Neutral Colors (BAPI Gray #979990 + White)
 
 Professional gray scale and white for backgrounds, text, and subtle UI:
 - Page backgrounds (white)
@@ -156,15 +163,15 @@ Professional gray scale and white for backgrounds, text, and subtle UI:
 ```css
 --color-neutral-50: #fafafa   /* Near white backgrounds */
 --color-neutral-100: #f5f5f5  /* Light gray sections */
---color-neutral-200: #e8e8e9  /* Subtle borders */
---color-neutral-300: #d4d5d6
---color-neutral-400: #b5b6b8
---color-neutral-500: #97999b  /* Base BAPI Gray */
---color-neutral-600: #797a7c
---color-neutral-700: #5e5f60  /* Dark text */
---color-neutral-800: #434445  /* Darker text */
---color-neutral-900: #282829  /* Headings */
---color-neutral-950: #141415  /* Darkest */
+--color-neutral-200: #e8e8e7  /* Subtle borders */
+--color-neutral-300: #d4d5d3
+--color-neutral-400: #b5b6b4
+--color-neutral-500: #979990  /* Base BAPI Gray */
+--color-neutral-600: #797a74
+--color-neutral-700: #5e5f5a  /* Dark text */
+--color-neutral-800: #434440  /* Darker text */
+--color-neutral-900: #282820  /* Headings */
+--color-neutral-950: #141410  /* Darkest */
 ```
 
 **Usage in Tailwind:**
@@ -196,7 +203,7 @@ Purpose-specific colors for user feedback (using BAPI palette where appropriate)
 
 **Info** (BAPI Blue)
 ```css
---color-info-500: #1479bc     /* Uses BAPI Blue for info messages */
+--color-info-500: #166fb9     /* Uses BAPI Blue (Web/Digital) for info messages */
 ```
 
 **Usage in Tailwind:**
@@ -291,11 +298,11 @@ All neutral colors tested on **white background (#FFFFFF)**:
 
 | Color | Hex | Contrast | Normal Text | Large Text | Recommended Use |
 |-------|-----|----------|-------------|------------|-----------------|
-| `neutral-500` | `#97999b` | **2.86:1** | ❌ FAILS | ❌ FAILS | ⚠️ Icons, borders, decorative only |
-| `neutral-600` | `#797a7c` | **4.30:1** | ❌ FAILS | ✅ PASSES | ⚠️ **DEPRECATED** - Use 700+ for text |
-| `neutral-700` | `#5e5f60` | **6.40:1** | ✅ PASSES | ✅ PASSES | ✅ **Body text standard** |
-| `neutral-800` | `#434445` | **9.76:1** | ✅ PASSES | ✅ PASSES | ✅ Emphasized text |
-| `neutral-900` | `#282829` | **14.73:1** | ✅ PASSES | ✅ PASSES | ✅ Headings |
+| `neutral-500` | `#979990` | **2.86:1** | ❌ FAILS | ❌ FAILS | ⚠️ Icons, borders, decorative only |
+| `neutral-600` | `#797a74` | **4.30:1** | ❌ FAILS | ✅ PASSES | ⚠️ **DEPRECATED** - Use 700+ for text |
+| `neutral-700` | `#5e5f5a` | **6.40:1** | ✅ PASSES | ✅ PASSES | ✅ **Body text standard** |
+| `neutral-800` | `#434440` | **9.76:1** | ✅ PASSES | ✅ PASSES | ✅ Emphasized text |
+| `neutral-900` | `#282820` | **14.73:1** | ✅ PASSES | ✅ PASSES | ✅ Headings |
 
 **Critical Finding (March 2026 Audit):**
 - `neutral-600` previously used site-wide **FAILED WCAG AA** (4.30:1 vs 4.5:1 required)
@@ -429,9 +436,9 @@ Colors are defined in globals.css:
 ```css
 @theme inline {
   /* Colors */
-  --color-primary-500: #1479bc;  /* BAPI Blue */
+  --color-primary-500: #166fb9;  /* BAPI Blue (Web/Digital) */
   --color-accent-500: #ffc843;   /* BAPI Yellow */
-  --color-neutral-500: #97999b;  /* BAPI Gray */
+  --color-neutral-500: #979990;  /* BAPI Gray */
   
   /* Z-Index Scale */
   --z-dropdown: 1000;
@@ -573,6 +580,6 @@ For color system questions or updates, refer to:
 
 **Last Updated**: December 29, 2025
 **Version**: 3.0 (Tailwind v4 CSS-first architecture)
-**Web Colors**: BAPI Blue #1479BC, BAPI Yellow #FFC843, BAPI Gray #97999B
+**Web Colors**: BAPI Blue #166fb9 (Web/Digital), BAPI Yellow #FFC843, BAPI Gray #979990
 **Distribution**: 60% White/Gray, 30% Blue, 10% Yellow
 **Architecture**: CSS-first theming with semantic tokens via `@theme inline`

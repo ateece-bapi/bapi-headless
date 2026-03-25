@@ -31,7 +31,7 @@ export default function StripeProvider({ children, clientSecret }: StripeProvide
         appearance: {
           theme: 'stripe' as const,
           variables: {
-            colorPrimary: '#1479bc', // BAPI Blue
+            colorPrimary: '#166fb9', // BAPI Blue (Web/Digital)
             colorBackground: '#ffffff',
             colorText: '#282829',
             colorDanger: '#ef4444',

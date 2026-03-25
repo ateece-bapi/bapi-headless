@@ -21,9 +21,9 @@ optimized for digital applications and meet WCAG AA accessibility standards.
 
 ## Official BAPI Web Colors
 
-- **BAPI Blue:** #1479BC (Primary - 30% usage)
+- **BAPI Blue:** #166fb9 (Primary - 30% usage)
 - **BAPI Yellow:** #FFC843 (Accent - 10% usage)
-- **BAPI Gray:** #97999B (Neutral - with white, 60% usage)
+- **BAPI Gray:** #979990 (Neutral - with white, 60% usage)
         `,
       },
     },
@@ -133,7 +133,7 @@ export const AllColors: Story = {
           <div className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-3">
             <div className="rounded-lg bg-primary-500 p-6">
               <div className="text-xl font-bold text-white">BAPI Blue</div>
-              <div className="mt-2 font-mono text-lg text-primary-100">#1479BC</div>
+              <div className="mt-2 font-mono text-lg text-primary-100">#166fb9</div>
             </div>
             <div className="rounded-lg bg-accent-500 p-6">
               <div className="text-xl font-bold text-neutral-900">BAPI Yellow</div>
@@ -141,7 +141,7 @@ export const AllColors: Story = {
             </div>
             <div className="rounded-lg bg-neutral-500 p-6">
               <div className="text-xl font-bold text-white">BAPI Gray</div>
-              <div className="mt-2 font-mono text-lg text-neutral-200">#97999B</div>
+              <div className="mt-2 font-mono text-lg text-neutral-200">#979990</div>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@ export const AllColors: Story = {
             { name: 'primary-200', value: '#99cbe7', subtitle: 'Light' },
             { name: 'primary-300', value: '#66b1db', subtitle: 'Muted' },
             { name: 'primary-400', value: '#3397cf', subtitle: 'Soft' },
-            { name: 'primary-500', value: '#1479bc', subtitle: 'Base ★' },
+            { name: 'primary-500', value: '#166fb9', subtitle: 'Base ★' },
             { name: 'primary-600', value: '#106196', subtitle: 'Hover' },
             { name: 'primary-700', value: '#0c4971', subtitle: 'Active' },
             { name: 'primary-800', value: '#08304b', subtitle: 'Dark' },
@@ -224,7 +224,7 @@ export const AllColors: Story = {
             </div>
             <div>
               <h3 className="mb-3 font-semibold text-neutral-900">Info</h3>
-              <ColorSwatch name="info-500" value="#1479bc" subtitle="Base (primary)" />
+              <ColorSwatch name="info-500" value="#166fb9" subtitle="Base (primary)" />
             </div>
           </div>
         </div>
@@ -256,7 +256,7 @@ export const AllColors: Story = {
               <div
                 className="flex h-32 items-center justify-center rounded-lg text-2xl font-bold text-white shadow-lg"
                 style={{
-                  background: 'linear-gradient(135deg, #044976 0%, #1479bc 100%)',
+                  background: 'linear-gradient(135deg, #044976 0%, #166fb9 100%)',
                 }}
               >
                 Primary Gradient
@@ -396,7 +396,7 @@ export const BrandColors: Story = {
       <div className="grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
         <div className="rounded-lg bg-primary-500 p-8 text-center">
           <div className="mb-2 text-2xl font-bold text-white">BAPI Blue</div>
-          <div className="mb-4 font-mono text-xl text-primary-100">#1479BC</div>
+          <div className="mb-4 font-mono text-xl text-primary-100">#166fb9</div>
           <div className="text-sm text-primary-100">30% Usage</div>
           <div className="mt-2 text-xs text-primary-200">Navigation, Primary Actions</div>
         </div>
@@ -408,7 +408,7 @@ export const BrandColors: Story = {
         </div>
         <div className="rounded-lg bg-neutral-500 p-8 text-center">
           <div className="mb-2 text-2xl font-bold text-white">BAPI Gray</div>
-          <div className="mb-4 font-mono text-xl text-neutral-200">#97999B</div>
+          <div className="mb-4 font-mono text-xl text-neutral-200">#979990</div>
           <div className="text-sm text-neutral-200">60% Usage (with white)</div>
           <div className="mt-2 text-xs text-neutral-300">Backgrounds, Subtle UI</div>
         </div>

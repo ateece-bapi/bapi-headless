@@ -58,7 +58,7 @@ export function generateQuoteSalesEmail(data: QuoteRequestEmailData): {
           
           <!-- Header -->
           <tr>
-            <td style="background: linear-gradient(135deg, #1479BC 0%, #0d5a94 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <td style="background: linear-gradient(135deg, #166fb9 0%, #0d5a94 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
               <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: bold;">
                 📋 New Quote Request
               </h1>
@@ -84,7 +84,7 @@ export function generateQuoteSalesEmail(data: QuoteRequestEmailData): {
                 <tr>
                   <td style="padding: 10px;">
                     <strong style="color: #374151;">Email:</strong>
-                    <a href="mailto:${customerEmail}" style="color: #1479BC; margin-left: 8px; text-decoration: none;">${customerEmail}</a>
+                    <a href="mailto:${customerEmail}" style="color: #166fb9; margin-left: 8px; text-decoration: none;">${customerEmail}</a>
                   </td>
                 </tr>
                 ${
@@ -93,7 +93,7 @@ export function generateQuoteSalesEmail(data: QuoteRequestEmailData): {
                 <tr>
                   <td style="padding: 10px; background-color: #f9fafb; border-radius: 6px;">
                     <strong style="color: #374151;">Phone:</strong>
-                    <a href="tel:${customerPhone}" style="color: #1479BC; margin-left: 8px; text-decoration: none;">${customerPhone}</a>
+                    <a href="tel:${customerPhone}" style="color: #166fb9; margin-left: 8px; text-decoration: none;">${customerPhone}</a>
                   </td>
                 </tr>
                 `
@@ -137,7 +137,7 @@ export function generateQuoteSalesEmail(data: QuoteRequestEmailData): {
               </h2>
               <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f9fafb; border-radius: 8px; overflow: hidden;">
                 <thead>
-                  <tr style="background-color: #1479BC; color: #ffffff;">
+                  <tr style="background-color: #166fb9; color: #ffffff;">
                     <th style="padding: 12px; text-align: left; font-size: 14px;">Product</th>
                     <th style="padding: 12px; text-align: center; font-size: 14px;">Qty</th>
                   </tr>
@@ -187,7 +187,7 @@ export function generateQuoteSalesEmail(data: QuoteRequestEmailData): {
           <tr>
             <td style="padding: 0 30px 30px 30px; text-align: center;">
               <a href="mailto:${customerEmail}?subject=Re:%20Quote%20Request%20${quoteId}" 
-                 style="display: inline-block; background: linear-gradient(135deg, #1479BC 0%, #0d5a94 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(20, 121, 188, 0.3);">
+                 style="display: inline-block; background: linear-gradient(135deg, #166fb9 0%, #0d5a94 100%); color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px rgba(20, 121, 188, 0.3);">
                 📧 Reply to Customer
               </a>
             </td>
@@ -259,7 +259,7 @@ export function generateQuoteCustomerEmail(data: QuoteRequestEmailData): {
           
           <!-- Header -->
           <tr>
-            <td style="background: linear-gradient(135deg, #1479BC 0%, #0d5a94 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+            <td style="background: linear-gradient(135deg, #166fb9 0%, #0d5a94 100%); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
               <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: bold;">
                 ✅ Quote Request Received
               </h1>
@@ -275,7 +275,7 @@ export function generateQuoteCustomerEmail(data: QuoteRequestEmailData): {
               <p style="margin: 0 0 20px 0; color: #1f2937; font-size: 16px; line-height: 1.6;">
                 Thank you for your quote request! We've received your inquiry and our sales team will review it shortly.
               </p>
-              <div style="background-color: #eff6ff; border-left: 4px solid #1479BC; padding: 16px; border-radius: 6px; margin-bottom: 24px;">
+              <div style="background-color: #eff6ff; border-left: 4px solid #166fb9; padding: 16px; border-radius: 6px; margin-bottom: 24px;">
                 <p style="margin: 0 0 8px 0; color: #1e40af; font-weight: bold;">
                   Quote ID: ${quoteId}
                 </p>
@@ -345,7 +345,7 @@ export function generateQuoteCustomerEmail(data: QuoteRequestEmailData): {
                   Need immediate assistance?
                 </p>
                 <p style="margin: 0; color: #78350f; font-size: 14px;">
-                  Contact our sales team at <a href="mailto:customerservice@bapisensors.com" style="color: #1479BC; text-decoration: none;">customerservice@bapisensors.com</a>
+                  Contact our sales team at <a href="mailto:customerservice@bapisensors.com" style="color: #166fb9; text-decoration: none;">customerservice@bapisensors.com</a>
                 </p>
               </div>
             </td>
@@ -361,7 +361,7 @@ export function generateQuoteCustomerEmail(data: QuoteRequestEmailData): {
                 750 North Royal Avenue, Gays Mills, WI 54631
               </p>
               <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 12px;">
-                <a href="https://www.bapihvac.com" style="color: #1479BC; text-decoration: none;">www.bapihvac.com</a>
+                <a href="https://www.bapihvac.com" style="color: #166fb9; text-decoration: none;">www.bapihvac.com</a>
               </p>
             </td>
           </tr>

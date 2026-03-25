@@ -648,7 +648,7 @@ describe('MegaMenuItem - Color Contrast', () => {
     );
 
     const trigger = screen.getByRole('link', { name: /products/i });
-    // White text on primary-600 (#1479BC) background
+    // White text on primary-600 (#166fb9) background
     // Verified by jest-axe in automated test
     expect(trigger.className).toContain('text-white');
     expect(trigger.className).toContain('bg-primary-600');

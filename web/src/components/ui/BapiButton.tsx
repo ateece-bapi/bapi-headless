@@ -29,7 +29,7 @@ type BapiButtonProps = ButtonAsButton | ButtonAsLink;
  * Implements 2026 BAPI Brand Guide specifications:
  * - Yellow buttons: Black text, NO text shadow, gradient background with drop shadow
  * - Blue buttons: White text WITH slight text shadow, gradient background with drop shadow
- * - Official gradients: #f89623 → #ffc843 (yellow), #044976 → #1479bc (blue)
+ * - Official gradients: #f89623 → #ffc843 (yellow), #044976 → #166fb9 (blue)
  */
 const BapiButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, BapiButtonProps>(
   ({ children, color = 'blue', className, ...props }, ref) => {

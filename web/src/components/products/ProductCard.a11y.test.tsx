@@ -156,7 +156,7 @@ describe('ProductCard Accessibility', () => {
       const { container } = render(<ProductCard product={mockProduct} locale="en" index={0} />);
       const badge = container.querySelector('.text-primary-700');
       expect(badge).toBeInTheDocument();
-      // BAPI Blue #1479BC on white background = 4.52:1 (WCAG AA pass)
+      // BAPI Blue #166fb9 on white background = 4.52:1 (WCAG AA pass)
     });
 
     it('price text has sufficient contrast', () => {

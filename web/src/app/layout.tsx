@@ -2,12 +2,15 @@ import { Roboto } from 'next/font/google';
 import { getLocale } from 'next-intl/server';
 import './globals.css';
 
-// Roboto font configuration
+// Roboto font configuration - optimized for performance
 const roboto = Roboto({
-  weight: ['300', '400', '500', '700', '900'],
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--font-roboto',
   display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+  adjustFontFallback: true,
 });
 
 /**

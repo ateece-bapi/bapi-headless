@@ -2,8 +2,258 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** March 24, 2026  
-**Status:** Phase 1 Development - April 10, 2026 Go-Live (17 days remaining)
+**Updated:** March 25, 2026  
+**Status:** Phase 1 Development - April 10, 2026 Go-Live (16 days remaining)
+
+---
+
+## March 25, 2026 — Mobile Performance Optimization: LCP Improvements 🚀
+
+**Status:** ✅ COMPLETE - Merged to main (PR approved) 🎉  
+**Context:** Lighthouse mobile performance optimization (56/100 → target 90+)  
+**Time:** ~3 hours (analysis + implementation + PR review)  
+**Branch:** `perf/mobile-optimization` (merged and deleted)  
+**Commits:** 2 commits (c4d85c9, 3ecbdc8), 5 files modified, net +13,167 insertions/-102 deletions
+
+### 🎯 SESSION SUMMARY: Server-Side Rendering & Font Optimization for Mobile LCP
+
+**Trigger:** Lighthouse mobile audit revealed Performance: 56/100 (Desktop: 100/100)  
+**Root Cause:** LCP 8.0s (target <2.5s) - Hero text element delayed by client-side hydration  
+**Evolution:** Analysis → SSR conversion → Font optimization → Copilot review → All issues resolved  
+**Approach:** Priority 2 (LCP optimization) over Priority 1 (console errors) for maximum impact
+
+### Part 1: Performance Analysis - Lighthouse Mobile Audit
+
+**Baseline Scores:**
+- **Mobile:** Performance 56/100, Accessibility 100/100, Best Practices 96/100, SEO 100/100
+- **Desktop:** Performance 100/100 ✅ (perfect - no optimization needed)
+
+**Critical Issue Identified:**
+- **LCP:** 8.0s (target: <2.5s) ❌
+- **LCP Element:** Hero section `<p>` text: "Explore our complete range of high-accuracy sensors..."
+- **Element Render Delay:** 1494ms (client-side hydration blocking)
+- **TBT:** 850ms (target: <300ms)
+- **CLS:** 0.00009 ✅ (excellent)
+- **FCP:** 1.1s ✅ (excellent)
+
+**Console Errors (7 total):**
+- 2× 401 from `/api/auth/me` (expected for anonymous users)
+- 4× 404 from `/en/monitoring` (Vercel monitoring not configured)
+- 1× 404 from `/_vercel/insights/script.js` (Speed Insights not enabled)
+
+---
+
+### Part 2: LCP Optimization - Server Component Conversion
+
+**Problem Analysis:**
+- Products page was `'use client'` component (312 lines)
+- Hero section (LCP element) delayed by JavaScript hydration
+- Category grid animations required client-side state
+- Backdrop-blur effects on stats cards GPU-intensive
+
+**Solution Architecture (Commit c4d85c9):**
+
+**1. Extract Animated Grid to Client Component:**
+```typescript
+// NEW FILE: web/src/components/products/ProductCategoryGrid.tsx (95 lines)
+'use client';
+export function ProductCategoryGrid({ categories, locale }: Props) {
+  const [showCards, setShowCards] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => setShowCards(true), 50);
+    return () => clearTimeout(timeout);
+  }, []);
+  // ... staggered animation logic
+}
+```
+
+**2. Convert Products Page to Server Component:**
+```typescript
+// MODIFIED: web/src/app/[locale]/products/page.tsx
+// Before: 'use client' + useTranslations() + useParams()
+// After: async server component + getTranslations() + params prop
+
+export default async function MainProductPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations();
+  
+  return (
+    <div>
+      {/* Hero Section - Server Rendered for Fast LCP */}
+      <section>...</section>
+      
+      {/* Category Grid - Client Component for Animations */}
+      <ProductCategoryGrid categories={productCategories} locale={locale} />
+    </div>
+  );
+}
+```
+
+**3. Optimize Roboto Font Configuration:**
+```typescript
+// MODIFIED: web/src/app/layout.tsx
+const roboto = Roboto({
+  weight: ['400', '500', '600', '700'], // Was: ['300', '400', '500', '700', '900']
+  subsets: ['latin'],
+  variable: '--font-roboto',
+  display: 'swap',
+  preload: true,                    // NEW: Enable font preloading
+  fallback: ['system-ui', 'arial'], // NEW: System font fallback
+  adjustFontFallback: true,         // NEW: Metric-compatible fallback
+});
+```
+
+**4. Remove GPU-Heavy Effects:**
+```typescript
+// BEFORE: backdrop-blur-sm on stats cards (GPU intensive)
+<div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
+
+// AFTER: Simple transparency (faster rendering)
+<div className="rounded-xl bg-white/10 p-4">
+```
+
+**Impact:**
+- Hero section now server-rendered (immediate HTML in initial response)
+- Font size reduced ~20KB (removed unused weights 300/900)
+- Font preloading enables parallel download
+- Client component boundary moved below fold
+- Removed page fade animation (was blocking LCP)
+
+**Files Changed:**
+- Created: `ProductCategoryGrid.tsx` (client component)
+- Modified: `products/page.tsx` (server component)
+- Modified: `layout.tsx` (font optimization)
+- Added: `docs/bapi-headless.vercel.app-20260325T100640.json` (Lighthouse baseline)
+
+---
+
+### Part 3: Copilot PR Review - 3 Critical Issues (Commit 3ecbdc8)
+
+**Review Comment #1: Invalid Font Weight ❌ CRITICAL**
+```typescript
+// PROBLEM: Roboto doesn't support weight 600
+weight: ['400', '500', '600', '700'], // ❌ '600' doesn't exist
+
+// FIX: Use only supported weights (Roboto: 100/300/400/500/700/900)
+weight: ['400', '500', '700'], // ✅ 3 valid weights
+```
+
+**Review Comment #2: Hard-Coded English in aria-label**
+```typescript
+// BEFORE: Not localized
+aria-label={`View ${t(`...${cat.nameKey}.name`)} category (${cat.count} products)`}
+//         ^^^^ Hard-coded English
+
+// AFTER: Fully localized
+aria-label={t('productsPage.categories.viewCategoryLabel', {
+  name: t(`productsPage.categories.${cat.nameKey}.name`),
+  count: cat.count,
+})}
+
+// NEW TRANSLATION: messages/en.json
+"viewCategoryLabel": "View {name} category ({count} products)"
+```
+
+**Review Comment #3: Redundant tabIndex**
+```typescript
+// BEFORE: Links already focusable by default
+<Link tabIndex={0} href={...}>
+
+// AFTER: Remove unnecessary attribute
+<Link href={...}>
+```
+
+**Files Changed (Review Fixes):**
+- Modified: `layout.tsx` (corrected font weights)
+- Modified: `ProductCategoryGrid.tsx` (localized aria-label, removed tabIndex)
+- Modified: `messages/en.json` (added viewCategoryLabel key)
+
+---
+
+### 📊 RESULTS & VALIDATION
+
+**Build Status:**
+- ✅ Next.js build: Compiled successfully (9.6s)
+- ✅ TypeScript validation: Passing
+- ✅ 786 static pages generated
+- ✅ No errors detected
+
+**Git History:**
+```
+3ecbdc8 fix: address Copilot PR review feedback
+c4d85c9 perf: optimize mobile LCP via SSR and font configuration
+```
+
+**Merged to Main:**
+- ✅ PR approved and merged
+- ✅ Remote branch deleted
+- ✅ Local branch deleted
+
+**Expected Performance Impact:**
+- LCP: 8.0s → <3.0s (target <2.5s)
+- Element Render Delay: 1494ms → <500ms (hero server-rendered)
+- Font Loading: ~20KB reduction + preload optimization
+- Overall Mobile Score: 56/100 → 90+ (projected)
+
+**Next Steps:**
+1. ⏳ Run Lighthouse on production deployment to measure actual improvement
+2. ⏳ Monitor Vercel Analytics for real-user LCP metrics
+3. ⏳ Priority 1: Fix console errors (401 auth suppression, enable Speed Insights)
+4. ⏳ Additional optimizations if TBT still >500ms
+
+---
+
+### Technical Achievements 💡
+
+**Server-Side Rendering:**
+- Products page hero section renders immediately (no hydration delay)
+- LCP element now in initial HTML (critical for Core Web Vitals)
+- Animations isolated to client component below fold
+- Proper separation of concerns (static content vs interactive UI)
+
+**Font Optimization:**
+- Reduced from 5 weights to 3 (400/500/700)
+- Enabled preload for critical font files
+- Added metric-compatible fallback fonts
+- ~20KB savings + faster initial render
+
+**Code Quality:**
+- Professional multi-round PR review workflow (2 commits)
+- All Copilot review comments addressed
+- Accessibility improved (localized aria-labels)
+- Component architecture follows Next.js 14 best practices
+
+**Launch Readiness:**
+- Mobile performance optimization critical for SEO
+- 16 days to Phase 1 launch (April 10, 2026)
+- Desktop already perfect (100/100/96/100)
+- Foundation for 90+ mobile performance score
+
+### Lessons Learned 💡
+
+**1. Desktop ≠ Mobile Performance:**
+- Perfect desktop scores don't guarantee mobile performance
+- Mobile throttling (slow 4G + 4x CPU) reveals real-world issues
+- LCP can be text elements, not just images
+
+**2. Server Components for LCP:**
+- Client components delay SSR and harm LCP
+- Move client boundary below fold when possible
+- Hero sections should be server-rendered for fastest paint
+
+**3. Font Configuration Best Practices:**
+- next/font optimization requires explicit preload configuration
+- Remove unused font weights (analyze with grep)
+- Roboto supports: 100/300/400/500/700/900 (not 600!)
+
+**4. Lighthouse Mobile Simulation:**
+- Simulates worst-case: slow 4G + 4x CPU slowdown
+- Element Render Delay metric reveals hydration issues
+- Console errors impact Best Practices score
 
 ---
 

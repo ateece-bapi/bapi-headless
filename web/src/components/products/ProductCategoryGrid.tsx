@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -16,14 +16,13 @@ interface ProductCategory {
 
 interface ProductCategoryGridProps {
   categories: ProductCategory[];
-  locale: string;
 }
 
 /**
  * Client component for animated product category grid
  * Separated from main page to enable server-side rendering of hero section for better LCP
  */
-export function ProductCategoryGrid({ categories, locale }: ProductCategoryGridProps) {
+export function ProductCategoryGrid({ categories }: ProductCategoryGridProps) {
   const t = useTranslations();
   const [showCards, setShowCards] = useState(false);
 
@@ -39,7 +38,7 @@ export function ProductCategoryGrid({ categories, locale }: ProductCategoryGridP
         return (
           <Link
             key={cat.slug}
-            href={`/${locale}/categories/${cat.slug}`}
+            href={`/categories/${cat.slug}`}
             className={`group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl transition-all duration-500 hover:border-primary-200 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 ${showCards ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} `}
             style={{
               transitionDelay: showCards ? `${i * 75}ms` : '0ms',

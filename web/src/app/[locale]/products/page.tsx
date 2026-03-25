@@ -144,7 +144,7 @@ export default async function MainProductPage({
 
       {/* Category Grid - Client Component for Animations */}
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
-        <ProductCategoryGrid categories={productCategories} locale={locale} />
+        <ProductCategoryGrid categories={productCategories} />
 
         {/* Featured Section */}
         <div className="bg-linear-to-br mb-20 rounded-2xl from-primary-50 to-primary-100/50 p-10 lg:p-16">

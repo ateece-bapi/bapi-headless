@@ -683,10 +683,10 @@
         "description": "Solutions modulaires d'E/S et de contrôle"
       },
       "common": {
-        "exploreButton": "Explore"
+        "exploreButton": "Explorer"
       },
       "viewProducts": "Voir les produits",
-      "viewCategoryLabel": "Explore {name} products"
+      "viewCategoryLabel": "Découvrir les produits {name}"
     },
     "featured": {
       "badge": "Gamme de produits vedette",

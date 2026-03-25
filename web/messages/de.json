@@ -604,10 +604,10 @@
         "description": "Modulare E/A- und Steuerungslösungen"
       },
       "common": {
-        "exploreButton": "Explore"
+        "exploreButton": "Entdecken"
       },
       "viewProducts": "Produkte anzeigen",
-      "viewCategoryLabel": "Explore {name} products"
+      "viewCategoryLabel": "Produkte der Kategorie {name} entdecken"
     },
     "featured": {
       "badge": "Produktlinie im Fokus",

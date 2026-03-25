@@ -138,6 +138,9 @@
         "description": "E/S y control modulares"
       },
       "viewAll": "Ver todos los productos",
+      "common": {
+        "exploreButton": "Explore"
+      },
       "viewProducts": "Ver productos",
       "browseAll": "Explorar todos los productos"
     },
@@ -678,6 +681,9 @@
       "etaLine": {
         "name": "Línea ETA",
         "description": "Soluciones modulares de E/S y control"
+      },
+      "common": {
+        "exploreButton": "Explore"
       },
       "viewProducts": "Ver productos"
     },

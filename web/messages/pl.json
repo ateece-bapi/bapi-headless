@@ -325,6 +325,9 @@
         "description": "Modułowe we/wy i sterowanie"
       },
       "viewAll": "Wyświetl wszystkie produkty",
+      "common": {
+        "exploreButton": "Explore"
+      },
       "viewProducts": "Wyświetl produkty",
       "browseAll": "Przeglądaj wszystkie produkty"
     },
@@ -1127,6 +1130,9 @@
       "etaLine": {
         "name": "Linia ETA",
         "description": "Modułowe rozwiązania I/O i sterujące"
+      },
+      "common": {
+        "exploreButton": "Explore"
       },
       "viewProducts": "Wyświetl produkty"
     },

@@ -138,6 +138,9 @@
         "description": "模块化 I/O 和控制"
       },
       "viewAll": "查看所有产品",
+      "common": {
+        "exploreButton": "Explore"
+      },
       "viewProducts": "查看产品",
       "browseAll": "浏览所有产品"
     },
@@ -678,6 +681,9 @@
       "etaLine": {
         "name": "ETA系列",
         "description": "模块化I/O和控制解决方案"
+      },
+      "common": {
+        "exploreButton": "Explore"
       },
       "viewProducts": "查看产品"
     },

@@ -288,6 +288,9 @@
         "description": "Modulare E/A und Steuerung"
       },
       "viewAll": "Alle Produkte anzeigen",
+      "common": {
+        "exploreButton": "Explore"
+      },
       "viewProducts": "Produkte anzeigen",
       "browseAll": "Alle Produkte durchsuchen"
     },
@@ -599,6 +602,9 @@
       "etaLine": {
         "name": "ETA-Linie",
         "description": "Modulare E/A- und Steuerungslösungen"
+      },
+      "common": {
+        "exploreButton": "Explore"
       },
       "viewProducts": "Produkte anzeigen"
     },

@@ -138,6 +138,9 @@
         "description": "モジュラーI/Oおよび制御"
       },
       "viewAll": "すべての製品を表示する",
+      "common": {
+        "exploreButton": "Explore"
+      },
       "viewProducts": "製品を表示する",
       "browseAll": "すべての製品を閲覧する"
     },
@@ -678,6 +681,9 @@
       "etaLine": {
         "name": "ETAライン",
         "description": "モジュラー I/O およびコントロールソリューション"
+      },
+      "common": {
+        "exploreButton": "Explore"
       },
       "viewProducts": "製品を見る"
     },

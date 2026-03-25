@@ -325,6 +325,9 @@
         "description": "I/O และการควบคุมแบบโมดูลาร์"
       },
       "viewAll": "ดูผลิตภัณฑ์ทั้งหมด",
+      "common": {
+        "exploreButton": "Explore"
+      },
       "viewProducts": "ดูผลิตภัณฑ์",
       "browseAll": "เรียกดูผลิตภัณฑ์ทั้งหมด"
     },
@@ -1127,6 +1130,9 @@
       "etaLine": {
         "name": "ไลน์ ETA",
         "description": "โซลูชัน I/O และการควบคุมแบบโมดูลาร์"
+      },
+      "common": {
+        "exploreButton": "Explore"
       },
       "viewProducts": "ดูผลิตภัณฑ์"
     },

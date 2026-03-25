@@ -4,14 +4,21 @@
 
 This document describes the BAPI brand color system implemented in Tailwind CSS. The system is based on the **2026 BAPI Brand Standards** using actual **web colors** (not Pantone - Pantone is for print media only).
 
-## Official BAPI Web Colors
+## Official BAPI Web Colors (2026 Brand Guide)
 
 ```
-BAPI Blue:   #1479BC  (Primary - 30% usage)
-BAPI Yellow: #FFC843  (Accent - 10% usage)  
-BAPI Gray:   #97999B  (Neutral - with white, 60% usage)
-BAPI White:  #FFFFFF  (Background - with gray, 60% usage)
+BAPI Blue (Web/Digital): #166fb9  (Primary - 30% usage)
+BAPI Yellow:            #ffc843  (Accent - 10% usage)  
+BAPI Gray:              #979990  (Neutral - with white, 60% usage)
+BAPI White:             #FFFFFF  (Background - with gray, 60% usage)
 ```
+
+**Note:** The 2026 Brand Guide specifies three BAPI Blues for different applications:
+- **Web/Digital:** #166fb9 (used in this codebase)
+- **Internal Printing:** #0063bc (darker)
+- **Business Cards/Booths:** #1479bc (lighter)
+
+We use the **Web/Digital** specification (#166fb9) throughout the digital platform.
 
 ## Official BAPI Gradients (2026 Brand Guide)
 
@@ -23,8 +30,8 @@ Hover:    #e6872c → #e6b43c (darker)
 
 **Blue Gradient (Primary)**
 ```
-Gradient: #044976 → #1479bc (135deg)
-Hover:    #033a5f → #106196 (darker)
+Gradient: #044976 → #166fb9 (135deg)
+Hover:    #033a5f → #125994 (darker)
 ```
 
 **Usage in Code:**
@@ -81,9 +88,9 @@ A senior developer approach to color tokens includes:
 
 ## Color Families
 
-### Primary Colors (BAPI Blue #1479BC)
+### Primary Colors (BAPI Blue #166fb9 - Web/Digital)
 
-The signature BAPI brand blue used for trust, professionalism, and primary actions:
+The signature BAPI brand blue for web and digital applications used for trust, professionalism, and primary actions:
 - Navigation and links
 - Primary interactive elements
 - Headings and key content
@@ -91,13 +98,13 @@ The signature BAPI brand blue used for trust, professionalism, and primary actio
 - **Usage: ~30% of visual elements**
 
 ```css
---color-primary-50: #e6f2f9   /* Lightest tint - backgrounds */
---color-primary-100: #cce5f3
---color-primary-200: #99cbe7
---color-primary-300: #66b1db
---color-primary-400: #3397cf
---color-primary-500: #1479bc  /* Base BAPI Blue */
---color-primary-600: #106196  /* Hover state */
+--color-primary-50: #e5f1f8   /* Lightest tint - backgrounds */
+--color-primary-100: #cce3f2
+--color-primary-200: #99c7e4
+--color-primary-300: #66abd7
+--color-primary-400: #338fc9
+--color-primary-500: #166fb9  /* Base BAPI Blue (Web/Digital) */
+--color-primary-600: #125994  /* Hover state */
 --color-primary-700: #0c4971
 --color-primary-800: #08304b
 --color-primary-900: #041826

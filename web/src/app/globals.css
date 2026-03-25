@@ -140,18 +140,18 @@
   --font-sans: 'Roboto', Arial, Helvetica, sans-serif;
   --font-mono: 'Roboto Mono', 'Consolas', monospace;
 
-  /* Primary Brand Colors - BAPI Blue #1479BC (30% usage) */
-  --color-primary-50: #e6f2f9;
-  --color-primary-100: #cce5f3;
-  --color-primary-200: #99cbe7;
-  --color-primary-300: #66b1db;
-  --color-primary-400: #3397cf;
-  --color-primary-500: #1479bc;
-  --color-primary-600: #106196;
-  --color-primary-700: #0c4971;
-  --color-primary-800: #08304b;
-  --color-primary-900: #041826;
-  --color-primary-950: #020c13;
+  /* Primary Brand Colors - BAPI Blue #166fb9 (Web/Digital - 2026 Guide) (30% usage) */
+  --color-primary-50: #e5f1f8;
+  --color-primary-100: #cce3f2;
+  --color-primary-200: #99c7e4;
+  --color-primary-300: #66abd7;
+  --color-primary-400: #338fc9;
+  --color-primary-500: #166fb9;
+  --color-primary-600: #125994;
+  --color-primary-700: #0d436f;
+  --color-primary-800: #092c4a;
+  --color-primary-900: #041625;
+  --color-primary-950: #020b13;
 
   /* Secondary/Accent Colors - BAPI Yellow #ffc843 (10% usage) */
   --color-accent-50: #fffbf0;
@@ -166,18 +166,18 @@
   --color-accent-900: #997827;
   --color-accent-950: #4d3c14;
 
-  /* Neutral Colors - BAPI Gray #97999b (60% usage with white) */
+  /* Neutral Colors - BAPI Gray #979990 (2026 Guide) (60% usage with white) */
   --color-neutral-50: #fafafa;
   --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e8e8e9;
-  --color-neutral-300: #d4d5d6;
-  --color-neutral-400: #b5b6b8;
-  --color-neutral-500: #97999b;
-  --color-neutral-600: #797a7c;
-  --color-neutral-700: #5e5f60;
-  --color-neutral-800: #434445;
-  --color-neutral-900: #282829;
-  --color-neutral-950: #141415;
+  --color-neutral-200: #e8e8e7;
+  --color-neutral-300: #d4d5d3;
+  --color-neutral-400: #b5b6b4;
+  --color-neutral-500: #979990;
+  --color-neutral-600: #797a74;
+  --color-neutral-700: #5e5f5a;
+  --color-neutral-800: #434440;
+  --color-neutral-900: #282820;
+  --color-neutral-950: #141410;
 
   /* Semantic Colors - Using BAPI palette where appropriate */
   --color-success-50: #f0fdf4;
@@ -195,10 +195,10 @@
   --color-error-600: #dc2626;
   --color-error-700: #b91c1c;
 
-  --color-info-50: #e6f2f9;
-  --color-info-500: #1479bc;
-  --color-info-600: #106196;
-  --color-info-700: #0c4971;
+  --color-info-50: #e5f1f8;
+  --color-info-500: #166fb9;
+  --color-info-600: #125994;
+  --color-info-700: #0d436f;
 
   /* Z-Index Scale - Stacking order for UI layers */
   --z-base: 0;
@@ -238,12 +238,12 @@
   /* BAPI Official Brand Gradients (2026 Brand Guide) */
   --gradient-accent: linear-gradient(135deg, #f89623 0%, #ffc843 100%);
   --gradient-accent-hover: linear-gradient(135deg, #e6872c 0%, #e6b43c 100%);
-  --gradient-primary: linear-gradient(135deg, #044976 0%, #1479bc 100%);
-  --gradient-primary-hover: linear-gradient(135deg, #033a5f 0%, #106196 100%);
+  --gradient-primary: linear-gradient(135deg, #044976 0%, #166fb9 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #033a5f 0%, #125994 100%);
 
   /* Additional gradient utilities */
   --gradient-subtle-accent: linear-gradient(135deg, #fffbf0 0%, #fff7e1 50%, #ffefc3 100%);
-  --gradient-subtle-primary: linear-gradient(135deg, #e6f2f9 0%, #cce5f3 50%, #99cbe7 100%);
+  --gradient-subtle-primary: linear-gradient(135deg, #e5f1f8 0%, #cce3f2 50%, #99c7e4 100%);
 }
 
 :root {

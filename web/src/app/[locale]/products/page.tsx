@@ -1,10 +1,7 @@
-'use client';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { ArrowRightIcon, SparklesIcon, AwardIcon } from '@/lib/icons';
+import { ProductCategoryGrid } from '@/components/products/ProductCategoryGrid';
 
 // Mock data for product categories - BRAND STANDARD ORDER
 // Per BAPI Brand Guide: Temperature, Humidity, Pressure, Air Quality, Wireless, Accessories, Test Instruments
@@ -68,30 +65,18 @@ const productCategories = [
   },
 ];
 
-export default function MainProductPage() {
-  const t = useTranslations();
-  const params = useParams();
-  const locale = (params?.locale as string) || 'en';
-  // For page fade
-  const [pageVisible, setPageVisible] = useState(false);
-  // For card animation
-  const [showCards, setShowCards] = useState(false);
-
-  useEffect(() => {
-    // Valid: Setting state on mount for page transition animation
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    setPageVisible(true);
-    // Staggered card animation
-    const timeout = setTimeout(() => setShowCards(true), 100);
-    return () => clearTimeout(timeout);
-  }, []);
+export default async function MainProductPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations();
 
   return (
-    <div
-      className={`bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30 transition-opacity duration-500 ${pageVisible ? 'opacity-100' : 'opacity-0'}`}
-      data-testid="products-page-fade"
+    <div className="bg-linear-to-br min-h-screen from-slate-50 via-white to-primary-50/30"
     >
-      {/* Hero Section */}
+      {/* Hero Section - Server Rendered for Fast LCP */}
       <section className="bg-linear-to-br relative overflow-hidden from-primary-700 via-primary-600 to-primary-500">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
@@ -113,7 +98,7 @@ export default function MainProductPage() {
 
           {/* Header */}
           <div className="max-w-4xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white">
               <SparklesIcon className="h-4 w-4" />
               {t('productsPage.hero.badge')}
             </div>
@@ -126,9 +111,9 @@ export default function MainProductPage() {
               {t('productsPage.hero.description')}
             </p>
 
-            {/* Key Stats */}
+            {/* Key Stats - Removed backdrop-blur for faster rendering */}
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
-              <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
+              <div className="rounded-xl bg-white/10 p-4">
                 <div className="mb-1 text-3xl font-bold text-white">
                   {t('productsPage.hero.stats.productsCount')}
                 </div>
@@ -136,7 +121,7 @@ export default function MainProductPage() {
                   {t('productsPage.hero.stats.productsLabel')}
                 </div>
               </div>
-              <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
+              <div className="rounded-xl bg-white/10 p-4">
                 <div className="mb-1 text-3xl font-bold text-white">
                   {t('productsPage.hero.stats.warrantyDuration')}
                 </div>
@@ -144,7 +129,7 @@ export default function MainProductPage() {
                   {t('productsPage.hero.stats.warrantyLabel')}
                 </div>
               </div>
-              <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
+              <div className="rounded-xl bg-white/10 p-4">
                 <div className="mb-1 text-3xl font-bold text-white">
                   {t('productsPage.hero.stats.accuracyValue')}
                 </div>
@@ -157,72 +142,9 @@ export default function MainProductPage() {
         </div>
       </section>
 
-      {/* Category Grid */}
+      {/* Category Grid - Client Component for Animations */}
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
-        <div className="mb-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {productCategories.map((cat, i) => {
-            return (
-              <Link
-                key={cat.slug}
-                href={`/${locale}/categories/${cat.slug}`}
-                className={`group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl transition-all duration-500 hover:border-primary-200 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 ${showCards ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} `}
-                style={{
-                  transitionDelay: showCards ? `${i * 75}ms` : '0ms',
-                }}
-                tabIndex={0}
-                aria-label={`View ${t(`productsPage.categories.${cat.nameKey}.name`)} category (${cat.count} products)`}
-              >
-                {/* Product Image */}
-                <div className="bg-linear-to-br relative flex aspect-square w-full items-center justify-center overflow-hidden from-gray-50 to-white p-10">
-                  <Image
-                    src={cat.image}
-                    alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} product category`}
-                    fill
-                    className="object-contain p-8 drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
-                    sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                    quality={85}
-                    priority={i === 0}
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                  />
-                  {/* Icon Badge - BAPI Brand Icons */}
-                  <div className="bg-linear-to-br absolute right-4 top-4 flex h-16 w-16 items-center justify-center rounded-2xl from-[#1479BC] to-[#0054b6] shadow-lg">
-                    <Image
-                      src={cat.icon}
-                      alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} icon`}
-                      width={40}
-                      height={40}
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="relative p-7">
-                  <div className="mb-4 flex items-start justify-between gap-3">
-                    <h2 className="relative text-xl font-bold leading-tight text-gray-900 transition-colors duration-300">
-                      {t(`productsPage.categories.${cat.nameKey}.name`)}
-                      {/* BAPI Yellow underline on hover */}
-                      <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
-                    </h2>
-                    <span className="shrink-0 rounded-md bg-primary-50 px-3 py-1.5 text-sm font-semibold text-primary-700">
-                      {cat.count}
-                    </span>
-                  </div>
-
-                  <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-gray-600">
-                    {t(`productsPage.categories.${cat.nameKey}.description`)}
-                  </p>
-
-                  {/* View Link */}
-                  <div className="inline-flex items-center gap-2 border-b-2 border-transparent pb-0.5 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3 group-hover:border-primary-600">
-                    <span>{t('productsPage.categories.viewProducts')}</span>
-                    <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+        <ProductCategoryGrid categories={productCategories} locale={locale} />
 
         {/* Featured Section */}
         <div className="bg-linear-to-br mb-20 rounded-2xl from-primary-50 to-primary-100/50 p-10 lg:p-16">

@@ -34,34 +34,34 @@ const config = {
       typography: {
         DEFAULT: {
           css: {
-            color: '#282829',
+            color: '#282820',
             fontFamily: 'var(--font-roboto), system-ui, sans-serif',
             p: {
-              color: '#282829',
+              color: '#282820',
             },
             li: {
-              color: '#282829',
+              color: '#282820',
             },
             strong: {
-              color: '#282829',
+              color: '#282820',
             },
             td: {
-              color: '#282829',
+              color: '#282820',
             },
             blockquote: {
-              color: '#434445',
+              color: '#434440',
             },
             h1: {
-              color: '#282829',
+              color: '#282820',
             },
             h2: {
-              color: '#282829',
+              color: '#282820',
             },
             h3: {
-              color: '#282829',
+              color: '#282820',
             },
             h4: {
-              color: '#282829',
+              color: '#282820',
             },
           },
         },
@@ -153,17 +153,17 @@ const config = {
           950: '#450a0a',
         },
         info: {
-          50: '#e6f2f9',   // Very light blue background (matches primary-50)
-          100: '#cce5f3',
-          200: '#99cbe7',
-          300: '#66b1db',
-          400: '#3397cf',
-          500: '#1479bc',  // Base blue (BAPI Blue / primary-500)
-          600: '#106196',  // Darker blue (matches primary-600)
-          700: '#0c4971',  // Even darker (matches primary-700)
-          800: '#08304b',  // Very dark blue (matches primary-800)
-          900: '#041826',  // Darkest blue for text (matches primary-900)
-          950: '#020c13',
+          50: '#e5f1f8',   // Very light blue background (matches primary-50)
+          100: '#cce3f2',
+          200: '#99c7e4',
+          300: '#66abd7',
+          400: '#338fc9',
+          500: '#166fb9',  // Base blue (BAPI Blue Web/Digital / primary-500)
+          600: '#125994',  // Darker blue (matches primary-600)
+          700: '#0d436f',  // Even darker (matches primary-700)
+          800: '#092c4a',  // Very dark blue (matches primary-800)
+          900: '#041625',  // Darkest blue for text (matches primary-900)
+          950: '#020b13',
         },
       },
     },

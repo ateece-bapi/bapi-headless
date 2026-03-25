@@ -395,7 +395,7 @@ describe('CartDrawer Accessibility', () => {
       const viewCartButton = screen.getByRole('link', { name: /view cart/i });
       expect(viewCartButton).toHaveClass('btn-bapi-primary');
       // btn-bapi-primary: white text on primary-500 background
-      // White (#FFFFFF) on #1479BC (BAPI blue) = ~4.53:1 ratio ✓ PASS (AA compliant)
+      // White (#FFFFFF) on #166fb9 (BAPI blue) = ~4.53:1 ratio ✓ PASS (AA compliant)
     });
 
     it('Proceed to Checkout button has sufficient contrast', () => {

@@ -166,13 +166,13 @@ export const FACILITY_TYPE_LABELS: Record<FacilityType, string> = {
  * Per Mike Moss: All manufacturing facilities (Poland, Vietnam) use same color
  *
  * Color palette:
- * - Blue (#1479BC): BAPI primary - headquarters
+ * - Blue (#166fb9): BAPI primary (Web/Digital) - headquarters
  * - Green (#10B981): Manufacturing facilities (consistent color for all)
  * - Yellow (#FFC843): BAPI accent - sales offices
  * - Gray (#6B7280): Distribution partners
  */
 export const FACILITY_TYPE_COLORS: Record<FacilityType, string> = {
-  headquarters: '#1479BC', // BAPI Blue - primary facility
+  headquarters: '#166fb9', // BAPI Blue (Web/Digital) - primary facility
   manufacturing: '#10B981', // Green-500 - all manufacturing (Poland + Vietnam same)
   sales: '#FFC843', // BAPI Yellow - sales offices
   'distribution-partner': '#6B7280', // Gray-500 - third-party partners

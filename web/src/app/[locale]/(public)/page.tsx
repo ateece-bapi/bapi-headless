@@ -220,7 +220,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   className="will-change-transform-safe group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 ease-in-out hover:border-primary-500 hover:shadow-2xl focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
                 >
                   {/* Icon container - BAPI brand blue */}
-                  <div className="bg-linear-to-br relative flex h-48 items-center justify-center border-b-2 border-primary-700 from-[#044976] to-[#1479bc] p-8">
+                  <div className="bg-linear-to-br relative flex h-48 items-center justify-center border-b-2 border-primary-700 from-[#044976] to-[#166fb9] p-8">
                     <Image
                       src={category.icon}
                       alt={`${category.name} icon`}

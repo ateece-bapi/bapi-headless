@@ -96,7 +96,7 @@ export function getColorHex(colorName: string): string {
     grey: '#808080',
     silver: '#C0C0C0',
     red: '#DC2626',
-    blue: '#1479BC', // BAPI Blue
+    blue: '#166fb9', // BAPI Blue
     green: '#16A34A',
     yellow: '#FFC843', // BAPI Yellow
     orange: '#EA580C',

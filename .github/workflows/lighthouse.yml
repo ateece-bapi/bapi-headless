@@ -41,13 +41,12 @@ jobs:
         run: pnpm run build
         env:
           NEXT_PUBLIC_WORDPRESS_GRAPHQL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_GRAPHQL }}
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
-          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
       
       - name: Run Lighthouse CI
         run: |
           pnpm run lighthouse
         env:
+          NEXT_PUBLIC_WORDPRESS_GRAPHQL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_GRAPHQL }}
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       
       - name: Upload Lighthouse results
@@ -115,31 +114,31 @@ jobs:
               
               const comment = `## 🔍 Lighthouse CI Results
               
-**Scores:**
-${getEmoji(scores.performance)} Performance: **${scores.performance}** / 100
-${getEmoji(scores.accessibility)} Accessibility: **${scores.accessibility}** / 100
-${getEmoji(scores.bestPractices)} Best Practices: **${scores.bestPractices}** / 100
-${getEmoji(scores.seo)} SEO: **${scores.seo}** / 100
+              **Scores:**
+              ${getEmoji(scores.performance)} Performance: **${scores.performance}** / 100
+              ${getEmoji(scores.accessibility)} Accessibility: **${scores.accessibility}** / 100
+              ${getEmoji(scores.bestPractices)} Best Practices: **${scores.bestPractices}** / 100
+              ${getEmoji(scores.seo)} SEO: **${scores.seo}** / 100
 
-**Core Web Vitals:**
-${getCWVEmoji('lcp', metrics.lcp)} LCP (Largest Contentful Paint): **${metrics.lcp}ms** (target: <2.5s)
-${getCWVEmoji('cls', metrics.cls)} CLS (Cumulative Layout Shift): **${metrics.cls}** (target: <0.1)
-${getCWVEmoji('tbt', metrics.tbt)} TBT (Total Blocking Time): **${metrics.tbt}ms** (target: <300ms)
+              **Core Web Vitals:**
+              ${getCWVEmoji('lcp', metrics.lcp)} LCP (Largest Contentful Paint): **${metrics.lcp}ms** (target: <2.5s)
+              ${getCWVEmoji('cls', metrics.cls)} CLS (Cumulative Layout Shift): **${metrics.cls}** (target: <0.1)
+              ${getCWVEmoji('tbt', metrics.tbt)} TBT (Total Blocking Time): **${metrics.tbt}ms** (target: <300ms)
 
-**Other Metrics:**
-- FCP (First Contentful Paint): **${metrics.fcp}ms** (target: <1.8s)
-- Speed Index: **${metrics.si}ms** (target: <3.0s)
+              **Other Metrics:**
+              - FCP (First Contentful Paint): **${metrics.fcp}ms** (target: <1.8s)
+              - Speed Index: **${metrics.si}ms** (target: <3.0s)
 
-**Thresholds:**
-- ✅ Performance: 90+ required
-- ✅ Accessibility: 95+ required
-- ✅ Best Practices: 90+ required
-- ✅ SEO: 95+ required
+              **Thresholds:**
+              - ✅ Performance: 90+ required
+              - ✅ Accessibility: 95+ required
+              - ✅ Best Practices: 90+ required
+              - ✅ SEO: 95+ required
 
-📊 [View detailed report in artifacts](${context.payload.pull_request.html_url}/checks)
+              📊 [View detailed report in artifacts](${context.payload.pull_request.html_url}/checks)
 
----
-*Lighthouse v${lhr.lighthouseVersion} • Powered by [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci)*`;
+              ---
+              *Lighthouse v${lhr.lighthouseVersion} • Powered by [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci)*`;
               
               await github.rest.issues.createComment({
                 issue_number: context.issue.number,
@@ -159,13 +158,13 @@ ${getCWVEmoji('tbt', metrics.tbt)} TBT (Total Blocking Time): **${metrics.tbt}ms
               // Fallback comment
               const fallbackComment = `## 🔍 Lighthouse CI Results
               
-Lighthouse tests completed. View detailed results in the [workflow artifacts](${context.payload.pull_request.html_url}/checks).
+              Lighthouse tests completed. View detailed results in the [workflow artifacts](${context.payload.pull_request.html_url}/checks).
 
-**Thresholds:**
-- ✅ Performance: 90+
-- ✅ Accessibility: 95+
-- ✅ Best Practices: 90+
-- ✅ SEO: 95+`;
+              **Thresholds:**
+              - ✅ Performance: 90+
+              - ✅ Accessibility: 95+
+              - ✅ Best Practices: 90+
+              - ✅ SEO: 95+`;
               
               await github.rest.issues.createComment({
                 issue_number: context.issue.number,

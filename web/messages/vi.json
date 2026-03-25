@@ -642,10 +642,10 @@
         "description": "Các giải pháp I/O và điều khiển modular"
       },
       "common": {
-        "exploreButton": "Explore"
+        "exploreButton": "Khám phá"
       },
       "viewProducts": "Xem Sản phẩm",
-      "viewCategoryLabel": "Explore {name} products"
+      "viewCategoryLabel": "Khám phá các sản phẩm {name}"
     },
     "featured": {
       "badge": "Dòng Sản phẩm Nổi bật",

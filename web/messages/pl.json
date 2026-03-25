@@ -1132,10 +1132,10 @@
         "description": "Modułowe rozwiązania I/O i sterujące"
       },
       "common": {
-        "exploreButton": "Explore"
+        "exploreButton": "Poznaj"
       },
       "viewProducts": "Wyświetl produkty",
-      "viewCategoryLabel": "Explore {name} products"
+      "viewCategoryLabel": "Poznaj produkty {name}"
     },
     "featured": {
       "badge": "Linia produktów wyróżnionych",

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { getTranslations } from 'next-intl/server';
 import { ArrowRightIcon, SparklesIcon, AwardIcon } from '@/lib/icons';
 import { ProductCategoryGrid } from '@/components/products/ProductCategoryGrid';
@@ -89,7 +89,7 @@ export default async function MainProductPage({
             className="mb-8 flex items-center gap-2 text-sm text-primary-100"
             aria-label="Products page navigation"
           >
-            <Link href={`/${locale}`} className="transition-colors hover:text-white">
+            <Link href="/" className="transition-colors hover:text-white">
               {t('productsPage.breadcrumb.home')}
             </Link>
             <span>/</span>
@@ -144,7 +144,7 @@ export default async function MainProductPage({
 
       {/* Category Grid - Client Component for Animations */}
       <section className="relative mx-auto -mt-16 max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
-        <ProductCategoryGrid categories={productCategories} locale={locale} />
+        <ProductCategoryGrid categories={productCategories} />
 
         {/* Featured Section */}
         <div className="bg-linear-to-br mb-20 rounded-2xl from-primary-50 to-primary-100/50 p-10 lg:p-16">
@@ -164,7 +164,7 @@ export default async function MainProductPage({
               </p>
 
               <Link
-                href={`/${locale}/products/featured/ba-series`}
+                href="/products/featured/ba-series"
                 className="bg-linear-to-r inline-flex items-center gap-2 rounded-xl from-primary-600 to-primary-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl"
               >
                 {t('productsPage.featured.viewButton')}
@@ -220,7 +220,7 @@ export default async function MainProductPage({
             </div>
 
             <Link
-              href={`/${locale}/company/contact-us`}
+              href="/company/contact-us"
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-8 py-4 font-semibold text-primary-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {t('productsPage.cta.button')}

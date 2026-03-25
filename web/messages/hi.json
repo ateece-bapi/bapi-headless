@@ -1132,10 +1132,10 @@
         "description": "मॉड्यूलर I/O और नियंत्रण समाधान"
       },
       "common": {
-        "exploreButton": "Explore"
+        "exploreButton": "अन्वेषण करें"
       },
       "viewProducts": "उत्पाद देखें",
-      "viewCategoryLabel": "Explore {name} products"
+      "viewCategoryLabel": "{name} उत्पादों का अन्वेषण करें"
     },
     "featured": {
       "badge": "विशेष रूप से प्रदर्शित उत्पाद श्रृंखला",

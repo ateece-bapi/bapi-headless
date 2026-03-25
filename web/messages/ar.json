@@ -681,10 +681,10 @@
         "description": "حلول وحدة إدخال/إخراج ووحدات التحكم القابلة للتكوين"
       },
       "common": {
-        "exploreButton": "Explore"
+        "exploreButton": "استكشف"
       },
       "viewProducts": "عرض المنتجات",
-      "viewCategoryLabel": "Explore {name} products"
+      "viewCategoryLabel": "استكشف منتجات {name}"
     },
     "featured": {
       "badge": "خط المنتجات المميز",

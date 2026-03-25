@@ -683,10 +683,10 @@
         "description": "モジュラー I/O およびコントロールソリューション"
       },
       "common": {
-        "exploreButton": "Explore"
+        "exploreButton": "詳しく見る"
       },
       "viewProducts": "製品を見る",
-      "viewCategoryLabel": "Explore {name} products"
+      "viewCategoryLabel": "{name} 製品を表示"
     },
     "featured": {
       "badge": "注目の製品ラインナップ",

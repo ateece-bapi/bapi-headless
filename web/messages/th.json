@@ -1132,10 +1132,10 @@
         "description": "โซลูชัน I/O และการควบคุมแบบโมดูลาร์"
       },
       "common": {
-        "exploreButton": "Explore"
+        "exploreButton": "สำรวจ"
       },
       "viewProducts": "ดูผลิตภัณฑ์",
-      "viewCategoryLabel": "Explore {name} products"
+      "viewCategoryLabel": "สำรวจผลิตภัณฑ์ในหมวด {name}"
     },
     "featured": {
       "badge": "ผลิตภัณฑ์ที่โดดเด่น",

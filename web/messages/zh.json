@@ -683,10 +683,10 @@
         "description": "模块化I/O和控制解决方案"
       },
       "common": {
-        "exploreButton": "Explore"
+        "exploreButton": "探索"
       },
       "viewProducts": "查看产品",
-      "viewCategoryLabel": "Explore {name} products"
+      "viewCategoryLabel": "探索{name}产品"
     },
     "featured": {
       "badge": "精选产品系列",

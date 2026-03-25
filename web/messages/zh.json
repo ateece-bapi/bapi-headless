@@ -685,7 +685,8 @@
       "common": {
         "exploreButton": "Explore"
       },
-      "viewProducts": "查看产品"
+      "viewProducts": "查看产品",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "精选产品系列",

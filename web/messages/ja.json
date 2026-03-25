@@ -685,7 +685,8 @@
       "common": {
         "exploreButton": "Explore"
       },
-      "viewProducts": "製品を見る"
+      "viewProducts": "製品を見る",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "注目の製品ラインナップ",

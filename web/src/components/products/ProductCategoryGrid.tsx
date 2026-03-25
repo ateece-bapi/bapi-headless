@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ArrowRightIcon, AwardIcon } from '@/lib/icons';
+import { ArrowRightIcon } from '@/lib/icons';
 
 interface ProductCategory {
   nameKey: string;
@@ -46,7 +46,6 @@ export function ProductCategoryGrid({ categories, locale }: ProductCategoryGridP
             }}
             aria-label={t('productsPage.categories.viewCategoryLabel', {
               name: t(`productsPage.categories.${cat.nameKey}.name`),
-              count: cat.count,
             })}
           >
             {/* Product Image */}
@@ -60,21 +59,15 @@ export function ProductCategoryGrid({ categories, locale }: ProductCategoryGridP
                 loading="lazy"
               />
 
-              {/* Icon Badge - BAPI Brand Icons */}
-              <div className="bg-linear-to-br absolute right-4 top-4 flex h-16 w-16 items-center justify-center rounded-2xl from-primary-700 to-primary-600 shadow-lg">
+              {/* Icon Badge - BAPI Brand Icons with optimal proportions */}
+              <div className="bg-linear-to-br absolute right-4 top-4 flex h-14 w-14 items-center justify-center rounded-xl from-primary-700 to-primary-600 shadow-lg transition-all duration-300 group-hover:shadow-xl md:h-16 md:w-16">
                 <Image
                   src={cat.icon}
                   alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} icon`}
-                  width={40}
-                  height={40}
-                  className="object-contain"
+                  width={32}
+                  height={32}
+                  className="object-contain md:h-10 md:w-10"
                 />
-              </div>
-
-              {/* Product Count Badge */}
-              <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-primary-500 px-3 py-1.5 text-xs font-semibold text-white shadow-lg">
-                <AwardIcon className="h-3.5 w-3.5" />
-                {cat.count}
               </div>
             </div>
 
@@ -87,13 +80,13 @@ export function ProductCategoryGrid({ categories, locale }: ProductCategoryGridP
                   <span className="absolute -bottom-1 left-0 h-1 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
                 </h3>
               </div>
-              <p className="mb-4 text-sm leading-relaxed text-neutral-600">
+              <p className="mb-6 text-sm leading-loose text-neutral-600">
                 {t(`productsPage.categories.${cat.nameKey}.description`)}
               </p>
-              {/* View Link - Animated border on hover */}
-              <div className="inline-flex items-center gap-2 border-b-2 border-transparent pb-0.5 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3 group-hover:border-primary-600">
+              {/* View Link - Enhanced CTA with animated border */}
+              <div className="inline-flex items-center gap-2 border-b-2 border-transparent pb-1 text-base font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3 group-hover:border-primary-600">
                 <span>{t('productsPage.categories.common.exploreButton')}</span>
-                <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRightIcon className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </div>
             </div>
           </Link>

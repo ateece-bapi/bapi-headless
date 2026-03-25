@@ -1589,7 +1589,7 @@
         "exploreButton": "Explore"
       },
       "viewProducts": "View Products",
-      "viewCategoryLabel": "View {name} category ({count} products)"
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "Featured Product Line",

@@ -1134,7 +1134,8 @@
       "common": {
         "exploreButton": "Explore"
       },
-      "viewProducts": "Wyświetl produkty"
+      "viewProducts": "Wyświetl produkty",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "Linia produktów wyróżnionych",

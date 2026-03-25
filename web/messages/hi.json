@@ -1134,7 +1134,8 @@
       "common": {
         "exploreButton": "Explore"
       },
-      "viewProducts": "उत्पाद देखें"
+      "viewProducts": "उत्पाद देखें",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "विशेष रूप से प्रदर्शित उत्पाद श्रृंखला",

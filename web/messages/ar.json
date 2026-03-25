@@ -683,7 +683,8 @@
       "common": {
         "exploreButton": "Explore"
       },
-      "viewProducts": "عرض المنتجات"
+      "viewProducts": "عرض المنتجات",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "خط المنتجات المميز",

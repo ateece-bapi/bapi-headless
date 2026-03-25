@@ -606,7 +606,8 @@
       "common": {
         "exploreButton": "Explore"
       },
-      "viewProducts": "Produkte anzeigen"
+      "viewProducts": "Produkte anzeigen",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "Produktlinie im Fokus",

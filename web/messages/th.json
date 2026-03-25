@@ -1134,7 +1134,8 @@
       "common": {
         "exploreButton": "Explore"
       },
-      "viewProducts": "ดูผลิตภัณฑ์"
+      "viewProducts": "ดูผลิตภัณฑ์",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "ผลิตภัณฑ์ที่โดดเด่น",

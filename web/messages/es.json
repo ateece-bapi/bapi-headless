@@ -685,7 +685,8 @@
       "common": {
         "exploreButton": "Explore"
       },
-      "viewProducts": "Ver productos"
+      "viewProducts": "Ver productos",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "Línea de productos destacada",

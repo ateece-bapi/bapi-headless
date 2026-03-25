@@ -41,13 +41,12 @@ jobs:
         run: pnpm run build
         env:
           NEXT_PUBLIC_WORDPRESS_GRAPHQL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_GRAPHQL }}
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
-          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
       
       - name: Run Lighthouse CI
         run: |
           pnpm run lighthouse
         env:
+          NEXT_PUBLIC_WORDPRESS_GRAPHQL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_GRAPHQL }}
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       
       - name: Upload Lighthouse results

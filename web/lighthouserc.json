@@ -1,7 +1,9 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./.next",
+      "startServerCommand": "pnpm run start",
+      "startServerReadyPattern": "Ready",
+      "startServerReadyTimeout": 60000,
       "url": [
         "http://localhost:3000/",
         "http://localhost:3000/products",
@@ -11,6 +13,17 @@
       "numberOfRuns": 3,
       "settings": {
         "preset": "desktop",
+        "chromePath": "/home/ateece/.cache/puppeteer/chrome/linux-146.0.7680.153/chrome-linux64/chrome",
+        "chromeFlags": [
+          "--headless=new",
+          "--no-sandbox",
+          "--disable-gpu",
+          "--disable-dev-shm-usage",
+          "--disable-software-rasterizer",
+          "--disable-setuid-sandbox",
+          "--disable-extensions",
+          "--remote-debugging-port=9222"
+        ],
         "throttling": {
           "rttMs": 40,
           "throughputKbps": 10240,

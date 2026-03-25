@@ -564,7 +564,7 @@ To update existing code:
 ## Questions?
 
 For color system questions or updates, refer to:
-- **Brand Guidelines**: `/2024_brand_standards.pdf`
+- **Brand Guidelines**: `/2026 BAPI Brand Guide v7.pdf`
 - **Implementation**: `/web/src/app/globals.css`
 - **Usage Examples**: `/web/src/app/page.tsx` (homepage)
 - **Current Website**: https://www.bapihvac.com (for reference)

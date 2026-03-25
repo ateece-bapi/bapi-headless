@@ -326,7 +326,7 @@ const t = useTranslations('footer');
 ## Additional Resources
 
 - [next-intl Documentation](https://next-intl-docs.vercel.app/)
-- [BAPI Brand Guidelines](/docs/2024_brand_standards.pdf)
+- [BAPI Brand Guidelines](/2026 BAPI Brand Guide v7.pdf)
 - [Technical Glossary](/docs/technical-glossary.md)
 - [Component Storybook](http://localhost:6006) - See components in context
 

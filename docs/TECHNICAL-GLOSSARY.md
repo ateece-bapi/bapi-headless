@@ -261,7 +261,7 @@ Email: [insert contact email]
 
 **Brand voice clarification?**  
 Contact: BAPI Marketing Team  
-Reference: `/docs/2024_brand_standards.pdf`
+Reference: `/2026 BAPI Brand Guide v7.pdf`
 
 **Engineering terminology verification?**  
 Contact: BAPI Engineering Team  

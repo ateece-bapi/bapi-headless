@@ -80,7 +80,7 @@ Created `COLOR_SYSTEM.md` with:
 ✓ web/src/components/cart/AddToCartButton.tsx
 ✓ web/src/components/cart/CartDrawer.tsx
 ✓ web/COLOR_SYSTEM.md               - Documentation
-✓ 2024_brand_standards.pdf          - Reference material
+✓ 2026 BAPI Brand Guide v7.pdf     - Reference material
 ```
 
 ## Usage Examples

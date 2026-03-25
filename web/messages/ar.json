@@ -138,6 +138,9 @@
         "description": "وحدات إدخال/إخراج وتحكم قابلة للتجميع"
       },
       "viewAll": "عرض جميع المنتجات",
+      "common": {
+        "exploreButton": "Explore"
+      },
       "viewProducts": "عرض المنتجات",
       "browseAll": "تصفح جميع المنتجات"
     },
@@ -677,7 +680,11 @@
         "name": "خط ETA",
         "description": "حلول وحدة إدخال/إخراج ووحدات التحكم القابلة للتكوين"
       },
-      "viewProducts": "عرض المنتجات"
+      "common": {
+        "exploreButton": "Explore"
+      },
+      "viewProducts": "عرض المنتجات",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "خط المنتجات المميز",

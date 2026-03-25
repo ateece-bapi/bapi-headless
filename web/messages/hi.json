@@ -325,6 +325,9 @@
         "description": "मॉड्यूलर I/O और नियंत्रण"
       },
       "viewAll": "सभी उत्पादों को देखें",
+      "common": {
+        "exploreButton": "Explore"
+      },
       "viewProducts": "उत्पाद देखें",
       "browseAll": "सभी उत्पाद ब्राउज़ करें"
     },
@@ -1128,7 +1131,11 @@
         "name": "ETA लाइन",
         "description": "मॉड्यूलर I/O और नियंत्रण समाधान"
       },
-      "viewProducts": "उत्पाद देखें"
+      "common": {
+        "exploreButton": "Explore"
+      },
+      "viewProducts": "उत्पाद देखें",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "विशेष रूप से प्रदर्शित उत्पाद श्रृंखला",

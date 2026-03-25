@@ -326,6 +326,9 @@
         "description": "Mô-đun I/O và điều khiển"
       },
       "viewAll": "Xem Tất cả Sản phẩm",
+      "common": {
+        "exploreButton": "Explore"
+      },
       "viewProducts": "Xem Sản phẩm",
       "browseAll": "Duyệt Tất cả Sản phẩm"
     },
@@ -638,7 +641,11 @@
         "name": "Dòng ETA",
         "description": "Các giải pháp I/O và điều khiển modular"
       },
-      "viewProducts": "Xem Sản phẩm"
+      "common": {
+        "exploreButton": "Explore"
+      },
+      "viewProducts": "Xem Sản phẩm",
+      "viewCategoryLabel": "Explore {name} products"
     },
     "featured": {
       "badge": "Dòng Sản phẩm Nổi bật",

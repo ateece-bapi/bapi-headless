@@ -48,13 +48,13 @@ export function ProductCategoryGrid({ categories }: ProductCategoryGridProps) {
             })}
           >
             {/* Product Image */}
-            <div className="bg-linear-to-br relative flex aspect-square w-full items-center justify-center overflow-hidden from-gray-50 to-white p-10">
+            <div className="bg-linear-to-br relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden from-gray-50 to-white p-6">
               <Image
                 src={cat.image}
                 alt={`${t(`productsPage.categories.${cat.nameKey}.name`)} product category`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                className="object-contain p-8 drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+                className="object-contain p-4 drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
                 loading="lazy"
               />
 
@@ -71,7 +71,7 @@ export function ProductCategoryGrid({ categories }: ProductCategoryGridProps) {
             </div>
 
             {/* Category Info */}
-            <div className="relative border-t border-gray-100 bg-linear-to-b from-white to-gray-50 p-6">
+            <div className="relative border-t border-gray-100 bg-linear-to-b from-white to-gray-50 p-4">
               <div className="mb-4 flex items-start justify-between gap-3">
                 <h3 className="relative text-xl font-bold leading-tight text-neutral-900 transition-colors group-hover:text-primary-600">
                   {t(`productsPage.categories.${cat.nameKey}.name`)}

@@ -8,7 +8,7 @@ export default function ProductCardSkeleton() {
       <span className="sr-only">Loading...</span>
 
       {/* Image */}
-      <div className="aspect-square bg-neutral-200"></div>
+      <div className="aspect-[4/3] bg-neutral-200"></div>
 
       {/* Content */}
       <div className="p-4">

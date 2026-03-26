@@ -13,17 +13,17 @@ export default function ProductsLoading() {
         </div>
 
         {/* Grid Skeleton */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {[...Array(8)].map((_, i) => (
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {[...Array(10)].map((_, i) => (
             <div
               key={i}
               className="block animate-pulse overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm"
             >
               {/* Image skeleton */}
-              <div className="aspect-4/3 relative w-full bg-neutral-200"></div>
+              <div className="aspect-[4/3] relative w-full bg-neutral-200"></div>
 
               {/* Content skeleton */}
-              <div className="space-y-3 p-5">
+              <div className="space-y-3 p-4">
                 <div className="h-8 w-3/4 rounded bg-neutral-200"></div>
                 <div className="h-4 w-1/2 rounded bg-neutral-200"></div>
                 <div className="space-y-2">

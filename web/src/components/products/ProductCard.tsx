@@ -100,14 +100,14 @@ export default function ProductCard({
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-blue-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
       {/* Product Image */}
-      <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-6">
+      <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-4">
         {image?.sourceUrl ? (
           <Image
             src={image.sourceUrl}
             alt={image.altText || name || 'Product'}
             fill
-            className="object-contain p-4 drop-shadow-md transition-transform duration-500 group-hover:scale-110"
-            sizes="(min-width: 1280px) 300px, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-contain p-3 drop-shadow-md transition-transform duration-500 group-hover:scale-110"
+            sizes="(min-width: 1536px) 20vw, (min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             quality={85}
           />
         ) : (
@@ -127,7 +127,7 @@ export default function ProductCard({
       </div>
 
       {/* Content */}
-      <div className="relative p-6">
+      <div className="relative p-4">
         <h3 className="relative mb-2 line-clamp-2 text-lg font-bold leading-tight text-gray-900 transition-colors duration-300 group-hover:text-primary-600">
           {name || 'Untitled Product'}
           {/* BAPI Yellow underline on hover */}

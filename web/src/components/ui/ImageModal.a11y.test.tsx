@@ -22,8 +22,9 @@ describe('ImageModal - Accessibility Tests', () => {
 
   describe('Modal Dialog Accessibility', () => {
     it('should have no accessibility violations when open', async () => {
-      const { container } = render(<ImageModal {...defaultProps} />);
-      const results = await axe(container);
+      const { baseElement } = render(<ImageModal {...defaultProps} />);
+      // Use baseElement (document.body) because modal renders via Portal
+      const results = await axe(baseElement);
       expect(results).toHaveNoViolations();
     });
 
@@ -57,15 +58,16 @@ describe('ImageModal - Accessibility Tests', () => {
     it('should have no violations with long alt text', async () => {
       const longAlt =
         'Temperature Sensor Model TS-101 with digital LCD display, stainless steel probe, and wall mounting bracket included';
-      const { container } = render(<ImageModal {...defaultProps} alt={longAlt} />);
-      const results = await axe(container);
+      const { baseElement } = render(<ImageModal {...defaultProps} alt={longAlt} />);
+      // Use baseElement (document.body) because modal renders via Portal
+      const results = await axe(baseElement);
       expect(results).toHaveNoViolations();
     });
   });
 
   describe('Control Buttons Accessibility', () => {
     it('should have accessible labels on all icon buttons', async () => {
-      const { container, getByLabelText } = render(<ImageModal {...defaultProps} />);
+      const { baseElement, getByLabelText } = render(<ImageModal {...defaultProps} />);
 
       // Check all control buttons have aria-labels
       expect(getByLabelText('Zoom out')).toBeInTheDocument();
@@ -73,8 +75,8 @@ describe('ImageModal - Accessibility Tests', () => {
       expect(getByLabelText('Reset view')).toBeInTheDocument();
       expect(getByLabelText('Close')).toBeInTheDocument();
 
-      // Verify no violations
-      const results = await axe(container);
+      // Verify no violations - use baseElement for Portal content
+      const results = await axe(baseElement);
       expect(results).toHaveNoViolations();
     });
 

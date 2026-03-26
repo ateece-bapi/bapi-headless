@@ -38,7 +38,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-            {relatedProducts.slice(0, 4).map((product: any) => (
+            {relatedProducts.slice(0, 5).map((product: any) => (
               <Link
                 key={product.id}
                 href={`/en/product/${product.slug}`}
@@ -115,7 +115,7 @@ export function RelatedProductsSkeleton() {
 
         {/* Grid Skeleton */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-          {[1, 2, 3, 4].map((i) => (
+          {[1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="rounded-xl border-2 border-neutral-200 bg-white">
               <div className="aspect-[3/2] rounded-t-xl bg-neutral-100" />
               <div className="space-y-3 p-3">

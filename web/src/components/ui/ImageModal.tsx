@@ -12,9 +12,10 @@ interface ImageModalProps {
 
 /**
  * Advanced Image Modal - Full Featured
- * Zoom, pan, rotate, keyboard shortcuts, touch gestures
+ * Zoom, pan, reset view, keyboard shortcuts, touch gestures
  */
 export default function ImageModal({ src, alt, onClose }: ImageModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [scale, setScale] = useState(2); // Start at 200%
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -22,11 +23,15 @@ export default function ImageModal({ src, alt, onClose }: ImageModalProps) {
   const [touchDistance, setTouchDistance] = useState<number | null>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
-  // Only render on client side
-  if (typeof window === 'undefined') return null;
+  // Mount only on client side
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Keyboard shortcuts and prevent body scroll
   useEffect(() => {
+    if (!mounted) return; // Skip effect until mounted
+    
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
       if (e.key === '+' || e.key === '=') zoomIn();
@@ -34,14 +39,17 @@ export default function ImageModal({ src, alt, onClose }: ImageModalProps) {
       if (e.key === '0') resetView();
     };
 
+    // Store previous overflow to restore on cleanup
+    const previousOverflow = document.body.style.overflow;
+    
     document.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      document.body.style.overflow = previousOverflow;
     };
-  }, [onClose, scale]);
+  }, [mounted, onClose]);
 
   // Zoom functions
   const zoomIn = () => setScale((prev) => Math.min(5, prev + 0.5));
@@ -50,6 +58,9 @@ export default function ImageModal({ src, alt, onClose }: ImageModalProps) {
     setScale(2);
     setPosition({ x: 0, y: 0 });
   };
+
+  // Conditional return AFTER all hooks
+  if (!mounted) return null;
 
   // Mouse wheel zoom
   const handleWheel = (e: React.WheelEvent) => {

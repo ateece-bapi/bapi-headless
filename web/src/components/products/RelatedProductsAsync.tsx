@@ -37,7 +37,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
             {relatedProducts.slice(0, 4).map((product: any) => (
               <Link
                 key={product.id}
@@ -45,7 +45,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                 className="group relative overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-xl"
               >
                 {/* Product Image */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-neutral-50">
+                <div className="relative aspect-[3/2] overflow-hidden bg-neutral-50">
                   {product.image?.sourceUrl ? (
                     <Image
                       src={product.image.sourceUrl}
@@ -70,7 +70,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                 </div>
 
                 {/* Product Info */}
-                <div className="p-4">
+                <div className="p-3">
                   <h3 className="mb-2 line-clamp-2 min-h-[3rem] text-base font-bold text-neutral-900 transition-colors group-hover:text-primary-700">
                     {product.name}
                   </h3>
@@ -114,11 +114,11 @@ export function RelatedProductsSkeleton() {
         </div>
 
         {/* Grid Skeleton */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="rounded-xl border-2 border-neutral-200 bg-white">
-              <div className="aspect-[4/3] rounded-t-xl bg-neutral-100" />
-              <div className="space-y-3 p-4">
+              <div className="aspect-[3/2] rounded-t-xl bg-neutral-100" />
+              <div className="space-y-3 p-3">
                 <div className="h-4 w-full rounded bg-neutral-200" />
                 <div className="h-4 w-3/4 rounded bg-neutral-200" />
                 <div className="h-6 w-24 rounded bg-neutral-200" />

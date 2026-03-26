@@ -100,7 +100,7 @@ export default function ProductCard({
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-blue-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
       {/* Product Image */}
-      <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-4">
+      <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white p-3">
         {image?.sourceUrl ? (
           <Image
             src={image.sourceUrl}

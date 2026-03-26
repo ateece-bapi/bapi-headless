@@ -278,7 +278,7 @@ export default function CategoryContent({
             <h2 className="mb-6 text-2xl font-bold text-neutral-900">
               Browse by Category
             </h2>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
               {subcategories
                 .filter((sub) => sub.name && sub.slug) // Only show subcategories with valid name and slug
                 .map((subcategory) => (

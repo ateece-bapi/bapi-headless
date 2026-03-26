@@ -164,7 +164,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           <h2 className="mb-8 text-2xl font-bold text-neutral-900">
             {t('categoryPage.subcategories.title')}
           </h2>
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {subcategories.map((subcategory) => (
               <Link
                 key={subcategory.id}
@@ -177,14 +177,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 {/* Subtle gradient overlay on hover */}
                 <div className="bg-linear-to-br pointer-events-none absolute inset-0 from-primary-50/0 to-primary-100/0 transition-all duration-300 group-hover:from-primary-50/20 group-hover:to-primary-100/10" />
 
-                {/* Subcategory Image - Larger, square aspect */}
+                {/* Subcategory Image - Compact aspect */}
                 {subcategory.image?.sourceUrl ? (
-                  <div className="bg-linear-to-br relative aspect-[4/3] from-neutral-50 to-neutral-100">
+                  <div className="bg-linear-to-br relative aspect-[3/2] from-neutral-50 to-neutral-100">
                     <Image
                       src={subcategory.image.sourceUrl}
                       alt={subcategory.image.altText || subcategory.name || ''}
                       fill
-                      className="object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-110"
+                      className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-110"
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       priority
                     />
@@ -198,7 +198,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 )}
 
                 {/* Subcategory Info */}
-                <div className="relative z-10 bg-white p-5">
+                <div className="relative z-10 bg-white p-4">
                   <div className="mb-4 flex items-start justify-between">
                     <div>
                       <h3 className="mb-2 text-2xl font-bold text-neutral-900 transition-colors group-hover:text-primary-600">

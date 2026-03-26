@@ -8,10 +8,10 @@ export default function ProductCardSkeleton() {
       <span className="sr-only">Loading...</span>
 
       {/* Image */}
-      <div className="aspect-[4/3] bg-neutral-200"></div>
+      <div className="aspect-[3/2] bg-neutral-200"></div>
 
       {/* Content */}
-      <div className="p-4">
+      <div className="p-3">
         <div className="mb-3 h-4 w-3/4 rounded bg-neutral-200"></div>
         <div className="mb-4 h-3 w-1/2 rounded bg-neutral-200"></div>
 

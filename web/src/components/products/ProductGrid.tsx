@@ -101,7 +101,7 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
       <div
         id="product-results"
         tabIndex={-1}
-        className="grid grid-cols-1 gap-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+        className="grid grid-cols-1 gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
       >
         {products.map((product) => (
           <ProductCard
@@ -235,7 +235,7 @@ function ProductCard({
       </div>
 
       {/* Product Image */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100">
+      <div className="relative aspect-[3/2] overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100">
         {image?.sourceUrl ? (
           <>
             {/* Loading shimmer effect */}

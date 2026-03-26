@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { XIcon, ZoomInIcon, ZoomOutIcon, RotateCwIcon } from '@/lib/icons';
 
@@ -15,7 +15,6 @@ interface ImageModalProps {
  * Zoom, pan, reset view, keyboard shortcuts, touch gestures
  */
 export default function ImageModal({ src, alt, onClose }: ImageModalProps) {
-  const [mounted, setMounted] = useState(false);
   const [scale, setScale] = useState(2); // Start at 200%
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -23,15 +22,16 @@ export default function ImageModal({ src, alt, onClose }: ImageModalProps) {
   const [touchDistance, setTouchDistance] = useState<number | null>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
-  // Mount only on client side
-  useEffect(() => {
-    setMounted(true);
+  // Zoom functions (declared before use in keyboard handler)
+  const zoomIn = useCallback(() => setScale((prev) => Math.min(5, prev + 0.5)), []);
+  const zoomOut = useCallback(() => setScale((prev) => Math.max(1, prev - 0.5)), []);
+  const resetView = useCallback(() => {
+    setScale(2);
+    setPosition({ x: 0, y: 0 });
   }, []);
 
   // Keyboard shortcuts and prevent body scroll
   useEffect(() => {
-    if (!mounted) return; // Skip effect until mounted
-    
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
       if (e.key === '+' || e.key === '=') zoomIn();
@@ -49,18 +49,10 @@ export default function ImageModal({ src, alt, onClose }: ImageModalProps) {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = previousOverflow;
     };
-  }, [mounted, onClose]);
+  }, [onClose, zoomIn, zoomOut, resetView]);
 
-  // Zoom functions
-  const zoomIn = () => setScale((prev) => Math.min(5, prev + 0.5));
-  const zoomOut = () => setScale((prev) => Math.max(1, prev - 0.5));
-  const resetView = () => {
-    setScale(2);
-    setPosition({ x: 0, y: 0 });
-  };
-
-  // Conditional return AFTER all hooks
-  if (!mounted) return null;
+  // Prevent SSR rendering of Portal (client-only)
+  if (typeof window === 'undefined') return null;
 
   // Mouse wheel zoom
   const handleWheel = (e: React.WheelEvent) => {
@@ -311,6 +303,7 @@ export default function ImageModal({ src, alt, onClose }: ImageModalProps) {
           onTouchMove={handleTouchMove}
           onClick={(e) => e.stopPropagation()}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={src}
             alt={alt}

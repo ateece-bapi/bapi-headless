@@ -164,7 +164,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           <h2 className="mb-8 text-2xl font-bold text-neutral-900">
             {t('categoryPage.subcategories.title')}
           </h2>
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {subcategories.map((subcategory) => (
               <Link
                 key={subcategory.id}
@@ -184,8 +184,8 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                       src={subcategory.image.sourceUrl}
                       alt={subcategory.image.altText || subcategory.name || ''}
                       fill
-                      className="object-contain p-8 transition-transform duration-500 ease-out group-hover:scale-110"
-                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-110"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                       priority
                     />
                   </div>
@@ -198,7 +198,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 )}
 
                 {/* Subcategory Info */}
-                <div className="relative z-10 bg-white p-8">
+                <div className="relative z-10 bg-white p-5">
                   <div className="mb-4 flex items-start justify-between">
                     <div>
                       <h3 className="mb-2 text-2xl font-bold text-neutral-900 transition-colors group-hover:text-primary-600">

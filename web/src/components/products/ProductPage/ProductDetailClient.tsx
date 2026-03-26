@@ -3,9 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { PackageIcon } from '@/lib/icons';
-import ProductHero from '@/components/products/ProductPage/ProductHero';
 import ProductSummaryCard from '@/components/products/ProductPage/ProductSummaryCard';
-import ProductTabs from '@/components/products/ProductPage/ProductTabs';
 import RelatedProducts from '@/components/products/ProductPage/RelatedProducts';
 import AppLinks from '@/components/products/ProductPage/AppLinks';
 import TrustBadges from '@/components/products/ProductPage/TrustBadges';
@@ -22,6 +20,24 @@ const ProductGallery = dynamic(
   {
     loading: () => <ProductGallerySkeleton />,
     ssr: false, // Gallery requires client-side interaction (zoom, lightbox)
+  }
+);
+
+// Lazy load ProductHero to avoid i18n SSR issues
+const ProductHero = dynamic(
+  () => import('@/components/products/ProductPage/ProductHero'),
+  {
+    loading: () => <div className="mb-8 h-96 animate-pulse rounded-xl bg-neutral-50" />,
+    ssr: false, // Uses i18n which needs client context
+  }
+);
+
+// Lazy load ProductTabs to avoid i18n SSR issues
+const ProductTabs = dynamic(
+  () => import('@/components/products/ProductPage/ProductTabs'),
+  {
+    loading: () => <div className="mb-12 h-96 animate-pulse rounded-xl bg-neutral-50" />,
+    ssr: false, // Tabs use i18n which needs client context
   }
 );
 

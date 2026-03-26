@@ -101,7 +101,7 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
       <div
         id="product-results"
         tabIndex={-1}
-        className="grid grid-cols-1 gap-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        className="grid grid-cols-1 gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
       >
         {products.map((product) => (
           <ProductCard
@@ -235,7 +235,7 @@ function ProductCard({
       </div>
 
       {/* Product Image */}
-      <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100">
+      <div className="relative aspect-[3/2] overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100">
         {image?.sourceUrl ? (
           <>
             {/* Loading shimmer effect */}
@@ -247,10 +247,10 @@ function ProductCard({
               src={image.sourceUrl}
               alt={image.altText || product.name || 'Product'}
               fill
-              className={`object-contain p-4 transition-all duration-500 ease-out group-hover:scale-110 ${
+              className={`object-contain p-3 transition-all duration-500 ease-out group-hover:scale-110 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
-              sizes="(min-width: 1280px) 25vw, (min-width: 640px) 33vw, 50vw"
+              sizes="(min-width: 1536px) 20vw, (min-width: 1280px) 25vw, (min-width: 640px) 33vw, 50vw"
               onLoad={() => setImageLoaded(true)}
               loading="lazy"
             />
@@ -294,7 +294,7 @@ function ProductCard({
       </div>
 
       {/* Product Info */}
-      <div className="relative z-10 flex flex-1 flex-col p-5">
+      <div className="relative z-10 flex flex-1 flex-col p-4">
         <h3 className="mb-2 line-clamp-2 text-lg font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-primary-600">
           {product.name}
         </h3>

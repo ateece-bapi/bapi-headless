@@ -41,9 +41,8 @@ vi.mock('next/link', () => ({
 // Mock dynamic imports
 vi.mock('next/dynamic', () => ({
   default: (fn: any, options?: any) => {
-    // Return a simple mock component for ImageModal
+    // Return a simple mock component for ImageModal (always renders when mounted)
     const Component = (props: any) => {
-      if (!props.isOpen) return null;
       return <div role="dialog" aria-label="Image zoom modal">{props.children}</div>;
     };
     Component.displayName = 'DynamicImageModal';

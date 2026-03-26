@@ -37,21 +37,21 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {relatedProducts.slice(0, 4).map((product: any) => (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+            {relatedProducts.slice(0, 5).map((product: any) => (
               <Link
                 key={product.id}
                 href={`/en/product/${product.slug}`}
                 className="group relative overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-xl"
               >
                 {/* Product Image */}
-                <div className="relative aspect-square overflow-hidden bg-neutral-50">
+                <div className="relative aspect-[3/2] overflow-hidden bg-neutral-50">
                   {product.image?.sourceUrl ? (
                     <Image
                       src={product.image.sourceUrl}
                       alt={product.name || 'Product'}
                       fill
-                      className="object-contain p-6 transition-transform duration-300 group-hover:scale-110"
+                      className="object-contain p-3 transition-transform duration-300 group-hover:scale-110"
                       sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     />
                   ) : (
@@ -70,7 +70,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
                 </div>
 
                 {/* Product Info */}
-                <div className="p-5">
+                <div className="p-3">
                   <h3 className="mb-2 line-clamp-2 min-h-[3rem] text-base font-bold text-neutral-900 transition-colors group-hover:text-primary-700">
                     {product.name}
                   </h3>
@@ -114,11 +114,11 @@ export function RelatedProductsSkeleton() {
         </div>
 
         {/* Grid Skeleton */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[1, 2, 3, 4].map((i) => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+          {[1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="rounded-xl border-2 border-neutral-200 bg-white">
-              <div className="aspect-square rounded-t-xl bg-neutral-100" />
-              <div className="space-y-3 p-5">
+              <div className="aspect-[3/2] rounded-t-xl bg-neutral-100" />
+              <div className="space-y-3 p-3">
                 <div className="h-4 w-full rounded bg-neutral-200" />
                 <div className="h-4 w-3/4 rounded bg-neutral-200" />
                 <div className="h-6 w-24 rounded bg-neutral-200" />

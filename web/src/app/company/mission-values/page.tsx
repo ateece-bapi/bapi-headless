@@ -33,7 +33,7 @@ export default function MissionValuesPage() {
           </div>
 
           <h2 className="mb-8 text-center text-3xl font-bold text-neutral-900">Core Values</h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <div className="rounded-xl bg-neutral-50 p-8">
               <TargetIcon className="mb-4 h-12 w-12 text-accent-500" />
               <h3 className="mb-3 text-xl font-bold text-neutral-900">Quality First</h3>
@@ -61,11 +61,21 @@ export default function MissionValuesPage() {
               </p>
             </div>
 
-            <div className="rounded-xl bg-neutral-50 p-8">
+            <div className="rounded-xl bg-neutral-50 p-8 lg:col-start-2">
               <HeartIcon className="mb-4 h-12 w-12 text-accent-500" />
-              <h3 className="mb-3 text-xl font-bold text-neutral-900">Integrity</h3>
+              <h3 className="mb-3 text-xl font-bold text-neutral-900">Integrity & Ethics</h3>
               <p className="text-neutral-700">
-                We operate with honesty, transparency, and respect in all our relationships.
+                We value our collaborative partnerships that lead to superior solutions and facilitate
+                healthy, productive, and comfortable environments.
+              </p>
+            </div>
+
+            <div className="rounded-xl bg-neutral-50 p-8">
+              <UsersIcon className="mb-4 h-12 w-12 text-accent-500" />
+              <h3 className="mb-3 text-xl font-bold text-neutral-900">Employees</h3>
+              <p className="text-neutral-700">
+                We value being deliberate, thoughtful and intentional with behaviors that match our
+                every word.
               </p>
             </div>
           </div>

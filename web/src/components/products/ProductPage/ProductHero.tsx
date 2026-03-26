@@ -132,7 +132,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
 
         {/* Part number with better visibility */}
         <div className="mb-4 flex items-center gap-2 text-base text-neutral-700">
-          <span className="text-neutral-700">{t('productPage.summary.partNumber')}:</span>
+          <span className="text-neutral-700">{t('productPage.summary.partNumber')}</span>
           <span className="font-semibold text-neutral-900">
             {product.partNumber || product.sku || 'N/A'}
           </span>
@@ -158,9 +158,7 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
             )}
             {product.multiplier && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-neutral-700">
-                  {t('productPage.summary.multiplier')}:
-                </span>
+                <span className="text-sm text-neutral-700">{t('productPage.summary.multiplier')}</span>
                 <span className="text-lg font-semibold text-primary-600">{product.multiplier}</span>
               </div>
             )}
@@ -206,9 +204,8 @@ export default function ProductHero({ product, variation }: ProductHeroProps) {
       </div>
 
       {/* Image Modal */}
-      {mainImage && (
+      {mainImage && isModalOpen && (
         <ImageModal
-          isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           src={mainImage.sourceUrl}
           alt={mainImage.altText || variation?.name || product.name}

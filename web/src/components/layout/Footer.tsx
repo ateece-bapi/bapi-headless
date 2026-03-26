@@ -265,7 +265,6 @@ const Footer: React.FC = () => {
               <div className="space-y-1.5 text-sm font-medium text-neutral-700">
                 <p className="font-semibold text-neutral-900">{t('certifications.bacnet')}</p>
                 <p className="font-semibold text-neutral-900">{t('certifications.iso')}</p>
-                <p className="font-semibold text-neutral-900">{t('certifications.ul')}</p>
                 <p className="text-neutral-700">{t('certifications.madeInUsa')}</p>
               </div>
             </div>

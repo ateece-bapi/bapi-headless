@@ -40,7 +40,7 @@ export default function SubcategoryCard({
       className="group relative block overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition-all  duration-300 hover:border-primary-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
     >
       {/* Image Section */}
-      <div className="bg-linear-to-br relative aspect-4/3 w-full overflow-hidden from-neutral-50 to-white">
+      <div className="bg-linear-to-br relative aspect-[3/2] w-full overflow-hidden from-neutral-50 to-white">
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -77,7 +77,7 @@ export default function SubcategoryCard({
       </div>
 
       {/* Content Section */}
-      <div className="p-5">
+      <div className="p-3">
         <h3 className="relative mb-2 text-lg font-bold text-neutral-900 transition-colors">
           {name}
           {/* BAPI Yellow underline on hover */}

@@ -5,7 +5,7 @@
 
 export function ProductGridSkeleton({ count = 9 }: { count?: number }) {
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
       {Array.from({ length: count }).map((_, index) => (
         <ProductCardSkeleton key={index} />
       ))}
@@ -17,10 +17,10 @@ function ProductCardSkeleton() {
   return (
     <div className="animate-pulse overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
       {/* Image Skeleton */}
-      <div className="aspect-square bg-gradient-to-br from-neutral-100 to-neutral-200" />
+      <div className="aspect-[3/2] bg-gradient-to-br from-neutral-100 to-neutral-200" />
 
       {/* Content Skeleton */}
-      <div className="p-5">
+      <div className="p-3">
         {/* Title */}
         <div className="mb-3 h-6 w-3/4 rounded-lg bg-neutral-200" />
 

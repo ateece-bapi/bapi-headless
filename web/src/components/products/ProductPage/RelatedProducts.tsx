@@ -31,11 +31,13 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({ related }) => {
             className="flex h-full flex-col rounded-lg border bg-white p-4 hover:shadow"
           >
             {product.image && (
-              <img
-                src={product.image.sourceUrl}
-                alt={product.image.altText || product.name}
-                className="mb-2 h-24 w-full object-contain"
-              />
+              <div className="relative mb-2 aspect-[4/3] w-full overflow-hidden rounded">
+                <img
+                  src={product.image.sourceUrl}
+                  alt={product.image.altText || product.name}
+                  className="h-full w-full object-contain p-2"
+                />
+              </div>
             )}
             <div className="mb-1 text-sm font-medium text-neutral-900">{product.name}</div>
             <div className="mb-1 text-xs text-neutral-700">

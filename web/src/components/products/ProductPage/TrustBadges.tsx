@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ShieldIcon, PackageIcon, RotateCcwIcon, ClockIcon, CheckCircleIcon } from '@/lib/icons';
+import { PackageIcon, RotateCcwIcon, ClockIcon, CheckCircleIcon } from '@/lib/icons';
 
 interface TrustBadgesProps {
   className?: string;
@@ -12,19 +12,13 @@ interface TrustBadgesProps {
  *
  * Displays key trust signals to improve conversion:
  * - Made in USA
- * - Certifications (UL Listed)
  * - Return policy
  * - Warranty information
  * - Fast shipping
+ * - Expert support
  */
 export default function TrustBadges({ className = '' }: TrustBadgesProps) {
   const badges = [
-    {
-      icon: ShieldIcon,
-      label: 'UL Listed',
-      description: 'Certified Safe',
-      color: 'text-primary-600',
-    },
     {
       icon: PackageIcon,
       label: 'Made in USA',
@@ -56,7 +50,7 @@ export default function TrustBadges({ className = '' }: TrustBadgesProps) {
       <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-700">
         Why Buy From BAPI
       </h3>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {badges.map((badge) => {
           const Icon = badge.icon;
           return (

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import ProductHero from './ProductHero';
 import ProductConfigurator from './ProductConfigurator';

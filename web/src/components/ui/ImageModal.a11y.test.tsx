@@ -17,7 +17,6 @@ describe('ImageModal - Accessibility Tests', () => {
   const defaultProps = {
     src: 'https://example.com/product.jpg',
     alt: 'Temperature Sensor Model TS-101 with digital display',
-    isOpen: true,
     onClose: vi.fn(),
   };
 
@@ -71,7 +70,7 @@ describe('ImageModal - Accessibility Tests', () => {
       // Check all control buttons have aria-labels
       expect(getByLabelText('Zoom out')).toBeInTheDocument();
       expect(getByLabelText('Zoom in')).toBeInTheDocument();
-      expect(getByLabelText('Rotate')).toBeInTheDocument();
+      expect(getByLabelText('Reset view')).toBeInTheDocument();
       expect(getByLabelText('Close')).toBeInTheDocument();
 
       // Verify no violations
@@ -103,11 +102,6 @@ describe('ImageModal - Accessibility Tests', () => {
   });
 
   describe('Keyboard Navigation', () => {
-    it('should not render when closed', () => {
-      const { queryByRole } = render(<ImageModal {...defaultProps} isOpen={false} />);
-      expect(queryByRole('dialog')).not.toBeInTheDocument();
-    });
-
     it('should be keyboard accessible', async () => {
       const { container } = render(<ImageModal {...defaultProps} />);
 

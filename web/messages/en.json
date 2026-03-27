@@ -615,6 +615,7 @@
         }
       },
       "internationalOffice": {
+        "badge": "International",
         "title": "RETURN MERCHANDISE (RMA)",
         "subtitle": "United Kingdom · Europe RMA",
         "phoneLabel": "Phone",

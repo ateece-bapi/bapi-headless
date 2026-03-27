@@ -17,13 +17,19 @@ export const routing = defineRouting({
   localePrefix: 'always',
 });
 
-export default getRequestConfig(async ({ locale }) => {
-  // In next-intl v4 with Next.js 15+, the locale is passed directly
-  // No need to await requestLocale - it's already resolved
+export default getRequestConfig(async ({ requestLocale }) => {
+  // Await the locale from the request
+  // In production, this comes from the URL pathname via middleware
+  let locale = await requestLocale;
+
+  // Fallback to default locale if undefined (shouldn't happen with middleware)
+  if (!locale) {
+    locale = defaultLocale;
+  }
 
   // Validate that the incoming locale is valid, fallback to default
   // Middleware should prevent invalid locales from reaching here
-  const validLocale = (locale && locales.includes(locale as Locale)) ? locale : defaultLocale;
+  const validLocale = locales.includes(locale as Locale) ? locale : defaultLocale;
 
   // Always load English as base (complete translations)
   const englishMessages = (await import(`../messages/en.json`)).default;

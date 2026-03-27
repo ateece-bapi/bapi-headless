@@ -36,18 +36,9 @@ import {
  */
 
 /**
- * Generate static pages for all supported locales
- * This enables full static generation and CDN caching
- */
-export function generateStaticParams() {
-  return locales.map((locale) => ({
-    locale,
-  }));
-}
-
-/**
  * Revalidate every 1 hour
  * Pages will be regenerated in the background with fresh data
+ * Note: generateStaticParams is inherited from parent layout
  */
 export const revalidate = 3600;
 

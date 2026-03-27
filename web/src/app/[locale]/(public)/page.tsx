@@ -36,22 +36,24 @@ import {
  */
 
 /**
- * Revalidate every 1 hour
- * Pages will be regenerated in the background with fresh data
- * Note: generateStaticParams is inherited from parent layout
+ * Force dynamic rendering for homepage to ensure proper locale handling
+ * Static generation was caching English version across all locales
  */
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   // Await params and set request locale for next-intl
   const { locale } = await params;
+  
+  // CRITICAL: Call setRequestLocale BEFORE any getTranslations() calls
+  // This ensures i18n.ts getRequestConfig receives the locale correctly
   setRequestLocale(locale);
 
   // Convert short locale codes to BCP 47 for date formatting (reuse existing utility)
   const dateLocale = getLocaleFromLanguage(locale as LanguageCode);
 
-  // Get translations
-  const t = await getTranslations('home');
+  // CRITICAL FIX: Explicitly pass locale to getTranslations to avoid requestLocale timing issues
+  const t = await getTranslations({ locale, namespace: 'home' });
 
   // Prepare hero translations
   const heroTranslations = {

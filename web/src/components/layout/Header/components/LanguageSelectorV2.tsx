@@ -41,7 +41,8 @@ export function LanguageSelectorV2() {
     router.replace(pathname, { locale: newLocale });
   };
 
-  const currentLanguage = LANGUAGES[currentLocale];
+  // Guard against invalid locales (e.g., static files being treated as locales)
+  const currentLanguage = LANGUAGES[currentLocale] || LANGUAGES.en;
 
   // Show placeholder during SSR to prevent hydration mismatch
   if (!mounted) {

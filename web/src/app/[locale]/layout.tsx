@@ -13,6 +13,7 @@ import { WebVitalsClient } from '@/components/analytics/WebVitalsClient';
 import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from '@/lib/schema';
 import { generateDefaultMetadata } from '@/lib/metadata';
 import { locales } from '@/i18n';
+import { notFound } from 'next/navigation';
 
 /**
  * Generate static params for all supported locales
@@ -47,14 +48,20 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  // Await params and set request locale
+  // Await params and validate locale
   const { locale } = await params;
-  console.log('[LAYOUT RUNTIME] Received locale:', locale);
+  
+  // CRITICAL: Reject invalid locales (e.g., static files like bapi-logo.svg)
+  // This prevents the layout from rendering for non-locale routes
+  if (!locales.includes(locale as any)) {
+    notFound();
+  }
+  
   setRequestLocale(locale);
 
-  // Get messages for the current locale
-  const messages = await getMessages();
-  console.log('[LAYOUT RUNTIME] Messages loaded for locale:', locale, 'Message keys:', Object.keys(messages).slice(0, 5));
+  // CRITICAL FIX: Explicitly pass locale to getMessages to avoid requestLocale timing issues
+  // This ensures the correct messages are loaded even if requestLocale hasn't propagated yet
+  const messages = await getMessages({ locale });
 
   // Generate site-wide structured data for SEO
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';

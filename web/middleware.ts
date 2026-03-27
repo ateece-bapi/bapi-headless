@@ -95,14 +95,11 @@ export default function middleware(request: NextRequest) {
   const pathWithoutLocale = stripLocalePrefix(pathname);
   if ((pathWithoutLocale === '/sign-in' || pathWithoutLocale.startsWith('/sign-in/')) && authToken) {
     const locale = extractLocale(pathname);
-    console.log('[MIDDLEWARE] Already authenticated, redirecting to account');
     return NextResponse.redirect(new URL(`/${locale}/account`, request.url));
   }
 
   // Run next-intl middleware for locale detection
-  console.log('[MIDDLEWARE] Running next-intl middleware for:', pathname);
   const response = intlMiddleware(request);
-  console.log('[MIDDLEWARE] After next-intl, response status:', response.status);
   
   // Override cache headers for static pages (GET requests only)
   // CRITICAL: Never cache authenticated/protected routes to prevent data leakage
@@ -132,7 +129,7 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match all pathnames except for static files and API routes
-    '/((?!_next|api|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Match all pathnames except static files and Next.js internals
+    '/((?!_next|api|.*\\.).*)',
   ],
 };

@@ -5,7 +5,6 @@ import ChatWidgetClient from '@/components/chat/ChatWidgetClient';
 import BackToTop from '@/components/layout/BackToTop';
 import { AutoRegionDetection } from '@/components/region/AutoRegionDetection';
 import { HtmlLangAttribute } from '@/components/layout/HtmlLangAttribute';
-import { LocaleDebug } from '@/components/debug/LocaleDebug';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { ToastProvider } from '@/components/ui/Toast';
@@ -14,6 +13,10 @@ import { WebVitalsClient } from '@/components/analytics/WebVitalsClient';
 import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } from '@/lib/schema';
 import { generateDefaultMetadata } from '@/lib/metadata';
 import { locales } from '@/i18n';
+
+// CRITICAL: Force dynamic rendering to prevent stale cached translations
+// Without this, Vercel pre-renders pages with English and caches them
+export const dynamic = 'force-dynamic';
 
 /**
  * Generate static params for all supported locales
@@ -50,15 +53,10 @@ export default async function LocaleLayout({
 }) {
   // Await params and set request locale
   const { locale } = await params;
-  console.log('[Layout] Received locale from params:', locale);
   setRequestLocale(locale);
 
   // Get messages for the current locale
   const messages = await getMessages();
-  console.log('[Layout] Got messages, top-level keys:', Object.keys(messages).slice(0, 10));
-  console.log('[Layout] Sample nav.products translation:', (messages as any)?.nav?.products);
-  console.log('[Layout] Sample nav.company translation:', (messages as any)?.nav?.company);
-  console.log('[Layout] Locale being passed to NextIntlClientProvider:', locale);
 
   // Generate site-wide structured data for SEO
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';
@@ -98,9 +96,6 @@ export default async function LocaleLayout({
       <NextIntlClientProvider messages={messages} locale={locale}>
         <ToastProvider>
           <>
-            {/* DEBUG: Client-side locale/translation logging */}
-            <LocaleDebug />
-            
             {/* Skip to main content link for keyboard users */}
             <a
               href="#main-content"

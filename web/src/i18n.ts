@@ -14,7 +14,7 @@ export const defaultLocale: Locale = 'en';
 export const routing = defineRouting({
   locales,
   defaultLocale,
-  localePrefix: 'always',
+  localePrefix: 'as-needed', // Changed from 'always' - middleware not running causes requestLocale=undefined
 });
 
 export default getRequestConfig(async ({ requestLocale }) => {

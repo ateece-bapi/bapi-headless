@@ -26,12 +26,6 @@
       ]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/:locale(en|de|es|fr|ja|zh|ar|hi|th|vi|pl)/:path*",
-      "destination": "/:locale/:path*"
-    }
-  ],
   "redirects": [
     {
       "source": "/health",

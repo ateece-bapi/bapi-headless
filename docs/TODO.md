@@ -8,6 +8,130 @@
 
 ---
 
+## ✅ i18n Critical Fix: Locale Validation & RequestLocale Propagation (March 27, 2026)
+
+**Status:** ✅ COMPLETE - Deployed to Production 🎉  
+**Priority:** 🔴 **CRITICAL** — Internationalization completely broken on Vercel  
+**Time:** ~4 hours (debugging requestLocale timing + middleware matcher + locale validation)  
+**Branch:** Direct commits to main (66ab2fc)  
+**Document:** See [DAILY-LOG.md](./DAILY-LOG.md#march-27-2026--i18n-critical-fix-locale-validation--requestlocale-propagation-) for full details
+
+### Achievement Summary
+✅ **Locale Validation** - Layout now rejects invalid locales (e.g., static files) with `notFound()`  
+✅ **Explicit Locale Passing** - `getMessages({ locale })` and `getTranslations({ locale, namespace })` bypass requestLocale timing  
+✅ **Middleware Matcher** - Simplified to `'/((?!_next|api|.*\\.).*)'` to exclude all file extensions  
+✅ **Production Verified** - All 11 locales working on https://bapi-headless.vercel.app  
+✅ **Debug Logging Removed** - Clean production code (no console.log statements)
+
+### Problem Analysis
+**Symptoms:**
+- `/de` showing English content instead of German
+- `/fr` showing English instead of French  
+- All locales broken on Vercel (worked on localhost)
+- `bapi-logo.svg` being treated as a locale route
+- `requestLocale` resolving to `undefined` in i18n.ts
+
+**Root Causes:**
+1. **requestLocale Timing** - `setRequestLocale(locale)` in layout not propagating to `getRequestConfig({ requestLocale })` in i18n.ts before execution
+2. **Static File Routing** - Dynamic `[locale]` segment catching static files (`/bapi-logo.svg`, `/grid.svg`)
+3. **Middleware Matcher** - Complex regex not excluding file extensions properly
+
+### Solutions Implemented
+
+**1. Locale Validation in Layout:**
+```typescript
+// web/src/app/[locale]/layout.tsx
+export default async function LocaleLayout({ params }) {
+  const { locale } = await params;
+  
+  // CRITICAL: Reject invalid locales (e.g., static files like bapi-logo.svg)
+  if (!locales.includes(locale as any)) {
+    notFound();
+  }
+  
+  setRequestLocale(locale);
+  const messages = await getMessages({ locale }); // Explicit locale passing
+}
+```
+
+**2. Explicit Locale Passing:**
+```typescript
+// BEFORE: Relied on requestLocale propagation
+const messages = await getMessages();
+const t = await getTranslations('home');
+
+// AFTER: Explicitly pass locale
+const messages = await getMessages({ locale });
+const t = await getTranslations({ locale, namespace: 'home' });
+```
+
+**3. Middleware Matcher Simplification:**
+```typescript
+// web/middleware.ts
+export const config = {
+  matcher: [
+    '/((?!_next|api|.*\\.).*)', // Excludes any path containing a dot
+  ],
+};
+```
+
+**4. LanguageSelector Guard:**
+```typescript
+// web/src/components/layout/Header/components/LanguageSelectorV2.tsx
+const currentLanguage = LANGUAGES[currentLocale] || LANGUAGES.en;
+// Prevents crash when currentLocale is invalid
+```
+
+### Production Verification
+✅ **German (/de)**: "Präzisionssensorlösungen für die Gebäudeautomation"  
+✅ **French (/fr)**: "Solutions de capteurs de précision pour l'automatisation des bâtiments"  
+✅ **Spanish (/es)**: "Soluciones de sensores de precisión para la automatización de edificios"  
+✅ **All 11 locales** verified working: en, de, fr, es, ja, zh, vi, ar, th, pl, hi
+
+### Files Modified (4 total)
+- `web/middleware.ts` - Simplified matcher pattern
+- `web/src/app/[locale]/layout.tsx` - Locale validation + explicit getMessages
+- `web/src/app/[locale]/(public)/page.tsx` - Explicit getTranslations
+- `web/src/components/layout/Header/components/LanguageSelectorV2.tsx` - Guard fallback
+- `web/src/i18n.ts` - Removed debug logging
+
+### Technical Achievements
+**next-intl v4 + Next.js 16 Pattern:**
+- Explicit locale passing > requestLocale propagation (timing issues)
+- Layout validation prevents static files from rendering through React
+- Middleware matcher must exclude file extensions explicitly
+- Guard patterns prevent crashes from invalid locale values
+
+**Production Readiness:**
+- Zero console errors or warnings
+- Clean code (no debug logging)
+- All 11 locales functional globally
+- Phase 1 i18n requirement: ✅ COMPLETE
+
+### Impact on Launch Readiness
+- 🌍 **Global Launch Ready:** All 11 locales working in production
+- 🚀 **Phase 1 Blocker Removed:** i18n was completely broken, now 100% functional
+- 🎯 **28 Days to Launch:** Critical infrastructure now stable
+- ✅ **Production Deployment:** Promoted to production successfully
+
+### Key Learnings
+**1. next-intl v4 Timing Issues:**
+- `requestLocale` parameter in `getRequestConfig` can resolve to `undefined`
+- Explicit locale passing to `getMessages({ locale })` is more reliable
+- `setRequestLocale(locale)` doesn't guarantee immediate propagation
+
+**2. Dynamic Routes + Static Files:**
+- `[locale]` segment catches ALL paths, including `/bapi-logo.svg`
+- Must validate locale in layout to reject invalid values
+- Middleware matcher must explicitly exclude file extensions: `.*\\.`
+
+**3. Production vs Localhost:**
+- Vercel edge functions have different timing than local dev server
+- Static generation can cache wrong locale context
+- Always test i18n changes on production/preview deployments
+
+---
+
 ## ✅ Team Feedback: UX Improvements & ImageModal Architecture (March 26-27, 2026)
 
 **Status:** ✅ COMPLETE - Merged to main (PR #419) 🎉  

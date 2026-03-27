@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
 import { defineRouting } from 'next-intl/routing';
 import { merge } from 'lodash-es';
@@ -18,37 +17,31 @@ export const routing = defineRouting({
   localePrefix: 'always',
 });
 
-export default getRequestConfig(async ({ requestLocale }) => {
-  // Get the locale from the request, fallback to default if undefined
-  let locale = await requestLocale;
+export default getRequestConfig(async ({ locale }) => {
+  // In next-intl v4 with Next.js 15+, the locale is passed directly
+  // No need to await requestLocale - it's already resolved
 
-  // If no locale provided, use default (handles root '/' path)
-  if (!locale) {
-    locale = defaultLocale;
-  }
-
-  // Validate that the incoming locale is valid
-  if (!locales.includes(locale as Locale)) {
-    notFound();
-  }
+  // Validate that the incoming locale is valid, fallback to default
+  // Middleware should prevent invalid locales from reaching here
+  const validLocale = (locale && locales.includes(locale as Locale)) ? locale : defaultLocale;
 
   // Always load English as base (complete translations)
   const englishMessages = (await import(`../messages/en.json`)).default;
 
   // If not English, merge with locale-specific translations (overlay on top of English)
   let messages = englishMessages;
-  if (locale !== 'en') {
+  if (validLocale !== 'en') {
     try {
-      const localeMessages = (await import(`../messages/${locale}.json`)).default;
+      const localeMessages = (await import(`../messages/${validLocale}.json`)).default;
       // Merge: locale-specific overrides English
       messages = merge({}, englishMessages, localeMessages);
     } catch (error) {
-      logger.warn(`Failed to load messages for locale ${locale}, using English fallback`);
+      logger.warn(`Failed to load messages for locale ${validLocale}, using English fallback`);
     }
   }
 
   return {
-    locale,
+    locale: validLocale,
     messages,
   };
 });

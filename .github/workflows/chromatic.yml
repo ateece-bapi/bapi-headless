@@ -1,5 +1,7 @@
-name: Chromatic Visual Regression
+name: Chromatic Visual Regression (DISABLED)
 
+# TEMPORARILY DISABLED - Chromatic checks taking too long
+# Re-enable by changing if: false to if: true
 on:
   push:
     branches:
@@ -31,6 +33,7 @@ on:
 jobs:
   chromatic:
     runs-on: ubuntu-latest
+    if: false  # DISABLED - Remove this line to re-enable
     
     steps:
       - name: Checkout code

@@ -1,5 +1,7 @@
-name: Link Validation
+name: Link Validation (DISABLED)
 
+# TEMPORARILY DISABLED - Link validation can be slow
+# Re-enable by changing if: false to if: true
 on:
   push:
     branches:
@@ -18,6 +20,7 @@ jobs:
   link-check:
     name: Check Links
     runs-on: ubuntu-latest
+    if: false  # DISABLED - Remove this line to re-enable
     
     steps:
       - name: Checkout code

@@ -49,10 +49,13 @@ export default async function LocaleLayout({
 }) {
   // Await params and set request locale
   const { locale } = await params;
+  console.log('[Layout] Received locale from params:', locale);
   setRequestLocale(locale);
 
   // Get messages for the current locale
   const messages = await getMessages();
+  console.log('[Layout] Got messages, top-level keys:', Object.keys(messages).slice(0, 10));
+  console.log('[Layout] Sample nav.products translation:', (messages as any)?.nav?.products);
 
   // Generate site-wide structured data for SEO
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';

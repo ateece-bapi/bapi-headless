@@ -5,6 +5,7 @@ import ChatWidgetClient from '@/components/chat/ChatWidgetClient';
 import BackToTop from '@/components/layout/BackToTop';
 import { AutoRegionDetection } from '@/components/region/AutoRegionDetection';
 import { HtmlLangAttribute } from '@/components/layout/HtmlLangAttribute';
+import { LocaleDebug } from '@/components/debug/LocaleDebug';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { ToastProvider } from '@/components/ui/Toast';
@@ -95,6 +96,9 @@ export default async function LocaleLayout({
       <NextIntlClientProvider messages={messages} locale={locale}>
         <ToastProvider>
           <>
+            {/* DEBUG: Client-side locale/translation logging */}
+            <LocaleDebug />
+            
             {/* Skip to main content link for keyboard users */}
             <a
               href="#main-content"

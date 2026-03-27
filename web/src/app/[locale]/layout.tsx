@@ -57,6 +57,8 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   console.log('[Layout] Got messages, top-level keys:', Object.keys(messages).slice(0, 10));
   console.log('[Layout] Sample nav.products translation:', (messages as any)?.nav?.products);
+  console.log('[Layout] Sample nav.company translation:', (messages as any)?.nav?.company);
+  console.log('[Layout] Locale being passed to NextIntlClientProvider:', locale);
 
   // Generate site-wide structured data for SEO
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi-headless.vercel.app';

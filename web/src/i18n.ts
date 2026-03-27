@@ -39,9 +39,14 @@ export default getRequestConfig(async ({ locale }) => {
       console.log('[i18n.ts] Loading German messages for:', validLocale);
       const localeMessages = (await import(`../messages/${validLocale}.json`)).default;
       console.log('[i18n.ts] German messages loaded, keys:', Object.keys(localeMessages).slice(0, 5));
+      console.log('[i18n.ts] German nav.products:', (localeMessages as any)?.nav?.products);
+      console.log('[i18n.ts] English nav.products:', (englishMessages as any)?.nav?.products);
+      
       // Merge: locale-specific overrides English
       messages = merge({}, englishMessages, localeMessages);
+      
       console.log('[i18n.ts] After merge, messages has keys:', Object.keys(messages).slice(0, 5));
+      console.log('[i18n.ts] After merge, nav.products:', (messages as any)?.nav?.products);
     } catch (error) {
       console.error('[i18n.ts] ERROR loading messages:', error);
       logger.warn(`Failed to load messages for locale ${validLocale}, using English fallback`);

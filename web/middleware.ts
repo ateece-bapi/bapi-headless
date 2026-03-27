@@ -57,6 +57,9 @@ function extractLocale(pathname: string): string {
 
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  
+  // RUNTIME DEBUG: Log incoming requests
+  console.log('[MIDDLEWARE] Incoming request:', pathname);
 
   // Helper to strip locale prefix for accurate path matching.
   // Uses LOCALE_WITH_END_REGEX (not LOCALE_REGEX) to avoid incorrectly stripping
@@ -84,6 +87,7 @@ export default function middleware(request: NextRequest) {
     const signInUrl = new URL(`/${locale}/sign-in`, request.url);
     // Preserve intended destination for post-login redirect
     signInUrl.searchParams.set('redirect', pathname);
+    console.log('[MIDDLEWARE] Redirecting to sign-in:', signInUrl.toString());
     return NextResponse.redirect(signInUrl);
   }
 
@@ -91,11 +95,14 @@ export default function middleware(request: NextRequest) {
   const pathWithoutLocale = stripLocalePrefix(pathname);
   if ((pathWithoutLocale === '/sign-in' || pathWithoutLocale.startsWith('/sign-in/')) && authToken) {
     const locale = extractLocale(pathname);
+    console.log('[MIDDLEWARE] Already authenticated, redirecting to account');
     return NextResponse.redirect(new URL(`/${locale}/account`, request.url));
   }
 
   // Run next-intl middleware for locale detection
+  console.log('[MIDDLEWARE] Running next-intl middleware for:', pathname);
   const response = intlMiddleware(request);
+  console.log('[MIDDLEWARE] After next-intl, response status:', response.status);
   
   // Override cache headers for static pages (GET requests only)
   // CRITICAL: Never cache authenticated/protected routes to prevent data leakage

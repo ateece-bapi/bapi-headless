@@ -22,8 +22,12 @@ export default getRequestConfig(async ({ requestLocale }) => {
   // This is set by setRequestLocale() in the layout
   let locale = await requestLocale;
   
+  // BUILD-TIME DEBUG: Log what locale we're getting
+  console.log('[i18n.ts BUILD] requestLocale resolved to:', locale);
+  
   // Validate that the incoming locale is valid, fallback to default
   if (!locale || !locales.includes(locale as Locale)) {
+    console.log('[i18n.ts BUILD] Invalid locale, falling back to default');
     locale = defaultLocale;
   }
   const validLocale = locale as Locale;
@@ -35,14 +39,19 @@ export default getRequestConfig(async ({ requestLocale }) => {
   let messages = englishMessages;
   if (validLocale !== 'en') {
     try {
+      console.log(`[i18n.ts BUILD] Loading messages for locale: ${validLocale}`);
       const localeMessages = (await import(`../messages/${validLocale}.json`)).default;
       // Merge: locale-specific overrides English
       messages = merge({}, englishMessages, localeMessages);
+      console.log(`[i18n.ts BUILD] Successfully merged ${validLocale} messages`);
     } catch (error) {
       logger.warn(`Failed to load messages for locale ${validLocale}, using English fallback`);
     }
+  } else {
+    console.log('[i18n.ts BUILD] Using English messages (no merge needed)');
   }
 
+  console.log(`[i18n.ts BUILD] Returning config with locale: ${validLocale}`);
   return {
     locale: validLocale,
     messages,

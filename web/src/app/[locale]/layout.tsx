@@ -14,10 +14,6 @@ import { StructuredData, generateOrganizationSchema, generateWebSiteSchema } fro
 import { generateDefaultMetadata } from '@/lib/metadata';
 import { locales } from '@/i18n';
 
-// CRITICAL: Force dynamic rendering to prevent stale cached translations
-// Without this, Vercel pre-renders pages with English and caches them
-export const dynamic = 'force-dynamic';
-
 /**
  * Generate static params for all supported locales
  * This enables Next.js to pre-generate pages for each locale at build time

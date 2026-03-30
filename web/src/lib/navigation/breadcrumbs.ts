@@ -5,48 +5,6 @@
  * Supports i18n and Schema.org structured data
  */
 
-/**
- * Normalize WordPress category slugs
- * Maps numeric/malformed slugs to proper descriptive slugs
- * WordPress sometimes auto-generates numeric slugs like "727" instead of text slugs
- */
-function normalizeSlug(slug: string | undefined): string {
-  if (!slug) return 'all';
-  
-  // Map known bad slugs to correct ones
-  const slugMap: Record<string, string> = {
-    '727': 'temperature-sensors',
-    '728': 'humidity-sensors',
-    '729': 'pressure-sensors',
-    '730': 'air-quality-sensors',
-    '731': 'wireless-sensors',
-    '732': 'accessories',
-  };
-  
-  return slugMap[slug] || slug;
-}
-
-/**
- * Normalize WordPress category names
- * Maps numeric/malformed names to proper display names
- * WordPress sometimes has numeric category IDs as names
- */
-function normalizeCategoryName(name: string | undefined): string {
-  if (!name) return 'Products';
-  
-  // Map known bad names to correct ones
-  const nameMap: Record<string, string> = {
-    '727': 'Temperature Sensors',
-    '728': 'Humidity Sensors',
-    '729': 'Pressure Sensors',
-    '730': 'Air Quality Sensors',
-    '731': 'Wireless Sensors',
-    '732': 'Accessories',
-  };
-  
-  return nameMap[name] || name;
-}
-
 export interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -138,17 +96,14 @@ export function getSubcategoryBreadcrumbs(
     href: `/${locale}/products`,
   });
 
-  const normalizedParentSlug = normalizeSlug(parentCategorySlug);
-  const normalizedParentName = normalizeCategoryName(parentCategoryName);
-  
   breadcrumbs.push({
-    label: normalizedParentName,
-    href: `/${locale}/categories/${normalizedParentSlug}`,
+    label: parentCategoryName,
+    href: `/${locale}/categories/${parentCategorySlug}`,
   });
 
   breadcrumbs.push({
     label: subcategoryName,
-    href: `/${locale}/products/${normalizedParentSlug}/${subcategorySlug}`,
+    href: `/${locale}/products/${parentCategorySlug}/${subcategorySlug}`,
   });
 
   return breadcrumbs;
@@ -191,19 +146,17 @@ export function getProductBreadcrumbs(
 
     // Add parent category if exists
     if (primaryCategory.parent) {
-      const normalizedParentSlug = normalizeSlug(primaryCategory.parent.slug);
-      const normalizedParentName = normalizeCategoryName(primaryCategory.parent.name);
       breadcrumbs.push({
-        label: normalizedParentName,
-        href: `/${locale}/categories/${normalizedParentSlug}`,
+        label: primaryCategory.parent.name,
+        href: `/${locale}/categories/${primaryCategory.parent.slug}`,
       });
     }
 
     // Add current category
-    const normalizedParentSlug = normalizeSlug(primaryCategory.parent?.slug);
+    const parentSlug = primaryCategory.parent?.slug || 'all';
     breadcrumbs.push({
       label: primaryCategory.name,
-      href: `/${locale}/products/${normalizedParentSlug}/${primaryCategory.slug}`,
+      href: `/${locale}/products/${parentSlug}/${primaryCategory.slug}`,
     });
   }
 

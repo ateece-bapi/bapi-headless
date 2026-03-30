@@ -16,6 +16,13 @@ query SearchProducts($search: String!, $first: Int = 20) {
           nodes {
             name
             slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
           }
         }
       }
@@ -30,6 +37,13 @@ query SearchProducts($search: String!, $first: Int = 20) {
           nodes {
             name
             slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
           }
         }
       }

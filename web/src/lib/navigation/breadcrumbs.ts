@@ -153,9 +153,10 @@ export function getProductBreadcrumbs(
     }
 
     // Add current category
+    const parentSlug = primaryCategory.parent?.slug || 'all';
     breadcrumbs.push({
       label: primaryCategory.name,
-      href: `/${locale}/products/${primaryCategory.parent?.slug || 'all'}/${primaryCategory.slug}`,
+      href: `/${locale}/products/${parentSlug}/${primaryCategory.slug}`,
     });
   }
 

@@ -1,10 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
-import { findMatchingVariation, areAllAttributesSelected, getAvailableOptions } from '@/lib/variations';
+import {
+  findMatchingVariation,
+  areAllAttributesSelected,
+  getAvailableOptions,
+  normalizeAttributeSlug,
+} from '@/lib/variations';
 import { detectAttributeType } from '@/lib/attributeDetection';
 import ColorSwatchSelector from './variation-selectors/ColorSwatchSelector';
 import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
@@ -48,25 +53,17 @@ export default function VariationSelector({
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
   const region = useRegion();
 
-  // Filter to only attributes used for variations
-  const variationAttributes = attributes.filter((attr) => attr.variation);
-
-  // Helper to normalize attribute name to slug format
-  // Must match normalization in page.tsx to handle special characters (°, commas, etc.)
-  const normalizeToSlug = (name: string): string => {
-    return name
-      .toLowerCase()
-      .replace(/[°,]/g, '') // Remove special characters (degree symbol, commas)
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-      .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
-  };
+  // Filter to only attributes used for variations (memoized to prevent breaking availableOptionsMap memo)
+  const variationAttributes = useMemo(
+    () => attributes.filter((attr) => attr.variation),
+    [attributes]
+  );
 
   // Handle attribute selection
   // attributeName is the display label, need to convert to slug for matching
   const handleAttributeChange = (attributeName: string, value: string) => {
     // Convert display name to slug (e.g., "Pressure Range" → "pressure-range")
-    const attributeSlug = normalizeToSlug(attributeName);
+    const attributeSlug = normalizeAttributeSlug(attributeName);
 
     const newSelections = {
       ...selectedAttributes,
@@ -77,7 +74,7 @@ export default function VariationSelector({
 
     // Check if all attributes are selected (use newSelections, not state)
     // Use slugified names to match what's in newSelections
-    const attributeSlugs = variationAttributes.map((a) => normalizeToSlug(a.name));
+    const attributeSlugs = variationAttributes.map((a) => normalizeAttributeSlug(a.name));
     const allSelected = areAllAttributesSelected(attributeSlugs, newSelections);
 
     if (allSelected) {
@@ -116,7 +113,7 @@ export default function VariationSelector({
       let hasUrlParams = false;
 
       variationAttributes.forEach((attr) => {
-        const slug = normalizeToSlug(attr.name);
+        const slug = normalizeAttributeSlug(attr.name);
         const value = params.get(slug);
         if (value) {
           urlSelections[slug] = value;
@@ -128,7 +125,7 @@ export default function VariationSelector({
         setSelectedAttributes(urlSelections);
 
         // Check if we can find a matching variation
-        const attributeSlugs = variationAttributes.map((a) => normalizeToSlug(a.name));
+        const attributeSlugs = variationAttributes.map((a) => normalizeAttributeSlug(a.name));
         const allSelected = areAllAttributesSelected(attributeSlugs, urlSelections);
         if (allSelected) {
           const variation = findMatchingVariation(variations, urlSelections);
@@ -187,6 +184,36 @@ export default function VariationSelector({
       }
     }
   };
+
+  // FIX #3 (Performance): Memoize available options to avoid recomputing 3000+ operations per render
+  // This caches the filtered options for all attributes, recomputing only when variations or selections change
+  const availableOptionsMap = useMemo(() => {
+    const map: Record<string, string[]> = {};
+    variationAttributes.forEach((attr) => {
+      const slug = normalizeAttributeSlug(attr.name);
+      map[slug] = getAvailableOptions(slug, variations, selectedAttributes);
+    });
+    return map;
+  }, [variations, selectedAttributes, variationAttributes]);
+
+  // FIX #2 (Stale Selection): Clear selections that are no longer in available options
+  // This prevents UI inconsistency when a selection gets filtered out by smart filtering
+  useEffect(() => {
+    let needsUpdate = false;
+    const updatedSelections = { ...selectedAttributes };
+
+    Object.entries(selectedAttributes).forEach(([slug, value]) => {
+      if (value && availableOptionsMap[slug] && !availableOptionsMap[slug].includes(value)) {
+        // Current selection is no longer available - clear it
+        delete updatedSelections[slug];
+        needsUpdate = true;
+      }
+    });
+
+    if (needsUpdate) {
+      setSelectedAttributes(updatedSelections);
+    }
+  }, [availableOptionsMap, selectedAttributes]);
 
   if (variationAttributes.length === 0) {
     return null;
@@ -253,16 +280,11 @@ export default function VariationSelector({
             {/* Configuration Options */}
             {variationAttributes.map((attribute) => {
               const uiType = detectAttributeType(attribute);
-              const attributeSlug = normalizeToSlug(attribute.name);
+              const attributeSlug = normalizeAttributeSlug(attribute.name);
               const value = selectedAttributes[attributeSlug] || '';
 
-              // Get available options based on current selections
-              // This filters out options that would create invalid combinations
-              const availableOptions = getAvailableOptions(
-                attributeSlug,
-                variations,
-                selectedAttributes
-              );
+              // Use memoized available options from map (Performance fix #3)
+              const availableOptions = availableOptionsMap[attributeSlug] || [];
 
               const commonProps = {
                 label: attribute.label,
@@ -276,13 +298,19 @@ export default function VariationSelector({
                   return <ColorSwatchSelector key={attribute.id} {...commonProps} />;
 
                 case 'binary-toggle':
-                  return (
-                    <BinaryToggleSelector
-                      key={attribute.id}
-                      {...commonProps}
-                      options={availableOptions as [string, string]}
-                    />
-                  );
+                  // FIX #1 (Binary Toggle): Only use BinaryToggleSelector when exactly 2 options
+                  // If filtered down to 0, 1, or 3+ options, fall back to DropdownSelector
+                  if (availableOptions.length === 2) {
+                    return (
+                      <BinaryToggleSelector
+                        key={attribute.id}
+                        {...commonProps}
+                        options={availableOptions as [string, string]}
+                      />
+                    );
+                  }
+                  // Fall through to dropdown if not exactly 2 options
+                  return <DropdownSelector key={attribute.id} {...commonProps} />;
 
                 case 'radio-group':
                   return <RadioGroupSelector key={attribute.id} {...commonProps} />;

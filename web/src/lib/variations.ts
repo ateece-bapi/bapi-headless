@@ -5,6 +5,35 @@
 import type { ProductVariation, SelectedAttributes } from '@/types/variations';
 
 /**
+ * Maximum number of variations to fetch from GraphQL
+ * Keep in sync with products.graphql query: variations(first: 500)
+ * TODO: Convert to GraphQL variable for dynamic limit control
+ */
+export const MAX_VARIATIONS = 500;
+
+/**
+ * Normalizes attribute names to slug format for consistent matching
+ * Must handle special characters (°, commas, etc.) to match WooCommerce slugs
+ *
+ * @param name - Attribute name to normalize (e.g., "°F Or °C Display")
+ * @returns Normalized slug (e.g., "f-or-c-display")
+ *
+ * @example
+ * ```ts
+ * normalizeAttributeSlug("°F Or °C Display") // "f-or-c-display"
+ * normalizeAttributeSlug("Ground Configuration, Comm Jack, Test And Balance") // "ground-configuration-comm-jack-test-and-balance"
+ * ```
+ */
+export function normalizeAttributeSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[°,]/g, '') // Remove special characters (degree symbol, commas)
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+}
+
+/**
  * Finds the variation that matches the selected attributes
  *
  * @param variations - Array of all product variations
@@ -95,13 +124,18 @@ export function getAvailableOptions(
   });
 
   // Get unique options from matching variations
-  const options = new Set<string>();
+  // FIX #5: Manual deduplication to maintain insertion order
+  // (Sets preserve order, but this approach allows future ordering customization)
+  const seenOptions = new Set<string>();
+  const orderedOptions: string[] = [];
+
   matchingVariations.forEach((variation) => {
     const attr = variation.attributes.nodes.find((a) => a.name === attributeName);
-    if (attr?.value) {
-      options.add(attr.value);
+    if (attr?.value && !seenOptions.has(attr.value)) {
+      seenOptions.add(attr.value);
+      orderedOptions.push(attr.value);
     }
   });
 
-  return Array.from(options);
+  return orderedOptions;
 }

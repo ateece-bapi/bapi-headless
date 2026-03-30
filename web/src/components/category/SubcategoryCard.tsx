@@ -4,6 +4,23 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRightIcon } from '@/lib/icons';
 
+/**
+ * Normalize WordPress category slugs
+ * Maps numeric/malformed slugs to proper descriptive slugs
+ */
+function normalizeSlug(slug: string): string {
+  const slugMap: Record<string, string> = {
+    '727': 'temperature-sensors',
+    '728': 'humidity-sensors',
+    '729': 'pressure-sensors',
+    '730': 'air-quality-sensors',
+    '731': 'wireless-sensors',
+    '732': 'accessories',
+  };
+  
+  return slugMap[slug] || slug;
+}
+
 interface SubcategoryCardProps {
   name: string;
   slug: string;
@@ -33,10 +50,14 @@ export default function SubcategoryCard({
   const productCount = count ?? 0;
   const imageUrl = image?.sourceUrl;
   const imageAlt = image?.altText || `${name} category`;
+  
+  // Normalize slugs to handle WordPress numeric slugs
+  const normalizedCategorySlug = normalizeSlug(categorySlug);
+  const normalizedSlug = normalizeSlug(slug);
 
   return (
     <Link
-      href={`/${locale}/products/${categorySlug}/${slug}`}
+      href={`/${locale}/products/${normalizedCategorySlug}/${normalizedSlug}`}
       className="group relative block overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition-all  duration-300 hover:border-primary-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
     >
       {/* Image Section */}

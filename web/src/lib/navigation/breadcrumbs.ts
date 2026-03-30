@@ -5,6 +5,27 @@
  * Supports i18n and Schema.org structured data
  */
 
+/**
+ * Normalize WordPress category slugs
+ * Maps numeric/malformed slugs to proper descriptive slugs
+ * WordPress sometimes auto-generates numeric slugs like "727" instead of text slugs
+ */
+function normalizeSlug(slug: string | undefined): string {
+  if (!slug) return 'all';
+  
+  // Map known bad slugs to correct ones
+  const slugMap: Record<string, string> = {
+    '727': 'temperature-sensors',
+    '728': 'humidity-sensors',
+    '729': 'pressure-sensors',
+    '730': 'air-quality-sensors',
+    '731': 'wireless-sensors',
+    '732': 'accessories',
+  };
+  
+  return slugMap[slug] || slug;
+}
+
 export interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -96,14 +117,16 @@ export function getSubcategoryBreadcrumbs(
     href: `/${locale}/products`,
   });
 
+  const normalizedParentSlug = normalizeSlug(parentCategorySlug);
+  
   breadcrumbs.push({
     label: parentCategoryName,
-    href: `/${locale}/categories/${parentCategorySlug}`,
+    href: `/${locale}/categories/${normalizedParentSlug}`,
   });
 
   breadcrumbs.push({
     label: subcategoryName,
-    href: `/${locale}/products/${parentCategorySlug}/${subcategorySlug}`,
+    href: `/${locale}/products/${normalizedParentSlug}/${subcategorySlug}`,
   });
 
   return breadcrumbs;
@@ -146,16 +169,18 @@ export function getProductBreadcrumbs(
 
     // Add parent category if exists
     if (primaryCategory.parent) {
+      const normalizedParentSlug = normalizeSlug(primaryCategory.parent.slug);
       breadcrumbs.push({
         label: primaryCategory.parent.name,
-        href: `/${locale}/categories/${primaryCategory.parent.slug}`,
+        href: `/${locale}/categories/${normalizedParentSlug}`,
       });
     }
 
     // Add current category
+    const normalizedParentSlug = normalizeSlug(primaryCategory.parent?.slug);
     breadcrumbs.push({
       label: primaryCategory.name,
-      href: `/${locale}/products/${primaryCategory.parent?.slug || 'all'}/${primaryCategory.slug}`,
+      href: `/${locale}/products/${normalizedParentSlug}/${primaryCategory.slug}`,
     });
   }
 

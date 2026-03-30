@@ -41135,7 +41135,7 @@ export const GetProductVariationsDocument = gql`
           variation
         }
       }
-      variations {
+      variations(first: 500) {
         nodes {
           id
           databaseId

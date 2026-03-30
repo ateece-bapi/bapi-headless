@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
-import { findMatchingVariation, areAllAttributesSelected } from '@/lib/variations';
+import { findMatchingVariation, areAllAttributesSelected, getAvailableOptions } from '@/lib/variations';
 import { detectAttributeType } from '@/lib/attributeDetection';
 import ColorSwatchSelector from './variation-selectors/ColorSwatchSelector';
 import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
@@ -52,8 +52,14 @@ export default function VariationSelector({
   const variationAttributes = attributes.filter((attr) => attr.variation);
 
   // Helper to normalize attribute name to slug format
+  // Must match normalization in page.tsx to handle special characters (°, commas, etc.)
   const normalizeToSlug = (name: string): string => {
-    return name.toLowerCase().replace(/\s+/g, '-');
+    return name
+      .toLowerCase()
+      .replace(/[°,]/g, '') // Remove special characters (degree symbol, commas)
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+      .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
   };
 
   // Handle attribute selection
@@ -250,9 +256,17 @@ export default function VariationSelector({
               const attributeSlug = normalizeToSlug(attribute.name);
               const value = selectedAttributes[attributeSlug] || '';
 
+              // Get available options based on current selections
+              // This filters out options that would create invalid combinations
+              const availableOptions = getAvailableOptions(
+                attributeSlug,
+                variations,
+                selectedAttributes
+              );
+
               const commonProps = {
                 label: attribute.label,
-                options: attribute.options,
+                options: availableOptions, // Use filtered options instead of all options
                 value,
                 onChange: (val: string) => handleAttributeChange(attribute.label, val),
               };
@@ -266,7 +280,7 @@ export default function VariationSelector({
                     <BinaryToggleSelector
                       key={attribute.id}
                       {...commonProps}
-                      options={attribute.options as [string, string]}
+                      options={availableOptions as [string, string]}
                     />
                   );
 

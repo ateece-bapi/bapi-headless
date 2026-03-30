@@ -35,6 +35,13 @@ describe('Variation Utilities', () => {
       expect(normalizeAttributeSlug('Option A, B, C')).toBe('option-a-b-c');
     });
 
+    it('handles special characters - percent sign', () => {
+      expect(normalizeAttributeSlug('Optional Temperature and %RH')).toBe(
+        'optional-temperature-and-rh'
+      );
+      expect(normalizeAttributeSlug('Humidity %')).toBe('humidity');
+    });
+
     it('handles multiple spaces', () => {
       expect(normalizeAttributeSlug('Multiple   Spaces   Here')).toBe('multiple-spaces-here');
     });

@@ -13,21 +13,22 @@ export const MAX_VARIATIONS = 500;
 
 /**
  * Normalizes attribute names to slug format for consistent matching
- * Must handle special characters (°, commas, etc.) to match WooCommerce slugs
+ * Must handle special characters (°, %, commas, etc.) to match WooCommerce slugs
  *
- * @param name - Attribute name to normalize (e.g., "°F Or °C Display")
- * @returns Normalized slug (e.g., "f-or-c-display")
+ * @param name - Attribute name to normalize (e.g., "°F Or °C Display", "Optional Temperature and %RH")
+ * @returns Normalized slug (e.g., "f-or-c-display", "optional-temperature-and-rh")
  *
  * @example
  * ```ts
  * normalizeAttributeSlug("°F Or °C Display") // "f-or-c-display"
+ * normalizeAttributeSlug("Optional Temperature and %RH") // "optional-temperature-and-rh"
  * normalizeAttributeSlug("Ground Configuration, Comm Jack, Test And Balance") // "ground-configuration-comm-jack-test-and-balance"
  * ```
  */
 export function normalizeAttributeSlug(name: string): string {
   return name
     .toLowerCase()
-    .replace(/[°,]/g, '') // Remove special characters (degree symbol, commas)
+    .replace(/[°,%]/g, '') // Remove special characters (degree symbol, percent, commas)
     .replace(/\s+/g, '-') // Replace spaces with hyphens
     .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
     .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
@@ -112,6 +113,18 @@ export function getAvailableOptions(
         options.add(attr.value);
       }
     });
+    
+    // DEBUG: Log when no options found to diagnose attribute name mismatch
+    if (options.size === 0 && variations.length > 0) {
+      const allAttributeNames = new Set(
+        variations.flatMap(v => v.attributes.nodes.map(a => a.name))
+      );
+      console.warn(
+        `[getAvailableOptions] No options found for attribute: "${attributeName}"\n` +
+        `Available attribute names in variations: ${Array.from(allAttributeNames).join(', ')}`
+      );
+    }
+    
     return Array.from(options);
   }
 

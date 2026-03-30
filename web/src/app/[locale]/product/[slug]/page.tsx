@@ -372,7 +372,14 @@ export default async function ProductPage({
                   .map((attr: any) => {
                     // Get actual values from variations, not from attribute.options
                     // Normalize both attribute name and variation attribute name for comparison
-                    const normalizeSlug = (name: string) => name.toLowerCase().replace(/\s+/g, '-');
+                    // Must handle special characters (°, commas, etc.) to match WooCommerce slugs
+                    const normalizeSlug = (name: string) =>
+                      name
+                        .toLowerCase()
+                        .replace(/[°,]/g, '') // Remove special characters (degree symbol, commas)
+                        .replace(/\s+/g, '-') // Replace spaces with hyphens
+                        .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+                        .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
                     const attributeSlug = normalizeSlug(attr.name);
                     const actualValues = new Set<string>();
 

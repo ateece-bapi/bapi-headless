@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
@@ -188,6 +188,36 @@ export default function VariationSelector({
     }
   };
 
+  // FIX #3 (Performance): Memoize available options to avoid recomputing 3000+ operations per render
+  // This caches the filtered options for all attributes, recomputing only when variations or selections change
+  const availableOptionsMap = useMemo(() => {
+    const map: Record<string, string[]> = {};
+    variationAttributes.forEach((attr) => {
+      const slug = normalizeToSlug(attr.name);
+      map[slug] = getAvailableOptions(slug, variations, selectedAttributes);
+    });
+    return map;
+  }, [variations, selectedAttributes, variationAttributes]);
+
+  // FIX #2 (Stale Selection): Clear selections that are no longer in available options
+  // This prevents UI inconsistency when a selection gets filtered out by smart filtering
+  useEffect(() => {
+    let needsUpdate = false;
+    const updatedSelections = { ...selectedAttributes };
+
+    Object.entries(selectedAttributes).forEach(([slug, value]) => {
+      if (value && availableOptionsMap[slug] && !availableOptionsMap[slug].includes(value)) {
+        // Current selection is no longer available - clear it
+        delete updatedSelections[slug];
+        needsUpdate = true;
+      }
+    });
+
+    if (needsUpdate) {
+      setSelectedAttributes(updatedSelections);
+    }
+  }, [availableOptionsMap, selectedAttributes]);
+
   if (variationAttributes.length === 0) {
     return null;
   }
@@ -256,13 +286,8 @@ export default function VariationSelector({
               const attributeSlug = normalizeToSlug(attribute.name);
               const value = selectedAttributes[attributeSlug] || '';
 
-              // Get available options based on current selections
-              // This filters out options that would create invalid combinations
-              const availableOptions = getAvailableOptions(
-                attributeSlug,
-                variations,
-                selectedAttributes
-              );
+              // Use memoized available options from map (Performance fix #3)
+              const availableOptions = availableOptionsMap[attributeSlug] || [];
 
               const commonProps = {
                 label: attribute.label,
@@ -276,13 +301,19 @@ export default function VariationSelector({
                   return <ColorSwatchSelector key={attribute.id} {...commonProps} />;
 
                 case 'binary-toggle':
-                  return (
-                    <BinaryToggleSelector
-                      key={attribute.id}
-                      {...commonProps}
-                      options={availableOptions as [string, string]}
-                    />
-                  );
+                  // FIX #1 (Binary Toggle): Only use BinaryToggleSelector when exactly 2 options
+                  // If filtered down to 0, 1, or 3+ options, fall back to DropdownSelector
+                  if (availableOptions.length === 2) {
+                    return (
+                      <BinaryToggleSelector
+                        key={attribute.id}
+                        {...commonProps}
+                        options={availableOptions as [string, string]}
+                      />
+                    );
+                  }
+                  // Fall through to dropdown if not exactly 2 options
+                  return <DropdownSelector key={attribute.id} {...commonProps} />;
 
                 case 'radio-group':
                   return <RadioGroupSelector key={attribute.id} {...commonProps} />;

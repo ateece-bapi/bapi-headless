@@ -6,7 +6,8 @@ import type { ProductVariation, SelectedAttributes } from '@/types/variations';
 
 /**
  * Maximum number of variations to fetch from GraphQL
- * This constant is referenced in products.graphql query: variations(first: MAX_VARIATIONS)
+ * Keep in sync with products.graphql query: variations(first: 500)
+ * TODO: Convert to GraphQL variable for dynamic limit control
  */
 export const MAX_VARIATIONS = 500;
 
@@ -123,8 +124,8 @@ export function getAvailableOptions(
   });
 
   // Get unique options from matching variations
-  // FIX #5: Preserve insertion order rather than using Set (which can reorder)
-  // This maintains consistent UI option ordering across renders
+  // FIX #5: Manual deduplication to maintain insertion order
+  // (Sets preserve order, but this approach allows future ordering customization)
   const seenOptions = new Set<string>();
   const orderedOptions: string[] = [];
 

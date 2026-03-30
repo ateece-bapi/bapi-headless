@@ -53,8 +53,11 @@ export default function VariationSelector({
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
   const region = useRegion();
 
-  // Filter to only attributes used for variations
-  const variationAttributes = attributes.filter((attr) => attr.variation);
+  // Filter to only attributes used for variations (memoized to prevent breaking availableOptionsMap memo)
+  const variationAttributes = useMemo(
+    () => attributes.filter((attr) => attr.variation),
+    [attributes]
+  );
 
   // Handle attribute selection
   // attributeName is the display label, need to convert to slug for matching

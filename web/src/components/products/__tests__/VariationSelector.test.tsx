@@ -140,16 +140,27 @@ describe('VariationSelector - Component Smoke Tests', () => {
   });
 
   it('integrates with smart filtering utility (Copilot Review #2, #7-8)', () => {
-    // This test verifies the component uses getAvailableOptions for smart filtering.
-    // With only 3 variations available, smart filtering should only show those 3 options,
-    // even though 5 options are defined in the attribute.
+    // Smart filtering should only surface attribute options that have at least one
+    // matching variation. Here we define 10 possible options but only provide
+    // variations for 6 of them, proving the component filters unavailable options.
 
     const attributes: ProductAttribute[] = [
       {
         id: '1',
         name: 'model',
         label: 'Model',
-        options: ['Model A', 'Model B', 'Model C', 'Model D', 'Model E', 'Model F'],
+        options: [
+          'Model A',
+          'Model B',
+          'Model C',
+          'Model D',
+          'Model E',
+          'Model F',
+          'Model G',
+          'Model H',
+          'Model I',
+          'Model J',
+        ],
         variation: true,
       },
     ];
@@ -250,9 +261,12 @@ describe('VariationSelector - Component Smoke Tests', () => {
       .map((o) => o.value)
       .filter((v) => v);
 
-    // Smart filtering: should show all 6 available options
+    // Smart filtering: should show only 6 available options (A-F), not all 10 defined (A-J)
     expect(options).toHaveLength(6);
-   expect(options).toContain('Model A');
+    expect(options).toContain('Model A');
     expect(options).toContain('Model F');
+    // Verify unavailable options are filtered out
+    expect(options).not.toContain('Model G');
+    expect(options).not.toContain('Model J');
   });
 });

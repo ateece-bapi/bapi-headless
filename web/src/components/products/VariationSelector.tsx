@@ -4,7 +4,12 @@ import { useState, useEffect, useMemo } from 'react';
 import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
-import { findMatchingVariation, areAllAttributesSelected, getAvailableOptions } from '@/lib/variations';
+import {
+  findMatchingVariation,
+  areAllAttributesSelected,
+  getAvailableOptions,
+  normalizeAttributeSlug,
+} from '@/lib/variations';
 import { detectAttributeType } from '@/lib/attributeDetection';
 import ColorSwatchSelector from './variation-selectors/ColorSwatchSelector';
 import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
@@ -51,22 +56,11 @@ export default function VariationSelector({
   // Filter to only attributes used for variations
   const variationAttributes = attributes.filter((attr) => attr.variation);
 
-  // Helper to normalize attribute name to slug format
-  // Must match normalization in page.tsx to handle special characters (°, commas, etc.)
-  const normalizeToSlug = (name: string): string => {
-    return name
-      .toLowerCase()
-      .replace(/[°,]/g, '') // Remove special characters (degree symbol, commas)
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-      .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
-  };
-
   // Handle attribute selection
   // attributeName is the display label, need to convert to slug for matching
   const handleAttributeChange = (attributeName: string, value: string) => {
     // Convert display name to slug (e.g., "Pressure Range" → "pressure-range")
-    const attributeSlug = normalizeToSlug(attributeName);
+    const attributeSlug = normalizeAttributeSlug(attributeName);
 
     const newSelections = {
       ...selectedAttributes,
@@ -77,7 +71,7 @@ export default function VariationSelector({
 
     // Check if all attributes are selected (use newSelections, not state)
     // Use slugified names to match what's in newSelections
-    const attributeSlugs = variationAttributes.map((a) => normalizeToSlug(a.name));
+    const attributeSlugs = variationAttributes.map((a) => normalizeAttributeSlug(a.name));
     const allSelected = areAllAttributesSelected(attributeSlugs, newSelections);
 
     if (allSelected) {
@@ -116,7 +110,7 @@ export default function VariationSelector({
       let hasUrlParams = false;
 
       variationAttributes.forEach((attr) => {
-        const slug = normalizeToSlug(attr.name);
+        const slug = normalizeAttributeSlug(attr.name);
         const value = params.get(slug);
         if (value) {
           urlSelections[slug] = value;
@@ -128,7 +122,7 @@ export default function VariationSelector({
         setSelectedAttributes(urlSelections);
 
         // Check if we can find a matching variation
-        const attributeSlugs = variationAttributes.map((a) => normalizeToSlug(a.name));
+        const attributeSlugs = variationAttributes.map((a) => normalizeAttributeSlug(a.name));
         const allSelected = areAllAttributesSelected(attributeSlugs, urlSelections);
         if (allSelected) {
           const variation = findMatchingVariation(variations, urlSelections);
@@ -193,7 +187,7 @@ export default function VariationSelector({
   const availableOptionsMap = useMemo(() => {
     const map: Record<string, string[]> = {};
     variationAttributes.forEach((attr) => {
-      const slug = normalizeToSlug(attr.name);
+      const slug = normalizeAttributeSlug(attr.name);
       map[slug] = getAvailableOptions(slug, variations, selectedAttributes);
     });
     return map;
@@ -283,7 +277,7 @@ export default function VariationSelector({
             {/* Configuration Options */}
             {variationAttributes.map((attribute) => {
               const uiType = detectAttributeType(attribute);
-              const attributeSlug = normalizeToSlug(attribute.name);
+              const attributeSlug = normalizeAttributeSlug(attribute.name);
               const value = selectedAttributes[attributeSlug] || '';
 
               // Use memoized available options from map (Performance fix #3)

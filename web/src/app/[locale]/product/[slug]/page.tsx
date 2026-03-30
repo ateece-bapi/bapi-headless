@@ -43,6 +43,7 @@ import { PerformanceTimer } from '@/lib/monitoring/performance';
 import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import { generateProductMetadata, generateCategoryMetadata } from '@/lib/metadata';
 import { getProductBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
+import { normalizeAttributeSlug } from '@/lib/variations';
 import type { Metadata } from 'next';
 
 /**
@@ -372,20 +373,12 @@ export default async function ProductPage({
                   .map((attr: any) => {
                     // Get actual values from variations, not from attribute.options
                     // Normalize both attribute name and variation attribute name for comparison
-                    // Must handle special characters (°, commas, etc.) to match WooCommerce slugs
-                    const normalizeSlug = (name: string) =>
-                      name
-                        .toLowerCase()
-                        .replace(/[°,]/g, '') // Remove special characters (degree symbol, commas)
-                        .replace(/\s+/g, '-') // Replace spaces with hyphens
-                        .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-                        .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
-                    const attributeSlug = normalizeSlug(attr.name);
+                    const attributeSlug = normalizeAttributeSlug(attr.name);
                     const actualValues = new Set<string>();
 
                     (variationData.variations?.nodes || []).forEach((variation: any) => {
                       const varAttr = variation.attributes?.nodes?.find((va: any) => {
-                        const vaSlug = normalizeSlug(va.name);
+                        const vaSlug = normalizeAttributeSlug(va.name);
                         return vaSlug === attributeSlug;
                       });
                       if (varAttr?.value) {

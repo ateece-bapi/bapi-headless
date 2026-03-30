@@ -128,6 +128,13 @@ query GetProductBySlug($slug: ID!) {
         id
         name
         slug
+        parent {
+          node {
+            id
+            name
+            slug
+          }
+        }
       }
     }
     productTags {
@@ -203,6 +210,13 @@ query GetProductBySlugLight($slug: ID!) {
         id
         name
         slug
+        parent {
+          node {
+            id
+            name
+            slug
+          }
+        }
       }
     }
     productDocuments {
@@ -391,6 +405,7 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 200, $after: S
             parent {
               node {
                 id
+                name
                 slug
               }
             }
@@ -626,6 +641,13 @@ query GetProductsWithFilters(
             id
             name
             slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
           }
         }
         allPaApplication {
@@ -769,6 +791,13 @@ query GetProductsWithFilters(
             id
             name
             slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
           }
         }
         allPaApplication {

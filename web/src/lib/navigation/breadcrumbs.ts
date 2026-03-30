@@ -26,6 +26,27 @@ function normalizeSlug(slug: string | undefined): string {
   return slugMap[slug] || slug;
 }
 
+/**
+ * Normalize WordPress category names
+ * Maps numeric/malformed names to proper display names
+ * WordPress sometimes has numeric category IDs as names
+ */
+function normalizeCategoryName(name: string | undefined): string {
+  if (!name) return 'Products';
+  
+  // Map known bad names to correct ones
+  const nameMap: Record<string, string> = {
+    '727': 'Temperature Sensors',
+    '728': 'Humidity Sensors',
+    '729': 'Pressure Sensors',
+    '730': 'Air Quality Sensors',
+    '731': 'Wireless Sensors',
+    '732': 'Accessories',
+  };
+  
+  return nameMap[name] || name;
+}
+
 export interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -118,9 +139,10 @@ export function getSubcategoryBreadcrumbs(
   });
 
   const normalizedParentSlug = normalizeSlug(parentCategorySlug);
+  const normalizedParentName = normalizeCategoryName(parentCategoryName);
   
   breadcrumbs.push({
-    label: parentCategoryName,
+    label: normalizedParentName,
     href: `/${locale}/categories/${normalizedParentSlug}`,
   });
 
@@ -170,8 +192,9 @@ export function getProductBreadcrumbs(
     // Add parent category if exists
     if (primaryCategory.parent) {
       const normalizedParentSlug = normalizeSlug(primaryCategory.parent.slug);
+      const normalizedParentName = normalizeCategoryName(primaryCategory.parent.name);
       breadcrumbs.push({
-        label: primaryCategory.parent.name,
+        label: normalizedParentName,
         href: `/${locale}/categories/${normalizedParentSlug}`,
       });
     }

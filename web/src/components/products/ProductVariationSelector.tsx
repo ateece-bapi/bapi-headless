@@ -87,6 +87,7 @@ export default function ProductVariationSelector({
         stockStatus: variation.stockStatus || 'IN_STOCK',
         partNumber: variation.partNumber || undefined, // Transform null to undefined
         sku: variation.sku || '',
+        image: variation.image || null,
         attributes: {
           nodes: Object.entries(variation.attributes).map(([name, value]) => ({
             name,
@@ -133,7 +134,7 @@ export default function ProductVariationSelector({
         ),
         partNumber: newVariation.partNumber,
         sku: newVariation.sku,
-        image: null,
+        image: newVariation.image || null,
       };
 
       onVariationChange(oldFormatVariation);

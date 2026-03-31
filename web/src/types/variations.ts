@@ -26,6 +26,10 @@ export interface ProductVariation {
   stockStatus: string;
   partNumber?: string;
   sku: string;
+  image?: {
+    sourceUrl?: string | null;
+    altText?: string | null;
+  } | null;
   attributes: {
     nodes: VariationAttribute[];
   };

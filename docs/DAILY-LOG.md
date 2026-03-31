@@ -2,9 +2,439 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** March 30, 2026  
-**Status:** Phase 1 Development - April 24, 2026 Go-Live (25 days remaining)  
+**Updated:** March 31, 2026  
+**Status:** Phase 1 Development - April 24, 2026 Go-Live (24 days remaining)  
 **Testing Phase:** 2-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## March 31, 2026 — Product Gallery Overhaul: Lightbox Crisis & Portal Architecture Breakthrough 🖼️
+
+**Status:** ✅ COMPLETE - All Tests Passing (43/43) 🎉  
+**Context:** Product gallery image sizing + lightbox controls completely broken  
+**Time:** ~8 hours (3 hours layout → 4+ hours lightbox debugging → 1 hour test fixes)  
+**Branch:** Direct commits to main (no branch - iterative debugging session)  
+**Commits:** Multiple commits addressing progressive feedback  
+**Files Modified:** 6 files (ProductGallery, ProductDetailClient, Breadcrumbs, test setup, test specs)
+
+### 🎯 SESSION SUMMARY: React Portal Breakthrough After 100+ Failed Attempts
+
+**Trigger:** User reported main image area "WAY TOO BIG, TOO MUCH WHITESPACE" + lightbox modal cut off  
+**Root Cause:** 
+1. Image gallery using tall fixed heights (500px/600px/700px) instead of compact responsive sizing
+2. Layout using 3-column grid (gallery = 66% width) instead of 2-column (50% width)
+3. **CRITICAL:** Lightbox controls completely invisible despite being in DOM - flex containers clipping position:absolute children
+4. MUI ChevronRightIcon causing SSR hydration mismatch in breadcrumbs
+
+**Evolution:** Simple sizing fix → Lightbox crisis (4+ hours) → **Portal breakthrough** → Zoom controls → Test compatibility  
+**Critical Moments:**
+1. Comparison with live staging site showing much more compact proportions
+2. 100+ failed attempts to fix invisible lightbox controls (z-index wars, inline styles, !important)
+3. **BREAKTHROUGH:** Discovered flex container clipping issue → React Portal solution
+4. Reference to DAILY-LOG March 26-27 ImageModal crisis - same Portal solution pattern
+5. Comprehensive zoom controls (zoom in/out, percentage, reset) matching live site exactly
+
+**Approach:** Iterative debugging → Architectural shift (Portal) → Full feature parity → Test infrastructure fixes
+
+---
+
+### Part 1: Image Gallery Sizing & Layout Refinement
+
+**Problem:** User feedback: "Main image area FAR TOO BIG" + "TOO MUCH WHITESPACE"
+
+**Initial Attempt - aspect-square:**
+```typescript
+// First try: Changed from fixed heights to aspect-square
+<div className="aspect-square"> // ❌ Made it even taller!
+```
+
+**Second Attempt - Compact Responsive Heights:**
+```typescript
+// BEFORE: Excessive heights
+<div className="h-[500px] md:h-[600px] lg:h-[700px]"> // ❌ Way too tall
+
+// AFTER: Compact sizing matching staging site
+<div className="h-[400px] md:h-[450px]"> // ✅ Much more reasonable
+```
+
+**Layout Optimization:**
+```typescript
+// BEFORE: 3-column grid (gallery spans 2 = 66% width)
+<div className="grid gap-8 lg:grid-cols-3">
+  <div className="lg:col-span-2"> // Gallery
+  <div> // Product Summary
+
+// AFTER: 2-column grid (50% width each)
+<div className="grid gap-8 lg:grid-cols-2">
+  <div> // Gallery
+  <div> // Product Summary
+```
+
+**Files Changed:**
+- `web/src/components/products/ProductGallery.tsx` - Image sizing
+- `web/src/components/products/ProductPage/ProductDetailClient.tsx` - Grid layout
+
+---
+
+### Part 2: Lightbox Crisis - 4+ Hour Debugging Marathon
+
+**Problem:** Lightbox modal controls completely invisible - only ESC key working
+
+**Symptoms:**
+- Close button, navigation arrows, zoom controls, counter all invisible
+- Elements present in DOM with correct HTML structure
+- z-index values correct (99999), white backgrounds specified
+- User kept reporting: "STILL MISSING THE TOP MIDDLE CONTROLS LIKE THE LIVE STAGE SITE!!"
+
+**100+ Failed Attempts:**
+```typescript
+// Tried EVERYTHING that shouldn't have failed:
+❌ z-index escalation (9999 → 99999 → 999999)
+❌ !important on all styles  
+❌ Inline styles instead of Tailwind classes
+❌ position: fixed vs absolute vs sticky
+❌ Different color schemes (white → red → green)
+❌ Simplified to single button test case
+❌ Removed all backdrop-filter effects
+❌ Changed stacking contexts
+```
+
+**Discovery Process:**
+1. User shared screenshot of working staging site with all controls visible
+2. Analyzed working ImageModal component pattern from March 26-27 session
+3. Realized Portal solution was already documented in DAILY-LOG
+4. **Root Cause:** Flex container with `items-center justify-center` was clipping absolutely positioned children
+
+**BREAKTHROUGH: React Portal Architecture**
+```typescript
+// SOLUTION: Render to document.body to escape ALL parent containers
+import { createPortal } from 'react-dom';
+
+export default function ProductGallery({ images, productName }: Props) {
+  // ... component logic
+  
+  const lightboxContent = (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 99990, backgroundColor: 'rgba(0,0,0,0.9)' }}>
+      {/* Close button - z-index: 99999 */}
+      {/* Zoom controls - z-index: 99999 */}
+      {/* Navigation arrows - z-index: 99999 */}
+      {/* Image counter - z-index: 99999 */}
+    </div>
+  );
+
+  return (
+    <>
+      {/* Gallery content */}
+      {isLightboxOpen &&
+        typeof window !== 'undefined' &&
+        createPortal(lightboxContent, document.body)
+      }
+    </>
+  );
+}
+```
+
+**Why Portal Solved It:**
+- Escapes ALL parent container constraints (flex, grid, overflow, transform)
+- Renders directly to `document.body` root level
+- No interference from intermediate stacking contexts
+- z-index values work as intended without conflicts
+
+---
+
+### Part 3: Zoom Controls - Full Feature Parity
+
+**User Requirement:** "STILL MISSING THE TOP MIDDLE CONTROLS LIKE THE LIVE STAGE SITE!!"
+
+**Reference:** Checked working ImageModal from March 26-27 session
+
+**Implemented Full Zoom Bar:**
+```typescript
+// Top center control bar with 5 elements:
+<div style={{ position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', 
+              zIndex: 99999, backgroundColor: 'rgba(255,255,255,0.95)', 
+              borderRadius: '50px', padding: '12px 20px' }}>
+  
+  {/* 1. Zoom Out Button */}
+  <button disabled={scale <= 1} onClick={zoomOut}>
+    <MinusIcon />
+  </button>
+  
+  {/* 2. Percentage Display */}
+  <span>{Math.round(scale * 100)}%</span>
+  
+  {/* 3. Zoom In Button */}
+  <button disabled={scale >= 5} onClick={zoomIn}>
+    <PlusIcon />
+  </button>
+  
+  {/* 4. Divider */}
+  <div style={{ width: '1px', height: '24px', backgroundColor: '#d4d4d8' }} />
+  
+  {/* 5. Reset Button */}
+  <button onClick={resetView}>
+    <RefreshCwIcon /> Reset
+  </button>
+</div>
+```
+
+**Zoom Functionality:**
+- Range: 100% to 500%
+- Increments: 25% per click
+- Mouse wheel zoom
+- Keyboard shortcuts: +/- keys
+- Smooth transform transitions
+- Auto-reset on open/close
+
+**Styling Corrections:**
+```typescript
+// BEFORE: White icons on semi-transparent backgrounds (invisible!)
+style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff' }} // ❌
+
+// AFTER: Solid white backgrounds with dark icons (visible!)
+style={{ backgroundColor: 'rgba(255,255,255,0.95)', color: '#171717' }} // ✅
+```
+
+---
+
+### Part 4: Breadcrumb Hydration Fix
+
+**Problem:** MUI ChevronRightIcon causing hydration mismatch
+
+**Error:**
+```
+Hydration failed because the server rendered HTML didn't match the client.
+at ChevronRightIcon (src/components/products/ProductPage/Breadcrumbs.tsx:75:17)
+```
+
+**Root Cause:** MUI icons use Emotion CSS-in-JS which causes SSR/CSR mismatches
+
+**Solution:** Replace with inline SVG
+```typescript
+// BEFORE: MUI icon with Emotion styling
+import { ChevronRightIcon } from '@/lib/icons';
+<ChevronRightIcon className="mx-1 h-4 w-4 text-neutral-300" aria-hidden="true" />
+
+// AFTER: Simple inline SVG (renders identically on server/client)
+<svg
+  className="mx-1 h-4 w-4 text-neutral-300"
+  fill="none"
+  stroke="currentColor"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+</svg>
+```
+
+**Files Changed:**
+- `web/src/components/products/ProductPage/Breadcrumbs.tsx`
+
+---
+
+### Part 5: Test Infrastructure Fixes
+
+**Problem:** ProductGallery tests failing (27/43 passing → 16 failing)
+
+**Root Cause:** React Portal content renders to `document.body`, but tests expected inline rendering
+
+**Solution 1: Portal Mock in Test Setup**
+```typescript
+// web/test/setupTests.ts
+vi.mock('react-dom', async () => {
+  const actual = await vi.importActual('react-dom');
+  return {
+    ...actual,
+    createPortal: (node: ReactNode) => node, // Render inline for tests
+  };
+});
+```
+
+**Solution 2: Updated Test Queries**
+```typescript
+// BEFORE: Complex DOM traversal (brittle)
+const mainImageContainer = screen
+  .getAllByAltText('Product image 1')[0]
+  .closest('div')?.parentElement;
+
+// AFTER: Direct testid selector (reliable)
+const mainImageContainer = screen.getByTestId('main-image-container');
+```
+
+**Solution 3: Fixed Stray Syntax Error**
+```typescript
+// Found and removed stray closing brace breaking test:
+it('closes lightbox with Escape key', () => {
+  fireEvent.click(mainImageContainer);
+  } // ❌ Stray brace
+
+  expect(screen.getByLabelText('Close lightbox')).toBeInTheDocument();
+```
+
+**Files Changed:**
+- `web/test/setupTests.ts` - Added Portal mock
+- `web/src/components/products/__tests__/ProductGallery.test.tsx` - Fixed 3 tests + syntax error
+
+**Final Result:** ✅ 43/43 ProductGallery tests passing
+
+---
+
+### 🎁 DELIVERABLES
+
+**Image Gallery Optimization:**
+- ✅ Compact responsive sizing: `h-[400px] md:h-[450px]` (was `h-[500px]/[600px]/[700px]`)
+- ✅ 2-column layout: 50/50 split between gallery and product summary (was 66/33)
+- ✅ Proper image containment with flex centering
+- ✅ Matches live staging site proportions exactly
+
+**Lightbox/Modal Complete Overhaul:**
+- ✅ React Portal architecture rendering to `document.body`
+- ✅ All controls visible and functional (close, arrows, counter, hints)
+- ✅ Full zoom controls bar (zoom in/out, percentage, reset)
+- ✅ Zoom range: 100% - 500% with 25% increments
+- ✅ Mouse wheel zoom + keyboard shortcuts
+- ✅ Proper z-index layering (background: 99990, image: 99991, controls: 99999)
+- ✅ Solid white backgrounds with dark icons (visible against dark backdrop)
+- ✅ SSR-safe with `typeof window !== 'undefined'` check
+
+**Hydration Fix:**
+- ✅ Replaced MUI ChevronRightIcon with inline SVG in Breadcrumbs
+- ✅ No more Emotion CSS-in-JS hydration mismatches
+
+**Test Infrastructure:**
+- ✅ Portal mock in test setup for inline rendering
+- ✅ All 43 ProductGallery tests passing
+- ✅ Updated test queries to use testid selectors
+- ✅ Removed debug console.log statements
+
+---
+
+### 📊 IMPACT
+
+**Before:**
+```
+Main Gallery:
+- Image height: 500px/600px/700px (excessive whitespace)
+- Layout: 66% gallery width (too dominant)
+- Lightbox: Controls completely invisible ❌
+- Breadcrumb: Hydration errors in console ❌
+- Tests: 27/43 passing (16 failures) ❌
+```
+
+**After:**
+```
+Main Gallery:
+- Image height: 400px/450px (compact, matches staging)
+- Layout: 50% gallery width (balanced with product info)
+- Lightbox: All controls visible and functional ✅
+  • Close button (top right)
+  • Zoom controls (top center: -/+/reset/percentage)
+  • Navigation arrows (center left/right)
+  • Image counter (top left)
+  • Keyboard hints (bottom center)
+- Breadcrumb: No hydration errors ✅
+- Tests: 43/43 passing (100% success rate) ✅
+```
+
+**Performance:** No negative impact - Portal renders efficiently  
+**Maintainability:** Clean architecture following March 26-27 ImageModal pattern  
+**UX:** Professional image viewing experience matching live staging site
+
+---
+
+### 🔑 KEY LEARNINGS
+
+1. **React Portal Use Cases:**
+   - When parent containers use flex/grid/transform/overflow that clip children
+   - When z-index wars become unmanageable despite correct values
+   - For overlays that need to escape ALL positioning contexts
+   - Always render to `document.body` for maximum control
+
+2. **Historical Context Matters:**
+   - DAILY-LOG documented March 26-27 ImageModal crisis with same Portal solution
+   - Reviewing past debugging sessions saves hours of re-discovery
+   - Architectural patterns established in previous sessions apply to similar problems
+
+3. **Inline Styles vs Tailwind for Portals:**
+   - Inline styles more reliable for Portal content (no class name conflicts)
+   - Explicit z-index values via style prop ensure proper layering
+   - Mix inline styles (positioning/z-index) with Tailwind (spacing/colors) works well
+
+4. **MUI Icons + SSR = Hydration Issues:**
+   - Emotion CSS-in-JS causes server/client HTML mismatches
+   - Simple UI elements (breadcrumb separators) better as inline SVG
+   - Only use MUI icons in client components when necessary
+
+5. **Test Infrastructure for Portals:**
+   - Mock `createPortal` to render inline for test queries
+   - Use testid selectors instead of complex DOM traversal
+   - Portal mocks in setup files apply globally to all tests
+
+6. **User Feedback Iteration:**
+   - "Still too big" → "Still too big" → "Finally!" requires patience
+   - Comparing with live staging site provides concrete reference
+   - Screenshots from user essential for understanding exact expectations
+
+---
+
+### 📝 NOTES FOR FUTURE
+
+**Portal Pattern (Documented):**
+```typescript
+// Standard pattern for modal/overlay components:
+import { createPortal } from 'react-dom';
+
+const modalContent = (/* JSX with fixed positioning + high z-index */);
+
+return (
+  <>
+    {/* Normal component content */}
+    {isOpen && typeof window !== 'undefined' &&
+      createPortal(modalContent, document.body)
+    }
+  </>
+);
+```
+
+**Test Pattern for Portals:**
+```typescript
+// In setupTests.ts:
+vi.mock('react-dom', async () => {
+  const actual = await vi.importActual('react-dom');
+  return {
+    ...actual,
+    createPortal: (node: ReactNode) => node,
+  };
+});
+
+// In test file:
+const { baseElement } = render(<Component />); // For accessibility testing
+await expect(axe(baseElement)).resolves.toHaveNoViolations();
+```
+
+**Inline SVG for Simple Icons:**
+```typescript
+// Prefer over MUI for non-interactive UI elements:
+<svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+</svg>
+```
+
+---
+
+### Launch Readiness Impact 🚀
+
+**Phase 1 Critical Requirement:**
+- ✅ **Product Gallery Professional:** Matches live staging site quality
+- ✅ **Image Viewing Experience:** Full-featured lightbox with zoom/pan
+- ✅ **Zero Hydration Errors:** Clean console, no React warnings
+- ✅ **Test Coverage:** 43/43 tests passing (100% reliability)
+
+**24 Days to Launch:**
+- Product detail pages now production-ready
+- Image gallery UX meets professional standards
+- Lightbox functionality complete with all controls
+- Test infrastructure stable for ongoing development
 
 ---
 

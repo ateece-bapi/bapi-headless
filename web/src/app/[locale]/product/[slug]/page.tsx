@@ -323,10 +323,12 @@ export default async function ProductPage({
                 altText: product.image.altText || '',
               }
             : null,
-          gallery: ((product as any).galleryImages?.nodes || []).map((img: any) => ({
-            sourceUrl: img.sourceUrl,
-            altText: img.altText,
-          })),
+          gallery: ((product as any).galleryImages?.nodes || [])
+            .filter((img: any) => img && img.sourceUrl) // Only include valid images
+            .map((img: any) => ({
+              sourceUrl: img.sourceUrl,
+              altText: img.altText || '',
+            })),
           documents: (product.productDocuments || [])
             .filter(
               (category): category is NonNullable<typeof category> =>
@@ -406,6 +408,12 @@ export default async function ProductPage({
                   stockStatus: variation.stockStatus,
                   partNumber: variation.partNumber,
                   sku: variation.sku,
+                  image: variation.image
+                    ? {
+                        sourceUrl: variation.image.sourceUrl,
+                        altText: variation.image.altText || variation.name,
+                      }
+                    : null,
                   attributes: (variation.attributes?.nodes || []).reduce((acc: any, attr: any) => {
                     acc[attr.name] = attr.value;
                     return acc;

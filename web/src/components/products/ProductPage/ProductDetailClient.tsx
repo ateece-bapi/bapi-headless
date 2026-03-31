@@ -93,24 +93,50 @@ export default function ProductDetailClient({
         <div className="py-12">
           <div className="container mx-auto px-4">
             {/* Main Product Layout */}
-            <div className="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div className="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
               {/* Left Column: Product Image */}
-              <div className="lg:col-span-2">
-                {product.gallery && product.gallery.length > 0 ? (
-                  <ProductGallery
-                    images={product.gallery.map((img: any) => ({
-                      sourceUrl: img.sourceUrl,
-                      altText: img.altText || product.name,
-                    }))}
-                    productName={product.name}
-                  />
-                ) : (
-                  <ProductHero product={product} variation={selectedVariation} />
-                )}
+              <div>
+                {(() => {
+                  const allImages = [];
+                  // Include main product image first if it exists and isn't in gallery
+                  if (product.image && product.image.sourceUrl) {
+                    const isInGallery = product.gallery?.some(
+                      (img: any) => img && img.sourceUrl === product.image.sourceUrl
+                    );
+                    if (!isInGallery) {
+                      allImages.push({
+                        sourceUrl: product.image.sourceUrl,
+                        altText: product.image.altText || product.name,
+                      });
+                    }
+                  }
+                  // Add all gallery images
+                  if (product.gallery && product.gallery.length > 0) {
+                    allImages.push(
+                      ...product.gallery
+                        .filter((img: any) => img && img.sourceUrl) // Filter out invalid images
+                        .map((img: any) => ({
+                          sourceUrl: img.sourceUrl,
+                          altText: img.altText || product.name,
+                        }))
+                    );
+                  }
+                  console.log('[ProductDetailClient] Images array:', {
+                    count: allImages.length,
+                    urls: allImages.map(img => img.sourceUrl).slice(0, 3)
+                  });
+                  return (
+                    <ProductGallery
+                      images={allImages}
+                      productName={product.name}
+                      variation={selectedVariation}
+                    />
+                  );
+                })()}
               </div>
 
               {/* Right Column: Product Summary (Sticky) */}
-              <div className="lg:col-span-1">
+              <div>
                 <ProductSummaryCard
                   product={product}
                   variation={selectedVariation}

@@ -36,20 +36,22 @@ interface ProductGalleryProps {
  * @param variation - Selected variation (shows variation image first)
  */
 export default function ProductGallery({ images, productName, variation }: ProductGalleryProps) {
-  // If variation has an image, prepend it to the gallery
+  // If variation has an image with valid sourceUrl, prepend it to the gallery
   const galleryImages = React.useMemo(() => {
-    if (variation?.image) {
+    const variationImage = variation?.image && variation.image.sourceUrl ? variation.image : null;
+
+    if (variationImage) {
       // Check if variation image is already in gallery to avoid duplicates
-      const isDuplicate = images.some(img => img.sourceUrl === variation.image?.sourceUrl);
+      const isDuplicate = images.some((img) => img.sourceUrl === variationImage.sourceUrl);
       if (isDuplicate) {
         // Move variation image to front
         return [
-          variation.image,
-          ...images.filter(img => img.sourceUrl !== variation.image?.sourceUrl)
+          variationImage,
+          ...images.filter((img) => img.sourceUrl !== variationImage.sourceUrl),
         ];
       }
       // Add variation image at front
-      return [variation.image, ...images];
+      return [variationImage, ...images];
     }
     return images;
   }, [images, variation]);
@@ -59,10 +61,15 @@ export default function ProductGallery({ images, productName, variation }: Produ
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [scale, setScale] = useState(1);
 
-  // Reset to first image when variation changes
-  useEffect(() => {
+  // Track variation changes to reset selected index (render-phase update pattern)
+  const variationKey = variation?.name || variation?.image?.sourceUrl || 'default';
+  const [currentVariationKey, setCurrentVariationKey] = useState(variationKey);
+
+  // Reset to first image when variation changes (without useEffect to avoid cascading renders)
+  if (variationKey !== currentVariationKey) {
+    setCurrentVariationKey(variationKey);
     setSelectedIndex(0);
-  }, [variation]);
+  }
 
   const hasMultipleImages = galleryImages.length > 1;
   const currentImage = galleryImages[selectedIndex] || galleryImages[0];
@@ -133,12 +140,50 @@ export default function ProductGallery({ images, productName, variation }: Produ
           e.preventDefault();
           closeLightbox();
           break;
+        // Zoom shortcuts
+        case '+':
+        case '=': // = key also triggers zoom in (no shift needed)
+          e.preventDefault();
+          zoomIn();
+          break;
+        case '-':
+          e.preventDefault();
+          zoomOut();
+          break;
+        case '0':
+          e.preventDefault();
+          resetView();
+          break;
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isLightboxOpen, goToPrevious, goToNext, closeLightbox]);
+  }, [isLightboxOpen, goToPrevious, goToNext, closeLightbox, zoomIn, zoomOut, resetView]);
+
+  // Mouse wheel zoom
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (e.deltaY < 0) {
+        zoomIn();
+      } else {
+        zoomOut();
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWheel);
+  }, [isLightboxOpen, zoomIn, zoomOut]);
+
+  // Cleanup body scroll on unmount (in case user navigates away while lightbox open)
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   // Touch gestures for mobile
   useEffect(() => {
@@ -194,6 +239,13 @@ export default function ProductGallery({ images, productName, variation }: Produ
           className="group relative flex h-[400px] w-full cursor-zoom-in items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white md:h-[450px]"
           onClick={() => openLightbox(selectedIndex)}
         >
+          {/* 
+            Using raw <img> instead of next/image for main gallery:
+            - Zoom/transform effects work more reliably with native img
+            - Lightbox zoom functionality requires direct img manipulation
+            - Gallery images are already optimized by WordPress
+            - No responsive srcset needed (single size display)
+          */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={currentImage.sourceUrl}
@@ -267,6 +319,9 @@ export default function ProductGallery({ images, productName, variation }: Produ
       {/* Lightbox Modal - Rendered via Portal to document.body */}
       {isLightboxOpen && createPortal(
           <div 
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image lightbox"
           style={{
             position: 'fixed',
             inset: 0,
@@ -299,22 +354,10 @@ export default function ProductGallery({ images, productName, variation }: Produ
               }}
               disabled={scale <= 1}
               aria-label="Zoom out"
+              className="flex items-center justify-center rounded-full p-2 transition-colors hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
               style={{
-                padding: '8px',
                 backgroundColor: 'transparent',
                 border: 'none',
-                borderRadius: '50%',
-                cursor: scale <= 1 ? 'not-allowed' : 'pointer',
-                opacity: scale <= 1 ? 0.5 : 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              onMouseEnter={(e) => {
-                if (scale > 1) e.currentTarget.style.backgroundColor = '#f5f5f5';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
               }}
             >
               <ZoomOutIcon style={{ width: '20px', height: '20px', color: '#404040' }} />
@@ -340,22 +383,10 @@ export default function ProductGallery({ images, productName, variation }: Produ
               }}
               disabled={scale >= 5}
               aria-label="Zoom in"
+              className="flex items-center justify-center rounded-full p-2 transition-colors hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-50"
               style={{
-                padding: '8px',
                 backgroundColor: 'transparent',
                 border: 'none',
-                borderRadius: '50%',
-                cursor: scale >= 5 ? 'not-allowed' : 'pointer',
-                opacity: scale >= 5 ? 0.5 : 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              onMouseEnter={(e) => {
-                if (scale < 5) e.currentTarget.style.backgroundColor = '#f5f5f5';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
               }}
             >
               <ZoomInIcon style={{ width: '20px', height: '20px', color: '#404040' }} />
@@ -369,24 +400,10 @@ export default function ProductGallery({ images, productName, variation }: Produ
                 resetView();
               }}
               aria-label="Reset view"
+              className="flex cursor-pointer items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100"
               style={{
-                padding: '8px 12px',
                 backgroundColor: 'transparent',
                 border: 'none',
-                borderRadius: '50px',
-                cursor: 'pointer',
-                fontSize: '13px',
-                fontWeight: 500,
-                color: '#404040',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#f5f5f5';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
               }}
             >
               <RotateCwIcon style={{ width: '16px', height: '16px' }} />
@@ -401,6 +418,7 @@ export default function ProductGallery({ images, productName, variation }: Produ
               closeLightbox();
             }}
             aria-label="Close lightbox"
+            className="transition-transform hover:scale-110 hover:bg-neutral-100"
             style={{
               position: 'fixed',
               top: '20px',
@@ -415,16 +433,7 @@ export default function ProductGallery({ images, productName, variation }: Produ
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              transition: 'transform 0.2s, background-color 0.2s',
               border: 'none',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.backgroundColor = '#f5f5f5';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.backgroundColor = 'white';
             }}
           >
             <XIcon style={{ width: '24px', height: '24px', color: '#171717' }} />
@@ -457,6 +466,7 @@ export default function ProductGallery({ images, productName, variation }: Produ
                   goToPrevious();
                 }}
                 aria-label="Previous image"
+                className="group-hover:scale-110 transition-transform hover:bg-neutral-100"
                 style={{
                   position: 'fixed',
                   left: '20px',
@@ -472,16 +482,7 @@ export default function ProductGallery({ images, productName, variation }: Produ
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  transition: 'transform 0.2s, background-color 0.2s',
                   border: 'none',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-                  e.currentTarget.style.backgroundColor = '#f5f5f5';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-                  e.currentTarget.style.backgroundColor = 'white';
                 }}
               >
                 <ChevronLeftIcon style={{ width: '28px', height: '28px', color: '#171717' }} />
@@ -492,6 +493,7 @@ export default function ProductGallery({ images, productName, variation }: Produ
                   goToNext();
                 }}
                 aria-label="Next image"
+                className="group-hover:scale-110 transition-transform hover:bg-neutral-100"
                 style={{
                   position: 'fixed',
                   right: '20px',
@@ -507,16 +509,7 @@ export default function ProductGallery({ images, productName, variation }: Produ
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  transition: 'transform 0.2s, background-color 0.2s',
                   border: 'none',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-                  e.currentTarget.style.backgroundColor = '#f5f5f5';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-                  e.currentTarget.style.backgroundColor = 'white';
                 }}
               >
                 <ChevronRightIcon style={{ width: '28px', height: '28px', color: '#171717' }} />

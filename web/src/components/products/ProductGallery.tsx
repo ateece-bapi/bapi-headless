@@ -61,15 +61,17 @@ export default function ProductGallery({ images, productName, variation }: Produ
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [scale, setScale] = useState(1);
 
-  // Track variation changes to reset selected index (render-phase update pattern)
+  // Track previous variation to detect changes (useRef avoids re-renders)
   const variationKey = variation?.name || variation?.image?.sourceUrl || 'default';
-  const [currentVariationKey, setCurrentVariationKey] = useState(variationKey);
+  const prevVariationKeyRef = React.useRef(variationKey);
 
-  // Reset to first image when variation changes (without useEffect to avoid cascading renders)
-  if (variationKey !== currentVariationKey) {
-    setCurrentVariationKey(variationKey);
-    setSelectedIndex(0);
-  }
+  // Reset to first image when variation changes (useEffect for side effects)
+  React.useEffect(() => {
+    if (variationKey !== prevVariationKeyRef.current) {
+      prevVariationKeyRef.current = variationKey;
+      setSelectedIndex(0);
+    }
+  }, [variationKey]);
 
   const hasMultipleImages = galleryImages.length > 1;
   const currentImage = galleryImages[selectedIndex] || galleryImages[0];

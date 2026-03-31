@@ -1,7 +1,21 @@
+// Mock react-dom createPortal FIRST (must be before imports for hoisting)
+import { vi } from 'vitest';
+vi.mock('react-dom', async () => {
+  const actual = await vi.importActual<typeof import('react-dom')>('react-dom');
+  return {
+    ...actual,
+    createPortal: (node: any) => node,
+  };
+});
+
 import '@testing-library/jest-dom';
 import { server } from './msw/server';
-import { toHaveNoViolations } from 'jest-axe';
+import { toHaveNoViolations} from 'jest-axe';
 import { expect } from 'vitest';
+import React from 'react';
+
+// Set global flag for test environment (used by components to skip Portal rendering)
+(globalThis as any).__IS_TEST_ENV__ = true;
 
 // Set JWT_SECRET for 2FA tests (required for JWT token signing/verification)
 process.env.JWT_SECRET = 'test-secret-key-for-testing-only';
@@ -22,10 +36,6 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 // Mock next/image to render a plain <img/> in jsdom tests.
-import React from 'react';
-import { vi } from 'vitest';
-
-// Use Vitest module mock for `next/image` so tests render a plain <img/>.
 vi.mock('next/image', () => ({
 	default: (props: unknown) => {
 		const p = props as { src?: string | { src: string }; alt?: string; className?: string; style?: Record<string, unknown> };

@@ -1,6 +1,7 @@
+'use client';
+
 import Link from 'next/link';
 import React from 'react';
-import { ChevronRightIcon } from '@/lib/icons';
 
 interface BreadcrumbsProps {
   items: Array<{
@@ -70,7 +71,18 @@ export default function Breadcrumbs({ items, schema }: BreadcrumbsProps) {
                 </span>
               )}
               {idx < items.length - 1 && (
-                <ChevronRightIcon className="mx-1 h-4 w-4 text-neutral-300" aria-hidden="true" />
+                <svg
+                  className="mx-1 h-4 w-4 text-neutral-300"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
               )}
             </li>
           ))}

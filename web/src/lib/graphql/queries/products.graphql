@@ -205,6 +205,17 @@ query GetProductBySlugLight($slug: ID!) {
         width
       }
     }
+    galleryImages {
+      nodes {
+        id
+        sourceUrl
+        altText
+        mediaDetails {
+          height
+          width
+        }
+      }
+    }
     productCategories {
       nodes {
         id
@@ -313,6 +324,14 @@ query GetProductVariations($id: ID!) {
           stockStatus
           partNumber
           sku
+          image {
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
           attributes {
             nodes {
               name

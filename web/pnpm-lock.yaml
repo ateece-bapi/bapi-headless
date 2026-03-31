@@ -14,6 +14,9 @@ importers:
       '@aws-sdk/client-ses':
         specifier: ^3.985.0
         version: 3.1001.0
+      '@emotion/cache':
+        specifier: ^11.14.0
+        version: 11.14.0
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.2.14)(react@19.2.0)

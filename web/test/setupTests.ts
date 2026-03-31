@@ -10,7 +10,7 @@ vi.mock('react-dom', async () => {
 
 import '@testing-library/jest-dom';
 import { server } from './msw/server';
-import { toHaveNoViolations} from 'jest-axe';
+import { toHaveNoViolations } from 'jest-axe';
 import { expect } from 'vitest';
 import React from 'react';
 

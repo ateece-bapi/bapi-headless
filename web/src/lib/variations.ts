@@ -114,15 +114,17 @@ export function getAvailableOptions(
       }
     });
     
-    // DEBUG: Log when no options found to diagnose attribute name mismatch
-    if (options.size === 0 && variations.length > 0) {
-      const allAttributeNames = new Set(
-        variations.flatMap(v => v.attributes.nodes.map(a => a.name))
-      );
-      console.warn(
-        `[getAvailableOptions] No options found for attribute: "${attributeName}"\n` +
-        `Available attribute names in variations: ${Array.from(allAttributeNames).join(', ')}`
-      );
+    // DEBUG: Log when no options found to diagnose attribute name mismatch (dev-only)
+    if (process.env.NODE_ENV !== 'production') {
+      if (options.size === 0 && variations.length > 0) {
+        const allAttributeNames = new Set(
+          variations.flatMap((v) => v.attributes.nodes.map((a) => a.name))
+        );
+        console.warn(
+          `[getAvailableOptions] No options found for attribute: "${attributeName}"\n` +
+            `Available attribute names in variations: ${Array.from(allAttributeNames).join(', ')}`
+        );
+      }
     }
     
     return Array.from(options);

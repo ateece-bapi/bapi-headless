@@ -8,7 +8,449 @@
 
 ---
 
-## March 31, 2026 — Product Gallery Overhaul: Lightbox Crisis & Portal Architecture Breakthrough 🖼️
+## March 31, 2026 (Evening) — Copilot PR Review Response: Production Safety & MUI SSR Hydration 🔧
+
+**Status:** ✅ COMPLETE - PR Merged to Main  
+**Context:** Post-merge PR review identified 9 issues + 2 runtime hydration errors  
+**Time:** ~3 hours (initial fixes → hydration debugging → Copilot feedback response)  
+**Branch:** `fix/copilot-pr-review-feedback` (merged & deleted)  
+**Commits:** 2 commits (initial fixes + Copilot feedback)  
+**Files Modified:** 9 files (ProductGallery, ProductDetailClient, variations, ThemeRegistry, emotionCache, layout, setupTests, package.json)
+
+### 🎯 SESSION SUMMARY: Professional Code Review Response + SSR Architecture Fix
+
+**Trigger:** Copilot PR review on product gallery work + MUI icon hydration errors in production  
+**Root Causes:**
+1. 9 code quality issues from initial implementation (production logging, missing validation, performance)
+2. MUI icons causing server/client HTML mismatch (no Emotion cache for SSR)
+3. React hooks anti-pattern (setState during render)
+4. Missing SSR style injection (FOUC + hydration issues)
+
+**Approach:** Systematic issue resolution → MUI/Emotion SSR setup → React best practices refinement
+
+---
+
+### Part 1: Copilot PR Review - 9 Issues Resolved
+
+**Critical Fixes (Production Safety):**
+
+1. **Import Formatting** (`web/test/setupTests.ts`)
+   - Fixed: `toHaveNoViolations}` → `toHaveNoViolations }` (Prettier compliance)
+
+2. **Production Debug Logging** (`web/src/lib/variations.ts`)
+   ```typescript
+   // BEFORE: Debug warnings in production
+   if (options.size === 0 && variations.length > 0) {
+     console.warn(`[getAvailableOptions] No options found...`);
+   }
+   
+   // AFTER: Dev-only logging
+   if (process.env.NODE_ENV !== 'production') {
+     if (options.size === 0 && variations.length > 0) {
+       console.warn(`[getAvailableOptions] No options found...`);
+     }
+   }
+   ```
+
+3. **Console.log in Render** (`web/src/components/products/ProductPage/ProductDetailClient.tsx`)
+   - Removed debug `console.log` statement from render cycle
+
+4. **Variation Image Validation** (`web/src/components/products/ProductGallery.tsx`)
+   ```typescript
+   // BEFORE: Unsafe assumption
+   const variationImage = variation?.image ? variation.image : null;
+   
+   // AFTER: Check sourceUrl existence
+   const variationImage = variation?.image && variation.image.sourceUrl 
+     ? variation.image 
+     : null;
+   ```
+
+5. **Body Scroll Cleanup** (`web/src/components/products/ProductGallery.tsx`)
+   ```typescript
+   // Add unmount cleanup (prevents scroll stuck if user navigates away)
+   useEffect(() => {
+     return () => {
+       document.body.style.overflow = '';
+     };
+   }, []);
+   ```
+
+**Quality Improvements:**
+
+6. **Lightbox Accessibility** (`web/src/components/products/ProductGallery.tsx`)
+   ```typescript
+   // Added ARIA attributes for screen readers
+   <div 
+     role="dialog"
+     aria-modal="true"
+     aria-label="Image lightbox"
+     onClick={closeLightbox}
+   >
+   ```
+
+7. **Performance Optimization** (`web/src/components/products/ProductPage/ProductDetailClient.tsx`)
+   ```typescript
+   // BEFORE: IIFE recomputing on every render
+   const galleryImages = (() => {
+     const allImages = [];
+     // ... computation
+     return allImages;
+   })();
+   
+   // AFTER: Memoized (only recompute when dependencies change)
+   const galleryImages = React.useMemo(() => {
+     const allImages = [];
+     // ... computation
+     return allImages;
+   }, [product.image, product.gallery, product.name]);
+   ```
+
+8. **CSS-Based Hover States** (`web/src/components/products/ProductGallery.tsx`)
+   ```typescript
+   // BEFORE: Imperative DOM mutations
+   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
+   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+   
+   // AFTER: Declarative CSS utilities
+   className="transition-colors hover:bg-neutral-100"
+   ```
+
+9. **Keyboard Shortcuts & Mouse Wheel Zoom** (`web/src/components/products/ProductGallery.tsx`)
+   ```typescript
+   // Added keyboard shortcuts (PR claimed but not implemented)
+   case '+':
+   case '=': // = key for zoom in (no shift needed)
+     e.preventDefault();
+     zoomIn();
+     break;
+   case '-':
+     zoomOut();
+     break;
+   case '0':
+     resetView();
+     break;
+   
+   // Added mouse wheel zoom
+   const handleWheel = (e: WheelEvent) => {
+     e.preventDefault();
+     if (e.deltaY < 0) zoomIn();
+     else zoomOut();
+   };
+   window.addEventListener('wheel', handleWheel, { passive: false });
+   ```
+
+---
+
+### Part 2: MUI Hydration Error - Emotion SSR Configuration
+
+**Problem:** React hydration mismatch error in production
+
+```
+Error: Hydration failed because the server rendered HTML didn't match the client
+  at TrustBadges/<.children<.children< (src/components/products/ProductPage/TrustBadges.tsx:59:17)
+  
+Expected: <svg className="MuiSvgIcon-root...">
+Received: <style data-emotion="css 1umw9bq-MuiSvgIcon-root">
+```
+
+**Root Cause:** MUI icons use Emotion for styling, but no Emotion cache configured for Next.js App Router SSR
+
+**Solution: Full MUI + Emotion SSR Setup**
+
+1. **Created Emotion Cache Config** (`web/src/lib/mui/emotionCache.ts`)
+   ```typescript
+   import createCache from '@emotion/cache';
+   
+   export default function createEmotionCache() {
+     return createCache({
+       key: 'mui',
+       prepend: true, // Ensures MUI styles have lower specificity than Tailwind
+     });
+   }
+   ```
+
+2. **Created ThemeRegistry Provider** (`web/src/lib/mui/ThemeRegistry.tsx`)
+   ```typescript
+   'use client';
+   
+   import { useServerInsertedHTML } from 'next/navigation';
+   import { CacheProvider } from '@emotion/react';
+   import createEmotionCache from './emotionCache';
+   
+   export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
+     const [cache] = React.useState(() => {
+       const emotionCache = createEmotionCache();
+       emotionCache.compat = true; // MUI compatibility
+       return emotionCache;
+     });
+   
+     // Flush Emotion styles into HTML stream during SSR
+     useServerInsertedHTML(() => {
+       return (
+         <style
+           data-emotion={`${cache.key} ${Object.keys(cache.inserted).join(' ')}`}
+           dangerouslySetInnerHTML={{
+             __html: Object.values(cache.inserted).join(' '),
+           }}
+         />
+       );
+     });
+   
+     return <CacheProvider value={cache}>{children}</CacheProvider>;
+   }
+   ```
+
+3. **Updated Layout** (`web/src/app/[locale]/layout.tsx`)
+   ```typescript
+   import ThemeRegistry from '@/lib/mui/ThemeRegistry';
+   
+   // Wrap app with ThemeRegistry for SSR support
+   <NextIntlClientProvider messages={messages} locale={locale}>
+     <ThemeRegistry>
+       <ToastProvider>
+         {/* app content */}
+       </ToastProvider>
+     </ThemeRegistry>
+   </NextIntlClientProvider>
+   ```
+
+4. **Installed Missing Dependency**
+   ```bash
+   pnpm add @emotion/cache
+   ```
+
+**Benefits:**
+- ✅ Server and client render identical HTML (no hydration mismatch)
+- ✅ Styles flushed into SSR HTML stream (no FOUC)
+- ✅ MUI icons render correctly on both server and client
+- ✅ Follows official MUI App Router pattern
+- ✅ Tailwind utilities still override MUI styles (prepend: true)
+
+---
+
+### Part 3: React Hooks Best Practices - Copilot Feedback Response
+
+**Copilot Issue #1: setState during render (ProductGallery.tsx)**
+
+**Problem:** Render-phase setState can cause warnings under React 19 concurrent rendering
+```typescript
+// BEFORE: setState during render (anti-pattern)
+const [currentVariationKey, setCurrentVariationKey] = useState(variationKey);
+
+if (variationKey !== currentVariationKey) {
+  setCurrentVariationKey(variationKey);
+  setSelectedIndex(0); // ❌ setState during render
+}
+```
+
+**Solution: useRef + useEffect pattern**
+```typescript
+// AFTER: Proper side effect handling
+const variationKey = variation?.name || variation?.image?.sourceUrl || 'default';
+const prevVariationKeyRef = React.useRef(variationKey);
+
+React.useEffect(() => {
+  if (variationKey !== prevVariationKeyRef.current) {
+    prevVariationKeyRef.current = variationKey;
+    setSelectedIndex(0); // ✅ setState in effect
+  }
+}, [variationKey]);
+```
+
+**Benefits:**
+- ✅ No setState during render phase
+- ✅ useRef tracks previous value without re-renders
+- ✅ useEffect handles side effects properly
+- ✅ Compatible with React 19 concurrent mode
+
+**Copilot Issue #2: Missing SSR style flush (ThemeRegistry.tsx)**
+
+**Problem:** No `useServerInsertedHTML` integration → styles not in initial HTML → FOUC
+
+**Solution:** Added in Part 2 (see ThemeRegistry implementation above)
+
+---
+
+### Key Technical Decisions
+
+1. **NODE_ENV Guards for Debug Code**
+   - All debug logging wrapped in `if (process.env.NODE_ENV !== 'production')`
+   - Zero performance impact in production builds
+   - Clean console output for end users
+
+2. **useMemo for Expensive Computations**
+   - Replaced IIFE with `useMemo` for image array construction
+   - Prevents unnecessary recomputation on every render
+   - Only recomputes when dependencies change
+
+3. **CSS Over Imperative DOM**
+   - Replaced `onMouseEnter/Leave` style mutations with Tailwind `hover:` classes
+   - More maintainable, better performance (browser-optimized)
+   - Follows React declarative paradigm
+
+4. **Full MUI SSR Integration**
+   - Not just CacheProvider, but complete SSR style injection
+   - Uses Next.js App Router's `useServerInsertedHTML` hook
+   - Prevents all hydration mismatches and FOUC issues
+
+5. **React Hooks Best Practices**
+   - useRef for tracking previous values (no re-renders)
+   - useEffect for side effects (state updates)
+   - No setState during render (concurrent rendering safe)
+
+---
+
+### Testing & Validation
+
+**Unit Tests:**
+- ✅ 43/43 ProductGallery tests passing
+- Keyboard navigation (arrows, ESC, zoom shortcuts)
+- Mouse wheel zoom functionality
+- Lightbox controls visibility
+- Variation switching
+- ARIA attributes present
+
+**Production Build:**
+- ✅ Successful compilation (786 pages generated)
+- ✅ No TypeScript errors
+- ✅ No ESLint warnings
+- ✅ Bundle size optimized (@emotion/cache added: +3 packages)
+
+**Runtime Validation:**
+- ✅ MUI icons render correctly (no hydration errors)
+- ✅ Emotion styles in SSR HTML
+- ✅ No FOUC on page load
+- ✅ Clean console (no production debug logs)
+
+---
+
+### Lessons Learned
+
+1. **Always Gate Debug Logging**
+   - `console.warn` in production = bad UX
+   - `process.env.NODE_ENV !== 'production'` is essential
+   - Tree-shaking removes dev code from production bundles
+
+2. **MUI + Next.js App Router Requires Full SSR Setup**
+   - CacheProvider alone is insufficient
+   - Must implement `useServerInsertedHTML` style flushing
+   - Follow official MUI documentation patterns
+
+3. **React 19 Concurrent Rendering Has Stricter Rules**
+   - No setState during render (even if it "works")
+   - Use useRef + useEffect for derived state resets
+   - Copilot catches these patterns proactively
+
+4. **Validation Beyond Type Checking**
+   - TypeScript `?.` doesn't check property existence
+   - Must validate: `obj?.prop && obj.prop.value`
+   - Prevents runtime undefined errors
+
+5. **Cleanup Effects Are Critical**
+   - Body scroll modifications must be cleaned up
+   - Otherwise scroll stuck if user navigates away
+   - Always return cleanup function from useEffect
+
+6. **Accessibility Is Non-Negotiable**
+   - ARIA attributes required for screen readers
+   - `role="dialog"`, `aria-modal="true"`, `aria-label`
+   - Keyboard navigation (ESC, arrows, zoom shortcuts)
+
+---
+
+### Files Modified (9 total)
+
+**Configuration:**
+1. `web/package.json` - Added @emotion/cache dependency
+2. `web/pnpm-lock.yaml` - Locked @emotion/cache@11.14.0
+
+**MUI SSR Setup (New Files):**
+3. `web/src/lib/mui/emotionCache.ts` - Emotion cache configuration
+4. `web/src/lib/mui/ThemeRegistry.tsx` - SSR style injection provider
+
+**Layout:**
+5. `web/src/app/[locale]/layout.tsx` - Wrapped with ThemeRegistry
+
+**Components:**
+6. `web/src/components/products/ProductGallery.tsx` - Validation, hooks, keyboard, cleanup
+7. `web/src/components/products/ProductPage/ProductDetailClient.tsx` - useMemo optimization
+
+**Utilities:**
+8. `web/src/lib/variations.ts` - NODE_ENV gating
+
+**Testing:**
+9. `web/test/setupTests.ts` - Import spacing fix
+
+---
+
+### Commit History
+
+**Commit 1:** `6cd283a` - Initial Copilot feedback fixes
+```
+fix: address Copilot PR review feedback + MUI hydration issues
+
+Critical Fixes:
+- Gate console.warn with NODE_ENV check (production safety)
+- Add variation.image.sourceUrl validation (prevent undefined renders)
+- Add body scroll cleanup on unmount (UX bug fix)
+- Remove console.log from render (production cleanliness)
+
+MUI + Emotion SSR Configuration:
+- Add @emotion/cache package for MUI SSR support
+- Create ThemeRegistry provider with Emotion cache configuration
+- Wrap app with ThemeRegistry in layout.tsx
+- Fixes MUI icon hydration mismatch (server vs client HTML)
+
+Quality Improvements:
+- Add ARIA attributes to lightbox (accessibility)
+- Move image array to useMemo (performance optimization)
+- Replace imperative hovers with CSS (maintainability)
+- Implement keyboard shortcuts (+/-/0) and mouse wheel zoom
+- Document raw img vs next/image decision (context)
+- Fix import spacing (Prettier compliance)
+
+Addresses: Copilot PR review comments 1-9, MUI hydration error
+```
+
+**Commit 2:** `8b975b6` - Copilot feedback response
+```
+fix: address Copilot feedback - useRef pattern + SSR style insertion
+
+Copilot Issue #1 - ProductGallery setState during render:
+- Replace render-phase setState with useRef + useEffect pattern
+- Tracks previous variation key with useRef (no re-renders)
+- Resets selectedIndex in useEffect (proper side effect handling)
+- Avoids React concurrent rendering warnings
+
+Copilot Issue #2 - ThemeRegistry missing SSR style flush:
+- Add useServerInsertedHTML from next/navigation
+- Flush Emotion styles into HTML stream during SSR
+- Enable cache.compat mode for MUI compatibility
+- Prevents hydration mismatches and FOUC
+
+Addresses: Copilot PR review feedback (concurrent rendering + SSR styles)
+```
+
+---
+
+### Outcome
+
+✅ **PR Merged to Main** - `fix/copilot-pr-review-feedback`  
+✅ **Production-Ready Code** - All quality issues resolved  
+✅ **Zero Runtime Errors** - MUI hydration fixed, no console logs  
+✅ **React 19 Compatible** - Concurrent rendering safe  
+✅ **Accessibility Complete** - ARIA attributes, keyboard nav  
+✅ **Performance Optimized** - useMemo, CSS hovers, minimal re-renders
+
+**Next Steps:**
+- Monitor production for any remaining hydration issues
+- Consider adding visual regression tests for lightbox
+- Document MUI SSR setup in project documentation
+
+---
+
+## March 31, 2026 (Morning) — Product Gallery Overhaul: Lightbox Crisis & Portal Architecture Breakthrough 🖼️
 
 **Status:** ✅ COMPLETE - All Tests Passing (43/43) 🎉  
 **Context:** Product gallery image sizing + lightbox controls completely broken  

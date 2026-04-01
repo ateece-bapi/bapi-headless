@@ -60,6 +60,7 @@ update_products "ALC" "alc"
 update_products "ACS" "acs"
 update_products "EMC" "emc"
 update_products "CCG" "ccg"
+update_products "CCGA" "ccga"
 
 # Verify
 echo -e "\n=================================================="

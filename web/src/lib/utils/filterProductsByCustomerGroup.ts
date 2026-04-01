@@ -43,15 +43,16 @@ export function extractCustomerGroupFromTitle(
   let match = productName.match(/^\((\w+)\)/);
   if (match) {
     const prefix = match[1].toLowerCase();
-    const validGroups = ['alc', 'acs', 'emc', 'ccg'];
+    const validGroups = ['alc', 'acs', 'emc', 'ccg', 'ccga'];
     return validGroups.includes(prefix) ? prefix : null;
   }
 
   // Match pattern 2: PREFIX/ with slash - e.g., "CCG/H205-B4X-Z-CG-WMW"
-  match = productName.match(/^([A-Z]{3})\//);
+  // Supports both 3-letter (CCG) and 4-letter (CCGA) prefixes
+  match = productName.match(/^([A-Z]{3,4})\//);
   if (match) {
     const prefix = match[1].toLowerCase();
-    const validGroups = ['alc', 'acs', 'emc', 'ccg'];
+    const validGroups = ['alc', 'acs', 'emc', 'ccg', 'ccga'];
     return validGroups.includes(prefix) ? prefix : null;
   }
 

@@ -44,6 +44,14 @@ describe('extractCustomerGroupFromTitle', () => {
     expect(extractCustomerGroupFromTitle('EMC/Product-Name')).toBe('emc');
   });
 
+  it('extracts customer group from CCGA/ prefix (slash pattern - 4 letters)', () => {
+    expect(extractCustomerGroupFromTitle('CCGA/Product-Name')).toBe('ccga');
+  });
+
+  it('extracts customer group from (CCGA) prefix (parentheses - 4 letters)', () => {
+    expect(extractCustomerGroupFromTitle('(CCGA) Test Product')).toBe('ccga');
+  });
+
   it('returns null for standard product without prefix', () => {
     expect(extractCustomerGroupFromTitle('BA/10K-3 Temperature Sensor')).toBeNull();
   });

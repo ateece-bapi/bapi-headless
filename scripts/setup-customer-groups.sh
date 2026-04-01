@@ -9,6 +9,9 @@
 
 set -e  # Exit on error
 
+# Get script directory to handle running from different locations
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Configuration
 SSH_HOST="35.224.70.159"
 SSH_PORT="17338"
@@ -39,9 +42,9 @@ ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "wp db query \"SELECT COUNT(*) as total FRO
 echo -e "\n${YELLOW}Products with company prefixes:${NC}"
 ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "wp db query \"SELECT SUBSTRING_INDEX(post_title, ')', 1) AS prefix, COUNT(*) as count FROM wp_posts WHERE post_type = 'product' AND post_status = 'publish' AND post_title LIKE '(%)%' GROUP BY prefix ORDER BY count DESC;\" --path=$WP_PATH"
 
-# Step 3: Run SQL update script
+# Step 3: Run WP-CLI update script
 echo -e "\n${YELLOW}Step 3: Populating customer groups for products...${NC}"
-echo -e "${YELLOW}This will update customer_group1 meta field for 132 products.${NC}"
+echo -e "${YELLOW}This will update customer_group1 meta field for products with ALC, ACS, EMC, CCG, CCGA prefixes.${NC}"
 read -p "Continue? (y/n) " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -49,13 +52,13 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   exit 1
 fi
 
-# Upload SQL file and execute it
-scp -P $SSH_PORT scripts/populate-customer-groups.sql $SSH_USER@$SSH_HOST:/tmp/populate-customer-groups.sql
-ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "wp db query \"\$(cat /tmp/populate-customer-groups.sql)\" --path=$WP_PATH && rm /tmp/populate-customer-groups.sql"
+# Upload WP-CLI script and execute it
+scp -P $SSH_PORT "${SCRIPT_DIR}/populate-customer-groups-wpcli.sh" $SSH_USER@$SSH_HOST:/tmp/populate-customer-groups-wpcli.sh
+ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "bash /tmp/populate-customer-groups-wpcli.sh && rm /tmp/populate-customer-groups-wpcli.sh"
 
 # Step 4: Verify updates
 echo -e "\n${YELLOW}Step 4: Verifying product updates...${NC}"
-ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "wp db query \"SELECT CASE WHEN meta_value LIKE '%alc%' THEN 'ALC' WHEN meta_value LIKE '%acs%' THEN 'ACS' WHEN meta_value LIKE '%emc%' THEN 'EMC' WHEN meta_value LIKE '%ccg%' THEN 'CCG' WHEN meta_value = '' OR meta_value IS NULL THEN 'Standard' ELSE 'Other' END as customer_group, COUNT(*) as count FROM wp_postmeta pm INNER JOIN wp_posts p ON pm.post_id = p.ID WHERE pm.meta_key = 'customer_group1' AND p.post_type = 'product' AND p.post_status = 'publish' GROUP BY customer_group ORDER BY count DESC;\" --path=$WP_PATH"
+ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "wp db query \"SELECT CASE WHEN meta_value LIKE '%alc%' THEN 'ALC' WHEN meta_value LIKE '%acs%' THEN 'ACS' WHEN meta_value LIKE '%emc%' THEN 'EMC' WHEN meta_value LIKE '%ccga%' THEN 'CCGA' WHEN meta_value LIKE '%ccg%' THEN 'CCG' WHEN meta_value = '' OR meta_value IS NULL THEN 'Standard' ELSE 'Other' END as customer_group, COUNT(*) as count FROM wp_postmeta pm INNER JOIN wp_posts p ON pm.post_id = p.ID WHERE pm.meta_key = 'customer_group1' AND p.post_type = 'product' AND p.post_status = 'publish' GROUP BY customer_group ORDER BY count DESC;\" --path=$WP_PATH"
 
 # Step 5: Create test users
 echo -e "\n${YELLOW}Step 5: Creating test users for each customer group...${NC}"
@@ -90,6 +93,7 @@ create_test_user "test-alc@bapihvac.com" "alc" "Test User - ALC"
 create_test_user "test-acs@bapihvac.com" "acs" "Test User - ACS"
 create_test_user "test-emc@bapihvac.com" "emc" "Test User - EMC"
 create_test_user "test-ccg@bapihvac.com" "ccg" "Test User - CCG"
+create_test_user "test-ccga@bapihvac.com" "ccga" "Test User - CCGA"
 create_test_user "test-standard@bapihvac.com" "" "Test User - Standard (No Group)"
 
 # Step 6: Summary
@@ -101,14 +105,16 @@ echo "  • test-alc@bapihvac.com (password: TestBAPI2026!) - Customer Group: al
 echo "  • test-acs@bapihvac.com (password: TestBAPI2026!) - Customer Group: acs"
 echo "  • test-emc@bapihvac.com (password: TestBAPI2026!) - Customer Group: emc"
 echo "  • test-ccg@bapihvac.com (password: TestBAPI2026!) - Customer Group: ccg"
+echo "  • test-ccga@bapihvac.com (password: TestBAPI2026!) - Customer Group: ccga"
 echo "  • test-standard@bapihvac.com (password: TestBAPI2026!) - No customer group"
 
 echo -e "\n${GREEN}Expected Product Visibility:${NC}"
-echo "  • Guest/Standard: 476 products (no prefixes)"
-echo "  • ALC user: 588 products (476 standard + 112 ALC)"
-echo "  • ACS user: 480 products (476 standard + 4 ACS)"
-echo "  • EMC user: 485 products (476 standard + 9 EMC)"
-echo "  • CCG user: 483 products (476 standard + 7 CCG)"
+echo "  • Guest/Standard: Standard products only (no prefixes)"
+echo "  • ALC user: Standard + ALC products"
+echo "  • ACS user: Standard + ACS products"
+echo "  • EMC user: Standard + EMC products"
+echo "  • CCG user: Standard + CCG products"
+echo "  • CCGA user: Standard + CCGA products"
 
 echo -e "\n${YELLOW}Next Steps:${NC}"
 echo "  1. Test login with one of the test users"

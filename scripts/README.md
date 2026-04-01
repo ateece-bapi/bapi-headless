@@ -222,10 +222,11 @@ wp db query "$(cat /tmp/populate-customer-groups.sql)" --path=/www/bapiheadlesss
 
 ```bash
 # Create ALC test user (run on server after SSH)
+# Replace YOUR_SECURE_PASSWORD with actual password from secure storage
 wp user create test-alc test-alc@bapihvac.com \
   --role=customer \
   --display_name='Test User - ALC' \
-  --user_pass='TestBAPI2026!' \
+  --user_pass='YOUR_SECURE_PASSWORD' \
   --path=/www/bapiheadlessstaging_582/public
 
 # Set customer group
@@ -233,7 +234,7 @@ wp user meta update $(wp user get test-alc@bapihvac.com --field=ID --path=/www/b
   customer_group 'alc' \
   --path=/www/bapiheadlessstaging_582/public
 
-# Repeat for ACS, EMC, CCG, and Standard users
+# Repeat for ACS, EMC, CCG, CCGA, and Standard users
 ```
 
 ---
@@ -251,7 +252,7 @@ ssh -p 17338 bapiheadlessstaging@35.224.70.159 \
       WHEN meta_value LIKE '%emc%' THEN 'EMC'
       WHEN meta_value LIKE '%ccga%' THEN 'CCGA'
       WHEN meta_value LIKE '%ccg%' THEN 'CCG'
-      WHEN meta_value = '' THEN 'Standard'
+      WHEN meta_value IS NULL OR meta_value = '' THEN 'Standard'
     END as group_name,
     COUNT(*) as count
   FROM wp_postmeta pm

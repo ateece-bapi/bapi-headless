@@ -33,8 +33,9 @@ interface RelatedProductsClientProps {
 export function RelatedProductsClient({ products, locale, translations }: RelatedProductsClientProps) {
   const { user } = useAuth();
 
-  // Apply customer group filtering
-  const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroup);
+  // Apply customer group filtering and filter out products without slugs
+  const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroup)
+    .filter((product) => product.slug); // Remove products with null/undefined slugs
 
   // Don't render if no products after filtering
   if (filteredProducts.length === 0) return null;

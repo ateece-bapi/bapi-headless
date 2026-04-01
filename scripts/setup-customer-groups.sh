@@ -66,11 +66,15 @@ ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "wp db query \"SELECT CASE WHEN meta_value 
 # Step 5: Create test users
 echo -e "\n${YELLOW}Step 5: Creating test users for each customer group...${NC}"
 
-# Check if password is set
+# Check if password is set, prompt if not
 if [ -z "$TEST_USER_PASSWORD" ]; then
-  echo -e "${RED}ERROR: TEST_USER_PASSWORD environment variable not set${NC}"
-  echo "Please set it before running: export TEST_USER_PASSWORD='your-password'"
-  exit 1
+  echo -e "${YELLOW}TEST_USER_PASSWORD not set. Please enter password for test users:${NC}"
+  read -s -p "Password: " TEST_USER_PASSWORD
+  echo
+  if [ -z "$TEST_USER_PASSWORD" ]; then
+    echo -e "${RED}ERROR: Password cannot be empty${NC}"
+    exit 1
+  fi
 fi
 
 # Function to create/update user with customer group

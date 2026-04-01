@@ -15,7 +15,9 @@ interface ProductSummaryCardProps {
   variation?: any;
   useCart?: any;
   useCartDrawer?: any;
-  isLoadingVariation?: boolean; // New prop for loading state
+  isLoadingVariation?: boolean;
+  quantity?: number;
+  onQuantityChange?: (quantity: number) => void;
 }
 
 export default function ProductSummaryCard({
@@ -24,9 +26,15 @@ export default function ProductSummaryCard({
   useCart,
   useCartDrawer,
   isLoadingVariation = false,
+  quantity: externalQuantity,
+  onQuantityChange: externalOnQuantityChange,
 }: ProductSummaryCardProps) {
-  const [quantity, setQuantity] = React.useState(1);
+  const [internalQuantity, setInternalQuantity] = React.useState(1);
   const [isFavorited, setIsFavorited] = React.useState(false);
+  
+  // Use external quantity if provided, otherwise use internal state
+  const quantity = externalQuantity !== undefined ? externalQuantity : internalQuantity;
+  const setQuantity = externalOnQuantityChange || setInternalQuantity;
   const region = useRegion();
 
   // Check if this is a variable product
@@ -237,8 +245,8 @@ export default function ProductSummaryCard({
             <div className="flex items-center overflow-hidden rounded-lg border border-neutral-300 shadow-sm">
               <button
                 type="button"
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                className="min-h-[44px] min-w-[44px] bg-neutral-100 px-5 py-4 font-bold text-neutral-700 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                className="min-h-11 min-w-11 bg-neutral-100 px-5 py-4 font-bold text-neutral-700 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
                 aria-label="Decrease quantity"
               >
                 −
@@ -249,13 +257,16 @@ export default function ProductSummaryCard({
                 min={1}
                 max={product.stockQuantity || 999}
                 value={quantity}
-                onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
-                className="min-h-[44px] flex-1 border-0 bg-white py-4 text-center text-lg font-semibold text-neutral-900 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  setQuantity(isNaN(val) ? 1 : Math.max(1, val));
+                }}
+                className="min-h-11 flex-1 border-0 bg-white py-4 text-center text-lg font-semibold text-neutral-900 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
               />
               <button
                 type="button"
-                onClick={() => setQuantity((q) => Math.min(product.stockQuantity || 999, q + 1))}
-                className="min-h-[44px] min-w-[44px] bg-neutral-100 px-5 py-4 font-bold text-neutral-700 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                onClick={() => setQuantity(Math.min(product.stockQuantity || 999, quantity + 1))}
+                className="min-h-11 min-w-11 bg-neutral-100 px-5 py-4 font-bold text-neutral-700 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
                 aria-label="Increase quantity"
               >
                 +

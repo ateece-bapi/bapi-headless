@@ -3,6 +3,7 @@
 import React from 'react';
 import { useMemo } from 'react';
 import VariationSelector from './VariationSelector';
+import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 import type { ProductAttribute, ProductVariation } from '@/types/variations';
 
 interface Variation {
@@ -48,8 +49,8 @@ interface ProductVariationSelectorProps {
   // Add to Cart integration
   quantity?: number;
   onQuantityChange?: (quantity: number) => void;
-  useCart?: any;
-  useCartDrawer?: any;
+  useCart?: typeof defaultUseCart;
+  useCartDrawer?: typeof defaultUseCartDrawer;
 }
 
 /**

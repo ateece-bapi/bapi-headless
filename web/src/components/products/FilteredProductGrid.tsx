@@ -7,6 +7,8 @@ import { ProductGrid } from './ProductGrid';
 import { Pagination } from './Pagination';
 import ComparisonButton from './ComparisonButton';
 import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
+import { useAuth } from '@/hooks/useAuth';
+import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -88,6 +90,7 @@ interface TaxonomyConnection {
  * Phase 1 Priority: Product Navigation (April 10, 2026 deadline)
  *
  * Features:
+ * - B2B customer group filtering (security-first)
  * - Filters by 15 product attribute taxonomies
  * - Sort by name (A-Z, Z-A) and price (Low-High, High-Low)
  * - Pagination (18 products per page)
@@ -99,6 +102,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   const searchParams = useSearchParams();
   const sortBy = searchParams?.get('sort') || 'default';
   const currentPage = parseInt(searchParams?.get('page') || '1', 10);
+  const { user } = useAuth();
 
   // Define all possible filter keys and their corresponding GraphQL fields
   // Wrapped in useMemo to prevent recreating on every render
@@ -158,9 +162,14 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
 
   // Filter products using useMemo (synchronous, no setState in effects)
   const filteredProducts = useMemo(() => {
-    if (!hasActiveFilters) return products;
+    // STEP 1: Customer group filtering (B2B access control)
+    // This MUST happen first to ensure restricted products are never exposed
+    const customerGroupFiltered = filterProductsByCustomerGroup(products, user?.customerGroup);
 
-    return products.filter((product) => {
+    // STEP 2: Attribute filtering (if no filters active, return customer-filtered products)
+    if (!hasActiveFilters) return customerGroupFiltered;
+
+    return customerGroupFiltered.filter((product) => {
       const p = product as ProductWithTaxonomies;
 
       // Check each filter category
@@ -188,7 +197,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
       // Product matches all active filter categories
       return true;
     });
-  }, [products, hasActiveFilters, activeFilters, filterFieldMap]);
+  }, [products, user?.customerGroup, hasActiveFilters, activeFilters, filterFieldMap]);
 
   // Sort products
   const sortedProducts = useMemo(() => {

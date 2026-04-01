@@ -141,6 +141,8 @@ export default function ProductDetailClient({
                   useCart={useCart}
                   useCartDrawer={useCartDrawer}
                   isLoadingVariation={isLoadingVariation}
+                  quantity={quantity}
+                  onQuantityChange={setQuantity}
                 />
               </div>
             </div>

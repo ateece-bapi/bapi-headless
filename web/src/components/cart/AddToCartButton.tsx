@@ -19,6 +19,8 @@ interface AddToCartButtonProps {
   loading?: boolean;
   /** Success animation duration in ms (default: 2000) */
   successDuration?: number;
+  /** Custom aria-label for accessibility (optional, defaults to "Add {product.name} to cart") */
+  ariaLabel?: string;
 }
 
 /**
@@ -50,6 +52,7 @@ const AddToCartButton = ({
   disabled = false,
   loading: externalLoading = false,
   successDuration = 2000,
+  ariaLabel,
 }: AddToCartButtonProps) => {
   const useCartHook = injectedUseCart ?? useCart;
   const useCartDrawerHook = injectedUseCartDrawer ?? useCartDrawer;
@@ -205,13 +208,14 @@ const AddToCartButton = ({
         disabled={disabled || loading || showSuccess}
         aria-busy={loading}
         aria-label={
-          loading
+          ariaLabel ||
+          (loading
             ? 'Adding to cart...'
             : showSuccess
               ? 'Added to cart'
               : disabled
                 ? 'Out of stock'
-                : `Add ${product.name} to cart`
+                : `Add ${product.name} to cart`)
         }
       >
         {getButtonContent()}

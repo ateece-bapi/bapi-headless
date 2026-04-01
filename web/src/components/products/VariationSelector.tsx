@@ -18,7 +18,7 @@ import DropdownSelector from './variation-selectors/DropdownSelector';
 import { useRegion } from '@/store/regionStore';
 import { convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
 import AddToCartButton from '@/components/cart/AddToCartButton';
-import type { CartItem } from '@/store';
+import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 
 interface VariationSelectorProps {
   attributes: ProductAttribute[];
@@ -36,8 +36,8 @@ interface VariationSelectorProps {
   };
   quantity?: number;
   onQuantityChange?: (quantity: number) => void;
-  useCart?: any;
-  useCartDrawer?: any;
+  useCart?: typeof defaultUseCart;
+  useCartDrawer?: typeof defaultUseCartDrawer;
 }
 
 /**
@@ -444,12 +444,15 @@ export default function VariationSelector({
                               min={1}
                               max={999}
                               value={quantity}
-                              onChange={(e) => onQuantityChange(Math.max(1, Number(e.target.value)))}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                onQuantityChange(isNaN(val) ? 1 : Math.max(1, Math.min(999, val)));
+                              }}
                               className="min-h-11 w-16 border-0 bg-white py-2 text-center text-base font-bold text-neutral-900 focus:ring-2 focus:ring-primary-500/30"
                             />
                             <button
                               type="button"
-                              onClick={() => onQuantityChange(quantity + 1)}
+                              onClick={() => onQuantityChange(Math.min(999, quantity + 1))}
                               className="min-h-11 min-w-11 bg-neutral-50 px-3 font-bold text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
                               aria-label="Increase quantity"
                             >
@@ -463,11 +466,11 @@ export default function VariationSelector({
                       <div className="flex-1">
                         <AddToCartButton
                           product={{
-                            id: `${product.id}::${matchedVariation.databaseId}`,
+                            id: matchedVariation.id,
                             databaseId: matchedVariation.databaseId,
                             name: matchedVariation.name,
                             slug: product.slug,
-                            price: matchedVariation.price,
+                            price: convertWooCommercePrice(matchedVariation.price, region.currency),
                             numericPrice: convertWooCommercePriceNumeric(
                               matchedVariation.price,
                               region.currency
@@ -494,6 +497,7 @@ export default function VariationSelector({
                           disabled={matchedVariation.stockStatus !== 'IN_STOCK'}
                           useCart={useCart}
                           useCartDrawer={useCartDrawer}
+                          ariaLabel={`Add ${matchedVariation.name} to cart (from configurator)`}
                         />
                       </div>
                     </div>

@@ -84,21 +84,28 @@ export default function middleware(request: NextRequest) {
   // ============================================================================
   
   // 1. Redirect /categories/* → /products/* (301 permanent redirect)
-  const categoriesMatch = pathname.match(/^\/([a-z]{2})\/categories\/(.+)$/);
+  // Preserves remaining path segments and query strings for filtered/sorted URLs
+  const categoriesMatch = pathname.match(new RegExp(`^/(${LOCALE_PATTERN})/categories/(.+)$`));
   if (categoriesMatch) {
-    const [, locale, categorySlug] = categoriesMatch;
-    const newUrl = new URL(`/${locale}/products/${categorySlug}`, request.url);
+    const [, locale, categoryPath] = categoriesMatch;
+    const newUrl = new URL(request.url);
+    newUrl.pathname = `/${locale}/products/${categoryPath}`;
+    // Query string automatically preserved via new URL(request.url)
     console.log('[MIDDLEWARE] 301 Redirect /categories → /products:', newUrl.toString());
     return NextResponse.redirect(newUrl, { status: 301 });
   }
   
   // 2. Redirect short category slugs → full WordPress slugs (301 permanent redirect)
-  const shortSlugMatch = pathname.match(/^\/([a-z]{2})\/products\/([a-z-]+)$/);
+  // Handles both /products/{short-slug} and /products/{short-slug}/{subpath}
+  const shortSlugMatch = pathname.match(new RegExp(`^/(${LOCALE_PATTERN})/products/([a-z-]+)(?:/(.*))?$`));
   if (shortSlugMatch) {
-    const [, locale, slug] = shortSlugMatch;
+    const [, locale, slug, subpath] = shortSlugMatch;
     const fullSlug = CATEGORY_SLUG_REDIRECTS[slug];
     if (fullSlug) {
-      const newUrl = new URL(`/${locale}/products/${fullSlug}`, request.url);
+      const newUrl = new URL(request.url);
+      // Rewrite first segment and preserve subpaths (e.g., /temperature/room-wall → /temperature-sensors/room-wall)
+      newUrl.pathname = `/${locale}/products/${fullSlug}${subpath ? `/${subpath}` : ''}`;
+      // Query string automatically preserved
       console.log('[MIDDLEWARE] 301 Redirect short slug → full slug:', newUrl.toString());
       return NextResponse.redirect(newUrl, { status: 301 });
     }

@@ -3,6 +3,8 @@
 import { useState, useMemo } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import type { GetProductAttributesQuery } from '@/lib/graphql/generated';
+import { useAuth } from '@/hooks/useAuth';
+import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
 import SubcategoryQuickFilter from './SubcategoryQuickFilter';
 import SubcategoryCard from './SubcategoryCard';
 import FilterSidebar from './FilterSidebar';
@@ -81,6 +83,7 @@ export default function CategoryContent({
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const { user } = useAuth();
 
   // Initialize filters from URL
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
@@ -98,6 +101,13 @@ export default function CategoryContent({
 
   // Filter products based on active filters
   const filteredProducts = useMemo(() => {
+    // Step 1: Filter by customer group (B2B access control)
+    // This must happen first to ensure restricted products are never exposed
+    const customerGroupFiltered = filterProductsByCustomerGroup(
+      products,
+      user?.customerGroup
+    );
+
     // Create slug-to-name maps from filter taxonomy data
     // This allows us to convert user-selected slugs to display names for comparison
     const applicationSlugToName = new Map(
@@ -116,7 +126,7 @@ export default function CategoryContent({
       filters.paDisplays?.nodes.map((node) => [node.slug, node.name]) || []
     );
 
-    return products
+    return customerGroupFiltered
       .filter(
         (product): product is typeof product & { name: string; slug: string } =>
           !!product.name && !!product.slug
@@ -211,7 +221,7 @@ export default function CategoryContent({
 
       return true;
     });
-  }, [products, activeFilters, filters]);
+  }, [products, activeFilters, filters, user?.customerGroup]);
 
   // Sort products
   const sortedProducts = useMemo(() => {

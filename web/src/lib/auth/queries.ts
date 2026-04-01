@@ -55,6 +55,7 @@ export const GET_CURRENT_USER_QUERY = `
       name
       username
       twoFactorEnabled
+      customerGroup
       roles {
         nodes {
           name
@@ -100,6 +101,7 @@ export interface GetCurrentUserResponse {
     name: string;
     username: string;
     twoFactorEnabled: boolean;
+    customerGroup?: string | null;
     roles: {
       nodes: Array<{
         name: string;

@@ -8,6 +8,7 @@ export interface User {
   email: string;
   displayName: string;
   username: string;
+  customerGroup?: string | null;
 }
 
 interface AuthState {

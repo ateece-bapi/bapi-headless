@@ -1,6 +1,7 @@
 import { getGraphQLClient } from '@/lib/graphql/client';
 import { gql } from 'graphql-request';
 import logger from '@/lib/logger';
+import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
 
 /**
  * Product search for AI chatbot integration
@@ -78,10 +79,14 @@ export interface ProductSearchResult {
 /**
  * Search products by keyword
  * Used by AI chatbot to find relevant BAPI products
+ * @param query Search query string
+ * @param limit Maximum number of results
+ * @param customerGroup Optional customer group for B2B filtering (e.g., 'alc', 'acs', 'emc', 'ccg')
  */
 export async function searchProducts(
   query: string,
-  limit: number = 5
+  limit: number = 5,
+  customerGroup?: string | null
 ): Promise<ProductSearchResult[]> {
   try {
     const client = getGraphQLClient(['products']);
@@ -93,7 +98,10 @@ export async function searchProducts(
 
     const products = data?.products?.nodes || [];
 
-    return products.map((product: any) => ({
+    // Apply customer group filtering before mapping
+    const filteredProducts = filterProductsByCustomerGroup(products, customerGroup);
+
+    return filteredProducts.map((product: any) => ({
       id: product.id,
       databaseId: product.databaseId,
       name: product.name,

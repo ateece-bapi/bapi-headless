@@ -58,6 +58,10 @@ const CATEGORY_SLUG_REDIRECTS: Record<string, string> = {
   wireless: 'bluetooth-wireless',
 };
 
+// Precompiled redirect regexes for performance (avoid creating on every request)
+const CATEGORIES_REDIRECT_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/categories/(.+)$`);
+const SHORT_SLUG_REDIRECT_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/products/([a-z-]+)(?:/(.*))?$`);
+
 /**
  * Extract locale from pathname, falling back to default locale.
  * Uses LOCALE_WITH_END_REGEX to ensure locale is followed by slash or end of string.
@@ -85,7 +89,7 @@ export default function middleware(request: NextRequest) {
   
   // 1. Redirect /categories/* → /products/* (301 permanent redirect)
   // Preserves remaining path segments and query strings for filtered/sorted URLs
-  const categoriesMatch = pathname.match(new RegExp(`^/(${LOCALE_PATTERN})/categories/(.+)$`));
+  const categoriesMatch = pathname.match(CATEGORIES_REDIRECT_REGEX);
   if (categoriesMatch) {
     const [, locale, categoryPath] = categoriesMatch;
     const newUrl = new URL(request.url);
@@ -97,7 +101,7 @@ export default function middleware(request: NextRequest) {
   
   // 2. Redirect short category slugs → full WordPress slugs (301 permanent redirect)
   // Handles both /products/{short-slug} and /products/{short-slug}/{subpath}
-  const shortSlugMatch = pathname.match(new RegExp(`^/(${LOCALE_PATTERN})/products/([a-z-]+)(?:/(.*))?$`));
+  const shortSlugMatch = pathname.match(SHORT_SLUG_REDIRECT_REGEX);
   if (shortSlugMatch) {
     const [, locale, slug, subpath] = shortSlugMatch;
     const fullSlug = CATEGORY_SLUG_REDIRECTS[slug];

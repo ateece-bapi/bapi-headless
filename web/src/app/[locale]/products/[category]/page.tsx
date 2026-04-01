@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
+import logger from '@/lib/logger';
 import { Suspense } from 'react';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import {
@@ -102,7 +103,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       let after: string | null = null;
       let hasNextPage = true;
 
-      while (hasNextPage) {
+      while (hasNextPage && products.length < 1000) {
         const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
           GetProductsWithFiltersDocument,
           {
@@ -118,20 +119,26 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
         after = productsData.products?.pageInfo?.endCursor ?? null;
 
-        // Safety guard to avoid infinite loops
-        if (!hasNextPage || !after || products.length > 1000) {
+        // Safety guard: Stop if no valid cursor for next page
+        if (!hasNextPage || !after) {
           break;
         }
       }
 
       if (products.length >= 1000) {
-        console.warn(
-          `⚠️ Category "${categoryData.name}" hit 1000 product limit. ` +
-            `Consider implementing client-side pagination for UX.`
-        );
+        logger.warn('Category hit 1000 product limit', {
+          categoryName: categoryData.name,
+          categorySlug: category,
+          productCount: products.length,
+          locale,
+        });
       }
     } catch (error) {
-      console.error('Failed to fetch products for category:', error);
+      logger.error('Failed to fetch products for category', error, {
+        categorySlug: category,
+        categoryName: categoryData.name,
+        locale,
+      });
     }
   }
 

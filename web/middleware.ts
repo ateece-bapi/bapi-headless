@@ -47,6 +47,18 @@ const adminRoutes = [
 const intlMiddleware = createMiddleware(routing);
 
 /**
+ * Legacy category slug mappings for backward compatibility
+ * Redirects short slugs to full WordPress category slugs
+ */
+const CATEGORY_SLUG_REDIRECTS: Record<string, string> = {
+  temperature: 'temperature-sensors',
+  humidity: 'humidity-sensors',
+  pressure: 'pressure-sensors',
+  'air-quality': 'air-quality-sensors',
+  wireless: 'bluetooth-wireless',
+};
+
+/**
  * Extract locale from pathname, falling back to default locale.
  * Uses LOCALE_WITH_END_REGEX to ensure locale is followed by slash or end of string.
  */
@@ -66,6 +78,31 @@ export default function middleware(request: NextRequest) {
   // locale-like prefixes from non-locale paths (e.g., /english/page → glish/page).
   const stripLocalePrefix = (path: string) =>
     path.replace(LOCALE_WITH_END_REGEX, '/');
+  
+  // ============================================================================
+  // LEGACY REDIRECTS - Category Routing Consolidation (April 2026)
+  // ============================================================================
+  
+  // 1. Redirect /categories/* → /products/* (301 permanent redirect)
+  const categoriesMatch = pathname.match(/^\/([a-z]{2})\/categories\/(.+)$/);
+  if (categoriesMatch) {
+    const [, locale, categorySlug] = categoriesMatch;
+    const newUrl = new URL(`/${locale}/products/${categorySlug}`, request.url);
+    console.log('[MIDDLEWARE] 301 Redirect /categories → /products:', newUrl.toString());
+    return NextResponse.redirect(newUrl, { status: 301 });
+  }
+  
+  // 2. Redirect short category slugs → full WordPress slugs (301 permanent redirect)
+  const shortSlugMatch = pathname.match(/^\/([a-z]{2})\/products\/([a-z-]+)$/);
+  if (shortSlugMatch) {
+    const [, locale, slug] = shortSlugMatch;
+    const fullSlug = CATEGORY_SLUG_REDIRECTS[slug];
+    if (fullSlug) {
+      const newUrl = new URL(`/${locale}/products/${fullSlug}`, request.url);
+      console.log('[MIDDLEWARE] 301 Redirect short slug → full slug:', newUrl.toString());
+      return NextResponse.redirect(newUrl, { status: 301 });
+    }
+  }
   
   // Check if route needs authentication (use segment matching to prevent false positives)
   const isProtectedRoute = protectedRoutes.some(route => {

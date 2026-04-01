@@ -168,7 +168,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
               </div>
               {parentCategory && (
                 <Link
-                  href={`/${locale}/categories/${parentCategory.slug}`}
+                  href={`/${locale}/products/${parentCategory.slug}`}
                   className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 backdrop-blur-sm transition-all hover:bg-white/20"
                 >
                   <svg

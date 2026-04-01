@@ -87,19 +87,19 @@ vi.mock('./config', () => ({
         columns: [
           {
             title: t('megaMenu.products.temperature.title'),
-            slug: 'temperature',
+            slug: 'temperature-sensors',
             icon: '/images/icons/Temperature_Icon.webp',
             links: [
               {
                 label: t('megaMenu.products.temperature.roomWallSensors'),
-                href: '/products/temperature/room-wall',
+                href: '/products/temperature-sensors/room-wall',
                 description: t('megaMenu.products.temperature.roomWallSensorsDesc'),
               },
             ],
           },
           {
             title: t('megaMenu.products.humidity.title'),
-            slug: 'humidity',
+            slug: 'humidity-sensors',
             icon: '/images/icons/Humidity_Icon.webp',
             links: [
               {
@@ -138,24 +138,24 @@ const mockMegaMenuItem: MegaMenuItem = {
     columns: [
       {
         title: 'Temperature Sensors',
-        slug: 'temperature',
+        slug: 'temperature-sensors',
         icon: '/images/icons/Temperature_Icon.webp',
         links: [
           {
             label: 'Room & Wall Sensors',
-            href: '/products/temperature/room-wall',
+            href: '/products/temperature-sensors/room-wall',
             description: 'Precise temperature monitoring for rooms and walls',
           },
           {
             label: 'Duct Sensors',
-            href: '/products/temperature/duct',
+            href: '/products/temperature-sensors/duct',
             description: 'Monitor air temperature in ducts',
           },
         ],
       },
       {
         title: 'Humidity Sensors',
-        slug: 'humidity',
+        slug: 'humidity-sensors',
         icon: '/images/icons/Humidity_Icon.webp',
         links: [
           {
@@ -184,7 +184,7 @@ const mockSimpleMenuItem: MegaMenuItem = {
 const mockBreadcrumbItems = [
   { label: 'Home', href: '/en' },
   { label: 'Products', href: '/en/products' },
-  { label: 'Temperature Sensors', href: '/en/products/temperature' },
+  { label: 'Temperature Sensors', href: '/en/products/temperature-sensors' },
   { label: 'Room & Wall Sensors' }, // Current page (no href)
 ];
 
@@ -483,7 +483,7 @@ describe('MegaMenuItem - Mega Menu Panel Content', () => {
     expect(temperatureHeader.closest('a')).toBeInTheDocument();
     expect(temperatureHeader.closest('a')).toHaveAttribute(
       'href',
-      '/products/temperature'
+      '/products/temperature-sensors'
     );
   });
 
@@ -503,7 +503,7 @@ describe('MegaMenuItem - Mega Menu Panel Content', () => {
 
     const roomWallLink = screen.getByRole('link', { name: /room & wall sensors/i });
     expect(roomWallLink).toBeInTheDocument();
-    expect(roomWallLink).toHaveAttribute('href', '/products/temperature/room-wall');
+    expect(roomWallLink).toHaveAttribute('href', '/products/temperature-sensors/room-wall');
 
     // Description should be inside the link
     expect(roomWallLink.textContent).toContain('Precise temperature monitoring');
@@ -1041,7 +1041,7 @@ describe('Breadcrumbs - Navigation Structure', () => {
     expect(productsLink).toHaveAttribute('href', '/en/products');
 
     const temperatureLink = screen.getByRole('link', { name: /temperature sensors/i });
-    expect(temperatureLink).toHaveAttribute('href', '/en/products/temperature');
+    expect(temperatureLink).toHaveAttribute('href', '/en/products/temperature-sensors');
   });
 
   it('last item is not a link and has aria-current', () => {
@@ -1181,7 +1181,7 @@ describe('Edge Cases - Navigation Components', () => {
         columns: [
           {
             title: 'Temperature',
-            slug: 'temperature',
+            slug: 'temperature-sensors',
             icon: '/images/icons/Temperature_Icon.webp',
             links: [],
           },

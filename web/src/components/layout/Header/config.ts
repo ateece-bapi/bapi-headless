@@ -30,7 +30,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
       columns: [
         {
           title: t('products.temperature.title'),
-          slug: 'temperature',
+          slug: 'temperature-sensors',
           icon: '/images/icons/Temperature_Icon.webp',
           links: [
             {
@@ -67,7 +67,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.humidity.title'),
-          slug: 'humidity',
+          slug: 'humidity-sensors',
           icon: '/images/icons/Humidity_Icon.webp',
           links: [
             {
@@ -94,7 +94,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.pressure.title'),
-          slug: 'pressure',
+          slug: 'pressure-sensors',
           icon: '/images/icons/Pressure_Icon.webp',
           links: [
             {
@@ -116,7 +116,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.airQuality.title'),
-          slug: 'air-quality',
+          slug: 'air-quality-sensors',
           icon: '/images/icons/AirQuality_Icon.webp',
           links: [
             {
@@ -138,7 +138,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         },
         {
           title: t('products.wireless.title'),
-          slug: 'wireless',
+          slug: 'bluetooth-wireless',
           icon: '/images/icons/Wireless_Icon.webp',
           links: [
             {

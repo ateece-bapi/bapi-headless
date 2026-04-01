@@ -20,7 +20,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(result).toEqual([
         { label: 'Home', href: '/en' },
         { label: 'Products', href: '/en/products' },
-        { label: 'Actuators', href: '/en/categories/actuators' },
+        { label: 'Actuators', href: '/en/products/actuators' },
       ]);
     });
 
@@ -32,7 +32,7 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(result).toEqual([
         { label: 'Products', href: '/en/products' },
-        { label: 'Actuators', href: '/en/categories/actuators' },
+        { label: 'Actuators', href: '/en/products/actuators' },
       ]);
     });
 
@@ -49,7 +49,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(result).toEqual([
         { label: 'Startseite', href: '/de' },
         { label: 'Produkte', href: '/de/products' },
-        { label: 'Aktoren', href: '/de/categories/actuators' },
+        { label: 'Aktoren', href: '/de/products/actuators' },
       ]);
     });
 
@@ -74,7 +74,7 @@ describe('Breadcrumb Navigation Utilities', () => {
 
         expect(result[0].href).toBe(`/${locale}`);
         expect(result[1].href).toBe(`/${locale}/products`);
-        expect(result[2].href).toBe(`/${locale}/categories/actuators`);
+        expect(result[2].href).toBe(`/${locale}/products/actuators`);
       });
     });
 
@@ -85,7 +85,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       });
 
       expect(result[2].label).toBe('Sensors & Controls');
-      expect(result[2].href).toBe('/en/categories/sensors-controls');
+      expect(result[2].href).toBe('/en/products/sensors-controls');
     });
   });
 
@@ -105,7 +105,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(result).toEqual([
         { label: 'Home', href: '/en' },
         { label: 'Products', href: '/en/products' },
-        { label: 'Actuators', href: '/en/categories/actuators' },
+        { label: 'Actuators', href: '/en/products/actuators' },
         {
           label: 'Electric Actuators',
           href: '/en/products/actuators/electric-actuators',
@@ -127,7 +127,7 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(result).toEqual([
         { label: 'Products', href: '/en/products' },
-        { label: 'Actuators', href: '/en/categories/actuators' },
+        { label: 'Actuators', href: '/en/products/actuators' },
         {
           label: 'Electric Actuators',
           href: '/en/products/actuators/electric-actuators',
@@ -171,7 +171,7 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(result[0].href).toBe('/ja');
       expect(result[1].href).toBe('/ja/products');
-      expect(result[2].href).toBe('/ja/categories/actuators');
+      expect(result[2].href).toBe('/ja/products/actuators');
       expect(result[3].href).toBe('/ja/products/actuators/electric-actuators');
     });
   });
@@ -200,7 +200,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(result).toEqual([
         { label: 'Home', href: '/en' },
         { label: 'Products', href: '/en/products' },
-        { label: 'Actuators', href: '/en/categories/actuators' },
+        { label: 'Actuators', href: '/en/products/actuators' },
         {
           label: 'Electric Actuators',
           href: '/en/products/actuators/electric-actuators',
@@ -361,7 +361,7 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(result[0].href).toBe('/zh');
       expect(result[1].href).toBe('/zh/products');
-      expect(result[2].href).toBe('/zh/categories/parent');
+      expect(result[2].href).toBe('/zh/products/parent');
       expect(result[3].href).toBe('/zh/products/parent/category');
     });
   });
@@ -456,7 +456,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       const breadcrumbs: BreadcrumbItem[] = [
         { label: 'Home', href: '/en' },
         { label: 'Products', href: '/en/products' },
-        { label: 'Actuators', href: '/en/categories/actuators' },
+        { label: 'Actuators', href: '/en/products/actuators' },
       ];
 
       const schema = breadcrumbsToSchemaOrg(breadcrumbs, 'https://bapi.com');
@@ -481,7 +481,7 @@ describe('Breadcrumb Navigation Utilities', () => {
             '@type': 'ListItem',
             position: 3,
             name: 'Actuators',
-            item: 'https://bapi.com/en/categories/actuators',
+            item: 'https://bapi.com/en/products/actuators',
           },
         ],
       });
@@ -504,7 +504,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       const breadcrumbs: BreadcrumbItem[] = [
         { label: 'Home', href: '/en' },
         { label: 'Products', href: '' }, // Empty href
-        { label: 'Category', href: '/en/categories/test' },
+        { label: 'Category', href: '/en/products/test' },
       ];
 
       const schema = breadcrumbsToSchemaOrg(breadcrumbs, 'https://bapi.com');
@@ -562,7 +562,7 @@ describe('Breadcrumb Navigation Utilities', () => {
         { label: 'Skip1' }, // No href - filtered
         { label: 'Products', href: '/en/products' },
         { label: 'Skip2', href: '' }, // Empty - filtered
-        { label: 'Category', href: '/en/categories/test' },
+        { label: 'Category', href: '/en/products/test' },
       ];
 
       const schema = breadcrumbsToSchemaOrg(breadcrumbs, 'https://bapi.com');
@@ -598,7 +598,7 @@ describe('Breadcrumb Navigation Utilities', () => {
     it('preserves special characters in breadcrumb names', () => {
       const breadcrumbs: BreadcrumbItem[] = [
         { label: 'Home', href: '/en' },
-        { label: 'Sensors & Controls', href: '/en/categories/sensors-controls' },
+        { label: 'Sensors & Controls', href: '/en/products/sensors-controls' },
       ];
 
       const schema = breadcrumbsToSchemaOrg(breadcrumbs, 'https://bapi.com');
@@ -711,7 +711,7 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(schema.itemListElement).toHaveLength(3);
       expect(schema.itemListElement[2].name).toBe('Actuators');
-      expect(schema.itemListElement[2].item).toBe('https://bapi.com/en/categories/actuators');
+      expect(schema.itemListElement[2].item).toBe('https://bapi.com/en/products/actuators');
     });
 
     it('product breadcrumbs work with Schema.org conversion', () => {

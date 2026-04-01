@@ -31,6 +31,7 @@ export interface ProductWithCustomerGroup {
  *
  * @example
  * extractCustomerGroupFromTitle("(ALC) BAPI-Stat 4") // returns "alc"
+ * extractCustomerGroupFromTitle("CCG/H205-B4X-Z-CG-WMW") // returns "ccg"
  * extractCustomerGroupFromTitle("BA/10K-3 Temperature Sensor") // returns null
  */
 export function extractCustomerGroupFromTitle(
@@ -38,15 +39,23 @@ export function extractCustomerGroupFromTitle(
 ): string | null {
   if (!productName) return null;
 
-  // Match pattern: (PREFIX) at start of title
-  const match = productName.match(/^\((\w+)\)/);
-  if (!match) return null;
+  // Match pattern 1: (PREFIX) with parentheses - e.g., "(ALC) BAPI-Stat 4"
+  let match = productName.match(/^\((\w+)\)/);
+  if (match) {
+    const prefix = match[1].toLowerCase();
+    const validGroups = ['alc', 'acs', 'emc', 'ccg'];
+    return validGroups.includes(prefix) ? prefix : null;
+  }
 
-  const prefix = match[1].toLowerCase();
+  // Match pattern 2: PREFIX/ with slash - e.g., "CCG/H205-B4X-Z-CG-WMW"
+  match = productName.match(/^([A-Z]{3})\//);
+  if (match) {
+    const prefix = match[1].toLowerCase();
+    const validGroups = ['alc', 'acs', 'emc', 'ccg'];
+    return validGroups.includes(prefix) ? prefix : null;
+  }
 
-  // Only return recognized customer groups
-  const validGroups = ['alc', 'acs', 'emc', 'ccg'];
-  return validGroups.includes(prefix) ? prefix : null;
+  return null;
 }
 
 /**

@@ -28,6 +28,22 @@ describe('extractCustomerGroupFromTitle', () => {
     expect(extractCustomerGroupFromTitle('(CCG) Test Product')).toBe('ccg');
   });
 
+  it('extracts customer group from CCG/ prefix (slash pattern)', () => {
+    expect(extractCustomerGroupFromTitle('CCG/H205-B4X-Z-CG-WMW')).toBe('ccg');
+  });
+
+  it('extracts customer group from ALC/ prefix (slash pattern)', () => {
+    expect(extractCustomerGroupFromTitle('ALC/Product-Name')).toBe('alc');
+  });
+
+  it('extracts customer group from ACS/ prefix (slash pattern)', () => {
+    expect(extractCustomerGroupFromTitle('ACS/Product-Name')).toBe('acs');
+  });
+
+  it('extracts customer group from EMC/ prefix (slash pattern)', () => {
+    expect(extractCustomerGroupFromTitle('EMC/Product-Name')).toBe('emc');
+  });
+
   it('returns null for standard product without prefix', () => {
     expect(extractCustomerGroupFromTitle('BA/10K-3 Temperature Sensor')).toBeNull();
   });

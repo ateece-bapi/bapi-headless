@@ -21,8 +21,9 @@ update_products() {
   
   echo -e "\nProcessing ${prefix} products (group: ${group})..."
   
-  # Get product IDs
-  local product_ids=$(wp post list \
+  # Get product IDs with BOTH naming patterns:
+  # Pattern 1: (PREFIX) with parentheses - e.g., "(ALC) BAPI-Stat 4"
+  local product_ids_parens=$(wp post list \
     --post_type=product \
     --post_status=publish \
     --s="(${prefix})" \
@@ -30,16 +31,28 @@ update_products() {
     --format=csv \
     --path=${WP_PATH})
   
+  # Pattern 2: PREFIX/ with slash - e.g., "CCG/H205-B4X-Z-CG-WMW"
+  local product_ids_slash=$(wp post list \
+    --post_type=product \
+    --post_status=publish \
+    --s="${prefix}/" \
+    --field=ID \
+    --format=csv \
+    --path=${WP_PATH})
+  
+  # Combine and deduplicate product IDs
+  local all_product_ids=$(echo -e "${product_ids_parens}\n${product_ids_slash}" | sort -u | grep -v '^$')
+  
   local count=0
   
   # Add meta to each product
-  for id in $product_ids; do
+  for id in $all_product_ids; do
     wp post meta add $id customer_group1 "$serialized_value" --path=${WP_PATH} 2>/dev/null || \
     wp post meta update $id customer_group1 "$serialized_value" --path=${WP_PATH}
     count=$((count + 1))
   done
   
-  echo "✓ Updated $count ${prefix} products"
+  echo "✓ Updated $count ${prefix} products (both naming patterns)"
 }
 
 # Update each group

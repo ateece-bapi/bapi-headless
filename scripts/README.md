@@ -142,3 +142,243 @@ echo "✅ All translations complete!"
 ---
 
 **Total Cost**: $5-20 AI + $99/mo Crowdin Pro = **Saves $250-500** vs Crowdin AI
+
+---
+---
+
+# Customer Group Filtering - Setup Scripts
+
+**Purpose:** Populate WordPress database with customer group restrictions for B2B product visibility control.
+
+**Date:** April 1, 2026  
+**Status:** Ready for execution on Kinsta staging
+
+---
+
+## Overview
+
+These scripts set up the customer group filtering system that restricts product visibility based on user company affiliation:
+
+- **132 restricted products** across 4 customer groups (ALC, ACS, EMC, CCG)
+- **476 standard products** visible to all users
+- **5 test users** for validation testing
+
+---
+
+## Prerequisites
+
+1. **SSH Access** to Kinsta staging server
+   - Host: `35.224.70.159`
+   - Port: `17338`
+   - User: `bapiheadlessstaging`
+   - Password: (provided separately)
+
+2. **WP-CLI** installed on server (Kinsta includes this by default)
+
+3. **ACF Pro** plugin active with CustomerInformation field group
+
+---
+
+## Quick Start
+
+### Option 1: Automated Setup (Recommended)
+
+Run the complete setup script from your local machine:
+
+```bash
+cd /home/ateece/bapi-headless
+./scripts/setup-customer-groups.sh
+```
+
+This script will:
+1. ✅ Verify SSH connection
+2. ✅ Show current product distribution
+3. ✅ Populate `customer_group1` for 132 products
+4. ✅ Create 5 test users with appropriate customer groups
+5. ✅ Verify all changes
+
+**Time:** ~2-3 minutes
+
+---
+
+### Option 2: Manual Setup
+
+If you prefer to run commands individually:
+
+#### Step 1: Populate Product Customer Groups
+
+```bash
+# SSH into Kinsta
+ssh -p 17338 bapiheadlessstaging@35.224.70.159
+
+# Upload SQL file (from your local machine)
+scp -P 17338 scripts/populate-customer-groups.sql bapiheadlessstaging@35.224.70.159:/tmp/
+
+# Execute SQL (on server, after SSH)
+wp db query "$(cat /tmp/populate-customer-groups.sql)" --path=/www/bapiheadlessstaging_582/public
+```
+
+#### Step 2: Create Test Users
+
+```bash
+# Create ALC test user (run on server after SSH)
+wp user create test-alc test-alc@bapihvac.com \
+  --role=customer \
+  --display_name='Test User - ALC' \
+  --user_pass='TestBAPI2026!' \
+  --path=/www/bapiheadlessstaging_582/public
+
+# Set customer group
+wp user meta update $(wp user get test-alc@bapihvac.com --field=ID --path=/www/bapiheadlessstaging_582/public) \
+  customer_group 'alc' \
+  --path=/www/bapiheadlessstaging_582/public
+
+# Repeat for ACS, EMC, CCG, and Standard users
+```
+
+---
+
+## Verification
+
+### Check Product Distribution
+
+```bash
+ssh -p 17338 bapiheadlessstaging@35.224.70.159 \
+  "wp db query \"SELECT 
+    CASE 
+      WHEN meta_value LIKE '%alc%' THEN 'ALC'
+      WHEN meta_value LIKE '%acs%' THEN 'ACS'
+      WHEN meta_value LIKE '%emc%' THEN 'EMC'
+      WHEN meta_value LIKE '%ccg%' THEN 'CCG'
+      WHEN meta_value = '' THEN 'Standard'
+    END as group_name,
+    COUNT(*) as count
+  FROM wp_postmeta pm
+  INNER JOIN wp_posts p ON pm.post_id = p.ID
+  WHERE pm.meta_key = 'customer_group1'
+    AND p.post_type = 'product'
+    AND p.post_status = 'publish'
+  GROUP BY group_name;\" \
+  --path=/www/bapiheadlessstaging_582/public"
+```
+
+**Expected Output:**
+```
+group_name  count
+Standard    476
+ALC         112
+EMC         9
+CCG         7
+ACS         4
+```
+
+### Check Test Users
+
+```bash
+ssh -p 17338 bapiheadlessstaging@35.224.70.159 \
+  "wp user list --role=customer --fields=user_email,display_name,customer_group --path=/www/bapiheadlessstaging_582/public"
+```
+
+---
+
+## Test Credentials
+
+**All test users use the same password:** `TestBAPI2026!`
+
+| Email | Customer Group | Expected Product Count |
+|-------|----------------|----------------------|
+| `test-alc@bapihvac.com` | alc | 588 (476 std + 112 ALC) |
+| `test-acs@bapihvac.com` | acs | 480 (476 std + 4 ACS) |
+| `test-emc@bapihvac.com` | emc | 485 (476 std + 9 EMC) |
+| `test-ccg@bapihvac.com` | ccg | 483 (476 std + 7 CCG) |
+| `test-standard@bapihvac.com` | none | 476 (standard only) |
+
+---
+
+## Data Format Notes
+
+### ACF Serialized Arrays
+
+ACF stores select field values as serialized PHP arrays:
+
+```php
+// Single value selected: "alc"
+'a:1:{i:0;s:3:"alc";}'
+
+// Deserialized equivalent:
+array(1) {
+  [0] => string(3) "alc"
+}
+```
+
+### Customer Group Values
+
+- **Lowercase in database:** `'alc'`, `'acs'`, `'emc'`, `'ccg'`
+- **Uppercase in product titles:** `'(ALC)'`, `'(ACS)'`, `'(EMC)'`, `'(CCG)'`
+- **Matching logic:** Case-insensitive comparison in filtering code
+
+---
+
+## Troubleshooting
+
+### Issue: "This does not seem to be a WordPress installation"
+
+**Solution:** Always specify `--path=/www/bapiheadlessstaging_582/public` with WP-CLI commands.
+
+### Issue: User creation fails with "Email already exists"
+
+**Solution:** User already exists. Just update the meta field:
+```bash
+wp user meta update <user_id> customer_group 'alc' --path=/www/bapiheadlessstaging_582/public
+```
+
+### Issue: Products not showing customer group in GraphQL
+
+**Solution:** 
+1. Verify ACF field group "CustomerInformation" is assigned to Products
+2. Check WPGraphQL settings include ACF fields
+3. Run schema regeneration: `wp graphql update-schema --path=/www/bapiheadlessstaging_582/public`
+
+---
+
+## Rollback
+
+To remove all customer group assignments:
+
+```bash
+# Clear all product customer groups (run on server)
+wp db query "UPDATE wp_postmeta SET meta_value = '' WHERE meta_key IN ('customer_group1', 'customer_group2', 'customer_group3');" --path=/www/bapiheadlessstaging_582/public
+
+# Remove test users
+wp user delete test-alc@bapihvac.com --yes --path=/www/bapiheadlessstaging_582/public
+wp user delete test-acs@bapihvac.com --yes --path=/www/bapiheadlessstaging_582/public
+wp user delete test-emc@bapihvac.com --yes --path=/www/bapiheadlessstaging_582/public
+wp user delete test-ccg@bapihvac.com --yes --path=/www/bapiheadlessstaging_582/public
+wp user delete test-standard@bapihvac.com --yes --path=/www/bapiheadlessstaging_582/public
+```
+
+---
+
+## Next Steps After Running Scripts
+
+1. **Verify GraphQL Schema** - Check that `customerGroup1/2/3` are queryable
+2. **Implement Frontend Filtering** - Follow implementation plan in `docs/DAILY-LOG.md`
+3. **Add User CustomerGroup to Auth** - Update `GET_CURRENT_USER_QUERY` to include `customerGroup`
+4. **Create Filtering Utility** - Build `filterProductsByCustomerGroup()` function
+5. **Integration Testing** - Test with all 5 test users across all browsing contexts
+
+---
+
+## Customer Group Files
+
+- `populate-customer-groups.sql` - SQL script to update product meta
+- `setup-customer-groups.sh` - Automated setup script (recommended)
+
+---
+
+## Support
+
+For questions or issues, refer to:
+- **Implementation Plan:** `docs/DAILY-LOG.md` (April 1, 2026 entry)
+- **Architecture:** `docs/CUSTOMER-GROUP-FILTERING.md`
+- **GraphQL Schema:** `web/src/lib/graphql/generated.ts` (lines 5638-5642)

@@ -2,9 +2,211 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** March 31, 2026  
-**Status:** Phase 1 Development - April 24, 2026 Go-Live (24 days remaining)  
+**Updated:** April 1, 2026  
+**Status:** Phase 1 Development - April 24, 2026 Go-Live (23 days remaining)  
 **Testing Phase:** 2-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## April 1, 2026 — Customer Group Product Filtering Implementation 🔒
+
+**Status:** 🚧 PLANNING - Implementation Required  
+**Context:** B2B customer segmentation for product visibility  
+**Priority:** HIGH - Phase 1 Launch Requirement  
+**Time Estimate:** 4-6 hours (backend + frontend + testing)
+
+### 🎯 BUSINESS REQUIREMENT
+
+**Problem:** Products from specific OEM partners are currently visible to all users. This violates B2B contractual agreements and creates confusion.
+
+**Product Analysis (Via SSH to Kinsta Staging):**
+- **112 (ALC)** products - e.g., "(ALC) BAPI-Stat 4 Room Temperature Transmitter"
+- **9 (EMC)** products
+- **7 (CCG)** products  
+- **4 (ACS)** products - e.g., "(ACS) Duct Averaging Temperature Sensor"
+- **Total:** 132 restricted products out of ~608 total
+
+**Current Database State:**
+- ❌ NO products have `customer_group1/2/3` values populated (needs WordPress admin setup)
+- ❌ NO users have `customer_group` meta assigned (needs WordPress admin setup)
+- ✅ GraphQL schema DOES expose `customerGroup1/2/3` fields (Array<String>)
+- ✅ Product names include prefix identifiers for filtering
+
+**Expected Behavior:**
+- **(ALC)** products → Only visible to ALC customer group users
+- **(ACS)** products → Only visible to ACS customer group users
+- **(EMC)** products → Only visible to EMC customer group users
+- **(CCG)** products → Only visible to CCG customer group users
+- **Standard products** (no prefix) → Visible to ALL users including guests
+
+**Data Model:**
+- **Products:** `customer_group1/2/3` (wp_postmeta, ACF select fields, type: Array<String>)
+- **Users:** `customer_group` (user meta) - e.g., 'alc', 'acs', 'emc', 'ccg'
+
+---
+
+### 📋 IMPLEMENTATION CHECKLIST
+
+#### Phase 0: WordPress Admin Setup (REQUIRED FIRST)
+
+**⚠️ BLOCKING: Database Must Be Populated Before Frontend Implementation**
+
+- [ ] **0.1** Populate product customer groups based on title prefix
+  - SSH command to bulk update products:
+  ```sql
+  -- Update (ALC) products
+  UPDATE wp_postmeta pm
+  INNER JOIN wp_posts p ON pm.post_id = p.ID
+  SET pm.meta_value = 'a:1:{i:0;s:3:"alc";}'
+  WHERE pm.meta_key = 'customer_group1'
+  AND p.post_type = 'product'
+  AND p.post_status = 'publish'
+  AND p.post_title LIKE '(ALC)%';
+  
+  -- Update (ACS) products (4 products)
+  -- Update (EMC) products (9 products)
+  -- Update (CCG) products (7 products)
+  ```
+  - **Note:** ACF stores select values as serialized arrays
+  - Verify: `wp db query "SELECT p.post_title, pm.meta_value FROM wp_postmeta pm INNER JOIN wp_posts p ON pm.post_id = p.ID WHERE pm.meta_key = 'customer_group1' LIMIT 10;" --path=/www/bapiheadlessstaging_582/public`
+
+- [ ] **0.2** Assign customer groups to test users
+  - Create test users for each group:
+    - `test-alc@bapihvac.com` → customer_group = 'alc'
+    - `test-acs@bapihvac.com` → customer_group = 'acs'
+    - `test-emc@bapihvac.com` → customer_group = 'emc'
+    - `test-ccg@bapihvac.com` → customer_group = 'ccg'
+  - SSH commands:
+  ```bash
+  wp user meta update <user_id> customer_group 'alc' --path=/www/bapiheadlessstaging_582/public
+  ```
+
+- [ ] **0.3** Document customer group values and conventions
+  - Customer group values are lowercase: 'alc', 'acs', 'emc', 'ccg'
+  - Product prefixes are uppercase: '(ALC)', '(ACS)', '(EMC)', '(CCG)'
+  - Matching logic: case-insensitive comparison
+
+---
+
+#### Phase 1: WordPress User Data (GraphQL Query)
+
+- [ ] **1.1** Update `GET_CURRENT_USER_QUERY` in `web/src/lib/auth/queries.ts`
+  - Add `customerGroup` field to viewer query
+  - Map from WordPress user meta `customer_group`
+  - Test with GraphiQL to verify field is exposed
+
+- [ ] **1.2** Update TypeScript interfaces
+  - Add `customerGroup?: string | null` to `User` interface in `web/src/hooks/useAuth.ts`
+  - Add `customerGroup` to `GetCurrentUserResponse` type in `web/src/lib/auth/queries.ts`
+  - Regenerate types: `pnpm run codegen`
+
+- [ ] **1.3** Update `/api/auth/me` route
+  - Extract `customerGroup` from viewer response
+  - Include in returned user object
+  - Update response type to include `customerGroup`
+
+#### Phase 2: Product Queries (Customer Group Fields)
+
+- [ ] **2.1** Add customer group fields to GraphQL product queries
+  - Update `web/src/lib/graphql/queries/products.graphql`:
+    - `GetProductsByCategory` - add `customerGroup1`, `customerGroup2`, `customerGroup3`
+    - `SearchProducts` - add customer group fields
+    - `GetProducts` - add customer group fields
+  - Regenerate types: `pnpm run codegen`
+
+- [ ] **2.2** Verify WordPress GraphQL schema exposes fields
+  - Test in GraphiQL: `products { customerGroup1, customerGroup2, customerGroup3 }`
+  - If NOT exposed, create WordPress function to register fields (see CUSTOMER-GROUP-FILTERING.md)
+
+#### Phase 3: Filtering Logic
+
+**Option A: Server-Side Filtering (Preferred)**
+- [ ] **3.1** Add `customerGroup` parameter to WordPress GraphQL `products` where clause
+  - Requires WordPress backend update (WPGraphQL custom filter)
+  - Best performance (filtered at database level)
+  - Cleaner architecture
+
+**Option B: Client-Side Filtering (Fallback)**
+- [ ] **3.2** Create utility function `filterProductsByCustomerGroup()`
+  - File: `web/src/lib/utils/filterProductsByCustomerGroup.ts`
+  - Logic:
+    ```typescript
+    // Pseudo-code
+    function filterProductsByCustomerGroup(products, userCustomerGroup) {
+      return products.filter(product => {
+        const groups = [product.customerGroup1, product.customerGroup2, product.customerGroup3].filter(Boolean);
+        if (groups.length === 0) return true; // Public product
+        if (!userCustomerGroup) return false; // Guest can't see restricted
+        return groups.includes(userCustomerGroup); // Match user's group
+      });
+    }
+    ```
+
+- [ ] **3.3** Apply filter in product display components
+  - `web/src/app/[locale]/products/[category]/page.tsx` - Filter before passing to CategoryContent
+  - `web/src/app/[locale]/products/page.tsx` - Filter product grid
+  - `web/src/components/products/ProductSearch.tsx` - Filter search results
+  - `web/src/app/api/chat/route.ts` - Filter AI chat product results
+
+#### Phase 4: Testing & Validation
+
+- [ ] **4.1** Verify WordPress data population (Phase 0 complete)
+  - Count products by customer group: 112 ALC, 9 EMC, 7 CCG, 4 ACS
+  - Verify test users created and assigned correct groups
+  - Check serialized array format in database (ACF stores as `a:1:{i:0;s:3:"alc";}`)
+
+- [ ] **4.2** Verify product visibility by customer group
+  - Guest user → Only sees standard products (476 products without prefixes)
+  - ALC user → Sees standard + (ALC) products (476 + 112 = 588 total)
+  - ACS user → Sees standard + (ACS) products (476 + 4 = 480 total)
+  - EMC user → Sees standard + (EMC) products (476 + 9 = 485 total)
+  - CCG user → Sees standard + (CCG) products (476 + 7 = 483 total)
+
+- [ ] **4.3** Test all product browsing contexts
+  - Category pages: `/products/temperature-sensors`
+  - Search results: `/search?q=sensor`
+  - AI chat: Product recommendations
+  - Homepage: Featured products
+
+- [ ] **4.4** Performance testing
+  - Measure filtering overhead (expect <1ms for 200 products)
+  - Check GraphQL query performance
+  - Verify caching still works correctly
+  - Monitor bundle size impact
+
+---
+
+### 🎯 TECHNICAL NOTES
+
+**WordPress Backend Configuration Required:**
+1. Verify `customer_group` user meta field exists and is populated
+2. Register GraphQL fields for `customerGroup1/2/3` if not auto-exposed
+3. Consider adding GraphQL where clause for server-side filtering
+
+**Frontend Impact:**
+- All product queries need customer group fields
+- Auth state needs to include `customerGroup`
+- Product display components need filtering logic
+- Cache tags remain unchanged (filtering happens after fetch)
+
+**Security Considerations:**
+- Client-side filtering is NOT a security measure (data still fetched)
+- Server-side filtering recommended for scalability and security
+- Ensure guest users don't receive restricted product data
+
+**Performance Optimization:**
+- Client-side filtering adds minimal overhead (<1ms for 200 products)
+- Server-side filtering reduces payload size and improves CDN caching
+- Consider adding `customerGroup` to cache tags if server-side filtering implemented
+
+---
+
+### 📚 REFERENCE DOCUMENTATION
+
+- **Implementation Guide:** `docs/CUSTOMER-GROUP-FILTERING.md`
+- **GraphQL Schema:** Customer group fields already in generated types
+- **Auth System:** WordPress JWT + native user meta
+- **Test Plan:** Manual testing with multiple user types
 
 ---
 
@@ -262,6 +464,183 @@ FILES:
 - ProductDetailClient.tsx: Quantity state + restored ProductSummaryCard
 
 Related: Team feedback + staged site pattern analysis, April 1 2026
+```
+
+---
+
+## April 1, 2026 (Afternoon) — Post-Merge Copilot Review: Dual Add to Cart Quality Fixes ✅
+
+**Status:** ✅ COMPLETE - All Fixes Merged  
+**Context:** Copilot PR review identified 9 code quality issues in PR #428 (Dual Add to Cart Pattern)  
+**Time:** ~1 hour (systematic issue resolution → type safety fixes → build verification)  
+**Branch:** `fix/copilot-pr-review-dual-cart` (merged & deleted)  
+**PR:** [#429](https://github.com/ateece-bapi/bapi-headless/pull/429)  
+**Files Modified:** 5 files (AddToCartButton, ProductDetailClient, ProductSummaryCard, ProductVariationSelector, VariationSelector)
+
+### 🎯 SESSION SUMMARY: Production-Ready Code Quality Improvements
+
+**Trigger:** Automated Copilot review on merged PR #428 flagged 9 issues (1 Critical, 3 High, 2 Medium, 3 Low)  
+**Approach:** Systematic resolution of all issues → type safety → successful production build  
+**Outcome:** Zero production errors, improved accessibility, better cart consistency
+
+---
+
+### Issues Resolved
+
+**CRITICAL Priority:**
+- **#9 Cart Item ID Mismatch** 
+  - **Problem:** VariationSelector used composite key `${product.id}::${variation.databaseId}`, ProductSummaryCard used `variation.id` → duplicate cart items when adding from different CTAs
+  - **Fix:** Changed VariationSelector to use `matchedVariation.id` consistently
+  - **Impact:** Prevents duplicate line items in cart, ensures both CTAs add to same cart entry
+
+**HIGH Priority:**
+- **#2 Currency Display Bug**
+  - **Problem:** VariationSelector passed raw `matchedVariation.price` (USD string) instead of converted display price
+  - **Fix:** Added `convertWooCommercePrice(matchedVariation.price, region.currency)` call
+  - **Impact:** EUR/GBP users now see correct converted prices in configurator CTA
+
+- **#7/#8 Quantity State Desync**
+  - **Problem:** ProductSummaryCard and VariationSelector had independent quantity states → different quantities added from each CTA
+  - **Fix:** Lifted quantity state to ProductDetailClient, passed to both components
+  - **Impact:** Both CTAs always add same quantity, better UX consistency
+
+**MEDIUM Priority:**
+- **#4/#6 Type Safety - Cart Hooks**
+  - **Problem:** Props typed as `any` for useCart/useCartDrawer → potential runtime crashes
+  - **Fix:** Changed to `typeof defaultUseCart` and `typeof defaultUseCartDrawer`
+  - **Impact:** Full type checking, IntelliSense support, compile-time error detection
+
+- **#3 NaN Input Validation**
+  - **Problem:** `Number(e.target.value)` returns NaN for invalid input → invalid cart state
+  - **Fix:** Added `isNaN(val) ? 1 : Math.max(1, Math.min(999, val))` guard in all quantity inputs
+  - **Impact:** Invalid input defaults to 1, increment button caps at 999
+
+**LOW Priority:**
+- **#5 Accessibility - Duplicate ARIA Labels**
+  - **Problem:** Both Add to Cart buttons had identical accessible names → screen reader confusion
+  - **Fix:** Added optional `ariaLabel` prop to AddToCartButton, passed distinct labels ("from configurator" vs default)
+  - **Impact:** Screen reader users can differentiate between dual CTAs
+
+- **#1 Code Cleanup**
+  - **Problem:** Unused `CartItem` type import in VariationSelector
+  - **Fix:** Removed import
+  - **Impact:** Cleaner codebase, smaller bundle size
+
+---
+
+### Technical Fixes
+
+**TypeScript Type Compatibility:**
+- **Problem:** ProductSummaryCard quantity button handlers used updater function pattern `(q) => expr` but `externalOnQuantityChange` prop was `(value: number) => void`, not `Dispatch<SetStateAction<number>>`
+- **Root Cause:** When controlled from parent, setQuantity doesn't support React updater functions
+- **Fix:** Changed all button handlers from `setQuantity((q) => Math.max(1, q - 1))` to `setQuantity(Math.max(1, quantity - 1))`
+- **Impact:** Production build passes, works with both controlled and uncontrolled patterns
+
+**Tailwind CSS Consistency:**
+- **Problem:** Mixed Tailwind class syntax (`min-h-[44px]` vs `min-h-11`)
+- **Fix:** Standardized on design system tokens (`min-h-11` = 44px)
+- **Impact:** Better linting, consistent with design system
+
+---
+
+### Verification
+
+**Build Status:** ✅ PASS  
+```bash
+pnpm run build
+✓ Compiled successfully in 10.4s
+✓ Finished TypeScript in 20.3s    
+✓ Collecting page data (786/786) in 34.9s
+```
+
+**Type Checking:** ✅ PASS (0 errors)  
+**Linting:** ✅ PASS (only Tailwind CSS warnings, non-blocking)  
+**Production Bundle:** ✅ SUCCESS  
+
+---
+
+### Testing Checklist (for QA)
+
+- [ ] Quantity syncs between Product Summary and Configurator CTAs
+- [ ] Cart adds same variation from both buttons (no duplicate line items)
+- [ ] EUR/GBP users see converted prices (not USD)
+- [ ] Invalid quantity input (NaN, negative, > 999) defaults to 1
+- [ ] Screen reader announces distinct labels for each CTA
+- [ ] Type safety prevents runtime crashes
+- [ ] Production build completes successfully
+
+---
+
+### Files Modified
+
+**1. `web/src/components/cart/AddToCartButton.tsx`**
+- Added `ariaLabel?: string` prop to interface
+- Updated button aria-label to use custom label if provided
+- Falls back to default `Add ${product.name} to cart` if no custom label
+
+**2. `web/src/components/products/ProductPage/ProductDetailClient.tsx`**
+- Added `const [quantity, setQuantity] = useState(1)` for lifted state
+- Pass `quantity` and `onQuantityChange={setQuantity}` to both ProductSummaryCard and ProductVariationSelector
+- Syncs quantity across dual CTAs
+
+**3. `web/src/components/products/ProductPage/ProductSummaryCard.tsx`**
+- Added `quantity?: number` and `onQuantityChange?: (quantity: number) => void` props
+- Implemented controlled/uncontrolled dual-mode pattern
+- Fixed button handlers: `setQuantity((q) => ...)` → `setQuantity(Math.max(1, quantity - 1))`
+- Added NaN guard in input onChange: `isNaN(val) ? 1 : Math.max(1, val)`
+- Standardized Tailwind: `min-h-[44px]` → `min-h-11`
+
+**4. `web/src/components/products/ProductVariationSelector.tsx`**
+- Added `quantity?: number`, `onQuantityChange?: (quantity: number) => void` props
+- Changed `useCart?: any` → `useCart?: typeof defaultUseCart`
+- Changed `useCartDrawer?: any` → `useCartDrawer?: typeof defaultUseCartDrawer`
+- Pass through to VariationSelector
+
+**5. `web/src/components/products/VariationSelector.tsx`**
+- Changed cart item ID: `${product.id}::${matchedVariation.databaseId}` → `matchedVariation.id`
+- Added currency conversion: `convertWooCommercePrice(matchedVariation.price, region.currency)`
+- Removed unused `CartItem` import
+- Changed `useCart?: any` → `useCart?: typeof defaultUseCart`
+- Changed `useCartDrawer?: any` → `useCartDrawer?: typeof defaultUseCartDrawer`
+- Added NaN guard with max cap: `isNaN(val) ? 1 : Math.max(1, Math.min(999, val))`
+- Added `ariaLabel="Add ${matchedVariation.name} to cart (from configurator)"`
+
+---
+
+### Commit Message
+
+```
+fix(copilot-review): Address all 9 PR review issues from dual Add to Cart implementation
+
+CRITICAL:
+- #9 Cart item ID consistency: Changed VariationSelector to use matchedVariation.id instead of 
+  composite key ${product.id}::${variation.databaseId} to match ProductSummaryCard behavior and 
+  prevent duplicate cart items
+
+HIGH PRIORITY:
+- #2 Currency display: Added convertWooCommercePrice() call in VariationSelector to show properly 
+  converted prices (EUR/GBP) instead of raw USD
+- #7/#8 Quantity sync: Lifted quantity state to ProductDetailClient and passed to both 
+  ProductSummaryCard and ProductVariationSelector to keep dual CTAs in sync
+
+MEDIUM PRIORITY:
+- #4/#6 Type safety: Changed useCart/useCartDrawer props from 'any' to 
+  'typeof defaultUseCart/defaultUseCartDrawer' for better type checking
+- #3 NaN validation: Added isNaN() guard in ProductSummaryCard quantity input handler and max 
+  value cap (999) in increment button
+
+LOW PRIORITY:
+- #5 Accessibility: Added optional ariaLabel prop to AddToCartButton component and passed distinct 
+  labels ('from configurator' vs default) to differentiate dual CTAs for screen readers
+- #1 Code cleanup: Removed unused CartItem import from VariationSelector
+
+TECHNICAL FIXES:
+- Fixed TypeScript error in ProductSummaryCard: Changed quantity button handlers from updater 
+  function pattern (q) => expr to direct value setQuantity(expr) to support both controlled 
+  (value: number) => void and uncontrolled Dispatch<SetStateAction<number>> patterns
+- Added min-h-11 (44px) Tailwind class instead of min-h-[44px] for consistency with design system
+
+All changes verified with successful production build (pnpm run build)
 ```
 
 ---

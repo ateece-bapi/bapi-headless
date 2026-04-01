@@ -7,6 +7,7 @@ import { SearchIcon, ArrowLeftIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getSearchBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
+import SearchResults from '@/components/search/SearchResults';
 
 interface SearchPageProps {
   params: Promise<{ locale: string }>;
@@ -131,99 +132,21 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
         </div>
       </div>
 
-      <div className="py-8 lg:py-12">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="mb-8">
-            <Link
-              href={`/${locale}/products`}
-              className="mb-4 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
-            >
-              <ArrowLeftIcon className="h-4 w-4" />
-              {t('results.backToProducts')}
-            </Link>
-            <h1 className="mb-2 text-3xl font-bold text-neutral-900 lg:text-4xl">
-              {t('results.title')}
-            </h1>
-            <p className="text-lg text-neutral-700">
-              {results.length === 1
-                ? t('results.resultsCount', { count: results.length, query })
-                : t('results.resultsCountPlural', { count: results.length, query })}
-            </p>
-          </div>
-
-          {results.length === 0 ? (
-            <div className="rounded-xl border border-neutral-200 bg-white p-12 text-center">
-              <SearchIcon className="mx-auto mb-6 h-16 w-16 text-neutral-300" />
-              <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('noResults.title')}</h2>
-              <p className="mb-6 text-neutral-700">{t('noResults.description', { query })}</p>
-              <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                <Link
-                  href={`/${locale}/products`}
-                  className="inline-flex items-center justify-center rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
-                >
-                  {t('noResults.browseButton')}
-                </Link>
-                <Link
-                  href={`/${locale}/company/contact-us`}
-                  className="inline-flex items-center justify-center rounded-lg border-2 border-primary-500 px-6 py-3 font-semibold text-primary-600 transition-all hover:bg-primary-50"
-                >
-                  {t('noResults.contactButton')}
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {results.map((product: any) => {
-                const category = product.productCategories?.nodes?.[0];
-
-                return (
-                  <Link
-                    key={product.id}
-                    href={`/${locale}/product/${product.slug}`}
-                    className="group rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
-                  >
-                    {product.image && (
-                      <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg bg-neutral-50">
-                        <Image
-                          src={product.image.sourceUrl}
-                          alt={product.image.altText || product.name}
-                          fill
-                          className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      </div>
-                    )}
-
-                    {category && (
-                      <span className="mb-3 inline-block rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-700">
-                        {category.name}
-                      </span>
-                    )}
-
-                    <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
-                      {product.name}
-                    </h3>
-
-                    {product.shortDescription && (
-                      <div
-                        className="mb-3 line-clamp-2 text-sm text-neutral-700"
-                        dangerouslySetInnerHTML={{
-                          __html: sanitizeWordPressContent(product.shortDescription),
-                        }}
-                      />
-                    )}
-
-                    {product.price && (
-                      <div className="mt-4 text-xl font-bold text-primary-600">{product.price}</div>
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
+      <SearchResults
+        products={results}
+        query={query}
+        locale={locale}
+        translations={{
+          backToProducts: t('results.backToProducts'),
+          title: t('results.title'),
+          resultsCount: t('results.resultsCount'),
+          resultsCountPlural: t('results.resultsCountPlural'),
+          noResultsTitle: t('noResults.title'),
+          noResultsDescription: t('noResults.description'),
+          browseButton: t('noResults.browseButton'),
+          contactButton: t('noResults.contactButton'),
+        }}
+      />
     </div>
   );
 }

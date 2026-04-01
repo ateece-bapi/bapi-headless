@@ -6,10 +6,44 @@ import { logChatAnalytics, type ChatAnalytics } from '@/lib/chat/analytics';
 import { randomUUID } from 'crypto';
 import { checkRateLimit, getClientIP } from '@/lib/rate-limit';
 import { RATE_LIMITS } from '@/lib/constants/rate-limits';
+import { cookies } from 'next/headers';
+import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from '@/lib/auth/queries';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
+
+const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
+
+/**
+ * Get authenticated user's customer group from JWT token
+ * Returns null if not authenticated or no customer group
+ */
+async function getUserCustomerGroup(): Promise<string | null> {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('auth_token')?.value;
+
+    if (!token) return null;
+
+    const response = await fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        query: GET_CURRENT_USER_QUERY,
+      }),
+    });
+
+    const { data }: { data: GetCurrentUserResponse } = await response.json();
+    return data?.viewer?.customerGroup || null;
+  } catch (error) {
+    logger.debug('Failed to get user customer group', { error });
+    return null;
+  }
+}
 
 /**
  * BAPI AI Assistant - Technical Product Support Chatbot
@@ -93,6 +127,9 @@ export async function POST(request: NextRequest) {
   const productsRecommended: string[] = [];
 
   try {
+    // Get user's customer group for B2B product filtering
+    const customerGroup = await getUserCustomerGroup();
+
     // Rate limiting - prevent abuse of expensive AI API calls
     const clientIP = getClientIP(request);
     const rateLimitResult = checkRateLimit(clientIP, RATE_LIMITS.CHAT_API);
@@ -176,7 +213,8 @@ export async function POST(request: NextRequest) {
         toolsUsed.push('search_products');
 
         const { query, limit = 5 } = toolUse.input;
-        const products = await searchProducts(query, limit);
+        // Apply customer group filtering for B2B access control
+        const products = await searchProducts(query, limit, customerGroup);
         const formattedProducts = formatProductsForAI(products);
 
         // Track recommended products

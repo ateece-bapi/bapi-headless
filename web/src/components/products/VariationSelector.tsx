@@ -16,7 +16,9 @@ import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
 import BinaryToggleSelector from './variation-selectors/BinaryToggleSelector';
 import DropdownSelector from './variation-selectors/DropdownSelector';
 import { useRegion } from '@/store/regionStore';
-import { convertWooCommercePrice } from '@/lib/utils/currency';
+import { convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
+import AddToCartButton from '@/components/cart/AddToCartButton';
+import type { CartItem } from '@/store';
 
 interface VariationSelectorProps {
   attributes: ProductAttribute[];
@@ -24,6 +26,18 @@ interface VariationSelectorProps {
   onVariationChange: (variation: ProductVariation | null, partNumber: string | null) => void;
   className?: string;
   basePrice?: string;
+  // Add to Cart integration
+  product?: {
+    id: string;
+    databaseId: number;
+    name: string;
+    slug: string;
+    image?: { sourceUrl: string; altText?: string | null } | null;
+  };
+  quantity?: number;
+  onQuantityChange?: (quantity: number) => void;
+  useCart?: any;
+  useCartDrawer?: any;
 }
 
 /**
@@ -47,6 +61,11 @@ export default function VariationSelector({
   onVariationChange,
   className = '',
   basePrice,
+  product,
+  quantity = 1,
+  onQuantityChange,
+  useCart,
+  useCartDrawer,
 }: VariationSelectorProps) {
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
@@ -227,7 +246,7 @@ export default function VariationSelector({
   return (
     <section className={`mb-12 ${className}`}>
       {/* Enterprise Configuration Header */}
-      <div className="rounded-t-2xl bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 px-8 py-6 text-white">
+      <div className="rounded-t-2xl bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 px-8 py-6 text-white">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="mb-1 text-2xl font-bold">Configure Your Product</h2>
@@ -324,9 +343,9 @@ export default function VariationSelector({
 
           {/* Configuration Summary - Shows when variation is matched */}
           {matchedVariation && (
-            <div className="from-primary-25 -m-8 mb-0 mt-8 rounded-b-2xl border-t-2 border-primary-200 bg-gradient-to-br to-primary-50 p-8 pt-8">
-              <div className="rounded-xl border-2 border-accent-500 bg-gradient-to-br from-accent-50 via-accent-100 to-white p-6 shadow-xl">
-                <div className="flex items-start justify-between gap-6">
+            <div className="from-primary-25 -m-8 mb-0 mt-8 rounded-b-2xl border-t-2 border-primary-200 bg-linear-to-br to-primary-50 p-8 pt-8">
+              <div className="rounded-xl border-2 border-accent-500 bg-linear-to-br from-accent-50 via-accent-100 to-white p-6 shadow-xl">
+                <div className="mb-6 flex items-start justify-between gap-6">
                   {/* Price and Part Number */}
                   <div className="flex-1">
                     <div className="mb-3 flex items-center gap-2">
@@ -396,6 +415,85 @@ export default function VariationSelector({
                     )}
                   </div>
                 </div>
+
+                {/* Quantity & Add to Cart Section */}
+                {product && (
+                  <div className="border-t-2 border-accent-200 pt-6">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
+                      {/* Quantity Selector */}
+                      {onQuantityChange && (
+                        <div className="shrink-0">
+                          <label
+                            htmlFor="config-quantity"
+                            className="mb-2 block text-xs font-semibold uppercase tracking-wide text-neutral-700"
+                          >
+                            Quantity
+                          </label>
+                          <div className="flex items-center overflow-hidden rounded-lg border-2 border-accent-300 bg-white shadow-sm">
+                            <button
+                              type="button"
+                              onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
+                              className="min-h-12 min-w-12 bg-neutral-50 px-4 font-bold text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                              aria-label="Decrease quantity"
+                            >
+                              −
+                            </button>
+                            <input
+                              type="number"
+                              id="config-quantity"
+                              min={1}
+                              max={999}
+                              value={quantity}
+                              onChange={(e) => onQuantityChange(Math.max(1, Number(e.target.value)))}
+                              className="min-h-12 w-20 border-0 bg-white py-3 text-center text-lg font-bold text-neutral-900 focus:ring-2 focus:ring-primary-500/30"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => onQuantityChange(quantity + 1)}
+                              className="min-h-12 min-w-12 bg-neutral-50 px-4 font-bold text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                              aria-label="Increase quantity"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Add to Cart Button */}
+                      <div className="flex-1">
+                        <AddToCartButton
+                          product={{
+                            id: `${product.id}::${matchedVariation.databaseId}`,
+                            databaseId: matchedVariation.databaseId,
+                            name: matchedVariation.name,
+                            slug: product.slug,
+                            price: matchedVariation.price,
+                            numericPrice: convertWooCommercePriceNumeric(
+                              matchedVariation.price,
+                              region.currency
+                            ),
+                            image: matchedVariation.image || product.image || null,
+                            variationId: matchedVariation.databaseId,
+                            variationName: matchedVariation.name,
+                            partNumber: matchedVariation.partNumber,
+                            selectedAttributes: matchedVariation.attributes.nodes.reduce(
+                              (acc, attr) => {
+                                acc[attr.name] = attr.value;
+                                return acc;
+                              },
+                              {} as Record<string, string>
+                            ),
+                          }}
+                          quantity={quantity}
+                          className="w-full px-6 py-4 text-lg font-bold shadow-lg transition-all hover:shadow-xl"
+                          disabled={matchedVariation.stockStatus !== 'IN_STOCK'}
+                          useCart={useCart}
+                          useCartDrawer={useCartDrawer}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

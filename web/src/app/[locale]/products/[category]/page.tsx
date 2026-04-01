@@ -103,7 +103,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       let hasNextPage = true;
 
       while (hasNextPage) {
-        const productsData = await client.request<GetProductsWithFiltersQuery>(
+        const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
           GetProductsWithFiltersDocument,
           {
             categorySlug: category,

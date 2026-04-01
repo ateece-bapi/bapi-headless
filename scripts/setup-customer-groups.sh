@@ -18,6 +18,9 @@ SSH_PORT="17338"
 SSH_USER="bapiheadlessstaging"
 WP_PATH="/www/bapiheadlessstaging_582/public"
 
+# Test user password (set via environment variable or prompt)
+TEST_USER_PASSWORD="${TEST_USER_PASSWORD:-}"
+
 # Colors for output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -63,6 +66,17 @@ ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "wp db query \"SELECT CASE WHEN meta_value 
 # Step 5: Create test users
 echo -e "\n${YELLOW}Step 5: Creating test users for each customer group...${NC}"
 
+# Check if password is set, prompt if not
+if [ -z "$TEST_USER_PASSWORD" ]; then
+  echo -e "${YELLOW}TEST_USER_PASSWORD not set. Please enter password for test users:${NC}"
+  read -s -p "Password: " TEST_USER_PASSWORD
+  echo
+  if [ -z "$TEST_USER_PASSWORD" ]; then
+    echo -e "${RED}ERROR: Password cannot be empty${NC}"
+    exit 1
+  fi
+fi
+
 # Function to create/update user with customer group
 create_test_user() {
   local email=$1
@@ -77,7 +91,7 @@ create_test_user() {
   if [ -z "$USER_ID" ]; then
     # Create new user
     echo "    → Creating new user..."
-    USER_ID=$(ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "wp user create test-$group $email --role=customer --display_name='$display_name' --user_pass='TestBAPI2026!' --path=$WP_PATH --porcelain")
+    USER_ID=$(ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "wp user create test-$group $email --role=customer --display_name='$display_name' --user_pass='$TEST_USER_PASSWORD' --path=$WP_PATH --porcelain")
     echo "    → User created with ID: $USER_ID"
   else
     echo "    → User already exists (ID: $USER_ID)"
@@ -101,12 +115,12 @@ echo -e "\n${GREEN}=============================================================
 echo "Setup Complete!"
 echo "================================================================${NC}"
 echo -e "\n${GREEN}Test Users Created:${NC}"
-echo "  • test-alc@bapihvac.com (password: TestBAPI2026!) - Customer Group: alc"
-echo "  • test-acs@bapihvac.com (password: TestBAPI2026!) - Customer Group: acs"
-echo "  • test-emc@bapihvac.com (password: TestBAPI2026!) - Customer Group: emc"
-echo "  • test-ccg@bapihvac.com (password: TestBAPI2026!) - Customer Group: ccg"
-echo "  • test-ccga@bapihvac.com (password: TestBAPI2026!) - Customer Group: ccga"
-echo "  • test-standard@bapihvac.com (password: TestBAPI2026!) - No customer group"
+echo "  • test-alc@bapihvac.com - Customer Group: alc"
+echo "  • test-acs@bapihvac.com - Customer Group: acs"
+echo "  • test-emc@bapihvac.com - Customer Group: emc"
+echo "  • test-ccg@bapihvac.com - Customer Group: ccg"
+echo "  • test-ccga@bapihvac.com - Customer Group: ccga"
+echo "  • test-standard@bapihvac.com - No customer group"
 
 echo -e "\n${GREEN}Expected Product Visibility:${NC}"
 echo "  • Guest/Standard: Standard products only (no prefixes)"

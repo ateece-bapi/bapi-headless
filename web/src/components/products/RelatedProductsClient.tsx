@@ -18,6 +18,7 @@ interface RelatedProduct {
 
 interface RelatedProductsClientProps {
   products: RelatedProduct[];
+  locale: string;
   translations: {
     title: string;
     subtitle: string;
@@ -29,11 +30,12 @@ interface RelatedProductsClientProps {
  * Client component for related products with customer group filtering
  * Receives products from server, filters based on user's customer group
  */
-export function RelatedProductsClient({ products, translations }: RelatedProductsClientProps) {
+export function RelatedProductsClient({ products, locale, translations }: RelatedProductsClientProps) {
   const { user } = useAuth();
 
-  // Apply customer group filtering
-  const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroup);
+  // Apply customer group filtering and filter out products without slugs
+  const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroup)
+    .filter((product) => product.slug); // Remove products with null/undefined slugs
 
   // Don't render if no products after filtering
   if (filteredProducts.length === 0) return null;
@@ -59,7 +61,7 @@ export function RelatedProductsClient({ products, translations }: RelatedProduct
           {filteredProducts.slice(0, 5).map((product: RelatedProduct) => (
             <Link
               key={product.id || product.slug}
-              href={`/en/product/${product.slug}`}
+              href={`/${locale}/product/${product.slug}`}
               className="group relative overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-xl"
             >
               {/* Product Image */}

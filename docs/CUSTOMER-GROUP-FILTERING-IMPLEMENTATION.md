@@ -6,11 +6,12 @@
 
 ## Overview
 
-Implemented B2B product visibility control to restrict customer-specific products (ALC, ACS, EMC, CCG) to authorized users only. This ensures that company-specific products are only visible to users from those respective companies.
+Implemented B2B product visibility control to restrict customer-specific products (ALC, ACS, EMC, CCG, CCGA) to authorized users only. This ensures that company-specific products are only visible to users from those respective companies.
 
 ## Business Requirements
 
-- Products with prefixes `(ALC)`, `(ACS)`, `(EMC)`, `(CCG)` should only be visible to users from those companies
+- Products with prefixes `(ALC)`, `(ACS)`, `(EMC)`, `(CCG)`, `(CCGA)` should only be visible to users from those companies
+- Supports both naming patterns: `(PREFIX)` and `PREFIX/` (3-4 letter prefixes)
 - Standard products (no prefix) remain visible to all users including guests
 - Filtering must be applied consistently across all product browsing contexts
 

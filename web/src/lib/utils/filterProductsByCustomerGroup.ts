@@ -4,7 +4,7 @@
  * Filters products based on customer group restrictions for B2B access control.
  *
  * Business Rules:
- * - Products with (ALC), (ACS), (EMC), (CCG) prefixes in title are restricted
+ * - Products with (ALC), (ACS), (EMC), (CCG), (CCGA) prefixes in title are restricted
  * - Restricted products only visible to users in matching customer groups
  * - Standard products (no prefix) visible to all users including guests
  *
@@ -14,13 +14,14 @@
 
 /**
  * Product type with customer group fields (from GraphQL)
- * Currently uses title parsing as fallback since GraphQL schema doesn't expose customerGroup fields yet
+ * Also supports title-based parsing as a fallback when customerGroup fields
+ * are not included in specific product queries or are not populated in WP yet.
  */
 export interface ProductWithCustomerGroup {
   name?: string | null;
-  customerGroup1?: string[] | null;
-  customerGroup2?: string[] | null;
-  customerGroup3?: string[] | null;
+  customerGroup1?: Array<string | null> | null;
+  customerGroup2?: Array<string | null> | null;
+  customerGroup3?: Array<string | null> | null;
 }
 
 /**
@@ -157,6 +158,7 @@ export function getProductCountsByGroup(
     acs: 0,
     emc: 0,
     ccg: 0,
+    ccga: 0,
   };
 
   products.forEach((product) => {

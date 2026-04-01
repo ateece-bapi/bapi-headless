@@ -65,8 +65,9 @@
   - ✅ `test-acs@bapihvac.com` → customer_group = 'acs'
   - ✅ `test-emc@bapihvac.com` → customer_group = 'emc'
   - ✅ `test-ccg@bapihvac.com` → customer_group = 'ccg'
+  - ✅ `test-ccga@bapihvac.com` → customer_group = 'ccga'
   - ✅ `test-standard@bapihvac.com` → customer_group = NULL
-  - Password for all: `TestBAPI2026!`
+  - Password: (stored in secure location, not committed to repo)
 
 - [x] **0.3** Document customer group values and conventions
   - ✅ Customer group values are lowercase: 'alc', 'acs', 'emc', 'ccg'

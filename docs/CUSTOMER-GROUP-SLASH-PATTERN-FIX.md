@@ -18,11 +18,11 @@ Two naming patterns exist for customer-specific products:
 
 1. **Updated `extractCustomerGroupFromTitle()`** to match both patterns:
    ```typescript
-   // Pattern 1: (ALC), (ACS), (EMC), (CCG)
+   // Pattern 1: (ALC), (ACS), (EMC), (CCG), (CCGA)
    match = productName.match(/^\((\w+)\)/);
    
-   // Pattern 2: ALC/, ACS/, EMC/, CCG/
-   match = productName.match(/^([A-Z]{3})\//);
+   // Pattern 2: ALC/, ACS/, EMC/, CCG/, CCGA/ (3–4 letters)
+   match = productName.match(/^([A-Z]{3,4})\//);
    ```
 
 2. **Added 4 new tests** for slash pattern (30 total tests, all passing)

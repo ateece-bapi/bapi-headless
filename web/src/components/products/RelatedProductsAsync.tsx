@@ -1,5 +1,5 @@
 import { getProductRelated } from '@/lib/graphql';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import logger from '@/lib/logger';
 import { RelatedProductsClient } from './RelatedProductsClient';
 
@@ -9,6 +9,7 @@ type RelatedProductsAsyncProps = {
 
 export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncProps) {
   const t = await getTranslations();
+  const locale = await getLocale();
   try {
     // Fetch only related products
     const data = await getProductRelated(productId);
@@ -19,6 +20,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
     return (
       <RelatedProductsClient
         products={relatedProducts}
+        locale={locale}
         translations={{
           title: t('productPage.related.title'),
           subtitle: 'Products frequently purchased together',

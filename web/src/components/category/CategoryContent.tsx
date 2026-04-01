@@ -102,7 +102,7 @@ export default function CategoryContent({
   // Filter products based on active filters
   const filteredProducts = useMemo(() => {
     // Step 1: Filter by customer group (B2B access control)
-    // This must happen first to ensure restricted products are never exposed
+    // Applied client-side after products are fetched from WordPress
     const customerGroupFiltered = filterProductsByCustomerGroup(
       products,
       user?.customerGroup

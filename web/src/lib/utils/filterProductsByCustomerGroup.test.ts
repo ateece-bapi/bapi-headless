@@ -278,6 +278,7 @@ describe('getProductCountsByGroup', () => {
       acs: 1,
       emc: 1,
       ccg: 1,
+      ccga: 0,
     });
   });
 
@@ -290,6 +291,7 @@ describe('getProductCountsByGroup', () => {
       acs: 0,
       emc: 0,
       ccg: 0,
+      ccga: 0,
     });
   });
 });

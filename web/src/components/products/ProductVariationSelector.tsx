@@ -30,6 +30,14 @@ interface AttributeOption {
 
 interface ProductVariationSelectorProps {
   product: {
+    id?: string;
+    databaseId?: number;
+    name?: string;
+    slug?: string;
+    image?: {
+      sourceUrl?: string | null;
+      altText?: string | null;
+    } | null;
     attributes?: AttributeOption[];
     variations?: Variation[];
     price?: string | null;
@@ -37,6 +45,11 @@ interface ProductVariationSelectorProps {
   };
   onVariationChange?: (variation: Variation | null) => void;
   className?: string;
+  // Add to Cart integration
+  quantity?: number;
+  onQuantityChange?: (quantity: number) => void;
+  useCart?: any;
+  useCartDrawer?: any;
 }
 
 /**
@@ -56,6 +69,10 @@ export default function ProductVariationSelector({
   product,
   onVariationChange,
   className = '',
+  quantity,
+  onQuantityChange,
+  useCart,
+  useCartDrawer,
 }: ProductVariationSelectorProps) {
   const { attributes = [], variations = [] } = product;
 
@@ -148,6 +165,27 @@ export default function ProductVariationSelector({
         variations={transformedVariations}
         basePrice={product.price || undefined}
         onVariationChange={handleVariationChange}
+        product={
+          product.id && product.databaseId && product.name && product.slug
+            ? {
+                id: product.id,
+                databaseId: product.databaseId,
+                name: product.name,
+                slug: product.slug,
+                image:
+                  product.image?.sourceUrl && typeof product.image.sourceUrl === 'string'
+                    ? {
+                        sourceUrl: product.image.sourceUrl,
+                        altText: product.image.altText || null,
+                      }
+                    : null,
+              }
+            : undefined
+        }
+        quantity={quantity}
+        onQuantityChange={onQuantityChange}
+        useCart={useCart}
+        useCartDrawer={useCartDrawer}
       />
     </div>
   );

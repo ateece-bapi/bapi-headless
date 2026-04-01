@@ -16,7 +16,9 @@ import RadioGroupSelector from './variation-selectors/RadioGroupSelector';
 import BinaryToggleSelector from './variation-selectors/BinaryToggleSelector';
 import DropdownSelector from './variation-selectors/DropdownSelector';
 import { useRegion } from '@/store/regionStore';
-import { convertWooCommercePrice } from '@/lib/utils/currency';
+import { convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
+import AddToCartButton from '@/components/cart/AddToCartButton';
+import type { CartItem } from '@/store';
 
 interface VariationSelectorProps {
   attributes: ProductAttribute[];
@@ -24,6 +26,18 @@ interface VariationSelectorProps {
   onVariationChange: (variation: ProductVariation | null, partNumber: string | null) => void;
   className?: string;
   basePrice?: string;
+  // Add to Cart integration
+  product?: {
+    id: string;
+    databaseId: number;
+    name: string;
+    slug: string;
+    image?: { sourceUrl: string; altText?: string | null } | null;
+  };
+  quantity?: number;
+  onQuantityChange?: (quantity: number) => void;
+  useCart?: any;
+  useCartDrawer?: any;
 }
 
 /**
@@ -47,6 +61,11 @@ export default function VariationSelector({
   onVariationChange,
   className = '',
   basePrice,
+  product,
+  quantity = 1,
+  onQuantityChange,
+  useCart,
+  useCartDrawer,
 }: VariationSelectorProps) {
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
@@ -227,7 +246,7 @@ export default function VariationSelector({
   return (
     <section className={`mb-12 ${className}`}>
       {/* Enterprise Configuration Header */}
-      <div className="rounded-t-2xl bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 px-8 py-6 text-white">
+      <div className="rounded-t-2xl bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 px-8 py-6 text-white">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="mb-1 text-2xl font-bold">Configure Your Product</h2>
@@ -324,37 +343,37 @@ export default function VariationSelector({
 
           {/* Configuration Summary - Shows when variation is matched */}
           {matchedVariation && (
-            <div className="from-primary-25 -m-8 mb-0 mt-8 rounded-b-2xl border-t-2 border-primary-200 bg-gradient-to-br to-primary-50 p-8 pt-8">
-              <div className="rounded-xl border-2 border-accent-500 bg-gradient-to-br from-accent-50 via-accent-100 to-white p-6 shadow-xl">
-                <div className="flex items-start justify-between gap-6">
+            <div className="from-primary-25 -m-8 mb-0 mt-8 rounded-b-2xl border-t-2 border-primary-200 bg-linear-to-br to-primary-50 p-6 pt-6">
+              <div className="rounded-xl border-2 border-accent-500 bg-linear-to-br from-accent-50 via-accent-100 to-white p-4 shadow-xl">
+                <div className="mb-4 flex items-start justify-between gap-4">
                   {/* Price and Part Number */}
                   <div className="flex-1">
-                    <div className="mb-3 flex items-center gap-2">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-500">
-                        <PackageIcon className="h-4 w-4 text-white" />
+                    <div className="mb-2 flex items-center gap-2">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-500">
+                        <PackageIcon className="h-3.5 w-3.5 text-white" />
                       </div>
-                      <p className="text-sm font-bold uppercase tracking-wider text-accent-800">
+                      <p className="text-xs font-bold uppercase tracking-wider text-accent-800">
                         ✓ Selected Configuration
                       </p>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       <div>
-                        <p className="mb-2 text-xs uppercase tracking-wide text-neutral-700">
+                        <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
                           Part Number
                         </p>
-                        <p className="inline-block rounded-lg border-2 border-accent-400 bg-white px-4 py-3 font-mono text-xl font-bold text-neutral-900 shadow-sm">
+                        <p className="inline-block rounded-lg border-2 border-accent-400 bg-white px-3 py-2 font-mono text-lg font-bold text-neutral-900 shadow-sm">
                           {matchedVariation.partNumber || matchedVariation.sku}
                         </p>
                       </div>
                       <div>
-                        <p className="mb-2 text-xs uppercase tracking-wide text-neutral-700">
+                        <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
                           Your Price
                         </p>
-                        <p className="text-4xl font-bold text-primary-700">
+                        <p className="text-3xl font-bold text-primary-700">
                           {convertWooCommercePrice(matchedVariation.price, region.currency)}
                         </p>
                         {basePrice && basePrice !== matchedVariation.price && (
-                          <span className="ml-3 text-base text-neutral-700 line-through">
+                          <span className="ml-2 text-sm text-neutral-600 line-through">
                             {convertWooCommercePrice(basePrice, region.currency)}
                           </span>
                         )}
@@ -363,15 +382,15 @@ export default function VariationSelector({
                   </div>
 
                   {/* Stock Status */}
-                  <div className="text-right">
-                    <p className="mb-3 text-xs font-bold uppercase tracking-wider text-accent-700">
+                  <div className="shrink-0 text-right">
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-accent-700">
                       Availability
                     </p>
                     {matchedVariation.stockStatus === 'IN_STOCK' ? (
-                      <div className="rounded-lg border-2 border-green-500 bg-green-100 px-4 py-3">
-                        <div className="mb-1 flex items-center justify-end gap-2">
-                          <div className="h-3 w-3 rounded-full bg-green-500" />
-                          <span className="font-bold text-green-800">In Stock</span>
+                      <div className="rounded-lg border-2 border-green-500 bg-green-100 px-3 py-2">
+                        <div className="mb-0.5 flex items-center justify-end gap-1.5">
+                          <div className="h-2.5 w-2.5 rounded-full bg-green-500" />
+                          <span className="text-sm font-bold text-green-800">In Stock</span>
                         </div>
                         <p className="flex items-center justify-end gap-1 text-xs text-green-700">
                           <ClockIcon className="h-3 w-3" />
@@ -379,23 +398,107 @@ export default function VariationSelector({
                         </p>
                       </div>
                     ) : matchedVariation.stockStatus === 'ON_BACKORDER' ? (
-                      <div className="rounded-lg border-2 border-amber-500 bg-amber-100 px-4 py-3">
-                        <div className="mb-1 flex items-center justify-end gap-2">
-                          <div className="h-3 w-3 animate-pulse rounded-full bg-amber-500" />
-                          <span className="font-bold text-amber-800">Backorder</span>
+                      <div className="rounded-lg border-2 border-amber-500 bg-amber-100 px-3 py-2">
+                        <div className="mb-0.5 flex items-center justify-end gap-1.5">
+                          <div className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber-500" />
+                          <span className="text-sm font-bold text-amber-800">Backorder</span>
                         </div>
                         <p className="text-xs text-amber-700">Contact for lead time</p>
                       </div>
                     ) : (
-                      <div className="rounded-lg border-2 border-red-500 bg-red-100 px-4 py-3">
-                        <div className="flex items-center justify-end gap-2">
-                          <div className="h-3 w-3 rounded-full bg-red-500" />
-                          <span className="font-bold text-red-800">Out of Stock</span>
+                      <div className="rounded-lg border-2 border-red-500 bg-red-100 px-3 py-2">
+                        <div className="flex items-center justify-end gap-1.5">
+                          <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
+                          <span className="text-sm font-bold text-red-800">Out of Stock</span>
                         </div>
                       </div>
                     )}
                   </div>
                 </div>
+
+                {/* Quantity & Add to Cart Section - Inline */}
+                {product && (
+                  <div className="border-t-2 border-accent-200 pt-4">
+                    <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+                      {/* Quantity Selector */}
+                      {onQuantityChange && (
+                        <div className="flex items-center gap-2 sm:shrink-0">
+                          <label
+                            htmlFor="config-quantity"
+                            className="text-xs font-semibold uppercase tracking-wide text-neutral-700"
+                          >
+                            Qty:
+                          </label>
+                          <div className="flex items-center overflow-hidden rounded-lg border-2 border-accent-300 bg-white shadow-sm">
+                            <button
+                              type="button"
+                              onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
+                              className="min-h-11 min-w-11 bg-neutral-50 px-3 font-bold text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                              aria-label="Decrease quantity"
+                            >
+                              −
+                            </button>
+                            <input
+                              type="number"
+                              id="config-quantity"
+                              min={1}
+                              max={999}
+                              value={quantity}
+                              onChange={(e) => onQuantityChange(Math.max(1, Number(e.target.value)))}
+                              className="min-h-11 w-16 border-0 bg-white py-2 text-center text-base font-bold text-neutral-900 focus:ring-2 focus:ring-primary-500/30"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => onQuantityChange(quantity + 1)}
+                              className="min-h-11 min-w-11 bg-neutral-50 px-3 font-bold text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                              aria-label="Increase quantity"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Add to Cart Button */}
+                      <div className="flex-1">
+                        <AddToCartButton
+                          product={{
+                            id: `${product.id}::${matchedVariation.databaseId}`,
+                            databaseId: matchedVariation.databaseId,
+                            name: matchedVariation.name,
+                            slug: product.slug,
+                            price: matchedVariation.price,
+                            numericPrice: convertWooCommercePriceNumeric(
+                              matchedVariation.price,
+                              region.currency
+                            ),
+                            image: (() => {
+                              const img = matchedVariation.image || product.image;
+                              return img?.sourceUrl && typeof img.sourceUrl === 'string'
+                                ? { sourceUrl: img.sourceUrl, altText: img.altText || undefined }
+                                : null;
+                            })(),
+                            variationId: matchedVariation.databaseId,
+                            variationName: matchedVariation.name,
+                            partNumber: matchedVariation.partNumber,
+                            selectedAttributes: matchedVariation.attributes.nodes.reduce(
+                              (acc, attr) => {
+                                acc[attr.name] = attr.value;
+                                return acc;
+                              },
+                              {} as Record<string, string>
+                            ),
+                          }}
+                          quantity={quantity}
+                          className="w-full px-5 py-3 text-base font-bold shadow-lg transition-all hover:shadow-xl"
+                          disabled={matchedVariation.stockStatus !== 'IN_STOCK'}
+                          useCart={useCart}
+                          useCartDrawer={useCartDrawer}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

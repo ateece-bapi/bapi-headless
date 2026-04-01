@@ -56,6 +56,7 @@ export default function ProductDetailClient({
 }: ProductDetailClientProps) {
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
   const [isLoadingVariation, setIsLoadingVariation] = useState(false);
+  const [quantity, setQuantity] = useState(1); // Add quantity state
   const { addProduct } = useRecentlyViewed();
 
   // Memoize image array construction to avoid recomputation on every render
@@ -161,7 +162,14 @@ export default function ProductDetailClient({
             )}
 
             {/* Enhanced Variation Selector */}
-            <ProductVariationSelector product={product} onVariationChange={handleVariationChange} />
+            <ProductVariationSelector
+              product={product}
+              onVariationChange={handleVariationChange}
+              quantity={quantity}
+              onQuantityChange={setQuantity}
+              useCart={useCart}
+              useCartDrawer={useCartDrawer}
+            />
 
             {/* Variation Comparison Tool - Collapsible */}
             {product.variations && product.variations.length > 1 && (

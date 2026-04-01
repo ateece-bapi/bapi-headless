@@ -34,7 +34,7 @@ export async function RelatedProductsAsync({ productId }: RelatedProductsAsyncPr
 
 export function RelatedProductsSkeleton() {
   return (
-    <section className="bg-gradient-to-b from-white to-neutral-50 py-16">
+    <section className="bg-linear-to-b from-white to-neutral-50 py-16">
       <div className="container mx-auto animate-pulse px-4">
         {/* Header Skeleton */}
         <div className="mb-10 flex items-center gap-3">
@@ -49,7 +49,7 @@ export function RelatedProductsSkeleton() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
           {[1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="rounded-xl border-2 border-neutral-200 bg-white">
-              <div className="aspect-[3/2] rounded-t-xl bg-neutral-100" />
+              <div className="aspect-3/2 rounded-t-xl bg-neutral-100" />
               <div className="space-y-3 p-3">
                 <div className="h-4 w-full rounded bg-neutral-200" />
                 <div className="h-4 w-3/4 rounded bg-neutral-200" />

@@ -17,7 +17,7 @@
  * Currently uses title parsing as fallback since GraphQL schema doesn't expose customerGroup fields yet
  */
 export interface ProductWithCustomerGroup {
-  name: string;
+  name?: string | null;
   customerGroup1?: string[] | null;
   customerGroup2?: string[] | null;
   customerGroup3?: string[] | null;
@@ -26,14 +26,16 @@ export interface ProductWithCustomerGroup {
 /**
  * Extract customer group from product title prefix
  *
- * @param productName - Product name/title
+ * @param productName - Product name/title (may be null or undefined)
  * @returns Lowercase customer group code or null
  *
  * @example
  * extractCustomerGroupFromTitle("(ALC) BAPI-Stat 4") // returns "alc"
  * extractCustomerGroupFromTitle("BA/10K-3 Temperature Sensor") // returns null
  */
-export function extractCustomerGroupFromTitle(productName: string): string | null {
+export function extractCustomerGroupFromTitle(
+  productName: string | null | undefined
+): string | null {
   if (!productName) return null;
 
   // Match pattern: (PREFIX) at start of title

@@ -6,8 +6,18 @@ import { ArrowRightIcon, PackageIcon } from '@/lib/icons';
 import { useAuth } from '@/hooks/useAuth';
 import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
 
+interface RelatedProduct {
+  id?: string | null;
+  name?: string | null;
+  slug?: string | null;
+  price?: string | null;
+  image?: {
+    sourceUrl?: string | null;
+  } | null;
+}
+
 interface RelatedProductsClientProps {
-  products: any[];
+  products: RelatedProduct[];
   translations: {
     title: string;
     subtitle: string;
@@ -29,7 +39,7 @@ export function RelatedProductsClient({ products, translations }: RelatedProduct
   if (filteredProducts.length === 0) return null;
 
   return (
-    <section className="bg-gradient-to-b from-white to-neutral-50 py-16">
+    <section className="bg-linear-to-b from-white to-neutral-50 py-16">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="mb-10 flex items-center justify-between">
@@ -46,14 +56,14 @@ export function RelatedProductsClient({ products, translations }: RelatedProduct
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-          {filteredProducts.slice(0, 5).map((product: any) => (
+          {filteredProducts.slice(0, 5).map((product: RelatedProduct) => (
             <Link
-              key={product.id}
+              key={product.id || product.slug}
               href={`/en/product/${product.slug}`}
               className="group relative overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-xl"
             >
               {/* Product Image */}
-              <div className="relative aspect-[3/2] overflow-hidden bg-neutral-50">
+              <div className="relative aspect-3/2 overflow-hidden bg-neutral-50">
                 {product.image?.sourceUrl ? (
                   <Image
                     src={product.image.sourceUrl}
@@ -69,7 +79,7 @@ export function RelatedProductsClient({ products, translations }: RelatedProduct
                 )}
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-primary-900/90 via-primary-900/50 to-transparent pb-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute inset-0 flex items-end justify-center bg-linear-to-t from-primary-900/90 via-primary-900/50 to-transparent pb-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <div className="flex items-center gap-2 font-semibold text-white">
                     <span>View Details</span>
                     <ArrowRightIcon className="h-5 w-5" />
@@ -79,7 +89,7 @@ export function RelatedProductsClient({ products, translations }: RelatedProduct
 
               {/* Product Info */}
               <div className="p-3">
-                <h3 className="mb-2 line-clamp-2 min-h-[3rem] text-base font-bold text-neutral-900 transition-colors group-hover:text-primary-700">
+                <h3 className="mb-2 line-clamp-2 min-h-12 text-base font-bold text-neutral-900 transition-colors group-hover:text-primary-700">
                   {product.name}
                 </h3>
 

@@ -42,6 +42,10 @@ interface SearchResultsProps {
   };
 }
 
+/**
+ * Client component for search results with customer group filtering
+ * Receives products from server, filters based on user's customer group
+ */
 export default function SearchResults({
   products,
   query,
@@ -106,7 +110,7 @@ export default function SearchResults({
                   href={`/${locale}/product/${product.slug}`}
                   className="group rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
                 >
-                  {product.image && (
+                  {product.image?.sourceUrl && (
                     <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg bg-neutral-50">
                       <Image
                         src={product.image.sourceUrl}

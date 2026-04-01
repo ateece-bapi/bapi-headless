@@ -249,6 +249,7 @@ ssh -p 17338 bapiheadlessstaging@35.224.70.159 \
       WHEN meta_value LIKE '%alc%' THEN 'ALC'
       WHEN meta_value LIKE '%acs%' THEN 'ACS'
       WHEN meta_value LIKE '%emc%' THEN 'EMC'
+      WHEN meta_value LIKE '%ccga%' THEN 'CCGA'
       WHEN meta_value LIKE '%ccg%' THEN 'CCG'
       WHEN meta_value = '' THEN 'Standard'
     END as group_name,
@@ -265,11 +266,11 @@ ssh -p 17338 bapiheadlessstaging@35.224.70.159 \
 **Expected Output:**
 ```
 group_name  count
-Standard    476
-ALC         112
-EMC         9
-CCG         7
-ACS         4
+ALC         225
+CCG         35
+EMC         18
+CCGA        15
+ACS         8
 ```
 
 ### Check Test Users
@@ -283,15 +284,16 @@ ssh -p 17338 bapiheadlessstaging@35.224.70.159 \
 
 ## Test Credentials
 
-**All test users use the same password:** `TestBAPI2026!`
+**Password:** Retrieve from secure storage (not committed to repo)
 
-| Email | Customer Group | Expected Product Count |
-|-------|----------------|----------------------|
-| `test-alc@bapihvac.com` | alc | 588 (476 std + 112 ALC) |
-| `test-acs@bapihvac.com` | acs | 480 (476 std + 4 ACS) |
-| `test-emc@bapihvac.com` | emc | 485 (476 std + 9 EMC) |
-| `test-ccg@bapihvac.com` | ccg | 483 (476 std + 7 CCG) |
-| `test-standard@bapihvac.com` | none | 476 (standard only) |
+| Email | Customer Group | Description |
+|-------|----------------|-------------|
+| `test-alc@bapihvac.com` | alc | ALC customer group |
+| `test-acs@bapihvac.com` | acs | ACS customer group |
+| `test-emc@bapihvac.com` | emc | EMC customer group |
+| `test-ccg@bapihvac.com` | ccg | CCG customer group |
+| `test-ccga@bapihvac.com` | ccga | CCGA customer group |
+| `test-standard@bapihvac.com` | none | Standard user (no group) |
 
 ---
 
@@ -313,8 +315,9 @@ array(1) {
 
 ### Customer Group Values
 
-- **Lowercase in database:** `'alc'`, `'acs'`, `'emc'`, `'ccg'`
-- **Uppercase in product titles:** `'(ALC)'`, `'(ACS)'`, `'(EMC)'`, `'(CCG)'`
+- **Lowercase in database:** `'alc'`, `'acs'`, `'emc'`, `'ccg'`, `'ccga'`
+- **Uppercase in product titles:** `'(ALC)'`, `'(ACS)'`, `'(EMC)'`, `'(CCG)'`, `'(CCGA)'`
+- **Slash format:** `'ALC/'`, `'ACS/'`, `'EMC/'`, `'CCG/'`, `'CCGA/'` (3-4 letter prefixes)
 - **Matching logic:** Case-insensitive comparison in filtering code
 
 ---

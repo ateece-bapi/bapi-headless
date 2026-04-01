@@ -163,7 +163,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   // Filter products using useMemo (synchronous, no setState in effects)
   const filteredProducts = useMemo(() => {
     // STEP 1: Customer group filtering (B2B access control)
-    // This MUST happen first to ensure restricted products are never exposed
+    // Applied client-side after products are fetched from WordPress
     const customerGroupFiltered = filterProductsByCustomerGroup(products, user?.customerGroup);
 
     // STEP 2: Attribute filtering (if no filters active, return customer-filtered products)

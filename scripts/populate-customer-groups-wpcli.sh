@@ -72,6 +72,7 @@ wp db query "SELECT
     WHEN meta_value LIKE '%alc%' THEN 'ALC'
     WHEN meta_value LIKE '%acs%' THEN 'ACS'
     WHEN meta_value LIKE '%emc%' THEN 'EMC'
+    WHEN meta_value LIKE '%ccga%' THEN 'CCGA'
     WHEN meta_value LIKE '%ccg%' THEN 'CCG'
     ELSE 'Other'
   END as customer_group,

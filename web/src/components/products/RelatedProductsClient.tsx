@@ -18,6 +18,7 @@ interface RelatedProduct {
 
 interface RelatedProductsClientProps {
   products: RelatedProduct[];
+  locale: string;
   translations: {
     title: string;
     subtitle: string;
@@ -29,7 +30,7 @@ interface RelatedProductsClientProps {
  * Client component for related products with customer group filtering
  * Receives products from server, filters based on user's customer group
  */
-export function RelatedProductsClient({ products, translations }: RelatedProductsClientProps) {
+export function RelatedProductsClient({ products, locale, translations }: RelatedProductsClientProps) {
   const { user } = useAuth();
 
   // Apply customer group filtering
@@ -59,7 +60,7 @@ export function RelatedProductsClient({ products, translations }: RelatedProduct
           {filteredProducts.slice(0, 5).map((product: RelatedProduct) => (
             <Link
               key={product.id || product.slug}
-              href={`/en/product/${product.slug}`}
+              href={`/${locale}/product/${product.slug}`}
               className="group relative overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-xl"
             >
               {/* Product Image */}

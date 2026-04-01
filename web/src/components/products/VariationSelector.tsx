@@ -472,7 +472,12 @@ export default function VariationSelector({
                               matchedVariation.price,
                               region.currency
                             ),
-                            image: matchedVariation.image || product.image || null,
+                            image: (() => {
+                              const img = matchedVariation.image || product.image;
+                              return img?.sourceUrl && typeof img.sourceUrl === 'string'
+                                ? { sourceUrl: img.sourceUrl, altText: img.altText || undefined }
+                                : null;
+                            })(),
                             variationId: matchedVariation.databaseId,
                             variationName: matchedVariation.name,
                             partNumber: matchedVariation.partNumber,

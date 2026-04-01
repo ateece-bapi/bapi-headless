@@ -172,7 +172,13 @@ export default function ProductVariationSelector({
                 databaseId: product.databaseId,
                 name: product.name,
                 slug: product.slug,
-                image: product.image || null,
+                image:
+                  product.image?.sourceUrl && typeof product.image.sourceUrl === 'string'
+                    ? {
+                        sourceUrl: product.image.sourceUrl,
+                        altText: product.image.altText || null,
+                      }
+                    : null,
               }
             : undefined
         }

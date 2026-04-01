@@ -52,11 +52,11 @@ const industries: Card[] = [
 ];
 
 const sensorTypes: Card[] = [
-  { id: 'temperature', name: 'Temperature', icon: ThermometerIcon, href: '/products/temperature' },
-  { id: 'humidity', name: 'Humidity', icon: DropletsIcon, href: '/products/humidity' },
-  { id: 'pressure', name: 'Pressure', icon: GaugeIcon, href: '/products/pressure' },
-  { id: 'air-quality', name: 'Air Quality', icon: WindIcon, href: '/products/air-quality' },
-  { id: 'wireless', name: 'Wireless', icon: RadioIcon, href: '/products/wireless' },
+  { id: 'temperature', name: 'Temperature', icon: ThermometerIcon, href: '/products/temperature-sensors' },
+  { id: 'humidity', name: 'Humidity', icon: DropletsIcon, href: '/products/humidity-sensors' },
+  { id: 'pressure', name: 'Pressure', icon: GaugeIcon, href: '/products/pressure-sensors' },
+  { id: 'air-quality', name: 'Air Quality', icon: WindIcon, href: '/products/air-quality-sensors' },
+  { id: 'wireless', name: 'Wireless', icon: RadioIcon, href: '/products/bluetooth-wireless' },
   { id: 'current', name: 'Current Sensors', icon: ZapIcon, href: '/products/current-sensors' },
   { id: 'controllers', name: 'Controllers', icon: SettingsIcon, href: '/products/controllers' },
   { id: 'accessories', name: 'Accessories', icon: CableIcon, href: '/products/accessories' },

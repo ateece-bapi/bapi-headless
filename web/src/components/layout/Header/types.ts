@@ -12,7 +12,7 @@ export interface MegaMenuLink {
 
 export interface MegaMenuColumn {
   title: string;
-  slug: string; // Stable URL slug (not translated, e.g., 'temperature')
+  slug: string; // WordPress category slug (e.g., 'temperature-sensors', 'humidity-sensors')
   icon?: React.ComponentType<{ className?: string }> | string; // Support both React components and image paths
   links: MegaMenuLink[];
 }

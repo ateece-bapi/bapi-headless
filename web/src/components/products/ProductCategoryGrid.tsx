@@ -38,7 +38,7 @@ export function ProductCategoryGrid({ categories }: ProductCategoryGridProps) {
         return (
           <Link
             key={cat.slug}
-            href={`/categories/${cat.slug}`}
+            href={`/products/${cat.slug}`}
             className={`group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl transition-all duration-500 hover:border-primary-200 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 ${showCards ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} `}
             style={{
               transitionDelay: showCards ? `${i * 75}ms` : '0ms',

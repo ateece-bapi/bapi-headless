@@ -65,7 +65,7 @@ export function getCategoryBreadcrumbs(
 
   breadcrumbs.push({
     label: categoryName,
-    href: `/${locale}/categories/${categorySlug}`,
+    href: `/${locale}/products/${categorySlug}`,
   });
 
   return breadcrumbs;
@@ -98,7 +98,7 @@ export function getSubcategoryBreadcrumbs(
 
   breadcrumbs.push({
     label: parentCategoryName,
-    href: `/${locale}/categories/${parentCategorySlug}`,
+    href: `/${locale}/products/${parentCategorySlug}`,
   });
 
   breadcrumbs.push({
@@ -148,7 +148,7 @@ export function getProductBreadcrumbs(
     if (primaryCategory.parent) {
       breadcrumbs.push({
         label: primaryCategory.parent.name,
-        href: `/${locale}/categories/${primaryCategory.parent.slug}`,
+        href: `/${locale}/products/${primaryCategory.parent.slug}`,
       });
     }
 

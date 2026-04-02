@@ -6,6 +6,8 @@ interface UseIntersectionObserverOptions {
   threshold?: number;
   rootMargin?: string;
   freezeOnceVisible?: boolean;
+  onIntersect?: () => void;
+  triggerOnce?: boolean;
 }
 
 /**
@@ -25,14 +27,29 @@ interface UseIntersectionObserverOptions {
  *   {isVisible && <ExpensiveComponent />}
  * </div>
  * ```
+ *
+ * @example With analytics callback
+ * ```tsx
+ * const { ref } = useIntersectionObserver({
+ *   onIntersect: () => trackCardView(),
+ *   triggerOnce: true,
+ * });
+ * ```
  */
 export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
   options: UseIntersectionObserverOptions = {}
 ) {
-  const { threshold = 0, rootMargin = '50px', freezeOnceVisible = false } = options;
+  const {
+    threshold = 0,
+    rootMargin = '50px',
+    freezeOnceVisible = false,
+    onIntersect,
+    triggerOnce = false,
+  } = options;
 
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<T>(null);
+  const hasTriggered = useRef(false);
 
   useEffect(() => {
     const element = ref.current;
@@ -41,13 +58,29 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
     // If already visible and freeze enabled, don't observe
     if (freezeOnceVisible && isVisible) return;
 
+    // If triggerOnce and already triggered, don't observe
+    if (triggerOnce && hasTriggered.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         const isIntersecting = entry.isIntersecting;
         setIsVisible(isIntersecting);
 
+        // Call onIntersect callback when element becomes visible
+        if (isIntersecting && onIntersect) {
+          if (!triggerOnce || !hasTriggered.current) {
+            onIntersect();
+            hasTriggered.current = true;
+          }
+        }
+
         // If freeze enabled and now visible, disconnect
         if (freezeOnceVisible && isIntersecting && element) {
+          observer.unobserve(element);
+        }
+
+        // If triggerOnce enabled and now visible, disconnect
+        if (triggerOnce && isIntersecting && element) {
           observer.unobserve(element);
         }
       },

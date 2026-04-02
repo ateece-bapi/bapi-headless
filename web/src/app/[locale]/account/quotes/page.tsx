@@ -90,7 +90,7 @@ export default async function QuotesPage({ params }: QuotesPageProps) {
                 {t('empty.description')}
               </p>
               <Link
-                href={`/${locale}/request-quote`}
+                href="/request-quote"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-700 hover:shadow-lg"
               >
                 <PlusIcon className="h-5 w-5" strokeWidth={2.5} />

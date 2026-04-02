@@ -39,7 +39,7 @@ vi.mock('@/hooks/useProductComparison', () => ({
     addToComparison: vi.fn(),
     removeFromComparison: vi.fn(),
     canAddMore: true,
-    comparisonItems: [],
+    comparisonProducts: [],
   }),
 }));
 

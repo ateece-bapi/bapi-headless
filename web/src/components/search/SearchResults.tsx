@@ -63,7 +63,7 @@ export default function SearchResults({
         {/* Header */}
         <div className="mb-8">
           <Link
-            href={`/${locale}/products`}
+            href="/products"
             className="mb-4 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
             <ArrowLeftIcon className="h-4 w-4" />
@@ -86,13 +86,13 @@ export default function SearchResults({
             <p className="mb-6 text-neutral-700">{t.noResultsDescription.replace('{query}', query)}</p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Link
-                href={`/${locale}/products`}
+                href="/products"
                 className="inline-flex items-center justify-center rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
               >
                 {t.browseButton}
               </Link>
               <Link
-                href={`/${locale}/company/contact-us`}
+                href="/company/contact-us"
                 className="inline-flex items-center justify-center rounded-lg border-2 border-primary-500 px-6 py-3 font-semibold text-primary-600 transition-all hover:bg-primary-50"
               >
                 {t.contactButton}
@@ -107,7 +107,7 @@ export default function SearchResults({
               return (
                 <Link
                   key={product.id}
-                  href={`/${locale}/product/${product.slug}`}
+                  href={`/product/${product.slug}`}
                   className="group rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
                 >
                   {product.image?.sourceUrl && (

@@ -118,13 +118,13 @@ export default async function ReturnsPage({ params }: Props) {
           <p className="mb-6 text-neutral-700">{t('cta.description')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href={`/${locale}/support/contact`}
+              href="/support/contact"
               className="inline-block rounded-xl bg-primary-500 px-6 py-3 font-bold text-white transition-colors hover:bg-primary-600"
             >
               {t('cta.contactButton')}
             </Link>
             <Link
-              href={`/${locale}/support/warranty`}
+              href="/support/warranty"
               className="group/link inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 bg-white px-6 py-3 font-bold text-primary-500 transition-all hover:gap-3 hover:bg-primary-50"
             >
               <span>{t('cta.warrantyButton')}</span>

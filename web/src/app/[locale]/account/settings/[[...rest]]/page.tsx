@@ -24,7 +24,7 @@ export default async function SettingsPage({ params }: SettingsPageProps) {
       <section className="w-full border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href={`/${locale}/account`}
+            href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
             <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
@@ -53,13 +53,13 @@ export default async function SettingsPage({ params }: SettingsPageProps) {
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
-                href={`/${locale}/support`}
+                href="/support"
                 className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
               >
                 {t('help.contactSupport')}
               </Link>
               <Link
-                href={`/${locale}/resources`}
+                href="/resources"
                 className="inline-flex items-center justify-center rounded-lg border border-primary-300 px-4 py-2 text-sm font-semibold text-primary-700 transition-colors hover:bg-white"
               >
                 {t('help.helpCenter')}

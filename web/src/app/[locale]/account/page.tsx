@@ -140,7 +140,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                     {t('ordersCount', { count: profile.orderHistory.length })}
                   </p>
                   <Link
-                    href={`/${locale}/account/orders`}
+                    href="/account/orders"
                     className="text-sm text-primary-600 hover:text-primary-700"
                   >
                     {t('viewAll')}
@@ -159,7 +159,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
                     {t('quotesCount', { count: profile.savedQuotes.length })}
                   </p>
                   <Link
-                    href={`/${locale}/account/quotes`}
+                    href="/account/quotes"
                     className="text-sm text-primary-600 hover:text-primary-700"
                   >
                     {t('viewAll')}
@@ -220,7 +220,7 @@ export default async function AccountPage({ params }: AccountPageProps) {
             </div>
             <div className="mt-4 text-center">
               <Link
-                href={`/${locale}/account/orders`}
+                href="/account/orders"
                 className="inline-flex items-center gap-2 font-medium text-primary-600 hover:text-primary-700"
               >
                 {t('viewAllOrders')}

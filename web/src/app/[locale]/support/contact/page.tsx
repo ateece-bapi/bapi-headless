@@ -95,13 +95,13 @@ export default async function ContactSupportPage({ params }: Props) {
           <p className="mb-6 text-neutral-700">{t('resources.description')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href={`/${locale}/support`}
+              href="/support"
               className="inline-block rounded-xl bg-primary-500 px-6 py-3 font-bold text-white transition-colors hover:bg-primary-600"
             >
               {t('resources.supportCenter')}
             </Link>
             <Link
-              href={`/${locale}/support/returns`}
+              href="/support/returns"
               className="inline-block rounded-xl border-2 border-primary-500 bg-white px-6 py-3 font-bold text-primary-500 transition-colors hover:bg-primary-50"
             >
               {t('resources.rmaRequest')}

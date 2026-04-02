@@ -101,7 +101,7 @@ describe('ProductCard Accessibility', () => {
     it('entire card is a valid link', () => {
       render(<ProductCard product={mockProduct} locale="en" index={0} />);
       const link = screen.getByRole('link');
-      expect(link).toHaveAttribute('href', '/en/product/temperature-sensor-ts-101');
+      expect(link).toHaveAttribute('href', '/product/temperature-sensor-ts-101');
     });
 
     it('link has accessible name from product name', () => {

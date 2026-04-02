@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
@@ -30,6 +30,8 @@ interface QuickViewModalProps {
  */
 export default function QuickViewModal({ product, onClose, locale }: QuickViewModalProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const region = useRegion();
   const price = getProductPrice(product, region.currency);
   const stockStatus = getProductStockStatus(product);
@@ -56,13 +58,49 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
     };
   }, []);
 
+  // Focus trap: Keep focus within modal
+  useEffect(() => {
+    if (!modalRef.current) return;
+
+    // Focus close button on open
+    closeButtonRef.current?.focus();
+
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !modalRef.current) return;
+
+      // Get all focusable elements in modal
+      const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        // Shift+Tab: Moving backwards
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        // Tab: Moving forwards
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleTabKey);
+    return () => document.removeEventListener('keydown', handleTabKey);
+  }, []);
+
   // Get image URL
   const imageUrl = product.image?.sourceUrl || '/images/placeholder.png';
   const imageAlt = product.image?.altText || product.name || 'Product image';
 
   return (
     <div
-      className="z-modal fixed inset-0 flex animate-[fade-in_200ms_ease-out] items-center justify-center p-4"
+      className="fixed inset-0 z-modal flex animate-[fade-in_200ms_ease-out] items-center justify-center p-0 sm:p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -71,21 +109,24 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
       {/* Backdrop with BAPI gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-900/40 via-primary-800/30 to-accent-900/20 backdrop-blur-sm" />
 
-      {/* Modal Content */}
+      {/* Modal Content - Full screen on mobile, centered modal on desktop */}
       <div
-        className="relative max-h-[90vh] w-full max-w-4xl animate-[scale-in_300ms_ease-out] overflow-y-auto rounded-2xl bg-white shadow-2xl"
+        ref={modalRef}
+        className="relative h-full max-h-full w-full animate-[scale-in_300ms_ease-out] overflow-y-auto bg-white sm:h-auto sm:max-h-[90vh] sm:max-w-4xl sm:rounded-2xl sm:shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
+        {/* Close Button - Larger touch target on mobile */}
         <button
+          ref={closeButtonRef}
           onClick={onClose}
-          className="absolute right-4 top-4 z-10 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-200 hover:scale-110 hover:bg-white"
+          className="absolute right-4 top-4 z-10 min-h-[44px] min-w-[44px] rounded-full bg-white/90 p-2.5 shadow-lg transition-all duration-200 hover:scale-110 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 sm:p-2"
           aria-label="Close quick view"
+          title="Close quick view (or press ESC)"
         >
           <XIcon className="h-5 w-5 text-neutral-700" />
         </button>
 
-        <div className="grid gap-8 p-8 md:grid-cols-2">
+        <div className="grid gap-6 p-6 sm:gap-8 sm:p-8 md:grid-cols-2">
           {/* Left: Product Image */}
           <div className="relative aspect-square overflow-hidden rounded-xl bg-neutral-50">
             {!imageLoaded && (
@@ -152,21 +193,23 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
               </div>
             )}
 
-            {/* Actions */}
+            {/* Actions - Larger touch targets on mobile */}
             <div className="mt-auto space-y-3">
               {/* Add to Cart Button */}
               <button
-                className="bg-bapi-accent-gradient w-full rounded-xl px-6 py-3 font-semibold text-white transition-all duration-200 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+                className="min-h-[48px] w-full rounded-xl bg-bapi-accent-gradient px-6 py-3 font-semibold text-white transition-all duration-200 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-[44px]"
                 disabled={!inStock}
+                title={inStock ? 'Add to cart' : 'Out of stock - cannot add to cart'}
               >
                 {inStock ? 'Add to Cart' : 'Out of Stock'}
               </button>
 
               {/* View Full Details Link */}
               <Link
-                href={`/${locale}/product/${product.slug}`}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-50 px-6 py-3 font-semibold text-primary-600 transition-all duration-200 hover:bg-primary-100"
+                href={`/product/${product.slug}`}
+                className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-primary-50 px-6 py-3 font-semibold text-primary-600 transition-all duration-200 hover:bg-primary-100 sm:min-h-[44px]"
                 onClick={onClose}
+                title="View complete product details"
               >
                 View Full Details
                 <ExternalLinkIcon className="h-4 w-4" />

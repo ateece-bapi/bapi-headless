@@ -99,7 +99,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
           <h1 className="mb-4 text-3xl font-bold text-neutral-900">{t('emptyQuery.title')}</h1>
           <p className="mb-8 text-lg text-neutral-700">{t('emptyQuery.description')}</p>
           <Link
-            href={`/${locale}/products`}
+            href="/products"
             className="inline-flex items-center justify-center rounded-lg bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
           >
             {t('emptyQuery.browseButton')}

@@ -101,7 +101,7 @@ export default function CheckoutSummary({ cart }: CheckoutSummaryProps) {
 
           {/* Edit Cart Link */}
           <Link
-            href={`/${locale}/cart`}
+            href="/cart"
             className="text-sm font-medium text-primary-700 transition-colors hover:text-primary-800"
           >
             {t('editCart')}

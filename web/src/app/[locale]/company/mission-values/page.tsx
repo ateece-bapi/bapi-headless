@@ -77,7 +77,7 @@ export default async function MissionValuesPage() {
       {/* Hero Section */}
       <section className="bg-linear-to-br relative overflow-hidden from-primary-600 to-primary-800">
         {/* Background decoration */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-primary-400/20 blur-3xl" />
 
@@ -207,7 +207,7 @@ export default async function MissionValuesPage() {
 
         {/* CTA Section */}
         <div className="bg-linear-to-br relative mt-20 overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+          <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
 
           <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">
             <div className="text-center lg:text-left">

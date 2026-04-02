@@ -61,7 +61,7 @@ export function RelatedProductsClient({ products, locale, translations }: Relate
           {filteredProducts.slice(0, 5).map((product: RelatedProduct) => (
             <Link
               key={product.id || product.slug}
-              href={`/${locale}/product/${product.slug}`}
+              href={`/product/${product.slug}`}
               className="group relative overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:border-primary-500 hover:shadow-xl"
             >
               {/* Product Image */}

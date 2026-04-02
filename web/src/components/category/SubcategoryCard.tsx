@@ -36,7 +36,7 @@ export default function SubcategoryCard({
 
   return (
     <Link
-      href={`/${locale}/products/${categorySlug}/${slug}`}
+      href={`/products/${categorySlug}/${slug}`}
       className="group relative block overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition-all  duration-300 hover:border-primary-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
     >
       {/* Image Section */}

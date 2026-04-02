@@ -209,7 +209,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             {subcategories.map((subcategory, index) => (
               <Link
                 key={subcategory.id}
-                href={`/${locale}/products/${category}/${subcategory.slug}`}
+                href={`/products/${category}/${subcategory.slug}`}
                 className="group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:border-primary-500 hover:shadow-2xl"
               >
                 {/* BAPI Gradient Top Border */}
@@ -350,14 +350,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         <div className="mx-auto max-w-content px-4 py-8">
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href={`/${locale}/products`}
+              href="/products"
               className="text-sm text-neutral-700 transition-colors hover:text-primary-500"
             >
               {t('categoryPage.quickLinks.backToProducts')}
             </Link>
             <span className="text-neutral-300">|</span>
             <Link
-              href={`/${locale}/contact`}
+              href="/contact"
               className="text-sm text-neutral-700 transition-colors hover:text-primary-500"
             >
               {t('categoryPage.quickLinks.needHelp')}

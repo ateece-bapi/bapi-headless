@@ -82,7 +82,7 @@ export default function TwoFactorBanner({ locale, isEnabled }: TwoFactorBannerPr
 
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
-              href={`/${locale}/account/settings`}
+              href="/account/settings"
               className="inline-flex items-center rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
               {t('enableButton')}

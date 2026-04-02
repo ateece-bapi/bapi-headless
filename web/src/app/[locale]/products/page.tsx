@@ -79,7 +79,7 @@ export default async function MainProductPage({
       {/* Hero Section - Server Rendered for Fast LCP */}
       <section className="bg-linear-to-br relative overflow-hidden from-primary-700 via-primary-600 to-primary-500">
         {/* Background decoration */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+        <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
         <div className="h-150 w-150 absolute right-0 top-0 -translate-y-1/3 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-96 w-96 translate-y-1/3 rounded-full bg-primary-400/20 blur-3xl" />
 
@@ -206,7 +206,7 @@ export default async function MainProductPage({
 
         {/* CTA Section */}
         <div className="bg-linear-to-br relative overflow-hidden rounded-2xl from-primary-600 to-primary-700 p-10 shadow-2xl lg:p-16">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+          <div className="absolute inset-0 bg-[url('/images/patterns/grid.svg')] opacity-10" />
           <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 
           <div className="relative flex flex-col items-center justify-between gap-8 text-center lg:flex-row lg:text-left">

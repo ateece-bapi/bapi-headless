@@ -23,6 +23,21 @@ process.env.JWT_SECRET = 'test-secret-key-for-testing-only';
 // Set GraphQL endpoint for client tests
 process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL = 'https://test.example.com/graphql';
 
+// Mock IntersectionObserver (not available in jsdom)
+class MockIntersectionObserver {
+	observe = vi.fn();
+	unobserve = vi.fn();
+	disconnect = vi.fn();
+	
+	constructor(callback: IntersectionObserverCallback) {
+		this.observe = vi.fn();
+		this.unobserve = vi.fn();
+		this.disconnect = vi.fn();
+	}
+}
+
+global.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver;
+
 // Extend Vitest's expect with jest-axe accessibility matchers
 // Note: jest-axe is the industry standard and works perfectly with Vitest
 expect.extend(toHaveNoViolations);

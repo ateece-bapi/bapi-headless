@@ -23,7 +23,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       <section className="w-full border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href={`/${locale}/account`}
+            href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
             <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
@@ -112,13 +112,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               {/* Action Buttons */}
               <div className="mt-6 flex flex-col gap-4 border-t border-neutral-200 pt-6 sm:flex-row">
                 <Link
-                  href={`/${locale}/account/settings`}
+                  href="/account/settings"
                   className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 font-bold text-white shadow-sm transition-all duration-300 hover:bg-primary-700 hover:shadow-md"
                 >
                   {t('actions.editProfile')}
                 </Link>
                 <Link
-                  href={`/${locale}/account`}
+                  href="/account"
                   className="inline-flex items-center justify-center rounded-lg border border-neutral-300 px-6 py-3 font-semibold text-neutral-700 transition-all duration-300 hover:border-primary-600 hover:bg-white hover:text-primary-600"
                 >
                   {t('backToDashboard')}

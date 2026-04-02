@@ -124,7 +124,7 @@ export default function ProductComparison({
 
                       {/* Product Name */}
                       <Link
-                        href={`/${locale}/product/${product.slug}`}
+                        href={`/product/${product.slug}`}
                         className="line-clamp-2 font-semibold text-neutral-900 transition-colors hover:text-primary-600"
                         onClick={onClose}
                       >

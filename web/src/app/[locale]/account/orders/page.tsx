@@ -108,7 +108,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
       <section className="bg-linear-to-r w-full from-primary-600 to-primary-700 text-white">
         <div className="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href={`/${locale}/account`}
+            href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-white/90 transition-colors hover:text-white"
           >
             <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
@@ -141,7 +141,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
                   : t('empty.descriptionWithoutAccount')}
               </p>
               <Link
-                href={`/${locale}/products`}
+                href="/products"
                 className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-700 hover:shadow-lg"
               >
                 {t('empty.browseProducts')}
@@ -224,7 +224,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
                     {/* Actions */}
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <Link
-                        href={`/${locale}/account/orders/${order.databaseId}`}
+                        href={`/account/orders/${order.databaseId}`}
                         className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                       >
                         <EyeIcon className="h-4 w-4" strokeWidth={2.5} />

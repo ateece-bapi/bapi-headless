@@ -21,9 +21,10 @@ type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][num
 interface ProductGridProps {
   products: Product[];
   locale: string;
+  viewMode?: 'grid' | 'list';
 }
 
-export function ProductGrid({ products, locale }: ProductGridProps) {
+export function ProductGrid({ products, locale, viewMode = 'grid' }: ProductGridProps) {
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [quickViewPerformanceTracker, setQuickViewPerformanceTracker] = useState<any>(null);
   const { isInComparison, addToComparison, removeFromComparison, canAddMore, comparisonProducts } =
@@ -103,13 +104,18 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
       <div
         id="product-results"
         tabIndex={-1}
-        className="grid grid-cols-1 gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+        className={`focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 ${
+          viewMode === 'list'
+            ? 'flex flex-col gap-4'
+            : 'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'
+        }`}
       >
         {products.map((product, index) => (
           <ProductCard
             key={product.id}
             product={product}
             locale={locale}
+            viewMode={viewMode}
             positionInGrid={index}
             totalProducts={products.length}
             onQuickView={(tracker) => {
@@ -152,6 +158,7 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
 interface ProductCardProps {
   product: Product;
   locale: string;
+  viewMode: 'grid' | 'list';
   positionInGrid: number;
   totalProducts: number;
   onQuickView: (tracker: any) => void;
@@ -164,6 +171,7 @@ interface ProductCardProps {
 function ProductCard({
   product,
   locale,
+  viewMode,
   positionInGrid,
   totalProducts,
   onQuickView,
@@ -184,10 +192,10 @@ function ProductCard({
       partNumber: (product as any).partNumber,
       price: (product as SimpleProduct | VariableProduct).price,
       stockStatus: (product as SimpleProduct | VariableProduct).stockStatus,
-      onSale: (product as SimpleProduct | VariableProduct).onSale,
+      onSale: (product as SimpleProduct | VariableProduct).onSale ?? undefined,
     },
     cardType: 'advanced',
-    viewMode: 'grid',
+    viewMode,
     positionInGrid,
     totalProducts,
     isInComparison,
@@ -226,10 +234,134 @@ function ProductCard({
     (isSimpleProduct && (product as SimpleProduct).onSale) ||
     (isVariableProduct && (product as VariableProduct).onSale);
 
+  // Get part number or SKU for badge
+  const partNumber = (product as any).partNumber;
+  const sku = isSimpleProduct ? (product as SimpleProduct).sku : null;
+  const displayPartNumber = partNumber || sku;
+
+  // LIST VIEW RENDERING
+  if (viewMode === 'list') {
+    return (
+      <Link
+        ref={ref}
+        href={`/product/${product.slug}`}
+        className={`group flex gap-6 overflow-hidden rounded-lg border-2 border-neutral-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500 hover:shadow-lg ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}
+        onClick={analytics.trackClick}
+        onMouseEnter={analytics.trackHoverStart}
+        onMouseLeave={analytics.trackHoverEnd}
+      >
+        {/* Image */}
+        <div className="relative h-40 w-40 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-50">
+          {image?.sourceUrl ? (
+            <Image
+              src={image.sourceUrl}
+              alt={image.altText || product.name || 'Product'}
+              fill
+              className="object-contain p-3"
+              sizes="160px"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-neutral-400">
+              <svg className="h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+          )}
+          {/* Badges in list view */}
+          <div className="absolute left-2 top-2 flex flex-col gap-1">
+            {isOnSale && <span className="rounded-full bg-bapi-accent-gradient px-2 py-1 text-xs font-bold text-neutral-900 shadow-md">Sale</span>}
+            {isInStock && <span className="rounded-full bg-gradient-to-r from-success-600 to-success-500 px-2 py-1 text-xs font-semibold text-white shadow-md">In Stock</span>}
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex flex-1 flex-col">
+          <div className="mb-2 flex items-start justify-between gap-4">
+            <h3 className="text-xl font-bold text-neutral-900 group-hover:text-primary-600">
+              {product.name}
+            </h3>
+            {displayPartNumber && (
+              <span className="rounded-lg bg-neutral-100 px-3 py-1.5 text-sm font-semibold text-neutral-700" title={partNumber ? 'Part Number' : 'SKU'}>
+                {displayPartNumber}
+              </span>
+            )}
+          </div>
+
+          {/* Short Description */}
+          {isSimpleProduct && (product as SimpleProduct).shortDescription && (
+            <div
+              className="mb-4 line-clamp-2 text-sm leading-relaxed text-neutral-700"
+              dangerouslySetInnerHTML={{ __html: (product as SimpleProduct).shortDescription || '' }}
+            />
+          )}
+
+          {/* Price and Actions */}
+          <div className="mt-auto flex items-center justify-between gap-4 border-t border-neutral-100 pt-3">
+            {price ? (
+              <div className="flex items-baseline gap-2">
+                <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-2xl font-bold text-transparent">
+                  {price}
+                </span>
+                {isOnSale && (isSimpleProduct ? (product as SimpleProduct).regularPrice : isVariableProduct ? (product as VariableProduct).regularPrice : null) && (
+                  <span className="text-sm text-neutral-700 line-through">
+                    {isSimpleProduct ? (product as SimpleProduct).regularPrice : (product as VariableProduct).regularPrice}
+                  </span>
+                )}
+              </div>
+            ) : (
+              <span className="text-sm font-medium text-neutral-700">Contact for Pricing</span>
+            )}
+
+            {/* Quick Actions */}
+            <div className="flex gap-2">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (canAddToComparison) {
+                    const isAdding = !isInComparison;
+                    analytics.trackComparisonToggle(isAdding);
+                    onToggleComparison();
+                  } else {
+                    analytics.trackComparisonLimitReached();
+                  }
+                }}
+                className={`min-h-[44px] min-w-[44px] rounded-lg p-2.5 shadow transition-all duration-200 hover:scale-105 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 ${
+                  canAddToComparison ? 'cursor-pointer bg-white hover:bg-primary-50' : 'cursor-not-allowed bg-neutral-100 opacity-50'
+                }`}
+                aria-label={isInComparison ? 'Remove from comparison' : 'Add to comparison'}
+                title={isInComparison ? 'Remove from comparison' : 'Add to comparison (max 4)'}
+                disabled={!canAddToComparison}
+              >
+                {isInComparison ? <CheckSquareIcon className="h-5 w-5 text-primary-600" /> : <SquareIcon className="h-5 w-5 text-neutral-700" />}
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  const tracker = analytics.trackQuickViewOpen('button_click');
+                  onQuickView(tracker);
+                }}
+                className="min-h-[44px] min-w-[44px] rounded-lg bg-primary-50 p-2.5 shadow transition-all duration-200 hover:scale-105 hover:bg-primary-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
+                aria-label="Quick view"
+                title="View product details without leaving this page"
+              >
+                <EyeIcon className="h-5 w-5 text-primary-600" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </Link>
+    );
+  }
+
+  // GRID VIEW RENDERING (default)
   return (
     <Link
       ref={ref}
-      href={`/${locale}/product/${product.slug}`}
+      href={`/product/${product.slug}`}
       className={`group relative flex flex-col overflow-hidden rounded-xl border-2 border-neutral-200 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary-500 hover:shadow-2xl ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
       }`}
@@ -242,7 +374,9 @@ function ProductCard({
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary-50/0 to-accent-50/0 transition-all duration-300 group-hover:from-primary-50/30 group-hover:to-accent-50/20" />
 
       {/* Quick View & Comparison Buttons */}
-      <div className="absolute right-3 top-3 z-10 flex gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      {/* Mobile: Always visible with larger touch targets (44x44px)
+          Desktop: Hover to reveal with smooth animation */}
+      <div className="absolute right-3 top-3 z-10 flex gap-2 opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100">
         {/* Comparison Checkbox */}
         <button
           onClick={(e) => {
@@ -256,12 +390,13 @@ function ProductCard({
               analytics.trackComparisonLimitReached();
             }
           }}
-          className={`rounded-lg p-2 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 ${
+          className={`min-h-[44px] min-w-[44px] rounded-lg p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 sm:p-2 ${
             canAddToComparison
               ? 'cursor-pointer bg-white/90 hover:bg-white'
               : 'cursor-not-allowed bg-neutral-100/90 opacity-50'
           }`}
           aria-label={isInComparison ? 'Remove from comparison' : 'Add to comparison'}
+          title={isInComparison ? 'Remove from comparison' : 'Add to comparison (max 4)'}
           disabled={!canAddToComparison}
         >
           {isInComparison ? (
@@ -279,8 +414,9 @@ function ProductCard({
             const tracker = analytics.trackQuickViewOpen('button_click');
             onQuickView(tracker);
           }}
-          className="rounded-lg bg-white/90 p-2 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50"
+          className="min-h-[44px] min-w-[44px] rounded-lg bg-white/90 p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 sm:p-2"
           aria-label="Quick view"
+          title="View product details without leaving this page"
         >
           <EyeIcon className="h-5 w-5 text-primary-600" />
         </button>
@@ -350,6 +486,13 @@ function ProductCard({
         <h3 className="mb-2 line-clamp-2 text-lg font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-primary-600">
           {product.name}
         </h3>
+
+        {/* Part Number Badge */}
+        {displayPartNumber && (
+          <span className="mb-3 w-fit rounded-lg bg-neutral-100 px-3 py-1.5 text-sm font-semibold text-neutral-700" title={partNumber ? 'Part Number' : 'SKU'}>
+            {displayPartNumber}
+          </span>
+        )}
 
         {/* Short Description */}
         {isSimpleProduct && (product as SimpleProduct).shortDescription && (

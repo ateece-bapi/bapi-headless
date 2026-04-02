@@ -70,7 +70,7 @@ export default function FavoritesPage() {
         <section className="w-full border-b border-neutral-200 bg-white">
           <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
             <Link
-              href={`/${locale}/account`}
+              href="/account"
               className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
             >
               <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
@@ -104,7 +104,7 @@ export default function FavoritesPage() {
       <section className="w-full border-b border-neutral-200 bg-white">
         <div className="mx-auto max-w-container px-4 py-8 sm:px-6 lg:px-8 xl:px-12">
           <Link
-            href={`/${locale}/account`}
+            href="/account"
             className="mb-6 inline-flex items-center gap-2 font-semibold text-primary-600 transition-colors hover:text-primary-700"
           >
             <ArrowLeftIcon className="h-4 w-4" strokeWidth={2.5} />
@@ -129,13 +129,13 @@ export default function FavoritesPage() {
               </p>
               <div className="flex justify-center gap-3">
                 <Link
-                  href={`/${locale}/products`}
+                  href="/products"
                   className="inline-flex items-center justify-center rounded-lg bg-accent-500 px-6 py-3 font-bold text-neutral-900 shadow-sm transition-all duration-300 hover:scale-105 hover:bg-accent-600 hover:shadow-md"
                 >
                   {t('empty.browseProducts')}
                 </Link>
                 <Link
-                  href={`/${locale}/test-favorites`}
+                  href="/test-favorites"
                   className="inline-flex items-center justify-center rounded-lg border-2 border-primary-600 px-6 py-3 font-bold text-primary-600 transition-all duration-300 hover:bg-primary-50"
                 >
                   {t('empty.testFavorites')}
@@ -158,7 +158,7 @@ export default function FavoritesPage() {
                     key={favorite.id}
                     className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md"
                   >
-                    <Link href={`/${locale}/product/${favorite.productSlug}`}>
+                    <Link href={`/product/${favorite.productSlug}`}>
                       {favorite.productImage ? (
                         <div className="aspect-square overflow-hidden bg-neutral-100">
                           <Image
@@ -177,7 +177,7 @@ export default function FavoritesPage() {
                       )}
                     </Link>
                     <div className="p-4">
-                      <Link href={`/${locale}/product/${favorite.productSlug}`}>
+                      <Link href={`/product/${favorite.productSlug}`}>
                         <h3 className="mb-2 font-bold text-neutral-900 transition-colors hover:text-primary-600">
                           {favorite.productName}
                         </h3>
@@ -190,7 +190,7 @@ export default function FavoritesPage() {
                       )}
                       <div className="flex gap-2">
                         <Link
-                          href={`/${locale}/product/${favorite.productSlug}`}
+                          href={`/product/${favorite.productSlug}`}
                           className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                         >
                           {t('viewProduct')}

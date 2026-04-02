@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRightIcon, PackageIcon } from '@/lib/icons';
@@ -54,7 +56,7 @@ export default function ProductCard({
     return (
       <Link
         ref={visibilityRef}
-        href={`/${locale}/product/${slug || 'unknown'}`}
+        href={`/product/${slug || 'unknown'}`}
         className="group flex gap-6 overflow-hidden rounded-lg border border-neutral-200 bg-white p-4 transition-all hover:border-primary-500 hover:shadow-lg"
         onClick={analytics.trackClick}
         onMouseEnter={analytics.trackHoverStart}
@@ -112,7 +114,7 @@ export default function ProductCard({
   return (
     <Link
       ref={visibilityRef}
-      href={`/${locale}/product/${slug || 'unknown'}`}
+      href={`/product/${slug || 'unknown'}`}
       className="group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500"
       style={{
         animationDelay: `${index * 50}ms`,

@@ -110,7 +110,10 @@ export function isTouchDevice(): boolean {
 /**
  * Track a product card event
  */
-export function trackProductCardEvent(event: ProductCardEvent, data: ProductCardEventData): void {
+export function trackProductCardEvent(
+  event: ProductCardEvent,
+  data: ProductCardEventData | QuickViewEventData | ComparisonEventData
+): void {
   // Only track in production or if analytics explicitly enabled
   if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_ENABLE_DEV_ANALYTICS) {
     console.log('[Analytics]', event, data);
@@ -138,7 +141,7 @@ export function trackQuickView(
 ): void {
   trackProductCardEvent(
     action === 'opened' ? 'quick_view_opened' : 'quick_view_closed',
-    data as ProductCardEventData
+    data
   );
 }
 
@@ -156,7 +159,7 @@ export function trackComparison(
         ? 'comparison_removed'
         : 'comparison_limit_reached';
 
-  trackProductCardEvent(event, data as ProductCardEventData);
+  trackProductCardEvent(event, data);
 }
 
 /**

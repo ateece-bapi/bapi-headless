@@ -303,7 +303,7 @@ export default function CartPageClient() {
         <h1 className="mb-4 text-3xl font-bold text-neutral-900">{t('cartPage.empty.title')}</h1>
         <p className="mb-8 text-lg text-neutral-700">{t('cartPage.empty.description')}</p>
         <Link
-          href={`/${locale}/products`}
+          href="/products"
           className="btn-bapi-primary inline-flex items-center gap-2 rounded-xl px-8 py-4 font-semibold"
         >
           <ArrowLeftIcon className="h-5 w-5" />
@@ -321,7 +321,7 @@ export default function CartPageClient() {
           {t('cartPage.header.title')}
         </h1>
         <Link
-          href={`/${locale}/products`}
+          href="/products"
           className="flex items-center gap-2 font-medium text-primary-500 transition-colors hover:text-primary-600"
         >
           <ArrowLeftIcon className="h-4 w-4" />

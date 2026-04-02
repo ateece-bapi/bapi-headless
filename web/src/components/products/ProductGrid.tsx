@@ -14,6 +14,7 @@ import QuickViewModal from './QuickViewModal';
 import { useProductComparison } from '@/hooks/useProductComparison';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useRegion } from '@/store/regionStore';
+import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -24,7 +25,8 @@ interface ProductGridProps {
 
 export function ProductGrid({ products, locale }: ProductGridProps) {
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
-  const { isInComparison, addToComparison, removeFromComparison, canAddMore } =
+  const [quickViewPerformanceTracker, setQuickViewPerformanceTracker] = useState<any>(null);
+  const { isInComparison, addToComparison, removeFromComparison, canAddMore, comparisonProducts } =
     useProductComparison();
 
   if (products.length === 0) {
@@ -103,13 +105,19 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
         tabIndex={-1}
         className="grid grid-cols-1 gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
       >
-        {products.map((product) => (
+        {products.map((product, index) => (
           <ProductCard
             key={product.id}
             product={product}
             locale={locale}
-            onQuickView={() => setQuickViewProduct(product)}
+            positionInGrid={index}
+            totalProducts={products.length}
+            onQuickView={(tracker) => {
+              setQuickViewProduct(product);
+              setQuickViewPerformanceTracker(tracker);
+            }}
             isInComparison={isInComparison(product.id)}
+            comparisonCount={comparisonProducts.length}
             onToggleComparison={() => {
               if (isInComparison(product.id)) {
                 removeFromComparison(product.id);
@@ -119,14 +127,21 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
             }}
             canAddToComparison={canAddMore || isInComparison(product.id)}
           />
-        ))}
+        ))})
       </div>
 
       {/* Quick View Modal */}
       {quickViewProduct && (
         <QuickViewModal
           product={quickViewProduct as any}
-          onClose={() => setQuickViewProduct(null)}
+          onClose={() => {
+            // Complete performance tracking when modal closes
+            if (quickViewPerformanceTracker) {
+              quickViewPerformanceTracker.complete(quickViewProduct.id);
+            }
+            setQuickViewProduct(null);
+            setQuickViewPerformanceTracker(null);
+          }}
           locale={locale}
         />
       )}
@@ -137,8 +152,11 @@ export function ProductGrid({ products, locale }: ProductGridProps) {
 interface ProductCardProps {
   product: Product;
   locale: string;
-  onQuickView: () => void;
+  positionInGrid: number;
+  totalProducts: number;
+  onQuickView: (tracker: any) => void;
   isInComparison: boolean;
+  comparisonCount: number;
   onToggleComparison: () => void;
   canAddToComparison: boolean;
 }
@@ -146,17 +164,43 @@ interface ProductCardProps {
 function ProductCard({
   product,
   locale,
+  positionInGrid,
+  totalProducts,
   onQuickView,
   isInComparison,
+  comparisonCount,
   onToggleComparison,
   canAddToComparison,
 }: ProductCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const region = useRegion();
+  
+  // Analytics tracking
+  const analytics = useProductCardAnalytics({
+    product: {
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      partNumber: (product as any).partNumber,
+      price: (product as SimpleProduct | VariableProduct).price,
+      stockStatus: (product as SimpleProduct | VariableProduct).stockStatus,
+      onSale: (product as SimpleProduct | VariableProduct).onSale,
+    },
+    cardType: 'advanced',
+    viewMode: 'grid',
+    positionInGrid,
+    totalProducts,
+    isInComparison,
+    comparisonCount,
+    maxComparisonLimit: 4,
+  });
+  
   const { ref, isVisible } = useIntersectionObserver<HTMLAnchorElement>({
     threshold: 0.1,
     rootMargin: '100px',
     freezeOnceVisible: true,
+    onIntersect: () => analytics.trackView(),
+    triggerOnce: true,
   });
 
   const isSimpleProduct = product.__typename === 'SimpleProduct';
@@ -190,6 +234,9 @@ function ProductCard({
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
       }`}
       style={{ transitionDuration: '500ms' }}
+      onClick={analytics.trackClick}
+      onMouseEnter={analytics.trackHoverStart}
+      onMouseLeave={analytics.trackHoverEnd}
     >
       {/* Subtle gradient accent on hover */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary-50/0 to-accent-50/0 transition-all duration-300 group-hover:from-primary-50/30 group-hover:to-accent-50/20" />
@@ -202,7 +249,11 @@ function ProductCard({
             e.preventDefault();
             e.stopPropagation();
             if (canAddToComparison) {
+              const isAdding = !isInComparison;
+              analytics.trackComparisonToggle(isAdding);
               onToggleComparison();
+            } else {
+              analytics.trackComparisonLimitReached();
             }
           }}
           className={`rounded-lg p-2 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 ${
@@ -225,7 +276,8 @@ function ProductCard({
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            onQuickView();
+            const tracker = analytics.trackQuickViewOpen('button_click');
+            onQuickView(tracker);
           }}
           className="rounded-lg bg-white/90 p-2 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50"
           aria-label="Quick view"

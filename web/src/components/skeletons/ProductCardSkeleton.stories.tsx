@@ -258,7 +258,7 @@ export const LoadingMoreProducts: Story = {
               <div className="mb-2 text-sm font-semibold text-neutral-900">
                 Product {i + 1}
               </div>
-              <div className="mb-4 text-xs text-neutral-600">Loaded product</div>
+              <div className="mb-4 text-xs text-neutral-700">Loaded product</div>
               <div className="flex items-center justify-between">
                 <div className="text-sm font-bold text-primary-600">$199.00</div>
                 <div className="rounded bg-primary-600 px-3 py-1 text-xs text-white">

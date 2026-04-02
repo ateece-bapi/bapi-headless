@@ -1,12 +1,15 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
 import { XIcon, ExternalLinkIcon, PackageIcon, DollarSignIcon } from '@/lib/icons';
 import { useRegion } from '@/store/regionStore';
+import { convertWooCommercePriceNumeric } from '@/lib/utils/currency';
+import AddToCartButton from '@/components/cart/AddToCartButton';
+import type { CartItem } from '@/store';
 
 type Product = SimpleProduct | VariableProduct;
 
@@ -97,6 +100,33 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   // Get image URL
   const imageUrl = product.image?.sourceUrl || '/images/placeholder.png';
   const imageAlt = product.image?.altText || product.name || 'Product image';
+
+  // Prepare cart item data
+  const cartItem: Omit<CartItem, 'quantity'> = useMemo(() => {
+    // Use WooCommerce price utility for proper parsing (handles commas, ranges, etc.)
+    // product.price is the raw WooCommerce price (e.g., "$49.99" or "$1,234.56")
+    const rawPrice = isSimple ? (product as SimpleProduct).price : product.price;
+    const numericPrice = convertWooCommercePriceNumeric(rawPrice, region.currency);
+
+    // Get part number if available
+    const partNumber = isSimple ? (product as SimpleProduct).partNumber : null;
+
+    return {
+      id: product.id,
+      databaseId: product.databaseId || 0,
+      name: product.name || '',
+      slug: product.slug || '',
+      price: price || '',
+      numericPrice,
+      image: product.image?.sourceUrl
+        ? {
+            sourceUrl: product.image.sourceUrl,
+            altText: product.image.altText || product.name || '',
+          }
+        : null,
+      partNumber: partNumber || undefined,
+    };
+  }, [product, price, isSimple, region.currency]);
 
   return (
     <div
@@ -196,13 +226,20 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             {/* Actions - Larger touch targets on mobile */}
             <div className="mt-auto space-y-3">
               {/* Add to Cart Button */}
-              <button
-                className="min-h-[48px] w-full rounded-xl bg-bapi-accent-gradient px-6 py-3 font-semibold text-white transition-all duration-200 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-[44px]"
-                disabled={!inStock}
-                title={inStock ? 'Add to cart' : 'Out of stock - cannot add to cart'}
-              >
-                {inStock ? 'Add to Cart' : 'Out of Stock'}
-              </button>
+              <AddToCartButton
+                product={cartItem}
+                quantity={1}
+                disabled={!inStock || !price}
+                className="min-h-[48px] w-full sm:min-h-[44px]"
+                showCartOnAdd={true}
+                ariaLabel={
+                  !price
+                    ? 'Price unavailable - cannot add to cart'
+                    : inStock
+                      ? `Add ${product.name} to cart`
+                      : 'Out of stock - cannot add to cart'
+                }
+              />
 
               {/* View Full Details Link */}
               <Link

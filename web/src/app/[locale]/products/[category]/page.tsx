@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import Image from 'next/image';
+import logger from '@/lib/logger';
 import { Suspense } from 'react';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import {
@@ -70,7 +71,8 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const { category, locale } = await params;
   const filters = await searchParams;
   const t = await getTranslations({ locale });
-  const client = getGraphQLClient(['product-categories'], true);
+  // Use comprehensive cache tags for precise revalidation
+  const client = getGraphQLClient(['products', 'product-categories', `category-${category}`], true);
 
   const data = await client.request<GetProductCategoryWithChildrenQuery>(
     GetProductCategoryWithChildrenDocument,
@@ -83,23 +85,60 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     notFound();
   }
 
-  const subcategories = categoryData.children?.nodes || [];
+  // Filter subcategories to only include valid entries with required fields
+  const subcategories = (categoryData.children?.nodes || []).filter(
+    (sub): sub is NonNullable<typeof sub> & { name: string; slug: string } =>
+      !!sub && !!sub.name && !!sub.slug
+  );
   const hasSubcategories = subcategories.length > 0;
 
+  // Type-safe product array from GraphQL
+  type ProductNode = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
+  let products: ProductNode[] = [];
+
   // Fetch products if category has no subcategories (leaf category)
-  let products: any[] = [];
   if (!hasSubcategories) {
     try {
-      const productsData = await client.request<GetProductsWithFiltersQuery>(
-        GetProductsWithFiltersDocument,
-        {
-          categorySlug: category,
-          first: 100,
+      // Paginate through all products to avoid silently dropping items
+      let after: string | null = null;
+      let hasNextPage = true;
+
+      while (hasNextPage && products.length < 1000) {
+        const productsData: GetProductsWithFiltersQuery = await client.request<GetProductsWithFiltersQuery>(
+          GetProductsWithFiltersDocument,
+          {
+            categorySlug: category,
+            first: 100,
+            after: after || undefined,
+          }
+        );
+
+        const pageNodes = productsData.products?.nodes || [];
+        products.push(...pageNodes);
+
+        hasNextPage = productsData.products?.pageInfo?.hasNextPage ?? false;
+        after = productsData.products?.pageInfo?.endCursor ?? null;
+
+        // Safety guard: Stop if no valid cursor for next page
+        if (!hasNextPage || !after) {
+          break;
         }
-      );
-      products = productsData.products?.nodes || [];
+      }
+
+      if (products.length >= 1000) {
+        logger.warn('Category hit 1000 product limit', {
+          categoryName: categoryData.name,
+          categorySlug: category,
+          productCount: products.length,
+          locale,
+        });
+      }
     } catch (error) {
-      console.error('Failed to fetch products for category:', error);
+      logger.error('Failed to fetch products for category', error, {
+        categorySlug: category,
+        categoryName: categoryData.name,
+        locale,
+      });
     }
   }
 
@@ -167,7 +206,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             {t('categoryPage.subcategories.title')}
           </h2>
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {subcategories.map((subcategory) => (
+            {subcategories.map((subcategory, index) => (
               <Link
                 key={subcategory.id}
                 href={`/${locale}/products/${category}/${subcategory.slug}`}
@@ -188,7 +227,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                       fill
                       className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-110"
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      priority
+                      priority={index < 2}
                     />
                   </div>
                 ) : (

@@ -1,7 +1,7 @@
 'use client';
 
 import { sanitizeWordPressContent } from '@/lib/sanitizeDescription';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import { SearchIcon, ArrowLeftIcon } from '@/lib/icons';
 import { useAuth } from '@/hooks/useAuth';

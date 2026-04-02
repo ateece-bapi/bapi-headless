@@ -25,14 +25,36 @@ process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL = 'https://test.example.com/graphql';
 
 // Mock IntersectionObserver (not available in jsdom)
 class MockIntersectionObserver {
+	callback: IntersectionObserverCallback;
+	options?: IntersectionObserverInit;
 	observe = vi.fn();
 	unobserve = vi.fn();
 	disconnect = vi.fn();
 	
-	constructor(callback: IntersectionObserverCallback) {
+	constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
+		this.callback = callback;
+		this.options = options;
 		this.observe = vi.fn();
 		this.unobserve = vi.fn();
 		this.disconnect = vi.fn();
+	}
+	
+	// Helper method for tests to trigger intersection
+	triggerIntersection(isIntersecting: boolean, target: Element) {
+		this.callback(
+			[
+				{
+					isIntersecting,
+					target,
+					boundingClientRect: target.getBoundingClientRect(),
+					intersectionRatio: isIntersecting ? 1 : 0,
+					intersectionRect: isIntersecting ? target.getBoundingClientRect() : ({} as DOMRectReadOnly),
+					rootBounds: null,
+					time: Date.now(),
+				},
+			] as IntersectionObserverEntry[],
+			this as unknown as IntersectionObserver
+		);
 	}
 }
 

@@ -94,7 +94,7 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
         observer.unobserve(element);
       }
     };
-  }, [threshold, rootMargin, freezeOnceVisible, isVisible]);
+  }, [threshold, rootMargin, freezeOnceVisible, isVisible, onIntersect, triggerOnce]);
 
   return { ref, isVisible };
 }

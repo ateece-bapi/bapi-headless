@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { XIcon, PackageIcon, DollarSignIcon, CheckCircleIcon, XCircleIcon } from '@/lib/icons';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';

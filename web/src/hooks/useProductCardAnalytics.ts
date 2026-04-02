@@ -21,12 +21,14 @@
  * ```
  */
 
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import {
   trackProductCardEvent,
   trackQuickView,
   trackComparison,
   createProductCardEventData,
+  trackViewModeChange as trackViewModeChangeFn,
+  getViewport,
   QuickViewPerformanceTracker,
   type ProductCardEventData,
   type QuickViewEventData,
@@ -65,13 +67,29 @@ export function useProductCardAnalytics({
   // Track hover start time for Quick View timing
   const hoverStartTime = useRef<number | null>(null);
 
-  // Create base event data (memoize to avoid recreating on every render)
-  const baseEventData: ProductCardEventData = createProductCardEventData(product, {
-    cardType,
-    viewMode,
-    positionInGrid,
-    totalProducts,
-  });
+  // Create base event data (memoized to avoid recreating on every render)
+  const baseEventData: ProductCardEventData = useMemo(
+    () =>
+      createProductCardEventData(product, {
+        cardType,
+        viewMode,
+        positionInGrid,
+        totalProducts,
+      }),
+    [
+      product.id,
+      product.name,
+      product.slug,
+      product.partNumber,
+      product.price,
+      product.stockStatus,
+      product.onSale,
+      cardType,
+      viewMode,
+      positionInGrid,
+      totalProducts,
+    ]
+  );
 
   // ============================================================================
   // Visibility Tracking (Intersection Observer)
@@ -200,12 +218,10 @@ export function useViewModeAnalytics() {
   const trackViewModeChange = useCallback(
     (newMode: 'grid' | 'list', productCount: number) => {
       if (previousMode.current !== newMode) {
-        const { trackViewModeChange: trackFn } = require('@/lib/analytics/productCard');
-
-        trackFn(newMode, {
+        trackViewModeChangeFn(newMode, {
           previous_mode: previousMode.current,
           product_count: productCount,
-          viewport: require('@/lib/analytics/productCard').getViewport(),
+          viewport: getViewport(),
         });
 
         previousMode.current = newMode;

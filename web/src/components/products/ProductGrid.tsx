@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import { useState } from 'react';
 import { EyeIcon, SquareIcon, CheckSquareIcon } from '@/lib/icons';
@@ -15,6 +15,7 @@ import { useProductComparison } from '@/hooks/useProductComparison';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useRegion } from '@/store/regionStore';
 import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';
+import type { QuickViewPerformanceTracker } from '@/lib/analytics/productCard';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -26,7 +27,8 @@ interface ProductGridProps {
 
 export function ProductGrid({ products, locale, viewMode = 'grid' }: ProductGridProps) {
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
-  const [quickViewPerformanceTracker, setQuickViewPerformanceTracker] = useState<any>(null);
+  const [quickViewPerformanceTracker, setQuickViewPerformanceTracker] =
+    useState<QuickViewPerformanceTracker | null>(null);
   const { isInComparison, addToComparison, removeFromComparison, canAddMore, comparisonProducts } =
     useProductComparison();
 
@@ -133,7 +135,7 @@ export function ProductGrid({ products, locale, viewMode = 'grid' }: ProductGrid
             }}
             canAddToComparison={canAddMore || isInComparison(product.id)}
           />
-        ))})
+        ))}
       </div>
 
       {/* Quick View Modal */}
@@ -161,7 +163,7 @@ interface ProductCardProps {
   viewMode: 'grid' | 'list';
   positionInGrid: number;
   totalProducts: number;
-  onQuickView: (tracker: any) => void;
+  onQuickView: (tracker: QuickViewPerformanceTracker) => void;
   isInComparison: boolean;
   comparisonCount: number;
   onToggleComparison: () => void;

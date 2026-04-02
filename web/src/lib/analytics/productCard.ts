@@ -115,7 +115,7 @@ export function trackProductCardEvent(
   data: ProductCardEventData | QuickViewEventData | ComparisonEventData
 ): void {
   // Only track in production or if analytics explicitly enabled
-  if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_ENABLE_DEV_ANALYTICS) {
+  if (process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_ENABLE_DEV_ANALYTICS !== 'true') {
     console.log('[Analytics]', event, data);
     return;
   }

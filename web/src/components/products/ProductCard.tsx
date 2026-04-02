@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import { ArrowRightIcon, PackageIcon } from '@/lib/icons';
 import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';

@@ -50,6 +50,14 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<T>(null);
   const hasTriggered = useRef(false);
+  
+  // Store onIntersect in a ref to avoid recreating observer on callback changes
+  const onIntersectRef = useRef(onIntersect);
+  
+  // Update ref when callback changes (separate effect to avoid observer recreation)
+  useEffect(() => {
+    onIntersectRef.current = onIntersect;
+  }, [onIntersect]);
 
   useEffect(() => {
     const element = ref.current;
@@ -66,10 +74,10 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
         const isIntersecting = entry.isIntersecting;
         setIsVisible(isIntersecting);
 
-        // Call onIntersect callback when element becomes visible
-        if (isIntersecting && onIntersect) {
+        // Call onIntersect callback when element becomes visible (use ref for latest callback)
+        if (isIntersecting && onIntersectRef.current) {
           if (!triggerOnce || !hasTriggered.current) {
-            onIntersect();
+            onIntersectRef.current();
             hasTriggered.current = true;
           }
         }
@@ -94,7 +102,7 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
         observer.unobserve(element);
       }
     };
-  }, [threshold, rootMargin, freezeOnceVisible, isVisible]);
+  }, [threshold, rootMargin, freezeOnceVisible, isVisible, triggerOnce]);
 
   return { ref, isVisible };
 }

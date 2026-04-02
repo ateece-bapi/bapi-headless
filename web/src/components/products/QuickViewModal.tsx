@@ -7,6 +7,7 @@ import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
 import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
 import { XIcon, ExternalLinkIcon, PackageIcon, DollarSignIcon } from '@/lib/icons';
 import { useRegion } from '@/store/regionStore';
+import { convertWooCommercePriceNumeric } from '@/lib/utils/currency';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import type { CartItem } from '@/store';
 
@@ -102,10 +103,10 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
 
   // Prepare cart item data
   const cartItem: Omit<CartItem, 'quantity'> = useMemo(() => {
-    // Extract numeric price from formatted string (e.g., "$49.00" -> 49.00)
-    const numericPrice = price
-      ? parseFloat(price.replace(/[^0-9.,]/g, '').replace(',', '.'))
-      : 0;
+    // Use WooCommerce price utility for proper parsing (handles commas, ranges, etc.)
+    // product.price is the raw WooCommerce price (e.g., "$49.99" or "$1,234.56")
+    const rawPrice = isSimple ? (product as SimpleProduct).price : product.price;
+    const numericPrice = convertWooCommercePriceNumeric(rawPrice, region.currency);
 
     // Get part number if available
     const partNumber = isSimple ? (product as SimpleProduct).partNumber : null;
@@ -125,7 +126,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
         : null,
       partNumber: partNumber || undefined,
     };
-  }, [product, price, isSimple]);
+  }, [product, price, isSimple, region.currency]);
 
   return (
     <div
@@ -228,13 +229,15 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
               <AddToCartButton
                 product={cartItem}
                 quantity={1}
-                disabled={!inStock}
+                disabled={!inStock || !price}
                 className="min-h-[48px] w-full sm:min-h-[44px]"
                 showCartOnAdd={true}
                 ariaLabel={
-                  inStock
-                    ? `Add ${product.name} to cart`
-                    : 'Out of stock - cannot add to cart'
+                  !price
+                    ? 'Price unavailable - cannot add to cart'
+                    : inStock
+                      ? `Add ${product.name} to cart`
+                      : 'Out of stock - cannot add to cart'
                 }
               />
 

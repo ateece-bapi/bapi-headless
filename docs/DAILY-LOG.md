@@ -181,7 +181,8 @@ QuickView Modal:
 
 2. **Price Data Parsing:**
    - Formatted prices need parsing for numeric calculations
-   - Regex approach: `price.replace(/[^0-9.,]/g, '').replace(',', '.')` handles international formats
+   - Use existing `convertWooCommercePriceNumeric(rawPrice, currency)` utility
+   - Handles WooCommerce formats: commas, ranges, currency symbols
    - Store both formatted (display) and numeric (calculations) values
 
 3. **Type Safety with Maybe Types:**

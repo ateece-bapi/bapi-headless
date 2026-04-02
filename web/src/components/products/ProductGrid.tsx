@@ -15,7 +15,7 @@ import { useProductComparison } from '@/hooks/useProductComparison';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useRegion } from '@/store/regionStore';
 import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';
-import { QuickViewPerformanceTracker } from '@/lib/analytics/productCard';
+import type { QuickViewPerformanceTracker } from '@/lib/analytics/productCard';
 
 type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
 
@@ -163,7 +163,7 @@ interface ProductCardProps {
   viewMode: 'grid' | 'list';
   positionInGrid: number;
   totalProducts: number;
-  onQuickView: (tracker: any) => void;
+  onQuickView: (tracker: QuickViewPerformanceTracker) => void;
   isInComparison: boolean;
   comparisonCount: number;
   onToggleComparison: () => void;

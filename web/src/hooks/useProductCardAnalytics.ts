@@ -76,7 +76,19 @@ export function useProductCardAnalytics({
         positionInGrid,
         totalProducts,
       }),
-    [product.id, product.name, product.slug, cardType, viewMode, positionInGrid, totalProducts]
+    [
+      product.id,
+      product.name,
+      product.slug,
+      product.partNumber,
+      product.price,
+      product.stockStatus,
+      product.onSale,
+      cardType,
+      viewMode,
+      positionInGrid,
+      totalProducts,
+    ]
   );
 
   // ============================================================================

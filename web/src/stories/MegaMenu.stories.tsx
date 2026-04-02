@@ -543,13 +543,13 @@ export const BrandCompliance: Story = {
         <div className="flex items-start gap-3">
           <AlertTriangleIcon className="mt-1 shrink-0 text-accent-600" sx={{ fontSize: 24 }} />
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold text-accent-900">
+            <h3 className="text-lg font-semibold text-accent-950">
               Mandatory Category Order (Never Reorder!)
             </h3>
-            <p className="text-sm text-accent-800 mb-2">
+            <p className="text-sm text-accent-950 mb-2">
               Current implementation uses 7 categories:
             </p>
-            <ol className="space-y-1 text-sm text-accent-800">
+            <ol className="space-y-1 text-sm text-accent-950">
               <li>1. Temperature (Red/Orange)</li>
               <li>2. Humidity (Blue/Cyan)</li>
               <li>3. Pressure (Purple/Pink)</li>
@@ -558,7 +558,7 @@ export const BrandCompliance: Story = {
               <li>6. Accessories (Gray/Neutral)</li>
               <li>7. Test Instruments (Cyan/Blue)</li>
             </ol>
-            <p className="text-xs text-accent-700 mt-2 italic">
+            <p className="text-xs text-accent-950 mt-2 italic">
               Note: Sensors (Blue/Gray) exists in brand guidelines as position #5,
               but is not yet implemented in the mega menu.
             </p>

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRightIcon, PackageIcon } from '@/lib/icons';
+import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 interface ProductCardProps {
   product: {
@@ -28,6 +30,21 @@ export default function ProductCard({
 }: ProductCardProps) {
   const { id, name, slug, partNumber, price, image, shortDescription } = product;
 
+  // Analytics tracking
+  const analytics = useProductCardAnalytics({
+    product,
+    cardType: 'basic',
+    viewMode,
+    positionInGrid: index,
+  });
+
+  // Track when card enters viewport
+  const { ref: visibilityRef } = useIntersectionObserver<HTMLAnchorElement>({
+    threshold: 0.5,
+    onIntersect: () => analytics.trackView(),
+    triggerOnce: true,
+  });
+
   // Strip HTML from short description
   const cleanDescription = shortDescription
     ? shortDescription.replace(/<[^>]*>/g, '').slice(0, 120)
@@ -36,8 +53,12 @@ export default function ProductCard({
   if (viewMode === 'list') {
     return (
       <Link
+        ref={visibilityRef}
         href={`/${locale}/product/${slug || 'unknown'}`}
         className="group flex gap-6 overflow-hidden rounded-lg border border-neutral-200 bg-white p-4 transition-all hover:border-primary-500 hover:shadow-lg"
+        onClick={analytics.trackClick}
+        onMouseEnter={analytics.trackHoverStart}
+        onMouseLeave={analytics.trackHoverEnd}
       >
         {/* Image */}
         <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg bg-neutral-50">
@@ -90,11 +111,15 @@ export default function ProductCard({
   // Grid view (default)
   return (
     <Link
+      ref={visibilityRef}
       href={`/${locale}/product/${slug || 'unknown'}`}
       className="group relative block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-500 hover:border-transparent hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500"
       style={{
         animationDelay: `${index * 50}ms`,
       }}
+      onClick={analytics.trackClick}
+      onMouseEnter={analytics.trackHoverStart}
+      onMouseLeave={analytics.trackHoverEnd}
     >
       {/* Gradient background on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-blue-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

@@ -141,7 +141,7 @@ export function ProductGrid({ products, locale, viewMode = 'grid' }: ProductGrid
       {/* Quick View Modal */}
       {quickViewProduct && (
         <QuickViewModal
-          product={quickViewProduct as any}
+          product={quickViewProduct}
           onClose={() => {
             // Complete performance tracking when modal closes
             if (quickViewPerformanceTracker) {

@@ -47,46 +47,36 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const region = useRegion();
 
-  // Portal mounting (SSR safety)
-  useEffect(() => {
-    setMounted(true);
-    return () => setMounted(false);
-  }, []);
-
-  // Don't render on server (SSR safety for portal)
-  if (!mounted) return null;
-
-  // Close modal immediately if product type is not supported
-  // QuickView only supports Simple and Variable products
-  if (!isSimpleProduct(product) && !isVariableProduct(product)) {
-    // Log warning and close modal
-    console.warn(
-      `QuickView does not support product type: ${product.__typename} (${product.name})`
-    );
-    // Trigger close on next tick to avoid state update during render
-    setTimeout(() => onClose(), 0);
-    return null;
-  }
-
-  // After guards, we know product is Simple or Variable - safe to type assert
-  const supportedProduct = product as SimpleProduct | VariableProduct;
-  const isVariable = isVariableProduct(supportedProduct);
+  // Check product type support - must be before any conditional returns
+  const isSupported = isSimpleProduct(product) || isVariableProduct(product);
+  const supportedProduct = isSupported ? (product as SimpleProduct | VariableProduct) : null;
+  const isVariable = supportedProduct ? isVariableProduct(supportedProduct) : false;
   
-  // For variable products, use variation data if selected, otherwise product data
-  // Apply currency conversion to variation prices to ensure correct region display
-  const displayPrice = selectedVariation
-    ? getProductPrice({ ...supportedProduct, price: selectedVariation.price }, region.currency)
-    : getProductPrice(supportedProduct, region.currency);
-  const displayStockStatus = selectedVariation?.stockStatus || getProductStockStatus(supportedProduct);
-  const displayImage = selectedVariation?.image || supportedProduct.image;
-  const displaySku = selectedVariation?.sku || supportedProduct.sku || null;
-  const displayPartNumber = selectedVariation?.partNumber || supportedProduct.partNumber || null;
+  // Display values - safe to compute even if product not supported
+  const displayPrice = supportedProduct
+    ? selectedVariation
+      ? getProductPrice({ ...supportedProduct, price: selectedVariation.price }, region.currency)
+      : getProductPrice(supportedProduct, region.currency)
+    : null;
+  const displayStockStatus = supportedProduct
+    ? selectedVariation?.stockStatus || getProductStockStatus(supportedProduct)
+    : null;
+  const displayImage = supportedProduct
+    ? selectedVariation?.image || supportedProduct.image
+    : null;
+  const displaySku = supportedProduct
+    ? selectedVariation?.sku || supportedProduct.sku || null
+    : null;
+  const displayPartNumber = supportedProduct
+    ? selectedVariation?.partNumber || supportedProduct.partNumber || null
+    : null;
   
   const inStock = displayStockStatus === 'IN_STOCK';
 
   // Transform attributes and variations for VariationSelector (for variable products)
+  // This hook MUST be called regardless of product type to maintain hook order
   const transformedAttributes: ProductAttribute[] = useMemo(() => {
-    if (!isVariable) return [];
+    if (!isVariable || !supportedProduct) return [];
     const variableProduct = supportedProduct as VariableProduct;
     const attrs = variableProduct.attributes;
     if (!attrs?.nodes) return [];
@@ -111,7 +101,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   }, [isVariable, supportedProduct]);
 
   const transformedVariations: ProductVariation[] = useMemo(() => {
-    if (!isVariable) return [];
+    if (!isVariable || !supportedProduct) return [];
     const variableProduct = supportedProduct as VariableProduct;
     const vars = variableProduct.variations;
     if (!vars?.nodes) return [];
@@ -169,9 +159,11 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   // Only check variation attributes (variation: true) for validity
   const variationAttributes = transformedAttributes.filter(attr => attr.variation);
   const hasValidVariations = variationAttributes.length > 0 && transformedVariations.length > 0;
-  const canAddToCart = !isVariable 
-    ? inStock && !!displayPrice 
-    : inStock && !!displayPrice && hasValidVariations && !!selectedVariation;
+  const canAddToCart = supportedProduct
+    ? !isVariable 
+      ? inStock && !!displayPrice 
+      : inStock && !!displayPrice && hasValidVariations && !!selectedVariation
+    : false;
 
   // Handle variation selection
   // Note: partNumber parameter required by VariationSelector callback signature but not used here
@@ -182,6 +174,21 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
       setImageLoaded(false);
     }
   };
+
+  // Portal mounting (SSR safety)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Close modal for unsupported product types
+  useEffect(() => {
+    if (!isSupported) {
+      console.warn(
+        `QuickView does not support product type: ${product.__typename} (${product.name})`
+      );
+      onClose();
+    }
+  }, [isSupported, product, onClose]);
 
   // ESC key to close
   useEffect(() => {
@@ -240,10 +247,23 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
 
   // Get image URL (use variation image if selected)
   const imageUrl = displayImage?.sourceUrl || '/images/placeholder.png';
-  const imageAlt = displayImage?.altText || supportedProduct.name || 'Product image';
+  const imageAlt = displayImage?.altText || supportedProduct?.name || 'Product image';
 
   // Prepare cart item data
   const cartItem: Omit<CartItem, 'quantity'> = useMemo(() => {
+    if (!supportedProduct) {
+      // Return dummy item for unsupported products (will never be used)
+      return {
+        id: '',
+        databaseId: 0,
+        name: '',
+        slug: '',
+        price: '',
+        numericPrice: 0,
+        image: null,
+      };
+    }
+
     // Use WooCommerce price utility for proper parsing (handles commas, ranges, etc.)
     const rawPrice = selectedVariation?.price || supportedProduct.price;
     const numericPrice = convertWooCommercePriceNumeric(rawPrice, region.currency);
@@ -284,8 +304,8 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
     return baseCartItem;
   }, [supportedProduct, displayPrice, displayImage, displayPartNumber, selectedVariation, isVariable, region.currency]);
 
-  // Don't render on server (SSR safety for portal)
-  if (!mounted) return null;
+  // Don't render on server (SSR safety for portal) or for unsupported products
+  if (!mounted || !isSupported || !supportedProduct) return null;
 
   const modalContent = (
     <div

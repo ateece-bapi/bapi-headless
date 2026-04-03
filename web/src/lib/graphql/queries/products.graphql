@@ -624,6 +624,7 @@ query GetProductsWithFilters(
       name
       slug
       type
+      __typename
       ... on SimpleProduct {
         id
         name

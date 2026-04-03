@@ -274,7 +274,6 @@ function ProductCard({
           {/* Badges in list view */}
           <div className="absolute left-2 top-2 flex flex-col gap-1">
             {isOnSale && <span className="rounded-full bg-bapi-accent-gradient px-2 py-1 text-xs font-bold text-neutral-900 shadow-md">Sale</span>}
-            {isInStock && <span className="rounded-full bg-gradient-to-r from-success-600 to-success-500 px-2 py-1 text-xs font-semibold text-white shadow-md">In Stock</span>}
           </div>
         </div>
 
@@ -346,7 +345,7 @@ function ProductCard({
                   const tracker = analytics.trackQuickViewOpen('button_click');
                   onQuickView(tracker);
                 }}
-                className="min-h-[44px] min-w-[44px] rounded-lg bg-primary-50 p-2.5 shadow transition-all duration-200 hover:scale-105 hover:bg-primary-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
+                className="min-h-[44px] min-w-[44px] cursor-pointer rounded-lg bg-primary-50 p-2.5 shadow transition-all duration-200 hover:scale-105 hover:bg-primary-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50"
                 aria-label="Quick view"
                 title="View product details without leaving this page"
               >
@@ -416,7 +415,7 @@ function ProductCard({
             const tracker = analytics.trackQuickViewOpen('button_click');
             onQuickView(tracker);
           }}
-          className="min-h-[44px] min-w-[44px] rounded-lg bg-white/90 p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 sm:p-2"
+          className="min-h-[44px] min-w-[44px] cursor-pointer rounded-lg bg-white/90 p-2.5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white focus:outline-none focus-visible:border-2 focus-visible:border-primary-600 focus-visible:ring-4 focus-visible:ring-primary-500/50 sm:p-2"
           aria-label="Quick view"
           title="View product details without leaving this page"
         >
@@ -475,11 +474,6 @@ function ProductCard({
               Sale
             </span>
           )}
-          {isInStock && (
-            <span className="rounded-full bg-gradient-to-r from-success-600 to-success-500 px-3 py-1.5 text-xs font-semibold text-white shadow-md">
-              In Stock
-            </span>
-          )}
         </div>
       </div>
 
@@ -488,13 +482,6 @@ function ProductCard({
         <h3 className="mb-2 line-clamp-2 text-lg font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-primary-600">
           {product.name}
         </h3>
-
-        {/* Part Number Badge */}
-        {displayPartNumber && (
-          <span className="mb-3 w-fit rounded-lg bg-neutral-100 px-3 py-1.5 text-sm font-semibold text-neutral-700" title={partNumber ? 'Part Number' : 'SKU'}>
-            {displayPartNumber}
-          </span>
-        )}
 
         {/* Short Description */}
         {isSimpleProduct && (product as SimpleProduct).shortDescription && (
@@ -548,11 +535,6 @@ function ProductCard({
                 />
               </svg>
             </span>
-            {isSimpleProduct && (product as SimpleProduct).sku && (
-              <span className="font-mono text-xs text-neutral-400">
-                {(product as SimpleProduct).sku}
-              </span>
-            )}
           </div>
         </div>
       </div>

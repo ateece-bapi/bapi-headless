@@ -8,6 +8,403 @@
 
 ---
 
+## April 3, 2026 (Late PM) — QuickView: Critical Hooks Fix & UI Cleanup ✅
+
+**Status:** ✅ COMPLETE - PR Merged  
+**Branch:** `fix/quickview-hooks-and-ui-cleanup`  
+**PR:** Merged to main  
+**Context:** Emergency fix for production-breaking React Hooks violation + UI parity issues  
+**Priority:** CRITICAL - QuickView completely broken in production  
+**Time:** ~1 hour (debugging, fixing, testing, PR review)  
+
+### 🎯 SESSION SUMMARY: React Hooks Violation Emergency Fix
+
+**Trigger:** User reported "Eye icon for QuickView is NOT WORKING!" after PR merge  
+**Root Cause:** React Hooks ordering violation from earlier type safety fixes  
+**Impact:** QuickView completely broken - modal wouldn't open, console errors, UI rendering issues  
+**Resolution:** Complete component restructuring to follow Rules of Hooks  
+
+---
+
+### CRITICAL ERROR DISCOVERED
+
+**React Hooks Violation:**
+```
+Error: React has detected a change in the order of Hooks called by QuickViewModal.
+   Previous render            Next render
+   ------------------------------------------------------
+1. useState                   useState
+2. useState                   useState
+3. useState                   useState
+4. useRef                     useRef
+5. useRef                     useRef
+6. useCallback                useCallback
+7. useCallback                useCallback
+8. useSyncExternalStore       useSyncExternalStore
+9. useDebugValue              useDebugValue
+10. useEffect                 useEffect
+11. undefined                 useMemo  ❌ VIOLATION
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+```
+
+**Secondary Issues:**
+- Missing `__typename` in GraphQL query caused type guards to fail
+- Product cards showing extra UI elements not on live site (stock badges, SKU overlays)
+- Missing cursor pointer on QuickView buttons
+
+---
+
+### ROOT CAUSE ANALYSIS
+
+**Previous code structure (BROKEN):**
+```typescript
+export default function QuickViewModal({ product, onClose, locale }) {
+  // ✅ Hooks declared at top
+  const [mounted, setMounted] = useState(false);
+  const region = useRegion();
+  
+  // ❌ EARLY RETURN - Stops hook execution
+  if (!mounted) return null;
+  
+  // ❌ CONDITIONAL EARLY RETURN - Stops hook execution
+  if (!isSimpleProduct(product) && !isVariableProduct(product)) {
+    console.warn('Unsupported product type');
+    setTimeout(() => onClose(), 0);
+    return null;
+  }
+  
+  // ❌ useMemo called AFTER conditional returns
+  const transformedAttributes = useMemo(() => { ... }, []);
+  const transformedVariations = useMemo(() => { ... }, []);
+  // More hooks...
+}
+```
+
+**Why this broke:**
+1. First render: Product supported → All hooks execute → 11 hooks total
+2. Second render: Product unsupported → Early return fires → Only 10 hooks execute
+3. React Error: "Expected 11 hooks but got 10" → Crash
+
+**Rules of Hooks violated:**
+- ❌ Hooks must be called in same order every render
+- ❌ Cannot call hooks after conditional returns
+- ❌ Cannot conditionally skip hook calls
+
+---
+
+### IMPLEMENTATION FIX
+
+**New code structure (FIXED):**
+```typescript
+export default function QuickViewModal({ product, onClose, locale }) {
+  // ✅ ALL hooks declared FIRST, unconditionally
+  const [mounted, setMounted] = useState(false);
+  const [selectedVariation, setSelectedVariation] = useState(null);
+  const modalRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const region = useRegion();
+
+  // ✅ Check product support WITHOUT early return
+  const isSupported = isSimpleProduct(product) || isVariableProduct(product);
+  const supportedProduct = isSupported ? (product as SimpleProduct | VariableProduct) : null;
+  const isVariable = supportedProduct ? isVariableProduct(supportedProduct) : false;
+  
+  // ✅ Null-safe computed values (always run)
+  const displayPrice = supportedProduct
+    ? selectedVariation
+      ? getProductPrice({ ...supportedProduct, price: selectedVariation.price }, region.currency)
+      : getProductPrice(supportedProduct, region.currency)
+    : null;
+  
+  // ✅ ALL useMemo hooks called unconditionally
+  const transformedAttributes = useMemo(() => {
+    if (!isVariable || !supportedProduct) return [];
+    // ... transformation logic
+  }, [isVariable, supportedProduct]);
+
+  const transformedVariations = useMemo(() => {
+    if (!isVariable || !supportedProduct) return [];
+    // ... transformation logic
+  }, [isVariable, supportedProduct]);
+  
+  const cartItem = useMemo(() => {
+    if (!supportedProduct) {
+      // Return dummy item (never used)
+      return { id: '', databaseId: 0, name: '', slug: '', price: '', numericPrice: 0, image: null };
+    }
+    // ... real cart item
+  }, [supportedProduct, displayPrice, ...]);
+
+  // ✅ Portal mounting effect (removed unnecessary cleanup per Copilot review)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ✅ Close modal for unsupported products via effect (not early return)
+  useEffect(() => {
+    if (!isSupported) {
+      console.warn(`QuickView does not support product type: ${product.__typename}`);
+      onClose();
+    }
+  }, [isSupported, product, onClose]);
+
+  // ✅ All other effects declared unconditionally
+  useEffect(() => { /* ESC key handler */ }, [onClose]);
+  useEffect(() => { /* Body scroll lock */ }, []);
+  useEffect(() => { /* Focus trap */ }, []);
+  
+  // ✅ Conditional render AFTER all hooks
+  if (!mounted || !isSupported || !supportedProduct) return null;
+  
+  return createPortal(modalContent, document.body);
+}
+```
+
+**Key changes:**
+1. **All hooks at top**: No conditional execution
+2. **Null-safe values**: Compute even for unsupported products
+3. **useEffect for close**: Replace early return with effect
+4. **Conditional render last**: After all hooks execute
+5. **Removed cleanup**: Per Copilot suggestion to prevent StrictMode flicker
+
+---
+
+### GRAPHQL FIX
+
+**Missing `__typename` field:**
+```graphql
+# Before (BROKEN)
+query GetProductsWithFilters {
+  products {
+    nodes {
+      id
+      databaseId
+      name
+      type  # ❌ type field exists but __typename missing
+      ... on SimpleProduct { ... }
+      ... on VariableProduct { ... }
+    }
+  }
+}
+
+# After (FIXED)
+query GetProductsWithFilters {
+  products {
+    nodes {
+      id
+      databaseId
+      name
+      type
+      __typename  # ✅ Required for type guards
+      ... on SimpleProduct { ... }
+      ... on VariableProduct { ... }
+    }
+  }
+}
+```
+
+**Why this mattered:**
+- Type guards (`isSimpleProduct`, `isVariableProduct`) check `product.__typename`
+- Without `__typename` in query, field was `undefined`
+- Console error: `QuickView does not support product type: undefined`
+- Modal immediately closed for all products
+
+---
+
+### UI CLEANUP FIXES
+
+**Issue:** Product cards on localhost didn't match live staging site
+
+**Removed elements:**
+1. **"In Stock" green badges** (both grid and list views)
+   ```tsx
+   // REMOVED
+   {isInStock && (
+     <span className="rounded-full bg-gradient-to-r from-success-600 to-success-500 ...">
+       In Stock
+     </span>
+   )}
+   ```
+
+2. **Part number gray badge box** (below product name)
+   ```tsx
+   // REMOVED
+   {displayPartNumber && (
+     <span className="rounded-lg bg-neutral-100 px-3 py-1.5 ...">
+       {displayPartNumber}
+     </span>
+   )}
+   ```
+
+3. **SKU text overlay** (bottom of cards)
+   ```tsx
+   // REMOVED
+   {isSimpleProduct && product.sku && (
+     <span className="font-mono text-xs text-neutral-400">
+       {product.sku}
+     </span>
+   )}
+   ```
+
+4. **Added cursor pointer** (QuickView buttons)
+   ```tsx
+   // ADDED
+   className="... cursor-pointer ..."
+   ```
+
+---
+
+### FILES MODIFIED
+
+**QuickViewModal.tsx:**
+- Restructured entire component to follow Rules of Hooks
+- Moved all hooks before conditional returns
+- Added null-safe value computation
+- Replaced early returns with useEffect for unsupported products
+- Removed unnecessary cleanup in portal mounting effect (Copilot review)
+
+**ProductGrid.tsx:**
+- Removed "In Stock" badges from grid view (line 490-494)
+- Removed "In Stock" badges from list view (line 288)
+- Removed part number badge display (line 509-513)
+- Removed SKU text overlay (line 551-555)
+- Added `cursor-pointer` to QuickView buttons (2 locations)
+
+**products.graphql:**
+- Added `__typename` field to GetProductsWithFilters query (line 630)
+
+**generated.ts:**
+- Regenerated TypeScript types via `pnpm run codegen`
+
+---
+
+### TECHNICAL LEARNINGS
+
+**React Hooks Rules (Absolute Requirements):**
+1. **Always call hooks at top level** - Never inside conditions, loops, or after returns
+2. **Same order every render** - Cannot conditionally skip hooks
+3. **Early returns must come AFTER all hooks** - Hooks cannot be conditional
+4. **useEffect for conditional logic** - Use effects instead of early returns for side effects
+
+**Common Mistakes:**
+```typescript
+// ❌ WRONG - Hook after conditional return
+if (condition) return null;
+const data = useMemo(() => { ... }, []);
+
+// ✅ RIGHT - All hooks first, then conditional return
+const data = useMemo(() => {
+  if (!condition) return null;
+  return computed;
+}, [condition]);
+if (condition) return null;
+```
+
+**Portal Mounting Best Practice:**
+```typescript
+// ❌ WRONG - Unnecessary cleanup causes flicker
+useEffect(() => {
+  setMounted(true);
+  return () => setMounted(false);  // Causes extra render in StrictMode
+}, []);
+
+// ✅ RIGHT - No cleanup needed (component unmounting anyway)
+useEffect(() => {
+  setMounted(true);
+}, []);
+```
+
+**GraphQL Type Safety:**
+- Always include `__typename` when using union types
+- Type guards require `__typename` to differentiate types
+- `type` field is WooCommerce-specific, not GraphQL standard
+
+---
+
+### VALIDATION PERFORMED
+
+**Manual Testing:**
+- ✅ QuickView eye icon clickable with pointer cursor
+- ✅ Modal opens for all product types
+- ✅ Simple products: Add to Cart works
+- ✅ Variable products: Variation selector appears
+- ✅ No React console errors
+- ✅ Product cards match live site (clean, no extra badges)
+
+**Automated Testing:**
+```bash
+pnpm run test
+# ✅ All 648 tests passing
+# ⚠️ Warnings (pre-existing, non-critical):
+#   - Duplicate key in CartDrawer test
+#   - Non-boolean attributes (Next.js Image props)
+#   - jsdom navigation errors (expected)
+```
+
+**TypeScript:**
+```bash
+pnpm exec tsc --noEmit
+# ✅ No errors in modified files
+# ⚠️ Pre-existing errors in SearchResults.a11y.test.tsx (not related)
+```
+
+---
+
+### COPILOT REVIEW FEEDBACK
+
+**Automated review found 1 optimization:**
+
+**Issue:** Unnecessary cleanup in portal mounting effect  
+```typescript
+// Before
+useEffect(() => {
+  setMounted(true);
+  return () => setMounted(false); // ❌ Unnecessary, causes flicker
+}, []);
+
+// After (Applied)
+useEffect(() => {
+  setMounted(true); // ✅ Clean, no flicker
+}, []);
+```
+
+**Rationale:**
+- Component unmounting makes state cleanup unnecessary
+- Cleanup function causes extra renders in React StrictMode
+- Can create visible flicker during mount/unmount cycles
+
+**Applied in commit:** `55d1240`
+
+---
+
+### IMPACT SUMMARY
+
+**Before fixes:**
+- 🔴 QuickView completely broken (won't open)
+- 🔴 React console errors on every product card
+- 🔴 Type guards failing (undefined __typename)
+- 🟡 UI mismatch with live site
+
+**After fixes:**
+- ✅ QuickView fully functional
+- ✅ No console errors
+- ✅ Type guards working correctly
+- ✅ UI matches live site exactly
+- ✅ Better UX (cursor pointer on buttons)
+- ✅ Performance improved (no StrictMode flicker)
+
+**Production Impact:**
+- CRITICAL FIX - Would have broken entire QuickView feature in production
+- Type safety violation caught and corrected
+- UI parity restored with live site
+- Better adherence to React best practices
+
+---
+
+**Key Takeaway:** React Hooks ordering violations are production-breaking errors that React strictly enforces. When adding type guards or early returns, all hooks MUST be called before any conditional logic. Use effects for conditional behavior, not early returns.
+
+---
+
 ## April 3, 2026 (PM) — QuickView: Copilot Review Fixes ✅
 
 **Status:** ✅ COMPLETE - PR Merged  

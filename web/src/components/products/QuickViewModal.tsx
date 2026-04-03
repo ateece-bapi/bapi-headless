@@ -5,7 +5,13 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
-import { getProductPrice, getProductStockStatus } from '@/lib/graphql/types';
+import {
+  getProductPrice,
+  getProductStockStatus,
+  isSimpleProduct,
+  isVariableProduct,
+  type Product,
+} from '@/lib/graphql/types';
 import { XIcon, ExternalLinkIcon, PackageIcon, DollarSignIcon } from '@/lib/icons';
 import { useRegion } from '@/store/regionStore';
 import { convertWooCommercePriceNumeric } from '@/lib/utils/currency';
@@ -13,8 +19,6 @@ import AddToCartButton from '@/components/cart/AddToCartButton';
 import type { CartItem } from '@/store';
 import VariationSelector from './VariationSelector';
 import type { ProductVariation, ProductAttribute } from '@/types/variations';
-
-type Product = SimpleProduct | VariableProduct;
 
 interface QuickViewModalProps {
   product: Product;
@@ -48,34 +52,42 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
     setMounted(true);
     return () => setMounted(false);
   }, []);
-  
-  // Only variable products need special handling in QuickView.
-  // Treat all other runtime product types as non-variable so they continue
-  // through the standard add-to-cart/display path instead of being handled
-  // like a variable product.
-  const isVariable = product.type === 'VARIABLE' || product.__typename === 'VariableProduct';
-  const isSimple = !isVariable;
-  const baseProduct = product as Product & {
-    sku?: string | null;
-    partNumber?: string | null;
-  };
+
+  // Don't render on server (SSR safety for portal)
+  if (!mounted) return null;
+
+  // Close modal immediately if product type is not supported
+  // QuickView only supports Simple and Variable products
+  if (!isSimpleProduct(product) && !isVariableProduct(product)) {
+    // Log warning and close modal
+    console.warn(
+      `QuickView does not support product type: ${product.__typename} (${product.name})`
+    );
+    // Trigger close on next tick to avoid state update during render
+    setTimeout(() => onClose(), 0);
+    return null;
+  }
+
+  // After guards, we know product is Simple or Variable - safe to type assert
+  const supportedProduct = product as SimpleProduct | VariableProduct;
+  const isVariable = isVariableProduct(supportedProduct);
   
   // For variable products, use variation data if selected, otherwise product data
   // Apply currency conversion to variation prices to ensure correct region display
   const displayPrice = selectedVariation
-    ? getProductPrice({ ...product, price: selectedVariation.price }, region.currency)
-    : getProductPrice(product, region.currency);
-  const displayStockStatus = selectedVariation?.stockStatus || getProductStockStatus(product);
-  const displayImage = selectedVariation?.image || product.image;
-  const displaySku = selectedVariation?.sku || baseProduct.sku || null;
-  const displayPartNumber = selectedVariation?.partNumber || baseProduct.partNumber || null;
+    ? getProductPrice({ ...supportedProduct, price: selectedVariation.price }, region.currency)
+    : getProductPrice(supportedProduct, region.currency);
+  const displayStockStatus = selectedVariation?.stockStatus || getProductStockStatus(supportedProduct);
+  const displayImage = selectedVariation?.image || supportedProduct.image;
+  const displaySku = selectedVariation?.sku || supportedProduct.sku || null;
+  const displayPartNumber = selectedVariation?.partNumber || supportedProduct.partNumber || null;
   
   const inStock = displayStockStatus === 'IN_STOCK';
 
   // Transform attributes and variations for VariationSelector (for variable products)
   const transformedAttributes: ProductAttribute[] = useMemo(() => {
     if (!isVariable) return [];
-    const variableProduct = product as VariableProduct;
+    const variableProduct = supportedProduct as VariableProduct;
     const attrs = variableProduct.attributes;
     if (!attrs?.nodes) return [];
     
@@ -96,11 +108,11 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
         variation: productAttr.variation || false,
       };
     });
-  }, [isVariable, product]);
+  }, [isVariable, supportedProduct]);
 
   const transformedVariations: ProductVariation[] = useMemo(() => {
     if (!isVariable) return [];
-    const variableProduct = product as VariableProduct;
+    const variableProduct = supportedProduct as VariableProduct;
     const vars = variableProduct.variations;
     if (!vars?.nodes) return [];
     
@@ -151,13 +163,13 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
           },
         };
       });
-  }, [isVariable, product]);
+  }, [isVariable, supportedProduct]);
 
   // Determine if Add to Cart is allowed
   // Only check variation attributes (variation: true) for validity
   const variationAttributes = transformedAttributes.filter(attr => attr.variation);
   const hasValidVariations = variationAttributes.length > 0 && transformedVariations.length > 0;
-  const canAddToCart = isSimple 
+  const canAddToCart = !isVariable 
     ? inStock && !!displayPrice 
     : inStock && !!displayPrice && hasValidVariations && !!selectedVariation;
 
@@ -228,25 +240,25 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
 
   // Get image URL (use variation image if selected)
   const imageUrl = displayImage?.sourceUrl || '/images/placeholder.png';
-  const imageAlt = displayImage?.altText || product.name || 'Product image';
+  const imageAlt = displayImage?.altText || supportedProduct.name || 'Product image';
 
   // Prepare cart item data
   const cartItem: Omit<CartItem, 'quantity'> = useMemo(() => {
     // Use WooCommerce price utility for proper parsing (handles commas, ranges, etc.)
-    const rawPrice = selectedVariation?.price || (isSimple ? (product as SimpleProduct).price : product.price);
+    const rawPrice = selectedVariation?.price || supportedProduct.price;
     const numericPrice = convertWooCommercePriceNumeric(rawPrice, region.currency);
 
     const baseCartItem: Omit<CartItem, 'quantity'> = {
-      id: product.id,
-      databaseId: product.databaseId || 0,
-      name: product.name || '',
-      slug: product.slug || '',
+      id: supportedProduct.id,
+      databaseId: supportedProduct.databaseId || 0,
+      name: supportedProduct.name || '',
+      slug: supportedProduct.slug || '',
       price: displayPrice || '',
       numericPrice,
       image: displayImage?.sourceUrl
         ? {
             sourceUrl: displayImage.sourceUrl,
-            altText: displayImage.altText || product.name || '',
+            altText: displayImage.altText || supportedProduct.name || '',
           }
         : null,
       partNumber: displayPartNumber || undefined,
@@ -270,7 +282,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
     }
 
     return baseCartItem;
-  }, [product, displayPrice, displayImage, displayPartNumber, selectedVariation, isSimple, region.currency]);
+  }, [supportedProduct, displayPrice, displayImage, displayPartNumber, selectedVariation, isVariable, region.currency]);
 
   // Don't render on server (SSR safety for portal)
   if (!mounted) return null;
@@ -325,7 +337,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
           <div className="flex flex-col">
             {/* Product Name */}
             <h2 id="quick-view-title" className="mb-3 text-2xl font-bold text-neutral-900">
-              {product.name}
+              {supportedProduct.name}
             </h2>
 
             {/* SKU and Stock Status */}
@@ -356,10 +368,10 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             )}
 
             {/* Short Description */}
-            {product.shortDescription && (
+            {supportedProduct.shortDescription && (
               <div
                 className="mb-6 line-clamp-4 text-neutral-700"
-                dangerouslySetInnerHTML={{ __html: product.shortDescription }}
+                dangerouslySetInnerHTML={{ __html: supportedProduct.shortDescription }}
               />
             )}
 
@@ -370,7 +382,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
                   attributes={transformedAttributes}
                   variations={transformedVariations}
                   onVariationChange={handleVariationChange}
-                  basePrice={product.price || undefined}
+                  basePrice={(supportedProduct as VariableProduct).price || undefined}
                   className="compact"
                   syncUrl={false}
                 />
@@ -395,7 +407,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             {/* Product Type Badge */}
             <div className="mb-6 inline-flex w-fit items-center gap-1.5 rounded-lg border border-primary-200 bg-primary-50 px-3 py-1.5">
               <span className="text-xs font-medium text-primary-700">
-                {isSimple ? 'Simple Product' : 'Variable Product'}
+                {!isVariable ? 'Simple Product' : 'Variable Product'}
               </span>
             </div>
 
@@ -415,13 +427,13 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
                       ? 'Out of stock - cannot add to cart'
                       : isVariable && !selectedVariation
                         ? 'Select product options first'
-                        : `Add ${product.name} to cart`
+                        : `Add ${supportedProduct.name} to cart`
                 }
               />
 
               {/* View Full Details Link */}
               <Link
-                href={`/product/${product.slug}`}
+                href={`/product/${supportedProduct.slug}`}
                 className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-primary-50 px-6 py-3 font-semibold text-primary-600 transition-all duration-200 hover:bg-primary-100 sm:min-h-[44px]"
                 onClick={onClose}
                 title="View complete product details"

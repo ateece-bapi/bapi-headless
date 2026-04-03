@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
@@ -10,6 +11,8 @@ import { useRegion } from '@/store/regionStore';
 import { convertWooCommercePriceNumeric } from '@/lib/utils/currency';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import type { CartItem } from '@/store';
+import VariationSelector from './VariationSelector';
+import type { ProductVariation, ProductAttribute } from '@/types/variations';
 
 type Product = SimpleProduct | VariableProduct;
 
@@ -26,6 +29,7 @@ interface QuickViewModalProps {
  * - Backdrop blur with BAPI gradient overlay
  * - Product image, name, price, stock status
  * - Short description
+ * - Variation selector for variable products
  * - Add to cart button
  * - Link to full product page
  * - ESC key and click outside to close
@@ -33,14 +37,118 @@ interface QuickViewModalProps {
  */
 export default function QuickViewModal({ product, onClose, locale }: QuickViewModalProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [selectedVariation, setSelectedVariation] = useState<ProductVariation | null>(null);
+  const [mounted, setMounted] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const region = useRegion();
-  const price = getProductPrice(product, region.currency);
-  const stockStatus = getProductStockStatus(product);
-  const inStock = stockStatus === 'IN_STOCK';
-  const isSimple = product.__typename === 'SimpleProduct';
-  const sku = isSimple ? (product as SimpleProduct).sku : null;
+
+  // Portal mounting (SSR safety)
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+  
+  // Use product.type instead of __typename (type is 'SIMPLE' or 'VARIABLE')
+  const isSimple = product.type === 'SIMPLE' || product.__typename === 'SimpleProduct';
+  const isVariable = product.type === 'VARIABLE' || product.__typename === 'VariableProduct';
+  
+  // For variable products, use variation data if selected, otherwise product data
+  const displayPrice = selectedVariation?.price || getProductPrice(product, region.currency);
+  const displayStockStatus = selectedVariation?.stockStatus || getProductStockStatus(product);
+  const displayImage = selectedVariation?.image || product.image;
+  const displaySku = selectedVariation?.sku || (isSimple ? (product as SimpleProduct).sku : null);
+  const displayPartNumber = selectedVariation?.partNumber || (isSimple ? (product as SimpleProduct).partNumber : null);
+  
+  const inStock = displayStockStatus === 'IN_STOCK';
+
+  // Transform attributes and variations for VariationSelector (for variable products)
+  const transformedAttributes: ProductAttribute[] = useMemo(() => {
+    if (!isVariable) return [];
+    const variableProduct = product as VariableProduct;
+    const attrs = variableProduct.attributes;
+    if (!attrs?.nodes) return [];
+    
+    return attrs.nodes.map((attr, index) => {
+      // Type assertion for ProductAttribute fields
+      const productAttr = attr as unknown as {
+        id: string;
+        name?: string | null;
+        label?: string | null;
+        options?: (string | null)[] | null;
+        variation?: boolean | null;
+      };
+      return {
+        id: productAttr.id || `attr-${index}`,
+        name: productAttr.name || '',
+        label: productAttr.label || productAttr.name || '',
+        options: (productAttr.options?.filter((opt): opt is string => opt !== null) || []),
+        variation: productAttr.variation || false,
+      };
+    });
+  }, [isVariable, product]);
+
+  const transformedVariations: ProductVariation[] = useMemo(() => {
+    if (!isVariable) return [];
+    const variableProduct = product as VariableProduct;
+    const vars = variableProduct.variations;
+    if (!vars?.nodes) return [];
+    
+    return vars.nodes.map((v) => {
+      // Type assertion for SimpleProductVariation fields
+      const variation = v as unknown as {
+        id: string;
+        databaseId?: number | null;
+        name?: string | null;
+        price?: string | null;
+        regularPrice?: string | null;
+        stockStatus?: string | null;
+        partNumber?: string | null;
+        sku?: string | null;
+        image?: { sourceUrl?: string | null } | null;
+        attributes?: {
+          nodes?: Array<{
+            name?: string | null;
+            label?: string | null;
+            value?: string | null;
+          }> | null;
+        } | null;
+      };
+      return {
+        id: variation.id || '',
+        databaseId: variation.databaseId || 0,
+        name: variation.name || '',
+        price: variation.price || '',
+        regularPrice: variation.regularPrice || '',
+        stockStatus: variation.stockStatus || 'IN_STOCK',
+        partNumber: variation.partNumber || undefined,
+        sku: variation.sku || '',
+        image: variation.image || null,
+        attributes: {
+          nodes: variation.attributes?.nodes?.map((attr) => ({
+            name: attr.name || '',
+            label: attr.label || attr.name || '',
+            value: attr.value || '',
+          })) || [],
+        },
+      };
+    });
+  }, [isVariable, product]);
+
+  // Determine if Add to Cart is allowed
+  const hasValidVariations = transformedAttributes.length > 0 && transformedVariations.length > 0;
+  const canAddToCart = isSimple 
+    ? inStock && !!displayPrice 
+    : inStock && !!displayPrice && hasValidVariations && !!selectedVariation;
+
+  // Handle variation selection
+  const handleVariationChange = (variation: ProductVariation | null, partNumber: string | null) => {
+    setSelectedVariation(variation);
+    // Reset image loaded state to show shimmer for new variation image
+    if (variation?.image) {
+      setImageLoaded(false);
+    }
+  };
 
   // ESC key to close
   useEffect(() => {
@@ -97,40 +205,55 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
     return () => document.removeEventListener('keydown', handleTabKey);
   }, []);
 
-  // Get image URL
-  const imageUrl = product.image?.sourceUrl || '/images/placeholder.png';
-  const imageAlt = product.image?.altText || product.name || 'Product image';
+  // Get image URL (use variation image if selected)
+  const imageUrl = displayImage?.sourceUrl || '/images/placeholder.png';
+  const imageAlt = displayImage?.altText || product.name || 'Product image';
 
   // Prepare cart item data
   const cartItem: Omit<CartItem, 'quantity'> = useMemo(() => {
     // Use WooCommerce price utility for proper parsing (handles commas, ranges, etc.)
-    // product.price is the raw WooCommerce price (e.g., "$49.99" or "$1,234.56")
-    const rawPrice = isSimple ? (product as SimpleProduct).price : product.price;
+    const rawPrice = selectedVariation?.price || (isSimple ? (product as SimpleProduct).price : product.price);
     const numericPrice = convertWooCommercePriceNumeric(rawPrice, region.currency);
 
-    // Get part number if available
-    const partNumber = isSimple ? (product as SimpleProduct).partNumber : null;
-
-    return {
+    const baseCartItem: Omit<CartItem, 'quantity'> = {
       id: product.id,
       databaseId: product.databaseId || 0,
       name: product.name || '',
       slug: product.slug || '',
-      price: price || '',
+      price: displayPrice || '',
       numericPrice,
-      image: product.image?.sourceUrl
+      image: displayImage?.sourceUrl
         ? {
-            sourceUrl: product.image.sourceUrl,
-            altText: product.image.altText || product.name || '',
+            sourceUrl: displayImage.sourceUrl,
+            altText: displayImage.altText || product.name || '',
           }
         : null,
-      partNumber: partNumber || undefined,
+      partNumber: displayPartNumber || undefined,
     };
-  }, [product, price, isSimple, region.currency]);
 
-  return (
+    // Add variation-specific fields if a variation is selected
+    if (selectedVariation) {
+      return {
+        ...baseCartItem,
+        variationId: selectedVariation.databaseId,
+        variationName: selectedVariation.name || undefined,
+        variationSku: selectedVariation.sku || undefined,
+        selectedAttributes: selectedVariation.attributes?.nodes?.reduce((acc: Record<string, string>, attr: any) => {
+          acc[attr.name] = attr.value;
+          return acc;
+        }, {}) || undefined,
+      };
+    }
+
+    return baseCartItem;
+  }, [product, displayPrice, displayImage, displayPartNumber, selectedVariation, isSimple, region.currency]);
+
+  // Don't render on server (SSR safety for portal)
+  if (!mounted) return null;
+
+  const modalContent = (
     <div
-      className="fixed inset-0 z-modal flex animate-[fade-in_200ms_ease-out] items-center justify-center p-0 sm:p-4"
+      className="fixed inset-0 z-[9999] flex animate-[fade-in_200ms_ease-out] items-center justify-center p-0 sm:p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -183,10 +306,10 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
 
             {/* SKU and Stock Status */}
             <div className="mb-4 flex items-center gap-3">
-              {sku && (
+              {displaySku && (
                 <div className="flex items-center gap-1.5 text-sm text-neutral-700">
                   <PackageIcon className="h-4 w-4" />
-                  <span>SKU: {sku}</span>
+                  <span>SKU: {displaySku}</span>
                 </div>
               )}
               {inStock ? (
@@ -201,10 +324,10 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             </div>
 
             {/* Price */}
-            {price && (
+            {displayPrice && (
               <div className="mb-6 flex items-baseline gap-2">
                 <DollarSignIcon className="h-5 w-5 text-primary-500" />
-                <span className="text-3xl font-bold text-primary-600">{price}</span>
+                <span className="text-3xl font-bold text-primary-600">{displayPrice}</span>
               </div>
             )}
 
@@ -216,28 +339,58 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
               />
             )}
 
-            {/* Product Type Badge */}
-            {isSimple && (
-              <div className="mb-6 inline-flex w-fit items-center gap-1.5 rounded-lg border border-primary-200 bg-primary-50 px-3 py-1.5">
-                <span className="text-xs font-medium text-primary-700">Simple Product</span>
+            {/* Variation Selector for Variable Products */}
+            {isVariable && transformedAttributes.length > 0 && transformedVariations.length > 0 && (
+              <div className="mb-6">
+                <VariationSelector
+                  attributes={transformedAttributes}
+                  variations={transformedVariations}
+                  onVariationChange={handleVariationChange}
+                  basePrice={product.price || undefined}
+                  className="compact"
+                />
+                {!selectedVariation && (
+                  <p className="mt-2 text-sm text-amber-600">
+                    Please select all options to add to cart
+                  </p>
+                )}
               </div>
             )}
 
+            {/* Variable Product without variations configured */}
+            {isVariable && (transformedAttributes.length === 0 || transformedVariations.length === 0) && (
+              <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
+                <p className="text-sm text-amber-800">
+                  <strong>Configuration Required:</strong> This product has variations that need to be configured.
+                  Please view the full product page for more details or contact support.
+                </p>
+              </div>
+            )}
+
+            {/* Product Type Badge */}
+            <div className="mb-6 inline-flex w-fit items-center gap-1.5 rounded-lg border border-primary-200 bg-primary-50 px-3 py-1.5">
+              <span className="text-xs font-medium text-primary-700">
+                {isSimple ? 'Simple Product' : 'Variable Product'}
+              </span>
+            </div>
+
             {/* Actions - Larger touch targets on mobile */}
-            <div className="mt-auto space-y-3">
+            <div className="space-y-3">
               {/* Add to Cart Button */}
               <AddToCartButton
                 product={cartItem}
                 quantity={1}
-                disabled={!inStock || !price}
+                disabled={!canAddToCart}
                 className="min-h-[48px] w-full sm:min-h-[44px]"
                 showCartOnAdd={true}
                 ariaLabel={
-                  !price
+                  !displayPrice
                     ? 'Price unavailable - cannot add to cart'
-                    : inStock
-                      ? `Add ${product.name} to cart`
-                      : 'Out of stock - cannot add to cart'
+                    : !inStock
+                      ? 'Out of stock - cannot add to cart'
+                      : isVariable && !selectedVariation
+                        ? 'Select product options first'
+                        : `Add ${product.name} to cart`
                 }
               />
 
@@ -257,4 +410,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
       </div>
     </div>
   );
+
+  // Render modal in document.body portal to escape stacking context
+  return createPortal(modalContent, document.body);
 }

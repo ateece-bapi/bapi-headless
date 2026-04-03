@@ -924,6 +924,42 @@ query GetProductsWithFilters(
             slug
           }
         }
+        # Variable product attributes and variations for QuickView
+        attributes {
+          nodes {
+            id
+            name
+            label
+            options
+            variation
+          }
+        }
+        variations {
+          nodes {
+            ... on SimpleProductVariation {
+              id
+              databaseId
+              name
+              price
+              regularPrice
+              stockStatus
+              sku
+              partNumber
+              image {
+                id
+                sourceUrl
+                altText
+              }
+              attributes {
+                nodes {
+                  name
+                  label
+                  value
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

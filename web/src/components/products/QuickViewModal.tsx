@@ -178,7 +178,6 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   // Portal mounting (SSR safety)
   useEffect(() => {
     setMounted(true);
-    return () => setMounted(false);
   }, []);
 
   // Close modal for unsupported product types

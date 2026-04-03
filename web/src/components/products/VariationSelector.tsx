@@ -26,6 +26,12 @@ interface VariationSelectorProps {
   onVariationChange: (variation: ProductVariation | null, partNumber: string | null) => void;
   className?: string;
   basePrice?: string;
+  /**
+   * Whether to sync selected attributes to URL query params.
+   * Set to false in modal contexts (e.g., QuickView) to avoid polluting page URL.
+   * @default true
+   */
+  syncUrl?: boolean;
   // Add to Cart integration
   product?: {
     id: string;
@@ -61,6 +67,7 @@ export default function VariationSelector({
   onVariationChange,
   className = '',
   basePrice,
+  syncUrl = true,
   product,
   quantity = 1,
   onQuantityChange,
@@ -160,7 +167,7 @@ export default function VariationSelector({
 
   // Update URL when selections change
   useEffect(() => {
-    if (typeof window !== 'undefined' && Object.keys(selectedAttributes).length > 0) {
+    if (typeof window !== 'undefined' && syncUrl && Object.keys(selectedAttributes).length > 0) {
       const params = new URLSearchParams(window.location.search);
 
       // Add/update selected attributes
@@ -176,7 +183,7 @@ export default function VariationSelector({
       const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
       window.history.replaceState({}, '', newUrl);
     }
-  }, [selectedAttributes]);
+  }, [selectedAttributes, syncUrl]);
 
   // Handle share configuration
   const handleShare = async () => {

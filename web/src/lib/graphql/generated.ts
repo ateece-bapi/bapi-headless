@@ -41761,7 +41761,7 @@ export const GetProductsWithFiltersDocument = gql`
             variation
           }
         }
-        variations {
+        variations(first: 500) {
           nodes {
             ... on SimpleProductVariation {
               id

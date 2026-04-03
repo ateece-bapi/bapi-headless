@@ -49,16 +49,26 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
     return () => setMounted(false);
   }, []);
   
-  // Use product.type instead of __typename (type is 'SIMPLE' or 'VARIABLE')
-  const isSimple = product.type === 'SIMPLE' || product.__typename === 'SimpleProduct';
+  // Only variable products need special handling in QuickView.
+  // Treat all other runtime product types as non-variable so they continue
+  // through the standard add-to-cart/display path instead of being handled
+  // like a variable product.
   const isVariable = product.type === 'VARIABLE' || product.__typename === 'VariableProduct';
+  const isSimple = !isVariable;
+  const baseProduct = product as Product & {
+    sku?: string | null;
+    partNumber?: string | null;
+  };
   
   // For variable products, use variation data if selected, otherwise product data
-  const displayPrice = selectedVariation?.price || getProductPrice(product, region.currency);
+  // Apply currency conversion to variation prices to ensure correct region display
+  const displayPrice = selectedVariation
+    ? getProductPrice({ ...product, price: selectedVariation.price }, region.currency)
+    : getProductPrice(product, region.currency);
   const displayStockStatus = selectedVariation?.stockStatus || getProductStockStatus(product);
   const displayImage = selectedVariation?.image || product.image;
-  const displaySku = selectedVariation?.sku || (isSimple ? (product as SimpleProduct).sku : null);
-  const displayPartNumber = selectedVariation?.partNumber || (isSimple ? (product as SimpleProduct).partNumber : null);
+  const displaySku = selectedVariation?.sku || baseProduct.sku || null;
+  const displayPartNumber = selectedVariation?.partNumber || baseProduct.partNumber || null;
   
   const inStock = displayStockStatus === 'IN_STOCK';
 
@@ -94,55 +104,66 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
     const vars = variableProduct.variations;
     if (!vars?.nodes) return [];
     
-    return vars.nodes.map((v) => {
-      // Type assertion for SimpleProductVariation fields
-      const variation = v as unknown as {
-        id: string;
-        databaseId?: number | null;
-        name?: string | null;
-        price?: string | null;
-        regularPrice?: string | null;
-        stockStatus?: string | null;
-        partNumber?: string | null;
-        sku?: string | null;
-        image?: { sourceUrl?: string | null } | null;
-        attributes?: {
-          nodes?: Array<{
-            name?: string | null;
-            label?: string | null;
-            value?: string | null;
-          }> | null;
-        } | null;
-      };
-      return {
-        id: variation.id || '',
-        databaseId: variation.databaseId || 0,
-        name: variation.name || '',
-        price: variation.price || '',
-        regularPrice: variation.regularPrice || '',
-        stockStatus: variation.stockStatus || 'IN_STOCK',
-        partNumber: variation.partNumber || undefined,
-        sku: variation.sku || '',
-        image: variation.image || null,
-        attributes: {
-          nodes: variation.attributes?.nodes?.map((attr) => ({
-            name: attr.name || '',
-            label: attr.label || attr.name || '',
-            value: attr.value || '',
-          })) || [],
-        },
-      };
-    });
+    return vars.nodes
+      .filter((v) => {
+        const variation = v as unknown as { databaseId?: number | null };
+        // Skip variations without valid databaseId to prevent cart collisions
+        return variation.databaseId != null && variation.databaseId !== 0;
+      })
+      .map((v) => {
+        // Type assertion for SimpleProductVariation fields
+        const variation = v as unknown as {
+          id: string;
+          databaseId: number;
+          name?: string | null;
+          price?: string | null;
+          regularPrice?: string | null;
+          stockStatus?: string | null;
+          partNumber?: string | null;
+          sku?: string | null;
+          image?: { sourceUrl?: string | null } | null;
+          attributes?: {
+            nodes?: Array<{
+              name?: string | null;
+              label?: string | null;
+              value?: string | null;
+            }> | null;
+          } | null;
+        };
+        
+        return {
+          id: variation.id || '',
+          databaseId: variation.databaseId,
+          name: variation.name || '',
+          price: variation.price || '',
+          regularPrice: variation.regularPrice || '',
+          // Default to OUT_OF_STOCK when stock status is unknown for safety
+          stockStatus: variation.stockStatus || 'OUT_OF_STOCK',
+          partNumber: variation.partNumber || undefined,
+          sku: variation.sku || '',
+          image: variation.image || null,
+          attributes: {
+            nodes: variation.attributes?.nodes?.map((attr) => ({
+              name: attr.name || '',
+              label: attr.label || attr.name || '',
+              value: attr.value || '',
+            })) || [],
+          },
+        };
+      });
   }, [isVariable, product]);
 
   // Determine if Add to Cart is allowed
-  const hasValidVariations = transformedAttributes.length > 0 && transformedVariations.length > 0;
+  // Only check variation attributes (variation: true) for validity
+  const variationAttributes = transformedAttributes.filter(attr => attr.variation);
+  const hasValidVariations = variationAttributes.length > 0 && transformedVariations.length > 0;
   const canAddToCart = isSimple 
     ? inStock && !!displayPrice 
     : inStock && !!displayPrice && hasValidVariations && !!selectedVariation;
 
   // Handle variation selection
-  const handleVariationChange = (variation: ProductVariation | null, partNumber: string | null) => {
+  // Note: partNumber parameter required by VariationSelector callback signature but not used here
+  const handleVariationChange = (variation: ProductVariation | null, _partNumber: string | null) => {
     setSelectedVariation(variation);
     // Reset image loaded state to show shimmer for new variation image
     if (variation?.image) {
@@ -238,8 +259,11 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
         variationId: selectedVariation.databaseId,
         variationName: selectedVariation.name || undefined,
         variationSku: selectedVariation.sku || undefined,
-        selectedAttributes: selectedVariation.attributes?.nodes?.reduce((acc: Record<string, string>, attr: any) => {
-          acc[attr.name] = attr.value;
+        selectedAttributes: selectedVariation.attributes?.nodes?.reduce((acc: Record<string, string>, attr) => {
+          // Skip attributes with missing/empty names for safety
+          if (attr.name && attr.value) {
+            acc[attr.name] = attr.value;
+          }
           return acc;
         }, {}) || undefined,
       };
@@ -348,6 +372,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
                   onVariationChange={handleVariationChange}
                   basePrice={product.price || undefined}
                   className="compact"
+                  syncUrl={false}
                 />
                 {!selectedVariation && (
                   <p className="mt-2 text-sm text-amber-600">

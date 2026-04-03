@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
@@ -37,12 +38,20 @@ interface QuickViewModalProps {
 export default function QuickViewModal({ product, onClose, locale }: QuickViewModalProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [selectedVariation, setSelectedVariation] = useState<ProductVariation | null>(null);
+  const [mounted, setMounted] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const region = useRegion();
+
+  // Portal mounting (SSR safety)
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
   
-  const isSimple = product.__typename === 'SimpleProduct';
-  const isVariable = product.__typename === 'VariableProduct';
+  // Use product.type instead of __typename (type is 'SIMPLE' or 'VARIABLE')
+  const isSimple = product.type === 'SIMPLE' || product.__typename === 'SimpleProduct';
+  const isVariable = product.type === 'VARIABLE' || product.__typename === 'VariableProduct';
   
   // For variable products, use variation data if selected, otherwise product data
   const displayPrice = selectedVariation?.price || getProductPrice(product, region.currency);
@@ -52,9 +61,6 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   const displayPartNumber = selectedVariation?.partNumber || (isSimple ? (product as SimpleProduct).partNumber : null);
   
   const inStock = displayStockStatus === 'IN_STOCK';
-  
-  // For variable products, require a variation to be selected
-  const canAddToCart = isSimple ? inStock && !!displayPrice : inStock && !!displayPrice && !!selectedVariation;
 
   // Transform attributes and variations for VariationSelector (for variable products)
   const transformedAttributes: ProductAttribute[] = useMemo(() => {
@@ -128,6 +134,12 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
       };
     });
   }, [isVariable, product]);
+
+  // Determine if Add to Cart is allowed
+  const hasValidVariations = transformedAttributes.length > 0 && transformedVariations.length > 0;
+  const canAddToCart = isSimple 
+    ? inStock && !!displayPrice 
+    : inStock && !!displayPrice && hasValidVariations && !!selectedVariation;
 
   // Handle variation selection
   const handleVariationChange = (variation: ProductVariation | null, partNumber: string | null) => {
@@ -236,9 +248,12 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
     return baseCartItem;
   }, [product, displayPrice, displayImage, displayPartNumber, selectedVariation, isSimple, region.currency]);
 
-  return (
+  // Don't render on server (SSR safety for portal)
+  if (!mounted) return null;
+
+  const modalContent = (
     <div
-      className="fixed inset-0 z-modal flex animate-[fade-in_200ms_ease-out] items-center justify-center p-0 sm:p-4"
+      className="fixed inset-0 z-[9999] flex animate-[fade-in_200ms_ease-out] items-center justify-center p-0 sm:p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -342,6 +357,16 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
               </div>
             )}
 
+            {/* Variable Product without variations configured */}
+            {isVariable && (transformedAttributes.length === 0 || transformedVariations.length === 0) && (
+              <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
+                <p className="text-sm text-amber-800">
+                  <strong>Configuration Required:</strong> This product has variations that need to be configured.
+                  Please view the full product page for more details or contact support.
+                </p>
+              </div>
+            )}
+
             {/* Product Type Badge */}
             <div className="mb-6 inline-flex w-fit items-center gap-1.5 rounded-lg border border-primary-200 bg-primary-50 px-3 py-1.5">
               <span className="text-xs font-medium text-primary-700">
@@ -350,7 +375,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
             </div>
 
             {/* Actions - Larger touch targets on mobile */}
-            <div className="mt-auto space-y-3">
+            <div className="space-y-3">
               {/* Add to Cart Button */}
               <AddToCartButton
                 product={cartItem}
@@ -385,4 +410,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
       </div>
     </div>
   );
+
+  // Render modal in document.body portal to escape stacking context
+  return createPortal(modalContent, document.body);
 }

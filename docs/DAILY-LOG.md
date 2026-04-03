@@ -2,9 +2,295 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** April 2, 2026  
-**Status:** Phase 1 Development - April 24, 2026 Go-Live (22 days remaining)  
+**Updated:** April 3, 2026  
+**Status:** Phase 1 Development - April 24, 2026 Go-Live (21 days remaining)  
 **Testing Phase:** 2-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## April 3, 2026 — QuickView: Variable Product Support ✅
+
+**Status:** ✅ COMPLETE - PR Merged  
+**Branch:** `feature/quickview-variable-products`  
+**PR:** #437 - Merged to main  
+**Context:** Add variation selector to QuickView for products with multiple options  
+**Priority:** HIGH - Phase 1 B2B Feature Requirement  
+**Time:** ~3 hours (including debugging and z-index fixes)  
+
+### 🎯 SESSION SUMMARY: Variable Product Configuration in QuickView
+
+**Trigger:** QuickView showed "Variable Product" badge but no way to select variations  
+**Goal:** Enable users to configure product variations directly in QuickView modal  
+**Approach:** Integrate existing VariationSelector component with GraphQL data transformation  
+
+---
+
+### IMPLEMENTATION DETAILS
+
+**Major Changes:**
+1. **GraphQL Query Enhancement**
+   - Extended `GetProductsWithFilters` query to include attributes and variations
+   - Added `attributes` field: id, name, label, options, variation
+   - Added `variations` field with `SimpleProductVariation` details
+   - Regenerated TypeScript types with `pnpm run codegen`
+
+2. **Product Type Detection Fix**
+   - Discovered `__typename` was undefined in product objects
+   - Implemented fallback: `product.type` field (SIMPLE/VARIABLE)
+   - Fixed variation selector rendering logic
+
+3. **GraphQL Type Transformation**
+   - Transform `ProductAttribute` from GraphQL to internal format
+   - Transform `VariationAttribute` with selected values
+   - Handle nullable/optional fields properly
+   - Filter null options from attributes arrays
+
+4. **Variation State Management**
+   - Added `selectedVariation` state tracking
+   - Display variation-specific data when selected:
+     - Price updates dynamically
+     - Image swaps to variation image
+     - Stock status reflects variation inventory
+     - SKU and part number update
+   - Prepare cart items with variation metadata
+
+5. **Z-Index & Stacking Context Fix**
+   - **Issue:** Modal appeared behind sticky header
+   - **Root Cause:** Header's `position: sticky` creates stacking context
+   - **Solution:** Implemented React Portal to render modal at `document.body` level
+   - **Result:** Modal now renders at z-index 9999, above all elements
+
+6. **Layout Fixes**
+   - Removed `mt-auto` from actions container (prevented selector cutoff)
+   - Modal properly scrolls when variation selector makes content tall
+   - Desktop: `max-h-[90vh]` with overflow-y-auto
+   - Mobile: Full-screen scrollable
+
+**GraphQL Query Addition:**
+```graphql
+... on VariableProduct {
+  # ... existing fields
+  attributes {
+    nodes {
+      id
+      name
+      label
+      options
+      variation
+    }
+  }
+  variations {
+    nodes {
+      ... on SimpleProductVariation {
+        id
+        databaseId
+        name
+        price
+        regularPrice
+        stockStatus
+        sku
+        partNumber
+        image {
+          id
+          sourceUrl
+          altText
+        }
+        attributes {
+          nodes {
+            name
+            label
+            value
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+**React Portal Implementation:**
+```typescript
+import { createPortal } from 'react-dom';
+
+// Portal mounting with SSR safety
+const [mounted, setMounted] = useState(false);
+useEffect(() => {
+  setMounted(true);
+  return () => setMounted(false);
+}, []);
+
+if (!mounted) return null;
+
+const modalContent = (
+  <div className="fixed inset-0 z-[9999]">
+    {/* Modal content */}
+  </div>
+);
+
+return createPortal(modalContent, document.body);
+```
+
+**Features Implemented:**
+- ✅ Variation selector renders for variable products
+- ✅ Dropdowns for each attribute (Temperature Sensor, Display, etc.)
+- ✅ Price updates when variation selected
+- ✅ Image swaps to variation-specific image
+- ✅ Stock status reflects variation inventory
+- ✅ Add to Cart includes variation metadata (variationId, variationSku, selectedAttributes)
+- ✅ Validation requires variation selection before cart add
+- ✅ Warning message for variable products without configured variations
+- ✅ Modal renders above header at all viewport sizes
+
+---
+
+### DEBUGGING PROCESS
+
+**Issue 1: Variation Selector Not Rendering**
+- Problem: `transformedAttributes.length === 0` and `transformedVariations.length === 0`
+- Investigation: Console logs showed attributes/variations properties existed but were empty
+- Discovery: Product data lacked these fields in GraphQL response
+- Solution: Updated GraphQL query to fetch attributes and variations
+- Fix: Cleared Next.js cache (`rm -rf .next`) and restarted dev server
+
+**Issue 2: Product Type Detection Failing**
+- Problem: `product.__typename === undefined` causing `isVariable` to be false
+- Console Output: `Product type: undefined isVariable: false`
+- Discovery: Product objects use `type` field ("SIMPLE"/"VARIABLE") not `__typename`
+- Solution: `product.type === 'VARIABLE' || product.__typename === 'VariableProduct'`
+- Result: Variation selector immediately started rendering
+
+**Issue 3: Modal Behind Header**
+- Problem: QuickView modal appeared underneath sticky header
+- Investigation: Inspected header element → `position: sticky` creates stacking context
+- Attempted: Increased z-index from 1050 → 1075 → 9999 (no effect)
+- Root Cause: Stacking context issue - modal rendered inside page hierarchy
+- Solution: React Portal renders modal directly to `document.body`
+- Result: Modal now properly layers above all page elements
+
+---
+
+### TECHNICAL LEARNINGS
+
+**Stacking Contexts:**
+- `position: sticky/fixed/absolute` creates new stacking context
+- Z-index only works within same stacking context
+- React Portals escape parent stacking contexts
+- Always render modals/overlays at document.body level
+
+**GraphQL Data Fetching:**
+- Next.js caches GraphQL responses server-side
+- Query changes require cache clear for dev server
+- `pnpm run codegen` regenerates types but doesn't invalidate cache
+- `rm -rf .next` forces fresh data fetch
+
+**Type Safety Patterns:**
+- GraphQL `Maybe<T>` requires null checks before mapping
+- Union types need explicit type assertions
+- Fallback to alternative fields improves robustness
+- Type guards prevent runtime errors
+
+---
+
+### FILES MODIFIED
+
+**QuickViewModal.tsx:**
+- Added: React Portal implementation
+- Added: Variation selector integration
+- Added: State management for selected variation
+- Added: GraphQL type transformations
+- Added: Variation-specific display data
+- Added: Cart item variation metadata
+- Fixed: Product type detection logic
+- Fixed: Z-index stacking context issue
+
+**products.graphql:**
+- Added: `attributes.nodes` to VariableProduct fragment
+- Added: `variations.nodes` with SimpleProductVariation details
+- Added: Variation image and attributes for variation-specific data
+
+**generated.ts:**
+- Regenerated from updated GraphQL schema
+- New types for ProductAttribute and VariationAttribute connections
+
+---
+
+### USER EXPERIENCE IMPROVEMENTS
+
+**Before:**
+- Variable products showed "Variable Product" badge
+- No way to select variations in QuickView
+- Users forced to visit full product page
+- Extra navigation steps for simple purchases
+
+**After:**
+- Variation selector appears automatically
+- Users configure products in-place
+- Price/image/stock update in real-time
+- One-click Add to Cart with selected variation
+- Faster checkout for B2B customers
+
+**Edge Cases Handled:**
+- Products marked "Variable" but no variations configured → Warning message shown
+- Products with variations but missing images → Graceful fallback
+- Products with null/undefined attributes → Filtered out safely
+- SSR rendering → Portal only mounts client-side
+
+---
+
+### TESTING PERFORMED
+
+**Manual QA:**
+- ✅ Simple products: Add to Cart works unchanged
+- ✅ Variable products: Selector appears and functions
+- ✅ Variation selection: Updates price, image, SKU
+- ✅ Cart integration: Variation metadata included
+- ✅ Validation: Can't add without selecting variation
+- ✅ Z-index: Modal appears above header
+- ✅ Scroll: Modal scrolls when content is tall
+- ✅ Mobile: Full-screen layout works
+- ✅ Desktop: Centered modal with max-width
+
+**Console Verification:**
+- No TypeScript errors
+- No React warnings
+- Portal renders correctly
+- Variation data transforms properly
+
+---
+
+### COMMIT HISTORY
+
+1. **feat(products): Add variable product support to QuickView modal**
+   - Variation selector integration
+   - State management and display logic
+   - Cart preparation with variation fields
+
+2. **feat(graphql): Add attributes and variations to product list query**
+   - GraphQL query extensions
+   - Type regeneration
+
+3. **feat(products): Implement variable product support in QuickView modal**
+   - React Portal implementation
+   - Product type detection fix
+   - Z-index resolution
+   - Final cleanup and documentation
+
+**PR #437:** Merged to main - All checks passed
+
+---
+
+### NEXT STEPS
+
+**Immediate:**
+- ✅ Clean up local branch (DONE)
+- ✅ Update main branch (DONE)
+- Monitor for production issues after deploy
+
+**Future Enhancements:**
+- Add quantity selector to QuickView
+- Support grouped products
+- Add "Recently Viewed Variations" tracking
+- A/B test QuickView vs full page conversion rates
 
 ---
 

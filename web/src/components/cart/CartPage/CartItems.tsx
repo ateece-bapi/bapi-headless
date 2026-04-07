@@ -7,7 +7,6 @@
  * - Product image, name, price
  * - Quantity selector
  * - Remove button
- * - Stock status
  * - Variation details (if applicable)
  * - Clear cart button
  */
@@ -140,31 +139,6 @@ export default function CartItems({
 
                 {/* Variation Details */}
                 {variation && <p className="mt-1 text-sm text-neutral-700">{variation.name}</p>}
-
-                {/* Stock Status */}
-                <div className="mt-2">
-                  {displayProduct.stockStatus === 'IN_STOCK' ? (
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-success-700">
-                      <span className="h-2 w-2 rounded-full bg-success-700"></span>
-                      {t('cartPage.stock.inStock')}
-                      {displayProduct.stockQuantity && (
-                        <span className="text-neutral-700">
-                          ({t('cartPage.stock.available', { count: displayProduct.stockQuantity })})
-                        </span>
-                      )}
-                    </span>
-                  ) : displayProduct.stockStatus === 'OUT_OF_STOCK' ? (
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-error-600">
-                      <span className="h-2 w-2 rounded-full bg-error-600"></span>
-                      {t('cartPage.stock.outOfStock')}
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-warning-800">
-                      <span className="h-2 w-2 rounded-full bg-warning-800"></span>
-                      {t('cartPage.stock.onBackorder')}
-                    </span>
-                  )}
-                </div>
 
                 {/* Quantity and Remove - Mobile */}
                 <div className="mt-4 flex items-center gap-4 sm:hidden">

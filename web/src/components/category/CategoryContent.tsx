@@ -296,11 +296,9 @@ export default function CategoryContent({
                   key={subcategory.id}
                   name={subcategory.name!} // We know it's defined because of filter
                   slug={subcategory.slug!} // We know it's defined because of filter
-                  count={subcategory.count}
                   description={null}
                   image={null}
                   categorySlug={categorySlugParam}
-                  locale={locale}
                 />
               ))}
             </div>

@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import Image from 'next/image';
-import { PackageIcon, Grid3x3Icon, ChevronRightIcon } from '@/lib/icons';
+import { PackageIcon, ChevronRightIcon } from '@/lib/icons';
 import { ProductCard } from './ProductCard';
 import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
 import type { GetProductsByCategoryQuery, GetProductCategoryQuery } from '@/lib/graphql';

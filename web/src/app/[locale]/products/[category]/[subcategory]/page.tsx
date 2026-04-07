@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
+import { Link } from '@/lib/navigation';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import {
   GetProductCategoryWithChildrenDocument,
@@ -85,12 +85,11 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   }
 
   // Fetch products for this category
-  // Reduced to 12 products to prevent memory exhaustion on subcategory pages
   const productsData = await client.request<GetProductsWithFiltersQuery>(
     GetProductsWithFiltersDocument,
     {
       categorySlug: subcategory,
-      first: 12,
+      first: 24,
     }
   );
 

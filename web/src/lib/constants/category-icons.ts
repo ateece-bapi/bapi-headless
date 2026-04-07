@@ -17,7 +17,7 @@ export const CATEGORY_ICONS: Record<string, string> = {
 
 /**
  * Get category icon path by category slug
- * Handles parent category slugs and returns appropriate BAPI brand icon
+ * Returns the corresponding BAPI brand icon, or a default if not found
  */
 export function getCategoryIcon(categorySlug: string): string {
   return CATEGORY_ICONS[categorySlug] || '/images/icons/Sensors_Icon.webp'; // Default to generic sensors icon

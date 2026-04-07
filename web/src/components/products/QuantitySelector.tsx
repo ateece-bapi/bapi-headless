@@ -204,11 +204,6 @@ export default function QuantitySelector({
 
       {/* Error message */}
       {error && <p className="text-sm text-error-600">{error}</p>}
-
-      {/* Out of stock message */}
-      {isOutOfStock && (
-        <p className="text-sm font-medium text-error-600">This product is currently out of stock</p>
-      )}
     </div>
   );
 }

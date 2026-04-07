@@ -48,11 +48,6 @@ export default function ProductGridSection({
     <div>
       {/* Results Header */}
       <div className="mb-6 flex flex-col gap-4 border-b border-neutral-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="text-sm text-neutral-600">
-          Showing <span className="font-semibold text-neutral-900">{filteredCount}</span> of{' '}
-          <span className="font-semibold text-neutral-900">{totalCount}</span> products
-        </div>
-
         <div className="flex items-center gap-4">
           {/* Sort Dropdown */}
           <div className="flex items-center gap-2">

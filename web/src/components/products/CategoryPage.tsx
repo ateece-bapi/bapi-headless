@@ -56,15 +56,6 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
             {cleanDescription && (
               <p className="mb-6 text-xl leading-relaxed text-primary-50">{cleanDescription}</p>
             )}
-
-            {/* Product Count */}
-            <div className="inline-flex items-center gap-3 rounded-xl bg-white/10 px-6 py-3 backdrop-blur-sm">
-              <PackageIcon className="h-5 w-5 text-white" />
-              <span className="font-semibold text-white">
-                {category.count || productNodes.length} Product
-                {(category.count || productNodes.length) !== 1 ? 's' : ''}
-              </span>
-            </div>
           </div>
         </div>
       </section>

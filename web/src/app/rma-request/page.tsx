@@ -185,23 +185,6 @@ export default function RMARequestPage() {
 
                 <div>
                   <label
-                    htmlFor="productModel"
-                    className="mb-1 block text-sm font-semibold text-neutral-700"
-                  >
-                    Product Model Number *
-                  </label>
-                  <input
-                    type="text"
-                    id="productModel"
-                    name="productModel"
-                    required
-                    placeholder="e.g., BA/10K-2-O"
-                    className="w-full rounded-lg border border-neutral-300 px-4 py-2 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
-                  />
-                </div>
-
-                <div>
-                  <label
                     htmlFor="serialNumber"
                     className="mb-1 block text-sm font-semibold text-neutral-700"
                   >

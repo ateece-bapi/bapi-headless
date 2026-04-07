@@ -20,7 +20,6 @@ export { RelatedProductsAsync, RelatedProductsSkeleton } from './RelatedProducts
 // Phase 1: Product Pages + Cart Integration
 export { default as ProductGallery } from './ProductGallery';
 export { default as QuantitySelector } from './QuantitySelector';
-export { default as ProductAvailability } from './ProductAvailability';
 export { default as ProductSpecifications } from './ProductSpecifications';
 export { default as RecentlyViewed } from './RecentlyViewed';
 export { default as ProductVariationSelector } from './ProductVariationSelector';

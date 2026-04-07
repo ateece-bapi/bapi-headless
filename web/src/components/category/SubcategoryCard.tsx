@@ -67,13 +67,6 @@ export default function SubcategoryCard({
             </svg>
           </div>
         )}
-
-        {/* Product Count Badge */}
-        <div className="absolute right-3 top-3 rounded-full bg-white/95 px-3 py-1.5 backdrop-blur-sm">
-          <span className="text-sm font-semibold text-neutral-700">
-            {productCount} {productCount === 1 ? 'product' : 'products'}
-          </span>
-        </div>
       </div>
 
       {/* Content Section */}

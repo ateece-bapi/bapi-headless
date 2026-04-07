@@ -7,7 +7,6 @@ import { Link } from '@/lib/navigation';
 import type { SimpleProduct, VariableProduct } from '@/lib/graphql/generated';
 import {
   getProductPrice,
-  getProductStockStatus,
   isSimpleProduct,
   isVariableProduct,
   type Product,
@@ -31,7 +30,7 @@ interface QuickViewModalProps {
  *
  * Features:
  * - Backdrop blur with BAPI gradient overlay
- * - Product image, name, price, stock status
+ * - Product image, name, price
  * - Short description
  * - Variation selector for variable products
  * - Add to cart button
@@ -58,9 +57,6 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
       ? getProductPrice({ ...supportedProduct, price: selectedVariation.price }, region.currency)
       : getProductPrice(supportedProduct, region.currency)
     : null;
-  const displayStockStatus = supportedProduct
-    ? selectedVariation?.stockStatus || getProductStockStatus(supportedProduct)
-    : null;
   const displayImage = supportedProduct
     ? selectedVariation?.image || supportedProduct.image
     : null;
@@ -70,8 +66,6 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   const displayPartNumber = supportedProduct
     ? selectedVariation?.partNumber || supportedProduct.partNumber || null
     : null;
-  
-  const inStock = displayStockStatus === 'IN_STOCK';
 
   // Transform attributes and variations for VariationSelector (for variable products)
   // This hook MUST be called regardless of product type to maintain hook order
@@ -120,7 +114,6 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
           name?: string | null;
           price?: string | null;
           regularPrice?: string | null;
-          stockStatus?: string | null;
           partNumber?: string | null;
           sku?: string | null;
           image?: { sourceUrl?: string | null } | null;
@@ -139,8 +132,6 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
           name: variation.name || '',
           price: variation.price || '',
           regularPrice: variation.regularPrice || '',
-          // Default to OUT_OF_STOCK when stock status is unknown for safety
-          stockStatus: variation.stockStatus || 'OUT_OF_STOCK',
           partNumber: variation.partNumber || undefined,
           sku: variation.sku || '',
           image: variation.image || null,
@@ -161,8 +152,8 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
   const hasValidVariations = variationAttributes.length > 0 && transformedVariations.length > 0;
   const canAddToCart = supportedProduct
     ? !isVariable 
-      ? inStock && !!displayPrice 
-      : inStock && !!displayPrice && hasValidVariations && !!selectedVariation
+      ? !!displayPrice 
+      : !!displayPrice && hasValidVariations && !!selectedVariation
     : false;
 
   // Handle variation selection
@@ -360,24 +351,13 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
               {supportedProduct.name}
             </h2>
 
-            {/* SKU and Stock Status */}
-            <div className="mb-4 flex items-center gap-3">
-              {displaySku && (
-                <div className="flex items-center gap-1.5 text-sm text-neutral-700">
-                  <PackageIcon className="h-4 w-4" />
-                  <span>SKU: {displaySku}</span>
-                </div>
-              )}
-              {inStock ? (
-                <span className="border-success-200 inline-flex items-center rounded-full border bg-success-50 px-2.5 py-1 text-xs font-medium text-success-700">
-                  In Stock
-                </span>
-              ) : (
-                <span className="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700">
-                  Out of Stock
-                </span>
-              )}
-            </div>
+            {/* SKU */}
+            {displaySku && (
+              <div className="mb-4 flex items-center gap-1.5 text-sm text-neutral-700">
+                <PackageIcon className="h-4 w-4" />
+                <span>SKU: {displaySku}</span>
+              </div>
+            )}
 
             {/* Price */}
             {displayPrice && (
@@ -443,9 +423,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
                 ariaLabel={
                   !displayPrice
                     ? 'Price unavailable - cannot add to cart'
-                    : !inStock
-                      ? 'Out of stock - cannot add to cart'
-                      : isVariable && !selectedVariation
+                    : isVariable && !selectedVariation
                         ? 'Select product options first'
                         : `Add ${supportedProduct.name} to cart`
                 }

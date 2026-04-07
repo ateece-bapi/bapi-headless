@@ -224,12 +224,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   </div>
 
                   <div className="p-6">
-                    {/* Category count badge with BAPI accent color */}
-                    <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-accent-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-neutral-900">
-                      <span className="h-1.5 w-1.5 rounded-full bg-neutral-900" />
-                      {category.count} Products
-                    </div>
-
                     {/* Category name */}
                     <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                       {category.name}

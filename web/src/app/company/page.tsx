@@ -61,14 +61,6 @@ export default function CompanyPage() {
             </div>
             <div className="group cursor-default text-center">
               <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
-                600+
-              </div>
-              <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">
-                Product Models
-              </div>
-            </div>
-            <div className="group cursor-default text-center">
-              <div className="duration-normal mb-1 text-4xl font-bold text-primary-500 transition-transform group-hover:scale-110">
                 100%
               </div>
               <div className="duration-normal text-sm font-semibold tracking-wide text-neutral-700 transition-colors group-hover:text-neutral-900">

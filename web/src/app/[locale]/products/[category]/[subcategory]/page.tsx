@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import {
@@ -16,6 +17,7 @@ import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 import ProductSortDropdown from '@/components/products/ProductSortDropdown';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getSubcategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
+import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
 
 interface SubcategoryPageProps {
   params: Promise<{
@@ -83,11 +85,12 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   }
 
   // Fetch products for this category
+  // Reduced to 12 products to prevent memory exhaustion on subcategory pages
   const productsData = await client.request<GetProductsWithFiltersQuery>(
     GetProductsWithFiltersDocument,
     {
       categorySlug: subcategory,
-      first: 24,
+      first: 12,
     }
   );
 
@@ -148,22 +151,19 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
               </p>
             )}
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 backdrop-blur-sm">
-                <svg
-                  className="h-5 w-5 text-accent-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+              {/* BAPI Category Icon Badge */}
+              <div className="bg-linear-to-br inline-flex items-center gap-3 rounded-full border border-white/20 from-white/10 to-white/5 px-5 py-2.5 backdrop-blur-sm">
+                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-white/20">
+                  <Image
+                    src={getCategoryIcon(parentCategory?.slug || category)}
+                    alt={`${getCategoryIconName(parentCategory?.slug || category)} icon`}
+                    width={16}
+                    height={16}
+                    className="object-contain"
                   />
-                </svg>
-                <span className="font-semibold text-white">
-                  {subcategoryData.count || products.length} products
+                </div>
+                <span className="text-sm font-medium text-white">
+                  {parentCategory?.name || subcategoryData.name}
                 </span>
               </div>
               {parentCategory && (

@@ -4,7 +4,6 @@ import React from 'react';
 import {
   ProductGallery,
   QuantitySelector,
-  ProductAvailability,
   ProductSpecifications,
   type SpecificationGroup,
   type GalleryImage,
@@ -159,45 +158,10 @@ export default function ProductComponentsTestPage() {
           </div>
         </section>
 
-        {/* Product Availability Demo */}
-        <section className="rounded-2xl bg-white p-8 shadow-sm">
-          <h2 className="mb-6 text-3xl font-bold text-neutral-900">
-            3. Product Availability Indicators
-          </h2>
-          <p className="mb-8 text-neutral-700">
-            Visual stock status indicators with colors, icons, and messaging.
-          </p>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {/* In Stock */}
-            <div>
-              <h3 className="mb-2 text-sm font-semibold text-neutral-700">In Stock</h3>
-              <ProductAvailability stockStatus="instock" stockQuantity={150} detailed={true} />
-            </div>
-
-            {/* Low Stock */}
-            <div>
-              <h3 className="mb-2 text-sm font-semibold text-neutral-700">Low Stock</h3>
-              <ProductAvailability stockStatus="instock" stockQuantity={7} detailed={true} />
-            </div>
-
-            {/* Out of Stock */}
-            <div>
-              <h3 className="mb-2 text-sm font-semibold text-neutral-700">Out of Stock</h3>
-              <ProductAvailability stockStatus="outofstock" restockDate="2026-02-15" />
-            </div>
-
-            {/* On Backorder */}
-            <div>
-              <h3 className="mb-2 text-sm font-semibold text-neutral-700">On Backorder</h3>
-              <ProductAvailability stockStatus="onbackorder" restockDate="2026-01-25" />
-            </div>
-          </div>
-        </section>
-
         {/* Product Specifications Demo */}
         <section className="rounded-2xl bg-white p-8 shadow-sm">
           <h2 className="mb-6 text-3xl font-bold text-neutral-900">
-            4. Product Specifications Table
+            3. Product Specifications Table
           </h2>
           <p className="mb-8 text-neutral-700">
             Professional specifications table with collapsible sections, search, and download

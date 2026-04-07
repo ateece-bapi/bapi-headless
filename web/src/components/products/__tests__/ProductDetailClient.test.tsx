@@ -167,8 +167,14 @@ describe('ProductDetailClient', () => {
       // Select a variation to show the Add to Cart button
       await selectAttributes({ size: 'M', color: 'Red' });
 
-      // Button should appear with "Out of Stock" text and be disabled
-      const addToCartBtn = await screen.findByRole('button', { name: /Out of Stock/i });
+      // Wait for cart button to appear in the DOM
+      await waitFor(() => {
+        // Look for cart-related icon which is part of the button
+        expect(screen.getByText('Add to Cart')).toBeInTheDocument();
+      });
+
+      // Button should be disabled
+      const addToCartBtn = screen.getByText('Add to Cart').closest('button');
       expect(addToCartBtn).toBeDisabled();
     });
 

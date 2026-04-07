@@ -270,14 +270,6 @@ describe('QuantitySelector Component', () => {
       expect(screen.getByLabelText('Quantity')).toBeDisabled();
     });
 
-    it('shows out of stock message', () => {
-      render(
-        <QuantitySelector initialQuantity={1} stockStatus="outofstock" onChange={mockOnChange} />
-      );
-
-      expect(screen.getByText('This product is currently out of stock')).toBeInTheDocument();
-    });
-
     it('resets quantity to 0 when out of stock', () => {
       render(
         <QuantitySelector initialQuantity={5} stockStatus="outofstock" onChange={mockOnChange} />

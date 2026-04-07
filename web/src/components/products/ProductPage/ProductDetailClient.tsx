@@ -10,7 +10,6 @@ import TrustBadges from '@/components/products/ProductPage/TrustBadges';
 import HelpCTA from '@/components/products/ProductPage/HelpCTA';
 import { CartDrawer } from '@/components/cart';
 import { ProductVariationSelector, RecentlyViewed } from '@/components/products';
-import VariationComparisonTool from '@/components/products/VariationComparisonTool';
 import { useRecentlyViewed } from '@/store';
 import { ProductGallerySkeleton } from '@/components/products/ProductGallerySkeleton';
 
@@ -172,11 +171,6 @@ export default function ProductDetailClient({
               useCart={useCart}
               useCartDrawer={useCartDrawer}
             />
-
-            {/* Variation Comparison Tool - Collapsible */}
-            {product.variations && product.variations.length > 1 && (
-              <VariationComparisonTool variations={product.variations} className="mb-8" />
-            )}
 
             <ProductTabs product={product} />
 

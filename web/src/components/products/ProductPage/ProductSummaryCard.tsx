@@ -49,14 +49,10 @@ export default function ProductSummaryCard({
 
   const displayPartNumber =
     variation?.partNumber || variation?.sku || product.partNumber || product.sku || 'N/A';
-  const displayStockStatus = variation?.stockStatus || product.stockStatus;
 
   const multiplier = parseFloat(product.multiplier || '1');
   const calculatedAmount = numericPrice * multiplier * quantity;
   const calculated = isNaN(calculatedAmount) ? '0.00' : calculatedAmount.toFixed(2);
-  const isOutOfStock =
-    displayStockStatus !== 'IN_STOCK' ||
-    (typeof product.stockQuantity === 'number' && product.stockQuantity < 1);
 
   const summaryId = variation?.id || product.id || product.partNumber || product.sku || '';
   const summaryName =
@@ -135,9 +131,6 @@ export default function ProductSummaryCard({
       {/* Loading State Overlay */}
       {isLoadingVariation && (
         <div className="animate-pulse space-y-4">
-          {/* Stock Status Skeleton */}
-          <div className="h-10 w-32 rounded-lg bg-neutral-200"></div>
-
           {/* Part Number Skeleton */}
           <div>
             <div className="mb-2 h-3 w-24 rounded bg-neutral-200"></div>
@@ -173,34 +166,6 @@ export default function ProductSummaryCard({
       {/* Actual Content - Hidden when loading */}
       {!isLoadingVariation && (
         <>
-          {/* Stock Status Badge - Prominent Position */}
-          {displayStockStatus && (
-            <div
-              className={`mb-4 inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold ${
-                displayStockStatus === 'IN_STOCK'
-                  ? 'border border-green-200 bg-green-100 text-green-800'
-                  : displayStockStatus === 'ON_BACKORDER'
-                    ? 'border border-yellow-200 bg-yellow-100 text-yellow-800'
-                    : 'border border-red-200 bg-red-100 text-red-800'
-              }`}
-            >
-              <span
-                className={`h-2 w-2 rounded-full ${
-                  displayStockStatus === 'IN_STOCK'
-                    ? 'bg-green-600'
-                    : displayStockStatus === 'ON_BACKORDER'
-                      ? 'bg-yellow-600'
-                      : 'bg-red-600'
-                }`}
-              ></span>
-              {displayStockStatus === 'IN_STOCK'
-                ? '✓ In Stock'
-                : displayStockStatus === 'ON_BACKORDER'
-                  ? 'On Backorder'
-                  : 'Out of Stock'}
-            </div>
-          )}
-
           {/* Part Number - Styled with monospace */}
           <div className="mb-4">
             <div className="mb-1 text-xs uppercase tracking-wide text-neutral-700">Part Number</div>
@@ -272,19 +237,6 @@ export default function ProductSummaryCard({
                 +
               </button>
             </div>
-            {typeof product.stockQuantity === 'number' && (
-              <div className="mt-2 flex items-center gap-1 text-xs text-neutral-700">
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                {product.stockQuantity} units available
-              </div>
-            )}
           </div>
 
           {/* Add to Cart - Primary CTA Above Fold */}
@@ -305,7 +257,6 @@ export default function ProductSummaryCard({
             }}
             quantity={quantity}
             className="mb-4 w-full px-6 py-4 text-lg font-bold shadow-lg transition-all hover:shadow-xl"
-            disabled={isOutOfStock}
             useCart={typeof useCart === 'function' ? useCart : undefined}
             useCartDrawer={typeof useCartDrawer === 'function' ? useCartDrawer : undefined}
           />

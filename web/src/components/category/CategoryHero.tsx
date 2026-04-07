@@ -64,12 +64,6 @@ export default function CategoryHero({ category, breadcrumbs }: CategoryHeroProp
               {category.description && (
                 <p className="mb-4 text-lg text-neutral-700">{category.description}</p>
               )}
-              {category.count !== null && category.count !== undefined && (
-                <div className="mt-4 text-sm text-neutral-600">
-                  <span className="font-semibold text-neutral-900">{category.count}</span>{' '}
-                  {category.count === 1 ? 'product' : 'products'} available
-                </div>
-              )}
             </div>
 
             {/* Image */}

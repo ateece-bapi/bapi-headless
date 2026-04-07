@@ -179,12 +179,6 @@ export default function FilterSidebar({
           Clear All Filters
         </button>
       )}
-
-      {/* Results Count */}
-      <div className="border-t border-neutral-200 pt-4 text-sm text-neutral-600">
-        Showing <span className="font-semibold text-neutral-900">{productCount}</span>{' '}
-        {productCount === 1 ? 'product' : 'products'}
-      </div>
     </div>
   );
 

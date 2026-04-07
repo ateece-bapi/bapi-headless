@@ -18,6 +18,7 @@ import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 import ProductSortDropdown from '@/components/products/ProductSortDropdown';
 import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
+import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
 
 interface CategoryPageProps {
   params: Promise<{
@@ -177,23 +178,15 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 {categoryData.description}
               </p>
             )}
-            <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-6 py-3 backdrop-blur-sm">
-              <svg
-                className="h-5 w-5 text-accent-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                />
-              </svg>
-              <span className="font-semibold text-white">
-                {t('categoryPage.header.productsAvailable', { count: categoryData.count || 0 })}
-              </span>
+            {/* BAPI Category Icon Badge - Prominent display */}
+            <div className="bg-linear-to-br mt-8 inline-flex items-center justify-center rounded-2xl from-white/20 to-white/10 p-4 shadow-lg backdrop-blur-sm">
+              <Image
+                src={getCategoryIcon(category)}
+                alt={`${getCategoryIconName(category)} icon`}
+                width={48}
+                height={48}
+                className="object-contain drop-shadow-md"
+              />
             </div>
           </div>
         </div>
@@ -245,32 +238,6 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                       <h3 className="mb-2 text-2xl font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                         {subcategory.name}
                       </h3>
-                      {subcategory.count !== null && (
-                        <div className="bg-linear-to-r inline-flex items-center gap-2 rounded-full from-primary-50 to-primary-100 px-3 py-1">
-                          <svg
-                            className="h-4 w-4 text-primary-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                            />
-                          </svg>
-                          <span className="text-sm font-semibold text-primary-700">
-                            {subcategory.count === 1
-                              ? t('categoryPage.subcategories.productCount', {
-                                  count: subcategory.count || 0,
-                                })
-                              : t('categoryPage.subcategories.productCountPlural', {
-                                  count: subcategory.count || 0,
-                                })}
-                          </span>
-                        </div>
-                      )}
                     </div>
                   </div>
 

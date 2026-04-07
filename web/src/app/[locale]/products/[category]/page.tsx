@@ -178,14 +178,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 {categoryData.description}
               </p>
             )}
-            {/* BAPI Category Icon Badge */}
-            <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-6 py-3 backdrop-blur-sm">
+            {/* BAPI Category Icon Badge - Prominent display */}
+            <div className="bg-linear-to-br mt-8 inline-flex items-center justify-center rounded-2xl from-white/20 to-white/10 p-4 shadow-lg backdrop-blur-sm">
               <Image
                 src={getCategoryIcon(category)}
                 alt={`${getCategoryIconName(category)} icon`}
-                width={24}
-                height={24}
-                className="object-contain"
+                width={48}
+                height={48}
+                className="object-contain drop-shadow-md"
               />
             </div>
           </div>

@@ -135,6 +135,7 @@ export default function QuickViewModal({ product, onClose, locale }: QuickViewMo
           partNumber: variation.partNumber || undefined,
           sku: variation.sku || '',
           image: variation.image || null,
+          stockStatus: 'IN_STOCK', // Not displayed in UI per requirements
           attributes: {
             nodes: variation.attributes?.nodes?.map((attr) => ({
               name: attr.name || '',

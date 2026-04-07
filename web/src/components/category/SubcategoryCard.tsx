@@ -3,6 +3,7 @@
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import { ArrowRightIcon } from '@/lib/icons';
+import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
 
 interface SubcategoryCardProps {
   name: string;
@@ -51,22 +52,27 @@ export default function SubcategoryCard({
             quality={75}
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-neutral-100">
-            <svg
-              className="h-16 w-16 text-neutral-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-              />
-            </svg>
+          <div className="bg-linear-to-br flex h-full items-center justify-center from-primary-50 to-primary-100">
+            <Image
+              src={getCategoryIcon(categorySlug)}
+              alt={`${getCategoryIconName(categorySlug)} icon`}
+              width={96}
+              height={96}
+              className="object-contain opacity-40"
+            />
           </div>
         )}
+
+        {/* BAPI Category Icon Badge - Replaces product count */}
+        <div className="bg-linear-to-br absolute right-4 top-4 flex h-14 w-14 items-center justify-center rounded-xl from-primary-700 to-primary-600 shadow-lg transition-all duration-300 group-hover:shadow-xl">
+          <Image
+            src={getCategoryIcon(categorySlug)}
+            alt={`${getCategoryIconName(categorySlug)} icon`}
+            width={32}
+            height={32}
+            className="object-contain"
+          />
+        </div>
       </div>
 
       {/* Content Section */}

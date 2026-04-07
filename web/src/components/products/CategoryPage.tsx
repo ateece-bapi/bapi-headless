@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { PackageIcon, Grid3x3Icon, ChevronRightIcon } from '@/lib/icons';
 import { ProductCard } from './ProductCard';
+import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
 import type { GetProductsByCategoryQuery, GetProductCategoryQuery } from '@/lib/graphql';
 
 interface CategoryPageProps {
@@ -44,8 +46,17 @@ export function CategoryPage({ category, products, locale = 'en' }: CategoryPage
 
           {/* Header */}
           <div className="max-w-4xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
-              <Grid3x3Icon className="h-4 w-4" />
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+              {/* BAPI Category Icon */}
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20">
+                <Image
+                  src={getCategoryIcon(category.slug || '')}
+                  alt={`${getCategoryIconName(category.slug || '')} icon`}
+                  width={20}
+                  height={20}
+                  className="object-contain"
+                />
+              </div>
               Product Category
             </div>
 

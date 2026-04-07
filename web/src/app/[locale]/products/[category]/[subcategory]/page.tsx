@@ -83,11 +83,12 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   }
 
   // Fetch products for this category
+  // Reduced to 12 products to prevent memory exhaustion on subcategory pages
   const productsData = await client.request<GetProductsWithFiltersQuery>(
     GetProductsWithFiltersDocument,
     {
       categorySlug: subcategory,
-      first: 24,
+      first: 12,
     }
   );
 

@@ -18,6 +18,7 @@ import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 import ProductSortDropdown from '@/components/products/ProductSortDropdown';
 import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
+import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
 
 interface CategoryPageProps {
   params: Promise<{
@@ -177,20 +178,15 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 {categoryData.description}
               </p>
             )}
+            {/* BAPI Category Icon Badge */}
             <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-6 py-3 backdrop-blur-sm">
-              <svg
-                className="h-5 w-5 text-accent-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                />
-              </svg>
+              <Image
+                src={getCategoryIcon(category)}
+                alt={`${getCategoryIconName(category)} icon`}
+                width={24}
+                height={24}
+                className="object-contain"
+              />
             </div>
           </div>
         </div>

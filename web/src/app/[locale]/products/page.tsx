@@ -112,15 +112,7 @@ export default async function MainProductPage({
             </p>
 
             {/* Key Stats - Removed backdrop-blur for faster rendering */}
-            <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
-              <div className="rounded-xl bg-white/10 p-4">
-                <div className="mb-1 text-3xl font-bold text-white">
-                  {t('productsPage.hero.stats.productsCount')}
-                </div>
-                <div className="text-sm text-primary-100">
-                  {t('productsPage.hero.stats.productsLabel')}
-                </div>
-              </div>
+            <div className="grid grid-cols-2 gap-6">
               <div className="rounded-xl bg-white/10 p-4">
                 <div className="mb-1 text-3xl font-bold text-white">
                   {t('productsPage.hero.stats.warrantyDuration')}

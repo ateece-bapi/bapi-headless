@@ -8,30 +8,25 @@ import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-i
 interface SubcategoryCardProps {
   name: string;
   slug: string;
-  count: number | null | undefined;
   description?: string | null;
   image?: {
     sourceUrl?: string | null;
     altText?: string | null;
   } | null;
   categorySlug: string;
-  locale: string;
 }
 
 /**
  * Subcategory card component that links to dedicated subcategory pages.
- * Displays subcategory image, name, product count, and description.
+ * Displays subcategory image, name, and description with BAPI category icon.
  */
 export default function SubcategoryCard({
   name,
   slug,
-  count,
   description,
   image,
   categorySlug,
-  locale,
 }: SubcategoryCardProps) {
-  const productCount = count ?? 0;
   const imageUrl = image?.sourceUrl;
   const imageAlt = image?.altText || `${name} category`;
 

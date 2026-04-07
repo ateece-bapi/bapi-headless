@@ -70,7 +70,7 @@ const AddToCartButton = ({
     if (loading || showSuccess) return;
 
     try {
-      // Prevent adding when disabled (e.g., missing variation selection)
+      // Prevent adding when disabled (out of stock, missing variation, etc.)
       if (disabled) {
         return;
       }

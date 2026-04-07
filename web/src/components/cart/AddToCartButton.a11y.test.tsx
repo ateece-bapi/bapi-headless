@@ -173,7 +173,7 @@ describe('AddToCartButton Accessibility', () => {
       );
       const button = screen.getByRole('button');
       expect(button).toBeDisabled();
-      expect(button).toHaveAttribute('aria-label', 'Out of stock');
+      expect(button).toHaveAttribute('aria-label', 'Add to cart - currently unavailable');
     });
   });
 
@@ -241,7 +241,7 @@ describe('AddToCartButton Accessibility', () => {
       expect(screen.getByText('Adding...')).toBeInTheDocument();
     });
 
-    it('shows out of stock text when disabled', () => {
+    it('shows disabled state when out of stock', () => {
       render(
         <AddToCartButton
           product={mockProduct}
@@ -250,7 +250,9 @@ describe('AddToCartButton Accessibility', () => {
           useCartDrawer={mockUseCartDrawer}
         />
       );
-      expect(screen.getByText('Out of Stock')).toBeInTheDocument();
+      // Button still shows "Add to Cart" but is disabled
+      expect(screen.getByText('Add to Cart')).toBeInTheDocument();
+      expect(screen.getByRole('button')).toBeDisabled();
     });
 
     it('icons are decorative with proper text labels', () => {

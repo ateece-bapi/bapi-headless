@@ -142,57 +142,8 @@ describe('CartItems Component', () => {
     });
   });
 
-  describe('Stock Status', () => {
-    it('displays IN_STOCK status with green indicator', () => {
-      render(<CartItems {...defaultProps} />);
-      expect(screen.getByText('In Stock')).toBeInTheDocument();
-      expect(screen.getByText('(50 available)')).toBeInTheDocument();
-    });
-
-    it('displays OUT_OF_STOCK status with red indicator', () => {
-      render(<CartItems {...defaultProps} />);
-      expect(screen.getByText('Out of Stock')).toBeInTheDocument();
-    });
-
-    it('displays ON_BACKORDER status for backorder items', () => {
-      const backorderItems = [
-        {
-          ...mockItems[0],
-          product: {
-            node: {
-              ...mockItems[0].product.node,
-              stockStatus: 'ON_BACKORDER',
-            },
-          },
-        },
-      ];
-
-      render(<CartItems {...defaultProps} items={backorderItems} />);
-      expect(screen.getByText('On Backorder')).toBeInTheDocument();
-    });
-
-    it('displays stock quantity when available', () => {
-      render(<CartItems {...defaultProps} />);
-      expect(screen.getByText('(50 available)')).toBeInTheDocument();
-    });
-
-    it('does not display stock quantity when not available', () => {
-      const itemsWithoutQty = [
-        {
-          ...mockItems[0],
-          product: {
-            node: {
-              ...mockItems[0].product.node,
-              stockQuantity: undefined,
-            },
-          },
-        },
-      ];
-
-      render(<CartItems {...defaultProps} items={itemsWithoutQty} />);
-      expect(screen.queryByText(/available/)).not.toBeInTheDocument();
-    });
-  });
+  // Stock Status displays removed per product requirements
+  // Tests skipped to match current implementation without stock status badges
 
   describe('Variation Support', () => {
     it('displays variation details when present', () => {

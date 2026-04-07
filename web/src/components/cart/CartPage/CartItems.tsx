@@ -7,7 +7,6 @@
  * - Product image, name, price
  * - Quantity selector
  * - Remove button
- * - Stock status
  * - Variation details (if applicable)
  * - Clear cart button
  */

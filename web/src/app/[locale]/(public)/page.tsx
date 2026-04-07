@@ -88,7 +88,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             {/* Decorative background elements */}
             <div className="bg-grid-pattern absolute inset-0"></div>
 
-            <div className="relative grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <div className="relative grid grid-cols-2 gap-6 md:grid-cols-3 lg:gap-8">
               {/* 30+ Years */}
               <div className="group text-center">
                 <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
@@ -98,17 +98,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   {t('stats.yearsValue')}
                 </div>
                 <div className="text-sm font-medium text-white/90">{t('stats.yearsLabel')}</div>
-              </div>
-
-              {/* 608 Products */}
-              <div className="group text-center">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <PackageIcon className="h-7 w-7 text-white" strokeWidth={2.5} />
-                </div>
-                <div className="mb-2 text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
-                  {t('stats.productsValue')}
-                </div>
-                <div className="text-sm font-medium text-white/90">{t('stats.productsLabel')}</div>
               </div>
 
               {/* Global Reach */}

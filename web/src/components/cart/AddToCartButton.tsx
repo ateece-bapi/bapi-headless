@@ -70,14 +70,8 @@ const AddToCartButton = ({
     if (loading || showSuccess) return;
 
     try {
-      // Check if product is out of stock
+      // Prevent adding when disabled (e.g., missing variation selection)
       if (disabled) {
-        showToast(
-          'warning',
-          ERROR_MESSAGES.OUT_OF_STOCK.title,
-          ERROR_MESSAGES.OUT_OF_STOCK.message,
-          5000
-        );
         return;
       }
 
@@ -166,10 +160,7 @@ const AddToCartButton = ({
       );
     }
 
-    if (disabled) {
-      return <span>Out of Stock</span>;
-    }
-
+    // Always show "Add to Cart" - disabled state is handled by button styling
     return (
       <>
         <ShoppingCartIcon className="h-5 w-5" />
@@ -214,7 +205,7 @@ const AddToCartButton = ({
             : showSuccess
               ? 'Added to cart'
               : disabled
-                ? 'Out of stock'
+                ? 'Add to cart - currently unavailable'
                 : `Add ${product.name} to cart`)
         }
       >

@@ -2,15 +2,15 @@ import { Roboto } from 'next/font/google';
 import { getLocale } from 'next-intl/server';
 import './globals.css';
 
-// Roboto font configuration - optimized for performance
+// Roboto font configuration - Phase 2: Optimized for critical rendering path
 const roboto = Roboto({
   weight: ['400', '500', '700'],
   subsets: ['latin'],
   variable: '--font-roboto',
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-  adjustFontFallback: true,
+  display: 'swap', // FOIT prevention: show fallback immediately
+  preload: true, // Preload font files for faster FCP
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Arial', 'sans-serif'],
+  adjustFontFallback: true, // CLS prevention: match metrics to system fonts
 });
 
 /**

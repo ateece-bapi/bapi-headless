@@ -74,27 +74,24 @@ export default async function LocaleLayout({
       {/* Set lang attribute on html element */}
       <HtmlLangAttribute locale={locale} />
 
-      {/* Inline critical CSS for hero image container */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-          .hero-image-container { position: relative; width: 100%; max-width: 80rem; margin: 0 auto; }
-          .hero-image { width: 100%; height: auto; border-radius: 0.75rem; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
-          @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-          }
-        `,
-        }}
-      />
-
-      {/* Resource hints for external domains */}
+      {/* Phase 2: Resource hints - Preconnect to critical origins for faster requests */}
+      {/* Preconnect establishes early connections (DNS + TLS handshake) before requests are made */}
+      
+      {/* Google Fonts - Critical for Roboto font loading */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      
+      {/* WordPress GraphQL API - Critical for all content */}
       <link
         rel="preconnect"
         href="https://bapiheadlessstaging.kinsta.cloud"
         crossOrigin="anonymous"
       />
-      <link rel="dns-prefetch" href="https://bapiheadlessstaging.kinsta.cloud" />
+      
+      {/* DNS prefetch for third-party analytics (non-blocking, lower priority) */}
+      <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com" />
+
+
 
       {/* Structured Data for SEO */}
       <StructuredData schema={[organizationSchema, websiteSchema]} />

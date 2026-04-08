@@ -81,18 +81,50 @@ export default function ProductSummaryCard({
         const offset = 180; // Account for sticky nav + generous breathing room
         const targetPosition = elementPosition - offset;
         
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-        
-        // Focus first interactive element for accessibility
-        setTimeout(() => {
+        // Respect prefers-reduced-motion for accessibility
+        const prefersReducedMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches;
+
+        const focusFirstInput = () => {
           const firstInput = configurator.querySelector('button, select, input');
           if (firstInput instanceof HTMLElement) {
-            firstInput.focus();
+            firstInput.focus({ preventScroll: true });
           }
-        }, 500);
+        };
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        });
+
+        // Focus first interactive element for accessibility after scrolling completes
+        if (prefersReducedMotion) {
+          // Instant scroll - focus immediately
+          focusFirstInput();
+        } else if ('onscrollend' in window) {
+          // Modern browsers - use scrollend event
+          const handleScrollEnd = () => {
+            focusFirstInput();
+          };
+          window.addEventListener('scrollend', handleScrollEnd, { once: true });
+        } else {
+          // Fallback for older browsers - detect when scroll settles
+          let attempts = 0;
+          const maxAttempts = 60; // ~1 second at 60fps
+          const focusWhenScrollSettles = () => {
+            const isAtTarget = Math.abs(window.scrollY - targetPosition) <= 2;
+
+            if (isAtTarget || attempts >= maxAttempts) {
+              focusFirstInput();
+              return;
+            }
+
+            attempts += 1;
+            window.requestAnimationFrame(focusWhenScrollSettles);
+          };
+          window.requestAnimationFrame(focusWhenScrollSettles);
+        }
       }
     };
 

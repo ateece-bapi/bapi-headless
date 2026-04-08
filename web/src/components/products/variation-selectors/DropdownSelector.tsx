@@ -57,7 +57,7 @@ export default function DropdownSelector({
         {/* Custom chevron icon */}
         <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2">
           <ChevronDownIcon
-            className={`h-5 w-5 transition-colors ${value ? 'text-primary-600' : 'text-neutral-400'} `}
+            className={`h-5 w-5 transition-colors ${value ? 'text-primary-600' : 'text-neutral-400'}`}
           />
         </div>
       </div>

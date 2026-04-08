@@ -2,83 +2,116 @@
 // The config you add here will be used whenever a user loads a page in their browser.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
-import * as Sentry from '@sentry/nextjs';
+// PERFORMANCE FIX: Defer Sentry initialization to avoid blocking initial page load
+// This improves Speed Index and TBT (Total Blocking Time) metrics
+// Sentry will initialize after page becomes interactive (~2s delay)
 
-Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+// Export empty object to make this a valid module (required by Next.js instrumentation)
+export {};
 
-  // Environment
-  environment: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT || 'development',
+if (typeof window !== 'undefined') {
+  // Check if page is already interactive, otherwise wait for it
+  const initSentry = async () => {
+    try {
+      const Sentry = await import('@sentry/nextjs');
+      
+      Sentry.init({
+      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
-  // Performance Monitoring
-  tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1.0,
+      // Environment
+      environment: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT || 'development',
 
-  // Track navigation propagation
-  tracePropagationTargets: [
-    'localhost',
-    /^https:\/\/.*\.vercel\.app/,
-    /^https:\/\/.*\.kinsta\.cloud/,
-  ],
+      // Performance Monitoring
+      tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1.0,
 
-  // Session Replay
-  replaysSessionSampleRate: 0.1, // 10% of sessions
-  replaysOnErrorSampleRate: 1.0, // 100% of sessions with errors
+      // Track navigation propagation
+      tracePropagationTargets: [
+        'localhost',
+        /^https:\/\/.*\.vercel\.app/,
+        /^https:\/\/.*\.kinsta\.cloud/,
+      ],
 
-  // Integrations
-  integrations: [
-    // Browser performance monitoring
-    Sentry.browserTracingIntegration(),
+      // Session Replay
+      replaysSessionSampleRate: 0.1, // 10% of sessions
+      replaysOnErrorSampleRate: 1.0, // 100% of sessions with errors
 
-    // Session Replay for debugging
-    Sentry.replayIntegration({
-      maskAllText: false,
-      blockAllMedia: false,
-      // Capture console logs for context
-      networkDetailAllowUrls: [/^https:\/\/.*\.kinsta\.cloud/],
-    }),
+      // Integrations
+      integrations: [
+        // Browser performance monitoring
+        Sentry.browserTracingIntegration(),
 
-    // Breadcrumbs for user actions
-    Sentry.breadcrumbsIntegration({
-      console: true,
-      dom: true,
-      fetch: true,
-      history: true,
-      xhr: true,
-    }),
-  ],
+        // Session Replay for debugging
+        Sentry.replayIntegration({
+          maskAllText: false,
+          blockAllMedia: false,
+          // Capture console logs for context
+          networkDetailAllowUrls: [/^https:\/\/.*\.kinsta\.cloud/],
+        }),
 
-  // Error filtering
-  beforeSend(event, hint) {
-    // Filter out common browser extension errors
-    if (event.exception?.values?.some((e) => e.value?.includes('extension://'))) {
-      return null;
+        // Breadcrumbs for user actions
+        Sentry.breadcrumbsIntegration({
+          console: true,
+          dom: true,
+          fetch: true,
+          history: true,
+          xhr: true,
+        }),
+      ],
+
+      // Error filtering
+      beforeSend(event, hint) {
+        // Filter out common browser extension errors
+        if (event.exception?.values?.some((e) => e.value?.includes('extension://'))) {
+          return null;
+        }
+
+        // Filter out network errors from ad blockers
+        if (hint.originalException instanceof Error) {
+          if (hint.originalException.message.includes('blocked:')) {
+            return null;
+          }
+        }
+
+        return event;
+      },
+
+      // Ignore specific errors
+      ignoreErrors: [
+        // Browser extensions
+        'top.GLOBALS',
+        'chrome-extension://',
+        'moz-extension://',
+        // Third-party scripts
+        'fb_xd_fragment',
+        'bmi_SafeAddOnload',
+        // Network issues
+        'Network request failed',
+        'NetworkError',
+        'Failed to fetch',
+      ],
+
+      // User context (do not send PII by default)
+      sendDefaultPii: false,
+      });
+    } catch (error) {
+      // Sentry initialization failed (network issue, ad blocker, etc.)
+      // Log warning but don't impact page load
+      console.warn('Sentry client initialization failed; continuing without error tracking.', error);
     }
+  };
 
-    // Filter out network errors from ad blockers
-    if (hint.originalException instanceof Error) {
-      if (hint.originalException.message.includes('blocked:')) {
-        return null;
-      }
-    }
-
-    return event;
-  },
-
-  // Ignore specific errors
-  ignoreErrors: [
-    // Browser extensions
-    'top.GLOBALS',
-    'chrome-extension://',
-    'moz-extension://',
-    // Third-party scripts
-    'fb_xd_fragment',
-    'bmi_SafeAddOnload',
-    // Network issues
-    'Network request failed',
-    'NetworkError',
-    'Failed to fetch',
-  ],
-
-  // User context (do not send PII by default)
-  sendDefaultPii: false,
-});
+  // Defer Sentry initialization until page is interactive
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    // Page already interactive, init after a short delay
+    setTimeout(initSentry, 1500);
+  } else {
+    // Wait for page to become interactive
+    window.addEventListener(
+      'load',
+      () => {
+        setTimeout(initSentry, 1500);
+      },
+      { once: true }
+    );
+  }
+}

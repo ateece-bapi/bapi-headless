@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { useRegion } from '@/store/regionStore';
 import { convertWooCommercePrice } from '@/lib/utils/currency';
 
@@ -32,10 +33,12 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({ related }) => {
           >
             {product.image && (
               <div className="relative mb-2 aspect-[4/3] w-full overflow-hidden rounded">
-                <img
+                <Image
                   src={product.image.sourceUrl}
                   alt={product.image.altText || product.name}
-                  className="h-full w-full object-contain p-2"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-contain p-2"
                 />
               </div>
             )}

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import { LinkedinIcon, YoutubeIcon } from '@/lib/icons';
 import { useTranslations, useLocale } from 'next-intl';
@@ -123,9 +124,11 @@ const Footer: React.FC = () => {
           {/* Brand & Mission - Takes 2 columns on large screens */}
           <div className="flex flex-col gap-4 lg:col-span-2">
             <Link href="/" className="mb-2 inline-block">
-              <img
+              <Image
                 src="/bapi_logo_Web_Digital.png"
                 alt="BAPI Logo"
+                width={200}
+                height={48}
                 className="h-10 w-auto transition-opacity hover:opacity-80 lg:h-12"
               />
             </Link>
@@ -212,21 +215,27 @@ const Footer: React.FC = () => {
               {t('awards.title')}
             </div>
             <div className="flex flex-wrap items-center gap-4">
-              <img
+              <Image
                 src="/images/awards/AHR_2012_Innovation_Award.webp"
                 alt="AHR 2012 Innovation Award"
+                width={80}
+                height={64}
                 className="h-16 w-auto cursor-pointer transition-transform duration-300 hover:scale-110"
                 title="AHR Expo 2012 Innovation Award"
               />
-              <img
+              <Image
                 src="/images/awards/AHR_Award_07_08.webp"
                 alt="AHR Expo Awards 2007-2008"
+                width={70}
+                height={56}
                 className="h-14 w-auto cursor-pointer transition-transform duration-300 hover:scale-110"
                 title="AHR Expo Innovation Awards 2007-2008"
               />
-              <img
+              <Image
                 src="/images/awards/AHR_Expo_Innovation_Award.webp"
                 alt="AHR Expo Innovation Award"
+                width={70}
+                height={56}
                 className="h-14 w-auto cursor-pointer transition-transform duration-300 hover:scale-110"
                 title="AHR Expo Innovation Award Winner"
               />
@@ -244,19 +253,25 @@ const Footer: React.FC = () => {
             <div className="flex flex-col gap-4">
               {/* Logo Badges */}
               <div className="flex flex-wrap items-center gap-4">
-                <img
+                <Image
                   src="/images/logos/5_year_warranty_C92M55.webp"
                   alt="5 Year Warranty"
+                  width={60}
+                  height={48}
                   className="h-12 w-auto transition-transform duration-300 hover:scale-110"
                 />
-                <img
+                <Image
                   src="/images/logos/NSF_Logo.webp"
                   alt="NSF Certified"
+                  width={50}
+                  height={40}
                   className="h-10 w-auto transition-transform duration-300 hover:scale-110"
                 />
-                <img
+                <Image
                   src="/images/logos/RoHS_Logo.webp"
                   alt="RoHS Compliant"
+                  width={50}
+                  height={40}
                   className="h-10 w-auto transition-transform duration-300 hover:scale-110"
                 />
               </div>

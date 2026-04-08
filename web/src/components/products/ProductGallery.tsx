@@ -242,17 +242,20 @@ export default function ProductGallery({ images, productName, variation }: Produ
           onClick={() => openLightbox(selectedIndex)}
         >
           {/* 
-            Using raw <img> instead of next/image for main gallery:
-            - Zoom/transform effects work more reliably with native img
-            - Lightbox zoom functionality requires direct img manipulation
-            - Gallery images are already optimized by WordPress
-            - No responsive srcset needed (single size display)
+            Using Next.js Image for optimized LCP and Speed Index:
+            - Automatic image optimization and modern format delivery (WebP/AVIF)
+            - Priority loading for first image improves Speed Index
+            - Transform effects still work with proper positioning
+            - Lazy loading for subsequent gallery images
+            - Better performance metrics for Core Web Vitals
           */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={currentImage.sourceUrl}
             alt={currentImage.altText || productName}
-            className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+            fill
+            priority={selectedIndex === 0} // Priority for first image only
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+            className="object-contain transition-transform duration-300 group-hover:scale-105"
           />
 
           {/* Zoom overlay hint - NO background, only icon */}

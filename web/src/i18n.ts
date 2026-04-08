@@ -29,7 +29,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   // PERFORMANCE FIX: Only load the specific locale file needed (no double-loading)
   // This reduces bundle size by ~50% for non-English users
-  let messages;
+  // Type annotation for messages object from JSON imports
+  let messages: Record<string, any>;
   try {
     // Use explicit imports to help Next.js tree-shake unused locales
     // This prevents bundling all locale files in the client bundle

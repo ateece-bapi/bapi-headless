@@ -12,9 +12,10 @@ export {};
 if (typeof window !== 'undefined') {
   // Check if page is already interactive, otherwise wait for it
   const initSentry = async () => {
-    const Sentry = await import('@sentry/nextjs');
-    
-    Sentry.init({
+    try {
+      const Sentry = await import('@sentry/nextjs');
+      
+      Sentry.init({
       dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
       // Environment
@@ -91,7 +92,12 @@ if (typeof window !== 'undefined') {
 
       // User context (do not send PII by default)
       sendDefaultPii: false,
-    });
+      });
+    } catch (error) {
+      // Sentry initialization failed (network issue, ad blocker, etc.)
+      // Log warning but don't impact page load
+      console.warn('Sentry client initialization failed; continuing without error tracking.', error);
+    }
   };
 
   // Defer Sentry initialization until page is interactive
@@ -100,8 +106,12 @@ if (typeof window !== 'undefined') {
     setTimeout(initSentry, 1500);
   } else {
     // Wait for page to become interactive
-    window.addEventListener('load', () => {
-      setTimeout(initSentry, 1500);
-    });
+    window.addEventListener(
+      'load',
+      () => {
+        setTimeout(initSentry, 1500);
+      },
+      { once: true }
+    );
   }
 }

@@ -4,22 +4,71 @@ import React from 'react';
 import { BriefcaseIcon, HeartIcon } from '@/lib/icons';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
+import { useCart, useCartDrawer } from '@/store';
+import type { ProductAttribute, ProductVariation } from '@/types/variations';
 import {
   convertWooCommercePrice,
   convertWooCommercePriceNumeric,
   formatPrice,
 } from '@/lib/utils/currency';
 
+interface Product {
+  id?: string;
+  databaseId?: number;
+  name?: string;
+  slug?: string;
+  price?: string | null;
+  regularPrice?: string | null;
+  partNumber?: string | null;
+  sku?: string | null;
+  multiplier?: string | null;
+  stockQuantity?: number | null;
+  image?: {
+    sourceUrl?: string | null;
+    altText?: string | null;
+  } | null;
+  attributes?: ProductAttribute[];
+  variations?: ProductVariation[];
+}
+
 interface ProductSummaryCardProps {
-  product: any;
-  variation?: any;
-  useCart?: any;
-  useCartDrawer?: any;
+  product: Product;
+  variation?: ProductVariation | null;
+  useCart?: typeof useCart;
+  useCartDrawer?: typeof useCartDrawer;
   isLoadingVariation?: boolean;
   quantity?: number;
   onQuantityChange?: (quantity: number) => void;
 }
 
+/**
+ * Product Summary Card Component
+ * 
+ * Displays product pricing, configuration status, and add-to-cart functionality
+ * for both simple and variable products. For variable products without a selected
+ * variation, shows a CTA to scroll to the configurator section.
+ * 
+ * @param {ProductSummaryCardProps} props - Component props
+ * @param {Product} props.product - Product data including pricing and attributes
+ * @param {ProductVariation} [props.variation] - Selected variation for variable products
+ * @param {Function} [props.useCart] - Optional cart store hook for testing
+ * @param {Function} [props.useCartDrawer] - Optional cart drawer hook for testing
+ * @param {boolean} [props.isLoadingVariation=false] - Loading state for variation changes
+ * @param {number} [props.quantity] - External quantity control
+ * @param {Function} [props.onQuantityChange] - External quantity change handler
+ * 
+ * @returns {JSX.Element} Sticky product summary card
+ * 
+ * @example
+ * ```tsx
+ * <ProductSummaryCard
+ *   product={product}
+ *   variation={selectedVariation}
+ *   quantity={quantity}
+ *   onQuantityChange={setQuantity}
+ * />
+ * ```
+ */
 export default function ProductSummaryCard({
   product,
   variation,
@@ -66,7 +115,7 @@ export default function ProductSummaryCard({
 
   // Build selectedAttributes from variation.attributes if available
   const selectedAttributes =
-    variation?.attributes?.nodes?.reduce((acc: Record<string, string>, attr: any) => {
+    variation?.attributes?.nodes?.reduce((acc: Record<string, string>, attr: ProductVariation['attributes']['nodes'][number]) => {
       acc[attr.name] = attr.value;
       return acc;
     }, {}) || undefined;
@@ -325,13 +374,16 @@ export default function ProductSummaryCard({
           {/* Add to Cart - Primary CTA Above Fold */}
           <AddToCartButton
             product={{
-              ...product,
               id: summaryId,
+              databaseId: variation?.databaseId || product.databaseId || 0,
               name: summaryName,
               slug: summarySlug,
               price: displayPrice,
               numericPrice,
-              image: summaryImage,
+              image: summaryImage?.sourceUrl ? {
+                sourceUrl: summaryImage.sourceUrl,
+                altText: summaryImage.altText ?? undefined,
+              } : null,
               variationId,
               variationName,
               variationSku,

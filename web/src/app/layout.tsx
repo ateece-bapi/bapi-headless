@@ -2,15 +2,15 @@ import { Roboto } from 'next/font/google';
 import { getLocale } from 'next-intl/server';
 import './globals.css';
 
-// Roboto font configuration - Phase 2: Optimized for critical rendering path
+// Roboto font configuration - Phase 2.1: Fixed performance regressions
 const roboto = Roboto({
   weight: ['400', '500', '700'],
   subsets: ['latin'],
   variable: '--font-roboto',
   display: 'swap', // FOIT prevention: show fallback immediately
   preload: true, // Preload font files for faster FCP
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Arial', 'sans-serif'],
-  adjustFontFallback: true, // CLS prevention: match metrics to system fonts
+  fallback: ['system-ui', '-apple-system', 'sans-serif'], // Simplified: 3 fonts for faster matching
+  adjustFontFallback: false, // Removed: runtime JS overhead causing TBT regression
 });
 
 /**
@@ -32,10 +32,10 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        {/* Phase 2: Resource hints - Preconnect to WordPress GraphQL API */}
-        {/* Establishes early connection (DNS + TLS handshake) before API requests */}
+        {/* Phase 2.1: Resource hints optimized - DNS prefetch only (non-blocking) */}
+        {/* Resolves DNS early without TLS handshake overhead */}
         {wordpressOrigin && (
-          <link rel="preconnect" href={wordpressOrigin} crossOrigin="anonymous" />
+          <link rel="dns-prefetch" href={wordpressOrigin} />
         )}
       </head>
       <body className={`${roboto.variable} font-sans antialiased`} suppressHydrationWarning>

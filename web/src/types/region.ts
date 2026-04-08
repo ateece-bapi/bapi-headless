@@ -60,7 +60,7 @@ export const REGIONS: Record<RegionCode, Region> = {
     currency: 'USD',
     language: 'en',
     locale: 'en-US',
-    flag: '🇺🇸',
+    flag: '/flags/us.svg',
   },
   uk: {
     code: 'uk',
@@ -68,7 +68,7 @@ export const REGIONS: Record<RegionCode, Region> = {
     currency: 'GBP',
     language: 'en',
     locale: 'en-GB',
-    flag: '🇬🇧',
+    flag: '/flags/gb.svg',
   },
   eu: {
     code: 'eu',
@@ -76,7 +76,7 @@ export const REGIONS: Record<RegionCode, Region> = {
     currency: 'EUR',
     language: 'en',
     locale: 'en-GB',
-    flag: '🇪🇺',
+    flag: '/flags/eu.svg',
   },
   pl: {
     code: 'pl',
@@ -84,7 +84,7 @@ export const REGIONS: Record<RegionCode, Region> = {
     currency: 'PLN',
     language: 'pl',
     locale: 'pl-PL',
-    flag: '🇵🇱',
+    flag: '/flags/pl.svg',
   },
   mena: {
     code: 'mena',
@@ -92,7 +92,7 @@ export const REGIONS: Record<RegionCode, Region> = {
     currency: 'AED',
     language: 'ar',
     locale: 'ar-AE',
-    flag: '🇦🇪',
+    flag: '/flags/ae.svg',
   },
 };
 

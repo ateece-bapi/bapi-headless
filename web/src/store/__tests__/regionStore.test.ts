@@ -78,9 +78,9 @@ describe('regionStore', () => {
       expect(region.locale).toBe('en-US');
     });
 
-    it('should have US flag emoji for default region', () => {
+    it('should have US flag SVG for default region', () => {
       const { region } = useRegionStore.getState();
-      expect(region.flag).toBe('🇺🇸');
+      expect(region.flag).toBe('/flags/us.svg');
     });
   });
 
@@ -131,12 +131,12 @@ describe('regionStore', () => {
       });
     });
 
-    it('should update flag emoji when changing regions', () => {
+    it('should update flag SVG when changing regions', () => {
       useRegionStore.getState().setRegion('eu');
-      expect(useRegionStore.getState().region.flag).toBe('🇪🇺');
+      expect(useRegionStore.getState().region.flag).toBe('/flags/eu.svg');
       
       useRegionStore.getState().setRegion('mena');
-      expect(useRegionStore.getState().region.flag).toBeTruthy(); // Flag exists
+      expect(useRegionStore.getState().region.flag).toBe('/flags/ae.svg');
     });
   });
 

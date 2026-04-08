@@ -10,11 +10,11 @@ interface Region {
 }
 
 const regions: Region[] = [
-  { code: 'US', name: 'United States', flag: '🇺🇸' },
-  { code: 'UK', name: 'United Kingdom', flag: '🇬🇧' },
-  { code: 'EU', name: 'Europe', flag: '🇪🇺' },
-  { code: 'PL', name: 'Poland', flag: '🇵🇱' },
-  { code: 'MENA', name: 'Middle East', flag: '🇦🇪' },
+  { code: 'US', name: 'United States', flag: '/flags/us.svg' },
+  { code: 'UK', name: 'United Kingdom', flag: '/flags/gb.svg' },
+  { code: 'EU', name: 'Europe', flag: '/flags/eu.svg' },
+  { code: 'PL', name: 'Poland', flag: '/flags/pl.svg' },
+  { code: 'MENA', name: 'Middle East', flag: '/flags/ae.svg' },
 ];
 
 export default function RegionSelector() {
@@ -45,9 +45,13 @@ export default function RegionSelector() {
         aria-haspopup="true"
       >
         <Image src="/icons/globe.svg" alt="" width={24} height={24} className="h-6 w-6" />
-        <span className="text-2xl" role="img" aria-label={`${selectedRegion.name} flag`}>
-          {selectedRegion.flag}
-        </span>
+        <Image
+          src={selectedRegion.flag}
+          alt={`${selectedRegion.name} flag`}
+          width={24}
+          height={18}
+          className="h-[18px] w-6 rounded-sm object-cover"
+        />
         <span className="font-medium">{selectedRegion.name}</span>
       </button>
 
@@ -63,9 +67,13 @@ export default function RegionSelector() {
                   }}
                   className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-neutral-50"
                 >
-                  <span className="text-2xl" role="img" aria-label={`${region.name} flag`}>
-                    {region.flag}
-                  </span>
+                  <Image
+                    src={region.flag}
+                    alt={`${region.name} flag`}
+                    width={24}
+                    height={18}
+                    className="h-[18px] w-6 rounded-sm object-cover"
+                  />
                   <span className="font-medium text-neutral-900">{region.name}</span>
                 </button>
               </li>

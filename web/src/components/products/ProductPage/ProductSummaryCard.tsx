@@ -102,28 +102,34 @@ export default function ProductSummaryCard({
         if (prefersReducedMotion) {
           // Instant scroll - focus immediately
           focusFirstInput();
-        } else if ('onscrollend' in window) {
-          // Modern browsers - use scrollend event
-          const handleScrollEnd = () => {
-            focusFirstInput();
-          };
-          window.addEventListener('scrollend', handleScrollEnd, { once: true });
         } else {
-          // Fallback for older browsers - detect when scroll settles
-          let attempts = 0;
-          const maxAttempts = 60; // ~1 second at 60fps
-          const focusWhenScrollSettles = () => {
-            const isAtTarget = Math.abs(window.scrollY - targetPosition) <= 2;
-
-            if (isAtTarget || attempts >= maxAttempts) {
+          const supportsScrollEnd = 'onscrollend' in window;
+          
+          if (supportsScrollEnd) {
+            // Modern browsers - use scrollend event
+            const handleScrollEnd = () => {
               focusFirstInput();
-              return;
-            }
+            };
+            window.addEventListener('scrollend', handleScrollEnd, { once: true });
+          } else {
+            // Fallback for older browsers - detect when scroll settles
+            let attempts = 0;
+            const maxAttempts = 60; // ~1 second at 60fps
+            
+            function focusWhenScrollSettles() {
+              const isAtTarget = Math.abs(window.scrollY - targetPosition) <= 2;
 
-            attempts += 1;
+              if (isAtTarget || attempts >= maxAttempts) {
+                focusFirstInput();
+                return;
+              }
+
+              attempts += 1;
+              window.requestAnimationFrame(focusWhenScrollSettles);
+            }
+            
             window.requestAnimationFrame(focusWhenScrollSettles);
-          };
-          window.requestAnimationFrame(focusWhenScrollSettles);
+          }
         }
       }
     };

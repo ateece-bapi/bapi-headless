@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import { LinkedinIcon, YoutubeIcon } from '@/lib/icons';
@@ -88,17 +88,11 @@ const social = [
 ];
 
 const Footer: React.FC = () => {
-  const [mounted, setMounted] = useState(false);
   const locale = useLocale();
   const t = useTranslations('footer');
 
-  // Prevent hydration mismatch - wait for client-side mount
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Show SSR-safe fallback footer until mounted and locale is ready
-  if (!mounted || !locale) {
+  // Show SSR-safe fallback footer if locale not ready
+  if (!locale) {
     return (
       <footer className="relative mt-16 w-full border-t border-neutral-200 bg-neutral-50">
         <div className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500"></div>

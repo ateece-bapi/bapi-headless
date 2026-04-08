@@ -7,14 +7,14 @@
  * Coverage:
  * - Region selection and persistence
  * - Language selection and MENA auto-switching
- * - Migration from deprecated 'asia' region to 'sg' (Singapore)
+ * - Migration from deprecated regions
  * - Currency associations
  * - Convenience hook exports
  * - localStorage persistence and hydration
  *
  * Phase 1 Launch Requirements:
  * - i18n support (multiple locales)
- * - Currency conversion (USD, EUR, GBP, JPY, CNY, SGD, AED, VND, THB, INR, etc.)
+ * - Currency conversion (USD, EUR, GBP, PLN, AED)
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
@@ -78,9 +78,9 @@ describe('regionStore', () => {
       expect(region.locale).toBe('en-US');
     });
 
-    it('should have US flag emoji for default region', () => {
+    it('should have US flag SVG for default region', () => {
       const { region } = useRegionStore.getState();
-      expect(region.flag).toBe('🇺🇸');
+      expect(region.flag).toBe('/flags/us.svg');
     });
   });
 
@@ -131,12 +131,12 @@ describe('regionStore', () => {
       });
     });
 
-    it('should update flag emoji when changing regions', () => {
+    it('should update flag SVG when changing regions', () => {
       useRegionStore.getState().setRegion('eu');
-      expect(useRegionStore.getState().region.flag).toBe('🇪🇺');
+      expect(useRegionStore.getState().region.flag).toBe('/flags/eu.svg');
       
       useRegionStore.getState().setRegion('mena');
-      expect(useRegionStore.getState().region.flag).toBeTruthy(); // Flag exists
+      expect(useRegionStore.getState().region.flag).toBe('/flags/ae.svg');
     });
   });
 
@@ -209,8 +209,8 @@ describe('regionStore', () => {
     });
   });
 
-  describe('Migration from deprecated Asia region', () => {
-    it('should migrate deprecated "asia" region to "sg" (Singapore)', () => {
+  describe('Migration from deprecated regions', () => {
+    it('should migrate deprecated "asia" region to "us" (USD)', () => {
       // Access the migrate function from persist configuration
       // @ts-expect-error - accessing internal persist API to test migration logic
       const options = useRegionStore.persist.getOptions();
@@ -228,9 +228,41 @@ describe('regionStore', () => {
       const migratedState = migrateFn(deprecatedState);
       
       // Verify migration occurred correctly
-      expect(migratedState.regionCode).toBe('sg');
-      expect(migratedState.region).toEqual(REGIONS.sg);
+      expect(migratedState.regionCode).toBe('us');
+      expect(migratedState.region).toEqual(REGIONS.us);
       expect(migratedState.languageCode).toBe('en');
+    });
+
+    it('should migrate deprecated "sg" region to "us" (USD)', () => {
+      // @ts-expect-error - accessing internal persist API
+      const options = useRegionStore.persist.getOptions();
+      const migrateFn = options.migrate;
+      
+      const deprecatedState = {
+        regionCode: 'sg',
+        languageCode: 'en',
+      };
+      
+      const migratedState = migrateFn(deprecatedState);
+      
+      expect(migratedState.regionCode).toBe('us');
+      expect(migratedState.region).toEqual(REGIONS.us);
+    });
+
+    it('should migrate deprecated "ca" region to "us" (USD)', () => {
+      // @ts-expect-error - accessing internal persist API
+      const options = useRegionStore.persist.getOptions();
+      const migrateFn = options.migrate;
+      
+      const deprecatedState = {
+        regionCode: 'ca',
+        languageCode: 'en',
+      };
+      
+      const migratedState = migrateFn(deprecatedState);
+      
+      expect(migratedState.regionCode).toBe('us');
+      expect(migratedState.region).toEqual(REGIONS.us);
     });
     
     it('should preserve valid region codes during migration', () => {

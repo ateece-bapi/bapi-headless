@@ -38,23 +38,37 @@ export const useRegionStore = create<RegionStore>()(
     }),
     {
       name: 'bapi-region-storage',
-      version: 1,
-      // Migration: Handle deprecated 'asia' region from previous version
+      version: 2,
+      // Migration: Handle deprecated regions from previous versions
       migrate: (persistedState: unknown) => {
         const state = persistedState as
           | Partial<{
-              regionCode: string; // Use string to allow deprecated 'asia'
+              regionCode: string; // Use string to allow deprecated region codes
               region: Region;
               languageCode: LanguageCode;
             }>
           | undefined;
 
-        // If user has deprecated 'asia' region, migrate to 'sg' (Singapore hub)
-        if (state?.regionCode === 'asia') {
+        // Map deprecated regions to supported regions
+        const deprecatedRegionMap: Record<string, RegionCode> = {
+          asia: 'us',   // Deprecated 'asia' region -> US (USD)
+          sg: 'us',     // Singapore -> US (USD)
+          ca: 'us',     // Canada -> US (USD)
+          mx: 'us',     // Mexico -> US (USD)
+          jp: 'us',     // Japan -> US (USD)
+          cn: 'us',     // China -> US (USD)
+          vn: 'us',     // Vietnam -> US (USD)
+          th: 'us',     // Thailand -> US (USD)
+          in: 'us',     // India -> US (USD)
+        };
+
+        // If user has a deprecated region, migrate to the mapped supported region
+        if (state?.regionCode && deprecatedRegionMap[state.regionCode]) {
+          const newRegionCode = deprecatedRegionMap[state.regionCode];
           return {
             ...state,
-            regionCode: 'sg' as RegionCode,
-            region: REGIONS.sg,
+            regionCode: newRegionCode,
+            region: REGIONS[newRegionCode],
             languageCode: state.languageCode ?? 'en',
           };
         }

@@ -12,8 +12,8 @@ export const runtime = 'edge';
 const COUNTRY_TO_REGION: Record<string, RegionCode> = {
   // North America
   US: 'us',
-  CA: 'ca', // Canada
-  MX: 'mx', // Mexico
+  CA: 'us', // Canada - use USD
+  MX: 'us', // Mexico - use USD
 
   // Europe
   DE: 'eu',
@@ -29,7 +29,7 @@ const COUNTRY_TO_REGION: Record<string, RegionCode> = {
   NO: 'eu',
   DK: 'eu',
   FI: 'eu',
-  PL: 'eu',
+  PL: 'pl', // Poland gets its own region
   CZ: 'eu',
   PT: 'eu',
   GR: 'eu',
@@ -46,23 +46,23 @@ const COUNTRY_TO_REGION: Record<string, RegionCode> = {
   LB: 'mena',
   EG: 'mena',
 
-  // Asia - Specific regions
-  JP: 'jp', // Japan
-  CN: 'cn', // China
-  SG: 'sg', // Singapore
-  VN: 'vn', // Vietnam
-  TH: 'th', // Thailand
-  IN: 'in', // India
+  // Asia - Map to closest supported region (USD as default)
+  JP: 'us', // Japan - use USD
+  CN: 'us', // China - use USD
+  SG: 'us', // Singapore - use USD
+  VN: 'us', // Vietnam - use USD
+  TH: 'us', // Thailand - use USD
+  IN: 'us', // India - use USD
 
-  // Asia - Grouped under Singapore
-  HK: 'sg',
-  TW: 'sg',
-  KR: 'sg',
-  MY: 'sg',
-  ID: 'sg',
-  PH: 'sg',
-  AU: 'sg',
-  NZ: 'sg',
+  // Asia - Grouped under US (USD)
+  HK: 'us',
+  TW: 'us',
+  KR: 'us',
+  MY: 'us',
+  ID: 'us',
+  PH: 'us',
+  AU: 'us',
+  NZ: 'us',
 };
 
 // Map country codes to suggested languages
@@ -70,15 +70,9 @@ const COUNTRY_TO_LANGUAGE: Record<string, LanguageCode> = {
   DE: 'de',
   FR: 'fr',
   ES: 'es',
-  MX: 'es', // Mexico
-  JP: 'ja',
-  CN: 'zh',
-  VN: 'vi',
   SA: 'ar',
   AE: 'ar',
-  TH: 'th',
   PL: 'pl',
-  IN: 'hi',
 };
 
 // Friendly country names

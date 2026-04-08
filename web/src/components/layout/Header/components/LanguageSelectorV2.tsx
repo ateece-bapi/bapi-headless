@@ -1,6 +1,7 @@
 'use client';
 
 import { Fragment, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Listbox, Transition } from '@headlessui/react';
 import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale, useTranslations } from 'next-intl';
@@ -19,6 +20,8 @@ export function LanguageSelectorV2() {
   const { showToast } = useToast();
 
   // Prevent hydration mismatch by only rendering Headless UI on client
+  // This is a standard Next.js pattern for client-only components
+  // eslint-disable-next-line react-compiler/react-compiler -- Required for SSR/client hydration safety
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -57,9 +60,13 @@ export function LanguageSelectorV2() {
             aria-hidden="true"
           />
           <span className="flex items-center gap-2">
-            <span className="text-lg" aria-hidden="true">
-              {currentLanguage?.flag || LANGUAGES.en.flag}
-            </span>
+            <Image
+              src={currentLanguage?.flag || LANGUAGES.en.flag}
+              alt=""
+              width={20}
+              height={15}
+              className="h-[15px] w-5 rounded-sm object-cover"
+            />
             <span className="block truncate">{currentLanguage?.nativeName || LANGUAGES.en.nativeName}</span>
           </span>
           <ChevronDownIcon
@@ -91,9 +98,13 @@ export function LanguageSelectorV2() {
 
               {/* Selected Language Display */}
               <span className="flex items-center gap-2">
-                <span className="text-lg" aria-hidden="true">
-                  {currentLanguage.flag}
-                </span>
+                <Image
+                  src={currentLanguage.flag}
+                  alt={`${currentLanguage.name} flag`}
+                  width={20}
+                  height={15}
+                  className="h-[15px] w-5 rounded-sm object-cover"
+                />
                 <span className="block truncate">{currentLanguage.nativeName}</span>
               </span>
 
@@ -148,9 +159,13 @@ export function LanguageSelectorV2() {
 
                               {/* Option Content */}
                               <div className="flex items-center gap-2">
-                                <span className="text-lg" aria-hidden="true">
-                                  {config.flag}
-                                </span>
+                                <Image
+                                  src={config.flag}
+                                  alt={`${config.name} flag`}
+                                  width={20}
+                                  height={15}
+                                  className="h-[15px] w-5 rounded-sm object-cover"
+                                />
                                 <div className="flex flex-col">
                                   <span
                                     className={`block truncate ${

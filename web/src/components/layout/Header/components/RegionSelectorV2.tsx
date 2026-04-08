@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Fragment, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Listbox, Transition } from '@headlessui/react';
 import { useRouter, usePathname } from '@/lib/navigation';
 import { useLocale } from 'next-intl';
@@ -71,9 +72,13 @@ const RegionSelectorV2: React.FC = () => {
             aria-hidden="true"
           />
           <span className="flex items-center gap-2">
-            <span className="text-lg" aria-hidden="true">
-              {currentRegion?.flag || REGIONS.us.flag}
-            </span>
+            <Image
+              src={currentRegion?.flag || REGIONS.us.flag}
+              alt=""
+              width={20}
+              height={15}
+              className="h-[15px] w-5 rounded-sm object-cover"
+            />
             <span className="block truncate">{currentRegion?.name || REGIONS.us.name}</span>
           </span>
           <span className="ml-auto flex items-center gap-1.5 text-neutral-700">
@@ -109,9 +114,13 @@ const RegionSelectorV2: React.FC = () => {
 
               {/* Selected Region Display */}
               <span className="flex items-center gap-2">
-                <span className="text-lg" aria-hidden="true">
-                  {currentRegion.flag}
-                </span>
+                <Image
+                  src={currentRegion.flag}
+                  alt={`${currentRegion.name} flag`}
+                  width={20}
+                  height={15}
+                  className="h-[15px] w-5 rounded-sm object-cover"
+                />
                 <span className="block truncate">{currentRegion.name}</span>
               </span>
 
@@ -174,9 +183,13 @@ const RegionSelectorV2: React.FC = () => {
                               {/* Option Content */}
                               <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-2">
-                                  <span className="text-lg" aria-hidden="true">
-                                    {region.flag}
-                                  </span>
+                                  <Image
+                                    src={region.flag}
+                                    alt={`${region.name} flag`}
+                                    width={20}
+                                    height={15}
+                                    className="h-[15px] w-5 rounded-sm object-cover"
+                                  />
                                   <span
                                     className={`block truncate ${
                                       isSelected ? 'font-semibold' : 'font-medium'

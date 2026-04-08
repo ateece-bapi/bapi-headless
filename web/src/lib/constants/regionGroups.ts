@@ -15,17 +15,12 @@ export const REGION_GROUPS: RegionGroup[] = [
   {
     id: 'americas',
     label: 'Americas',
-    regions: ['us', 'ca', 'mx'],
+    regions: ['us'],
   },
   {
     id: 'europe',
     label: 'Europe',
-    regions: ['uk', 'eu'],
-  },
-  {
-    id: 'asia-pacific',
-    label: 'Asia Pacific',
-    regions: ['jp', 'cn', 'sg', 'vn', 'th', 'in'],
+    regions: ['uk', 'eu', 'pl'],
   },
   {
     id: 'middle-east',

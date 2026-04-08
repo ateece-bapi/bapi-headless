@@ -4,30 +4,16 @@
 
 export type RegionCode =
   | 'us'
-  | 'ca'
-  | 'mx'
   | 'uk'
   | 'eu'
-  | 'jp'
-  | 'cn'
-  | 'sg'
-  | 'vn'
-  | 'th'
-  | 'in'
+  | 'pl'
   | 'mena';
 export type CurrencyCode =
   | 'USD'
-  | 'CAD'
-  | 'MXN'
   | 'EUR'
   | 'GBP'
-  | 'JPY'
-  | 'CNY'
-  | 'SGD'
-  | 'AED'
-  | 'VND'
-  | 'THB'
-  | 'INR';
+  | 'PLN'
+  | 'AED';
 export type LanguageCode =
   | 'en'
   | 'de'
@@ -74,23 +60,7 @@ export const REGIONS: Record<RegionCode, Region> = {
     currency: 'USD',
     language: 'en',
     locale: 'en-US',
-    flag: '🇺🇸',
-  },
-  ca: {
-    code: 'ca',
-    name: 'Canada',
-    currency: 'CAD',
-    language: 'en',
-    locale: 'en-CA',
-    flag: '🇨🇦',
-  },
-  mx: {
-    code: 'mx',
-    name: 'Mexico',
-    currency: 'MXN',
-    language: 'es',
-    locale: 'es-MX',
-    flag: '🇲🇽',
+    flag: '/flags/us.svg',
   },
   uk: {
     code: 'uk',
@@ -98,7 +68,7 @@ export const REGIONS: Record<RegionCode, Region> = {
     currency: 'GBP',
     language: 'en',
     locale: 'en-GB',
-    flag: '🇬🇧',
+    flag: '/flags/gb.svg',
   },
   eu: {
     code: 'eu',
@@ -106,55 +76,15 @@ export const REGIONS: Record<RegionCode, Region> = {
     currency: 'EUR',
     language: 'en',
     locale: 'en-GB',
-    flag: '🇪🇺',
+    flag: '/flags/eu.svg',
   },
-  jp: {
-    code: 'jp',
-    name: 'Japan',
-    currency: 'JPY',
-    language: 'ja',
-    locale: 'ja-JP',
-    flag: '🇯🇵',
-  },
-  cn: {
-    code: 'cn',
-    name: 'China',
-    currency: 'CNY',
-    language: 'zh',
-    locale: 'zh-CN',
-    flag: '🇨🇳',
-  },
-  sg: {
-    code: 'sg',
-    name: 'Singapore',
-    currency: 'SGD',
-    language: 'en',
-    locale: 'en-SG',
-    flag: '🇸🇬',
-  },
-  vn: {
-    code: 'vn',
-    name: 'Vietnam',
-    currency: 'VND',
-    language: 'vi',
-    locale: 'vi-VN',
-    flag: '🇻🇳',
-  },
-  th: {
-    code: 'th',
-    name: 'Thailand',
-    currency: 'THB',
-    language: 'th',
-    locale: 'th-TH',
-    flag: '🇹🇭',
-  },
-  in: {
-    code: 'in',
-    name: 'India',
-    currency: 'INR',
-    language: 'hi',
-    locale: 'hi-IN',
-    flag: '🇮🇳',
+  pl: {
+    code: 'pl',
+    name: 'Poland',
+    currency: 'PLN',
+    language: 'pl',
+    locale: 'pl-PL',
+    flag: '/flags/pl.svg',
   },
   mena: {
     code: 'mena',
@@ -162,7 +92,7 @@ export const REGIONS: Record<RegionCode, Region> = {
     currency: 'AED',
     language: 'ar',
     locale: 'ar-AE',
-    flag: '🇦🇪',
+    flag: '/flags/ae.svg',
   },
 };
 
@@ -171,20 +101,6 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     code: 'USD',
     symbol: '$',
     name: 'US Dollar',
-    decimals: 2,
-    position: 'before',
-  },
-  CAD: {
-    code: 'CAD',
-    symbol: 'C$',
-    name: 'Canadian Dollar',
-    decimals: 2,
-    position: 'before',
-  },
-  MXN: {
-    code: 'MXN',
-    symbol: '$',
-    name: 'Mexican Peso',
     decimals: 2,
     position: 'before',
   },
@@ -202,26 +118,12 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     decimals: 2,
     position: 'before',
   },
-  JPY: {
-    code: 'JPY',
-    symbol: '¥',
-    name: 'Japanese Yen',
-    decimals: 0,
-    position: 'before',
-  },
-  CNY: {
-    code: 'CNY',
-    symbol: '¥',
-    name: 'Chinese Yuan',
+  PLN: {
+    code: 'PLN',
+    symbol: 'zł',
+    name: 'Polish Zloty',
     decimals: 2,
-    position: 'before',
-  },
-  SGD: {
-    code: 'SGD',
-    symbol: 'S$',
-    name: 'Singapore Dollar',
-    decimals: 2,
-    position: 'before',
+    position: 'after',
   },
   AED: {
     code: 'AED',
@@ -230,27 +132,6 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     decimals: 2,
     position: 'after',
   },
-  VND: {
-    code: 'VND',
-    symbol: '₫',
-    name: 'Vietnamese Dong',
-    decimals: 0,
-    position: 'after',
-  },
-  THB: {
-    code: 'THB',
-    symbol: '฿',
-    name: 'Thai Baht',
-    decimals: 2,
-    position: 'before',
-  },
-  INR: {
-    code: 'INR',
-    symbol: '₹',
-    name: 'Indian Rupee',
-    decimals: 2,
-    position: 'before',
-  },
 };
 
 export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
@@ -258,7 +139,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'en',
     name: 'English',
     nativeName: 'English',
-    flag: '🇺🇸',
+    flag: '/flags/us.svg',
     dateFormat: 'MM/DD/YYYY',
     timeFormat: '12h',
   },
@@ -266,7 +147,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'de',
     name: 'German',
     nativeName: 'Deutsch',
-    flag: '🇩🇪',
+    flag: '/flags/de.svg',
     dateFormat: 'DD.MM.YYYY',
     timeFormat: '24h',
   },
@@ -274,7 +155,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'fr',
     name: 'French',
     nativeName: 'Français',
-    flag: '🇫🇷',
+    flag: '/flags/fr.svg',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '24h',
   },
@@ -282,7 +163,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'es',
     name: 'Spanish',
     nativeName: 'Español',
-    flag: '🇪🇸',
+    flag: '/flags/es.svg',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '24h',
   },
@@ -290,7 +171,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'ja',
     name: 'Japanese',
     nativeName: '日本語',
-    flag: '🇯🇵',
+    flag: '/flags/jp.svg',
     dateFormat: 'YYYY/MM/DD',
     timeFormat: '24h',
   },
@@ -298,7 +179,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'zh',
     name: 'Chinese',
     nativeName: '中文',
-    flag: '🇨🇳',
+    flag: '/flags/cn.svg',
     dateFormat: 'YYYY-MM-DD',
     timeFormat: '24h',
   },
@@ -306,7 +187,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'vi',
     name: 'Vietnamese',
     nativeName: 'Tiếng Việt',
-    flag: '🇻🇳',
+    flag: '/flags/vn.svg',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '24h',
   },
@@ -314,7 +195,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'ar',
     name: 'Arabic',
     nativeName: 'العربية',
-    flag: '🇸🇦',
+    flag: '/flags/sa.svg',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '12h',
   },
@@ -322,7 +203,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'th',
     name: 'Thai',
     nativeName: 'ไทย',
-    flag: '🇹🇭',
+    flag: '/flags/th.svg',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '24h',
   },
@@ -330,7 +211,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'pl',
     name: 'Polish',
     nativeName: 'Polski',
-    flag: '🇵🇱',
+    flag: '/flags/pl.svg',
     dateFormat: 'DD.MM.YYYY',
     timeFormat: '24h',
   },
@@ -338,7 +219,7 @@ export const LANGUAGES: Record<LanguageCode, LanguageConfig> = {
     code: 'hi',
     name: 'Hindi',
     nativeName: 'हिन्दी',
-    flag: '🇮🇳',
+    flag: '/flags/in.svg',
     dateFormat: 'DD/MM/YYYY',
     timeFormat: '12h',
   },

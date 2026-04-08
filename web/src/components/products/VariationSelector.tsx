@@ -251,7 +251,7 @@ export default function VariationSelector({
   const progressPercent = (selectedCount / totalCount) * 100;
 
   return (
-    <section className={`mb-12 ${className}`}>
+    <section className={`mb-12 ${className}`} data-product-configurator>
       {/* Enterprise Configuration Header */}
       <div className="rounded-t-2xl bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 px-8 py-6 text-white">
         <div className="flex items-center justify-between">

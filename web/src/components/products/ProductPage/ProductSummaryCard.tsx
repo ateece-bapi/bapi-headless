@@ -4,22 +4,71 @@ import React from 'react';
 import { BriefcaseIcon, HeartIcon } from '@/lib/icons';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
+import { useCart, useCartDrawer } from '@/store';
+import type { ProductAttribute, ProductVariation } from '@/types/variations';
 import {
   convertWooCommercePrice,
   convertWooCommercePriceNumeric,
   formatPrice,
 } from '@/lib/utils/currency';
 
+interface Product {
+  id?: string;
+  databaseId?: number;
+  name?: string;
+  slug?: string;
+  price?: string | null;
+  regularPrice?: string | null;
+  partNumber?: string | null;
+  sku?: string | null;
+  multiplier?: string | null;
+  stockQuantity?: number | null;
+  image?: {
+    sourceUrl?: string | null;
+    altText?: string | null;
+  } | null;
+  attributes?: ProductAttribute[];
+  variations?: ProductVariation[];
+}
+
 interface ProductSummaryCardProps {
-  product: any;
-  variation?: any;
-  useCart?: any;
-  useCartDrawer?: any;
+  product: Product;
+  variation?: ProductVariation | null;
+  useCart?: typeof useCart;
+  useCartDrawer?: typeof useCartDrawer;
   isLoadingVariation?: boolean;
   quantity?: number;
   onQuantityChange?: (quantity: number) => void;
 }
 
+/**
+ * Product Summary Card Component
+ * 
+ * Displays product pricing, configuration status, and add-to-cart functionality
+ * for both simple and variable products. For variable products without a selected
+ * variation, shows a CTA to scroll to the configurator section.
+ * 
+ * @param {ProductSummaryCardProps} props - Component props
+ * @param {Product} props.product - Product data including pricing and attributes
+ * @param {ProductVariation} [props.variation] - Selected variation for variable products
+ * @param {Function} [props.useCart] - Optional cart store hook for testing
+ * @param {Function} [props.useCartDrawer] - Optional cart drawer hook for testing
+ * @param {boolean} [props.isLoadingVariation=false] - Loading state for variation changes
+ * @param {number} [props.quantity] - External quantity control
+ * @param {Function} [props.onQuantityChange] - External quantity change handler
+ * 
+ * @returns {JSX.Element} Sticky product summary card
+ * 
+ * @example
+ * ```tsx
+ * <ProductSummaryCard
+ *   product={product}
+ *   variation={selectedVariation}
+ *   quantity={quantity}
+ *   onQuantityChange={setQuantity}
+ * />
+ * ```
+ */
 export default function ProductSummaryCard({
   product,
   variation,
@@ -66,18 +115,79 @@ export default function ProductSummaryCard({
 
   // Build selectedAttributes from variation.attributes if available
   const selectedAttributes =
-    variation?.attributes?.nodes?.reduce((acc: Record<string, string>, attr: any) => {
+    variation?.attributes?.nodes?.reduce((acc: Record<string, string>, attr: ProductVariation['attributes']['nodes'][number]) => {
       acc[attr.name] = attr.value;
       return acc;
     }, {}) || undefined;
 
   // For variable products, require a variation selection
   if (isVariableProduct && !variation) {
+    const scrollToConfigurator = () => {
+      const configurator = document.querySelector('[data-product-configurator]');
+      if (configurator) {
+        // Get the element's position and calculate offset for sticky headers
+        const elementPosition = configurator.getBoundingClientRect().top + window.scrollY;
+        const offset = 180; // Account for sticky nav + generous breathing room
+        const targetPosition = elementPosition - offset;
+        
+        // Respect prefers-reduced-motion for accessibility
+        const prefersReducedMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches;
+
+        const focusFirstInput = () => {
+          const firstInput = configurator.querySelector('button, select, input');
+          if (firstInput instanceof HTMLElement) {
+            firstInput.focus({ preventScroll: true });
+          }
+        };
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        });
+
+        // Focus first interactive element for accessibility after scrolling completes
+        if (prefersReducedMotion) {
+          // Instant scroll - focus immediately
+          focusFirstInput();
+        } else {
+          const supportsScrollEnd = 'onscrollend' in window;
+          
+          if (supportsScrollEnd) {
+            // Modern browsers - use scrollend event
+            const handleScrollEnd = () => {
+              focusFirstInput();
+            };
+            window.addEventListener('scrollend', handleScrollEnd, { once: true });
+          } else {
+            // Fallback for older browsers - detect when scroll settles
+            let attempts = 0;
+            const maxAttempts = 60; // ~1 second at 60fps
+            
+            function focusWhenScrollSettles() {
+              const isAtTarget = Math.abs(window.scrollY - targetPosition) <= 2;
+
+              if (isAtTarget || attempts >= maxAttempts) {
+                focusFirstInput();
+                return;
+              }
+
+              attempts += 1;
+              window.requestAnimationFrame(focusWhenScrollSettles);
+            }
+            
+            window.requestAnimationFrame(focusWhenScrollSettles);
+          }
+        }
+      }
+    };
+
     return (
       <aside className="mb-8 w-full rounded-xl border border-neutral-200 bg-white p-6 shadow md:sticky md:top-4 md:mb-0">
         <h2 className="mb-4 text-xl font-bold text-neutral-900">Product Summary</h2>
         <div className="py-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 animate-pulse">
             <svg
               className="h-8 w-8 text-primary-600"
               fill="none"
@@ -92,10 +202,32 @@ export default function ProductSummaryCard({
               />
             </svg>
           </div>
-          <p className="mb-2 font-medium text-neutral-700">Configure Product</p>
-          <p className="text-sm text-neutral-700">
+          <p className="mb-3 font-medium text-neutral-700">Configure Product</p>
+          <p className="mb-4 text-sm text-neutral-700">
             Select your specifications below to see pricing and part number
           </p>
+          
+          {/* Smooth Scroll CTA Button - BAPI Yellow Gradient */}
+          <button
+            onClick={scrollToConfigurator}
+            className="group relative inline-flex items-center gap-2 rounded-lg bg-bapi-accent-gradient px-6 py-3 font-semibold text-neutral-900 shadow-lg transition-all duration-200 hover:bg-bapi-accent-gradient-hover hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+            aria-label="Scroll to product configurator section"
+          >
+            <span>Start Configuring</span>
+            <svg 
+              className="h-5 w-5 transition-transform group-hover:translate-y-1" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+              />
+            </svg>
+          </button>
         </div>
       </aside>
     );
@@ -242,13 +374,16 @@ export default function ProductSummaryCard({
           {/* Add to Cart - Primary CTA Above Fold */}
           <AddToCartButton
             product={{
-              ...product,
               id: summaryId,
+              databaseId: variation?.databaseId || product.databaseId || 0,
               name: summaryName,
               slug: summarySlug,
               price: displayPrice,
               numericPrice,
-              image: summaryImage,
+              image: summaryImage?.sourceUrl ? {
+                sourceUrl: summaryImage.sourceUrl,
+                altText: summaryImage.altText ?? undefined,
+              } : null,
               variationId,
               variationName,
               variationSku,

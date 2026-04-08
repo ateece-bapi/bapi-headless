@@ -70,7 +70,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       default:
         messages = (await import('../messages/en.json')).default;
     }
-  } catch (error) {
+  } catch {
     logger.warn(`Failed to load messages for locale ${validLocale}, using English fallback`);
     messages = (await import('../messages/en.json')).default;
   }

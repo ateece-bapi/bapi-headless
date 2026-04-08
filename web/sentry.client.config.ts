@@ -6,6 +6,9 @@
 // This improves Speed Index and TBT (Total Blocking Time) metrics
 // Sentry will initialize after page becomes interactive (~2s delay)
 
+// Export empty object to make this a valid module (required by Next.js instrumentation)
+export {};
+
 if (typeof window !== 'undefined') {
   // Check if page is already interactive, otherwise wait for it
   const initSentry = async () => {

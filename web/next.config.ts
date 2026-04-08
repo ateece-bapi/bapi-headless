@@ -256,6 +256,19 @@ const nextConfig: NextConfig = {
     webpackBuildWorker: true,
   },
   
+  // Phase 2: Compiler optimizations for production
+  compiler: {
+    // Remove console.log in production (except errors) - reduces bundle size
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'],
+    } : false,
+  },
+  
+  // Phase 2: Production performance optimizations
+  compress: true, // Enable gzip compression (reduces transfer size ~70%)
+  poweredByHeader: false, // Remove X-Powered-By header (security + performance)
+  generateEtags: true, // Enable ETags for cache validation
+  
   // other Next options (keep whatever you already need here)...
   // Example: uncomment if you want a custom distDir explicitly inside the project:
   // distDir: path.join(path.resolve(__dirname), '.next'),

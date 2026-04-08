@@ -92,7 +92,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'rsaucke@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/placeholder.svg',
+    photo: '/images/team/reggie-saucke.png',
   },
   {
     name: 'Jacob Benson',
@@ -100,7 +100,7 @@ const northAmericaTeam: SalesRep[] = [
     region: 'North America',
     email: 'jbenson@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/placeholder.svg',
+    photo: '/images/team/jacob-benson.png',
   },
 ];
 
@@ -145,7 +145,7 @@ const indiaTeam: SalesRep[] = [
     region: 'India',
     email: 'sharad@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/Sharad-Thakur.png',
+    photo: '/images/team/sharad-thakur.png',
   },
   {
     name: 'Shyam Krishnareddygari',
@@ -153,7 +153,7 @@ const indiaTeam: SalesRep[] = [
     region: 'India',
     email: 'shyam@bapihvac.com',
     phone: '(800) 553-3027',
-    photo: '/images/team/Shyam-Krishnareddygari.png',
+    photo: '/images/team/shyam-krishnareddygari.png',
   },
 ];
 

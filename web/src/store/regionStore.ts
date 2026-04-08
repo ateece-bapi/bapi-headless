@@ -38,7 +38,7 @@ export const useRegionStore = create<RegionStore>()(
     }),
     {
       name: 'bapi-region-storage',
-      version: 1,
+      version: 2,
       // Migration: Handle deprecated regions from previous versions
       migrate: (persistedState: unknown) => {
         const state = persistedState as

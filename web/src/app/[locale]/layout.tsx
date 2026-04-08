@@ -74,25 +74,6 @@ export default async function LocaleLayout({
       {/* Set lang attribute on html element */}
       <HtmlLangAttribute locale={locale} />
 
-      {/* Phase 2: Resource hints - Preconnect to critical origins for faster requests */}
-      {/* Preconnect establishes early connections (DNS + TLS handshake) before requests are made */}
-      
-      {/* Google Fonts - Critical for Roboto font loading */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      
-      {/* WordPress GraphQL API - Critical for all content */}
-      <link
-        rel="preconnect"
-        href="https://bapiheadlessstaging.kinsta.cloud"
-        crossOrigin="anonymous"
-      />
-      
-      {/* DNS prefetch for third-party analytics (non-blocking, lower priority) */}
-      <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com" />
-
-
-
       {/* Structured Data for SEO */}
       <StructuredData schema={[organizationSchema, websiteSchema]} />
 

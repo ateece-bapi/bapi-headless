@@ -25,8 +25,19 @@ export default async function RootLayout({
   // Get locale from next-intl server-side (cookies/headers)
   const locale = await getLocale();
 
+  // Phase 2: Dynamic WordPress GraphQL origin for preconnect (environment-aware)
+  const graphqlUrl = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
+  const wordpressOrigin = graphqlUrl ? new URL(graphqlUrl).origin : '';
+
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        {/* Phase 2: Resource hints - Preconnect to WordPress GraphQL API */}
+        {/* Establishes early connection (DNS + TLS handshake) before API requests */}
+        {wordpressOrigin && (
+          <link rel="preconnect" href={wordpressOrigin} crossOrigin="anonymous" />
+        )}
+      </head>
       <body className={`${roboto.variable} font-sans antialiased`} suppressHydrationWarning>
         {children}
       </body>

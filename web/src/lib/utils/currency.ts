@@ -7,17 +7,10 @@ import { CURRENCIES } from '@/types/region';
  */
 const EXCHANGE_RATES: Record<CurrencyCode, number> = {
   USD: 1.0,
-  CAD: 1.36, // Canadian Dollar (1 USD ≈ 1.36 CAD)
-  MXN: 17.5, // Mexican Peso (1 USD ≈ 17.5 MXN)
-  EUR: 0.92,
-  GBP: 0.79,
-  JPY: 149.5,
-  CNY: 7.24,
-  SGD: 1.34,
-  AED: 3.67,
-  VND: 25320, // Vietnamese Dong (1 USD ≈ 25,320 VND)
-  THB: 36.0, // Thai Baht (1 USD ≈ 36 THB)
-  INR: 83.0, // Indian Rupee (1 USD ≈ 83 INR)
+  EUR: 0.92,  // Euro (1 USD ≈ 0.92 EUR)
+  GBP: 0.79,  // British Pound (1 USD ≈ 0.79 GBP)
+  PLN: 3.98,  // Polish Zloty (1 USD ≈ 3.98 PLN)
+  AED: 3.67,  // UAE Dirham (1 USD ≈ 3.67 AED)
 };
 
 /**

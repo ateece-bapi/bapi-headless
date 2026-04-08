@@ -4,30 +4,16 @@
 
 export type RegionCode =
   | 'us'
-  | 'ca'
-  | 'mx'
   | 'uk'
   | 'eu'
-  | 'jp'
-  | 'cn'
-  | 'sg'
-  | 'vn'
-  | 'th'
-  | 'in'
+  | 'pl'
   | 'mena';
 export type CurrencyCode =
   | 'USD'
-  | 'CAD'
-  | 'MXN'
   | 'EUR'
   | 'GBP'
-  | 'JPY'
-  | 'CNY'
-  | 'SGD'
-  | 'AED'
-  | 'VND'
-  | 'THB'
-  | 'INR';
+  | 'PLN'
+  | 'AED';
 export type LanguageCode =
   | 'en'
   | 'de'
@@ -76,22 +62,6 @@ export const REGIONS: Record<RegionCode, Region> = {
     locale: 'en-US',
     flag: '🇺🇸',
   },
-  ca: {
-    code: 'ca',
-    name: 'Canada',
-    currency: 'CAD',
-    language: 'en',
-    locale: 'en-CA',
-    flag: '🇨🇦',
-  },
-  mx: {
-    code: 'mx',
-    name: 'Mexico',
-    currency: 'MXN',
-    language: 'es',
-    locale: 'es-MX',
-    flag: '🇲🇽',
-  },
   uk: {
     code: 'uk',
     name: 'United Kingdom',
@@ -108,53 +78,13 @@ export const REGIONS: Record<RegionCode, Region> = {
     locale: 'en-GB',
     flag: '🇪🇺',
   },
-  jp: {
-    code: 'jp',
-    name: 'Japan',
-    currency: 'JPY',
-    language: 'ja',
-    locale: 'ja-JP',
-    flag: '🇯🇵',
-  },
-  cn: {
-    code: 'cn',
-    name: 'China',
-    currency: 'CNY',
-    language: 'zh',
-    locale: 'zh-CN',
-    flag: '🇨🇳',
-  },
-  sg: {
-    code: 'sg',
-    name: 'Singapore',
-    currency: 'SGD',
-    language: 'en',
-    locale: 'en-SG',
-    flag: '🇸🇬',
-  },
-  vn: {
-    code: 'vn',
-    name: 'Vietnam',
-    currency: 'VND',
-    language: 'vi',
-    locale: 'vi-VN',
-    flag: '🇻🇳',
-  },
-  th: {
-    code: 'th',
-    name: 'Thailand',
-    currency: 'THB',
-    language: 'th',
-    locale: 'th-TH',
-    flag: '🇹🇭',
-  },
-  in: {
-    code: 'in',
-    name: 'India',
-    currency: 'INR',
-    language: 'hi',
-    locale: 'hi-IN',
-    flag: '🇮🇳',
+  pl: {
+    code: 'pl',
+    name: 'Poland',
+    currency: 'PLN',
+    language: 'pl',
+    locale: 'pl-PL',
+    flag: '🇵🇱',
   },
   mena: {
     code: 'mena',
@@ -174,20 +104,6 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     decimals: 2,
     position: 'before',
   },
-  CAD: {
-    code: 'CAD',
-    symbol: 'C$',
-    name: 'Canadian Dollar',
-    decimals: 2,
-    position: 'before',
-  },
-  MXN: {
-    code: 'MXN',
-    symbol: '$',
-    name: 'Mexican Peso',
-    decimals: 2,
-    position: 'before',
-  },
   EUR: {
     code: 'EUR',
     symbol: '€',
@@ -202,26 +118,12 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     decimals: 2,
     position: 'before',
   },
-  JPY: {
-    code: 'JPY',
-    symbol: '¥',
-    name: 'Japanese Yen',
-    decimals: 0,
-    position: 'before',
-  },
-  CNY: {
-    code: 'CNY',
-    symbol: '¥',
-    name: 'Chinese Yuan',
+  PLN: {
+    code: 'PLN',
+    symbol: 'zł',
+    name: 'Polish Zloty',
     decimals: 2,
-    position: 'before',
-  },
-  SGD: {
-    code: 'SGD',
-    symbol: 'S$',
-    name: 'Singapore Dollar',
-    decimals: 2,
-    position: 'before',
+    position: 'after',
   },
   AED: {
     code: 'AED',
@@ -229,27 +131,6 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     name: 'UAE Dirham',
     decimals: 2,
     position: 'after',
-  },
-  VND: {
-    code: 'VND',
-    symbol: '₫',
-    name: 'Vietnamese Dong',
-    decimals: 0,
-    position: 'after',
-  },
-  THB: {
-    code: 'THB',
-    symbol: '฿',
-    name: 'Thai Baht',
-    decimals: 2,
-    position: 'before',
-  },
-  INR: {
-    code: 'INR',
-    symbol: '₹',
-    name: 'Indian Rupee',
-    decimals: 2,
-    position: 'before',
   },
 };
 

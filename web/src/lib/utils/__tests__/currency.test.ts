@@ -29,19 +29,14 @@ describe('Currency Utilities', () => {
       expect(formatPrice(1234.56, 'GBP')).toBe('£1,234.56');
     });
 
-    it('formats JPY correctly (no decimals)', () => {
-      expect(formatPrice(100, 'JPY')).toBe('¥100');
-      expect(formatPrice(1234, 'JPY')).toBe('¥1,234');
+    it('formats PLN correctly', () => {
+      expect(formatPrice(100, 'PLN')).toBe('100.00zł');
+      expect(formatPrice(1234.56, 'PLN')).toBe('1,234.56zł');
     });
 
-    it('formats CAD correctly', () => {
-      expect(formatPrice(100, 'CAD')).toBe('C$100.00');
-      expect(formatPrice(1234.56, 'CAD')).toBe('C$1,234.56');
-    });
-
-    it('formats MXN correctly', () => {
-      expect(formatPrice(100, 'MXN')).toBe('$100.00');
-      expect(formatPrice(1234.56, 'MXN')).toBe('$1,234.56');
+    it('formats AED correctly', () => {
+      expect(formatPrice(100, 'AED')).toBe('100.00د.إ');
+      expect(formatPrice(1234.56, 'AED')).toBe('1,234.56د.إ');
     });
 
     it('formats with currency code when showCode is true', () => {
@@ -90,34 +85,14 @@ describe('Currency Utilities', () => {
       expect(result).toBe(79); // 100 * 0.79
     });
 
-    it('converts USD to JPY', () => {
-      const result = convertPrice(100, 'JPY');
-      expect(result).toBe(14950); // 100 * 149.5
-    });
-
-    it('converts USD to CNY', () => {
-      const result = convertPrice(100, 'CNY');
-      expect(result).toBe(724); // 100 * 7.24
-    });
-
-    it('converts USD to SGD', () => {
-      const result = convertPrice(100, 'SGD');
-      expect(result).toBe(134); // 100 * 1.34
+    it('converts USD to PLN', () => {
+      const result = convertPrice(100, 'PLN');
+      expect(result).toBe(398); // 100 * 3.98
     });
 
     it('converts USD to AED', () => {
       const result = convertPrice(100, 'AED');
       expect(result).toBe(367); // 100 * 3.67
-    });
-
-    it('converts USD to CAD', () => {
-      const result = convertPrice(100, 'CAD');
-      expect(result).toBe(136); // 100 * 1.36
-    });
-
-    it('converts USD to MXN', () => {
-      const result = convertPrice(100, 'MXN');
-      expect(result).toBe(1750); // 100 * 17.5
     });
 
     it('handles zero', () => {
@@ -139,16 +114,12 @@ describe('Currency Utilities', () => {
       expect(formatConvertedPrice(100, 'GBP')).toBe('£79.00');
     });
 
-    it('converts and formats USD to JPY', () => {
-      expect(formatConvertedPrice(100, 'JPY')).toBe('¥14,950');
+    it('converts and formats USD to PLN', () => {
+      expect(formatConvertedPrice(100, 'PLN')).toBe('398.00zł');
     });
 
-    it('converts and formats USD to CAD', () => {
-      expect(formatConvertedPrice(100, 'CAD')).toBe('C$136.00');
-    });
-
-    it('converts and formats USD to MXN', () => {
-      expect(formatConvertedPrice(100, 'MXN')).toBe('$1,750.00');
+    it('converts and formats USD to AED', () => {
+      expect(formatConvertedPrice(100, 'AED')).toBe('367.00د.إ');
     });
 
     it('handles USD default (no conversion)', () => {
@@ -170,12 +141,8 @@ describe('Currency Utilities', () => {
       expect(getCurrencySymbol('USD')).toBe('$');
       expect(getCurrencySymbol('EUR')).toBe('€');
       expect(getCurrencySymbol('GBP')).toBe('£');
-      expect(getCurrencySymbol('JPY')).toBe('¥');
-      expect(getCurrencySymbol('CNY')).toBe('¥');
-      expect(getCurrencySymbol('SGD')).toBe('S$');
+      expect(getCurrencySymbol('PLN')).toBe('zł');
       expect(getCurrencySymbol('AED')).toBe('د.إ');
-      expect(getCurrencySymbol('CAD')).toBe('C$');
-      expect(getCurrencySymbol('MXN')).toBe('$');
     });
   });
 
@@ -184,12 +151,8 @@ describe('Currency Utilities', () => {
       expect(getCurrencyName('USD')).toBe('US Dollar');
       expect(getCurrencyName('EUR')).toBe('Euro');
       expect(getCurrencyName('GBP')).toBe('British Pound');
-      expect(getCurrencyName('JPY')).toBe('Japanese Yen');
-      expect(getCurrencyName('CNY')).toBe('Chinese Yuan');
-      expect(getCurrencyName('SGD')).toBe('Singapore Dollar');
+      expect(getCurrencyName('PLN')).toBe('Polish Zloty');
       expect(getCurrencyName('AED')).toBe('UAE Dirham');
-      expect(getCurrencyName('CAD')).toBe('Canadian Dollar');
-      expect(getCurrencyName('MXN')).toBe('Mexican Peso');
     });
   });
 
@@ -206,16 +169,12 @@ describe('Currency Utilities', () => {
       expect(formatPriceRange(10, 100, 'GBP')).toBe('£7.90 - £79.00');
     });
 
-    it('formats JPY range', () => {
-      expect(formatPriceRange(10, 100, 'JPY')).toBe('¥1,495 - ¥14,950');
+    it('formats PLN range', () => {
+      expect(formatPriceRange(10, 100, 'PLN')).toBe('39.80zł - 398.00zł');
     });
 
-    it('formats CAD range', () => {
-      expect(formatPriceRange(10, 100, 'CAD')).toBe('C$13.60 - C$136.00');
-    });
-
-    it('formats MXN range', () => {
-      expect(formatPriceRange(10, 100, 'MXN')).toBe('$175.00 - $1,750.00');
+    it('formats AED range', () => {
+      expect(formatPriceRange(10, 100, 'AED')).toBe('36.70د.إ - 367.00د.إ');
     });
 
     it('handles same min and max', () => {
@@ -305,20 +264,14 @@ describe('Currency Utilities', () => {
         expect(parseFloat(result.replace(/[£,]/g, ''))).toBeCloseTo(79.0, 1);
       });
 
-      it('converts USD to JPY (no decimals)', () => {
-        const result = convertWooCommercePrice('$99.99', 'JPY');
-        expect(result).toMatch(/^¥[\d,]+$/);
-        expect(result).not.toContain('.');
+      it('converts USD to PLN', () => {
+        const result = convertWooCommercePrice('$99.99', 'PLN');
+        expect(result).toMatch(/^\d+\.\d{2}zł$/);
       });
 
-      it('converts USD to CAD', () => {
-        const result = convertWooCommercePrice('$99.99', 'CAD');
-        expect(result).toMatch(/^C\$\d+\.\d{2}$/);
-      });
-
-      it('converts USD to MXN', () => {
-        const result = convertWooCommercePrice('$99.99', 'MXN');
-        expect(result).toMatch(/^\$[\d,]+\.\d{2}$/);
+      it('converts USD to AED', () => {
+        const result = convertWooCommercePrice('$99.99', 'AED');
+        expect(result).toMatch(/د\.إ$/);
       });
     });
 
@@ -336,11 +289,16 @@ describe('Currency Utilities', () => {
         expect(result).toContain(' - ');
       });
 
-      it('converts USD range to JPY', () => {
-        const result = convertWooCommercePrice('$10 - $100', 'JPY');
-        expect(result).toContain('¥');
+      it('converts USD range to PLN', () => {
+        const result = convertWooCommercePrice('$10 - $100', 'PLN');
+        expect(result).toContain('zł');
         expect(result).toContain(' - ');
-        expect(result).not.toContain('.');
+      });
+
+      it('converts USD range to AED', () => {
+        const result = convertWooCommercePrice('$10 - $100', 'AED');
+        expect(result).toContain('د.إ');
+        expect(result).toContain(' - ');
       });
     });
 
@@ -364,21 +322,11 @@ describe('Currency Utilities', () => {
       });
     });
 
-    describe('all 12 currencies', () => {
+    describe('all 5 supported currencies', () => {
       const testPrice = '$100.00';
 
       it('handles USD', () => {
         expect(convertWooCommercePrice(testPrice, 'USD')).toBe(testPrice);
-      });
-
-      it('handles CAD', () => {
-        const result = convertWooCommercePrice(testPrice, 'CAD');
-        expect(result).toMatch(/^C\$/);
-      });
-
-      it('handles MXN', () => {
-        const result = convertWooCommercePrice(testPrice, 'MXN');
-        expect(result).toMatch(/^\$/);
       });
 
       it('handles EUR', () => {
@@ -391,41 +339,14 @@ describe('Currency Utilities', () => {
         expect(result).toMatch(/^£/);
       });
 
-      it('handles JPY', () => {
-        const result = convertWooCommercePrice(testPrice, 'JPY');
-        expect(result).toMatch(/^¥/);
-        expect(result).not.toContain('.');
-      });
-
-      it('handles CNY', () => {
-        const result = convertWooCommercePrice(testPrice, 'CNY');
-        expect(result).toMatch(/^¥/);
-      });
-
-      it('handles SGD', () => {
-        const result = convertWooCommercePrice(testPrice, 'SGD');
-        expect(result).toMatch(/^S\$/);
+      it('handles PLN', () => {
+        const result = convertWooCommercePrice(testPrice, 'PLN');
+        expect(result).toMatch(/zł$/);
       });
 
       it('handles AED', () => {
         const result = convertWooCommercePrice(testPrice, 'AED');
         expect(result).toMatch(/د\.إ$/);
-      });
-
-      it('handles VND', () => {
-        const result = convertWooCommercePrice(testPrice, 'VND');
-        expect(result).toMatch(/₫$/);
-        expect(result).not.toContain('.');
-      });
-
-      it('handles THB', () => {
-        const result = convertWooCommercePrice(testPrice, 'THB');
-        expect(result).toMatch(/^฿/);
-      });
-
-      it('handles INR', () => {
-        const result = convertWooCommercePrice(testPrice, 'INR');
-        expect(result).toMatch(/^₹/);
       });
     });
   });
@@ -455,10 +376,16 @@ describe('Currency Utilities', () => {
       expect(result).toBeCloseTo(78.99, 1);
     });
 
-    it('converts USD price to JPY (no decimals)', () => {
-      // $99.99 USD × 149.5 = 14948.505
-      const result = convertWooCommercePriceNumeric('$99.99', 'JPY');
-      expect(result).toBeCloseTo(14948.5, 0);
+    it('converts USD price to PLN', () => {
+      // $99.99 USD × 3.98 = 397.9602
+      const result = convertWooCommercePriceNumeric('$99.99', 'PLN');
+      expect(result).toBeCloseTo(397.96, 1);
+    });
+
+    it('converts USD price to AED', () => {
+      // $99.99 USD × 3.67 = 366.9633
+      const result = convertWooCommercePriceNumeric('$99.99', 'AED');
+      expect(result).toBeCloseTo(366.96, 1);
     });
 
     it('returns 0 for invalid input', () => {
@@ -489,20 +416,13 @@ describe('Currency Utilities', () => {
       expect(result).toBeCloseTo(50 * 0.92, 2);
     });
 
-    it('handles all 12 supported currencies without throwing', () => {
+    it('handles all 5 supported currencies without throwing', () => {
       const currencies = [
         'USD',
-        'CAD',
-        'MXN',
         'EUR',
         'GBP',
-        'JPY',
-        'CNY',
-        'SGD',
+        'PLN',
         'AED',
-        'VND',
-        'THB',
-        'INR',
       ] as const;
       for (const currency of currencies) {
         expect(() => convertWooCommercePriceNumeric('$99.99', currency)).not.toThrow();

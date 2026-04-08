@@ -11,8 +11,10 @@ interface Region {
 
 const regions: Region[] = [
   { code: 'US', name: 'United States', flag: '/flags/us.svg' },
-  { code: 'CA', name: 'Canada', flag: '/flags/ca.svg' },
-  { code: 'MX', name: 'Mexico', flag: '/flags/mx.svg' },
+  { code: 'UK', name: 'United Kingdom', flag: '/flags/uk.svg' },
+  { code: 'EU', name: 'Europe', flag: '/flags/eu.svg' },
+  { code: 'PL', name: 'Poland', flag: '/flags/pl.svg' },
+  { code: 'MENA', name: 'Middle East', flag: '/flags/ae.svg' },
 ];
 
 export default function RegionSelector() {

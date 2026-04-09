@@ -17,7 +17,7 @@ export interface BreadcrumbLabels {
 }
 
 export interface BreadcrumbOptions {
-  locale: string;
+  locale?: string;
   includeHome?: boolean;
   labels?: BreadcrumbLabels;
 }

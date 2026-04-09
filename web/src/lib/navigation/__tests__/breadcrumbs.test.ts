@@ -60,7 +60,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(result[1].label).toBe('Actuators');
     });
 
-    it('handles different locales for URL paths', () => {
+    it('hrefs are locale-agnostic regardless of locale passed', () => {
       const locales = ['en', 'de', 'fr', 'es', 'ja', 'zh'];
 
       locales.forEach((locale) => {
@@ -383,7 +383,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(result[1].label).toBe('Capteurs');
     });
 
-    it('handles different locales for URL paths', () => {
+    it('hrefs are locale-agnostic regardless of locale passed', () => {
       const result = getProductBreadcrumbs(
         'Product',
         'product',
@@ -512,7 +512,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(searchCrumb.href).toBeUndefined();
     });
 
-    it('handles different locales for URL paths', () => {
+    it('hrefs are locale-agnostic regardless of locale passed', () => {
       const locales = ['en', 'de', 'fr', 'es', 'ja', 'zh', 'ar', 'hi', 'th', 'vi', 'pl'];
 
       locales.forEach((locale) => {

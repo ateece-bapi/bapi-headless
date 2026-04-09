@@ -426,33 +426,33 @@
       }
     },
     "company": {
-      "label": "BAPIについて",
+      "label": "会社",
       "aboutBapi": {
         "title": "BAPIについて",
         "whyBapi": "なぜBAPIか",
         "whyBapiDesc": "BAPIセンサーを選ぶ理由",
         "missionValues": "ミッションと価値観",
-        "missionValuesDesc": "私たちを動機づけるもの",
-        "news": "ニュースとイベント",
+        "missionValuesDesc": "私たちを推進するもの",
+        "news": "ニュースと イベント",
         "newsDesc": "最新のお知らせ",
         "tradeShows": "展示会",
-        "tradeShowsDesc": "業界イベントでお会いしましょう",
+        "tradeShowsDesc": "業界イベントで繋がる",
         "careers": "キャリア",
-        "careersDesc": "私たちのチームに参加する"
+        "careersDesc": "私たちのチームに参加"
       },
       "getInTouch": {
         "title": "お問い合わせ",
-        "contactSales": "営業に連絡する",
+        "contactSales": "営業担当に連絡",
         "contactSalesDesc": "担当者に話す",
-        "whereToBuy": "購入先を探す",
-        "whereToBuyDesc": "販売店を見つける",
-        "requestQuote": "見積もりを依頼する",
-        "requestQuoteDesc": "価格を確認する"
+        "whereToBuy": "購入方法",
+        "whereToBuyDesc": "ディストリビューターを探す",
+        "requestQuote": "見積もりを依頼",
+        "requestQuoteDesc": "価格を確認"
       },
       "featured": {
         "title": "建築オートメーションを変革する準備はできていますか?",
-        "description": "プロジェクトの要件について私たちのチームに相談し、最適なセンサーソリューションを見つけてください。",
-        "cta": "私たちのチームに連絡する"
+        "description": "プロジェクト要件について私たちのチームと話し合い、最適なセンサーソリューションを見つけましょう。",
+        "cta": "私たちのチームに連絡"
       }
     },
     "products": {

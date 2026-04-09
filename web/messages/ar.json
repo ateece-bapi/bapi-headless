@@ -426,30 +426,32 @@
       }
     },
     "company": {
-      "label": "عن BAPI",
+      "label": "الشركة",
       "aboutBapi": {
-        "title": "عن BAPI",
+        "title": "حول BAPI",
         "whyBapi": "لماذا BAPI",
         "whyBapiDesc": "لماذا اختيار أجهزة استشعار BAPI",
         "missionValues": "المهمة والقيم",
-        "missionValuesDesc": "ما الذي يدفعنا",
+        "missionValuesDesc": "ما الذي يحركنا",
         "news": "الأخبار والأحداث",
         "newsDesc": "آخر الإعلانات",
+        "tradeShows": "المعارض التجارية",
+        "tradeShowsDesc": "تواصل معنا في الأحداث الصناعية",
         "careers": "الوظائف",
         "careersDesc": "انضم إلى فريقنا"
       },
       "getInTouch": {
         "title": "تواصل معنا",
         "contactSales": "اتصل بالمبيعات",
-        "contactSalesDesc": "تحدث إلى ممثل",
+        "contactSalesDesc": "تحدث إلى أحد الممثلين",
         "whereToBuy": "أين يمكن الشراء",
         "whereToBuyDesc": "ابحث عن موزع",
         "requestQuote": "اطلب عرض سعر",
         "requestQuoteDesc": "احصل على التسعير"
       },
       "featured": {
-        "title": "هل أنت مستعد لتحويل نظام التحكم التلقائي في مبنائك؟",
-        "description": "تواصل مع فريقنا لمناقشة متطلبات مشروعك واكتشاف الحل الأمثل لأجهزة الاستشعار.",
+        "title": "جاهز لتحويل نظام التحكم في مبنائك؟",
+        "description": "تواصل مع فريقنا لمناقشة متطلبات مشروعك واكتشف الحل الأمثل من أجهزة الاستشعار.",
         "cta": "اتصل بفريقنا"
       }
     },

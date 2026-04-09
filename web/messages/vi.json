@@ -238,31 +238,33 @@
       }
     },
     "company": {
-      "label": "Về BAPI",
+      "label": "Công ty",
       "aboutBapi": {
         "title": "Về BAPI",
         "whyBapi": "Tại sao chọn BAPI",
-        "whyBapiDesc": "Tại sao chọn cảm biến BAPI",
+        "whyBapiDesc": "Tại sao nên chọn cảm biến BAPI",
         "missionValues": "Sứ mệnh & Giá trị",
         "missionValuesDesc": "Những gì thúc đẩy chúng tôi",
         "news": "Tin tức & Sự kiện",
-        "newsDesc": "Các thông báo mới nhất",
+        "newsDesc": "Những thông báo mới nhất",
+        "tradeShows": "Triển lãm Thương mại",
+        "tradeShowsDesc": "Kết nối với chúng tôi tại các sự kiện ngành",
         "careers": "Cơ hội nghề nghiệp",
-        "careersDesc": "Tham gia đội ngũ của chúng tôi"
+        "careersDesc": "Gia nhập đội ngũ của chúng tôi"
       },
       "getInTouch": {
         "title": "Liên hệ với chúng tôi",
-        "contactSales": "Liên hệ Bộ phận Kinh doanh",
-        "contactSalesDesc": "Nói chuyện với đại diện",
-        "whereToBuy": "Nơi mua sản phẩm",
-        "whereToBuyDesc": "Tìm nhà phân phối",
+        "contactSales": "Liên hệ bộ phận Bán hàng",
+        "contactSalesDesc": "Trao đổi với đại diện của chúng tôi",
+        "whereToBuy": "Nơi mua hàng",
+        "whereToBuyDesc": "Tìm kiếm nhà phân phối",
         "requestQuote": "Yêu cầu báo giá",
-        "requestQuoteDesc": "Nhận báo giá"
+        "requestQuoteDesc": "Nhận thông tin giá cả"
       },
       "featured": {
-        "title": "Sẵn sàng biến đổi Tự động hóa Tòa nhà của bạn?",
-        "description": "Liên hệ với đội ngũ của chúng tôi để thảo luận về yêu cầu dự án của bạn và tìm ra giải pháp cảm biến hoàn hảo.",
-        "cta": "Liên hệ Đội ngũ của chúng tôi"
+        "title": "Sẵn sàng để biến đổi hệ thống tự động hóa công trình của bạn?",
+        "description": "Kết nối với đội ngũ của chúng tôi để thảo luận về yêu cầu dự án của bạn và khám phá giải pháp cảm biến hoàn hảo.",
+        "cta": "Liên hệ đội ngũ của chúng tôi"
       }
     }
   },

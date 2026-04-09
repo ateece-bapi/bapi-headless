@@ -426,16 +426,16 @@
       }
     },
     "company": {
-      "label": "关于 BAPI",
+      "label": "公司",
       "aboutBapi": {
         "title": "关于 BAPI",
         "whyBapi": "为什么选择 BAPI",
         "whyBapiDesc": "为什么选择 BAPI 传感器",
-        "missionValues": "使命与价值观",
+        "missionValues": "使命和价值观",
         "missionValuesDesc": "推动我们前进的动力",
-        "news": "新闻与活动",
+        "news": "新闻和活动",
         "newsDesc": "最新公告",
-        "tradeShows": "展会活动",
+        "tradeShows": "展会",
         "tradeShowsDesc": "在行业活动中与我们联系",
         "careers": "职业机会",
         "careersDesc": "加入我们的团队"
@@ -443,14 +443,14 @@
       "getInTouch": {
         "title": "与我们联系",
         "contactSales": "联系销售",
-        "contactSalesDesc": "与销售代表交谈",
+        "contactSalesDesc": "与代表交谈",
         "whereToBuy": "购买渠道",
-        "whereToBuyDesc": "找到经销商",
-        "requestQuote": "获取报价",
+        "whereToBuyDesc": "查找经销商",
+        "requestQuote": "请求报价",
         "requestQuoteDesc": "获取价格信息"
       },
       "featured": {
-        "title": "准备好改造您的建筑自动化系统了吗?",
+        "title": "准备改造您的建筑自动化系统吗？",
         "description": "与我们的团队联系,讨论您的项目需求,找到合适的传感器解决方案。",
         "cta": "联系我们的团队"
       }

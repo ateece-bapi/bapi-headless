@@ -170,21 +170,23 @@
         "missionValuesDesc": "Co nami kieruje",
         "news": "Aktualności i wydarzenia",
         "newsDesc": "Najnowsze ogłoszenia",
+        "tradeShows": "Targi branżowe",
+        "tradeShowsDesc": "Spotkaj się z nami na imprezach branżowych",
         "careers": "Kariera",
         "careersDesc": "Dołącz do naszego zespołu"
       },
       "getInTouch": {
         "title": "Skontaktuj się z nami",
-        "contactSales": "Skontaktuj się z działem sprzedaży",
+        "contactSales": "Kontakt z handlem",
         "contactSalesDesc": "Porozmawiaj z przedstawicielem",
         "whereToBuy": "Gdzie kupić",
         "whereToBuyDesc": "Znajdź dystrybutora",
         "requestQuote": "Poproś o wycenę",
-        "requestQuoteDesc": "Uzyskaj cenę"
+        "requestQuoteDesc": "Uzyskaj informacje o cenach"
       },
       "featured": {
-        "title": "Gotowy, aby przekształcić swoją automatykę budynkową?",
-        "description": "Skontaktuj się z naszym zespołem, aby omówić wymagania Twojego projektu i odkryć idealne rozwiązanie czujnikowe.",
+        "title": "Gotowy, by przekształcić swoją automatykę budynkową?",
+        "description": "Skontaktuj się z naszym zespołem, aby omówić wymagania Twojego projektu i znaleźć idealne rozwiązanie z czujnikami.",
         "cta": "Skontaktuj się z naszym zespołem"
       }
     },

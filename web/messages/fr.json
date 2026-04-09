@@ -426,7 +426,7 @@
       }
     },
     "company": {
-      "label": "À propos de BAPI",
+      "label": "Entreprise",
       "aboutBapi": {
         "title": "À propos de BAPI",
         "whyBapi": "Pourquoi BAPI",
@@ -435,24 +435,24 @@
         "missionValuesDesc": "Ce qui nous anime",
         "news": "Actualités et événements",
         "newsDesc": "Dernières annonces",
-        "tradeShows": "Salons Professionnels",
-        "tradeShowsDesc": "Rencontrez-nous lors d'événements industriels",
+        "tradeShows": "Salons professionnels",
+        "tradeShowsDesc": "Rencontrez-nous lors d'événements du secteur",
         "careers": "Carrières",
         "careersDesc": "Rejoignez notre équipe"
       },
       "getInTouch": {
-        "title": "Entrez en contact",
+        "title": "Contactez-nous",
         "contactSales": "Contacter les ventes",
-        "contactSalesDesc": "Parlez à un représentant",
+        "contactSalesDesc": "Parler à un représentant",
         "whereToBuy": "Où acheter",
         "whereToBuyDesc": "Trouver un distributeur",
         "requestQuote": "Demander un devis",
         "requestQuoteDesc": "Obtenir les tarifs"
       },
       "featured": {
-        "title": "Prêt à transformer votre automatisation du bâtiment ?",
-        "description": "Connectez-vous avec notre équipe pour discuter de vos exigences de projet et découvrir la solution de capteur parfaite.",
-        "cta": "Contactez notre équipe"
+        "title": "Prêt à transformer votre automatisation de bâtiment ?",
+        "description": "Contactez notre équipe pour discuter de vos exigences de projet et découvrir la solution de capteur parfaite.",
+        "cta": "Contacter notre équipe"
       }
     },
     "products": {

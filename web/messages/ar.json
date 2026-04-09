@@ -426,30 +426,32 @@
       }
     },
     "company": {
-      "label": "عن BAPI",
+      "label": "الشركة",
       "aboutBapi": {
-        "title": "عن BAPI",
+        "title": "حول BAPI",
         "whyBapi": "لماذا BAPI",
         "whyBapiDesc": "لماذا اختيار أجهزة استشعار BAPI",
         "missionValues": "المهمة والقيم",
-        "missionValuesDesc": "ما الذي يدفعنا",
+        "missionValuesDesc": "ما الذي يحركنا",
         "news": "الأخبار والأحداث",
         "newsDesc": "آخر الإعلانات",
+        "tradeShows": "المعارض التجارية",
+        "tradeShowsDesc": "تواصل معنا في الأحداث الصناعية",
         "careers": "الوظائف",
         "careersDesc": "انضم إلى فريقنا"
       },
       "getInTouch": {
         "title": "تواصل معنا",
         "contactSales": "اتصل بالمبيعات",
-        "contactSalesDesc": "تحدث إلى ممثل",
+        "contactSalesDesc": "تحدث إلى أحد الممثلين",
         "whereToBuy": "أين يمكن الشراء",
         "whereToBuyDesc": "ابحث عن موزع",
         "requestQuote": "اطلب عرض سعر",
         "requestQuoteDesc": "احصل على التسعير"
       },
       "featured": {
-        "title": "هل أنت مستعد لتحويل نظام التحكم التلقائي في مبنائك؟",
-        "description": "تواصل مع فريقنا لمناقشة متطلبات مشروعك واكتشاف الحل الأمثل لأجهزة الاستشعار.",
+        "title": "جاهز لتحويل نظام التحكم في مبنائك؟",
+        "description": "تواصل مع فريقنا لمناقشة متطلبات مشروعك واكتشف الحل الأمثل من أجهزة الاستشعار.",
         "cta": "اتصل بفريقنا"
       }
     },
@@ -458,22 +460,26 @@
       "temperature": {
         "title": "درجة الحرارة",
         "roomWallSensors": "استشعارات الغرفة والحائط",
-        "roomWallSensorsDesc": "استشعار درجة الحرارة عالية الدقة",
-        "ductSensors": "استشعارات الدكت",
-        "ductSensorsDesc": "أجهزة إرسال مثبتة في الدكت",
+        "roomWallSensorsDesc": "استشعار درجة الحرارة عالي الدقة",
+        "ductSensors": "استشعارات القناة",
+        "ductSensorsDesc": "أجهزة إرسال مثبتة في القنوات",
         "immersionWell": "الغمر والبئر",
-        "immersionWellDesc": "قياس درجة حرارة السائل",
-        "outdoorSensors": "استشعارات الخارجية",
-        "outdoorSensorsDesc": "استشعار مقاوم للأحوال الجوية"
+        "immersionWellDesc": "قياس درجة حرارة السوائل",
+        "outdoorSensors": "استشعارات خارجية",
+        "outdoorSensorsDesc": "استشعار مقاوم للطقس",
+        "averaging": "استشعارات متوسطة",
+        "averagingDesc": "متوسط درجة حرارة المساحات الكبيرة",
+        "remoteProbes": "مسبارات بعيدة",
+        "remoteProbesDesc": "عناصر استشعار منفصلة"
       },
       "humidity": {
         "title": "الرطوبة",
         "roomHumidity": "رطوبة الغرفة",
-        "roomHumidityDesc": "استشعارات الرطوبة النسبية المثبتة على الحائط",
-        "ductHumidity": "رطوبة الدكت",
-        "ductHumidityDesc": "رطوبة نسبية للهواء الصاعد والعائد",
-        "outdoorHumidity": "رطوبة الخارجية",
-        "outdoorHumidityDesc": "رطوبة نسبية مقاومة للأحوال الجوية",
+        "roomHumidityDesc": "استشعارات الرطوبة النسبية على الحائط",
+        "ductHumidity": "رطوبة القنوات",
+        "ductHumidityDesc": "رطوبة نسبية في هواء الإمداد والعودة",
+        "outdoorHumidity": "رطوبة خارجية",
+        "outdoorHumidityDesc": "رطوبة نسبية مقاومة للطقس",
         "comboSensors": "استشعارات مزدوجة",
         "comboSensorsDesc": "درجة الحرارة + الرطوبة"
       },
@@ -482,7 +488,7 @@
         "differential": "الضغط التفاضلي",
         "differentialDesc": "مراقبة الغرفة والفلتر",
         "static": "الضغط الساكن",
-        "staticDesc": "أجهزة إرسال ضغط الدكت الساكن",
+        "staticDesc": "أجهزة إرسال ضغط ساكن في القنوات",
         "barometric": "الضغط الجوي",
         "barometricDesc": "الضغط الجوي"
       },
@@ -491,8 +497,8 @@
         "co2": "استشعارات CO₂",
         "co2Desc": "مراقبة ثاني أكسيد الكربون",
         "voc": "استشعارات المركبات العضوية المتطايرة",
-        "vocDesc": "مركبات عضوية متطايرة",
-        "particulate": "الجسيمات العالقة",
+        "vocDesc": "المركبات العضوية المتطايرة",
+        "particulate": "المواد الجزيئية",
         "particulateDesc": "PM2.5 و PM10"
       },
       "wireless": {
@@ -500,41 +506,41 @@
         "wamTemperature": "درجة حرارة WAM",
         "wamTemperatureDesc": "استشعارات درجة حرارة لاسلكية",
         "wamHumidity": "رطوبة WAM",
-        "wamHumidityDesc": "استشعارات الرطوبة النسبية اللاسلكية",
-        "wamDoorSensors": "استشعارات الأبواب WAM",
-        "wamDoorSensorsDesc": "مراقبة الفتح / الغلق",
+        "wamHumidityDesc": "استشعارات رطوبة نسبية لاسلكية",
+        "wamDoorSensors": "استشعارات أبواب WAM",
+        "wamDoorSensorsDesc": "مراقبة الفتح/الإغلاق",
         "cloudPlatform": "منصة السحابة",
-        "cloudPlatformDesc": "المراقبة عن بُعد 24/7"
+        "cloudPlatformDesc": "المراقبة عن بعد 24/7"
       },
       "accessories": {
         "title": "الملحقات",
-        "mounting": "أدوات التركيب",
-        "mountingDesc": "ألواح, صناديق, حوامل",
-        "enclosures": "الأغلفة",
+        "mounting": "أجهزة التركيب",
+        "mountingDesc": "ألواح ، صناديق ، قوابض",
+        "enclosures": "أغلفة",
         "enclosuresDesc": "BAPI-Box وأغطية",
         "cables": "الكابلات والموصلات",
-        "cablesDesc": "ملحقات السلك"
+        "cablesDesc": "ملحقات التوصيل"
       },
       "testInstruments": {
-        "title": "أجهزة الاختبار",
-        "bluTestTemperature": "درجة حرارة Blu-Test",
+        "title": "أدوات الاختبار",
+        "bluTestTemperature": "Blu-Test درجة الحرارة",
         "bluTestTemperatureDesc": "مرجع قابل للتتبع NIST",
-        "bluTestHumidity": "رطوبة Blu-Test",
+        "bluTestHumidity": "Blu-Test الرطوبة",
         "bluTestHumidityDesc": "مرجع درجة الحرارة + الرطوبة النسبية",
-        "bluTestPressure": "ضغط Blu-Test",
+        "bluTestPressure": "Blu-Test الضغط",
         "bluTestPressureDesc": "مانومتر رقمي"
       },
       "featured": {
-        "title": "مراقبة الأصول اللاسلكية WAM™",
-        "description": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. حماية أصولك الثمينة من انقطاعات الكهرباء وأعطال المعدات. لا يلزم توصيل أسلاك - البدء في الاستخدام في غضون دقائق.",
+        "title": "رصد الأصول اللاسلكية WAM™",
+        "description": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. احم أصولك الثمينة من انقطاعات الطاقة وأعطال المعدات. بدون أي أسلاك - ابدأ التشغيل في دقائق.",
         "cta": "تعرف على المزيد",
-        "wamTitle": "مراقبة الأصول اللاسلكية WAM™",
-        "wamDescription": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. حماية أصولك الثمينة من انقطاعات الكهرباء وأعطال المعدات. لا يلزم توصيل أسلاك - البدء في الاستخدام في غضون دقائق.",
+        "wamTitle": "رصد الأصول اللاسلكية WAM™",
+        "wamDescription": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. احم أصولك الثمينة من انقطاعات الطاقة وأعطال المعدات. بدون أي أسلاك - ابدأ التشغيل في دقائق.",
         "wamCta": "تعرف على المزيد",
         "wamBadge": "الحل المتميز"
       },
       "badges": {
-        "popular": "شعبي",
+        "popular": "شائع",
         "new": "جديد",
         "premium": "متميز"
       }
@@ -547,12 +553,14 @@
     },
     "summary": {
       "title": "ملخص المنتج",
-      "configureProduct": "تهيئة المنتج",
-      "selectSpecifications": "حدد المواصفات أدناه لمعرفة الأسعار ورقم الجزء",
-      "configurationComplete": "اكتملت التهيئة",
+      "configureProduct": "تكوين المنتج",
+      "selectSpecifications": "حدد المواصفات الخاصة بك أدناه لمعرفة الأسعار ورقم الجزء",
+      "scrollToCta": "ابدأ التكوين",
+      "scrollToCtaAriaLabel": "انتقل إلى قسم مكوّن المنتج",
+      "configurationComplete": "اكتمل التكوين",
       "partNumber": "رقم الجزء",
       "quantity": "الكمية",
-      "multiplier": "ضارب",
+      "multiplier": "المضاعف",
       "priceCalculation": "حساب السعر"
     },
     "tabs": {
@@ -623,6 +631,84 @@
       "xAvailable": "{count} متوفرة",
       "expectedBack": "متوقع العودة: {date}",
       "shipsOn": "يتم الشحن في: {date}"
+    },
+    "configurator": {
+      "heading": "قم بتكوين منتجك",
+      "subheading": "حدد مواصفاتك أدناه • تم تحديد {selectedCount} من إجمالي {totalCount} خيارات",
+      "shareConfigTitle": "مشاركة هذا التكوين",
+      "shareConfigDisabledTitle": "أكمل التكوين للمشاركة",
+      "shareCopied": "تم النسخ!",
+      "shareButton": "مشاركة",
+      "resetButton": "إعادة تعيين",
+      "selectedConfig": "✓ التكوين المحدد",
+      "partNumber": "رقم القطعة",
+      "yourPrice": "السعر الخاص بك",
+      "availability": "التوفر",
+      "inStock": "متوفر في المخزون",
+      "shipsIn": "الشحن خلال 2-3 أيام",
+      "backorder": "طلب متأخر",
+      "contactForLeadTime": "اتصل للحصول على وقت التسليم",
+      "outOfStock": "غير متوفر في المخزون",
+      "qtyLabel": "الكمية:",
+      "decreaseQtyAriaLabel": "خفض الكمية",
+      "increaseQtyAriaLabel": "زيادة الكمية",
+      "invalidConfig": "تكوين غير صالح",
+      "invalidConfigMessage": "هذا التوليفة من الخيارات غير متاحة. يرجى محاولة اختيارات مختلفة.",
+      "partialSelectionMessage": "يرجى تحديد {count} خيار{plural} آخر لعرض التكوين النهائي",
+      "optionSingular": "",
+      "optionPlural": "ات"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "قم بتكوين مواصفاتك أدناه"
+    },
+    "trustBadges": {
+      "heading": "لماذا الشراء من BAPI",
+      "madeInUSA": "صُنِع في الولايات المتحدة الأمريكية",
+      "madeInUSADesc": "جودة عالية",
+      "warranty": "ضمان لمدة 5 سنوات",
+      "warrantyDesc": "تغطية كاملة",
+      "returns": "إرجاع خلال 30 يومًا",
+      "returnsDesc": "خالي من المتاعب",
+      "support": "دعم من الخبراء",
+      "supportDesc": "المساعدة الفنية"
+    },
+    "variationSelectors": {
+      "chooseOption": "اختر خيارًا"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "تطبيق درجة الحرارة",
+        "roomEnclosure": "نمط تجهيز الغرفة",
+        "sensorOutput": "مخرج مستشعر درجة الحرارة",
+        "setpointOverride": "إعداد درجة الحرارة وتجاوزه",
+        "optionalSensorOutput": "مستشعر درجة الحرارة الاختياري والمخرج"
+      },
+      "humidity": {
+        "application": "تطبيق الرطوبة",
+        "roomEnclosure": "تجهيز الغرفة للرطوبة",
+        "sensorOutput": "مخرج مستشعر الرطوبة",
+        "optionalTempHumidity": "درجة الحرارة والرطوبة الاختياريتان"
+      },
+      "pressure": {
+        "application": "تطبيق الضغط",
+        "sensorStyle": "نمط مستشعر الضغط"
+      },
+      "airQuality": {
+        "application": "تطبيق جودة الهواء",
+        "sensorType": "نوع مستشعر جودة الهواء"
+      },
+      "wireless": {
+        "application": "تطبيق لاسلكي"
+      },
+      "general": {
+        "display": "العرض",
+        "voltage": "نطاق الجهد",
+        "current": "مخرج التيار",
+        "mounting": "نوع التركيب",
+        "enclosure": "نوع الحاوية",
+        "protocol": "بروتوكول الاتصال",
+        "certification": "الشهادات"
+      }
     }
   },
   "productsPage": {
@@ -714,6 +800,24 @@
       "title": "هل تحتاج إلى المساعدة في العثور على المنتج المناسب؟",
       "description": "فريق خبرائنا جاهز لمساعدتك في اختيار أجهزة الاستشعار والوحدات التحكمية المثالية لمشروع أتمتة المبنى الخاص بك.",
       "button": "اتصل بالمبيعات"
+    },
+    "subcategories": {
+      "room": {
+        "name": "الغرفة",
+        "description": "أجهزة استشعار مثبتة على الحائط للمكاتب وغرف الاجتماعات والمساحات المشغولة"
+      },
+      "nonRoom": {
+        "name": "خارج الغرفة",
+        "description": "أجهزة استشعار للقنوات والخارج والغمر والتركيبات الصناعية"
+      },
+      "bluetoothWireless": {
+        "name": "النظام اللاسلكي - بلوتوث منخفض الطاقة",
+        "description": "أجهزة استشعار تعمل بالبطارية مع بوابة بلوتوث"
+      },
+      "wamWireless": {
+        "name": "WAM - مراقبة الأصول اللاسلكية",
+        "description": "المراقبة اللاسلكية طويلة المدى مع منصة السحابة"
+      }
     }
   },
   "cartPage": {
@@ -817,7 +921,8 @@
     "breadcrumb": {
       "home": "الرئيسية",
       "products": "المنتجات"
-    }
+    },
+    "backTo": "العودة إلى {categoryName}"
   },
   "searchPage": {
     "meta": {

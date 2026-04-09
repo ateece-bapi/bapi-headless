@@ -88,42 +88,46 @@
       "label": "Sản phẩm",
       "temperature": {
         "title": "Nhiệt độ",
-        "roomWallSensors": "Cảm biến Phòng & Tường",
-        "roomWallSensorsDesc": "Cảm biến nhiệt độ chính xác cao",
-        "ductSensors": "Cảm biến Ống gió",
-        "ductSensorsDesc": "Bộ phát truyền ống gió",
-        "immersionWell": "Chìm & Giếng",
+        "roomWallSensors": "Cảm biến phòng & tường",
+        "roomWallSensorsDesc": "Đo nhiệt độ chính xác cao",
+        "ductSensors": "Cảm biến ống gió",
+        "ductSensorsDesc": "Bộ chuyển đổi lắp trên ống gió",
+        "immersionWell": "Ngập và Giếng",
         "immersionWellDesc": "Đo nhiệt độ chất lỏng",
-        "outdoorSensors": "Cảm biến Ngoài trời",
-        "outdoorSensorsDesc": "Cảm biến chống thời tiết"
+        "outdoorSensors": "Cảm biến ngoài trời",
+        "outdoorSensorsDesc": "Đo nhiệt độ chịu thời tiết",
+        "averaging": "Cảm biến trung bình",
+        "averagingDesc": "Đo nhiệt độ trung bình trong không gian lớn",
+        "remoteProbes": "Đầu dò từ xa",
+        "remoteProbesDesc": "Bộ cảm biến riêng biệt"
       },
       "humidity": {
         "title": "Độ ẩm",
-        "roomHumidity": "Độ ẩm Phòng",
+        "roomHumidity": "Độ ẩm phòng",
         "roomHumidityDesc": "Cảm biến độ ẩm gắn tường",
-        "ductHumidity": "Độ ẩm Ống gió",
-        "ductHumidityDesc": "Độ ẩm cấp & trả lại khí",
-        "outdoorHumidity": "Độ ẩm Ngoài trời",
-        "outdoorHumidityDesc": "Độ ẩm chống thời tiết",
-        "comboSensors": "Cảm biến Kết hợp",
+        "ductHumidity": "Độ ẩm ống gió",
+        "ductHumidityDesc": "Độ ẩm không khí vào và ra",
+        "outdoorHumidity": "Độ ẩm ngoài trời",
+        "outdoorHumidityDesc": "Độ ẩm chịu thời tiết",
+        "comboSensors": "Cảm biến kết hợp",
         "comboSensorsDesc": "Nhiệt độ + độ ẩm"
       },
       "pressure": {
         "title": "Áp suất",
-        "differential": "Áp suất Chênh lệch",
+        "differential": "Áp suất chênh lệch",
         "differentialDesc": "Theo dõi phòng & bộ lọc",
-        "static": "Áp suất Tĩnh",
-        "staticDesc": "Bộ phát truyền áp suất ống gió",
-        "barometric": "Áp suất Khí quyển",
+        "static": "Áp suất tĩnh",
+        "staticDesc": "Bộ chuyển đổi áp suất ống gió",
+        "barometric": "Áp suất khí quyển",
         "barometricDesc": "Áp suất khí quyển"
       },
       "airQuality": {
         "title": "Chất lượng không khí",
         "co2": "Cảm biến CO₂",
-        "co2Desc": "Theo dõi khí CO₂",
+        "co2Desc": "Theo dõi khí carbon dioxide",
         "voc": "Cảm biến VOC",
         "vocDesc": "Hợp chất hữu cơ bay hơi",
-        "particulate": "Chất Hạt Lơ lửng",
+        "particulate": "Chất lượng hạt",
         "particulateDesc": "PM2.5 và PM10"
       },
       "wireless": {
@@ -132,37 +136,37 @@
         "wamTemperatureDesc": "Cảm biến nhiệt độ không dây",
         "wamHumidity": "Độ ẩm WAM",
         "wamHumidityDesc": "Cảm biến độ ẩm không dây",
-        "wamDoorSensors": "Cảm biến Cửa WAM",
-        "wamDoorSensorsDesc": "Giám sát mở/đóng",
-        "cloudPlatform": "Nền tảng Đám mây",
+        "wamDoorSensors": "Cảm biến cửa WAM",
+        "wamDoorSensorsDesc": "Theo dõi mở/đóng",
+        "cloudPlatform": "Nền tảng đám mây",
         "cloudPlatformDesc": "Giám sát từ xa 24/7"
       },
       "accessories": {
         "title": "Phụ kiện",
-        "mounting": "Phụ kiện Lắp đặt",
+        "mounting": "Phụ kiện gắn",
         "mountingDesc": "Tấm, hộp, giá đỡ",
-        "enclosures": "Vỏ hộp",
-        "enclosuresDesc": "BAPI-Box & vỏ bọc",
-        "cables": "Cáp & Đầu nối",
-        "cablesDesc": "Phụ kiện dây dẫn"
+        "enclosures": "Vỏ bảo vệ",
+        "enclosuresDesc": "BAPI-Box & nắp che",
+        "cables": "Dây cáp & Đầu nối",
+        "cablesDesc": "Phụ kiện dây điện"
       },
       "testInstruments": {
-        "title": "Thiết bị Kiểm tra",
+        "title": "Dụng cụ kiểm tra",
         "bluTestTemperature": "Nhiệt độ Blu-Test",
-        "bluTestTemperatureDesc": "Tham chiếu NIST",
+        "bluTestTemperatureDesc": "Tham chiếu có truy nguyên NIST",
         "bluTestHumidity": "Độ ẩm Blu-Test",
         "bluTestHumidityDesc": "Tham chiếu nhiệt độ + độ ẩm",
         "bluTestPressure": "Áp suất Blu-Test",
-        "bluTestPressureDesc": "Máy đo áp suất kỹ thuật số"
+        "bluTestPressureDesc": "Áp kế kỹ thuật số"
       },
       "featured": {
-        "title": "Giám sát Tài sản Không dây WAM™",
-        "description": "Giám sát từ xa 24/7 với cảnh báo ngay lập tức. Bảo vệ các tài sản có giá trị của bạn khỏi mất điện và sự cố thiết bị. Không yêu cầu dây dẫn - dễ dàng triển khai trong vài phút.",
+        "title": "Giám sát tài sản không dây WAM™",
+        "description": "Giám sát từ xa 24/7 với cảnh báo ngay lập tức. Bảo vệ các tài sản có giá trị của bạn khỏi mất điện và sự cố thiết bị. Không yêu cầu dây điện - vận hành chỉ trong vài phút.",
         "cta": "Tìm hiểu thêm",
-        "wamTitle": "Giám sát Tài sản Không dây WAM™",
-        "wamDescription": "Giám sát từ xa 24/7 với cảnh báo ngay lập tức. Bảo vệ các tài sản có giá trị của bạn khỏi mất điện và sự cố thiết bị. Không yêu cầu dây dẫn - dễ dàng triển khai trong vài phút.",
+        "wamTitle": "Giám sát tài sản không dây WAM™",
+        "wamDescription": "Giám sát từ xa 24/7 với cảnh báo ngay lập tức. Bảo vệ các tài sản có giá trị của bạn khỏi mất điện và sự cố thiết bị. Không yêu cầu dây điện - vận hành chỉ trong vài phút.",
         "wamCta": "Tìm hiểu thêm",
-        "wamBadge": "Giải Pháp Cao cấp"
+        "wamBadge": "Giải pháp cao cấp"
       },
       "badges": {
         "popular": "Phổ biến",
@@ -234,31 +238,33 @@
       }
     },
     "company": {
-      "label": "Về BAPI",
+      "label": "Công ty",
       "aboutBapi": {
         "title": "Về BAPI",
         "whyBapi": "Tại sao chọn BAPI",
-        "whyBapiDesc": "Tại sao chọn cảm biến BAPI",
+        "whyBapiDesc": "Tại sao nên chọn cảm biến BAPI",
         "missionValues": "Sứ mệnh & Giá trị",
         "missionValuesDesc": "Những gì thúc đẩy chúng tôi",
         "news": "Tin tức & Sự kiện",
-        "newsDesc": "Các thông báo mới nhất",
+        "newsDesc": "Những thông báo mới nhất",
+        "tradeShows": "Triển lãm Thương mại",
+        "tradeShowsDesc": "Kết nối với chúng tôi tại các sự kiện ngành",
         "careers": "Cơ hội nghề nghiệp",
-        "careersDesc": "Tham gia đội ngũ của chúng tôi"
+        "careersDesc": "Gia nhập đội ngũ của chúng tôi"
       },
       "getInTouch": {
         "title": "Liên hệ với chúng tôi",
-        "contactSales": "Liên hệ Bộ phận Kinh doanh",
-        "contactSalesDesc": "Nói chuyện với đại diện",
-        "whereToBuy": "Nơi mua sản phẩm",
-        "whereToBuyDesc": "Tìm nhà phân phối",
+        "contactSales": "Liên hệ bộ phận Bán hàng",
+        "contactSalesDesc": "Trao đổi với đại diện của chúng tôi",
+        "whereToBuy": "Nơi mua hàng",
+        "whereToBuyDesc": "Tìm kiếm nhà phân phối",
         "requestQuote": "Yêu cầu báo giá",
-        "requestQuoteDesc": "Nhận báo giá"
+        "requestQuoteDesc": "Nhận thông tin giá cả"
       },
       "featured": {
-        "title": "Sẵn sàng biến đổi Tự động hóa Tòa nhà của bạn?",
-        "description": "Liên hệ với đội ngũ của chúng tôi để thảo luận về yêu cầu dự án của bạn và tìm ra giải pháp cảm biến hoàn hảo.",
-        "cta": "Liên hệ Đội ngũ của chúng tôi"
+        "title": "Sẵn sàng để biến đổi hệ thống tự động hóa công trình của bạn?",
+        "description": "Kết nối với đội ngũ của chúng tôi để thảo luận về yêu cầu dự án của bạn và khám phá giải pháp cảm biến hoàn hảo.",
+        "cta": "Liên hệ đội ngũ của chúng tôi"
       }
     }
   },
@@ -507,14 +513,16 @@
       "products": "Sản phẩm"
     },
     "summary": {
-      "title": "Tóm tắt sản phẩm",
-      "configureProduct": "Cấu hình sản phẩm",
-      "selectSpecifications": "Chọn thông số kỹ thuật của bạn bên dưới để xem giá và số model",
-      "configurationComplete": "Cấu hình hoàn tất",
-      "partNumber": "Số model",
+      "title": "Tóm tắt Sản phẩm",
+      "configureProduct": "Định cấu hình Sản phẩm",
+      "selectSpecifications": "Chọn các thông số kỹ thuật của bạn bên dưới để xem giá và số linh kiện",
+      "scrollToCta": "Bắt đầu Định cấu hình",
+      "scrollToCtaAriaLabel": "Cuộn đến phần Bộ định cấu hình sản phẩm",
+      "configurationComplete": "Định cấu hình Hoàn tất",
+      "partNumber": "Số linh kiện",
       "quantity": "Số lượng",
       "multiplier": "Hệ số nhân",
-      "priceCalculation": "Tính giá"
+      "priceCalculation": "Tính toán Giá"
     },
     "tabs": {
       "description": "Mô tả",
@@ -584,6 +592,84 @@
       "xAvailable": "{count} sản phẩm có sẵn",
       "expectedBack": "Dự kiến về vào: {date}",
       "shipsOn": "Giao hàng vào: {date}"
+    },
+    "configurator": {
+      "heading": "Định cấu hình sản phẩm của bạn",
+      "subheading": "Chọn thông số kỹ thuật của bạn bên dưới • {selectedCount} trong tổng số {totalCount} tùy chọn đã chọn",
+      "shareConfigTitle": "Chia sẻ cấu hình này",
+      "shareConfigDisabledTitle": "Hoàn thành cấu hình để chia sẻ",
+      "shareCopied": "Đã sao chép!",
+      "shareButton": "Chia sẻ",
+      "resetButton": "Đặt lại",
+      "selectedConfig": "✓ Cấu hình đã chọn",
+      "partNumber": "Số sản phẩm",
+      "yourPrice": "Giá của bạn",
+      "availability": "Tình trạng sẵn có",
+      "inStock": "Hàng có sẵn",
+      "shipsIn": "Giao hàng trong 2-3 ngày",
+      "backorder": "Đặt trước",
+      "contactForLeadTime": "Liên hệ để biết thời gian giao hàng",
+      "outOfStock": "Hết hàng",
+      "qtyLabel": "Số lượng:",
+      "decreaseQtyAriaLabel": "Giảm số lượng",
+      "increaseQtyAriaLabel": "Tăng số lượng",
+      "invalidConfig": "Cấu hình không hợp lệ",
+      "invalidConfigMessage": "Sự kết hợp các tùy chọn này không khả dụng. Vui lòng thử các lựa chọn khác.",
+      "partialSelectionMessage": "Vui lòng chọn {count} tùy chọn{plural} khác để xem cấu hình cuối cùng",
+      "optionSingular": "",
+      "optionPlural": "s"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "Cài đặt các thông số kỹ thuật của bạn bên dưới"
+    },
+    "trustBadges": {
+      "heading": "Tại sao Mua Từ BAPI",
+      "madeInUSA": "Sản xuất tại Mỹ",
+      "madeInUSADesc": "Chất Lượng Tốt",
+      "warranty": "Bảo Hành 5 Năm",
+      "warrantyDesc": "Bảo Kê Đầy Đủ",
+      "returns": "Trả Lại trong 30 Ngày",
+      "returnsDesc": "Không Rắc Rối",
+      "support": "Hỗ Trợ Chuyên Nghiệp",
+      "supportDesc": "Hỗ Trợ Kỹ Thuật"
+    },
+    "variationSelectors": {
+      "chooseOption": "Chọn một tùy chọn"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Ứng dụng nhiệt độ",
+        "roomEnclosure": "Kiểu khuôn khép kín phòng",
+        "sensorOutput": "Đầu ra cảm biến nhiệt độ",
+        "setpointOverride": "Điểm cài đặt nhiệt độ và ghi đè",
+        "optionalSensorOutput": "Đầu ra cảm biến nhiệt độ tùy chọn"
+      },
+      "humidity": {
+        "application": "Ứng dụng độ ẩm",
+        "roomEnclosure": "Khuôn khép kín phòng độ ẩm",
+        "sensorOutput": "Đầu ra cảm biến độ ẩm",
+        "optionalTempHumidity": "Nhiệt độ và độ ẩm tùy chọn"
+      },
+      "pressure": {
+        "application": "Ứng dụng áp suất",
+        "sensorStyle": "Kiểu cảm biến áp suất"
+      },
+      "airQuality": {
+        "application": "Ứng dụng chất lượng không khí",
+        "sensorType": "Loại cảm biến chất lượng không khí"
+      },
+      "wireless": {
+        "application": "Ứng dụng không dây"
+      },
+      "general": {
+        "display": "Màn hình hiển thị",
+        "voltage": "Dải điện áp",
+        "current": "Đầu ra dòng điện",
+        "mounting": "Kiểu lắp đặt",
+        "enclosure": "Loại vỏ bảo vệ",
+        "protocol": "Giao thức truyền thông",
+        "certification": "Chứng nhận"
+      }
     }
   },
   "productsPage": {
@@ -675,6 +761,24 @@
       "title": "Cần Trợ giúp tìm Sản phẩm phù hợp?",
       "description": "Nhóm chuyên gia của chúng tôi sẵn sàng giúp bạn lựa chọn các cảm biến và bộ điều khiển hoàn hảo cho dự án tự động hóa công trình của bạn.",
       "button": "Liên hệ Bán hàng"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Không gian phòng",
+        "description": "Cảm biến được gắn tường cho văn phòng, phòng họp và các không gian được sử dụng"
+      },
+      "nonRoom": {
+        "name": "Ngoài phòng",
+        "description": "Cảm biến lắp đặt trong ống thông gió, ngoài trời, ngâm chìm và công nghiệp"
+      },
+      "bluetoothWireless": {
+        "name": "Hệ thống không dây - Bluetooth Low Energy",
+        "description": "Cảm biến Bluetooth chạy pin với cổng nối"
+      },
+      "wamWireless": {
+        "name": "WAM - Giám sát tài sản không dây",
+        "description": "Giám sát không dây tầm xa với nền tảng đám mây"
+      }
     }
   },
   "cartPage": {
@@ -778,7 +882,8 @@
     "breadcrumb": {
       "home": "Trang chủ",
       "products": "Sản phẩm"
-    }
+    },
+    "backTo": "Trở về {categoryName}"
   },
   "searchPage": {
     "meta": {

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import { BriefcaseIcon, HeartIcon } from '@/lib/icons';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
@@ -78,6 +79,7 @@ export default function ProductSummaryCard({
   quantity: externalQuantity,
   onQuantityChange: externalOnQuantityChange,
 }: ProductSummaryCardProps) {
+  const t = useTranslations('productPage.summary');
   const [internalQuantity, setInternalQuantity] = React.useState(1);
   const [isFavorited, setIsFavorited] = React.useState(false);
   
@@ -202,18 +204,18 @@ export default function ProductSummaryCard({
               />
             </svg>
           </div>
-          <p className="mb-3 font-medium text-neutral-700">Configure Product</p>
+          <p className="mb-3 font-medium text-neutral-700">{t('configureProduct')}</p>
           <p className="mb-4 text-sm text-neutral-700">
-            Select your specifications below to see pricing and part number
+            {t('selectSpecifications')}
           </p>
           
           {/* Smooth Scroll CTA Button - BAPI Yellow Gradient */}
           <button
             onClick={scrollToConfigurator}
             className="group relative inline-flex items-center gap-2 rounded-lg bg-bapi-accent-gradient px-6 py-3 font-semibold text-neutral-900 shadow-lg transition-all duration-200 hover:bg-bapi-accent-gradient-hover hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
-            aria-label="Scroll to product configurator section"
+            aria-label={t('scrollToCtaAriaLabel')}
           >
-            <span>Start Configuring</span>
+            <span>{t('scrollToCta')}</span>
             <svg 
               className="h-5 w-5 transition-transform group-hover:translate-y-1" 
               fill="none" 

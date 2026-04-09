@@ -108,30 +108,32 @@
       }
     },
     "company": {
-      "label": "เกี่ยวกับ BAPI",
+      "label": "บริษัท",
       "aboutBapi": {
         "title": "เกี่ยวกับ BAPI",
-        "whyBapi": "ทำไมต้อง BAPI",
-        "whyBapiDesc": "ทำไมต้องเลือกเซ็นเซอร์ BAPI",
-        "missionValues": "ภารกิจและค่านิยม",
+        "whyBapi": "ทำไมถึงเลือก BAPI",
+        "whyBapiDesc": "ทำไมควรเลือกเซนเซอร์ BAPI",
+        "missionValues": "พันธกิจและค่านิยม",
         "missionValuesDesc": "สิ่งที่ผลักดันเรา",
-        "news": "ข่าวสารและกิจกรรม",
+        "news": "ข่าวสารและเหตุการณ์",
         "newsDesc": "ประกาศล่าสุด",
+        "tradeShows": "งานแสดงสินค้า",
+        "tradeShowsDesc": "พบกับเราในงานอุตสาหกรรม",
         "careers": "ตำแหน่งงาน",
-        "careersDesc": "เข้าร่วมทีมของเรา"
+        "careersDesc": "ร่วมงานกับเรา"
       },
       "getInTouch": {
         "title": "ติดต่อเรา",
         "contactSales": "ติดต่อฝ่ายขาย",
         "contactSalesDesc": "พูดคุยกับตัวแทน",
-        "whereToBuy": "ซื้อที่ไหน",
-        "whereToBuyDesc": "หาตัวแทนจำหน่าย",
+        "whereToBuy": "ช่องทางการซื้อ",
+        "whereToBuyDesc": "ค้นหาตัวแทนจำหน่าย",
         "requestQuote": "ขอใบเสนอราคา",
-        "requestQuoteDesc": "รับราคา"
+        "requestQuoteDesc": "ขอราคา"
       },
       "featured": {
-        "title": "พร้อมที่จะเปลี่ยนแปลงระบบอัตโนมัติอาคารของคุณหรือไม่?",
-        "description": "ติดต่อทีมของเราเพื่อหารือข้อกำหนดโครงการของคุณและค้นพบโซลูชันเซ็นเซอร์ที่เหมาะสมที่สุด",
+        "title": "พร้อมปรับเปลี่ยนระบบอัตโนมัติของอาคารของคุณหรือไม่?",
+        "description": "ติดต่อทีมของเราเพื่อหารือข้อกำหนดโครงการของคุณและค้นพบโซลูชันเซนเซอร์ที่สมบูรณ์แบบ",
         "cta": "ติดต่อทีมของเรา"
       }
     },
@@ -139,86 +141,90 @@
       "label": "ผลิตภัณฑ์",
       "temperature": {
         "title": "อุณหภูมิ",
-        "roomWallSensors": "เซนเซอร์ตรวจวัดอุณหภูมิห้องและผนัง",
-        "roomWallSensorsDesc": "การตรวจวัดอุณหภูมิที่มีความแม่นยำสูง",
-        "ductSensors": "เซนเซอร์ตรวจวัดอุณหภูมิในท่อลม",
-        "ductSensorsDesc": "ตัวส่งสัญญาณติดตั้งในท่อลม",
-        "immersionWell": "แบบแช่และแบบวัด",
+        "roomWallSensors": "เซ็นเซอร์ในห้องและที่ผนัง",
+        "roomWallSensorsDesc": "การวัดอุณหภูมิแม่นยำสูง",
+        "ductSensors": "เซ็นเซอร์ที่ท่อ",
+        "ductSensorsDesc": "ตัวส่งสัญญาณติดตั้งที่ท่อ",
+        "immersionWell": "อุปกรณ์วัดอุณหภูมิของของเหลว",
         "immersionWellDesc": "การวัดอุณหภูมิของของเหลว",
-        "outdoorSensors": "เซนเซอร์ตรวจวัดอุณหภูมิภายนอก",
-        "outdoorSensorsDesc": "การตรวจวัดที่ทนทานต่อสภาพอากาศ"
+        "outdoorSensors": "เซ็นเซอร์ภายนอก",
+        "outdoorSensorsDesc": "การตรวจวัดที่ทนทานต่อสภาพอากาศ",
+        "averaging": "เซ็นเซอร์เฉลี่ย",
+        "averagingDesc": "การเฉลี่ยอุณหภูมิในพื้นที่ขนาดใหญ่",
+        "remoteProbes": "ตัวตรวจวัดระยะไกล",
+        "remoteProbesDesc": "ตัวตรวจวัดภายนอก"
       },
       "humidity": {
         "title": "ความชื้น",
         "roomHumidity": "ความชื้นในห้อง",
-        "roomHumidityDesc": "เซนเซอร์วัดความชื้นติดผนัง",
-        "ductHumidity": "ความชื้นในท่อลม",
-        "ductHumidityDesc": "วัดความชื้นของอากาศจากจ่ายและระบาย",
+        "roomHumidityDesc": "เซ็นเซอร์ความชื้นติดผนัง",
+        "ductHumidity": "ความชื้นที่ท่อ",
+        "ductHumidityDesc": "ความชื้นของอากาศจ่ายและกลับ",
         "outdoorHumidity": "ความชื้นภายนอก",
-        "outdoorHumidityDesc": "การวัดความชื้นที่ทนทานต่อสภาพอากาศ",
-        "comboSensors": "เซนเซอร์ผสม",
+        "outdoorHumidityDesc": "ความชื้นที่ทนทานต่อสภาพอากาศ",
+        "comboSensors": "เซ็นเซอร์ผสม",
         "comboSensorsDesc": "อุณหภูมิ + ความชื้น"
       },
       "pressure": {
-        "title": "แรงดัน",
-        "differential": "แรงดันความแตกต่าง",
+        "title": "ความดัน",
+        "differential": "ความดันแบบแตกต่าง",
         "differentialDesc": "การตรวจสอบห้องและตัวกรอง",
-        "static": "แรงดันสถิต",
-        "staticDesc": "ตัวส่งสัญญาณแรงดันในท่อลม",
-        "barometric": "บาโรมิเตอร์",
-        "barometricDesc": "แรงดันบรรยากาศ"
+        "static": "ความดันสถิต",
+        "staticDesc": "ตัวส่งสัญญาณความดันสถิตในท่อ",
+        "barometric": "ความดันบรรยากาศ",
+        "barometricDesc": "ความดันอากาศ"
       },
       "airQuality": {
         "title": "คุณภาพอากาศ",
-        "co2": "เซนเซอร์ CO₂",
-        "co2Desc": "การตรวจสอบคาร์บอนไดออกไซด์",
-        "voc": "เซนเซอร์ VOC",
+        "co2": "เซ็นเซอร์ CO₂",
+        "co2Desc": "การตรวจสอบก๊าซคาร์บอนไดออกไซด์",
+        "voc": "เซ็นเซอร์ VOC",
         "vocDesc": "สารประกอบอินทรีย์ระเหย",
-        "particulate": "ฝุ่นละออง",
+        "particulate": "สารอนุภาค",
         "particulateDesc": "PM2.5 และ PM10"
       },
       "wireless": {
-        "title": "ระบบไร้สาย",
-        "wamTemperature": "WAM อุณหภูมิ",
-        "wamTemperatureDesc": "เซนเซอร์วัดอุณหภูมิแบบไร้สาย",
-        "wamHumidity": "WAM ความชื้น",
-        "wamHumidityDesc": "เซนเซอร์วัดความชื้นแบบไร้สาย",
-        "wamDoorSensors": "เซนเซอร์ประตู WAM",
-        "wamDoorSensorsDesc": "การตรวจสอบการเปิด/ปิด",
+        "title": "ไร้สาย",
+        "wamTemperature": "อุณหภูมิ WAM",
+        "wamTemperatureDesc": "เซ็นเซอร์อุณหภูมิไร้สาย",
+        "wamHumidity": "ความชื้น WAM",
+        "wamHumidityDesc": "เซ็นเซอร์ความชื้นไร้สาย",
+        "wamDoorSensors": "เซ็นเซอร์ประตู WAM",
+        "wamDoorSensorsDesc": "การตรวจสอบเปิด/ปิด",
         "cloudPlatform": "แพลตฟอร์มคลาวด์",
         "cloudPlatformDesc": "การตรวจสอบระยะไกลตลอด 24/7"
       },
       "accessories": {
         "title": "อุปกรณ์เสริม",
-        "mounting": "อุปกรณ์ยึดติดตั้ง",
-        "mountingDesc": "แผ่น, กล่อง, ขาแขวน",
-        "enclosures": "กล่องใส่",
+        "mounting": "ฮาร์ดแวร์ติดตั้ง",
+        "mountingDesc": "แผ่นติดตั้ง กล่อง และขาตั้ง",
+        "enclosures": "ตู้เคลือบ",
         "enclosuresDesc": "BAPI-Box และฝาครอบ",
-        "cables": "สายเคเบิลและขั้วต่อ",
-        "cablesDesc": "อุปกรณ์เสริมในการต่อสาย"
+        "cables": "สายเคเบิลและตัวเชื่อมต่อ",
+        "cablesDesc": "อุปกรณ์เสริมสำหรับการเดินสาย"
       },
       "testInstruments": {
         "title": "เครื่องมือทดสอบ",
         "bluTestTemperature": "Blu-Test อุณหภูมิ",
-        "bluTestTemperatureDesc": "เทียบมาตรฐานการวัดอุณหภูมิ NIST",
+        "bluTestTemperatureDesc": "การอ้างอิงอุณหภูมิที่ตรวจสอบกับมาตรฐาน NIST",
         "bluTestHumidity": "Blu-Test ความชื้น",
-        "bluTestHumidityDesc": "เทียบมาตรฐานการวัดอุณหภูมิและความชื้น",
-        "bluTestPressure": "Blu-Test แรงดัน",
+        "bluTestHumidityDesc": "การอ้างอิงอุณหภูมิ + ความชื้น",
+        "bluTestPressure": "Blu-Test ความดัน",
         "bluTestPressureDesc": "มานอมิเตอร์ดิจิตอล"
       },
       "featured": {
-        "title": "การติดตามสินทรัพย์ไร้สาย WAM™",
-        "description": "การตรวจสอบระยะไกลแบบ 24/7 พร้อมการแจ้งเตือนทันที. ปกป้องสินทรัพย์ที่มีค่าของคุณจากการไฟฟ้าดับและความเสียหายของอุปกรณ์. ไม่ต้องใช้สายไฟ - เริ่มใช้งานได้ภายในนาที",
+        "title": "การตรวจสอบสินทรัพย์ไร้สาย WAM™",
+        "description": "การตรวจสอบระยะไกล 24/7 พร้อมการแจ้งเตือนทันที. ป้องกันสินทรัพย์ที่มีค่าของคุณจากการขัดข้องของไฟฟ้าและการเสียหายของอุปกรณ์. ไม่ต้องเดินสาย - สามารถใช้งานได้อย่างรวดเร็ว.",
         "cta": "เรียนรู้เพิ่มเติม",
-        "wamTitle": "การติดตามสินทรัพย์ไร้สาย WAM™",
-        "wamDescription": "การตรวจสอบระยะไกลแบบ 24/7 พร้อมการแจ้งเตือนทันที. ปกป้องสินทรัพย์ที่มีค่าของคุณจากการไฟฟ้าดับและความเสียหายของอุปกรณ์. ไม่ต้องใช้สายไฟ - เริ่มใช้งานได้ภายในนาที",
+        "wamTitle": "การตรวจสอบสินทรัพย์ไร้สาย WAM™",
+        "wamDescription": "การตรวจสอบระยะไกล 24/7 พร้อมการแจ้งเตือนทันที. ป้องกันสินทรัพย์ที่มีค่าของคุณจากการขัดข้องของไฟฟ้าและการเสียหายของอุปกรณ์. ไม่ต้องเดินสาย - สามารถใช้งานได้อย่างรวดเร็ว.",
         "wamCta": "เรียนรู้เพิ่มเติม",
         "wamBadge": "โซลูชันระดับพรีเมียม"
       },
       "badges": {
         "popular": "ยอดนิยม",
         "new": "ใหม่",
-        "premium": "พรีเมียม"
+        "premium": "ระดับพรีเมียม"
       }
     }
   },
@@ -1000,9 +1006,11 @@
       "title": "สรุปผลิตภัณฑ์",
       "configureProduct": "กำหนดค่าผลิตภัณฑ์",
       "selectSpecifications": "เลือกข้อมูลจำเพาะของคุณด้านล่างเพื่อดูราคาและหมายเลขชิ้นส่วน",
-      "configurationComplete": "การกำหนดค่าเสร็จสิ้น",
+      "scrollToCta": "เริ่มการกำหนดค่า",
+      "scrollToCtaAriaLabel": "เลื่อนไปยังส่วนตัวกำหนดค่าผลิตภัณฑ์",
+      "configurationComplete": "การกำหนดค่าเสร็จสมบูรณ์",
       "partNumber": "หมายเลขชิ้นส่วน",
-      "quantity": "จำนวน",
+      "quantity": "ปริมาณ",
       "multiplier": "ตัวคูณ",
       "priceCalculation": "การคำนวณราคา"
     },
@@ -1074,6 +1082,84 @@
       "xAvailable": "มี {count} ชิ้นพร้อมใช้",
       "expectedBack": "คาดว่าจะมีสินค้าใหม่: {date}",
       "shipsOn": "จัดส่งในวันที่: {date}"
+    },
+    "configurator": {
+      "heading": "กำหนดค่าผลิตภัณฑ์ของคุณ",
+      "subheading": "เลือกข้อมูลจำเพาะของคุณด้านล่าง • {selectedCount} จาก {totalCount} ตัวเลือกที่เลือก",
+      "shareConfigTitle": "แชร์การกำหนดค่านี้",
+      "shareConfigDisabledTitle": "กรุณาเลือกการกำหนดค่าให้ครบเพื่อแชร์",
+      "shareCopied": "คัดลอกแล้ว!",
+      "shareButton": "แชร์",
+      "resetButton": "รีเซ็ต",
+      "selectedConfig": "✓ การกำหนดค่าที่เลือก",
+      "partNumber": "หมายเลขชิ้นส่วน",
+      "yourPrice": "ราคาของคุณ",
+      "availability": "สภาพพร้อมจัดส่ง",
+      "inStock": "มีสินค้าในสต๊อก",
+      "shipsIn": "จัดส่งภายใน 2-3 วัน",
+      "backorder": "สินค้ารอสั่ง",
+      "contactForLeadTime": "ติดต่อเพื่อทราบระยะเวลาจัดส่ง",
+      "outOfStock": "สินค้าหมด",
+      "qtyLabel": "จำนวน:",
+      "decreaseQtyAriaLabel": "ลดจำนวน",
+      "increaseQtyAriaLabel": "เพิ่มจำนวน",
+      "invalidConfig": "การกำหนดค่าไม่ถูกต้อง",
+      "invalidConfigMessage": "ตัวเลือกนี้ไม่สามารถใช้ได้ กรุณาเลือกตัวเลือกอื่น",
+      "partialSelectionMessage": "กรุณาเลือกตัวเลือกอีก {count} ตัว{plural} เพื่อดูการกำหนดค่าสุดท้าย",
+      "optionSingular": "",
+      "optionPlural": "ตัว"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "กำหนดค่าข้อมูลจำเพาะของคุณด้านล่าง"
+    },
+    "trustBadges": {
+      "heading": "จำหน่ายโดย BAPI",
+      "madeInUSA": "ผลิตในสหรัฐอเมริกา",
+      "madeInUSADesc": "คุณภาพระดับสูง",
+      "warranty": "รับประกัน 5 ปี",
+      "warrantyDesc": "ครอบคลุมทุกกรณี",
+      "returns": "รับคืนภายใน 30 วัน",
+      "returnsDesc": "ไม่ยุ่งยาก",
+      "support": "การสนับสนุนจากผู้เชี่ยวชาญ",
+      "supportDesc": "ความช่วยเหลือทางเทคนิค"
+    },
+    "variationSelectors": {
+      "chooseOption": "เลือกตัวเลือก"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "การใช้งานอุณหภูมิ",
+        "roomEnclosure": "รูปแบบตัวเรือนห้อง",
+        "sensorOutput": "ผลลัพธ์ของเซนเซอร์อุณหภูมิ",
+        "setpointOverride": "ค่าตั้งอุณหภูมิและการยกเลิก",
+        "optionalSensorOutput": "เซนเซอร์อุณหภูมิและผลลัพธ์เสริม"
+      },
+      "humidity": {
+        "application": "การใช้งานความชื้น",
+        "roomEnclosure": "ตัวเรือนห้องความชื้น",
+        "sensorOutput": "ผลลัพธ์ของเซนเซอร์ความชื้น",
+        "optionalTempHumidity": "อุณหภูมิและความชื้นเสริม"
+      },
+      "pressure": {
+        "application": "การใช้งานความดัน",
+        "sensorStyle": "รูปแบบของเซนเซอร์ความดัน"
+      },
+      "airQuality": {
+        "application": "การใช้งานคุณภาพอากาศ",
+        "sensorType": "ประเภทของเซนเซอร์คุณภาพอากาศ"
+      },
+      "wireless": {
+        "application": "การใช้งานแบบไร้สาย"
+      },
+      "general": {
+        "display": "หน้าจอ",
+        "voltage": "ช่วงแรงดันไฟฟ้า",
+        "current": "ผลลัพธ์กระแสไฟ",
+        "mounting": "รูปแบบการติดตั้ง",
+        "enclosure": "ประเภทตัวเรือน",
+        "protocol": "โปรโตคอลการสื่อสาร",
+        "certification": "การรับรอง"
+      }
     }
   },
   "productsPage": {
@@ -1165,6 +1251,24 @@
       "title": "ต้องการความช่วยเหลือในการค้นหาผลิตภัณฑ์ที่เหมาะสม?",
       "description": "ทีมผู้เชี่ยวชาญของเราพร้อมให้ความช่วยเหลือในการเลือกเซ็นเซอร์และตัวควบคุมที่สมบูรณ์แบบสำหรับโครงการระบบอัตโนมัติอาคารของคุณ",
       "button": "ติดต่อฝ่ายขาย"
+    },
+    "subcategories": {
+      "room": {
+        "name": "ห้องควบคุม",
+        "description": "เซนเซอร์ตรึงผนังสำหรับออฟฟิศ ห้องประชุม และพื้นที่ใช้งาน"
+      },
+      "nonRoom": {
+        "name": "นอกห้องควบคุม",
+        "description": "เซนเซอร์สำหรับท่อ ภายนอก แช่น้ำ และติดตั้งอุตสาหกรรม"
+      },
+      "bluetoothWireless": {
+        "name": "ระบบไร้สาย - Bluetooth Low Energy",
+        "description": "เซนเซอร์แบบใช้แบตเตอรีและเชื่อมต่อผ่านเกตเวย์"
+      },
+      "wamWireless": {
+        "name": "WAM - การติดตามแบบไร้สายสำหรับสินทรัพย์",
+        "description": "การติดตามแบบไร้สายระยะไกลด้วยแพลตฟอร์มคลาวด์"
+      }
     }
   },
   "cartPage": {
@@ -1268,7 +1372,8 @@
     "breadcrumb": {
       "home": "หน้าแรก",
       "products": "ผลิตภัณฑ์"
-    }
+    },
+    "backTo": "กลับไปยัง {categoryName}"
   },
   "searchPage": {
     "meta": {

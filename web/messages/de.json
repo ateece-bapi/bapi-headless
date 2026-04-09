@@ -108,7 +108,7 @@
       }
     },
     "company": {
-      "label": "Über BAPI",
+      "label": "Unternehmen",
       "aboutBapi": {
         "title": "Über BAPI",
         "whyBapi": "Warum BAPI",
@@ -117,7 +117,7 @@
         "missionValuesDesc": "Was uns antreibt",
         "news": "Nachrichten & Veranstaltungen",
         "newsDesc": "Neueste Ankündigungen",
-        "tradeShows": "Fachmessen",
+        "tradeShows": "Messen",
         "tradeShowsDesc": "Treffen Sie uns auf Branchenveranstaltungen",
         "careers": "Karriere",
         "careersDesc": "Treten Sie unserem Team bei"
@@ -125,15 +125,15 @@
       "getInTouch": {
         "title": "Kontaktieren Sie uns",
         "contactSales": "Kontaktieren Sie den Vertrieb",
-        "contactSalesDesc": "Sprechen Sie mit einem Vertreter",
+        "contactSalesDesc": "Sprechen Sie mit einem Vertriebsmitarbeiter",
         "whereToBuy": "Wo kaufen",
         "whereToBuyDesc": "Finden Sie einen Händler",
-        "requestQuote": "Fordern Sie ein Angebot an",
+        "requestQuote": "Angebot anfordern",
         "requestQuoteDesc": "Erhalten Sie Preise"
       },
       "featured": {
         "title": "Bereit, Ihre Gebäudeautomation zu transformieren?",
-        "description": "Sprechen Sie mit unserem Team, um Ihre Projektanforderungen zu besprechen und die perfekte Sensorlösung zu finden.",
+        "description": "Sprechen Sie mit unserem Team, um Ihre Projektanforderungen zu erörtern und die perfekte Sensorlösung zu finden.",
         "cta": "Kontaktieren Sie unser Team"
       }
     },
@@ -142,33 +142,37 @@
       "temperature": {
         "title": "Temperatur",
         "roomWallSensors": "Raum- und Wandsensoren",
-        "roomWallSensorsDesc": "Hochgenaue Temperaturerfassung",
+        "roomWallSensorsDesc": "Hochgenaue Temperaturmessung",
         "ductSensors": "Kanalsensoren",
-        "ductSensorsDesc": "Kanalgebundene Transmitter",
-        "immersionWell": "Tauchen und Brunnen",
-        "immersionWellDesc": "Flüssigkeitstemperaturmessung",
+        "ductSensorsDesc": "Kanalmontierte Transmitter",
+        "immersionWell": "Tauchfühler & Eintauchteile",
+        "immersionWellDesc": "Messung von Flüssigkeitstemperatur",
         "outdoorSensors": "Außensensoren",
-        "outdoorSensorsDesc": "Wetterfeste Erfassung"
+        "outdoorSensorsDesc": "Witterungsbeständige Messung",
+        "averaging": "Durchschnittssensoren",
+        "averagingDesc": "Temperaturmittelung für große Räume",
+        "remoteProbes": "Fernfühler",
+        "remoteProbesDesc": "Separate Messelemente"
       },
       "humidity": {
         "title": "Feuchtigkeit",
-        "roomHumidity": "Raumluftfeuchtigkeit",
-        "roomHumidityDesc": "Wandmontierte rF-Sensoren",
-        "ductHumidity": "Kanalfeuchtigkeit",
-        "ductHumidityDesc": "Zuluft- und Abluft-rF",
+        "roomHumidity": "Raumluftfeuchte",
+        "roomHumidityDesc": "Wandmontierte Feuchtesensoren",
+        "ductHumidity": "Kanalluftrfeuchte",
+        "ductHumidityDesc": "Zuluft- und Abluftfeuchte",
         "outdoorHumidity": "Außenluftfeuchtigkeit",
-        "outdoorHumidityDesc": "Wetterfeste rF",
+        "outdoorHumidityDesc": "Witterungsbeständige Feuchtemessung",
         "comboSensors": "Kombisensoren",
-        "comboSensorsDesc": "Temperatur + Feuchtigkeit"
+        "comboSensorsDesc": "Temperatur + Feuchte"
       },
       "pressure": {
         "title": "Druck",
-        "differential": "Differenzdruck",
-        "differentialDesc": "Raum- und Filterkontrolle",
+        "differential": "Differenzdrucküberwachung",
+        "differentialDesc": "Raum- und Filtermessung",
         "static": "Statischer Druck",
         "staticDesc": "Kanaldruck-Transmitter",
-        "barometric": "Barometrisch",
-        "barometricDesc": "Atmosphärischer Druck"
+        "barometric": "Barometrischer Druck",
+        "barometricDesc": "Atmosphärischer Luftdruck"
       },
       "airQuality": {
         "title": "Luftqualität",
@@ -176,27 +180,27 @@
         "co2Desc": "Kohlendioxid-Überwachung",
         "voc": "VOC-Sensoren",
         "vocDesc": "Flüchtige organische Verbindungen",
-        "particulate": "Partikel",
+        "particulate": "Partikelbelastung",
         "particulateDesc": "PM2,5 und PM10"
       },
       "wireless": {
-        "title": "Drahtlos",
+        "title": "Kabellos",
         "wamTemperature": "WAM Temperatur",
         "wamTemperatureDesc": "Drahtlose Temperatursensoren",
         "wamHumidity": "WAM Feuchtigkeit",
-        "wamHumidityDesc": "Drahtlose rF-Sensoren",
+        "wamHumidityDesc": "Drahtlose Feuchtigkeitssensoren",
         "wamDoorSensors": "WAM Türsensoren",
-        "wamDoorSensorsDesc": "Überwachung von Öffnung/Schließung",
+        "wamDoorSensorsDesc": "Öffnungs-/Schließungsüberwachung",
         "cloudPlatform": "Cloud-Plattform",
-        "cloudPlatformDesc": "24/7 Fernüberwachung"
+        "cloudPlatformDesc": "Rundum-Überwachung 24/7"
       },
       "accessories": {
         "title": "Zubehör",
-        "mounting": "Montagezubehör",
+        "mounting": "Befestigungszubehör",
         "mountingDesc": "Platten, Kästen, Halterungen",
         "enclosures": "Gehäuse",
-        "enclosuresDesc": "BAPI-Box & Abdeckungen",
-        "cables": "Kabel & Steckverbinder",
+        "enclosuresDesc": "BAPI-Kästen & Abdeckungen",
+        "cables": "Kabel & Anschlüsse",
         "cablesDesc": "Verkabelungszubehör"
       },
       "testInstruments": {
@@ -204,17 +208,17 @@
         "bluTestTemperature": "Blu-Test Temperatur",
         "bluTestTemperatureDesc": "NIST-rückführbare Referenz",
         "bluTestHumidity": "Blu-Test Feuchtigkeit",
-        "bluTestHumidityDesc": "Temperatur + rF-Referenz",
+        "bluTestHumidityDesc": "Temperatur- & Feuchtereferenz",
         "bluTestPressure": "Blu-Test Druck",
         "bluTestPressureDesc": "Digitales Manometer"
       },
       "featured": {
-        "title": "WAM™ Drahtlose Betriebsmittelüberwachung",
-        "description": "24/7 Fernüberwachung mit sofortigen Warnmeldungen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Ausfällen der Anlagen. Keine Verkabelung erforderlich - in Minuten einsatzbereit.",
-        "cta": "Mehr erfahren",
-        "wamTitle": "WAM™ Drahtlose Betriebsmittelüberwachung",
-        "wamDescription": "24/7 Fernüberwachung mit sofortigen Warnmeldungen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Ausfällen der Anlagen. Keine Verkabelung erforderlich - in Minuten einsatzbereit.",
-        "wamCta": "Mehr erfahren",
+        "title": "WAM™ Drahtlose Asset-Überwachung",
+        "description": "Rundumüberwachung 24/7 mit Sofortalarmen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Gerätestörungen. Ohne Verkabelung - in Minuten einsatzbereit.",
+        "cta": "Weitere Informationen",
+        "wamTitle": "WAM™ Drahtlose Asset-Überwachung",
+        "wamDescription": "Rundumüberwachung 24/7 mit Sofortalarmen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Gerätestörungen. Ohne Verkabelung - in Minuten einsatzbereit.",
+        "wamCta": "Weitere Informationen",
         "wamBadge": "Premium-Lösung"
       },
       "badges": {
@@ -469,11 +473,13 @@
       "products": "Produkte"
     },
     "summary": {
-      "title": "Produktzusammenfassung",
+      "title": "Produktübersicht",
       "configureProduct": "Produkt konfigurieren",
-      "selectSpecifications": "Wählen Sie Ihre Spezifikationen unten aus, um den Preis und die Teilenummer zu sehen",
+      "selectSpecifications": "Wählen Sie unten Ihre Spezifikationen aus, um Preise und Artikelnummern zu sehen",
+      "scrollToCta": "Konfiguration starten",
+      "scrollToCtaAriaLabel": "Zum Produktkonfigurator-Abschnitt scrollen",
       "configurationComplete": "Konfiguration abgeschlossen",
-      "partNumber": "Teilenummer",
+      "partNumber": "Artikelnummer",
       "quantity": "Menge",
       "multiplier": "Multiplikator",
       "priceCalculation": "Preisberechnung"
@@ -546,6 +552,84 @@
       "xAvailable": "{count} verfügbar",
       "expectedBack": "Wieder lieferbar: {date}",
       "shipsOn": "Wird versandt am: {date}"
+    },
+    "configurator": {
+      "heading": "Konfigurieren Sie Ihr Produkt",
+      "subheading": "Wählen Sie Ihre Spezifikationen unten aus • {selectedCount} von {totalCount} Optionen ausgewählt",
+      "shareConfigTitle": "Teilen Sie diese Konfiguration",
+      "shareConfigDisabledTitle": "Konfiguration abschließen, um sie zu teilen",
+      "shareCopied": "Kopiert!",
+      "shareButton": "Teilen",
+      "resetButton": "Zurücksetzen",
+      "selectedConfig": "✓ Ausgewählte Konfiguration",
+      "partNumber": "Teilenummer",
+      "yourPrice": "Ihr Preis",
+      "availability": "Verfügbarkeit",
+      "inStock": "Auf Lager",
+      "shipsIn": "Wird in 2-3 Tagen verschickt",
+      "backorder": "Nachbestellung",
+      "contactForLeadTime": "Kontaktieren Sie uns für die Lieferzeit",
+      "outOfStock": "Nicht auf Lager",
+      "qtyLabel": "Menge:",
+      "decreaseQtyAriaLabel": "Menge verringern",
+      "increaseQtyAriaLabel": "Menge erhöhen",
+      "invalidConfig": "Ungültige Konfiguration",
+      "invalidConfigMessage": "Diese Kombination von Optionen ist nicht verfügbar. Bitte versuchen Sie es mit anderen Auswahlen.",
+      "partialSelectionMessage": "Bitte wählen Sie {count} weitere Option{plural} aus, um die endgültige Konfiguration zu sehen",
+      "optionSingular": "",
+      "optionPlural": "en"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "Konfigurieren Sie Ihre Spezifikationen unten"
+    },
+    "trustBadges": {
+      "heading": "Warum bei BAPI kaufen",
+      "madeInUSA": "Hergestellt in den USA",
+      "madeInUSADesc": "Hochwertige Qualität",
+      "warranty": "5-Jahres-Garantie",
+      "warrantyDesc": "Vollständige Abdeckung",
+      "returns": "30-tägiges Rückgaberecht",
+      "returnsDesc": "Problemlos",
+      "support": "Expertenunterstützung",
+      "supportDesc": "Technische Hilfe"
+    },
+    "variationSelectors": {
+      "chooseOption": "Wähle eine Option"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Temperaturanwendung",
+        "roomEnclosure": "Raumgehäuseart",
+        "sensorOutput": "Temperatur-Sensorausgang",
+        "setpointOverride": "Temperatur-Sollwert und Überschreibung",
+        "optionalSensorOutput": "Optionaler Temperatur-Sensor & Ausgang"
+      },
+      "humidity": {
+        "application": "Luftfeuchtigkeitsanwendung",
+        "roomEnclosure": "Luftfeuchtigkeit-Raumgehäuse",
+        "sensorOutput": "Luftfeuchtigkeits-Sensorausgang",
+        "optionalTempHumidity": "Optionale Temperatur & Luftfeuchtigkeit"
+      },
+      "pressure": {
+        "application": "Druckanwendung",
+        "sensorStyle": "Drucksensorart"
+      },
+      "airQuality": {
+        "application": "Luftqualitätsanwendung",
+        "sensorType": "Luftqualitäts-Sensortyp"
+      },
+      "wireless": {
+        "application": "Drahtlosanwendung"
+      },
+      "general": {
+        "display": "Anzeige",
+        "voltage": "Spannungsbereich",
+        "current": "Stromausgang",
+        "mounting": "Montagetyp",
+        "enclosure": "Gehäusetyp",
+        "protocol": "Kommunikationsprotokoll",
+        "certification": "Zertifizierungen"
+      }
     }
   },
   "productsPage": {
@@ -637,6 +721,24 @@
       "title": "Brauchen Sie Hilfe bei der richtigen Produktauswahl?",
       "description": "Unser Team von Experten steht Ihnen bereit, um Ihnen die perfekten Sensoren und Regler für Ihr Gebäudeautomationsprojekt auszuwählen.",
       "button": "Vertrieb kontaktieren"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Raum",
+        "description": "Wandmontierte Sensoren für Büros, Konferenzräume und belegte Räume"
+      },
+      "nonRoom": {
+        "name": "Nicht-Raum",
+        "description": "Kanal-, Außen-, Tauch- und Industriesensoren"
+      },
+      "bluetoothWireless": {
+        "name": "Drahtlossystem - Bluetooth Low Energy",
+        "description": "Batteriebetriebene Bluetooth-Sensoren mit Gateway"
+      },
+      "wamWireless": {
+        "name": "WAM - Wireless Asset Monitoring",
+        "description": "Drahtlose Fernüberwachung mit Cloud-Plattform"
+      }
     }
   },
   "cartPage": {
@@ -740,7 +842,8 @@
     "breadcrumb": {
       "home": "Startseite",
       "products": "Produkte"
-    }
+    },
+    "backTo": "Zurück zu {categoryName}"
   },
   "searchPage": {
     "meta": {

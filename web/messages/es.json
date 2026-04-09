@@ -426,13 +426,13 @@
       }
     },
     "company": {
-      "label": "Sobre BAPI",
+      "label": "Empresa",
       "aboutBapi": {
-        "title": "Sobre BAPI",
+        "title": "Acerca de BAPI",
         "whyBapi": "Por qué BAPI",
-        "whyBapiDesc": "Por qué elegir los sensores BAPI",
+        "whyBapiDesc": "Por qué elegir sensores BAPI",
         "missionValues": "Misión y Valores",
-        "missionValuesDesc": "Lo que nos mueve",
+        "missionValuesDesc": "Lo que nos impulsa",
         "news": "Noticias y Eventos",
         "newsDesc": "Últimos anuncios",
         "tradeShows": "Ferias Comerciales",
@@ -441,7 +441,7 @@
         "careersDesc": "Únete a nuestro equipo"
       },
       "getInTouch": {
-        "title": "Ponte en Contacto",
+        "title": "Póngase en Contacto",
         "contactSales": "Contactar Ventas",
         "contactSalesDesc": "Habla con un representante",
         "whereToBuy": "Dónde Comprar",
@@ -450,9 +450,9 @@
         "requestQuoteDesc": "Obtener precios"
       },
       "featured": {
-        "title": "¿Listo para Transformar tu Automatización de Edificios?",
+        "title": "¿Listo para transformar tu automatización de edificios?",
         "description": "Conéctate con nuestro equipo para discutir los requisitos de tu proyecto y descubrir la solución de sensor perfecta.",
-        "cta": "Contacta a Nuestro Equipo"
+        "cta": "Contáctanos"
       }
     },
     "products": {
@@ -463,28 +463,32 @@
         "roomWallSensorsDesc": "Detección de temperatura de alta precisión",
         "ductSensors": "Sensores de conducto",
         "ductSensorsDesc": "Transmisores montados en conductos",
-        "immersionWell": "Inmersión y pozo",
+        "immersionWell": "Inmersión y Pozo",
         "immersionWellDesc": "Medición de temperatura de líquidos",
         "outdoorSensors": "Sensores exteriores",
-        "outdoorSensorsDesc": "Detección resistente a la intemperie"
+        "outdoorSensorsDesc": "Detección resistente a la intemperie",
+        "averaging": "Sensores de promedio",
+        "averagingDesc": "Promediado de temperatura de espacios grandes",
+        "remoteProbes": "Sondas remotas",
+        "remoteProbesDesc": "Sondas de elemento sensor separado"
       },
       "humidity": {
         "title": "Humedad",
-        "roomHumidity": "Humedad de la habitación",
-        "roomHumidityDesc": "Sensores de HR de montaje en pared",
+        "roomHumidity": "Humedad de habitación",
+        "roomHumidityDesc": "Sensores de HR montados en pared",
         "ductHumidity": "Humedad de conducto",
         "ductHumidityDesc": "HR de suministro y retorno de aire",
         "outdoorHumidity": "Humedad exterior",
         "outdoorHumidityDesc": "HR resistente a la intemperie",
         "comboSensors": "Sensores combinados",
-        "comboSensorsDesc": "Temperatura + humedad"
+        "comboSensorsDesc": "Temperatura + Humedad"
       },
       "pressure": {
         "title": "Presión",
         "differential": "Presión diferencial",
         "differentialDesc": "Monitoreo de habitación y filtro",
         "static": "Presión estática",
-        "staticDesc": "Transmisores estáticos de conducto",
+        "staticDesc": "Transmisores de presión estática de conducto",
         "barometric": "Barométrica",
         "barometricDesc": "Presión atmosférica"
       },
@@ -499,11 +503,11 @@
       },
       "wireless": {
         "title": "Inalámbrico",
-        "wamTemperature": "Temperatura WAM",
+        "wamTemperature": "WAM Temperatura",
         "wamTemperatureDesc": "Sensores de temperatura inalámbricos",
-        "wamHumidity": "Humedad WAM",
+        "wamHumidity": "WAM Humedad",
         "wamHumidityDesc": "Sensores de HR inalámbricos",
-        "wamDoorSensors": "Sensores de puerta WAM",
+        "wamDoorSensors": "WAM Sensores de puerta",
         "wamDoorSensorsDesc": "Monitoreo de apertura/cierre",
         "cloudPlatform": "Plataforma en la nube",
         "cloudPlatformDesc": "Monitoreo remoto 24/7"
@@ -512,7 +516,7 @@
         "title": "Accesorios",
         "mounting": "Herrajes de montaje",
         "mountingDesc": "Placas, cajas, soportes",
-        "enclosures": "Cajas de protección",
+        "enclosures": "Envolventes",
         "enclosuresDesc": "BAPI-Box y cubiertas",
         "cables": "Cables y conectores",
         "cablesDesc": "Accesorios de cableado"
@@ -522,18 +526,18 @@
         "bluTestTemperature": "Blu-Test Temperatura",
         "bluTestTemperatureDesc": "Referencia trazable a NIST",
         "bluTestHumidity": "Blu-Test Humedad",
-        "bluTestHumidityDesc": "Referencia de temperatura + HR",
+        "bluTestHumidityDesc": "Referencia de temp + HR",
         "bluTestPressure": "Blu-Test Presión",
         "bluTestPressureDesc": "Manómetro digital"
       },
       "featured": {
-        "title": "Monitoreo de activos inalámbrico WAM™",
-        "description": "Monitoreo remoto 24/7 con alertas instantáneas. Protege tus valiosos activos contra cortes de energía y fallas de equipos. Sin cableado, puesto en marcha en minutos.",
+        "title": "Monitoreo Inalámbrico de Activos WAM™",
+        "description": "Monitoreo remoto 24/7 con alertas instantáneas. Proteja sus valiosos activos contra cortes de energía y fallas de equipos. Sin necesidad de cableado: ¡en marcha en minutos!",
         "cta": "Más información",
-        "wamTitle": "Monitoreo de activos inalámbrico WAM™",
-        "wamDescription": "Monitoreo remoto 24/7 con alertas instantáneas. Protege tus valiosos activos contra cortes de energía y fallas de equipos. Sin cableado, puesto en marcha en minutos.",
+        "wamTitle": "Monitoreo Inalámbrico de Activos WAM™",
+        "wamDescription": "Monitoreo remoto 24/7 con alertas instantáneas. Proteja sus valiosos activos contra cortes de energía y fallas de equipos. Sin necesidad de cableado: ¡en marcha en minutos!",
         "wamCta": "Más información",
-        "wamBadge": "Solución premium"
+        "wamBadge": "Solución Premium"
       },
       "badges": {
         "popular": "Popular",
@@ -549,8 +553,10 @@
     },
     "summary": {
       "title": "Resumen del producto",
-      "configureProduct": "Configurar producto",
-      "selectSpecifications": "Selecciona tus especificaciones a continuación para ver los precios y el número de pieza",
+      "configureProduct": "Configurar el producto",
+      "selectSpecifications": "Seleccione sus especificaciones a continuación para ver el precio y el número de pieza",
+      "scrollToCta": "Comenzar la configuración",
+      "scrollToCtaAriaLabel": "Desplazarse a la sección del configurador de productos",
       "configurationComplete": "Configuración completa",
       "partNumber": "Número de pieza",
       "quantity": "Cantidad",
@@ -625,6 +631,84 @@
       "xAvailable": "{count} disponibles",
       "expectedBack": "Se espera de vuelta: {date}",
       "shipsOn": "Se envía el: {date}"
+    },
+    "configurator": {
+      "heading": "Configura tu producto",
+      "subheading": "Selecciona tus especificaciones a continuación • {selectedCount} de {totalCount} opciones seleccionadas",
+      "shareConfigTitle": "Comparte esta configuración",
+      "shareConfigDisabledTitle": "Completa la configuración para compartir",
+      "shareCopied": "¡Copiado!",
+      "shareButton": "Compartir",
+      "resetButton": "Restablecer",
+      "selectedConfig": "✓ Configuración seleccionada",
+      "partNumber": "Número de parte",
+      "yourPrice": "Tu precio",
+      "availability": "Disponibilidad",
+      "inStock": "En stock",
+      "shipsIn": "Se envía en 2-3 días",
+      "backorder": "Pedido pendiente",
+      "contactForLeadTime": "Contacta para el tiempo de entrega",
+      "outOfStock": "Agotado",
+      "qtyLabel": "Cantidad:",
+      "decreaseQtyAriaLabel": "Disminuir cantidad",
+      "increaseQtyAriaLabel": "Aumentar cantidad",
+      "invalidConfig": "Configuración no válida",
+      "invalidConfigMessage": "Esta combinación de opciones no está disponible. Intenta diferentes selecciones.",
+      "partialSelectionMessage": "Selecciona {count} opción{plural} más para ver la configuración final",
+      "optionSingular": "",
+      "optionPlural": "es"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "Configure sus especificaciones a continuación"
+    },
+    "trustBadges": {
+      "heading": "Por qué comprar de BAPI",
+      "madeInUSA": "Hecho en EE. UU.",
+      "madeInUSADesc": "Calidad Construida",
+      "warranty": "Garantía de 5 años",
+      "warrantyDesc": "Cobertura Completa",
+      "returns": "Devoluciones de 30 días",
+      "returnsDesc": "Sin Problemas",
+      "support": "Soporte Experto",
+      "supportDesc": "Asistencia Técnica"
+    },
+    "variationSelectors": {
+      "chooseOption": "Elija una opción"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Aplicación de temperatura",
+        "roomEnclosure": "Estilo de recinto de la habitación",
+        "sensorOutput": "Salida del sensor de temperatura",
+        "setpointOverride": "Consigna de temperatura y anulación",
+        "optionalSensorOutput": "Sensor de temperatura opcional y salida"
+      },
+      "humidity": {
+        "application": "Aplicación de humedad",
+        "roomEnclosure": "Recinto de humedad de la habitación",
+        "sensorOutput": "Salida del sensor de humedad",
+        "optionalTempHumidity": "Temperatura y humedad opcionales"
+      },
+      "pressure": {
+        "application": "Aplicación de presión",
+        "sensorStyle": "Estilo del sensor de presión"
+      },
+      "airQuality": {
+        "application": "Aplicación de calidad del aire",
+        "sensorType": "Tipo de sensor de calidad del aire"
+      },
+      "wireless": {
+        "application": "Aplicación inalámbrica"
+      },
+      "general": {
+        "display": "Pantalla",
+        "voltage": "Rango de voltaje",
+        "current": "Salida de corriente",
+        "mounting": "Tipo de montaje",
+        "enclosure": "Tipo de recinto",
+        "protocol": "Protocolo de comunicación",
+        "certification": "Certificaciones"
+      }
     }
   },
   "productsPage": {
@@ -716,6 +800,24 @@
       "title": "¿Necesitas ayuda para encontrar el producto adecuado?",
       "description": "Nuestro equipo de expertos está listo para ayudarte a seleccionar los sensores y controladores perfectos para tu proyecto de automatización de edificios.",
       "button": "Contactar ventas"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Sala",
+        "description": "Sensores montados en pared para oficinas, salas de conferencias y espacios ocupados"
+      },
+      "nonRoom": {
+        "name": "No Sala",
+        "description": "Sensores para conductos, exteriores, inmersión e instalación industrial"
+      },
+      "bluetoothWireless": {
+        "name": "Sistema inalámbrico - Bluetooth de baja energía",
+        "description": "Sensores Bluetooth a batería con pasarela"
+      },
+      "wamWireless": {
+        "name": "WAM - Monitoreo inalámbrico de activos",
+        "description": "Monitoreo inalámbrico de largo alcance con plataforma en la nube"
+      }
     }
   },
   "cartPage": {
@@ -819,7 +921,8 @@
     "breadcrumb": {
       "home": "Inicio",
       "products": "Productos"
-    }
+    },
+    "backTo": "Volver a {categoryName}"
   },
   "searchPage": {
     "meta": {

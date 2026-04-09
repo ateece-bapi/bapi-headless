@@ -1,10 +1,12 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { ChevronDownIcon } from '@/lib/icons';
 import { getShortLabel } from '@/lib/attributeDetection';
 
 interface DropdownSelectorProps {
   label: string;
+  attributeSlug: string; // Stable identifier for DOM ids
   options: string[];
   value: string;
   onChange: (value: string) => void;
@@ -19,16 +21,19 @@ interface DropdownSelectorProps {
  */
 export default function DropdownSelector({
   label,
+  attributeSlug,
   options,
   value,
   onChange,
   className = '',
   description,
 }: DropdownSelectorProps) {
+  const t = useTranslations('productPage.variationSelectors');
+  
   return (
     <div className={`${className}`}>
       <label
-        htmlFor={`dropdown-${label}`}
+        htmlFor={`dropdown-${attributeSlug}`}
         className="mb-2 block text-sm font-bold uppercase tracking-wide text-neutral-900"
       >
         {label}
@@ -37,7 +42,7 @@ export default function DropdownSelector({
 
       <div className="relative">
         <select
-          id={`dropdown-${label}`}
+          id={`dropdown-${attributeSlug}`}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className={`w-full appearance-none rounded-lg border-2 bg-white px-4 py-3.5 pr-12 text-base transition-all ${
@@ -46,7 +51,7 @@ export default function DropdownSelector({
               : 'border-neutral-300 text-neutral-700'
           } cursor-pointer hover:border-primary-400 focus:border-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/20`}
         >
-          <option value="">Choose an option</option>
+          <option value="">{t('chooseOption')}</option>
           {options.map((option) => (
             <option key={option} value={option}>
               {option}

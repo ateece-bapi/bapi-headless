@@ -426,16 +426,16 @@
       }
     },
     "company": {
-      "label": "关于 BAPI",
+      "label": "公司",
       "aboutBapi": {
         "title": "关于 BAPI",
         "whyBapi": "为什么选择 BAPI",
         "whyBapiDesc": "为什么选择 BAPI 传感器",
-        "missionValues": "使命与价值观",
+        "missionValues": "使命和价值观",
         "missionValuesDesc": "推动我们前进的动力",
-        "news": "新闻与活动",
+        "news": "新闻和活动",
         "newsDesc": "最新公告",
-        "tradeShows": "展会活动",
+        "tradeShows": "展会",
         "tradeShowsDesc": "在行业活动中与我们联系",
         "careers": "职业机会",
         "careersDesc": "加入我们的团队"
@@ -443,14 +443,14 @@
       "getInTouch": {
         "title": "与我们联系",
         "contactSales": "联系销售",
-        "contactSalesDesc": "与销售代表交谈",
+        "contactSalesDesc": "与代表交谈",
         "whereToBuy": "购买渠道",
-        "whereToBuyDesc": "找到经销商",
-        "requestQuote": "获取报价",
+        "whereToBuyDesc": "查找经销商",
+        "requestQuote": "请求报价",
         "requestQuoteDesc": "获取价格信息"
       },
       "featured": {
-        "title": "准备好改造您的建筑自动化系统了吗?",
+        "title": "准备改造您的建筑自动化系统吗？",
         "description": "与我们的团队联系,讨论您的项目需求,找到合适的传感器解决方案。",
         "cta": "联系我们的团队"
       }
@@ -459,23 +459,27 @@
       "label": "产品",
       "temperature": {
         "title": "温度",
-        "roomWallSensors": "室内和墙壁传感器",
-        "roomWallSensorsDesc": "高精度温度检测",
+        "roomWallSensors": "室内和壁挂式传感器",
+        "roomWallSensorsDesc": "高精度温度测量",
         "ductSensors": "管道传感器",
         "ductSensorsDesc": "管道安装式传感器",
-        "immersionWell": "浸没式和套管式",
+        "immersionWell": "浸没式和管道式",
         "immersionWellDesc": "液体温度测量",
         "outdoorSensors": "室外传感器",
-        "outdoorSensorsDesc": "抗恶劣环境温度检测"
+        "outdoorSensorsDesc": "耐候性温度测量",
+        "averaging": "平均值传感器",
+        "averagingDesc": "大空间温度平均测量",
+        "remoteProbes": "远程探头",
+        "remoteProbesDesc": "独立的感测元件探头"
       },
       "humidity": {
         "title": "湿度",
         "roomHumidity": "室内湿度",
-        "roomHumidityDesc": "壁挂式相对湿度传感器",
+        "roomHumidityDesc": "壁挂式湿度传感器",
         "ductHumidity": "管道湿度",
-        "ductHumidityDesc": "进出口相对湿度",
+        "ductHumidityDesc": "供给和回风湿度",
         "outdoorHumidity": "室外湿度",
-        "outdoorHumidityDesc": "抗恶劣环境相对湿度",
+        "outdoorHumidityDesc": "耐候性湿度测量",
         "comboSensors": "组合式传感器",
         "comboSensorsDesc": "温度 + 湿度"
       },
@@ -485,7 +489,7 @@
         "differentialDesc": "室内和过滤器监测",
         "static": "静压",
         "staticDesc": "管道静压变送器",
-        "barometric": "大气压力",
+        "barometric": "气压",
         "barometricDesc": "大气压力"
       },
       "airQuality": {
@@ -502,43 +506,43 @@
         "wamTemperature": "WAM温度",
         "wamTemperatureDesc": "无线温度传感器",
         "wamHumidity": "WAM湿度",
-        "wamHumidityDesc": "无线相对湿度传感器",
+        "wamHumidityDesc": "无线湿度传感器",
         "wamDoorSensors": "WAM门传感器",
-        "wamDoorSensorsDesc": "开关监测",
+        "wamDoorSensorsDesc": "开/关监测",
         "cloudPlatform": "云平台",
-        "cloudPlatformDesc": "全天候远程监控"
+        "cloudPlatformDesc": "全天候远程监测"
       },
       "accessories": {
-        "title": "配件",
+        "title": "附件",
         "mounting": "安装硬件",
-        "mountingDesc": "面板、盒子、支架",
+        "mountingDesc": "安装板、箱子、支架",
         "enclosures": "外壳",
-        "enclosuresDesc": "BAPI-Box和外罩",
-        "cables": "电缆和连接器",
-        "cablesDesc": "布线配件"
+        "enclosuresDesc": "BAPI-Box和遮盖",
+        "cables": "线缆和连接器",
+        "cablesDesc": "接线配件"
       },
       "testInstruments": {
         "title": "测试仪器",
         "bluTestTemperature": "Blu-Test温度",
         "bluTestTemperatureDesc": "NIST可溯源参考",
         "bluTestHumidity": "Blu-Test湿度",
-        "bluTestHumidityDesc": "温度 + 相对湿度参考",
+        "bluTestHumidityDesc": "温度 + 湿度参考",
         "bluTestPressure": "Blu-Test压力",
-        "bluTestPressureDesc": "数字式微量计"
+        "bluTestPressureDesc": "数字式压力计"
       },
       "featured": {
-        "title": "WAM™无线资产监控",
-        "description": "全天候远程监控,即时报警。保护您的宝贵资产免受停电和设备故障的影响。无需布线 - 几分钟即可启用。",
+        "title": "WAM™ 无线资产监测",
+        "description": "24/7远程监测,即时警报。保护您宝贵的资产免受停电和设备故障的影响。无需接线 - 几分钟即可投入使用。",
         "cta": "了解更多",
-        "wamTitle": "WAM™无线资产监控",
-        "wamDescription": "全天候远程监控,即时报警。保护您的宝贵资产免受停电和设备故障的影响。无需布线 - 几分钟即可启用。",
+        "wamTitle": "WAM™ 无线资产监测",
+        "wamDescription": "24/7远程监测,即时警报。保护您宝贵的资产免受停电和设备故障的影响。无需接线 - 几分钟即可投入使用。",
         "wamCta": "了解更多",
-        "wamBadge": "优质解决方案"
+        "wamBadge": "Premium Solution"
       },
       "badges": {
         "popular": "热门",
         "new": "新品",
-        "premium": "优质"
+        "premium": "高级"
       }
     }
   },
@@ -550,7 +554,9 @@
     "summary": {
       "title": "产品概要",
       "configureProduct": "配置产品",
-      "selectSpecifications": "请选择您的规格以查看价格和型号",
+      "selectSpecifications": "请选择您的规格,以查看价格和型号",
+      "scrollToCta": "开始配置",
+      "scrollToCtaAriaLabel": "滚动到产品配置器部分",
       "configurationComplete": "配置完成",
       "partNumber": "型号",
       "quantity": "数量",
@@ -625,6 +631,84 @@
       "xAvailable": "有{count}件可用",
       "expectedBack": "预计到货时间：{date}",
       "shipsOn": "发货日期：{date}"
+    },
+    "configurator": {
+      "heading": "配置您的产品",
+      "subheading": "在下方选择您的规格 • 已选择 {selectedCount}/{totalCount} 个选项",
+      "shareConfigTitle": "分享此配置",
+      "shareConfigDisabledTitle": "完成配置以分享",
+      "shareCopied": "已复制!",
+      "shareButton": "分享",
+      "resetButton": "重置",
+      "selectedConfig": "✓ 已选配置",
+      "partNumber": "零件编号",
+      "yourPrice": "您的价格",
+      "availability": "库存情况",
+      "inStock": "现货",
+      "shipsIn": "2-3天内发货",
+      "backorder": "后补订单",
+      "contactForLeadTime": "请联系了解交货期",
+      "outOfStock": "缺货",
+      "qtyLabel": "数量:",
+      "decreaseQtyAriaLabel": "减少数量",
+      "increaseQtyAriaLabel": "增加数量",
+      "invalidConfig": "无效配置",
+      "invalidConfigMessage": "此选项组合不可用。请尝试不同的选择。",
+      "partialSelectionMessage": "请选择 {count} 个更多选项{plural}以查看最终配置",
+      "optionSingular": "",
+      "optionPlural": "个"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "在下面配置您的规格"
+    },
+    "trustBadges": {
+      "heading": "为什么从BAPI购买",
+      "madeInUSA": "美国制造",
+      "madeInUSADesc": "优质构造",
+      "warranty": "5年质保",
+      "warrantyDesc": "全面保修",
+      "returns": "30天退货",
+      "returnsDesc": "无忧退换",
+      "support": "专业支持",
+      "supportDesc": "技术帮助"
+    },
+    "variationSelectors": {
+      "chooseOption": "选择一个选项"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "温度应用",
+        "roomEnclosure": "房间外壳样式",
+        "sensorOutput": "温度传感器输出",
+        "setpointOverride": "温度设定值和覆盖",
+        "optionalSensorOutput": "可选温度传感器和输出"
+      },
+      "humidity": {
+        "application": "湿度应用",
+        "roomEnclosure": "湿度房间外壳",
+        "sensorOutput": "湿度传感器输出",
+        "optionalTempHumidity": "可选温度和湿度"
+      },
+      "pressure": {
+        "application": "压力应用",
+        "sensorStyle": "压力传感器样式"
+      },
+      "airQuality": {
+        "application": "空气质量应用",
+        "sensorType": "空气质量传感器类型"
+      },
+      "wireless": {
+        "application": "无线应用"
+      },
+      "general": {
+        "display": "显示",
+        "voltage": "电压范围",
+        "current": "电流输出",
+        "mounting": "安装类型",
+        "enclosure": "外壳类型",
+        "protocol": "通信协议",
+        "certification": "认证"
+      }
     }
   },
   "productsPage": {
@@ -716,6 +800,24 @@
       "title": "需要帮助找到合适的产品?",
       "description": "我们的专家团队随时准备帮助您为您的建筑自动化项目选择合适的传感器和控制器。",
       "button": "联系销售"
+    },
+    "subcategories": {
+      "room": {
+        "name": "室内",
+        "description": "适用于办公室、会议室和有人空间的壁挂式传感器"
+      },
+      "nonRoom": {
+        "name": "非室内",
+        "description": "适用于管道、户外、浸入式和工业环境的传感器"
+      },
+      "bluetoothWireless": {
+        "name": "无线系统 - 蓝牙低功耗",
+        "description": "电池供电的蓝牙传感器和网关"
+      },
+      "wamWireless": {
+        "name": "WAM - 无线资产监测",
+        "description": "长距离无线监测及云平台"
+      }
     }
   },
   "cartPage": {
@@ -819,7 +921,8 @@
     "breadcrumb": {
       "home": "首页",
       "products": "产品"
-    }
+    },
+    "backTo": "返回到 {categoryName}"
   },
   "searchPage": {
     "meta": {

@@ -15,6 +15,11 @@ import { render, screen } from '@testing-library/react';
 import VariationSelector from '../VariationSelector';
 import type { ProductAttribute, ProductVariation } from '@/types/variations';
 
+// Mock next-intl
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => key,
+}));
+
 vi.mock('@/store/regionStore', () => ({
   useRegion: () => ({
     currency: 'USD',

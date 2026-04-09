@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
+import { getAttributeTranslationKey, hasAttributeTranslation } from '@/lib/productAttributeTranslations';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
 import {
   findMatchingVariation,
@@ -74,6 +76,8 @@ export default function VariationSelector({
   useCart,
   useCartDrawer,
 }: VariationSelectorProps) {
+  const t = useTranslations('productPage.configurator');
+  const tAttr = useTranslations('productPage.productAttributes');
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
@@ -84,6 +88,18 @@ export default function VariationSelector({
     () => attributes.filter((attr) => attr.variation),
     [attributes]
   );
+
+  // Get translated attribute label
+  const getTranslatedLabel = (attribute: ProductAttribute): string => {
+    const originalLabel = attribute.label;
+    const key = getAttributeTranslationKey(originalLabel);
+
+    if (key !== originalLabel) {
+      return tAttr(key);
+    }
+    // Fallback to original label if no translation exists
+    return originalLabel;
+  };
 
   // Handle attribute selection
   // attributeName is the display label, need to convert to slug for matching
@@ -256,9 +272,9 @@ export default function VariationSelector({
       <div className="rounded-t-2xl bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 px-8 py-6 text-white">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="mb-1 text-2xl font-bold">Configure Your Product</h2>
+            <h2 className="mb-1 text-2xl font-bold">{t('heading')}</h2>
             <p className="text-sm text-primary-100">
-              Select your specifications below • {selectedCount} of {totalCount} options selected
+              {t('subheading', { selectedCount, totalCount })}
             </p>
           </div>
           <div className="flex gap-2">
@@ -270,19 +286,19 @@ export default function VariationSelector({
                   disabled={!matchedVariation}
                   title={
                     matchedVariation
-                      ? 'Share this configuration'
-                      : 'Complete configuration to share'
+                      ? t('shareConfigTitle')
+                      : t('shareConfigDisabledTitle')
                   }
                 >
                   {showShareConfirmation ? (
                     <>
                       <CheckIcon className="h-4 w-4" />
-                      <span className="font-medium">Copied!</span>
+                      <span className="font-medium">{t('shareCopied')}</span>
                     </>
                   ) : (
                     <>
                       <Share2Icon className="h-4 w-4" />
-                      <span className="hidden font-medium sm:inline">Share</span>
+                      <span className="hidden font-medium sm:inline">{t('shareButton')}</span>
                     </>
                   )}
                 </button>
@@ -291,7 +307,7 @@ export default function VariationSelector({
                   className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm transition-colors hover:bg-white/20"
                 >
                   <RotateCcwIcon className="h-4 w-4" />
-                  <span className="hidden font-medium sm:inline">Reset</span>
+                  <span className="hidden font-medium sm:inline">{t('resetButton')}</span>
                 </button>
               </>
             )}
@@ -313,7 +329,8 @@ export default function VariationSelector({
               const availableOptions = availableOptionsMap[attributeSlug] || [];
 
               const commonProps = {
-                label: attribute.label,
+                label: getTranslatedLabel(attribute),
+                attributeSlug, // Stable identifier for DOM ids (accessibility)
                 options: availableOptions, // Use filtered options instead of all options
                 value,
                 onChange: (val: string) => handleAttributeChange(attribute.label, val),
@@ -360,13 +377,13 @@ export default function VariationSelector({
                         <PackageIcon className="h-3.5 w-3.5 text-white" />
                       </div>
                       <p className="text-xs font-bold uppercase tracking-wider text-accent-800">
-                        ✓ Selected Configuration
+                        {t('selectedConfig')}
                       </p>
                     </div>
                     <div className="space-y-2">
                       <div>
                         <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
-                          Part Number
+                          {t('partNumber')}
                         </p>
                         <p className="inline-block rounded-lg border-2 border-accent-400 bg-white px-3 py-2 font-mono text-lg font-bold text-neutral-900 shadow-sm">
                           {matchedVariation.partNumber || matchedVariation.sku}
@@ -374,7 +391,7 @@ export default function VariationSelector({
                       </div>
                       <div>
                         <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
-                          Your Price
+                          {t('yourPrice')}
                         </p>
                         <p className="text-3xl font-bold text-primary-700">
                           {convertWooCommercePrice(matchedVariation.price, region.currency)}
@@ -391,32 +408,32 @@ export default function VariationSelector({
                   {/* Stock Status */}
                   <div className="shrink-0 text-right">
                     <p className="mb-2 text-xs font-bold uppercase tracking-wider text-accent-700">
-                      Availability
+                      {t('availability')}
                     </p>
                     {matchedVariation.stockStatus === 'IN_STOCK' ? (
                       <div className="rounded-lg border-2 border-green-500 bg-green-100 px-3 py-2">
                         <div className="mb-0.5 flex items-center justify-end gap-1.5">
                           <div className="h-2.5 w-2.5 rounded-full bg-green-500" />
-                          <span className="text-sm font-bold text-green-800">In Stock</span>
+                          <span className="text-sm font-bold text-green-800">{t('inStock')}</span>
                         </div>
                         <p className="flex items-center justify-end gap-1 text-xs text-green-700">
                           <ClockIcon className="h-3 w-3" />
-                          Ships in 2-3 days
+                          {t('shipsIn')}
                         </p>
                       </div>
                     ) : matchedVariation.stockStatus === 'ON_BACKORDER' ? (
                       <div className="rounded-lg border-2 border-amber-500 bg-amber-100 px-3 py-2">
                         <div className="mb-0.5 flex items-center justify-end gap-1.5">
                           <div className="h-2.5 w-2.5 animate-pulse rounded-full bg-amber-500" />
-                          <span className="text-sm font-bold text-amber-800">Backorder</span>
+                          <span className="text-sm font-bold text-amber-800">{t('backorder')}</span>
                         </div>
-                        <p className="text-xs text-amber-700">Contact for lead time</p>
+                        <p className="text-xs text-amber-700">{t('contactForLeadTime')}</p>
                       </div>
                     ) : (
                       <div className="rounded-lg border-2 border-red-500 bg-red-100 px-3 py-2">
                         <div className="flex items-center justify-end gap-1.5">
                           <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                          <span className="text-sm font-bold text-red-800">Out of Stock</span>
+                          <span className="text-sm font-bold text-red-800">{t('outOfStock')}</span>
                         </div>
                       </div>
                     )}
@@ -434,14 +451,14 @@ export default function VariationSelector({
                             htmlFor="config-quantity"
                             className="text-xs font-semibold uppercase tracking-wide text-neutral-700"
                           >
-                            Qty:
+                            {t('qtyLabel')}
                           </label>
                           <div className="flex items-center overflow-hidden rounded-lg border-2 border-accent-300 bg-white shadow-sm">
                             <button
                               type="button"
                               onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
                               className="min-h-11 min-w-11 bg-neutral-50 px-3 font-bold text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
-                              aria-label="Decrease quantity"
+                              aria-label={t('decreaseQtyAriaLabel')}
                             >
                               −
                             </button>
@@ -461,7 +478,7 @@ export default function VariationSelector({
                               type="button"
                               onClick={() => onQuantityChange(Math.min(999, quantity + 1))}
                               className="min-h-11 min-w-11 bg-neutral-50 px-3 font-bold text-neutral-700 transition hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
-                              aria-label="Increase quantity"
+                              aria-label={t('increaseQtyAriaLabel')}
                             >
                               +
                             </button>
@@ -517,9 +534,9 @@ export default function VariationSelector({
           {/* Invalid combination message - show when all selected but no match */}
           {!matchedVariation && selectedCount === totalCount && (
             <div className="mt-6 rounded-lg border-2 border-red-400 bg-red-50 p-4">
-              <p className="mb-1 text-sm font-bold text-red-900">Invalid Configuration</p>
+              <p className="mb-1 text-sm font-bold text-red-900">{t('invalidConfig')}</p>
               <p className="text-sm text-red-700">
-                This combination of options is not available. Please try different selections.
+                {t('invalidConfigMessage')}
               </p>
             </div>
           )}
@@ -528,8 +545,10 @@ export default function VariationSelector({
           {!matchedVariation && selectedCount > 0 && selectedCount < totalCount && (
             <div className="mt-6 rounded-lg border-2 border-amber-400 bg-amber-50 p-4">
               <p className="text-sm font-medium text-amber-900">
-                Please select {totalCount - selectedCount} more option
-                {totalCount - selectedCount > 1 ? 's' : ''} to see final configuration
+                {t('partialSelectionMessage', {
+                  count: totalCount - selectedCount,
+                  plural: totalCount - selectedCount > 1 ? t('optionPlural') : t('optionSingular')
+                })}
               </p>
             </div>
           )}

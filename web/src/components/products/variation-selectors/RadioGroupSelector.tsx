@@ -4,6 +4,7 @@ import { CheckIcon } from '@/lib/icons';
 
 interface RadioGroupSelectorProps {
   label: string;
+  attributeSlug: string; // Stable identifier for DOM ids
   options: string[];
   value: string;
   onChange: (value: string) => void;
@@ -18,6 +19,7 @@ interface RadioGroupSelectorProps {
  */
 export default function RadioGroupSelector({
   label,
+  attributeSlug,
   options,
   value,
   onChange,
@@ -36,7 +38,7 @@ export default function RadioGroupSelector({
       <div className="space-y-2">
         {options.map((option) => {
           const isSelected = value === option;
-          const radioId = `radio-${label}-${option}`.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
+          const radioId = `radio-${attributeSlug}-${option}`.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
 
           return (
             <label
@@ -52,7 +54,7 @@ export default function RadioGroupSelector({
               <input
                 id={radioId}
                 type="radio"
-                name={label}
+                name={attributeSlug}
                 value={option}
                 checked={isSelected}
                 onChange={(e) => onChange(e.target.value)}

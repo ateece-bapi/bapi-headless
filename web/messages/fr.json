@@ -426,7 +426,7 @@
       }
     },
     "company": {
-      "label": "À propos de BAPI",
+      "label": "Entreprise",
       "aboutBapi": {
         "title": "À propos de BAPI",
         "whyBapi": "Pourquoi BAPI",
@@ -435,64 +435,68 @@
         "missionValuesDesc": "Ce qui nous anime",
         "news": "Actualités et événements",
         "newsDesc": "Dernières annonces",
-        "tradeShows": "Salons Professionnels",
-        "tradeShowsDesc": "Rencontrez-nous lors d'événements industriels",
+        "tradeShows": "Salons professionnels",
+        "tradeShowsDesc": "Rencontrez-nous lors d'événements du secteur",
         "careers": "Carrières",
         "careersDesc": "Rejoignez notre équipe"
       },
       "getInTouch": {
-        "title": "Entrez en contact",
+        "title": "Contactez-nous",
         "contactSales": "Contacter les ventes",
-        "contactSalesDesc": "Parlez à un représentant",
+        "contactSalesDesc": "Parler à un représentant",
         "whereToBuy": "Où acheter",
         "whereToBuyDesc": "Trouver un distributeur",
         "requestQuote": "Demander un devis",
         "requestQuoteDesc": "Obtenir les tarifs"
       },
       "featured": {
-        "title": "Prêt à transformer votre automatisation du bâtiment ?",
-        "description": "Connectez-vous avec notre équipe pour discuter de vos exigences de projet et découvrir la solution de capteur parfaite.",
-        "cta": "Contactez notre équipe"
+        "title": "Prêt à transformer votre automatisation de bâtiment ?",
+        "description": "Contactez notre équipe pour discuter de vos exigences de projet et découvrir la solution de capteur parfaite.",
+        "cta": "Contacter notre équipe"
       }
     },
     "products": {
       "label": "Produits",
       "temperature": {
         "title": "Température",
-        "roomWallSensors": "Capteurs de pièce et de mur",
+        "roomWallSensors": "Capteurs muraux et de pièce",
         "roomWallSensorsDesc": "Détection de température haute précision",
-        "ductSensors": "Capteurs de gaine",
-        "ductSensorsDesc": "Émetteurs montés sur gaine",
+        "ductSensors": "Capteurs de conduit",
+        "ductSensorsDesc": "Émetteurs montés sur conduit",
         "immersionWell": "Immersion et puits",
-        "immersionWellDesc": "Mesure de la température des liquides",
+        "immersionWellDesc": "Mesure de température des liquides",
         "outdoorSensors": "Capteurs extérieurs",
-        "outdoorSensorsDesc": "Détection résistante aux intempéries"
+        "outdoorSensorsDesc": "Détection résistante aux intempéries",
+        "averaging": "Capteurs moyenneurs",
+        "averagingDesc": "Moyenne de température sur de grands espaces",
+        "remoteProbes": "Sondes à distance",
+        "remoteProbesDesc": "Éléments de détection séparés"
       },
       "humidity": {
         "title": "Humidité",
-        "roomHumidity": "Humidité de pièce",
-        "roomHumidityDesc": "Capteurs d'HR muraux",
-        "ductHumidity": "Humidité de gaine",
-        "ductHumidityDesc": "HR d'air soufflé et repris",
+        "roomHumidity": "Humidité ambiante",
+        "roomHumidityDesc": "Capteurs d'humidité murale",
+        "ductHumidity": "Humidité de conduit",
+        "ductHumidityDesc": "Humidité de l'air soufflé et repris",
         "outdoorHumidity": "Humidité extérieure",
-        "outdoorHumidityDesc": "HR résistante aux intempéries",
+        "outdoorHumidityDesc": "Humidité résistante aux intempéries",
         "comboSensors": "Capteurs combinés",
         "comboSensorsDesc": "Température + humidité"
       },
       "pressure": {
         "title": "Pression",
         "differential": "Pression différentielle",
-        "differentialDesc": "Surveillance de pièce et de filtre",
+        "differentialDesc": "Surveillance des pièces et des filtres",
         "static": "Pression statique",
-        "staticDesc": "Transmetteurs de pression statique de gaine",
+        "staticDesc": "Transmetteurs de pression statique de conduit",
         "barometric": "Barométrique",
         "barometricDesc": "Pression atmosphérique"
       },
       "airQuality": {
         "title": "Qualité de l'air",
-        "co2": "Capteurs de CO₂",
+        "co2": "Capteurs CO₂",
         "co2Desc": "Surveillance du dioxyde de carbone",
-        "voc": "Capteurs de COV",
+        "voc": "Capteurs COV",
         "vocDesc": "Composés organiques volatils",
         "particulate": "Matières particulaires",
         "particulateDesc": "PM2,5 et PM10"
@@ -502,7 +506,7 @@
         "wamTemperature": "Température WAM",
         "wamTemperatureDesc": "Capteurs de température sans fil",
         "wamHumidity": "Humidité WAM",
-        "wamHumidityDesc": "Capteurs d'HR sans fil",
+        "wamHumidityDesc": "Capteurs d'humidité sans fil",
         "wamDoorSensors": "Capteurs de porte WAM",
         "wamDoorSensorsDesc": "Surveillance d'ouverture/fermeture",
         "cloudPlatform": "Plateforme cloud",
@@ -513,7 +517,7 @@
         "mounting": "Matériel de montage",
         "mountingDesc": "Plaques, boîtiers, supports",
         "enclosures": "Boîtiers",
-        "enclosuresDesc": "BAPI-Box et couvercles",
+        "enclosuresDesc": "Boîtiers BAPI et couvercles",
         "cables": "Câbles et connecteurs",
         "cablesDesc": "Accessoires de câblage"
       },
@@ -522,16 +526,16 @@
         "bluTestTemperature": "Blu-Test Température",
         "bluTestTemperatureDesc": "Référence traçable NIST",
         "bluTestHumidity": "Blu-Test Humidité",
-        "bluTestHumidityDesc": "Référence Temp + HR",
+        "bluTestHumidityDesc": "Référence température + humidité",
         "bluTestPressure": "Blu-Test Pression",
         "bluTestPressureDesc": "Manomètre numérique"
       },
       "featured": {
         "title": "Surveillance d'actifs sans fil WAM™",
-        "description": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos actifs précieux contre les pannes de courant et les défaillances d'équipements. Aucun câblage requis - démarrez en quelques minutes.",
+        "description": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos biens précieux contre les pannes de courant et les défaillances d'équipement. Aucun câblage requis - opérationnel en quelques minutes.",
         "cta": "En savoir plus",
         "wamTitle": "Surveillance d'actifs sans fil WAM™",
-        "wamDescription": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos actifs précieux contre les pannes de courant et les défaillances d'équipements. Aucun câblage requis - démarrez en quelques minutes.",
+        "wamDescription": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos biens précieux contre les pannes de courant et les défaillances d'équipement. Aucun câblage requis - opérationnel en quelques minutes.",
         "wamCta": "En savoir plus",
         "wamBadge": "Solution premium"
       },
@@ -550,7 +554,9 @@
     "summary": {
       "title": "Résumé du produit",
       "configureProduct": "Configurer le produit",
-      "selectSpecifications": "Sélectionnez vos spécifications ci-dessous pour voir les prix et le numéro de pièce",
+      "selectSpecifications": "Sélectionnez vos spécifications ci-dessous pour voir les tarifs et le numéro de pièce",
+      "scrollToCta": "Commencer la configuration",
+      "scrollToCtaAriaLabel": "Faites défiler jusqu'à la section du configurateur de produits",
       "configurationComplete": "Configuration terminée",
       "partNumber": "Numéro de pièce",
       "quantity": "Quantité",
@@ -625,6 +631,84 @@
       "xAvailable": "{count} disponibles",
       "expectedBack": "Attendu à nouveau: {date}",
       "shipsOn": "Expédié le: {date}"
+    },
+    "configurator": {
+      "heading": "Configurez votre produit",
+      "subheading": "Sélectionnez vos spécifications ci-dessous • {selectedCount} sur {totalCount} options sélectionnées",
+      "shareConfigTitle": "Partager cette configuration",
+      "shareConfigDisabledTitle": "Complétez la configuration pour partager",
+      "shareCopied": "Copié !",
+      "shareButton": "Partager",
+      "resetButton": "Réinitialiser",
+      "selectedConfig": "✓ Configuration sélectionnée",
+      "partNumber": "Numéro de pièce",
+      "yourPrice": "Votre prix",
+      "availability": "Disponibilité",
+      "inStock": "En stock",
+      "shipsIn": "Expédié sous 2-3 jours",
+      "backorder": "Commande en retard",
+      "contactForLeadTime": "Contactez-nous pour le délai de livraison",
+      "outOfStock": "En rupture de stock",
+      "qtyLabel": "Qté :",
+      "decreaseQtyAriaLabel": "Diminuer la quantité",
+      "increaseQtyAriaLabel": "Augmenter la quantité",
+      "invalidConfig": "Configuration non valide",
+      "invalidConfigMessage": "Cette combinaison d'options n'est pas disponible. Veuillez essayer d'autres sélections.",
+      "partialSelectionMessage": "Veuillez sélectionner {count} option{plural} supplémentaire{plural} pour voir la configuration finale",
+      "optionSingular": "",
+      "optionPlural": "s"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "Configurez vos spécifications ci-dessous"
+    },
+    "trustBadges": {
+      "heading": "Pourquoi acheter chez BAPI",
+      "madeInUSA": "Fabriqué aux États-Unis",
+      "madeInUSADesc": "Qualité assurée",
+      "warranty": "Garantie 5 ans",
+      "warrantyDesc": "Couverture complète",
+      "returns": "Retours sous 30 jours",
+      "returnsDesc": "Sans tracas",
+      "support": "Support d'experts",
+      "supportDesc": "Assistance technique"
+    },
+    "variationSelectors": {
+      "chooseOption": "Choisissez une option"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Application de température",
+        "roomEnclosure": "Style de l'enceinte de la pièce",
+        "sensorOutput": "Sortie du capteur de température",
+        "setpointOverride": "Point de consigne et remplacement de température",
+        "optionalSensorOutput": "Capteur de température et sortie optionnels"
+      },
+      "humidity": {
+        "application": "Application d'humidité",
+        "roomEnclosure": "Enceinte de la pièce pour l'humidité",
+        "sensorOutput": "Sortie du capteur d'humidité",
+        "optionalTempHumidity": "Température et humidité optionnelles"
+      },
+      "pressure": {
+        "application": "Application de pression",
+        "sensorStyle": "Style du capteur de pression"
+      },
+      "airQuality": {
+        "application": "Application de qualité de l'air",
+        "sensorType": "Type de capteur de qualité de l'air"
+      },
+      "wireless": {
+        "application": "Application sans fil"
+      },
+      "general": {
+        "display": "Affichage",
+        "voltage": "Plage de tension",
+        "current": "Sortie de courant",
+        "mounting": "Type de montage",
+        "enclosure": "Type d'enceinte",
+        "protocol": "Protocole de communication",
+        "certification": "Certifications"
+      }
     }
   },
   "productsPage": {
@@ -716,6 +800,24 @@
       "title": "Besoin d'aide pour trouver le bon produit ?",
       "description": "Notre équipe d'experts est prête à vous aider à sélectionner les capteurs et les contrôleurs parfaits pour votre projet d'automatisation des bâtiments.",
       "button": "Contacter les ventes"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Pièce",
+        "description": "Capteurs muraux pour les bureaux, les salles de conférence et les espaces occupés"
+      },
+      "nonRoom": {
+        "name": "Hors pièce",
+        "description": "Capteurs pour conduits, extérieurs, immersion et installation industrielle"
+      },
+      "bluetoothWireless": {
+        "name": "Système sans fil - Bluetooth basse énergie",
+        "description": "Capteurs Bluetooth alimentés par batterie avec passerelle"
+      },
+      "wamWireless": {
+        "name": "WAM - Surveillance sans fil des actifs",
+        "description": "Surveillance sans fil longue portée avec plateforme cloud"
+      }
     }
   },
   "cartPage": {
@@ -819,7 +921,8 @@
     "breadcrumb": {
       "home": "Accueil",
       "products": "Produits"
-    }
+    },
+    "backTo": "Retour à {categoryName}"
   },
   "searchPage": {
     "meta": {

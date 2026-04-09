@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
 import { PackageIcon } from '@/lib/icons';
 import ProductSummaryCard from '@/components/products/ProductPage/ProductSummaryCard';
 import RelatedProducts from '@/components/products/ProductPage/RelatedProducts';
@@ -53,6 +54,7 @@ export default function ProductDetailClient({
   useCart,
   useCartDrawer,
 }: ProductDetailClientProps) {
+  const t = useTranslations('productPage.detail');
   const [selectedVariation, setSelectedVariation] = useState<any>(null);
   const [isLoadingVariation, setIsLoadingVariation] = useState(false);
   const [quantity, setQuantity] = useState(1); // Add quantity state
@@ -157,7 +159,7 @@ export default function ProductDetailClient({
                   <span>{product.name}</span>
                 </h2>
                 <p className="ml-9 mt-1 text-sm text-neutral-700">
-                  Configure your specifications below
+                  {t('configureSpecsSubtitle')}
                 </p>
               </div>
             )}

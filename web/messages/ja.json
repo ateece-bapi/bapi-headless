@@ -426,63 +426,67 @@
       }
     },
     "company": {
-      "label": "BAPIについて",
+      "label": "会社",
       "aboutBapi": {
         "title": "BAPIについて",
         "whyBapi": "なぜBAPIか",
         "whyBapiDesc": "BAPIセンサーを選ぶ理由",
         "missionValues": "ミッションと価値観",
-        "missionValuesDesc": "私たちを動機づけるもの",
-        "news": "ニュースとイベント",
+        "missionValuesDesc": "私たちを推進するもの",
+        "news": "ニュースと イベント",
         "newsDesc": "最新のお知らせ",
         "tradeShows": "展示会",
-        "tradeShowsDesc": "業界イベントでお会いしましょう",
+        "tradeShowsDesc": "業界イベントで繋がる",
         "careers": "キャリア",
-        "careersDesc": "私たちのチームに参加する"
+        "careersDesc": "私たちのチームに参加"
       },
       "getInTouch": {
         "title": "お問い合わせ",
-        "contactSales": "営業に連絡する",
+        "contactSales": "営業担当に連絡",
         "contactSalesDesc": "担当者に話す",
-        "whereToBuy": "購入先を探す",
-        "whereToBuyDesc": "販売店を見つける",
-        "requestQuote": "見積もりを依頼する",
-        "requestQuoteDesc": "価格を確認する"
+        "whereToBuy": "購入方法",
+        "whereToBuyDesc": "ディストリビューターを探す",
+        "requestQuote": "見積もりを依頼",
+        "requestQuoteDesc": "価格を確認"
       },
       "featured": {
         "title": "建築オートメーションを変革する準備はできていますか?",
-        "description": "プロジェクトの要件について私たちのチームに相談し、最適なセンサーソリューションを見つけてください。",
-        "cta": "私たちのチームに連絡する"
+        "description": "プロジェクト要件について私たちのチームと話し合い、最適なセンサーソリューションを見つけましょう。",
+        "cta": "私たちのチームに連絡"
       }
     },
     "products": {
       "label": "製品",
       "temperature": {
         "title": "温度",
-        "roomWallSensors": "ルーム & ウォールセンサー",
-        "roomWallSensorsDesc": "高精度の温度検知",
+        "roomWallSensors": "室内および壁面センサー",
+        "roomWallSensorsDesc": "高精度な温度検知",
         "ductSensors": "ダクトセンサー",
-        "ductSensorsDesc": "ダクト取り付け式トランスミッター",
-        "immersionWell": "浸漬 & ウェル",
-        "immersionWellDesc": "液体温度測定",
+        "ductSensorsDesc": "ダクトに取り付けるトランスミッター",
+        "immersionWell": "浸漬型 & ウェル型",
+        "immersionWellDesc": "液体温度の測定",
         "outdoorSensors": "屋外センサー",
-        "outdoorSensorsDesc": "気象耐性のある検知"
+        "outdoorSensorsDesc": "防水仕様の検知",
+        "averaging": "平均化センサー",
+        "averagingDesc": "広範囲の平均温度検知",
+        "remoteProbes": "リモートプローブ",
+        "remoteProbesDesc": "分離式の検知要素プローブ"
       },
       "humidity": {
         "title": "湿度",
-        "roomHumidity": "ルーム湿度",
-        "roomHumidityDesc": "壁取り付け式RHセンサー",
+        "roomHumidity": "室内湿度",
+        "roomHumidityDesc": "壁掛け式RHセンサー",
         "ductHumidity": "ダクト湿度",
-        "ductHumidityDesc": "供給 & 戻り空気RH",
+        "ductHumidityDesc": "供給/排出空気RH",
         "outdoorHumidity": "屋外湿度",
-        "outdoorHumidityDesc": "気象耐性のあるRH",
+        "outdoorHumidityDesc": "防水仕様RH",
         "comboSensors": "コンボセンサー",
         "comboSensorsDesc": "温度 + 湿度"
       },
       "pressure": {
         "title": "圧力",
         "differential": "差圧",
-        "differentialDesc": "ルーム & フィルター監視",
+        "differentialDesc": "室内および気流監視",
         "static": "静圧",
         "staticDesc": "ダクト静圧トランスミッター",
         "barometric": "気圧",
@@ -494,7 +498,7 @@
         "co2Desc": "二酸化炭素の監視",
         "voc": "VOCセンサー",
         "vocDesc": "揮発性有機化合物",
-        "particulate": "微粒子",
+        "particulate": "浮遊粒子状物質",
         "particulateDesc": "PM2.5とPM10"
       },
       "wireless": {
@@ -509,30 +513,30 @@
         "cloudPlatformDesc": "24時間365日リモート監視"
       },
       "accessories": {
-        "title": "アクセサリー",
-        "mounting": "取り付けハードウェア",
+        "title": "アクセサリ",
+        "mounting": "取付ハードウェア",
         "mountingDesc": "プレート、ボックス、ブラケット",
         "enclosures": "エンクロージャ",
         "enclosuresDesc": "BAPI-Box & カバー",
-        "cables": "ケーブル & コネクタ",
-        "cablesDesc": "配線アクセサリー"
+        "cables": "ケーブルとコネクタ",
+        "cablesDesc": "配線用アクセサリ"
       },
       "testInstruments": {
         "title": "テスト機器",
         "bluTestTemperature": "Blu-Test温度",
-        "bluTestTemperatureDesc": "NIST対応の基準",
+        "bluTestTemperatureDesc": "NIST認証の基準器",
         "bluTestHumidity": "Blu-Test湿度",
-        "bluTestHumidityDesc": "温度 + RH基準",
+        "bluTestHumidityDesc": "温度+RH基準器",
         "bluTestPressure": "Blu-Test圧力",
-        "bluTestPressureDesc": "デジタル微圧計"
+        "bluTestPressureDesc": "デジタルマノメーター"
       },
       "featured": {
-        "title": "WAM™ ワイヤレス資産監視",
-        "description": "即時アラートを伴う24時間365日リモート監視。電力障害や機器故障から貴重な資産を保護します。配線不要 - 数分でセットアップ完了。",
-        "cta": "詳細を見る",
-        "wamTitle": "WAM™ ワイヤレス資産監視",
-        "wamDescription": "即時アラートを伴う24時間365日リモート監視。電力障害や機器故障から貴重な資産を保護します。配線不要 - 数分でセットアップ完了。",
-        "wamCta": "詳細を見る",
+        "title": "WAM™ ワイヤレスアセットモニタリング",
+        "description": "24時間365日のリモート監視とインスタントアラート。電源障害や機器故障から大切な資産を守ります。配線不要ですぐに使用できます。",
+        "cta": "詳細を確認する",
+        "wamTitle": "WAM™ ワイヤレスアセットモニタリング",
+        "wamDescription": "24時間365日のリモート監視とインスタントアラート。電源障害や機器故障から大切な資産を守ります。配線不要ですぐに使用できます。",
+        "wamCta": "詳細を確認する",
         "wamBadge": "プレミアムソリューション"
       },
       "badges": {
@@ -550,7 +554,9 @@
     "summary": {
       "title": "製品概要",
       "configureProduct": "製品を設定する",
-      "selectSpecifications": "以下の仕様を選択して価格とパーツ番号を確認してください",
+      "selectSpecifications": "以下の仕様を選択して、価格と部品番号を確認してください",
+      "scrollToCta": "設定を始める",
+      "scrollToCtaAriaLabel": "製品設定セクションにスクロールする",
       "configurationComplete": "設定完了",
       "partNumber": "部品番号",
       "quantity": "数量",
@@ -625,6 +631,84 @@
       "xAvailable": "{count}個ご利用いただけます",
       "expectedBack": "入荷予定: {date}",
       "shipsOn": "出荷日: {date}"
+    },
+    "configurator": {
+      "heading": "製品を構成する",
+      "subheading": "以下の仕様を選択してください • {selectedCount}/{totalCount} のオプションが選択されています",
+      "shareConfigTitle": "この設定を共有する",
+      "shareConfigDisabledTitle": "設定を完了してから共有してください",
+      "shareCopied": "コピーしました!",
+      "shareButton": "共有",
+      "resetButton": "リセット",
+      "selectedConfig": "✓ 選択された設定",
+      "partNumber": "部品番号",
+      "yourPrice": "お客様価格",
+      "availability": "入手可能性",
+      "inStock": "在庫あり",
+      "shipsIn": "2-3 日で出荷",
+      "backorder": "受注生産",
+      "contactForLeadTime": "納期についてはお問い合わせください",
+      "outOfStock": "在庫切れ",
+      "qtyLabel": "数量:",
+      "decreaseQtyAriaLabel": "数量を減らす",
+      "increaseQtyAriaLabel": "数量を増やす",
+      "invalidConfig": "無効な構成",
+      "invalidConfigMessage": "このオプションの組み合わせは利用できません。別の選択をお試しください。",
+      "partialSelectionMessage": "最終構成を確認するには、{count}つのオプションをさらに選択してください{plural}",
+      "optionSingular": "",
+      "optionPlural": "つ"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "以下の仕様を設定してください"
+    },
+    "trustBadges": {
+      "heading": "BAPI製品を選ぶ理由",
+      "madeInUSA": "米国製造",
+      "madeInUSADesc": "高品質",
+      "warranty": "5年保証",
+      "warrantyDesc": "完全保証",
+      "returns": "30日返品",
+      "returnsDesc": "簡単返品",
+      "support": "専門サポート",
+      "supportDesc": "技術サポート"
+    },
+    "variationSelectors": {
+      "chooseOption": "オプションを選択してください"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "温度用途",
+        "roomEnclosure": "室内筐体スタイル",
+        "sensorOutput": "温度センサー出力",
+        "setpointOverride": "温度設定値とオーバーライド",
+        "optionalSensorOutput": "オプションの温度センサーと出力"
+      },
+      "humidity": {
+        "application": "湿度用途",
+        "roomEnclosure": "湿度室内筐体",
+        "sensorOutput": "湿度センサー出力",
+        "optionalTempHumidity": "オプションの温度および湿度"
+      },
+      "pressure": {
+        "application": "圧力用途",
+        "sensorStyle": "圧力センサースタイル"
+      },
+      "airQuality": {
+        "application": "空気品質用途",
+        "sensorType": "空気質センサータイプ"
+      },
+      "wireless": {
+        "application": "ワイヤレス用途"
+      },
+      "general": {
+        "display": "ディスプレイ",
+        "voltage": "電圧範囲",
+        "current": "電流出力",
+        "mounting": "取り付けタイプ",
+        "enclosure": "筐体タイプ",
+        "protocol": "通信プロトコル",
+        "certification": "認証"
+      }
     }
   },
   "productsPage": {
@@ -716,6 +800,24 @@
       "title": "最適な製品をお探しですか?",
       "description": "専門家チームが、ビルオートメーションプロジェクトに最適なセンサーとコントローラーをお選びします。",
       "button": "営業に問い合わせる"
+    },
+    "subcategories": {
+      "room": {
+        "name": "室内",
+        "description": "オフィス、会議室、占有スペース向けの壁取り付けセンサー"
+      },
+      "nonRoom": {
+        "name": "室外",
+        "description": "ダクト、室外、浸漬、および産業用取り付けセンサー"
+      },
+      "bluetoothWireless": {
+        "name": "ワイヤレスシステム - Bluetooth Low Energy",
+        "description": "ゲートウェイ付きの電池駆動Bluetoothセンサー"
+      },
+      "wamWireless": {
+        "name": "WAM - ワイヤレスアセット監視",
+        "description": "クラウドプラットフォーム搭載の長距離ワイヤレス監視"
+      }
     }
   },
   "cartPage": {
@@ -819,7 +921,8 @@
     "breadcrumb": {
       "home": "ホーム",
       "products": "製品"
-    }
+    },
+    "backTo": "{categoryName}に戻る"
   },
   "searchPage": {
     "meta": {

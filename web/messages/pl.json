@@ -49,22 +49,26 @@
       "temperature": {
         "title": "Temperatura",
         "roomWallSensors": "Czujniki pokojowe i ścienne",
-        "roomWallSensorsDesc": "Wysokiej dokładności pomiar temperatury",
+        "roomWallSensorsDesc": "Wysokodokładne pomiary temperatury",
         "ductSensors": "Czujniki kanałowe",
         "ductSensorsDesc": "Nadajniki montowane w kanałach",
-        "immersionWell": "Zanurzeniowe i studzienne",
+        "immersionWell": "Zanurzeniowe i studzienkowe",
         "immersionWellDesc": "Pomiar temperatury cieczy",
         "outdoorSensors": "Czujniki zewnętrzne",
-        "outdoorSensorsDesc": "Odporne na warunki atmosferyczne"
+        "outdoorSensorsDesc": "Odporność na warunki atmosferyczne",
+        "averaging": "Czujniki uśredniające",
+        "averagingDesc": "Uśrednianie temperatury w dużych przestrzeniach",
+        "remoteProbes": "Sondy zdalne",
+        "remoteProbesDesc": "Osobne elementy pomiarowe"
       },
       "humidity": {
         "title": "Wilgotność",
-        "roomHumidity": "Wilgotność pokojowa",
-        "roomHumidityDesc": "Czujniki RH montowane na ścianie",
-        "ductHumidity": "Wilgotność kanałowa",
-        "ductHumidityDesc": "Wilgotność powietrza nawiewnego i wywiewnego",
+        "roomHumidity": "Wilgotność w pomieszczeniach",
+        "roomHumidityDesc": "Czujniki wilgotności montowane na ścianie",
+        "ductHumidity": "Wilgotność w kanałach",
+        "ductHumidityDesc": "Wilgotność powietrza nawiewanego i wywiewanego",
         "outdoorHumidity": "Wilgotność zewnętrzna",
-        "outdoorHumidityDesc": "Odporna na warunki atmosferyczne",
+        "outdoorHumidityDesc": "Odporność na warunki atmosferyczne",
         "comboSensors": "Czujniki kombinowane",
         "comboSensorsDesc": "Temperatura + wilgotność"
       },
@@ -87,7 +91,7 @@
         "particulateDesc": "PM2,5 i PM10"
       },
       "wireless": {
-        "title": "Bezprzewodowe",
+        "title": "Bezprzewodowy",
         "wamTemperature": "Temperatura WAM",
         "wamTemperatureDesc": "Bezprzewodowe czujniki temperatury",
         "wamHumidity": "Wilgotność WAM",
@@ -102,27 +106,27 @@
         "mounting": "Elementy montażowe",
         "mountingDesc": "Płyty, obudowy, wsporniki",
         "enclosures": "Obudowy",
-        "enclosuresDesc": "BAPI-Box i osłony",
+        "enclosuresDesc": "BAPI-Box i pokrywy",
         "cables": "Kable i złącza",
-        "cablesDesc": "Akcesoria do okablowania"
+        "cablesDesc": "Akcesoria okablowania"
       },
       "testInstruments": {
         "title": "Przyrządy pomiarowe",
-        "bluTestTemperature": "Blu-Test Temperatura",
+        "bluTestTemperature": "Blu-Test temperatura",
         "bluTestTemperatureDesc": "Wzorcowanie NIST",
-        "bluTestHumidity": "Blu-Test Wilgotność",
-        "bluTestHumidityDesc": "Wzorcowanie temp. + RH",
-        "bluTestPressure": "Blu-Test Ciśnienie",
+        "bluTestHumidity": "Blu-Test wilgotność",
+        "bluTestHumidityDesc": "Wzorcowanie temp. + wilgotności",
+        "bluTestPressure": "Blu-Test ciśnienie",
         "bluTestPressureDesc": "Cyfrowy manometr"
       },
       "featured": {
-        "wamTitle": "Bezprzewodowy monitoring aktywów WAM™",
-        "wamDescription": "Zdalne monitorowanie 24/7 z natychmiastowymi alarmami. Chroń swoje cenne aktywa przed awariami zasilania i awariami sprzętu. Bez okablowania - uruchom w kilka minut.",
+        "title": "Monitorowanie aktywów WAM™",
+        "description": "Zdalne monitorowanie 24/7 z natychmiastowymi powiadomieniami. Chroń swoje cenne aktywa przed awariami zasilania i wyposażenia. Bez konieczności okablowania - uruchom w kilka minut.",
+        "cta": "Dowiedz się więcej",
+        "wamTitle": "Monitorowanie aktywów WAM™",
+        "wamDescription": "Zdalne monitorowanie 24/7 z natychmiastowymi powiadomieniami. Chroń swoje cenne aktywa przed awariami zasilania i wyposażenia. Bez konieczności okablowania - uruchom w kilka minut.",
         "wamCta": "Dowiedz się więcej",
-        "wamBadge": "Rozwiązanie premium",
-        "title": "Monitorowanie aktywów WAM™ bezprzewodowo",
-        "description": "Zdalne monitorowanie 24/7 z natychmiastowymi alarmami. Chroń swoje cenne aktywa przed awariami zasilania i awariami sprzętu. Bez konieczności okablowania - uruchom w kilka minut.",
-        "cta": "Dowiedz się więcej"
+        "wamBadge": "Rozwiązanie Premium"
       },
       "badges": {
         "popular": "Popularny",
@@ -166,21 +170,23 @@
         "missionValuesDesc": "Co nami kieruje",
         "news": "Aktualności i wydarzenia",
         "newsDesc": "Najnowsze ogłoszenia",
+        "tradeShows": "Targi branżowe",
+        "tradeShowsDesc": "Spotkaj się z nami na imprezach branżowych",
         "careers": "Kariera",
         "careersDesc": "Dołącz do naszego zespołu"
       },
       "getInTouch": {
         "title": "Skontaktuj się z nami",
-        "contactSales": "Skontaktuj się z działem sprzedaży",
+        "contactSales": "Kontakt z handlem",
         "contactSalesDesc": "Porozmawiaj z przedstawicielem",
         "whereToBuy": "Gdzie kupić",
         "whereToBuyDesc": "Znajdź dystrybutora",
         "requestQuote": "Poproś o wycenę",
-        "requestQuoteDesc": "Uzyskaj cenę"
+        "requestQuoteDesc": "Uzyskaj informacje o cenach"
       },
       "featured": {
-        "title": "Gotowy, aby przekształcić swoją automatykę budynkową?",
-        "description": "Skontaktuj się z naszym zespołem, aby omówić wymagania Twojego projektu i odkryć idealne rozwiązanie czujnikowe.",
+        "title": "Gotowy, by przekształcić swoją automatykę budynkową?",
+        "description": "Skontaktuj się z naszym zespołem, aby omówić wymagania Twojego projektu i znaleźć idealne rozwiązanie z czujnikami.",
         "cta": "Skontaktuj się z naszym zespołem"
       }
     },
@@ -998,9 +1004,11 @@
     },
     "summary": {
       "title": "Podsumowanie produktu",
-      "configureProduct": "Konfiguruj produkt",
-      "selectSpecifications": "Wybierz specyfikacje, aby zobaczyć cenę i numer części",
-      "configurationComplete": "Konfiguracja zakończona",
+      "configureProduct": "Skonfiguruj produkt",
+      "selectSpecifications": "Wybierz poniżej swoje specyfikacje, aby zobaczyć cenę i numer części",
+      "scrollToCta": "Zacznij konfigurowanie",
+      "scrollToCtaAriaLabel": "Przewiń do sekcji konfiguratora produktu",
+      "configurationComplete": "Konfiguracja ukończona",
       "partNumber": "Numer części",
       "quantity": "Ilość",
       "multiplier": "Mnożnik",
@@ -1074,6 +1082,84 @@
       "xAvailable": "{count} dostępnych",
       "expectedBack": "Oczekiwana data dostępności: {date}",
       "shipsOn": "Wysyłka: {date}"
+    },
+    "configurator": {
+      "heading": "Skonfiguruj swój produkt",
+      "subheading": "Wybierz poniższe parametry • {selectedCount} z {totalCount} opcji wybrane",
+      "shareConfigTitle": "Udostępnij tę konfigurację",
+      "shareConfigDisabledTitle": "Ukończ konfigurację, aby udostępnić",
+      "shareCopied": "Skopiowano!",
+      "shareButton": "Udostępnij",
+      "resetButton": "Resetuj",
+      "selectedConfig": "✓ Wybrana konfiguracja",
+      "partNumber": "Numer części",
+      "yourPrice": "Twoja cena",
+      "availability": "Dostępność",
+      "inStock": "W magazynie",
+      "shipsIn": "Wysyłka w 2-3 dni",
+      "backorder": "Zamówienie oczekujące na realizację",
+      "contactForLeadTime": "Skontaktuj się w celu ustalenia czasu dostawy",
+      "outOfStock": "Brak w magazynie",
+      "qtyLabel": "Ilość:",
+      "decreaseQtyAriaLabel": "Zmniejsz ilość",
+      "increaseQtyAriaLabel": "Zwiększ ilość",
+      "invalidConfig": "Nieprawidłowa konfiguracja",
+      "invalidConfigMessage": "Ta kombinacja opcji nie jest dostępna. Spróbuj dokonać innych wyborów.",
+      "partialSelectionMessage": "Wybierz {count} więcej opcj{plural}, aby zobaczyć ostateczną konfigurację",
+      "optionSingular": "",
+      "optionPlural": "e"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "Skonfiguruj swoje specyfikacje poniżej"
+    },
+    "trustBadges": {
+      "heading": "Dlaczego kupić od BAPI",
+      "madeInUSA": "Wyprodukowano w USA",
+      "madeInUSADesc": "Wysoka jakość",
+      "warranty": "5-letnia gwarancja",
+      "warrantyDesc": "Pełna ochrona",
+      "returns": "Zwroty przez 30 dni",
+      "returnsDesc": "Bez zbędnych formalności",
+      "support": "Profesjonalne wsparcie",
+      "supportDesc": "Pomoc techniczna"
+    },
+    "variationSelectors": {
+      "chooseOption": "Wybierz opcję"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Aplikacja temperatury",
+        "roomEnclosure": "Styl obudowy pomieszczenia",
+        "sensorOutput": "Wyjście czujnika temperatury",
+        "setpointOverride": "Nastawa i nadpisanie temperatury",
+        "optionalSensorOutput": "Opcjonalny czujnik i wyjście temperatury"
+      },
+      "humidity": {
+        "application": "Aplikacja wilgotności",
+        "roomEnclosure": "Obudowa pomieszczenia na wilgotność",
+        "sensorOutput": "Wyjście czujnika wilgotności",
+        "optionalTempHumidity": "Opcjonalne czujniki temperatury i wilgotności"
+      },
+      "pressure": {
+        "application": "Aplikacja ciśnienia",
+        "sensorStyle": "Styl czujnika ciśnienia"
+      },
+      "airQuality": {
+        "application": "Aplikacja jakości powietrza",
+        "sensorType": "Typ czujnika jakości powietrza"
+      },
+      "wireless": {
+        "application": "Aplikacja bezprzewodowa"
+      },
+      "general": {
+        "display": "Wyświetlacz",
+        "voltage": "Zakres napięcia",
+        "current": "Wyjście prądowe",
+        "mounting": "Typ montażu",
+        "enclosure": "Typ obudowy",
+        "protocol": "Protokół komunikacyjny",
+        "certification": "Certyfikaty"
+      }
     }
   },
   "productsPage": {
@@ -1165,6 +1251,24 @@
       "title": "Potrzebujesz pomocy w znalezieniu odpowiedniego produktu?",
       "description": "Nasz zespół ekspertów jest gotowy pomóc Ci wybrać idealne czujniki i kontrolery do Twojego projektu automatyki budynkowej.",
       "button": "Skontaktuj się z działem handlowym"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Pomieszczenie",
+        "description": "Czujniki montowane na ścianie do biur, sal konferencyjnych i przestrzeni zajmowanych"
+      },
+      "nonRoom": {
+        "name": "Poza pomieszczeniem",
+        "description": "Czujniki montowane w kanałach, na zewnątrz, zanurzeniowe i przemysłowe"
+      },
+      "bluetoothWireless": {
+        "name": "System bezprzewodowy - Bluetooth Low Energy",
+        "description": "Zasilane bateryjnie czujniki Bluetooth z bramką"
+      },
+      "wamWireless": {
+        "name": "WAM - Bezprzewodowy monitoring zasobów",
+        "description": "Monitorowanie bezprzewodowe na dużą odległość z platformą chmurową"
+      }
     }
   },
   "cartPage": {
@@ -1268,7 +1372,8 @@
     "breadcrumb": {
       "home": "Strona główna",
       "products": "Produkty"
-    }
+    },
+    "backTo": "Powrót do {categoryName}"
   },
   "searchPage": {
     "meta": {

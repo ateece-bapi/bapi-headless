@@ -1373,9 +1373,7 @@
       "home": "หน้าแรก",
       "products": "ผลิตภัณฑ์"
     },
-    "backTo": {
-      "Back to {categoryName}": "กลับไปยัง {categoryName}"
-    }
+    "backTo": "กลับไปยัง {categoryName}"
   },
   "searchPage": {
     "meta": {

@@ -922,9 +922,7 @@
       "home": "Accueil",
       "products": "Produits"
     },
-    "backTo": {
-      "Back to {categoryName}": "Retour à {categoryName}"
-    }
+    "backTo": "Retour à {categoryName}"
   },
   "searchPage": {
     "meta": {

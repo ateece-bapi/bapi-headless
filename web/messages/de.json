@@ -843,9 +843,7 @@
       "home": "Startseite",
       "products": "Produkte"
     },
-    "backTo": {
-      "backTo": "Zurück zu {categoryName}"
-    }
+    "backTo": "Zurück zu {categoryName}"
   },
   "searchPage": {
     "meta": {

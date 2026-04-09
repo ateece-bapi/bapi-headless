@@ -1373,9 +1373,7 @@
       "home": "होम",
       "products": "उत्पाद"
     },
-    "backTo": {
-      "Back to {categoryName}": "{categoryName} पर वापस जाएं"
-    }
+    "backTo": "{categoryName} पर वापस जाएं"
   },
   "searchPage": {
     "meta": {

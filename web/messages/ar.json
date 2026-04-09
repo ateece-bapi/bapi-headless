@@ -922,9 +922,7 @@
       "home": "الرئيسية",
       "products": "المنتجات"
     },
-    "backTo": {
-      "Back to {categoryName}": "العودة إلى {categoryName}"
-    }
+    "backTo": "العودة إلى {categoryName}"
   },
   "searchPage": {
     "meta": {

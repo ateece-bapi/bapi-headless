@@ -1373,9 +1373,7 @@
       "home": "Strona główna",
       "products": "Produkty"
     },
-    "backTo": {
-      "Back to {categoryName}": "Powrót do {categoryName}"
-    }
+    "backTo": "Powrót do {categoryName}"
   },
   "searchPage": {
     "meta": {

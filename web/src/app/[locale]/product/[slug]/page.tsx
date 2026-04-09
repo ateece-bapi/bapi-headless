@@ -44,6 +44,10 @@ import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from 
 import { generateProductMetadata, generateCategoryMetadata } from '@/lib/metadata';
 import { getProductBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 import { normalizeAttributeSlug } from '@/lib/variations';
+import {
+  getCategoryTranslationKey,
+  getSubcategoryTranslationKey,
+} from '@/lib/categoryTranslations';
 import type { Metadata } from 'next';
 
 /**
@@ -214,6 +218,23 @@ export default async function ProductPage({
     const slug = String(resolvedParams.slug);
     const locale = String(resolvedParams.locale);
     const t = await getTranslations({ locale, namespace: 'productPage' });
+    const tCategories = await getTranslations({ locale, namespace: 'productsPage.categories' });
+    const tSubcategories = await getTranslations({ locale, namespace: 'productsPage.subcategories' });
+
+    // Translate category names from WordPress (matches category/subcategory page pattern)
+    const getTranslatedCategoryName = (wordpressName: string | null | undefined): string => {
+      if (!wordpressName) return '';
+      const key = getCategoryTranslationKey(wordpressName);
+      if (key) return tCategories(`${key}.name`);
+      return wordpressName;
+    };
+
+    const getTranslatedSubcategoryName = (wordpressName: string | null | undefined): string => {
+      if (!wordpressName) return '';
+      const key = getSubcategoryTranslationKey(wordpressName);
+      if (key) return tSubcategories(`${key}.name`);
+      return wordpressName;
+    };
 
     logger.info('[ProductPage] Loading product', { slug });
     timer.mark('params-resolved');
@@ -479,16 +500,17 @@ export default async function ProductPage({
         );
 
         // Generate breadcrumb schema using new utility
+        // Translate category names to match current locale (same pattern as category/subcategory pages)
         const categories = (rawProduct.productCategories?.nodes || []).map((cat: any) => ({
-          name: cat.name || '',
+          name: getTranslatedCategoryName(cat.name),
           slug: cat.slug || '',
           parent: cat.parent?.node
             ? {
-                name: cat.parent.node.name || '',
+                name: getTranslatedCategoryName(cat.parent.node.name),
                 slug: cat.parent.node.slug || '',
                 parent: cat.parent.node.parent?.node
                   ? {
-                      name: cat.parent.node.parent.node.name || '',
+                      name: getTranslatedCategoryName(cat.parent.node.parent.node.name),
                       slug: cat.parent.node.parent.node.slug || '',
                     }
                   : undefined,

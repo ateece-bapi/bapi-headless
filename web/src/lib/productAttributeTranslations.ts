@@ -21,17 +21,26 @@
 const ATTRIBUTE_LABEL_MAP: Record<string, string> = {
   // Temperature Sensors
   'Temperature Application': 'temperature.application',
+  'APPLICATION': 'temperature.application', // All-caps from filters
   'Room Enclosure Style': 'temperature.roomEnclosure',
   'Temperature Room Enclosure': 'temperature.roomEnclosure',
   'Temperature Sensor/Output': 'temperature.sensorOutput',
   'Temperature Sensor Output': 'temperature.sensorOutput',
+  'TEMPERATURE SENSOR': 'temperature.sensorOutput', // All-caps variation
+  'SENSOR OUTPUT': 'temperature.sensorOutput', // Generic all-caps
   'Temp Setpoint and Override': 'temperature.setpointOverride',
+  'TEMP SETPOINT AND OVERRIDE': 'temperature.setpointOverride', // All-caps
   'Optional Temp Sensor & Output': 'temperature.optionalSensorOutput',
+  'OPTIONAL INPUT SENSOR & OUTPUT': 'temperature.optionalSensorOutput', // All-caps variation
   
   // Humidity Sensors
   'Humidity Application': 'humidity.application',
+  'HUMIDITY APPLICATION': 'humidity.application', // All-caps
   'Humidity Room Enclosure': 'humidity.roomEnclosure',
+  'HUMIDITY ROOM ENCLOSURE': 'humidity.roomEnclosure', // All-caps
   'Humidity Sensor Output': 'humidity.sensorOutput',
+  'HUMIDITY SENSOR OUTPUT': 'humidity.sensorOutput', // All-caps
+  'HUMIDITY OUTPUT': 'humidity.sensorOutput', // All-caps variation
   'Optional Temp & Humidity': 'humidity.optionalTempHumidity',
   
   // Pressure Sensors
@@ -47,6 +56,7 @@ const ATTRIBUTE_LABEL_MAP: Record<string, string> = {
   
   // General/Common Attributes
   'Display': 'general.display',
+  'DISPLAY': 'general.display', // All-caps
   'Voltage Range': 'general.voltage',
   'Current Output': 'general.current',
   'Mounting Type': 'general.mounting',

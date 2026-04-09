@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { PhoneIcon, MailIcon, GlobeIcon, MapPinIcon, SearchIcon } from '@/lib/icons';
 
 export default function WhereToBuyPage() {

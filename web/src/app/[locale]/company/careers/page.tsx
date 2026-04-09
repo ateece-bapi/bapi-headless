@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wordpress';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import {
   BriefcaseIcon,
   HeartIcon,

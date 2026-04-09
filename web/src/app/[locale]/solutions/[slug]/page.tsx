@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ActivityIcon, ServerIcon, BuildingIcon, FactoryIcon, CheckCircleIcon, ArrowRightIcon } from '@/lib/icons';
 
 // Solution data

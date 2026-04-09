@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { RadioIcon, SignalIcon, MapPinIcon, CheckCircleIcon, AlertTriangleIcon, InfoIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {

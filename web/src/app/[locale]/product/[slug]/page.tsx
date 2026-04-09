@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { getTranslations } from 'next-intl/server';
 import logger from '@/lib/logger';
 import {

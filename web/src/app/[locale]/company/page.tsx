@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { Building2Icon, UsersIcon, TargetIcon, AwardIcon, MapPinIcon, PhoneIcon, MailIcon } from '@/lib/icons';
 import PageContainer from '@/components/layout/PageContainer';
 import { GlobalPresence } from '@/components/company/GlobalPresence';

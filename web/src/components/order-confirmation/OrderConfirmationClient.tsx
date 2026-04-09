@@ -14,7 +14,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { useRouter } from 'next/navigation';
 import { CheckCircleIcon, PackageIcon, TruckIcon, CreditCardIcon, HomeIcon, ArrowRightIcon, Loader2Icon } from '@/lib/icons';
 import { useToast } from '@/components/ui/Toast';

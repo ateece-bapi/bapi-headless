@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { FileTextIcon, Building2Icon, AwardIcon, TrendingUpIcon, ArrowRightIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';

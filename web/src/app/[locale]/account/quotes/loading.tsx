@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ArrowLeftIcon } from '@/lib/icons';
 
 /**

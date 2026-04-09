@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { getPageBySlug } from '@/lib/wordpress';
 import { GlobalPresence } from '@/components/company/GlobalPresence';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import {
   MailIcon,
   PhoneIcon,

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ArrowLeftIcon, UploadIcon, XIcon, CheckCircleIcon, Loader2Icon } from '@/lib/icons';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';

@@ -10,7 +10,7 @@ import {
 import type { Location, FacilityType } from '@/lib/constants/locations';
 import { Building2Icon, MapPinIcon } from '@/lib/icons';
 import { useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { BookOpenIcon } from '@/lib/icons';
 import { ResourceList } from '@/components/resources/ResourceList';
 import logger from '@/lib/logger';

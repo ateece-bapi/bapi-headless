@@ -1,6 +1,6 @@
 import { getServerAuth } from '@/lib/auth/server';
 import { redirect } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ArrowLeftIcon, MailIcon, UserIcon, AtSignIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 

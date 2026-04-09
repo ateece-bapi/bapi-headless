@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { WrenchIcon, FileTextIcon, DownloadIcon, SearchIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';

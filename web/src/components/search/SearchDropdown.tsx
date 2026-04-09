@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import { SearchIcon, XIcon, ArrowRightIcon, Loader2Icon } from '@/lib/icons';
 

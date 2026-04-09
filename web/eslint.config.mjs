@@ -1,6 +1,7 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import storybook from "eslint-plugin-storybook";
 import jsdoc from "eslint-plugin-jsdoc";
+import nextIntl from "eslint-plugin-next-intl";
 
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
@@ -45,6 +46,18 @@ const eslintConfig = defineConfig([...nextVitals, ...nextTs, {
   },
   plugins: {
     jsdoc: jsdoc,
+  },
+},
+// Enforce locale-aware Link from @/lib/navigation in [locale] routes and shared components.
+// Using next/link directly bypasses locale prefixing, causing 404s on client-side navigation
+// when localePrefix: 'always' is configured.
+// FIX: replace `import Link from 'next/link'` with `import { Link } from '@/lib/navigation'`
+// (not 'next-intl/link' as this rule suggests — this project wraps it via createNavigation)
+{
+  files: ['src/app/[locale]/**/*.{ts,tsx}', 'src/components/**/*.{ts,tsx}'],
+  plugins: { 'next-intl': nextIntl },
+  rules: {
+    'next-intl/use-next-intl-link-over-next-link': 'error',
   },
 },
 // Prevent duplicate <main> elements in page components

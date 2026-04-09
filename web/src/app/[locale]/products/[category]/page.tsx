@@ -202,7 +202,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   );
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
-  const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl);
+  const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl, locale);
 
   return (
     <div className="min-h-screen bg-white">
@@ -216,26 +216,28 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       {/* Category Header with BAPI Gradient */}
       <div className="bg-linear-to-br relative border-b-4 border-accent-500 from-primary-700 via-primary-600 to-primary-500">
         <div className="bg-linear-to-r absolute inset-0 from-transparent via-primary-500/10 to-transparent" />
-        <div className="relative mx-auto max-w-content px-4 py-16">
+        <div className="relative mx-auto max-w-content px-4 py-8">
           <div className="max-w-3xl">
-            <h1 className="mb-5 text-5xl font-bold text-white drop-shadow-lg md:text-6xl">
-              {translatedCategoryName}
-            </h1>
+            <div className="mb-2 flex items-center gap-3">
+              {/* BAPI Category Icon Badge */}
+              <div className="bg-linear-to-br inline-flex shrink-0 items-center justify-center rounded-xl from-white/20 to-white/10 p-2.5 shadow-md backdrop-blur-sm">
+                <Image
+                  src={getCategoryIcon(category)}
+                  alt={`${getCategoryIconName(category)} icon`}
+                  width={32}
+                  height={32}
+                  className="object-contain drop-shadow-md"
+                />
+              </div>
+              <h1 className="text-4xl font-bold text-white drop-shadow-lg md:text-5xl">
+                {translatedCategoryName}
+              </h1>
+            </div>
             {categoryData.description && (
-              <p className="text-xl leading-relaxed text-white/95 drop-shadow-md">
+              <p className="text-lg leading-relaxed text-white/95 drop-shadow-md">
                 {categoryData.description}
               </p>
             )}
-            {/* BAPI Category Icon Badge - Prominent display */}
-            <div className="bg-linear-to-br mt-8 inline-flex items-center justify-center rounded-2xl from-white/20 to-white/10 p-4 shadow-lg backdrop-blur-sm">
-              <Image
-                src={getCategoryIcon(category)}
-                alt={`${getCategoryIconName(category)} icon`}
-                width={48}
-                height={48}
-                className="object-contain drop-shadow-md"
-              />
-            </div>
           </div>
         </div>
       </div>

@@ -486,6 +486,12 @@ export default async function ProductPage({
             ? {
                 name: cat.parent.node.name || '',
                 slug: cat.parent.node.slug || '',
+                parent: cat.parent.node.parent?.node
+                  ? {
+                      name: cat.parent.node.parent.node.name || '',
+                      slug: cat.parent.node.parent.node.slug || '',
+                    }
+                  : undefined,
               }
             : undefined,
         }));

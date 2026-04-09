@@ -11,7 +11,7 @@ import {
 
 describe('Breadcrumb Navigation Utilities', () => {
   describe('getCategoryBreadcrumbs', () => {
-    it('generates breadcrumbs for category page with home', () => {
+    it('generates breadcrumbs for root category (no parent)', () => {
       const result = getCategoryBreadcrumbs('Actuators', 'actuators', {
         locale: 'en',
         includeHome: true,
@@ -19,7 +19,6 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(result).toEqual([
         { label: 'Home', href: '/en' },
-        { label: 'Products', href: '/en/products' },
         { label: 'Actuators', href: '/en/products/actuators' },
       ]);
     });
@@ -31,7 +30,6 @@ describe('Breadcrumb Navigation Utilities', () => {
       });
 
       expect(result).toEqual([
-        { label: 'Products', href: '/en/products' },
         { label: 'Actuators', href: '/en/products/actuators' },
       ]);
     });
@@ -48,7 +46,6 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(result).toEqual([
         { label: 'Startseite', href: '/de' },
-        { label: 'Produkte', href: '/de/products' },
         { label: 'Aktoren', href: '/de/products/actuators' },
       ]);
     });
@@ -60,7 +57,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       });
 
       expect(result[0].label).toBe('Home');
-      expect(result[1].label).toBe('Products');
+      expect(result[1].label).toBe('Actuators');
     });
 
     it('handles different locales for URL paths', () => {
@@ -73,8 +70,7 @@ describe('Breadcrumb Navigation Utilities', () => {
         });
 
         expect(result[0].href).toBe(`/${locale}`);
-        expect(result[1].href).toBe(`/${locale}/products`);
-        expect(result[2].href).toBe(`/${locale}/products/actuators`);
+        expect(result[1].href).toBe(`/${locale}/products/actuators`);
       });
     });
 
@@ -84,13 +80,13 @@ describe('Breadcrumb Navigation Utilities', () => {
         includeHome: true,
       });
 
-      expect(result[2].label).toBe('Sensors & Controls');
-      expect(result[2].href).toBe('/en/products/sensors-controls');
+      expect(result[1].label).toBe('Sensors & Controls');
+      expect(result[1].href).toBe('/en/products/sensors-controls');
     });
   });
 
   describe('getSubcategoryBreadcrumbs', () => {
-    it('generates breadcrumbs for subcategory page with home', () => {
+    it('generates breadcrumbs for subcategory (parent is root)', () => {
       const result = getSubcategoryBreadcrumbs(
         'Actuators',
         'actuators',
@@ -104,7 +100,6 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(result).toEqual([
         { label: 'Home', href: '/en' },
-        { label: 'Products', href: '/en/products' },
         { label: 'Actuators', href: '/en/products/actuators' },
         {
           label: 'Electric Actuators',
@@ -126,7 +121,6 @@ describe('Breadcrumb Navigation Utilities', () => {
       );
 
       expect(result).toEqual([
-        { label: 'Products', href: '/en/products' },
         { label: 'Actuators', href: '/en/products/actuators' },
         {
           label: 'Electric Actuators',
@@ -152,9 +146,8 @@ describe('Breadcrumb Navigation Utilities', () => {
       );
 
       expect(result[0].label).toBe('Startseite');
-      expect(result[1].label).toBe('Produkte');
-      expect(result[2].label).toBe('Aktoren');
-      expect(result[3].label).toBe('Elektrische Aktoren');
+      expect(result[1].label).toBe('Aktoren');
+      expect(result[2].label).toBe('Elektrische Aktoren');
     });
 
     it('handles different locales for URL paths', () => {
@@ -170,9 +163,8 @@ describe('Breadcrumb Navigation Utilities', () => {
       );
 
       expect(result[0].href).toBe('/ja');
-      expect(result[1].href).toBe('/ja/products');
-      expect(result[2].href).toBe('/ja/products/actuators');
-      expect(result[3].href).toBe('/ja/products/actuators/electric-actuators');
+      expect(result[1].href).toBe('/ja/products/actuators');
+      expect(result[2].href).toBe('/ja/products/actuators/electric-actuators');
     });
   });
 
@@ -199,7 +191,6 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(result).toEqual([
         { label: 'Home', href: '/en' },
-        { label: 'Products', href: '/en/products' },
         { label: 'Actuators', href: '/en/products/actuators' },
         {
           label: 'Electric Actuators',
@@ -209,7 +200,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       ]);
     });
 
-    it('generates breadcrumbs for product without parent category', () => {
+    it('generates breadcrumbs for product with root category (no parent)', () => {
       const result = getProductBreadcrumbs(
         'Test Product',
         'test-product',
@@ -227,8 +218,7 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       expect(result).toEqual([
         { label: 'Home', href: '/en' },
-        { label: 'Products', href: '/en/products' },
-        { label: 'Sensors', href: '/en/products/all/sensors' },
+        { label: 'Sensors', href: '/en/products/sensors' },
         { label: 'Test Product' },
       ]);
     });
@@ -253,8 +243,8 @@ describe('Breadcrumb Navigation Utilities', () => {
         }
       );
 
-      expect(result).toHaveLength(4);
-      expect(result[0].label).toBe('Products');
+      expect(result).toHaveLength(3);
+      expect(result[0].label).toBe('Actuators');
     });
 
     it('handles product with empty categories array', () => {
@@ -290,7 +280,7 @@ describe('Breadcrumb Navigation Utilities', () => {
         }
       );
 
-      expect(result[2].label).toBe('Primary Category');
+      expect(result[1].label).toBe('Primary Category');
       expect(result).not.toContainEqual(expect.objectContaining({ label: 'Secondary Category' }));
     });
 
@@ -336,7 +326,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       );
 
       expect(result[0].label).toBe('Accueil');
-      expect(result[1].label).toBe('Produits');
+      expect(result[1].label).toBe('Capteurs');
     });
 
     it('handles different locales for URL paths', () => {
@@ -360,9 +350,8 @@ describe('Breadcrumb Navigation Utilities', () => {
       );
 
       expect(result[0].href).toBe('/zh');
-      expect(result[1].href).toBe('/zh/products');
-      expect(result[2].href).toBe('/zh/products/parent');
-      expect(result[3].href).toBe('/zh/products/parent/category');
+      expect(result[1].href).toBe('/zh/products/parent');
+      expect(result[2].href).toBe('/zh/products/parent/category');
     });
   });
 
@@ -652,8 +641,8 @@ describe('Breadcrumb Navigation Utilities', () => {
         includeHome: true,
       });
 
-      expect(result[2].label).toBe(longName);
-      expect(result[2].label.length).toBe(500);
+      expect(result[1].label).toBe(longName);
+      expect(result[1].label.length).toBe(500);
     });
 
     it('handles Unicode characters in names', () => {
@@ -662,7 +651,7 @@ describe('Breadcrumb Navigation Utilities', () => {
         includeHome: true,
       });
 
-      expect(result[2].label).toBe('传感器 センサー');
+      expect(result[1].label).toBe('传感器 センサー');
     });
 
     it('handles emoji in breadcrumb names', () => {
@@ -685,7 +674,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       });
 
       expect(result[0].label).toBe('Custom Home');
-      expect(result[1].label).toBe('Products'); // Default fallback
+      expect(result[1].label).toBe('Test'); // Category as root
     });
 
     it('handles empty labels object', () => {
@@ -696,7 +685,7 @@ describe('Breadcrumb Navigation Utilities', () => {
       });
 
       expect(result[0].label).toBe('Home');
-      expect(result[1].label).toBe('Products');
+      expect(result[1].label).toBe('Test'); // Category as root
     });
   });
 
@@ -709,9 +698,9 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       const schema = breadcrumbsToSchemaOrg(breadcrumbs, 'https://bapi.com');
 
-      expect(schema.itemListElement).toHaveLength(3);
-      expect(schema.itemListElement[2].name).toBe('Actuators');
-      expect(schema.itemListElement[2].item).toBe('https://bapi.com/en/products/actuators');
+      expect(schema.itemListElement).toHaveLength(2);
+      expect(schema.itemListElement[1].name).toBe('Actuators');
+      expect(schema.itemListElement[1].item).toBe('https://bapi.com/en/products/actuators');
     });
 
     it('product breadcrumbs work with Schema.org conversion', () => {
@@ -736,9 +725,9 @@ describe('Breadcrumb Navigation Utilities', () => {
 
       const schema = breadcrumbsToSchemaOrg(breadcrumbs, 'https://bapi.com');
 
-      // Product itself has no href, so only 4 items in schema
-      expect(schema.itemListElement).toHaveLength(4);
-      expect(schema.itemListElement[3].name).toBe('Electric Actuators');
+      // Product itself has no href, so only 3 items in schema (Home + Actuators + Electric Actuators)
+      expect(schema.itemListElement).toHaveLength(3);
+      expect(schema.itemListElement[2].name).toBe('Electric Actuators');
     });
 
     it('search breadcrumbs work with Schema.org conversion', () => {
@@ -789,11 +778,18 @@ describe('Breadcrumb Navigation Utilities', () => {
         labels,
       });
 
-      // All should have consistent Home and Products breadcrumbs
+      // All should have consistent Home breadcrumb
       [category, subcategory, product, search].forEach((crumbs) => {
         expect(crumbs[0]).toEqual({ label: 'Home', href: '/en' });
-        expect(crumbs[1]).toEqual({ label: 'Products', href: '/en/products' });
       });
+
+      // Only search and orphan product should have generic "Products" link
+      expect(product[1]).toEqual({ label: 'Products', href: '/en/products' });
+      expect(search[1]).toEqual({ label: 'Products', href: '/en/products' });
+
+      // Category and subcategory show actual category names (not "Products")
+      expect(category[1]).toEqual({ label: 'Test', href: '/en/products/test' });
+      expect(subcategory[1]).toEqual({ label: 'Test', href: '/en/products/test' });
     });
   });
 });

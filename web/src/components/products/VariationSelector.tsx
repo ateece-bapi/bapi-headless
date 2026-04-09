@@ -91,12 +91,18 @@ export default function VariationSelector({
 
   // Get translated attribute label
   const getTranslatedLabel = (attribute: ProductAttribute): string => {
-    if (hasAttributeTranslation(attribute.label)) {
-      const key = getAttributeTranslationKey(attribute.label);
-      return tAttr(key);
+    const originalLabel = attribute.label;
+    console.log(`[VariationSelector] Processing attribute: "${originalLabel}"`);
+    
+    if (hasAttributeTranslation(originalLabel)) {
+      const key = getAttributeTranslationKey(originalLabel);
+      const translated = tAttr(key);
+      console.log(`[VariationSelector] ✅ Translated "${originalLabel}" → "${translated}"`);
+      return translated;
     }
     // Fallback to original label if no translation exists
-    return attribute.label;
+    console.log(`[VariationSelector] ⚠️ No translation for "${originalLabel}", using original`);
+    return originalLabel;
   };
 
   // Handle attribute selection

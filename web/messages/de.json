@@ -552,6 +552,32 @@
       "xAvailable": "{count} verfügbar",
       "expectedBack": "Wieder lieferbar: {date}",
       "shipsOn": "Wird versandt am: {date}"
+    },
+    "configurator": {
+      "heading": "Konfigurieren Sie Ihr Produkt",
+      "subheading": "Wählen Sie Ihre Spezifikationen unten aus • {selectedCount} von {totalCount} Optionen ausgewählt",
+      "shareConfigTitle": "Teilen Sie diese Konfiguration",
+      "shareConfigDisabledTitle": "Konfiguration abschließen, um sie zu teilen",
+      "shareCopied": "Kopiert!",
+      "shareButton": "Teilen",
+      "resetButton": "Zurücksetzen",
+      "selectedConfig": "✓ Ausgewählte Konfiguration",
+      "partNumber": "Teilenummer",
+      "yourPrice": "Ihr Preis",
+      "availability": "Verfügbarkeit",
+      "inStock": "Auf Lager",
+      "shipsIn": "Wird in 2-3 Tagen verschickt",
+      "backorder": "Nachbestellung",
+      "contactForLeadTime": "Kontaktieren Sie uns für die Lieferzeit",
+      "outOfStock": "Nicht auf Lager",
+      "qtyLabel": "Menge:",
+      "decreaseQtyAriaLabel": "Menge verringern",
+      "increaseQtyAriaLabel": "Menge erhöhen",
+      "invalidConfig": "Ungültige Konfiguration",
+      "invalidConfigMessage": "Diese Kombination von Optionen ist nicht verfügbar. Bitte versuchen Sie es mit anderen Auswahlen.",
+      "partialSelectionMessage": "Bitte wählen Sie {count} weitere Option{plural} aus, um die endgültige Konfiguration zu sehen",
+      "optionSingular": "",
+      "optionPlural": "en"
     }
   },
   "productsPage": {

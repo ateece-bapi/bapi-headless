@@ -1082,6 +1082,32 @@
       "xAvailable": "{count} उपलब्ध",
       "expectedBack": "वापस आने की उम्मीद: {date}",
       "shipsOn": "{date} को भेजा जाएगा"
+    },
+    "configurator": {
+      "heading": "अपने उत्पाद को कॉन्फ़िगर करें",
+      "subheading": "नीचे अपने विनिर्देशों का चयन करें • {selectedCount} में से {totalCount} विकल्प चुने गए",
+      "shareConfigTitle": "इस कॉन्फ़िगरेशन को शेयर करें",
+      "shareConfigDisabledTitle": "कॉन्फ़िगरेशन को शेयर करने के लिए पूरा करें",
+      "shareCopied": "कॉपी किया गया!",
+      "shareButton": "शेयर करें",
+      "resetButton": "रीसेट करें",
+      "selectedConfig": "✓ चयनित कॉन्फ़िगरेशन",
+      "partNumber": "पार्ट नंबर",
+      "yourPrice": "आपकी कीमत",
+      "availability": "उपलब्धता",
+      "inStock": "स्टॉक में",
+      "shipsIn": "2-3 दिनों में भेजा जाएगा",
+      "backorder": "बैकऑर्डर",
+      "contactForLeadTime": "लीड टाइम के लिए संपर्क करें",
+      "outOfStock": "स्टॉक खत्म",
+      "qtyLabel": "मात्रा:",
+      "decreaseQtyAriaLabel": "मात्रा कम करें",
+      "increaseQtyAriaLabel": "मात्रा बढ़ाएं",
+      "invalidConfig": "अमान्य कॉन्फ़िगरेशन",
+      "invalidConfigMessage": "विकल्पों का यह संयोजन उपलब्ध नहीं है। कृपया अलग-अलग चयन करें।",
+      "partialSelectionMessage": "अंतिम कॉन्फ़िगरेशन देखने के लिए कृपया {count} और विकल्प{plural} चुनें",
+      "optionSingular": "",
+      "optionPlural": "ों"
     }
   },
   "productsPage": {

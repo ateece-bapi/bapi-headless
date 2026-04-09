@@ -631,6 +631,32 @@
       "xAvailable": "有{count}件可用",
       "expectedBack": "预计到货时间：{date}",
       "shipsOn": "发货日期：{date}"
+    },
+    "configurator": {
+      "heading": "配置您的产品",
+      "subheading": "在下方选择您的规格 • 已选择 {selectedCount}/{totalCount} 个选项",
+      "shareConfigTitle": "分享此配置",
+      "shareConfigDisabledTitle": "完成配置以分享",
+      "shareCopied": "已复制!",
+      "shareButton": "分享",
+      "resetButton": "重置",
+      "selectedConfig": "✓ 已选配置",
+      "partNumber": "零件编号",
+      "yourPrice": "您的价格",
+      "availability": "库存情况",
+      "inStock": "现货",
+      "shipsIn": "2-3天内发货",
+      "backorder": "后补订单",
+      "contactForLeadTime": "请联系了解交货期",
+      "outOfStock": "缺货",
+      "qtyLabel": "数量:",
+      "decreaseQtyAriaLabel": "减少数量",
+      "increaseQtyAriaLabel": "增加数量",
+      "invalidConfig": "无效配置",
+      "invalidConfigMessage": "此选项组合不可用。请尝试不同的选择。",
+      "partialSelectionMessage": "请选择 {count} 个更多选项{plural}以查看最终配置",
+      "optionSingular": "",
+      "optionPlural": "个"
     }
   },
   "productsPage": {

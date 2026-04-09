@@ -592,6 +592,32 @@
       "xAvailable": "{count} sản phẩm có sẵn",
       "expectedBack": "Dự kiến về vào: {date}",
       "shipsOn": "Giao hàng vào: {date}"
+    },
+    "configurator": {
+      "heading": "Định cấu hình sản phẩm của bạn",
+      "subheading": "Chọn thông số kỹ thuật của bạn bên dưới • {selectedCount} trong tổng số {totalCount} tùy chọn đã chọn",
+      "shareConfigTitle": "Chia sẻ cấu hình này",
+      "shareConfigDisabledTitle": "Hoàn thành cấu hình để chia sẻ",
+      "shareCopied": "Đã sao chép!",
+      "shareButton": "Chia sẻ",
+      "resetButton": "Đặt lại",
+      "selectedConfig": "✓ Cấu hình đã chọn",
+      "partNumber": "Số sản phẩm",
+      "yourPrice": "Giá của bạn",
+      "availability": "Tình trạng sẵn có",
+      "inStock": "Hàng có sẵn",
+      "shipsIn": "Giao hàng trong 2-3 ngày",
+      "backorder": "Đặt trước",
+      "contactForLeadTime": "Liên hệ để biết thời gian giao hàng",
+      "outOfStock": "Hết hàng",
+      "qtyLabel": "Số lượng:",
+      "decreaseQtyAriaLabel": "Giảm số lượng",
+      "increaseQtyAriaLabel": "Tăng số lượng",
+      "invalidConfig": "Cấu hình không hợp lệ",
+      "invalidConfigMessage": "Sự kết hợp các tùy chọn này không khả dụng. Vui lòng thử các lựa chọn khác.",
+      "partialSelectionMessage": "Vui lòng chọn {count} tùy chọn{plural} khác để xem cấu hình cuối cùng",
+      "optionSingular": "",
+      "optionPlural": "s"
     }
   },
   "productsPage": {

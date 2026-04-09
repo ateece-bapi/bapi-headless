@@ -631,6 +631,32 @@
       "xAvailable": "{count}個ご利用いただけます",
       "expectedBack": "入荷予定: {date}",
       "shipsOn": "出荷日: {date}"
+    },
+    "configurator": {
+      "heading": "製品を構成する",
+      "subheading": "以下の仕様を選択してください • {selectedCount}/{totalCount} のオプションが選択されています",
+      "shareConfigTitle": "この設定を共有する",
+      "shareConfigDisabledTitle": "設定を完了してから共有してください",
+      "shareCopied": "コピーしました!",
+      "shareButton": "共有",
+      "resetButton": "リセット",
+      "selectedConfig": "✓ 選択された設定",
+      "partNumber": "部品番号",
+      "yourPrice": "お客様価格",
+      "availability": "入手可能性",
+      "inStock": "在庫あり",
+      "shipsIn": "2-3 日で出荷",
+      "backorder": "受注生産",
+      "contactForLeadTime": "納期についてはお問い合わせください",
+      "outOfStock": "在庫切れ",
+      "qtyLabel": "数量:",
+      "decreaseQtyAriaLabel": "数量を減らす",
+      "increaseQtyAriaLabel": "数量を増やす",
+      "invalidConfig": "無効な構成",
+      "invalidConfigMessage": "このオプションの組み合わせは利用できません。別の選択をお試しください。",
+      "partialSelectionMessage": "最終構成を確認するには、{count}つのオプションをさらに選択してください{plural}",
+      "optionSingular": "",
+      "optionPlural": "つ"
     }
   },
   "productsPage": {

@@ -631,6 +631,32 @@
       "xAvailable": "{count} disponibles",
       "expectedBack": "Attendu à nouveau: {date}",
       "shipsOn": "Expédié le: {date}"
+    },
+    "configurator": {
+      "heading": "Configurez votre produit",
+      "subheading": "Sélectionnez vos spécifications ci-dessous • {selectedCount} sur {totalCount} options sélectionnées",
+      "shareConfigTitle": "Partager cette configuration",
+      "shareConfigDisabledTitle": "Complétez la configuration pour partager",
+      "shareCopied": "Copié !",
+      "shareButton": "Partager",
+      "resetButton": "Réinitialiser",
+      "selectedConfig": "✓ Configuration sélectionnée",
+      "partNumber": "Numéro de pièce",
+      "yourPrice": "Votre prix",
+      "availability": "Disponibilité",
+      "inStock": "En stock",
+      "shipsIn": "Expédié sous 2-3 jours",
+      "backorder": "Commande en retard",
+      "contactForLeadTime": "Contactez-nous pour le délai de livraison",
+      "outOfStock": "En rupture de stock",
+      "qtyLabel": "Qté :",
+      "decreaseQtyAriaLabel": "Diminuer la quantité",
+      "increaseQtyAriaLabel": "Augmenter la quantité",
+      "invalidConfig": "Configuration non valide",
+      "invalidConfigMessage": "Cette combinaison d'options n'est pas disponible. Veuillez essayer d'autres sélections.",
+      "partialSelectionMessage": "Veuillez sélectionner {count} option{plural} supplémentaire{plural} pour voir la configuration finale",
+      "optionSingular": "",
+      "optionPlural": "s"
     }
   },
   "productsPage": {

@@ -1082,6 +1082,32 @@
       "xAvailable": "มี {count} ชิ้นพร้อมใช้",
       "expectedBack": "คาดว่าจะมีสินค้าใหม่: {date}",
       "shipsOn": "จัดส่งในวันที่: {date}"
+    },
+    "configurator": {
+      "heading": "กำหนดค่าผลิตภัณฑ์ของคุณ",
+      "subheading": "เลือกข้อมูลจำเพาะของคุณด้านล่าง • {selectedCount} จาก {totalCount} ตัวเลือกที่เลือก",
+      "shareConfigTitle": "แชร์การกำหนดค่านี้",
+      "shareConfigDisabledTitle": "กรุณาเลือกการกำหนดค่าให้ครบเพื่อแชร์",
+      "shareCopied": "คัดลอกแล้ว!",
+      "shareButton": "แชร์",
+      "resetButton": "รีเซ็ต",
+      "selectedConfig": "✓ การกำหนดค่าที่เลือก",
+      "partNumber": "หมายเลขชิ้นส่วน",
+      "yourPrice": "ราคาของคุณ",
+      "availability": "สภาพพร้อมจัดส่ง",
+      "inStock": "มีสินค้าในสต๊อก",
+      "shipsIn": "จัดส่งภายใน 2-3 วัน",
+      "backorder": "สินค้ารอสั่ง",
+      "contactForLeadTime": "ติดต่อเพื่อทราบระยะเวลาจัดส่ง",
+      "outOfStock": "สินค้าหมด",
+      "qtyLabel": "จำนวน:",
+      "decreaseQtyAriaLabel": "ลดจำนวน",
+      "increaseQtyAriaLabel": "เพิ่มจำนวน",
+      "invalidConfig": "การกำหนดค่าไม่ถูกต้อง",
+      "invalidConfigMessage": "ตัวเลือกนี้ไม่สามารถใช้ได้ กรุณาเลือกตัวเลือกอื่น",
+      "partialSelectionMessage": "กรุณาเลือกตัวเลือกอีก {count} ตัว{plural} เพื่อดูการกำหนดค่าสุดท้าย",
+      "optionSingular": "",
+      "optionPlural": "ตัว"
     }
   },
   "productsPage": {

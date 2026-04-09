@@ -631,6 +631,32 @@
       "xAvailable": "{count} متوفرة",
       "expectedBack": "متوقع العودة: {date}",
       "shipsOn": "يتم الشحن في: {date}"
+    },
+    "configurator": {
+      "heading": "قم بتكوين منتجك",
+      "subheading": "حدد مواصفاتك أدناه • تم تحديد {selectedCount} من إجمالي {totalCount} خيارات",
+      "shareConfigTitle": "مشاركة هذا التكوين",
+      "shareConfigDisabledTitle": "أكمل التكوين للمشاركة",
+      "shareCopied": "تم النسخ!",
+      "shareButton": "مشاركة",
+      "resetButton": "إعادة تعيين",
+      "selectedConfig": "✓ التكوين المحدد",
+      "partNumber": "رقم القطعة",
+      "yourPrice": "السعر الخاص بك",
+      "availability": "التوفر",
+      "inStock": "متوفر في المخزون",
+      "shipsIn": "الشحن خلال 2-3 أيام",
+      "backorder": "طلب متأخر",
+      "contactForLeadTime": "اتصل للحصول على وقت التسليم",
+      "outOfStock": "غير متوفر في المخزون",
+      "qtyLabel": "الكمية:",
+      "decreaseQtyAriaLabel": "خفض الكمية",
+      "increaseQtyAriaLabel": "زيادة الكمية",
+      "invalidConfig": "تكوين غير صالح",
+      "invalidConfigMessage": "هذا التوليفة من الخيارات غير متاحة. يرجى محاولة اختيارات مختلفة.",
+      "partialSelectionMessage": "يرجى تحديد {count} خيار{plural} آخر لعرض التكوين النهائي",
+      "optionSingular": "",
+      "optionPlural": "ات"
     }
   },
   "productsPage": {

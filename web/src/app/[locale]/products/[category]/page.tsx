@@ -78,6 +78,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const t = await getTranslations({ locale });
   const tCategories = await getTranslations({ locale, namespace: 'productsPage.categories' });
   const tSubcategories = await getTranslations({ locale, namespace: 'productsPage.subcategories' });
+  const tBreadcrumb = await getTranslations({ locale, namespace: 'productPage.breadcrumb' });
   
   // Use comprehensive cache tags for precise revalidation
   const client = getGraphQLClient(['products', 'product-categories', `category-${category}`], true);
@@ -95,7 +96,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   // Get translated category name
   const getTranslatedCategoryName = (wordpressName: string | null | undefined): string => {
-    if (!wordpressName) return 'Products';
+    if (!wordpressName) return tBreadcrumb('products');
     const key = getCategoryTranslationKey(wordpressName);
     if (key) {
       return tCategories(`${key}.name`);

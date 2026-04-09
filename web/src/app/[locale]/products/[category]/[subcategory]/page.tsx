@@ -75,6 +75,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   const t = await getTranslations({ locale, namespace: 'subcategoryPage' });
   const tCategories = await getTranslations({ locale, namespace: 'productsPage.categories' });
   const tSubcategories = await getTranslations({ locale, namespace: 'productsPage.subcategories' });
+  const tBreadcrumb = await getTranslations({ locale, namespace: 'productPage.breadcrumb' });
 
   const client = getGraphQLClient(['products', `category-${subcategory}`], true);
 
@@ -92,7 +93,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
 
   // Get translated category name
   const getTranslatedCategoryName = (wordpressName: string | null | undefined): string => {
-    if (!wordpressName) return 'Products';
+    if (!wordpressName) return tBreadcrumb('products');
     const key = getCategoryTranslationKey(wordpressName);
     if (key) {
       return tCategories(`${key}.name`);

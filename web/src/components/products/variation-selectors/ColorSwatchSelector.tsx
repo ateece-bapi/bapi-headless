@@ -5,6 +5,7 @@ import { getColorHex } from '@/lib/attributeDetection';
 
 interface ColorSwatchSelectorProps {
   label: string;
+  attributeSlug: string; // Stable identifier for accessibility
   options: string[];
   value: string;
   onChange: (value: string) => void;
@@ -18,6 +19,7 @@ interface ColorSwatchSelectorProps {
  */
 export default function ColorSwatchSelector({
   label,
+  attributeSlug,
   options,
   value,
   onChange,

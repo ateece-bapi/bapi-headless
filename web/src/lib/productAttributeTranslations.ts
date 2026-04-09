@@ -11,7 +11,8 @@
  * Usage:
  *   import { getAttributeTranslationKey } from '@/lib/productAttributeTranslations';
  *   const t = useTranslations('productPage.productAttributes');
- *   const translatedLabel = t(getAttributeTranslationKey(attribute.label));
+ *   const key = getAttributeTranslationKey(attribute.label);
+ *   const translatedLabel = key !== attribute.label ? t(key) : attribute.label;
  */
 
 /**
@@ -116,7 +117,7 @@ export function getAttributeTranslationKey(label: string): string {
  * @returns true if translation exists, false otherwise
  */
 export function hasAttributeTranslation(label: string): boolean {
-  return label in ATTRIBUTE_LABEL_MAP;
+  return getAttributeTranslationKey(label) !== label;
 }
 
 /**

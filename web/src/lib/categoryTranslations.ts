@@ -6,8 +6,9 @@
  * need to be translated for non-English locales (German: "Feuchtigkeitssensoren", "Raum", "Nicht-Raum").
  *
  * Usage:
+ *   const t = useTranslations('productsPage.categories');
  *   const key = getCategoryTranslationKey('Humidity Sensors');
- *   const translated = t(`categories.${key}.name`);
+ *   const translated = key ? t(`${key}.name`) : 'Humidity Sensors';
  */
 
 /**
@@ -94,7 +95,9 @@ export function getCategoryTranslationKey(categoryName: string): string | null {
   }
 
   // No mapping found - will use original name
-  console.warn(`[i18n] ⚠️ No translation mapping for category: "${categoryName}"`);
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(`[i18n] ⚠️ No translation mapping for category: "${categoryName}"`);
+  }
   return null;
 }
 
@@ -130,22 +133,44 @@ export function getSubcategoryTranslationKey(subcategoryName: string): string | 
   }
 
   // No mapping found - will use original name
-  console.warn(`[i18n] ⚠️ No translation mapping for subcategory: "${subcategoryName}"`);
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(`[i18n] ⚠️ No translation mapping for subcategory: "${subcategoryName}"`);
+  }
   return null;
 }
 
 /**
  * Checks if a category has a translation mapping.
+ * Pure function with no side effects.
  */
 export function hasCategoryTranslation(categoryName: string): boolean {
-  return getCategoryTranslationKey(categoryName) !== null;
+  if (!categoryName) return false;
+
+  if (CATEGORY_NAME_MAP[categoryName]) {
+    return true;
+  }
+
+  const lowerName = categoryName.toLowerCase();
+  return Object.keys(CATEGORY_NAME_MAP).some(
+    (key) => key.toLowerCase() === lowerName
+  );
 }
 
 /**
  * Checks if a subcategory has a translation mapping.
+ * Pure function with no side effects.
  */
 export function hasSubcategoryTranslation(subcategoryName: string): boolean {
-  return getSubcategoryTranslationKey(subcategoryName) !== null;
+  if (!subcategoryName) return false;
+
+  if (SUBCATEGORY_NAME_MAP[subcategoryName]) {
+    return true;
+  }
+
+  const lowerName = subcategoryName.toLowerCase();
+  return Object.keys(SUBCATEGORY_NAME_MAP).some(
+    (key) => key.toLowerCase() === lowerName
+  );
 }
 
 /**

@@ -92,11 +92,10 @@ export default function VariationSelector({
   // Get translated attribute label
   const getTranslatedLabel = (attribute: ProductAttribute): string => {
     const originalLabel = attribute.label;
-    
-    if (hasAttributeTranslation(originalLabel)) {
-      const key = getAttributeTranslationKey(originalLabel);
-      const translated = tAttr(key);
-      return translated;
+    const key = getAttributeTranslationKey(originalLabel);
+
+    if (key !== originalLabel) {
+      return tAttr(key);
     }
     // Fallback to original label if no translation exists
     return originalLabel;
@@ -331,6 +330,7 @@ export default function VariationSelector({
 
               const commonProps = {
                 label: getTranslatedLabel(attribute),
+                attributeSlug, // Stable identifier for DOM ids (accessibility)
                 options: availableOptions, // Use filtered options instead of all options
                 value,
                 onChange: (val: string) => handleAttributeChange(attribute.label, val),

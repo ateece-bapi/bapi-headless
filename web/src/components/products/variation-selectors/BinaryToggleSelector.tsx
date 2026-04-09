@@ -4,6 +4,7 @@ import { isPositiveOption } from '@/lib/attributeDetection';
 
 interface BinaryToggleSelectorProps {
   label: string;
+  attributeSlug: string; // Stable identifier for accessibility
   options: [string, string]; // Exactly 2 options
   value: string;
   onChange: (value: string) => void;
@@ -18,6 +19,7 @@ interface BinaryToggleSelectorProps {
  */
 export default function BinaryToggleSelector({
   label,
+  attributeSlug,
   options,
   value,
   onChange,

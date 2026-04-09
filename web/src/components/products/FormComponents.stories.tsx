@@ -57,6 +57,7 @@ export const RadioGroupBasic: StoryObj = {
     return (
       <RadioGroupSelector
         label="Output Type"
+        attributeSlug="output-type"
         options={['Standard', 'Enhanced', 'Premium']}
         value={value}
         onChange={setValue}
@@ -79,6 +80,7 @@ export const RadioGroupWithDescription: StoryObj = {
     return (
       <RadioGroupSelector
         label="Mounting Type"
+        attributeSlug="mounting-type"
         description="Select how the sensor will be installed"
         options={['Wall Mount', 'Duct Mount', 'Immersion Mount', 'Surface Mount']}
         value={value}
@@ -102,6 +104,7 @@ export const RadioGroupSelected: StoryObj = {
     return (
       <RadioGroupSelector
         label="Signal Output"
+        attributeSlug="signal-output"
         options={['0-10VDC', '4-20mA', 'Thermistor']}
         value={value}
         onChange={setValue}
@@ -128,6 +131,7 @@ export const DropdownBasic: StoryObj = {
     return (
       <DropdownSelector
         label="Temperature Range"
+        attributeSlug="temperature-range"
         options={[
           '0-50°F',
           '0-100°F',
@@ -159,6 +163,7 @@ export const DropdownSelected: StoryObj = {
     return (
       <DropdownSelector
         label="Temperature Range"
+        attributeSlug="temperature-range"
         description="Select the operating temperature range for your sensor"
         options={[
           '0-50°F',
@@ -193,6 +198,7 @@ export const DropdownLongOptions: StoryObj = {
     return (
       <DropdownSelector
         label="Sensor Configuration"
+        attributeSlug="sensor-configuration"
         options={[
           'Temperature Range: 0-100°F, Accuracy: ±1°F, Output: 0-10VDC, Material: Plastic ABS, Length: 6 inches',
           'Temperature Range: 0-200°F, Accuracy: ±0.5°F, Output: 4-20mA, Material: Stainless Steel 316, Length: 12 inches',
@@ -222,6 +228,7 @@ export const ColorSwatchBasic: StoryObj = {
     return (
       <ColorSwatchSelector
         label="Housing Color"
+        attributeSlug="housing-color"
         options={['White', 'Black', 'Gray', 'Beige']}
         value={value}
         onChange={setValue}
@@ -244,6 +251,7 @@ export const ColorSwatchSelected: StoryObj = {
     return (
       <ColorSwatchSelector
         label="Housing Color"
+        attributeSlug="housing-color"
         options={['White', 'Black', 'Gray', 'Beige']}
         value={value}
         onChange={setValue}
@@ -266,6 +274,7 @@ export const ColorSwatchWhiteSelected: StoryObj = {
     return (
       <ColorSwatchSelector
         label="Enclosure Color"
+        attributeSlug="enclosure-color"
         options={['White', 'Black', 'Gray', 'Beige', 'Silver']}
         value={value}
         onChange={setValue}
@@ -288,6 +297,7 @@ export const ColorSwatchManyOptions: StoryObj = {
     return (
       <ColorSwatchSelector
         label="Wire Color"
+        attributeSlug="wire-color"
         options={[
           'Red',
           'Black',
@@ -324,6 +334,7 @@ export const BinaryToggleBasic: StoryObj = {
     return (
       <BinaryToggleSelector
         label="Display Included"
+        attributeSlug="display-included"
         options={['No', 'Yes']}
         value={value}
         onChange={setValue}
@@ -346,6 +357,7 @@ export const BinaryToggleYesSelected: StoryObj = {
     return (
       <BinaryToggleSelector
         label="Display Included"
+        attributeSlug="display-included"
         description="Add LCD display for local temperature reading"
         options={['No', 'Yes']}
         value={value}
@@ -369,6 +381,7 @@ export const BinaryToggleNoSelected: StoryObj = {
     return (
       <BinaryToggleSelector
         label="Wireless Module"
+        attributeSlug="wireless-module"
         description="Enable wireless connectivity via LoRa or WiFi"
         options={['No', 'Yes']}
         value={value}
@@ -392,6 +405,7 @@ export const BinaryToggleCustomOptions: StoryObj = {
     return (
       <BinaryToggleSelector
         label="Calibration Certificate"
+        attributeSlug="calibration-certificate"
         options={['Not Included', 'Included']}
         value={value}
         onChange={setValue}
@@ -430,6 +444,7 @@ export const AllFormComponents: StoryObj = {
 
         <RadioGroupSelector
           label="Output Type"
+          attributeSlug="output-type"
           description="Select the electrical output signal type"
           options={['Standard', 'Enhanced', 'Premium']}
           value={output}
@@ -438,6 +453,7 @@ export const AllFormComponents: StoryObj = {
 
         <DropdownSelector
           label="Temperature Range"
+          attributeSlug="temperature-range"
           description="Select the operating temperature range for your sensor"
           options={[
             '0-50°F',
@@ -455,6 +471,7 @@ export const AllFormComponents: StoryObj = {
 
         <ColorSwatchSelector
           label="Housing Color"
+          attributeSlug="housing-color"
           options={['White', 'Black', 'Gray', 'Beige']}
           value={color}
           onChange={setColor}
@@ -462,6 +479,7 @@ export const AllFormComponents: StoryObj = {
 
         <BinaryToggleSelector
           label="LCD Display"
+          attributeSlug="lcd-display"
           description="Add LCD display for local temperature reading"
           options={['No', 'Yes']}
           value={display}
@@ -512,6 +530,7 @@ export const MobileFormComponents: StoryObj = {
       <div className="space-y-6">
         <RadioGroupSelector
           label="Output Type"
+          attributeSlug="output-type"
           options={['Standard', 'Enhanced', 'Premium']}
           value={output}
           onChange={setOutput}
@@ -519,6 +538,7 @@ export const MobileFormComponents: StoryObj = {
 
         <DropdownSelector
           label="Temperature Range"
+          attributeSlug="temperature-range"
           options={['0-50°F', '0-100°F', '32-122°F', '50-90°F']}
           value={range}
           onChange={setRange}
@@ -526,6 +546,7 @@ export const MobileFormComponents: StoryObj = {
 
         <ColorSwatchSelector
           label="Housing Color"
+          attributeSlug="housing-color"
           options={['White', 'Black', 'Gray', 'Beige']}
           value={color}
           onChange={setColor}
@@ -533,6 +554,7 @@ export const MobileFormComponents: StoryObj = {
 
         <BinaryToggleSelector
           label="LCD Display"
+          attributeSlug="lcd-display"
           options={['No', 'Yes']}
           value={display}
           onChange={setDisplay}

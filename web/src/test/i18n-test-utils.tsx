@@ -304,6 +304,41 @@ const mockMessages = {
       download: 'Download',
       downloadSpecs: 'Download Specifications',
     },
+    productAttributes: {
+      temperature: {
+        application: 'Temperature Application',
+        roomEnclosure: 'Room Enclosure Style',
+        sensorOutput: 'Temperature Sensor Output',
+        setpointOverride: 'Temp Setpoint and Override',
+        optionalSensorOutput: 'Optional Temp Sensor & Output',
+      },
+      humidity: {
+        application: 'Humidity Application',
+        roomEnclosure: 'Humidity Room Enclosure',
+        sensorOutput: 'Humidity Sensor Output',
+        optionalTempHumidity: 'Optional Temp & Humidity',
+      },
+      pressure: {
+        application: 'Pressure Application',
+        sensorStyle: 'Pressure Sensor Style',
+      },
+      airQuality: {
+        application: 'Air Quality Application',
+        sensorType: 'Air Quality Sensor Type',
+      },
+      wireless: {
+        application: 'Wireless Application',
+      },
+      general: {
+        display: 'Display',
+        voltage: 'Voltage Range',
+        current: 'Current Output',
+        mounting: 'Mounting Type',
+        enclosure: 'Enclosure Type',
+        protocol: 'Communication Protocol',
+        certification: 'Certifications',
+      },
+    },
   },
 };
 

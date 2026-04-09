@@ -2,14 +2,14 @@
 
 ## Project Timeline & Current Phase
 
-**Current Phase:** Phase 1 (January - April 2026)  
-**Go-Live Target:** April 24, 2026
+**Current Phase:** Phase 1 (January - May 2026)  
+**Go-Live Target:** May 4, 2026
 
 ### Timeline
 - **Early March 2026**: Testing begins
 - **March 25, 2026**: Testing concludes
-- **April 10-24, 2026**: Stakeholder testing (Sales Manager, Product Manager, Customer Service, Select Customers)
-- **April 24, 2026**: Production release
+- **April 10 - May 3, 2026**: Stakeholder testing (Sales Manager, Product Manager, Customer Service, Select Customers)
+- **May 4, 2026**: Production release
 
 ### Phase 1 Priorities (Current Focus)
 1. **Translation Services & Regional Support** - i18n, currency conversion, measurement units
@@ -20,7 +20,7 @@
 - **Applications Section** - New content (currently in main nav, defer to Phase 2)
 - **Solutions Section** - New content (currently in footer, defer to Phase 2)
 
-**Note:** Focus all development efforts on Phase 1 priorities. Applications and Solutions sections require new content creation that may not be ready by April deadline.
+**Note:** Focus all development efforts on Phase 1 priorities. Applications and Solutions sections require new content creation that may not be ready by May 4th deadline.
 
 ---
 

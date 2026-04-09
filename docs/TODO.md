@@ -1,9 +1,9 @@
 # BAPI Headless - Project Roadmap & TODO
 
-**Updated:** March 27, 2026  
-**Launch Date:** April 24, 2026 (28 days remaining)  
-**Current Phase:** Phase 1 Development - Stakeholder Testing Preparation  
-**Testing Period:** 2 weeks (Sales Manager, Product Manager, Customer Service, Select Customers)  
+**Updated:** April 9, 2026  
+**Launch Date:** May 4, 2026 (25 days remaining)  
+**Current Phase:** Phase 1 Development - Stakeholder Testing Period  
+**Testing Period:** 3 weeks (Sales Manager, Product Manager, Customer Service, Select Customers)  
 **Launch Readiness:** 99.9%
 
 ---
@@ -1537,7 +1537,7 @@ git branch -d fix/breadcrumb-search-products-key
 
 ---
 
-## 📋 Phase 1 Priorities (Launch: April 10, 2026)
+## 📋 Phase 1 Priorities (Launch: May 4, 2026)
 
 ### Priority 1: Translation Services & Regional Support — � ✅ 100% Complete
 
@@ -1625,7 +1625,7 @@ git branch -d fix/breadcrumb-search-products-key
 
 **TOTAL SCOPE:** 1,225 keys × 11 languages = **13,475 translations** ✅
 
-**Note:** Phase 1 Priority 1 (Translation Services & Regional Support) is 100% complete. All 11 languages fully translated with professional B2B tone for building automation industry. Ready for April 10, 2026 launch.
+**Note:** Phase 1 Priority 1 (Translation Services & Regional Support) is 100% complete for the core UI. All 11 languages fully translated with professional B2B tone for building automation industry. April 9 additions: ProductSummaryCard CTA, Configure Your Product section, and product attribute names (760+ keys, $0.030). Remaining gaps (product tabs, category pages, search results, order confirmation) targeted for completion before May 4, 2026 launch.
 
 **Completed Today (Feb 19):**
 - ✅ Support Subpages: Contact, Warranty, Returns (36 keys × 11 languages = 396 translations) - PR #282
@@ -1697,8 +1697,15 @@ git branch -d fix/breadcrumb-search-products-key
   - Performance optimizations (useMemo, cleanup patterns)
 - ✅ **Verification Scripts** (March 13, 2026): Created 4 scripts for future product count maintenance
 - ✅ **Cross-browser Testing**: Breadcrumbs and navigation tested across browsers
+- ✅ **Breadcrumb Hierarchy Fix** (April 9, 2026) — PR merged
+  - Full category hierarchy now displayed (e.g., "Home > Building Automation > Actuators > Product")
+  - GraphQL queries extended with grandparent category support (3-level hierarchy)
+  - Router-compliant URLs (max 2 segments: /products/[cat]/[subcat])
+  - Third-level categories shown in breadcrumb trail without hrefs (no 404s)
+  - 50 tests passing, 786 static pages generated
+  - Matches existing live WordPress site behavior
 
-**Note:** Product Navigation Priority 3 is now 100% complete. All navigation elements refined with category-specific links and accurate product counts verified against WordPress GraphQL data.
+**Note:** Product Navigation Priority 3 is now 100% complete. All navigation elements refined with category-specific links, accurate product counts, and full breadcrumb hierarchy support.
   - Test filters across all product taxonomies
   - Mobile UX testing (iOS Safari, Android Chrome)
   - Empty state refinement

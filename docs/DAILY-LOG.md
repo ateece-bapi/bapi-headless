@@ -2,9 +2,68 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** April 8, 2026  
-**Status:** Phase 1 Development - May 4, 2026 Go-Live (26 days remaining)  
-**Testing Phase:** 2-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+**Updated:** April 9, 2026  
+**Status:** Phase 1 Development - May 4, 2026 Go-Live (25 days remaining)  
+**Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## April 9, 2026 — Translation Work, Breadcrumb PR Merge & Launch Date Update 🌍✅
+
+**Status:** ✅ COMPLETE  
+**Context:** Translation implementation for Variable Product features + breadcrumb hierarchy PR merged  
+**Priority:** HIGH - Phase 1 Launch Requirement  
+**Time:** Full day  
+
+### 🎯 SESSION SUMMARY
+
+**Translation Work Completed (April 9):**
+
+| Section | Keys | Cost |
+|---------|------|------|
+| ProductSummaryCard scroll-to-CTA | 2 keys | $0.002 |
+| Configure Your Product section | 24 keys | $0.005 |
+| Product detail subtitle | 1 key | $0.000 |
+| Trust badges | 8 keys | $0.001 |
+| Variation selectors | 1 key | $0.000 |
+| Mega menu error fixes (German) | 28 fixes | $0.014 |
+| Mega menu error fixes (Vietnamese) | 8 fixes | $0.004 |
+| Product attribute names | 25 attributes | $0.004 |
+| **Total** | **760+ keys, 11 locales** | **$0.030** |
+
+**ProductSummaryCard Translation (feat/product-summary-i18n):**
+- ✅ Added `productPage.summary` keys to all 11 locale files
+- ✅ Updated `ProductSummaryCard.tsx` to use `useTranslations()` hook
+- ✅ Added `productPage.productAttributes` section — 25 attribute names translated
+- ✅ Created `web/src/lib/productAttributeTranslations.ts` — client-side attribute mapping
+- ✅ Updated `VariationSelector.tsx` to use translated attribute labels
+- ✅ TypeScript: Zero errors, all existing tests passing
+- ✅ 7 commits on `feat/product-summary-i18n` branch
+
+**Product Attribute Translation Decision (Option A — Matches Belimo B2B standard):**
+- Translate attribute NAMES (e.g., "HUMIDITY OUTPUT" → "Feuchtigkeitsausgang")
+- Keep attribute VALUES in English (e.g., "0-10V", "4-20mA", "NTC 10K")
+- Rationale: Industry standard, SEO benefits, maintains technical consistency
+
+**Breadcrumb Hierarchy Fix — PR Merged:**
+- ✅ `fix/breadcrumb-hierarchy-categories` branch merged and deleted
+- ✅ 8 files modified (686 insertions, 99 deletions)
+- ✅ 50 breadcrumb tests passing
+- ✅ Categories now show full hierarchy (e.g., "Home > Building Automation > Actuators > Product")
+- ✅ Router-compliant URLs (max 2 segments: /products/[cat]/[subcat])
+
+**Launch Date Updated:**
+- Previous: April 24, 2026
+- **Updated: May 4, 2026** (25 days remaining)
+- Impact: Extended stakeholder testing period (3 weeks vs 2 weeks)
+- Files updated: copilot-instructions.md, TODO.md, PRODUCT-CARDS-A11Y-AUDIT-RESULTS.md, lighthouse.yml
+
+### NEXT STEPS
+- [ ] Test translation work locally (3-4 languages on variable product page)
+- [ ] Deploy `feat/product-summary-i18n` branch to staging
+- [ ] Continue remaining Phase 1 translation gaps (product tabs, category pages, search results)
+- [ ] Live chat production testing
+- [ ] Re-enable Lighthouse CI before May 4 launch
 
 ---
 

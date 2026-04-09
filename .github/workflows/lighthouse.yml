@@ -1,7 +1,7 @@
 name: Lighthouse CI
 
 # TEMPORARILY DISABLED: Performance optimization during active development
-# Re-enable before Phase 1 launch (April 24, 2026)
+# Re-enable before Phase 1 launch (May 4, 2026)
 # on:
 #   pull_request:
 #     branches: [main]

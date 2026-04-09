@@ -1,7 +1,7 @@
 'use client';
 
 import { useRecentlyViewed } from '@/store/recentlyViewed';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import { XIcon, HistoryIcon, Trash2Icon } from '@/lib/icons';
 

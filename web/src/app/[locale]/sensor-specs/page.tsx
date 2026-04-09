@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { ThermometerIcon, DropletsIcon, WindIcon, GaugeIcon, SearchIcon, DownloadIcon } from '@/lib/icons';
 import { LocalizedTemperatureSensorTable } from '@/components/sensors/LocalizedTemperatureSensorTable';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import logger from '@/lib/logger';
 
 /**

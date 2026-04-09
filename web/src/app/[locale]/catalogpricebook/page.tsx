@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { DownloadIcon, FileTextIcon, PrinterIcon, MailIcon } from '@/lib/icons';
 
 export const metadata: Metadata = {

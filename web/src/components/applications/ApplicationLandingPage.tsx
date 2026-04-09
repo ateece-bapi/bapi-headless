@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { Metadata } from 'next';
 import { CheckCircleIcon, ChevronRightIcon, PackageIcon, UsersIcon, HomeIcon } from '@/lib/icons';
 import type { ApplicationLandingPageData } from '@/types/applications';

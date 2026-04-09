@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import Hero from '@/components/Hero';
 import { GlobalPresence } from '@/components/company/GlobalPresence';
@@ -141,57 +141,49 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {
                 name: t('categories.temperature.name'),
                 icon: '/images/icons/Temperature_Icon.webp',
-                href: '/products',
-                count: 119,
+                href: '/products/temperature-sensors',
                 description: t('categories.temperature.description'),
               },
               {
                 name: t('categories.humidity.name'),
                 icon: '/images/icons/Humidity_Icon.webp',
-                href: '/products',
-                count: 33,
+                href: '/products/humidity-sensors',
                 description: t('categories.humidity.description'),
               },
               {
                 name: t('categories.pressure.name'),
                 icon: '/images/icons/Pressure_Icon.webp',
-                href: '/products',
-                count: 39,
+                href: '/products/pressure-sensors',
                 description: t('categories.pressure.description'),
               },
               {
                 name: t('categories.airQuality.name'),
                 icon: '/images/icons/AirQuality_Icon.webp',
-                href: '/products',
-                count: 32,
+                href: '/products/air-quality-sensors',
                 description: t('categories.airQuality.description'),
               },
               {
                 name: t('categories.wireless.name'),
                 icon: '/images/icons/Wireless_Icon.webp',
-                href: '/products',
-                count: 24,
+                href: '/products/wireless-sensors',
                 description: t('categories.wireless.description'),
               },
               {
                 name: t('categories.accessories.name'),
                 icon: '/images/icons/Accessories_Icon.webp',
-                href: '/products',
-                count: 45,
+                href: '/products/accessories',
                 description: t('categories.accessories.description'),
               },
               {
                 name: t('categories.testInstruments.name'),
                 icon: '/images/icons/Test_Instruments_Icon.webp',
-                href: '/products',
-                count: 8,
+                href: '/products/test-instruments',
                 description: t('categories.testInstruments.description'),
               },
               {
                 name: t('categories.etaLine.name'),
                 icon: '/images/icons/Sensors_Icon.webp',
-                href: '/products',
-                count: 70,
+                href: '/products/eta-line',
                 description: t('categories.etaLine.description'),
               },
             ].map((category) => {
@@ -199,36 +191,37 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 <Link
                   key={category.name}
                   href={category.href}
-                  className="will-change-transform-safe group relative overflow-hidden rounded-2xl border-2 border-neutral-200 bg-white transition-all duration-300 ease-in-out hover:border-primary-500 hover:shadow-2xl focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/50"
+                  className="will-change-transform-safe group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all duration-300 ease-in-out hover:border-primary-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 >
-                  {/* Icon container - BAPI brand blue */}
-                  <div className="bg-linear-to-br relative flex h-48 items-center justify-center border-b-2 border-primary-700 from-[#044976] to-[#166fb9] p-8">
-                    <Image
-                      src={category.icon}
-                      alt={`${category.name} icon`}
-                      width={128}
-                      height={128}
-                      className="will-change-transform-safe h-full w-full object-contain drop-shadow-xl transition-transform duration-300 ease-in-out group-hover:scale-110"
-                    />
+                  {/* Icon container - BAPI brand blue, aspect-ratio responsive */}
+                  <div className="bg-linear-to-br relative aspect-[3/2] w-full overflow-hidden border-b-2 border-primary-700 from-[#044976] to-[#166fb9]">
+                    <div className="flex h-full items-center justify-center p-8">
+                      <Image
+                        src={category.icon}
+                        alt={`${category.name} icon`}
+                        width={128}
+                        height={128}
+                        className="will-change-transform-safe h-full w-full object-contain drop-shadow-xl transition-transform duration-300 ease-in-out group-hover:scale-110"
+                      />
+                    </div>
                   </div>
 
-                  <div className="p-6">
-                    {/* Category name */}
-                    <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
+                  <div className="p-4">
+                    {/* Category name with yellow underline on hover */}
+                    <h3 className="relative mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                       {category.name}
+                      <span className="absolute -bottom-1 left-0 h-0.5 w-0 rounded bg-accent-500 transition-all duration-300 ease-in-out group-hover:w-full" />
                     </h3>
 
                     {/* Description */}
-                    <p className="mb-4 text-sm leading-relaxed text-neutral-700">
+                    <p className="mb-4 text-sm leading-relaxed text-neutral-600">
                       {category.description}
                     </p>
 
-                    {/* View Products CTA */}
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1 text-sm font-bold text-primary-600 transition-all group-hover:gap-2">
-                        {t('categories.viewProducts')}
-                        <ArrowRightIcon className="h-4 w-4" />
-                      </span>
+                    {/* View Products CTA - animated border */}
+                    <div className="inline-flex items-center gap-2 border-b-2 border-transparent pb-0.5 text-sm font-semibold text-primary-600 transition-all duration-300 group-hover:gap-3 group-hover:border-primary-600">
+                      <span>{t('categories.viewProducts')}</span>
+                      <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </div>
                   </div>
                 </Link>

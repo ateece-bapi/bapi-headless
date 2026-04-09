@@ -240,6 +240,9 @@ importers:
       eslint-plugin-jsdoc:
         specifier: ^61.4.1
         version: 61.7.1(eslint@9.39.3(jiti@2.6.1))
+      eslint-plugin-next-intl:
+        specifier: ^1.3.1
+        version: 1.3.1(eslint@9.39.3(jiti@2.6.1))
       eslint-plugin-storybook:
         specifier: ^10.2.1
         version: 10.2.15(eslint@9.39.3(jiti@2.6.1))(storybook@10.2.15(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(typescript@5.9.3)
@@ -6112,6 +6115,11 @@ packages:
     engines: {node: '>=4.0'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9
+
+  eslint-plugin-next-intl@1.3.1:
+    resolution: {integrity: sha512-HKi85zXbW8PPYNKEJrSr2nbXDJJ6JQI4XoJpEKAVv9AcGAvKRNTlDs9CmUMOpdhFZIqLb28NJnv+YgrjXY6U0Q==}
+    peerDependencies:
+      eslint: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
 
   eslint-plugin-react-hooks@7.0.1:
     resolution: {integrity: sha512-O0d0m04evaNzEPoSW+59Mezf8Qt0InfgGIBJnpC0h3NH/WjUAR7BIKUfysC6todmtiZ/A0oUVS8Gce0WhBrHsA==}
@@ -17411,6 +17419,10 @@ snapshots:
       object.fromentries: 2.0.8
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
+
+  eslint-plugin-next-intl@1.3.1(eslint@9.39.3(jiti@2.6.1)):
+    dependencies:
+      eslint: 9.39.3(jiti@2.6.1)
 
   eslint-plugin-react-hooks@7.0.1(eslint@9.39.3(jiti@2.6.1)):
     dependencies:

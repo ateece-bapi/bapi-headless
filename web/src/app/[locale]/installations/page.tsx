@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 
 export const metadata: Metadata = {
   title: 'Real-World Installations | BAPI - Building Automation Products',

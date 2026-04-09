@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { getPageBySlug } from '@/lib/wordpress';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { StarIcon, AwardIcon, ShieldIcon, ClockIcon, UsersIcon, ZapIcon, CheckCircle2Icon, ArrowRightIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { locales } from '@/i18n';

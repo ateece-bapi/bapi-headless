@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { getPosts } from '@/lib/wordpress';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { NewspaperIcon, CalendarIcon, ArrowRightIcon, TrendingUpIcon } from '@/lib/icons';
 import Image from 'next/image';
 import { locales } from '@/i18n';

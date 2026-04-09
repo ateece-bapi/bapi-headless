@@ -595,6 +595,41 @@
     },
     "variationSelectors": {
       "chooseOption": "Wähle eine Option"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Temperaturanwendung",
+        "roomEnclosure": "Raumgehäuseart",
+        "sensorOutput": "Temperatur-Sensorausgang",
+        "setpointOverride": "Temperatur-Sollwert und Überschreibung",
+        "optionalSensorOutput": "Optionaler Temperatur-Sensor & Ausgang"
+      },
+      "humidity": {
+        "application": "Luftfeuchtigkeitsanwendung",
+        "roomEnclosure": "Luftfeuchtigkeit-Raumgehäuse",
+        "sensorOutput": "Luftfeuchtigkeits-Sensorausgang",
+        "optionalTempHumidity": "Optionale Temperatur & Luftfeuchtigkeit"
+      },
+      "pressure": {
+        "application": "Druckanwendung",
+        "sensorStyle": "Drucksensorart"
+      },
+      "airQuality": {
+        "application": "Luftqualitätsanwendung",
+        "sensorType": "Luftqualitäts-Sensortyp"
+      },
+      "wireless": {
+        "application": "Drahtlosanwendung"
+      },
+      "general": {
+        "display": "Anzeige",
+        "voltage": "Spannungsbereich",
+        "current": "Stromausgang",
+        "mounting": "Montagetyp",
+        "enclosure": "Gehäusetyp",
+        "protocol": "Kommunikationsprotokoll",
+        "certification": "Zertifizierungen"
+      }
     }
   },
   "productsPage": {

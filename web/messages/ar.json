@@ -674,6 +674,41 @@
     },
     "variationSelectors": {
       "chooseOption": "اختر خيارًا"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "تطبيق درجة الحرارة",
+        "roomEnclosure": "نمط تجهيز الغرفة",
+        "sensorOutput": "مخرج مستشعر درجة الحرارة",
+        "setpointOverride": "إعداد درجة الحرارة وتجاوزه",
+        "optionalSensorOutput": "مستشعر درجة الحرارة الاختياري والمخرج"
+      },
+      "humidity": {
+        "application": "تطبيق الرطوبة",
+        "roomEnclosure": "تجهيز الغرفة للرطوبة",
+        "sensorOutput": "مخرج مستشعر الرطوبة",
+        "optionalTempHumidity": "درجة الحرارة والرطوبة الاختياريتان"
+      },
+      "pressure": {
+        "application": "تطبيق الضغط",
+        "sensorStyle": "نمط مستشعر الضغط"
+      },
+      "airQuality": {
+        "application": "تطبيق جودة الهواء",
+        "sensorType": "نوع مستشعر جودة الهواء"
+      },
+      "wireless": {
+        "application": "تطبيق لاسلكي"
+      },
+      "general": {
+        "display": "العرض",
+        "voltage": "نطاق الجهد",
+        "current": "مخرج التيار",
+        "mounting": "نوع التركيب",
+        "enclosure": "نوع الحاوية",
+        "protocol": "بروتوكول الاتصال",
+        "certification": "الشهادات"
+      }
     }
   },
   "productsPage": {

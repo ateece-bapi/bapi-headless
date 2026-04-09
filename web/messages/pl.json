@@ -1125,6 +1125,41 @@
     },
     "variationSelectors": {
       "chooseOption": "Wybierz opcję"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Aplikacja temperatury",
+        "roomEnclosure": "Styl obudowy pomieszczenia",
+        "sensorOutput": "Wyjście czujnika temperatury",
+        "setpointOverride": "Nastawa i nadpisanie temperatury",
+        "optionalSensorOutput": "Opcjonalny czujnik i wyjście temperatury"
+      },
+      "humidity": {
+        "application": "Aplikacja wilgotności",
+        "roomEnclosure": "Obudowa pomieszczenia na wilgotność",
+        "sensorOutput": "Wyjście czujnika wilgotności",
+        "optionalTempHumidity": "Opcjonalne czujniki temperatury i wilgotności"
+      },
+      "pressure": {
+        "application": "Aplikacja ciśnienia",
+        "sensorStyle": "Styl czujnika ciśnienia"
+      },
+      "airQuality": {
+        "application": "Aplikacja jakości powietrza",
+        "sensorType": "Typ czujnika jakości powietrza"
+      },
+      "wireless": {
+        "application": "Aplikacja bezprzewodowa"
+      },
+      "general": {
+        "display": "Wyświetlacz",
+        "voltage": "Zakres napięcia",
+        "current": "Wyjście prądowe",
+        "mounting": "Typ montażu",
+        "enclosure": "Typ obudowy",
+        "protocol": "Protokół komunikacyjny",
+        "certification": "Certyfikaty"
+      }
     }
   },
   "productsPage": {

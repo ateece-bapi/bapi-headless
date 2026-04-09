@@ -1,0 +1,118 @@
+/**
+ * Product Attribute Translation Mapping
+ * 
+ * Maps WooCommerce product attribute labels to i18n translation keys
+ * for display in product configurators and selectors.
+ * 
+ * Strategy: Following Belimo's B2B approach
+ * - Translate attribute NAMES (labels) for better UX
+ * - Keep attribute VALUES technical (0-10V, 4-20mA, etc.)
+ * 
+ * Usage:
+ *   import { getAttributeTranslationKey } from '@/lib/productAttributeTranslations';
+ *   const t = useTranslations('productPage.productAttributes');
+ *   const translatedLabel = t(getAttributeTranslationKey(attribute.label));
+ */
+
+/**
+ * Mapping of WordPress attribute labels to translation keys
+ * Based on actual WooCommerce product attributes from WordPress
+ */
+const ATTRIBUTE_LABEL_MAP: Record<string, string> = {
+  // Temperature Sensors
+  'Temperature Application': 'temperature.application',
+  'Room Enclosure Style': 'temperature.roomEnclosure',
+  'Temperature Room Enclosure': 'temperature.roomEnclosure',
+  'Temperature Sensor/Output': 'temperature.sensorOutput',
+  'Temperature Sensor Output': 'temperature.sensorOutput',
+  'Temp Setpoint and Override': 'temperature.setpointOverride',
+  'Optional Temp Sensor & Output': 'temperature.optionalSensorOutput',
+  
+  // Humidity Sensors
+  'Humidity Application': 'humidity.application',
+  'Humidity Room Enclosure': 'humidity.roomEnclosure',
+  'Humidity Sensor Output': 'humidity.sensorOutput',
+  'Optional Temp & Humidity': 'humidity.optionalTempHumidity',
+  
+  // Pressure Sensors
+  'Pressure Application': 'pressure.application',
+  'Pressure Sensor Style': 'pressure.sensorStyle',
+  
+  // Air Quality Sensors
+  'Air Quality Application': 'airQuality.application',
+  'Air Quality Sensor Type': 'airQuality.sensorType',
+  
+  // Wireless Sensors
+  'Wireless Application': 'wireless.application',
+  
+  // General/Common Attributes
+  'Display': 'general.display',
+  'Voltage Range': 'general.voltage',
+  'Current Output': 'general.current',
+  'Mounting Type': 'general.mounting',
+  'Enclosure Type': 'general.enclosure',
+  'Communication Protocol': 'general.protocol',
+  'Certifications': 'general.certification',
+};
+
+/**
+ * Get translation key for a product attribute label
+ * 
+ * @param label - Raw attribute label from WordPress (e.g., "Temperature Application")
+ * @returns Translation key (e.g., "temperature.application") or original label if no mapping exists
+ * 
+ * @example
+ * const key = getAttributeTranslationKey('Temperature Application');
+ * // Returns: 'temperature.application'
+ * 
+ * const t = useTranslations('productPage.productAttributes');
+ * const translated = t(key); // German: "Temperaturanwendung"
+ */
+export function getAttributeTranslationKey(label: string): string {
+  // Check exact match first
+  if (label in ATTRIBUTE_LABEL_MAP) {
+    return ATTRIBUTE_LABEL_MAP[label];
+  }
+  
+  // Try case-insensitive match
+  const lowercaseLabel = label.toLowerCase();
+  const matchingKey = Object.keys(ATTRIBUTE_LABEL_MAP).find(
+    (key) => key.toLowerCase() === lowercaseLabel
+  );
+  
+  if (matchingKey) {
+    return ATTRIBUTE_LABEL_MAP[matchingKey];
+  }
+  
+  // No mapping found - log warning in development
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(
+      `[i18n] No translation mapping for attribute label: "${label}". ` +
+      `Add to ATTRIBUTE_LABEL_MAP in productAttributeTranslations.ts`
+    );
+  }
+  
+  // Return the original label as fallback
+  // This ensures functionality even for unmapped attributes
+  return label;
+}
+
+/**
+ * Check if an attribute label has a translation mapping
+ * 
+ * @param label - Attribute label to check
+ * @returns true if translation exists, false otherwise
+ */
+export function hasAttributeTranslation(label: string): boolean {
+  return label in ATTRIBUTE_LABEL_MAP;
+}
+
+/**
+ * Get all supported attribute labels
+ * Useful for auditing which attributes are translated
+ * 
+ * @returns Array of all supported attribute labels
+ */
+export function getSupportedAttributeLabels(): string[] {
+  return Object.keys(ATTRIBUTE_LABEL_MAP);
+}

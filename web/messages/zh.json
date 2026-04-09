@@ -674,6 +674,41 @@
     },
     "variationSelectors": {
       "chooseOption": "选择一个选项"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "温度应用",
+        "roomEnclosure": "房间外壳样式",
+        "sensorOutput": "温度传感器输出",
+        "setpointOverride": "温度设定值和覆盖",
+        "optionalSensorOutput": "可选温度传感器和输出"
+      },
+      "humidity": {
+        "application": "湿度应用",
+        "roomEnclosure": "湿度房间外壳",
+        "sensorOutput": "湿度传感器输出",
+        "optionalTempHumidity": "可选温度和湿度"
+      },
+      "pressure": {
+        "application": "压力应用",
+        "sensorStyle": "压力传感器样式"
+      },
+      "airQuality": {
+        "application": "空气质量应用",
+        "sensorType": "空气质量传感器类型"
+      },
+      "wireless": {
+        "application": "无线应用"
+      },
+      "general": {
+        "display": "显示",
+        "voltage": "电压范围",
+        "current": "电流输出",
+        "mounting": "安装类型",
+        "enclosure": "外壳类型",
+        "protocol": "通信协议",
+        "certification": "认证"
+      }
     }
   },
   "productsPage": {

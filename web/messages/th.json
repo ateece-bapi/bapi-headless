@@ -1125,6 +1125,41 @@
     },
     "variationSelectors": {
       "chooseOption": "เลือกตัวเลือก"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "การใช้งานอุณหภูมิ",
+        "roomEnclosure": "รูปแบบตัวเรือนห้อง",
+        "sensorOutput": "ผลลัพธ์ของเซนเซอร์อุณหภูมิ",
+        "setpointOverride": "ค่าตั้งอุณหภูมิและการยกเลิก",
+        "optionalSensorOutput": "เซนเซอร์อุณหภูมิและผลลัพธ์เสริม"
+      },
+      "humidity": {
+        "application": "การใช้งานความชื้น",
+        "roomEnclosure": "ตัวเรือนห้องความชื้น",
+        "sensorOutput": "ผลลัพธ์ของเซนเซอร์ความชื้น",
+        "optionalTempHumidity": "อุณหภูมิและความชื้นเสริม"
+      },
+      "pressure": {
+        "application": "การใช้งานความดัน",
+        "sensorStyle": "รูปแบบของเซนเซอร์ความดัน"
+      },
+      "airQuality": {
+        "application": "การใช้งานคุณภาพอากาศ",
+        "sensorType": "ประเภทของเซนเซอร์คุณภาพอากาศ"
+      },
+      "wireless": {
+        "application": "การใช้งานแบบไร้สาย"
+      },
+      "general": {
+        "display": "หน้าจอ",
+        "voltage": "ช่วงแรงดันไฟฟ้า",
+        "current": "ผลลัพธ์กระแสไฟ",
+        "mounting": "รูปแบบการติดตั้ง",
+        "enclosure": "ประเภทตัวเรือน",
+        "protocol": "โปรโตคอลการสื่อสาร",
+        "certification": "การรับรอง"
+      }
     }
   },
   "productsPage": {

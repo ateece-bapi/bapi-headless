@@ -674,6 +674,41 @@
     },
     "variationSelectors": {
       "chooseOption": "オプションを選択してください"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "温度用途",
+        "roomEnclosure": "室内筐体スタイル",
+        "sensorOutput": "温度センサー出力",
+        "setpointOverride": "温度設定値とオーバーライド",
+        "optionalSensorOutput": "オプションの温度センサーと出力"
+      },
+      "humidity": {
+        "application": "湿度用途",
+        "roomEnclosure": "湿度室内筐体",
+        "sensorOutput": "湿度センサー出力",
+        "optionalTempHumidity": "オプションの温度および湿度"
+      },
+      "pressure": {
+        "application": "圧力用途",
+        "sensorStyle": "圧力センサースタイル"
+      },
+      "airQuality": {
+        "application": "空気品質用途",
+        "sensorType": "空気質センサータイプ"
+      },
+      "wireless": {
+        "application": "ワイヤレス用途"
+      },
+      "general": {
+        "display": "ディスプレイ",
+        "voltage": "電圧範囲",
+        "current": "電流出力",
+        "mounting": "取り付けタイプ",
+        "enclosure": "筐体タイプ",
+        "protocol": "通信プロトコル",
+        "certification": "認証"
+      }
     }
   },
   "productsPage": {

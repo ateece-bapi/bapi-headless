@@ -674,6 +674,41 @@
     },
     "variationSelectors": {
       "chooseOption": "Elija una opción"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Aplicación de temperatura",
+        "roomEnclosure": "Estilo de recinto de la habitación",
+        "sensorOutput": "Salida del sensor de temperatura",
+        "setpointOverride": "Consigna de temperatura y anulación",
+        "optionalSensorOutput": "Sensor de temperatura opcional y salida"
+      },
+      "humidity": {
+        "application": "Aplicación de humedad",
+        "roomEnclosure": "Recinto de humedad de la habitación",
+        "sensorOutput": "Salida del sensor de humedad",
+        "optionalTempHumidity": "Temperatura y humedad opcionales"
+      },
+      "pressure": {
+        "application": "Aplicación de presión",
+        "sensorStyle": "Estilo del sensor de presión"
+      },
+      "airQuality": {
+        "application": "Aplicación de calidad del aire",
+        "sensorType": "Tipo de sensor de calidad del aire"
+      },
+      "wireless": {
+        "application": "Aplicación inalámbrica"
+      },
+      "general": {
+        "display": "Pantalla",
+        "voltage": "Rango de voltaje",
+        "current": "Salida de corriente",
+        "mounting": "Tipo de montaje",
+        "enclosure": "Tipo de recinto",
+        "protocol": "Protocolo de comunicación",
+        "certification": "Certificaciones"
+      }
     }
   },
   "productsPage": {

@@ -1125,6 +1125,41 @@
     },
     "variationSelectors": {
       "chooseOption": "एक विकल्प चुनें"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "तापमान अनुप्रयोग",
+        "roomEnclosure": "कमरे का एनक्लोजर स्टाइल",
+        "sensorOutput": "तापमान सेंसर आउटपुट",
+        "setpointOverride": "तापमान सेटपॉइंट और ओवरराइड",
+        "optionalSensorOutput": "वैकल्पिक तापमान सेंसर और आउटपुट"
+      },
+      "humidity": {
+        "application": "आर्द्रता अनुप्रयोग",
+        "roomEnclosure": "आर्द्रता कमरा एनक्लोजर",
+        "sensorOutput": "आर्द्रता सेंसर आउटपुट",
+        "optionalTempHumidity": "वैकल्पिक तापमान और आर्द्रता"
+      },
+      "pressure": {
+        "application": "दबाव अनुप्रयोग",
+        "sensorStyle": "दबाव सेंसर स्टाइल"
+      },
+      "airQuality": {
+        "application": "वायु गुणवत्ता अनुप्रयोग",
+        "sensorType": "वायु गुणवत्ता सेंसर प्रकार"
+      },
+      "wireless": {
+        "application": "वायरलेस अनुप्रयोग"
+      },
+      "general": {
+        "display": "प्रदर्शन",
+        "voltage": "वोल्टेज रेंज",
+        "current": "कर्रेंट आउटपुट",
+        "mounting": "माउंटिंग प्रकार",
+        "enclosure": "एनक्लोजर प्रकार",
+        "protocol": "संचार प्रोटोकॉल",
+        "certification": "प्रमाणीकरण"
+      }
     }
   },
   "productsPage": {

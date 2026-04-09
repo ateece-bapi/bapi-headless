@@ -635,6 +635,41 @@
     },
     "variationSelectors": {
       "chooseOption": "Chọn một tùy chọn"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Ứng dụng nhiệt độ",
+        "roomEnclosure": "Kiểu khuôn khép kín phòng",
+        "sensorOutput": "Đầu ra cảm biến nhiệt độ",
+        "setpointOverride": "Điểm cài đặt nhiệt độ và ghi đè",
+        "optionalSensorOutput": "Đầu ra cảm biến nhiệt độ tùy chọn"
+      },
+      "humidity": {
+        "application": "Ứng dụng độ ẩm",
+        "roomEnclosure": "Khuôn khép kín phòng độ ẩm",
+        "sensorOutput": "Đầu ra cảm biến độ ẩm",
+        "optionalTempHumidity": "Nhiệt độ và độ ẩm tùy chọn"
+      },
+      "pressure": {
+        "application": "Ứng dụng áp suất",
+        "sensorStyle": "Kiểu cảm biến áp suất"
+      },
+      "airQuality": {
+        "application": "Ứng dụng chất lượng không khí",
+        "sensorType": "Loại cảm biến chất lượng không khí"
+      },
+      "wireless": {
+        "application": "Ứng dụng không dây"
+      },
+      "general": {
+        "display": "Màn hình hiển thị",
+        "voltage": "Dải điện áp",
+        "current": "Đầu ra dòng điện",
+        "mounting": "Kiểu lắp đặt",
+        "enclosure": "Loại vỏ bảo vệ",
+        "protocol": "Giao thức truyền thông",
+        "certification": "Chứng nhận"
+      }
     }
   },
   "productsPage": {

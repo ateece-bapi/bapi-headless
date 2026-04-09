@@ -674,6 +674,41 @@
     },
     "variationSelectors": {
       "chooseOption": "Choisissez une option"
+    },
+    "productAttributes": {
+      "temperature": {
+        "application": "Application de température",
+        "roomEnclosure": "Style de l'enceinte de la pièce",
+        "sensorOutput": "Sortie du capteur de température",
+        "setpointOverride": "Point de consigne et remplacement de température",
+        "optionalSensorOutput": "Capteur de température et sortie optionnels"
+      },
+      "humidity": {
+        "application": "Application d'humidité",
+        "roomEnclosure": "Enceinte de la pièce pour l'humidité",
+        "sensorOutput": "Sortie du capteur d'humidité",
+        "optionalTempHumidity": "Température et humidité optionnelles"
+      },
+      "pressure": {
+        "application": "Application de pression",
+        "sensorStyle": "Style du capteur de pression"
+      },
+      "airQuality": {
+        "application": "Application de qualité de l'air",
+        "sensorType": "Type de capteur de qualité de l'air"
+      },
+      "wireless": {
+        "application": "Application sans fil"
+      },
+      "general": {
+        "display": "Affichage",
+        "voltage": "Plage de tension",
+        "current": "Sortie de courant",
+        "mounting": "Type de montage",
+        "enclosure": "Type d'enceinte",
+        "protocol": "Protocole de communication",
+        "certification": "Certifications"
+      }
     }
   },
   "productsPage": {

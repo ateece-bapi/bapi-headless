@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
+import { getAttributeTranslationKey, hasAttributeTranslation } from '@/lib/productAttributeTranslations';
 import type { ProductAttribute, ProductVariation, SelectedAttributes } from '@/types/variations';
 import {
   findMatchingVariation,
@@ -76,6 +77,7 @@ export default function VariationSelector({
   useCartDrawer,
 }: VariationSelectorProps) {
   const t = useTranslations('productPage.configurator');
+  const tAttr = useTranslations('productPage.productAttributes');
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
@@ -86,6 +88,16 @@ export default function VariationSelector({
     () => attributes.filter((attr) => attr.variation),
     [attributes]
   );
+
+  // Get translated attribute label
+  const getTranslatedLabel = (attribute: ProductAttribute): string => {
+    if (hasAttributeTranslation(attribute.label)) {
+      const key = getAttributeTranslationKey(attribute.label);
+      return tAttr(key);
+    }
+    // Fallback to original label if no translation exists
+    return attribute.label;
+  };
 
   // Handle attribute selection
   // attributeName is the display label, need to convert to slug for matching
@@ -315,7 +327,7 @@ export default function VariationSelector({
               const availableOptions = availableOptionsMap[attributeSlug] || [];
 
               const commonProps = {
-                label: attribute.label,
+                label: getTranslatedLabel(attribute),
                 options: availableOptions, // Use filtered options instead of all options
                 value,
                 onChange: (val: string) => handleAttributeChange(attribute.label, val),

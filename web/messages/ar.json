@@ -458,22 +458,26 @@
       "temperature": {
         "title": "درجة الحرارة",
         "roomWallSensors": "استشعارات الغرفة والحائط",
-        "roomWallSensorsDesc": "استشعار درجة الحرارة عالية الدقة",
-        "ductSensors": "استشعارات الدكت",
-        "ductSensorsDesc": "أجهزة إرسال مثبتة في الدكت",
+        "roomWallSensorsDesc": "استشعار درجة الحرارة عالي الدقة",
+        "ductSensors": "استشعارات القناة",
+        "ductSensorsDesc": "أجهزة إرسال مثبتة في القنوات",
         "immersionWell": "الغمر والبئر",
-        "immersionWellDesc": "قياس درجة حرارة السائل",
-        "outdoorSensors": "استشعارات الخارجية",
-        "outdoorSensorsDesc": "استشعار مقاوم للأحوال الجوية"
+        "immersionWellDesc": "قياس درجة حرارة السوائل",
+        "outdoorSensors": "استشعارات خارجية",
+        "outdoorSensorsDesc": "استشعار مقاوم للطقس",
+        "averaging": "استشعارات متوسطة",
+        "averagingDesc": "متوسط درجة حرارة المساحات الكبيرة",
+        "remoteProbes": "مسبارات بعيدة",
+        "remoteProbesDesc": "عناصر استشعار منفصلة"
       },
       "humidity": {
         "title": "الرطوبة",
         "roomHumidity": "رطوبة الغرفة",
-        "roomHumidityDesc": "استشعارات الرطوبة النسبية المثبتة على الحائط",
-        "ductHumidity": "رطوبة الدكت",
-        "ductHumidityDesc": "رطوبة نسبية للهواء الصاعد والعائد",
-        "outdoorHumidity": "رطوبة الخارجية",
-        "outdoorHumidityDesc": "رطوبة نسبية مقاومة للأحوال الجوية",
+        "roomHumidityDesc": "استشعارات الرطوبة النسبية على الحائط",
+        "ductHumidity": "رطوبة القنوات",
+        "ductHumidityDesc": "رطوبة نسبية في هواء الإمداد والعودة",
+        "outdoorHumidity": "رطوبة خارجية",
+        "outdoorHumidityDesc": "رطوبة نسبية مقاومة للطقس",
         "comboSensors": "استشعارات مزدوجة",
         "comboSensorsDesc": "درجة الحرارة + الرطوبة"
       },
@@ -482,7 +486,7 @@
         "differential": "الضغط التفاضلي",
         "differentialDesc": "مراقبة الغرفة والفلتر",
         "static": "الضغط الساكن",
-        "staticDesc": "أجهزة إرسال ضغط الدكت الساكن",
+        "staticDesc": "أجهزة إرسال ضغط ساكن في القنوات",
         "barometric": "الضغط الجوي",
         "barometricDesc": "الضغط الجوي"
       },
@@ -491,8 +495,8 @@
         "co2": "استشعارات CO₂",
         "co2Desc": "مراقبة ثاني أكسيد الكربون",
         "voc": "استشعارات المركبات العضوية المتطايرة",
-        "vocDesc": "مركبات عضوية متطايرة",
-        "particulate": "الجسيمات العالقة",
+        "vocDesc": "المركبات العضوية المتطايرة",
+        "particulate": "المواد الجزيئية",
         "particulateDesc": "PM2.5 و PM10"
       },
       "wireless": {
@@ -500,41 +504,41 @@
         "wamTemperature": "درجة حرارة WAM",
         "wamTemperatureDesc": "استشعارات درجة حرارة لاسلكية",
         "wamHumidity": "رطوبة WAM",
-        "wamHumidityDesc": "استشعارات الرطوبة النسبية اللاسلكية",
-        "wamDoorSensors": "استشعارات الأبواب WAM",
-        "wamDoorSensorsDesc": "مراقبة الفتح / الغلق",
+        "wamHumidityDesc": "استشعارات رطوبة نسبية لاسلكية",
+        "wamDoorSensors": "استشعارات أبواب WAM",
+        "wamDoorSensorsDesc": "مراقبة الفتح/الإغلاق",
         "cloudPlatform": "منصة السحابة",
-        "cloudPlatformDesc": "المراقبة عن بُعد 24/7"
+        "cloudPlatformDesc": "المراقبة عن بعد 24/7"
       },
       "accessories": {
         "title": "الملحقات",
-        "mounting": "أدوات التركيب",
-        "mountingDesc": "ألواح, صناديق, حوامل",
-        "enclosures": "الأغلفة",
+        "mounting": "أجهزة التركيب",
+        "mountingDesc": "ألواح ، صناديق ، قوابض",
+        "enclosures": "أغلفة",
         "enclosuresDesc": "BAPI-Box وأغطية",
         "cables": "الكابلات والموصلات",
-        "cablesDesc": "ملحقات السلك"
+        "cablesDesc": "ملحقات التوصيل"
       },
       "testInstruments": {
-        "title": "أجهزة الاختبار",
-        "bluTestTemperature": "درجة حرارة Blu-Test",
+        "title": "أدوات الاختبار",
+        "bluTestTemperature": "Blu-Test درجة الحرارة",
         "bluTestTemperatureDesc": "مرجع قابل للتتبع NIST",
-        "bluTestHumidity": "رطوبة Blu-Test",
+        "bluTestHumidity": "Blu-Test الرطوبة",
         "bluTestHumidityDesc": "مرجع درجة الحرارة + الرطوبة النسبية",
-        "bluTestPressure": "ضغط Blu-Test",
+        "bluTestPressure": "Blu-Test الضغط",
         "bluTestPressureDesc": "مانومتر رقمي"
       },
       "featured": {
-        "title": "مراقبة الأصول اللاسلكية WAM™",
-        "description": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. حماية أصولك الثمينة من انقطاعات الكهرباء وأعطال المعدات. لا يلزم توصيل أسلاك - البدء في الاستخدام في غضون دقائق.",
+        "title": "رصد الأصول اللاسلكية WAM™",
+        "description": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. احم أصولك الثمينة من انقطاعات الطاقة وأعطال المعدات. بدون أي أسلاك - ابدأ التشغيل في دقائق.",
         "cta": "تعرف على المزيد",
-        "wamTitle": "مراقبة الأصول اللاسلكية WAM™",
-        "wamDescription": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. حماية أصولك الثمينة من انقطاعات الكهرباء وأعطال المعدات. لا يلزم توصيل أسلاك - البدء في الاستخدام في غضون دقائق.",
+        "wamTitle": "رصد الأصول اللاسلكية WAM™",
+        "wamDescription": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. احم أصولك الثمينة من انقطاعات الطاقة وأعطال المعدات. بدون أي أسلاك - ابدأ التشغيل في دقائق.",
         "wamCta": "تعرف على المزيد",
         "wamBadge": "الحل المتميز"
       },
       "badges": {
-        "popular": "شعبي",
+        "popular": "شائع",
         "new": "جديد",
         "premium": "متميز"
       }

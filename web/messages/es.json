@@ -463,28 +463,32 @@
         "roomWallSensorsDesc": "Detección de temperatura de alta precisión",
         "ductSensors": "Sensores de conducto",
         "ductSensorsDesc": "Transmisores montados en conductos",
-        "immersionWell": "Inmersión y pozo",
+        "immersionWell": "Inmersión y Pozo",
         "immersionWellDesc": "Medición de temperatura de líquidos",
         "outdoorSensors": "Sensores exteriores",
-        "outdoorSensorsDesc": "Detección resistente a la intemperie"
+        "outdoorSensorsDesc": "Detección resistente a la intemperie",
+        "averaging": "Sensores de promedio",
+        "averagingDesc": "Promediado de temperatura de espacios grandes",
+        "remoteProbes": "Sondas remotas",
+        "remoteProbesDesc": "Sondas de elemento sensor separado"
       },
       "humidity": {
         "title": "Humedad",
-        "roomHumidity": "Humedad de la habitación",
-        "roomHumidityDesc": "Sensores de HR de montaje en pared",
+        "roomHumidity": "Humedad de habitación",
+        "roomHumidityDesc": "Sensores de HR montados en pared",
         "ductHumidity": "Humedad de conducto",
         "ductHumidityDesc": "HR de suministro y retorno de aire",
         "outdoorHumidity": "Humedad exterior",
         "outdoorHumidityDesc": "HR resistente a la intemperie",
         "comboSensors": "Sensores combinados",
-        "comboSensorsDesc": "Temperatura + humedad"
+        "comboSensorsDesc": "Temperatura + Humedad"
       },
       "pressure": {
         "title": "Presión",
         "differential": "Presión diferencial",
         "differentialDesc": "Monitoreo de habitación y filtro",
         "static": "Presión estática",
-        "staticDesc": "Transmisores estáticos de conducto",
+        "staticDesc": "Transmisores de presión estática de conducto",
         "barometric": "Barométrica",
         "barometricDesc": "Presión atmosférica"
       },
@@ -499,11 +503,11 @@
       },
       "wireless": {
         "title": "Inalámbrico",
-        "wamTemperature": "Temperatura WAM",
+        "wamTemperature": "WAM Temperatura",
         "wamTemperatureDesc": "Sensores de temperatura inalámbricos",
-        "wamHumidity": "Humedad WAM",
+        "wamHumidity": "WAM Humedad",
         "wamHumidityDesc": "Sensores de HR inalámbricos",
-        "wamDoorSensors": "Sensores de puerta WAM",
+        "wamDoorSensors": "WAM Sensores de puerta",
         "wamDoorSensorsDesc": "Monitoreo de apertura/cierre",
         "cloudPlatform": "Plataforma en la nube",
         "cloudPlatformDesc": "Monitoreo remoto 24/7"
@@ -512,7 +516,7 @@
         "title": "Accesorios",
         "mounting": "Herrajes de montaje",
         "mountingDesc": "Placas, cajas, soportes",
-        "enclosures": "Cajas de protección",
+        "enclosures": "Envolventes",
         "enclosuresDesc": "BAPI-Box y cubiertas",
         "cables": "Cables y conectores",
         "cablesDesc": "Accesorios de cableado"
@@ -522,18 +526,18 @@
         "bluTestTemperature": "Blu-Test Temperatura",
         "bluTestTemperatureDesc": "Referencia trazable a NIST",
         "bluTestHumidity": "Blu-Test Humedad",
-        "bluTestHumidityDesc": "Referencia de temperatura + HR",
+        "bluTestHumidityDesc": "Referencia de temp + HR",
         "bluTestPressure": "Blu-Test Presión",
         "bluTestPressureDesc": "Manómetro digital"
       },
       "featured": {
-        "title": "Monitoreo de activos inalámbrico WAM™",
-        "description": "Monitoreo remoto 24/7 con alertas instantáneas. Protege tus valiosos activos contra cortes de energía y fallas de equipos. Sin cableado, puesto en marcha en minutos.",
+        "title": "Monitoreo Inalámbrico de Activos WAM™",
+        "description": "Monitoreo remoto 24/7 con alertas instantáneas. Proteja sus valiosos activos contra cortes de energía y fallas de equipos. Sin necesidad de cableado: ¡en marcha en minutos!",
         "cta": "Más información",
-        "wamTitle": "Monitoreo de activos inalámbrico WAM™",
-        "wamDescription": "Monitoreo remoto 24/7 con alertas instantáneas. Protege tus valiosos activos contra cortes de energía y fallas de equipos. Sin cableado, puesto en marcha en minutos.",
+        "wamTitle": "Monitoreo Inalámbrico de Activos WAM™",
+        "wamDescription": "Monitoreo remoto 24/7 con alertas instantáneas. Proteja sus valiosos activos contra cortes de energía y fallas de equipos. Sin necesidad de cableado: ¡en marcha en minutos!",
         "wamCta": "Más información",
-        "wamBadge": "Solución premium"
+        "wamBadge": "Solución Premium"
       },
       "badges": {
         "popular": "Popular",

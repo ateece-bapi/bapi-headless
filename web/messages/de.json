@@ -142,33 +142,37 @@
       "temperature": {
         "title": "Temperatur",
         "roomWallSensors": "Raum- und Wandsensoren",
-        "roomWallSensorsDesc": "Hochgenaue Temperaturerfassung",
+        "roomWallSensorsDesc": "Hochgenaue Temperaturmessung",
         "ductSensors": "Kanalsensoren",
-        "ductSensorsDesc": "Kanalgebundene Transmitter",
-        "immersionWell": "Tauchen und Brunnen",
-        "immersionWellDesc": "Flüssigkeitstemperaturmessung",
+        "ductSensorsDesc": "Kanalmontierte Transmitter",
+        "immersionWell": "Tauchfühler & Eintauchteile",
+        "immersionWellDesc": "Messung von Flüssigkeitstemperatur",
         "outdoorSensors": "Außensensoren",
-        "outdoorSensorsDesc": "Wetterfeste Erfassung"
+        "outdoorSensorsDesc": "Witterungsbeständige Messung",
+        "averaging": "Durchschnittssensoren",
+        "averagingDesc": "Temperaturmittelung für große Räume",
+        "remoteProbes": "Fernfühler",
+        "remoteProbesDesc": "Separate Messelemente"
       },
       "humidity": {
         "title": "Feuchtigkeit",
-        "roomHumidity": "Raumluftfeuchtigkeit",
-        "roomHumidityDesc": "Wandmontierte rF-Sensoren",
-        "ductHumidity": "Kanalfeuchtigkeit",
-        "ductHumidityDesc": "Zuluft- und Abluft-rF",
+        "roomHumidity": "Raumluftfeuchte",
+        "roomHumidityDesc": "Wandmontierte Feuchtesensoren",
+        "ductHumidity": "Kanalluftrfeuchte",
+        "ductHumidityDesc": "Zuluft- und Abluftfeuchte",
         "outdoorHumidity": "Außenluftfeuchtigkeit",
-        "outdoorHumidityDesc": "Wetterfeste rF",
+        "outdoorHumidityDesc": "Witterungsbeständige Feuchtemessung",
         "comboSensors": "Kombisensoren",
-        "comboSensorsDesc": "Temperatur + Feuchtigkeit"
+        "comboSensorsDesc": "Temperatur + Feuchte"
       },
       "pressure": {
         "title": "Druck",
-        "differential": "Differenzdruck",
-        "differentialDesc": "Raum- und Filterkontrolle",
+        "differential": "Differenzdrucküberwachung",
+        "differentialDesc": "Raum- und Filtermessung",
         "static": "Statischer Druck",
         "staticDesc": "Kanaldruck-Transmitter",
-        "barometric": "Barometrisch",
-        "barometricDesc": "Atmosphärischer Druck"
+        "barometric": "Barometrischer Druck",
+        "barometricDesc": "Atmosphärischer Luftdruck"
       },
       "airQuality": {
         "title": "Luftqualität",
@@ -176,27 +180,27 @@
         "co2Desc": "Kohlendioxid-Überwachung",
         "voc": "VOC-Sensoren",
         "vocDesc": "Flüchtige organische Verbindungen",
-        "particulate": "Partikel",
+        "particulate": "Partikelbelastung",
         "particulateDesc": "PM2,5 und PM10"
       },
       "wireless": {
-        "title": "Drahtlos",
+        "title": "Kabellos",
         "wamTemperature": "WAM Temperatur",
         "wamTemperatureDesc": "Drahtlose Temperatursensoren",
         "wamHumidity": "WAM Feuchtigkeit",
-        "wamHumidityDesc": "Drahtlose rF-Sensoren",
+        "wamHumidityDesc": "Drahtlose Feuchtigkeitssensoren",
         "wamDoorSensors": "WAM Türsensoren",
-        "wamDoorSensorsDesc": "Überwachung von Öffnung/Schließung",
+        "wamDoorSensorsDesc": "Öffnungs-/Schließungsüberwachung",
         "cloudPlatform": "Cloud-Plattform",
-        "cloudPlatformDesc": "24/7 Fernüberwachung"
+        "cloudPlatformDesc": "Rundum-Überwachung 24/7"
       },
       "accessories": {
         "title": "Zubehör",
-        "mounting": "Montagezubehör",
+        "mounting": "Befestigungszubehör",
         "mountingDesc": "Platten, Kästen, Halterungen",
         "enclosures": "Gehäuse",
-        "enclosuresDesc": "BAPI-Box & Abdeckungen",
-        "cables": "Kabel & Steckverbinder",
+        "enclosuresDesc": "BAPI-Kästen & Abdeckungen",
+        "cables": "Kabel & Anschlüsse",
         "cablesDesc": "Verkabelungszubehör"
       },
       "testInstruments": {
@@ -204,17 +208,17 @@
         "bluTestTemperature": "Blu-Test Temperatur",
         "bluTestTemperatureDesc": "NIST-rückführbare Referenz",
         "bluTestHumidity": "Blu-Test Feuchtigkeit",
-        "bluTestHumidityDesc": "Temperatur + rF-Referenz",
+        "bluTestHumidityDesc": "Temperatur- & Feuchtereferenz",
         "bluTestPressure": "Blu-Test Druck",
         "bluTestPressureDesc": "Digitales Manometer"
       },
       "featured": {
-        "title": "WAM™ Drahtlose Betriebsmittelüberwachung",
-        "description": "24/7 Fernüberwachung mit sofortigen Warnmeldungen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Ausfällen der Anlagen. Keine Verkabelung erforderlich - in Minuten einsatzbereit.",
-        "cta": "Mehr erfahren",
-        "wamTitle": "WAM™ Drahtlose Betriebsmittelüberwachung",
-        "wamDescription": "24/7 Fernüberwachung mit sofortigen Warnmeldungen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Ausfällen der Anlagen. Keine Verkabelung erforderlich - in Minuten einsatzbereit.",
-        "wamCta": "Mehr erfahren",
+        "title": "WAM™ Drahtlose Asset-Überwachung",
+        "description": "Rundumüberwachung 24/7 mit Sofortalarmen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Gerätestörungen. Ohne Verkabelung - in Minuten einsatzbereit.",
+        "cta": "Weitere Informationen",
+        "wamTitle": "WAM™ Drahtlose Asset-Überwachung",
+        "wamDescription": "Rundumüberwachung 24/7 mit Sofortalarmen. Schützen Sie Ihre wertvollen Vermögenswerte vor Stromausfällen und Gerätestörungen. Ohne Verkabelung - in Minuten einsatzbereit.",
+        "wamCta": "Weitere Informationen",
         "wamBadge": "Premium-Lösung"
       },
       "badges": {

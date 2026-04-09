@@ -233,6 +233,8 @@ const mockMessages = {
       title: 'Product Summary',
       configureProduct: 'Configure Product',
       selectSpecifications: 'Select your specifications below to see pricing and part number',
+      scrollToCta: 'Start Configuring',
+      scrollToCtaAriaLabel: 'Scroll to product configurator section',
       configurationComplete: 'Configuration Complete',
       partNumber: 'Part Number',
       quantity: 'Quantity',

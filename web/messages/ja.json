@@ -550,7 +550,9 @@
     "summary": {
       "title": "製品概要",
       "configureProduct": "製品を設定する",
-      "selectSpecifications": "以下の仕様を選択して価格とパーツ番号を確認してください",
+      "selectSpecifications": "以下の仕様を選択して、価格と部品番号を確認してください",
+      "scrollToCta": "設定を始める",
+      "scrollToCtaAriaLabel": "製品設定セクションにスクロールする",
       "configurationComplete": "設定完了",
       "partNumber": "部品番号",
       "quantity": "数量",

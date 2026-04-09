@@ -1000,9 +1000,11 @@
       "title": "สรุปผลิตภัณฑ์",
       "configureProduct": "กำหนดค่าผลิตภัณฑ์",
       "selectSpecifications": "เลือกข้อมูลจำเพาะของคุณด้านล่างเพื่อดูราคาและหมายเลขชิ้นส่วน",
-      "configurationComplete": "การกำหนดค่าเสร็จสิ้น",
+      "scrollToCta": "เริ่มการกำหนดค่า",
+      "scrollToCtaAriaLabel": "เลื่อนไปยังส่วนตัวกำหนดค่าผลิตภัณฑ์",
+      "configurationComplete": "การกำหนดค่าเสร็จสมบูรณ์",
       "partNumber": "หมายเลขชิ้นส่วน",
-      "quantity": "จำนวน",
+      "quantity": "ปริมาณ",
       "multiplier": "ตัวคูณ",
       "priceCalculation": "การคำนวณราคา"
     },

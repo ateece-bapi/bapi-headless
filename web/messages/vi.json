@@ -507,14 +507,16 @@
       "products": "Sản phẩm"
     },
     "summary": {
-      "title": "Tóm tắt sản phẩm",
-      "configureProduct": "Cấu hình sản phẩm",
-      "selectSpecifications": "Chọn thông số kỹ thuật của bạn bên dưới để xem giá và số model",
-      "configurationComplete": "Cấu hình hoàn tất",
-      "partNumber": "Số model",
+      "title": "Tóm tắt Sản phẩm",
+      "configureProduct": "Định cấu hình Sản phẩm",
+      "selectSpecifications": "Chọn các thông số kỹ thuật của bạn bên dưới để xem giá và số linh kiện",
+      "scrollToCta": "Bắt đầu Định cấu hình",
+      "scrollToCtaAriaLabel": "Cuộn đến phần Bộ định cấu hình sản phẩm",
+      "configurationComplete": "Định cấu hình Hoàn tất",
+      "partNumber": "Số linh kiện",
       "quantity": "Số lượng",
       "multiplier": "Hệ số nhân",
-      "priceCalculation": "Tính giá"
+      "priceCalculation": "Tính toán Giá"
     },
     "tabs": {
       "description": "Mô tả",

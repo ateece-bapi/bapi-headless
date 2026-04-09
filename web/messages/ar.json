@@ -547,12 +547,14 @@
     },
     "summary": {
       "title": "ملخص المنتج",
-      "configureProduct": "تهيئة المنتج",
-      "selectSpecifications": "حدد المواصفات أدناه لمعرفة الأسعار ورقم الجزء",
-      "configurationComplete": "اكتملت التهيئة",
+      "configureProduct": "تكوين المنتج",
+      "selectSpecifications": "حدد المواصفات الخاصة بك أدناه لمعرفة الأسعار ورقم الجزء",
+      "scrollToCta": "ابدأ التكوين",
+      "scrollToCtaAriaLabel": "انتقل إلى قسم مكوّن المنتج",
+      "configurationComplete": "اكتمل التكوين",
       "partNumber": "رقم الجزء",
       "quantity": "الكمية",
-      "multiplier": "ضارب",
+      "multiplier": "المضاعف",
       "priceCalculation": "حساب السعر"
     },
     "tabs": {

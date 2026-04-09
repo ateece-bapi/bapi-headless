@@ -999,7 +999,9 @@
     "summary": {
       "title": "उत्पाद सारांश",
       "configureProduct": "उत्पाद कॉन्फ़िगर करें",
-      "selectSpecifications": "मूल्य और पार्ट नंबर देखने के लिए नीचे अपने विनिर्देशों का चयन करें",
+      "selectSpecifications": "कीमत और पार्ट नंबर देखने के लिए नीचे अपनी विनिर्देशों का चयन करें",
+      "scrollToCta": "कॉन्फ़िगर करना शुरू करें",
+      "scrollToCtaAriaLabel": "उत्पाद कॉन्फ़िगरेटर अनुभाग पर स्क्रॉल करें",
       "configurationComplete": "कॉन्फ़िगरेशन पूरा हो गया",
       "partNumber": "पार्ट नंबर",
       "quantity": "मात्रा",

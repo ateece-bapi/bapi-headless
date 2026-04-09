@@ -550,7 +550,9 @@
     "summary": {
       "title": "Résumé du produit",
       "configureProduct": "Configurer le produit",
-      "selectSpecifications": "Sélectionnez vos spécifications ci-dessous pour voir les prix et le numéro de pièce",
+      "selectSpecifications": "Sélectionnez vos spécifications ci-dessous pour voir les tarifs et le numéro de pièce",
+      "scrollToCta": "Commencer la configuration",
+      "scrollToCtaAriaLabel": "Faites défiler jusqu'à la section du configurateur de produits",
       "configurationComplete": "Configuration terminée",
       "partNumber": "Numéro de pièce",
       "quantity": "Quantité",

@@ -469,11 +469,13 @@
       "products": "Produkte"
     },
     "summary": {
-      "title": "Produktzusammenfassung",
+      "title": "Produktübersicht",
       "configureProduct": "Produkt konfigurieren",
-      "selectSpecifications": "Wählen Sie Ihre Spezifikationen unten aus, um den Preis und die Teilenummer zu sehen",
+      "selectSpecifications": "Wählen Sie unten Ihre Spezifikationen aus, um Preise und Artikelnummern zu sehen",
+      "scrollToCta": "Konfiguration starten",
+      "scrollToCtaAriaLabel": "Zum Produktkonfigurator-Abschnitt scrollen",
       "configurationComplete": "Konfiguration abgeschlossen",
-      "partNumber": "Teilenummer",
+      "partNumber": "Artikelnummer",
       "quantity": "Menge",
       "multiplier": "Multiplikator",
       "priceCalculation": "Preisberechnung"

@@ -77,6 +77,7 @@ export function getCategoryBreadcrumbs(
         label: parent.parent.name,
         href: `/${locale}/products/${parent.parent.slug}`,
       });
+      // Parent - router supports /products/[category]/[subcategory]
       breadcrumbs.push({
         label: parent.name,
         href: `/${locale}/products/${parent.parent.slug}/${parent.slug}`,
@@ -88,13 +89,11 @@ export function getCategoryBreadcrumbs(
         href: `/${locale}/products/${parent.slug}`,
       });
     }
-    // Current category
-    const parentPath = parent.parent
-      ? `${parent.parent.slug}/${parent.slug}`
-      : parent.slug;
+    // Current category - use canonical /products/[category] route
+    // Router only supports 2 segments max, so link to category's own page
     breadcrumbs.push({
       label: categoryName,
-      href: `/${locale}/products/${parentPath}/${categorySlug}`,
+      href: `/${locale}/products/${categorySlug}`,
     });
   } else {
     // No parent - this is a root category
@@ -138,7 +137,8 @@ export function getSubcategoryBreadcrumbs(
 
   // Build hierarchy from root
   if (grandparent) {
-    // Grandparent is the root category
+    // 3-level hierarchy: grandparent > parent > subcategory
+    // Router only supports 2 segments, so link to valid routes
     breadcrumbs.push({
       label: grandparent.name,
       href: `/${locale}/products/${grandparent.slug}`,
@@ -147,12 +147,13 @@ export function getSubcategoryBreadcrumbs(
       label: parentCategoryName,
       href: `/${locale}/products/${grandparent.slug}/${parentCategorySlug}`,
     });
+    // Subcategory - use canonical /products/[parent]/[subcategory] route
     breadcrumbs.push({
       label: subcategoryName,
-      href: `/${locale}/products/${grandparent.slug}/${parentCategorySlug}/${subcategorySlug}`,
+      href: `/${locale}/products/${parentCategorySlug}/${subcategorySlug}`,
     });
   } else {
-    // Parent is the root category
+    // 2-level hierarchy: parent > subcategory
     breadcrumbs.push({
       label: parentCategoryName,
       href: `/${locale}/products/${parentCategorySlug}`,
@@ -226,22 +227,24 @@ export function getProductBreadcrumbs(
     });
 
     // Build breadcrumbs from root to leaf
+    // Router supports max 2 segments: /products/[category]/[subcategory]
     hierarchy.forEach((cat, index) => {
       if (index === 0) {
-        // Root category - link directly to it
+        // Root category - matches /products/[category]
         breadcrumbs.push({
           label: cat.name,
           href: `/${locale}/products/${cat.slug}`,
         });
-      } else {
-        // Child categories - build nested path
-        const parentPath = hierarchy
-          .slice(0, index)
-          .map(c => c.slug)
-          .join('/');
+      } else if (index === 1) {
+        // Second level - matches /products/[category]/[subcategory]
         breadcrumbs.push({
           label: cat.name,
-          href: `/${locale}/products/${parentPath}/${cat.slug}`,
+          href: `/${locale}/products/${hierarchy[0].slug}/${cat.slug}`,
+        });
+      } else {
+        // Deeper levels have no matching route, show without link
+        breadcrumbs.push({
+          label: cat.name,
         });
       }
     });

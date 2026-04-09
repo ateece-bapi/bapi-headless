@@ -83,6 +83,53 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(result[1].label).toBe('Sensors & Controls');
       expect(result[1].href).toBe('/en/products/sensors-controls');
     });
+
+    it('generates breadcrumbs for category with parent (2-level)', () => {
+      const result = getCategoryBreadcrumbs(
+        'Room',
+        'room',
+        {
+          locale: 'en',
+          includeHome: true,
+        },
+        {
+          name: 'Humidity Sensors',
+          slug: 'humidity-sensors',
+        }
+      );
+
+      expect(result).toEqual([
+        { label: 'Home', href: '/en' },
+        { label: 'Humidity Sensors', href: '/en/products/humidity-sensors' },
+        { label: 'Room', href: '/en/products/room' },
+      ]);
+    });
+
+    it('generates breadcrumbs for category with grandparent (3-level)', () => {
+      const result = getCategoryBreadcrumbs(
+        'BAPI-Stat Quantum',
+        'bapi-stat-quantum',
+        {
+          locale: 'en',
+          includeHome: true,
+        },
+        {
+          name: 'Room',
+          slug: 'room',
+          parent: {
+            name: 'Humidity Sensors',
+            slug: 'humidity-sensors',
+          },
+        }
+      );
+
+      expect(result).toEqual([
+        { label: 'Home', href: '/en' },
+        { label: 'Humidity Sensors', href: '/en/products/humidity-sensors' },
+        { label: 'Room', href: '/en/products/humidity-sensors/room' },
+        { label: 'BAPI-Stat Quantum', href: '/en/products/bapi-stat-quantum' },
+      ]);
+    });
   });
 
   describe('getSubcategoryBreadcrumbs', () => {
@@ -165,6 +212,30 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(result[0].href).toBe('/ja');
       expect(result[1].href).toBe('/ja/products/actuators');
       expect(result[2].href).toBe('/ja/products/actuators/electric-actuators');
+    });
+
+    it('generates breadcrumbs with grandparent (3-level hierarchy)', () => {
+      const result = getSubcategoryBreadcrumbs(
+        'Room',
+        'room',
+        'BAPI-Stat Quantum',
+        'bapi-stat-quantum',
+        {
+          locale: 'en',
+          includeHome: true,
+        },
+        {
+          name: 'Humidity Sensors',
+          slug: 'humidity-sensors',
+        }
+      );
+
+      expect(result).toEqual([
+        { label: 'Home', href: '/en' },
+        { label: 'Humidity Sensors', href: '/en/products/humidity-sensors' },
+        { label: 'Room', href: '/en/products/humidity-sensors/room' },
+        { label: 'BAPI-Stat Quantum', href: '/en/products/room/bapi-stat-quantum' },
+      ]);
     });
   });
 
@@ -352,6 +423,39 @@ describe('Breadcrumb Navigation Utilities', () => {
       expect(result[0].href).toBe('/zh');
       expect(result[1].href).toBe('/zh/products/parent');
       expect(result[2].href).toBe('/zh/products/parent/category');
+    });
+
+    it('generates breadcrumbs with full 3-level category hierarchy', () => {
+      const result = getProductBreadcrumbs(
+        'BAPI-Stat Quantum Sensor',
+        'bapi-stat-quantum-sensor',
+        [
+          {
+            name: 'BAPI-Stat Quantum Series',
+            slug: 'bapi-stat-quantum',
+            parent: {
+              name: 'Room',
+              slug: 'room',
+              parent: {
+                name: 'Humidity Sensors',
+                slug: 'humidity-sensors',
+              },
+            },
+          },
+        ],
+        {
+          locale: 'en',
+          includeHome: true,
+        }
+      );
+
+      expect(result).toEqual([
+        { label: 'Home', href: '/en' },
+        { label: 'Humidity Sensors', href: '/en/products/humidity-sensors' },
+        { label: 'Room', href: '/en/products/humidity-sensors/room' },
+        { label: 'BAPI-Stat Quantum Series' }, // No href - deeper than router supports
+        { label: 'BAPI-Stat Quantum Sensor' }, // Product - no href
+      ]);
     });
   });
 

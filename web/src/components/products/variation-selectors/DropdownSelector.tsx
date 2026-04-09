@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { ChevronDownIcon } from '@/lib/icons';
 import { getShortLabel } from '@/lib/attributeDetection';
 
@@ -25,6 +26,8 @@ export default function DropdownSelector({
   className = '',
   description,
 }: DropdownSelectorProps) {
+  const t = useTranslations('productPage.variationSelectors');
+  
   return (
     <div className={`${className}`}>
       <label
@@ -46,7 +49,7 @@ export default function DropdownSelector({
               : 'border-neutral-300 text-neutral-700'
           } cursor-pointer hover:border-primary-400 focus:border-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-500/20`}
         >
-          <option value="">Choose an option</option>
+          <option value="">{t('chooseOption')}</option>
           {options.map((option) => (
             <option key={option} value={option}>
               {option}

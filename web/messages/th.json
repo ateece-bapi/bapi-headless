@@ -1108,6 +1108,23 @@
       "partialSelectionMessage": "กรุณาเลือกตัวเลือกอีก {count} ตัว{plural} เพื่อดูการกำหนดค่าสุดท้าย",
       "optionSingular": "",
       "optionPlural": "ตัว"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "กำหนดค่าข้อมูลจำเพาะของคุณด้านล่าง"
+    },
+    "trustBadges": {
+      "heading": "จำหน่ายโดย BAPI",
+      "madeInUSA": "ผลิตในสหรัฐอเมริกา",
+      "madeInUSADesc": "คุณภาพระดับสูง",
+      "warranty": "รับประกัน 5 ปี",
+      "warrantyDesc": "ครอบคลุมทุกกรณี",
+      "returns": "รับคืนภายใน 30 วัน",
+      "returnsDesc": "ไม่ยุ่งยาก",
+      "support": "การสนับสนุนจากผู้เชี่ยวชาญ",
+      "supportDesc": "ความช่วยเหลือทางเทคนิค"
+    },
+    "variationSelectors": {
+      "chooseOption": "เลือกตัวเลือก"
     }
   },
   "productsPage": {

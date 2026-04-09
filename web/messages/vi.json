@@ -618,6 +618,23 @@
       "partialSelectionMessage": "Vui lòng chọn {count} tùy chọn{plural} khác để xem cấu hình cuối cùng",
       "optionSingular": "",
       "optionPlural": "s"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "Cài đặt các thông số kỹ thuật của bạn bên dưới"
+    },
+    "trustBadges": {
+      "heading": "Tại sao Mua Từ BAPI",
+      "madeInUSA": "Sản xuất tại Mỹ",
+      "madeInUSADesc": "Chất Lượng Tốt",
+      "warranty": "Bảo Hành 5 Năm",
+      "warrantyDesc": "Bảo Kê Đầy Đủ",
+      "returns": "Trả Lại trong 30 Ngày",
+      "returnsDesc": "Không Rắc Rối",
+      "support": "Hỗ Trợ Chuyên Nghiệp",
+      "supportDesc": "Hỗ Trợ Kỹ Thuật"
+    },
+    "variationSelectors": {
+      "chooseOption": "Chọn một tùy chọn"
     }
   },
   "productsPage": {

@@ -657,6 +657,23 @@
       "partialSelectionMessage": "请选择 {count} 个更多选项{plural}以查看最终配置",
       "optionSingular": "",
       "optionPlural": "个"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "在下面配置您的规格"
+    },
+    "trustBadges": {
+      "heading": "为什么从BAPI购买",
+      "madeInUSA": "美国制造",
+      "madeInUSADesc": "优质构造",
+      "warranty": "5年质保",
+      "warrantyDesc": "全面保修",
+      "returns": "30天退货",
+      "returnsDesc": "无忧退换",
+      "support": "专业支持",
+      "supportDesc": "技术帮助"
+    },
+    "variationSelectors": {
+      "chooseOption": "选择一个选项"
     }
   },
   "productsPage": {

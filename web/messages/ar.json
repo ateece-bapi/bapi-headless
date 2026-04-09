@@ -657,6 +657,23 @@
       "partialSelectionMessage": "يرجى تحديد {count} خيار{plural} آخر لعرض التكوين النهائي",
       "optionSingular": "",
       "optionPlural": "ات"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "قم بتكوين مواصفاتك أدناه"
+    },
+    "trustBadges": {
+      "heading": "لماذا الشراء من BAPI",
+      "madeInUSA": "صُنِع في الولايات المتحدة الأمريكية",
+      "madeInUSADesc": "جودة عالية",
+      "warranty": "ضمان لمدة 5 سنوات",
+      "warrantyDesc": "تغطية كاملة",
+      "returns": "إرجاع خلال 30 يومًا",
+      "returnsDesc": "خالي من المتاعب",
+      "support": "دعم من الخبراء",
+      "supportDesc": "المساعدة الفنية"
+    },
+    "variationSelectors": {
+      "chooseOption": "اختر خيارًا"
     }
   },
   "productsPage": {

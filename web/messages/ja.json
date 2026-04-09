@@ -657,6 +657,23 @@
       "partialSelectionMessage": "最終構成を確認するには、{count}つのオプションをさらに選択してください{plural}",
       "optionSingular": "",
       "optionPlural": "つ"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "以下の仕様を設定してください"
+    },
+    "trustBadges": {
+      "heading": "BAPI製品を選ぶ理由",
+      "madeInUSA": "米国製造",
+      "madeInUSADesc": "高品質",
+      "warranty": "5年保証",
+      "warrantyDesc": "完全保証",
+      "returns": "30日返品",
+      "returnsDesc": "簡単返品",
+      "support": "専門サポート",
+      "supportDesc": "技術サポート"
+    },
+    "variationSelectors": {
+      "chooseOption": "オプションを選択してください"
     }
   },
   "productsPage": {

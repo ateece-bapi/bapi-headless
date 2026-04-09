@@ -267,6 +267,23 @@ const mockMessages = {
       optionSingular: '',
       optionPlural: 's',
     },
+    detail: {
+      configureSpecsSubtitle: 'Configure your specifications below',
+    },
+    trustBadges: {
+      heading: 'Why Buy From BAPI',
+      madeInUSA: 'Made in USA',
+      madeInUSADesc: 'Quality Built',
+      warranty: '5-Year Warranty',
+      warrantyDesc: 'Full Coverage',
+      returns: '30-Day Returns',
+      returnsDesc: 'Hassle Free',
+      support: 'Expert Support',
+      supportDesc: 'Technical Help',
+    },
+    variationSelectors: {
+      chooseOption: 'Choose an option',
+    },
     tabs: {
       description: 'Description',
       documents: 'Documents',

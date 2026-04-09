@@ -578,6 +578,23 @@
       "partialSelectionMessage": "Bitte wählen Sie {count} weitere Option{plural} aus, um die endgültige Konfiguration zu sehen",
       "optionSingular": "",
       "optionPlural": "en"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "Konfigurieren Sie Ihre Spezifikationen unten"
+    },
+    "trustBadges": {
+      "heading": "Warum bei BAPI kaufen",
+      "madeInUSA": "Hergestellt in den USA",
+      "madeInUSADesc": "Hochwertige Qualität",
+      "warranty": "5-Jahres-Garantie",
+      "warrantyDesc": "Vollständige Abdeckung",
+      "returns": "30-tägiges Rückgaberecht",
+      "returnsDesc": "Problemlos",
+      "support": "Expertenunterstützung",
+      "supportDesc": "Technische Hilfe"
+    },
+    "variationSelectors": {
+      "chooseOption": "Wähle eine Option"
     }
   },
   "productsPage": {

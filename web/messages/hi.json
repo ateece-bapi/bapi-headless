@@ -1108,6 +1108,23 @@
       "partialSelectionMessage": "अंतिम कॉन्फ़िगरेशन देखने के लिए कृपया {count} और विकल्प{plural} चुनें",
       "optionSingular": "",
       "optionPlural": "ों"
+    },
+    "detail": {
+      "configureSpecsSubtitle": "नीचे अपनी विनिर्देश कॉन्फ़िगर करें"
+    },
+    "trustBadges": {
+      "heading": "BAPI से क्यों खरीदें",
+      "madeInUSA": "अमेरिका में बना",
+      "madeInUSADesc": "गुणवत्तापूर्ण निर्माण",
+      "warranty": "5 वर्ष की वारंटी",
+      "warrantyDesc": "पूर्ण कवरेज",
+      "returns": "30 दिनों में वापसी",
+      "returnsDesc": "बेझंझट",
+      "support": "विशेषज्ञ सहायता",
+      "supportDesc": "तकनीकी सहायता"
+    },
+    "variationSelectors": {
+      "chooseOption": "एक विकल्प चुनें"
     }
   },
   "productsPage": {

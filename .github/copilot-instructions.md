@@ -190,6 +190,37 @@ const { addItem, items, totalItems } = useCartStore();
 10. **Image Optimization**: Configure Next.js image domains in `next.config.ts` (Kinsta, WordPress.org).
 11. **Bundle Analysis**: `pnpm run build:analyze` to check bundle size.
 
+## Git Workflow
+
+**All code changes must go through a branch + PR — never commit code directly to `main`.**
+
+`main` deploys automatically to production via Vercel. Copilot automated PR review has caught real bugs on this project (router URL mismatches, accessibility gaps, TypeScript errors) and provides a clean rollback point.
+
+### Branch Naming Convention
+- `feat/short-description` — new features
+- `fix/short-description` — bug fixes
+- `chore/short-description` — tooling, dependencies, config
+
+### When to Use a Branch
+| Change Type | Branch Required |
+|-------------|----------------|
+| Any TypeScript / component / page code | ✅ Always |
+| GraphQL queries or schema changes | ✅ Always |
+| Test additions or modifications | ✅ Always |
+| Tailwind / styling changes | ✅ Always |
+| Docs-only changes (`.md` files) | ❌ Direct to main is fine |
+| Config-only changes (`.env`, `vercel.json`) | ❌ Direct to main is fine |
+
+### Standard Code Change Workflow
+1. `git checkout -b feat/your-feature` (or `fix/` / `chore/`)
+2. Make changes, run `pnpm test:ci` and `pnpm run build` locally
+3. `git push origin feat/your-feature`
+4. Open PR — Copilot automated review will run
+5. Address all review feedback before merging
+6. Merge PR, delete remote branch, pull main locally
+
+---
+
 ## Common Workflows
 
 ### Adding a New GraphQL Query

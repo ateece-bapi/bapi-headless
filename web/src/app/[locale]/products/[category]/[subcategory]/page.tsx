@@ -136,6 +136,13 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
 
   if (parentCategory) {
+    const grandparent = parentCategory.parent?.node
+      ? {
+          name: getTranslatedCategoryName(parentCategory.parent.node.name),
+          slug: parentCategory.parent.node.slug || '',
+        }
+      : undefined;
+
     breadcrumbs = getSubcategoryBreadcrumbs(
       translatedCategoryName,
       parentCategory.slug || '',
@@ -147,13 +154,13 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
           home: t('breadcrumb.home'),
           products: t('breadcrumb.products'),
         },
-      }
+      },
+      grandparent
     );
   } else {
-    // Fallback if no parent category
+    // Fallback if no parent category - treat subcategory as root
     breadcrumbs = [
       { label: t('breadcrumb.home'), href: `/${locale}` },
-      { label: t('breadcrumb.products'), href: `/${locale}/products` },
       { label: translatedSubcategoryName },
     ];
   }

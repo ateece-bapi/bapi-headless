@@ -174,14 +174,32 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   }
 
   // Generate breadcrumbs with i18n support
-  const breadcrumbs = getCategoryBreadcrumbs(translatedCategoryName, category, {
-    locale,
-    includeHome: true,
-    labels: {
-      home: t('categoryPage.breadcrumb.home'),
-      products: t('categoryPage.breadcrumb.products'),
+  const parent = categoryData.parent?.node
+    ? {
+        name: getTranslatedCategoryName(categoryData.parent.node.name),
+        slug: categoryData.parent.node.slug || '',
+        parent: categoryData.parent.node.parent?.node
+          ? {
+              name: getTranslatedCategoryName(categoryData.parent.node.parent.node.name),
+              slug: categoryData.parent.node.parent.node.slug || '',
+            }
+          : undefined,
+      }
+    : undefined;
+
+  const breadcrumbs = getCategoryBreadcrumbs(
+    translatedCategoryName,
+    category,
+    {
+      locale,
+      includeHome: true,
+      labels: {
+        home: t('categoryPage.breadcrumb.home'),
+        products: t('categoryPage.breadcrumb.products'),
+      },
     },
-  });
+    parent
+  );
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
   const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl);

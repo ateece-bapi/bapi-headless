@@ -133,6 +133,13 @@ query GetProductBySlug($slug: ID!) {
             id
             name
             slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
           }
         }
       }
@@ -226,6 +233,13 @@ query GetProductBySlugLight($slug: ID!) {
             id
             name
             slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
           }
         }
       }
@@ -497,6 +511,14 @@ query GetProductCategoryWithChildren($slug: ID!) {
         databaseId
         name
         slug
+        parent {
+          node {
+            id
+            databaseId
+            name
+            slug
+          }
+        }
       }
     }
     children {

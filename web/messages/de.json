@@ -721,6 +721,24 @@
       "title": "Brauchen Sie Hilfe bei der richtigen Produktauswahl?",
       "description": "Unser Team von Experten steht Ihnen bereit, um Ihnen die perfekten Sensoren und Regler für Ihr Gebäudeautomationsprojekt auszuwählen.",
       "button": "Vertrieb kontaktieren"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Raum",
+        "description": "Wandmontierte Sensoren für Büros, Konferenzräume und belegte Räume"
+      },
+      "nonRoom": {
+        "name": "Nicht-Raum",
+        "description": "Kanal-, Außen-, Tauch- und Industriesensoren"
+      },
+      "bluetoothWireless": {
+        "name": "Drahtlossystem - Bluetooth Low Energy",
+        "description": "Batteriebetriebene Bluetooth-Sensoren mit Gateway"
+      },
+      "wamWireless": {
+        "name": "WAM - Wireless Asset Monitoring",
+        "description": "Drahtlose Fernüberwachung mit Cloud-Plattform"
+      }
     }
   },
   "cartPage": {

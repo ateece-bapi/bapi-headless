@@ -800,6 +800,24 @@
       "title": "¿Necesitas ayuda para encontrar el producto adecuado?",
       "description": "Nuestro equipo de expertos está listo para ayudarte a seleccionar los sensores y controladores perfectos para tu proyecto de automatización de edificios.",
       "button": "Contactar ventas"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Sala",
+        "description": "Sensores montados en pared para oficinas, salas de conferencias y espacios ocupados"
+      },
+      "nonRoom": {
+        "name": "No Sala",
+        "description": "Sensores para conductos, exteriores, inmersión e instalación industrial"
+      },
+      "bluetoothWireless": {
+        "name": "Sistema inalámbrico - Bluetooth de baja energía",
+        "description": "Sensores Bluetooth a batería con pasarela"
+      },
+      "wamWireless": {
+        "name": "WAM - Monitoreo inalámbrico de activos",
+        "description": "Monitoreo inalámbrico de largo alcance con plataforma en la nube"
+      }
     }
   },
   "cartPage": {

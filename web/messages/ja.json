@@ -800,6 +800,24 @@
       "title": "最適な製品をお探しですか?",
       "description": "専門家チームが、ビルオートメーションプロジェクトに最適なセンサーとコントローラーをお選びします。",
       "button": "営業に問い合わせる"
+    },
+    "subcategories": {
+      "room": {
+        "name": "室内",
+        "description": "オフィス、会議室、占有スペース向けの壁取り付けセンサー"
+      },
+      "nonRoom": {
+        "name": "室外",
+        "description": "ダクト、室外、浸漬、および産業用取り付けセンサー"
+      },
+      "bluetoothWireless": {
+        "name": "ワイヤレスシステム - Bluetooth Low Energy",
+        "description": "ゲートウェイ付きの電池駆動Bluetoothセンサー"
+      },
+      "wamWireless": {
+        "name": "WAM - ワイヤレスアセット監視",
+        "description": "クラウドプラットフォーム搭載の長距離ワイヤレス監視"
+      }
     }
   },
   "cartPage": {

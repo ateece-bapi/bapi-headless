@@ -19,6 +19,10 @@ import ProductSortDropdown from '@/components/products/ProductSortDropdown';
 import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
+import {
+  getCategoryTranslationKey,
+  getSubcategoryTranslationKey,
+} from '@/lib/categoryTranslations';
 
 interface CategoryPageProps {
   params: Promise<{
@@ -72,6 +76,9 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const { category, locale } = await params;
   const filters = await searchParams;
   const t = await getTranslations({ locale });
+  const tCategories = await getTranslations({ locale, namespace: 'productsPage.categories' });
+  const tSubcategories = await getTranslations({ locale, namespace: 'productsPage.subcategories' });
+  
   // Use comprehensive cache tags for precise revalidation
   const client = getGraphQLClient(['products', 'product-categories', `category-${category}`], true);
 
@@ -85,6 +92,28 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   if (!categoryData) {
     notFound();
   }
+
+  // Get translated category name
+  const getTranslatedCategoryName = (wordpressName: string | null | undefined): string => {
+    if (!wordpressName) return 'Products';
+    const key = getCategoryTranslationKey(wordpressName);
+    if (key) {
+      return tCategories(`${key}.name`);
+    }
+    return wordpressName;
+  };
+
+  // Get translated subcategory name
+  const getTranslatedSubcategoryName = (wordpressName: string | null | undefined): string => {
+    if (!wordpressName) return '';
+    const key = getSubcategoryTranslationKey(wordpressName);
+    if (key) {
+      return tSubcategories(`${key}.name`);
+    }
+    return wordpressName;
+  };
+
+  const translatedCategoryName = getTranslatedCategoryName(categoryData.name);
 
   // Filter subcategories to only include valid entries with required fields
   const subcategories = (categoryData.children?.nodes || []).filter(
@@ -144,7 +173,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   }
 
   // Generate breadcrumbs with i18n support
-  const breadcrumbs = getCategoryBreadcrumbs(categoryData.name || '', category, {
+  const breadcrumbs = getCategoryBreadcrumbs(translatedCategoryName, category, {
     locale,
     includeHome: true,
     labels: {
@@ -171,7 +200,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         <div className="relative mx-auto max-w-content px-4 py-16">
           <div className="max-w-3xl">
             <h1 className="mb-5 text-5xl font-bold text-white drop-shadow-lg md:text-6xl">
-              {categoryData.name}
+              {translatedCategoryName}
             </h1>
             {categoryData.description && (
               <p className="text-xl leading-relaxed text-white/95 drop-shadow-md">
@@ -199,7 +228,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
             {t('categoryPage.subcategories.title')}
           </h2>
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {subcategories.map((subcategory, index) => (
+            {subcategories.map((subcategory, index) => {
+              const translatedSubcategoryName = getTranslatedSubcategoryName(subcategory.name);
+              
+              return (
               <Link
                 key={subcategory.id}
                 href={`/products/${category}/${subcategory.slug}`}
@@ -216,7 +248,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   <div className="bg-linear-to-br relative aspect-[3/2] from-neutral-50 to-neutral-100">
                     <Image
                       src={subcategory.image.sourceUrl}
-                      alt={subcategory.image.altText || subcategory.name || ''}
+                      alt={subcategory.image.altText || translatedSubcategoryName}
                       fill
                       className="object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-110"
                       sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -226,7 +258,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                 ) : (
                   <div className="bg-linear-to-br relative flex aspect-[4/3] items-center justify-center from-primary-50 via-white to-primary-50">
                     <span className="text-xl font-semibold text-primary-600">
-                      {subcategory.name}
+                      {translatedSubcategoryName}
                     </span>
                   </div>
                 )}
@@ -236,7 +268,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   <div className="mb-4 flex items-start justify-between">
                     <div>
                       <h3 className="mb-2 text-2xl font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
-                        {subcategory.name}
+                        {translatedSubcategoryName}
                       </h3>
                     </div>
                   </div>
@@ -266,7 +298,8 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                   </div>
                 </div>
               </Link>
-            ))}
+            );
+            })}
           </div>
         </div>
       )}

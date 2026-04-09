@@ -800,6 +800,24 @@
       "title": "需要帮助找到合适的产品?",
       "description": "我们的专家团队随时准备帮助您为您的建筑自动化项目选择合适的传感器和控制器。",
       "button": "联系销售"
+    },
+    "subcategories": {
+      "room": {
+        "name": "室内",
+        "description": "适用于办公室、会议室和有人空间的壁挂式传感器"
+      },
+      "nonRoom": {
+        "name": "非室内",
+        "description": "适用于管道、户外、浸入式和工业环境的传感器"
+      },
+      "bluetoothWireless": {
+        "name": "无线系统 - 蓝牙低功耗",
+        "description": "电池供电的蓝牙传感器和网关"
+      },
+      "wamWireless": {
+        "name": "WAM - 无线资产监测",
+        "description": "长距离无线监测及云平台"
+      }
     }
   },
   "cartPage": {

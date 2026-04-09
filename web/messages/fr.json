@@ -800,6 +800,24 @@
       "title": "Besoin d'aide pour trouver le bon produit ?",
       "description": "Notre équipe d'experts est prête à vous aider à sélectionner les capteurs et les contrôleurs parfaits pour votre projet d'automatisation des bâtiments.",
       "button": "Contacter les ventes"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Pièce",
+        "description": "Capteurs muraux pour les bureaux, les salles de conférence et les espaces occupés"
+      },
+      "nonRoom": {
+        "name": "Hors pièce",
+        "description": "Capteurs pour conduits, extérieurs, immersion et installation industrielle"
+      },
+      "bluetoothWireless": {
+        "name": "Système sans fil - Bluetooth basse énergie",
+        "description": "Capteurs Bluetooth alimentés par batterie avec passerelle"
+      },
+      "wamWireless": {
+        "name": "WAM - Surveillance sans fil des actifs",
+        "description": "Surveillance sans fil longue portée avec plateforme cloud"
+      }
     }
   },
   "cartPage": {

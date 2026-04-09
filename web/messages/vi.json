@@ -761,6 +761,24 @@
       "title": "Cần Trợ giúp tìm Sản phẩm phù hợp?",
       "description": "Nhóm chuyên gia của chúng tôi sẵn sàng giúp bạn lựa chọn các cảm biến và bộ điều khiển hoàn hảo cho dự án tự động hóa công trình của bạn.",
       "button": "Liên hệ Bán hàng"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Không gian phòng",
+        "description": "Cảm biến được gắn tường cho văn phòng, phòng họp và các không gian được sử dụng"
+      },
+      "nonRoom": {
+        "name": "Ngoài phòng",
+        "description": "Cảm biến lắp đặt trong ống thông gió, ngoài trời, ngâm chìm và công nghiệp"
+      },
+      "bluetoothWireless": {
+        "name": "Hệ thống không dây - Bluetooth Low Energy",
+        "description": "Cảm biến Bluetooth chạy pin với cổng nối"
+      },
+      "wamWireless": {
+        "name": "WAM - Giám sát tài sản không dây",
+        "description": "Giám sát không dây tầm xa với nền tảng đám mây"
+      }
     }
   },
   "cartPage": {

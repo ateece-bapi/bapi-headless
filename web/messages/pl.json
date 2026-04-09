@@ -1251,6 +1251,24 @@
       "title": "Potrzebujesz pomocy w znalezieniu odpowiedniego produktu?",
       "description": "Nasz zespół ekspertów jest gotowy pomóc Ci wybrać idealne czujniki i kontrolery do Twojego projektu automatyki budynkowej.",
       "button": "Skontaktuj się z działem handlowym"
+    },
+    "subcategories": {
+      "room": {
+        "name": "Pomieszczenie",
+        "description": "Czujniki montowane na ścianie do biur, sal konferencyjnych i przestrzeni zajmowanych"
+      },
+      "nonRoom": {
+        "name": "Poza pomieszczeniem",
+        "description": "Czujniki montowane w kanałach, na zewnątrz, zanurzeniowe i przemysłowe"
+      },
+      "bluetoothWireless": {
+        "name": "System bezprzewodowy - Bluetooth Low Energy",
+        "description": "Zasilane bateryjnie czujniki Bluetooth z bramką"
+      },
+      "wamWireless": {
+        "name": "WAM - Bezprzewodowy monitoring zasobów",
+        "description": "Monitorowanie bezprzewodowe na dużą odległość z platformą chmurową"
+      }
     }
   },
   "cartPage": {

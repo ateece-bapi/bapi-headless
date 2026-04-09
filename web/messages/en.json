@@ -1672,6 +1672,24 @@
       "viewProducts": "View Products",
       "viewCategoryLabel": "Explore {name} products"
     },
+    "subcategories": {
+      "room": {
+        "name": "Room",
+        "description": "Wall-mounted sensors for offices, conference rooms, and occupied spaces"
+      },
+      "nonRoom": {
+        "name": "Non-Room",
+        "description": "Duct, outdoor, immersion, and industrial installation sensors"
+      },
+      "bluetoothWireless": {
+        "name": "Wireless System - Bluetooth Low Energy",
+        "description": "Battery-powered Bluetooth sensors with gateway"
+      },
+      "wamWireless": {
+        "name": "WAM - Wireless Asset Monitoring",
+        "description": "Long-range wireless monitoring with cloud platform"
+      }
+    },
     "featured": {
       "badge": "Featured Product Line",
       "title": "BA/10K Series Temperature Sensors",

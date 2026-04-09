@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@/lib/navigation';
+import Link from 'next/link';
 import React from 'react';
 
 interface BreadcrumbsProps {

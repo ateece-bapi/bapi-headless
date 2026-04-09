@@ -26,6 +26,7 @@ const ATTRIBUTE_LABEL_MAP: Record<string, string> = {
   'Temperature Room Enclosure': 'temperature.roomEnclosure',
   'Temperature Sensor/Output': 'temperature.sensorOutput',
   'Temperature Sensor Output': 'temperature.sensorOutput',
+  'Temperature Sensor': 'temperature.sensorOutput', // Title case variation (WordPress sends this)
   'TEMPERATURE SENSOR': 'temperature.sensorOutput', // All-caps variation
   'SENSOR OUTPUT': 'temperature.sensorOutput', // Generic all-caps
   'Temp Setpoint and Override': 'temperature.setpointOverride',
@@ -41,6 +42,7 @@ const ATTRIBUTE_LABEL_MAP: Record<string, string> = {
   'Humidity Sensor Output': 'humidity.sensorOutput',
   'HUMIDITY SENSOR OUTPUT': 'humidity.sensorOutput', // All-caps
   'HUMIDITY OUTPUT': 'humidity.sensorOutput', // All-caps variation
+  'Humidity Output': 'humidity.sensorOutput', // Title case variation (WordPress sends this)
   'Optional Temp & Humidity': 'humidity.optionalTempHumidity',
   
   // Pressure Sensors

@@ -18,6 +18,10 @@ import ProductSortDropdown from '@/components/products/ProductSortDropdown';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getSubcategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
+import {
+  getCategoryTranslationKey,
+  getSubcategoryTranslationKey,
+} from '@/lib/categoryTranslations';
 
 interface SubcategoryPageProps {
   params: Promise<{
@@ -69,6 +73,8 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   const { category, subcategory, locale } = await params;
   const filters = await searchParams;
   const t = await getTranslations({ locale, namespace: 'subcategoryPage' });
+  const tCategories = await getTranslations({ locale, namespace: 'productsPage.categories' });
+  const tSubcategories = await getTranslations({ locale, namespace: 'productsPage.subcategories' });
 
   const client = getGraphQLClient(['products', `category-${subcategory}`], true);
 
@@ -84,6 +90,26 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
     notFound();
   }
 
+  // Get translated category name
+  const getTranslatedCategoryName = (wordpressName: string | null | undefined): string => {
+    if (!wordpressName) return 'Products';
+    const key = getCategoryTranslationKey(wordpressName);
+    if (key) {
+      return tCategories(`${key}.name`);
+    }
+    return wordpressName;
+  };
+
+  // Get translated subcategory name
+  const getTranslatedSubcategoryName = (wordpressName: string | null | undefined): string => {
+    if (!wordpressName) return '';
+    const key = getSubcategoryTranslationKey(wordpressName);
+    if (key) {
+      return tSubcategories(`${key}.name`);
+    }
+    return wordpressName;
+  };
+
   // Fetch products for this category
   const productsData = await client.request<GetProductsWithFiltersQuery>(
     GetProductsWithFiltersDocument,
@@ -98,15 +124,21 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
 
   // Build breadcrumb trail
   const parentCategory = subcategoryData.parent?.node;
+  
+  // Get translated names
+  const translatedCategoryName = parentCategory
+    ? getTranslatedCategoryName(parentCategory.name)
+    : '';
+  const translatedSubcategoryName = getTranslatedSubcategoryName(subcategoryData.name);
 
   let breadcrumbs;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
 
   if (parentCategory) {
     breadcrumbs = getSubcategoryBreadcrumbs(
-      parentCategory.name || '',
+      translatedCategoryName,
       parentCategory.slug || '',
-      subcategoryData.name || '',
+      translatedSubcategoryName,
       subcategory,
       {
         locale,
@@ -121,7 +153,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
     breadcrumbs = [
       { label: t('breadcrumb.home'), href: `/${locale}` },
       { label: t('breadcrumb.products'), href: `/${locale}/products` },
-      { label: subcategoryData.name || '' },
+      { label: translatedSubcategoryName },
     ];
   }
 
@@ -142,7 +174,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
         <div className="relative mx-auto max-w-container px-4 py-12">
           <div className="max-w-4xl">
             <h1 className="mb-4 text-4xl font-bold text-white drop-shadow-lg md:text-5xl">
-              {subcategoryData.name}
+              {translatedSubcategoryName}
             </h1>
             {subcategoryData.description && (
               <p className="max-w-2xl text-lg leading-relaxed text-white/95 drop-shadow-md">
@@ -162,7 +194,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                   />
                 </div>
                 <span className="text-sm font-medium text-white">
-                  {parentCategory?.name || subcategoryData.name}
+                  {translatedCategoryName || translatedSubcategoryName}
                 </span>
               </div>
               {parentCategory && (
@@ -183,7 +215,7 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
                       d="M10 19l-7-7m0 0l7-7m-7 7h18"
                     />
                   </svg>
-                  <span className="font-medium text-white">Back to {parentCategory.name}</span>
+                  <span className="font-medium text-white">{t('backTo', { categoryName: translatedCategoryName })}</span>
                 </Link>
               )}
             </div>

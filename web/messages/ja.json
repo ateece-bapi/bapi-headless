@@ -921,7 +921,8 @@
     "breadcrumb": {
       "home": "ホーム",
       "products": "製品"
-    }
+    },
+    "backTo": "{categoryName}に戻る"
   },
   "searchPage": {
     "meta": {

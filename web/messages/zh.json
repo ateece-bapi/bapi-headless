@@ -921,6 +921,9 @@
     "breadcrumb": {
       "home": "首页",
       "products": "产品"
+    },
+    "backTo": {
+      "Back to {categoryName}": "返回到 {categoryName}"
     }
   },
   "searchPage": {

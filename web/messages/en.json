@@ -1821,7 +1821,8 @@
     "breadcrumb": {
       "home": "Home",
       "products": "Products"
-    }
+    },
+    "backTo": "Back to {categoryName}"
   },
   "searchPage": {
     "meta": {

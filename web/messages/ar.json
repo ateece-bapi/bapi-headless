@@ -921,6 +921,9 @@
     "breadcrumb": {
       "home": "الرئيسية",
       "products": "المنتجات"
+    },
+    "backTo": {
+      "Back to {categoryName}": "العودة إلى {categoryName}"
     }
   },
   "searchPage": {

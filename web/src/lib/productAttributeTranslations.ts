@@ -83,7 +83,6 @@ const ATTRIBUTE_LABEL_MAP: Record<string, string> = {
 export function getAttributeTranslationKey(label: string): string {
   // Check exact match first
   if (label in ATTRIBUTE_LABEL_MAP) {
-    console.log(`[i18n] ✅ Exact match for "${label}" → "${ATTRIBUTE_LABEL_MAP[label]}"`);
     return ATTRIBUTE_LABEL_MAP[label];
   }
   
@@ -94,7 +93,6 @@ export function getAttributeTranslationKey(label: string): string {
   );
   
   if (matchingKey) {
-    console.log(`[i18n] ✅ Case-insensitive match for "${label}" → "${ATTRIBUTE_LABEL_MAP[matchingKey]}"`);
     return ATTRIBUTE_LABEL_MAP[matchingKey];
   }
   

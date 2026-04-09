@@ -882,6 +882,9 @@
     "breadcrumb": {
       "home": "Trang chủ",
       "products": "Sản phẩm"
+    },
+    "backTo": {
+      "backTo": "Trở về {categoryName}"
     }
   },
   "searchPage": {

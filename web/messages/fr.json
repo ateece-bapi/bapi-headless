@@ -921,6 +921,9 @@
     "breadcrumb": {
       "home": "Accueil",
       "products": "Produits"
+    },
+    "backTo": {
+      "Back to {categoryName}": "Retour à {categoryName}"
     }
   },
   "searchPage": {

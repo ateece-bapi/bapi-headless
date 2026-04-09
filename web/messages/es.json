@@ -921,7 +921,8 @@
     "breadcrumb": {
       "home": "Inicio",
       "products": "Productos"
-    }
+    },
+    "backTo": "Volver a {categoryName}"
   },
   "searchPage": {
     "meta": {

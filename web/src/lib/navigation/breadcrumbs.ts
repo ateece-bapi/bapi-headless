@@ -58,13 +58,13 @@ export function getCategoryBreadcrumbs(
   options: BreadcrumbOptions,
   parent?: { name: string; slug: string; parent?: { name: string; slug: string } }
 ): BreadcrumbItem[] {
-  const { locale, includeHome = true, labels } = options;
+  const { includeHome = true, labels } = options;
   const breadcrumbs: BreadcrumbItem[] = [];
 
   if (includeHome) {
     breadcrumbs.push({
       label: getLabel('home', labels),
-      href: `/${locale}`,
+      href: '/',
     });
   }
 
@@ -75,31 +75,31 @@ export function getCategoryBreadcrumbs(
       // Grandparent exists (root category)
       breadcrumbs.push({
         label: parent.parent.name,
-        href: `/${locale}/products/${parent.parent.slug}`,
+        href: `/products/${parent.parent.slug}`,
       });
       // Parent - router supports /products/[category]/[subcategory]
       breadcrumbs.push({
         label: parent.name,
-        href: `/${locale}/products/${parent.parent.slug}/${parent.slug}`,
+        href: `/products/${parent.parent.slug}/${parent.slug}`,
       });
     } else {
       // Parent is root category
       breadcrumbs.push({
         label: parent.name,
-        href: `/${locale}/products/${parent.slug}`,
+        href: `/products/${parent.slug}`,
       });
     }
     // Current category - use canonical /products/[category] route
     // Router only supports 2 segments max, so link to category's own page
     breadcrumbs.push({
       label: categoryName,
-      href: `/${locale}/products/${categorySlug}`,
+      href: `/products/${categorySlug}`,
     });
   } else {
     // No parent - this is a root category
     breadcrumbs.push({
       label: categoryName,
-      href: `/${locale}/products/${categorySlug}`,
+      href: `/products/${categorySlug}`,
     });
   }
 
@@ -125,13 +125,13 @@ export function getSubcategoryBreadcrumbs(
   options: BreadcrumbOptions,
   grandparent?: { name: string; slug: string }
 ): BreadcrumbItem[] {
-  const { locale, includeHome = true, labels } = options;
+  const { includeHome = true, labels } = options;
   const breadcrumbs: BreadcrumbItem[] = [];
 
   if (includeHome) {
     breadcrumbs.push({
       label: getLabel('home', labels),
-      href: `/${locale}`,
+      href: '/',
     });
   }
 
@@ -141,26 +141,26 @@ export function getSubcategoryBreadcrumbs(
     // Router only supports 2 segments, so link to valid routes
     breadcrumbs.push({
       label: grandparent.name,
-      href: `/${locale}/products/${grandparent.slug}`,
+      href: `/products/${grandparent.slug}`,
     });
     breadcrumbs.push({
       label: parentCategoryName,
-      href: `/${locale}/products/${grandparent.slug}/${parentCategorySlug}`,
+      href: `/products/${grandparent.slug}/${parentCategorySlug}`,
     });
     // Subcategory - use canonical /products/[parent]/[subcategory] route
     breadcrumbs.push({
       label: subcategoryName,
-      href: `/${locale}/products/${parentCategorySlug}/${subcategorySlug}`,
+      href: `/products/${parentCategorySlug}/${subcategorySlug}`,
     });
   } else {
     // 2-level hierarchy: parent > subcategory
     breadcrumbs.push({
       label: parentCategoryName,
-      href: `/${locale}/products/${parentCategorySlug}`,
+      href: `/products/${parentCategorySlug}`,
     });
     breadcrumbs.push({
       label: subcategoryName,
-      href: `/${locale}/products/${parentCategorySlug}/${subcategorySlug}`,
+      href: `/products/${parentCategorySlug}/${subcategorySlug}`,
     });
   }
 
@@ -187,13 +187,13 @@ export function getProductBreadcrumbs(
   }>,
   options: BreadcrumbOptions
 ): BreadcrumbItem[] {
-  const { locale, includeHome = true, labels } = options;
+  const { includeHome = true, labels } = options;
   const breadcrumbs: BreadcrumbItem[] = [];
 
   if (includeHome) {
     breadcrumbs.push({
       label: getLabel('home', labels),
-      href: `/${locale}`,
+      href: '/',
     });
   }
 
@@ -203,7 +203,7 @@ export function getProductBreadcrumbs(
 
     // Build full hierarchy by walking up the tree
     const hierarchy: Array<{ name: string; slug: string }> = [];
-    
+
     // Start with grandparent (if exists)
     if (primaryCategory.parent?.parent) {
       hierarchy.push({
@@ -211,7 +211,7 @@ export function getProductBreadcrumbs(
         slug: primaryCategory.parent.parent.slug,
       });
     }
-    
+
     // Add parent (if exists)
     if (primaryCategory.parent) {
       hierarchy.push({
@@ -219,7 +219,7 @@ export function getProductBreadcrumbs(
         slug: primaryCategory.parent.slug,
       });
     }
-    
+
     // Add current category
     hierarchy.push({
       name: primaryCategory.name,
@@ -233,13 +233,13 @@ export function getProductBreadcrumbs(
         // Root category - matches /products/[category]
         breadcrumbs.push({
           label: cat.name,
-          href: `/${locale}/products/${cat.slug}`,
+          href: `/products/${cat.slug}`,
         });
       } else if (index === 1) {
         // Second level - matches /products/[category]/[subcategory]
         breadcrumbs.push({
           label: cat.name,
-          href: `/${locale}/products/${hierarchy[0].slug}/${cat.slug}`,
+          href: `/products/${hierarchy[0].slug}/${cat.slug}`,
         });
       } else {
         // Deeper levels have no matching route, show without link
@@ -252,7 +252,7 @@ export function getProductBreadcrumbs(
     // No categories - fallback to generic "Products" link
     breadcrumbs.push({
       label: getLabel('products', labels),
-      href: `/${locale}/products`,
+      href: '/products',
     });
   }
 
@@ -271,20 +271,20 @@ export function getSearchBreadcrumbs(
   searchQuery: string,
   options: BreadcrumbOptions
 ): BreadcrumbItem[] {
-  const { locale, includeHome = true, labels } = options;
+  const { includeHome = true, labels } = options;
   const breadcrumbs: BreadcrumbItem[] = [];
 
   if (includeHome) {
     breadcrumbs.push({
       label: getLabel('home', labels),
-      href: `/${locale}`,
+      href: '/',
     });
   }
 
   // For search, show generic "Products" since no specific category
   breadcrumbs.push({
     label: getLabel('products', labels),
-    href: `/${locale}/products`,
+    href: '/products',
   });
 
   breadcrumbs.push({
@@ -295,19 +295,20 @@ export function getSearchBreadcrumbs(
 }
 
 /**
- * Convert breadcrumb items to Schema.org BreadcrumbList format
- *
- * This function provides improved schema generation compared to generateBreadcrumbSchema:
- * - URL normalization to prevent double slashes
- * - Filtering of invalid/empty hrefs
- * - Integration with BreadcrumbItem type
- * - Proper handling of relative URLs
+ * Convert breadcrumb items to Schema.org BreadcrumbList format.
+ * Breadcrumb hrefs are locale-agnostic (e.g. /products/actuators); the locale
+ * is injected here to build correct absolute URLs for structured data.
  *
  * @param breadcrumbs - Array of breadcrumb items with label and optional href
  * @param siteUrl - Base site URL (e.g., "https://bapi.com")
+ * @param locale - Active locale (e.g., "en", "de") used to prefix hrefs in schema
  * @returns Schema.org BreadcrumbList object for structured data
  */
-export function breadcrumbsToSchemaOrg(breadcrumbs: BreadcrumbItem[], siteUrl: string) {
+export function breadcrumbsToSchemaOrg(
+  breadcrumbs: BreadcrumbItem[],
+  siteUrl: string,
+  locale: string
+) {
   // Normalize siteUrl to avoid double slashes
   const normalizedSiteUrl = siteUrl.replace(/\/+$/, '');
 
@@ -322,7 +323,7 @@ export function breadcrumbsToSchemaOrg(breadcrumbs: BreadcrumbItem[], siteUrl: s
         '@type': 'ListItem' as const,
         position: index + 1,
         name: crumb.label,
-        item: `${normalizedSiteUrl}${normalizedHref}`,
+        item: `${normalizedSiteUrl}/${locale}${normalizedHref}`,
       };
     });
 

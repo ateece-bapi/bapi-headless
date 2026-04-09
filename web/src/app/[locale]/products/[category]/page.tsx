@@ -202,7 +202,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   );
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
-  const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl);
+  const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl, locale);
 
   return (
     <div className="min-h-screen bg-white">

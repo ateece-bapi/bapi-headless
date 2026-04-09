@@ -121,7 +121,7 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
     },
   });
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bapi.com';
-  const schema = breadcrumbsToSchemaOrg(breadcrumbItems, siteUrl);
+  const schema = breadcrumbsToSchemaOrg(breadcrumbItems, siteUrl, locale);
 
   return (
     <div className="min-h-screen bg-neutral-50">

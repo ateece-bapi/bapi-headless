@@ -160,12 +160,12 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   } else {
     // Fallback if no parent category - treat subcategory as root
     breadcrumbs = [
-      { label: t('breadcrumb.home'), href: `/${locale}` },
+      { label: t('breadcrumb.home'), href: '/' },
       { label: translatedSubcategoryName },
     ];
   }
 
-  const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl);
+  const schema = breadcrumbsToSchemaOrg(breadcrumbs, siteUrl, locale);
 
   return (
     <div className="min-h-screen bg-white">

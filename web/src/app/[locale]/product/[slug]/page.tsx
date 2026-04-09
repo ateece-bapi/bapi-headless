@@ -526,7 +526,7 @@ export default async function ProductPage({
           },
         });
 
-        const breadcrumbSchema = breadcrumbsToSchemaOrg(breadcrumbItems, siteUrl);
+        const breadcrumbSchema = breadcrumbsToSchemaOrg(breadcrumbItems, siteUrl, locale);
         logger.info('[ProductPage] Schemas generated, preparing return...');
 
         logger.info('[ProductPage] BEFORE RETURN - About to render ProductDetailClient', {

@@ -130,7 +130,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   // Fetch products if category has no subcategories (leaf category)
   if (!hasSubcategories) {
     try {
-      // Paginate through all products to avoid silently dropping items
+      // Paginate through products with smaller batch size to prevent memory exhaustion
       let after: string | null = null;
       let hasNextPage = true;
 
@@ -139,7 +139,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           GetProductsWithFiltersDocument,
           {
             categorySlug: category,
-            first: 100,
+            first: 50,  // Reduced from 100 to prevent PHP memory exhaustion
             after: after || undefined,
           }
         );

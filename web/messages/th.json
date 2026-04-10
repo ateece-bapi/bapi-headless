@@ -1107,7 +1107,9 @@
       "invalidConfigMessage": "ตัวเลือกนี้ไม่สามารถใช้ได้ กรุณาเลือกตัวเลือกอื่น",
       "partialSelectionMessage": "กรุณาเลือกตัวเลือกอีก {count} ตัว{plural} เพื่อดูการกำหนดค่าสุดท้าย",
       "optionSingular": "",
-      "optionPlural": "ตัว"
+      "optionPlural": "ตัว",
+      "variantDescription": "Description",
+      "weight": "Weight"
     },
     "detail": {
       "configureSpecsSubtitle": "กำหนดค่าข้อมูลจำเพาะของคุณด้านล่าง"
@@ -1373,7 +1375,11 @@
       "home": "หน้าแรก",
       "products": "ผลิตภัณฑ์"
     },
-    "backTo": "กลับไปยัง {categoryName}"
+    "backTo": "กลับไปยัง {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

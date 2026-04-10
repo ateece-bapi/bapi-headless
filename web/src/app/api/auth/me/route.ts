@@ -50,6 +50,25 @@ export async function GET(request: NextRequest) {
     // Extract role names from the GraphQL response
     const roles = viewer.roles?.nodes?.map((role: { name: string }) => role.name) || [];
 
+    // Process customer groups from ACF fields (customer_group1/2/3)
+    // Filter out null, empty strings, and "NO ACCESS" values
+    const customerGroups = [
+      viewer.customerGroup1,
+      viewer.customerGroup2,
+      viewer.customerGroup3,
+    ]
+      .filter((group): group is string => {
+        return (
+          typeof group === 'string' &&
+          group.trim().length > 0 &&
+          group.toUpperCase() !== 'NO ACCESS'
+        );
+      })
+      .map(group => group.trim());
+
+    // Default to 'END USER' if no valid groups (matches legacy WordPress behavior)
+    const finalCustomerGroups = customerGroups.length > 0 ? customerGroups : ['END USER'];
+
     return NextResponse.json({
       user: {
         id: String(viewer.databaseId),
@@ -57,7 +76,7 @@ export async function GET(request: NextRequest) {
         displayName: viewer.name,
         username: viewer.username,
         twoFactorEnabled: viewer.twoFactorEnabled,
-        customerGroup: viewer.customerGroup || null,
+        customerGroups: finalCustomerGroups,
         roles,
       },
     });

@@ -8,7 +8,7 @@ export interface User {
   email: string;
   displayName: string;
   username: string;
-  customerGroup?: string | null;
+  customerGroups: string[]; // Array of customer groups from ACF fields (customer_group1/2/3)
 }
 
 interface AuthState {

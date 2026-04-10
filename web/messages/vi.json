@@ -617,7 +617,9 @@
       "invalidConfigMessage": "Sự kết hợp các tùy chọn này không khả dụng. Vui lòng thử các lựa chọn khác.",
       "partialSelectionMessage": "Vui lòng chọn {count} tùy chọn{plural} khác để xem cấu hình cuối cùng",
       "optionSingular": "",
-      "optionPlural": "s"
+      "optionPlural": "s",
+      "variantDescription": "Description",
+      "weight": "Weight"
     },
     "detail": {
       "configureSpecsSubtitle": "Cài đặt các thông số kỹ thuật của bạn bên dưới"
@@ -883,7 +885,11 @@
       "home": "Trang chủ",
       "products": "Sản phẩm"
     },
-    "backTo": "Trở về {categoryName}"
+    "backTo": "Trở về {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

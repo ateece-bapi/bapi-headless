@@ -424,9 +424,13 @@ export default async function ProductPage({
                   id: variation.id,
                   databaseId: variation.databaseId,
                   name: variation.name,
+                  description: variation.description || null,
                   price: variation.price,
                   regularPrice: variation.regularPrice,
+                  salePrice: variation.salePrice || null,
                   stockStatus: variation.stockStatus,
+                  stockQuantity: variation.stockQuantity ?? null,
+                  weight: variation.weight || null,
                   partNumber: variation.partNumber,
                   sku: variation.sku,
                   image: variation.image

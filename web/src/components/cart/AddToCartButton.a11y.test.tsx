@@ -21,9 +21,11 @@ vi.mock('@/components/ui/Toast', () => ({
 
 const mockProduct: Omit<CartItem, 'quantity'> = {
   id: 'test-product-1',
+  databaseId: 12345,
   name: 'Temperature Sensor TS-101',
   slug: 'temperature-sensor-ts-101',
-  price: 149.00,
+  price: '149.00',
+  numericPrice: 149.00,
   image: {
     sourceUrl: 'https://example.com/product.jpg',
     altText: 'Temperature Sensor',

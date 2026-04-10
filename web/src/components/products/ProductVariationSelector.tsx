@@ -10,11 +10,13 @@ interface Variation {
   id: string;
   databaseId?: number;
   name?: string;
+  description?: string | null;
   price?: string | null;
   regularPrice?: string | null;
   salePrice?: string | null;
   stockStatus?: 'IN_STOCK' | 'OUT_OF_STOCK' | 'ON_BACKORDER' | null;
   stockQuantity?: number | null;
+  weight?: string | null;
   attributes: Record<string, string>;
   partNumber?: string | null;
   sku?: string | null;
@@ -100,9 +102,13 @@ export default function ProductVariationSelector({
         id: variation.id,
         databaseId: variation.databaseId || 0,
         name: variation.name || '',
+        description: variation.description || null,
         price: variation.price || '',
         regularPrice: variation.regularPrice || '',
+        salePrice: variation.salePrice || null,
         stockStatus: variation.stockStatus || 'IN_STOCK',
+        stockQuantity: variation.stockQuantity ?? null,
+        weight: variation.weight || null,
         partNumber: variation.partNumber || undefined, // Transform null to undefined
         sku: variation.sku || '',
         image: variation.image || null,
@@ -138,11 +144,13 @@ export default function ProductVariationSelector({
         id: newVariation.id,
         databaseId: newVariation.databaseId,
         name: newVariation.name,
+        description: newVariation.description,
         price: newVariation.price,
         regularPrice: newVariation.regularPrice,
-        salePrice: null,
+        salePrice: newVariation.salePrice,
         stockStatus: newVariation.stockStatus as 'IN_STOCK' | 'OUT_OF_STOCK' | 'ON_BACKORDER',
-        stockQuantity: null,
+        stockQuantity: newVariation.stockQuantity,
+        weight: newVariation.weight,
         attributes: newVariation.attributes.nodes.reduce(
           (acc, attr) => {
             acc[attr.name] = attr.value;

@@ -6,11 +6,21 @@ import * as Sentry from '@sentry/nextjs';
 import { ProductGrid } from './ProductGrid';
 import { Pagination } from './Pagination';
 import ComparisonButton from './ComparisonButton';
-import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
+import type {
+  GetProductsWithFiltersQuery,
+  GetProductsByCategoryQuery,
+} from '@/lib/graphql/generated';
 import { useAuth } from '@/hooks/useAuth';
 import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
 
-type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
+type ProductFromFiltersQuery = NonNullable<
+  GetProductsWithFiltersQuery['products']
+>['nodes'][number];
+type ProductFromCategoryQuery = NonNullable<
+  GetProductsByCategoryQuery['products']
+>['nodes'][number];
+
+type Product = ProductFromFiltersQuery | ProductFromCategoryQuery;
 
 interface FilteredProductGridProps {
   products: Product[];
@@ -164,7 +174,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
   const filteredProducts = useMemo(() => {
     // STEP 1: Customer group filtering (B2B access control)
     // Applied client-side after products are fetched from WordPress
-    const customerGroupFiltered = filterProductsByCustomerGroup(products, user?.customerGroup);
+    const customerGroupFiltered = filterProductsByCustomerGroup(products, user?.customerGroups || ['END USER']);
 
     // STEP 2: Attribute filtering (if no filters active, return customer-filtered products)
     if (!hasActiveFilters) return customerGroupFiltered;
@@ -197,7 +207,7 @@ export default function FilteredProductGrid({ products, locale }: FilteredProduc
       // Product matches all active filter categories
       return true;
     });
-  }, [products, user?.customerGroup, hasActiveFilters, activeFilters, filterFieldMap]);
+  }, [products, user?.customerGroups, hasActiveFilters, activeFilters, filterFieldMap]);
 
   // Sort products
   const sortedProducts = useMemo(() => {

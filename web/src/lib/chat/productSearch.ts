@@ -86,7 +86,7 @@ export interface ProductSearchResult {
 export async function searchProducts(
   query: string,
   limit: number = 5,
-  customerGroup?: string | null
+  customerGroups: string[] = ['END USER']
 ): Promise<ProductSearchResult[]> {
   try {
     const client = getGraphQLClient(['products']);
@@ -99,7 +99,7 @@ export async function searchProducts(
     const products = data?.products?.nodes || [];
 
     // Apply customer group filtering before mapping
-    const filteredProducts = filterProductsByCustomerGroup(products, customerGroup);
+    const filteredProducts = filterProductsByCustomerGroup(products, customerGroups);
 
     return filteredProducts.map((product: any) => ({
       id: product.id,

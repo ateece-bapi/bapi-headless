@@ -55,7 +55,7 @@ export default function SearchResults({
   const { user } = useAuth();
 
   // Filter products by customer group (B2B access control)
-  const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroup);
+  const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroups || ['END USER']);
 
   return (
     <div className="py-8 lg:py-12">

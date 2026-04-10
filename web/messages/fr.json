@@ -656,7 +656,9 @@
       "invalidConfigMessage": "Cette combinaison d'options n'est pas disponible. Veuillez essayer d'autres sélections.",
       "partialSelectionMessage": "Veuillez sélectionner {count} option{plural} supplémentaire{plural} pour voir la configuration finale",
       "optionSingular": "",
-      "optionPlural": "s"
+      "optionPlural": "s",
+      "variantDescription": "Description",
+      "weight": "Weight"
     },
     "detail": {
       "configureSpecsSubtitle": "Configurez vos spécifications ci-dessous"
@@ -922,7 +924,11 @@
       "home": "Accueil",
       "products": "Produits"
     },
-    "backTo": "Retour à {categoryName}"
+    "backTo": "Retour à {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

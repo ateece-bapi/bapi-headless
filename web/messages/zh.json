@@ -656,7 +656,9 @@
       "invalidConfigMessage": "此选项组合不可用。请尝试不同的选择。",
       "partialSelectionMessage": "请选择 {count} 个更多选项{plural}以查看最终配置",
       "optionSingular": "",
-      "optionPlural": "个"
+      "optionPlural": "个",
+      "variantDescription": "Description",
+      "weight": "Weight"
     },
     "detail": {
       "configureSpecsSubtitle": "在下面配置您的规格"
@@ -922,7 +924,11 @@
       "home": "首页",
       "products": "产品"
     },
-    "backTo": "返回到 {categoryName}"
+    "backTo": "返回到 {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

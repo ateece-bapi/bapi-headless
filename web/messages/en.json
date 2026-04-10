@@ -1105,7 +1105,7 @@
       "ordersCount": "{count} orders",
       "viewAll": "View all →",
       "savedQuotes": "Saved Quotes",
-      "quotesCount":"{count} quotes",
+      "quotesCount": "{count} quotes",
       "moreItems": "+ {count} more item",
       "moreItemsPlural": "+ {count} more items",
       "sections": {
@@ -1474,6 +1474,8 @@
       "selectedConfig": "✓ Selected Configuration",
       "partNumber": "Part Number",
       "yourPrice": "Your Price",
+      "variantDescription": "Description",
+      "weight": "Weight",
       "availability": "Availability",
       "inStock": "In Stock",
       "shipsIn": "Ships in 2-3 days",
@@ -1506,7 +1508,7 @@
     "variationSelectors": {
       "chooseOption": "Choose an option"
     },
-   "productAttributes": {
+    "productAttributes": {
       "temperature": {
         "application": "Temperature Application",
         "roomEnclosure": "Room Enclosure Style",
@@ -1822,7 +1824,11 @@
       "home": "Home",
       "products": "Products"
     },
-    "backTo": "Back to {categoryName}"
+    "backTo": "Back to {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

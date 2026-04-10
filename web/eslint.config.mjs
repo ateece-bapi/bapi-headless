@@ -58,6 +58,21 @@ const eslintConfig = defineConfig([...nextVitals, ...nextTs, {
   plugins: { 'next-intl': nextIntl },
   rules: {
     'next-intl/use-next-intl-link-over-next-link': 'error',
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'next-intl/link',
+            message: "Use `@/lib/navigation` instead of importing from `next-intl/link` directly.",
+          },
+          {
+            name: 'next-intl/navigation',
+            message: "Use `@/lib/navigation` instead of importing from `next-intl/navigation` directly.",
+          },
+        ],
+      },
+    ],
   },
 },
 // Prevent duplicate <main> elements in page components

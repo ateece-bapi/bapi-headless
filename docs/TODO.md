@@ -1,10 +1,74 @@
 # BAPI Headless - Project Roadmap & TODO
 
-**Updated:** April 9, 2026  
-**Launch Date:** May 4, 2026 (25 days remaining)  
+**Updated:** April 10, 2026  
+**Launch Date:** May 4, 2026 (24 days remaining)  
 **Current Phase:** Phase 1 Development - Stakeholder Testing Period  
 **Testing Period:** 3 weeks (Sales Manager, Product Manager, Customer Service, Select Customers)  
-**Launch Readiness:** 99.9%
+**Launch Readiness:** 98% (hotfix required before staging validation)
+
+---
+
+## 🔥 MONDAY APRIL 14, 2026 - PRIORITY HOTFIX SESSION
+
+**Branch:** `hotfix/customer-group-slug-normalization`  
+**Estimated Time:** 2.5-3.5 hours  
+**Blocking:** Staging validation for customer group filtering feature
+
+### ⚠️ CRITICAL FIXES (Must complete before any staging tests)
+
+**Issue #1: Slug Normalization Bug (90 min)**
+- **Problem:** ACF returns `"END USER"` but taxonomy uses `"end-user"` → comparison fails
+- **Impact:** ALL customer group filtering broken (guests see restricted products)
+- **Files:**
+  - [ ] Create `web/src/lib/utils/slugify.ts` helper
+  - [ ] Fix `web/src/app/api/auth/me/route.ts` (line ~48)
+  - [ ] Fix `web/src/app/api/chat/route.ts` (line ~85)
+  - [ ] Fix `web/src/lib/utils/filterProductsByCustomerGroup.ts` (lines 65-70)
+  - [ ] Add unit tests for slugify (5 test cases)
+
+**Issue #2: Hardcoded Imperial Units (30 min)**
+- **Problem:** VariationSelector hardcodes `lbs` instead of `formatWeight()`
+- **Impact:** Violates Phase 1 regional support requirement
+- **Files:**
+  - [ ] Fix `web/src/components/products/VariationSelector.tsx` (line ~147)
+
+**Issue #3: ACF Guard Missing (15 min)**
+- **Problem:** WordPress plugin fatals if ACF deactivated
+- **Impact:** Site crash if plugin dependencies change
+- **Files:**
+  - [ ] Fix `cms/files/wpgraphql-customer-groups.php` (lines 127, 134, 141)
+  - [ ] Redeploy to Kinsta staging mu-plugins
+
+### 🔶 MEDIUM PRIORITY (Same session)
+
+**Issue #4: Stub Endpoint (15 min)**
+- [ ] Decision: Remove `/api/products/customer-groups/route.ts` (unused)
+
+**Issue #5: Centralized Logger (15 min)**
+- [ ] Replace all `console.warn/error` with `logger.*` for Sentry integration
+
+### ✅ VALIDATION CHECKLIST
+
+**Testing:**
+- [ ] `pnpm test:ci` - All 1298 tests passing
+- [ ] `pnpm run build` - Production build successful
+- [ ] Manual: Guest user defaults to `['end-user']`
+- [ ] Manual: "END USER" → "end-user" slugification
+
+**Staging:**
+- [ ] Button Sensor category as guest → 1 product (not 3)
+- [ ] Login test-alc@bapi.com → 2 products
+- [ ] Compare counts with legacy.bapi.com
+- [ ] Check Sentry for errors
+
+**Timeline:**
+```
+8:00 AM  - Start hotfix branch
+10:30 AM - Merge to main
+11:30 AM - Staging validation complete ✅
+```
+
+**See DAILY-LOG.md April 14 entry for detailed implementation plan.**
 
 ---
 

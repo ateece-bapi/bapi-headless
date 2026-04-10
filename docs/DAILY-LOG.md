@@ -2,9 +2,235 @@
 
 ## 📋 Project Timeline & Phasing Strategy
 
-**Updated:** April 9, 2026  
-**Status:** Phase 1 Development - May 4, 2026 Go-Live (25 days remaining)  
+**Updated:** April 10, 2026  
+**Status:** Phase 1 Development - May 4, 2026 Go-Live (24 days remaining)  
 **Testing Phase:** 3-week stakeholder & customer validation (Sales, Product, CS, Select Customers)
+
+---
+
+## April 14, 2026 (MONDAY) — Customer Group Filtering: Copilot Review Fixes 🔧⚠️
+
+**Status:** 📋 PLANNED  
+**Branch:** `hotfix/customer-group-slug-normalization`  
+**Context:** Address 10 critical issues from GitHub Copilot automated review of PR (customer group filtering)  
+**Priority:** 🔴 CRITICAL - Blocks staging testing (slug mismatch will break ALL filtering)  
+**Estimated Time:** 2-3 hours  
+
+### 🎯 MONDAY MORNING GAMEPLAN (Priority Order)
+
+**⚠️ CRITICAL FIXES (Must complete before staging testing):**
+
+**1. Slug Normalization Bug (Issues #4, #5, #10) - 90 minutes**
+- **Problem:** ACF returns `"END USER"` (display name), taxonomy uses `"end-user"` (slug)
+- **Impact:** `toLowerCase()` comparison will FAIL → filtering completely broken
+- **Files to fix:**
+  - `web/src/app/api/auth/me/route.ts` (Line ~48)
+  - `web/src/app/api/chat/route.ts` (Line ~85)
+  - `web/src/lib/utils/filterProductsByCustomerGroup.ts` (Lines ~65-70)
+- **Solution:** Add slugify helper:
+  ```typescript
+  const slugify = (str: string) => str.trim().toLowerCase().replace(/\s+/g, '-');
+  // "END USER" → "end-user"
+  // "ALC" → "alc"
+  ```
+- **Test cases:**
+  - Guest user (no groups) → defaults to `['end-user']`
+  - ALC user → ACF `"ALC"` → normalized to `['alc']` → matches taxonomy
+  - Multi-group user → `["END USER", "ALC", "ACS"]` → `['end-user', 'alc', 'acs']`
+
+**2. Hardcoded Imperial Units (Issue #7) - 30 minutes**
+- **Problem:** `VariationSelector.tsx` hardcodes `lbs` instead of using `formatWeight()`
+- **Impact:** Non-US markets see incorrect units (Phase 1 requirement: regional support)
+- **File:** `web/src/components/products/VariationSelector.tsx` (Line ~147)
+- **Solution:**
+  ```typescript
+  import { formatWeight } from '@/lib/utils/locale';
+  // Before: {matchedVariation.weight} lbs
+  // After: {formatWeight(matchedVariation.weight, region.measurementSystem)}
+  ```
+
+**3. ACF Guard in WordPress Plugin (Issue #8) - 15 minutes**
+- **Problem:** WPGraphQL plugin doesn't check `function_exists('get_field')`
+- **Impact:** Fatal error if ACF deactivated
+- **File:** `cms/files/wpgraphql-customer-groups.php` (Lines ~127, 134, 141)
+- **Solution:**
+  ```php
+  'resolve' => function($user) {
+      if (!function_exists('get_field')) {
+          return null;
+      }
+      $value = get_field('customer_group1', 'user_' . $user->ID);
+      return is_string($value) ? $value : null;
+  },
+  ```
+
+**🔶 MEDIUM PRIORITY (Address same session):**
+
+**4. Stub Endpoint Decision (Issue #1) - 15 minutes**
+- **Problem:** `/api/products/customer-groups` always returns `{}`
+- **Impact:** Unused endpoint causing console warnings
+- **Decision needed:** Implement it OR remove it
+- **Recommendation:** Remove (functionality already in product queries via taxonomy)
+- **File:** `web/src/app/api/products/customer-groups/route.ts`
+
+**5. Centralized Logger (Issues #2, #3) - 15 minutes**
+- **Problem:** Using `console.warn/error` instead of centralized logger
+- **Impact:** Logs not captured by Sentry in production
+- **Files:**
+  - `web/src/app/api/products/customer-groups/route.ts` (if keeping)
+  - Any other routes with console.* calls
+- **Solution:**
+  ```typescript
+  import { logger } from '@/lib/logger';
+  logger.warn('[customer-groups API] Not implemented');
+  logger.error('[customer-groups API] Error:', error);
+  ```
+
+**📝 LOW PRIORITY (Defer to Phase 2 GitHub Issues):**
+
+**6. Update JSDoc (Issue #6)**
+- `web/src/lib/chat/productSearch.ts` - Update param docs for `customerGroups: string[]`
+
+**7. Backend Filtering Hook (Issue #9)**
+- `cms/files/wpgraphql-customer-groups.php` - Remove ineffective filter (lines 181-205)
+
+---
+
+### IMPLEMENTATION CHECKLIST
+
+**Pre-work (5 min):**
+- [ ] Create branch: `hotfix/customer-group-slug-normalization`
+- [ ] Pull latest main and verify clean working directory
+
+**Critical Fixes (2 hours):**
+- [ ] Add `slugify()` helper to `web/src/lib/utils/slugify.ts`
+- [ ] Update `/api/auth/me` to slugify customer groups before returning
+- [ ] Update `/api/chat` to slugify customer groups
+- [ ] Update `filterProductsByCustomerGroup.ts` to use slugified comparison
+- [ ] Add unit tests for slugify helper (5 test cases)
+- [ ] Replace hardcoded `lbs` with `formatWeight()` in VariationSelector
+- [ ] Add `function_exists('get_field')` guards to WordPress plugin
+- [ ] Redeploy WordPress plugin to Kinsta staging
+
+**Medium Fixes (30 min):**
+- [ ] Decision: Remove `/api/products/customer-groups` stub endpoint
+- [ ] Replace `console.warn/error` with centralized logger
+
+**Testing (30 min):**
+- [ ] Run `pnpm test:ci` - verify all 1298 tests passing
+- [ ] Run `pnpm run build` - verify production build succeeds
+- [ ] Manual test: Guest user → defaults to `['end-user']`
+- [ ] Manual test: Slugify "END USER" → "end-user"
+- [ ] Manual test: Slugify "ALC" → "alc"
+
+**Deployment (15 min):**
+- [ ] Commit with descriptive message
+- [ ] Push to remote
+- [ ] Create PR with Copilot review fixes documented
+- [ ] Merge to main after automated checks pass
+
+**Staging Validation (30 min):**
+- [ ] Deploy to staging (auto-deploy on merge)
+- [ ] Test Button Sensor category as guest → expect 1 product
+- [ ] Login as test-alc@bapi.com → expect 2 products
+- [ ] Compare counts with legacy.bapi.com
+- [ ] Check Sentry for any customer group errors
+
+---
+
+### SUCCESS CRITERIA
+
+**Before starting staging tests:**
+- ✅ All slug normalization fixed ("END USER" → "end-user")
+- ✅ All tests passing (1298 tests)
+- ✅ Production build successful
+- ✅ WordPress plugin has ACF guards
+- ✅ Regional units working (formatWeight)
+- ✅ No console.* calls (centralized logger only)
+
+**Staging validation confirms:**
+- ✅ Guest users see correct product counts (Button Sensor: 1 product)
+- ✅ ALC users see correct product counts (Button Sensor: 2 products)
+- ✅ Product counts match legacy WordPress site
+- ✅ No errors in Sentry
+- ✅ Currency/unit conversion working for all regions
+
+---
+
+### EXPECTED TIMELINE (Monday Morning)
+
+```
+8:00 AM  - Read this plan, create hotfix branch
+8:05 AM  - Implement slugify() helper + tests
+8:30 AM  - Fix auth/chat/filtering routes
+9:00 AM  - Fix VariationSelector units
+9:15 AM  - Fix WordPress ACF guards + redeploy
+9:30 AM  - Remove stub endpoint + logger cleanup
+10:00 AM - Run full test suite
+10:15 AM - Production build verification
+10:30 AM - Commit, push, create PR
+10:45 AM - Merge to main
+11:00 AM - STAGING VALIDATION with real accounts
+11:30 AM - DONE ✅ (or debug if tests fail)
+```
+
+**Total Time:** 2.5-3.5 hours (depending on test debugging)
+
+---
+
+### DOCUMENTATION TO UPDATE
+
+**Post-completion:**
+- [ ] Update DAILY-LOG.md with actual completion time
+- [ ] Document slug normalization pattern in README
+- [ ] Create Phase 2 GitHub issues for deferred items (#6, #7)
+- [ ] Update TODO.md to mark customer group filtering as 100% complete
+
+---
+
+### KEY TAKEAWAYS (For Future Reference)
+
+**Lesson 1: ACF vs Taxonomy Data Format Mismatch**
+> ACF fields return display names ("END USER"), WordPress taxonomies use slugs ("end-user"). Always normalize before comparison.
+
+**Lesson 2: Test with Real Data, Not Mocks**
+> Mock data matched perfectly (no spaces), real ACF data has spaces/uppercase. Integration tests with real WordPress data critical.
+
+**Lesson 3: Copilot Automated Review is Gold**
+> Caught 3 critical bugs that would have broken production. Always address CRITICAL/HIGH priority feedback before merging.
+
+**Lesson 4: Regional Support is Non-Negotiable**
+> Hardcoded units violate Phase 1 requirements. Always use locale utilities (formatWeight, formatTemperature, formatPressure).
+
+---
+
+## April 10, 2026 — Customer Group Filtering Implementation Complete ✅
+
+**Status:** ✅ COMPLETE - PR #XXX Merged  
+**Branch:** `feat/product-variable-configurations` (merged, deleted)  
+**Context:** Implement B2B product visibility using WordPress customer-group taxonomy  
+**Priority:** 🔴 CRITICAL - Security/Business Logic Gap  
+**Time:** Full day (8 hours - implementation, testing, fixes)  
+
+### 🎯 SESSION SUMMARY
+
+**Implemented:**
+- ✅ WPGraphQL plugin to expose customer-group taxonomy (45 terms)
+- ✅ Auth system returns `customerGroups: string[]` from 3 ACF fields
+- ✅ Filtering utility prioritizes taxonomy data over title parsing
+- ✅ All components updated (Category, Search, Related, Chat)
+- ✅ QuickView restored (added `__typename` to queries)
+- ✅ All 1298 tests passing
+- ✅ Production build successful (787 routes)
+
+**Known Issues (Copilot Review):**
+- ⚠️ Slug normalization bug (Monday hotfix required)
+- ⚠️ Hardcoded units (Monday fix required)
+- ⚠️ Missing ACF guards (Monday fix required)
+
+**Next:** Monday morning hotfix session before staging validation
+
+**Full details:** See April 10 entry below
 
 ---
 

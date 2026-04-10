@@ -656,7 +656,9 @@
       "invalidConfigMessage": "هذا التوليفة من الخيارات غير متاحة. يرجى محاولة اختيارات مختلفة.",
       "partialSelectionMessage": "يرجى تحديد {count} خيار{plural} آخر لعرض التكوين النهائي",
       "optionSingular": "",
-      "optionPlural": "ات"
+      "optionPlural": "ات",
+      "variantDescription": "Description",
+      "weight": "Weight"
     },
     "detail": {
       "configureSpecsSubtitle": "قم بتكوين مواصفاتك أدناه"

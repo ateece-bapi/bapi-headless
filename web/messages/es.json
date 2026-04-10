@@ -656,7 +656,9 @@
       "invalidConfigMessage": "Esta combinación de opciones no está disponible. Intenta diferentes selecciones.",
       "partialSelectionMessage": "Selecciona {count} opción{plural} más para ver la configuración final",
       "optionSingular": "",
-      "optionPlural": "es"
+      "optionPlural": "es",
+      "variantDescription": "Description",
+      "weight": "Weight"
     },
     "detail": {
       "configureSpecsSubtitle": "Configure sus especificaciones a continuación"

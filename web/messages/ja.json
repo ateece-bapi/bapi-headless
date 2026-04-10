@@ -656,7 +656,9 @@
       "invalidConfigMessage": "このオプションの組み合わせは利用できません。別の選択をお試しください。",
       "partialSelectionMessage": "最終構成を確認するには、{count}つのオプションをさらに選択してください{plural}",
       "optionSingular": "",
-      "optionPlural": "つ"
+      "optionPlural": "つ",
+      "variantDescription": "Description",
+      "weight": "Weight"
     },
     "detail": {
       "configureSpecsSubtitle": "以下の仕様を設定してください"

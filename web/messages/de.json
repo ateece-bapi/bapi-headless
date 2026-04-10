@@ -577,7 +577,9 @@
       "invalidConfigMessage": "Diese Kombination von Optionen ist nicht verfügbar. Bitte versuchen Sie es mit anderen Auswahlen.",
       "partialSelectionMessage": "Bitte wählen Sie {count} weitere Option{plural} aus, um die endgültige Konfiguration zu sehen",
       "optionSingular": "",
-      "optionPlural": "en"
+      "optionPlural": "en",
+      "variantDescription": "Description",
+      "weight": "Weight"
     },
     "detail": {
       "configureSpecsSubtitle": "Konfigurieren Sie Ihre Spezifikationen unten"

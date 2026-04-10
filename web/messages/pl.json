@@ -1107,7 +1107,9 @@
       "invalidConfigMessage": "Ta kombinacja opcji nie jest dostępna. Spróbuj dokonać innych wyborów.",
       "partialSelectionMessage": "Wybierz {count} więcej opcj{plural}, aby zobaczyć ostateczną konfigurację",
       "optionSingular": "",
-      "optionPlural": "e"
+      "optionPlural": "e",
+      "variantDescription": "Description",
+      "weight": "Weight"
     },
     "detail": {
       "configureSpecsSubtitle": "Skonfiguruj swoje specyfikacje poniżej"

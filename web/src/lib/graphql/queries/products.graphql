@@ -95,11 +95,30 @@ query GetProductBySlug($slug: ID!) {
           id
           databaseId
           name
+          description
           price
           regularPrice
+          salePrice
           stockStatus
+          stockQuantity
+          weight
           partNumber
           sku
+          image {
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
+          attributes {
+            nodes {
+              name
+              label
+              value
+            }
+          }
         }
       }
     }
@@ -333,9 +352,13 @@ query GetProductVariations($id: ID!) {
           id
           databaseId
           name
+          description
           price
           regularPrice
+          salePrice
           stockStatus
+          stockQuantity
+          weight
           partNumber
           sku
           image {

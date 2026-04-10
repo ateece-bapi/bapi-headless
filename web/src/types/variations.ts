@@ -21,9 +21,13 @@ export interface ProductVariation {
   id: string;
   databaseId: number;
   name: string;
+  description?: string | null;
   price: string;
   regularPrice: string;
+  salePrice?: string | null;
   stockStatus: string;
+  stockQuantity?: number | null;
+  weight?: string | null;
   partNumber?: string;
   sku: string;
   image?: {

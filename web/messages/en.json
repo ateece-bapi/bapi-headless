@@ -1474,6 +1474,8 @@
       "selectedConfig": "✓ Selected Configuration",
       "partNumber": "Part Number",
       "yourPrice": "Your Price",
+      "variantDescription": "Description",
+      "weight": "Weight",
       "availability": "Availability",
       "inStock": "In Stock",
       "shipsIn": "Ships in 2-3 days",

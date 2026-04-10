@@ -381,6 +381,16 @@ export default function VariationSelector({
                       </p>
                     </div>
                     <div className="space-y-2">
+                      {matchedVariation.description && (
+                        <div>
+                          <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
+                            {t('variantDescription')}
+                          </p>
+                          <p className="text-sm font-medium text-neutral-800">
+                            {matchedVariation.description.replace(/<[^>]*>/g, '')}
+                          </p>
+                        </div>
+                      )}
                       <div>
                         <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
                           {t('partNumber')}
@@ -396,12 +406,27 @@ export default function VariationSelector({
                         <p className="text-3xl font-bold text-primary-700">
                           {convertWooCommercePrice(matchedVariation.price, region.currency)}
                         </p>
-                        {basePrice && basePrice !== matchedVariation.price && (
+                        {matchedVariation.salePrice && matchedVariation.regularPrice && matchedVariation.salePrice !== matchedVariation.regularPrice && (
+                          <span className="ml-2 text-sm text-neutral-600 line-through">
+                            {convertWooCommercePrice(matchedVariation.regularPrice, region.currency)}
+                          </span>
+                        )}
+                        {!matchedVariation.salePrice && basePrice && basePrice !== matchedVariation.price && (
                           <span className="ml-2 text-sm text-neutral-600 line-through">
                             {convertWooCommercePrice(basePrice, region.currency)}
                           </span>
                         )}
                       </div>
+                      {matchedVariation.weight && (
+                        <div>
+                          <p className="mb-1 text-xs uppercase tracking-wide text-neutral-600">
+                            {t('weight')}
+                          </p>
+                          <p className="text-sm font-medium text-neutral-700">
+                            {matchedVariation.weight} lbs
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
 

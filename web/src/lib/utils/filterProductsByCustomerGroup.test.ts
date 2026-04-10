@@ -71,12 +71,10 @@ describe('extractCustomerGroupFromTitle', () => {
 });
 
 describe('getProductCustomerGroups', () => {
-  it('returns customer group from customerGroup1 field when available', () => {
+  it('returns customer group from customerGroups field when available', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) Test Product',
-      customerGroup1: ['alc'],
-      customerGroup2: null,
-      customerGroup3: null,
+      customerGroups: [{ slug: 'alc', name: 'ALC' }],
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc']);
@@ -85,9 +83,10 @@ describe('getProductCustomerGroups', () => {
   it('combines multiple customer group fields', () => {
     const product: ProductWithCustomerGroup = {
       name: 'Test Product',
-      customerGroup1: ['alc'],
-      customerGroup2: ['acs'],
-      customerGroup3: null,
+      customerGroups: [
+        { slug: 'alc', name: 'ALC' },
+        { slug: 'acs', name: 'ACS' },
+      ],
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc', 'acs']);
@@ -96,9 +95,7 @@ describe('getProductCustomerGroups', () => {
   it('falls back to title parsing when GraphQL fields empty', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) Test Product',
-      customerGroup1: null,
-      customerGroup2: null,
-      customerGroup3: null,
+      customerGroups: null,
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc']);
@@ -107,9 +104,7 @@ describe('getProductCustomerGroups', () => {
   it('returns empty array for standard product', () => {
     const product: ProductWithCustomerGroup = {
       name: 'BA/10K-3 Temperature Sensor',
-      customerGroup1: null,
-      customerGroup2: null,
-      customerGroup3: null,
+      customerGroups: null,
     };
 
     expect(getProductCustomerGroups(product)).toEqual([]);
@@ -118,9 +113,10 @@ describe('getProductCustomerGroups', () => {
   it('deduplicates customer groups', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) Test',
-      customerGroup1: ['alc'],
-      customerGroup2: ['alc'],
-      customerGroup3: null,
+      customerGroups: [
+        { slug: 'alc', name: 'ALC' },
+        { slug: 'alc', name: 'ALC' },
+      ],
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc']);
@@ -129,9 +125,10 @@ describe('getProductCustomerGroups', () => {
   it('normalizes to lowercase', () => {
     const product: ProductWithCustomerGroup = {
       name: 'Test',
-      customerGroup1: ['ALC'],
-      customerGroup2: ['ACS'],
-      customerGroup3: null,
+      customerGroups: [
+        { slug: 'ALC', name: 'ALC' },
+        { slug: 'ACS', name: 'ACS' },
+      ],
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc', 'acs']);
@@ -142,62 +139,52 @@ describe('canUserViewProduct', () => {
   it('allows anyone to view standard products', () => {
     const product: ProductWithCustomerGroup = {
       name: 'BA/10K-3 Temperature Sensor',
-      customerGroup1: null,
-      customerGroup2: null,
-      customerGroup3: null,
+      customerGroups: null,
     };
 
-    expect(canUserViewProduct(product, null)).toBe(true);
-    expect(canUserViewProduct(product, 'alc')).toBe(true);
-    expect(canUserViewProduct(product, undefined)).toBe(true);
+    expect(canUserViewProduct(product, ['end user'])).toBe(true);
+    expect(canUserViewProduct(product, ['alc'])).toBe(true);
+    expect(canUserViewProduct(product, ['END USER'])).toBe(true);
   });
 
   it('blocks guest users from restricted products', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) BAPI-Stat 4',
-      customerGroup1: null,
-      customerGroup2: null,
-      customerGroup3: null,
+      customerGroups: null,
     };
 
-    expect(canUserViewProduct(product, null)).toBe(false);
-    expect(canUserViewProduct(product, undefined)).toBe(false);
+    expect(canUserViewProduct(product, ['end user'])).toBe(false);
+    expect(canUserViewProduct(product, ['END USER'])).toBe(false);
   });
 
   it('allows matching customer group users to view restricted products', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) BAPI-Stat 4',
-      customerGroup1: null,
-      customerGroup2: null,
-      customerGroup3: null,
+      customerGroups: null,
     };
 
-    expect(canUserViewProduct(product, 'alc')).toBe(true);
+    expect(canUserViewProduct(product, ['alc'])).toBe(true);
   });
 
   it('blocks non-matching customer group users', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) BAPI-Stat 4',
-      customerGroup1: null,
-      customerGroup2: null,
-      customerGroup3: null,
+      customerGroups: null,
     };
 
-    expect(canUserViewProduct(product, 'acs')).toBe(false);
-    expect(canUserViewProduct(product, 'emc')).toBe(false);
+    expect(canUserViewProduct(product, ['acs'])).toBe(false);
+    expect(canUserViewProduct(product, ['emc'])).toBe(false);
   });
 
   it('handles case-insensitive matching', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) Test',
-      customerGroup1: null,
-      customerGroup2: null,
-      customerGroup3: null,
+      customerGroups: null,
     };
 
-    expect(canUserViewProduct(product, 'ALC')).toBe(true);
-    expect(canUserViewProduct(product, 'alc')).toBe(true);
-    expect(canUserViewProduct(product, 'Alc')).toBe(true);
+    expect(canUserViewProduct(product, ['ALC'])).toBe(true);
+    expect(canUserViewProduct(product, ['alc'])).toBe(true);
+    expect(canUserViewProduct(product, ['Alc'])).toBe(true);
   });
 });
 
@@ -211,7 +198,7 @@ describe('filterProductsByCustomerGroup', () => {
   ];
 
   it('guest users see only standard products', () => {
-    const filtered = filterProductsByCustomerGroup(products, null);
+    const filtered = filterProductsByCustomerGroup(products, ['end user']);
 
     expect(filtered).toHaveLength(2);
     expect(filtered.map((p) => p.name)).toEqual([
@@ -221,7 +208,7 @@ describe('filterProductsByCustomerGroup', () => {
   });
 
   it('ALC users see standard + ALC products', () => {
-    const filtered = filterProductsByCustomerGroup(products, 'alc');
+    const filtered = filterProductsByCustomerGroup(products, ['alc']);
 
     expect(filtered).toHaveLength(3);
     expect(filtered.map((p) => p.name)).toEqual([
@@ -232,7 +219,7 @@ describe('filterProductsByCustomerGroup', () => {
   });
 
   it('ACS users see standard + ACS products', () => {
-    const filtered = filterProductsByCustomerGroup(products, 'acs');
+    const filtered = filterProductsByCustomerGroup(products, ['acs']);
 
     expect(filtered).toHaveLength(3);
     expect(filtered.map((p) => p.name)).toEqual([
@@ -243,7 +230,7 @@ describe('filterProductsByCustomerGroup', () => {
   });
 
   it('preserves product order', () => {
-    const filtered = filterProductsByCustomerGroup(products, 'alc');
+    const filtered = filterProductsByCustomerGroup(products, ['alc']);
 
     expect(filtered[0].name).toBe('BA/10K-3 Temperature Sensor');
     expect(filtered[1].name).toBe('(ALC) BAPI-Stat 4');
@@ -251,7 +238,7 @@ describe('filterProductsByCustomerGroup', () => {
   });
 
   it('returns empty array when no products', () => {
-    const filtered = filterProductsByCustomerGroup([], 'alc');
+    const filtered = filterProductsByCustomerGroup([], ['alc']);
 
     expect(filtered).toEqual([]);
   });
@@ -259,14 +246,14 @@ describe('filterProductsByCustomerGroup', () => {
 
 describe('getProductCountsByGroup', () => {
   const products: ProductWithCustomerGroup[] = [
-    { name: 'Standard Product 1', customerGroup1: null, customerGroup2: null, customerGroup3: null },
-    { name: 'Standard Product 2', customerGroup1: null, customerGroup2: null, customerGroup3: null },
-    { name: '(ALC) Product 1', customerGroup1: null, customerGroup2: null, customerGroup3: null },
-    { name: '(ALC) Product 2', customerGroup1: null, customerGroup2: null, customerGroup3: null },
-    { name: '(ALC) Product 3', customerGroup1: null, customerGroup2: null, customerGroup3: null },
-    { name: '(ACS) Product 1', customerGroup1: null, customerGroup2: null, customerGroup3: null },
-    { name: '(EMC) Product 1', customerGroup1: null, customerGroup2: null, customerGroup3: null },
-    { name: '(CCG) Product 1', customerGroup1: null, customerGroup2: null, customerGroup3: null },
+    { name: 'Standard Product 1', customerGroups: null },
+    { name: 'Standard Product 2', customerGroups: null },
+    { name: '(ALC) Product 1', customerGroups: null },
+    { name: '(ALC) Product 2', customerGroups: null },
+    { name: '(ALC) Product 3', customerGroups: null },
+    { name: '(ACS) Product 1', customerGroups: null },
+    { name: '(EMC) Product 1', customerGroups: null },
+    { name: '(CCG) Product 1', customerGroups: null },
   ];
 
   it('counts products by customer group', () => {

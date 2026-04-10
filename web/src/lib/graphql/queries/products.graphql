@@ -7,6 +7,7 @@ query GetProducts($first: Int = 10, $after: String) {
       startCursor
     }
     nodes {
+      __typename
       id
       databaseId
       name
@@ -21,6 +22,12 @@ query GetProducts($first: Int = 10, $after: String) {
               name
               slug
             }
+          }
+          customerGroups {
+            id
+            databaseId
+            slug
+            name
           }
         }
       ... on SimpleProduct {
@@ -169,6 +176,12 @@ query GetProductBySlug($slug: ID!) {
         name
         slug
       }
+    }
+    customerGroups {
+      id
+      databaseId
+      slug
+      name
     }
     related(first: 6) {
       nodes {
@@ -446,6 +459,7 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 200, $after: S
       startCursor
     }
     nodes {
+      __typename
       id
       databaseId
       name
@@ -466,6 +480,12 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 200, $after: S
               }
             }
           }
+        }
+        customerGroups {
+          id
+          databaseId
+          slug
+          name
         }
       }
       ... on SimpleProduct {
@@ -544,7 +564,7 @@ query GetProductCategoryWithChildren($slug: ID!) {
         }
       }
     }
-    children {
+    children(where: { hideEmpty: false }) {
       nodes {
         id
         databaseId

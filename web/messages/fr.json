@@ -924,7 +924,11 @@
       "home": "Accueil",
       "products": "Produits"
     },
-    "backTo": "Retour à {categoryName}"
+    "backTo": "Retour à {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

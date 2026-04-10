@@ -924,7 +924,11 @@
       "home": "首页",
       "products": "产品"
     },
-    "backTo": "返回到 {categoryName}"
+    "backTo": "返回到 {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

@@ -3,9 +3,19 @@
 import { useState } from 'react';
 import { SlidersHorizontalIcon } from '@/lib/icons';
 import { MobileFilterDrawer } from './MobileFilterDrawer';
-import type { GetProductsWithFiltersQuery } from '@/lib/graphql/generated';
+import type {
+  GetProductsWithFiltersQuery,
+  GetProductsByCategoryQuery,
+} from '@/lib/graphql/generated';
 
-type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
+type ProductFromFiltersQuery = NonNullable<
+  GetProductsWithFiltersQuery['products']
+>['nodes'][number];
+type ProductFromCategoryQuery = NonNullable<
+  GetProductsByCategoryQuery['products']
+>['nodes'][number];
+
+type Product = ProductFromFiltersQuery | ProductFromCategoryQuery;
 
 interface MobileFilterButtonProps {
   categorySlug: string;

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { EyeIcon, SquareIcon, CheckSquareIcon } from '@/lib/icons';
 import type {
   GetProductsWithFiltersQuery,
+  GetProductsByCategoryQuery,
   SimpleProduct,
   VariableProduct,
 } from '@/lib/graphql/generated';
@@ -17,7 +18,14 @@ import { useRegion } from '@/store/regionStore';
 import { useProductCardAnalytics } from '@/hooks/useProductCardAnalytics';
 import type { QuickViewPerformanceTracker } from '@/lib/analytics/productCard';
 
-type Product = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
+type ProductFromFiltersQuery = NonNullable<
+  GetProductsWithFiltersQuery['products']
+>['nodes'][number];
+type ProductFromCategoryQuery = NonNullable<
+  GetProductsByCategoryQuery['products']
+>['nodes'][number];
+
+type Product = ProductFromFiltersQuery | ProductFromCategoryQuery;
 
 interface ProductGridProps {
   products: Product[];

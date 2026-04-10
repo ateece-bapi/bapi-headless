@@ -34,7 +34,7 @@ export function RelatedProductsClient({ products, locale, translations }: Relate
   const { user } = useAuth();
 
   // Apply customer group filtering and filter out products without slugs
-  const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroup)
+  const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroups || ['END USER'])
     .filter((product) => product.slug); // Remove products with null/undefined slugs
 
   // Don't render if no products after filtering

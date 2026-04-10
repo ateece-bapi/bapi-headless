@@ -14,14 +14,19 @@
 
 /**
  * Product type with customer group fields (from GraphQL)
- * Also supports title-based parsing as a fallback when customerGroup fields
- * are not included in specific product queries or are not populated in WP yet.
+ * 
+ * Now uses actual customerGroups taxonomy from WPGraphQL instead of title parsing.
+ * Falls back to title parsing for backwards compatibility if taxonomy data missing.
  */
 export interface ProductWithCustomerGroup {
   name?: string | null;
-  customerGroup1?: Array<string | null> | null;
-  customerGroup2?: Array<string | null> | null;
-  customerGroup3?: Array<string | null> | null;
+  customerGroups?: Array<{
+    __typename?: string;
+    id?: string | null;
+    databaseId?: number | null;
+    slug?: string | null;
+    name?: string | null;
+  } | null | undefined> | null;
 }
 
 /**
@@ -63,26 +68,27 @@ export function extractCustomerGroupFromTitle(
 /**
  * Get all customer groups assigned to a product
  *
- * Checks both GraphQL fields (when available) and title prefix (fallback)
+ * Prioritizes GraphQL taxonomy data, falls back to title parsing.
+ * Matches legacy WordPress behavior using customer-group taxonomy.
  *
- * @param product - Product with name and optional customerGroup fields
- * @returns Array of customer group codes
+ * @param product - Product with name and optional customerGroups taxonomy
+ * @returns Array of customer group slugs (lowercase)
  */
 export function getProductCustomerGroups(product: ProductWithCustomerGroup): string[] {
   const groups: string[] = [];
 
-  // Try GraphQL fields first (when schema is updated)
-  if (product.customerGroup1?.length) {
-    groups.push(...product.customerGroup1.filter((g): g is string => g !== null));
-  }
-  if (product.customerGroup2?.length) {
-    groups.push(...product.customerGroup2.filter((g): g is string => g !== null));
-  }
-  if (product.customerGroup3?.length) {
-    groups.push(...product.customerGroup3.filter((g): g is string => g !== null));
+  // Priority 1: Use GraphQL taxonomy data (proper implementation)
+  if (product.customerGroups && Array.isArray(product.customerGroups)) {
+    const taxonomyGroups = product.customerGroups
+      .map((group) => group?.slug)
+      .filter((slug): slug is string => typeof slug === 'string' && slug.length > 0);
+    
+    if (taxonomyGroups.length > 0) {
+      groups.push(...taxonomyGroups);
+    }
   }
 
-  // Fallback: parse from title if no GraphQL data
+  // Priority 2: Fallback to title parsing (backwards compatibility)
   if (groups.length === 0) {
     const groupFromTitle = extractCustomerGroupFromTitle(product.name);
     if (groupFromTitle) {
@@ -97,50 +103,58 @@ export function getProductCustomerGroups(product: ProductWithCustomerGroup): str
 /**
  * Check if user can view a product based on customer group rules
  *
+ * Matches legacy WordPress behavior:
+ * - Guest users default to ['end user'] group
+ * - Products WITHOUT customer-group taxonomy are visible to ALL users (no restrictions)
+ * - Products WITH customer-group taxonomy are visible only to users with matching groups
+ * - User can see product if they have ANY matching group (OR logic)
+ *
  * @param product - Product to check
- * @param userCustomerGroup - User's customer group (null for guests)
+ * @param userCustomerGroups - User's customer groups array (defaults to ['end user'] for guests)
  * @returns true if user can view product
  */
 export function canUserViewProduct(
   product: ProductWithCustomerGroup,
-  userCustomerGroup: string | null | undefined
+  userCustomerGroups: string[] = ['end user']
 ): boolean {
   const productGroups = getProductCustomerGroups(product);
 
-  // Public product (no customer group restrictions)
+  // Public product (no customer group restrictions) - visible to ALL users
   if (productGroups.length === 0) {
     return true;
   }
 
-  // Restricted product, but user has no customer group (guest)
-  if (!userCustomerGroup) {
-    return false;
-  }
+  // Product has restrictions - check if user has any matching group
+  // Normalize groups to lowercase for case-insensitive comparison
+  const normalizedUserGroups = userCustomerGroups.map(g => g.toLowerCase());
+  const normalizedProductGroups = productGroups.map(g => g.toLowerCase());
 
-  // Check if user's group matches any product group (case-insensitive)
-  const normalizedUserGroup = userCustomerGroup.toLowerCase();
-  return productGroups.includes(normalizedUserGroup);
+  // User can see product if they have ANY matching group
+  return normalizedUserGroups.some(ug => normalizedProductGroups.includes(ug));
 }
 
 /**
- * Filter array of products based on user's customer group
+ * Filter array of products based on user's customer groups
  *
  * @param products - Array of products to filter
- * @param userCustomerGroup - User's customer group (null for guests)
+ * @param userCustomerGroups - User's customer groups array (defaults to ['end user'] for guests)
  * @returns Filtered array of products user can view
  *
  * @example
- * // Guest user - only sees public products
- * filterProductsByCustomerGroup(allProducts, null)
+ * // Guest user - sees public products + 'end user' restricted products
+ * filterProductsByCustomerGroup(allProducts, ['end user'])
  *
  * // ALC user - sees public + ALC products
- * filterProductsByCustomerGroup(allProducts, 'alc')
+ * filterProductsByCustomerGroup(allProducts, ['alc'])
+ *
+ * // Multi-group user - sees public + ALC + ACS products
+ * filterProductsByCustomerGroup(allProducts, ['end user', 'alc', 'acs'])
  */
 export function filterProductsByCustomerGroup<T extends ProductWithCustomerGroup>(
   products: T[],
-  userCustomerGroup: string | null | undefined
+  userCustomerGroups: string[] = ['end user']
 ): T[] {
-  return products.filter((product) => canUserViewProduct(product, userCustomerGroup));
+  return products.filter((product) => canUserViewProduct(product, userCustomerGroups));
 }
 
 /**

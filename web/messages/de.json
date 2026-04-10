@@ -845,7 +845,11 @@
       "home": "Startseite",
       "products": "Produkte"
     },
-    "backTo": "Zurück zu {categoryName}"
+    "backTo": "Zurück zu {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

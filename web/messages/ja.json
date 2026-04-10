@@ -924,7 +924,11 @@
       "home": "ホーム",
       "products": "製品"
     },
-    "backTo": "{categoryName}に戻る"
+    "backTo": "{categoryName}に戻る",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

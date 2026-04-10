@@ -8,6 +8,20 @@ import { ProductSort } from '../ProductSort';
 import { Pagination } from '../Pagination';
 import { SearchDropdown } from '@/components/search/SearchDropdown';
 import { MobileFilterDrawer } from '../MobileFilterDrawer';
+import { StockStatusEnum } from '@/lib/graphql/generated';
+import type {
+  GetProductsWithFiltersQuery,
+  GetProductsByCategoryQuery,
+} from '@/lib/graphql/generated';
+
+// Product type that matches ProductGrid expectations
+type ProductFromFiltersQuery = NonNullable<
+  GetProductsWithFiltersQuery['products']
+>['nodes'][number];
+type ProductFromCategoryQuery = NonNullable<
+  GetProductsByCategoryQuery['products']
+>['nodes'][number];
+type Product = ProductFromFiltersQuery | ProductFromCategoryQuery;
 
 // Note: expect.extend(toHaveNoViolations) called globally in web/test/setupTests.ts
 
@@ -67,10 +81,12 @@ vi.mock('../QuickViewModal', () => ({
 // ============================================================================
 
 const mockProduct = {
+  __typename: 'SimpleProduct' as const,
   id: 'product-1',
   databaseId: 123,
   name: 'Temperature Sensor TS-100',
   slug: 'temperature-sensor-ts-100',
+  type: 'SIMPLE' as const,
   shortDescription: 'High-precision temperature sensor for HVAC applications',
   image: {
     sourceUrl: '/images/products/ts-100.jpg',
@@ -80,7 +96,7 @@ const mockProduct = {
   regularPrice: '$99.00',
   salePrice: null,
   onSale: false,
-  stockStatus: 'IN_STOCK',
+  stockStatus: StockStatusEnum.InStock,
   productCategories: {
     nodes: [
       {
@@ -108,32 +124,34 @@ const mockProduct = {
       { slug: 'duct-mount', name: 'Duct Mount' },
     ],
   },
-} as const;
+};
 
-const mockProducts = [
-  mockProduct,
+const mockProducts: Product[] = [
+  mockProduct as Product,
   {
     ...mockProduct,
     id: 'product-2',
     databaseId: 124,
     name: 'Temperature Sensor TS-200',
     slug: 'temperature-sensor-ts-200',
-  },
+  } as Product,
   {
     ...mockProduct,
     id: 'product-3',
     databaseId: 125,
     name: 'Temperature Sensor TS-300',
     slug: 'temperature-sensor-ts-300',
-  },
+  } as Product,
 ];
 
 const mockSearchResults = [
   {
+    __typename: 'SimpleProduct' as const,
     id: 'search-1',
     databaseId: 123,
     name: 'Temperature Sensor TS-100',
     slug: 'temperature-sensor-ts-100',
+    type: 'SIMPLE' as const,
     price: '$99.00',
     shortDescription: 'High-precision temperature sensor',
     image: {
@@ -145,10 +163,12 @@ const mockSearchResults = [
     },
   },
   {
+    __typename: 'SimpleProduct' as const,
     id: 'search-2',
     databaseId: 124,
     name: 'Humidity Sensor HS-100',
     slug: 'humidity-sensor-hs-100',
+    type: 'SIMPLE' as const,
     price: '$89.00',
     shortDescription: 'Accurate humidity monitoring',
     image: {
@@ -818,7 +838,7 @@ describe('ProductFilters - Live Region (WCAG 4.1.3 Status Messages)', () => {
         currentFilters={{ 
           application: 'hvac',
           display: 'lcd,led',
-          sensorOutput: 'voltage'
+          output: 'voltage'
         }}
       />
     );

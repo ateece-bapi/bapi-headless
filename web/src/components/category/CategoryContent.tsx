@@ -103,9 +103,10 @@ export default function CategoryContent({
   const filteredProducts = useMemo(() => {
     // Step 1: Filter by customer group (B2B access control)
     // Applied client-side after products are fetched from WordPress
+    // User's customerGroups array defaults to ['END USER'] for guests
     const customerGroupFiltered = filterProductsByCustomerGroup(
       products,
-      user?.customerGroup
+      user?.customerGroups || ['END USER']
     );
 
     // Create slug-to-name maps from filter taxonomy data
@@ -221,7 +222,7 @@ export default function CategoryContent({
 
       return true;
     });
-  }, [products, activeFilters, filters, user?.customerGroup]);
+  }, [products, activeFilters, filters, user?.customerGroups]);
 
   // Sort products
   const sortedProducts = useMemo(() => {

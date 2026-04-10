@@ -192,8 +192,9 @@ const mockCheckoutData: CheckoutData = {
     phone: '',
     email: '',
   },
-  paymentMethod: '',
-  termsAccepted: false,
+  paymentMethod: null,
+  shippingMethod: null,
+  orderNotes: '',
 };
 
 describe('CheckoutWizard Accessibility', () => {
@@ -1010,8 +1011,9 @@ describe('CheckoutWizard Accessibility', () => {
           phone: '',
           email: '',
         },
-        paymentMethod: '',
-        termsAccepted: false,
+        paymentMethod: null,
+        shippingMethod: null,
+        orderNotes: '',
       };
 
       const { container } = render(

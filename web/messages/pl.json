@@ -1375,7 +1375,11 @@
       "home": "Strona główna",
       "products": "Produkty"
     },
-    "backTo": "Powrót do {categoryName}"
+    "backTo": "Powrót do {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

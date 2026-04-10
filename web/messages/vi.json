@@ -885,7 +885,11 @@
       "home": "Trang chủ",
       "products": "Sản phẩm"
     },
-    "backTo": "Trở về {categoryName}"
+    "backTo": "Trở về {categoryName}",
+    "subcategories": {
+      "title": "Subcategories:",
+      "browseButton": "Browse"
+    }
   },
   "searchPage": {
     "meta": {

@@ -19,12 +19,12 @@ const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
  * Get authenticated user's customer group from JWT token
  * Returns null if not authenticated or no customer group
  */
-async function getUserCustomerGroup(): Promise<string | null> {
+async function getUserCustomerGroups(): Promise<string[]> {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;
 
-    if (!token) return null;
+    if (!token) return ['END USER'];
 
     const response = await fetch(GRAPHQL_ENDPOINT, {
       method: 'POST',
@@ -38,10 +38,18 @@ async function getUserCustomerGroup(): Promise<string | null> {
     });
 
     const { data }: { data: GetCurrentUserResponse } = await response.json();
-    return data?.viewer?.customerGroup || null;
+    
+    // Process customer groups from ACF fields
+    const groups = [
+      data?.viewer?.customerGroup1,
+      data?.viewer?.customerGroup2,
+      data?.viewer?.customerGroup3,
+    ].filter((g): g is string => typeof g === 'string' && g.length > 0 && g.toUpperCase() !== 'NO ACCESS');
+    
+    return groups.length > 0 ? groups : ['END USER'];
   } catch (error) {
-    logger.debug('Failed to get user customer group', { error });
-    return null;
+    logger.debug('Failed to get user customer groups', { error });
+    return ['END USER'];
   }
 }
 
@@ -127,8 +135,8 @@ export async function POST(request: NextRequest) {
   const productsRecommended: string[] = [];
 
   try {
-    // Get user's customer group for B2B product filtering
-    const customerGroup = await getUserCustomerGroup();
+    // Get user's customer groups for B2B product filtering
+    const customerGroups = await getUserCustomerGroups();
 
     // Rate limiting - prevent abuse of expensive AI API calls
     const clientIP = getClientIP(request);
@@ -214,7 +222,7 @@ export async function POST(request: NextRequest) {
 
         const { query, limit = 5 } = toolUse.input;
         // Apply customer group filtering for B2B access control
-        const products = await searchProducts(query, limit, customerGroup);
+        const products = await searchProducts(query, limit, customerGroups);
         const formattedProducts = formatProductsForAI(products);
 
         // Track recommended products

@@ -15,7 +15,7 @@ NC='\033[0m'
 SSH_HOST="35.224.70.159"
 SSH_PORT="17338"
 SSH_USER="bapiheadlessstaging"
-WP_PATH="~/public"
+WP_PATH="/www/bapiheadlessstaging_582/public"
 
 echo -e "${YELLOW}========================================${NC}"
 echo -e "${YELLOW}Fix Test Users - ACF Field Names${NC}"
@@ -25,7 +25,6 @@ echo -e "${YELLOW}========================================${NC}"
 update_user_group() {
   local email=$1
   local group=$2
-  local display_name=$3
   
   echo -e "\n${GREEN}→ Processing: $email${NC}"
   
@@ -54,10 +53,10 @@ update_user_group() {
 }
 
 # Update all test users
-update_user_group "test-alc@bapihvac.com" "ALC" "Test User - ALC"
-update_user_group "test-acs@bapihvac.com" "ACS" "Test User - ACS"
-update_user_group "test-emc@bapihvac.com" "EMC" "Test User - EMC"
-update_user_group "test-ccg@bapihvac.com" "CCG" "Test User - CCG"
+update_user_group "test-alc@bapihvac.com" "ALC"
+update_user_group "test-acs@bapihvac.com" "ACS"
+update_user_group "test-emc@bapihvac.com" "EMC"
+update_user_group "test-ccg@bapihvac.com" "CCG"
 update_user_group "test-ccga@bapihvac.com" "CCGA" "Test User - CCGA"
 update_user_group "test-standard@bapihvac.com" "" "Test User - Standard"
 

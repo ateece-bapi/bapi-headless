@@ -170,7 +170,17 @@ add_action('graphql_register_types', function() {
         'description' => __('Secondary customer group from ACF field or user meta', 'bapi'),
         'resolve' => function($user) {
             // Handle both WP_User and WPGraphQL\Model\User objects
-            $user_id = $user->databaseId ?? $user->userId ?? $user->data->ID ?? $user->ID ?? null;
+            $user_id = null;
+            if (isset($user->ID)) {
+                $user_id = $user->ID;
+            } elseif (isset($user->data->ID)) {
+                $user_id = $user->data->ID;
+            } elseif (isset($user->userId)) {
+                $user_id = $user->userId;
+            } elseif (isset($user->databaseId)) {
+                $user_id = $user->databaseId;
+            }
+            
             if (!$user_id) {
                 return null;
             }
@@ -192,7 +202,17 @@ add_action('graphql_register_types', function() {
         'description' => __('Tertiary customer group from ACF field or user meta', 'bapi'),
         'resolve' => function($user) {
             // Handle both WP_User and WPGraphQL\Model\User objects
-            $user_id = $user->databaseId ?? $user->userId ?? $user->data->ID ?? $user->ID ?? null;
+            $user_id = null;
+            if (isset($user->ID)) {
+                $user_id = $user->ID;
+            } elseif (isset($user->data->ID)) {
+                $user_id = $user->data->ID;
+            } elseif (isset($user->userId)) {
+                $user_id = $user->userId;
+            } elseif (isset($user->databaseId)) {
+                $user_id = $user->databaseId;
+            }
+            
             if (!$user_id) {
                 return null;
             }

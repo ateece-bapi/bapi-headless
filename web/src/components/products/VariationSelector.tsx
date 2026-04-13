@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { PackageIcon, TrendingUpIcon, ClockIcon, RotateCcwIcon, Share2Icon, CheckIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
 import { getAttributeTranslationKey, hasAttributeTranslation } from '@/lib/productAttributeTranslations';
@@ -19,6 +19,8 @@ import BinaryToggleSelector from './variation-selectors/BinaryToggleSelector';
 import DropdownSelector from './variation-selectors/DropdownSelector';
 import { useRegion } from '@/store/regionStore';
 import { convertWooCommercePrice, convertWooCommercePriceNumeric } from '@/lib/utils/currency';
+import { formatWeight } from '@/lib/utils/locale';
+import type { LanguageCode } from '@/types/region';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useCart as defaultUseCart, useCartDrawer as defaultUseCartDrawer } from '@/store';
 
@@ -78,6 +80,7 @@ export default function VariationSelector({
 }: VariationSelectorProps) {
   const t = useTranslations('productPage.configurator');
   const tAttr = useTranslations('productPage.productAttributes');
+  const locale = useLocale();
   const [selectedAttributes, setSelectedAttributes] = useState<SelectedAttributes>({});
   const [matchedVariation, setMatchedVariation] = useState<ProductVariation | null>(null);
   const [showShareConfirmation, setShowShareConfirmation] = useState(false);
@@ -423,7 +426,12 @@ export default function VariationSelector({
                             {t('weight')}
                           </p>
                           <p className="text-sm font-medium text-neutral-700">
-                            {matchedVariation.weight} lbs
+                            {formatWeight(
+                              parseFloat(matchedVariation.weight),
+                              'pounds',
+                              locale as LanguageCode,
+                              region.code
+                            )}
                           </p>
                         </div>
                       )}

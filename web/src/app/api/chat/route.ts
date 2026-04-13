@@ -8,6 +8,7 @@ import { checkRateLimit, getClientIP } from '@/lib/rate-limit';
 import { RATE_LIMITS } from '@/lib/constants/rate-limits';
 import { cookies } from 'next/headers';
 import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from '@/lib/auth/queries';
+import { slugifyArray } from '@/lib/utils/slugify';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -24,7 +25,7 @@ async function getUserCustomerGroups(): Promise<string[]> {
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;
 
-    if (!token) return ['END USER'];
+    if (!token) return ['end-user'];
 
     const response = await fetch(GRAPHQL_ENDPOINT, {
       method: 'POST',
@@ -40,16 +41,20 @@ async function getUserCustomerGroups(): Promise<string[]> {
     const { data }: { data: GetCurrentUserResponse } = await response.json();
     
     // Process customer groups from ACF fields
-    const groups = [
+    // Then slugify to match WordPress taxonomy slugs ("END USER" → "end-user")
+    const rawGroups = [
       data?.viewer?.customerGroup1,
       data?.viewer?.customerGroup2,
       data?.viewer?.customerGroup3,
     ].filter((g): g is string => typeof g === 'string' && g.length > 0 && g.toUpperCase() !== 'NO ACCESS');
     
-    return groups.length > 0 ? groups : ['END USER'];
+    // Slugify groups to match taxonomy slugs
+    const slugifiedGroups = slugifyArray(rawGroups);
+    
+    return slugifiedGroups.length > 0 ? slugifiedGroups : ['end-user'];
   } catch (error) {
     logger.debug('Failed to get user customer groups', { error });
-    return ['END USER'];
+    return ['end-user'];
   }
 }
 

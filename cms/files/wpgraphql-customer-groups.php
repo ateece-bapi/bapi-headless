@@ -135,6 +135,9 @@ add_action('graphql_register_types', function() {
         'type' => 'String',
         'description' => __('Primary customer group from ACF field', 'bapi'),
         'resolve' => function($user) {
+            if (!function_exists('get_field')) {
+                return null;
+            }
             $value = get_field('customer_group1', 'user_' . $user->ID);
             return is_string($value) ? $value : null;
         },
@@ -144,6 +147,9 @@ add_action('graphql_register_types', function() {
         'type' => 'String',
         'description' => __('Secondary customer group from ACF field', 'bapi'),
         'resolve' => function($user) {
+            if (!function_exists('get_field')) {
+                return null;
+            }
             $value = get_field('customer_group2', 'user_' . $user->ID);
             return is_string($value) ? $value : null;
         },
@@ -153,6 +159,9 @@ add_action('graphql_register_types', function() {
         'type' => 'String',
         'description' => __('Tertiary customer group from ACF field', 'bapi'),
         'resolve' => function($user) {
+            if (!function_exists('get_field')) {
+                return null;
+            }
             $value = get_field('customer_group3', 'user_' . $user->ID);
             return is_string($value) ? $value : null;
         },

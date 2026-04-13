@@ -12,6 +12,8 @@
  * @see docs/CUSTOMER-GROUP-FILTERING.md
  */
 
+import { slugify } from './slugify';
+
 /**
  * Product type with customer group fields (from GraphQL)
  * 
@@ -104,18 +106,18 @@ export function getProductCustomerGroups(product: ProductWithCustomerGroup): str
  * Check if user can view a product based on customer group rules
  *
  * Matches legacy WordPress behavior:
- * - Guest users default to ['end user'] group
+ * - Guest users default to ['end-user'] group
  * - Products WITHOUT customer-group taxonomy are visible to ALL users (no restrictions)
  * - Products WITH customer-group taxonomy are visible only to users with matching groups
  * - User can see product if they have ANY matching group (OR logic)
  *
  * @param product - Product to check
- * @param userCustomerGroups - User's customer groups array (defaults to ['end user'] for guests)
+ * @param userCustomerGroups - User's customer groups array (defaults to ['end-user'] for guests)
  * @returns true if user can view product
  */
 export function canUserViewProduct(
   product: ProductWithCustomerGroup,
-  userCustomerGroups: string[] = ['end user']
+  userCustomerGroups: string[] = ['end-user']
 ): boolean {
   const productGroups = getProductCustomerGroups(product);
 
@@ -125,34 +127,35 @@ export function canUserViewProduct(
   }
 
   // Product has restrictions - check if user has any matching group
-  // Normalize groups to lowercase for case-insensitive comparison
-  const normalizedUserGroups = userCustomerGroups.map(g => g.toLowerCase());
-  const normalizedProductGroups = productGroups.map(g => g.toLowerCase());
+  // Slugify both sides to ensure consistent comparison
+  // (handles "END USER" from ACF vs "end-user" from taxonomy)
+  const slugifiedUserGroups = userCustomerGroups.map(g => slugify(g));
+  const slugifiedProductGroups = productGroups.map(g => slugify(g));
 
   // User can see product if they have ANY matching group
-  return normalizedUserGroups.some(ug => normalizedProductGroups.includes(ug));
+  return slugifiedUserGroups.some(ug => slugifiedProductGroups.includes(ug));
 }
 
 /**
  * Filter array of products based on user's customer groups
  *
  * @param products - Array of products to filter
- * @param userCustomerGroups - User's customer groups array (defaults to ['end user'] for guests)
+ * @param userCustomerGroups - User's customer groups array (defaults to ['end-user'] for guests)
  * @returns Filtered array of products user can view
  *
  * @example
- * // Guest user - sees public products + 'end user' restricted products
- * filterProductsByCustomerGroup(allProducts, ['end user'])
+ * // Guest user - sees public products + 'end-user' restricted products
+ * filterProductsByCustomerGroup(allProducts, ['end-user'])
  *
  * // ALC user - sees public + ALC products
  * filterProductsByCustomerGroup(allProducts, ['alc'])
  *
  * // Multi-group user - sees public + ALC + ACS products
- * filterProductsByCustomerGroup(allProducts, ['end user', 'alc', 'acs'])
+ * filterProductsByCustomerGroup(allProducts, ['end-user', 'alc', 'acs'])
  */
 export function filterProductsByCustomerGroup<T extends ProductWithCustomerGroup>(
   products: T[],
-  userCustomerGroups: string[] = ['end user']
+  userCustomerGroups: string[] = ['end-user']
 ): T[] {
   return products.filter((product) => canUserViewProduct(product, userCustomerGroups));
 }

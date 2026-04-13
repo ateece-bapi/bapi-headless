@@ -8,7 +8,7 @@ import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCusto
 import SubcategoryQuickFilter from './SubcategoryQuickFilter';
 import SubcategoryCard from './SubcategoryCard';
 import FilterSidebar from './FilterSidebar';
-import ProductGridSection from './ProductGridSection';
+import { ProductGrid } from '@/components/products/ProductGrid';
 
 interface Product {
   id: string;
@@ -48,6 +48,11 @@ interface Subcategory {
   name?: string | null;
   slug?: string | null;
   count?: number | null;
+  description?: string | null;
+  image?: {
+    sourceUrl?: string | null;
+    altText?: string | null;
+  } | null;
 }
 
 interface CategoryContentProps {
@@ -59,7 +64,6 @@ interface CategoryContentProps {
 }
 
 type SortOption = 'name' | 'price-asc' | 'price-desc' | 'newest';
-type ViewMode = 'grid' | 'list';
 
 interface ActiveFilters {
   subcategory: string[];
@@ -67,6 +71,8 @@ interface ActiveFilters {
   enclosure: string[];
   output: string[];
   display: string[];
+  tempSetpoint: string[];
+  optionalTempOutput: string[];
 }
 
 /**
@@ -92,12 +98,13 @@ export default function CategoryContent({
     enclosure: searchParams?.getAll('enclosure') ?? [],
     output: searchParams?.getAll('output') ?? [],
     display: searchParams?.getAll('display') ?? [],
+    tempSetpoint: searchParams?.getAll('tempSetpoint') ?? [],
+    optionalTempOutput: searchParams?.getAll('optionalTempOutput') ?? [],
   });
 
   const [sortBy, setSortBy] = useState<SortOption>(
     (searchParams?.get('sort') as SortOption) || 'name'
   );
-  const [viewMode, setViewMode] = useState<ViewMode>('grid');
 
   // Filter products based on active filters
   const filteredProducts = useMemo(() => {
@@ -126,6 +133,12 @@ export default function CategoryContent({
     const displaySlugToName = new Map(
       filters.paDisplays?.nodes.map((node) => [node.slug, node.name]) || []
     );
+    const tempSetpointSlugToName = new Map(
+      filters.paTempSetpointAndOverride?.nodes.map((node) => [node.slug, node.name]) || []
+    );
+    const optionalTempOutputSlugToName = new Map(
+      filters.paOptionalTempSensorOutputs?.nodes.map((node) => [node.slug, node.name]) || []
+    );
 
     return customerGroupFiltered
       .filter(
@@ -152,16 +165,28 @@ export default function CategoryContent({
       // Application filter
       if (activeFilters.application.length > 0) {
         const appAttr = productAttributes.find(
-          (a) => a.name && (a.name === 'pa_application' || a.name === 'Application')
+          (a) => a.name && (a.name === 'pa_application' || a.name === 'Application' || a.name.toLowerCase().includes('application'))
         );
-        const appValues = (appAttr?.options || []).filter(
-          (opt): opt is string => !!opt
-        );
-        // Convert selected slugs to names for comparison
+        
+        if (!appAttr) {
+          return false;
+        }
+        
+        const appValues = (appAttr?.options || [])
+          .filter((opt): opt is string => !!opt)
+          .map(opt => opt.toLowerCase());
+        
         const selectedNames = activeFilters.application
-          .map((slug) => applicationSlugToName.get(slug))
-          .filter((name): name is string => !!name);
-        if (!selectedNames.some((name) => appValues.includes(name))) {
+          .map((slug) => {
+            const name = applicationSlugToName.get(slug);
+            return name ? name.toLowerCase() : slug.toLowerCase();
+          });
+        
+        const hasMatch = selectedNames.some((name) => 
+          appValues.some(val => val.includes(name) || name.includes(val))
+        );
+        
+        if (!hasMatch) {
           return false;
         }
       }
@@ -169,16 +194,31 @@ export default function CategoryContent({
       // Enclosure filter
       if (activeFilters.enclosure.length > 0) {
         const enclosureAttr = productAttributes.find(
-          (a) => a.name && a.name === 'pa_room-enclosure-style'
+          (a) => a.name && (a.name === 'pa_room-enclosure-style' || a.name === 'pa_room_enclosure_style' || a.name.toLowerCase().includes('enclosure'))
         );
-        const enclosureValues = (enclosureAttr?.options || []).filter(
-          (opt): opt is string => !!opt
-        );
-        // Convert selected slugs to names for comparison
+        
+        if (!enclosureAttr) {
+          // No enclosure attribute on this product, so it doesn't match
+          return false;
+        }
+        
+        const enclosureValues = (enclosureAttr?.options || [])
+          .filter((opt): opt is string => !!opt)
+          .map(opt => opt.toLowerCase()); // Normalize to lowercase for comparison
+        
+        // Convert selected slugs to names and normalize
         const selectedNames = activeFilters.enclosure
-          .map((slug) => enclosureSlugToName.get(slug))
+          .map((slug) => {
+            const name = enclosureSlugToName.get(slug);
+            return name ? name.toLowerCase() : slug.toLowerCase();
+          })
           .filter((name): name is string => !!name);
-        if (!selectedNames.some((name) => enclosureValues.includes(name))) {
+        
+        const hasMatch = selectedNames.some((name) => 
+          enclosureValues.some(val => val.includes(name) || name.includes(val))
+        );
+        
+        if (!hasMatch) {
           return false;
         }
       }
@@ -189,16 +229,29 @@ export default function CategoryContent({
           (a) =>
             a.name &&
             (a.name === 'pa_temperature-sensor-output' ||
-              a.name === 'pa_humidity-sensor-output')
+              a.name === 'pa_humidity-sensor-output' ||
+              a.name.toLowerCase().includes('output'))
         );
-        const outputValues = (outputAttr?.options || []).filter(
-          (opt): opt is string => !!opt
-        );
-        // Convert selected slugs to names for comparison
+        
+        if (!outputAttr) {
+          return false;
+        }
+        
+        const outputValues = (outputAttr?.options || [])
+          .filter((opt): opt is string => !!opt)
+          .map(opt => opt.toLowerCase());
+        
         const selectedNames = activeFilters.output
-          .map((slug) => outputSlugToName.get(slug))
-          .filter((name): name is string => !!name);
-        if (!selectedNames.some((name) => outputValues.includes(name))) {
+          .map((slug) => {
+            const name = outputSlugToName.get(slug);
+            return name ? name.toLowerCase() : slug.toLowerCase();
+          });
+        
+        const hasMatch = selectedNames.some((name) => 
+          outputValues.some(val => val.includes(name) || name.includes(val))
+        );
+        
+        if (!hasMatch) {
           return false;
         }
       }
@@ -206,16 +259,86 @@ export default function CategoryContent({
       // Display filter
       if (activeFilters.display.length > 0) {
         const displayAttr = productAttributes.find(
-          (a) => a.name && a.name === 'pa_display'
+          (a) => a.name && (a.name === 'pa_display' || a.name.toLowerCase().includes('display'))
         );
-        const displayValues = (displayAttr?.options || []).filter(
-          (opt): opt is string => !!opt
-        );
-        // Convert selected slugs to names for comparison
+        
+        if (!displayAttr) {
+          return false;
+        }
+        
+        const displayValues = (displayAttr?.options || [])
+          .filter((opt): opt is string => !!opt)
+          .map(opt => opt.toLowerCase());
+        
         const selectedNames = activeFilters.display
-          .map((slug) => displaySlugToName.get(slug))
-          .filter((name): name is string => !!name);
-        if (!selectedNames.some((name) => displayValues.includes(name))) {
+          .map((slug) => {
+            const name = displaySlugToName.get(slug);
+            return name ? name.toLowerCase() : slug.toLowerCase();
+          });
+        
+        const hasMatch = selectedNames.some((name) => 
+          displayValues.some(val => val.includes(name) || name.includes(val))
+        );
+        
+        if (!hasMatch) {
+          return false;
+        }
+      }
+
+      // Temperature Setpoint & Override filter
+      if (activeFilters.tempSetpoint.length > 0) {
+        const tempSetpointAttr = productAttributes.find(
+          (a) => a.name && (a.name === 'pa_temp-setpoint-and-override' || a.name === 'pa_temp_setpoint_and_override' || a.name.toLowerCase().includes('setpoint'))
+        );
+        
+        if (!tempSetpointAttr) {
+          return false;
+        }
+        
+        const tempSetpointValues = (tempSetpointAttr?.options || [])
+          .filter((opt): opt is string => !!opt)
+          .map(opt => opt.toLowerCase());
+        
+        const selectedNames = activeFilters.tempSetpoint
+          .map((slug) => {
+            const name = tempSetpointSlugToName.get(slug);
+            return name ? name.toLowerCase() : slug.toLowerCase();
+          });
+        
+        const hasMatch = selectedNames.some((name) => 
+          tempSetpointValues.some(val => val.includes(name) || name.includes(val))
+        );
+        
+        if (!hasMatch) {
+          return false;
+        }
+      }
+
+      // Optional Temperature Sensor Output filter
+      if (activeFilters.optionalTempOutput.length > 0) {
+        const optionalTempOutputAttr = productAttributes.find(
+          (a) => a.name && (a.name === 'pa_optional-temp-sensor-output' || a.name === 'pa_optional_temp_sensor_output' || a.name.toLowerCase().includes('optional'))
+        );
+        
+        if (!optionalTempOutputAttr) {
+          return false;
+        }
+        
+        const optionalTempOutputValues = (optionalTempOutputAttr?.options || [])
+          .filter((opt): opt is string => !!opt)
+          .map(opt => opt.toLowerCase());
+        
+        const selectedNames = activeFilters.optionalTempOutput
+          .map((slug) => {
+            const name = optionalTempOutputSlugToName.get(slug);
+            return name ? name.toLowerCase() : slug.toLowerCase();
+          });
+        
+        const hasMatch = selectedNames.some((name) => 
+          optionalTempOutputValues.some(val => val.includes(name) || name.includes(val))
+        );
+        
+        if (!hasMatch) {
           return false;
         }
       }
@@ -297,8 +420,8 @@ export default function CategoryContent({
                   key={subcategory.id}
                   name={subcategory.name!} // We know it's defined because of filter
                   slug={subcategory.slug!} // We know it's defined because of filter
-                  description={null}
-                  image={null}
+                  description={subcategory.description}
+                  image={subcategory.image}
                   categorySlug={categorySlugParam}
                 />
               ))}
@@ -333,16 +456,36 @@ export default function CategoryContent({
 
           {/* Products */}
           <main className="lg:col-span-9">
-            <ProductGridSection
-              products={sortedProducts}
-              totalCount={products.length}
-              filteredCount={sortedProducts.length}
-              sortBy={sortBy}
-              onSortChange={handleSortChange}
-              viewMode={viewMode}
-              onViewModeChange={setViewMode}
-              locale={locale}
-            />
+            {/* Results Header with Sort Controls */}
+            <div className="mb-6 flex flex-col gap-4 border-b border-neutral-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-neutral-700">
+                Showing {sortedProducts.length} of {products.length} products
+              </p>
+
+              {/* Sort Dropdown */}
+              <div className="flex items-center gap-2">
+                <label htmlFor="sort-select" className="text-sm text-neutral-700">
+                  Sort:
+                </label>
+                <select
+                  id="sort-select"
+                  value={sortBy}
+                  onChange={(e) => handleSortChange(e.target.value as SortOption)}
+                  className="rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
+                >
+                  <option value="name">Name (A-Z)</option>
+                  <option value="price-asc">Price (Low to High)</option>
+                  <option value="price-desc">Price (High to Low)</option>
+                  <option value="newest">Newest First</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Product Grid with QuickView - Custom styling for 3-column max */}
+            <div className="[&>div]:!grid [&>div]:!grid-cols-1 [&>div]:!gap-6 [&>div]:sm:!grid-cols-2 [&>div]:lg:!grid-cols-3">
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              <ProductGrid products={sortedProducts as any} locale={locale} viewMode="grid" />
+            </div>
           </main>
         </div>
       </div>

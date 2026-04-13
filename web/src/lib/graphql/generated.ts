@@ -39931,7 +39931,7 @@ export type GetProductCategoryWithChildrenQuery = { __typename?: 'RootQuery', pr
 export type GetProductAttributesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProductAttributesQuery = { __typename?: 'RootQuery', paApplications?: { __typename?: 'RootQueryToPaApplicationConnection', nodes: Array<{ __typename?: 'PaApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paRoomEnclosureStyles?: { __typename?: 'RootQueryToPaRoomEnclosureStyleConnection', nodes: Array<{ __typename?: 'PaRoomEnclosureStyle', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paTemperatureSensorOutputs?: { __typename?: 'RootQueryToPaTemperatureSensorOutputConnection', nodes: Array<{ __typename?: 'PaTemperatureSensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paDisplays?: { __typename?: 'RootQueryToPaDisplayConnection', nodes: Array<{ __typename?: 'PaDisplay', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumidityApplications?: { __typename?: 'RootQueryToPaHumidityApplicationConnection', nodes: Array<{ __typename?: 'PaHumidityApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumiditySensorOutputs?: { __typename?: 'RootQueryToPaHumiditySensorOutputConnection', nodes: Array<{ __typename?: 'PaHumiditySensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paPressureApplications?: { __typename?: 'RootQueryToPaPressureApplicationConnection', nodes: Array<{ __typename?: 'PaPressureApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paAirQualitySensorTypes?: { __typename?: 'RootQueryToPaAirQualitySensorTypeConnection', nodes: Array<{ __typename?: 'PaAirQualitySensorType', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined };
+export type GetProductAttributesQuery = { __typename?: 'RootQuery', paApplications?: { __typename?: 'RootQueryToPaApplicationConnection', nodes: Array<{ __typename?: 'PaApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paRoomEnclosureStyles?: { __typename?: 'RootQueryToPaRoomEnclosureStyleConnection', nodes: Array<{ __typename?: 'PaRoomEnclosureStyle', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paTemperatureSensorOutputs?: { __typename?: 'RootQueryToPaTemperatureSensorOutputConnection', nodes: Array<{ __typename?: 'PaTemperatureSensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paDisplays?: { __typename?: 'RootQueryToPaDisplayConnection', nodes: Array<{ __typename?: 'PaDisplay', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumidityApplications?: { __typename?: 'RootQueryToPaHumidityApplicationConnection', nodes: Array<{ __typename?: 'PaHumidityApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumiditySensorOutputs?: { __typename?: 'RootQueryToPaHumiditySensorOutputConnection', nodes: Array<{ __typename?: 'PaHumiditySensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paPressureApplications?: { __typename?: 'RootQueryToPaPressureApplicationConnection', nodes: Array<{ __typename?: 'PaPressureApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paAirQualitySensorTypes?: { __typename?: 'RootQueryToPaAirQualitySensorTypeConnection', nodes: Array<{ __typename?: 'PaAirQualitySensorType', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paTempSetpointAndOverride?: { __typename?: 'RootQueryToPaTempSetpointAndOverrideConnection', nodes: Array<{ __typename?: 'PaTempSetpointAndOverride', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paOptionalTempSensorOutputs?: { __typename?: 'RootQueryToPaOptionalTempSensorOutputConnection', nodes: Array<{ __typename?: 'PaOptionalTempSensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined };
 
 export type GetProductsWithFiltersQueryVariables = Exact<{
   categorySlug: Scalars['String']['input'];
@@ -41745,6 +41745,24 @@ export const GetProductAttributesDocument = gql`
     }
   }
   paAirQualitySensorTypes: allPaAirQualitySensorType(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paTempSetpointAndOverride: allPaTempSetpointAndOverride(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paOptionalTempSensorOutputs: allPaOptionalTempSensorOutput(first: 100) {
     nodes {
       id
       databaseId

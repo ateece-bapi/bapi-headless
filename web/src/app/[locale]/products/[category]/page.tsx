@@ -4,20 +4,18 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
 import logger from '@/lib/logger';
-import { Suspense } from 'react';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import {
   GetProductCategoryWithChildrenDocument,
   GetProductCategoryWithChildrenQuery,
   GetProductsWithFiltersDocument,
   GetProductsWithFiltersQuery,
+  GetProductAttributesDocument,
+  GetProductAttributesQuery,
 } from '@/lib/graphql/generated';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getCategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
-import FilteredProductGrid from '@/components/products/FilteredProductGrid';
-import ProductSortDropdown from '@/components/products/ProductSortDropdown';
-import { ProductFilters } from '@/components/products/ProductFilters';
-import { MobileFilterButton } from '@/components/products/MobileFilterButton';
+import CategoryContent from '@/components/category/CategoryContent';
 import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
 import {
   getCategoryTranslationKey,
@@ -29,16 +27,15 @@ interface CategoryPageProps {
     locale: string;
     category: string;
   }>;
-  searchParams: Promise<{
-    application?: string;
-    enclosure?: string;
-    output?: string;
-    display?: string;
-    sort?: string;
-    page?: string;
-  }>;
+  searchParams: Promise<Record<string, string | undefined>>;
 }
 
+/**
+ * Generates metadata for category pages including title and description.
+ * @param root0 - Component props
+ * @param root0.params - Category page parameters containing locale and category slug
+ * @returns Metadata object for Next.js
+ */
 export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
@@ -65,16 +62,24 @@ export async function generateMetadata({
         categoryData.description ||
         t('categoryPage.meta.descriptionTemplate', { name: categoryData.name || '' }),
     };
-  } catch (error) {
+  } catch {
     return {
       title: t('categoryPage.meta.notFound'),
     };
   }
 }
 
+/**
+ * Category page component displaying subcategories or products with filtering.
+ * Fetches category hierarchy, products, and filter attributes from GraphQL.
+ * @param root0 - Component props
+ * @param root0.params - Category page parameters containing locale and category slug
+ * @param root0.searchParams - URL search parameters (unused but required by Next.js)
+ * @returns JSX.Element
+ */
 export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   const { category, locale } = await params;
-  const filters = await searchParams;
+  await searchParams; // Required by Next.js async API
   const t = await getTranslations({ locale });
   const tCategories = await getTranslations({ locale, namespace: 'productsPage.categories' });
   const tSubcategories = await getTranslations({ locale, namespace: 'productsPage.subcategories' });
@@ -125,7 +130,11 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   // Type-safe product array from GraphQL
   type ProductNode = NonNullable<GetProductsWithFiltersQuery['products']>['nodes'][number];
+  // eslint-disable-next-line prefer-const -- products is mutated via push in loop below
   let products: ProductNode[] = [];
+  
+  // Fetch product attributes for filtering (required by CategoryContent)
+  let productAttributesData: GetProductAttributesQuery | null = null;
 
   // Fetch products if category has no subcategories (leaf category)
   if (!hasSubcategories) {
@@ -168,6 +177,18 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       logger.error('Failed to fetch products for category', error, {
         categorySlug: category,
         categoryName: categoryData.name,
+        locale,
+      });
+    }
+    
+    // Fetch product attributes for filters
+    try {
+      productAttributesData = await client.request<GetProductAttributesQuery>(
+        GetProductAttributesDocument
+      );
+    } catch (error) {
+      logger.error('Failed to fetch product attributes', error, {
+        categorySlug: category,
         locale,
       });
     }
@@ -326,44 +347,14 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       )}
 
       {/* Product Grid for Leaf Categories (no subcategories) */}
-      {!hasSubcategories && (
-        <div className="mx-auto max-w-content px-4 py-12">
-          <div className="flex flex-col gap-8 lg:flex-row">
-            {/* Desktop Sidebar Filters */}
-            <aside className="hidden shrink-0 lg:block lg:w-64">
-              <div className="sticky top-4">
-                <Suspense
-                  fallback={<div className="h-96 animate-pulse rounded-lg bg-neutral-100" />}
-                >
-                  <ProductFilters
-                    categorySlug={category}
-                    products={products}
-                    currentFilters={filters}
-                  />
-                </Suspense>
-              </div>
-            </aside>
-
-            {/* Main Product Grid */}
-            <div className="flex-1">
-              {/* Sort Dropdown */}
-              <div className="mb-6 flex items-center justify-between">
-                <p className="text-sm text-neutral-700">
-                  {t('categoryPage.products.showing', { count: products.length })}
-                </p>
-                <ProductSortDropdown />
-              </div>
-
-              {/* Product Grid with Filters */}
-              <Suspense fallback={<div className="h-96 animate-pulse rounded-lg bg-neutral-100" />}>
-                <FilteredProductGrid products={products} locale={locale} />
-              </Suspense>
-            </div>
-          </div>
-
-          {/* Mobile Filter Button */}
-          <MobileFilterButton categorySlug={category} products={products} currentFilters={filters} />
-        </div>
+      {!hasSubcategories && productAttributesData && (
+        <CategoryContent
+          categorySlugParam={category}
+          subcategories={[]}
+          products={products}
+          filters={productAttributesData}
+          locale={locale}
+        />
       )}
 
       {/* Quick Links */}

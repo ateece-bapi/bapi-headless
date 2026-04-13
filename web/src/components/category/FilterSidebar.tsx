@@ -19,6 +19,8 @@ interface ActiveFilters {
   enclosure: string[];
   output: string[];
   display: string[];
+  tempSetpoint: string[];
+  optionalTempOutput: string[];
 }
 
 interface FilterSidebarProps {
@@ -51,6 +53,8 @@ export default function FilterSidebar({
       enclosure: [],
       output: [],
       display: [],
+      tempSetpoint: [],
+      optionalTempOutput: [],
     });
   };
 
@@ -170,11 +174,45 @@ export default function FilterSidebar({
         </FilterGroup>
       )}
 
+      {/* Temperature Setpoint & Override */}
+      {(filters.paTempSetpointAndOverride?.nodes.length ?? 0) > 0 && (
+        <FilterGroup title="Temp Setpoint & Override">
+          {filters.paTempSetpointAndOverride!.nodes
+            .filter((temp) => temp.name && temp.slug)
+            .map((temp) => (
+              <FilterCheckbox
+                key={temp.id}
+                label={temp.name!}
+                count={temp.count}
+                checked={activeFilters.tempSetpoint.includes(temp.slug!)}
+                onChange={(checked) => updateFilter('tempSetpoint', temp.slug!, checked)}
+              />
+            ))}
+        </FilterGroup>
+      )}
+
+      {/* Optional Temperature Sensor Output */}
+      {(filters.paOptionalTempSensorOutputs?.nodes.length ?? 0) > 0 && (
+        <FilterGroup title="Optional Temp Sensor Output">
+          {filters.paOptionalTempSensorOutputs!.nodes
+            .filter((output) => output.name && output.slug)
+            .map((output) => (
+              <FilterCheckbox
+                key={output.id}
+                label={output.name!}
+                count={output.count}
+                checked={activeFilters.optionalTempOutput.includes(output.slug!)}
+                onChange={(checked) => updateFilter('optionalTempOutput', output.slug!, checked)}
+              />
+            ))}
+        </FilterGroup>
+      )}
+
       {/* Clear All Filters */}
       {hasActiveFilters && (
         <button
           onClick={clearAllFilters}
-          className="w-full rounded-lg border border-primary-300 px-4 py-2 text-sm text-primary-600 transition-colors hover:bg-primary-50 hover:text-primary-700"
+          className="w-full rounded-lg border-2 border-primary-400 bg-white px-4 py-3 text-sm font-semibold text-primary-600 transition-all hover:bg-primary-50 hover:border-primary-500 hover:text-primary-700"
         >
           Clear All Filters
         </button>

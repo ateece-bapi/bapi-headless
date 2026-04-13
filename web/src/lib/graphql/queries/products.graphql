@@ -663,6 +663,24 @@ query GetProductAttributes {
       count
     }
   }
+  paTempSetpointAndOverride: allPaTempSetpointAndOverride(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paOptionalTempSensorOutputs: allPaOptionalTempSensorOutput(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
 }
 
 query GetProductsWithFilters(

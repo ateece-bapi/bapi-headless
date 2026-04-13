@@ -133,37 +133,71 @@ add_action('graphql_register_types', function() {
     
     register_graphql_field('User', 'customerGroup1', [
         'type' => 'String',
-        'description' => __('Primary customer group from ACF field', 'bapi'),
+        'description' => __('Primary customer group from ACF field or user meta', 'bapi'),
         'resolve' => function($user) {
-            if (!function_exists('get_field')) {
+            // Debug: Check user object structure
+            $user_id = null;
+            if (isset($user->ID)) {
+                $user_id = $user->ID;
+            } elseif (isset($user->data->ID)) {
+                $user_id = $user->data->ID;
+            } elseif (isset($user->userId)) {
+                $user_id = $user->userId;
+            } elseif (isset($user->databaseId)) {
+                $user_id = $user->databaseId;
+            }
+            
+            error_log("DEBUG customerGroup1: user_type=" . gettype($user) . " user_class=" . get_class($user) . " user_id=" . ($user_id ?? 'NULL') . " props=" . implode(',', array_keys(get_object_vars($user))));
+            
+            if (!$user_id) {
                 return null;
             }
-            $value = get_field('customer_group1', 'user_' . $user->ID);
-            return is_string($value) ? $value : null;
+            
+            // Try ACF first if available
+            if (function_exists('get_field')) {
+                $value = get_field('customer_group1', 'user_' . $user_id);
+                error_log("DEBUG ACF get_field result: " . var_export($value, true));
+                if ($value && is_string($value)) {
+                    error_log("DEBUG customerGroup1 RETURNING from ACF: " . $value);
+                    return $value;
+                }
+            }
+            // Fallback to direct user meta read
+            $value = get_user_meta($user_id, 'customer_group1', true);
+            error_log("DEBUG get_user_meta result: " . var_export($value, true));
+            $return_value = (is_string($value) && !empty($value)) ? $value : null;
+            error_log("DEBUG customerGroup1 FINAL RETURN: " . var_export($return_value, true));
+            return $return_value;
         },
     ]);
 
     register_graphql_field('User', 'customerGroup2', [
         'type' => 'String',
-        'description' => __('Secondary customer group from ACF field', 'bapi'),
+        'description' => __('Secondary customer group from ACF field or user meta', 'bapi'),
         'resolve' => function($user) {
-            if (!function_exists('get_field')) {
-                return null;
+            if (function_exists('get_field')) {
+                $value = get_field('customer_group2', 'user_' . $user->ID);
+                if ($value && is_string($value)) {
+                    return $value;
+                }
             }
-            $value = get_field('customer_group2', 'user_' . $user->ID);
-            return is_string($value) ? $value : null;
+            $value = get_user_meta($user->ID, 'customer_group2', true);
+            return (is_string($value) && !empty($value)) ? $value : null;
         },
     ]);
 
     register_graphql_field('User', 'customerGroup3', [
         'type' => 'String',
-        'description' => __('Tertiary customer group from ACF field', 'bapi'),
+        'description' => __('Tertiary customer group from ACF field or user meta', 'bapi'),
         'resolve' => function($user) {
-            if (!function_exists('get_field')) {
-                return null;
+            if (function_exists('get_field')) {
+                $value = get_field('customer_group3', 'user_' . $user->ID);
+                if ($value && is_string($value)) {
+                    return $value;
+                }
             }
-            $value = get_field('customer_group3', 'user_' . $user->ID);
-            return is_string($value) ? $value : null;
+            $value = get_user_meta($user->ID, 'customer_group3', true);
+            return (is_string($value) && !empty($value)) ? $value : null;
         },
     ]);
 });

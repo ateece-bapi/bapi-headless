@@ -47,6 +47,14 @@ export async function GET(request: NextRequest) {
     }
 
     const { viewer } = data;
+    
+    // DEBUG: Log raw viewer response to see what WordPress sends
+    console.log('[DEBUG /api/auth/me] Raw viewer response:', JSON.stringify({
+      customerGroup1: viewer.customerGroup1,
+      customerGroup2: viewer.customerGroup2,
+      customerGroup3: viewer.customerGroup3,
+      databaseId: viewer.databaseId,
+    }, null, 2));
 
     // Extract role names from the GraphQL response
     const roles = viewer.roles?.nodes?.map((role: { name: string }) => role.name) || [];

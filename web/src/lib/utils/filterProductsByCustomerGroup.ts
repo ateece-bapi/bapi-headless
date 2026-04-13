@@ -106,18 +106,18 @@ export function getProductCustomerGroups(product: ProductWithCustomerGroup): str
  * Check if user can view a product based on customer group rules
  *
  * Matches legacy WordPress behavior:
- * - Guest users default to ['end user'] group
+ * - Guest users default to ['end-user'] group
  * - Products WITHOUT customer-group taxonomy are visible to ALL users (no restrictions)
  * - Products WITH customer-group taxonomy are visible only to users with matching groups
  * - User can see product if they have ANY matching group (OR logic)
  *
  * @param product - Product to check
- * @param userCustomerGroups - User's customer groups array (defaults to ['end user'] for guests)
+ * @param userCustomerGroups - User's customer groups array (defaults to ['end-user'] for guests)
  * @returns true if user can view product
  */
 export function canUserViewProduct(
   product: ProductWithCustomerGroup,
-  userCustomerGroups: string[] = ['end user']
+  userCustomerGroups: string[] = ['end-user']
 ): boolean {
   const productGroups = getProductCustomerGroups(product);
 
@@ -140,22 +140,22 @@ export function canUserViewProduct(
  * Filter array of products based on user's customer groups
  *
  * @param products - Array of products to filter
- * @param userCustomerGroups - User's customer groups array (defaults to ['end user'] for guests)
+ * @param userCustomerGroups - User's customer groups array (defaults to ['end-user'] for guests)
  * @returns Filtered array of products user can view
  *
  * @example
- * // Guest user - sees public products + 'end user' restricted products
- * filterProductsByCustomerGroup(allProducts, ['end user'])
+ * // Guest user - sees public products + 'end-user' restricted products
+ * filterProductsByCustomerGroup(allProducts, ['end-user'])
  *
  * // ALC user - sees public + ALC products
  * filterProductsByCustomerGroup(allProducts, ['alc'])
  *
  * // Multi-group user - sees public + ALC + ACS products
- * filterProductsByCustomerGroup(allProducts, ['end user', 'alc', 'acs'])
+ * filterProductsByCustomerGroup(allProducts, ['end-user', 'alc', 'acs'])
  */
 export function filterProductsByCustomerGroup<T extends ProductWithCustomerGroup>(
   products: T[],
-  userCustomerGroups: string[] = ['end user']
+  userCustomerGroups: string[] = ['end-user']
 ): T[] {
   return products.filter((product) => canUserViewProduct(product, userCustomerGroups));
 }

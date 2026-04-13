@@ -135,7 +135,7 @@ add_action('graphql_register_types', function() {
         'type' => 'String',
         'description' => __('Primary customer group from ACF field or user meta', 'bapi'),
         'resolve' => function($user) {
-            // Debug: Check user object structure
+            // Handle both WP_User and WPGraphQL\Model\User objects
             $user_id = null;
             if (isset($user->ID)) {
                 $user_id = $user->ID;
@@ -147,8 +147,6 @@ add_action('graphql_register_types', function() {
                 $user_id = $user->databaseId;
             }
             
-            error_log("DEBUG customerGroup1: user_type=" . gettype($user) . " user_class=" . get_class($user) . " user_id=" . ($user_id ?? 'NULL') . " props=" . implode(',', array_keys(get_object_vars($user))));
-            
             if (!$user_id) {
                 return null;
             }
@@ -156,18 +154,14 @@ add_action('graphql_register_types', function() {
             // Try ACF first if available
             if (function_exists('get_field')) {
                 $value = get_field('customer_group1', 'user_' . $user_id);
-                error_log("DEBUG ACF get_field result: " . var_export($value, true));
                 if ($value && is_string($value)) {
-                    error_log("DEBUG customerGroup1 RETURNING from ACF: " . $value);
                     return $value;
                 }
             }
+            
             // Fallback to direct user meta read
             $value = get_user_meta($user_id, 'customer_group1', true);
-            error_log("DEBUG get_user_meta result: " . var_export($value, true));
-            $return_value = (is_string($value) && !empty($value)) ? $value : null;
-            error_log("DEBUG customerGroup1 FINAL RETURN: " . var_export($return_value, true));
-            return $return_value;
+            return (is_string($value) && !empty($value)) ? $value : null;
         },
     ]);
 
@@ -175,13 +169,20 @@ add_action('graphql_register_types', function() {
         'type' => 'String',
         'description' => __('Secondary customer group from ACF field or user meta', 'bapi'),
         'resolve' => function($user) {
+            // Handle both WP_User and WPGraphQL\Model\User objects
+            $user_id = $user->databaseId ?? $user->userId ?? $user->data->ID ?? $user->ID ?? null;
+            if (!$user_id) {
+                return null;
+            }
+            
             if (function_exists('get_field')) {
-                $value = get_field('customer_group2', 'user_' . $user->ID);
+                $value = get_field('customer_group2', 'user_' . $user_id);
                 if ($value && is_string($value)) {
                     return $value;
                 }
             }
-            $value = get_user_meta($user->ID, 'customer_group2', true);
+            
+            $value = get_user_meta($user_id, 'customer_group2', true);
             return (is_string($value) && !empty($value)) ? $value : null;
         },
     ]);
@@ -190,13 +191,20 @@ add_action('graphql_register_types', function() {
         'type' => 'String',
         'description' => __('Tertiary customer group from ACF field or user meta', 'bapi'),
         'resolve' => function($user) {
+            // Handle both WP_User and WPGraphQL\Model\User objects
+            $user_id = $user->databaseId ?? $user->userId ?? $user->data->ID ?? $user->ID ?? null;
+            if (!$user_id) {
+                return null;
+            }
+            
             if (function_exists('get_field')) {
-                $value = get_field('customer_group3', 'user_' . $user->ID);
+                $value = get_field('customer_group3', 'user_' . $user_id);
                 if ($value && is_string($value)) {
                     return $value;
                 }
             }
-            $value = get_user_meta($user->ID, 'customer_group3', true);
+            
+            $value = get_user_meta($user_id, 'customer_group3', true);
             return (is_string($value) && !empty($value)) ? $value : null;
         },
     ]);

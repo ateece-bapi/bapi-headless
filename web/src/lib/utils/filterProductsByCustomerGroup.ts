@@ -12,6 +12,8 @@
  * @see docs/CUSTOMER-GROUP-FILTERING.md
  */
 
+import { slugify } from './slugify';
+
 /**
  * Product type with customer group fields (from GraphQL)
  * 
@@ -125,12 +127,13 @@ export function canUserViewProduct(
   }
 
   // Product has restrictions - check if user has any matching group
-  // Normalize groups to lowercase for case-insensitive comparison
-  const normalizedUserGroups = userCustomerGroups.map(g => g.toLowerCase());
-  const normalizedProductGroups = productGroups.map(g => g.toLowerCase());
+  // Slugify both sides to ensure consistent comparison
+  // (handles "END USER" from ACF vs "end-user" from taxonomy)
+  const slugifiedUserGroups = userCustomerGroups.map(g => slugify(g));
+  const slugifiedProductGroups = productGroups.map(g => slugify(g));
 
   // User can see product if they have ANY matching group
-  return normalizedUserGroups.some(ug => normalizedProductGroups.includes(ug));
+  return slugifiedUserGroups.some(ug => slugifiedProductGroups.includes(ug));
 }
 
 /**

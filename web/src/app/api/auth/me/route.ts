@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import logger from '@/lib/logger';
 import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from '@/lib/auth/queries';
+import { slugifyArray } from '@/lib/utils/slugify';
 
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
@@ -52,22 +53,24 @@ export async function GET(request: NextRequest) {
 
     // Process customer groups from ACF fields (customer_group1/2/3)
     // Filter out null, empty strings, and "NO ACCESS" values
-    const customerGroups = [
+    // Then slugify to match WordPress taxonomy slugs ("END USER" → "end-user")
+    const rawCustomerGroups = [
       viewer.customerGroup1,
       viewer.customerGroup2,
       viewer.customerGroup3,
-    ]
-      .filter((group): group is string => {
-        return (
-          typeof group === 'string' &&
-          group.trim().length > 0 &&
-          group.toUpperCase() !== 'NO ACCESS'
-        );
-      })
-      .map(group => group.trim());
+    ].filter((group): group is string => {
+      return (
+        typeof group === 'string' &&
+        group.trim().length > 0 &&
+        group.toUpperCase() !== 'NO ACCESS'
+      );
+    });
 
-    // Default to 'END USER' if no valid groups (matches legacy WordPress behavior)
-    const finalCustomerGroups = customerGroups.length > 0 ? customerGroups : ['END USER'];
+    // Slugify groups to match taxonomy slugs ("END USER" → "end-user")
+    const slugifiedGroups = slugifyArray(rawCustomerGroups);
+
+    // Default to 'end-user' if no valid groups (matches legacy WordPress behavior)
+    const finalCustomerGroups = slugifiedGroups.length > 0 ? slugifiedGroups : ['end-user'];
 
     return NextResponse.json({
       user: {

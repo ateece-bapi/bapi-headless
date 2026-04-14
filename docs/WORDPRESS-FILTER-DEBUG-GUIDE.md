@@ -22,8 +22,10 @@ cd /www/[your-site-path]/public
 Upload `scripts/debug-wordpress-taxonomy.php` to your WordPress root, then:
 
 ```bash
-wp eval-file debug-wordpress-taxonomy.php
+wp eval-file debug-wordpress-taxonomy.php --path=/www/bapiheadlessstaging_582/public
 ```
+
+**Note:** The `--path` flag is required to tell WP-CLI where the WordPress installation is located. Adjust the path for your specific Kinsta installation.
 
 This will output:
 1. **All Application taxonomy terms** with their slugs and product counts

@@ -347,12 +347,12 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       )}
 
       {/* Product Grid for Leaf Categories (no subcategories) */}
-      {!hasSubcategories && productAttributesData && (
+      {!hasSubcategories && (
         <CategoryContent
           categorySlugParam={category}
           subcategories={[]}
           products={products}
-          filters={productAttributesData}
+          filters={productAttributesData || ({} as GetProductAttributesQuery)} // Graceful fallback for filter failure
           locale={locale}
         />
       )}

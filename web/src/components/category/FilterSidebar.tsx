@@ -28,7 +28,6 @@ interface FilterSidebarProps {
   filters: GetProductAttributesQuery;
   activeFilters: ActiveFilters;
   onChange: (filters: ActiveFilters) => void;
-  productCount: number;
 }
 
 /**
@@ -40,7 +39,6 @@ export default function FilterSidebar({
   filters,
   activeFilters,
   onChange,
-  productCount,
 }: FilterSidebarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 

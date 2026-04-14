@@ -6,14 +6,53 @@ import logger from '@/lib/logger';
 import { sanitizeDescription } from '@/lib/sanitizeDescription';
 
 /**
- * Decode HTML entities (e.g., &#8220; → ")
- * WordPress often returns HTML-encoded strings to prevent XSS
+ * Decode HTML entities universally (works on server and client)
+ * Prevents React hydration mismatches by using deterministic decoding
+ * Common entities: &#8220; ("), &#8221; ("), &#8216; ('), &#8217; ('), etc.
  */
 function decodeHtmlEntities(text: string): string {
-  if (typeof window === 'undefined') return text;
-  const textarea = document.createElement('textarea');
-  textarea.innerHTML = text;
-  return textarea.value;
+  if (!text) return '';
+  
+  // Map of common HTML numeric entities
+  const numericEntities: Record<string, string> = {
+    '8220': '"', // left double quote
+    '8221': '"', // right double quote  
+    '8216': "'", // left single quote
+    '8217': "'", // right single quote
+    '8211': '–', // en dash
+    '8212': '—', // em dash
+    '38': '&',
+    '60': '<',
+    '62': '>',
+    '34': '"',
+    '39': "'",
+  };
+  
+  // Replace numeric entities (&#XXXX;)
+  let decoded = text.replace(/&#(\d+);/g, (match, code) => {
+    const mappedEntity = numericEntities[code];
+    if (mappedEntity) {
+      return mappedEntity;
+    }
+
+    const codePoint = parseInt(code, 10);
+    if (!Number.isInteger(codePoint) || codePoint < 0 || codePoint > 0x10ffff) {
+      return match;
+    }
+
+    return String.fromCodePoint(codePoint);
+  });
+  
+  // Replace common named entities
+  decoded = decoded
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&'); // Must be last to avoid double-decoding
+  
+  return decoded;
 }
 
 interface ProductTabsProps {

@@ -16,8 +16,13 @@ const SEARCH_QUERY = `
           price
           shortDescription
           image {
+            id
             sourceUrl
             altText
+            mediaDetails {
+              height
+              width
+            }
           }
           productCategories {
             nodes {
@@ -31,8 +36,13 @@ const SEARCH_QUERY = `
           price
           shortDescription
           image {
+            id
             sourceUrl
             altText
+            mediaDetails {
+              height
+              width
+            }
           }
           productCategories {
             nodes {
@@ -61,8 +71,13 @@ const SKU_SEARCH_QUERY = `
           price
           shortDescription
           image {
+            id
             sourceUrl
             altText
+            mediaDetails {
+              height
+              width
+            }
           }
           productCategories {
             nodes {
@@ -76,8 +91,13 @@ const SKU_SEARCH_QUERY = `
           price
           shortDescription
           image {
+            id
             sourceUrl
             altText
+            mediaDetails {
+              height
+              width
+            }
           }
           productCategories {
             nodes {

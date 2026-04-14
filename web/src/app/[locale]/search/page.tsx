@@ -28,8 +28,13 @@ async function searchProducts(query: string) {
       price
       shortDescription
       image {
+        id
         sourceUrl
         altText
+        mediaDetails {
+          height
+          width
+        }
       }
       productCategories {
         nodes {
@@ -43,8 +48,13 @@ async function searchProducts(query: string) {
       price
       shortDescription
       image {
+        id
         sourceUrl
         altText
+        mediaDetails {
+          height
+          width
+        }
       }
       productCategories {
         nodes {

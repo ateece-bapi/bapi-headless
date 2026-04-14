@@ -60,7 +60,22 @@ query GetProductBySlug($slug: ID!) {
     slug
     description
     shortDescription
-
+    partNumber
+    productDocuments {
+      heading
+      files {
+        id
+        url
+        title
+        filename
+      }
+    }
+    productVideos {
+      heading
+      videos {
+        url
+      }
+    }
     ... on SimpleProduct {
       price
       regularPrice
@@ -183,7 +198,22 @@ query GetProductBySlugLight($slug: ID!) {
     slug
     description
     shortDescription
-
+    partNumber
+    productDocuments {
+      heading
+      files {
+        id
+        url
+        title
+        filename
+      }
+    }
+    productVideos {
+      heading
+      videos {
+        url
+      }
+    }
     ... on SimpleProduct {
       price
       regularPrice

@@ -5,6 +5,17 @@ import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
 import { sanitizeDescription } from '@/lib/sanitizeDescription';
 
+/**
+ * Decode HTML entities (e.g., &#8220; → ")
+ * WordPress often returns HTML-encoded strings to prevent XSS
+ */
+function decodeHtmlEntities(text: string): string {
+  if (typeof window === 'undefined') return text;
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = text;
+  return textarea.value;
+}
+
 interface ProductTabsProps {
   product: {
     description?: string | null;
@@ -73,10 +84,24 @@ export default function ProductTabs({ product }: ProductTabsProps) {
       <div className="p-8" role="tabpanel" id={`tabpanel-${activeTab}`}>
         {/* Description Tab */}
         {activeTab === 'description' && (
-          <div className="px-2 py-6">
+          <div className="px-4 py-8">
             {product.description ? (
               <div
-                className="**:text-neutral-900 prose prose-lg prose-neutral max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-neutral-900 prose-h1:mb-10 prose-h1:mt-0 prose-h1:text-4xl prose-h1:leading-tight prose-h2:mb-8 prose-h2:mt-12 prose-h2:border-b prose-h2:border-neutral-200 prose-h2:pb-3 prose-h2:text-2xl prose-h3:mb-6 prose-h3:mt-10 prose-h3:text-xl prose-p:mb-8 prose-p:leading-relaxed prose-p:text-neutral-900 prose-p:first-of-type:text-xl prose-p:first-of-type:leading-relaxed prose-p:first-of-type:text-neutral-800 prose-a:font-medium prose-a:text-primary-600 prose-a:no-underline prose-a:transition-all hover:prose-a:text-primary-700 hover:prose-a:underline hover:prose-a:underline-offset-4 prose-strong:font-bold prose-strong:text-neutral-900 prose-ol:my-8 prose-ol:space-y-4 prose-ol:pl-6 prose-ul:my-8 prose-ul:space-y-4 prose-ul:pl-6 prose-li:leading-relaxed prose-li:text-neutral-900 prose-li:marker:text-primary-500"
+                className="prose prose-lg prose-neutral mx-auto max-w-none
+                  prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-neutral-900 
+                  prose-h1:mb-10 prose-h1:mt-0 prose-h1:text-4xl prose-h1:leading-tight 
+                  prose-h2:mb-8 prose-h2:mt-12 prose-h2:border-b prose-h2:border-neutral-200 prose-h2:pb-3 prose-h2:text-2xl 
+                  prose-h3:mb-6 prose-h3:mt-10 prose-h3:text-xl 
+                  prose-p:mb-6 prose-p:leading-relaxed prose-p:text-neutral-900 
+                  prose-p:first-of-type:mb-8 prose-p:first-of-type:text-xl prose-p:first-of-type:leading-relaxed prose-p:first-of-type:text-neutral-800 
+                  prose-a:font-medium prose-a:text-primary-600 prose-a:no-underline prose-a:transition-all hover:prose-a:text-primary-700 hover:prose-a:underline hover:prose-a:underline-offset-4 
+                  prose-strong:font-bold prose-strong:text-neutral-900 
+                  prose-hr:my-10 prose-hr:border-neutral-300
+                  prose-ul:my-8 prose-ul:ml-0 prose-ul:list-outside prose-ul:list-disc prose-ul:space-y-3 prose-ul:pl-6
+                  prose-ol:my-8 prose-ol:ml-0 prose-ol:list-outside prose-ol:list-decimal prose-ol:space-y-3 prose-ol:pl-6
+                  prose-li:leading-relaxed prose-li:text-neutral-900 prose-li:marker:text-primary-500
+                  prose-img:my-6 prose-img:rounded-lg prose-img:shadow-md
+                  **:text-neutral-900"
                 dangerouslySetInnerHTML={{ __html: sanitizeDescription(product.description) }}
               />
             ) : (
@@ -119,7 +144,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                   <div key={category}>
                     <div className="mb-4 flex items-center gap-2">
                       <FileTextIcon className="h-6 w-6 text-primary-600" />
-                      <h3 className="text-xl font-bold text-neutral-900">{category}</h3>
+                      <h3 className="text-xl font-bold text-neutral-900">{decodeHtmlEntities(category)}</h3>
                     </div>
 
                     <div className="grid grid-cols-1 gap-3">
@@ -137,7 +162,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                             </div>
                             <div className="min-w-0 flex-1">
                               <p className="truncate font-semibold text-neutral-900 transition-colors group-hover:text-primary-700">
-                                {doc.title}
+                                {decodeHtmlEntities(doc.title)}
                               </p>
                               <p className="text-sm text-neutral-700">PDF Document</p>
                             </div>
@@ -182,7 +207,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                       {vid.title && (
                         <h3 className="mb-4 flex items-center gap-3 text-2xl font-bold text-neutral-900">
                           <div className="h-8 w-1.5 rounded-full bg-gradient-to-b from-primary-500 to-primary-700" />
-                          {vid.title}
+                          {decodeHtmlEntities(vid.title)}
                         </h3>
                       )}
 
@@ -190,7 +215,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                         <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-neutral-200 shadow-2xl transition-all duration-300 group-hover:border-primary-300">
                           <iframe
                             src={`https://www.youtube.com/embed/${videoId}`}
-                            title={vid.title}
+                            title={decodeHtmlEntities(vid.title)}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             className="absolute inset-0 h-full w-full"
@@ -209,7 +234,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                             </div>
                             <div className="min-w-0 flex-1">
                               <p className="truncate text-lg font-bold text-neutral-900 transition-colors group-hover/link:text-primary-700">
-                                {vid.title}
+                                {decodeHtmlEntities(vid.title)}
                               </p>
                               <p className="mt-1 text-sm text-neutral-700">Click to watch video</p>
                             </div>

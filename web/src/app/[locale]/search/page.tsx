@@ -17,60 +17,110 @@ interface SearchPageProps {
 async function searchProducts(query: string) {
   const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
-  const response = await fetch(GRAPHQL_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query: `
-        query SearchProducts($search: String!) {
-          products(where: { search: $search, visibility: VISIBLE }, first: 100) {
-            nodes {
-              id
-              databaseId
-              name
-              slug
-              ... on SimpleProduct {
-                sku
-                partNumber
-                price
-                shortDescription
-                image {
-                  sourceUrl
-                  altText
-                }
-                productCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-              }
-              ... on VariableProduct {
-                sku
-                price
-                shortDescription
-                image {
-                  sourceUrl
-                  altText
-                }
-                productCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
+  const productFields = `
+    id
+    databaseId
+    name
+    slug
+    ... on SimpleProduct {
+      sku
+      partNumber
+      price
+      shortDescription
+      image {
+        sourceUrl
+        altText
+      }
+      productCategories {
+        nodes {
+          name
+          slug
+        }
+      }
+    }
+    ... on VariableProduct {
+      sku
+      price
+      shortDescription
+      image {
+        sourceUrl
+        altText
+      }
+      productCategories {
+        nodes {
+          name
+          slug
+        }
+      }
+    }
+  `;
+
+  // Run both queries in parallel: name/description search + SKU search
+  const [nameSearchResponse, skuSearchResponse] = await Promise.all([
+    // Query 1: Search product name/description
+    fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query SearchProducts($search: String!) {
+            products(where: { search: $search, visibility: VISIBLE }, first: 100) {
+              nodes {
+                ${productFields}
               }
             }
           }
-        }
-      `,
-      variables: { search: query },
+        `,
+        variables: { search: query },
+      }),
+      next: { revalidate: 3600 },
     }),
-    next: { revalidate: 3600 }, // Cache for 1 hour
+    // Query 2: Search by SKU (exact match)
+    fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query SearchProductsBySKU($sku: String!) {
+            products(where: { sku: $sku, visibility: VISIBLE }, first: 100) {
+              nodes {
+                ${productFields}
+              }
+            }
+          }
+        `,
+        variables: { sku: query },
+      }),
+      next: { revalidate: 3600 },
+    }),
+  ]);
+
+  const [nameData, skuData] = await Promise.all([
+    nameSearchResponse.json(),
+    skuSearchResponse.json(),
+  ]);
+
+  // Merge results from both queries, removing duplicates by ID
+  const nameResults = nameData.data?.products?.nodes || [];
+  const skuResults = skuData.data?.products?.nodes || [];
+
+  // Create a Map to deduplicate by product ID
+  const resultsMap = new Map();
+
+  // Add SKU results first (higher priority for exact SKU matches)
+  skuResults.forEach((product: { id: string }) => {
+    resultsMap.set(product.id, product);
   });
 
-  const data = await response.json();
-  return data.data?.products?.nodes || [];
+  // Add name search results (won't override if already exists)
+  nameResults.forEach((product: { id: string }) => {
+    if (!resultsMap.has(product.id)) {
+      resultsMap.set(product.id, product);
+    }
+  });
+
+  // Convert Map back to array and limit to 100 results
+  return Array.from(resultsMap.values()).slice(0, 100);
 }
 
 export async function generateMetadata({

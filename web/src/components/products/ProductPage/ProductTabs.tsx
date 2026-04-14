@@ -30,7 +30,17 @@ function decodeHtmlEntities(text: string): string {
   
   // Replace numeric entities (&#XXXX;)
   let decoded = text.replace(/&#(\d+);/g, (match, code) => {
-    return numericEntities[code] || String.fromCharCode(parseInt(code, 10));
+    const mappedEntity = numericEntities[code];
+    if (mappedEntity) {
+      return mappedEntity;
+    }
+
+    const codePoint = parseInt(code, 10);
+    if (!Number.isInteger(codePoint) || codePoint < 0 || codePoint > 0x10ffff) {
+      return match;
+    }
+
+    return String.fromCodePoint(codePoint);
   });
   
   // Replace common named entities

@@ -11,15 +11,78 @@
  */
 
 /**
- * Validate URL protocol to prevent XSS attacks
- * Blocks javascript:, data:, vbscript: and other dangerous protocols
+ * Decode a minimal set of HTML entities before URL validation so encoded
+ * schemes like `javascript&#58;` cannot bypass protocol checks.
+ */
+function decodeHtmlEntities(value: string): string {
+  return value.replace(
+    /&(?:#(\d+)|#x([0-9a-fA-F]+)|colon|tab|newline|nbsp);/gi,
+    (match, decimal, hex, named) => {
+      if (decimal) {
+        return String.fromCodePoint(Number.parseInt(decimal, 10));
+      }
+
+      if (hex) {
+        return String.fromCodePoint(Number.parseInt(hex, 16));
+      }
+
+      switch (match.toLowerCase()) {
+        case '&colon;':
+          return ':';
+        case '&tab;':
+          return '\t';
+        case '&newline;':
+          return '\n';
+        case '&nbsp;':
+          return ' ';
+        default:
+          return match;
+      }
+    }
+  );
+}
+
+/**
+ * Normalize URL input to match how browsers interpret obfuscated schemes.
+ * - trims outer whitespace
+ * - decodes HTML entities
+ * - strips ASCII control chars and whitespace
+ */
+function normalizeUrlForValidation(url: string): string {
+  return decodeHtmlEntities(url.trim())
+    .replace(/[\u0000-\u001F\u007F\s]+/g, '')
+    .toLowerCase();
+}
+
+/**
+ * Validate URL protocol to prevent XSS attacks.
+ * Allows only safe schemes plus relative, query-only, and fragment URLs.
  */
 function isValidUrl(url: string): boolean {
   if (!url) return false;
-  const trimmed = url.trim().toLowerCase();
-  // Blocklist of dangerous protocols
-  const dangerousProtocols = ['javascript:', 'data:', 'vbscript:', 'file:', 'about:'];
-  return !dangerousProtocols.some(protocol => trimmed.startsWith(protocol));
+
+  const normalized = normalizeUrlForValidation(url);
+  if (!normalized) return false;
+
+  // Allow fragment, query-only, root-relative, and dot-relative URLs.
+  if (
+    normalized.startsWith('#') ||
+    normalized.startsWith('?') ||
+    normalized.startsWith('/') ||
+    normalized.startsWith('./') ||
+    normalized.startsWith('../')
+  ) {
+    return true;
+  }
+
+  const schemeMatch = normalized.match(/^([a-z][a-z0-9+.-]*):/);  
+  if (!schemeMatch) {
+    // No explicit scheme: treat as a relative URL such as `products/item`.
+    return true;
+  }
+
+  const allowedProtocols = new Set(['http', 'https', 'mailto', 'tel']);
+  return allowedProtocols.has(schemeMatch[1]);
 }
 
 export function sanitizeWordPressContent(html: string): string {
@@ -38,8 +101,8 @@ export function sanitizeWordPressContent(html: string): string {
   cleaned = cleaned.replace(/\sstyle='[^']*'/gi, '');
 
   // 3. SECURITY: Remove all event handler attributes (onclick, onerror, onload, etc.) to prevent XSS
-  cleaned = cleaned.replace(/\son\w+="[^"]*"/gi, '');
-  cleaned = cleaned.replace(/\son\w+='[^']*'/gi, '');
+  // Handles optional whitespace around "=" and quoted or unquoted attribute values
+  cleaned = cleaned.replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
 
   // 3. Remove ALL class attributes EXCEPT iframe (needed for aspect ratio)
   cleaned = cleaned.replace(/<(?!iframe)(\w+)([^>]*)\sclass="[^"]*"/gi, '<$1$2');

@@ -103,7 +103,7 @@ export default function SearchResults({
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredProducts.map((product) => {
+            {filteredProducts.map((product, index) => {
               const category = product.productCategories?.nodes?.[0];
 
               return (
@@ -118,6 +118,8 @@ export default function SearchResults({
                         src={product.image.sourceUrl}
                         alt={product.image.altText || product.name || 'Product image'}
                         fill
+                        priority={index < 6}
+                        loading={index < 6 ? undefined : 'lazy'}
                         className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         onError={(e) => {

@@ -64,7 +64,7 @@ async function searchProducts(query: string) {
       body: JSON.stringify({
         query: `
           query SearchProducts($search: String!) {
-            products(where: { search: $search, visibility: VISIBLE }, first: 100) {
+            products(where: { search: $search, visibility: VISIBLE }, first: 24) {
               nodes {
                 ${productFields}
               }
@@ -82,7 +82,7 @@ async function searchProducts(query: string) {
       body: JSON.stringify({
         query: `
           query SearchProductsBySKU($sku: String!) {
-            products(where: { sku: $sku, visibility: VISIBLE }, first: 100) {
+            products(where: { sku: $sku, visibility: VISIBLE }, first: 24) {
               nodes {
                 ${productFields}
               }
@@ -119,8 +119,8 @@ async function searchProducts(query: string) {
     }
   });
 
-  // Convert Map back to array and limit to 100 results
-  return Array.from(resultsMap.values()).slice(0, 100);
+  // Convert Map back to array and limit to 24 results
+  return Array.from(resultsMap.values()).slice(0, 24);
 }
 
 export async function generateMetadata({

@@ -15,19 +15,13 @@ query GetProducts($first: Int = 10, $after: String) {
       description
       shortDescription
         ... on Product {
-          partNumber
+
           productCategories {
             nodes {
               id
               name
               slug
             }
-          }
-          customerGroups {
-            id
-            databaseId
-            slug
-            name
           }
         }
       ... on SimpleProduct {
@@ -109,7 +103,7 @@ query GetProductBySlug($slug: ID!) {
           stockStatus
           stockQuantity
           weight
-          partNumber
+
           sku
           image {
             sourceUrl
@@ -177,35 +171,19 @@ query GetProductBySlug($slug: ID!) {
         slug
       }
     }
-    customerGroups {
-      id
-      databaseId
-      slug
-      name
-    }
     related(first: 6) {
       nodes {
         id
         name
         slug
-          ... on Product {
-            partNumber
-          }
+          
           image {
             sourceUrl
             altText
           }
       }
     }
-    ... on Product {
-      multiplierGroups {
-        nodes {
-          id
-          name
-          slug
-        }
-      }
-    }
+    
   }
 }
 
@@ -221,6 +199,21 @@ query GetProductBySlugLight($slug: ID!) {
     description
     shortDescription
     partNumber
+    productDocuments {
+      heading
+      files {
+        id
+        url
+        title
+        filename
+      }
+    }
+    productVideos {
+      heading
+      videos {
+        url
+      }
+    }
     ... on SimpleProduct {
       price
       regularPrice
@@ -276,21 +269,6 @@ query GetProductBySlugLight($slug: ID!) {
         }
       }
     }
-    productDocuments {
-      heading
-      files {
-        id
-        url
-        title
-        filename
-      }
-    }
-    productVideos {
-      heading
-      videos {
-        url
-      }
-    }
   }
 }
 
@@ -300,21 +278,6 @@ query GetProductDetailsDeferred($id: ID!) {
   product(id: $id, idType: DATABASE_ID) {
     id
     description
-    productDocuments {
-      heading
-      files {
-        id
-        url
-        title
-        filename
-      }
-    }
-    productVideos {
-      heading
-      videos {
-        url
-      }
-    }
     galleryImages {
       nodes {
         id
@@ -333,15 +296,7 @@ query GetProductDetailsDeferred($id: ID!) {
         slug
       }
     }
-    ... on Product {
-      multiplierGroups {
-        nodes {
-          id
-          name
-          slug
-        }
-      }
-    }
+    
   }
 }
 
@@ -372,7 +327,7 @@ query GetProductVariations($id: ID!) {
           stockStatus
           stockQuantity
           weight
-          partNumber
+
           sku
           image {
             sourceUrl
@@ -404,9 +359,7 @@ query GetProductRelated($id: ID!) {
         id
         name
         slug
-        ... on Product {
-          partNumber
-        }
+        
         image {
           sourceUrl
           altText
@@ -466,7 +419,7 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 200, $after: S
       slug
       shortDescription
       ... on Product {
-        partNumber
+
         productCategories {
           nodes {
             id
@@ -480,12 +433,6 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 200, $after: S
               }
             }
           }
-        }
-        customerGroups {
-          id
-          databaseId
-          slug
-          name
         }
       }
       ... on SimpleProduct {
@@ -655,6 +602,24 @@ query GetProductAttributes {
     }
   }
   paAirQualitySensorTypes: allPaAirQualitySensorType(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paTempSetpointAndOverride: allPaTempSetpointAndOverride(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paOptionalTempSensorOutputs: allPaOptionalTempSensorOutput(first: 100) {
     nodes {
       id
       databaseId
@@ -1010,7 +975,7 @@ query GetProductsWithFilters(
               regularPrice
               stockStatus
               sku
-              partNumber
+
               image {
                 id
                 sourceUrl

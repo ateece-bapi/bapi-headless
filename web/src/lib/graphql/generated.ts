@@ -2986,12 +2986,6 @@ export enum ContentTypesOfGraphqlDocumentGroupEnum {
   GraphqlDocument = 'GRAPHQL_DOCUMENT'
 }
 
-/** Allowed Content Types of the MultiplierGroup taxonomy. */
-export enum ContentTypesOfMultiplierGroupEnum {
-  /** The Type of Content object */
-  Product = 'PRODUCT'
-}
-
 /** Allowed Content Types of the PaAirQualityApplication taxonomy. */
 export enum ContentTypesOfPaAirQualityApplicationEnum {
   /** The Type of Content object */
@@ -4307,29 +4301,6 @@ export type CreateMediaItemPayload = {
   mediaItem?: Maybe<MediaItem>;
 };
 
-/** Input for the createMultiplierGroup mutation. */
-export type CreateMultiplierGroupInput = {
-  /** The slug that the multiplier_group will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the multiplier_group object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The name of the multiplier_group object to mutate */
-  name: Scalars['String']['input'];
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the createMultiplierGroup mutation. */
-export type CreateMultiplierGroupPayload = {
-  __typename?: 'CreateMultiplierGroupPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created multiplier_group */
-  multiplierGroup?: Maybe<MultiplierGroup>;
-};
-
 /** Input for the createOrder mutation. */
 export type CreateOrderInput = {
   /** Order billing address */
@@ -4898,8 +4869,6 @@ export type CreateProductInput = {
   excerpt?: InputMaybe<Scalars['String']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
   menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** Set connections between the Product and multiplierGroups */
-  multiplierGroups?: InputMaybe<ProductMultiplierGroupsInput>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars['String']['input']>;
   /** Set connections between the Product and productCategories */
@@ -5637,21 +5606,6 @@ export type CustomerConnectionPageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
-/** Customer group taxonomy term for B2B product visibility control */
-export type CustomerGroup = {
-  __typename?: 'CustomerGroup';
-  /** Number of products assigned to this customer group */
-  count?: Maybe<Scalars['Int']['output']>;
-  /** Database ID of the customer group term */
-  databaseId?: Maybe<Scalars['Int']['output']>;
-  /** Global ID of the customer group term */
-  id?: Maybe<Scalars['ID']['output']>;
-  /** Display name of the customer group */
-  name?: Maybe<Scalars['String']['output']>;
-  /** URL-safe slug of the customer group */
-  slug?: Maybe<Scalars['String']['output']>;
-};
-
 /** The &quot;CustomerInformation&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
 export type CustomerInformation = AcfFieldGroup & AcfFieldGroupFields & CustomerInformation_Fields & {
   __typename?: 'CustomerInformation';
@@ -6216,25 +6170,6 @@ export type DeleteMediaItemPayload = {
   deletedId?: Maybe<Scalars['ID']['output']>;
   /** The mediaItem before it was deleted */
   mediaItem?: Maybe<MediaItem>;
-};
-
-/** Input for the deleteMultiplierGroup mutation. */
-export type DeleteMultiplierGroupInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the multiplierGroup to delete */
-  id: Scalars['ID']['input'];
-};
-
-/** The payload for the deleteMultiplierGroup mutation. */
-export type DeleteMultiplierGroupPayload = {
-  __typename?: 'DeleteMultiplierGroupPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The ID of the deleted object */
-  deletedId?: Maybe<Scalars['ID']['output']>;
-  /** The deleted term object */
-  multiplierGroup?: Maybe<MultiplierGroup>;
 };
 
 /** Input for the deleteOrder mutation. */
@@ -6825,25 +6760,6 @@ export type DeleteVisibleProductPayload = {
   visibleProduct?: Maybe<VisibleProduct>;
 };
 
-/** Input for the disableTwoFactor mutation. */
-export type DisableTwoFactorInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** User ID (defaults to current user) */
-  userId?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** The payload for the disableTwoFactor mutation. */
-export type DisableTwoFactorPayload = {
-  __typename?: 'DisableTwoFactorPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** Result message */
-  message?: Maybe<Scalars['String']['output']>;
-  /** Whether 2FA was disabled */
-  success?: Maybe<Scalars['Boolean']['output']>;
-};
-
 /** Coupon discount type enumeration */
 export enum DiscountTypeEnum {
   /** Fixed cart discount */
@@ -7185,8 +7101,6 @@ export type ExternalProduct = ContentNode & DatabaseIdentifier & MenuItemLinkabl
   contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
   contentTypeName: Scalars['String']['output'];
-  /** Customer groups that can view this product (B2B visibility control) */
-  customerGroups?: Maybe<Array<Maybe<CustomerGroup>>>;
   /** Product or variation ID */
   databaseId: Scalars['Int']['output'];
   /** Post publishing date. */
@@ -7263,13 +7177,11 @@ export type ExternalProduct = ContentNode & DatabaseIdentifier & MenuItemLinkabl
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Product type and the multiplierGroup type */
-  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The part number for the product */
+  /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -7593,16 +7505,6 @@ export type ExternalProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** A external product object */
-export type ExternalProductMultiplierGroupsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -8830,8 +8732,6 @@ export type GroupProduct = ContentNode & DatabaseIdentifier & MenuItemLinkable &
   contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
   contentTypeName: Scalars['String']['output'];
-  /** Customer groups that can view this product (B2B visibility control) */
-  customerGroups?: Maybe<Array<Maybe<CustomerGroup>>>;
   /** Product or variation ID */
   databaseId: Scalars['Int']['output'];
   /** Post publishing date. */
@@ -8906,13 +8806,11 @@ export type GroupProduct = ContentNode & DatabaseIdentifier & MenuItemLinkable &
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Product type and the multiplierGroup type */
-  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The part number for the product */
+  /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -9238,16 +9136,6 @@ export type GroupProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** A group product object */
-export type GroupProductMultiplierGroupsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -10825,7 +10713,7 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkable Interface */
-export type MenuItemObjectUnion = ApplicationNote | Category | MultiplierGroup | Page | Post | PostFormat | ProductCategory | ProductTag | Tag;
+export type MenuItemObjectUnion = ApplicationNote | Category | Page | Post | ProductCategory | ProductTag | Tag;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge & MenuConnectionEdge & OneToOneConnection & {
@@ -11165,341 +11053,6 @@ export enum MimeTypeEnum {
   /** video/x-ms-wmx mime type. */
   VideoXMsWmx = 'VIDEO_X_MS_WMX'
 }
-
-/** The multiplierGroup type */
-export type MultiplierGroup = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
-  __typename?: 'MultiplierGroup';
-  /** Connection between the MultiplierGroup type and the ContentNode type */
-  contentNodes?: Maybe<MultiplierGroupToContentNodeConnection>;
-  /** The number of objects connected to the object */
-  count?: Maybe<Scalars['Int']['output']>;
-  /** The unique identifier stored in the database */
-  databaseId: Scalars['Int']['output'];
-  /** The description of the object */
-  description?: Maybe<Scalars['String']['output']>;
-  /** Connection between the TermNode type and the EnqueuedScript type */
-  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-  /** Connection between the TermNode type and the EnqueuedStylesheet type */
-  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The globally unique ID for the object */
-  id: Scalars['ID']['output'];
-  /** Whether the node is a Comment */
-  isComment: Scalars['Boolean']['output'];
-  /** Whether the node is a Content Node */
-  isContentNode: Scalars['Boolean']['output'];
-  /** Whether the node represents the front page. */
-  isFrontPage: Scalars['Boolean']['output'];
-  /** Whether  the node represents the blog page. */
-  isPostsPage: Scalars['Boolean']['output'];
-  /** Whether the object is restricted from the current viewer */
-  isRestricted?: Maybe<Scalars['Boolean']['output']>;
-  /** Whether the node is a Term */
-  isTermNode: Scalars['Boolean']['output'];
-  /** The link to the term */
-  link?: Maybe<Scalars['String']['output']>;
-  /**
-   * The id field matches the WP_Post-&gt;ID field.
-   * @deprecated Deprecated in favor of databaseId
-   */
-  multiplierGroupId?: Maybe<Scalars['Int']['output']>;
-  /** The human friendly name of the object. */
-  name?: Maybe<Scalars['String']['output']>;
-  /** Connection between the MultiplierGroup type and the Product type */
-  products?: Maybe<MultiplierGroupToProductConnection>;
-  /** An alphanumeric identifier for the object unique to its type. */
-  slug?: Maybe<Scalars['String']['output']>;
-  /** Connection between the MultiplierGroup type and the Taxonomy type */
-  taxonomy?: Maybe<MultiplierGroupToTaxonomyConnectionEdge>;
-  /** The name of the taxonomy that the object is associated with */
-  taxonomyName?: Maybe<Scalars['String']['output']>;
-  /** The ID of the term group that this term object belongs to */
-  termGroupId?: Maybe<Scalars['Int']['output']>;
-  /** The taxonomy ID that the object is associated with */
-  termTaxonomyId?: Maybe<Scalars['Int']['output']>;
-  /** The unique resource identifier path */
-  uri?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** The multiplierGroup type */
-export type MultiplierGroupContentNodesArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<MultiplierGroupToContentNodeConnectionWhereArgs>;
-};
-
-
-/** The multiplierGroup type */
-export type MultiplierGroupEnqueuedScriptsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The multiplierGroup type */
-export type MultiplierGroupEnqueuedStylesheetsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-/** The multiplierGroup type */
-export type MultiplierGroupProductsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<MultiplierGroupToProductConnectionWhereArgs>;
-};
-
-/** A paginated collection of multiplierGroup Nodes, Supports cursor-based pagination and filtering to efficiently retrieve sets of multiplierGroup Nodes */
-export type MultiplierGroupConnection = {
-  /** A list of edges (relational context) between RootQuery and connected multiplierGroup Nodes */
-  edges: Array<MultiplierGroupConnectionEdge>;
-  /** A list of connected multiplierGroup Nodes */
-  nodes: Array<MultiplierGroup>;
-  /** Information about pagination in a connection. */
-  pageInfo: MultiplierGroupConnectionPageInfo;
-};
-
-/** Represents a connection to a multiplierGroup. Contains both the multiplierGroup Node and metadata about the relationship. */
-export type MultiplierGroupConnectionEdge = {
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The connected multiplierGroup Node */
-  node: MultiplierGroup;
-};
-
-/** Pagination metadata specific to &quot;MultiplierGroupConnectionEdge&quot; collections. Provides cursors and flags for navigating through sets of &quot;MultiplierGroupConnectionEdge&quot; Nodes. */
-export type MultiplierGroupConnectionPageInfo = {
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Identifier types for retrieving a specific MultiplierGroup. Determines which unique property (global ID, database ID, slug, etc.) is used to locate the MultiplierGroup. */
-export enum MultiplierGroupIdType {
-  /** The Database ID for the node */
-  DatabaseId = 'DATABASE_ID',
-  /** The hashed Global ID */
-  Id = 'ID',
-  /** The name of the node */
-  Name = 'NAME',
-  /** Url friendly name of the node */
-  Slug = 'SLUG',
-  /** The URI for the node */
-  Uri = 'URI'
-}
-
-/** Connection between the MultiplierGroup type and the ContentNode type */
-export type MultiplierGroupToContentNodeConnection = Connection & ContentNodeConnection & {
-  __typename?: 'MultiplierGroupToContentNodeConnection';
-  /** Edges for the MultiplierGroupToContentNodeConnection connection */
-  edges: Array<MultiplierGroupToContentNodeConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<ContentNode>;
-  /** Information about pagination in a connection. */
-  pageInfo: MultiplierGroupToContentNodeConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type MultiplierGroupToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
-  __typename?: 'MultiplierGroupToContentNodeConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: ContentNode;
-};
-
-/** Pagination metadata specific to &quot;MultiplierGroupToContentNodeConnection&quot; collections. Provides cursors and flags for navigating through sets of MultiplierGroupToContentNodeConnection Nodes. */
-export type MultiplierGroupToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'MultiplierGroupToContentNodeConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the MultiplierGroupToContentNodeConnection connection */
-export type MultiplierGroupToContentNodeConnectionWhereArgs = {
-  /** The Types of content to filter */
-  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfMultiplierGroupEnum>>>;
-  /** Filter the connection based on dates */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
-  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Specific database ID of the object */
-  id?: InputMaybe<Scalars['Int']['input']>;
-  /** Array of IDs for the objects to retrieve */
-  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Get objects with a specific mimeType property */
-  mimeType?: InputMaybe<MimeTypeEnum>;
-  /** Slug / post_name of the object */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** Specify objects to retrieve. Use slugs */
-  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** What parameter to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items */
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  /** Specify objects whose parent is in an array */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Specify posts whose parent is not in an array */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Show posts with a specific password. */
-  password?: InputMaybe<Scalars['String']['input']>;
-  /** Show Posts based on a keyword search */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Retrieve posts where post status is in an array. */
-  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
-  /** Show posts with a specific status. */
-  status?: InputMaybe<PostStatusEnum>;
-  /** Title of the object */
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the MultiplierGroup type and the Product type */
-export type MultiplierGroupToProductConnection = Connection & ProductConnection & {
-  __typename?: 'MultiplierGroupToProductConnection';
-  /** Edges for the MultiplierGroupToProductConnection connection */
-  edges: Array<MultiplierGroupToProductConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<Product>;
-  /** Information about pagination in a connection. */
-  pageInfo: MultiplierGroupToProductConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type MultiplierGroupToProductConnectionEdge = Edge & ProductConnectionEdge & {
-  __typename?: 'MultiplierGroupToProductConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: Product;
-};
-
-/** Pagination metadata specific to &quot;MultiplierGroupToProductConnection&quot; collections. Provides cursors and flags for navigating through sets of MultiplierGroupToProductConnection Nodes. */
-export type MultiplierGroupToProductConnectionPageInfo = PageInfo & ProductConnectionPageInfo & WpPageInfo & {
-  __typename?: 'MultiplierGroupToProductConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the MultiplierGroupToProductConnection connection */
-export type MultiplierGroupToProductConnectionWhereArgs = {
-  /** Limit result set to products with a specific attribute. Use the taxonomy name/attribute slug. */
-  attribute?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products with a specific attribute term ID (required an assigned attribute). */
-  attributeTerm?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products assigned a specific category name. */
-  category?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products assigned a specific category name. */
-  categoryId?: InputMaybe<Scalars['Int']['input']>;
-  /** Limit result set to products assigned to a specific group of category IDs. */
-  categoryIdIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products not assigned to a specific group of category IDs. */
-  categoryIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products assigned to a group of specific categories by name. */
-  categoryIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Limit result set to products not assigned to a group of specific categories by name. */
-  categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Filter the connection based on dates. */
-  dateQuery?: InputMaybe<DateQueryInput>;
-  /** Ensure result set excludes specific IDs. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to featured products. */
-  featured?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Limit result set to specific ids. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Include variations in the result set. */
-  includeVariations?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Limit result set to products based on a maximum price. */
-  maxPrice?: InputMaybe<Scalars['Float']['input']>;
-  /** Limit result set to products based on a minimum price. */
-  minPrice?: InputMaybe<Scalars['Float']['input']>;
-  /** Limit result set to products on sale. */
-  onSale?: InputMaybe<Scalars['Boolean']['input']>;
-  /** What paramater to use to order the objects by. */
-  orderby?: InputMaybe<Array<InputMaybe<ProductsOrderbyInput>>>;
-  /** Use ID to return only children. Use 0 to return only top-level items. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Specify objects whose parent is in an array. */
-  parentIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Specify objects whose parent is not in an array. */
-  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products with a specific average rating. Must be between 1 and 5 */
-  rating?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products based on a keyword search. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products assigned a specific shipping class ID. */
-  shippingClassId?: InputMaybe<Scalars['Int']['input']>;
-  /** Limit result set to products with specific SKU(s). Use commas to separate. */
-  sku?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products with specific slugs. */
-  slugIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Limit result set to products assigned a specific status. */
-  status?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products in stock or out of stock. */
-  stockStatus?: InputMaybe<Array<InputMaybe<StockStatusEnum>>>;
-  /** Limit result types to types supported by WooGraphQL. */
-  supportedTypesOnly?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Limit result set to products assigned a specific tag name. */
-  tag?: InputMaybe<Scalars['String']['input']>;
-  /** Limit result set to products assigned a specific tag ID. */
-  tagId?: InputMaybe<Scalars['Int']['input']>;
-  /** Limit result set to products assigned to a specific group of tag IDs. */
-  tagIdIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products not assigned to a specific group of tag IDs. */
-  tagIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** Limit result set to products assigned to a specific group of tags by name. */
-  tagIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Limit result set to products not assigned to a specific group of tags by name. */
-  tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Limit result set to products with a specific tax class. */
-  taxClass?: InputMaybe<TaxClassEnum>;
-  /** Limit result set with complex set of taxonomy filters. */
-  taxonomyFilter?: InputMaybe<ProductTaxonomyInput>;
-  /** Limit result set to products assigned a specific type. */
-  type?: InputMaybe<ProductTypesEnum>;
-  /** Limit result set to products assigned to a group of specific types. */
-  typeIn?: InputMaybe<Array<InputMaybe<ProductTypesEnum>>>;
-  /** Limit result set to products not assigned to a group of specific types. */
-  typeNotIn?: InputMaybe<Array<InputMaybe<ProductTypesEnum>>>;
-  /** Limit result set to products with a specific visibility level. */
-  visibility?: InputMaybe<CatalogVisibilityEnum>;
-};
-
-/** Connection between the MultiplierGroup type and the Taxonomy type */
-export type MultiplierGroupToTaxonomyConnectionEdge = Edge & OneToOneConnection & TaxonomyConnectionEdge & {
-  __typename?: 'MultiplierGroupToTaxonomyConnectionEdge';
-  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The node of the connection, without the edges */
-  node: Taxonomy;
-};
 
 /** An object with a globally unique identifier. All objects that can be identified by a unique ID implement this interface. */
 export type Node = {
@@ -20267,7 +19820,7 @@ export type PostConnectionPageInfo = {
 };
 
 /** A standardized classification system for content presentation styles. These formats can be used to display content differently based on type, such as &quot;standard&quot;, &quot;gallery&quot;, &quot;video&quot;, etc. */
-export type PostFormat = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
+export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'PostFormat';
   /** Connection between the PostFormat type and the ContentNode type */
   contentNodes?: Maybe<PostFormatToContentNodeConnection>;
@@ -21461,8 +21014,6 @@ export type Product = {
   contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
   /** The name of the Content Type the node belongs to */
   contentTypeName: Scalars['String']['output'];
-  /** Customer groups that can view this product (B2B visibility control) */
-  customerGroups?: Maybe<Array<Maybe<CustomerGroup>>>;
   /** The unique identifier stored in the database */
   databaseId: Scalars['Int']['output'];
   /** Post publishing date. */
@@ -21535,13 +21086,11 @@ export type Product = {
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Product type and the multiplierGroup type */
-  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The part number for the product */
+  /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -21846,16 +21395,6 @@ export type ProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** This is where you can browse products in this store. */
-export type ProductMultiplierGroupsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -23102,26 +22641,6 @@ export enum ProductIdTypeEnum {
   Slug = 'SLUG'
 }
 
-/** Set relationships between the Product to multiplierGroups */
-export type ProductMultiplierGroupsInput = {
-  /** If true, this will append the multiplierGroup to existing related multiplierGroups. If false, this will replace existing relationships. Default true. */
-  append?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The input list of items to set. */
-  nodes?: InputMaybe<Array<InputMaybe<ProductMultiplierGroupsNodeInput>>>;
-};
-
-/** List of multiplierGroups to connect the Product to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
-export type ProductMultiplierGroupsNodeInput = {
-  /** The description of the multiplierGroup. This field is used to set a description of the multiplierGroup if a new one is created during the mutation. */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the multiplierGroup. If present, this will be used to connect to the Product. If no existing multiplierGroup exists with this ID, no connection will be made. */
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** The name of the multiplierGroup. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** The slug of the multiplierGroup. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
 /** Set relationships between the Product to productCategories */
 export type ProductProductCategoriesInput = {
   /** If true, this will append the productCategory to existing related productCategories. If false, this will replace existing relationships. Default true. */
@@ -23539,7 +23058,6 @@ export type ProductTagToTaxonomyConnectionEdge = Edge & OneToOneConnection & Tax
 
 /** Product taxonomies */
 export enum ProductTaxonomyEnum {
-  MultiplierGroup = 'MULTIPLIER_GROUP',
   PaAirQualityApplication = 'PA_AIR_QUALITY_APPLICATION',
   PaAirQualitySensorType = 'PA_AIR_QUALITY_SENSOR_TYPE',
   PaApplication = 'PA_APPLICATION',
@@ -23919,83 +23437,6 @@ export type ProductToMediaItemConnectionWhereArgs = {
   status?: InputMaybe<PostStatusEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Connection between the Product type and the multiplierGroup type */
-export type ProductToMultiplierGroupConnection = Connection & MultiplierGroupConnection & {
-  __typename?: 'ProductToMultiplierGroupConnection';
-  /** Edges for the ProductToMultiplierGroupConnection connection */
-  edges: Array<ProductToMultiplierGroupConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<MultiplierGroup>;
-  /** Information about pagination in a connection. */
-  pageInfo: ProductToMultiplierGroupConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type ProductToMultiplierGroupConnectionEdge = Edge & MultiplierGroupConnectionEdge & {
-  __typename?: 'ProductToMultiplierGroupConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: MultiplierGroup;
-};
-
-/** Pagination metadata specific to &quot;ProductToMultiplierGroupConnection&quot; collections. Provides cursors and flags for navigating through sets of ProductToMultiplierGroupConnection Nodes. */
-export type ProductToMultiplierGroupConnectionPageInfo = MultiplierGroupConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'ProductToMultiplierGroupConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the ProductToMultiplierGroupConnection connection */
-export type ProductToMultiplierGroupConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Connection between the Product type and the paAirQualityApplication type */
@@ -26445,8 +25886,6 @@ export type ProductVariation = {
   onSale?: Maybe<Scalars['Boolean']['output']>;
   /** The parent of the node. The parent object can be of various types */
   parent?: Maybe<ProductVariationToVariableProductConnectionEdge>;
-  /** The part number for this variation */
-  partNumber?: Maybe<Scalars['String']['output']>;
   /** The database id of the preview node */
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
@@ -27338,8 +26777,6 @@ export type RootMutation = {
   createGraphqlDocumentGroup?: Maybe<CreateGraphqlDocumentGroupPayload>;
   /** The createMediaItem mutation */
   createMediaItem?: Maybe<CreateMediaItemPayload>;
-  /** The createMultiplierGroup mutation */
-  createMultiplierGroup?: Maybe<CreateMultiplierGroupPayload>;
   /** The createOrder mutation */
   createOrder?: Maybe<CreateOrderPayload>;
   /** The createPaAirQualityApplication mutation */
@@ -27408,8 +26845,6 @@ export type RootMutation = {
   deleteGraphqlDocumentGroup?: Maybe<DeleteGraphqlDocumentGroupPayload>;
   /** The deleteMediaItem mutation */
   deleteMediaItem?: Maybe<DeleteMediaItemPayload>;
-  /** The deleteMultiplierGroup mutation */
-  deleteMultiplierGroup?: Maybe<DeleteMultiplierGroupPayload>;
   /** The deleteOrder mutation */
   deleteOrder?: Maybe<DeleteOrderPayload>;
   /** The deleteOrderItems mutation */
@@ -27470,8 +26905,6 @@ export type RootMutation = {
   deleteUser?: Maybe<DeleteUserPayload>;
   /** The deleteVisibleProduct mutation */
   deleteVisibleProduct?: Maybe<DeleteVisibleProductPayload>;
-  /** The disableTwoFactor mutation */
-  disableTwoFactor?: Maybe<DisableTwoFactorPayload>;
   /** The emptyCart mutation */
   emptyCart?: Maybe<EmptyCartPayload>;
   /** The fillCart mutation */
@@ -27520,8 +26953,6 @@ export type RootMutation = {
   updateItemQuantities?: Maybe<UpdateItemQuantitiesPayload>;
   /** The updateMediaItem mutation */
   updateMediaItem?: Maybe<UpdateMediaItemPayload>;
-  /** The updateMultiplierGroup mutation */
-  updateMultiplierGroup?: Maybe<UpdateMultiplierGroupPayload>;
   /** The updateOrder mutation */
   updateOrder?: Maybe<UpdateOrderPayload>;
   /** The updatePaAirQualityApplication mutation */
@@ -27580,14 +27011,10 @@ export type RootMutation = {
   updateShippingMethod?: Maybe<UpdateShippingMethodPayload>;
   /** The updateTag mutation */
   updateTag?: Maybe<UpdateTagPayload>;
-  /** The updateTwoFactorSecret mutation */
-  updateTwoFactorSecret?: Maybe<UpdateTwoFactorSecretPayload>;
   /** The updateUser mutation */
   updateUser?: Maybe<UpdateUserPayload>;
   /** The updateVisibleProduct mutation */
   updateVisibleProduct?: Maybe<UpdateVisibleProductPayload>;
-  /** The useTwoFactorBackupCode mutation */
-  useTwoFactorBackupCode?: Maybe<UseTwoFactorBackupCodePayload>;
   /** The writeReview mutation */
   writeReview?: Maybe<WriteReviewPayload>;
 };
@@ -27662,12 +27089,6 @@ export type RootMutationCreateGraphqlDocumentGroupArgs = {
 /** The root mutation */
 export type RootMutationCreateMediaItemArgs = {
   input: CreateMediaItemInput;
-};
-
-
-/** The root mutation */
-export type RootMutationCreateMultiplierGroupArgs = {
-  input: CreateMultiplierGroupInput;
 };
 
 
@@ -27876,12 +27297,6 @@ export type RootMutationDeleteMediaItemArgs = {
 
 
 /** The root mutation */
-export type RootMutationDeleteMultiplierGroupArgs = {
-  input: DeleteMultiplierGroupInput;
-};
-
-
-/** The root mutation */
 export type RootMutationDeleteOrderArgs = {
   input: DeleteOrderInput;
 };
@@ -28062,12 +27477,6 @@ export type RootMutationDeleteVisibleProductArgs = {
 
 
 /** The root mutation */
-export type RootMutationDisableTwoFactorArgs = {
-  input: DisableTwoFactorInput;
-};
-
-
-/** The root mutation */
 export type RootMutationEmptyCartArgs = {
   input: EmptyCartInput;
 };
@@ -28208,12 +27617,6 @@ export type RootMutationUpdateItemQuantitiesArgs = {
 /** The root mutation */
 export type RootMutationUpdateMediaItemArgs = {
   input: UpdateMediaItemInput;
-};
-
-
-/** The root mutation */
-export type RootMutationUpdateMultiplierGroupArgs = {
-  input: UpdateMultiplierGroupInput;
 };
 
 
@@ -28392,12 +27795,6 @@ export type RootMutationUpdateTagArgs = {
 
 
 /** The root mutation */
-export type RootMutationUpdateTwoFactorSecretArgs = {
-  input: UpdateTwoFactorSecretInput;
-};
-
-
-/** The root mutation */
 export type RootMutationUpdateUserArgs = {
   input: UpdateUserInput;
 };
@@ -28406,12 +27803,6 @@ export type RootMutationUpdateUserArgs = {
 /** The root mutation */
 export type RootMutationUpdateVisibleProductArgs = {
   input: UpdateVisibleProductInput;
-};
-
-
-/** The root mutation */
-export type RootMutationUseTwoFactorBackupCodeArgs = {
-  input: UseTwoFactorBackupCodeInput;
 };
 
 
@@ -28546,10 +27937,6 @@ export type RootQuery = {
   menuItems?: Maybe<RootQueryToMenuItemConnection>;
   /** Connection between the RootQuery type and the Menu type */
   menus?: Maybe<RootQueryToMenuConnection>;
-  /** A 0bject */
-  multiplierGroup?: Maybe<MultiplierGroup>;
-  /** Connection between the RootQuery type and the multiplierGroup type */
-  multiplierGroups?: Maybe<RootQueryToMultiplierGroupConnection>;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
   /** Fetches an object given its Unique Resource Identifier */
@@ -29133,23 +28520,6 @@ export type RootQueryMenusArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToMenuConnectionWhereArgs>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryMultiplierGroupArgs = {
-  id: Scalars['ID']['input'];
-  idType?: InputMaybe<MultiplierGroupIdType>;
-};
-
-
-/** The root entry point into the Graph */
-export type RootQueryMultiplierGroupsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<RootQueryToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -30533,83 +29903,6 @@ export type RootQueryToMenuItemConnectionWhereArgs = {
   parentDatabaseId?: InputMaybe<Scalars['Int']['input']>;
   /** The ID of the parent menu object */
   parentId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-/** Connection between the RootQuery type and the multiplierGroup type */
-export type RootQueryToMultiplierGroupConnection = Connection & MultiplierGroupConnection & {
-  __typename?: 'RootQueryToMultiplierGroupConnection';
-  /** Edges for the RootQueryToMultiplierGroupConnection connection */
-  edges: Array<RootQueryToMultiplierGroupConnectionEdge>;
-  /** The nodes of the connection, without the edges */
-  nodes: Array<MultiplierGroup>;
-  /** Information about pagination in a connection. */
-  pageInfo: RootQueryToMultiplierGroupConnectionPageInfo;
-};
-
-/** An edge in a connection */
-export type RootQueryToMultiplierGroupConnectionEdge = Edge & MultiplierGroupConnectionEdge & {
-  __typename?: 'RootQueryToMultiplierGroupConnectionEdge';
-  /** A cursor for use in pagination */
-  cursor?: Maybe<Scalars['String']['output']>;
-  /** The item at the end of the edge */
-  node: MultiplierGroup;
-};
-
-/** Pagination metadata specific to &quot;RootQueryToMultiplierGroupConnection&quot; collections. Provides cursors and flags for navigating through sets of RootQueryToMultiplierGroupConnection Nodes. */
-export type RootQueryToMultiplierGroupConnectionPageInfo = MultiplierGroupConnectionPageInfo & PageInfo & WpPageInfo & {
-  __typename?: 'RootQueryToMultiplierGroupConnectionPageInfo';
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']['output']>;
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']['output'];
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Arguments for filtering the RootQueryToMultiplierGroupConnection connection */
-export type RootQueryToMultiplierGroupConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Connection between the RootQuery type and the Order type */
@@ -33920,8 +33213,6 @@ export type SimpleProduct = ContentNode & DatabaseIdentifier & DownloadableProdu
   contentTypeName: Scalars['String']['output'];
   /** Connection between the SimpleProduct type and the ProductUnion type */
   crossSell?: Maybe<SimpleProductToProductUnionConnection>;
-  /** Customer groups that can view this product (B2B visibility control) */
-  customerGroups?: Maybe<Array<Maybe<CustomerGroup>>>;
   /** Product or variation ID */
   databaseId: Scalars['Int']['output'];
   /** Post publishing date. */
@@ -34012,13 +33303,11 @@ export type SimpleProduct = ContentNode & DatabaseIdentifier & DownloadableProdu
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Product type and the multiplierGroup type */
-  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The part number for the product */
+  /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -34374,16 +33663,6 @@ export type SimpleProductMetaDataArgs = {
 
 
 /** A simple product object */
-export type SimpleProductMultiplierGroupsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
-};
-
-
-/** A simple product object */
 export type SimpleProductPriceArgs = {
   format?: InputMaybe<PricingFieldFormatEnum>;
 };
@@ -34724,8 +34003,6 @@ export type SimpleProductVariation = ContentNode & DownloadableProduct & Invento
   onSale?: Maybe<Scalars['Boolean']['output']>;
   /** The parent of the node. The parent object can be of various types */
   parent?: Maybe<ProductVariationToVariableProductConnectionEdge>;
-  /** The part number for this variation */
-  partNumber?: Maybe<Scalars['String']['output']>;
   /** The database id of the preview node */
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
@@ -35560,8 +34837,6 @@ export enum TaxonomyEnum {
   Category = 'CATEGORY',
   /** Taxonomy enum graphql_document_group */
   Graphqldocumentgroup = 'GRAPHQLDOCUMENTGROUP',
-  /** Taxonomy enum multiplier_group */
-  Multipliergroup = 'MULTIPLIERGROUP',
   /** Taxonomy enum pa_air-quality-application */
   Paairqualityapplication = 'PAAIRQUALITYAPPLICATION',
   /** Taxonomy enum pa_air-quality-sensor-type */
@@ -35689,13 +34964,6 @@ export type TaxonomyToTermNodeConnectionPageInfo = PageInfo & TermNodeConnection
   hasPreviousPage: Scalars['Boolean']['output'];
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** The template assigned to the node */
-export type Template_PageNoTitle = ContentTemplate & {
-  __typename?: 'Template_PageNoTitle';
-  /** The name of the template */
-  templateName?: Maybe<Scalars['String']['output']>;
 };
 
 /** Base interface for taxonomy terms such as categories and tags. Terms are used to organize and classify content. */
@@ -36315,31 +35583,6 @@ export type UpdateMediaItemPayload = {
   mediaItem?: Maybe<MediaItem>;
 };
 
-/** Input for the updateMultiplierGroup mutation. */
-export type UpdateMultiplierGroupInput = {
-  /** The slug that the multiplier_group will be an alias of */
-  aliasOf?: InputMaybe<Scalars['String']['input']>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The description of the multiplier_group object */
-  description?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the multiplierGroup object to update */
-  id: Scalars['ID']['input'];
-  /** The name of the multiplier_group object to mutate */
-  name?: InputMaybe<Scalars['String']['input']>;
-  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateMultiplierGroup mutation. */
-export type UpdateMultiplierGroupPayload = {
-  __typename?: 'UpdateMultiplierGroupPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** The created multiplier_group */
-  multiplierGroup?: Maybe<MultiplierGroup>;
-};
-
 /** Input for the updateOrder mutation. */
 export type UpdateOrderInput = {
   /** Order billing address */
@@ -36957,8 +36200,6 @@ export type UpdateProductInput = {
   ignoreEditLock?: InputMaybe<Scalars['Boolean']['input']>;
   /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
   menuOrder?: InputMaybe<Scalars['Int']['input']>;
-  /** Set connections between the Product and multiplierGroups */
-  multiplierGroups?: InputMaybe<ProductMultiplierGroupsInput>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars['String']['input']>;
   /** Set connections between the Product and productCategories */
@@ -37216,31 +36457,6 @@ export type UpdateTagPayload = {
   tag?: Maybe<Tag>;
 };
 
-/** Input for the updateTwoFactorSecret mutation. */
-export type UpdateTwoFactorSecretInput = {
-  /** Backup codes for account recovery */
-  backupCodes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** Whether to enable 2FA */
-  enabled?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The TOTP secret to store */
-  secret?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** The payload for the updateTwoFactorSecret mutation. */
-export type UpdateTwoFactorSecretPayload = {
-  __typename?: 'UpdateTwoFactorSecretPayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** Success or error message */
-  message?: Maybe<Scalars['String']['output']>;
-  /** Whether the operation succeeded */
-  success?: Maybe<Scalars['Boolean']['output']>;
-  /** The updated user */
-  user?: Maybe<User>;
-};
-
 /** Input for the updateUser mutation. */
 export type UpdateUserInput = {
   /** User's AOL IM account. */
@@ -37319,27 +36535,6 @@ export type UpdateVisibleProductPayload = {
   visibleProduct?: Maybe<VisibleProduct>;
 };
 
-/** Input for the useTwoFactorBackupCode mutation. */
-export type UseTwoFactorBackupCodeInput = {
-  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** The backup code to verify and consume */
-  code: Scalars['String']['input'];
-  /** User ID (for login flow) */
-  userId?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** The payload for the useTwoFactorBackupCode mutation. */
-export type UseTwoFactorBackupCodePayload = {
-  __typename?: 'UseTwoFactorBackupCodePayload';
-  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
-  clientMutationId?: Maybe<Scalars['String']['output']>;
-  /** Result message */
-  message?: Maybe<Scalars['String']['output']>;
-  /** Whether the backup code was valid */
-  valid?: Maybe<Scalars['Boolean']['output']>;
-};
-
 /** A registered user account. Users can be assigned roles, author content, and have various capabilities within the site. */
 export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable & WithAcfCustomerInformation & {
   __typename?: 'User';
@@ -37353,12 +36548,6 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   capabilities?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** Connection between the User type and the Comment type */
   comments?: Maybe<UserToCommentConnection>;
-  /** Primary customer group from ACF field */
-  customerGroup1?: Maybe<Scalars['String']['output']>;
-  /** Secondary customer group from ACF field */
-  customerGroup2?: Maybe<Scalars['String']['output']>;
-  /** Tertiary customer group from ACF field */
-  customerGroup3?: Maybe<Scalars['String']['output']>;
   /** Fields of the CustomerInformation ACF Field Group */
   customerInformation?: Maybe<CustomerInformation>;
   /** Identifies the primary key from the database. */
@@ -37431,12 +36620,6 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   shouldShowAdminToolbar?: Maybe<Scalars['Boolean']['output']>;
   /** The slug for the user. This field is equivalent to WP_User-&gt;user_nicename */
   slug?: Maybe<Scalars['String']['output']>;
-  /** Hashed backup codes for account recovery (only accessible to own user) */
-  twoFactorBackupCodes?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  /** Whether two-factor authentication is enabled for this user */
-  twoFactorEnabled?: Maybe<Scalars['Boolean']['output']>;
-  /** Encrypted two-factor authentication secret (only accessible to own user) */
-  twoFactorSecret?: Maybe<Scalars['String']['output']>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars['String']['output']>;
   /** A website url that is associated with the user. */
@@ -38277,8 +37460,6 @@ export type VariableProduct = ContentNode & DatabaseIdentifier & InventoriedProd
   contentTypeName: Scalars['String']['output'];
   /** Connection between the VariableProduct type and the ProductUnion type */
   crossSell?: Maybe<VariableProductToProductUnionConnection>;
-  /** Customer groups that can view this product (B2B visibility control) */
-  customerGroups?: Maybe<Array<Maybe<CustomerGroup>>>;
   /** Product or variation ID */
   databaseId: Scalars['Int']['output'];
   /** Post publishing date. */
@@ -38361,13 +37542,11 @@ export type VariableProduct = ContentNode & DatabaseIdentifier & InventoriedProd
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
-  /** Connection between the Product type and the multiplierGroup type */
-  multiplierGroups?: Maybe<ProductToMultiplierGroupConnection>;
   /** Product name */
   name?: Maybe<Scalars['String']['output']>;
   /** Is product on sale? */
   onSale?: Maybe<Scalars['Boolean']['output']>;
-  /** The part number for the product */
+  /** Product part number (falls back to SKU if not set) */
   partNumber?: Maybe<Scalars['String']['output']>;
   /** The password for the product object. */
   password?: Maybe<Scalars['String']['output']>;
@@ -38719,16 +37898,6 @@ export type VariableProductMetaDataArgs = {
   key?: InputMaybe<Scalars['String']['input']>;
   keysIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   multiple?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** A variable product object */
-export type VariableProductMultiplierGroupsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProductToMultiplierGroupConnectionWhereArgs>;
 };
 
 
@@ -39768,11 +38937,11 @@ export type GetProductsQueryVariables = Exact<{
 
 
 export type GetProductsQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', pageInfo: { __typename?: 'RootQueryToProductUnionConnectionPageInfo', hasNextPage: boolean, hasPreviousPage: boolean, endCursor?: string | null | undefined, startCursor?: string | null | undefined }, nodes: Array<
-      | { __typename: 'ExternalProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
-      | { __typename: 'GroupProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
-      | { __typename: 'SimpleProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
+      | { __typename: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
+      | { __typename: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
+      | { __typename: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
       | { __typename: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
-      | { __typename: 'VariableProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
+      | { __typename: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
     > } | null | undefined };
 
 export type GetProductBySlugQueryVariables = Exact<{
@@ -39781,33 +38950,33 @@ export type GetProductBySlugQueryVariables = Exact<{
 
 
 export type GetProductBySlugQuery = { __typename?: 'RootQuery', product?:
-    | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+    | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
+          | { __typename?: 'ExternalProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
-    | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+    | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
+          | { __typename?: 'ExternalProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
-    | { __typename?: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+    | { __typename?: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
+          | { __typename?: 'ExternalProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
-    | { __typename?: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, description?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, weight?: string | null | undefined, partNumber?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, attributes?: { __typename?: 'ProductVariationToVariationAttributeConnection', nodes: Array<{ __typename?: 'VariationAttribute', name?: string | null | undefined, label?: string | null | undefined, value?: string | null | undefined }> } | null | undefined }> } | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+    | { __typename?: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, description?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, weight?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, attributes?: { __typename?: 'ProductVariationToVariationAttributeConnection', nodes: Array<{ __typename?: 'VariationAttribute', name?: string | null | undefined, label?: string | null | undefined, value?: string | null | undefined }> } | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
+          | { __typename?: 'ExternalProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
    | null | undefined };
 
@@ -39817,10 +38986,10 @@ export type GetProductBySlugLightQueryVariables = Exact<{
 
 
 export type GetProductBySlugLightQuery = { __typename?: 'RootQuery', product?:
-    | { __typename: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined }
-    | { __typename: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined }
-    | { __typename: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined }
-    | { __typename: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined }
+    | { __typename: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined }
+    | { __typename: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined }
+    | { __typename: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined }
+    | { __typename: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, description?: string | null | undefined, shortDescription?: string | null | undefined, partNumber?: string | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined } } | null | undefined }> } | null | undefined }
    | null | undefined };
 
 export type GetProductDetailsDeferredQueryVariables = Exact<{
@@ -39829,10 +38998,10 @@ export type GetProductDetailsDeferredQueryVariables = Exact<{
 
 
 export type GetProductDetailsDeferredQuery = { __typename?: 'RootQuery', product?:
-    | { __typename?: 'ExternalProduct', id: string, description?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
-    | { __typename?: 'GroupProduct', id: string, description?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
-    | { __typename?: 'SimpleProduct', id: string, description?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
-    | { __typename?: 'VariableProduct', id: string, description?: string | null | undefined, multiplierGroups?: { __typename?: 'ProductToMultiplierGroupConnection', nodes: Array<{ __typename?: 'MultiplierGroup', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, productDocuments?: Array<{ __typename?: 'ProductDocument', heading?: string | null | undefined, files?: Array<{ __typename?: 'ProductDocumentFile', id?: number | null | undefined, url?: string | null | undefined, title?: string | null | undefined, filename?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, productVideos?: Array<{ __typename?: 'ProductVideo', heading?: string | null | undefined, videos?: Array<{ __typename?: 'ProductVideoItem', url?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
+    | { __typename?: 'ExternalProduct', id: string, description?: string | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
+    | { __typename?: 'GroupProduct', id: string, description?: string | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
+    | { __typename?: 'SimpleProduct', id: string, description?: string | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
+    | { __typename?: 'VariableProduct', id: string, description?: string | null | undefined, galleryImages?: { __typename?: 'ProductToMediaItemConnection', nodes: Array<{ __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined }> } | null | undefined, productTags?: { __typename?: 'ProductToProductTagConnection', nodes: Array<{ __typename?: 'ProductTag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined }
    | null | undefined };
 
 export type GetProductVariationsQueryVariables = Exact<{
@@ -39847,7 +39016,7 @@ export type GetProductVariationsQuery = { __typename?: 'RootQuery', product?:
     | { __typename: 'VariableProduct', attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
           | { __typename?: 'GlobalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
           | { __typename?: 'LocalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
-        > } | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, description?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, weight?: string | null | undefined, partNumber?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, attributes?: { __typename?: 'ProductVariationToVariationAttributeConnection', nodes: Array<{ __typename?: 'VariationAttribute', name?: string | null | undefined, label?: string | null | undefined, value?: string | null | undefined }> } | null | undefined }> } | null | undefined }
+        > } | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, description?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, weight?: string | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, attributes?: { __typename?: 'ProductVariationToVariationAttributeConnection', nodes: Array<{ __typename?: 'VariationAttribute', name?: string | null | undefined, label?: string | null | undefined, value?: string | null | undefined }> } | null | undefined }> } | null | undefined }
    | null | undefined };
 
 export type GetProductRelatedQueryVariables = Exact<{
@@ -39857,32 +39026,32 @@ export type GetProductRelatedQueryVariables = Exact<{
 
 export type GetProductRelatedQuery = { __typename?: 'RootQuery', product?:
     | { __typename?: 'ExternalProduct', related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'ExternalProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
     | { __typename?: 'GroupProduct', related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'ExternalProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
     | { __typename?: 'SimpleProduct', related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'ExternalProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
     | { __typename?: 'VariableProduct', related?: { __typename?: 'ProductToProductUnionConnection', nodes: Array<
-          | { __typename?: 'ExternalProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'GroupProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'SimpleProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'ExternalProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'GroupProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'SimpleProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
           | { __typename?: 'SimpleProductVariation', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
-          | { __typename?: 'VariableProduct', partNumber?: string | null | undefined, id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
+          | { __typename?: 'VariableProduct', id: string, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined }
         > } | null | undefined }
    | null | undefined };
 
@@ -39908,14 +39077,14 @@ export type GetProductsByCategoryQueryVariables = Exact<{
 
 
 export type GetProductsByCategoryQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', pageInfo: { __typename?: 'RootQueryToProductUnionConnectionPageInfo', hasNextPage: boolean, hasPreviousPage: boolean, endCursor?: string | null | undefined, startCursor?: string | null | undefined }, nodes: Array<
-      | { __typename: 'ExternalProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
-      | { __typename: 'GroupProduct', partNumber?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
-      | { __typename: 'SimpleProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
+      | { __typename: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
+      | { __typename: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
+      | { __typename: 'SimpleProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, stockQuantity?: number | null | undefined, sku?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
             | { __typename?: 'GlobalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
             | { __typename?: 'LocalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
           > } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
       | { __typename: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
-      | { __typename: 'VariableProduct', partNumber?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, customerGroups?: Array<{ __typename?: 'CustomerGroup', id?: string | null | undefined, databaseId?: number | null | undefined, slug?: string | null | undefined, name?: string | null | undefined } | null | undefined> | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
+      | { __typename: 'VariableProduct', price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, onSale?: boolean | null | undefined, stockStatus?: StockStatusEnum | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, shortDescription?: string | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
             | { __typename?: 'GlobalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
             | { __typename?: 'LocalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined }
           > } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined }
@@ -39931,7 +39100,7 @@ export type GetProductCategoryWithChildrenQuery = { __typename?: 'RootQuery', pr
 export type GetProductAttributesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProductAttributesQuery = { __typename?: 'RootQuery', paApplications?: { __typename?: 'RootQueryToPaApplicationConnection', nodes: Array<{ __typename?: 'PaApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paRoomEnclosureStyles?: { __typename?: 'RootQueryToPaRoomEnclosureStyleConnection', nodes: Array<{ __typename?: 'PaRoomEnclosureStyle', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paTemperatureSensorOutputs?: { __typename?: 'RootQueryToPaTemperatureSensorOutputConnection', nodes: Array<{ __typename?: 'PaTemperatureSensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paDisplays?: { __typename?: 'RootQueryToPaDisplayConnection', nodes: Array<{ __typename?: 'PaDisplay', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumidityApplications?: { __typename?: 'RootQueryToPaHumidityApplicationConnection', nodes: Array<{ __typename?: 'PaHumidityApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumiditySensorOutputs?: { __typename?: 'RootQueryToPaHumiditySensorOutputConnection', nodes: Array<{ __typename?: 'PaHumiditySensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paPressureApplications?: { __typename?: 'RootQueryToPaPressureApplicationConnection', nodes: Array<{ __typename?: 'PaPressureApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paAirQualitySensorTypes?: { __typename?: 'RootQueryToPaAirQualitySensorTypeConnection', nodes: Array<{ __typename?: 'PaAirQualitySensorType', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined };
+export type GetProductAttributesQuery = { __typename?: 'RootQuery', paApplications?: { __typename?: 'RootQueryToPaApplicationConnection', nodes: Array<{ __typename?: 'PaApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paRoomEnclosureStyles?: { __typename?: 'RootQueryToPaRoomEnclosureStyleConnection', nodes: Array<{ __typename?: 'PaRoomEnclosureStyle', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paTemperatureSensorOutputs?: { __typename?: 'RootQueryToPaTemperatureSensorOutputConnection', nodes: Array<{ __typename?: 'PaTemperatureSensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paDisplays?: { __typename?: 'RootQueryToPaDisplayConnection', nodes: Array<{ __typename?: 'PaDisplay', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumidityApplications?: { __typename?: 'RootQueryToPaHumidityApplicationConnection', nodes: Array<{ __typename?: 'PaHumidityApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paHumiditySensorOutputs?: { __typename?: 'RootQueryToPaHumiditySensorOutputConnection', nodes: Array<{ __typename?: 'PaHumiditySensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paPressureApplications?: { __typename?: 'RootQueryToPaPressureApplicationConnection', nodes: Array<{ __typename?: 'PaPressureApplication', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paAirQualitySensorTypes?: { __typename?: 'RootQueryToPaAirQualitySensorTypeConnection', nodes: Array<{ __typename?: 'PaAirQualitySensorType', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paTempSetpointAndOverride?: { __typename?: 'RootQueryToPaTempSetpointAndOverrideConnection', nodes: Array<{ __typename?: 'PaTempSetpointAndOverride', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined, paOptionalTempSensorOutputs?: { __typename?: 'RootQueryToPaOptionalTempSensorOutputConnection', nodes: Array<{ __typename?: 'PaOptionalTempSensorOutput', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, count?: number | null | undefined }> } | null | undefined };
 
 export type GetProductsWithFiltersQueryVariables = Exact<{
   categorySlug: Scalars['String']['input'];
@@ -39948,7 +39117,7 @@ export type GetProductsWithFiltersQuery = { __typename?: 'RootQuery', products?:
       | { __typename: 'VariableProduct', id: string, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, salePrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, onSale?: boolean | null | undefined, sku?: string | null | undefined, shortDescription?: string | null | undefined, databaseId: number, slug?: string | null | undefined, type?: ProductTypesEnum | null | undefined, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } } | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined, mediaDetails?: { __typename?: 'MediaDetails', height?: number | null | undefined, width?: number | null | undefined } | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, allPaApplication?: { __typename?: 'ProductToPaApplicationConnection', nodes: Array<{ __typename?: 'PaApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaRoomEnclosureStyle?: { __typename?: 'ProductToPaRoomEnclosureStyleConnection', nodes: Array<{ __typename?: 'PaRoomEnclosureStyle', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaTemperatureSensorOutput?: { __typename?: 'ProductToPaTemperatureSensorOutputConnection', nodes: Array<{ __typename?: 'PaTemperatureSensorOutput', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaDisplay?: { __typename?: 'ProductToPaDisplayConnection', nodes: Array<{ __typename?: 'PaDisplay', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaTempSetpointAndOverride?: { __typename?: 'ProductToPaTempSetpointAndOverrideConnection', nodes: Array<{ __typename?: 'PaTempSetpointAndOverride', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaOptionalTempHumidity?: { __typename?: 'ProductToPaOptionalTempHumidityConnection', nodes: Array<{ __typename?: 'PaOptionalTempHumidity', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaOptionalTempSensorOutput?: { __typename?: 'ProductToPaOptionalTempSensorOutputConnection', nodes: Array<{ __typename?: 'PaOptionalTempSensorOutput', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaHumidityApplication?: { __typename?: 'ProductToPaHumidityApplicationConnection', nodes: Array<{ __typename?: 'PaHumidityApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaHumidityRoomEnclosure?: { __typename?: 'ProductToPaHumidityRoomEnclosureConnection', nodes: Array<{ __typename?: 'PaHumidityRoomEnclosure', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaHumiditySensorOutput?: { __typename?: 'ProductToPaHumiditySensorOutputConnection', nodes: Array<{ __typename?: 'PaHumiditySensorOutput', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaPressureApplication?: { __typename?: 'ProductToPaPressureApplicationConnection', nodes: Array<{ __typename?: 'PaPressureApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaPressureSensorStyle?: { __typename?: 'ProductToPaPressureSensorStyleConnection', nodes: Array<{ __typename?: 'PaPressureSensorStyle', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaAirQualityApplication?: { __typename?: 'ProductToPaAirQualityApplicationConnection', nodes: Array<{ __typename?: 'PaAirQualityApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaAirQualitySensorType?: { __typename?: 'ProductToPaAirQualitySensorTypeConnection', nodes: Array<{ __typename?: 'PaAirQualitySensorType', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, allPaWirelessApplication?: { __typename?: 'ProductToPaWirelessApplicationConnection', nodes: Array<{ __typename?: 'PaWirelessApplication', id: string, name?: string | null | undefined, slug?: string | null | undefined }> } | null | undefined, attributes?: { __typename?: 'ProductToProductAttributeConnection', nodes: Array<
             | { __typename?: 'GlobalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
             | { __typename?: 'LocalProductAttribute', id: string, name?: string | null | undefined, label?: string | null | undefined, options?: Array<string | null | undefined> | null | undefined, variation?: boolean | null | undefined }
-          > } | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, sku?: string | null | undefined, partNumber?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, attributes?: { __typename?: 'ProductVariationToVariationAttributeConnection', nodes: Array<{ __typename?: 'VariationAttribute', name?: string | null | undefined, label?: string | null | undefined, value?: string | null | undefined }> } | null | undefined }> } | null | undefined }
+          > } | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, price?: string | null | undefined, regularPrice?: string | null | undefined, stockStatus?: StockStatusEnum | null | undefined, sku?: string | null | undefined, image?: { __typename?: 'MediaItem', id: string, sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, attributes?: { __typename?: 'ProductVariationToVariationAttributeConnection', nodes: Array<{ __typename?: 'VariationAttribute', name?: string | null | undefined, label?: string | null | undefined, value?: string | null | undefined }> } | null | undefined }> } | null | undefined }
     > } | null | undefined };
 
 export type GetAllProductTaxonomiesQueryVariables = Exact<{ [key: string]: never; }>;
@@ -41105,19 +40274,12 @@ export const GetProductsDocument = gql`
       description
       shortDescription
       ... on Product {
-        partNumber
         productCategories {
           nodes {
             id
             name
             slug
           }
-        }
-        customerGroups {
-          id
-          databaseId
-          slug
-          name
         }
       }
       ... on SimpleProduct {
@@ -41200,7 +40362,6 @@ export const GetProductBySlugDocument = gql`
           stockStatus
           stockQuantity
           weight
-          partNumber
           sku
           image {
             sourceUrl
@@ -41268,32 +40429,14 @@ export const GetProductBySlugDocument = gql`
         slug
       }
     }
-    customerGroups {
-      id
-      databaseId
-      slug
-      name
-    }
     related(first: 6) {
       nodes {
         id
         name
         slug
-        ... on Product {
-          partNumber
-        }
         image {
           sourceUrl
           altText
-        }
-      }
-    }
-    ... on Product {
-      multiplierGroups {
-        nodes {
-          id
-          name
-          slug
         }
       }
     }
@@ -41311,6 +40454,21 @@ export const GetProductBySlugLightDocument = gql`
     description
     shortDescription
     partNumber
+    productDocuments {
+      heading
+      files {
+        id
+        url
+        title
+        filename
+      }
+    }
+    productVideos {
+      heading
+      videos {
+        url
+      }
+    }
     ... on SimpleProduct {
       price
       regularPrice
@@ -41366,21 +40524,6 @@ export const GetProductBySlugLightDocument = gql`
         }
       }
     }
-    productDocuments {
-      heading
-      files {
-        id
-        url
-        title
-        filename
-      }
-    }
-    productVideos {
-      heading
-      videos {
-        url
-      }
-    }
   }
 }
     `;
@@ -41389,21 +40532,6 @@ export const GetProductDetailsDeferredDocument = gql`
   product(id: $id, idType: DATABASE_ID) {
     id
     description
-    productDocuments {
-      heading
-      files {
-        id
-        url
-        title
-        filename
-      }
-    }
-    productVideos {
-      heading
-      videos {
-        url
-      }
-    }
     galleryImages {
       nodes {
         id
@@ -41420,15 +40548,6 @@ export const GetProductDetailsDeferredDocument = gql`
         id
         name
         slug
-      }
-    }
-    ... on Product {
-      multiplierGroups {
-        nodes {
-          id
-          name
-          slug
-        }
       }
     }
   }
@@ -41460,7 +40579,6 @@ export const GetProductVariationsDocument = gql`
           stockStatus
           stockQuantity
           weight
-          partNumber
           sku
           image {
             sourceUrl
@@ -41491,9 +40609,6 @@ export const GetProductRelatedDocument = gql`
         id
         name
         slug
-        ... on Product {
-          partNumber
-        }
         image {
           sourceUrl
           altText
@@ -41556,7 +40671,6 @@ export const GetProductsByCategoryDocument = gql`
       slug
       shortDescription
       ... on Product {
-        partNumber
         productCategories {
           nodes {
             id
@@ -41570,12 +40684,6 @@ export const GetProductsByCategoryDocument = gql`
               }
             }
           }
-        }
-        customerGroups {
-          id
-          databaseId
-          slug
-          name
         }
       }
       ... on SimpleProduct {
@@ -41745,6 +40853,24 @@ export const GetProductAttributesDocument = gql`
     }
   }
   paAirQualitySensorTypes: allPaAirQualitySensorType(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paTempSetpointAndOverride: allPaTempSetpointAndOverride(first: 100) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      count
+    }
+  }
+  paOptionalTempSensorOutputs: allPaOptionalTempSensorOutput(first: 100) {
     nodes {
       id
       databaseId
@@ -42090,7 +41216,6 @@ export const GetProductsWithFiltersDocument = gql`
               regularPrice
               stockStatus
               sku
-              partNumber
               image {
                 id
                 sourceUrl

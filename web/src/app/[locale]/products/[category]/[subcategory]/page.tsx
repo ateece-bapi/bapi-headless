@@ -10,14 +10,18 @@ import {
   GetProductCategoryWithChildrenQuery,
   GetProductsByCategoryDocument,
   GetProductsByCategoryQuery,
+  GetProductAttributesDocument,
+  GetProductAttributesQuery,
 } from '@/lib/graphql/generated';
 import { ProductFilters } from '@/components/products/ProductFilters';
 import { MobileFilterButton } from '@/components/products/MobileFilterButton';
 import FilteredProductGrid from '@/components/products/FilteredProductGrid';
 import ProductSortDropdown from '@/components/products/ProductSortDropdown';
+import CategoryContent from '@/components/category/CategoryContent';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getSubcategoryBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 import { getCategoryIcon, getCategoryIconName } from '@/lib/constants/category-icons';
+import logger from '@/lib/logger';
 import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
@@ -130,6 +134,22 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   const products = productsData.products?.nodes || [];
   const hasNextPage = productsData.products?.pageInfo.hasNextPage || false;
   const hasProducts = products.length > 0;
+  
+  // Fetch product attributes for filters
+  let productAttributesData: GetProductAttributesQuery | null = null;
+  if (hasProducts) {
+    try {
+      productAttributesData = await client.request<GetProductAttributesQuery>(
+        GetProductAttributesDocument
+      );
+    } catch (error) {
+      logger.warn('Failed to fetch product attributes for subcategory', {
+        subcategorySlug: subcategory,
+        locale,
+        error,
+      });
+    }
+  }
 
   // Build breadcrumb trail
   const parentCategory = subcategoryData.parent?.node;
@@ -300,65 +320,21 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
       )}
 
       {/* Main Content: Filters + Products (shown when category has products, even if it also has subcategories) */}
-      {hasProducts && (
-      <div className="mx-auto max-w-container px-4 py-12">
-        <div className="flex flex-col gap-8 lg:flex-row">
-          {/* Sidebar Filters (Desktop) */}
-          <aside className="hidden w-64 shrink-0 lg:block">
-            <div className="sticky top-4">
-              <Suspense fallback={<div>Loading filters...</div>}>
-                <ProductFilters
-                  categorySlug={subcategory}
-                  products={products}
-                  currentFilters={filters}
-                />
-              </Suspense>
-            </div>
-          </aside>
-
-          {/* Products Grid */}
-          <div className="min-w-0 flex-1">
-            {/* Sort Controls */}
-            <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-4">
-              <p className="text-sm text-neutral-700">
-                {products.length} {products.length === 1 ? 'product' : 'products'}
-              </p>
-              <ProductSortDropdown />
-            </div>
-
-            {/* Product Grid with Client-Side Filtering */}
-            <Suspense
-              fallback={
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <div key={i} className="h-96 animate-pulse rounded-xl bg-neutral-100" />
-                  ))}
-                </div>
-              }
-            >
-              <FilteredProductGrid products={products} locale={locale} />
-            </Suspense>
-
-            {/* Pagination (Coming soon) */}
-            {hasNextPage && (
-              <div className="mt-8 text-center text-sm text-neutral-700">
-                More products available...
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-      )}
-
-      {/* Mobile Filter Button (Fixed Bottom) — only when products are shown */}
-      {hasProducts && (
-      <div className="z-dropdown fixed bottom-0 left-0 right-0 border-t border-neutral-200 bg-white p-4 shadow-lg lg:hidden">
-        <MobileFilterButton
-          categorySlug={subcategory}
+      {hasProducts && productAttributesData && (
+        <CategoryContent
+          categorySlugParam={subcategory}
+          subcategories={[]}
           products={products}
-          currentFilters={filters}
+          filters={productAttributesData}
+          locale={locale}
         />
-      </div>
+      )}
+      
+      {/* Fallback if no products */}
+      {!hasProducts && !hasSubSubcategories && (
+        <div className="mx-auto max-w-container px-4 py-12 text-center">
+          <p className="text-neutral-700">{t('noProducts')}</p>
+        </div>
       )}
     </div>
   );

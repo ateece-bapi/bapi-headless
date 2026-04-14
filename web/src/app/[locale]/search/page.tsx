@@ -192,10 +192,10 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
         translations={{
           backToProducts: t('results.backToProducts'),
           title: t('results.title'),
-          resultsCount: t('results.resultsCount'),
-          resultsCountPlural: t('results.resultsCountPlural'),
+          resultsCount: t.raw('results.resultsCount'),
+          resultsCountPlural: t.raw('results.resultsCountPlural'),
           noResultsTitle: t('noResults.title'),
-          noResultsDescription: t('noResults.description'),
+          noResultsDescription: t.raw('noResults.description'),
           browseButton: t('noResults.browseButton'),
           contactButton: t('noResults.contactButton'),
         }}

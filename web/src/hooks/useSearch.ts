@@ -9,6 +9,8 @@ interface SearchProduct {
   databaseId: number;
   name: string;
   slug: string;
+  sku?: string | null;
+  partNumber?: string | null;
   price: string | null;
   shortDescription: string | null;
   image: {

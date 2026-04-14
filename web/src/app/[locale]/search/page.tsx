@@ -30,6 +30,8 @@ async function searchProducts(query: string) {
               name
               slug
               ... on SimpleProduct {
+                sku
+                partNumber
                 price
                 shortDescription
                 image {
@@ -44,6 +46,7 @@ async function searchProducts(query: string) {
                 }
               }
               ... on VariableProduct {
+                sku
                 price
                 shortDescription
                 image {

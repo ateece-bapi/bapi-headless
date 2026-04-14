@@ -12,6 +12,8 @@ interface Product {
   databaseId?: number | null;
   name?: string | null;
   slug?: string | null;
+  sku?: string | null;
+  partNumber?: string | null;
   price?: string | null;
   shortDescription?: string | null;
   image?: {
@@ -131,6 +133,15 @@ export default function SearchResults({
                   <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                     {product.name}
                   </h3>
+
+                  {/* SKU / Part Number Badge */}
+                  {(product.partNumber || product.sku) && (
+                    <div className="mb-3 flex items-center gap-2">
+                      <span className="inline-flex items-center rounded-md bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700">
+                        {product.partNumber || product.sku}
+                      </span>
+                    </div>
+                  )}
 
                   {product.shortDescription && (
                     <div

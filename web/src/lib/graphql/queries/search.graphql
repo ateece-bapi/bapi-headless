@@ -6,6 +6,8 @@ query SearchProducts($search: String!, $first: Int = 20) {
       name
       slug
       ... on SimpleProduct {
+        sku
+        partNumber
         price
         shortDescription
         image {
@@ -27,6 +29,7 @@ query SearchProducts($search: String!, $first: Int = 20) {
         }
       }
       ... on VariableProduct {
+        sku
         price
         shortDescription
         image {

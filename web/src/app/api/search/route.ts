@@ -10,6 +10,8 @@ const SEARCH_QUERY = `
         name
         slug
         ... on SimpleProduct {
+          sku
+          partNumber
           price
           shortDescription
           image {
@@ -24,6 +26,7 @@ const SEARCH_QUERY = `
           }
         }
         ... on VariableProduct {
+          sku
           price
           shortDescription
           image {

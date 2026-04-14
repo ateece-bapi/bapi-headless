@@ -2,7 +2,11 @@
 
 import { useState, useMemo } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import type { GetProductAttributesQuery } from '@/lib/graphql/generated';
+import type {
+  GetProductAttributesQuery,
+  GetProductsWithFiltersQuery,
+  GetProductsByCategoryQuery,
+} from '@/lib/graphql/generated';
 import { useAuth } from '@/hooks/useAuth';
 import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
 import SubcategoryQuickFilter from './SubcategoryQuickFilter';
@@ -10,38 +14,15 @@ import SubcategoryCard from './SubcategoryCard';
 import FilterSidebar from './FilterSidebar';
 import { ProductGrid } from '@/components/products/ProductGrid';
 
-interface Product {
-  id: string;
-  databaseId?: number | null;
-  name?: string | null;
-  slug?: string | null;
-  shortDescription?: string | null;
-  price?: string | null;
-  partNumber?: string | null;
-  image?: {
-    sourceUrl?: string | null;
-    altText?: string | null;
-  } | null;
-  productCategories?: {
-    nodes: Array<{
-      id: string;
-      slug?: string | null;
-      parent?: {
-        node?: {
-          id: string;
-          slug?: string | null;
-        } | null;
-      } | null;
-    }>;
-  } | null;
-  attributes?: {
-    nodes: Array<{
-      id: string;
-      name?: string | null;
-      options?: Array<string | null | undefined> | null;
-    }>;
-  } | null;
-}
+// Use the same product types as ProductGrid for type compatibility
+type ProductFromFiltersQuery = NonNullable<
+  GetProductsWithFiltersQuery['products']
+>['nodes'][number];
+type ProductFromCategoryQuery = NonNullable<
+  GetProductsByCategoryQuery['products']
+>['nodes'][number];
+
+type Product = ProductFromFiltersQuery | ProductFromCategoryQuery;
 
 interface Subcategory {
   id: string;
@@ -166,10 +147,14 @@ export default function CategoryContent({
       
       // Subcategory filter
       if (activeFilters.subcategory.length > 0) {
+        // Only products with __typename of SimpleProduct, VariableProduct, etc. have productCategories
+        // Product variations don't have this field
         const productCategories =
-          product.productCategories?.nodes
-            .map((c) => c.slug)
-            .filter((slug): slug is string => !!slug) || [];
+          'productCategories' in product && product.productCategories?.nodes
+            ? product.productCategories.nodes
+                .map((c) => c.slug)
+                .filter((slug): slug is string => !!slug)
+            : [];
         if (
           !activeFilters.subcategory.some((sub) => productCategories.includes(sub))
         ) {
@@ -178,7 +163,11 @@ export default function CategoryContent({
       }
 
       // Attribute filters
-      const productAttributes = product.attributes?.nodes || [];
+      // Only SimpleProduct and VariableProduct have attributes field
+      const productAttributes =
+        'attributes' in product && product.attributes?.nodes
+          ? product.attributes.nodes
+          : [];
 
       // Application filter
       if (activeFilters.application.length > 0) {
@@ -389,14 +378,22 @@ export default function CategoryContent({
     switch (sortBy) {
       case 'price-asc':
         return sorted.sort((a, b) => {
-          const priceA = parseFloat((a.price || '0').replace(/[^0-9.]/g, ''));
-          const priceB = parseFloat((b.price || '0').replace(/[^0-9.]/g, ''));
+          const priceA = parseFloat(
+            ('price' in a && a.price ? a.price : '0').replace(/[^0-9.]/g, '')
+          );
+          const priceB = parseFloat(
+            ('price' in b && b.price ? b.price : '0').replace(/[^0-9.]/g, '')
+          );
           return priceA - priceB;
         });
       case 'price-desc':
         return sorted.sort((a, b) => {
-          const priceA = parseFloat((a.price || '0').replace(/[^0-9.]/g, ''));
-          const priceB = parseFloat((b.price || '0').replace(/[^0-9.]/g, ''));
+          const priceA = parseFloat(
+            ('price' in a && a.price ? a.price : '0').replace(/[^0-9.]/g, '')
+          );
+          const priceB = parseFloat(
+            ('price' in b && b.price ? b.price : '0').replace(/[^0-9.]/g, '')
+          );
           return priceB - priceA;
         });
       case 'name':
@@ -517,8 +514,7 @@ export default function CategoryContent({
 
             {/* Product Grid with QuickView - Custom styling for 3-column max */}
             <div className="[&>div]:!grid [&>div]:!grid-cols-1 [&>div]:!gap-6 [&>div]:sm:!grid-cols-2 [&>div]:lg:!grid-cols-3">
-              {/* Type cast needed: CategoryContent uses simplified Product interface, ProductGrid expects GraphQL __typename */}
-              <ProductGrid products={sortedProducts as any} locale={locale} viewMode="grid" />
+              <ProductGrid products={sortedProducts} locale={locale} viewMode="grid" />
             </div>
           </main>
         </div>

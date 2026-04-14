@@ -106,8 +106,17 @@ export default function CategoryContent({
     (searchParams?.get('sort') as SortOption) || 'name'
   );
 
+  // Debug mode flag (outside useMemo to avoid dependency issues)
+  const DEBUG = searchParams?.get('debug') === 'filters';
+
   // Filter products based on active filters
   const filteredProducts = useMemo(() => {
+    if (DEBUG) {
+      console.log('🔧 DEBUG MODE ACTIVE');
+      console.log('Active filters:', activeFilters);
+      console.log('Total products before filtering:', products.length);
+    }
+    
     // Step 1: Filter by customer group (B2B access control)
     // Applied client-side after products are fetched from WordPress
     // User's customerGroups array defaults to ['END USER'] for guests
@@ -115,6 +124,10 @@ export default function CategoryContent({
       products,
       user?.customerGroups || ['END USER']
     );
+    
+    if (DEBUG) {
+      console.log('After customer group filter:', customerGroupFiltered.length);
+    }
 
     // Create slug-to-name maps from filter taxonomy data
     // This allows us to convert user-selected slugs to display names for comparison
@@ -146,6 +159,10 @@ export default function CategoryContent({
           !!product.name && !!product.slug
       ) // Only show products with valid name and slug
       .filter((product) => {
+      if (DEBUG) {
+        console.log(`\n--- Checking product: ${product.name} ---`);
+      }
+      
       // Subcategory filter
       if (activeFilters.subcategory.length > 0) {
         const productCategories =
@@ -197,6 +214,12 @@ export default function CategoryContent({
           (a) => a.name && (a.name === 'pa_room-enclosure-style' || a.name === 'pa_room_enclosure_style' || a.name.toLowerCase().includes('enclosure'))
         );
         
+        if (DEBUG && !enclosureAttr) {
+          console.log('❌ No enclosure attr:', product.name, {
+            allAttributes: productAttributes.map(a => ({ name: a.name, options: a.options })),
+          });
+        }
+        
         if (!enclosureAttr) {
           // No enclosure attribute on this product, so it doesn't match
           return false;
@@ -213,6 +236,17 @@ export default function CategoryContent({
             return name ? name.toLowerCase() : slug.toLowerCase();
           })
           .filter((name): name is string => !!name);
+        
+        if (DEBUG) {
+          console.log('🔍 Enclosure match:', product.name, {
+            enclosureAttrName: enclosureAttr.name,
+            enclosureValues,
+            selectedNames,
+            hasMatch: selectedNames.some((name) => 
+              enclosureValues.some(val => val.includes(name) || name.includes(val))
+            ),
+          });
+        }
         
         const hasMatch = selectedNames.some((name) => 
           enclosureValues.some(val => val.includes(name) || name.includes(val))

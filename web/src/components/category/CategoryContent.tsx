@@ -163,11 +163,70 @@ export default function CategoryContent({
       }
 
       // Attribute filters
-      // Only SimpleProduct and VariableProduct have attributes field
-      const productAttributes =
+      // Normalize attribute data so filtering works for products that expose
+      // taxonomy-backed `allPa*` fields instead of `attributes`.
+      const directProductAttributes: Array<{
+        name?: string | null;
+        options?: Array<string | null> | null;
+      }> =
         'attributes' in product && product.attributes?.nodes
-          ? product.attributes.nodes
+          ? product.attributes.nodes.map((attribute) => ({
+              name: attribute?.name ?? null,
+              options: (attribute?.options ?? []).filter(
+                (opt): opt is string | null => opt !== undefined
+              ),
+            }))
           : [];
+
+      const taxonomyBackedAttributes: Array<{
+        name?: string | null;
+        options?: Array<string | null> | null;
+      }> = Object.entries(product as Record<string, unknown>)
+        .filter(([key]) => key.startsWith('allPa'))
+        .map(([key, value]) => {
+          const nodes =
+            value &&
+            typeof value === 'object' &&
+            'nodes' in value &&
+            Array.isArray((value as { nodes?: unknown[] }).nodes)
+              ? ((value as { nodes?: unknown[] }).nodes ?? [])
+              : [];
+
+          const options = nodes
+            .map((node) => {
+              if (!node || typeof node !== 'object') {
+                return null;
+              }
+
+              const taxonomyNode = node as { name?: string | null; slug?: string | null };
+              return taxonomyNode.name ?? taxonomyNode.slug ?? null;
+            })
+            .filter((option): option is string => !!option);
+
+          const taxonomyName = key
+            .replace(/^allPa/, '')
+            .replace(/([A-Z])/g, '_$1')
+            .toLowerCase()
+            .replace(/^_/, '');
+
+          return {
+            name: taxonomyName ? `pa_${taxonomyName}` : null,
+            options,
+          };
+        })
+        .filter(
+          (attribute) => !!attribute.name && (attribute.options?.length ?? 0) > 0
+        );
+
+      const productAttributes = [
+        ...directProductAttributes,
+        ...taxonomyBackedAttributes.filter(
+          (taxonomyAttribute) =>
+            !directProductAttributes.some(
+              (directAttribute) => directAttribute.name === taxonomyAttribute.name
+            )
+        ),
+      ];
 
       // Application filter
       if (activeFilters.application.length > 0) {

@@ -320,12 +320,12 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
       )}
 
       {/* Main Content: Filters + Products (shown when category has products, even if it also has subcategories) */}
-      {hasProducts && productAttributesData && (
+      {hasProducts && (
         <CategoryContent
           categorySlugParam={subcategory}
           subcategories={[]}
           products={products}
-          filters={productAttributesData}
+          filters={productAttributesData || ({} as GetProductAttributesQuery)} // Graceful fallback for filter failure
           locale={locale}
         />
       )}

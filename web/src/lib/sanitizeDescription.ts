@@ -2,7 +2,26 @@
  * Sanitize WordPress content HTML
  * Strips dangerous tags, inline styles, and WordPress-specific classes
  * Preserves semantic HTML structure for proper formatting
+ * 
+ * SECURITY: Protects against XSS by:
+ * - Stripping all event handlers (onclick, onerror, etc.)
+ * - Validating URL protocols (blocks javascript:, data:, vbscript:)
+ * - Removing script/style tags
+ * - Sanitizing all attributes
  */
+
+/**
+ * Validate URL protocol to prevent XSS attacks
+ * Blocks javascript:, data:, vbscript: and other dangerous protocols
+ */
+function isValidUrl(url: string): boolean {
+  if (!url) return false;
+  const trimmed = url.trim().toLowerCase();
+  // Blocklist of dangerous protocols
+  const dangerousProtocols = ['javascript:', 'data:', 'vbscript:', 'file:', 'about:'];
+  return !dangerousProtocols.some(protocol => trimmed.startsWith(protocol));
+}
+
 export function sanitizeWordPressContent(html: string): string {
   if (!html) return '';
 
@@ -18,6 +37,10 @@ export function sanitizeWordPressContent(html: string): string {
   cleaned = cleaned.replace(/\sstyle="[^"]*"/gi, '');
   cleaned = cleaned.replace(/\sstyle='[^']*'/gi, '');
 
+  // 3. SECURITY: Remove all event handler attributes (onclick, onerror, onload, etc.) to prevent XSS
+  cleaned = cleaned.replace(/\son\w+="[^"]*"/gi, '');
+  cleaned = cleaned.replace(/\son\w+='[^']*'/gi, '');
+
   // 3. Remove ALL class attributes EXCEPT iframe (needed for aspect ratio)
   cleaned = cleaned.replace(/<(?!iframe)(\w+)([^>]*)\sclass="[^"]*"/gi, '<$1$2');
   cleaned = cleaned.replace(/<(?!iframe)(\w+)([^>]*)\sclass='[^']*'/gi, '<$1$2');
@@ -32,7 +55,7 @@ export function sanitizeWordPressContent(html: string): string {
   cleaned = cleaned.replace(/\sface="[^"]*"/gi, '');
   cleaned = cleaned.replace(/\ssize="[^"]*"/gi, '');
 
-  // 6. Clean image tags (preserve src and alt, remove WordPress classes)
+  // 6. Clean image tags (preserve src and alt, validate URLs)
   cleaned = cleaned.replace(
     /<img([^>]*)>/gi,
     (match, attrs) => {
@@ -46,29 +69,34 @@ export function sanitizeWordPressContent(html: string): string {
       const width = widthMatch ? widthMatch[1] : '';
       const height = heightMatch ? heightMatch[1] : '';
       
-      if (src) {
+      // SECURITY: Validate URL protocol
+      if (src && isValidUrl(src)) {
         let attrs = `src="${src}" alt="${alt}"`;
         if (width) attrs += ` width="${width}"`;
         if (height) attrs += ` height="${height}"`;
         return `<img ${attrs}>`;
       }
-      return match;
+      // Block images with invalid/dangerous URLs
+      return '';
     }
   );
 
-  // 7. Convert button-like links to semantic CTA buttons
+  // 7. Convert button-like links to semantic CTA buttons (validate URLs for security)
   cleaned = cleaned.replace(/<a\s+([^>]*?)>(.*?)<\/a>/gi, (match, attrs, content) => {
-    // Skip if content contains an image
-    if (/<img/i.test(content)) {
-      // Extract href and preserve image links as-is
-      const hrefMatch = attrs.match(/href=["']([^"']*)["']/i);
-      const href = hrefMatch ? hrefMatch[1] : '#';
-      return `<a href="${href}" target="_blank" rel="noopener noreferrer">${content}</a>`;
-    }
-
-    // Extract href (only attribute we keep)
+    // Extract href
     const hrefMatch = attrs.match(/href=["']([^"']*)["']/i);
     const href = hrefMatch ? hrefMatch[1] : '#';
+    
+    // SECURITY: Validate URL protocol - block dangerous protocols
+    if (!isValidUrl(href)) {
+      // Strip dangerous links, keep content as plain text
+      return content.trim();
+    }
+    
+    // Skip if content contains an image
+    if (/<img/i.test(content)) {
+      return `<a href="${href}" target="_blank" rel="noopener noreferrer">${content}</a>`;
+    }
 
     // Detect if this is a CTA button based on content
     const isCTA = /download|configure|learn more|get started|buy now|shop|view|explore/i.test(

@@ -2,7 +2,9 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: 'https://bapiheadlessstaging.kinsta.cloud/graphql',
+  // Using local schema.json for offline development
+  // Run 'pnpm run schema:download' to update from staging
+  schema: 'schema.json',
   documents: 'src/**/*.{ts,tsx,graphql}',
   generates: {
     'src/lib/graphql/generated.ts': {

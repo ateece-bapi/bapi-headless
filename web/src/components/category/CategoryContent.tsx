@@ -106,8 +106,9 @@ export default function CategoryContent({
     (searchParams?.get('sort') as SortOption) || 'name'
   );
 
-  // Debug mode flag (outside useMemo to avoid dependency issues)
-  const DEBUG = searchParams?.get('debug') === 'filters';
+  // Debug mode flag (only active in development with ?debug=filters query param)
+  // Note: Using console.log instead of logger.debug for verbose multi-arg diagnostic output
+  const DEBUG = process.env.NODE_ENV !== 'production' && searchParams?.get('debug') === 'filters';
 
   // Filter products based on active filters
   const filteredProducts = useMemo(() => {
@@ -484,7 +485,6 @@ export default function CategoryContent({
               filters={filters}
               activeFilters={activeFilters}
               onChange={updateFilters}
-              productCount={sortedProducts.length}
             />
           </aside>
 
@@ -517,7 +517,7 @@ export default function CategoryContent({
 
             {/* Product Grid with QuickView - Custom styling for 3-column max */}
             <div className="[&>div]:!grid [&>div]:!grid-cols-1 [&>div]:!gap-6 [&>div]:sm:!grid-cols-2 [&>div]:lg:!grid-cols-3">
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {/* Type cast needed: CategoryContent uses simplified Product interface, ProductGrid expects GraphQL __typename */}
               <ProductGrid products={sortedProducts as any} locale={locale} viewMode="grid" />
             </div>
           </main>

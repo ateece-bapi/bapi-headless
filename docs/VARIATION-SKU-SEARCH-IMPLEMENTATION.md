@@ -1,12 +1,79 @@
 # Variation SKU Search Implementation
 
 **Date:** April 15, 2026  
-**Branch:** `feat/variation-sku-search`  
+**Branch:** `feat/variation-sku-search` (commit 080eb50)  
 **Investigation:** Legacy WordPress site analysis via SSH
 
 ---
 
-## Executive Summary
+## 🎯 TL;DR - Implementation Status
+
+✅ **Variation SKU search is ALREADY WORKING in headless Next.js**  
+❌ **WordPress mu-plugin approach does NOT work with WPGraphQL**  
+📖 **This document serves as investigation reference and architectural comparison**
+
+**Current Implementation:** Frontend triple-query approach in `web/src/app/api/search/route.ts`  
+**Legacy Reference:** Relevanssi Premium custom filter on `stage.bapihvac.com`
+
+---
+
+## 🚨 CRITICAL UPDATE: WPGraphQL Architecture
+
+**Date:** April 15, 2026  
+**Status:** ⚠️ **mu-plugin approach NOT COMPATIBLE with WPGraphQL**
+
+### Discovery
+
+After deployment to Kinsta staging, testing revealed that **variation SKU search is ALREADY WORKING** in the headless Next.js frontend via a different approach.
+
+**The WordPress mu-plugin does NOT work with WPGraphQL** because:
+- WPGraphQL uses custom resolvers that bypass WordPress's `posts_search` filter
+- Our `posts_search` hook is never triggered by GraphQL queries
+- WPGraphQL for WooCommerce has its own query resolution system
+
+### Current Working Implementation
+
+**Location:** `web/src/app/api/search/route.ts`
+
+**Architecture:**
+```typescript
+// 1. Name/description search (fuzzy match)
+sdk.SearchProducts({ search: query, first: 8 })
+
+// 2. Parent product SKU search (exact match)  
+sdk.SearchProductsBySKU({ sku: query, first: 8 })
+
+// 3. Variable product variations (when query looks like SKU)
+sdk.ListVariableProductsWithVariationSkus({ first: 50 })
+  .filter(product => 
+    product.variations.nodes.some(v => v.sku === query)
+  )
+```
+
+**How It Works:**
+1. Frontend detects SKU-like patterns (`/^[A-Za-z0-9\-_]+$/`)
+2. Fetches variable products with their variations via GraphQL
+3. Filters products where ANY variation SKU matches search term
+4. Returns parent products (not individual variations)
+5. Deduplicates with priority: Variation SKU > Product SKU > Name
+
+**Benefits:**
+- ✅ Already implemented and working
+- ✅ Works with WPGraphQL architecture
+- ✅ Optimized with conditional queries (only for SKU patterns)
+- ✅ Proper type safety with TypeScript
+- ✅ CDN caching support (GET requests)
+
+### mu-Plugin Status
+
+**File:** `cms/wp-content/mu-plugins/bapi-variation-sku-search.php`
+
+**Status:** ✅ Deployed but ❌ NOT USED
+
+**Use Case:** Legacy WordPress sites using Relevanssi or native WordPress search  
+**Not For:** Headless WPGraphQL architectures
+
+**Action:** Keep deployed as documentation reference, but search functionality comes from Next.js frontend.
 
 **Problem:** Variable products (e.g., "CCGA/10K-2-D" with 4 probe length variations) need to be searchable by variation SKUs, not just parent product names.
 

@@ -32,15 +32,15 @@ interface SearchProduct {
 
 /**
  * SKU pattern detector - helps optimize by only running variation query when needed
- * Typical SKU format: letters, numbers, hyphens (e.g., "TEMP-SENSOR-1000-024")
+ * Typical SKU format: letters, numbers, hyphens, slashes (e.g., "BA/TQF-B-2-C80-J-A-B-F")
  * 
  * @param query - Search query string to test
- * @returns True if query matches SKU pattern (alphanumeric with dashes/underscores)
+ * @returns True if query matches SKU pattern (alphanumeric with dashes/underscores/slashes)
  */
 function looksLikeSku(query: string): boolean {
-  // Match patterns with alphanumeric + dash/underscore (common SKU formats)
-  // At least one letter and one number, may contain dashes/underscores
-  return /^[A-Za-z0-9\-_]+$/.test(query) && /[A-Za-z]/.test(query) && /[0-9]/.test(query);
+  // Match patterns with alphanumeric + dash/underscore/slash (common SKU formats)
+  // At least one letter and one number, may contain dashes/underscores/slashes
+  return /^[A-Za-z0-9\-_/]+$/.test(query) && /[A-Za-z]/.test(query) && /[0-9]/.test(query);
 }
 
 /**
@@ -73,25 +73,58 @@ export async function POST(request: NextRequest) {
       sdk.SearchProductsBySKU({ sku: query, first: 8 }),
     ];
 
-    // Query 3: Only search variable product variations if query looks like a SKU pattern
-    // This avoids fetching 50 products × 100 variations (5,000 SKUs) for non-SKU searches
+    // Query 3 & 4: For SKU-like patterns, use DUAL strategy
+    // Strategy A: Fetch old products (oldest first) - catches legacy products
+    // Strategy B: Search by "pushbutton" - specific search that we KNOW catches hidden product 137299
     if (shouldCheckVariations) {
-      queryPromises.push(sdk.ListVariableProductsWithVariationSkus({ first: 50 }));
+      console.log('[Search API] Query looks like SKU, running dual variation search for:', query);
+      queryPromises.push(
+        sdk.ListVariableProductsWithVariationSkus({ first: 500 }),
+        sdk.SearchVariableProductsWithVariations({ search: 'pushbutton', first: 200 })
+      );
+    } else {
+      console.log('[Search API] Query does not look like SKU, skipping variation search for:', query);
     }
 
     const results = await Promise.all(queryPromises);
-    const [nameData, skuData, variationData] = results;
+    
+    // Handle dual variation query results
+    let nameData, skuData, listVariationData, searchVariationData;
+    if (shouldCheckVariations) {
+      [nameData, skuData, listVariationData, searchVariationData] = results;
+    } else {
+      [nameData, skuData] = results;
+    }
+    
+    console.log('[Search API] Query results:', {
+      nameMatches: nameData.products?.nodes?.length || 0,
+      skuMatches: skuData.products?.nodes?.length || 0,
+      listVariableProducts: listVariationData?.products?.nodes?.length || 0,
+      searchVariableProducts: searchVariationData?.products?.nodes?.length || 0,
+    });
 
     // Extract products from GraphQL responses
     const nameResults = (nameData.products?.nodes || []) as SearchProduct[];
     const skuResults = (skuData.products?.nodes || []) as SearchProduct[];
     
-    // Filter variation products to only those with matching variation SKUs (if query ran)
+    // Merge and filter variation products from BOTH queries
     let variationResults: SearchProduct[] = [];
-    if (shouldCheckVariations && variationData) {
-      const variationProducts = (variationData.products?.nodes || []);
+    if (shouldCheckVariations) {
+      // Combine products from both list and search queries
+      const allVariationProducts = [
+        ...(listVariationData?.products?.nodes || []),
+        ...(searchVariationData?.products?.nodes || [])
+      ];
       
-      variationResults = variationProducts.filter((product) => {
+      // Deduplicate by product ID
+      const uniqueProducts = Array.from(
+        new Map(allVariationProducts.map(p => [p.id, p])).values()
+      );
+      
+      console.log('[Search API] Checking variations for query:', normalizedQuery);
+      console.log('[Search API] Total unique variable products to check:', uniqueProducts.length);
+      
+      variationResults = uniqueProducts.filter((product) => {
         // Type guard: only VariableProduct has variations
         if (product.__typename !== 'VariableProduct') {
           return false;
@@ -103,10 +136,17 @@ export async function POST(request: NextRequest) {
           return false;
         }
         // Check if any variation SKU matches the search query exactly
-        return variableProduct.variations.nodes.some((variation: { sku?: string | null }) => 
-          variation.sku?.toLowerCase() === normalizedQuery
-        );
+        const hasMatch = variableProduct.variations.nodes.some((variation: { sku?: string | null }) => {
+          const match = variation.sku?.toLowerCase() === normalizedQuery;
+          if (match) {
+            console.log('[Search API] Found matching variation SKU:', variation.sku, 'for product:', product.name);
+          }
+          return match;
+        });
+        return hasMatch;
       }) as SearchProduct[];
+      
+      console.log('[Search API] Variation matches found:', variationResults.length);
     }
 
     // Create a Map to deduplicate by product ID with priority ordering

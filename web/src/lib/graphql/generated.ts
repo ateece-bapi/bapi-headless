@@ -40020,6 +40020,20 @@ export type ListVariableProductsWithVariationSkusQuery = { __typename?: 'RootQue
       | { __typename?: 'VariableProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', sku?: string | null | undefined }> } | null | undefined }
     > } | null | undefined };
 
+export type SearchVariableProductsWithVariationsQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type SearchVariableProductsWithVariationsQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', nodes: Array<
+      | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
+      | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
+      | { __typename?: 'SimpleProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
+      | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
+      | { __typename?: 'VariableProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', sku?: string | null | undefined }> } | null | undefined }
+    > } | null | undefined };
+
 
 export const ChatProductSearchDocument = gql`
     query ChatProductSearch($search: String!, $first: Int = 5) {
@@ -42296,7 +42310,47 @@ export const SearchProductsBySkuDocument = gql`
     `;
 export const ListVariableProductsWithVariationSkusDocument = gql`
     query ListVariableProductsWithVariationSkus($first: Int = 50) {
-  products(where: {type: VARIABLE, visibility: VISIBLE}, first: $first) {
+  products(where: {orderby: {field: DATE, order: ASC}}, first: $first) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      ... on VariableProduct {
+        sku
+        partNumber
+        price
+        shortDescription
+        image {
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            name
+            slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
+          }
+        }
+        variations(first: 100) {
+          nodes {
+            sku
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const SearchVariableProductsWithVariationsDocument = gql`
+    query SearchVariableProductsWithVariations($search: String!, $first: Int = 20) {
+  products(where: {search: $search}, first: $first) {
     nodes {
       id
       databaseId
@@ -42461,6 +42515,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     ListVariableProductsWithVariationSkus(variables?: ListVariableProductsWithVariationSkusQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ListVariableProductsWithVariationSkusQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ListVariableProductsWithVariationSkusQuery>({ document: ListVariableProductsWithVariationSkusDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ListVariableProductsWithVariationSkus', 'query', variables);
+    },
+    SearchVariableProductsWithVariations(variables: SearchVariableProductsWithVariationsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchVariableProductsWithVariationsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchVariableProductsWithVariationsQuery>({ document: SearchVariableProductsWithVariationsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'SearchVariableProductsWithVariations', 'query', variables);
     }
   };
 }

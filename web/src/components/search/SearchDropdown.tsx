@@ -10,6 +10,8 @@ interface SearchProduct {
   databaseId: number;
   name: string;
   slug: string;
+  sku?: string | null;
+  partNumber?: string | null;
   price: string | null;
   shortDescription: string | null;
   image: {
@@ -179,6 +181,11 @@ export function SearchDropdown({
                     >
                       {product.name}
                     </h4>
+                    {(product.partNumber || product.sku) && (
+                      <p className="mt-0.5 text-xs font-medium text-neutral-600">
+                        {product.partNumber || product.sku}
+                      </p>
+                    )}
                     {category && <p className="mt-0.5 text-xs text-neutral-700">{category.name}</p>}
                   </div>
                   {product.price && (

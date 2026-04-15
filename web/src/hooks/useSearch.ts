@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/lib/navigation';
 import logger from '@/lib/logger';
 
 interface SearchProduct {
@@ -9,6 +9,8 @@ interface SearchProduct {
   databaseId: number;
   name: string;
   slug: string;
+  sku?: string | null;
+  partNumber?: string | null;
   price: string | null;
   shortDescription: string | null;
   image: {

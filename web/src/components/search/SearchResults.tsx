@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { sanitizeWordPressContent } from '@/lib/sanitizeDescription';
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
@@ -12,6 +13,8 @@ interface Product {
   databaseId?: number | null;
   name?: string | null;
   slug?: string | null;
+  sku?: string | null;
+  partNumber?: string | null;
   price?: string | null;
   shortDescription?: string | null;
   image?: {
@@ -53,9 +56,14 @@ export default function SearchResults({
   translations: t,
 }: SearchResultsProps) {
   const { user } = useAuth();
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
   // Filter products by customer group (B2B access control)
   const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroups || ['END USER']);
+
+  const handleImageError = (productId: string) => {
+    setFailedImages((prev) => new Set(prev).add(productId));
+  };
 
   return (
     <div className="py-8 lg:py-12">
@@ -101,7 +109,7 @@ export default function SearchResults({
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredProducts.map((product) => {
+            {filteredProducts.map((product, index) => {
               const category = product.productCategories?.nodes?.[0];
 
               return (
@@ -110,14 +118,17 @@ export default function SearchResults({
                   href={`/product/${product.slug}`}
                   className="group rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
                 >
-                  {product.image?.sourceUrl && (
+                  {product.image?.sourceUrl && !failedImages.has(product.id) && (
                     <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg bg-neutral-50">
                       <Image
                         src={product.image.sourceUrl}
                         alt={product.image.altText || product.name || 'Product image'}
                         fill
+                        priority={index < 6}
+                        loading={index < 6 ? undefined : 'lazy'}
                         className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        onError={() => handleImageError(product.id)}
                       />
                     </div>
                   )}
@@ -131,6 +142,15 @@ export default function SearchResults({
                   <h3 className="mb-2 text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary-600">
                     {product.name}
                   </h3>
+
+                  {/* SKU / Part Number Badge */}
+                  {(product.partNumber || product.sku) && (
+                    <div className="mb-3 flex items-center gap-2">
+                      <span className="inline-flex items-center rounded-md bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700">
+                        {product.partNumber || product.sku}
+                      </span>
+                    </div>
+                  )}
 
                   {product.shortDescription && (
                     <div

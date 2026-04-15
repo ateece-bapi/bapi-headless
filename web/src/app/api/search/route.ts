@@ -1,6 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
 import logger from '@/lib/logger';
 
+// Type for search product response
+interface SearchProduct {
+  id: string;
+  databaseId: number;
+  name: string;
+  slug: string;
+  sku?: string | null;
+  partNumber?: string | null;
+  price?: string | null;
+  shortDescription?: string | null;
+  image?: {
+    id: string;
+    sourceUrl: string;
+    altText?: string | null;
+    mediaDetails?: {
+      height: number;
+      width: number;
+    } | null;
+  } | null;
+  productCategories?: {
+    nodes: Array<{
+      name: string;
+      slug: string;
+    }>;
+  } | null;
+}
+
+// Search by product name/description
 const SEARCH_QUERY = `
   query SearchProducts($search: String!) {
     products(where: { search: $search, visibility: VISIBLE }, first: 8) {
@@ -10,11 +38,18 @@ const SEARCH_QUERY = `
         name
         slug
         ... on SimpleProduct {
+          sku
+          partNumber
           price
           shortDescription
           image {
+            id
             sourceUrl
             altText
+            mediaDetails {
+              height
+              width
+            }
           }
           productCategories {
             nodes {
@@ -24,11 +59,74 @@ const SEARCH_QUERY = `
           }
         }
         ... on VariableProduct {
+          sku
+          partNumber
           price
           shortDescription
           image {
+            id
             sourceUrl
             altText
+            mediaDetails {
+              height
+              width
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+// Search by SKU (exact match)
+const SKU_SEARCH_QUERY = `
+  query SearchProductsBySKU($sku: String!) {
+    products(where: { sku: $sku, visibility: VISIBLE }, first: 8) {
+      nodes {
+        id
+        databaseId
+        name
+        slug
+        ... on SimpleProduct {
+          sku
+          partNumber
+          price
+          shortDescription
+          image {
+            id
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+            }
+          }
+        }
+        ... on VariableProduct {
+          sku
+          partNumber
+          price
+          shortDescription
+          image {
+            id
+            sourceUrl
+            altText
+            mediaDetails {
+              height
+              width
+            }
           }
           productCategories {
             nodes {
@@ -57,40 +155,80 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'GraphQL endpoint not configured' }, { status: 500 });
     }
 
-    const response = await fetch(GRAPHQL_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: SEARCH_QUERY,
-        variables: { search: query },
+    // Run both queries in parallel: name/description search + SKU search
+    const [nameSearchResponse, skuSearchResponse] = await Promise.all([
+      // Query 1: Search product name/description
+      fetch(GRAPHQL_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: SEARCH_QUERY,
+          variables: { search: query },
+        }),
+        next: { revalidate: 0 },
       }),
-      next: { revalidate: 0 }, // Don't cache search results
-    });
+      // Query 2: Search by SKU (exact match)
+      fetch(GRAPHQL_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: SKU_SEARCH_QUERY,
+          variables: { sku: query },
+        }),
+        next: { revalidate: 0 },
+      }),
+    ]);
 
-    if (!response.ok) {
+    if (!nameSearchResponse.ok || !skuSearchResponse.ok) {
       logger.error('WordPress GraphQL search failed', {
-        status: response.status,
-        statusText: response.statusText,
+        nameStatus: nameSearchResponse.status,
+        skuStatus: skuSearchResponse.status,
       });
       return NextResponse.json(
         { error: 'Failed to fetch search results' },
-        { status: response.status }
+        { status: nameSearchResponse.ok ? skuSearchResponse.status : nameSearchResponse.status }
       );
     }
 
-    const data = await response.json();
+    const [nameData, skuData] = await Promise.all([
+      nameSearchResponse.json(),
+      skuSearchResponse.json(),
+    ]);
 
-    if (data.errors) {
-      logger.error('GraphQL search query failed', { errors: data.errors });
+    if (nameData.errors || skuData.errors) {
+      logger.error('GraphQL search query failed', {
+        nameErrors: nameData.errors,
+        skuErrors: skuData.errors,
+      });
       return NextResponse.json(
-        { error: 'GraphQL query failed', details: data.errors },
+        { error: 'GraphQL query failed', details: nameData.errors || skuData.errors },
         { status: 500 }
       );
     }
 
-    return NextResponse.json(data.data);
+    // Merge results from both queries, removing duplicates by ID
+    const nameResults: SearchProduct[] = nameData.data?.products?.nodes || [];
+    const skuResults: SearchProduct[] = skuData.data?.products?.nodes || [];
+
+    // Create a Map to deduplicate by product ID
+    const resultsMap = new Map<string, SearchProduct>();
+    
+    // Add SKU results first (higher priority for exact SKU matches)
+    skuResults.forEach((product) => {
+      resultsMap.set(product.id, product);
+    });
+
+    // Add name search results (won't override if already exists)
+    nameResults.forEach((product) => {
+      if (!resultsMap.has(product.id)) {
+        resultsMap.set(product.id, product);
+      }
+    });
+
+    // Convert Map back to array and limit to 8 results
+    const mergedResults = Array.from(resultsMap.values()).slice(0, 8);
+
+    return NextResponse.json({ products: { nodes: mergedResults } });
   } catch (error) {
     logger.error('Search API error', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

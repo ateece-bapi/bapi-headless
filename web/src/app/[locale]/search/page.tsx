@@ -15,59 +15,148 @@ interface SearchPageProps {
 }
 
 async function searchProducts(query: string) {
-  const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
+  const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.trim();
 
-  const response = await fetch(GRAPHQL_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query: `
-        query SearchProducts($search: String!) {
-          products(where: { search: $search, visibility: VISIBLE }, first: 100) {
-            nodes {
-              id
-              databaseId
-              name
-              slug
-              ... on SimpleProduct {
-                price
-                shortDescription
-                image {
-                  sourceUrl
-                  altText
-                }
-                productCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
-              }
-              ... on VariableProduct {
-                price
-                shortDescription
-                image {
-                  sourceUrl
-                  altText
-                }
-                productCategories {
-                  nodes {
-                    name
-                    slug
-                  }
-                }
+  if (!GRAPHQL_ENDPOINT) {
+    console.error(
+      'searchProducts: NEXT_PUBLIC_WORDPRESS_GRAPHQL is not configured. Returning empty search results.',
+    );
+    return [];
+  }
+
+  const productFields = `
+    id
+    databaseId
+    name
+    slug
+    ... on SimpleProduct {
+      sku
+      partNumber
+      price
+      shortDescription
+      image {
+        id
+        sourceUrl
+        altText
+        mediaDetails {
+          height
+          width
+        }
+      }
+      productCategories {
+        nodes {
+          name
+          slug
+        }
+      }
+    }
+    ... on VariableProduct {
+      sku
+      partNumber
+      price
+      shortDescription
+      image {
+        id
+        sourceUrl
+        altText
+        mediaDetails {
+          height
+          width
+        }
+      }
+      productCategories {
+        nodes {
+          name
+          slug
+        }
+      }
+    }
+  `;
+
+  // Run both queries in parallel: name/description search + SKU search
+  const [nameSearchResponse, skuSearchResponse] = await Promise.all([
+    // Query 1: Search product name/description
+    fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query SearchProducts($search: String!) {
+            products(where: { search: $search, visibility: VISIBLE }, first: 24) {
+              nodes {
+                ${productFields}
               }
             }
           }
-        }
-      `,
-      variables: { search: query },
+        `,
+        variables: { search: query },
+      }),
+      next: { revalidate: 3600 },
     }),
-    next: { revalidate: 3600 }, // Cache for 1 hour
+    // Query 2: Search by SKU (exact match)
+    fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query SearchProductsBySKU($sku: String!) {
+            products(where: { sku: $sku, visibility: VISIBLE }, first: 24) {
+              nodes {
+                ${productFields}
+              }
+            }
+          }
+        `,
+        variables: { sku: query },
+      }),
+      next: { revalidate: 3600 },
+    }),
+  ]);
+
+  // Check for HTTP errors
+  if (!nameSearchResponse.ok || !skuSearchResponse.ok) {
+    console.error('WordPress GraphQL search failed', {
+      nameStatus: nameSearchResponse.status,
+      skuStatus: skuSearchResponse.status,
+    });
+    return [];
+  }
+
+  const [nameData, skuData] = await Promise.all([
+    nameSearchResponse.json(),
+    skuSearchResponse.json(),
+  ]);
+
+  // Check for GraphQL errors
+  if (nameData.errors || skuData.errors) {
+    console.error('GraphQL search query failed', {
+      nameErrors: nameData.errors,
+      skuErrors: skuData.errors,
+    });
+    return [];
+  }
+
+  // Merge results from both queries, removing duplicates by ID
+  const nameResults = nameData.data?.products?.nodes || [];
+  const skuResults = skuData.data?.products?.nodes || [];
+
+  // Create a Map to deduplicate by product ID
+  const resultsMap = new Map();
+
+  // Add SKU results first (higher priority for exact SKU matches)
+  skuResults.forEach((product: { id: string }) => {
+    resultsMap.set(product.id, product);
   });
 
-  const data = await response.json();
-  return data.data?.products?.nodes || [];
+  // Add name search results (won't override if already exists)
+  nameResults.forEach((product: { id: string }) => {
+    if (!resultsMap.has(product.id)) {
+      resultsMap.set(product.id, product);
+    }
+  });
+
+  // Convert Map back to array and limit to 24 results
+  return Array.from(resultsMap.values()).slice(0, 24);
 }
 
 export async function generateMetadata({
@@ -139,10 +228,10 @@ export default async function SearchPage({ params, searchParams }: SearchPagePro
         translations={{
           backToProducts: t('results.backToProducts'),
           title: t('results.title'),
-          resultsCount: t('results.resultsCount'),
-          resultsCountPlural: t('results.resultsCountPlural'),
+          resultsCount: t.raw('results.resultsCount'),
+          resultsCountPlural: t.raw('results.resultsCountPlural'),
           noResultsTitle: t('noResults.title'),
-          noResultsDescription: t('noResults.description'),
+          noResultsDescription: t.raw('noResults.description'),
           browseButton: t('noResults.browseButton'),
           contactButton: t('noResults.contactButton'),
         }}

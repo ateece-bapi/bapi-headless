@@ -204,8 +204,8 @@ pnpm add -D tsx
 # Script is already TypeScript (.ts)
 # No need to rename - already using verify-megamenu-links.ts
 
-# Run with tsx (via dlx - no install needed)
-pnpm dlx tsx scripts/verify-megamenu-links.ts
+# Run with pinned tsx version (reproducible, no install needed)
+pnpm dlx tsx@4.20.3 scripts/verify-megamenu-links.ts
 ```
 
 **Update package.json:**

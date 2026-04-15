@@ -459,67 +459,67 @@
       "label": "المنتجات",
       "temperature": {
         "title": "درجة الحرارة",
-        "roomWallSensors": "استشعارات الغرفة والحائط",
+        "roomWallSensors": "استشعارات الحجرة والحائط",
         "roomWallSensorsDesc": "استشعار درجة الحرارة عالي الدقة",
-        "ductSensors": "استشعارات القناة",
-        "ductSensorsDesc": "أجهزة إرسال مثبتة في القنوات",
-        "immersionWell": "الغمر والبئر",
+        "ductSensors": "استشعارات الفتحة",
+        "ductSensorsDesc": "جهاز إرسال مركب على الفتحة",
+        "immersionWell": "الغمر والأنابيب",
         "immersionWellDesc": "قياس درجة حرارة السوائل",
         "outdoorSensors": "استشعارات خارجية",
         "outdoorSensorsDesc": "استشعار مقاوم للطقس",
         "averaging": "استشعارات متوسطة",
         "averagingDesc": "متوسط درجة حرارة المساحات الكبيرة",
-        "remoteProbes": "مسبارات بعيدة",
+        "remoteProbes": "البروبات البعيدة",
         "remoteProbesDesc": "عناصر استشعار منفصلة"
       },
       "humidity": {
         "title": "الرطوبة",
-        "roomHumidity": "رطوبة الغرفة",
-        "roomHumidityDesc": "استشعارات الرطوبة النسبية على الحائط",
-        "ductHumidity": "رطوبة القنوات",
-        "ductHumidityDesc": "رطوبة نسبية في هواء الإمداد والعودة",
+        "roomHumidity": "رطوبة الحجرة",
+        "roomHumidityDesc": "استشعارات رطوبة نسبية مركبة على الحائط",
+        "ductHumidity": "رطوبة الفتحة",
+        "ductHumidityDesc": "رطوبة نسبية في مجرى الهواء العائد والإمداد",
         "outdoorHumidity": "رطوبة خارجية",
         "outdoorHumidityDesc": "رطوبة نسبية مقاومة للطقس",
-        "comboSensors": "استشعارات مزدوجة",
+        "comboSensors": "استشعارات مشتركة",
         "comboSensorsDesc": "درجة الحرارة + الرطوبة"
       },
       "pressure": {
         "title": "الضغط",
         "differential": "الضغط التفاضلي",
-        "differentialDesc": "مراقبة الغرفة والفلتر",
+        "differentialDesc": "مراقبة الحجرة والفلتر",
         "static": "الضغط الساكن",
-        "staticDesc": "أجهزة إرسال ضغط ساكن في القنوات",
-        "barometric": "الضغط الجوي",
-        "barometricDesc": "الضغط الجوي"
+        "staticDesc": "مرسلات ضغط الفتحة الساكنة",
+        "differentialSwitch": "مفتاح تفاضلي",
+        "differentialSwitchDesc": "التبديل المنشط بالضغط"
       },
       "airQuality": {
         "title": "جودة الهواء",
         "co2": "استشعارات CO₂",
         "co2Desc": "مراقبة ثاني أكسيد الكربون",
-        "voc": "استشعارات المركبات العضوية المتطايرة",
+        "voc": "استشعارات VOC",
         "vocDesc": "المركبات العضوية المتطايرة",
         "particulate": "المواد الجزيئية",
         "particulateDesc": "PM2.5 و PM10"
       },
       "wireless": {
-        "title": "لاسلكي",
-        "wamTemperature": "درجة حرارة WAM",
-        "wamTemperatureDesc": "استشعارات درجة حرارة لاسلكية",
-        "wamHumidity": "رطوبة WAM",
-        "wamHumidityDesc": "استشعارات رطوبة نسبية لاسلكية",
-        "wamDoorSensors": "استشعارات أبواب WAM",
-        "wamDoorSensorsDesc": "مراقبة الفتح/الإغلاق",
-        "cloudPlatform": "منصة السحابة",
-        "cloudPlatformDesc": "المراقبة عن بعد 24/7"
+        "title": "اللاسلكي",
+        "bluetoothSensors": "استشعارات بلوتوث",
+        "bluetoothSensorsDesc": "استشعارات HVAC اللاسلكية لأتمتة المباني",
+        "gatewaysReceivers": "البوابات والمستقبلات",
+        "gatewaysReceiversDesc": "توصيل استشعارات لاسلكية بنظام التحكم بالمباني",
+        "outputModules": "وحدات الإخراج",
+        "outputModulesDesc": "مخارج التحكم اللاسلكية",
+        "wirelessAccessories": "ملحقات لاسلكية",
+        "wirelessAccessoriesDesc": "ملحقات التركيب والتثبيت"
       },
       "accessories": {
         "title": "الملحقات",
         "mounting": "أجهزة التركيب",
-        "mountingDesc": "ألواح ، صناديق ، قوابض",
-        "enclosures": "أغلفة",
-        "enclosuresDesc": "BAPI-Box وأغطية",
+        "mountingDesc": "ألواح وصناديق وقضبان",
+        "enclosures": "الأغلفة",
+        "enclosuresDesc": "BAPI-Box والأغطية",
         "cables": "الكابلات والموصلات",
-        "cablesDesc": "ملحقات التوصيل"
+        "cablesDesc": "ملحقات السلك"
       },
       "testInstruments": {
         "title": "أدوات الاختبار",
@@ -531,16 +531,16 @@
         "bluTestPressureDesc": "مانومتر رقمي"
       },
       "featured": {
-        "title": "رصد الأصول اللاسلكية WAM™",
-        "description": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. احم أصولك الثمينة من انقطاعات الطاقة وأعطال المعدات. بدون أي أسلاك - ابدأ التشغيل في دقائق.",
-        "cta": "تعرف على المزيد",
-        "wamTitle": "رصد الأصول اللاسلكية WAM™",
-        "wamDescription": "المراقبة عن بُعد 24/7 مع تنبيهات فورية. احم أصولك الثمينة من انقطاعات الطاقة وأعطال المعدات. بدون أي أسلاك - ابدأ التشغيل في دقائق.",
-        "wamCta": "تعرف على المزيد",
+        "title": "WAM™ المراقبة اللاسلكية للأصول",
+        "description": "المراقبة عن بُعد على مدار الساعة 24/7 مع تنبيهات فورية. قم بحماية أصولك الثمينة من انقطاعات الطاقة وأعطال المعدات. لا يلزم أي أسلاك - ابدأ التشغيل في دقائق.",
+        "cta": "معرفة المزيد",
+        "wamTitle": "WAM™ المراقبة اللاسلكية للأصول",
+        "wamDescription": "المراقبة عن بُعد على مدار الساعة 24/7 مع تنبيهات فورية. قم بحماية أصولك الثمينة من انقطاعات الكهرباء وأعطال المعدات. لا يلزم أي أسلاك - ابدأ التشغيل في دقائق.",
+        "wamCta": "معرفة المزيد",
         "wamBadge": "الحل المتميز"
       },
       "badges": {
-        "popular": "شائع",
+        "popular": "شعبي",
         "new": "جديد",
         "premium": "متميز"
       }

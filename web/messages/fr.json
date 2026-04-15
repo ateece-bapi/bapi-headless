@@ -461,23 +461,23 @@
         "title": "Température",
         "roomWallSensors": "Capteurs muraux et de pièce",
         "roomWallSensorsDesc": "Détection de température haute précision",
-        "ductSensors": "Capteurs de conduit",
-        "ductSensorsDesc": "Émetteurs montés sur conduit",
+        "ductSensors": "Capteurs de gaine",
+        "ductSensorsDesc": "Émetteurs montés sur gaine",
         "immersionWell": "Immersion et puits",
         "immersionWellDesc": "Mesure de température des liquides",
         "outdoorSensors": "Capteurs extérieurs",
         "outdoorSensorsDesc": "Détection résistante aux intempéries",
-        "averaging": "Capteurs moyenneurs",
-        "averagingDesc": "Moyenne de température sur de grands espaces",
+        "averaging": "Capteurs de moyenne",
+        "averagingDesc": "Moyenne de température sur une grande surface",
         "remoteProbes": "Sondes à distance",
-        "remoteProbesDesc": "Éléments de détection séparés"
+        "remoteProbesDesc": "Éléments de détection à distance"
       },
       "humidity": {
         "title": "Humidité",
         "roomHumidity": "Humidité ambiante",
         "roomHumidityDesc": "Capteurs d'humidité murale",
-        "ductHumidity": "Humidité de conduit",
-        "ductHumidityDesc": "Humidité de l'air soufflé et repris",
+        "ductHumidity": "Humidité de gaine",
+        "ductHumidityDesc": "Humidité sur l'air soufflé et repris",
         "outdoorHumidity": "Humidité extérieure",
         "outdoorHumidityDesc": "Humidité résistante aux intempéries",
         "comboSensors": "Capteurs combinés",
@@ -486,38 +486,38 @@
       "pressure": {
         "title": "Pression",
         "differential": "Pression différentielle",
-        "differentialDesc": "Surveillance des pièces et des filtres",
+        "differentialDesc": "Surveillance des salles et des filtres",
         "static": "Pression statique",
-        "staticDesc": "Transmetteurs de pression statique de conduit",
-        "barometric": "Barométrique",
-        "barometricDesc": "Pression atmosphérique"
+        "staticDesc": "Transmetteurs de pression statique de gaine",
+        "differentialSwitch": "Interrupteur différentiel",
+        "differentialSwitchDesc": "Commutation activée par la pression"
       },
       "airQuality": {
         "title": "Qualité de l'air",
-        "co2": "Capteurs CO₂",
+        "co2": "Capteurs de CO₂",
         "co2Desc": "Surveillance du dioxyde de carbone",
-        "voc": "Capteurs COV",
+        "voc": "Capteurs de COV",
         "vocDesc": "Composés organiques volatils",
-        "particulate": "Matières particulaires",
+        "particulate": "Matière particulaire",
         "particulateDesc": "PM2,5 et PM10"
       },
       "wireless": {
         "title": "Sans fil",
-        "wamTemperature": "Température WAM",
-        "wamTemperatureDesc": "Capteurs de température sans fil",
-        "wamHumidity": "Humidité WAM",
-        "wamHumidityDesc": "Capteurs d'humidité sans fil",
-        "wamDoorSensors": "Capteurs de porte WAM",
-        "wamDoorSensorsDesc": "Surveillance d'ouverture/fermeture",
-        "cloudPlatform": "Plateforme cloud",
-        "cloudPlatformDesc": "Surveillance à distance 24/7"
+        "bluetoothSensors": "Capteurs Bluetooth",
+        "bluetoothSensorsDesc": "Capteurs HVAC sans fil pour l'automatisation des bâtiments",
+        "gatewaysReceivers": "Passerelles et récepteurs",
+        "gatewaysReceiversDesc": "Connecter les capteurs sans fil au système de gestion des bâtiments",
+        "outputModules": "Modules de sortie",
+        "outputModulesDesc": "Sorties de commande sans fil",
+        "wirelessAccessories": "Accessoires sans fil",
+        "wirelessAccessoriesDesc": "Accessoires de montage et d'installation"
       },
       "accessories": {
         "title": "Accessoires",
         "mounting": "Matériel de montage",
         "mountingDesc": "Plaques, boîtiers, supports",
         "enclosures": "Boîtiers",
-        "enclosuresDesc": "Boîtiers BAPI et couvercles",
+        "enclosuresDesc": "Boîtes BAPI et couvercles",
         "cables": "Câbles et connecteurs",
         "cablesDesc": "Accessoires de câblage"
       },
@@ -526,18 +526,18 @@
         "bluTestTemperature": "Blu-Test Température",
         "bluTestTemperatureDesc": "Référence traçable NIST",
         "bluTestHumidity": "Blu-Test Humidité",
-        "bluTestHumidityDesc": "Référence température + humidité",
+        "bluTestHumidityDesc": "Référence température + HR",
         "bluTestPressure": "Blu-Test Pression",
         "bluTestPressureDesc": "Manomètre numérique"
       },
       "featured": {
         "title": "Surveillance d'actifs sans fil WAM™",
-        "description": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos biens précieux contre les pannes de courant et les défaillances d'équipement. Aucun câblage requis - opérationnel en quelques minutes.",
+        "description": "Surveillance à distance 24h/24, 7j/7 avec alertes immédiates. Protégez vos actifs précieux contre les pannes de courant et les défaillances des équipements. Pas de câblage requis - démarrez en quelques minutes.",
         "cta": "En savoir plus",
         "wamTitle": "Surveillance d'actifs sans fil WAM™",
-        "wamDescription": "Surveillance à distance 24/7 avec alertes instantanées. Protégez vos biens précieux contre les pannes de courant et les défaillances d'équipement. Aucun câblage requis - opérationnel en quelques minutes.",
+        "wamDescription": "Surveillance à distance 24h/24, 7j/7 avec alertes immédiates. Protégez vos actifs précieux contre les pannes de courant et les défaillances des équipements. Pas de câblage requis - démarrez en quelques minutes.",
         "wamCta": "En savoir plus",
-        "wamBadge": "Solution premium"
+        "wamBadge": "Solution Premium"
       },
       "badges": {
         "popular": "Populaire",

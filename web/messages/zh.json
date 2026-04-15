@@ -459,28 +459,28 @@
       "label": "产品",
       "temperature": {
         "title": "温度",
-        "roomWallSensors": "室内和壁挂式传感器",
-        "roomWallSensorsDesc": "高精度温度测量",
+        "roomWallSensors": "室内和墙壁传感器",
+        "roomWallSensorsDesc": "高精度温度检测",
         "ductSensors": "管道传感器",
-        "ductSensorsDesc": "管道安装式传感器",
-        "immersionWell": "浸没式和管道式",
+        "ductSensorsDesc": "管道安装型传感器",
+        "immersionWell": "浸入式和套管式",
         "immersionWellDesc": "液体温度测量",
         "outdoorSensors": "室外传感器",
-        "outdoorSensorsDesc": "耐候性温度测量",
+        "outdoorSensorsDesc": "防天气型检测",
         "averaging": "平均值传感器",
-        "averagingDesc": "大空间温度平均测量",
+        "averagingDesc": "大范围温度平均检测",
         "remoteProbes": "远程探头",
-        "remoteProbesDesc": "独立的感测元件探头"
+        "remoteProbesDesc": "独立检测元件探头"
       },
       "humidity": {
         "title": "湿度",
         "roomHumidity": "室内湿度",
         "roomHumidityDesc": "壁挂式湿度传感器",
         "ductHumidity": "管道湿度",
-        "ductHumidityDesc": "供给和回风湿度",
+        "ductHumidityDesc": "进回风湿度",
         "outdoorHumidity": "室外湿度",
-        "outdoorHumidityDesc": "耐候性湿度测量",
-        "comboSensors": "组合式传感器",
+        "outdoorHumidityDesc": "防天气型湿度检测",
+        "comboSensors": "组合传感器",
         "comboSensorsDesc": "温度 + 湿度"
       },
       "pressure": {
@@ -489,8 +489,8 @@
         "differentialDesc": "室内和过滤器监测",
         "static": "静压",
         "staticDesc": "管道静压变送器",
-        "barometric": "气压",
-        "barometricDesc": "大气压力"
+        "differentialSwitch": "差压开关",
+        "differentialSwitchDesc": "压力触发开关"
       },
       "airQuality": {
         "title": "空气质量",
@@ -503,21 +503,21 @@
       },
       "wireless": {
         "title": "无线",
-        "wamTemperature": "WAM温度",
-        "wamTemperatureDesc": "无线温度传感器",
-        "wamHumidity": "WAM湿度",
-        "wamHumidityDesc": "无线湿度传感器",
-        "wamDoorSensors": "WAM门传感器",
-        "wamDoorSensorsDesc": "开/关监测",
-        "cloudPlatform": "云平台",
-        "cloudPlatformDesc": "全天候远程监测"
+        "bluetoothSensors": "蓝牙传感器",
+        "bluetoothSensorsDesc": "建筑自动化用无线HVAC传感器",
+        "gatewaysReceivers": "网关和接收器",
+        "gatewaysReceiversDesc": "连接无线传感器到BAS",
+        "outputModules": "输出模块",
+        "outputModulesDesc": "无线控制输出",
+        "wirelessAccessories": "无线配件",
+        "wirelessAccessoriesDesc": "安装和固定配件"
       },
       "accessories": {
-        "title": "附件",
+        "title": "配件",
         "mounting": "安装硬件",
-        "mountingDesc": "安装板、箱子、支架",
+        "mountingDesc": "板,盒,支架",
         "enclosures": "外壳",
-        "enclosuresDesc": "BAPI-Box和遮盖",
+        "enclosuresDesc": "BAPI-Box和盖板",
         "cables": "线缆和连接器",
         "cablesDesc": "接线配件"
       },
@@ -528,16 +528,16 @@
         "bluTestHumidity": "Blu-Test湿度",
         "bluTestHumidityDesc": "温度 + 湿度参考",
         "bluTestPressure": "Blu-Test压力",
-        "bluTestPressureDesc": "数字式压力计"
+        "bluTestPressureDesc": "数字压力计"
       },
       "featured": {
-        "title": "WAM™ 无线资产监测",
-        "description": "24/7远程监测,即时警报。保护您宝贵的资产免受停电和设备故障的影响。无需接线 - 几分钟即可投入使用。",
+        "title": "WAM™ 无线资产监控",
+        "description": "提供24/7远程监控和即时预警。保护您的宝贵资产远离停电和设备故障。无需布线 - 即可快速部署。",
         "cta": "了解更多",
-        "wamTitle": "WAM™ 无线资产监测",
-        "wamDescription": "24/7远程监测,即时警报。保护您宝贵的资产免受停电和设备故障的影响。无需接线 - 几分钟即可投入使用。",
+        "wamTitle": "WAM™ 无线资产监控",
+        "wamDescription": "提供24/7远程监控和即时预警。保护您的宝贵资产远离停电和设备故障。无需布线 - 即可快速部署。",
         "wamCta": "了解更多",
-        "wamBadge": "Premium Solution"
+        "wamBadge": "高级解决方案"
       },
       "badges": {
         "popular": "热门",

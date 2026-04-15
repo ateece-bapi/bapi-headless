@@ -96,7 +96,7 @@ pnpm run audit:images
 ## Current Scripts to Migrate
 
 **Priority 1: TypeScript-heavy Scripts**
-- [ ] `verify-megamenu-links.mjs` → `.ts` ✅ **HIGH (just created)**
+- [x] `verify-megamenu-links.ts` ✅ **Already migrated**
 - [ ] `test-product-attributes.mjs` → `.ts`
 - [ ] `test-variations.mjs` → `.ts`
 - [ ] `bulk-import-users.mjs` → `.ts`

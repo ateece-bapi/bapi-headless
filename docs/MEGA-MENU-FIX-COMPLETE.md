@@ -201,15 +201,11 @@ pnpm add -D tsx
 
 **Convert Script:**
 ```bash
-# Rename script
-mv scripts/verify-megamenu-links.mjs scripts/verify-megamenu-links.ts
+# Script is already TypeScript (.ts)
+# No need to rename - already using verify-megamenu-links.ts
 
-# Update imports (no need for .ts extensions)
-# Change: import { x } from '../src/lib/file.ts'
-# To:     import { x } from '../src/lib/file'
-
-# Run with tsx
-pnpm tsx scripts/verify-megamenu-links.ts
+# Run with tsx (via dlx - no install needed)
+pnpm dlx tsx scripts/verify-megamenu-links.ts
 ```
 
 **Update package.json:**

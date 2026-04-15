@@ -12,7 +12,7 @@
 
 **Files Created:**
 - ✅ [`docs/MEGA-MENU-AUDIT-APR2026.md`](./MEGA-MENU-AUDIT-APR2026.md) - Comprehensive 42-link audit
-- ✅ [`web/scripts/verify-megamenu-links.mjs`](../web/scripts/verify-megamenu-links.mjs) - Automated verification script
+- ✅ [`web/scripts/verify-megamenu-links.ts`](../web/scripts/verify-megamenu-links.ts) - Automated verification script
 
 **Methodology:**
 1. ✅ Documented all 42 mega-menu links (7 categories × ~6 links each)
@@ -282,14 +282,13 @@ pnpm test:e2e
    - `web/messages/de.json` (German)
    - `web/messages/es.json` (Spanish)
    - `web/messages/fr.json` (French)
-   - `web/messages/it.json` (Italian)
-   - `web/messages/pt.json` (Portuguese)
    - `web/messages/ja.json` (Japanese)
    - `web/messages/zh.json` (Chinese)
-   - `web/messages/ko.json` (Korean)
-   - `web/messages/ar.json` (Arabic)
-   - `web/messages/hi.json` (Hindi)
    - `web/messages/vi.json` (Vietnamese)
+   - `web/messages/ar.json` (Arabic)
+   - `web/messages/th.json` (Thai)
+   - `web/messages/pl.json` (Polish)
+   - `web/messages/hi.json` (Hindi)
 
 ---
 
@@ -299,16 +298,13 @@ pnpm test:e2e
 ```bash
 cd /home/ateece/bapi-headless/web
 
-# Option 1: Install tsx (if needed)
-pnpm add -D tsx
-
-# Option 2: Run with tsx
-pnpm tsx scripts/verify-megamenu-links.mjs
+# Run verification script (no install needed)
+pnpm dlx tsx scripts/verify-megamenu-links.ts
 
 # Expected output:
 # ✅ Temperature: 6/6 links valid
-# ❌ Wireless: 4/4 links broken
-# ⚠️ Pressure: 1/3 label mismatch
+# ❌ Wireless: 4/4 links broken (FIXED in this PR)
+# ⚠️ Pressure: 1/3 label mismatch (FIXED in this PR)
 # ⚠️ Humidity: 2/4 duplicate links
 ```
 

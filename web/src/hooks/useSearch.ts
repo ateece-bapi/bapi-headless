@@ -131,7 +131,12 @@ export function useSearch(options: UseSearchOptions = {}) {
 
   const handleSelect = useCallback(
     (slug: string) => {
+      // Cancel any pending search requests
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
       setIsOpen(false);
+      setIsLoading(false); // Reset loading state on navigation
       setQuery('');
       router.push(`/product/${slug}`);
     },
@@ -140,7 +145,12 @@ export function useSearch(options: UseSearchOptions = {}) {
 
   const handleViewAll = useCallback(() => {
     if (query.length >= minChars) {
+      // Cancel any pending search requests
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
       setIsOpen(false);
+      setIsLoading(false); // Reset loading state on navigation
       router.push(`/search?q=${encodeURIComponent(query)}`);
     }
   }, [query, minChars, router]);
@@ -149,6 +159,21 @@ export function useSearch(options: UseSearchOptions = {}) {
     setQuery('');
     setResults([]);
     setIsOpen(false);
+    setIsLoading(false); // Reset loading state when clearing
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      // Abort any pending requests on unmount
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+      // Clear any pending debounce timers
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
   }, []);
 
   return {

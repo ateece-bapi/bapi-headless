@@ -510,7 +510,7 @@
         "outputModules": "输出模块",
         "outputModulesDesc": "无线控制输出",
         "wirelessAccessories": "无线配件",
-        "wirelessAccessoriesDesc": "安装和安装配件"
+        "wirelessAccessoriesDesc": "安装和固定配件"
       },
       "accessories": {
         "title": "配件",
@@ -537,12 +537,12 @@
         "wamTitle": "WAM™ 无线资产监控",
         "wamDescription": "提供24/7远程监控和即时预警。保护您的宝贵资产远离停电和设备故障。无需布线 - 即可快速部署。",
         "wamCta": "了解更多",
-        "wamBadge": "Premium Solution"
+        "wamBadge": "高级解决方案"
       },
       "badges": {
         "popular": "热门",
         "new": "新品",
-        "premium": "Premium"
+        "premium": "高级"
       }
     }
   },

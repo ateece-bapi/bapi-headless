@@ -49,15 +49,15 @@
       "temperature": {
         "title": "Temperatura",
         "roomWallSensors": "Czujniki pokojowe i naścienne",
-        "roomWallSensorsDesc": "Wysokodokladne wykrywanie temperatury",
+        "roomWallSensorsDesc": "Wysokodokładne wykrywanie temperatury",
         "ductSensors": "Czujniki kanałowe",
         "ductSensorsDesc": "Nadajniki montowane w kanałach",
         "immersionWell": "Zanurzeniowe i studzienkowe",
         "immersionWellDesc": "Pomiar temperatury cieczy",
         "outdoorSensors": "Czujniki zewnętrzne",
         "outdoorSensorsDesc": "Wytrzymałe na warunki atmosferyczne",
-        "averaging": "Czujniki średnicowe",
-        "averagingDesc": "Uśrednianie temperatury w dużych pomieszczeniach",
+        "averaging": "Czujniki uśredniające",
+        "averagingDesc": "Uśrednianie temperatury w dużych przestrzeniach",
         "remoteProbes": "Sondy zdalne",
         "remoteProbesDesc": "Oddzielne elementy pomiarowe"
       },

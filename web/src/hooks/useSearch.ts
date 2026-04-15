@@ -53,8 +53,9 @@ export function useSearch(options: UseSearchOptions = {}) {
         abortControllerRef.current.abort();
       }
 
-      // Create new abort controller
-      abortControllerRef.current = new AbortController();
+      // Create new abort controller for this request
+      const controller = new AbortController();
+      abortControllerRef.current = controller;
 
       setIsLoading(true);
 
@@ -63,23 +64,48 @@ export function useSearch(options: UseSearchOptions = {}) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ query: searchQuery }),
-          signal: abortControllerRef.current.signal,
+          signal: controller.signal,
         });
 
+        // Only update state if this request is still current
+        if (controller !== abortControllerRef.current) {
+          return; // Newer request has started, discard this response
+        }
+
+        if (!response.ok) {
+          logger.error('Search API error', { status: response.status });
+          setResults([]);
+          setIsLoading(false);
+          return;
+        }
+
         const data = await response.json();
+
+        // Double-check still current before applying results
+        if (controller !== abortControllerRef.current) {
+          return;
+        }
 
         if (data.products?.nodes) {
           setResults(data.products.nodes);
         } else {
           setResults([]);
         }
+        setIsLoading(false);
       } catch (error: unknown) {
-        if (error instanceof Error && error.name !== 'AbortError') {
+        // Only update state if this request is still current
+        if (controller !== abortControllerRef.current) {
+          return; // Newer request has started, ignore this error
+        }
+
+        if (error instanceof Error && error.name === 'AbortError') {
+          // Request was cancelled, reset loading state
+          setIsLoading(false);
+        } else {
           logger.error('Search error', error);
           setResults([]);
+          setIsLoading(false);
         }
-      } finally {
-        setIsLoading(false);
       }
     },
     [minChars]
@@ -121,7 +147,12 @@ export function useSearch(options: UseSearchOptions = {}) {
 
   const handleSelect = useCallback(
     (slug: string) => {
+      // Cancel any pending search requests
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
       setIsOpen(false);
+      setIsLoading(false); // Reset loading state on navigation
       setQuery('');
       router.push(`/product/${slug}`);
     },
@@ -130,7 +161,12 @@ export function useSearch(options: UseSearchOptions = {}) {
 
   const handleViewAll = useCallback(() => {
     if (query.length >= minChars) {
+      // Cancel any pending search requests
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
       setIsOpen(false);
+      setIsLoading(false); // Reset loading state on navigation
       router.push(`/search?q=${encodeURIComponent(query)}`);
     }
   }, [query, minChars, router]);
@@ -139,6 +175,21 @@ export function useSearch(options: UseSearchOptions = {}) {
     setQuery('');
     setResults([]);
     setIsOpen(false);
+    setIsLoading(false); // Reset loading state when clearing
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      // Abort any pending requests on unmount
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+      // Clear any pending debounce timers
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
   }, []);
 
   return {

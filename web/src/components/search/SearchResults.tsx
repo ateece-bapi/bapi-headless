@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { sanitizeWordPressContent } from '@/lib/sanitizeDescription';
 import { Link } from '@/lib/navigation';
 import Image from 'next/image';
@@ -55,9 +56,14 @@ export default function SearchResults({
   translations: t,
 }: SearchResultsProps) {
   const { user } = useAuth();
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
   // Filter products by customer group (B2B access control)
   const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroups || ['END USER']);
+
+  const handleImageError = (productId: string) => {
+    setFailedImages((prev) => new Set(prev).add(productId));
+  };
 
   return (
     <div className="py-8 lg:py-12">
@@ -112,7 +118,7 @@ export default function SearchResults({
                   href={`/product/${product.slug}`}
                   className="group rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-primary-500 hover:shadow-lg"
                 >
-                  {product.image?.sourceUrl && (
+                  {product.image?.sourceUrl && !failedImages.has(product.id) && (
                     <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg bg-neutral-50">
                       <Image
                         src={product.image.sourceUrl}
@@ -122,11 +128,7 @@ export default function SearchResults({
                         loading={index < 6 ? undefined : 'lazy'}
                         className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        onError={(e) => {
-                          // Hide image on error to prevent broken image icon
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                        }}
+                        onError={() => handleImageError(product.id)}
                       />
                     </div>
                   )}

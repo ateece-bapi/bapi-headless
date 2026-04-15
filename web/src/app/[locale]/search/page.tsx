@@ -15,7 +15,14 @@ interface SearchPageProps {
 }
 
 async function searchProducts(query: string) {
-  const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
+  const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.trim();
+
+  if (!GRAPHQL_ENDPOINT) {
+    console.error(
+      'searchProducts: NEXT_PUBLIC_WORDPRESS_GRAPHQL is not configured. Returning empty search results.',
+    );
+    return [];
+  }
 
   const productFields = `
     id
@@ -45,6 +52,7 @@ async function searchProducts(query: string) {
     }
     ... on VariableProduct {
       sku
+      partNumber
       price
       shortDescription
       image {
@@ -105,10 +113,28 @@ async function searchProducts(query: string) {
     }),
   ]);
 
+  // Check for HTTP errors
+  if (!nameSearchResponse.ok || !skuSearchResponse.ok) {
+    console.error('WordPress GraphQL search failed', {
+      nameStatus: nameSearchResponse.status,
+      skuStatus: skuSearchResponse.status,
+    });
+    return [];
+  }
+
   const [nameData, skuData] = await Promise.all([
     nameSearchResponse.json(),
     skuSearchResponse.json(),
   ]);
+
+  // Check for GraphQL errors
+  if (nameData.errors || skuData.errors) {
+    console.error('GraphQL search query failed', {
+      nameErrors: nameData.errors,
+      skuErrors: skuData.errors,
+    });
+    return [];
+  }
 
   // Merge results from both queries, removing duplicates by ID
   const nameResults = nameData.data?.products?.nodes || [];

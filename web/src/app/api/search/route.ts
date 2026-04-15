@@ -1,6 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import logger from '@/lib/logger';
 
+// Type for search product response
+interface SearchProduct {
+  id: string;
+  databaseId: number;
+  name: string;
+  slug: string;
+  sku?: string | null;
+  partNumber?: string | null;
+  price?: string | null;
+  shortDescription?: string | null;
+  image?: {
+    id: string;
+    sourceUrl: string;
+    altText?: string | null;
+    mediaDetails?: {
+      height: number;
+      width: number;
+    } | null;
+  } | null;
+  productCategories?: {
+    nodes: Array<{
+      name: string;
+      slug: string;
+    }>;
+  } | null;
+}
+
 // Search by product name/description
 const SEARCH_QUERY = `
   query SearchProducts($search: String!) {
@@ -33,6 +60,7 @@ const SEARCH_QUERY = `
         }
         ... on VariableProduct {
           sku
+          partNumber
           price
           shortDescription
           image {
@@ -56,7 +84,7 @@ const SEARCH_QUERY = `
   }
 `;
 
-// Search by SKU (exact or partial match)
+// Search by SKU (exact match)
 const SKU_SEARCH_QUERY = `
   query SearchProductsBySKU($sku: String!) {
     products(where: { sku: $sku, visibility: VISIBLE }, first: 8) {
@@ -88,6 +116,7 @@ const SKU_SEARCH_QUERY = `
         }
         ... on VariableProduct {
           sku
+          partNumber
           price
           shortDescription
           image {
@@ -178,19 +207,19 @@ export async function POST(request: NextRequest) {
     }
 
     // Merge results from both queries, removing duplicates by ID
-    const nameResults = nameData.data?.products?.nodes || [];
-    const skuResults = skuData.data?.products?.nodes || [];
+    const nameResults: SearchProduct[] = nameData.data?.products?.nodes || [];
+    const skuResults: SearchProduct[] = skuData.data?.products?.nodes || [];
 
     // Create a Map to deduplicate by product ID
-    const resultsMap = new Map();
+    const resultsMap = new Map<string, SearchProduct>();
     
     // Add SKU results first (higher priority for exact SKU matches)
-    skuResults.forEach((product: { id: string }) => {
+    skuResults.forEach((product) => {
       resultsMap.set(product.id, product);
     });
 
     // Add name search results (won't override if already exists)
-    nameResults.forEach((product: { id: string }) => {
+    nameResults.forEach((product) => {
       if (!resultsMap.has(product.id)) {
         resultsMap.set(product.id, product);
       }

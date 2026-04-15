@@ -39990,7 +39990,7 @@ export type SearchProductsQuery = { __typename?: 'RootQuery', products?: { __typ
       | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
       | { __typename?: 'SimpleProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined }
       | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
-      | { __typename?: 'VariableProduct', sku?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined }
+      | { __typename?: 'VariableProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined }
     > } | null | undefined };
 
 
@@ -42184,6 +42184,7 @@ export const SearchProductsDocument = gql`
       }
       ... on VariableProduct {
         sku
+        partNumber
         price
         shortDescription
         image {

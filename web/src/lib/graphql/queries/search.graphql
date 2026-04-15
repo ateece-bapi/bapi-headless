@@ -30,6 +30,7 @@ query SearchProducts($search: String!, $first: Int = 20) {
       }
       ... on VariableProduct {
         sku
+        partNumber
         price
         shortDescription
         image {

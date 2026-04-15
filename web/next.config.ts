@@ -40,8 +40,7 @@ const nextConfig: NextConfig = {
     // Quality settings for different sizes
     // Next.js will use 75 by default, we set explicit qualities in components
     qualities: [75, 85], // Support both default (75) and high quality (85)
-    // Increase timeout for slow staging server images (development only)
-    unoptimized: process.env.NODE_ENV === 'development' ? false : undefined,
+    // Keep Next.js image optimization enabled; remote image hosts are controlled via remotePatterns above.
   },
   
   // Redirects for legacy/misplaced URLs

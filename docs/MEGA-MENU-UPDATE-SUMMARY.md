@@ -303,8 +303,8 @@ pnpm dlx tsx scripts/verify-megamenu-links.ts
 
 # Expected output:
 # ✅ Temperature: 6/6 links valid
-# ❌ Wireless: 4/4 links broken (FIXED in this PR)
-# ⚠️ Pressure: 1/3 label mismatch (FIXED in this PR)
+# ❌ Wireless: 4/4 links broken
+# ⚠️ Pressure: 1/3 label mismatch
 # ⚠️ Humidity: 2/4 duplicate links
 ```
 

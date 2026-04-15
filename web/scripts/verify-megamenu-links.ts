@@ -2,7 +2,7 @@
  * Mega-Menu Link Verification Script
  * 
  * Purpose: Verify all mega-menu category links point to valid WordPress categories
- * Run: pnpm dlx tsx scripts/verify-megamenu-links.ts
+ * Run: pnpm dlx tsx@4.20.3 scripts/verify-megamenu-links.ts
  * 
  * This script:
  * 1. Queries hardcoded mega-menu category slugs
@@ -14,7 +14,11 @@
  * Date: April 15, 2026
  */
 
-import 'dotenv/config';
+import dotenv from 'dotenv';
+
+// Load environment variables (try .env.local first, fallback to .env)
+dotenv.config({ path: './.env.local' });
+dotenv.config({ path: './.env' });
 
 import { getGraphQLClient } from '../src/lib/graphql/client';
 import { getSdk } from '../src/lib/graphql/generated';

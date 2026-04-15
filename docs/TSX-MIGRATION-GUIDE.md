@@ -46,19 +46,19 @@ pnpm add -D tsx
 
 ### Step 1: Convert One Script (Example)
 
-**Before:** `scripts/verify-megamenu-links.mjs`
+**Before:** `scripts/example-script.mjs`
 ```javascript
 /**
- * Run: node scripts/verify-megamenu-links.mjs
+ * Run: node scripts/example-script.mjs
  */
 import { getGraphQLClient } from '../src/lib/graphql/client.ts';
 import { getSdk } from '../src/lib/graphql/generated.ts';
 ```
 
-**After:** `scripts/verify-megamenu-links.ts`
+**After:** `scripts/example-script.ts`
 ```typescript
 /**
- * Run: pnpm tsx scripts/verify-megamenu-links.ts
+ * Run: pnpm dlx tsx@4.20.3 scripts/example-script.ts
  */
 import { getGraphQLClient } from '../src/lib/graphql/client';
 import { getSdk } from '../src/lib/graphql/generated';

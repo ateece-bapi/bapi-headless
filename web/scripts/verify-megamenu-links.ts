@@ -2,7 +2,7 @@
  * Mega-Menu Link Verification Script
  * 
  * Purpose: Verify all mega-menu category links point to valid WordPress categories
- * Run: node web/scripts/verify-megamenu-links.mjs
+ * Run: pnpm tsx scripts/verify-megamenu-links.ts
  * 
  * This script:
  * 1. Extracts all category slugs from mega-menu config
@@ -14,8 +14,8 @@
  * Date: April 15, 2026
  */
 
-import { getGraphQLClient } from '../src/lib/graphql/client.ts';
-import { getSdk } from '../src/lib/graphql/generated.ts';
+import { getGraphQLClient } from '../src/lib/graphql/client';
+import { getSdk } from '../src/lib/graphql/generated';
 
 /**
  * All mega-menu category links to verify

@@ -2,17 +2,19 @@
  * Mega-Menu Link Verification Script
  * 
  * Purpose: Verify all mega-menu category links point to valid WordPress categories
- * Run: pnpm tsx scripts/verify-megamenu-links.ts
+ * Run: pnpm dlx tsx scripts/verify-megamenu-links.ts
  * 
  * This script:
- * 1. Extracts all category slugs from mega-menu config
- * 2. Queries WordPress GraphQL to verify each slug exists
+ * 1. Queries hardcoded mega-menu category slugs
+ * 2. Verifies each slug exists via WordPress GraphQL
  * 3. Reports broken links, product counts, and status
  * 4. Exits with code 1 if any links are broken (CI/CD integration)
  * 
  * Author: Senior Web Developer
  * Date: April 15, 2026
  */
+
+import 'dotenv/config';
 
 import { getGraphQLClient } from '../src/lib/graphql/client';
 import { getSdk } from '../src/lib/graphql/generated';
@@ -100,7 +102,7 @@ const MEGA_MENU_LINKS = [
   {
     category: 'Pressure',
     slug: 'pressure-differential-switch',
-    label: 'Barometric (should be Differential Switch)',
+    label: 'Differential Switch',
     href: '/products/pressure-sensors/pressure-differential-switch',
     expectedProducts: 4,
   },
@@ -128,11 +130,11 @@ const MEGA_MENU_LINKS = [
     expectedProducts: 2,
   },
 
-  // WIRELESS SENSORS (1 main category - subcategory links currently broken)
+  // WIRELESS SENSORS (Bluetooth HVAC products)
   {
     category: 'Wireless',
     slug: 'bluetooth-wireless',
-    label: 'Bluetooth Wireless (main category)',
+    label: 'Bluetooth Wireless',
     href: '/products/bluetooth-wireless',
     expectedProducts: 24,
   },

@@ -84,8 +84,8 @@
         "differentialDesc": "Room & filter monitoring",
         "static": "Static Pressure",
         "staticDesc": "Duct static transmitters",
-        "barometric": "Barometric",
-        "barometricDesc": "Atmospheric pressure"
+        "differentialSwitch": "Differential Switch",
+        "differentialSwitchDesc": "Pressure-activated switching"
       },
       "airQuality": {
         "title": "Air Quality",
@@ -98,14 +98,14 @@
       },
       "wireless": {
         "title": "Wireless",
-        "wamTemperature": "WAM Temperature",
-        "wamTemperatureDesc": "Wireless temp sensors",
-        "wamHumidity": "WAM Humidity",
-        "wamHumidityDesc": "Wireless RH sensors",
-        "wamDoorSensors": "WAM Door Sensors",
-        "wamDoorSensorsDesc": "Open/close monitoring",
-        "cloudPlatform": "Cloud Platform",
-        "cloudPlatformDesc": "24/7 remote monitoring"
+        "bluetoothSensors": "Bluetooth Sensors",
+        "bluetoothSensorsDesc": "Wireless HVAC sensors for building automation",
+        "gatewaysReceivers": "Gateways & Receivers",
+        "gatewaysReceiversDesc": "Connect wireless sensors to BAS",
+        "outputModules": "Output Modules",
+        "outputModulesDesc": "Wireless control outputs",
+        "wirelessAccessories": "Wireless Accessories",
+        "wirelessAccessoriesDesc": "Mounting & installation accessories"
       },
       "accessories": {
         "title": "Accessories",

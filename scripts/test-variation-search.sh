@@ -32,14 +32,17 @@ ENVIRONMENT=$1
 if [ "$ENVIRONMENT" == "staging" ]; then
     # Headless WordPress staging on Kinsta
     GRAPHQL_ENDPOINT="https://bapiheadlessstaging.kinsta.cloud/graphql"
-    SSH_SERVER="bapihvac@bapiheadlessstaging.kinsta.cloud"  # Update SSH user from MyKinsta
+    SSH_SERVER="bapiheadlessstaging@35.224.70.159"
+    SSH_PORT="17338"
 elif [ "$ENVIRONMENT" == "production" ]; then
     # Headless WordPress production on Kinsta
     GRAPHQL_ENDPOINT="https://TBD/graphql"  # TODO: Update with production URL
     SSH_SERVER="TBD@TBD"
+    SSH_PORT="TBD"
 elif [ "$ENVIRONMENT" == "local" ]; then
     GRAPHQL_ENDPOINT="http://localhost:8000/graphql"
     SSH_SERVER=""
+    SSH_PORT=""
 else
     echo -e "${RED}Error: Invalid environment${NC}"
     exit 1
@@ -53,8 +56,8 @@ echo ""
 echo -e "${BLUE}Test 1: Verify plugin is loaded${NC}"
 echo "---------------------------------------"
 
-if [ "$ENVIRONMENT" != "local" ]; then
-    ssh "$SSH_SERVER" "wp plugin list --status=must-use --format=table | grep -i variation || echo 'Plugin not found in mu-plugins list'"
+if [ "$ENVIRONMENT" != "local" ] && [ -n "$SSH_SERVER" ]; then
+    ssh -p "${SSH_PORT}" "$SSH_SERVER" "wp plugin list --status=must-use --format=table | grep -i variation || echo 'Plugin not found in mu-plugins list'"
 else
     echo "Skipped for local environment"
 fi
@@ -143,9 +146,9 @@ echo ""
 echo -e "${BLUE}Test 5: Verify variation SKUs exist for product 50116${NC}"
 echo "---------------------------------------"
 
-if [ "$ENVIRONMENT" != "local" ]; then
+if [ "$ENVIRONMENT" != "local" ] && [ -n "$SSH_SERVER" ]; then
     echo "Via WP-CLI (showing variation SKUs):"
-    ssh "$SSH_SERVER" "wp db query \"SELECT p.ID, p.post_title, pm.meta_value as sku FROM wp_posts p LEFT JOIN wp_postmeta pm ON p.ID=pm.post_id AND pm.meta_key='_sku' WHERE p.post_parent=50116 AND p.post_type='product_variation' LIMIT 5\""
+    ssh -p "${SSH_PORT}" "$SSH_SERVER" "wp db query \"SELECT p.ID, p.post_title, pm.meta_value as sku FROM wp_posts p LEFT JOIN wp_postmeta pm ON p.ID=pm.post_id AND pm.meta_key='_sku' WHERE p.post_parent=50116 AND p.post_type='product_variation' LIMIT 5\""
 else
     echo "Skipped for local environment"
 fi

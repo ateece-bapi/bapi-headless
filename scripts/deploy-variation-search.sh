@@ -30,16 +30,18 @@ ENVIRONMENT=$1
 # Set server details based on environment
 if [ "$ENVIRONMENT" == "staging" ]; then
     # Headless WordPress staging on Kinsta (bapiheadlessstaging.kinsta.cloud)
-    # Get SSH credentials from MyKinsta dashboard: https://my.kinsta.com
-    SERVER="bapiheadlessstaging.kinsta.cloud"
-    SSH_USER="bapihvac"  # Update with actual SSH user from MyKinsta
-    REMOTE_PATH="~/files/wp-content/mu-plugins/"
+    # SSH credentials from MyKinsta: Sites → bapiheadlessstaging → Info → SSH/SFTP
+    SERVER="35.224.70.159"
+    SSH_PORT="17338"
+    SSH_USER="bapiheadlessstaging"
+    REMOTE_PATH="~/public/wp-content/mu-plugins/"
     SITE_NAME="Headless WordPress Staging (Kinsta)"
 elif [ "$ENVIRONMENT" == "production" ]; then
     # Headless WordPress production on Kinsta
     SERVER="TBD"  # TODO: Get from MyKinsta dashboard
+    SSH_PORT="TBD"
     SSH_USER="TBD"
-    REMOTE_PATH="~/files/wp-content/mu-plugins/"
+    REMOTE_PATH="~/public/wp-content/mu-plugins/"
     SITE_NAME="Headless WordPress Production (Kinsta)"
 else
     echo -e "${RED}Error: Invalid environment${NC}"
@@ -82,14 +84,14 @@ fi
 # Deploy via SCP
 echo ""
 echo "Deploying plugin..."
-echo "Target: ${SSH_USER}@${SERVER}:${REMOTE_PATH}"
+echo "Target: ${SSH_USER}@${SERVER}:${SSH_PORT}${REMOTE_PATH}"
 echo ""
 
 # Create mu-plugins directory if it doesn't exist
-ssh "${SSH_USER}@${SERVER}" "mkdir -p ${REMOTE_PATH}"
+ssh -p "${SSH_PORT}" "${SSH_USER}@${SERVER}" "mkdir -p ${REMOTE_PATH}"
 
 # Copy file
-scp "$PLUGIN_FILE" "${SSH_USER}@${SERVER}:${REMOTE_PATH}bapi-variation-sku-search.php"
+scp -P "${SSH_PORT}" "$PLUGIN_FILE" "${SSH_USER}@${SERVER}:${REMOTE_PATH}bapi-variation-sku-search.php"
 
 if [ $? -eq 0 ]; then
     echo ""
@@ -98,14 +100,14 @@ if [ $? -eq 0 ]; then
     
     # Verify file exists on server
     echo "Verifying deployment..."
-    ssh "${SSH_USER}@${SERVER}" "ls -lh ${REMOTE_PATH}bapi-variation-sku-search.php"
+    ssh -p "${SSH_PORT}" "${SSH_USER}@${SERVER}" "ls -lh ${REMOTE_PATH}bapi-variation-sku-search.php"
     
     echo ""
     echo -e "${GREEN}Next Steps:${NC}"
-    echo "1. Log into WordPress Admin: https://${SERVER}/wp-admin"
+    echo "1. Log into WordPress Admin: https://bapiheadlessstaging.kinsta.cloud/wp-admin"
     echo "2. Go to Plugins → Must-Use"
     echo "3. Verify 'BAPI Variation SKU Search' is listed"
-    echo "4. Test search via GraphiQL: https://${SERVER}/graphql"
+    echo "4. Test search via GraphiQL: https://bapiheadlessstaging.kinsta.cloud/graphql"
     echo "5. Run test script: ./scripts/test-variation-search.sh ${ENVIRONMENT}"
     echo ""
 else

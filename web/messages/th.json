@@ -141,90 +141,90 @@
       "label": "ผลิตภัณฑ์",
       "temperature": {
         "title": "อุณหภูมิ",
-        "roomWallSensors": "เซ็นเซอร์ในห้องและที่ผนัง",
-        "roomWallSensorsDesc": "การวัดอุณหภูมิแม่นยำสูง",
-        "ductSensors": "เซ็นเซอร์ที่ท่อ",
-        "ductSensorsDesc": "ตัวส่งสัญญาณติดตั้งที่ท่อ",
-        "immersionWell": "อุปกรณ์วัดอุณหภูมิของของเหลว",
+        "roomWallSensors": "เซ็นเซอร์ในห้องและบนผนัง",
+        "roomWallSensorsDesc": "การตรวจจับอุณหภูมิที่มีความแม่นยำสูง",
+        "ductSensors": "เซ็นเซอร์ในท่อ",
+        "ductSensorsDesc": "ตัวส่งสัญญาณที่ติดตั้งในท่อ",
+        "immersionWell": "การแช่และบ่อน้ำ",
         "immersionWellDesc": "การวัดอุณหภูมิของของเหลว",
         "outdoorSensors": "เซ็นเซอร์ภายนอก",
-        "outdoorSensorsDesc": "การตรวจวัดที่ทนทานต่อสภาพอากาศ",
-        "averaging": "เซ็นเซอร์เฉลี่ย",
+        "outdoorSensorsDesc": "การตรวจจับที่ทนต่อสภาพอากาศ",
+        "averaging": "เซ็นเซอร์ค่าเฉลี่ย",
         "averagingDesc": "การเฉลี่ยอุณหภูมิในพื้นที่ขนาดใหญ่",
-        "remoteProbes": "ตัวตรวจวัดระยะไกล",
-        "remoteProbesDesc": "ตัวตรวจวัดภายนอก"
+        "remoteProbes": "โพรบระยะไกล",
+        "remoteProbesDesc": "หัวตรวจจับที่แยกต่างหาก"
       },
       "humidity": {
         "title": "ความชื้น",
         "roomHumidity": "ความชื้นในห้อง",
         "roomHumidityDesc": "เซ็นเซอร์ความชื้นติดผนัง",
-        "ductHumidity": "ความชื้นที่ท่อ",
+        "ductHumidity": "ความชื้นในท่อ",
         "ductHumidityDesc": "ความชื้นของอากาศจ่ายและกลับ",
         "outdoorHumidity": "ความชื้นภายนอก",
-        "outdoorHumidityDesc": "ความชื้นที่ทนทานต่อสภาพอากาศ",
-        "comboSensors": "เซ็นเซอร์ผสม",
+        "outdoorHumidityDesc": "ความชื้นที่ทนต่อสภาพอากาศ",
+        "comboSensors": "เซ็นเซอร์แบบผสม",
         "comboSensorsDesc": "อุณหภูมิ + ความชื้น"
       },
       "pressure": {
         "title": "ความดัน",
-        "differential": "ความดันแบบแตกต่าง",
+        "differential": "ความดันต่างระดับ",
         "differentialDesc": "การตรวจสอบห้องและตัวกรอง",
         "static": "ความดันสถิต",
-        "staticDesc": "ตัวส่งสัญญาณความดันสถิตในท่อ",
-        "barometric": "ความดันบรรยากาศ",
-        "barometricDesc": "ความดันอากาศ"
+        "staticDesc": "ตัวส่งสัญญาณความดันในท่อ",
+        "differentialSwitch": "สวิตช์ความดันต่างระดับ",
+        "differentialSwitchDesc": "สวิตช์ที่ควบคุมโดยความดัน"
       },
       "airQuality": {
         "title": "คุณภาพอากาศ",
         "co2": "เซ็นเซอร์ CO₂",
-        "co2Desc": "การตรวจสอบก๊าซคาร์บอนไดออกไซด์",
+        "co2Desc": "การตรวจสอบคาร์บอนไดออกไซด์",
         "voc": "เซ็นเซอร์ VOC",
         "vocDesc": "สารประกอบอินทรีย์ระเหย",
-        "particulate": "สารอนุภาค",
+        "particulate": "สารแขวนลอย",
         "particulateDesc": "PM2.5 และ PM10"
       },
       "wireless": {
         "title": "ไร้สาย",
-        "wamTemperature": "อุณหภูมิ WAM",
-        "wamTemperatureDesc": "เซ็นเซอร์อุณหภูมิไร้สาย",
-        "wamHumidity": "ความชื้น WAM",
-        "wamHumidityDesc": "เซ็นเซอร์ความชื้นไร้สาย",
-        "wamDoorSensors": "เซ็นเซอร์ประตู WAM",
-        "wamDoorSensorsDesc": "การตรวจสอบเปิด/ปิด",
-        "cloudPlatform": "แพลตฟอร์มคลาวด์",
-        "cloudPlatformDesc": "การตรวจสอบระยะไกลตลอด 24/7"
+        "bluetoothSensors": "เซ็นเซอร์บลูทูธ",
+        "bluetoothSensorsDesc": "เซ็นเซอร์ HVAC ไร้สายสำหรับระบบอัตโนมัติอาคาร",
+        "gatewaysReceivers": "เกตเวย์และตัวรับสัญญาณ",
+        "gatewaysReceiversDesc": "เชื่อมต่อเซ็นเซอร์ไร้สายกับระบบควบคุมอาคาร",
+        "outputModules": "โมดูลเอาท์พุต",
+        "outputModulesDesc": "การควบคุมเอาท์พุตไร้สาย",
+        "wirelessAccessories": "อุปกรณ์เสริมไร้สาย",
+        "wirelessAccessoriesDesc": "อุปกรณ์ติดตั้งและติดตั้ง"
       },
       "accessories": {
         "title": "อุปกรณ์เสริม",
-        "mounting": "ฮาร์ดแวร์ติดตั้ง",
-        "mountingDesc": "แผ่นติดตั้ง กล่อง และขาตั้ง",
-        "enclosures": "ตู้เคลือบ",
-        "enclosuresDesc": "BAPI-Box และฝาครอบ",
+        "mounting": "ฮาร์ดแวร์การติดตั้ง",
+        "mountingDesc": "แผ่น ตู้ แขน",
+        "enclosures": "ตู้หุ้ม",
+        "enclosuresDesc": "BAPI-Box และฝาปิด",
         "cables": "สายเคเบิลและตัวเชื่อมต่อ",
-        "cablesDesc": "อุปกรณ์เสริมสำหรับการเดินสาย"
+        "cablesDesc": "อุปกรณ์เสริมสายไฟ"
       },
       "testInstruments": {
         "title": "เครื่องมือทดสอบ",
         "bluTestTemperature": "Blu-Test อุณหภูมิ",
-        "bluTestTemperatureDesc": "การอ้างอิงอุณหภูมิที่ตรวจสอบกับมาตรฐาน NIST",
+        "bluTestTemperatureDesc": "การอ้างอิงที่ตรวจสอบมาตรฐาน NIST",
         "bluTestHumidity": "Blu-Test ความชื้น",
-        "bluTestHumidityDesc": "การอ้างอิงอุณหภูมิ + ความชื้น",
+        "bluTestHumidityDesc": "อุณหภูมิ + การอ้างอิง RH",
         "bluTestPressure": "Blu-Test ความดัน",
-        "bluTestPressureDesc": "มานอมิเตอร์ดิจิตอล"
+        "bluTestPressureDesc": "มาโนมิเตอร์ดิจิทัล"
       },
       "featured": {
-        "title": "การตรวจสอบสินทรัพย์ไร้สาย WAM™",
-        "description": "การตรวจสอบระยะไกล 24/7 พร้อมการแจ้งเตือนทันที. ป้องกันสินทรัพย์ที่มีค่าของคุณจากการขัดข้องของไฟฟ้าและการเสียหายของอุปกรณ์. ไม่ต้องเดินสาย - สามารถใช้งานได้อย่างรวดเร็ว.",
+        "title": "การตรวจสอบทรัพย์สินไร้สาย WAM™",
+        "description": "การตรวจสอบระยะไกลแบบ 24/7 พร้อมการแจ้งเตือนทันที ปกป้องทรัพย์สินที่มีค่าของคุณจากการไฟฟ้าดับและความล้มเหลวของอุปกรณ์ ไม่ต้องใช้สายไฟ - เริ่มใช้งานได้ในไม่กี่นาที",
         "cta": "เรียนรู้เพิ่มเติม",
-        "wamTitle": "การตรวจสอบสินทรัพย์ไร้สาย WAM™",
-        "wamDescription": "การตรวจสอบระยะไกล 24/7 พร้อมการแจ้งเตือนทันที. ป้องกันสินทรัพย์ที่มีค่าของคุณจากการขัดข้องของไฟฟ้าและการเสียหายของอุปกรณ์. ไม่ต้องเดินสาย - สามารถใช้งานได้อย่างรวดเร็ว.",
+        "wamTitle": "การตรวจสอบทรัพย์สินไร้สาย WAM™",
+        "wamDescription": "การตรวจสอบระยะไกลแบบ 24/7 พร้อมการแจ้งเตือนทันที ปกป้องทรัพย์สินที่มีค่าของคุณจากการไฟฟ้าดับและความล้มเหลวของอุปกรณ์ ไม่ต้องใช้สายไฟ - เริ่มใช้งานได้ในไม่กี่นาที",
         "wamCta": "เรียนรู้เพิ่มเติม",
-        "wamBadge": "โซลูชันระดับพรีเมียม"
+        "wamBadge": "โซลูชั่นระดับพรีเมียม"
       },
       "badges": {
         "popular": "ยอดนิยม",
         "new": "ใหม่",
-        "premium": "ระดับพรีเมียม"
+        "premium": "พรีเมียม"
       }
     }
   },

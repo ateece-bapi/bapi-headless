@@ -459,38 +459,38 @@
       "label": "Productos",
       "temperature": {
         "title": "Temperatura",
-        "roomWallSensors": "Sensores de habitación y pared",
+        "roomWallSensors": "Sensores de pared y ambiente",
         "roomWallSensorsDesc": "Detección de temperatura de alta precisión",
         "ductSensors": "Sensores de conducto",
-        "ductSensorsDesc": "Transmisores montados en conductos",
-        "immersionWell": "Inmersión y Pozo",
+        "ductSensorsDesc": "Transmisores montados en conducto",
+        "immersionWell": "Inmersión y pozo",
         "immersionWellDesc": "Medición de temperatura de líquidos",
         "outdoorSensors": "Sensores exteriores",
         "outdoorSensorsDesc": "Detección resistente a la intemperie",
-        "averaging": "Sensores de promedio",
-        "averagingDesc": "Promediado de temperatura de espacios grandes",
+        "averaging": "Sensores de promedios",
+        "averagingDesc": "Promedio de temperatura de espacios grandes",
         "remoteProbes": "Sondas remotas",
-        "remoteProbesDesc": "Sondas de elemento sensor separado"
+        "remoteProbesDesc": "Elementos de detección separados"
       },
       "humidity": {
         "title": "Humedad",
-        "roomHumidity": "Humedad de habitación",
-        "roomHumidityDesc": "Sensores de HR montados en pared",
+        "roomHumidity": "Humedad ambiental",
+        "roomHumidityDesc": "Sensores de humedad relativa montados en pared",
         "ductHumidity": "Humedad de conducto",
-        "ductHumidityDesc": "HR de suministro y retorno de aire",
+        "ductHumidityDesc": "Humedad relativa de suministro y retorno",
         "outdoorHumidity": "Humedad exterior",
-        "outdoorHumidityDesc": "HR resistente a la intemperie",
+        "outdoorHumidityDesc": "Humedad relativa resistente a la intemperie",
         "comboSensors": "Sensores combinados",
-        "comboSensorsDesc": "Temperatura + Humedad"
+        "comboSensorsDesc": "Temperatura + humedad"
       },
       "pressure": {
         "title": "Presión",
         "differential": "Presión diferencial",
-        "differentialDesc": "Monitoreo de habitación y filtro",
+        "differentialDesc": "Monitoreo de ambiente y filtros",
         "static": "Presión estática",
         "staticDesc": "Transmisores de presión estática de conducto",
-        "barometric": "Barométrica",
-        "barometricDesc": "Presión atmosférica"
+        "differentialSwitch": "Interruptor diferencial",
+        "differentialSwitchDesc": "Conmutación activada por presión"
       },
       "airQuality": {
         "title": "Calidad del aire",
@@ -503,14 +503,14 @@
       },
       "wireless": {
         "title": "Inalámbrico",
-        "wamTemperature": "WAM Temperatura",
-        "wamTemperatureDesc": "Sensores de temperatura inalámbricos",
-        "wamHumidity": "WAM Humedad",
-        "wamHumidityDesc": "Sensores de HR inalámbricos",
-        "wamDoorSensors": "WAM Sensores de puerta",
-        "wamDoorSensorsDesc": "Monitoreo de apertura/cierre",
-        "cloudPlatform": "Plataforma en la nube",
-        "cloudPlatformDesc": "Monitoreo remoto 24/7"
+        "bluetoothSensors": "Sensores Bluetooth",
+        "bluetoothSensorsDesc": "Sensores HVAC inalámbricos para automatización de edificios",
+        "gatewaysReceivers": "Pasarelas y receptores",
+        "gatewaysReceiversDesc": "Conecte sensores inalámbricos al sistema BAS",
+        "outputModules": "Módulos de salida",
+        "outputModulesDesc": "Salidas de control inalámbricas",
+        "wirelessAccessories": "Accesorios inalámbricos",
+        "wirelessAccessoriesDesc": "Accesorios de montaje e instalación"
       },
       "accessories": {
         "title": "Accesorios",
@@ -526,18 +526,18 @@
         "bluTestTemperature": "Blu-Test Temperatura",
         "bluTestTemperatureDesc": "Referencia trazable a NIST",
         "bluTestHumidity": "Blu-Test Humedad",
-        "bluTestHumidityDesc": "Referencia de temp + HR",
+        "bluTestHumidityDesc": "Referencia de temperatura + HR",
         "bluTestPressure": "Blu-Test Presión",
         "bluTestPressureDesc": "Manómetro digital"
       },
       "featured": {
-        "title": "Monitoreo Inalámbrico de Activos WAM™",
-        "description": "Monitoreo remoto 24/7 con alertas instantáneas. Proteja sus valiosos activos contra cortes de energía y fallas de equipos. Sin necesidad de cableado: ¡en marcha en minutos!",
+        "title": "Monitoreo inalámbrico de activos WAM™",
+        "description": "Monitoreo remoto 24/7 con alertas instantáneas. Protege tus valiosos activos contra cortes de energía y fallas de equipos. Sin cableado, listo para funcionar en minutos.",
         "cta": "Más información",
-        "wamTitle": "Monitoreo Inalámbrico de Activos WAM™",
-        "wamDescription": "Monitoreo remoto 24/7 con alertas instantáneas. Proteja sus valiosos activos contra cortes de energía y fallas de equipos. Sin necesidad de cableado: ¡en marcha en minutos!",
+        "wamTitle": "Monitoreo inalámbrico de activos WAM™",
+        "wamDescription": "Monitoreo remoto 24/7 con alertas instantáneas. Protege tus valiosos activos contra cortes de energía y fallas de equipos. Sin cableado, listo para funcionar en minutos.",
         "wamCta": "Más información",
-        "wamBadge": "Solución Premium"
+        "wamBadge": "Solución premium"
       },
       "badges": {
         "popular": "Popular",

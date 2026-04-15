@@ -49,26 +49,26 @@
       "temperature": {
         "title": "तापमान",
         "roomWallSensors": "कमरा और दीवार सेंसर",
-        "roomWallSensorsDesc": "उच्च-सटीकता तापमान संवेदन",
+        "roomWallSensorsDesc": "उच्च-परिशुद्धता तापमान सेंसिंग",
         "ductSensors": "डक्ट सेंसर",
         "ductSensorsDesc": "डक्ट-माउंटेड ट्रांसमीटर",
-        "immersionWell": "इमर्शन और वेल",
+        "immersionWell": "डुबकी और वेल",
         "immersionWellDesc": "तरल तापमान मापन",
         "outdoorSensors": "बाहरी सेंसर",
-        "outdoorSensorsDesc": "मौसम-प्रतिरोधी संवेदन",
+        "outdoorSensorsDesc": "मौसम-प्रतिरोधी सेंसिंग",
         "averaging": "औसत सेंसर",
-        "averagingDesc": "बड़ी जगह तापमान औसत",
-        "remoteProbes": "दूरस्थ प्रोब",
-        "remoteProbesDesc": "अलग संवेदन तत्व प्रोब"
+        "averagingDesc": "बड़े स्थान तापमान औसत",
+        "remoteProbes": "रिमोट प्रोब",
+        "remoteProbesDesc": "अलग सेंसिंग तत्व प्रोब"
       },
       "humidity": {
         "title": "आर्द्रता",
         "roomHumidity": "कमरा आर्द्रता",
-        "roomHumidityDesc": "दीवार-माउंट आरएच सेंसर",
+        "roomHumidityDesc": "दीवार-माउंट RH सेंसर",
         "ductHumidity": "डक्ट आर्द्रता",
-        "ductHumidityDesc": "आपूर्ति और वापसी वायु आरएच",
+        "ductHumidityDesc": "आपूर्ति और वापसी वायु RH",
         "outdoorHumidity": "बाहरी आर्द्रता",
-        "outdoorHumidityDesc": "मौसम-प्रतिरोधी आरएच",
+        "outdoorHumidityDesc": "मौसम-प्रतिरोधी RH",
         "comboSensors": "कंबो सेंसर",
         "comboSensorsDesc": "तापमान + आर्द्रता"
       },
@@ -78,53 +78,53 @@
         "differentialDesc": "कमरा और फ़िल्टर निगरानी",
         "static": "स्थिर दबाव",
         "staticDesc": "डक्ट स्थिर ट्रांसमीटर",
-        "barometric": "बैरोमेट्रिक",
-        "barometricDesc": "वायुमंडलीय दबाव"
+        "differentialSwitch": "अंतर स्विच",
+        "differentialSwitchDesc": "दबाव-सक्रिय स्विचिंग"
       },
       "airQuality": {
         "title": "वायु गुणवत्ता",
         "co2": "CO₂ सेंसर",
         "co2Desc": "कार्बन डाइऑक्साइड निगरानी",
         "voc": "VOC सेंसर",
-        "vocDesc": "प्रायोगिक जैविक यौगिक",
-        "particulate": "कणिका पदार्थ",
+        "vocDesc": "उच्छवसित जैविक यौगिक",
+        "particulate": "कणिक पदार्थ",
         "particulateDesc": "PM2.5 और PM10"
       },
       "wireless": {
         "title": "वायरलेस",
-        "wamTemperature": "WAM तापमान",
-        "wamTemperatureDesc": "वायरलेस तापमान सेंसर",
-        "wamHumidity": "WAM आर्द्रता",
-        "wamHumidityDesc": "वायरलेस आरएच सेंसर",
-        "wamDoorSensors": "WAM द्वार सेंसर",
-        "wamDoorSensorsDesc": "खुला/बंद निगरानी",
-        "cloudPlatform": "क्लाउड प्लेटफार्म",
-        "cloudPlatformDesc": "24/7 दूरस्थ निगरानी"
+        "bluetoothSensors": "ब्लूटूथ सेंसर",
+        "bluetoothSensorsDesc": "भवन स्वचालन के लिए वायरलेस HVAC सेंसर",
+        "gatewaysReceivers": "गेटवे और रिसीवर",
+        "gatewaysReceiversDesc": "BAS से वायरलेस सेंसर को कनेक्ट करें",
+        "outputModules": "आउटपुट मॉड्यूल",
+        "outputModulesDesc": "वायरलेस नियंत्रण आउटपुट",
+        "wirelessAccessories": "वायरलेस सहायक उपकरण",
+        "wirelessAccessoriesDesc": "माउंटिंग और स्थापना सहायक उपकरण"
       },
       "accessories": {
         "title": "सहायक उपकरण",
         "mounting": "माउंटिंग हार्डवेयर",
         "mountingDesc": "प्लेट, बॉक्स, ब्रैकेट",
-        "enclosures": "इन्क्लोजर",
+        "enclosures": "इनक्लोज़र",
         "enclosuresDesc": "BAPI-बॉक्स और कवर",
         "cables": "केबल और कनेक्टर",
         "cablesDesc": "वायरिंग सहायक उपकरण"
       },
       "testInstruments": {
-        "title": "टेस्ट उपकरण",
+        "title": "परीक्षण उपकरण",
         "bluTestTemperature": "Blu-Test तापमान",
-        "bluTestTemperatureDesc": "NIST-ट्रेस्ड संदर्भ",
+        "bluTestTemperatureDesc": "NIST-ट्रेसेबल संदर्भ",
         "bluTestHumidity": "Blu-Test आर्द्रता",
-        "bluTestHumidityDesc": "तापमान + आरएच संदर्भ",
+        "bluTestHumidityDesc": "तापमान + RH संदर्भ",
         "bluTestPressure": "Blu-Test दबाव",
-        "bluTestPressureDesc": "डिजिटल मैनोमीटर"
+        "bluTestPressureDesc": "डिजिटल मानोमीटर"
       },
       "featured": {
         "title": "WAM™ वायरलेस संपत्ति निगरानी",
-        "description": "तत्काल चेतावनी के साथ 24/7 दूरस्थ निगरानी। शक्ति विफलता और उपकरण विफलता से अपनी मूल्यवान संपत्तियों की रक्षा करें। वायरिंग की आवश्यकता नहीं है - केवल कुछ मिनटों में चालू हो जाती है।",
+        "description": "तत्काल चेतावनियों के साथ 24/7 दूरस्थ निगरानी. अपने मूल्यवान संपत्तियों को विद्युत कटौती और उपकरण विफलताओं से बचाएं. कोई वायरिंग की आवश्यकता नहीं है - कुछ ही मिनटों में चालू हो जाए।",
         "cta": "अधिक जानें",
         "wamTitle": "WAM™ वायरलेस संपत्ति निगरानी",
-        "wamDescription": "तत्काल चेतावनी के साथ 24/7 दूरस्थ निगरानी। शक्ति विफलता और उपकरण विफलता से अपनी मूल्यवान संपत्तियों की रक्षा करें। वायरिंग की आवश्यकता नहीं है - केवल कुछ मिनटों में चालू हो जाती है।",
+        "wamDescription": "तत्काल चेतावनियों के साथ 24/7 दूरस्थ निगरानी. अपने मूल्यवान संपत्तियों को विद्युत कटौती और उपकरण विफलताओं से बचाएं. कोई वायरिंग की आवश्यकता नहीं है - कुछ ही मिनटों में चालू हो जाए।",
         "wamCta": "अधिक जानें",
         "wamBadge": "प्रीमियम समाधान"
       },

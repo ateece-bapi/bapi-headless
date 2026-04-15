@@ -66,6 +66,13 @@ export function useSearch(options: UseSearchOptions = {}) {
           signal: abortControllerRef.current.signal,
         });
 
+        if (!response.ok) {
+          logger.error('Search API error', { status: response.status });
+          setResults([]);
+          setIsLoading(false);
+          return;
+        }
+
         const data = await response.json();
 
         if (data.products?.nodes) {
@@ -73,13 +80,16 @@ export function useSearch(options: UseSearchOptions = {}) {
         } else {
           setResults([]);
         }
+        setIsLoading(false);
       } catch (error: unknown) {
-        if (error instanceof Error && error.name !== 'AbortError') {
+        if (error instanceof Error && error.name === 'AbortError') {
+          // Request was cancelled, reset loading state
+          setIsLoading(false);
+        } else {
           logger.error('Search error', error);
           setResults([]);
+          setIsLoading(false);
         }
-      } finally {
-        setIsLoading(false);
       }
     },
     [minChars]

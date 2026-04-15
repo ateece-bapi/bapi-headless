@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import logger from '@/lib/logger';
+import { getGraphQLClient } from '@/lib/graphql/client';
+import { getSdk } from '@/lib/graphql/generated';
 
 // Type for search product response
 interface SearchProduct {
@@ -26,166 +28,28 @@ interface SearchProduct {
       slug: string;
     }>;
   } | null;
-  variations?: {
-    nodes: Array<{
-      sku?: string | null;
-    }>;
-  } | null;
 }
 
-// Search by product name/description
-const SEARCH_QUERY = `
-  query SearchProducts($search: String!) {
-    products(where: { search: $search, visibility: VISIBLE }, first: 8) {
-      nodes {
-        id
-        databaseId
-        name
-        slug
-        ... on SimpleProduct {
-          sku
-          partNumber
-          price
-          shortDescription
-          image {
-            id
-            sourceUrl
-            altText
-            mediaDetails {
-              height
-              width
-            }
-          }
-          productCategories {
-            nodes {
-              name
-              slug
-            }
-          }
-        }
-        ... on VariableProduct {
-          sku
-          partNumber
-          price
-          shortDescription
-          image {
-            id
-            sourceUrl
-            altText
-            mediaDetails {
-              height
-              width
-            }
-          }
-          productCategories {
-            nodes {
-              name
-              slug
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+/**
+ * SKU pattern detector - helps optimize by only running variation query when needed
+ * Typical SKU format: letters, numbers, hyphens (e.g., "TEMP-SENSOR-1000-024")
+ * 
+ * @param query - Search query string to test
+ * @returns True if query matches SKU pattern (alphanumeric with dashes/underscores)
+ */
+function looksLikeSku(query: string): boolean {
+  // Match patterns with alphanumeric + dash/underscore (common SKU formats)
+  // At least one letter and one number, may contain dashes/underscores
+  return /^[A-Za-z0-9\-_]+$/.test(query) && /[A-Za-z]/.test(query) && /[0-9]/.test(query);
+}
 
-// Search by SKU (exact match)
-const SKU_SEARCH_QUERY = `
-  query SearchProductsBySKU($sku: String!) {
-    products(where: { sku: $sku, visibility: VISIBLE }, first: 8) {
-      nodes {
-        id
-        databaseId
-        name
-        slug
-        ... on SimpleProduct {
-          sku
-          partNumber
-          price
-          shortDescription
-          image {
-            id
-            sourceUrl
-            altText
-            mediaDetails {
-              height
-              width
-            }
-          }
-          productCategories {
-            nodes {
-              name
-              slug
-            }
-          }
-        }
-        ... on VariableProduct {
-          sku
-          partNumber
-          price
-          shortDescription
-          image {
-            id
-            sourceUrl
-            altText
-            mediaDetails {
-              height
-              width
-            }
-          }
-          productCategories {
-            nodes {
-              name
-              slug
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-// Search variable products with variations for SKU matching
-// Limit to recent products to avoid performance issues
-const VARIATION_SKU_SEARCH_QUERY = `
-  query SearchVariationsBySKU {
-    products(where: { type: VARIABLE, visibility: VISIBLE }, first: 50) {
-      nodes {
-        id
-        databaseId
-        name
-        slug
-        ... on VariableProduct {
-          sku
-          partNumber
-          price
-          shortDescription
-          image {
-            id
-            sourceUrl
-            altText
-            mediaDetails {
-              height
-              width
-            }
-          }
-          productCategories {
-            nodes {
-              name
-              slug
-            }
-          }
-          variations(first: 100) {
-            nodes {
-              sku
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
+/**
+ * Search API route - handles product search with variation SKU support
+ * 
+ * Priority order: Variation SKU > Product SKU > Name search
+ * Uses GraphQL client with GET method for CDN caching
+ * Conditionally runs variation query only for SKU-like patterns
+ */
 export async function POST(request: NextRequest) {
   try {
     const { query } = await request.json();
@@ -194,101 +58,64 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ products: { nodes: [] } });
     }
 
-    const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL;
+    // Use GraphQL client with GET method for CDN caching
+    const client = getGraphQLClient(['search'], true);
+    const sdk = getSdk(client);
 
-    if (!GRAPHQL_ENDPOINT) {
-      logger.error('NEXT_PUBLIC_WORDPRESS_GRAPHQL not configured');
-      return NextResponse.json({ error: 'GraphQL endpoint not configured' }, { status: 500 });
-    }
-
-    // Run three queries in parallel: name/description search + product SKU search + variation SKU search
-    const [nameSearchResponse, skuSearchResponse, variationSearchResponse] = await Promise.all([
-      // Query 1: Search product name/description
-      fetch(GRAPHQL_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: SEARCH_QUERY,
-          variables: { search: query },
-        }),
-        next: { revalidate: 0 },
-      }),
-      // Query 2: Search by product SKU (exact match)
-      fetch(GRAPHQL_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: SKU_SEARCH_QUERY,
-          variables: { sku: query },
-        }),
-        next: { revalidate: 0 },
-      }),
-      // Query 3: Search variable products with variations
-      fetch(GRAPHQL_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: VARIATION_SKU_SEARCH_QUERY,
-        }),
-        next: { revalidate: 0 },
-      }),
-    ]);
-
-    if (!nameSearchResponse.ok || !skuSearchResponse.ok || !variationSearchResponse.ok) {
-      logger.error('WordPress GraphQL search failed', {
-        nameStatus: nameSearchResponse.status,
-        skuStatus: skuSearchResponse.status,
-        variationStatus: variationSearchResponse.status,
-      });
-      return NextResponse.json(
-        { error: 'Failed to fetch search results' },
-        { status: nameSearchResponse.ok 
-            ? (skuSearchResponse.ok ? variationSearchResponse.status : skuSearchResponse.status)
-            : nameSearchResponse.status }
-      );
-    }
-
-    const [nameData, skuData, variationData] = await Promise.all([
-      nameSearchResponse.json(),
-      skuSearchResponse.json(),
-      variationSearchResponse.json(),
-    ]);
-
-    if (nameData.errors || skuData.errors || variationData.errors) {
-      logger.error('GraphQL search query failed', {
-        nameErrors: nameData.errors,
-        skuErrors: skuData.errors,
-        variationErrors: variationData.errors,
-      });
-      return NextResponse.json(
-        { error: 'GraphQL query failed', details: nameData.errors || skuData.errors || variationData.errors },
-        { status: 500 }
-      );
-    }
-
-    // Merge results from all three queries, removing duplicates by ID
-    const nameResults: SearchProduct[] = nameData.data?.products?.nodes || [];
-    const skuResults: SearchProduct[] = skuData.data?.products?.nodes || [];
-    const variationProducts: SearchProduct[] = variationData.data?.products?.nodes || [];
-
-    // Filter variation products to only those with matching variation SKUs
     const normalizedQuery = query.trim().toLowerCase();
-    const variationResults = variationProducts.filter((product) => {
-      if (!product.variations?.nodes) return false;
-      return product.variations.nodes.some((variation) => 
-        variation.sku?.toLowerCase() === normalizedQuery
-      );
-    });
+    const shouldCheckVariations = looksLikeSku(query);
 
-    // Create a Map to deduplicate by product ID
-    // Priority order: Variation SKU > Product SKU > Name search
+    // Build query array conditionally - only add variation query if input looks like a SKU
+    const queryPromises = [
+      // Query 1: Search product name/description (fuzzy match)
+      sdk.SearchProducts({ search: query, first: 8 }),
+      // Query 2: Search by product SKU (exact match)
+      sdk.SearchProductsBySKU({ sku: query, first: 8 }),
+    ];
+
+    // Query 3: Only search variable product variations if query looks like a SKU pattern
+    // This avoids fetching 50 products × 100 variations (5,000 SKUs) for non-SKU searches
+    if (shouldCheckVariations) {
+      queryPromises.push(sdk.ListVariableProductsWithVariationSkus({ first: 50 }));
+    }
+
+    const results = await Promise.all(queryPromises);
+    const [nameData, skuData, variationData] = results;
+
+    // Extract products from GraphQL responses
+    const nameResults = (nameData.products?.nodes || []) as SearchProduct[];
+    const skuResults = (skuData.products?.nodes || []) as SearchProduct[];
+    
+    // Filter variation products to only those with matching variation SKUs (if query ran)
+    let variationResults: SearchProduct[] = [];
+    if (shouldCheckVariations && variationData) {
+      const variationProducts = (variationData.products?.nodes || []);
+      
+      variationResults = variationProducts.filter((product) => {
+        // Type guard: only VariableProduct has variations
+        if (product.__typename !== 'VariableProduct') {
+          return false;
+        }
+        // Safe to cast after typename check - GraphQL unions make type narrowing complex
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const variableProduct = product as any;
+        if (!variableProduct.variations?.nodes) {
+          return false;
+        }
+        // Check if any variation SKU matches the search query exactly
+        return variableProduct.variations.nodes.some((variation: { sku?: string | null }) => 
+          variation.sku?.toLowerCase() === normalizedQuery
+        );
+      }) as SearchProduct[];
+    }
+
+    // Create a Map to deduplicate by product ID with priority ordering
+    // Priority: Variation SKU (exact configured match) > Product SKU (parent match) > Name (fuzzy)
     const resultsMap = new Map<string, SearchProduct>();
     
     // Add variation SKU matches first (highest priority - exact configured product match)
     variationResults.forEach((product) => {
-      // Remove variations from response to keep payload clean
-      const { variations, ...productWithoutVariations } = product;
-      resultsMap.set(product.id, productWithoutVariations);
+      resultsMap.set(product.id, product);
     });
     
     // Add product SKU results (second priority - parent product SKU match)
@@ -305,7 +132,7 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    // Convert Map back to array and limit to 8 results
+    // Convert Map back to array and limit to 8 results for dropdown
     const mergedResults = Array.from(resultsMap.values()).slice(0, 8);
 
     return NextResponse.json({ products: { nodes: mergedResults } });

@@ -50,11 +50,6 @@ query SearchProducts($search: String!, $first: Int = 20) {
             }
           }
         }
-        variations(first: 100) {
-          nodes {
-            sku
-          }
-        }
       }
     }
   }
@@ -112,17 +107,12 @@ query SearchProductsBySKU($sku: String!, $first: Int = 24) {
             }
           }
         }
-        variations(first: 100) {
-          nodes {
-            sku
-          }
-        }
       }
     }
   }
 }
 
-query SearchVariationsBySKU($first: Int = 50) {
+query ListVariableProductsWithVariationSkus($first: Int = 50) {
   products(where: { type: VARIABLE, visibility: VISIBLE }, first: $first) {
     nodes {
       id

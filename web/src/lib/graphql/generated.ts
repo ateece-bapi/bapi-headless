@@ -39990,7 +39990,7 @@ export type SearchProductsQuery = { __typename?: 'RootQuery', products?: { __typ
       | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
       | { __typename?: 'SimpleProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined }
       | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
-      | { __typename?: 'VariableProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', sku?: string | null | undefined }> } | null | undefined }
+      | { __typename?: 'VariableProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined }
     > } | null | undefined };
 
 export type SearchProductsBySkuQueryVariables = Exact<{
@@ -40004,15 +40004,15 @@ export type SearchProductsBySkuQuery = { __typename?: 'RootQuery', products?: { 
       | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
       | { __typename?: 'SimpleProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined }
       | { __typename?: 'SimpleProductVariation', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
-      | { __typename?: 'VariableProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined, variations?: { __typename?: 'ProductWithVariationsToProductVariationConnection', nodes: Array<{ __typename?: 'SimpleProductVariation', sku?: string | null | undefined }> } | null | undefined }
+      | { __typename?: 'VariableProduct', sku?: string | null | undefined, partNumber?: string | null | undefined, price?: string | null | undefined, shortDescription?: string | null | undefined, id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined, image?: { __typename?: 'MediaItem', sourceUrl?: string | null | undefined, altText?: string | null | undefined } | null | undefined, productCategories?: { __typename?: 'ProductToProductCategoryConnection', nodes: Array<{ __typename?: 'ProductCategory', name?: string | null | undefined, slug?: string | null | undefined, parent?: { __typename?: 'ProductCategoryToParentProductCategoryConnectionEdge', node: { __typename?: 'ProductCategory', id: string, name?: string | null | undefined, slug?: string | null | undefined } } | null | undefined }> } | null | undefined }
     > } | null | undefined };
 
-export type SearchVariationsBySkuQueryVariables = Exact<{
+export type ListVariableProductsWithVariationSkusQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type SearchVariationsBySkuQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', nodes: Array<
+export type ListVariableProductsWithVariationSkusQuery = { __typename?: 'RootQuery', products?: { __typename?: 'RootQueryToProductUnionConnection', nodes: Array<
       | { __typename?: 'ExternalProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
       | { __typename?: 'GroupProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
       | { __typename?: 'SimpleProduct', id: string, databaseId: number, name?: string | null | undefined, slug?: string | null | undefined }
@@ -42231,11 +42231,6 @@ export const SearchProductsDocument = gql`
             }
           }
         }
-        variations(first: 100) {
-          nodes {
-            sku
-          }
-        }
       }
     }
   }
@@ -42294,18 +42289,13 @@ export const SearchProductsBySkuDocument = gql`
             }
           }
         }
-        variations(first: 100) {
-          nodes {
-            sku
-          }
-        }
       }
     }
   }
 }
     `;
-export const SearchVariationsBySkuDocument = gql`
-    query SearchVariationsBySKU($first: Int = 50) {
+export const ListVariableProductsWithVariationSkusDocument = gql`
+    query ListVariableProductsWithVariationSkus($first: Int = 50) {
   products(where: {type: VARIABLE, visibility: VISIBLE}, first: $first) {
     nodes {
       id
@@ -42469,8 +42459,8 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     SearchProductsBySKU(variables: SearchProductsBySkuQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchProductsBySkuQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchProductsBySkuQuery>({ document: SearchProductsBySkuDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'SearchProductsBySKU', 'query', variables);
     },
-    SearchVariationsBySKU(variables?: SearchVariationsBySkuQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchVariationsBySkuQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SearchVariationsBySkuQuery>({ document: SearchVariationsBySkuDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'SearchVariationsBySKU', 'query', variables);
+    ListVariableProductsWithVariationSkus(variables?: ListVariableProductsWithVariationSkusQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ListVariableProductsWithVariationSkusQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ListVariableProductsWithVariationSkusQuery>({ document: ListVariableProductsWithVariationSkusDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'ListVariableProductsWithVariationSkus', 'query', variables);
     }
   };
 }

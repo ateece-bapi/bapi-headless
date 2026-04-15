@@ -1,209 +1,131 @@
-import { sanitizeWordPressContent } from '@/lib/sanitizeDescription';
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { Link } from '@/lib/navigation';
-import Image from 'next/image';
-import { SearchIcon, ArrowLeftIcon } from '@/lib/icons';
+import { SearchIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import Breadcrumbs from '@/components/products/ProductPage/Breadcrumbs';
 import { getSearchBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
 import SearchResults from '@/components/search/SearchResults';
+import { getGraphQLClient } from '@/lib/graphql/client';
+import { getSdk } from '@/lib/graphql/generated';
+import logger from '@/lib/logger';
 
 interface SearchPageProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ q?: string }>;
 }
 
-async function searchProducts(query: string) {
-  const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.trim();
-
-  if (!GRAPHQL_ENDPOINT) {
-    console.error(
-      'searchProducts: NEXT_PUBLIC_WORDPRESS_GRAPHQL is not configured. Returning empty search results.',
-    );
-    return [];
-  }
-
-  const productFields = `
-    id
-    databaseId
-    name
-    slug
-    ... on SimpleProduct {
-      sku
-      partNumber
-      price
-      shortDescription
-      image {
-        id
-        sourceUrl
-        altText
-        mediaDetails {
-          height
-          width
-        }
-      }
-      productCategories {
-        nodes {
-          name
-          slug
-        }
-      }
-    }
-    ... on VariableProduct {
-      sku
-      partNumber
-      price
-      shortDescription
-      image {
-        id
-        sourceUrl
-        altText
-        mediaDetails {
-          height
-          width
-        }
-      }
-      productCategories {
-        nodes {
-          name
-          slug
-        }
-      }
-      variations(first: 100) {
-        nodes {
-          sku
-        }
-      }
-    }
-  `;
-
-  // Run three queries in parallel: name/description search + product SKU search + variation SKU search
-  const [nameSearchResponse, skuSearchResponse, variationSearchResponse] = await Promise.all([
-    // Query 1: Search product name/description
-    fetch(GRAPHQL_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `
-          query SearchProducts($search: String!) {
-            products(where: { search: $search, visibility: VISIBLE }, first: 24) {
-              nodes {
-                ${productFields}
-              }
-            }
-          }
-        `,
-        variables: { search: query },
-      }),
-      next: { revalidate: 3600 },
-    }),
-    // Query 2: Search by product SKU (exact match)
-    fetch(GRAPHQL_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `
-          query SearchProductsBySKU($sku: String!) {
-            products(where: { sku: $sku, visibility: VISIBLE }, first: 24) {
-              nodes {
-                ${productFields}
-              }
-            }
-          }
-        `,
-        variables: { sku: query },
-      }),
-      next: { revalidate: 3600 },
-    }),
-    // Query 3: Search variable products with variations for SKU matching
-    fetch(GRAPHQL_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `
-          query SearchVariationsBySKU {
-            products(where: { type: VARIABLE, visibility: VISIBLE }, first: 50) {
-              nodes {
-                ${productFields}
-              }
-            }
-          }
-        `,
-      }),
-      next: { revalidate: 3600 },
-    }),
-  ]);
-
-  // Check for HTTP errors
-  if (!nameSearchResponse.ok || !skuSearchResponse.ok || !variationSearchResponse.ok) {
-    console.error('WordPress GraphQL search failed', {
-      nameStatus: nameSearchResponse.status,
-      skuStatus: skuSearchResponse.status,
-      variationStatus: variationSearchResponse.status,
-    });
-    return [];
-  }
-
-  const [nameData, skuData, variationData] = await Promise.all([
-    nameSearchResponse.json(),
-    skuSearchResponse.json(),
-    variationSearchResponse.json(),
-  ]);
-
-  // Check for GraphQL errors
-  if (nameData.errors || skuData.errors || variationData.errors) {
-    console.error('GraphQL search query failed', {
-      nameErrors: nameData.errors,
-      skuErrors: skuData.errors,
-      variationErrors: variationData.errors,
-    });
-    return [];
-  }
-
-  // Merge results from all three queries, removing duplicates by ID
-  const nameResults = nameData.data?.products?.nodes || [];
-  const skuResults = skuData.data?.products?.nodes || [];
-  const variationProducts = variationData.data?.products?.nodes || [];
-
-  // Filter variation products to only those with matching variation SKUs
-  const normalizedQuery = query.trim().toLowerCase();
-  const variationResults = variationProducts.filter((product: any) => {
-    if (!product.variations?.nodes) return false;
-    return product.variations.nodes.some((variation: any) => 
-      variation.sku?.toLowerCase() === normalizedQuery
-    );
-  });
-
-  // Create a Map to deduplicate by product ID
-  // Priority order: Variation SKU > Product SKU > Name search
-  const resultsMap = new Map();
-
-  // Add variation SKU matches first (highest priority - exact configured product match)
-  variationResults.forEach((product: any) => {
-    // Remove variations from response to keep payload clean
-    const { variations, ...productWithoutVariations } = product;
-    resultsMap.set(product.id, productWithoutVariations);
-  });
-
-  // Add product SKU results (second priority - parent product SKU match)
-  skuResults.forEach((product: { id: string }) => {
-    if (!resultsMap.has(product.id)) {
-      resultsMap.set(product.id, product);
-    }
-  });
-
-  // Add name search results (lowest priority - fuzzy name match)
-  nameResults.forEach((product: { id: string }) => {
-    if (!resultsMap.has(product.id)) {
-      resultsMap.set(product.id, product);
-    }
-  });
-
-  // Convert Map back to array and limit to 24 results
-  return Array.from(resultsMap.values()).slice(0, 24);
+/**
+ * SKU pattern detector - helps optimize by only running variation query when needed
+ * Typical SKU format: letters, numbers, hyphens (e.g., "TEMP-SENSOR-1000-024")
+ * 
+ * @param query - Search query string to test
+ * @returns True if query matches SKU pattern (alphanumeric with dashes/underscores)
+ */
+function looksLikeSku(query: string): boolean {
+  // Match patterns with alphanumeric + dash/underscore (common SKU formats)
+  // At least one letter and one number, may contain dashes/underscores
+  return /^[A-Za-z0-9\-_]+$/.test(query) && /[A-Za-z]/.test(query) && /[0-9]/.test(query);
 }
 
+/**
+ * Server-side search function with variation SKU support
+ * 
+ * Executes parallel GraphQL queries with priority ordering:
+ * 1. Variation SKU (exact configured product match)
+ * 2. Product SKU (parent product match)
+ * 3. Name search (fuzzy match)
+ * 
+ * @param query - Search query string
+ * @returns Array of up to 24 matching products
+ */
+async function searchProducts(query: string) {
+  try {
+    // Use GraphQL client with GET method for CDN caching
+    const client = getGraphQLClient(['search'], true);
+    const sdk = getSdk(client);
+
+    const normalizedQuery = query.trim().toLowerCase();
+    const shouldCheckVariations = looksLikeSku(query);
+
+    // Build query array conditionally - only add variation query if input looks like a SKU
+    const queryPromises = [
+      // Query 1: Search product name/description (fuzzy match)
+      sdk.SearchProducts({ search: query, first: 24 }),
+      // Query 2: Search by product SKU (exact match)
+      sdk.SearchProductsBySKU({ sku: query, first: 24 }),
+    ];
+
+    // Query 3: Only search variable product variations if query looks like a SKU pattern
+    // This avoids fetching 50 products × 100 variations (5,000 SKUs) for non-SKU searches
+    if (shouldCheckVariations) {
+      queryPromises.push(sdk.ListVariableProductsWithVariationSkus({ first: 50 }));
+    }
+
+    const results = await Promise.all(queryPromises);
+    const [nameData, skuData, variationData] = results;
+
+    // Extract products from GraphQL responses
+    const nameResults = nameData.products?.nodes || [];
+    const skuResults = skuData.products?.nodes || [];
+
+    // Filter variation products to only those with matching variation SKUs (if query ran)
+    const variationResults: typeof nameResults = [];
+    if (shouldCheckVariations && variationData) {
+      const variationProducts = variationData.products?.nodes || [];
+
+      variationProducts.forEach((product) => {
+        // Type guard: only VariableProduct has variations
+        if (product.__typename === 'VariableProduct') {
+          // Safe to cast after typename check - GraphQL unions make type narrowing complex
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const variableProduct = product as any;
+          if (variableProduct.variations?.nodes) {
+            // Check if any variation SKU matches the search query exactly
+            const hasMatch = variableProduct.variations.nodes.some((variation: { sku?: string | null }) => 
+              variation.sku?.toLowerCase() === normalizedQuery
+            );
+            if (hasMatch) {
+              variationResults.push(product);
+            }
+          }
+        }
+      });
+    }
+
+    // Create a Map to deduplicate by product ID with priority ordering
+    // Priority: Variation SKU (exact configured match) > Product SKU (parent match) > Name (fuzzy)
+    const resultsMap = new Map();
+
+    // Add variation SKU matches first (highest priority - exact configured product match)
+    variationResults.forEach((product) => {
+      resultsMap.set(product.id, product);
+    });
+
+    // Add product SKU results (second priority - parent product SKU match)
+    skuResults.forEach((product) => {
+      if (!resultsMap.has(product.id)) {
+        resultsMap.set(product.id, product);
+      }
+    });
+
+    // Add name search results (lowest priority - fuzzy name match)
+    nameResults.forEach((product) => {
+      if (!resultsMap.has(product.id)) {
+        resultsMap.set(product.id, product);
+      }
+    });
+
+    // Convert Map back to array and limit to 24 results for search page
+    return Array.from(resultsMap.values()).slice(0, 24);
+  } catch (error) {
+    logger.error('Search products error', error, { query });
+    return [];
+  }
+}
+
+/**
+ * Generate metadata for search results page
+ */
 export async function generateMetadata({
   params,
   searchParams,
@@ -219,6 +141,11 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * Search results page component
+ * 
+ * Server-rendered page showing search results with breadcrumbs and schema.org markup
+ */
 export default async function SearchPage({ params, searchParams }: SearchPageProps) {
   const { locale } = await params;
   const queryParams = await searchParams;

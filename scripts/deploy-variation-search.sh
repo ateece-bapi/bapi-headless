@@ -29,13 +29,18 @@ ENVIRONMENT=$1
 
 # Set server details based on environment
 if [ "$ENVIRONMENT" == "staging" ]; then
+    # Headless WordPress staging on Kinsta (bapiheadlessstaging.kinsta.cloud)
+    # Get SSH credentials from MyKinsta dashboard: https://my.kinsta.com
     SERVER="bapiheadlessstaging.kinsta.cloud"
-    SSH_USER="bapiheadlessstaging"
-    REMOTE_PATH="/www/bapiheadlessstaging_111/public/wp-content/mu-plugins/"
+    SSH_USER="bapihvac"  # Update with actual SSH user from MyKinsta
+    REMOTE_PATH="~/files/wp-content/mu-plugins/"
+    SITE_NAME="Headless WordPress Staging (Kinsta)"
 elif [ "$ENVIRONMENT" == "production" ]; then
-    SERVER="bapi-headless-production.kinsta.cloud" # TODO: Update with actual production domain
-    SSH_USER="bapiheadless"
-    REMOTE_PATH="/www/bapiheadless_111/public/wp-content/mu-plugins/"
+    # Headless WordPress production on Kinsta
+    SERVER="TBD"  # TODO: Get from MyKinsta dashboard
+    SSH_USER="TBD"
+    REMOTE_PATH="~/files/wp-content/mu-plugins/"
+    SITE_NAME="Headless WordPress Production (Kinsta)"
 else
     echo -e "${RED}Error: Invalid environment${NC}"
     echo "Must be 'staging' or 'production'"

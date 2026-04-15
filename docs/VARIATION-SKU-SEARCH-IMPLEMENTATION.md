@@ -382,6 +382,13 @@ LIMIT 10;
 
 ## Implementation Checklist
 
+### Important: Deployment Targets
+
+**⚠️ DO NOT deploy to legacy site!**
+- **Legacy Site** (`stage.bapihvac.com` / 138.197.74.68) - Investigation only, read-only
+- **Headless Staging** (`bapiheadlessstaging.kinsta.cloud`) - Deploy mu-plugin here ✅
+- **Headless Production** (TBD) - Future deployment
+
 ### Phase 1: Backend Implementation
 
 - [ ] Create `bapi-variation-sku-search.php` mu-plugin

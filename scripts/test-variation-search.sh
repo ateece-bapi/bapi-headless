@@ -30,11 +30,13 @@ ENVIRONMENT=$1
 
 # Set server details based on environment
 if [ "$ENVIRONMENT" == "staging" ]; then
+    # Headless WordPress staging on Kinsta
     GRAPHQL_ENDPOINT="https://bapiheadlessstaging.kinsta.cloud/graphql"
-    SSH_SERVER="bapiheadlessstaging@bapiheadlessstaging.kinsta.cloud"
+    SSH_SERVER="bapihvac@bapiheadlessstaging.kinsta.cloud"  # Update SSH user from MyKinsta
 elif [ "$ENVIRONMENT" == "production" ]; then
-    GRAPHQL_ENDPOINT="https://bapi-headless-production.kinsta.cloud/graphql" # TODO: Update
-    SSH_SERVER="bapiheadless@bapi-headless-production.kinsta.cloud"
+    # Headless WordPress production on Kinsta
+    GRAPHQL_ENDPOINT="https://TBD/graphql"  # TODO: Update with production URL
+    SSH_SERVER="TBD@TBD"
 elif [ "$ENVIRONMENT" == "local" ]; then
     GRAPHQL_ENDPOINT="http://localhost:8000/graphql"
     SSH_SERVER=""

@@ -53,8 +53,9 @@ export function useSearch(options: UseSearchOptions = {}) {
         abortControllerRef.current.abort();
       }
 
-      // Create new abort controller
-      abortControllerRef.current = new AbortController();
+      // Create new abort controller for this request
+      const controller = new AbortController();
+      abortControllerRef.current = controller;
 
       setIsLoading(true);
 
@@ -63,8 +64,13 @@ export function useSearch(options: UseSearchOptions = {}) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ query: searchQuery }),
-          signal: abortControllerRef.current.signal,
+          signal: controller.signal,
         });
+
+        // Only update state if this request is still current
+        if (controller !== abortControllerRef.current) {
+          return; // Newer request has started, discard this response
+        }
 
         if (!response.ok) {
           logger.error('Search API error', { status: response.status });
@@ -75,6 +81,11 @@ export function useSearch(options: UseSearchOptions = {}) {
 
         const data = await response.json();
 
+        // Double-check still current before applying results
+        if (controller !== abortControllerRef.current) {
+          return;
+        }
+
         if (data.products?.nodes) {
           setResults(data.products.nodes);
         } else {
@@ -82,6 +93,11 @@ export function useSearch(options: UseSearchOptions = {}) {
         }
         setIsLoading(false);
       } catch (error: unknown) {
+        // Only update state if this request is still current
+        if (controller !== abortControllerRef.current) {
+          return; // Newer request has started, ignore this error
+        }
+
         if (error instanceof Error && error.name === 'AbortError') {
           // Request was cancelled, reset loading state
           setIsLoading(false);

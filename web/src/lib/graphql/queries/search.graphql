@@ -54,3 +54,99 @@ query SearchProducts($search: String!, $first: Int = 20) {
     }
   }
 }
+
+query SearchProductsBySKU($sku: String!, $first: Int = 24) {
+  products(where: { sku: $sku, visibility: VISIBLE }, first: $first) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      ... on SimpleProduct {
+        sku
+        partNumber
+        price
+        shortDescription
+        image {
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            name
+            slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
+          }
+        }
+      }
+      ... on VariableProduct {
+        sku
+        partNumber
+        price
+        shortDescription
+        image {
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            name
+            slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query ListVariableProductsWithVariationSkus($first: Int = 50) {
+  products(where: { type: VARIABLE, visibility: VISIBLE }, first: $first) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      ... on VariableProduct {
+        sku
+        partNumber
+        price
+        shortDescription
+        image {
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            name
+            slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
+          }
+        }
+        variations(first: 100) {
+          nodes {
+            sku
+          }
+        }
+      }
+    }
+  }
+}

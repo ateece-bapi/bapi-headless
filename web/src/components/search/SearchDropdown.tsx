@@ -108,6 +108,12 @@ export function SearchDropdown({
     setSelectedIndex(0);
   }, [results]);
 
+  // Reset navigation state when dropdown opens/closes
+  useEffect(() => {
+    // Always reset navigation state when dropdown state changes
+    setIsNavigating(false);
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (

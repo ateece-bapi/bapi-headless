@@ -103,7 +103,7 @@ export default async function SupportPage() {
 
       {/* Support Resources */}
       <section className="py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-12">
           <h2 className="mb-8 text-center text-3xl font-bold text-neutral-900">
             {t('resources.title')}
           </h2>

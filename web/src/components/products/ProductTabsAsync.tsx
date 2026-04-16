@@ -26,7 +26,7 @@ export async function ProductTabsAsync({ productId }: ProductTabsAsyncProps) {
         </div>
 
         <div
-          className="prose prose-lg max-w-none"
+          className="prose prose-lg max-w-none text-neutral-700"
           dangerouslySetInnerHTML={{ __html: product.description }}
         />
       </div>

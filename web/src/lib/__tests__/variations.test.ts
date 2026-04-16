@@ -42,6 +42,27 @@ describe('Variation Utilities', () => {
       expect(normalizeAttributeSlug('Humidity %')).toBe('humidity');
     });
 
+    it('handles special characters - ampersands', () => {
+      expect(normalizeAttributeSlug('Test & Balance')).toBe('test-and-balance');
+      expect(normalizeAttributeSlug('Ground Configuration & Comm Jack')).toBe(
+        'ground-configuration-and-comm-jack'
+      );
+      expect(normalizeAttributeSlug('Option A&B')).toBe('option-a-and-b'); // No spaces around &
+    });
+
+    it('handles HTML entities - &amp;', () => {
+      expect(normalizeAttributeSlug('Test &amp; Balance')).toBe('test-and-balance');
+      expect(normalizeAttributeSlug('Ground Configuration, Comm Jack, Test &amp; Balance')).toBe(
+        'ground-configuration-comm-jack-test-and-balance'
+      );
+    });
+
+    it('handles HTML entities - other common entities', () => {
+      expect(normalizeAttributeSlug('&lt;Value&gt;')).toBe('value'); // Angle brackets removed after decoding
+      expect(normalizeAttributeSlug('Quote &quot;Test&quot;')).toBe('quote-test');
+      expect(normalizeAttributeSlug("Option&#039;s Value")).toBe('options-value');
+    });
+
     it('handles multiple spaces', () => {
       expect(normalizeAttributeSlug('Multiple   Spaces   Here')).toBe('multiple-spaces-here');
     });
@@ -64,6 +85,17 @@ describe('Variation Utilities', () => {
 
     it('handles already normalized strings', () => {
       expect(normalizeAttributeSlug('already-normalized')).toBe('already-normalized');
+    });
+
+    it('strips WordPress taxonomy prefixes', () => {
+      expect(normalizeAttributeSlug('pa_ground-configuration')).toBe('ground-configuration');
+      expect(normalizeAttributeSlug('attribute_pa_color')).toBe('color');
+      expect(normalizeAttributeSlug('PA_Temperature')).toBe('temperature'); // case insensitive
+    });
+
+    it('converts underscores to hyphens', () => {
+      expect(normalizeAttributeSlug('option_with_underscores')).toBe('option-with-underscores');
+      expect(normalizeAttributeSlug('pa_test_attribute')).toBe('test-attribute');
     });
   });
 
@@ -171,6 +203,43 @@ describe('Variation Utilities', () => {
       };
       const result = findMatchingVariation([], selected);
       expect(result).toBeNull();
+    });
+
+    it('matches variation with flexible "-and-" slug handling (WordPress inconsistency)', () => {
+      // Test the real-world case: product attribute "test-and-balance" vs variation "test-balance"
+      const variationWithAndMismatch: ProductVariation = {
+        id: 'var-and-test',
+        databaseId: 2001,
+        name: 'Test Variation',
+        price: '$150.00',
+        regularPrice: '$150.00',
+        salePrice: null,
+        stockStatus: 'IN_STOCK',
+        stockQuantity: 10,
+        sku: 'TEST-VAR',
+        partNumber: null,
+        weight: null,
+        image: null,
+        description: null,
+        attributes: {
+          nodes: [
+            // WordPress stores WITHOUT "and"
+            { name: 'ground-configuration-comm-jack-test-balance', value: 'Common Ground' },
+            { name: 'temperature-sensor', value: '10K-2 Thermistor' },
+          ],
+        },
+      };
+
+      // User selection uses product attribute slug WITH "and"
+      const selected: SelectedAttributes = {
+        'ground-configuration-comm-jack-test-and-balance': 'Common Ground', // WITH "and"
+        'temperature-sensor': '10K-2 Thermistor',
+      };
+
+      const result = findMatchingVariation([variationWithAndMismatch], selected);
+      expect(result).toBeTruthy();
+      expect(result?.id).toBe('var-and-test');
+      expect(result?.sku).toBe('TEST-VAR');
     });
   });
 
@@ -370,6 +439,64 @@ describe('Variation Utilities', () => {
     it('handles non-existent attribute', () => {
       const options = getAvailableOptions('non-existent', mockVariations, {});
       expect(options).toEqual([]);
+    });
+
+    it('matches attributes with flexible "-and-" handling (WordPress inconsistency)', () => {
+      // WordPress sometimes stores "test-balance" while product attributes are "test-and-balance"
+      const variationsWithAndMismatch: ProductVariation[] = [
+        {
+          id: 'var-and-1',
+          databaseId: 1001,
+          name: 'Variation with "and"',
+          price: '$100.00',
+          regularPrice: '$100.00',
+          salePrice: null,
+          stockStatus: 'IN_STOCK',
+          stockQuantity: 10,
+          sku: 'VAR-AND-1',
+          partNumber: null,
+          weight: null,
+          image: null,
+          description: null,
+          attributes: {
+            nodes: [
+              // WordPress stores this WITHOUT "and": "test-balance"
+              { name: 'ground-configuration-comm-jack-test-balance', value: 'Common Ground' },
+            ],
+          },
+        },
+        {
+          id: 'var-and-2',
+          databaseId: 1002,
+          name: 'Variation without "and"',
+          price: '$110.00',
+          regularPrice: '$110.00',
+          salePrice: null,
+          stockStatus: 'IN_STOCK',
+          stockQuantity: 5,
+          sku: 'VAR-AND-2',
+          partNumber: null,
+          weight: null,
+          image: null,
+          description: null,
+          attributes: {
+            nodes: [
+              // WordPress stores this WITHOUT "and": "test-balance"
+              { name: 'ground-configuration-comm-jack-test-balance', value: 'Differential Ground' },
+            ],
+          },
+        },
+      ];
+
+      // Product attribute has "and": "ground-configuration-comm-jack-test-and-balance"
+      const options = getAvailableOptions(
+        'ground-configuration-comm-jack-test-and-balance', // Product attribute (WITH "and")
+        variationsWithAndMismatch,
+        {}
+      );
+      
+      // Should find options even though variation attributes don't have "-and-"
+      expect(options).toEqual(['Common Ground', 'Differential Ground']);
     });
 
     it('ignores the attribute being queried in selections', () => {

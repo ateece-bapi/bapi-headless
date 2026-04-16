@@ -298,6 +298,18 @@ export default async function ProductPage({
 
         timer.mark('validation-complete');
 
+        // Helper to decode HTML entities from GraphQL responses
+        // WordPress returns encoded entities like &amp;, &quot;, etc.
+        const decodeHtmlEntities = (text: string): string => {
+          if (!text) return text;
+          return text
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'");
+        };
+
         // Fetch variations if this is a VariableProduct
         let variationData = null;
         if (product.__typename === 'VariableProduct') {
@@ -402,48 +414,93 @@ export default async function ProductPage({
                     (variationData.variations?.nodes || []).forEach((variation: any) => {
                       const varAttr = variation.attributes?.nodes?.find((va: any) => {
                         const vaSlug = normalizeAttributeSlug(va.name);
-                        return vaSlug === attributeSlug;
+                        
+                        // Try exact match first
+                        if (vaSlug === attributeSlug) {
+                          return true;
+                        }
+                        
+                        // Try matching with "-and-" removed (WordPress sometimes stores "test-balance" instead of "test-and-balance")
+                        const attributeSlugWithoutAnd = attributeSlug.replace(/-and-/g, '-');
+                        const vaSlugWithoutAnd = vaSlug.replace(/-and-/g, '-');
+                        
+                        return vaSlugWithoutAnd === attributeSlugWithoutAnd;
                       });
                       if (varAttr?.value) {
-                        actualValues.add(varAttr.value);
+                        // Decode HTML entities in option values
+                        actualValues.add(decodeHtmlEntities(varAttr.value));
                       }
                     });
 
+                    // ProductDetailClient expects { name: string, options: string[] }
                     return {
-                      id: attr.id,
-                      name: attr.name, // slug for matching (e.g., "pressure-range")
-                      label: attr.label, // display name (e.g., "Pressure Range")
-                      options: Array.from(actualValues), // Use actual variation values
-                      variation: attr.variation,
+                      name: decodeHtmlEntities(attr.label || attr.name), // Display name
+                      options: Array.from(actualValues), // Decoded values
                     };
                   })
               : [],
           variations:
             variationData?.__typename === 'VariableProduct'
-              ? (variationData.variations?.nodes || []).map((variation: any) => ({
-                  id: variation.id,
-                  databaseId: variation.databaseId,
-                  name: variation.name,
-                  description: variation.description || null,
-                  price: variation.price,
-                  regularPrice: variation.regularPrice,
-                  salePrice: variation.salePrice || null,
-                  stockStatus: variation.stockStatus,
-                  stockQuantity: variation.stockQuantity ?? null,
-                  weight: variation.weight || null,
-                  partNumber: variation.partNumber,
-                  sku: variation.sku,
-                  image: variation.image
-                    ? {
-                        sourceUrl: variation.image.sourceUrl,
-                        altText: variation.image.altText || variation.name,
-                      }
-                    : null,
-                  attributes: (variation.attributes?.nodes || []).reduce((acc: any, attr: any) => {
-                    acc[attr.name] = attr.value;
-                    return acc;
-                  }, {}),
-                }))
+              ? (() => {
+                  // Build a mapping from normalized attribute slug to product attribute label
+                  // This ensures variation attributes use the SAME labels as the attributes array
+                  const attributeSlugToLabel = new Map<string, string>();
+                  (variationData.attributes?.nodes || [])
+                    .filter((attr: any) => attr.variation === true)
+                    .forEach((attr: any) => {
+                      const slug = normalizeAttributeSlug(attr.name);
+                      const decodedLabel = decodeHtmlEntities(attr.label || attr.name);
+                      attributeSlugToLabel.set(slug, decodedLabel);
+                    });
+
+                  return (variationData.variations?.nodes || []).map((variation: any) => ({
+                    id: variation.id,
+                    databaseId: variation.databaseId,
+                    name: variation.name,
+                    description: variation.description || null,
+                    price: variation.price,
+                    regularPrice: variation.regularPrice,
+                    salePrice: variation.salePrice || null,
+                    stockStatus: variation.stockStatus,
+                    stockQuantity: variation.stockQuantity ?? null,
+                    weight: variation.weight || null,
+                    partNumber: variation.partNumber,
+                    sku: variation.sku,
+                    image: variation.image
+                      ? {
+                          sourceUrl: variation.image.sourceUrl,
+                          altText: variation.image.altText || variation.name,
+                        }
+                      : null,
+                    attributes: (variation.attributes?.nodes || []).reduce(
+                      (acc: any, attr: any) => {
+                        // Find the matching product attribute label by normalized slug
+                        const attrSlug = normalizeAttributeSlug(attr.name);
+                        let productAttributeLabel = attributeSlugToLabel.get(attrSlug);
+                        
+                        // If no exact match, try matching without "-and-" (WordPress inconsistency)
+                        if (!productAttributeLabel) {
+                          const attrSlugWithoutAnd = attrSlug.replace(/-and-/g, '-');
+                          for (const [key, label] of attributeSlugToLabel.entries()) {
+                            const keyWithoutAnd = key.replace(/-and-/g, '-');
+                            if (keyWithoutAnd === attrSlugWithoutAnd) {
+                              productAttributeLabel = label;
+                              break;
+                            }
+                          }
+                        }
+                        
+                        // Use product attribute label as key (not variation attribute label)
+                        // This ensures keys match the attributes array
+                        if (productAttributeLabel) {
+                          acc[productAttributeLabel] = decodeHtmlEntities(attr.value);
+                        }
+                        return acc;
+                      },
+                      {}
+                    ),
+                  }));
+                })()
               : [],
           relatedProducts: [], // Will be loaded by RelatedProductsAsync
           iosAppUrl: null,

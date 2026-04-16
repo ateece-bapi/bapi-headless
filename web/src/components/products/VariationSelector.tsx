@@ -92,16 +92,30 @@ export default function VariationSelector({
     [attributes]
   );
 
-  // Get translated attribute label
+  /**
+   * Decode HTML entities in a string
+   * Handles common entities: &amp;, &lt;, &gt;, &quot;, &#039;
+   */
+  const decodeHtmlEntities = (text: string): string => {
+    return text
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#039;/g, "'");
+  };
+
+  // Get translated attribute label with HTML entity decoding
   const getTranslatedLabel = (attribute: ProductAttribute): string => {
     const originalLabel = attribute.label;
     const key = getAttributeTranslationKey(originalLabel);
 
     if (key !== originalLabel) {
-      return tAttr(key);
+      // Translation found - decode HTML entities in translated text
+      return decodeHtmlEntities(tAttr(key));
     }
-    // Fallback to original label if no translation exists
-    return originalLabel;
+    // Fallback to original label - decode HTML entities
+    return decodeHtmlEntities(originalLabel);
   };
 
   // Handle attribute selection
@@ -334,8 +348,8 @@ export default function VariationSelector({
               const commonProps = {
                 label: getTranslatedLabel(attribute),
                 attributeSlug, // Stable identifier for DOM ids (accessibility)
-                options: availableOptions, // Use filtered options instead of all options
-                value,
+                options: availableOptions, // Options already decoded at source (ProductPage)
+                value, // Value already decoded at source
                 onChange: (val: string) => handleAttributeChange(attribute.label, val),
               };
 

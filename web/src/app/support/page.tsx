@@ -11,7 +11,6 @@ import {
   MailIcon,
   PhoneIcon,
 } from '@/lib/icons';
-import PageContainer from '@/components/layout/PageContainer';
 
 export const metadata: Metadata = {
   title: 'Support | BAPI',
@@ -24,20 +23,20 @@ export default function SupportPage() {
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <PageContainer size="content">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <LifeBuoyIcon className="duration-normal mx-auto mb-4 h-16 w-16 transition-transform hover:rotate-12 hover:scale-110" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">BAPI Support Center</h1>
-            <p className="mx-auto max-w-3xl text-xl text-primary-50">
+            <p className="mx-auto max-w-2xl text-xl text-primary-50">
               Expert technical support for building automation professionals
             </p>
           </div>
-        </PageContainer>
+        </div>
       </section>
 
       {/* Quick Actions */}
       <section className="bg-neutral-50 py-12">
-        <PageContainer size="content">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Link
               href="/contact"
@@ -70,12 +69,12 @@ export default function SupportPage() {
               <p className="leading-relaxed text-neutral-700">Return merchandise authorization</p>
             </Link>
           </div>
-        </PageContainer>
+        </div>
       </section>
 
       {/* Support Resources */}
       <section className="py-16">
-        <PageContainer size="content">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-center text-3xl font-bold text-neutral-900">
             Support Resources
           </h2>
@@ -193,12 +192,12 @@ export default function SupportPage() {
               </ul>
             </div>
           </div>
-        </PageContainer>
+        </div>
       </section>
 
       {/* Contact Section */}
       <section className="bg-neutral-50 py-16">
-        <PageContainer size="content">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900">Need Direct Support?</h2>
             <p className="text-lg text-neutral-700">Our technical support team is ready to help</p>
@@ -240,7 +239,7 @@ export default function SupportPage() {
               </Link>
             </div>
           </div>
-        </PageContainer>
+        </div>
       </section>
     </main>
   );

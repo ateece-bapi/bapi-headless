@@ -12,7 +12,6 @@ import {
   MailIcon,
   PhoneIcon,
 } from '@/lib/icons';
-import PageContainer from '@/components/layout/PageContainer';
 import { generatePageMetadata } from '@/lib/metadata';
 
 /**
@@ -47,18 +46,18 @@ export default async function SupportPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-linear-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <PageContainer size="prose">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <LifeBuoyIcon className="duration-normal mx-auto mb-4 h-16 w-16 transition-transform hover:rotate-12 hover:scale-110" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
-            <p className="mx-auto max-w-3xl text-xl text-primary-50">{t('hero.subtitle')}</p>
+            <p className="mx-auto max-w-2xl text-xl text-primary-50">{t('hero.subtitle')}</p>
           </div>
-        </PageContainer>
+        </div>
       </section>
 
       {/* Quick Actions */}
       <section className="bg-neutral-50 py-12">
-        <PageContainer size="narrow">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Link
               href="/contact"
@@ -99,12 +98,12 @@ export default async function SupportPage() {
               </p>
             </Link>
           </div>
-        </PageContainer>
+        </div>
       </section>
 
       {/* Support Resources */}
       <section className="py-16">
-        <PageContainer size="narrow">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-center text-3xl font-bold text-neutral-900">
             {t('resources.title')}
           </h2>
@@ -228,12 +227,12 @@ export default async function SupportPage() {
               </ul>
             </div>
           </div>
-        </PageContainer>
+        </div>
       </section>
 
       {/* Contact Section */}
       <section className="bg-neutral-50 py-16">
-        <PageContainer size="prose">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="mb-4 text-3xl font-bold text-neutral-900">{t('contact.title')}</h2>
             <p className="text-lg text-neutral-700">{t('contact.subtitle')}</p>
@@ -279,7 +278,7 @@ export default async function SupportPage() {
               </Link>
             </div>
           </div>
-        </PageContainer>
+        </div>
       </section>
     </div>
   );

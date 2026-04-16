@@ -113,7 +113,7 @@ query SearchProductsBySKU($sku: String!, $first: Int = 24) {
 }
 
 query ListVariableProductsWithVariationSkus($first: Int = 50) {
-  products(where: { orderby: { field: DATE, order: ASC } }, first: $first) {
+  products(where: { type: VARIABLE, visibility: VISIBLE }, first: $first) {
     nodes {
       id
       databaseId
@@ -220,11 +220,6 @@ query SearchProductsByVariationSku($sku: String!, $first: Int = 10) {
           }
         }
       }
-      variations(first: 100) {
-        nodes {
-          sku
-        }
-      }
     }
   }
 }
@@ -257,11 +252,6 @@ query SearchProductsByVariationSkuPrefix($prefix: String!, $first: Int = 20) {
               slug
             }
           }
-        }
-      }
-      variations(first: 100) {
-        nodes {
-          sku
         }
       }
     }

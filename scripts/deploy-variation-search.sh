@@ -27,20 +27,39 @@ fi
 
 ENVIRONMENT=$1
 
+# Helper function to require environment variables
+require_env() {
+    local VAR_NAME=$1
+    local DEFAULT_VALUE=$2
+    local VAR_VALUE="${!VAR_NAME}"
+    
+    if [ -z "$VAR_VALUE" ]; then
+        if [ -n "$DEFAULT_VALUE" ]; then
+            echo "$DEFAULT_VALUE"
+        else
+            echo -e "${RED}Error: Required environment variable '$VAR_NAME' is not set${NC}" >&2
+            exit 1
+        fi
+    else
+        echo "$VAR_VALUE"
+    fi
+}
+
 # Set server details based on environment
 if [ "$ENVIRONMENT" == "staging" ]; then
     # Headless WordPress staging on Kinsta (bapiheadlessstaging.kinsta.cloud)
-    # SSH credentials from MyKinsta: Sites → bapiheadlessstaging → Info → SSH/SFTP
-    SERVER="35.224.70.159"
-    SSH_PORT="17338"
-    SSH_USER="bapiheadlessstaging"
+    # Prefer env vars, fall back to defaults (for local development)
+    SERVER=$(require_env "STAGING_SERVER" "35.224.70.159")
+    SSH_PORT=$(require_env "STAGING_SSH_PORT" "17338")
+    SSH_USER=$(require_env "STAGING_SSH_USER" "bapiheadlessstaging")
     REMOTE_PATH="~/public/wp-content/mu-plugins/"
     SITE_NAME="Headless WordPress Staging (Kinsta)"
 elif [ "$ENVIRONMENT" == "production" ]; then
     # Headless WordPress production on Kinsta
-    SERVER="TBD"  # TODO: Get from MyKinsta dashboard
-    SSH_PORT="TBD"
-    SSH_USER="TBD"
+    # Require env vars for production (no defaults)
+    SERVER=$(require_env "PRODUCTION_SERVER")
+    SSH_PORT=$(require_env "PRODUCTION_SSH_PORT")
+    SSH_USER=$(require_env "PRODUCTION_SSH_USER")
     REMOTE_PATH="~/public/wp-content/mu-plugins/"
     SITE_NAME="Headless WordPress Production (Kinsta)"
 else
@@ -53,8 +72,8 @@ echo -e "${YELLOW}Deploying to: ${ENVIRONMENT}${NC}"
 echo "Server: $SERVER"
 echo ""
 
-# Check if mu-plugin file exists
-PLUGIN_FILE="cms/wp-content/mu-plugins/bapi-variation-sku-search.php"
+# Check if mu-plugin file exists (GraphQL resolver version)
+PLUGIN_FILE="cms/wp-content/mu-plugins/bapi-graphql-variation-search.php"
 
 if [ ! -f "$PLUGIN_FILE" ]; then
     echo -e "${RED}Error: Plugin file not found${NC}"
@@ -90,8 +109,8 @@ echo ""
 # Create mu-plugins directory if it doesn't exist
 ssh -p "${SSH_PORT}" "${SSH_USER}@${SERVER}" "mkdir -p ${REMOTE_PATH}"
 
-# Copy file
-scp -P "${SSH_PORT}" "$PLUGIN_FILE" "${SSH_USER}@${SERVER}:${REMOTE_PATH}bapi-variation-sku-search.php"
+# Copy file (keep original filename)
+scp -P "${SSH_PORT}" "$PLUGIN_FILE" "${SSH_USER}@${SERVER}:${REMOTE_PATH}$(basename "$PLUGIN_FILE")"
 
 if [ $? -eq 0 ]; then
     echo ""

@@ -1,41 +1,61 @@
 # Variation SKU Search Implementation
 
-**Date:** April 15, 2026  
-**Branch:** `feat/variation-sku-search` (commit 080eb50)  
-**Investigation:** Legacy WordPress site analysis via SSH
+**Date:** April 16, 2026  
+**Branch:** `main` (merged from `feat/variation-sku-search`)  
+**Implementation:** Custom WPGraphQL resolver approach
 
 ---
 
 ## 🎯 TL;DR - Implementation Status
 
-✅ **Variation SKU search is ALREADY WORKING in headless Next.js**  
-❌ **WordPress mu-plugin approach does NOT work with WPGraphQL**  
-📖 **This document serves as investigation reference and architectural comparison**
+✅ **Variation SKU search implemented via WPGraphQL resolver-based fields**  
+📖 **This document serves as implementation reference, architectural comparison, and investigation history**  
+⚠️ **Notes below about mu-plugin and frontend triple-query approach are historical investigation findings**
 
-**Current Implementation:** Frontend triple-query approach in `web/src/app/api/search/route.ts`  
-**Legacy Reference:** Relevanssi Premium custom filter on `stage.bapihvac.com`
+**Current Implementation:** Resolver-based `searchProductsByVariationSku*` GraphQL approach  
+**Historical Reference:** Relevanssi Premium custom filter on `stage.bapihvac.com` and earlier headless/frontend investigation notes
 
 ---
 
-## 🚨 CRITICAL UPDATE: WPGraphQL Architecture
+## 📝 Current Implementation (April 16, 2026)
+
+### WPGraphQL Custom Resolver Approach
+
+**Location:** `cms/wp-content/mu-plugins/bapi-graphql-variation-search.php`
+
+**How It Works:**
+1. Custom WPGraphQL root fields: `searchProductsByVariationSku` and `searchProductsByVariationSkuPrefix`
+2. Direct SQL query to `wp_postmeta` for `_sku` meta_key on variation posts
+3. Returns parent variable products via WPGraphQL's `DataSource::resolve_post_object()`
+4. Zero external plugin dependencies
+
+**Frontend Integration:** `web/src/app/api/search/route.ts`
+- Uses custom resolver when query looks like SKU
+- Falls back to name/description search for non-SKU queries
+- Supports both GET (`?q=SKU`) and POST methods
+
+---
+
+## 📚 Historical Investigation Notes: WPGraphQL Architecture
 
 **Date:** April 15, 2026  
-**Status:** ⚠️ **mu-plugin approach NOT COMPATIBLE with WPGraphQL**
+**Status at time of investigation:** ⚠️ **Initial mu-plugin approach was not compatible with WPGraphQL**
 
 ### Discovery
 
-After deployment to Kinsta staging, testing revealed that **variation SKU search is ALREADY WORKING** in the headless Next.js frontend via a different approach.
+During staging investigation, testing showed that **variation SKU search could work in the headless Next.js frontend** via a fallback/search-composition approach before the resolver-based implementation.
 
-**The WordPress mu-plugin does NOT work with WPGraphQL** because:
+**The investigated WordPress mu-plugin approach did not work with WPGraphQL** because:
 - WPGraphQL uses custom resolvers that bypass WordPress's `posts_search` filter
-- Our `posts_search` hook is never triggered by GraphQL queries
+- The `posts_search` hook was never triggered by GraphQL queries
 - WPGraphQL for WooCommerce has its own query resolution system
 
-### Current Working Implementation
+### Historical Working Frontend Implementation
 
-**Location:** `web/src/app/api/search/route.ts`
+**Historical location:** `web/src/app/api/search/route.ts` (pre-resolver approach)  
+**Current location:** Resolver-based `searchProductsByVariationSku*` GraphQL implementation
 
-**Architecture:**
+**Historical architecture:**
 ```typescript
 // 1. Name/description search (fuzzy match)
 sdk.SearchProducts({ search: query, first: 8 })

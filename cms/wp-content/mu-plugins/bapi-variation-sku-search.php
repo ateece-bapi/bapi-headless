@@ -35,21 +35,24 @@ function bapi_index_variation_skus_search( $search, $query ) {
 			// Escape the search term for SQL LIKE
 			$like_term = '%' . $wpdb->esc_like( $search_term ) . '%';
 			
-			// Add variation SKU search to query
-			// This finds parent products where ANY variation SKU matches
-			$search .= " OR {$wpdb->posts}.ID IN (
-				SELECT DISTINCT p.post_parent
-				FROM {$wpdb->posts} p
-				INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
-				WHERE p.post_type = 'product_variation'
-				AND p.post_status = 'publish'
-				AND p.post_parent > 0
-				AND pm.meta_key = '_sku'
-				AND pm.meta_value LIKE %s
-			)";
+			// Prepare the variation SKU clause separately to avoid prepare() issues
+			// with existing % wildcards in $search from WordPress core
+			$variation_sku_clause = $wpdb->prepare(
+				" OR {$wpdb->posts}.ID IN (
+					SELECT DISTINCT p.post_parent
+					FROM {$wpdb->posts} p
+					INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+					WHERE p.post_type = 'product_variation'
+					AND p.post_status = 'publish'
+					AND p.post_parent > 0
+					AND pm.meta_key = '_sku'
+					AND pm.meta_value LIKE %s
+				)",
+				$like_term
+			);
 			
-			// Prepare the query to prevent SQL injection
-			$search = $wpdb->prepare( $search, $like_term );
+			// Append the prepared clause to existing search
+			$search .= $variation_sku_clause;
 		}
 	}
 

@@ -28,17 +28,36 @@ fi
 
 ENVIRONMENT=$1
 
+# Helper function to get environment variables with defaults
+get_env() {
+    local VAR_NAME=$1
+    local DEFAULT_VALUE=$2
+    local VAR_VALUE="${!VAR_NAME}"
+    
+    if [ -z "$VAR_VALUE" ]; then
+        echo "$DEFAULT_VALUE"
+    else
+        echo "$VAR_VALUE"
+    fi
+}
+
 # Set server details based on environment
 if [ "$ENVIRONMENT" == "staging" ]; then
     # Headless WordPress staging on Kinsta
-    GRAPHQL_ENDPOINT="https://bapiheadlessstaging.kinsta.cloud/graphql"
-    SSH_SERVER="bapiheadlessstaging@35.224.70.159"
-    SSH_PORT="17338"
+    GRAPHQL_ENDPOINT=$(get_env "STAGING_GRAPHQL_ENDPOINT" "https://bapiheadlessstaging.kinsta.cloud/graphql")
+    SSH_SERVER=$(get_env "STAGING_SSH_SERVER" "bapiheadlessstaging@35.224.70.159")
+    SSH_PORT=$(get_env "STAGING_SSH_PORT" "17338")
 elif [ "$ENVIRONMENT" == "production" ]; then
-    # Headless WordPress production on Kinsta
-    GRAPHQL_ENDPOINT="https://TBD/graphql"  # TODO: Update with production URL
-    SSH_SERVER="TBD@TBD"
-    SSH_PORT="TBD"
+    # Headless WordPress production on Kinsta (require env vars)
+    GRAPHQL_ENDPOINT=$(get_env "PRODUCTION_GRAPHQL_ENDPOINT" "")
+    SSH_SERVER=$(get_env "PRODUCTION_SSH_SERVER" "")
+    SSH_PORT=$(get_env "PRODUCTION_SSH_PORT" "")
+    
+    # Fail fast if production vars are missing
+    if [ -z "$GRAPHQL_ENDPOINT" ]; then
+        echo -e "${RED}Error: PRODUCTION_GRAPHQL_ENDPOINT environment variable is required for production${NC}" >&2
+        exit 1
+    fi
 elif [ "$ENVIRONMENT" == "local" ]; then
     GRAPHQL_ENDPOINT="http://localhost:8000/graphql"
     SSH_SERVER=""
@@ -64,55 +83,53 @@ fi
 
 echo ""
 
-# Test Case 2: Search for known variation SKU
-echo -e "${BLUE}Test 2: Search for variation SKU (CCGA/10K-2-D-4\"-BB4)${NC}"
+# Test Case 2: Search for known variation SKU using custom resolver
+echo -e "${BLUE}Test 2: searchProductsByVariationSku (CCGA/10K-2-D-4\"-BB4)${NC}"
 echo "---------------------------------------"
 
 GRAPHQL_QUERY='
 query TestVariationSKU {
-  products(where: { search: "CCGA/10K-2-D-4\"-BB4" }, first: 5) {
-    nodes {
-      databaseId
-      name
-      sku
-    }
+  searchProductsByVariationSku(sku: "CCGA/10K-2-D-4\"-BB4") {
+    databaseId
+    name
+    sku
   }
 }
 '
 
-echo "Query: Search for 'CCGA/10K-2-D-4\"-BB4'"
+echo "Query: searchProductsByVariationSku(sku: 'CCGA/10K-2-D-4\"-BB4')"
 echo "Expected: Parent product 'CCGA/10K-2-D' (ID: 50116)"
 echo ""
 
-curl -s -X POST "$GRAPHQL_ENDPOINT" \
-  -H "Content-Type: application/json" \
-  -d "{\"query\": \"$GRAPHQL_QUERY\"}" | jq '.data.products.nodes'
+jq -n --arg query "$GRAPHQL_QUERY" '{query: $query}' | \
+  curl -s -X POST "$GRAPHQL_ENDPOINT" \
+    -H "Content-Type: application/json" \
+    --data-binary @- | jq '.data.searchProductsByVariationSku'
 
 echo ""
 
-# Test Case 3: Search for partial variation SKU
-echo -e "${BLUE}Test 3: Search for partial SKU (CCGA/10K-2-D)${NC}"
+# Test Case 3: Search for partial variation SKU using prefix resolver
+echo -e "${BLUE}Test 3: searchProductsByVariationSkuPrefix (CCGA/10K-2-D)${NC}"
 echo "---------------------------------------"
 
 GRAPHQL_QUERY='
 query TestPartialSKU {
-  products(where: { search: "CCGA/10K-2-D" }, first: 10) {
-    nodes {
-      databaseId
-      name
-      sku
-    }
+  searchProductsByVariationSkuPrefix(prefix: "CCGA/10K-2-D") {
+    databaseId
+    name
+    sku
   }
 }
 '
 
-echo "Query: Search for 'CCGA/10K-2-D'"
-echo "Expected: Multiple products with '10K-2-D' in name or variation SKUs"
+echo "Query: searchProductsByVariationSkuPrefix(prefix: 'CCGA/10K-2-D')"
+echo "Expected: Multiple products with variations starting with 'CCGA/10K-2-D'"
 echo ""
 
-curl -s -X POST "$GRAPHQL_ENDPOINT" \
-  -H "Content-Type: application/json" \
-  -d "{\"query\": \"$GRAPHQL_QUERY\"}" | jq '.data.products.nodes'
+jq -n --arg query "$GRAPHQL_QUERY" '{query: $query}' | \
+  curl -s -X POST "$GRAPHQL_ENDPOINT" \
+    -H "Content-Type: application/json" \
+    --data-binary @- | jq '.data.searchProductsByVariationSkuPrefix'
 
 echo ""
 

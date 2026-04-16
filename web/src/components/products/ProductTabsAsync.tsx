@@ -1,5 +1,6 @@
 import { getProductDetailsDeferred } from '@/lib/graphql';
 import logger from '@/lib/logger';
+import { ProductDescription } from './ProductDescription';
 
 type ProductTabsAsyncProps = {
   productId: string;
@@ -25,10 +26,7 @@ export async function ProductTabsAsync({ productId }: ProductTabsAsyncProps) {
           </nav>
         </div>
 
-        <div
-          className="prose prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: product.description }}
-        />
+        <ProductDescription description={product.description} />
       </div>
     );
   } catch (error) {

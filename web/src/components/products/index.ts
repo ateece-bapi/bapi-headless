@@ -15,6 +15,7 @@ export { CategoryPage } from './CategoryPage';
 // New streaming components
 export { ProductHeroFast } from './ProductHeroFast';
 export { ProductTabsAsync, ProductTabsSkeleton } from './ProductTabsAsync';
+export { ProductDescription } from './ProductDescription';
 export { RelatedProductsAsync, RelatedProductsSkeleton } from './RelatedProductsAsync';
 
 // Phase 1: Product Pages + Cart Integration

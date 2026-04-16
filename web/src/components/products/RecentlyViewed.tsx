@@ -108,7 +108,7 @@ export default function RecentlyViewed({
             </button>
 
             {/* Product link */}
-            <Link href={`/en/product/${product.slug}`} className="block">
+            <Link href={`/product/${product.slug}`} className="block">
               {/* Product image */}
               <div
                 className={`relative bg-neutral-50 ${compact ? 'aspect-square' : 'aspect-[4/3]'}`}

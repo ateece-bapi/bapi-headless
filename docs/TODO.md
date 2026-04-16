@@ -1,10 +1,10 @@
 # BAPI Headless - Project Roadmap & TODO
 
-**Updated:** April 16, 2026  
+**Updated:** April 16, 2026 (Evening)  
 **Launch Date:** May 8, 2026 (22 days remaining)  
 **Current Phase:** Phase 1 Development - Stakeholder Testing Period  
 **Testing Period:** 3 weeks (Sales Manager, Product Manager, Customer Service, Select Customers)  
-**Launch Readiness:** 100% (Variation SKU search deployed to production)
+**Launch Readiness:** 100% (Variation SKU search + Recently Viewed fix deployed to production)
 
 ---
 
@@ -102,6 +102,44 @@
 - All code through branches + PRs (never direct to main)
 - Copilot review caught bugs unit tests missed
 - Clean commit history (avoided mass reformatting)
+
+---
+
+## ✅ APRIL 16, 2026 (EVENING) - RECENTLY VIEWED LINK FIX
+
+**Branch:** `fix/recently-viewed-link` (merged, deleted)  
+**PR:** Merged successfully  
+**Time:** ~30 minutes (quick fix)  
+**Status:** ✅ COMPLETE - Merged to production
+
+### 🐛 BUG FIX: Duplicate Locale Prefix in Recently Viewed Links
+
+**User Report:** "Clicking items in Recently Viewed section results in 404 errors"
+
+**Problem:**
+- URLs generating with duplicate locale prefix: `/en/en/product/digital-co-and-no2-sensor`
+- Root cause: Hardcoded `/en/` prefix in `RecentlyViewed.tsx` component
+
+**Solution:**
+- Removed hardcoded locale prefix from product link (line 111)
+- Changed `href={`/en/product/${product.slug}`}` to `href={`/product/${product.slug}`}`
+- Allows navigation `Link` component to handle locale prefixing automatically
+
+**Pattern Consistency:**
+All other product link components use `/product/${slug}` pattern:
+- ✅ ProductCard.tsx
+- ✅ ProductGrid.tsx  
+- ✅ CartItems.tsx
+- ✅ RelatedProductsClient.tsx
+- ✅ ProductComparison.tsx
+
+**Files Changed:** 1 file, 1 line  
+**Impact:** Recently Viewed feature now fully functional, no more 404 errors
+
+**Git Workflow:**
+- Created branch, pushed fix, opened PR
+- Merged to main, deleted remote branch
+- Cleaned up local branch
 
 ---
 

@@ -304,14 +304,14 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                     )}
                   >
                     {item.megaMenu.featured.logo ? (
-                      <div className="absolute inset-0 flex items-center justify-center p-8">
-                        <div className="relative h-full w-full max-w-[280px]">
+                      <div className="absolute inset-0 flex items-center justify-center p-6">
+                        <div className="relative h-full w-full">
                           <Image
                             src={item.megaMenu.featured.logo}
                             alt={item.megaMenu.featured.title}
                             fill
                             className="object-contain"
-                            sizes="(max-width: 768px) 280px, 280px"
+                            sizes="(max-width: 768px) 100vw, 400px"
                           />
                         </div>
                       </div>

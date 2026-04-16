@@ -29,9 +29,9 @@ ENVIRONMENT=$1
 
 # Helper function to require environment variables
 require_env() {
-    VAR_NAME=$1
-    DEFAULT_VALUE=$2
-    VAR_VALUE="${!VAR_NAME}"
+    local VAR_NAME=$1
+    local DEFAULT_VALUE=$2
+    local VAR_VALUE="${!VAR_NAME}"
     
     if [ -z "$VAR_VALUE" ]; then
         if [ -n "$DEFAULT_VALUE" ]; then
@@ -109,8 +109,8 @@ echo ""
 # Create mu-plugins directory if it doesn't exist
 ssh -p "${SSH_PORT}" "${SSH_USER}@${SERVER}" "mkdir -p ${REMOTE_PATH}"
 
-# Copy file
-scp -P "${SSH_PORT}" "$PLUGIN_FILE" "${SSH_USER}@${SERVER}:${REMOTE_PATH}bapi-variation-sku-search.php"
+# Copy file (keep original filename)
+scp -P "${SSH_PORT}" "$PLUGIN_FILE" "${SSH_USER}@${SERVER}:${REMOTE_PATH}$(basename "$PLUGIN_FILE")"
 
 if [ $? -eq 0 ]; then
     echo ""

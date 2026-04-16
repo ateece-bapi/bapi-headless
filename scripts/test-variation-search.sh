@@ -30,9 +30,9 @@ ENVIRONMENT=$1
 
 # Helper function to get environment variables with defaults
 get_env() {
-    VAR_NAME=$1
-    DEFAULT_VALUE=$2
-    VAR_VALUE="${!VAR_NAME}"
+    local VAR_NAME=$1
+    local DEFAULT_VALUE=$2
+    local VAR_VALUE="${!VAR_NAME}"
     
     if [ -z "$VAR_VALUE" ]; then
         echo "$DEFAULT_VALUE"
@@ -48,10 +48,16 @@ if [ "$ENVIRONMENT" == "staging" ]; then
     SSH_SERVER=$(get_env "STAGING_SSH_SERVER" "bapiheadlessstaging@35.224.70.159")
     SSH_PORT=$(get_env "STAGING_SSH_PORT" "17338")
 elif [ "$ENVIRONMENT" == "production" ]; then
-    # Headless WordPress production on Kinsta
+    # Headless WordPress production on Kinsta (require env vars)
     GRAPHQL_ENDPOINT=$(get_env "PRODUCTION_GRAPHQL_ENDPOINT" "")
     SSH_SERVER=$(get_env "PRODUCTION_SSH_SERVER" "")
     SSH_PORT=$(get_env "PRODUCTION_SSH_PORT" "")
+    
+    # Fail fast if production vars are missing
+    if [ -z "$GRAPHQL_ENDPOINT" ]; then
+        echo -e "${RED}Error: PRODUCTION_GRAPHQL_ENDPOINT environment variable is required for production${NC}" >&2
+        exit 1
+    fi
 elif [ "$ENVIRONMENT" == "local" ]; then
     GRAPHQL_ENDPOINT="http://localhost:8000/graphql"
     SSH_SERVER=""

@@ -378,7 +378,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         description: t('resources.featured.description'),
         cta: t('resources.featured.cta'),
         href: '/resources',
-        logo: '/images/brand/BAS_BMS_Software.webp',
+        logo: '/images/logos/BAPI_Blue_Logo_2015.webp',
       },
     },
   },

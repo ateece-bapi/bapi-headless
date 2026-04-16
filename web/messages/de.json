@@ -66,15 +66,6 @@
         "productSelector": "Produktauswahl",
         "productSelectorDesc": "Finden Sie den richtigen Sensor"
       },
-      "learningCenter": {
-        "title": "Lernzentrum",
-        "videos": "Videobibliothek",
-        "videosDesc": "Anleitungsvideos & Tutorials",
-        "caseStudies": "Fallstudien",
-        "caseStudiesDesc": "Praxiserfolgsgeschichten",
-        "webinars": "Webinare",
-        "webinarsDesc": "Live-Schulungen"
-      },
       "featured": {
         "title": "Benötigen Sie technische Dokumentation?",
         "description": "Greifen Sie auf unsere vollständige Bibliothek an Anwendungshinweisen, Datenblättern und technischen Ressourcen zu, um die perfekte Lösung zu entwerfen und zu spezifizieren.",

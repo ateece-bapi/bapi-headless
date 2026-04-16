@@ -162,15 +162,6 @@
         "productSelector": "Product Selector",
         "productSelectorDesc": "Find the right sensor"
       },
-      "learningCenter": {
-        "title": "Learning Center",
-        "videos": "Video Library",
-        "videosDesc": "How-to videos & tutorials",
-        "caseStudies": "Case Studies",
-        "caseStudiesDesc": "Real-world success stories",
-        "webinars": "Webinars",
-        "webinarsDesc": "Live training sessions"
-      },
       "featured": {
         "title": "Need Technical Documentation?",
         "description": "Access our complete library of application notes, datasheets, and technical resources to help you design and specify the perfect solution.",

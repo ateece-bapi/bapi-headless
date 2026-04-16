@@ -5,7 +5,6 @@ import {
   LifeBuoyIcon,
   PhoneIcon,
   BookOpenIcon,
-  GraduationCapIcon,
   UsersIcon,
 } from '@/lib/icons';
 
@@ -369,30 +368,6 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
               label: t('resources.toolsGuides.productSelector'),
               href: '/resources/selector',
               description: t('resources.toolsGuides.productSelectorDesc'),
-            },
-          ],
-        },
-        {
-          title: t('resources.learningCenter.title'),
-          slug: 'learning-center',
-          icon: GraduationCapIcon,
-          links: [
-            {
-              label: t('resources.learningCenter.videos'),
-              href: '/resources/videos',
-              description: t('resources.learningCenter.videosDesc'),
-              badge: t('badges.phase2'),
-            },
-            {
-              label: t('resources.learningCenter.caseStudies'),
-              href: '/resources/case-studies',
-              description: t('resources.learningCenter.caseStudiesDesc'),
-            },
-            {
-              label: t('resources.learningCenter.webinars'),
-              href: '/resources/webinars',
-              description: t('resources.learningCenter.webinarsDesc'),
-              badge: t('badges.phase2'),
             },
           ],
         },

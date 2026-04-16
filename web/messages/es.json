@@ -384,15 +384,6 @@
         "productSelector": "Selector de Productos",
         "productSelectorDesc": "Encuentra el sensor adecuado"
       },
-      "learningCenter": {
-        "title": "Centro de Aprendizaje",
-        "videos": "Biblioteca de Videos",
-        "videosDesc": "Videos instructivos y tutoriales",
-        "caseStudies": "Estudios de Caso",
-        "caseStudiesDesc": "Historias de éxito del mundo real",
-        "webinars": "Webinars",
-        "webinarsDesc": "Sesiones de capacitación en vivo"
-      },
       "featured": {
         "title": "¿Necesita Documentación Técnica?",
         "description": "Acceda a nuestra biblioteca completa de notas de aplicación, hojas de datos y recursos técnicos para ayudarlo a diseñar y especificar la solución perfecta.",

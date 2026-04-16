@@ -212,15 +212,6 @@
         "productSelector": "Selektor produktów",
         "productSelectorDesc": "Znajdź odpowiedni czujnik"
       },
-      "learningCenter": {
-        "title": "Centrum edukacyjne",
-        "videos": "Biblioteka wideo",
-        "videosDesc": "Filmy instruktażowe i samouczki",
-        "caseStudies": "Studia przypadków",
-        "caseStudiesDesc": "Prawdziwe historie sukcesów",
-        "webinars": "Webinary",
-        "webinarsDesc": "Sesje szkoleniowe na żywo"
-      },
       "featured": {
         "title": "Potrzebujesz dokumentacji technicznej?",
         "description": "Uzyskaj dostęp do naszej pełnej biblioteki notatek aplikacyjnych, kart katalogowych i zasobów technicznych, aby pomóc Ci zaprojektować i określić idealne rozwiązanie.",

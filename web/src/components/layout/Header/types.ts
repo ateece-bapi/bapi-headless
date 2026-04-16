@@ -23,6 +23,7 @@ export interface MegaMenuFeatured {
   href: string;
   cta: string;
   badge?: string;
+  logo?: string; // Optional logo image path (e.g., '/images/logos/wam-logo.svg')
 }
 
 export interface MegaMenuItem {

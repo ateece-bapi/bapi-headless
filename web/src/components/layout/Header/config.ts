@@ -215,6 +215,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         cta: t('products.featured.cta'),
         href: '/wam',
         badge: t('badges.premiumSolution'),
+        logo: 'https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/wam-logo.png',
       },
     },
   },

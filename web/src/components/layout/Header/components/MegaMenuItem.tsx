@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
+import Image from 'next/image';
 import { Link } from '@/lib/navigation';
 import { ChevronDownIcon, RadioIcon } from '@/lib/icons';
 import clsx from 'clsx';
@@ -293,7 +294,7 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                     )}
                   </div>
 
-                  {/* Product Image Placeholder */}
+{/* Product Image/Logo */}
                   <div
                     className={clsx(
                       'relative aspect-video w-full overflow-hidden rounded-lg shadow-inner',
@@ -302,35 +303,47 @@ const MegaMenuItemComponent: React.FC<MegaMenuItemProps> = ({
                         : 'bg-gradient-to-br from-primary-100 to-primary-200'
                     )}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        {item.megaMenu.featured.title.includes('WAM™') ? (
-                          <>
-                            <RadioIcon className="mx-auto mb-2 h-16 w-16 text-accent-600" />
-                            <p className="text-xs font-semibold text-neutral-900">
-                              Wireless Monitoring
-                            </p>
-                          </>
-                        ) : (
-                          <>
-                            <svg
-                              className="mx-auto mb-2 h-16 w-16 text-primary-400"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={1.5}
-                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
-                              />
-                            </svg>
-                            <p className="text-xs font-semibold text-primary-600">Product Image</p>
-                          </>
-                        )}
+                    {item.megaMenu.featured.logo ? (
+                      <div className="absolute inset-0 flex items-center justify-center p-4">
+                        <Image
+                          src={item.megaMenu.featured.logo}
+                          alt={item.megaMenu.featured.title}
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 768px) 100vw, 300px"
+                        />
                       </div>
-                    </div>
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          {item.megaMenu.featured.title.includes('WAM™') ? (
+                            <>
+                              <RadioIcon className="mx-auto mb-2 h-16 w-16 text-accent-600" />
+                              <p className="text-xs font-semibold text-neutral-900">
+                                Wireless Monitoring
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <svg
+                                className="mx-auto mb-2 h-16 w-16 text-primary-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={1.5}
+                                  d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                                />
+                              </svg>
+                              <p className="text-xs font-semibold text-primary-600">Product Image</p>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Title */}

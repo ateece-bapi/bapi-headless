@@ -32,15 +32,15 @@ interface SearchProduct {
 
 /**
  * SKU pattern detector - helps optimize by only running variation query when needed
- * Typical SKU format: letters, numbers, hyphens, slashes (e.g., "BA/TQF-B-2-C80-J-A-B-F")
+ * Typical SKU format: letters, numbers, hyphens, slashes, quotes (e.g., "BA/TQF-B-2-C80-J-A-B-F", "4\"-BB4")
  * 
  * @param query - Search query string to test
- * @returns True if query matches SKU pattern (alphanumeric with dashes/underscores/slashes)
+ * @returns True if query matches SKU pattern (alphanumeric with dashes/underscores/slashes/quotes)
  */
 function looksLikeSku(query: string): boolean {
-  // Match patterns with alphanumeric + dash/underscore/slash (common SKU formats)
-  // At least one letter and one number, may contain dashes/underscores/slashes
-  return /^[A-Za-z0-9\-_/]+$/.test(query) && /[A-Za-z]/.test(query) && /[0-9]/.test(query);
+  // Match patterns with alphanumeric + dash/underscore/slash/quote (common SKU formats)
+  // At least one letter and one number, may contain dashes/underscores/slashes/quotes
+  return /^[A-Za-z0-9\-_/"]+$/.test(query) && /[A-Za-z]/.test(query) && /[0-9]/.test(query);
 }
 
 /**
@@ -94,26 +94,35 @@ async function performSearch(query: string) {
     const client = getGraphQLClient(['search'], true);
     const sdk = getSdk(client);
 
-    const normalizedQuery = query.trim().toLowerCase();
-    const shouldCheckVariations = looksLikeSku(query);
+    const trimmedQuery = query.trim();
+    const normalizedQuery = trimmedQuery.toLowerCase();
+    const shouldCheckVariations = looksLikeSku(trimmedQuery);
 
     // Build query array conditionally - add custom variation SKU search if input looks like a SKU
     const queryPromises = [
       // Query 1: Search product name/description (fuzzy match)
-      sdk.SearchProducts({ search: query, first: 8 }),
+      sdk.SearchProducts({ search: trimmedQuery, first: 8 }),
       // Query 2: Search by parent product SKU (exact match)
-      sdk.SearchProductsBySKU({ sku: query, first: 8 }),
+      sdk.SearchProductsBySKU({ sku: trimmedQuery, first: 8 }),
     ];
 
     // Query 3: For SKU-like patterns, use custom WPGraphQL resolver to search variation SKUs
     // This queries wp_postmeta directly for _sku (replicates Relevanssi behavior without the plugin)
     if (shouldCheckVariations) {
-      console.log('[Search API] Query looks like SKU, searching variation SKUs for:', query);
+      logger.debug('Search API variation SKU search enabled', {
+        query: trimmedQuery,
+        normalizedQuery,
+        shouldCheckVariations,
+      });
       queryPromises.push(
-        sdk.SearchProductsByVariationSku({ sku: query, first: 10 })
+        sdk.SearchProductsByVariationSku({ sku: trimmedQuery, first: 10 })
       );
     } else {
-      console.log('[Search API] Query does not look like SKU, skipping variation search for:', query);
+      logger.debug('Search API variation SKU search skipped', {
+        query: trimmedQuery,
+        normalizedQuery,
+        shouldCheckVariations,
+      });
     }
 
     const results = await Promise.all(queryPromises);
@@ -129,7 +138,7 @@ async function performSearch(query: string) {
       [nameData, skuData] = results as [SearchProductsQuery, SearchProductsQuery];
     }
     
-    console.log('[Search API] Query results:', {
+    logger.debug('Search API query results', {
       nameMatches: nameData.products?.nodes?.length || 0,
       skuMatches: skuData.products?.nodes?.length || 0,
       variationMatches: variationData?.searchProductsByVariationSku?.length || 0,
@@ -143,7 +152,10 @@ async function performSearch(query: string) {
     let variationResults: SearchProduct[] = [];
     if (shouldCheckVariations && variationData?.searchProductsByVariationSku) {
       variationResults = variationData.searchProductsByVariationSku.filter((p): p is SearchProduct => p !== null);
-      console.log('[Search API] Variation SKU search found:', variationResults.length, 'products for query:', normalizedQuery);
+      logger.debug('Search API variation SKU search results', {
+        count: variationResults.length,
+        query: normalizedQuery,
+      });
     }
 
     // Create a Map to deduplicate by product ID with priority ordering

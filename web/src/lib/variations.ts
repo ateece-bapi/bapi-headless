@@ -13,25 +13,62 @@ export const MAX_VARIATIONS = 500;
 
 /**
  * Normalizes attribute names to slug format for consistent matching
- * Must handle special characters (°, %, commas, etc.) to match WooCommerce slugs
+ * Must handle special characters (°, %, commas, ampersands, etc.) to match WooCommerce slugs
  *
- * @param name - Attribute name to normalize (e.g., "°F Or °C Display", "Optional Temperature and %RH")
- * @returns Normalized slug (e.g., "f-or-c-display", "optional-temperature-and-rh")
+ * @param name - Attribute name to normalize (e.g., "°F Or °C Display", "Optional Temperature and %RH", "Test &amp; Balance")
+ * @returns Normalized slug (e.g., "f-or-c-display", "optional-temperature-and-rh", "test-and-balance")
  *
  * @example
  * ```ts
  * normalizeAttributeSlug("°F Or °C Display") // "f-or-c-display"
  * normalizeAttributeSlug("Optional Temperature and %RH") // "optional-temperature-and-rh"
  * normalizeAttributeSlug("Ground Configuration, Comm Jack, Test And Balance") // "ground-configuration-comm-jack-test-and-balance"
+ * normalizeAttributeSlug("Test &amp; Balance") // "test-and-balance"
+ * normalizeAttributeSlug("Test & Balance") // "test-and-balance"
  * ```
  */
 export function normalizeAttributeSlug(name: string): string {
   return name
     .toLowerCase()
-    .replace(/[°,%]/g, '') // Remove special characters (degree symbol, percent, commas)
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-    .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+    // Decode common HTML entities. Decode &amp; last to avoid double-decoding
+    // values like "&amp;lt;" into "<" instead of the literal "&lt;".
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&amp;/g, '&')
+    // Strip WordPress taxonomy prefixes (pa_, attribute_pa_, etc.)
+    .replace(/^(pa_|attribute_pa_)/, '')
+    // Convert ampersands to "and" to match WooCommerce slug generation
+    .replace(/\s*&\s*/g, '-and-')
+    // Remove special characters (degree symbol, percent, commas, quotes, angle brackets)
+    .replace(/[°,%<>'"]/g, '')
+    // Convert underscores to hyphens (WordPress uses both)
+    .replace(/_/g, '-')
+    // Replace spaces with hyphens
+    .replace(/\s+/g, '-')
+    // Replace multiple hyphens with single hyphen
+    .replace(/-+/g, '-')
+    // Remove leading/trailing hyphens
+    .replace(/^-|-$/g, '');
+}
+
+/**
+ * Checks if two normalized slugs match, handling WordPress "-and-" inconsistency
+ * WordPress sometimes stores "test-balance" while product attributes are "test-and-balance"
+ *
+ * @param slug1 - First slug to compare
+ * @param slug2 - Second slug to compare
+ * @returns True if slugs match (with or without "-and-")
+ */
+export function slugsMatch(slug1: string, slug2: string): boolean {
+  // Try exact match first
+  if (slug1 === slug2) return true;
+  
+  // Try matching without "-and-" (WordPress inconsistency)
+  const slug1WithoutAnd = slug1.replace(/-and-/g, '-');
+  const slug2WithoutAnd = slug2.replace(/-and-/g, '-');
+  return slug1WithoutAnd === slug2WithoutAnd;
 }
 
 /**
@@ -62,7 +99,24 @@ export function findMatchingVariation(
 
       // Check if this variation matches all selected attributes
       return varAttrs.every((attr) => {
-        const selectedValue = selectedAttributes[attr.name];
+        // Normalize attribute name to match selectedAttributes keys (normalized slugs)
+        const normalizedName = normalizeAttributeSlug(attr.name);
+        
+        // Try exact match first (O(1) lookup)
+        let selectedValue = selectedAttributes[normalizedName];
+        
+        // If no exact match, try with "-and-" removed (WordPress inconsistency)
+        if (selectedValue === undefined) {
+          const normalizedWithoutAnd = normalizedName.replace(/-and-/g, '-');
+          // Check if any selected attribute matches without "-and-"
+          for (const [key, value] of Object.entries(selectedAttributes)) {
+            if (key.replace(/-and-/g, '-') === normalizedWithoutAnd) {
+              selectedValue = value;
+              break;
+            }
+          }
+        }
+        
         return selectedValue === attr.value;
       });
     }) || null
@@ -108,7 +162,7 @@ export function getAvailableOptions(
     // No other selections, return all options from all variations
     const options = new Set<string>();
     variations.forEach((variation) => {
-      const attr = variation.attributes.nodes.find((a) => a.name === attributeName);
+      const attr = variation.attributes.nodes.find((a) => slugsMatch(normalizeAttributeSlug(a.name), attributeName));
       if (attr?.value) {
         options.add(attr.value);
       }
@@ -133,7 +187,7 @@ export function getAvailableOptions(
   // Filter variations that match other selections
   const matchingVariations = variations.filter((variation) => {
     return otherSelections.every(([key, value]) => {
-      const attr = variation.attributes.nodes.find((a) => a.name === key);
+      const attr = variation.attributes.nodes.find((a) => slugsMatch(normalizeAttributeSlug(a.name), key));
       return attr?.value === value;
     });
   });
@@ -145,7 +199,7 @@ export function getAvailableOptions(
   const orderedOptions: string[] = [];
 
   matchingVariations.forEach((variation) => {
-    const attr = variation.attributes.nodes.find((a) => a.name === attributeName);
+    const attr = variation.attributes.nodes.find((a) => slugsMatch(normalizeAttributeSlug(a.name), attributeName));
     if (attr?.value && !seenOptions.has(attr.value)) {
       seenOptions.add(attr.value);
       orderedOptions.push(attr.value);

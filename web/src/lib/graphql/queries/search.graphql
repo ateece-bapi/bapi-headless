@@ -113,7 +113,7 @@ query SearchProductsBySKU($sku: String!, $first: Int = 24) {
 }
 
 query ListVariableProductsWithVariationSkus($first: Int = 50) {
-  products(where: { type: VARIABLE, visibility: VISIBLE }, first: $first) {
+  products(where: { orderby: { field: DATE, order: ASC } }, first: $first) {
     nodes {
       id
       databaseId
@@ -145,6 +145,123 @@ query ListVariableProductsWithVariationSkus($first: Int = 50) {
           nodes {
             sku
           }
+        }
+      }
+    }
+  }
+}
+
+query SearchVariableProductsWithVariations($search: String!, $first: Int = 20) {
+  products(where: { search: $search }, first: $first) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      ... on VariableProduct {
+        sku
+        partNumber
+        price
+        shortDescription
+        image {
+          sourceUrl
+          altText
+        }
+        productCategories {
+          nodes {
+            name
+            slug
+            parent {
+              node {
+                id
+                name
+                slug
+              }
+            }
+          }
+        }
+        variations(first: 100) {
+          nodes {
+            sku
+          }
+        }
+      }
+    }
+  }
+}
+
+# Custom WPGraphQL resolver for variation SKU search (exact match)
+# Replicates Relevanssi Premium behavior without plugin dependency
+query SearchProductsByVariationSku($sku: String!, $first: Int = 10) {
+  searchProductsByVariationSku(sku: $sku, first: $first) {
+    id
+    databaseId
+    name
+    slug
+    ... on VariableProduct {
+      sku
+      partNumber
+      price
+      shortDescription
+      image {
+        sourceUrl
+        altText
+      }
+      productCategories {
+        nodes {
+          name
+          slug
+          parent {
+            node {
+              id
+              name
+              slug
+            }
+          }
+        }
+      }
+      variations(first: 100) {
+        nodes {
+          sku
+        }
+      }
+    }
+  }
+}
+
+# Custom WPGraphQL resolver for variation SKU prefix search
+# Useful for searching by SKU prefix like "BA/TQF"
+query SearchProductsByVariationSkuPrefix($prefix: String!, $first: Int = 20) {
+  searchProductsByVariationSkuPrefix(prefix: $prefix, first: $first) {
+    id
+    databaseId
+    name
+    slug
+    ... on VariableProduct {
+      sku
+      partNumber
+      price
+      shortDescription
+      image {
+        sourceUrl
+        altText
+      }
+      productCategories {
+        nodes {
+          name
+          slug
+          parent {
+            node {
+              id
+              name
+              slug
+            }
+          }
+        }
+      }
+      variations(first: 100) {
+        nodes {
+          sku
         }
       }
     }

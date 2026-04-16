@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import logger from '@/lib/logger';
 import { getGraphQLClient } from '@/lib/graphql/client';
-import { getSdk } from '@/lib/graphql/generated';
+import { getSdk, SearchProductsQuery, SearchProductsByVariationSkuQuery } from '@/lib/graphql/generated';
 
 // Type for search product response
 interface SearchProduct {
@@ -32,15 +32,15 @@ interface SearchProduct {
 
 /**
  * SKU pattern detector - helps optimize by only running variation query when needed
- * Typical SKU format: letters, numbers, hyphens (e.g., "TEMP-SENSOR-1000-024")
+ * Typical SKU format: letters, numbers, hyphens, slashes (e.g., "BA/TQF-B-2-C80-J-A-B-F")
  * 
  * @param query - Search query string to test
- * @returns True if query matches SKU pattern (alphanumeric with dashes/underscores)
+ * @returns True if query matches SKU pattern (alphanumeric with dashes/underscores/slashes)
  */
 function looksLikeSku(query: string): boolean {
-  // Match patterns with alphanumeric + dash/underscore (common SKU formats)
-  // At least one letter and one number, may contain dashes/underscores
-  return /^[A-Za-z0-9\-_]+$/.test(query) && /[A-Za-z]/.test(query) && /[0-9]/.test(query);
+  // Match patterns with alphanumeric + dash/underscore/slash (common SKU formats)
+  // At least one letter and one number, may contain dashes/underscores/slashes
+  return /^[A-Za-z0-9\-_/]+$/.test(query) && /[A-Za-z]/.test(query) && /[0-9]/.test(query);
 }
 
 /**
@@ -50,6 +50,25 @@ function looksLikeSku(query: string): boolean {
  * Uses GraphQL client with GET method for CDN caching
  * Conditionally runs variation query only for SKU-like patterns
  */
+export async function GET(request: NextRequest) {
+  try {
+    const searchParams = request.nextUrl.searchParams;
+    const query = searchParams.get('q');
+
+    if (!query || query.length < 2) {
+      return NextResponse.json({ products: { nodes: [] } });
+    }
+
+    return await performSearch(query);
+  } catch (error) {
+    logger.error('Search API error (GET):', error);
+    return NextResponse.json(
+      { error: 'Failed to search products' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { query } = await request.json();
@@ -58,6 +77,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ products: { nodes: [] } });
     }
 
+    return await performSearch(query);
+  } catch (error) {
+    logger.error('Search API error (POST):', error);
+    return NextResponse.json(
+      { error: 'Failed to search products' },
+      { status: 500 }
+    );
+  }
+}
+
+// Shared search logic for both GET and POST
+async function performSearch(query: string) {
+
     // Use GraphQL client with GET method for CDN caching
     const client = getGraphQLClient(['search'], true);
     const sdk = getSdk(client);
@@ -65,48 +97,53 @@ export async function POST(request: NextRequest) {
     const normalizedQuery = query.trim().toLowerCase();
     const shouldCheckVariations = looksLikeSku(query);
 
-    // Build query array conditionally - only add variation query if input looks like a SKU
+    // Build query array conditionally - add custom variation SKU search if input looks like a SKU
     const queryPromises = [
       // Query 1: Search product name/description (fuzzy match)
       sdk.SearchProducts({ search: query, first: 8 }),
-      // Query 2: Search by product SKU (exact match)
+      // Query 2: Search by parent product SKU (exact match)
       sdk.SearchProductsBySKU({ sku: query, first: 8 }),
     ];
 
-    // Query 3: Only search variable product variations if query looks like a SKU pattern
-    // This avoids fetching 50 products × 100 variations (5,000 SKUs) for non-SKU searches
+    // Query 3: For SKU-like patterns, use custom WPGraphQL resolver to search variation SKUs
+    // This queries wp_postmeta directly for _sku (replicates Relevanssi behavior without the plugin)
     if (shouldCheckVariations) {
-      queryPromises.push(sdk.ListVariableProductsWithVariationSkus({ first: 50 }));
+      console.log('[Search API] Query looks like SKU, searching variation SKUs for:', query);
+      queryPromises.push(
+        sdk.SearchProductsByVariationSku({ sku: query, first: 10 })
+      );
+    } else {
+      console.log('[Search API] Query does not look like SKU, skipping variation search for:', query);
     }
 
     const results = await Promise.all(queryPromises);
-    const [nameData, skuData, variationData] = results;
+    
+    // Handle variation query results with explicit types
+    let nameData: SearchProductsQuery;
+    let skuData: SearchProductsQuery;
+    let variationData: SearchProductsByVariationSkuQuery | undefined;
+    
+    if (shouldCheckVariations) {
+      [nameData, skuData, variationData] = results as [SearchProductsQuery, SearchProductsQuery, SearchProductsByVariationSkuQuery];
+    } else {
+      [nameData, skuData] = results as [SearchProductsQuery, SearchProductsQuery];
+    }
+    
+    console.log('[Search API] Query results:', {
+      nameMatches: nameData.products?.nodes?.length || 0,
+      skuMatches: skuData.products?.nodes?.length || 0,
+      variationMatches: variationData?.searchProductsByVariationSku?.length || 0,
+    });
 
     // Extract products from GraphQL responses
     const nameResults = (nameData.products?.nodes || []) as SearchProduct[];
     const skuResults = (skuData.products?.nodes || []) as SearchProduct[];
     
-    // Filter variation products to only those with matching variation SKUs (if query ran)
+    // Extract variation search results (custom resolver returns parent products directly)
     let variationResults: SearchProduct[] = [];
-    if (shouldCheckVariations && variationData) {
-      const variationProducts = (variationData.products?.nodes || []);
-      
-      variationResults = variationProducts.filter((product) => {
-        // Type guard: only VariableProduct has variations
-        if (product.__typename !== 'VariableProduct') {
-          return false;
-        }
-        // Safe to cast after typename check - GraphQL unions make type narrowing complex
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const variableProduct = product as any;
-        if (!variableProduct.variations?.nodes) {
-          return false;
-        }
-        // Check if any variation SKU matches the search query exactly
-        return variableProduct.variations.nodes.some((variation: { sku?: string | null }) => 
-          variation.sku?.toLowerCase() === normalizedQuery
-        );
-      }) as SearchProduct[];
+    if (shouldCheckVariations && variationData?.searchProductsByVariationSku) {
+      variationResults = variationData.searchProductsByVariationSku.filter((p): p is SearchProduct => p !== null);
+      console.log('[Search API] Variation SKU search found:', variationResults.length, 'products for query:', normalizedQuery);
     }
 
     // Create a Map to deduplicate by product ID with priority ordering
@@ -136,8 +173,4 @@ export async function POST(request: NextRequest) {
     const mergedResults = Array.from(resultsMap.values()).slice(0, 8);
 
     return NextResponse.json({ products: { nodes: mergedResults } });
-  } catch (error) {
-    logger.error('Search API error', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
 }

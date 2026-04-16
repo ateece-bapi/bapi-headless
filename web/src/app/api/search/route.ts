@@ -50,6 +50,25 @@ function looksLikeSku(query: string): boolean {
  * Uses GraphQL client with GET method for CDN caching
  * Conditionally runs variation query only for SKU-like patterns
  */
+export async function GET(request: NextRequest) {
+  try {
+    const searchParams = request.nextUrl.searchParams;
+    const query = searchParams.get('q');
+
+    if (!query || query.length < 2) {
+      return NextResponse.json({ products: { nodes: [] } });
+    }
+
+    return await performSearch(query);
+  } catch (error) {
+    logger.error('Search API error (GET):', error);
+    return NextResponse.json(
+      { error: 'Failed to search products' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { query } = await request.json();
@@ -57,6 +76,19 @@ export async function POST(request: NextRequest) {
     if (!query || query.length < 2) {
       return NextResponse.json({ products: { nodes: [] } });
     }
+
+    return await performSearch(query);
+  } catch (error) {
+    logger.error('Search API error (POST):', error);
+    return NextResponse.json(
+      { error: 'Failed to search products' },
+      { status: 500 }
+    );
+  }
+}
+
+// Shared search logic for both GET and POST
+async function performSearch(query: string) {
 
     // Use GraphQL client with GET method for CDN caching
     const client = getGraphQLClient(['search'], true);
@@ -138,8 +170,4 @@ export async function POST(request: NextRequest) {
     const mergedResults = Array.from(resultsMap.values()).slice(0, 8);
 
     return NextResponse.json({ products: { nodes: mergedResults } });
-  } catch (error) {
-    logger.error('Search API error', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
 }

@@ -65,22 +65,20 @@ export async function POST(request: NextRequest) {
     const normalizedQuery = query.trim().toLowerCase();
     const shouldCheckVariations = looksLikeSku(query);
 
-    // Build query array conditionally - only add variation query if input looks like a SKU
+    // Build query array conditionally - add custom variation SKU search if input looks like a SKU
     const queryPromises = [
       // Query 1: Search product name/description (fuzzy match)
       sdk.SearchProducts({ search: query, first: 8 }),
-      // Query 2: Search by product SKU (exact match)
+      // Query 2: Search by parent product SKU (exact match)
       sdk.SearchProductsBySKU({ sku: query, first: 8 }),
     ];
 
-    // Query 3 & 4: For SKU-like patterns, use DUAL strategy
-    // Strategy A: Fetch old products (oldest first) - catches legacy products
-    // Strategy B: Search by "pushbutton" - specific search that we KNOW catches hidden product 137299
+    // Query 3: For SKU-like patterns, use custom WPGraphQL resolver to search variation SKUs
+    // This queries wp_postmeta directly for _sku (replicates Relevanssi behavior without the plugin)
     if (shouldCheckVariations) {
-      console.log('[Search API] Query looks like SKU, running dual variation search for:', query);
+      console.log('[Search API] Query looks like SKU, searching variation SKUs for:', query);
       queryPromises.push(
-        sdk.ListVariableProductsWithVariationSkus({ first: 500 }),
-        sdk.SearchVariableProductsWithVariations({ search: 'pushbutton', first: 200 })
+        sdk.SearchProductsByVariationSku({ sku: query, first: 10 })
       );
     } else {
       console.log('[Search API] Query does not look like SKU, skipping variation search for:', query);
@@ -88,10 +86,10 @@ export async function POST(request: NextRequest) {
 
     const results = await Promise.all(queryPromises);
     
-    // Handle dual variation query results
-    let nameData, skuData, listVariationData, searchVariationData;
+    // Handle variation query results
+    let nameData, skuData, variationData;
     if (shouldCheckVariations) {
-      [nameData, skuData, listVariationData, searchVariationData] = results;
+      [nameData, skuData, variationData] = results;
     } else {
       [nameData, skuData] = results;
     }
@@ -99,54 +97,18 @@ export async function POST(request: NextRequest) {
     console.log('[Search API] Query results:', {
       nameMatches: nameData.products?.nodes?.length || 0,
       skuMatches: skuData.products?.nodes?.length || 0,
-      listVariableProducts: listVariationData?.products?.nodes?.length || 0,
-      searchVariableProducts: searchVariationData?.products?.nodes?.length || 0,
+      variationMatches: variationData?.searchProductsByVariationSku?.length || 0,
     });
 
     // Extract products from GraphQL responses
     const nameResults = (nameData.products?.nodes || []) as SearchProduct[];
     const skuResults = (skuData.products?.nodes || []) as SearchProduct[];
     
-    // Merge and filter variation products from BOTH queries
+    // Extract variation search results (custom resolver returns parent products directly)
     let variationResults: SearchProduct[] = [];
-    if (shouldCheckVariations) {
-      // Combine products from both list and search queries
-      const allVariationProducts = [
-        ...(listVariationData?.products?.nodes || []),
-        ...(searchVariationData?.products?.nodes || [])
-      ];
-      
-      // Deduplicate by product ID
-      const uniqueProducts = Array.from(
-        new Map(allVariationProducts.map(p => [p.id, p])).values()
-      );
-      
-      console.log('[Search API] Checking variations for query:', normalizedQuery);
-      console.log('[Search API] Total unique variable products to check:', uniqueProducts.length);
-      
-      variationResults = uniqueProducts.filter((product) => {
-        // Type guard: only VariableProduct has variations
-        if (product.__typename !== 'VariableProduct') {
-          return false;
-        }
-        // Safe to cast after typename check - GraphQL unions make type narrowing complex
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const variableProduct = product as any;
-        if (!variableProduct.variations?.nodes) {
-          return false;
-        }
-        // Check if any variation SKU matches the search query exactly
-        const hasMatch = variableProduct.variations.nodes.some((variation: { sku?: string | null }) => {
-          const match = variation.sku?.toLowerCase() === normalizedQuery;
-          if (match) {
-            console.log('[Search API] Found matching variation SKU:', variation.sku, 'for product:', product.name);
-          }
-          return match;
-        });
-        return hasMatch;
-      }) as SearchProduct[];
-      
-      console.log('[Search API] Variation matches found:', variationResults.length);
+    if (shouldCheckVariations && variationData?.searchProductsByVariationSku) {
+      variationResults = variationData.searchProductsByVariationSku.filter((p): p is SearchProduct => p !== null);
+      console.log('[Search API] Variation SKU search found:', variationResults.length, 'products for query:', normalizedQuery);
     }
 
     // Create a Map to deduplicate by product ID with priority ordering

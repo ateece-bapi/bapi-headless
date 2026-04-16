@@ -13,11 +13,11 @@ export default function WirelessSiteVerificationPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-700 via-primary-500 to-primary-700 py-16 text-white">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <RadioIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">Wireless Site Verification</h1>
-            <p className="mx-auto max-w-narrow text-xl text-primary-50">
+            <p className="mx-auto max-w-2xl text-xl text-primary-50">
               Verify signal strength and optimize your wireless sensor deployment
             </p>
           </div>
@@ -26,8 +26,8 @@ export default function WirelessSiteVerificationPage() {
 
       {/* Introduction */}
       <section className="py-16">
-        <div className="mx-auto max-w-narrow px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg mb-8 max-w-none">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
             <p className="text-lg leading-relaxed text-neutral-700">
               Before deploying BAPI wireless sensors, it&apos;s important to verify that your site
               has adequate signal coverage. This tool helps you test signal strength, identify
@@ -59,7 +59,7 @@ export default function WirelessSiteVerificationPage() {
 
       {/* Verification Process */}
       <section className="bg-neutral-50 py-16">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="mb-12 text-center text-3xl font-bold text-neutral-900">
             Verification Process
           </h2>
@@ -110,7 +110,7 @@ export default function WirelessSiteVerificationPage() {
 
       {/* Signal Strength Guide */}
       <section className="py-16">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-center text-3xl font-bold text-neutral-900">
             Signal Strength Guidelines
           </h2>
@@ -190,7 +190,7 @@ export default function WirelessSiteVerificationPage() {
 
       {/* Verification Kit */}
       <section className="bg-neutral-50 py-16">
-        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
             <div>
               <h2 className="mb-4 text-3xl font-bold text-neutral-900">Site Verification Kit</h2>
@@ -281,7 +281,7 @@ export default function WirelessSiteVerificationPage() {
 
       {/* Tips & Best Practices */}
       <section className="py-16">
-        <div className="mx-auto max-w-narrow px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-center text-3xl font-bold text-neutral-900">
             Tips & Best Practices
           </h2>
@@ -344,7 +344,7 @@ export default function WirelessSiteVerificationPage() {
 
       {/* Support Section */}
       <section className="bg-primary-50 py-12">
-        <div className="mx-auto max-w-narrow px-4 text-center sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-3 text-2xl font-bold text-neutral-900">
             Need Help with Site Verification?
           </h2>

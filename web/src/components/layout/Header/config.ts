@@ -509,7 +509,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         description: t('company.featured.description'),
         cta: t('company.featured.cta'),
         href: '/contact',
-        logo: '/images/brand/People_Building_Sensors1.webp',
+        logo: '/bapi_logo_plain_Web_Digital.png',
       },
     },
   },

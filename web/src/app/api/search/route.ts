@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import logger from '@/lib/logger';
 import { getGraphQLClient } from '@/lib/graphql/client';
-import { getSdk } from '@/lib/graphql/generated';
+import { getSdk, SearchProductsQuery, SearchProductsByVariationSkuQuery } from '@/lib/graphql/generated';
 
 // Type for search product response
 interface SearchProduct {
@@ -118,12 +118,15 @@ async function performSearch(query: string) {
 
     const results = await Promise.all(queryPromises);
     
-    // Handle variation query results
-    let nameData, skuData, variationData;
+    // Handle variation query results with explicit types
+    let nameData: SearchProductsQuery;
+    let skuData: SearchProductsQuery;
+    let variationData: SearchProductsByVariationSkuQuery | undefined;
+    
     if (shouldCheckVariations) {
-      [nameData, skuData, variationData] = results;
+      [nameData, skuData, variationData] = results as [SearchProductsQuery, SearchProductsQuery, SearchProductsByVariationSkuQuery];
     } else {
-      [nameData, skuData] = results;
+      [nameData, skuData] = results as [SearchProductsQuery, SearchProductsQuery];
     }
     
     console.log('[Search API] Query results:', {

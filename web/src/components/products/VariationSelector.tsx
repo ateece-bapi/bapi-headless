@@ -348,8 +348,8 @@ export default function VariationSelector({
               const commonProps = {
                 label: getTranslatedLabel(attribute),
                 attributeSlug, // Stable identifier for DOM ids (accessibility)
-                options: availableOptions, // Options already decoded at source (ProductPage)
-                value, // Value already decoded at source
+                options: availableOptions,
+                value,
                 onChange: (val: string) => handleAttributeChange(attribute.label, val),
               };
 

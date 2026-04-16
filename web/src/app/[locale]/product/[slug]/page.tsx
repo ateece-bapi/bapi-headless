@@ -43,7 +43,7 @@ import { PerformanceTimer } from '@/lib/monitoring/performance';
 import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import { generateProductMetadata, generateCategoryMetadata } from '@/lib/metadata';
 import { getProductBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
-import { normalizeAttributeSlug } from '@/lib/variations';
+import { normalizeAttributeSlug, slugsMatch } from '@/lib/variations';
 import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
@@ -414,17 +414,8 @@ export default async function ProductPage({
                     (variationData.variations?.nodes || []).forEach((variation: any) => {
                       const varAttr = variation.attributes?.nodes?.find((va: any) => {
                         const vaSlug = normalizeAttributeSlug(va.name);
-                        
-                        // Try exact match first
-                        if (vaSlug === attributeSlug) {
-                          return true;
-                        }
-                        
-                        // Try matching with "-and-" removed (WordPress sometimes stores "test-balance" instead of "test-and-balance")
-                        const attributeSlugWithoutAnd = attributeSlug.replace(/-and-/g, '-');
-                        const vaSlugWithoutAnd = vaSlug.replace(/-and-/g, '-');
-                        
-                        return vaSlugWithoutAnd === attributeSlugWithoutAnd;
+                        // Use shared slugsMatch helper for consistent behavior
+                        return slugsMatch(vaSlug, attributeSlug);
                       });
                       if (varAttr?.value) {
                         // Decode HTML entities in option values

@@ -30,12 +30,13 @@ export const MAX_VARIATIONS = 500;
 export function normalizeAttributeSlug(name: string): string {
   return name
     .toLowerCase()
-    // Decode common HTML entities first
-    .replace(/&amp;/g, '&')
+    // Decode common HTML entities. Decode &amp; last to avoid double-decoding
+    // values like "&amp;lt;" into "<" instead of the literal "&lt;".
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&#039;/g, "'")
+    .replace(/&amp;/g, '&')
     // Strip WordPress taxonomy prefixes (pa_, attribute_pa_, etc.)
     .replace(/^(pa_|attribute_pa_)/, '')
     // Convert ampersands to "and" to match WooCommerce slug generation
@@ -60,7 +61,7 @@ export function normalizeAttributeSlug(name: string): string {
  * @param slug2 - Second slug to compare
  * @returns True if slugs match (with or without "-and-")
  */
-function slugsMatch(slug1: string, slug2: string): boolean {
+export function slugsMatch(slug1: string, slug2: string): boolean {
   // Try exact match first
   if (slug1 === slug2) return true;
   
@@ -101,12 +102,18 @@ export function findMatchingVariation(
         // Normalize attribute name to match selectedAttributes keys (normalized slugs)
         const normalizedName = normalizeAttributeSlug(attr.name);
         
-        // Try to find matching selected value using flexible slug matching
-        let selectedValue: string | undefined;
-        for (const [key, value] of Object.entries(selectedAttributes)) {
-          if (slugsMatch(normalizedName, key)) {
-            selectedValue = value;
-            break;
+        // Try exact match first (O(1) lookup)
+        let selectedValue = selectedAttributes[normalizedName];
+        
+        // If no exact match, try with "-and-" removed (WordPress inconsistency)
+        if (selectedValue === undefined) {
+          const normalizedWithoutAnd = normalizedName.replace(/-and-/g, '-');
+          // Check if any selected attribute matches without "-and-"
+          for (const [key, value] of Object.entries(selectedAttributes)) {
+            if (key.replace(/-and-/g, '-') === normalizedWithoutAnd) {
+              selectedValue = value;
+              break;
+            }
           }
         }
         

@@ -215,8 +215,10 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         cta: t('products.featured.cta'),
         href: '/wam',
         badge: t('badges.premiumSolution'),
-        logo: `${process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL?.replace('/graphql', '') || ''}/wp-content/uploads/wam-logo.png`,
-        logoAlt: 'WAM Wireless Asset Monitoring logo',
+        ...(process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL && {
+          logo: `${new URL(process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL).origin}/wp-content/uploads/wam-logo.png`,
+          logoAlt: 'WAM Wireless Asset Monitoring logo',
+        }),
       },
     },
   },

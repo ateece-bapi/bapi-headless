@@ -59,30 +59,47 @@ export class YouTubeClient {
   }
 
   /**
-   * Get channel ID from username
+   * Get channel ID from username or handle
+   * Supports both legacy usernames and new @handles
    */
-  async getChannelId(username: string): Promise<string> {
+  async getChannelId(usernameOrHandle: string): Promise<string> {
     try {
+      // Determine if it's a handle (starts with @) or legacy username
+      const isHandle = usernameOrHandle.startsWith('@');
+      const identifier = isHandle ? usernameOrHandle.slice(1) : usernameOrHandle;
+      const param = isHandle ? 'forHandle' : 'forUsername';
+      
       const response = await fetch(
-        `${this.baseUrl}/channels?part=id&forUsername=${encodeURIComponent(username)}&key=${this.apiKey}`
+        `${this.baseUrl}/channels?part=id&${param}=${encodeURIComponent(identifier)}&key=${this.apiKey}`
       );
 
       if (!response.ok) {
-        throw new Error(`YouTube API error: ${response.status} ${response.statusText}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          `YouTube API error: ${response.status} ${response.statusText}. ` +
+          `Details: ${JSON.stringify(errorData)}`
+        );
       }
 
       const data = await response.json();
 
       if (!data.items || data.items.length === 0) {
-        throw new Error(`Channel not found: ${username}`);
+        throw new Error(`Channel not found: ${usernameOrHandle}`);
       }
 
       const channelId = data.items[0].id;
-      logger.info('[YouTubeClient] Channel ID found', { username, channelId });
+      logger.info('[YouTubeClient] Channel ID found', { 
+        identifier: usernameOrHandle,
+        type: isHandle ? 'handle' : 'username',
+        channelId 
+      });
 
       return channelId;
     } catch (error) {
-      logger.error('[YouTubeClient] Failed to get channel ID', { username, error });
+      logger.error('[YouTubeClient] Failed to get channel ID', { 
+        identifier: usernameOrHandle,
+        error 
+      });
       throw error;
     }
   }

@@ -220,11 +220,20 @@ async function syncVideos(options: CLIOptions) {
   for (const line of lines) {
     if (!line.trim()) continue;
     
-    // Parse CSV (simple parser - assumes quoted fields)
-    const matches = line.match(/"([^"]*)"/g);
-    if (!matches || matches.length < 8) continue;
+    // Parse CSV - handle both quoted and unquoted formats (Excel compatibility)
+    let fields: string[];
+    if (line.includes('"')) {
+      // Quoted format (original)
+      const matches = line.match(/"([^"]*)"/g);
+      if (!matches || matches.length < 8) continue;
+      fields = matches.map(m => m.slice(1, -1).replace(/""/g, '"'));
+    } else {
+      // Unquoted format (Excel saves this way)
+      fields = line.split(',').map(f => f.trim());
+      if (fields.length < 8) continue;
+    }
     
-    const [sku, videoId, title, url, publishedDate, duration, category, notes] = matches.map(m => m.slice(1, -1).replace(/""/g, '"')); // Remove quotes and unescape
+    const [sku, videoId, title, url, publishedDate, duration, category, notes] = fields;
     
     // Skip rows without SKU (not mapped yet)
     if (!sku || sku.trim() === '') {

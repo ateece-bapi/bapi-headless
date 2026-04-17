@@ -24,6 +24,7 @@ export interface MegaMenuFeatured {
   cta: string;
   badge?: string;
   logo?: string; // Optional logo image path (e.g., '/images/logos/wam-logo.svg')
+  logoAlt?: string; // Optional descriptive alt text for logo (defaults to empty string for decorative)
 }
 
 export interface MegaMenuItem {

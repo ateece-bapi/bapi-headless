@@ -35,7 +35,10 @@
     "lighthouse:build": "pnpm run build && lhci autorun --config=lighthouserc.json",
     "check:404": "node scripts/check-404s.mjs",
     "translate:section": "node scripts/translate-section.js",
-    "translate:estimate": "node scripts/translate-section.js --estimate"
+    "translate:estimate": "node scripts/translate-section.js --estimate",
+    "youtube:fetch": "tsx scripts/youtube-cli.ts fetch",
+    "youtube:sync": "tsx scripts/youtube-cli.ts sync",
+    "youtube:help": "tsx scripts/youtube-cli.ts help"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",
@@ -60,6 +63,7 @@
     "graphql-request": "^7.3.4",
     "graphql-tag": "^2.12.6",
     "jsonwebtoken": "^9.0.3",
+    "lite-youtube-embed": "^0.3.4",
     "lodash-es": "^4.17.23",
     "next": "^16.0.7",
     "next-intl": "^4.6.1",

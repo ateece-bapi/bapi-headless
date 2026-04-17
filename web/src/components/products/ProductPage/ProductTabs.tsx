@@ -4,6 +4,8 @@ import { FileTextIcon, VideoIcon, BookOpenIcon, DownloadIcon, ExternalLinkIcon }
 import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
 import { sanitizeDescription } from '@/lib/sanitizeDescription';
+import YouTubeEmbed from '@/components/shared/YouTubeEmbed';
+import { extractYouTubeId } from '@/lib/youtube/client';
 
 /**
  * Decode HTML entities universally (works on server and client)
@@ -232,14 +234,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
               <div className="space-y-8">
                 {product.videos.map((vid, idx) => {
                   // Extract YouTube video ID from URL
-                  const getYouTubeId = (url: string) => {
-                    const match = url.match(
-                      /(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/watch\?.+&v=))([^&\n?#]+)/
-                    );
-                    return match?.[1];
-                  };
-
-                  const videoId = getYouTubeId(vid.url);
+                  const videoId = extractYouTubeId(vid.url);
 
                   return (
                     <div key={vid.url + idx} className="group">
@@ -251,15 +246,11 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                       )}
 
                       {videoId ? (
-                        <div className="relative aspect-video w-full overflow-hidden rounded-xl border-2 border-neutral-200 shadow-2xl transition-all duration-300 group-hover:border-primary-300">
-                          <iframe
-                            src={`https://www.youtube.com/embed/${videoId}`}
-                            title={decodeHtmlEntities(vid.title)}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="absolute inset-0 h-full w-full"
-                          />
-                        </div>
+                        <YouTubeEmbed
+                          videoId={videoId}
+                          title={decodeHtmlEntities(vid.title)}
+                          className="shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
+                        />
                       ) : (
                         <a
                           href={vid.url}

@@ -384,15 +384,6 @@
         "productSelector": "产品选择器",
         "productSelectorDesc": "找到合适的传感器"
       },
-      "learningCenter": {
-        "title": "学习中心",
-        "videos": "视频库",
-        "videosDesc": "操作视频和教程",
-        "caseStudies": "案例研究",
-        "caseStudiesDesc": "实际成功案例",
-        "webinars": "网络研讨会",
-        "webinarsDesc": "现场培训课程"
-      },
       "featured": {
         "title": "需要技术文档?",
         "description": "访问我们完整的应用说明、数据表和技术资源库,帮助您设计和指定完美的解决方案。",

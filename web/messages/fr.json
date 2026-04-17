@@ -384,15 +384,6 @@
         "productSelector": "Sélecteur de produits",
         "productSelectorDesc": "Trouvez le bon capteur"
       },
-      "learningCenter": {
-        "title": "Centre d'apprentissage",
-        "videos": "Bibliothèque de vidéos",
-        "videosDesc": "Vidéos et tutoriels pratiques",
-        "caseStudies": "Études de cas",
-        "caseStudiesDesc": "Histoires de réussite concrètes",
-        "webinars": "Webinaires",
-        "webinarsDesc": "Sessions de formation en direct"
-      },
       "featured": {
         "title": "Besoin de documentation technique ?",
         "description": "Accédez à notre bibliothèque complète de notes d'application, de fiches techniques et de ressources techniques pour vous aider à concevoir et à spécifier la solution parfaite.",

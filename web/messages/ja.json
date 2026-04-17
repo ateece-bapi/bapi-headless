@@ -384,15 +384,6 @@
         "productSelector": "製品セレクター",
         "productSelectorDesc": "適切なセンサーを見つける"
       },
-      "learningCenter": {
-        "title": "ラーニングセンター",
-        "videos": "ビデオライブラリ",
-        "videosDesc": "ハウツービデオとチュートリアル",
-        "caseStudies": "事例研究",
-        "caseStudiesDesc": "実際の成功事例",
-        "webinars": "ウェビナー",
-        "webinarsDesc": "ライブトレーニングセッション"
-      },
       "featured": {
         "title": "テクニカルドキュメンテーションが必要ですか?",
         "description": "アプリケーションノート、データシート、テクニカルリソースの完全なライブラリにアクセスして、完璧なソリューションを設計し、仕様を定めることができます。",

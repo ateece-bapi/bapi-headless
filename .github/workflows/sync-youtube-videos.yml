@@ -1,0 +1,116 @@
+name: Sync YouTube Videos
+
+# Automatically sync YouTube channel videos to WordPress products
+# Runs daily at 2am UTC or can be triggered manually
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2am UTC
+  workflow_dispatch:  # Allow manual trigger
+    inputs:
+      dry_run:
+        description: 'Run in dry-run mode (no actual changes)'
+        required: false
+        type: boolean
+        default: true
+      limit:
+        description: 'Limit number of videos to fetch (0 = all)'
+        required: false
+        type: number
+        default: 0
+
+jobs:
+  sync-videos:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'web/pnpm-lock.yaml'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        working-directory: ./web
+        run: pnpm install --frozen-lockfile
+
+      - name: Fetch YouTube videos
+        id: fetch
+        working-directory: ./web
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_CHANNEL_USERNAME: 'BAPIHVAC'
+        run: |
+          LIMIT_FLAG=""
+          if [ "${{ inputs.limit }}" -gt "0" ]; then
+            LIMIT_FLAG="--limit=${{ inputs.limit }}"
+          fi
+          
+          node scripts/youtube-cli.ts fetch $LIMIT_FLAG --output=youtube-videos.csv
+          
+          echo "videos_file=youtube-videos.csv" >> $GITHUB_OUTPUT
+
+      - name: Upload CSV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: youtube-videos-mapping
+          path: web/youtube-videos.csv
+          retention-days: 30
+
+      - name: Sync to WordPress
+        if: success()
+        working-directory: ./web
+        env:
+          WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
+          WORDPRESS_AUTH_TOKEN: ${{ secrets.WORDPRESS_AUTH_TOKEN }}
+        run: |
+          DRY_RUN_FLAG=""
+          if [ "${{ inputs.dry_run }}" = "true" ] || [ "${{ github.event_name }}" = "schedule" ]; then
+            DRY_RUN_FLAG="--dry-run"
+            echo "Running in DRY RUN mode"
+          fi
+          
+          node scripts/youtube-cli.ts sync --file=youtube-videos.csv $DRY_RUN_FLAG
+
+      - name: Create summary
+        if: always()
+        run: |
+          echo "## YouTube Video Sync Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Run mode:** ${{ inputs.dry_run == 'true' && 'DRY RUN' || 'LIVE' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "web/youtube-videos.csv" ]; then
+            TOTAL_VIDEOS=$(wc -l < web/youtube-videos.csv)
+            echo "**Videos processed:** $((TOTAL_VIDEOS - 1))" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Notify on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '❌ YouTube Video Sync Failed',
+              body: `The automated YouTube video sync workflow failed.
+              
+              **Workflow:** ${context.workflow}
+              **Run:** ${context.runNumber}
+              **Commit:** ${context.sha}
+              
+              [View logs](${context.payload.repository.html_url}/actions/runs/${context.runId})`,
+              labels: ['automation', 'bug']
+            })

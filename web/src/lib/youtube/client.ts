@@ -12,7 +12,7 @@
  */
 
 import logger from '@/lib/logger';
-import type { YouTubeAPIConfig, YouTubeVideo, YouTubeVideoRaw } from './types';
+import type { YouTubeAPIConfig, YouTubeVideo, YouTubeVideoRaw, ChannelVideosConfig } from './types';
 
 /**
  * Parse ISO 8601 duration to seconds
@@ -107,7 +107,7 @@ export class YouTubeClient {
   /**
    * Fetch all videos from a channel (handles pagination)
    */
-  async getChannelVideos(config: YouTubeAPIConfig): Promise<YouTubeVideo[]> {
+  async getChannelVideos(config: ChannelVideosConfig): Promise<YouTubeVideo[]> {
     const videos: YouTubeVideo[] = [];
     let channelId = config.channelId;
 

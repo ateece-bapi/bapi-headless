@@ -119,6 +119,17 @@ export interface YouTubeAPIConfig {
 }
 
 /**
+ * Configuration for fetching channel videos
+ * (apiKey not required - already set in YouTubeClient constructor)
+ */
+export interface ChannelVideosConfig {
+  channelId?: string;
+  channelUsername?: string;
+  maxResults?: number;
+  order?: 'date' | 'rating' | 'relevance' | 'title' | 'viewCount';
+}
+
+/**
  * Sync operation result
  */
 export interface SyncResult {

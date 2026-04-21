@@ -16,8 +16,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { YouTubeClient, extractProductSKUs, categorizeVideo } from '../src/lib/youtube';
-import type { VideoProductMapping } from '../src/lib/youtube/types';
+import { YouTubeClient } from '../src/lib/youtube';
 
 // Load environment variables
 import dotenv from 'dotenv';
@@ -30,6 +29,7 @@ interface CLIOptions {
   command: 'fetch' | 'sync' | 'generate-json' | 'help';
   limit?: number;
   file?: string;
+  output?: string;
   dryRun?: boolean;
   batch?: number;
 }
@@ -50,6 +50,9 @@ function parseArgs(): CLIOptions {
           break;
         case 'file':
           options.file = value;
+          break;
+        case 'output':
+          options.output = value;
           break;
         case 'dry-run':
           options.dryRun = true;
@@ -137,7 +140,10 @@ async function fetchVideos(options: CLIOptions) {
     console.log('📝 Generating manual mapping CSV...');
     console.log('');
 
-    const csvPath = path.join(process.cwd(), 'youtube-videos-manual.csv');
+    // Use --output flag if provided, otherwise default to youtube-videos-manual.csv
+    const csvPath = options.output 
+      ? path.join(process.cwd(), options.output)
+      : path.join(process.cwd(), 'youtube-videos-manual.csv');
     const csvHeader = 'Product SKU (FILL IN),Video ID,Video Title,Video URL,Published Date,Duration,Category (FILL IN),Notes\n';
     const csvRows = videos.map(v => {
       const url = `https://www.youtube.com/watch?v=${v.id}`;
@@ -311,20 +317,26 @@ async function syncVideos(options: CLIOptions) {
     console.log('');
     
   } else {
-    console.log('⚠️  ACTUAL SYNC TO WORDPRESS');
-    console.log('');
-    console.log('WordPress sync functionality will:');
-    console.log('1. Connect to WordPress REST API');
-    console.log('2. Find products by SKU');
-    console.log('3. Update ACF "product_videos" field with video data');
-    console.log('');
-    console.log('❌ NOT YET IMPLEMENTED');
-    console.log('');
-    console.log('For May 4th launch, you can:');
-    console.log('• Use the CSV to manually add videos to products in WordPress admin');
-    console.log('• OR we can implement the WordPress sync API (requires ACF setup)');
-    console.log('');
-    console.log('Would you like me to implement the WordPress sync?');
+    console.error('❌ ERROR: WordPress sync not configured for automated execution');
+    console.error('');
+    console.error('📋 Current Implementation (Production):');
+    console.error('   ✅ Manual CSV mapping → JSON generation → Product pages');
+    console.error('   ✅ Videos load from edge JSON (fast, no database queries)');
+    console.error('   ✅ This approach is production-ready and recommended');
+    console.error('');
+    console.error('📋 To sync to WordPress (Optional):');
+    console.error('   The WordPress sync client is available in:');
+    console.error('   src/lib/youtube/wordpress-sync.ts');
+    console.error('');
+    console.error('   Required environment variables:');
+    console.error('   - WORDPRESS_API_URL=https://your-site.com');
+    console.error('   - WORDPRESS_AUTH_TOKEN=\"Bearer your-jwt-token\"');
+    console.error('   - OR WORDPRESS_AUTH_TOKEN=\"Basic $(echo -n user:pass | base64)\"');
+    console.error('');
+    console.error('💡 For May 4th launch, use JSON generation instead:');
+    console.error('   pnpm run youtube:generate-json');
+    console.error('');
+    process.exit(1);
   }
 }
 

@@ -12,7 +12,7 @@
  */
 
 import logger from '@/lib/logger';
-import type { YouTubeAPIConfig, YouTubeVideo, YouTubeVideoRaw, ChannelVideosConfig } from './types';
+import type { YouTubeVideo, YouTubeVideoRaw, ChannelVideosConfig } from './types';
 
 /**
  * Parse ISO 8601 duration to seconds

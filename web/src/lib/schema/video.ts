@@ -10,6 +10,7 @@
  */
 
 import type { WithContext, VideoObject } from 'schema-dts';
+import { extractYouTubeId } from '@/lib/youtube/client';
 
 /**
  * Video schema input data
@@ -78,8 +79,10 @@ export function generateVideoSchema(
     // Duration (ISO 8601: PT#M#S)
     duration: video.duration,
     
-    // Upload date (ISO 8601)
-    uploadDate: video.uploadDate || new Date().toISOString(),
+    // Upload date (ISO 8601) - only include when the actual publish date is known
+    ...(video.uploadDate && {
+      uploadDate: video.uploadDate,
+    }),
     
     // Publisher (BAPI)
     publisher: {
@@ -130,29 +133,6 @@ export function generateMultipleVideoSchemas(
       siteUrl
     )
   );
-}
-
-/**
- * Extract YouTube video ID from URL
- */
-function extractYouTubeId(url: string): string | null {
-  if (!url) return null;
-  
-  const patterns = [
-    /(?:youtube\.com\/watch\?v=)([^&\n?#]+)/,
-    /(?:youtube\.com\/embed\/)([^&\n?#]+)/,
-    /(?:youtu\.be\/)([^&\n?#]+)/,
-    /(?:youtube\.com\/v\/)([^&\n?#]+)/,
-  ];
-  
-  for (const pattern of patterns) {
-    const match = url.match(pattern);
-    if (match?.[1]) {
-      return match[1];
-    }
-  }
-  
-  return null;
 }
 
 /**

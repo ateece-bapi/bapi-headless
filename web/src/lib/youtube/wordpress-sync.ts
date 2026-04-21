@@ -21,17 +21,24 @@ import type {
 
 /**
  * WordPress REST API client for video sync
+ * 
+ * Supports both JWT tokens (Bearer) and Application Passwords (Basic auth).
+ * Pass the full Authorization header value (e.g., "Bearer token" or "Basic base64").
  */
 export class WordPressSyncClient {
   private baseUrl: string;
-  private authToken: string;
+  private authHeader: string;
 
   constructor(baseUrl: string, authToken: string) {
     if (!baseUrl || !authToken) {
       throw new Error('WordPress URL and auth token are required');
     }
     this.baseUrl = baseUrl.replace(/\/$/, ''); // Remove trailing slash
-    this.authToken = authToken;
+    
+    // Accept full Authorization header or just the token (default to Bearer)
+    this.authHeader = authToken.startsWith('Bearer ') || authToken.startsWith('Basic ')
+      ? authToken
+      : `Bearer ${authToken}`;
   }
 
   /**
@@ -43,7 +50,7 @@ export class WordPressSyncClient {
         `${this.baseUrl}/wp-json/wc/v3/products?sku=${encodeURIComponent(sku)}`,
         {
           headers: {
-            Authorization: `Bearer ${this.authToken}`,
+            Authorization: this.authHeader,
           },
         }
       );
@@ -80,7 +87,7 @@ export class WordPressSyncClient {
     try {
       const response = await fetch(`${this.baseUrl}/wp-json/acf/v3/products/${productId}`, {
         headers: {
-          Authorization: `Bearer ${this.authToken}`,
+          Authorization: this.authHeader,
         },
       });
 
@@ -111,7 +118,7 @@ export class WordPressSyncClient {
       const response = await fetch(`${this.baseUrl}/wp-json/acf/v3/products/${productId}`, {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${this.authToken}`,
+          Authorization: this.authHeader,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -208,11 +215,10 @@ export class WordPressSyncClient {
     mappings: VideoProductMapping[],
     options: {
       dryRun?: boolean;
-      skipExisting?: boolean;
       batchSize?: number;
     } = {}
   ): Promise<SyncResult> {
-    const { dryRun = false, skipExisting = true, batchSize = 10 } = options;
+    const { dryRun = false, batchSize = 10 } = options;
 
     const result: SyncResult = {
       success: true,
@@ -226,7 +232,6 @@ export class WordPressSyncClient {
     logger.info('[WordPressSync] Starting sync', {
       totalMappings: mappings.length,
       dryRun,
-      skipExisting,
       batchSize,
     });
 

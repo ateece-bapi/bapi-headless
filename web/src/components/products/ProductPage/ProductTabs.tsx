@@ -276,33 +276,36 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                         </h3>
                       )}
 
-                      {videoId ? (
-                        <YouTubeEmbed
-                          videoId={videoId}
-                          title={decodeHtmlEntities(vid.title)}
-                          className="shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
-                        />
-                      ) : (
-                        <a
-                          href={vid.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group/link flex items-center justify-between gap-4 rounded-xl border-2 border-neutral-200 p-6 shadow-sm transition-all duration-300 hover:border-primary-500 hover:bg-gradient-to-r hover:from-primary-50 hover:to-transparent hover:shadow-lg"
-                        >
-                          <div className="flex min-w-0 flex-1 items-center gap-4">
-                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 shadow-md transition-transform group-hover/link:scale-110">
-                              <VideoIcon className="h-7 w-7 text-white" />
+                      {/* Video container with max-width for optimal viewing */}
+                      <div className="mx-auto max-w-4xl">
+                        {videoId ? (
+                          <YouTubeEmbed
+                            videoId={videoId}
+                            title={decodeHtmlEntities(vid.title)}
+                            className="shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
+                          />
+                          ) : (
+                          <a
+                            href={vid.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group/link flex items-center justify-between gap-4 rounded-xl border-2 border-neutral-200 p-6 shadow-sm transition-all duration-300 hover:border-primary-500 hover:bg-gradient-to-r hover:from-primary-50 hover:to-transparent hover:shadow-lg"
+                          >
+                            <div className="flex min-w-0 flex-1 items-center gap-4">
+                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 shadow-md transition-transform group-hover/link:scale-110">
+                                <VideoIcon className="h-7 w-7 text-white" />
+                              </div>
+                              <div className="min-w-0 flex-1">
+                                <p className="truncate text-lg font-bold text-neutral-900 transition-colors group-hover/link:text-primary-700">
+                                  {decodeHtmlEntities(vid.title)}
+                                </p>
+                                <p className="mt-1 text-sm text-neutral-700">Click to watch video</p>
+                              </div>
                             </div>
-                            <div className="min-w-0 flex-1">
-                              <p className="truncate text-lg font-bold text-neutral-900 transition-colors group-hover/link:text-primary-700">
-                                {decodeHtmlEntities(vid.title)}
-                              </p>
-                              <p className="mt-1 text-sm text-neutral-700">Click to watch video</p>
-                            </div>
-                          </div>
-                          <ExternalLinkIcon className="h-6 w-6 shrink-0 text-neutral-400 transition-colors group-hover/link:text-primary-600" />
-                        </a>
-                      )}
+                            <ExternalLinkIcon className="h-6 w-6 shrink-0 text-neutral-400 transition-colors group-hover/link:text-primary-600" />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   );
                 })}

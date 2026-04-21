@@ -343,8 +343,8 @@ export default function YouTubeEmbed({
       role="region"
       aria-label={`Video: ${title}`}
     >
-      {!playerReady ? (
-        // Facade: Thumbnail with play button (shown until player is ready)
+      {/* Facade: Thumbnail with play button (shown until player is ready) */}
+      {!playerReady && (
         <button
           onClick={handlePlay}
           className="group relative h-full w-full cursor-pointer border-0 bg-black p-0 transition-opacity hover:opacity-90"
@@ -400,11 +400,13 @@ export default function YouTubeEmbed({
             {showDuration && durationSeconds && !isLoaded && ` (Duration: ${formatDuration(durationSeconds)})`}
           </span>
         </button>
-      ) : (
-        // YouTube Player API container (hidden until ready)
+      )}
+
+      {/* YouTube Player API container (rendered when loaded, visible when ready) */}
+      {isLoaded && (
         <div
           id={playerElementId}
-          className="absolute inset-0 h-full w-full"
+          className={`absolute inset-0 h-full w-full ${playerReady ? 'opacity-100' : 'opacity-0'}`}
           title={title}
         />
       )}

@@ -343,11 +343,22 @@ export default function YouTubeEmbed({
       role="region"
       aria-label={`Video: ${title}`}
     >
+      {/* YouTube Player API container (rendered when loaded, hidden until ready) */}
+      {isLoaded && (
+        <div
+          id={playerElementId}
+          className={`absolute inset-0 h-full w-full transition-opacity duration-300 ${
+            playerReady ? 'z-10 opacity-100' : 'z-0 opacity-0 pointer-events-none'
+          }`}
+          title={title}
+        />
+      )}
+
       {/* Facade: Thumbnail with play button (shown until player is ready) */}
       {!playerReady && (
         <button
           onClick={handlePlay}
-          className="group relative h-full w-full cursor-pointer border-0 bg-black p-0 transition-opacity hover:opacity-90"
+          className="group absolute inset-0 z-20 h-full w-full cursor-pointer border-0 bg-black p-0 transition-opacity hover:opacity-90"
           aria-label={`Play video: ${title}`}
           type="button"
           disabled={isLoaded && !playerReady}
@@ -400,15 +411,6 @@ export default function YouTubeEmbed({
             {showDuration && durationSeconds && !isLoaded && ` (Duration: ${formatDuration(durationSeconds)})`}
           </span>
         </button>
-      )}
-
-      {/* YouTube Player API container (rendered when loaded, visible when ready) */}
-      {isLoaded && (
-        <div
-          id={playerElementId}
-          className={`absolute inset-0 h-full w-full ${playerReady ? 'opacity-100' : 'opacity-0'}`}
-          title={title}
-        />
       )}
 
       {/* Accessibility notice (visible after player ready) */}

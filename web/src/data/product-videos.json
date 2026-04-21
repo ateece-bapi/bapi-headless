@@ -1,0 +1,470 @@
+{
+  "50101": [
+    {
+      "id": "X6LdBTqJIBM",
+      "title": "DS6R - Dry Switch Monitor (Resistive Output)",
+      "url": "https://www.youtube.com/watch?v=X6LdBTqJIBM",
+      "publishedAt": "8/15/2024",
+      "duration": "PT37S",
+      "category": "Product Demo"
+    }
+  ],
+  "50105": [
+    {
+      "id": "mSMI_VoPkNU",
+      "title": "Backplanes for ETA",
+      "url": "https://www.youtube.com/watch?v=mSMI_VoPkNU",
+      "publishedAt": "9/23/2024",
+      "duration": "PT57S",
+      "category": "Product Demo"
+    }
+  ],
+  "50127": [
+    {
+      "id": "LTWOaKa1Hds",
+      "title": "RPTR - RS-485 Network Repeater",
+      "url": "https://www.youtube.com/watch?v=LTWOaKa1Hds",
+      "publishedAt": "8/23/2024",
+      "duration": "PT57S",
+      "category": "Product Demo"
+    }
+  ],
+  "50128": [
+    {
+      "id": "Yv0IM-0m5C0",
+      "title": "FOX - RS-485 Fiber Optic Transceiver for Multi-Mode Cable",
+      "url": "https://www.youtube.com/watch?v=Yv0IM-0m5C0",
+      "publishedAt": "8/23/2024",
+      "duration": "PT1M",
+      "category": "Product Demo"
+    }
+  ],
+  "50156": [
+    {
+      "id": "bFgRQeAs8Vk",
+      "title": "BAPI Refrigerant Leak Detectors",
+      "url": "https://www.youtube.com/watch?v=bFgRQeAs8Vk",
+      "publishedAt": "6/26/2024",
+      "duration": "PT30S",
+      "category": "Product Demo"
+    }
+  ],
+  "135373": [
+    {
+      "id": "I8fRWyxl2As",
+      "title": "VC350A-EZ Voltage Converter",
+      "url": "https://www.youtube.com/watch?v=I8fRWyxl2As",
+      "publishedAt": "5/10/2024",
+      "duration": "PT31S",
+      "category": "Product Demo"
+    }
+  ],
+  "135412": [
+    {
+      "id": "zb_eY5M4x2Q",
+      "title": "BAPI-Guard Thermostat Protector",
+      "url": "https://www.youtube.com/watch?v=zb_eY5M4x2Q",
+      "publishedAt": "5/13/2024",
+      "duration": "PT30S",
+      "category": "Product Demo"
+    }
+  ],
+  "135432": [
+    {
+      "id": "Q2P29YwXX-c",
+      "title": "BAPI Adaptor Plates for Room Sensors",
+      "url": "https://www.youtube.com/watch?v=Q2P29YwXX-c",
+      "publishedAt": "8/1/2024",
+      "duration": "PT36S",
+      "category": "Product Demo"
+    }
+  ],
+  "136296": [
+    {
+      "id": "eMPhjXq70-4",
+      "title": "BAPI Duct Temperature Transmitters",
+      "url": "https://www.youtube.com/watch?v=eMPhjXq70-4",
+      "publishedAt": "6/4/2024",
+      "duration": "PT30S",
+      "category": "Product Demo"
+    }
+  ],
+  "136388": [
+    {
+      "id": "ZUpl2HUyOhQ",
+      "title": "BAPI Duct Rigid Averaging Sensors",
+      "url": "https://www.youtube.com/watch?v=ZUpl2HUyOhQ",
+      "publishedAt": "6/17/2024",
+      "duration": "PT31S",
+      "category": "Product Demo"
+    }
+  ],
+  "136462": [
+    {
+      "id": "apYV5rZ5yeQ",
+      "title": "BAPI Rigid Averaging Transmitters",
+      "url": "https://www.youtube.com/watch?v=apYV5rZ5yeQ",
+      "publishedAt": "6/19/2024",
+      "duration": "PT33S",
+      "category": "Product Demo"
+    },
+    {
+      "id": "61nulHuxpCk",
+      "title": "BAPI Duct Averaging Transmitters",
+      "url": "https://www.youtube.com/watch?v=61nulHuxpCk",
+      "publishedAt": "6/5/2024",
+      "duration": "PT31S",
+      "category": "Product Demo"
+    }
+  ],
+  "136511": [
+    {
+      "id": "mv85fyNFDFw",
+      "title": "BAPI Submersible Duct Sensors",
+      "url": "https://www.youtube.com/watch?v=mv85fyNFDFw",
+      "publishedAt": "6/20/2024",
+      "duration": "PT32S",
+      "category": "Product Demo"
+    }
+  ],
+  "136548": [
+    {
+      "id": "5ruRcHD4V2Q",
+      "title": "BAPI Submersible Duct Transmitters",
+      "url": "https://www.youtube.com/watch?v=5ruRcHD4V2Q",
+      "publishedAt": "6/20/2024",
+      "duration": "PT34S",
+      "category": "Product Demo"
+    }
+  ],
+  "136803": [
+    {
+      "id": "JJ_eEjwe_JI",
+      "title": "BAPI Immersion Transmitters",
+      "url": "https://www.youtube.com/watch?v=JJ_eEjwe_JI",
+      "publishedAt": "6/5/2024",
+      "duration": "PT31S",
+      "category": "Product Demo"
+    }
+  ],
+  "136889": [
+    {
+      "id": "twQS7fOK2SQ",
+      "title": "BAPI Strap Sensors",
+      "url": "https://www.youtube.com/watch?v=twQS7fOK2SQ",
+      "publishedAt": "4/24/2024",
+      "duration": "PT36S",
+      "category": "Product Demo"
+    }
+  ],
+  "136906": [
+    {
+      "id": "xPuH_NgKOV8",
+      "title": "BAPI Strap Temperature Transmitters",
+      "url": "https://www.youtube.com/watch?v=xPuH_NgKOV8",
+      "publishedAt": "6/6/2024",
+      "duration": "PT38S",
+      "category": "Product Demo"
+    }
+  ],
+  "136959": [
+    {
+      "id": "lig3i6v6nbo",
+      "title": "BAPI Remote Probe Sensors",
+      "url": "https://www.youtube.com/watch?v=lig3i6v6nbo",
+      "publishedAt": "6/17/2024",
+      "duration": "PT37S",
+      "category": "Product Demo"
+    }
+  ],
+  "136996": [
+    {
+      "id": "zSGQd5A2VyQ",
+      "title": "BAPI Remote Probe Transmitters",
+      "url": "https://www.youtube.com/watch?v=zSGQd5A2VyQ",
+      "publishedAt": "6/17/2024",
+      "duration": "PT31S",
+      "category": "Product Demo"
+    }
+  ],
+  "137051": [
+    {
+      "id": "g6UOu8zYNKE",
+      "title": "BAPI Concave Remote Probes",
+      "url": "https://www.youtube.com/watch?v=g6UOu8zYNKE",
+      "publishedAt": "6/12/2024",
+      "duration": "PT38S",
+      "category": "Product Demo"
+    }
+  ],
+  "137113": [
+    {
+      "id": "BXyvFCjPAwI",
+      "title": "BAPI Concave Remote Transmitter",
+      "url": "https://www.youtube.com/watch?v=BXyvFCjPAwI",
+      "publishedAt": "6/12/2024",
+      "duration": "PT35S",
+      "category": "Product Demo"
+    }
+  ],
+  "137236": [
+    {
+      "id": "h3Z-8ukUd9c",
+      "title": "BAPI Thermobuffer Sensors",
+      "url": "https://www.youtube.com/watch?v=h3Z-8ukUd9c",
+      "publishedAt": "5/16/2024",
+      "duration": "PT33S",
+      "category": "Product Demo"
+    }
+  ],
+  "137285": [
+    {
+      "id": "ZzPyukGpYig",
+      "title": "BAPI Thermobuffer Transmitters",
+      "url": "https://www.youtube.com/watch?v=ZzPyukGpYig",
+      "publishedAt": "6/14/2024",
+      "duration": "PT37S",
+      "category": "Product Demo"
+    }
+  ],
+  "137504": [
+    {
+      "id": "FN3w99eD44U",
+      "title": "BAPI Button Sensor",
+      "url": "https://www.youtube.com/watch?v=FN3w99eD44U",
+      "publishedAt": "4/25/2024",
+      "duration": "PT31S",
+      "category": "Product Demo"
+    }
+  ],
+  "137612": [
+    {
+      "id": "Oz1KR9ZKD_A",
+      "title": "BAPI Wall Plate Sensors",
+      "url": "https://www.youtube.com/watch?v=Oz1KR9ZKD_A",
+      "publishedAt": "5/16/2024",
+      "duration": "PT33S",
+      "category": "Product Demo"
+    }
+  ],
+  "137636": [
+    {
+      "id": "T4CpwAxjsvI",
+      "title": "BAPI Duct Humidity Sensors",
+      "url": "https://www.youtube.com/watch?v=T4CpwAxjsvI",
+      "publishedAt": "5/3/2024",
+      "duration": "PT29S",
+      "category": "Product Demo"
+    }
+  ],
+  "137652": [
+    {
+      "id": "T4CpwAxjsvI",
+      "title": "BAPI Duct Humidity Sensors",
+      "url": "https://www.youtube.com/watch?v=T4CpwAxjsvI",
+      "publishedAt": "5/3/2024",
+      "duration": "PT29S",
+      "category": "Product Demo"
+    }
+  ],
+  "137952": [
+    {
+      "id": "1JxA6vWkTSw",
+      "title": "Fixed Range Pressure Sensor",
+      "url": "https://www.youtube.com/watch?v=1JxA6vWkTSw",
+      "publishedAt": "9/18/2024",
+      "duration": "PT36S",
+      "category": "Product Demo"
+    }
+  ],
+  "138079": [
+    {
+      "id": "ozhndvjDQtQ",
+      "title": "BAPI Carbon Monoxide (CO) Sensors",
+      "url": "https://www.youtube.com/watch?v=ozhndvjDQtQ",
+      "publishedAt": "5/7/2024",
+      "duration": "PT36S",
+      "category": "Product Demo"
+    }
+  ],
+  "139252": [
+    {
+      "id": "vF8j7pbZAV0",
+      "title": "BAPI Pressure Switches",
+      "url": "https://www.youtube.com/watch?v=vF8j7pbZAV0",
+      "publishedAt": "6/25/2024",
+      "duration": "PT41S",
+      "category": "Product Demo"
+    }
+  ],
+  "143762": [
+    {
+      "id": "KirI2n6F4Pc",
+      "title": "BAPI Pressure Pickup Ports",
+      "url": "https://www.youtube.com/watch?v=KirI2n6F4Pc",
+      "publishedAt": "5/17/2024",
+      "duration": "PT36S",
+      "category": "Product Demo"
+    }
+  ],
+  "160078": [
+    {
+      "id": "sHtZWZTjEvk",
+      "title": "BAPI Remote Surface Sensors",
+      "url": "https://www.youtube.com/watch?v=sHtZWZTjEvk",
+      "publishedAt": "6/21/2024",
+      "duration": "PT43S",
+      "category": "Product Demo"
+    }
+  ],
+  "401330": [
+    {
+      "id": "w7H1pOE2ISE",
+      "title": "BAPI Submersible Averaging Sensors",
+      "url": "https://www.youtube.com/watch?v=w7H1pOE2ISE",
+      "publishedAt": "6/19/2024",
+      "duration": "PT33S",
+      "category": "Product Demo"
+    }
+  ],
+  "401403": [
+    {
+      "id": "WwDPtDqiXIA",
+      "title": "BAPI Submersible Averaging Transmitters",
+      "url": "https://www.youtube.com/watch?v=WwDPtDqiXIA",
+      "publishedAt": "6/19/2024",
+      "duration": "PT31S",
+      "category": "Product Demo"
+    }
+  ],
+  "402797": [
+    {
+      "id": "DTDm6EQcGOY",
+      "title": "BAPI Particulate Matter Sensors",
+      "url": "https://www.youtube.com/watch?v=DTDm6EQcGOY",
+      "publishedAt": "5/14/2024",
+      "duration": "PT33S",
+      "category": "Product Demo"
+    }
+  ],
+  "418359": [
+    {
+      "id": "FER_CsSUkBo",
+      "title": "Digital CO & NO2 Sensor",
+      "url": "https://www.youtube.com/watch?v=FER_CsSUkBo",
+      "publishedAt": "9/13/2024",
+      "duration": "PT29S",
+      "category": "Product Demo"
+    }
+  ],
+  "420600": [
+    {
+      "id": "Dtr7NTkw4BA",
+      "title": "BAPI Water Leak Detectors",
+      "url": "https://www.youtube.com/watch?v=Dtr7NTkw4BA",
+      "publishedAt": "5/8/2024",
+      "duration": "PT34S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/3324VC": [
+    {
+      "id": "xmEC7_yvN0A",
+      "title": "3324VC Voltage Converter",
+      "url": "https://www.youtube.com/watch?v=xmEC7_yvN0A",
+      "publishedAt": "9/19/2024",
+      "duration": "PT44S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/PKP-100": [
+    {
+      "id": "I-5nAcxDDls",
+      "title": "Pierceable Knockout Plugs",
+      "url": "https://www.youtube.com/watch?v=I-5nAcxDDls",
+      "publishedAt": "9/17/2024",
+      "duration": "PT35S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/SOX": [
+    {
+      "id": "UE0HLV9xBXA",
+      "title": "SOX - RS-485 Fiber Optic Transceiver for Single Mode Cable",
+      "url": "https://www.youtube.com/watch?v=UE0HLV9xBXA",
+      "publishedAt": "8/23/2024",
+      "duration": "PT57S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/DS8": [
+    {
+      "id": "ZOUAfEMSVBs",
+      "title": "DS8 - Discrete Summary Module (8 Input)",
+      "url": "https://www.youtube.com/watch?v=ZOUAfEMSVBs",
+      "publishedAt": "8/15/2024",
+      "duration": "PT49S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/EA2": [
+    {
+      "id": "toMnUYNOBc",
+      "title": "EA2 - Modulating Damper Actuator Interface",
+      "url": "https://www.youtube.com/watch?v=-toMnUYNOBc",
+      "publishedAt": "8/14/2024",
+      "duration": "PT53S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/EA1": [
+    {
+      "id": "9IVL4XEhyuA",
+      "title": "EA1 - Two Position Damper Actuator Interface",
+      "url": "https://www.youtube.com/watch?v=9IVL4XEhyuA",
+      "publishedAt": "8/14/2024",
+      "duration": "PT56S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/FPB-50": [
+    {
+      "id": "B7zkMneI6Bo",
+      "title": "BAPI Flexible Probe Bracket",
+      "url": "https://www.youtube.com/watch?v=B7zkMneI6Bo",
+      "publishedAt": "7/31/2024",
+      "duration": "PT28S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/LLV": [
+    {
+      "id": "vUi0OPTmRP0",
+      "title": "BAPI Light Level Sensor",
+      "url": "https://www.youtube.com/watch?v=vUi0OPTmRP0",
+      "publishedAt": "7/17/2024",
+      "duration": "PT25S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/DMA": [
+    {
+      "id": "1d4134GnIbQ",
+      "title": "BAPI Door Monitor Alarm",
+      "url": "https://www.youtube.com/watch?v=1d4134GnIbQ",
+      "publishedAt": "7/15/2024",
+      "duration": "PT39S",
+      "category": "Product Demo"
+    }
+  ],
+  "BA/WSK": [
+    {
+      "id": "Ea7zQ5XaiZw",
+      "title": "BAPI Weather Shade",
+      "url": "https://www.youtube.com/watch?v=Ea7zQ5XaiZw",
+      "publishedAt": "5/2/2024",
+      "duration": "PT29S",
+      "category": "Product Demo"
+    }
+  ]
+}

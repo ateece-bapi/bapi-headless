@@ -37,6 +37,7 @@
     "translate:section": "node scripts/translate-section.js",
     "translate:estimate": "node scripts/translate-section.js --estimate",
     "youtube:fetch": "tsx scripts/youtube-cli.ts fetch",
+    "youtube:generate-json": "tsx scripts/youtube-cli.ts generate-json",
     "youtube:sync": "tsx scripts/youtube-cli.ts sync",
     "youtube:help": "tsx scripts/youtube-cli.ts help"
   },

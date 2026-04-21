@@ -1,11 +1,12 @@
 'use client';
-import React, { useState } from 'react';
-import { FileTextIcon, VideoIcon, BookOpenIcon, DownloadIcon, ExternalLinkIcon } from '@/lib/icons';
+import React, { useState, useMemo } from 'react';
+import { FileTextIcon, VideoIcon, BookOpenIcon, ExternalLinkIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 import logger from '@/lib/logger';
 import { sanitizeDescription } from '@/lib/sanitizeDescription';
 import YouTubeEmbed from '@/components/shared/YouTubeEmbed';
 import { extractYouTubeId } from '@/lib/youtube/client';
+import { getProductVideos } from '@/lib/productVideos';
 
 /**
  * Decode HTML entities universally (works on server and client)
@@ -59,6 +60,8 @@ function decodeHtmlEntities(text: string): string {
 
 interface ProductTabsProps {
   product: {
+    sku?: string | null;
+    databaseId?: number | null;
     description?: string | null;
     documents?: Array<{ title: string; url: string; category?: string }>;
     videos?: Array<{ title: string; url: string }>;
@@ -78,17 +81,45 @@ export default function ProductTabs({ product }: ProductTabsProps) {
   const t = useTranslations();
   const [activeTab, setActiveTab] = useState<TabType>('description');
 
+  // Load videos from JSON by SKU or database ID
+  const jsonVideos = useMemo(() => {
+    const productId = product.databaseId?.toString();
+    return getProductVideos(product.sku, productId);
+  }, [product.sku, product.databaseId]);
+
+  // Merge JSON videos with any legacy videos from GraphQL (for backward compatibility)
+  const allVideos = useMemo(() => {
+    const videos = [...jsonVideos.map(v => ({ title: v.title, url: v.url }))];
+    
+    // Add any legacy videos that aren't already included
+    if (product.videos) {
+      for (const legacyVideo of product.videos) {
+        if (!videos.some(v => v.url === legacyVideo.url)) {
+          videos.push(legacyVideo);
+        }
+      }
+    }
+    
+    return videos;
+  }, [jsonVideos, product.videos]);
+
   // Debug: Log what data we're receiving
   React.useEffect(() => {
     logger.debug('[ProductTabs] Received product data', {
+      sku: product.sku,
+      databaseId: product.databaseId,
       hasDescription: !!product.description,
       descriptionLength: product.description?.length || 0,
       documentsCount: product.documents?.length || 0,
-      videosCount: product.videos?.length || 0,
+      legacyVideosCount: product.videos?.length || 0,
+      jsonVideosCount: jsonVideos.length,
+      totalVideosCount: allVideos.length,
       documents: product.documents,
-      videos: product.videos,
+      legacyVideos: product.videos,
+      jsonVideos,
+      allVideos,
     });
-  }, [product]);
+  }, [product, jsonVideos, allVideos]);
   return (
     <section className="mb-12 overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Professional Tab Navigation */}
@@ -230,9 +261,9 @@ export default function ProductTabs({ product }: ProductTabsProps) {
         {/* Videos Tab */}
         {activeTab === 'videos' && (
           <div className="px-2 py-6">
-            {product.videos && product.videos.length > 0 ? (
+            {allVideos && allVideos.length > 0 ? (
               <div className="space-y-8">
-                {product.videos.map((vid, idx) => {
+                {allVideos.map((vid, idx) => {
                   // Extract YouTube video ID from URL
                   const videoId = extractYouTubeId(vid.url);
 

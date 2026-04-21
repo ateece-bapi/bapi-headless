@@ -27,7 +27,7 @@ const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const YOUTUBE_CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID || '@BAPIHVAC';
 
 interface CLIOptions {
-  command: 'fetch' | 'sync' | 'help';
+  command: 'fetch' | 'sync' | 'generate-json' | 'help';
   limit?: number;
   file?: string;
   dryRun?: boolean;
@@ -70,9 +70,10 @@ YouTube Video Management CLI
 ============================
 
 COMMANDS:
-  fetch   Fetch videos from YouTube and generate CSV mapping
-  sync    Sync video mappings to WordPress ACF fields
-  help    Show this help message
+  fetch         Fetch videos from YouTube and generate CSV mapping
+  generate-json Generate JSON file from CSV for Next.js
+  sync          Sync video mappings to WordPress ACF fields (NOT IMPLEMENTED)
+  help          Show this help message
 
 FETCH OPTIONS:
   --limit=N       Fetch only first N videos (default: all)
@@ -94,6 +95,9 @@ EXAMPLES:
 
   # Actual sync after reviewing CSV
   pnpm run youtube:sync
+
+  # Generate JSON from CSV for Next.js
+  pnpm run youtube:generate-json
 
 ENVIRONMENT VARIABLES:
   YOUTUBE_API_KEY      YouTube Data API v3 key (required)
@@ -324,12 +328,133 @@ async function syncVideos(options: CLIOptions) {
   }
 }
 
+async function generateJSON(options: CLIOptions) {
+  const csvPath = options.file || path.join(process.cwd(), 'youtube-videos-manual.csv');
+  
+  if (!fs.existsSync(csvPath)) {
+    console.error(`❌ Error: CSV file not found: ${csvPath}`);
+    console.error('   Run "pnpm run youtube:fetch" first to generate the CSV');
+    process.exit(1);
+  }
+
+  console.log('🔄 Generating JSON from CSV...');
+  console.log(`   CSV file: ${csvPath}`);
+  console.log('');
+
+  // Read and parse CSV
+  const csvContent = fs.readFileSync(csvPath, 'utf-8');
+  const lines = csvContent.split('\n').slice(1); // Skip header
+  
+  interface ProductVideo {
+    id: string;
+    title: string;
+    url: string;
+    publishedAt: string;
+    duration: string;
+    category?: string;
+  }
+  
+  // Map: Product SKU/ID -> Videos[]
+  const productVideos = new Map<string, ProductVideo[]>();
+  let mappedCount = 0;
+  let skippedCount = 0;
+
+  for (const line of lines) {
+    if (!line.trim()) continue;
+    
+    // Parse CSV - handle both quoted and unquoted
+    let fields: string[];
+    if (line.includes('"')) {
+      const matches = line.match(/"([^"]*)"/g);
+      if (!matches || matches.length < 8) continue;
+      fields = matches.map(m => m.slice(1, -1).replace(/""/g, '"'));
+    } else {
+      fields = line.split(',').map(f => f.trim());
+      if (fields.length < 8) continue;
+    }
+    
+    const [sku, videoId, title, url, publishedDate, duration, category] = fields;
+    
+    // Skip rows without SKU/ID
+    if (!sku || sku.trim() === '') {
+      skippedCount++;
+      continue;
+    }
+    
+    const productKey = sku.trim();
+    
+    if (!productVideos.has(productKey)) {
+      productVideos.set(productKey, []);
+    }
+    
+    productVideos.get(productKey)!.push({
+      id: videoId,
+      title,
+      url,
+      publishedAt: publishedDate,
+      duration,
+      category: category && category.trim() !== '' ? category.trim() : undefined
+    });
+    
+    mappedCount++;
+  }
+
+  console.log(`   📊 Statistics:`);
+  console.log(`      Total mapped videos: ${mappedCount}`);
+  console.log(`      Unique products: ${productVideos.size}`);
+  console.log(`      Skipped (no SKU): ${skippedCount}`);
+  console.log('');
+
+  // Convert Map to object for JSON
+  const jsonData: Record<string, ProductVideo[]> = {};
+  for (const [key, videos] of productVideos) {
+    jsonData[key] = videos;
+  }
+
+  // Write JSON file
+  const jsonPath = path.join(process.cwd(), 'src', 'data', 'product-videos.json');
+  const jsonDir = path.dirname(jsonPath);
+  
+  // Create directory if it doesn't exist
+  if (!fs.existsSync(jsonDir)) {
+    fs.mkdirSync(jsonDir, { recursive: true });
+  }
+  
+  fs.writeFileSync(jsonPath, JSON.stringify(jsonData, null, 2), 'utf-8');
+  
+  console.log(`✅ JSON file generated: ${jsonPath}`);
+  console.log('');
+  console.log('📋 NEXT STEPS:');
+  console.log('');
+  console.log('1. Review the JSON file to verify mappings');
+  console.log('2. Commit the file to git');
+  console.log('3. Videos will automatically appear on product pages');
+  console.log('4. To update videos in the future:');
+  console.log('   - Edit the CSV file');
+  console.log('   - Run: pnpm run youtube:generate-json');
+  console.log('   - Commit and deploy');
+  console.log('');
+  
+  // Show sample
+  console.log('📦 Sample mappings:');
+  let count = 0;
+  for (const [productKey, videos] of productVideos) {
+    if (count >= 3) break;
+    console.log(`   ${productKey}: ${videos.length} video${videos.length > 1 ? 's' : ''}`);
+    count++;
+  }
+  console.log('');
+}
+
 async function main() {
   const options = parseArgs();
 
   switch (options.command) {
     case 'fetch':
       await fetchVideos(options);
+      break;
+    case 'generate-json':
+      await generateJSON(options);
       break;
     case 'sync':
       await syncVideos(options);

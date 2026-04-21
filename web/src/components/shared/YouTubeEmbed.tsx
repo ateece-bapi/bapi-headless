@@ -44,6 +44,8 @@ declare namespace YT {
 
   interface PlayerOptions {
     videoId: string;
+    width?: string | number;
+    height?: string | number;
     host?: string;
     playerVars?: PlayerVars;
     events?: Events;
@@ -240,6 +242,8 @@ export default function YouTubeEmbed({
 
         playerRef.current = new window.YT!.Player(playerElementId, {
           videoId,
+          width: '100%',
+          height: '100%',
           host: 'https://www.youtube-nocookie.com',
           playerVars: {
             autoplay: 1,
@@ -343,22 +347,11 @@ export default function YouTubeEmbed({
       role="region"
       aria-label={`Video: ${title}`}
     >
-      {/* YouTube Player API container (rendered when loaded, hidden until ready) */}
-      {isLoaded && (
-        <div
-          id={playerElementId}
-          className={`absolute inset-0 h-full w-full transition-opacity duration-300 ${
-            playerReady ? 'z-10 opacity-100' : 'z-0 opacity-0 pointer-events-none'
-          }`}
-          title={title}
-        />
-      )}
-
-      {/* Facade: Thumbnail with play button (shown until player is ready) */}
-      {!playerReady && (
+      {!playerReady ? (
+        // Facade: Thumbnail with play button (shown until player is ready)
         <button
           onClick={handlePlay}
-          className="group absolute inset-0 z-20 h-full w-full cursor-pointer border-0 bg-black p-0 transition-opacity hover:opacity-90"
+          className="group relative h-full w-full cursor-pointer border-0 bg-black p-0 transition-opacity hover:opacity-90"
           aria-label={`Play video: ${title}`}
           type="button"
           disabled={isLoaded && !playerReady}
@@ -411,6 +404,14 @@ export default function YouTubeEmbed({
             {showDuration && durationSeconds && !isLoaded && ` (Duration: ${formatDuration(durationSeconds)})`}
           </span>
         </button>
+      ) : null}
+
+      {/* YouTube Player API container - always rendered when loaded */}
+      {isLoaded && (
+        <div
+          id={playerElementId}
+          className="absolute inset-0 h-full w-full"
+        />
       )}
 
       {/* Accessibility notice (visible after player ready) */}

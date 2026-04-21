@@ -19,15 +19,22 @@ import type {
  * BAPI Product SKU Patterns
  * 
  * Based on actual product SKUs in database:
+ * - Slash format: BA/10K-3-O-12, BA/SOX, BA/3324VC (most common)
+ * - Hyphen format: TS-xxx, TA-xxx, TI-xxx, TR-xxx, TO-xxx
  * - Temperature: TS-xxx, TA-xxx, TI-xxx, TR-xxx, TO-xxx
  * - Pressure: PS-xxx, PI-xxx
  * - Humidity: HU-xxx, HI-xxx, HA-xxx
  * - CO2: CO2-xxx
  * - Air Quality: AQ-xxx
- * - Wireless: ZW-xxx, BA-xxx
+ * - Wireless: ZW-xxx, BA-xxx, BA/xxx
  */
 const SKU_PATTERNS = [
-  // Standard format: XX-XXX or XXX-XXX with optional suffix
+  // Slash-based format (most common): BA/10K-3-O-12, BA/SOX, BA/3324VC
+  {
+    pattern: /\b([A-Z]{2,3}\/[A-Z0-9][A-Z0-9\-]*)\b/g,
+    confidence: 'high' as const,
+  },
+  // Standard hyphen format: XX-XXX or XXX-XXX with optional suffix
   {
     pattern: /\b([A-Z]{2,3}-\d{3,4}(?:-[A-Z0-9]+)?)\b/g,
     confidence: 'high' as const,
@@ -124,18 +131,29 @@ function isValidBAPISKU(sku: string): boolean {
     'DC', // Display/Controllers
   ];
 
-  const prefix = sku.split('-')[0];
+  // Handle both slash-based (BA/SOX) and hyphen-based (PS-500) formats
+  const separator = sku.includes('/') ? '/' : '-';
+  const prefix = sku.split(separator)[0];
+  
   if (!validPrefixes.includes(prefix)) {
     return false;
   }
 
-  // Must have numeric component
-  if (!/\d{3,4}/.test(sku)) {
-    return false;
+  // Must have alphanumeric component after separator (or digits for hyphen format)
+  if (separator === '/') {
+    // Slash format: BA/10K-3-O-12, BA/SOX, BA/3324VC
+    if (!/\/[A-Z0-9]/.test(sku)) {
+      return false;
+    }
+  } else {
+    // Hyphen format: must have numeric component
+    if (!/\d{3,4}/.test(sku)) {
+      return false;
+    }
   }
 
-  // Reasonable length (4-15 characters)
-  if (sku.length < 4 || sku.length > 15) {
+  // Reasonable length (4-20 characters to accommodate BA/10K-3-O-12)
+  if (sku.length < 4 || sku.length > 20) {
     return false;
   }
 

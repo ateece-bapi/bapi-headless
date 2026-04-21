@@ -55,7 +55,7 @@ jobs:
             LIMIT_FLAG="--limit=${{ inputs.limit }}"
           fi
           
-          node scripts/youtube-cli.ts fetch $LIMIT_FLAG --output=youtube-videos.csv
+          pnpm exec tsx scripts/youtube-cli.ts fetch $LIMIT_FLAG --output=youtube-videos.csv
           
           echo "videos_file=youtube-videos.csv" >> $GITHUB_OUTPUT
 
@@ -79,7 +79,7 @@ jobs:
             echo "Running in DRY RUN mode"
           fi
           
-          node scripts/youtube-cli.ts sync --file=youtube-videos.csv $DRY_RUN_FLAG
+          pnpm exec tsx scripts/youtube-cli.ts sync --file=youtube-videos.csv $DRY_RUN_FLAG
 
       - name: Create summary
         if: always()

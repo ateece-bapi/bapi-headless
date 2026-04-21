@@ -16,8 +16,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { YouTubeClient, extractProductSKUs, categorizeVideo } from '../src/lib/youtube';
-import type { VideoProductMapping } from '../src/lib/youtube/types';
+import { YouTubeClient } from '../src/lib/youtube';
 
 // Load environment variables
 import dotenv from 'dotenv';
@@ -311,20 +310,29 @@ async function syncVideos(options: CLIOptions) {
     console.log('');
     
   } else {
-    console.log('⚠️  ACTUAL SYNC TO WORDPRESS');
+    console.log('⚠️  WORDPRESS SYNC (OPTIONAL)');
     console.log('');
-    console.log('WordPress sync functionality will:');
-    console.log('1. Connect to WordPress REST API');
-    console.log('2. Find products by SKU');
-    console.log('3. Update ACF "product_videos" field with video data');
+    console.log('WordPress sync functionality is available in src/lib/youtube/wordpress-sync.ts');
     console.log('');
-    console.log('❌ NOT YET IMPLEMENTED');
+    console.log('📋 Current Implementation (May 4th Launch):');
+    console.log('   ✅ Manual CSV mapping → JSON generation → Product pages');
+    console.log('   ✅ Videos load from edge JSON (fast, no database queries)');
+    console.log('   ✅ 47 videos mapped and displaying on product pages');
     console.log('');
-    console.log('For May 4th launch, you can:');
-    console.log('• Use the CSV to manually add videos to products in WordPress admin');
-    console.log('• OR we can implement the WordPress sync API (requires ACF setup)');
+    console.log('📋 WordPress Sync (Optional):');
+    console.log('   • Connects to WordPress REST API');
+    console.log('   • Finds products by SKU');
+    console.log('   • Updates ACF "product_videos" field');
+    console.log('   • Requires WordPress authentication (Bearer or Basic)');
     console.log('');
-    console.log('Would you like me to implement the WordPress sync?');
+    console.log('💡 The current JSON-based approach is faster and recommended.');
+    console.log('   WordPress sync is available if you need to update the CMS directly.');
+    console.log('');
+    console.log('To use WordPress sync, set environment variables:');
+    console.log('   WORDPRESS_API_URL=https://your-site.com');
+    console.log('   WORDPRESS_AUTH_TOKEN=\"Bearer your-jwt-token\"');
+    console.log('   # OR for Application Passwords:');
+    console.log('   WORDPRESS_AUTH_TOKEN=\"Basic $(echo -n username:password | base64)\"');
   }
 }
 

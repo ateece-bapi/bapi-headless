@@ -13,16 +13,19 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import logger from '@/lib/logger';
 
+/**
+ * Google Analytics gtag function interface
+ */
+interface GtagFunction {
+  (command: 'event', eventName: string, eventParams: Record<string, unknown>): void;
+}
+
 // YouTube IFrame Player API types
 declare global {
   interface Window {
     YT: typeof YT;
     onYouTubeIframeAPIReady: () => void;
-    gtag?: (
-      command: string,
-      eventName: string,
-      params?: Record<string, unknown>
-    ) => void;
+    gtag?: GtagFunction;
   }
 }
 

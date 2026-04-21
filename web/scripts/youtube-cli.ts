@@ -136,7 +136,10 @@ async function fetchVideos(options: CLIOptions) {
     console.log('📝 Generating manual mapping CSV...');
     console.log('');
 
-    const csvPath = path.join(process.cwd(), 'youtube-videos-manual.csv');
+    // Use --output flag if provided, otherwise default to youtube-videos-manual.csv
+    const csvPath = options.output 
+      ? path.join(process.cwd(), options.output)
+      : path.join(process.cwd(), 'youtube-videos-manual.csv');
     const csvHeader = 'Product SKU (FILL IN),Video ID,Video Title,Video URL,Published Date,Duration,Category (FILL IN),Notes\n';
     const csvRows = videos.map(v => {
       const url = `https://www.youtube.com/watch?v=${v.id}`;
@@ -310,29 +313,26 @@ async function syncVideos(options: CLIOptions) {
     console.log('');
     
   } else {
-    console.log('⚠️  WORDPRESS SYNC (OPTIONAL)');
-    console.log('');
-    console.log('WordPress sync functionality is available in src/lib/youtube/wordpress-sync.ts');
-    console.log('');
-    console.log('📋 Current Implementation (May 4th Launch):');
-    console.log('   ✅ Manual CSV mapping → JSON generation → Product pages');
-    console.log('   ✅ Videos load from edge JSON (fast, no database queries)');
-    console.log('   ✅ 47 videos mapped and displaying on product pages');
-    console.log('');
-    console.log('📋 WordPress Sync (Optional):');
-    console.log('   • Connects to WordPress REST API');
-    console.log('   • Finds products by SKU');
-    console.log('   • Updates ACF "product_videos" field');
-    console.log('   • Requires WordPress authentication (Bearer or Basic)');
-    console.log('');
-    console.log('💡 The current JSON-based approach is faster and recommended.');
-    console.log('   WordPress sync is available if you need to update the CMS directly.');
-    console.log('');
-    console.log('To use WordPress sync, set environment variables:');
-    console.log('   WORDPRESS_API_URL=https://your-site.com');
-    console.log('   WORDPRESS_AUTH_TOKEN=\"Bearer your-jwt-token\"');
-    console.log('   # OR for Application Passwords:');
-    console.log('   WORDPRESS_AUTH_TOKEN=\"Basic $(echo -n username:password | base64)\"');
+    console.error('❌ ERROR: WordPress sync not configured for automated execution');
+    console.error('');
+    console.error('📋 Current Implementation (Production):');
+    console.error('   ✅ Manual CSV mapping → JSON generation → Product pages');
+    console.error('   ✅ Videos load from edge JSON (fast, no database queries)');
+    console.error('   ✅ This approach is production-ready and recommended');
+    console.error('');
+    console.error('📋 To sync to WordPress (Optional):');
+    console.error('   The WordPress sync client is available in:');
+    console.error('   src/lib/youtube/wordpress-sync.ts');
+    console.error('');
+    console.error('   Required environment variables:');
+    console.error('   - WORDPRESS_API_URL=https://your-site.com');
+    console.error('   - WORDPRESS_AUTH_TOKEN=\"Bearer your-jwt-token\"');
+    console.error('   - OR WORDPRESS_AUTH_TOKEN=\"Basic $(echo -n user:pass | base64)\"');
+    console.error('');
+    console.error('💡 For May 4th launch, use JSON generation instead:');
+    console.error('   pnpm run youtube:generate-json');
+    console.error('');
+    process.exit(1);
   }
 }
 

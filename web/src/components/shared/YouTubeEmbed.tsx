@@ -3,14 +3,105 @@
  * 
  * Performance-optimized YouTube embed that loads 224x faster than iframe.
  * Uses facade pattern with click-to-play thumbnail.
+ * Uses YouTube IFrame Player API for HD quality control.
  * 
  * @module components/YouTubeEmbed
  */
 
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import logger from '@/lib/logger';
+
+// YouTube IFrame Player API types
+declare global {
+  interface Window {
+    YT: typeof YT;
+    onYouTubeIframeAPIReady: () => void;
+    gtag?: (
+      command: string,
+      eventName: string,
+      params?: Record<string, unknown>
+    ) => void;
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-namespace
+declare namespace YT {
+  // eslint-disable-next-line jsdoc/require-jsdoc
+  class Player {
+    constructor(elementId: string | HTMLElement, options: PlayerOptions);
+    playVideo(): void;
+    pauseVideo(): void;
+    stopVideo(): void;
+    setPlaybackQuality(suggestedQuality: string): void;
+    getAvailableQualityLevels(): string[];
+    destroy(): void;
+  }
+
+  interface PlayerOptions {
+    videoId: string;
+    host?: string;
+    playerVars?: PlayerVars;
+    events?: Events;
+  }
+
+  interface PlayerVars {
+    autoplay?: 0 | 1;
+    cc_load_policy?: 1;
+    color?: 'red' | 'white';
+    controls?: 0 | 1 | 2;
+    disablekb?: 0 | 1;
+    enablejsapi?: 0 | 1;
+    end?: number;
+    fs?: 0 | 1;
+    hl?: string;
+    iv_load_policy?: 1 | 3;
+    list?: string;
+    listType?: 'playlist' | 'search' | 'user_uploads';
+    loop?: 0 | 1;
+    modestbranding?: 0 | 1;
+    origin?: string;
+    playlist?: string;
+    playsinline?: 0 | 1;
+    rel?: 0 | 1;
+    showinfo?: 0 | 1;
+    start?: number;
+    widget_referrer?: string;
+  }
+
+  interface Events {
+    onReady?: (event: PlayerEvent) => void;
+    onStateChange?: (event: OnStateChangeEvent) => void;
+    onPlaybackQualityChange?: (event: OnPlaybackQualityChangeEvent) => void;
+    onError?: (event: OnErrorEvent) => void;
+  }
+
+  interface PlayerEvent {
+    target: Player;
+  }
+
+  interface OnStateChangeEvent extends PlayerEvent {
+    data: number;
+  }
+
+  interface OnPlaybackQualityChangeEvent extends PlayerEvent {
+    data: string;
+  }
+
+  interface OnErrorEvent extends PlayerEvent {
+    data: number;
+  }
+
+  enum PlayerState {
+    UNSTARTED = -1,
+    ENDED = 0,
+    PLAYING = 1,
+    PAUSED = 2,
+    BUFFERING = 3,
+    CUED = 5,
+  }
+}
 
 interface YouTubeEmbedProps {
   /** YouTube video ID (11 characters) */
@@ -23,25 +114,27 @@ interface YouTubeEmbedProps {
   autoLoad?: boolean;
   /** Additional CSS classes */
   className?: string;
-  /** YouTube player parameters */
-  params?: string;
   /** Show video duration badge @default false */
   showDuration?: boolean;
   /** Video duration in seconds */
   durationSeconds?: number;
+  /** Preferred quality @default 'hd1080' */
+  quality?: 'hd2160' | 'hd1440' | 'hd1080' | 'hd720' | 'large' | 'medium' | 'small';
 }
 
 /**
  * Lightweight YouTube Embed Component
  * 
- * Renders a click-to-play thumbnail that loads the actual YouTube iframe
- * only when the user interacts with it.
+ * Renders a click-to-play thumbnail that loads the actual YouTube player
+ * only when the user interacts with it. Uses YouTube IFrame Player API
+ * for reliable HD quality control.
  * 
  * Benefits:
  * - 224x faster initial load (~2.3KB vs 500KB)
  * - Better Core Web Vitals (LCP, CLS)
  * - Reduced bandwidth usage
  * - Privacy-enhanced (youtube-nocookie.com)
+ * - HD quality via official YouTube Player API
  * 
  * @example
  * ```tsx
@@ -50,6 +143,7 @@ interface YouTubeEmbedProps {
  *   title="Rick Astley - Never Gonna Give You Up"
  *   showDuration
  *   durationSeconds={212}
+ *   quality="hd1080"
  * />
  * ```
  */
@@ -59,41 +153,128 @@ export default function YouTubeEmbed({
   thumbnailQuality = 'hqdefault',
   autoLoad = false,
   className = '',
-  params = 'rel=0&modestbranding=1&vq=hd1080',
   showDuration = false,
   durationSeconds,
+  quality = 'hd1080',
 }: YouTubeEmbedProps) {
   const [isLoaded, setIsLoaded] = useState(autoLoad);
+  const [apiReady, setApiReady] = useState(
+    typeof window !== 'undefined' && window.YT && window.YT.Player ? true : false
+  );
   const containerRef = useRef<HTMLDivElement>(null);
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
-
-  // Validate video ID
-  if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
-    logger.warn('[YouTubeEmbed] Invalid video ID', { videoId });
-    return null;
-  }
+  const playerRef = useRef<YT.Player | null>(null);
+  
+  // Generate unique player ID once
+  const uniqueId = useId();
+  const playerElementId = `youtube-player-${videoId}-${uniqueId.replace(/:/g, '-')}`;
 
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/${thumbnailQuality}.jpg`;
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?${params}&autoplay=1`;
 
+  // Load YouTube IFrame API
   useEffect(() => {
-    if (autoLoad && !isLoaded) {
-      setIsLoaded(true);
+    // Check if API is already loaded
+    if (window.YT && window.YT.Player) {
+      return;
     }
-  }, [autoLoad, isLoaded]);
+
+    // Set up callback for when API is ready
+    window.onYouTubeIframeAPIReady = () => {
+      setApiReady(true);
+      logger.debug('[YouTubeEmbed] YouTube API ready');
+    };
+
+    // Load API script if not already present
+    if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      tag.async = true;
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+      logger.debug('[YouTubeEmbed] Loading YouTube API');
+    }
+  }, []);
+
+  // Initialize player when loaded
+  useEffect(() => {
+    if (!isLoaded || !apiReady || playerRef.current) {
+      return;
+    }
+
+    const playerElement = document.getElementById(playerElementId);
+    if (!playerElement) {
+      logger.warn('[YouTubeEmbed] Player element not found', { id: playerElementId });
+      return;
+    }
+
+    try {
+      playerRef.current = new window.YT.Player(playerElementId, {
+        videoId,
+        host: 'https://www.youtube-nocookie.com',
+        playerVars: {
+          autoplay: 1,
+          modestbranding: 1,
+          rel: 0,
+          enablejsapi: 1,
+          origin: typeof window !== 'undefined' ? window.location.origin : undefined,
+        },
+        events: {
+          onReady: (event) => {
+            // Set playback quality to HD
+            const player = event.target;
+            const availableQualities = player.getAvailableQualityLevels();
+            
+            logger.debug('[YouTubeEmbed] Available qualities', { 
+              videoId, 
+              qualities: availableQualities,
+              requested: quality 
+            });
+
+            // Try to set requested quality, fallback to highest available
+            if (availableQualities.includes(quality)) {
+              player.setPlaybackQuality(quality);
+            } else if (availableQualities.length > 0) {
+              player.setPlaybackQuality(availableQualities[0]);
+            }
+
+            logger.debug('[YouTubeEmbed] Player ready, quality set', { videoId, quality });
+          },
+          onError: (event) => {
+            logger.error('[YouTubeEmbed] Player error', { 
+              videoId, 
+              errorCode: event.data 
+            });
+          },
+        },
+      });
+    } catch (error) {
+      logger.error('[YouTubeEmbed] Failed to initialize player', { error, videoId });
+    }
+
+    // Cleanup
+    return () => {
+      if (playerRef.current) {
+        try {
+          playerRef.current.destroy();
+        } catch (error) {
+          logger.warn('[YouTubeEmbed] Error destroying player', { error });
+        }
+        playerRef.current = null;
+      }
+    };
+  }, [isLoaded, apiReady, videoId, quality, playerElementId]);
 
   const handlePlay = () => {
     setIsLoaded(true);
 
     // Track video play event
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'video_play', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'video_play', {
         video_id: videoId,
         video_title: title,
       });
     }
 
-    logger.debug('[YouTubeEmbed] Video loaded', { videoId, title });
+    logger.debug('[YouTubeEmbed] Video load requested', { videoId, title });
   };
 
   // Format duration for display
@@ -107,6 +288,12 @@ export default function YouTubeEmbed({
     }
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
+
+  // Validate video ID (after hooks)
+  if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
+    logger.warn('[YouTubeEmbed] Invalid video ID', { videoId });
+    return null;
+  }
 
   return (
     <div
@@ -124,6 +311,7 @@ export default function YouTubeEmbed({
           type="button"
         >
           {/* Thumbnail */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={thumbnailUrl}
             alt={title}
@@ -161,15 +349,11 @@ export default function YouTubeEmbed({
           </span>
         </button>
       ) : (
-        // Actual YouTube iframe
-        <iframe
-          ref={iframeRef}
-          src={embedUrl}
+        // YouTube Player API container
+        <div
+          id={playerElementId}
+          className="absolute inset-0 h-full w-full"
           title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="absolute inset-0 h-full w-full border-0"
-          loading="lazy"
         />
       )}
 
@@ -181,31 +365,4 @@ export default function YouTubeEmbed({
       )}
     </div>
   );
-}
-
-/**
- * YouTube embed with error boundary
- */
-export function YouTubeEmbedSafe(props: YouTubeEmbedProps) {
-  try {
-    return <YouTubeEmbed {...props} />;
-  } catch (error) {
-    logger.error('[YouTubeEmbed] Render error', { error, videoId: props.videoId });
-
-    return (
-      <div className="flex aspect-video items-center justify-center rounded-xl border-2 border-neutral-200 bg-neutral-50">
-        <div className="text-center">
-          <p className="mb-2 font-semibold text-neutral-700">Video unavailable</p>
-          <a
-            href={`https://www.youtube.com/watch?v=${props.videoId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-primary-600 hover:underline"
-          >
-            Watch on YouTube
-          </a>
-        </div>
-      </div>
-    );
-  }
 }

@@ -89,8 +89,8 @@ export function generateVideoSchema(
       logo: {
         '@type': 'ImageObject',
         url: `${siteUrl}/logo.png`,
-        width: 600,
-        height: 60,
+        width: '600',
+        height: '60',
       },
     },
     

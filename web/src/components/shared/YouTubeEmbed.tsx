@@ -59,7 +59,7 @@ export default function YouTubeEmbed({
   thumbnailQuality = 'hqdefault',
   autoLoad = false,
   className = '',
-  params = 'rel=0&modestbranding=1',
+  params = 'rel=0&modestbranding=1&vq=hd1080',
   showDuration = false,
   durationSeconds,
 }: YouTubeEmbedProps) {

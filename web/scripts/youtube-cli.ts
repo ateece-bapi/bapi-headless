@@ -29,6 +29,7 @@ interface CLIOptions {
   command: 'fetch' | 'sync' | 'generate-json' | 'help';
   limit?: number;
   file?: string;
+  output?: string;
   dryRun?: boolean;
   batch?: number;
 }
@@ -49,6 +50,9 @@ function parseArgs(): CLIOptions {
           break;
         case 'file':
           options.file = value;
+          break;
+        case 'output':
+          options.output = value;
           break;
         case 'dry-run':
           options.dryRun = true;

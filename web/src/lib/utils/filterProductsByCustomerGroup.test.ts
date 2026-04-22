@@ -71,10 +71,10 @@ describe('extractCustomerGroupFromTitle', () => {
 });
 
 describe('getProductCustomerGroups', () => {
-  it('returns customer group from customerGroups field when available', () => {
+  it('returns customer group from customerGroup1 field when available', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) Test Product',
-      customerGroups: [{ slug: 'alc', name: 'ALC' }],
+      customerGroup1: 'alc',
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc']);
@@ -83,10 +83,8 @@ describe('getProductCustomerGroups', () => {
   it('combines multiple customer group fields', () => {
     const product: ProductWithCustomerGroup = {
       name: 'Test Product',
-      customerGroups: [
-        { slug: 'alc', name: 'ALC' },
-        { slug: 'acs', name: 'ACS' },
-      ],
+      customerGroup1: 'alc',
+      customerGroup2: 'acs',
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc', 'acs']);
@@ -95,7 +93,9 @@ describe('getProductCustomerGroups', () => {
   it('falls back to title parsing when GraphQL fields empty', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) Test Product',
-      customerGroups: null,
+      customerGroup1: null,
+      customerGroup2: null,
+      customerGroup3: null,
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc']);
@@ -104,7 +104,9 @@ describe('getProductCustomerGroups', () => {
   it('returns empty array for standard product', () => {
     const product: ProductWithCustomerGroup = {
       name: 'BA/10K-3 Temperature Sensor',
-      customerGroups: null,
+      customerGroup1: null,
+      customerGroup2: null,
+      customerGroup3: null,
     };
 
     expect(getProductCustomerGroups(product)).toEqual([]);
@@ -113,10 +115,8 @@ describe('getProductCustomerGroups', () => {
   it('deduplicates customer groups', () => {
     const product: ProductWithCustomerGroup = {
       name: '(ALC) Test',
-      customerGroups: [
-        { slug: 'alc', name: 'ALC' },
-        { slug: 'alc', name: 'ALC' },
-      ],
+      customerGroup1: 'alc',
+      customerGroup2: 'alc',
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc']);
@@ -125,10 +125,8 @@ describe('getProductCustomerGroups', () => {
   it('normalizes to lowercase', () => {
     const product: ProductWithCustomerGroup = {
       name: 'Test',
-      customerGroups: [
-        { slug: 'ALC', name: 'ALC' },
-        { slug: 'ACS', name: 'ACS' },
-      ],
+      customerGroup1: 'ALC',
+      customerGroup2: 'ACS',
     };
 
     expect(getProductCustomerGroups(product)).toEqual(['alc', 'acs']);

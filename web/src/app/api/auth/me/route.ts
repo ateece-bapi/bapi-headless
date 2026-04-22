@@ -51,20 +51,19 @@ export async function GET(request: NextRequest) {
     // Extract role names from the GraphQL response
     const roles = viewer.roles?.nodes?.map((role: { name: string }) => role.name) || [];
 
-    // Process customer groups from ACF fields (customer_group1/2/3)
+    // Process customer groups from ACF fields (customerInformation.customerGroup1/2/3)
+    // Schema: These are LIST types (arrays of strings)
     // Filter out null, empty strings, and "NO ACCESS" values
     // Then slugify to match WordPress taxonomy slugs ("END USER" → "end-user")
+    const customerInfo = viewer.customerInformation;
     const rawCustomerGroups = [
-      viewer.customerGroup1,
-      viewer.customerGroup2,
-      viewer.customerGroup3,
-    ].filter((group): group is string => {
-      return (
-        typeof group === 'string' &&
-        group.trim().length > 0 &&
-        group.toUpperCase() !== 'NO ACCESS'
-      );
-    });
+      ...(customerInfo?.customerGroup1 || []),
+      ...(customerInfo?.customerGroup2 || []),
+      ...(customerInfo?.customerGroup3 || []),
+    ]
+      .filter((group): group is string => typeof group === 'string')
+      .map((group) => group.trim())
+      .filter((group) => group.length > 0 && group.toUpperCase() !== 'NO ACCESS');
 
     // Slugify groups to match taxonomy slugs ("END USER" → "end-user")
     const slugifiedGroups = slugifyArray(rawCustomerGroups);

@@ -85,18 +85,17 @@ async function getUserCustomerGroups(): Promise<string[]> {
 
     const { viewer } = data;
 
-    // Extract customer groups from ACF fields
+    // Extract customer groups from ACF fields (customerInformation.customerGroup1/2/3)
+    // Schema: These are LIST types (arrays of strings)
+    const customerInfo = viewer.customerInformation;
     const rawCustomerGroups = [
-      viewer.customerGroup1,
-      viewer.customerGroup2,
-      viewer.customerGroup3,
-    ].filter((group): group is string => {
-      return (
-        typeof group === 'string' &&
-        group.trim().length > 0 &&
-        group.toUpperCase() !== 'NO ACCESS'
-      );
-    });
+      ...(customerInfo?.customerGroup1 || []),
+      ...(customerInfo?.customerGroup2 || []),
+      ...(customerInfo?.customerGroup3 || []),
+    ]
+      .filter((group): group is string => typeof group === 'string')
+      .map((group) => group.trim())
+      .filter((group) => group.length > 0 && group.toUpperCase() !== 'NO ACCESS');
 
     // Normalize to lowercase
     const slugifiedGroups = rawCustomerGroups.map(g => g.toLowerCase());

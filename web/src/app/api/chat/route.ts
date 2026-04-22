@@ -40,13 +40,18 @@ async function getUserCustomerGroups(): Promise<string[]> {
 
     const { data }: { data: GetCurrentUserResponse } = await response.json();
     
-    // Process customer groups from ACF fields
+    // Process customer groups from ACF fields (customerInformation.customerGroup1/2/3)
+    // Schema: These are LIST types (arrays of strings)
     // Then slugify to match WordPress taxonomy slugs ("END USER" → "end-user")
+    const customerInfo = data?.viewer?.customerInformation;
     const rawGroups = [
-      data?.viewer?.customerGroup1,
-      data?.viewer?.customerGroup2,
-      data?.viewer?.customerGroup3,
-    ].filter((g): g is string => typeof g === 'string' && g.length > 0 && g.toUpperCase() !== 'NO ACCESS');
+      ...(customerInfo?.customerGroup1 || []),
+      ...(customerInfo?.customerGroup2 || []),
+      ...(customerInfo?.customerGroup3 || []),
+    ]
+      .filter((group): group is string => typeof group === 'string')
+      .map((group) => group.trim())
+      .filter((group) => group.length > 0 && group.toUpperCase() !== 'NO ACCESS');
     
     // Slugify groups to match taxonomy slugs
     const slugifiedGroups = slugifyArray(rawGroups);

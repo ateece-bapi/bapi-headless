@@ -80,10 +80,13 @@ export function getProductCustomerGroups(product: ProductWithCustomerGroup): str
     product.customerGroup1,
     product.customerGroup2,
     product.customerGroup3,
-  ].filter((group): group is string => typeof group === 'string' && group.length > 0);
+  ]
+    .filter((group): group is string => typeof group === 'string')
+    .map((group) => group.trim())
+    .filter((group) => group.length > 0);
 
   if (acfGroups.length > 0) {
-    groups.push(...acfGroups.map(g => g.toLowerCase()));
+    groups.push(...acfGroups.map((g) => g.toLowerCase()));
   }
 
   // Priority 2: Fallback to title parsing (defensive programming)

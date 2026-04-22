@@ -39,7 +39,11 @@ add_action('graphql_register_types', function() {
         'description' => 'Primary customer group restriction (e.g., "alc", "acs", "emc", "ccg")',
         'resolve' => function($product) {
             $value = get_post_meta($product->ID, 'customer_group1', true);
-            // Handle ACF serialized array format: a:1:{i:0;s:3:"alc";}
+            // Handle ACF array format (WordPress auto-unserializes)
+            if (is_array($value) && !empty($value)) {
+                return is_string($value[0]) ? $value[0] : null;
+            }
+            // Fallback: handle manually serialized string
             if (is_string($value) && strpos($value, 'a:') === 0) {
                 $unserialized = @unserialize($value);
                 return is_array($unserialized) && !empty($unserialized) ? $unserialized[0] : null;
@@ -52,6 +56,11 @@ add_action('graphql_register_types', function() {
         'description' => 'Secondary customer group restriction',
         'resolve' => function($product) {
             $value = get_post_meta($product->ID, 'customer_group2', true);
+            // Handle ACF array format (WordPress auto-unserializes)
+            if (is_array($value) && !empty($value)) {
+                return is_string($value[0]) ? $value[0] : null;
+            }
+            // Fallback: handle manually serialized string
             if (is_string($value) && strpos($value, 'a:') === 0) {
                 $unserialized = @unserialize($value);
                 return is_array($unserialized) && !empty($unserialized) ? $unserialized[0] : null;
@@ -64,6 +73,11 @@ add_action('graphql_register_types', function() {
         'description' => 'Tertiary customer group restriction',
         'resolve' => function($product) {
             $value = get_post_meta($product->ID, 'customer_group3', true);
+            // Handle ACF array format (WordPress auto-unserializes)
+            if (is_array($value) && !empty($value)) {
+                return is_string($value[0]) ? $value[0] : null;
+            }
+            // Fallback: handle manually serialized string
             if (is_string($value) && strpos($value, 'a:') === 0) {
                 $unserialized = @unserialize($value);
                 return is_array($unserialized) && !empty($unserialized) ? $unserialized[0] : null;
@@ -77,6 +91,11 @@ add_action('graphql_register_types', function() {
         'description' => 'Primary customer group restriction (e.g., "alc", "acs", "emc", "ccg")',
         'resolve' => function($product) {
             $value = get_post_meta($product->ID, 'customer_group1', true);
+            // Handle ACF array format (WordPress auto-unserializes)
+            if (is_array($value) && !empty($value)) {
+                return is_string($value[0]) ? $value[0] : null;
+            }
+            // Fallback: handle manually serialized string
             if (is_string($value) && strpos($value, 'a:') === 0) {
                 $unserialized = @unserialize($value);
                 return is_array($unserialized) && !empty($unserialized) ? $unserialized[0] : null;
@@ -89,6 +108,11 @@ add_action('graphql_register_types', function() {
         'description' => 'Secondary customer group restriction',
         'resolve' => function($product) {
             $value = get_post_meta($product->ID, 'customer_group2', true);
+            // Handle ACF array format (WordPress auto-unserializes)
+            if (is_array($value) && !empty($value)) {
+                return is_string($value[0]) ? $value[0] : null;
+            }
+            // Fallback: handle manually serialized string
             if (is_string($value) && strpos($value, 'a:') === 0) {
                 $unserialized = @unserialize($value);
                 return is_array($unserialized) && !empty($unserialized) ? $unserialized[0] : null;
@@ -101,6 +125,11 @@ add_action('graphql_register_types', function() {
         'description' => 'Tertiary customer group restriction',
         'resolve' => function($product) {
             $value = get_post_meta($product->ID, 'customer_group3', true);
+            // Handle ACF array format (WordPress auto-unserializes)
+            if (is_array($value) && !empty($value)) {
+                return is_string($value[0]) ? $value[0] : null;
+            }
+            // Fallback: handle manually serialized string
             if (is_string($value) && strpos($value, 'a:') === 0) {
                 $unserialized = @unserialize($value);
                 return is_array($unserialized) && !empty($unserialized) ? $unserialized[0] : null;

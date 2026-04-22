@@ -10,6 +10,9 @@ query SearchProducts($search: String!, $first: Int = 20) {
         partNumber
         price
         shortDescription
+        customerGroup1
+        customerGroup2
+        customerGroup3
         image {
           sourceUrl
           altText
@@ -33,6 +36,9 @@ query SearchProducts($search: String!, $first: Int = 20) {
         partNumber
         price
         shortDescription
+        customerGroup1
+        customerGroup2
+        customerGroup3
         image {
           sourceUrl
           altText
@@ -67,6 +73,9 @@ query SearchProductsBySKU($sku: String!, $first: Int = 24) {
         partNumber
         price
         shortDescription
+        customerGroup1
+        customerGroup2
+        customerGroup3
         image {
           sourceUrl
           altText
@@ -90,6 +99,9 @@ query SearchProductsBySKU($sku: String!, $first: Int = 24) {
         partNumber
         price
         shortDescription
+        customerGroup1
+        customerGroup2
+        customerGroup3
         image {
           sourceUrl
           altText
@@ -124,6 +136,9 @@ query ListVariableProductsWithVariationSkus($first: Int = 50) {
         partNumber
         price
         shortDescription
+        customerGroup1
+        customerGroup2
+        customerGroup3
         image {
           sourceUrl
           altText
@@ -163,6 +178,9 @@ query SearchVariableProductsWithVariations($search: String!, $first: Int = 20) {
         partNumber
         price
         shortDescription
+        customerGroup1
+        customerGroup2
+        customerGroup3
         image {
           sourceUrl
           altText
@@ -203,6 +221,9 @@ query SearchProductsByVariationSku($sku: String!, $first: Int = 10) {
       partNumber
       price
       shortDescription
+      customerGroup1
+      customerGroup2
+      customerGroup3
       image {
         sourceUrl
         altText
@@ -237,6 +258,9 @@ query SearchProductsByVariationSkuPrefix($prefix: String!, $first: Int = 20) {
       partNumber
       price
       shortDescription
+      customerGroup1
+      customerGroup2
+      customerGroup3
       image {
         sourceUrl
         altText

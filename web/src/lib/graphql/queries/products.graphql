@@ -31,6 +31,9 @@ query GetProducts($first: Int = 10, $after: String) {
         onSale
         stockStatus
         stockQuantity
+        customerGroup1
+        customerGroup2
+        customerGroup3
       }
       ... on VariableProduct {
         price
@@ -38,6 +41,9 @@ query GetProducts($first: Int = 10, $after: String) {
         salePrice
         onSale
         stockStatus
+        customerGroup1
+        customerGroup2
+        customerGroup3
       }
       image {
         id
@@ -84,6 +90,9 @@ query GetProductBySlug($slug: ID!) {
       stockStatus
       stockQuantity
       sku
+      customerGroup1
+      customerGroup2
+      customerGroup3
     }
     ... on VariableProduct {
       price
@@ -91,6 +100,9 @@ query GetProductBySlug($slug: ID!) {
       salePrice
       onSale
       stockStatus
+      customerGroup1
+      customerGroup2
+      customerGroup3
       variations {
         nodes {
           id
@@ -221,6 +233,9 @@ query GetProductBySlugLight($slug: ID!) {
       onSale
       stockStatus
       sku
+      customerGroup1
+      customerGroup2
+      customerGroup3
     }
     ... on VariableProduct {
       price
@@ -228,6 +243,9 @@ query GetProductBySlugLight($slug: ID!) {
       salePrice
       onSale
       stockStatus
+      customerGroup1
+      customerGroup2
+      customerGroup3
     }
     image {
       sourceUrl
@@ -359,7 +377,16 @@ query GetProductRelated($id: ID!) {
         id
         name
         slug
-        
+        ... on SimpleProduct {
+          customerGroup1
+          customerGroup2
+          customerGroup3
+        }
+        ... on VariableProduct {
+          customerGroup1
+          customerGroup2
+          customerGroup3
+        }
         image {
           sourceUrl
           altText
@@ -443,6 +470,9 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 200, $after: S
         stockStatus
         stockQuantity
         sku
+        customerGroup1
+        customerGroup2
+        customerGroup3
         attributes {
           nodes {
             id
@@ -458,6 +488,9 @@ query GetProductsByCategory($categorySlug: String!, $first: Int = 200, $after: S
         salePrice
         onSale
         stockStatus
+        customerGroup1
+        customerGroup2
+        customerGroup3
         attributes {
           nodes {
             id

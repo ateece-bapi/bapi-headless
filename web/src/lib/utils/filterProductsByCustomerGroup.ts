@@ -17,18 +17,14 @@ import { slugify } from './slugify';
 /**
  * Product type with customer group fields (from GraphQL)
  * 
- * Now uses actual customerGroups taxonomy from WPGraphQL instead of title parsing.
- * Falls back to title parsing for backwards compatibility if taxonomy data missing.
+ * Uses ACF fields customerGroup1/2/3 from WordPress GraphQL schema.
+ * Falls back to title parsing for backwards compatibility if ACF fields missing.
  */
 export interface ProductWithCustomerGroup {
   name?: string | null;
-  customerGroups?: Array<{
-    __typename?: string;
-    id?: string | null;
-    databaseId?: number | null;
-    slug?: string | null;
-    name?: string | null;
-  } | null | undefined> | null;
+  customerGroup1?: string | null;
+  customerGroup2?: string | null;
+  customerGroup3?: string | null;
 }
 
 /**
@@ -70,27 +66,27 @@ export function extractCustomerGroupFromTitle(
 /**
  * Get all customer groups assigned to a product
  *
- * Prioritizes GraphQL taxonomy data, falls back to title parsing.
- * Matches legacy WordPress behavior using customer-group taxonomy.
+ * Prioritizes ACF fields (customerGroup1/2/3), falls back to title parsing.
+ * Implements hybrid approach for robustness.
  *
- * @param product - Product with name and optional customerGroups taxonomy
+ * @param product - Product with name and optional customerGroup ACF fields
  * @returns Array of customer group slugs (lowercase)
  */
 export function getProductCustomerGroups(product: ProductWithCustomerGroup): string[] {
   const groups: string[] = [];
 
-  // Priority 1: Use GraphQL taxonomy data (proper implementation)
-  if (product.customerGroups && Array.isArray(product.customerGroups)) {
-    const taxonomyGroups = product.customerGroups
-      .map((group) => group?.slug)
-      .filter((slug): slug is string => typeof slug === 'string' && slug.length > 0);
-    
-    if (taxonomyGroups.length > 0) {
-      groups.push(...taxonomyGroups);
-    }
+  // Priority 1: Use ACF fields from GraphQL (proper implementation)
+  const acfGroups = [
+    product.customerGroup1,
+    product.customerGroup2,
+    product.customerGroup3,
+  ].filter((group): group is string => typeof group === 'string' && group.length > 0);
+
+  if (acfGroups.length > 0) {
+    groups.push(...acfGroups.map(g => g.toLowerCase()));
   }
 
-  // Priority 2: Fallback to title parsing (backwards compatibility)
+  // Priority 2: Fallback to title parsing (defensive programming)
   if (groups.length === 0) {
     const groupFromTitle = extractCustomerGroupFromTitle(product.name);
     if (groupFromTitle) {

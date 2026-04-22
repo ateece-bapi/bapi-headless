@@ -61,18 +61,6 @@ export default function SearchResults({
   const { user } = useAuth();
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
-  // Debug: Log customer group filtering
-  console.log('[SearchResults] Debug:', {
-    productCount: products.length,
-    userGroups: user?.customerGroups || ['END USER'],
-    sampleProduct: products[0] ? {
-      name: products[0].name,
-      customerGroup1: products[0].customerGroup1,
-      customerGroup2: products[0].customerGroup2,
-      customerGroup3: products[0].customerGroup3,
-    } : null,
-  });
-
   // Filter products by customer group (B2B access control)
   const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroups || ['END USER']);
 

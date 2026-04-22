@@ -116,21 +116,7 @@ async function searchProducts(query: string) {
     });
 
     // Convert Map back to array and limit to 24 results for search page
-    const finalResults = Array.from(resultsMap.values()).slice(0, 24);
-
-    // Debug: Log customer group data in server-side search
-    console.log('[searchProducts] Server-side debug:', {
-      query,
-      resultCount: finalResults.length,
-      firstProductGroups: finalResults[0] ? {
-        name: finalResults[0].name,
-        customerGroup1: (finalResults[0] as any).customerGroup1,
-        customerGroup2: (finalResults[0] as any).customerGroup2,
-        customerGroup3: (finalResults[0] as any).customerGroup3,
-      } : null,
-    });
-
-    return finalResults;
+    return Array.from(resultsMap.values()).slice(0, 24);
   } catch (error) {
     logger.error('Search products error', error, { query });
     return [];

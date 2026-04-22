@@ -3,6 +3,7 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { BriefcaseIcon, HeartIcon } from '@/lib/icons';
+import { Link } from '@/lib/navigation';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
 import { useCart, useCartDrawer } from '@/store';
@@ -258,7 +259,7 @@ export default function ProductSummaryCard({
         {/* Price Unavailable Message */}
         <div className="mb-6 rounded-xl border border-neutral-200 bg-neutral-50 p-4">
           <div className="mb-2 flex items-center gap-2 text-neutral-700">
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -274,12 +275,12 @@ export default function ProductSummaryCard({
         </div>
         
         {/* Contact Sales CTA */}
-        <a
+        <Link
           href="/contact"
           className="block w-full rounded-xl bg-primary-600 px-6 py-4 text-center text-lg font-bold text-white shadow-lg transition-all hover:bg-primary-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
         >
           Contact Sales
-        </a>
+        </Link>
       </aside>
     );
   }

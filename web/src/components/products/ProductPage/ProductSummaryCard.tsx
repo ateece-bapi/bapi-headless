@@ -3,6 +3,7 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { BriefcaseIcon, HeartIcon } from '@/lib/icons';
+import { Link } from '@/lib/navigation';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useRegion } from '@/store/regionStore';
 import { useCart, useCartDrawer } from '@/store';
@@ -122,8 +123,11 @@ export default function ProductSummaryCard({
       return acc;
     }, {}) || undefined;
 
-  // For variable products, require a variation selection
-  if (isVariableProduct && !variation) {
+  // Check if price is missing/zero (before formatting)
+  const hasNoPrice = !rawPrice || rawPrice === '0' || rawPrice === '' || numericPrice === 0;
+
+  // For variable products, require a variation selection OR show configure if no price
+  if (isVariableProduct && (!variation || hasNoPrice)) {
     const scrollToConfigurator = () => {
       const configurator = document.querySelector('[data-product-configurator]');
       if (configurator) {
@@ -235,11 +239,48 @@ export default function ProductSummaryCard({
     );
   }
 
-  if (!displayPrice || displayPrice.trim() === '' || displayPrice === '0') {
+  // For simple (non-variable) products with missing/zero price, show contact sales message
+  // Variable products without prices are handled above (they need configuration)
+  if (!isVariableProduct && hasNoPrice) {
     return (
-      <aside className="mb-8 w-full rounded-xl border border-neutral-200 bg-white p-6 shadow md:mb-0 md:w-80">
-        {/* Only fallback <p> for missing price, no other children */}
-        <p className="mb-4 text-primary-500"> </p>
+      <aside className="mb-8 w-full rounded-xl border border-neutral-200 bg-white p-6 shadow md:sticky md:top-4 md:mb-0">
+        <h2 className="mb-4 text-xl font-bold text-neutral-900">Product Summary</h2>
+        
+        {/* Part Number - Always show if available */}
+        {displayPartNumber && displayPartNumber !== 'N/A' && (
+          <div className="mb-4">
+            <div className="mb-1 text-xs uppercase tracking-wide text-neutral-700">Part Number</div>
+            <code className="inline-block rounded-lg border border-neutral-200 bg-neutral-100 px-3 py-2 font-mono text-sm font-semibold text-neutral-900">
+              {displayPartNumber}
+            </code>
+          </div>
+        )}
+        
+        {/* Price Unavailable Message */}
+        <div className="mb-6 rounded-xl border border-neutral-200 bg-neutral-50 p-4">
+          <div className="mb-2 flex items-center gap-2 text-neutral-700">
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span className="font-semibold">Price Not Available</span>
+          </div>
+          <p className="text-sm text-neutral-700">
+            Contact our sales team for pricing and availability information.
+          </p>
+        </div>
+        
+        {/* Contact Sales CTA */}
+        <Link
+          href="/contact"
+          className="block w-full rounded-xl bg-primary-600 px-6 py-4 text-center text-lg font-bold text-white shadow-lg transition-all hover:bg-primary-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+        >
+          Contact Sales
+        </Link>
       </aside>
     );
   }

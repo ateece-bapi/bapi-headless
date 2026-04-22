@@ -17,6 +17,9 @@ interface Product {
   partNumber?: string | null;
   price?: string | null;
   shortDescription?: string | null;
+  customerGroup1?: string | null;
+  customerGroup2?: string | null;
+  customerGroup3?: string | null;
   image?: {
     sourceUrl?: string | null;
     altText?: string | null;
@@ -57,6 +60,18 @@ export default function SearchResults({
 }: SearchResultsProps) {
   const { user } = useAuth();
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
+  // Debug: Log customer group filtering
+  console.log('[SearchResults] Debug:', {
+    productCount: products.length,
+    userGroups: user?.customerGroups || ['END USER'],
+    sampleProduct: products[0] ? {
+      name: products[0].name,
+      customerGroup1: products[0].customerGroup1,
+      customerGroup2: products[0].customerGroup2,
+      customerGroup3: products[0].customerGroup3,
+    } : null,
+  });
 
   // Filter products by customer group (B2B access control)
   const filteredProducts = filterProductsByCustomerGroup(products, user?.customerGroups || ['END USER']);

@@ -877,6 +877,7 @@
       "products": "Sản phẩm"
     },
     "backTo": "Trở về {categoryName}",
+    "noProducts": "Không tìm thấy sản phẩm nào trong danh mục này.",
     "subcategories": {
       "title": "Subcategories:",
       "browseButton": "Browse"

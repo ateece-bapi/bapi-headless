@@ -916,6 +916,7 @@
       "products": "产品"
     },
     "backTo": "返回到 {categoryName}",
+    "noProducts": "此类别中未找到产品。",
     "subcategories": {
       "title": "Subcategories:",
       "browseButton": "Browse"

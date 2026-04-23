@@ -916,6 +916,7 @@
       "products": "製品"
     },
     "backTo": "{categoryName}に戻る",
+    "noProducts": "このカテゴリに製品が見つかりませんでした。",
     "subcategories": {
       "title": "Subcategories:",
       "browseButton": "Browse"

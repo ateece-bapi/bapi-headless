@@ -122,10 +122,9 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   const translatedCategoryName = getTranslatedCategoryName(categoryData.name);
 
   // Filter subcategories to only include valid entries with required fields
-  // Also exclude empty categories (count = 0) to prevent 404s
   const subcategories = (categoryData.children?.nodes || []).filter(
     (sub): sub is NonNullable<typeof sub> & { name: string; slug: string } =>
-      !!sub && !!sub.name && !!sub.slug && (sub.count ?? 0) > 0
+      !!sub && !!sub.name && !!sub.slug
   );
   const hasSubcategories = subcategories.length > 0;
 

@@ -916,6 +916,7 @@
       "products": "Produits"
     },
     "backTo": "Retour à {categoryName}",
+    "noProducts": "Aucun produit trouvé dans cette catégorie.",
     "subcategories": {
       "title": "Subcategories:",
       "browseButton": "Browse"

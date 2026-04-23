@@ -1367,6 +1367,7 @@
       "products": "उत्पाद"
     },
     "backTo": "{categoryName} पर वापस जाएं",
+    "noProducts": "इस श्रेणी में कोई उत्पाद नहीं मिला।",
     "subcategories": {
       "title": "Subcategories:",
       "browseButton": "Browse"

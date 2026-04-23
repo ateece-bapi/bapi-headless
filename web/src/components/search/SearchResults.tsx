@@ -17,6 +17,9 @@ interface Product {
   partNumber?: string | null;
   price?: string | null;
   shortDescription?: string | null;
+  customerGroup1?: string | null;
+  customerGroup2?: string | null;
+  customerGroup3?: string | null;
   image?: {
     sourceUrl?: string | null;
     altText?: string | null;

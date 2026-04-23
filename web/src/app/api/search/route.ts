@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 import logger from '@/lib/logger';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import { getSdk, SearchProductsQuery, SearchProductsByVariationSkuQuery } from '@/lib/graphql/generated';
+import { filterProductsByCustomerGroup } from '@/lib/utils/filterProductsByCustomerGroup';
+import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from '@/lib/auth/queries';
+
+const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
 
 // Type for search product response
 interface SearchProduct {
@@ -13,6 +18,9 @@ interface SearchProduct {
   partNumber?: string | null;
   price?: string | null;
   shortDescription?: string | null;
+  customerGroup1?: string | null;
+  customerGroup2?: string | null;
+  customerGroup3?: string | null;
   image?: {
     id: string;
     sourceUrl: string;
@@ -41,6 +49,63 @@ function looksLikeSku(query: string): boolean {
   // Match patterns with alphanumeric + dash/underscore/slash/quote (common SKU formats)
   // At least one letter and one number, may contain dashes/underscores/slashes/quotes
   return /^[A-Za-z0-9\-_/"]+$/.test(query) && /[A-Za-z]/.test(query) && /[0-9]/.test(query);
+}
+
+/**
+ * Get user's customer groups from auth token
+ * Defaults to ['end-user'] for guests (matches WordPress behavior)
+ */
+async function getUserCustomerGroups(): Promise<string[]> {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('auth_token')?.value;
+
+    if (!token) {
+      return ['end-user']; // Guest users default to end-user group
+    }
+
+    // Query current user with GraphQL
+    const response = await fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        query: GET_CURRENT_USER_QUERY,
+      }),
+    });
+
+    const { data, errors }: { data: GetCurrentUserResponse; errors?: any[] } =
+      await response.json();
+
+    if (errors || !data?.viewer) {
+      return ['end-user']; // Invalid token - treat as guest
+    }
+
+    const { viewer } = data;
+
+    // Extract customer groups from ACF fields (customerInformation.customerGroup1/2/3)
+    // Schema: These are LIST types (arrays of strings)
+    const customerInfo = viewer.customerInformation;
+    const rawCustomerGroups = [
+      ...(customerInfo?.customerGroup1 || []),
+      ...(customerInfo?.customerGroup2 || []),
+      ...(customerInfo?.customerGroup3 || []),
+    ]
+      .filter((group): group is string => typeof group === 'string')
+      .map((group) => group.trim())
+      .filter((group) => group.length > 0 && group.toUpperCase() !== 'NO ACCESS');
+
+    // Normalize to lowercase
+    const slugifiedGroups = rawCustomerGroups.map(g => g.toLowerCase());
+
+    // Default to 'end-user' if no valid groups
+    return slugifiedGroups.length > 0 ? slugifiedGroups : ['end-user'];
+  } catch (error) {
+    logger.error('Failed to get user customer groups', { error });
+    return ['end-user']; // Fallback to guest
+  }
 }
 
 /**
@@ -183,5 +248,16 @@ async function performSearch(query: string) {
   // Convert Map back to array and limit to 8 results for dropdown
   const mergedResults = Array.from(resultsMap.values()).slice(0, 8);
 
-  return NextResponse.json({ products: { nodes: mergedResults } });
+  // Apply customer group filtering (B2B access control)
+  const userCustomerGroups = await getUserCustomerGroups();
+  const filteredResults = filterProductsByCustomerGroup(mergedResults, userCustomerGroups);
+
+  logger.debug('Search API customer group filtering', {
+    query,
+    totalResults: mergedResults.length,
+    filteredResults: filteredResults.length,
+    userGroups: userCustomerGroups,
+  });
+
+  return NextResponse.json({ products: { nodes: filteredResults } });
 }

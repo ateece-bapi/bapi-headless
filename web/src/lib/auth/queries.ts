@@ -46,7 +46,8 @@ export const LOGIN_MUTATION = `
  * GetCurrentUser query - validates JWT token and returns user data
  * Used in: /api/auth/me, lib/auth/server.ts
  * 
- * NOTE: customerGroup1/2/3 are ACF fields that may return string or null
+ * NOTE: customerGroup1/2/3 are ACF fields under customerInformation
+ * Schema: viewer.customerInformation.customerGroup1/2/3 are LIST types (arrays)
  */
 export const GET_CURRENT_USER_QUERY = `
   query GetCurrentUser {
@@ -57,9 +58,11 @@ export const GET_CURRENT_USER_QUERY = `
       name
       username
       twoFactorEnabled
-      customerGroup1
-      customerGroup2
-      customerGroup3
+      customerInformation {
+        customerGroup1
+        customerGroup2
+        customerGroup3
+      }
       roles {
         nodes {
           name
@@ -105,9 +108,11 @@ export interface GetCurrentUserResponse {
     name: string;
     username: string;
     twoFactorEnabled: boolean;
-    customerGroup1?: string |null;
-    customerGroup2?: string | null;
-    customerGroup3?: string | null;
+    customerInformation?: {
+      customerGroup1?: string[] | null;
+      customerGroup2?: string[] | null;
+      customerGroup3?: string[] | null;
+    } | null;
     roles: {
       nodes: Array<{
         name: string;

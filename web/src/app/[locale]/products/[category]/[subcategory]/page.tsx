@@ -116,9 +116,10 @@ export default async function SubcategoryPage({ params, searchParams }: Subcateg
   };
 
   // Check if this is a middle-level category with its own sub-subcategories
+  // Also exclude empty categories (count = 0) to prevent 404s
   const subSubcategories = (subcategoryData.children?.nodes || []).filter(
     (sub): sub is NonNullable<typeof sub> & { name: string; slug: string } =>
-      !!sub && !!sub.name && !!sub.slug
+      !!sub && !!sub.name && !!sub.slug && (sub.count ?? 0) > 0
   );
   const hasSubSubcategories = subSubcategories.length > 0;
 

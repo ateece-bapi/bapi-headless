@@ -34,7 +34,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           links: [
             {
               label: t('products.temperature.roomWallSensors'),
-              href: '/products/temperature-sensors/temp-room-temp',
+              href: '/products/temperature-sensors/temp-room',
               description: t('products.temperature.roomWallSensorsDesc'),
             },
             {

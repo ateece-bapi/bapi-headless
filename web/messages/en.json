@@ -1816,6 +1816,7 @@
       "products": "Products"
     },
     "backTo": "Back to {categoryName}",
+    "noProducts": "No products found in this category.",
     "subcategories": {
       "title": "Subcategories:",
       "browseButton": "Browse"

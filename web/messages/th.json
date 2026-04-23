@@ -1367,6 +1367,7 @@
       "products": "ผลิตภัณฑ์"
     },
     "backTo": "กลับไปยัง {categoryName}",
+    "noProducts": "ไม่พบผลิตภัณฑ์ในหมวดหมู่นี้",
     "subcategories": {
       "title": "Subcategories:",
       "browseButton": "Browse"

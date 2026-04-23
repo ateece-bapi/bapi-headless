@@ -8,6 +8,350 @@
 
 ---
 
+## April 23, 2026 — OEM Product Filtering: Senior-Level GraphQL Schema Implementation 🔒✅
+
+**Status:** ✅ COMPLETE - Merged to main  
+**Branch:** `fix/oem-product-filtering-search`  
+**Context:** ALC/ACS/EMC/CCG restricted products appearing in search results for guest users  
+**Priority:** 🔴 CRITICAL - B2B access control must be enforced before May 4 launch  
+**Time:** ~3 hours (investigation → MU plugin → GraphQL updates → API filtering → Copilot review)  
+**Approach:** Senior-level implementation - Exposed ACF fields in GraphQL schema, not brittle title parsing
+
+### 🐛 USER REPORT
+
+**Issue:** "ALC products SHOWING in Search. That is not supposed to HAPPEN."  
+**Expected:** Guest users should only see public products (no OEM restrictions)  
+**Actual:** 8 ALC products appearing in search results for unauthenticated users
+
+### 🎯 INVESTIGATION & ROOT CAUSE
+
+**Initial Discovery:**
+- Current implementation: Title parsing only (`(ALC)` prefix detection)
+- **Problem:** Brittle, unreliable, missing products without proper prefix format
+- **Data Reality:** Customer group restrictions stored in ACF fields `customer_group1/2/3` (WordPress postmeta)
+- **GraphQL Gap:** ACF fields NOT exposed in WPGraphQL schema
+
+**Schema Verification:**
+```bash
+# Product schema - customerGroup fields missing
+grep "customerGroup" web/schema.json
+# Result: No matches (fields not exposed)
+
+# Database check - ACF data exists
+wp db query "SELECT post_id, meta_key, meta_value FROM wp_postmeta 
+WHERE meta_key IN ('customer_group1', 'customer_group2', 'customer_group3') LIMIT 5;"
+# Result: Serialized arrays like a:1:{i:0;s:3:"alc";}
+```
+
+**Junior vs Senior Approach:**
+- ❌ **Junior:** Add more regex patterns, defensive title parsing  
+- ❌ **Mid-Level:** Cache parsed results, add validation layer  
+- ✅ **Senior:** Expose data explicitly in GraphQL schema, make it queryable
+
+### ✅ SENIOR-LEVEL SOLUTION
+
+**1. WordPress MU Plugin - Schema Registration**
+
+**File:** `cms/wp-content/mu-plugins/bapi-graphql-customer-groups.php`  
+**Purpose:** Register ACF customer group fields in WPGraphQL schema
+
+```php
+<?php
+/**
+ * BAPI GraphQL Customer Groups
+ * Registers ACF customer group fields in WPGraphQL schema for B2B product filtering
+ */
+
+add_action('graphql_register_types', function() {
+    // Shared resolver helper using WordPress maybe_unserialize()
+    $resolve_customer_group = function($product, $meta_key) {
+        $value = get_post_meta($product->ID, $meta_key, true);
+        $value = maybe_unserialize($value);
+        
+        if (is_array($value) && !empty($value)) {
+            return is_string($value[0]) ? $value[0] : null;
+        }
+        return is_string($value) && !empty($value) ? $value : null;
+    };
+
+    // Register for SimpleProduct
+    register_graphql_field('SimpleProduct', 'customerGroup1', [
+        'type' => 'String',
+        'description' => 'Primary customer group restriction',
+        'resolve' => function($product) use ($resolve_customer_group) {
+            return $resolve_customer_group($product, 'customer_group1');
+        }
+    ]);
+    // ... customerGroup2, customerGroup3 (same pattern)
+    
+    // Register for VariableProduct (same fields)
+});
+```
+
+**Key Features:**
+- ✅ Shared resolver helper (DRY principle)
+- ✅ WordPress `maybe_unserialize()` instead of raw PHP
+- ✅ Handles both serialized arrays and plain strings
+- ✅ Null safety for missing/empty values
+- ✅ Registered for both SimpleProduct and VariableProduct types
+
+**2. GraphQL Query Updates**
+
+**Updated 11 queries across 2 files:**
+- `web/src/lib/graphql/queries/search.graphql` (6 queries)
+- `web/src/lib/graphql/queries/products.graphql` (5 queries)
+
+**Added fields:**
+```graphql
+customerGroup1
+customerGroup2
+customerGroup3
+```
+
+**Queries updated:**
+- SearchProducts, SearchProductsBySKU
+- ListVariableProductsWithVariationSkus
+- SearchVariableProductsWithVariations
+- SearchProductsByVariationSku, SearchProductsByVariationSkuPrefix
+- GetProducts, GetProductBySlug, GetProductBySlugLight
+- GetProductRelated, GetProductsByCategory
+
+**3. TypeScript Codegen Pipeline**
+
+```bash
+# Download fresh schema from staging
+pnpm run schema:download
+
+# Generate TypeScript types
+pnpm run codegen
+# Result: customerGroup1/2/3 added to SimpleProduct/VariableProduct interfaces
+```
+
+**4. Filtering Utility - Hybrid Approach**
+
+**File:** `web/src/lib/utils/filterProductsByCustomerGroup.ts`  
+**Strategy:** ACF fields (priority 1) + title parsing (fallback for backwards compatibility)
+
+```typescript
+export function getProductCustomerGroups(product: ProductWithCustomerGroup): string[] {
+  const groups: string[] = [];
+  
+  // Priority 1: Use ACF fields from GraphQL
+  const acfGroups = [
+    product.customerGroup1,
+    product.customerGroup2,
+    product.customerGroup3,
+  ]
+    .filter((group): group is string => typeof group === 'string')
+    .map((group) => group.trim())  // Copilot fix: prevent whitespace-only
+    .filter((group) => group.length > 0);
+  
+  if (acfGroups.length > 0) {
+    groups.push(...acfGroups.map((g) => g.toLowerCase()));
+  }
+  
+  // Priority 2: Fallback to title parsing
+  if (groups.length === 0) {
+    const groupFromTitle = extractCustomerGroupFromTitle(product.name);
+    if (groupFromTitle) groups.push(groupFromTitle);
+  }
+  
+  return [...new Set(groups)];
+}
+```
+
+**5. Search API Integration**
+
+**File:** `web/src/app/api/search/route.ts`  
+**Added:** `getUserCustomerGroups()` helper + filtering before results return
+
+```typescript
+async function getUserCustomerGroups(): Promise<string[]> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('auth_token')?.value;
+  if (!token) return ['end-user']; // Guests default
+  
+  // Query WordPress GraphQL for user customer groups
+  const response = await fetch(GRAPHQL_ENDPOINT, {
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ query: GET_CURRENT_USER_QUERY }),
+  });
+  
+  const customerInfo = viewer.customerInformation;
+  const rawCustomerGroups = [
+    ...(customerInfo?.customerGroup1 || []),
+    ...(customerInfo?.customerGroup2 || []),
+    ...(customerInfo?.customerGroup3 || []),
+  ]
+    .filter((group): group is string => typeof group === 'string')
+    .map((group) => group.trim())  // Copilot fix
+    .filter((group) => group.length > 0 && group.toUpperCase() !== 'NO ACCESS');
+  
+  const slugifiedGroups = slugifyArray(rawCustomerGroups);
+  return slugifiedGroups.length > 0 ? slugifiedGroups : ['end-user'];
+}
+
+// Apply filtering before returning results
+const userCustomerGroups = await getUserCustomerGroups();
+const filteredResults = filterProductsByCustomerGroup(mergedResults, userCustomerGroups);
+```
+
+### 📊 VERIFICATION
+
+**GraphQL Query Test:**
+```graphql
+query {
+  product(id: "159771", idType: DATABASE_ID) {
+    name
+    customerGroup1
+    customerGroup2
+    customerGroup3
+  }
+}
+```
+
+**Result:**
+```json
+{
+  "name": "(ALC) UIUO4",
+  "customerGroup1": "alc",
+  "customerGroup2": null,
+  "customerGroup3": null
+}
+```
+
+**Search API Test (Guest User):**
+```bash
+# Debug logs from search endpoint
+logger.debug('Search filtering', {
+  totalResults: 8,        // Found 8 ALC products
+  filteredResults: 0,     // Filtered to 0 for guests ✅
+  userGroups: ['end-user']
+});
+```
+
+**Before Fix:**
+- Guest search for "alc" → 8 ALC products visible ❌
+
+**After Fix:**
+- Guest search for "alc" → 0 products (correctly filtered) ✅
+- ALC user search for "alc" → 8 products (access granted) ✅
+
+### 🔍 COPILOT AUTOMATED REVIEW FEEDBACK
+
+**Received 4 issues - all addressed:**
+
+**Issue 1:** User customer groups query incorrect
+- ❌ Querying `viewer.customerGroup1` directly  
+- ✅ Fixed: Query `viewer.customerInformation.customerGroup1` (LIST type)
+
+**Issue 2:** No whitespace trimming
+- ❌ Risk: `" "` or whitespace-only values treated as restrictions  
+- ✅ Fixed: Added `.map((group) => group.trim())` to all extraction logic
+
+**Issue 3:** Using `@unserialize` PHP suppression
+- ❌ Error suppression instead of proper handling  
+- ✅ Fixed: Use WordPress `maybe_unserialize()` helper in shared resolver
+
+**Issue 4:** Noisy debug logging
+- ❌ `error_log()` on every request flooding logs  
+- ✅ Fixed: Removed init hook debug logging
+
+**Final Status:**
+- ✅ Build successful after fixes
+- ✅ 32 tests passing
+- ✅ Updated plugin uploaded to staging
+- ✅ PR merged to main
+
+### 🧪 TEST COVERAGE
+
+**Updated:** `web/src/lib/utils/filterProductsByCustomerGroup.test.ts`  
+**Changed:** Updated all tests to use `customerGroup1/2/3` fields instead of deprecated `customerGroups` array
+
+**Test Results:**
+```
+✓ src/lib/utils/filterProductsByCustomerGroup.test.ts (32 tests) 9ms
+  ✓ extractCustomerGroupFromTitle (14)
+  ✓ getProductCustomerGroups (6)
+  ✓ canUserViewProduct (5)
+  ✓ filterProductsByCustomerGroup (5)
+  ✓ getProductCountsByGroup (2)
+
+Test Files  1 passed (1)
+     Tests  32 passed (32)
+```
+
+### 🎓 LESSONS LEARNED
+
+**Junior Approach:**
+- Regex patterns for title parsing
+- String manipulation and defensive coding
+- Handle edge cases in UI layer
+
+**Mid-Level Approach:**
+- Cached parsed results
+- Validation layers in multiple places
+- Extensive error handling for brittle parsing
+
+**Senior Approach:**
+- ✅ Expose data explicitly in GraphQL schema
+- ✅ Make data queryable and type-safe
+- ✅ Fix root cause (missing schema fields), not symptoms
+- ✅ Hybrid fallback for backwards compatibility
+- ✅ Must-Use plugin for always-on critical functionality
+
+**Key Principles Applied:**
+1. **Schema First:** If data exists, expose it properly in GraphQL
+2. **Type Safety:** Let codegen generate TypeScript types from schema
+3. **Hybrid Approach:** ACF fields (primary) + title parsing (fallback)
+4. **Senior Pattern:** Don't parse what you can query directly
+5. **WordPress Best Practices:** Must-Use plugins for critical features
+6. **Code Review Integration:** Address all Copilot feedback before merge
+
+**GraphQL Performance Notes:**
+- Customer group fields are scalar strings (minimal overhead)
+- No N+1 queries (fields on product object itself)
+- Hybrid approach ensures no breaking changes for products without ACF data
+
+**Database Schema Reality:**
+- **608 products** total in staging
+- **5,438 WordPress users** with native authentication
+- **Custom B2B fields:** `customer_group1/2/3` in wp_postmeta (serialized format: `a:1:{i:0;s:3:"alc";}`)
+- **User groups:** Stored in ACF fields under CustomerInformation (LIST types)
+- **Product groups:** Stored in ACF fields on products (SCALAR strings)
+
+### 📦 FILES CHANGED
+
+**WordPress (CMS):**
+- `cms/wp-content/mu-plugins/bapi-graphql-customer-groups.php` (NEW - 91 lines)
+
+**Frontend (Next.js):**
+- `web/src/lib/auth/queries.ts` (updated GET_CURRENT_USER_QUERY)
+- `web/src/app/api/auth/me/route.ts` (user group extraction)
+- `web/src/app/api/search/route.ts` (filtering implementation)
+- `web/src/app/api/chat/route.ts` (same pattern as search)
+- `web/src/lib/graphql/queries/search.graphql` (6 queries updated)
+- `web/src/lib/graphql/queries/products.graphql` (5 queries updated)
+- `web/src/lib/utils/filterProductsByCustomerGroup.ts` (hybrid approach)
+- `web/src/lib/utils/filterProductsByCustomerGroup.test.ts` (32 tests updated)
+- `web/src/components/search/SearchResults.tsx` (interface updated)
+- `web/schema.json` (downloaded from staging after plugin deployment)
+- `web/src/lib/graphql/generated.ts` (regenerated via codegen)
+
+**Total Changes:**
+- 1 new WordPress MU plugin
+- 11 GraphQL queries updated
+- 5 API routes/utilities updated
+- 32 tests updated
+- All tests passing, build successful
+
+**Deployment:**
+- ✅ WordPress MU plugin deployed to Kinsta staging
+- ✅ Frontend merged to main (auto-deploys to Vercel production)
+- ✅ Local branch cleaned up (deleted)
+
+---
+
 ## April 22, 2026 (PM) — Breadcrumb Navigation: Database Cleanup for Category 762 🧭✅
 
 **Status:** ✅ COMPLETE - Staging Fix Applied (Database Level)  

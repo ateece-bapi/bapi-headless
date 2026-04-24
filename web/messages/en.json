@@ -58,7 +58,7 @@
         "roomWallSensorsDesc": "High-accuracy temperature sensing",
         "ductSensors": "Duct Sensors",
         "ductSensorsDesc": "Duct-mounted transmitters",
-        "immersionWell": "Immersion & Well",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "Liquid temperature measurement",
         "outdoorSensors": "Outdoor Sensors",
         "outdoorSensorsDesc": "Weather-resistant sensing",
@@ -74,15 +74,13 @@
         "ductHumidity": "Duct Humidity",
         "ductHumidityDesc": "Supply & return air RH",
         "outdoorHumidity": "Outdoor Humidity",
-        "outdoorHumidityDesc": "Weather-resistant RH",
-        "comboSensors": "Combo Sensors",
-        "comboSensorsDesc": "Temperature + humidity"
+        "outdoorHumidityDesc": "Weather-resistant RH"
       },
       "pressure": {
         "title": "Pressure",
         "differential": "Differential Pressure",
         "differentialDesc": "Room & filter monitoring",
-        "static": "Static Pressure",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "Duct static transmitters",
         "differentialSwitch": "Differential Switch",
         "differentialSwitchDesc": "Pressure-activated switching"

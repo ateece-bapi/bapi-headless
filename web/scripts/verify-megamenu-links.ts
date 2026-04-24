@@ -31,9 +31,9 @@ const MEGA_MENU_LINKS = [
   // TEMPERATURE SENSORS (6 links)
   {
     category: 'Temperature',
-    slug: 'temp-room-temp',
+    slug: 'temp-room',
     label: 'Room & Wall Sensors',
-    href: '/products/temperature-sensors/temp-room-temp',
+    href: '/products/temperature-sensors/temp-room',
     expectedProducts: 23,
   },
   {

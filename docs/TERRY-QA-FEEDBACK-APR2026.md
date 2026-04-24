@@ -146,22 +146,44 @@ Create these subcategories under `bluetooth-wireless`:
 ## ⚠️ High Priority (P1 - Pre-Launch)
 
 ### 5. Missing Product Options
-**Status:** ⚪ Not Started  
+**Status:** 🔵 Needs Code Fix (Frontend)  
 **Priority:** P1  
-**Type:** Data - Product Configuration
+**Type:** Bug - Frontend Filtering
 
 **Issue:**
-- Product missing 4-20mA output option
+- Product missing 4-20mA output option in configurator
 - URL: https://bapi-headless.vercel.app/en/product/duct-temperature-transmitter-2
+- Product ID: 136296
 
-**Investigation Needed:**
-- [ ] Check if attribute exists in WordPress
-- [ ] Verify variation data
-- [ ] Compare with current site product
-- [ ] Check if it's query issue or missing data
+**Root Cause:**
+- ✅ WordPress data is CORRECT - attribute exists with 5 options: `['4-20mA', '0 to 5V', '1 to 5V', '0 to 10V', '2 to 10V']`
+- ✅ GraphQL query returns all 5 options correctly
+- ❌ **Frontend is filtering out '4-20mA'** - only 4 options render in HTML: `['2 to 10V', '0 to 10V', '1 to 5V', '0 to 5V']`
 
-**Assigned To:** TBD  
-**Estimated Effort:** 1-2 hours
+**Investigation Results:**
+```bash
+# GraphQL query confirmed 5 options:
+curl -X POST "https://bapiheadlessstaging.kinsta.cloud/graphql" \
+  -d '{"query":"query{product(id:\"duct-temperature-transmitter-2\",idType:SLUG){
+    ... on VariableProduct{attributes{nodes{name options}}}}}"}'
+
+# Output: 
+# Transmitter Output: ['4-20mA', '0 to 5V', '1 to 5V', '0 to 10V', '2 to 10V']
+```
+
+**Frontend Code Issue:**
+- Rendered page JSON shows: `attributes:[{name:"Transmitter Output",options:["2 to 10V","0 to 10V","1 to 5V","0 to 5V"]}]`
+- **4-20mA is being filtered out somewhere in the frontend rendering logic**
+- Likely in product attribute transformation or variation selector rendering
+
+**Next Steps:**
+- [ ] Check `web/src/app/[locale]/product/[slug]/page.tsx` for attribute filtering
+- [ ] Verify variation selector component doesn't filter options
+- [ ] Check if attribute detection logic (`web/src/lib/attributeDetection.ts`) removes '4-20mA'
+- [ ] Test if the issue is with option name format (e.g., special character handling)
+
+**Assigned To:** Code Fix Required  
+**Estimated Effort:** 2-3 hours (debug + fix + test)
 
 ---
 
@@ -209,28 +231,45 @@ wp cache flush
 ---
 
 ### 7. Category Naming Issues
-**Status:** ⚪ Not Started  
+**Status:** 🟢 Complete (Partial)  
 **Priority:** P1  
 **Type:** Content - Category Names
 
 **Changes Required:**
 
-1. **"Immersion and Well" → "Immersion and Thermowell"**
-   - Location: Products > Pressure (or Temperature)
+1. **"Immersion" → "Immersion and Thermowell"** ✅ **COMPLETE**
+   - Location: Products > Temperature > Immersion
    - Reason: BAPI doesn't use "Well" terminology
+   - **Fixed:** Updated via WP-CLI on staging
+   - Term ID: 739, Slug: `temp-immersion`
+   - Command: `wp term update product_cat 739 --name="Immersion and Thermowell"`
 
-2. **"Static Pressure" → "Pickup Ports and Probes"**
-   - Location: Products > Pressure
-   - Reason: More accurate product description
+2. **"Pickup Ports and Probes"** ✅ **ALREADY CORRECT**
+   - Location: Products > Pressure > Pickup Ports and Probes
+   - Term ID: 337, Slug: `pressure-pickup-ports-and-probes`
+   - **No change needed** - already using correct terminology
 
-**Tasks:**
-- [ ] Update category names in WordPress
-- [ ] Verify slug updates don't break links
-- [ ] Update navigation config if needed
-- [ ] Test mega menu display
+**Investigation Notes:**
+- Original issue mentioned "Immersion and Well" but WordPress only had "Immersion" (ID 739)
+- Original issue mentioned "Static Pressure" but this category doesn't exist in WordPress
+- Likely Terry was referring to the category that's already named "Pickup Ports and Probes"
 
-**Assigned To:** TBD  
-**Estimated Effort:** 30 minutes
+**WordPress Changes:**
+```bash
+ssh -p 17338 bapiheadlessstaging@35.224.70.159
+cd public
+wp term update product_cat 739 --name="Immersion and Thermowell"
+wp cache flush
+```
+
+**Result:**
+- ✅ Category name updated successfully
+- ✅ Slug preserved (no broken links)
+- ✅ Cache flushed
+- ℹ️ No navigation config changes needed (slug unchanged)
+
+**Assigned To:** Complete  
+**Estimated Effort:** 30 minutes (actual)
 
 ---
 
@@ -614,9 +653,9 @@ wp cache flush
 **Status Breakdown:**
 - 🔴 Blocked: 0
 - 🟡 In Progress: 0
-- 🟢 Complete: 4 (Category naming x2, Combo Sensors removed, 404 redirect, Missing Product Image)
-- ⚪ Not Started: 14
-- 🔵 Needs Discussion: 5
+- 🟢 Complete: 5 (Category naming, Combo Sensors removed, 404 redirect, Missing Product Image, Immersion→Thermowell)
+- 🔵 Needs Discussion: 6 (Mega Menu Cut Off, Wireless Routing, Missing 4-20mA Frontend Bug)
+- ⚪ Not Started: 12
 
 **Estimated Total Effort:** 55-80 hours
 

@@ -97,7 +97,7 @@ export default function SensorSpecsPage() {
           <h2 className="mb-8 text-3xl font-bold text-neutral-900">Temperature Sensors</h2>
 
           {/* Thermistors */}
-          <div className="mb-12">
+          <div className="mb-12 rounded-xl border-2 border-neutral-200 bg-white p-8">
             <h3 className="mb-4 text-2xl font-bold text-neutral-900">THERMISTORS</h3>
             <p className="mb-6 text-lg leading-relaxed text-neutral-700">
               Thermistors are thermally sensitive resistors known for exhibiting a large change in
@@ -105,12 +105,18 @@ export default function SensorSpecsPage() {
               resistance is non-linear. It follows a pre-defined curve which is provided by the
               thermistor manufacturer.
             </p>
+            <Link
+              href="/sensor-specs/thermistor"
+              className="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+            >
+              Learn More About Thermistors →
+            </Link>
           </div>
 
           <LocalizedTemperatureSensorTable />
 
           {/* RTDs */}
-          <div className="mb-8 mt-12">
+          <div className="mb-8 mt-12 rounded-xl border-2 border-neutral-200 bg-white p-8">
             <h3 className="mb-4 text-2xl font-bold text-neutral-900">RTDs</h3>
             <p className="mb-6 text-lg leading-relaxed text-neutral-700">
               RTDs (Resistance Temperature Detectors) are thermally sensitive resistive elements
@@ -118,10 +124,16 @@ export default function SensorSpecsPage() {
               especially recognized for excellent linearity throughout their temperature range with
               a high degree of accuracy and repeatability.
             </p>
+            <Link
+              href="/sensor-specs/rtd"
+              className="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+            >
+              Learn More About RTDs →
+            </Link>
           </div>
 
           {/* Semiconductors */}
-          <div className="mb-8">
+          <div className="mb-8 rounded-xl border-2 border-neutral-200 bg-white p-8">
             <h3 className="mb-4 text-2xl font-bold text-neutral-900">SEMICONDUCTORS</h3>
             <p className="mb-6 text-lg leading-relaxed text-neutral-700">
               Semiconductors are designed to exhibit a defined current output directly proportional
@@ -129,10 +141,16 @@ export default function SensorSpecsPage() {
               common commercial HVAC/R sensing elements. By putting this current output across a
               resistor, a proportional output voltage is produced.
             </p>
+            <Link
+              href="/sensor-specs/semiconductor"
+              className="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+            >
+              Learn More About Semiconductors →
+            </Link>
           </div>
 
           {/* Temperature Transmitters */}
-          <div className="mb-8">
+          <div className="mb-8 rounded-xl border-2 border-neutral-200 bg-white p-8">
             <h3 className="mb-4 text-2xl font-bold text-neutral-900">TEMPERATURE TRANSMITTERS</h3>
             <p className="mb-6 text-lg leading-relaxed text-neutral-700">
               Temperature transmitters incorporate a platinum 100 Ohm or 1k Ohm RTD sensor and an
@@ -140,6 +158,12 @@ export default function SensorSpecsPage() {
               specified temperature range. They are specifically designed for temperature sensing
               and transmission over long distances without degradation of the 4 to 20mA signal.
             </p>
+            <Link
+              href="/sensor-specs/temperature-transmitters"
+              className="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+            >
+              Learn More About Temperature Transmitters →
+            </Link>
           </div>
 
           <Link
@@ -156,7 +180,7 @@ export default function SensorSpecsPage() {
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-3xl font-bold text-neutral-900">Humidity Sensors</h2>
 
-          <div className="mb-8">
+          <div className="mb-8 rounded-xl border-2 border-neutral-200 bg-white p-8">
             <h3 className="mb-4 text-2xl font-bold text-neutral-900">HUMIDITY TRANSMITTERS</h3>
             <p className="mb-6 text-lg leading-relaxed text-neutral-700">
               Humidity transmitters provide a high accuracy 4 to 20mA, 0 to 5V or 0 to 10V humidity
@@ -166,6 +190,12 @@ export default function SensorSpecsPage() {
               The sensor is unaffected by volatile organic compounds (VOC&apos;s) or surface
               contamination.
             </p>
+            <Link
+              href="/sensor-specs/humidity-transmitters"
+              className="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+            >
+              Learn More About Humidity Transmitters →
+            </Link>
           </div>
 
           <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
@@ -225,7 +255,7 @@ export default function SensorSpecsPage() {
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-3xl font-bold text-neutral-900">Pressure Sensors</h2>
 
-          <div className="mb-8">
+          <div className="mb-8 rounded-xl border-2 border-neutral-200 bg-white p-8">
             <h3 className="mb-4 text-2xl font-bold text-neutral-900">PRESSURE TRANSMITTERS</h3>
             <p className="mb-6 text-lg leading-relaxed text-neutral-700">
               The heart of every BAPI Pressure Transmitter is a micro-machined, single-crystal
@@ -235,6 +265,12 @@ export default function SensorSpecsPage() {
               other non-silicon strain gauges. This means a more accurate measurement of lower
               pressure levels.
             </p>
+            <Link
+              href="/sensor-specs/pressure-transmitters"
+              className="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
+            >
+              Learn More About Pressure Transmitters →
+            </Link>
           </div>
 
           <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">

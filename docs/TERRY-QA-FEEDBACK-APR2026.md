@@ -609,42 +609,42 @@ wp cache flush
 ---
 
 ### 21. Sensors Overview - Needs Expansion
-**Status:** ✅ Complete  
+**Status:** 🟡 In Progress  
 **Priority:** P1  
-**Type:** Content - Depth
+**Type:** Content - Depth + Multiple Pages
 
 **Issue:**
-- New site had only 1-2 lines per sensor element
+- New site has only 1-2 lines per sensor element
 - Current site much more detailed: https://www.bapihvac.com/sensor-specs/
 - Terry: "New site isn't nearly enough"
+- Legacy site has 6 separate detailed overview pages with full specifications
 
-**Solution Implemented:**
-Expanded `/sensor-specs` page with detailed explanatory content from WordPress post 209:
+**Scope (Full Implementation):**
+1. **Main Page:** `/sensor-specs` - Overview with links to detailed pages ✅ In Progress
+2. **Thermistor Overview** - Dedicated page with specs, output tables, charts
+3. **RTD Overview** - Full technical specifications and ranges
+4. **Semiconductor Overview** - Detailed technical information
+5. **Temperature Transmitters Overview** - Complete specifications
+6. **Humidity Transmitters Overview** - Full specs and applications
+7. **Pressure Transmitters Overview** - Technical details and ranges
 
-**Added Content:**
-1. **Introduction Section** - Overview of sensor importance in facilities (hospitals, clean rooms, data centers)
-2. **BAPI Compatibility Statement** - Wide range compatible with facility control systems
-3. **THERMISTORS** - Full explanation of thermally sensitive resistors and non-linear characteristics
-4. **RTDs** - Detailed description of Resistance Temperature Detectors and excellent linearity
-5. **SEMICONDUCTORS** - Explanation of current output proportional to absolute temperature
-6. **TEMPERATURE TRANSMITTERS** - Description of RTD + amplifier for long-distance transmission
-7. **HUMIDITY TRANSMITTERS** - Details on accuracy, filters, VOC resistance
-8. **PRESSURE TRANSMITTERS** - Technical explanation of silicon piezoresistive sensors
+**Work Completed:**
+- ✅ Added explanatory content to main `/sensor-specs` page
+- ✅ Intro section, sensor importance, technology descriptions
+- 🔄 Creating 6 detailed overview pages (in progress)
 
-**Changes:**
-- `web/src/app/[locale]/sensor-specs/page.tsx` - Added ~80 lines of explanatory content
-- Maintained existing specification tables
-- Improved visual hierarchy with H2/H3 headings
-- Alternating background colors for better readability
+**Work Remaining:**
+- [ ] Create Thermistor Overview page with output tables
+- [ ] Create RTD Overview page with specifications
+- [ ] Create Semiconductor Overview page
+- [ ] Create Temperature Transmitters Overview page
+- [ ] Create Humidity Transmitters Overview page  
+- [ ] Create Pressure Transmitters Overview page
+- [ ] Update main page with "View Overview" links
+- [ ] Design polish and responsive testing
 
-**Result:**
-- ✅ Content depth now matches legacy site
-- ✅ Educational value for users learning about sensor technologies
-- ✅ Maintains professional technical tone
-- ✅ All legacy content preserved and enhanced
-
-**Assigned To:** Complete  
-**Actual Effort:** 2 hours
+**Assigned To:** In Progress  
+**Estimated Effort:** 8-12 hours (revised from 2 hours)
 
 ---
 
@@ -702,8 +702,8 @@ Expanded `/sensor-specs` page with detailed explanatory content from WordPress p
 
 **Status Breakdown:**
 - 🔴 Blocked: 0
-- 🟡 In Progress: 0  
-- 🟢 Complete: 7 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, Sensor Specs expanded)
+- 🟡 In Progress: 1 (Sensor Specs expansion - 6 detailed pages)
+- 🟢 Complete: 6 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed)
 - 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing, Radio vs Dropdowns, Category Behavior, Datasheets)
 - ⚪ Not Started: 11
 

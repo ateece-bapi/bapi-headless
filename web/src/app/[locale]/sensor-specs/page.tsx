@@ -65,12 +65,82 @@ export default function SensorSpecsPage() {
         </div>
       </section>
 
+      {/* Intro Section */}
+      <section className="py-16">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <h2 className="mb-6 text-3xl font-bold text-neutral-900">
+            Temperature, Humidity & Pressure Sensor Overview
+          </h2>
+          <div className="space-y-4 text-lg leading-relaxed text-neutral-700">
+            <p>
+              There are many facilities and locations today that rely on temperature, pressure and
+              humidity sensors and transmitters to provide a stable, secure environment, such as
+              hospitals, clean rooms and data centers. The sensor or transmitter itself can make or
+              break the system, therefore they must be dependable, accurate and 100% compatible
+              with the building control system. More demanding environments, advances in
+              technology, and changing customer needs keep the industry striving for new and
+              improved sensors and transmitters. As the industry continues to change, BAPI will be
+              at the forefront providing high performance solutions for real world applications.
+            </p>
+            <p>
+              BAPI offers a wide range of temperature, humidity and pressure sensors and
+              transmitters in all of our room, duct, immersion and outside air units so that they
+              are 100% compatible with the facility&apos;s control system.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Temperature Sensors */}
-      <section id="temperature" className="py-16">
+      <section id="temperature" className="bg-neutral-50 py-16">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-3xl font-bold text-neutral-900">Temperature Sensors</h2>
 
+          {/* Thermistors */}
+          <div className="mb-12">
+            <h3 className="mb-4 text-2xl font-bold text-neutral-900">THERMISTORS</h3>
+            <p className="mb-6 text-lg leading-relaxed text-neutral-700">
+              Thermistors are thermally sensitive resistors known for exhibiting a large change in
+              resistance with only a small change in temperature. A thermistor&apos;s change in
+              resistance is non-linear. It follows a pre-defined curve which is provided by the
+              thermistor manufacturer.
+            </p>
+          </div>
+
           <LocalizedTemperatureSensorTable />
+
+          {/* RTDs */}
+          <div className="mb-8 mt-12">
+            <h3 className="mb-4 text-2xl font-bold text-neutral-900">RTDs</h3>
+            <p className="mb-6 text-lg leading-relaxed text-neutral-700">
+              RTDs (Resistance Temperature Detectors) are thermally sensitive resistive elements
+              that exhibit a small change in resistance per degree of temperature change. RTDs are
+              especially recognized for excellent linearity throughout their temperature range with
+              a high degree of accuracy and repeatability.
+            </p>
+          </div>
+
+          {/* Semiconductors */}
+          <div className="mb-8">
+            <h3 className="mb-4 text-2xl font-bold text-neutral-900">SEMICONDUCTORS</h3>
+            <p className="mb-6 text-lg leading-relaxed text-neutral-700">
+              Semiconductors are designed to exhibit a defined current output directly proportional
+              to the absolute temperature (°K). This property makes them the most linear of all the
+              common commercial HVAC/R sensing elements. By putting this current output across a
+              resistor, a proportional output voltage is produced.
+            </p>
+          </div>
+
+          {/* Temperature Transmitters */}
+          <div className="mb-8">
+            <h3 className="mb-4 text-2xl font-bold text-neutral-900">TEMPERATURE TRANSMITTERS</h3>
+            <p className="mb-6 text-lg leading-relaxed text-neutral-700">
+              Temperature transmitters incorporate a platinum 100 Ohm or 1k Ohm RTD sensor and an
+              amplifier. These devices provide an accurate and predictable 4 to 20mA output over a
+              specified temperature range. They are specifically designed for temperature sensing
+              and transmission over long distances without degradation of the 4 to 20mA signal.
+            </p>
+          </div>
 
           <Link
             href="/products?category=temperature"
@@ -82,9 +152,21 @@ export default function SensorSpecsPage() {
       </section>
 
       {/* Humidity Sensors */}
-      <section id="humidity" className="bg-neutral-50 py-16">
+      <section id="humidity" className="py-16">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-3xl font-bold text-neutral-900">Humidity Sensors</h2>
+
+          <div className="mb-8">
+            <h3 className="mb-4 text-2xl font-bold text-neutral-900">HUMIDITY TRANSMITTERS</h3>
+            <p className="mb-6 text-lg leading-relaxed text-neutral-700">
+              Humidity transmitters provide a high accuracy 4 to 20mA, 0 to 5V or 0 to 10V humidity
+              measurement. Accuracies of 2% or 3% Relative Humidity (RH) are available. BAPI room
+              units are protected by a molded housing with an integral filter, while duct and
+              outside air units come with a removeable 100 micron sintered stainless steel filter.
+              The sensor is unaffected by volatile organic compounds (VOC&apos;s) or surface
+              contamination.
+            </p>
+          </div>
 
           <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
             <div className="overflow-x-auto">
@@ -139,9 +221,21 @@ export default function SensorSpecsPage() {
       </section>
 
       {/* Pressure Sensors */}
-      <section id="pressure" className="py-16">
+      <section id="pressure" className="bg-neutral-50 py-16">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-3xl font-bold text-neutral-900">Pressure Sensors</h2>
+
+          <div className="mb-8">
+            <h3 className="mb-4 text-2xl font-bold text-neutral-900">PRESSURE TRANSMITTERS</h3>
+            <p className="mb-6 text-lg leading-relaxed text-neutral-700">
+              The heart of every BAPI Pressure Transmitter is a micro-machined, single-crystal
+              silicon, piezoresistive pressure sensor that changes resistance as a function of
+              applied pressure. Since silicon strain gauges have high output levels in relation to
+              the pressure applied, the pressure levels in the BAPI diaphragm can be lower than in
+              other non-silicon strain gauges. This means a more accurate measurement of lower
+              pressure levels.
+            </p>
+          </div>
 
           <div className="mb-8 overflow-hidden rounded-xl border-2 border-neutral-200 bg-white">
             <div className="overflow-x-auto">
@@ -190,7 +284,7 @@ export default function SensorSpecsPage() {
       </section>
 
       {/* Air Quality Sensors */}
-      <section id="air-quality" className="bg-neutral-50 py-16">
+      <section id="air-quality" className="py-16">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-3xl font-bold text-neutral-900">Air Quality Sensors</h2>
 
@@ -247,7 +341,7 @@ export default function SensorSpecsPage() {
       </section>
 
       {/* Download Resources */}
-      <section className="bg-primary-50 py-12">
+      <section className="bg-neutral-50 py-12">
         <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-2xl font-bold text-neutral-900">
             Download Complete Specifications

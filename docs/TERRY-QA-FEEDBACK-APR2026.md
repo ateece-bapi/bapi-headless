@@ -146,22 +146,75 @@ Create these subcategories under `bluetooth-wireless`:
 ## ⚠️ High Priority (P1 - Pre-Launch)
 
 ### 5. Missing Product Options
-**Status:** ⚪ Not Started  
+**Status:** ✅ Complete  
 **Priority:** P1  
-**Type:** Data - Product Configuration
+**Type:** WordPress Configuration - WPGraphQL Query Limit
 
 **Issue:**
-- Product missing 4-20mA output option
+- Product missing 4-20mA output option in configurator
 - URL: https://bapi-headless.vercel.app/en/product/duct-temperature-transmitter-2
+- Product ID: 136296
 
-**Investigation Needed:**
-- [ ] Check if attribute exists in WordPress
-- [ ] Verify variation data
-- [ ] Compare with current site product
-- [ ] Check if it's query issue or missing data
+**Root Cause Analysis:**
+✅ **Attribute definition** includes 5 options: `['4-20mA', '0 to 5V', '1 to 5V', '0 to 10V', '2 to 10V']`  
+✅ **WordPress has all 150 variations** including all 5 transmitter output types  
+❌ **WPGraphQL returned only first 100 variations** due to server-side query limit  
+❌ **Variations 101-150** (including 4-20mA options) were truncated and never sent to frontend
 
-**Assigned To:** TBD  
-**Estimated Effort:** 1-2 hours
+**Technical Investigation:**
+```bash
+# WordPress has 150 total variations:
+wp post list --post_type=product_variation --post_parent=136296 --format=count
+# Output: 150
+
+# GraphQL shows attribute definition (5 options):
+curl -X POST "https://bapiheadlessstaging.kinsta.cloud/graphql" \
+  -d '{"query":"query{product(id:136296,idType:DATABASE_ID){
+    ... on VariableProduct{attributes{nodes{name options}}}}}}"}'
+# Output: ["4-20mA","0 to 5V","1 to 5V","0 to 10V","2 to 10V"]
+
+# But all variations only use "2 to 10V":
+curl -s "https://bapiheadlessstaging.kinsta.cloud/graphql" \
+  -d '{"query":"..variations(first:150){nodes{attributes{nodes{name value}}}}"}' \
+  | grep -c "4-20mA"
+# Output: 0
+```
+
+**Why This Matters:**
+- **Smart filtering** (Phase 12) only shows options with actual purchasable variations
+- Prevents "Invalid Configuration" errors when users select unavailable options
+- This is correct behavior - the issue is orphaned data in WordPress
+
+**✅ CONFIRMED: Legacy site SELLS 4-20mA transmitters**
+- Screenshot proof: https://www.bapihvac.com/product/duct-temperature-transmitter-2/
+- Example part number: `BA/T1K[20 TO 120F]-D-4"-BBX` (4-20mA output)
+- "Add to cart" button active → **Real purchasable product**
+
+**Root Cause:**
+✅ WordPress has **all 150 variations** including 4-20mA (#158748-158808)  
+✅ GraphQL query requested 500 variations: `variations(first: 500)`  
+❌ **WPGraphQL had hard server-side limit of 100 results**  
+❌ 4-20mA variations were in positions 101-150 → **never returned to frontend**
+
+**Solution Implemented:**
+Created WordPress plugin `bapi-graphql-fixes` to override WPGraphQL's 100-result cap:
+```php
+add_filter('graphql_connection_max_query_amount', function($max, $source, $args, $context, $info) {
+    if (isset($info->parentType->name) && $info->parentType->name === 'VariableProduct') {
+        return 500; // Increase from default 100
+    }
+    return $max;
+}, 10, 5);
+```
+
+**Result:**
+- ✅ GraphQL now returns all 150 variations
+- ✅ All 5 transmitter outputs appear: 4-20mA, 0 to 5V, 1 to 5V, 0 to 10V, 2 to 10V
+- ✅ Dropdown renders correctly (5+ options → dropdown per Phase 12)
+- ✅ All configurations selectable and purchasable
+
+**Assigned To:** Complete  
+**Actual Effort:** 3 hours
 
 ---
 
@@ -209,28 +262,45 @@ wp cache flush
 ---
 
 ### 7. Category Naming Issues
-**Status:** ⚪ Not Started  
+**Status:** 🟢 Complete (Partial)  
 **Priority:** P1  
 **Type:** Content - Category Names
 
 **Changes Required:**
 
-1. **"Immersion and Well" → "Immersion and Thermowell"**
-   - Location: Products > Pressure (or Temperature)
+1. **"Immersion" → "Immersion and Thermowell"** ✅ **COMPLETE**
+   - Location: Products > Temperature > Immersion
    - Reason: BAPI doesn't use "Well" terminology
+   - **Fixed:** Updated via WP-CLI on staging
+   - Term ID: 739, Slug: `temp-immersion`
+   - Command: `wp term update product_cat 739 --name="Immersion and Thermowell"`
 
-2. **"Static Pressure" → "Pickup Ports and Probes"**
-   - Location: Products > Pressure
-   - Reason: More accurate product description
+2. **"Pickup Ports and Probes"** ✅ **ALREADY CORRECT**
+   - Location: Products > Pressure > Pickup Ports and Probes
+   - Term ID: 337, Slug: `pressure-pickup-ports-and-probes`
+   - **No change needed** - already using correct terminology
 
-**Tasks:**
-- [ ] Update category names in WordPress
-- [ ] Verify slug updates don't break links
-- [ ] Update navigation config if needed
-- [ ] Test mega menu display
+**Investigation Notes:**
+- Original issue mentioned "Immersion and Well" but WordPress only had "Immersion" (ID 739)
+- Original issue mentioned "Static Pressure" but this category doesn't exist in WordPress
+- Likely Terry was referring to the category that's already named "Pickup Ports and Probes"
 
-**Assigned To:** TBD  
-**Estimated Effort:** 30 minutes
+**WordPress Changes:**
+```bash
+ssh -p 17338 bapiheadlessstaging@35.224.70.159
+cd public
+wp term update product_cat 739 --name="Immersion and Thermowell"
+wp cache flush
+```
+
+**Result:**
+- ✅ Category name updated successfully
+- ✅ Slug preserved (no broken links)
+- ✅ Cache flushed
+- ℹ️ No navigation config changes needed (slug unchanged)
+
+**Assigned To:** Complete  
+**Estimated Effort:** 30 minutes (actual)
 
 ---
 
@@ -613,10 +683,10 @@ wp cache flush
 
 **Status Breakdown:**
 - 🔴 Blocked: 0
-- 🟡 In Progress: 0
-- 🟢 Complete: 4 (Category naming x2, Combo Sensors removed, 404 redirect, Missing Product Image)
-- ⚪ Not Started: 14
-- 🔵 Needs Discussion: 5
+- 🟡 In Progress: 0  
+- 🟢 Complete: 6 (Category naming, Combo Sensors removed, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed)
+- 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing)
+- ⚪ Not Started: 12
 
 **Estimated Total Effort:** 55-80 hours
 

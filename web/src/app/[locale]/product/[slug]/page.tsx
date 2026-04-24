@@ -43,7 +43,7 @@ import { PerformanceTimer } from '@/lib/monitoring/performance';
 import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import { generateProductMetadata, generateCategoryMetadata } from '@/lib/metadata';
 import { getProductBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
-import { normalizeAttributeSlug, slugsMatch } from '@/lib/variations';
+import { normalizeAttributeSlug } from '@/lib/variations';
 import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
@@ -406,19 +406,17 @@ export default async function ProductPage({
               ? (variationData.attributes?.nodes || [])
                   .filter((attr: any) => attr.variation === true)
                   .map((attr: any) => {
-                    // Get actual values from variations, not from attribute.options
-                    // Normalize both attribute name and variation attribute name for comparison
-                    const attributeSlug = normalizeAttributeSlug(attr.name);
+                    // Extract unique values from actual variations for this attribute
+                    // This ensures only purchasable options are shown (smart filtering per Phase 12)
+                    const variations = variationData.variations?.nodes || [];
+                    const attrSlug = normalizeAttributeSlug(attr.name);
                     const actualValues = new Set<string>();
 
-                    (variationData.variations?.nodes || []).forEach((variation: any) => {
-                      const varAttr = variation.attributes?.nodes?.find((va: any) => {
-                        const vaSlug = normalizeAttributeSlug(va.name);
-                        // Use shared slugsMatch helper for consistent behavior
-                        return slugsMatch(vaSlug, attributeSlug);
-                      });
+                    variations.forEach((variation: any) => {
+                      const varAttr = (variation.attributes?.nodes || []).find(
+                        (a: any) => normalizeAttributeSlug(a.name) === attrSlug
+                      );
                       if (varAttr?.value) {
-                        // Decode HTML entities in option values
                         actualValues.add(decodeHtmlEntities(varAttr.value));
                       }
                     });
@@ -426,7 +424,7 @@ export default async function ProductPage({
                     // ProductDetailClient expects { name: string, options: string[] }
                     return {
                       name: decodeHtmlEntities(attr.label || attr.name), // Display name
-                      options: Array.from(actualValues), // Decoded values
+                      options: Array.from(actualValues), // Decoded values from actual variations
                     };
                   })
               : [],

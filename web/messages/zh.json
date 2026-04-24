@@ -454,7 +454,7 @@
         "roomWallSensorsDesc": "高精度温度检测",
         "ductSensors": "管道传感器",
         "ductSensorsDesc": "管道安装型传感器",
-        "immersionWell": "浸入式和套管式",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "液体温度测量",
         "outdoorSensors": "室外传感器",
         "outdoorSensorsDesc": "防天气型检测",
@@ -478,7 +478,7 @@
         "title": "压力",
         "differential": "差压",
         "differentialDesc": "室内和过滤器监测",
-        "static": "静压",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "管道静压变送器",
         "differentialSwitch": "差压开关",
         "differentialSwitchDesc": "压力触发开关"

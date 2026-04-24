@@ -58,9 +58,18 @@ const CATEGORY_SLUG_REDIRECTS: Record<string, string> = {
   wireless: 'bluetooth-wireless',
 };
 
+/**
+ * Legacy subcategory slug mappings
+ * Redirects old planned slugs to actual WordPress slugs
+ */
+const SUBCATEGORY_SLUG_REDIRECTS: Record<string, string> = {
+  'temp-room-temp': 'temp-room',
+};
+
 // Precompiled redirect regexes for performance (avoid creating on every request)
 const CATEGORIES_REDIRECT_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/categories/(.+)$`);
 const SHORT_SLUG_REDIRECT_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/products/([a-z-]+)(?:/(.*))?$`);
+const SUBCATEGORY_REDIRECT_REGEX = new RegExp(`^/(${LOCALE_PATTERN})/products/([a-z-]+)/([a-z-]+)$`);
 
 /**
  * Extract locale from pathname, falling back to default locale.
@@ -95,7 +104,9 @@ export default function middleware(request: NextRequest) {
     const newUrl = new URL(request.url);
     newUrl.pathname = `/${locale}/products/${categoryPath}`;
     // Query string automatically preserved via new URL(request.url)
-    console.log('[MIDDLEWARE] 301 Redirect /categories → /products:', newUrl.toString());
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('[MIDDLEWARE] 301 Redirect /categories → /products:', newUrl.toString());
+    }
     return NextResponse.redirect(newUrl, { status: 301 });
   }
   
@@ -110,7 +121,28 @@ export default function middleware(request: NextRequest) {
       // Rewrite first segment and preserve subpaths (e.g., /temperature/room-wall → /temperature-sensors/room-wall)
       newUrl.pathname = `/${locale}/products/${fullSlug}${subpath ? `/${subpath}` : ''}`;
       // Query string automatically preserved
-      console.log('[MIDDLEWARE] 301 Redirect short slug → full slug:', newUrl.toString());
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('[MIDDLEWARE] 301 Redirect short slug → full slug:', newUrl.toString());
+      }
+      return NextResponse.redirect(newUrl, { status: 301 });
+    }
+  }
+  
+  // 3. Redirect legacy subcategory slugs → current WordPress subcategory slugs (301 permanent)
+  // Handles /products/{category}/{old-subcategory} → /products/{category}/{new-subcategory}
+  // NOTE: Edge case - URLs with both short category + old subcategory create 2-hop redirect
+  // (e.g., /temperature/temp-room-temp → /temperature-sensors/temp-room-temp → /temperature-sensors/temp-room)
+  // Future optimization: Fold subcategory correction into short-slug redirect to reduce to 1 hop
+  const subcategoryMatch = pathname.match(SUBCATEGORY_REDIRECT_REGEX);
+  if (subcategoryMatch) {
+    const [, locale, category, subcategory] = subcategoryMatch;
+    const correctSubcategory = SUBCATEGORY_SLUG_REDIRECTS[subcategory];
+    if (correctSubcategory) {
+      const newUrl = new URL(request.url);
+      newUrl.pathname = `/${locale}/products/${category}/${correctSubcategory}`;
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('[MIDDLEWARE] 301 Redirect old subcategory → new subcategory:', newUrl.toString());
+      }
       return NextResponse.redirect(newUrl, { status: 301 });
     }
   }

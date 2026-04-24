@@ -454,7 +454,7 @@
         "roomWallSensorsDesc": "高精度温度検知",
         "ductSensors": "ダクトセンサ",
         "ductSensorsDesc": "ダクト取り付け式トランスミッタ",
-        "immersionWell": "浸漬 & ウェル",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "液体温度測定",
         "outdoorSensors": "屋外センサ",
         "outdoorSensorsDesc": "耐候性ある検知",
@@ -478,7 +478,7 @@
         "title": "圧力",
         "differential": "差圧",
         "differentialDesc": "室内 & フィルタ監視",
-        "static": "静圧",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "ダクト静圧トランスミッタ",
         "differentialSwitch": "差圧スイッチ",
         "differentialSwitchDesc": "圧力アクチュエーテッドスイッチング"

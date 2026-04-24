@@ -136,7 +136,7 @@
         "roomWallSensorsDesc": "การตรวจจับอุณหภูมิที่มีความแม่นยำสูง",
         "ductSensors": "เซ็นเซอร์ในท่อ",
         "ductSensorsDesc": "ตัวส่งสัญญาณที่ติดตั้งในท่อ",
-        "immersionWell": "การแช่และบ่อน้ำ",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "การวัดอุณหภูมิของของเหลว",
         "outdoorSensors": "เซ็นเซอร์ภายนอก",
         "outdoorSensorsDesc": "การตรวจจับที่ทนต่อสภาพอากาศ",
@@ -160,7 +160,7 @@
         "title": "ความดัน",
         "differential": "ความดันต่างระดับ",
         "differentialDesc": "การตรวจสอบห้องและตัวกรอง",
-        "static": "ความดันสถิต",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "ตัวส่งสัญญาณความดันในท่อ",
         "differentialSwitch": "สวิตช์ความดันต่างระดับ",
         "differentialSwitchDesc": "สวิตช์ที่ควบคุมโดยความดัน"

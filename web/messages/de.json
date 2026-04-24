@@ -136,7 +136,7 @@
         "roomWallSensorsDesc": "Hochgenaue Temperaturerfassung",
         "ductSensors": "Kanalsensoren",
         "ductSensorsDesc": "Kanalgebundene Transmitter",
-        "immersionWell": "Tauch- und Eintauchfühler",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "Flüssigkeitstemperaturmessung",
         "outdoorSensors": "Außensensoren",
         "outdoorSensorsDesc": "Witterungsbeständige Erfassung",
@@ -160,7 +160,7 @@
         "title": "Druck",
         "differential": "Differenzdruck",
         "differentialDesc": "Raum- und Filterüberwachung",
-        "static": "Statischer Druck",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "Kanal-Drucktransmitter",
         "differentialSwitch": "Differenzdruckschalter",
         "differentialSwitchDesc": "Druckgesteuerte Schaltung"

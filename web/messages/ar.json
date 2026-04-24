@@ -454,7 +454,7 @@
         "roomWallSensorsDesc": "استشعار درجة الحرارة عالي الدقة",
         "ductSensors": "استشعارات الفتحة",
         "ductSensorsDesc": "جهاز إرسال مركب على الفتحة",
-        "immersionWell": "الغمر والأنابيب",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "قياس درجة حرارة السوائل",
         "outdoorSensors": "استشعارات خارجية",
         "outdoorSensorsDesc": "استشعار مقاوم للطقس",
@@ -478,7 +478,7 @@
         "title": "الضغط",
         "differential": "الضغط التفاضلي",
         "differentialDesc": "مراقبة الحجرة والفلتر",
-        "static": "الضغط الساكن",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "مرسلات ضغط الفتحة الساكنة",
         "differentialSwitch": "مفتاح تفاضلي",
         "differentialSwitchDesc": "التبديل المنشط بالضغط"

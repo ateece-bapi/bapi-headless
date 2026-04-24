@@ -52,7 +52,7 @@
         "roomWallSensorsDesc": "उच्च-परिशुद्धता तापमान सेंसिंग",
         "ductSensors": "डक्ट सेंसर",
         "ductSensorsDesc": "डक्ट-माउंटेड ट्रांसमीटर",
-        "immersionWell": "डुबकी और वेल",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "तरल तापमान मापन",
         "outdoorSensors": "बाहरी सेंसर",
         "outdoorSensorsDesc": "मौसम-प्रतिरोधी सेंसिंग",
@@ -76,7 +76,7 @@
         "title": "दबाव",
         "differential": "अंतर दबाव",
         "differentialDesc": "कमरा और फ़िल्टर निगरानी",
-        "static": "स्थिर दबाव",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "डक्ट स्थिर ट्रांसमीटर",
         "differentialSwitch": "अंतर स्विच",
         "differentialSwitchDesc": "दबाव-सक्रिय स्विचिंग"

@@ -84,7 +84,6 @@ const productCategories = [
       { name: 'Room Humidity Sensors', desc: 'Monitor indoor relative humidity' },
       { name: 'Duct Humidity Sensors', desc: 'HVAC duct humidity monitoring' },
       { name: 'Outdoor Humidity', desc: 'Weather-resistant RH sensors' },
-      { name: 'Combo Sensors', desc: 'Temperature + Humidity combined' },
     ],
   },
   {
@@ -94,7 +93,7 @@ const productCategories = [
     color: 'Purple/Pink',
     products: [
       { name: 'Differential Pressure', desc: 'Monitor pressure differences across filters' },
-      { name: 'Static Pressure', desc: 'HVAC system pressure monitoring' },
+      { name: 'Pickup Ports and Probes', desc: 'Static pressure measurement accessories' },
       { name: 'Barometric Pressure', desc: 'Atmospheric pressure sensors' },
     ],
   },

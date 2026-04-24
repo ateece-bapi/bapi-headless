@@ -454,7 +454,7 @@
         "roomWallSensorsDesc": "Detección de temperatura de alta precisión",
         "ductSensors": "Sensores de conducto",
         "ductSensorsDesc": "Transmisores montados en conducto",
-        "immersionWell": "Inmersión y pozo",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "Medición de temperatura de líquidos",
         "outdoorSensors": "Sensores exteriores",
         "outdoorSensorsDesc": "Detección resistente a la intemperie",
@@ -478,7 +478,7 @@
         "title": "Presión",
         "differential": "Presión diferencial",
         "differentialDesc": "Monitoreo de ambiente y filtros",
-        "static": "Presión estática",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "Transmisores de presión estática de conducto",
         "differentialSwitch": "Interruptor diferencial",
         "differentialSwitchDesc": "Conmutación activada por presión"

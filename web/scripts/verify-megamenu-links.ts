@@ -31,9 +31,9 @@ const MEGA_MENU_LINKS = [
   // TEMPERATURE SENSORS (6 links)
   {
     category: 'Temperature',
-    slug: 'temp-room-temp',
+    slug: 'temp-room',
     label: 'Room & Wall Sensors',
-    href: '/products/temperature-sensors/temp-room-temp',
+    href: '/products/temperature-sensors/temp-room',
     expectedProducts: 23,
   },
   {
@@ -46,7 +46,7 @@ const MEGA_MENU_LINKS = [
   {
     category: 'Temperature',
     slug: 'temp-immersion',
-    label: 'Immersion & Well',
+    label: 'Immersion & Thermowell',
     href: '/products/temperature-sensors/temp-immersion',
     expectedProducts: 15,
   },
@@ -99,7 +99,7 @@ const MEGA_MENU_LINKS = [
   {
     category: 'Pressure',
     slug: 'pressure-pickup-ports-and-probes',
-    label: 'Static Pressure',
+    label: 'Pickup Ports and Probes',
     href: '/products/pressure-sensors/pressure-pickup-ports-and-probes',
     expectedProducts: 18,
   },
@@ -141,6 +141,13 @@ const MEGA_MENU_LINKS = [
     label: 'Bluetooth Wireless',
     href: '/products/bluetooth-wireless',
     expectedProducts: 24,
+  },
+  {
+    category: 'Wireless',
+    slug: 'wireless-accessories',
+    label: 'Wireless Accessories',
+    href: '/products/bluetooth-wireless/wireless-accessories',
+    expectedProducts: 5, // Adjust based on actual count
   },
 
   // ACCESSORIES (flat structure - no subcategories)

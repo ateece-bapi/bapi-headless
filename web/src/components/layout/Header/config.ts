@@ -84,11 +84,6 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
               href: '/products/humidity-sensors/humidity-non-room',
               description: t('products.humidity.outdoorHumidityDesc'),
             },
-            {
-              label: t('products.humidity.comboSensors'),
-              href: '/products/humidity-sensors/humidity-room',
-              description: t('products.humidity.comboSensorsDesc'),
-            },
           ],
         },
         {
@@ -158,7 +153,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
             },
             {
               label: t('products.wireless.wirelessAccessories'),
-              href: '/products/bluetooth-wireless',
+              href: '/products/bluetooth-wireless/wireless-accessories',
               description: t('products.wireless.wirelessAccessoriesDesc'),
             },
           ],

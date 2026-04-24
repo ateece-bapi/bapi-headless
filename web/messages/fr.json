@@ -454,7 +454,7 @@
         "roomWallSensorsDesc": "Détection de température haute précision",
         "ductSensors": "Capteurs de gaine",
         "ductSensorsDesc": "Émetteurs montés sur gaine",
-        "immersionWell": "Immersion et puits",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "Mesure de température des liquides",
         "outdoorSensors": "Capteurs extérieurs",
         "outdoorSensorsDesc": "Détection résistante aux intempéries",
@@ -478,7 +478,7 @@
         "title": "Pression",
         "differential": "Pression différentielle",
         "differentialDesc": "Surveillance des salles et des filtres",
-        "static": "Pression statique",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "Transmetteurs de pression statique de gaine",
         "differentialSwitch": "Interrupteur différentiel",
         "differentialSwitchDesc": "Commutation activée par la pression"

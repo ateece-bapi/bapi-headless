@@ -85,7 +85,7 @@ These products are **CALL-TO-ORDER** products on both legacy and headless sites:
 ---
 
 ### 3. Products Dropdown Cut Off
-**Status:** � Needs Discussion  
+**Status:** 🔵 Needs Discussion  
 **Priority:** P0  
 **Type:** UX - May be user cache issue
 
@@ -118,23 +118,24 @@ These products are **CALL-TO-ORDER** products on both legacy and headless sites:
 - Should go to specific subcategory pages
 
 **Root Cause:**
-- WordPress doesn't have wireless subcategories created yet
-- Frontend navigation config points all links to parent `/products/bluetooth-wireless`
-- This is intentional until WordPress categories are created
+- WordPress doesn't have all wireless subcategories created yet
+- Frontend navigation config still points most wireless links to parent `/products/bluetooth-wireless`
+- `Wireless Accessories` now links to `/products/bluetooth-wireless/wireless-accessories`
+- This mixed behavior is intentional until the remaining WordPress categories are created
 
 **WordPress Action Required:**
 Create these subcategories under `bluetooth-wireless`:
 - [ ] `bluetooth-sensors` 
 - [ ] `gateways-receivers`
 - [ ] `output-modules`
-- [ ] `wireless-accessories`
+- [ ] Confirm `wireless-accessories` exists and is using the correct slug/page
 
 **Once WordPress categories exist:**
-- Update `web/src/components/layout/Header/config.ts` wireless links to use proper slugs
+- Update the remaining wireless links in `web/src/components/layout/Header/config.ts` to use proper subcategory slugs
 - Test each subcategory page loads correctly
 
 **Alternative:**
-- Keep all wireless products on single page (current behavior is intentional)
+- Keep all wireless products on single page, except `Wireless Accessories`, which already has a dedicated subcategory route
 - Use filters instead of subcategories
 
 **Assigned To:** WordPress Admin / Product Manager  

@@ -92,7 +92,7 @@
         "roomWallSensorsDesc": "Cảm biến nhiệt độ chính xác cao",
         "ductSensors": "Cảm biến ống dẫn",
         "ductSensorsDesc": "Bộ truyền phát gắn ống dẫn",
-        "immersionWell": "Ngập và Giếng",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "Đo nhiệt độ chất lỏng",
         "outdoorSensors": "Cảm biến ngoài trời",
         "outdoorSensorsDesc": "Cảm biến chịu thời tiết",
@@ -116,7 +116,7 @@
         "title": "Áp suất",
         "differential": "Áp suất chênh lệch",
         "differentialDesc": "Giám sát phòng và bộ lọc",
-        "static": "Áp suất tĩnh",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "Bộ truyền phát áp suất ống dẫn",
         "differentialSwitch": "Công tắc chênh lệch",
         "differentialSwitchDesc": "Chuyển mạch kích hoạt bởi áp suất"

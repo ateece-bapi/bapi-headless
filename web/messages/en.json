@@ -81,7 +81,7 @@
         "differential": "Differential Pressure",
         "differentialDesc": "Room & filter monitoring",
         "static": "Pickup Ports and Probes",
-        "staticDesc": "Duct static transmitters",
+        "staticDesc": "Pressure pickup ports and probes",
         "differentialSwitch": "Differential Switch",
         "differentialSwitchDesc": "Pressure-activated switching"
       },

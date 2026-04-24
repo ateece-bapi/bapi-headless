@@ -52,7 +52,7 @@
         "roomWallSensorsDesc": "Wysokodokładne wykrywanie temperatury",
         "ductSensors": "Czujniki kanałowe",
         "ductSensorsDesc": "Nadajniki montowane w kanałach",
-        "immersionWell": "Zanurzeniowe i studzienkowe",
+        "immersionWell": "Immersion & Thermowell",
         "immersionWellDesc": "Pomiar temperatury cieczy",
         "outdoorSensors": "Czujniki zewnętrzne",
         "outdoorSensorsDesc": "Wytrzymałe na warunki atmosferyczne",
@@ -76,7 +76,7 @@
         "title": "Ciśnienie",
         "differential": "Ciśnienie różnicowe",
         "differentialDesc": "Monitoring pomieszczeń i filtrów",
-        "static": "Ciśnienie statyczne",
+        "static": "Pickup Ports and Probes",
         "staticDesc": "Nadajniki ciśnienia statycznego w kanałach",
         "differentialSwitch": "Wyłącznik różnicowy",
         "differentialSwitchDesc": "Przełączanie aktywowane ciśnieniem"

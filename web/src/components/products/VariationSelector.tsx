@@ -245,7 +245,7 @@ export default function VariationSelector({
   };
 
   // FIX #3 (Performance): Memoize available options to avoid recomputing 3000+ operations per render
-  // This caches the filtered options for all attributes, recomputing only when variations or selections change
+  // Only show options that have actual product variations to prevent "Invalid Configuration" errors
   const availableOptionsMap = useMemo(() => {
     const map: Record<string, string[]> = {};
     variationAttributes.forEach((attr) => {

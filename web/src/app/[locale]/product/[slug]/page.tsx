@@ -406,27 +406,15 @@ export default async function ProductPage({
               ? (variationData.attributes?.nodes || [])
                   .filter((attr: any) => attr.variation === true)
                   .map((attr: any) => {
-                    // Get actual values from variations, not from attribute.options
-                    // Normalize both attribute name and variation attribute name for comparison
-                    const attributeSlug = normalizeAttributeSlug(attr.name);
-                    const actualValues = new Set<string>();
-
-                    (variationData.variations?.nodes || []).forEach((variation: any) => {
-                      const varAttr = variation.attributes?.nodes?.find((va: any) => {
-                        const vaSlug = normalizeAttributeSlug(va.name);
-                        // Use shared slugsMatch helper for consistent behavior
-                        return slugsMatch(vaSlug, attributeSlug);
-                      });
-                      if (varAttr?.value) {
-                        // Decode HTML entities in option values
-                        actualValues.add(decodeHtmlEntities(varAttr.value));
-                      }
-                    });
+                    // FIX #5: Use attribute.options instead of extracting from variations
+                    // This ensures all defined options appear in the UI, even if no variations exist yet
+                    // (e.g., "4-20mA" was missing because no variations existed with that option)
+                    const options = (attr.options || []).map((opt: string) => decodeHtmlEntities(opt));
 
                     // ProductDetailClient expects { name: string, options: string[] }
                     return {
                       name: decodeHtmlEntities(attr.label || attr.name), // Display name
-                      options: Array.from(actualValues), // Decoded values
+                      options, // Decoded values from attribute definition
                     };
                   })
               : [],

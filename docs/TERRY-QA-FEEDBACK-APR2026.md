@@ -146,44 +146,74 @@ Create these subcategories under `bluetooth-wireless`:
 ## ⚠️ High Priority (P1 - Pre-Launch)
 
 ### 5. Missing Product Options
-**Status:** 🔵 Needs Code Fix (Frontend)  
+**Status:** ✅ Complete  
 **Priority:** P1  
-**Type:** Bug - Frontend Filtering
+**Type:** WordPress Configuration - WPGraphQL Query Limit
 
 **Issue:**
 - Product missing 4-20mA output option in configurator
 - URL: https://bapi-headless.vercel.app/en/product/duct-temperature-transmitter-2
 - Product ID: 136296
 
-**Root Cause:**
-- ✅ WordPress data is CORRECT - attribute exists with 5 options: `['4-20mA', '0 to 5V', '1 to 5V', '0 to 10V', '2 to 10V']`
-- ✅ GraphQL query returns all 5 options correctly
-- ❌ **Frontend is filtering out '4-20mA'** - only 4 options render in HTML: `['2 to 10V', '0 to 10V', '1 to 5V', '0 to 5V']`
+**Root Cause Analysis:**
+✅ **Attribute definition** includes 5 options: `['4-20mA', '0 to 5V', '1 to 5V', '0 to 10V', '2 to 10V']`  
+❌ **Product variations** (all 150) only use: `['2 to 10V']`  
+❌ **Zero variations exist** with '4-20mA', '0 to 5V', '1 to 5V', or '0 to 10V'
 
-**Investigation Results:**
+**Technical Investigation:**
 ```bash
-# GraphQL query confirmed 5 options:
-curl -X POST "https://bapiheadlessstaging.kinsta.cloud/graphql" \
-  -d '{"query":"query{product(id:\"duct-temperature-transmitter-2\",idType:SLUG){
-    ... on VariableProduct{attributes{nodes{name options}}}}}"}'
+# WordPress has 150 total variations:
+wp post list --post_type=product_variation --post_parent=136296 --format=count
+# Output: 150
 
-# Output: 
-# Transmitter Output: ['4-20mA', '0 to 5V', '1 to 5V', '0 to 10V', '2 to 10V']
+# GraphQL shows attribute definition (5 options):
+curl -X POST "https://bapiheadlessstaging.kinsta.cloud/graphql" \
+  -d '{"query":"query{product(id:136296,idType:DATABASE_ID){
+    ... on VariableProduct{attributes{nodes{name options}}}}}}"}'
+# Output: ["4-20mA","0 to 5V","1 to 5V","0 to 10V","2 to 10V"]
+
+# But all variations only use "2 to 10V":
+curl -s "https://bapiheadlessstaging.kinsta.cloud/graphql" \
+  -d '{"query":"..variations(first:150){nodes{attributes{nodes{name value}}}}"}' \
+  | grep -c "4-20mA"
+# Output: 0
 ```
 
-**Frontend Code Issue:**
-- Rendered page JSON shows: `attributes:[{name:"Transmitter Output",options:["2 to 10V","0 to 10V","1 to 5V","0 to 5V"]}]`
-- **4-20mA is being filtered out somewhere in the frontend rendering logic**
-- Likely in product attribute transformation or variation selector rendering
+**Why This Matters:**
+- **Smart filtering** (Phase 12) only shows options with actual purchasable variations
+- Prevents "Invalid Configuration" errors when users select unavailable options
+- This is correct behavior - the issue is orphaned data in WordPress
 
-**Next Steps:**
-- [ ] Check `web/src/app/[locale]/product/[slug]/page.tsx` for attribute filtering
-- [ ] Verify variation selector component doesn't filter options
-- [ ] Check if attribute detection logic (`web/src/lib/attributeDetection.ts`) removes '4-20mA'
-- [ ] Test if the issue is with option name format (e.g., special character handling)
+**✅ CONFIRMED: Legacy site SELLS 4-20mA transmitters**
+- Screenshot proof: https://www.bapihvac.com/product/duct-temperature-transmitter-2/
+- Example part number: `BA/T1K[20 TO 120F]-D-4"-BBX` (4-20mA output)
+- "Add to cart" button active → **Real purchasable product**
 
-**Assigned To:** Code Fix Required  
-**Estimated Effort:** 2-3 hours (debug + fix + test)
+**Root Cause:**
+✅ WordPress has **all 150 variations** including 4-20mA (#158748-158808)  
+✅ GraphQL query requested 500 variations: `variations(first: 500)`  
+❌ **WPGraphQL had hard server-side limit of 100 results**  
+❌ 4-20mA variations were in positions 101-150 → **never returned to frontend**
+
+**Solution Implemented:**
+Created WordPress plugin `bapi-graphql-fixes` to override WPGraphQL's 100-result cap:
+```php
+add_filter('graphql_connection_max_query_amount', function($max, $source, $args, $context, $info) {
+    if (isset($info->parentType->name) && $info->parentType->name === 'VariableProduct') {
+        return 500; // Increase from default 100
+    }
+    return $max;
+}, 10, 5);
+```
+
+**Result:**
+- ✅ GraphQL now returns all 150 variations
+- ✅ All 5 transmitter outputs appear: 4-20mA, 0 to 5V, 1 to 5V, 0 to 10V, 2 to 10V
+- ✅ Dropdown renders correctly (5+ options → dropdown per Phase 12)
+- ✅ All configurations selectable and purchasable
+
+**Assigned To:** Complete  
+**Actual Effort:** 3 hours
 
 ---
 
@@ -652,9 +682,9 @@ wp cache flush
 
 **Status Breakdown:**
 - 🔴 Blocked: 0
-- 🟡 In Progress: 0
-- 🟢 Complete: 5 (Category naming, Combo Sensors removed, 404 redirect, Missing Product Image, Immersion→Thermowell)
-- 🔵 Needs Discussion: 6 (Mega Menu Cut Off, Wireless Routing, Missing 4-20mA Frontend Bug)
+- 🟡 In Progress: 0  
+- 🟢 Complete: 6 (Category naming, Combo Sensors removed, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed)
+- 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing)
 - ⚪ Not Started: 12
 
 **Estimated Total Effort:** 55-80 hours

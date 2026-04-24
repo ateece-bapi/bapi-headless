@@ -43,7 +43,7 @@ import { PerformanceTimer } from '@/lib/monitoring/performance';
 import { StructuredData, generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import { generateProductMetadata, generateCategoryMetadata } from '@/lib/metadata';
 import { getProductBreadcrumbs, breadcrumbsToSchemaOrg } from '@/lib/navigation/breadcrumbs';
-import { normalizeAttributeSlug, slugsMatch } from '@/lib/variations';
+import { normalizeAttributeSlug } from '@/lib/variations';
 import {
   getCategoryTranslationKey,
   getSubcategoryTranslationKey,
@@ -406,15 +406,25 @@ export default async function ProductPage({
               ? (variationData.attributes?.nodes || [])
                   .filter((attr: any) => attr.variation === true)
                   .map((attr: any) => {
-                    // FIX #5: Use attribute.options instead of extracting from variations
-                    // This ensures all defined options appear in the UI, even if no variations exist yet
-                    // (e.g., "4-20mA" was missing because no variations existed with that option)
-                    const options = (attr.options || []).map((opt: string) => decodeHtmlEntities(opt));
+                    // Extract unique values from actual variations for this attribute
+                    // This ensures only purchasable options are shown (smart filtering per Phase 12)
+                    const variations = variationData.variations?.nodes || [];
+                    const attrSlug = normalizeAttributeSlug(attr.name);
+                    const actualValues = new Set<string>();
+
+                    variations.forEach((variation: any) => {
+                      const varAttr = (variation.attributes?.nodes || []).find(
+                        (a: any) => normalizeAttributeSlug(a.name) === attrSlug
+                      );
+                      if (varAttr?.value) {
+                        actualValues.add(decodeHtmlEntities(varAttr.value));
+                      }
+                    });
 
                     // ProductDetailClient expects { name: string, options: string[] }
                     return {
                       name: decodeHtmlEntities(attr.label || attr.name), // Display name
-                      options, // Decoded values from attribute definition
+                      options: Array.from(actualValues), // Decoded values from actual variations
                     };
                   })
               : [],

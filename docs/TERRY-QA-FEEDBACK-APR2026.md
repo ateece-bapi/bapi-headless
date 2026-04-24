@@ -157,8 +157,9 @@ Create these subcategories under `bluetooth-wireless`:
 
 **Root Cause Analysis:**
 ✅ **Attribute definition** includes 5 options: `['4-20mA', '0 to 5V', '1 to 5V', '0 to 10V', '2 to 10V']`  
-❌ **Product variations** (all 150) only use: `['2 to 10V']`  
-❌ **Zero variations exist** with '4-20mA', '0 to 5V', '1 to 5V', or '0 to 10V'
+✅ **WordPress has all 150 variations** including all 5 transmitter output types  
+❌ **WPGraphQL returned only first 100 variations** due to server-side query limit  
+❌ **Variations 101-150** (including 4-20mA options) were truncated and never sent to frontend
 
 **Technical Investigation:**
 ```bash

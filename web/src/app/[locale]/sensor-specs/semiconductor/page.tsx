@@ -3,8 +3,114 @@
 import { useState } from 'react';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
+import {
+  ad592Standard,
+  ad59210K,
+  type AD592Data,
+  type AD59210KData,
+} from '@/data/semiconductorTables';
 
 type SemiconductorType = 'AD592' | 'AD592-10K';
+
+// Helper component for AD592 Standard table (4 columns: °F, °C, µA, Volts)
+function AD592StandardTable({ data }: { data: AD592Data }) {
+  const rowsPerColumn = Math.ceil(data.length / 3);
+  const column1 = data.slice(0, rowsPerColumn);
+  const column2 = data.slice(rowsPerColumn, rowsPerColumn * 2);
+  const column3 = data.slice(rowsPerColumn * 2);
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      {[column1, column2, column3].map((column, idx) => (
+        <div key={idx} className="overflow-x-auto">
+          <table className="w-full border border-neutral-300">
+            <thead>
+              <tr className="bg-neutral-200">
+                <th className="px-2 py-1 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  °F
+                </th>
+                <th className="px-2 py-1 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  °C
+                </th>
+                <th className="px-2 py-1 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  µA
+                </th>
+                <th className="px-2 py-1 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  Volts
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {column.map(([tempF, tempC, microAmps, volts], rowIdx) => (
+                <tr key={rowIdx} className="hover:bg-neutral-50">
+                  <td className="px-2 py-1 border border-neutral-300 text-center text-sm">
+                    {tempF}
+                  </td>
+                  <td className="px-2 py-1 border border-neutral-300 text-center text-sm">
+                    {tempC}
+                  </td>
+                  <td className="px-2 py-1 border border-neutral-300 text-center text-sm">
+                    {microAmps}
+                  </td>
+                  <td className="px-2 py-1 border border-neutral-300 text-center text-sm">
+                    {volts}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Helper component for AD592-10K table (3 columns: °F, °C, Volts)
+function AD59210KTable({ data }: { data: AD59210KData }) {
+  const rowsPerColumn = Math.ceil(data.length / 3);
+  const column1 = data.slice(0, rowsPerColumn);
+  const column2 = data.slice(rowsPerColumn, rowsPerColumn * 2);
+  const column3 = data.slice(rowsPerColumn * 2);
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      {[column1, column2, column3].map((column, idx) => (
+        <div key={idx} className="overflow-x-auto">
+          <table className="w-full border border-neutral-300">
+            <thead>
+              <tr className="bg-neutral-200">
+                <th className="px-2 py-1 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  °F
+                </th>
+                <th className="px-2 py-1 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  °C
+                </th>
+                <th className="px-2 py-1 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  Volts
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {column.map(([tempF, tempC, volts], rowIdx) => (
+                <tr key={rowIdx} className="hover:bg-neutral-50">
+                  <td className="px-2 py-1 border border-neutral-300 text-center text-sm">
+                    {tempF}
+                  </td>
+                  <td className="px-2 py-1 border border-neutral-300 text-center text-sm">
+                    {tempC}
+                  </td>
+                  <td className="px-2 py-1 border border-neutral-300 text-center text-sm">
+                    {volts}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function SemiconductorOverviewPage() {
   const [activeTab, setActiveTab] = useState<SemiconductorType>('AD592');
@@ -248,13 +354,9 @@ export default function SemiconductorOverviewPage() {
                   AD592 Standard Semiconductor Output Table
                 </h3>
                 <p className="text-center text-neutral-600 mb-6">
-                  Standard AD592 current/voltage output
+                  Standard AD592 current (µA) and voltage (V) output vs temperature
                 </p>
-                <div className="bg-accent-50 border border-accent-200 rounded-lg p-6 text-center">
-                  <p className="text-neutral-700">
-                    Table data to be populated from Semiconductor_AD592.pdf
-                  </p>
-                </div>
+                <AD592StandardTable data={ad592Standard} />
               </div>
             )}
 
@@ -264,13 +366,9 @@ export default function SemiconductorOverviewPage() {
                   AD592-10K Semiconductor Output Table
                 </h3>
                 <p className="text-center text-neutral-600 mb-6">
-                  AD592 Semiconductor with a 10K shunt resistor
+                  AD592 Semiconductor with 10K shunt resistor - voltage (V) output vs temperature
                 </p>
-                <div className="bg-accent-50 border border-accent-200 rounded-lg p-6 text-center">
-                  <p className="text-neutral-700">
-                    Table data to be populated from Semiconductor_AD592_10K.pdf
-                  </p>
-                </div>
+                <AD59210KTable data={ad59210K} />
               </div>
             )}
           </div>

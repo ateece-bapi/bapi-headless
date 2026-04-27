@@ -205,68 +205,72 @@ export default function SemiconductorOverviewPage() {
           </h2>
 
           <div className="bg-neutral-50 border-2 border-neutral-200 rounded-lg p-8">
-            <p className="text-neutral-700 leading-relaxed mb-6">
-              Here is how BAPI achieves the offset value provided on the sensor offset label:
+            <p className="text-neutral-700 leading-relaxed mb-8">
+              This is how BAPI calculates the offset value provided on the sensor label:
             </p>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-2">
-                    Sensor Reading
-                  </h3>
-                  <p className="text-neutral-700">
-                    Sensor is offset by comparison to the NIST standard. Reading 
-                    is recorded using the output of the AD592 (µA or V) corresponding 
-                    to a Fahrenheit temperature.
-                  </p>
-                </div>
-                <div className="bg-white rounded-lg p-4 border border-neutral-300">
-                  <p className="text-sm text-neutral-600 mb-2">Example:</p>
-                  <p className="font-mono text-sm">
-                    e.g. Sensor reading 1.0 → sensor reading 1.0<br />
-                    correction: 68(1) – (1.0 + 0.4*) = +5*
-                  </p>
-                </div>
+            <div className="grid md:grid-cols-3 gap-8 mb-8">
+              <div>
+                <h3 className="text-lg font-semibold text-neutral-900 mb-3 underline">
+                  Therm Reading
+                </h3>
+                <p className="text-neutral-700">
+                  The actual temperature reading according to a thermometer 
+                  that is certified traceable to recognized standards by the 
+                  National Institute of Standards and Technology (NIST).
+                </p>
               </div>
 
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-2">
-                    Offset
-                  </h3>
-                  <p className="text-neutral-700">
-                    The offset is the value that needs to be added to the AD592 
-                    output for BAPI products using the sensor to match the output 
-                    of a Fahrenheit temperature.
-                  </p>
-                </div>
-                <div className="bg-white rounded-lg p-4 border border-neutral-300">
-                  <p className="text-sm text-neutral-600 mb-2">Example:</p>
-                  <p className="font-mono text-sm">
-                    e.g. offset 1.4 → offset 1.4<br />
-                    correction: offset + 0.4* = 1.8*
-                  </p>
-                </div>
+              <div>
+                <h3 className="text-lg font-semibold text-neutral-900 mb-3 underline">
+                  Sensor Reading
+                </h3>
+                <p className="text-neutral-700">
+                  The temperature reading according to the AD592 sensor, 
+                  using the output in either µA or mV and converting the output 
+                  to a Fahrenheit temperature.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-neutral-900 mb-3 underline">
+                  Offset
+                </h3>
+                <p className="text-neutral-700">
+                  The difference between the Thermometer Reading and the 
+                  Sensor Reading
+                </p>
               </div>
             </div>
 
-            <div className="mt-8 bg-primary-50 border-l-4 border-primary-600 p-6">
-              <h4 className="font-semibold text-neutral-900 mb-3">
-                To calculate the sensor accuracy (limits) and the offset value needed by the controller:
-              </h4>
-              <div className="space-y-2 text-neutral-700">
-                <p>
-                  <span className="font-semibold">e.g. Sensor reading 1.0</span> → sensor reading 1.0 – offset 1.4* = -0.4*
-                </p>
-                <p>
-                  <span className="font-semibold">correction: 68(1) – (1.0 + 0.4*) = +5*</span> in the sensor (this is 0.09°F or 0.5°C)
-                </p>
-              </div>
-              <p className="text-sm text-neutral-600 mt-4 italic">
-                *All values shown are examples for illustration purposes. Actual offset values 
-                are printed on each individual sensor label.
+            <div className="bg-white border-2 border-neutral-300 rounded-lg p-6 mb-6">
+              <p className="text-neutral-700 font-medium mb-4">
+                To maximize the sensor accuracy, simply add the offset value of the sensor reading into the controller.
               </p>
+
+              <div className="space-y-4 text-neutral-700">
+                <div className="border-l-4 border-primary-600 pl-4">
+                  <p className="mb-2">
+                    <span className="font-semibold">e.g. Therm Reading 74.6</span>
+                    <span className="mx-4">Sensor Reading 73.0</span>
+                    <span>Offset +1.6</span>
+                  </p>
+                  <p className="text-sm">
+                    Correction: Add (+1.6) °F to the sensor for an accurate reading: 73 + 1.6 = 74.6°F
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-primary-600 pl-4">
+                  <p className="mb-2">
+                    <span className="font-semibold">e.g. Therm Reading 75.4</span>
+                    <span className="mx-4">Sensor Reading 77.2</span>
+                    <span>Offset -1.8</span>
+                  </p>
+                  <p className="text-sm">
+                    Correction: Add (-1.8) °F to the sensor for an accurate reading: 77.2 + (-1.8) = 75.4°F
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>

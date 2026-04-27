@@ -1,20 +1,8 @@
-import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
+import { humidityTransmitterOutput } from '@/data/humidityTransmitterTable';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
-  return {
-    title: `Humidity Transmitters Overview | BAPI`,
-    description:
-      'High-accuracy humidity transmitters with 4-20mA, 0-5V, or 0-10V output',
-  };
-}
-
-export default async function HumidityTransmittersPage() {
+export default function HumidityTransmittersPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}
@@ -241,6 +229,97 @@ export default async function HumidityTransmittersPage() {
               <div className="p-6">
                 <h3 className="font-semibold text-neutral-900 mb-2">Drift</h3>
                 <p className="text-primary-600 font-bold">&lt;0.5% RH per year</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Humidity Transmitter Output Table */}
+        <section className="max-w-6xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
+            Humidity Transmitter Output Table
+          </h2>
+
+          <div className="bg-white rounded-lg border-2 border-neutral-200 overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
+              {/* Left Column */}
+              <div className="overflow-x-auto">
+                <table className="w-full border border-neutral-300">
+                  <thead>
+                    <tr className="bg-neutral-200">
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        %RH
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        0-5V
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        0-10V
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        mA
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {humidityTransmitterOutput.slice(0, 51).map(([rh, v5, v10, ma]) => (
+                      <tr key={rh} className="hover:bg-neutral-50">
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {rh}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {v5.toFixed(2)}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {v10.toFixed(2)}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {ma.toFixed(3)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Right Column */}
+              <div className="overflow-x-auto">
+                <table className="w-full border border-neutral-300">
+                  <thead>
+                    <tr className="bg-neutral-200">
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        %RH
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        0-5V
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        0-10V
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        mA
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {humidityTransmitterOutput.slice(51).map(([rh, v5, v10, ma]) => (
+                      <tr key={rh} className="hover:bg-neutral-50">
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {rh}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {v5.toFixed(2)}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {v10.toFixed(2)}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {ma.toFixed(3)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

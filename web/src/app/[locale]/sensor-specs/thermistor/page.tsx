@@ -7,6 +7,9 @@ import {
   thermistor18K,
   thermistor22K,
   thermistor3K,
+  thermistor325K,
+  thermistor33K,
+  thermistor10K2,
   type ThermistorData,
 } from '@/data/thermistorTables';
 
@@ -539,8 +542,35 @@ export default function ThermistorOverviewPage() {
             </div>
           )}
 
+          {activeTab === '3.25K' && (
+            <div className="bg-white rounded-lg">
+              <h3 className="text-2xl font-bold text-center text-neutral-900 mb-6">
+                3.25K Thermistor Output Table
+              </h3>
+              <ThermistorTable data={thermistor325K} />
+            </div>
+          )}
+
+          {activeTab === '3.3K' && (
+            <div className="bg-white rounded-lg">
+              <h3 className="text-2xl font-bold text-center text-neutral-900 mb-6">
+                3.3K Thermistor Output Table
+              </h3>
+              <ThermistorTable data={thermistor33K} />
+            </div>
+          )}
+
+          {activeTab === '10K-2' && (
+            <div className="bg-white rounded-lg">
+              <h3 className="text-2xl font-bold text-center text-neutral-900 mb-6">
+                10K-2 Thermistor Output Table
+              </h3>
+              <ThermistorTable data={thermistor10K2} />
+            </div>
+          )}
+
           {/* Placeholder for remaining tabs */}
-          {!['1.8K', '2.2K', '3K'].includes(activeTab) && (
+          {!['1.8K', '2.2K', '3K', '3.25K', '3.3K', '10K-2'].includes(activeTab) && (
             <div className="bg-white border border-neutral-200 rounded-lg p-8">
               <h3 className="text-2xl font-bold text-center text-neutral-900 mb-4">
                 {activeTab === '10K-3-11K' ? '10K-3 (11K)' : activeTab} Thermistor Output Table

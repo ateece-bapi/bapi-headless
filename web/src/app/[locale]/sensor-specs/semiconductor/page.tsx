@@ -198,6 +198,79 @@ export default function SemiconductorOverviewPage() {
           </div>
         </section>
 
+        {/* Custom Offset Definition and Example */}
+        <section className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+            Custom Offset Definition and Example
+          </h2>
+
+          <div className="bg-neutral-50 border-2 border-neutral-200 rounded-lg p-8">
+            <p className="text-neutral-700 leading-relaxed mb-6">
+              Here is how BAPI achieves the offset value provided on the sensor offset label:
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+                    Sensor Reading
+                  </h3>
+                  <p className="text-neutral-700">
+                    Sensor is offset by comparison to the NIST standard. Reading 
+                    is recorded using the output of the AD592 (µA or V) corresponding 
+                    to a Fahrenheit temperature.
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-4 border border-neutral-300">
+                  <p className="text-sm text-neutral-600 mb-2">Example:</p>
+                  <p className="font-mono text-sm">
+                    e.g. Sensor reading 1.0 → sensor reading 1.0<br />
+                    correction: 68(1) – (1.0 + 0.4*) = +5*
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+                    Offset
+                  </h3>
+                  <p className="text-neutral-700">
+                    The offset is the value that needs to be added to the AD592 
+                    output for BAPI products using the sensor to match the output 
+                    of a Fahrenheit temperature.
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-4 border border-neutral-300">
+                  <p className="text-sm text-neutral-600 mb-2">Example:</p>
+                  <p className="font-mono text-sm">
+                    e.g. offset 1.4 → offset 1.4<br />
+                    correction: offset + 0.4* = 1.8*
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 bg-primary-50 border-l-4 border-primary-600 p-6">
+              <h4 className="font-semibold text-neutral-900 mb-3">
+                To calculate the sensor accuracy (limits) and the offset value needed by the controller:
+              </h4>
+              <div className="space-y-2 text-neutral-700">
+                <p>
+                  <span className="font-semibold">e.g. Sensor reading 1.0</span> → sensor reading 1.0 – offset 1.4* = -0.4*
+                </p>
+                <p>
+                  <span className="font-semibold">correction: 68(1) – (1.0 + 0.4*) = +5*</span> in the sensor (this is 0.09°F or 0.5°C)
+                </p>
+              </div>
+              <p className="text-sm text-neutral-600 mt-4 italic">
+                *All values shown are examples for illustration purposes. Actual offset values 
+                are printed on each individual sensor label.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Technical Specifications */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">

@@ -1,20 +1,13 @@
-import { getTranslations } from 'next-intl/server';
+'use client';
+
+import { useState } from 'react';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
-  return {
-    title: `Semiconductor Overview | BAPI`,
-    description:
-      'Semiconductor temperature sensors with linear output and NIST-traceable accuracy',
-  };
-}
+type SemiconductorType = 'AD592' | 'AD592-10K';
 
-export default async function SemiconductorOverviewPage() {
+export default function SemiconductorOverviewPage() {
+  const [activeTab, setActiveTab] = useState<SemiconductorType>('AD592');
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}
@@ -194,45 +187,92 @@ export default async function SemiconductorOverviewPage() {
           </div>
         </section>
 
+        {/* Output Curve Chart */}
+        <section className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
+            Typical Semiconductor Output Curve
+          </h2>
+          <div className="bg-white rounded-lg border-2 border-neutral-200 p-6 flex justify-center">
+            <img
+              src="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/Semiconductor_Output_Table.png"
+              alt="Typical Semiconductor Output showing Current (µA) and Voltage (V) vs Temperature"
+              className="max-w-full h-auto"
+            />
+          </div>
+          <p className="text-center text-sm text-neutral-600 mt-4">
+            Figure 1 - Typical Semiconductor Temperature Output
+          </p>
+        </section>
+
         {/* Output Tables Section */}
         <section className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
             Semiconductor Output Tables
           </h2>
 
-          <div className="grid gap-8">
-            {[
-              {
-                type: 'AD592 Semiconductor',
-                desc: 'Standard AD592 current/voltage output',
-              },
-              {
-                type: 'AD592-10K Semiconductor',
-                desc: 'AD592 Semiconductor with a 10K shunt resistor',
-              },
-            ].map(({ type, desc }) => (
-              <div
-                key={type}
-                className="bg-white border border-neutral-200 rounded-lg p-8"
+          {/* Tab Navigation */}
+          <div className="border-b-2 border-neutral-200 mb-8 overflow-x-auto">
+            <div className="flex gap-2 min-w-max px-2">
+              <button
+                onClick={() => setActiveTab('AD592')}
+                className={`px-6 py-3 font-semibold transition-all whitespace-nowrap ${
+                  activeTab === 'AD592'
+                    ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
+                    : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                }`}
+                role="tab"
+                aria-selected={activeTab === 'AD592'}
               >
-                <h3 className="text-2xl font-bold text-neutral-900 mb-2">
-                  {type}
+                AD592 Standard
+              </button>
+              <button
+                onClick={() => setActiveTab('AD592-10K')}
+                className={`px-6 py-3 font-semibold transition-all whitespace-nowrap ${
+                  activeTab === 'AD592-10K'
+                    ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
+                    : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                }`}
+                role="tab"
+                aria-selected={activeTab === 'AD592-10K'}
+              >
+                AD592-10K
+              </button>
+            </div>
+          </div>
+
+          {/* Tab Content */}
+          <div className="mt-8">
+            {activeTab === 'AD592' && (
+              <div className="bg-white rounded-lg">
+                <h3 className="text-2xl font-bold text-center text-neutral-900 mb-4">
+                  AD592 Standard Semiconductor Output Table
                 </h3>
-                <p className="text-neutral-600 mb-4">{desc}</p>
+                <p className="text-center text-neutral-600 mb-6">
+                  Standard AD592 current/voltage output
+                </p>
                 <div className="bg-accent-50 border border-accent-200 rounded-lg p-6 text-center">
                   <p className="text-neutral-700">
-                    Detailed current/voltage vs. temperature tables for {type}{' '}
-                    are available in product datasheets.
+                    Table data to be populated from Semiconductor_AD592.pdf
                   </p>
-                  <Link
-                    href="/support"
-                    className="inline-block mt-4 text-primary-600 hover:text-primary-700 font-semibold"
-                  >
-                    Contact Support for Specifications →
-                  </Link>
                 </div>
               </div>
-            ))}
+            )}
+
+            {activeTab === 'AD592-10K' && (
+              <div className="bg-white rounded-lg">
+                <h3 className="text-2xl font-bold text-center text-neutral-900 mb-4">
+                  AD592-10K Semiconductor Output Table
+                </h3>
+                <p className="text-center text-neutral-600 mb-6">
+                  AD592 Semiconductor with a 10K shunt resistor
+                </p>
+                <div className="bg-accent-50 border border-accent-200 rounded-lg p-6 text-center">
+                  <p className="text-neutral-700">
+                    Table data to be populated from Semiconductor_AD592_10K.pdf
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 

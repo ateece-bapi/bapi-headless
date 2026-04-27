@@ -353,6 +353,23 @@ export default function ThermistorOverviewPage() {
           </div>
         </section>
 
+        {/* Typical Output Curve */}
+        <section className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
+            Typical Thermistor Output Curve
+          </h2>
+          <div className="bg-white rounded-lg border-2 border-neutral-200 p-6 flex justify-center">
+            <img
+              src="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/Thermistor_output_chart.png"
+              alt="Typical Thermistor Output Curve 10K-2 Sensor showing resistance (Ohms) vs temperature (°C)"
+              className="max-w-full h-auto"
+            />
+          </div>
+          <p className="text-center text-sm text-neutral-600 mt-4">
+            Figure 1 - Typical Thermistor Output Curve 10K-2 Sensor
+          </p>
+        </section>
+
         {/* Output Tables Section */}
         <section className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">

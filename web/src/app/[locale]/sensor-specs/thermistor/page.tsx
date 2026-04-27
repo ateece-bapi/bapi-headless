@@ -10,6 +10,9 @@ import {
   thermistor325K,
   thermistor33K,
   thermistor10K2,
+  thermistor10K3,
+  thermistor10K3_11K,
+  thermistor10K4,
   type ThermistorData,
 } from '@/data/thermistorTables';
 
@@ -569,8 +572,35 @@ export default function ThermistorOverviewPage() {
             </div>
           )}
 
+          {activeTab === '10K-3' && (
+            <div className="bg-white rounded-lg">
+              <h3 className="text-2xl font-bold text-center text-neutral-900 mb-6">
+                10K-3 Thermistor Output Table
+              </h3>
+              <ThermistorTable data={thermistor10K3} />
+            </div>
+          )}
+
+          {activeTab === '10K-3-11K' && (
+            <div className="bg-white rounded-lg">
+              <h3 className="text-2xl font-bold text-center text-neutral-900 mb-6">
+                10K-3 (11K) Thermistor Output Table
+              </h3>
+              <ThermistorTable data={thermistor10K3_11K} />
+            </div>
+          )}
+
+          {activeTab === '10K-4' && (
+            <div className="bg-white rounded-lg">
+              <h3 className="text-2xl font-bold text-center text-neutral-900 mb-6">
+                10K-4 Thermistor Output Table
+              </h3>
+              <ThermistorTable data={thermistor10K4} />
+            </div>
+          )}
+
           {/* Placeholder for remaining tabs */}
-          {!['1.8K', '2.2K', '3K', '3.25K', '3.3K', '10K-2'].includes(activeTab) && (
+          {!['1.8K', '2.2K', '3K', '3.25K', '3.3K', '10K-2', '10K-3', '10K-3-11K', '10K-4'].includes(activeTab) && (
             <div className="bg-white border border-neutral-200 rounded-lg p-8">
               <h3 className="text-2xl font-bold text-center text-neutral-900 mb-4">
                 {activeTab === '10K-3-11K' ? '10K-3 (11K)' : activeTab} Thermistor Output Table

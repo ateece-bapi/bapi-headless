@@ -1,20 +1,8 @@
-import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
+import { temperatureTransmitterOutput } from '@/data/temperatureTransmitterTable';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
-  return {
-    title: `Temperature Transmitters Overview | BAPI`,
-    description:
-      'T1K Temperature Transmitters with 4-20mA output for long-distance transmission',
-  };
-}
-
-export default async function TemperatureTransmittersPage() {
+export default function TemperatureTransmittersPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}
@@ -45,27 +33,66 @@ export default async function TemperatureTransmittersPage() {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
-        {/* T1K Transmitters Section */}
+        {/* Temperature Transmitter Description */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-            T1K Transmitters
+            Temperature Transmitter Description
           </h2>
-          <div className="prose prose-lg max-w-none">
-            <p className="text-neutral-700 leading-relaxed mb-4">
-              Temperature transmitters incorporate a platinum 100 Ohm or 1k Ohm
-              RTD sensor and an amplifier. These devices provide an accurate and
-              predictable 4 to 20mA output over a specified temperature range.
-              They are specifically designed for temperature sensing and
-              transmission over long distances without degradation of the 4 to
-              20mA signal.
+          <div className="prose prose-lg max-w-none space-y-4">
+            <p className="text-neutral-700 leading-relaxed">
+              BAPI's temperature transmitters incorporate a 1KΩ RTD sensor and
+              an amplifier. These devices provide an accurate two wire, 4 to
+              20mA output over a specified temp range. They are specifically
+              designed for long distance transmission over long distances
+              without degradation of the 4 to 20mA signal. 100Ω units also
+              available upon request.
+            </p>
+            <p className="text-neutral-700 leading-relaxed">
+              Each temperature transmitter is not configurable for its
+              specified temp range. If you don't offer the right transmitter at
+              the field or the light transmitter in Class A RTD's to improve
+              overall accuracy. The specified unit at the calibrated range
+              offers better accuracy to minimize the cross on the control
+              components. Use the accuracy of the matched pair unit becomes a
+              function of the transfer linearity (RTD curve) and reference
+              transmitter somewhat.
+            </p>
+            <p className="text-neutral-700 leading-relaxed">
+              Standard units will offset 0–100°F ( commonly found ) -  Reference
+              Thermometer (example) :
+            </p>
+            <p className="text-neutral-700 leading-relaxed font-mono text-sm bg-neutral-50 p-4 rounded">
+              Offset Range units :  –20°C to +250°C  (-4°F to 482°F)<br />
+              Max.Span : 16.6°C (30°F) – 2.0 to +600°C (–148°F to +1000°F)
+            </p>
+            <p className="text-neutral-700 leading-relaxed">
+              BA/TM- 1K in (0-30°F)<br />
+              Spec : +/- 0.08˚C (0.14˚F) = 16°F] MAX<br />
+              BA/TM- 1K in (0-100°F)<br />
+              Spec : +/- 0.10˚C (0.18˚F) = 38-55°F] OFFSET
+            </p>
+            <p className="text-neutral-700 leading-relaxed">
+              These accuracies are for the worst range of the sensor, although
+              the accuracies in the midpoint of the sensor will be tighter. Run
+              these over your BAPI representative for details.
+            </p>
+            <p className="text-neutral-700 leading-relaxed">
+              BAPI temperature transmitters come in a ruggedized package for all
+              non-room configurations where moisture or condensation may be a
+              problem. The potting material used to ruggedize the transmitters
+              has a high thermal conductivity to eliminate circuit overheating
+              and allow thermal expansion to minimize the stress on the control
+              components. Due to the extremely low moisture absorption
+              properties of the epoxy, a ruggedized transmitter will remain
+              operational even if temporarily immersed in water.
             </p>
           </div>
         </section>
 
-        {/* Technical Specifications */}
+        {/* Specifications */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            T1K Transmitter Specifications
+            Specifications
           </h2>
 
           <div className="bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
@@ -193,6 +220,85 @@ export default async function TemperatureTransmittersPage() {
                     </span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Temperature Transmitter Output Table */}
+        <section className="max-w-6xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
+            0-100 °F Temperature Transmitter Output Table
+          </h2>
+
+          <div className="bg-white rounded-lg border-2 border-neutral-200 overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
+              {/* Left Column (0-50°F) */}
+              <div className="overflow-x-auto">
+                <table className="w-full border border-neutral-300">
+                  <thead>
+                    <tr className="bg-neutral-200">
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        °F
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        °C
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        mA
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {temperatureTransmitterOutput.slice(0, 51).map(([tempF, tempC, ma]) => (
+                      <tr key={tempF} className="hover:bg-neutral-50">
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {tempF}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {tempC.toFixed(2)}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {ma.toFixed(3)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Right Column (51-100°F) */}
+              <div className="overflow-x-auto">
+                <table className="w-full border border-neutral-300">
+                  <thead>
+                    <tr className="bg-neutral-200">
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        °F
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        °C
+                      </th>
+                      <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                        mA
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {temperatureTransmitterOutput.slice(51).map(([tempF, tempC, ma]) => (
+                      <tr key={tempF} className="hover:bg-neutral-50">
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {tempF}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {tempC.toFixed(2)}
+                        </td>
+                        <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                          {ma.toFixed(3)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

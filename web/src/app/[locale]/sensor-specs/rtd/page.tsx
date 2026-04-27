@@ -1,22 +1,12 @@
-import { getTranslations } from 'next-intl/server';
+'use client';
+
+import { useState } from 'react';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
-  const t = await getTranslations({ locale, namespace: 'SensorSpecs' });
+export default function RTDOverviewPage() {
+  const [activeTab, setActiveTab] = useState<'385' | '375' | 'nickel'>('385');
 
-  return {
-    title: `RTD Overview | BAPI`,
-    description:
-      'Resistance Temperature Detectors (RTDs) with excellent linearity and accuracy for precise temperature measurement',
-  };
-}
-
-export default async function RTDOverviewPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}
@@ -356,8 +346,52 @@ export default async function RTDOverviewPage() {
             essential for system integration and troubleshooting.
           </p>
 
+          {/* Tab Navigation */}
+          <div className="mb-8 border-b-2 border-neutral-200">
+            <div className="flex flex-wrap gap-2 -mb-0.5">
+              <button
+                onClick={() => setActiveTab('385')}
+                className={`px-6 py-3 font-semibold transition-all ${
+                  activeTab === '385'
+                    ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
+                    : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                }`}
+                aria-selected={activeTab === '385'}
+                role="tab"
+              >
+                1KΩ Platinum
+              </button>
+              <button
+                onClick={() => setActiveTab('375')}
+                className={`px-6 py-3 font-semibold transition-all ${
+                  activeTab === '375'
+                    ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
+                    : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                }`}
+                aria-selected={activeTab === '375'}
+                role="tab"
+              >
+                1K (375)
+              </button>
+              <button
+                onClick={() => setActiveTab('nickel')}
+                className={`px-6 py-3 font-semibold transition-all ${
+                  activeTab === 'nickel'
+                    ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
+                    : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                }`}
+                aria-selected={activeTab === 'nickel'}
+                role="tab"
+              >
+                1K (Ni) Nickel
+              </button>
+            </div>
+          </div>
+
           {/* 1KΩ (385) Platinum RTD Table */}
+          {activeTab === '385' && (
           <div className="mb-12 bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
+
             <h3 className="text-2xl font-bold text-center text-neutral-900 py-6 bg-neutral-50 border-b-2 border-neutral-200">
               1KΩ PLATINUM RTD OUTPUT TABLE
             </h3>
@@ -440,9 +474,11 @@ export default async function RTDOverviewPage() {
               </table>
             </div>
           </div>
+          )}
 
           {/* 1K (375) Platinum RTD Table */}
-          <div className="mb-12 mt-16 bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
+          {activeTab === '375' && (
+          <div className="mb-12 bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
             <h3 className="text-2xl font-bold text-center text-neutral-900 py-6 bg-neutral-50 border-b-2 border-neutral-200">
               1K (375) PLATINUM RTD OUTPUT TABLE
             </h3>
@@ -504,8 +540,10 @@ export default async function RTDOverviewPage() {
               </table>
             </div>
           </div>
+          )}
 
           {/* 1K (Ni) Nickel RTD Table */}
+          {activeTab === 'nickel' && (
           <div className="mb-12 bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
             <h3 className="text-2xl font-bold text-center text-neutral-900 py-6 bg-neutral-50 border-b-2 border-neutral-200">
               1K (Ni) NICKEL RTD OUTPUT TABLE
@@ -568,6 +606,7 @@ export default async function RTDOverviewPage() {
               </table>
             </div>
           </div>
+          )}
 
           {/* Additional note */}
           <div className="bg-blue-50 border border-primary-200 rounded-lg p-6 max-w-3xl mx-auto mt-12">

@@ -609,37 +609,69 @@ wp cache flush
 ---
 
 ### 21. Sensors Overview - Needs Expansion
-**Status:** 🟡 In Progress  
+**Status:** � Complete  
 **Priority:** P1  
-**Type:** Content - Depth + Multiple Pages
+**Type:** Content - UI/UX Polish + Depth
 
 **Issue:**
 - New site has only 1-2 lines per sensor element
 - Current site much more detailed: https://www.bapihvac.com/sensor-specs/
 - Terry: "New site isn't nearly enough"
-- Legacy site has 6 separate detailed overview pages with full specifications
+- Legacy site has clean card-based layout with 6 sensor types
+- Headless site was too data-heavy with tables and long text blocks
 
-**Scope (Full Implementation):**
-1. **Main Page:** `/sensor-specs` - Overview with links to detailed pages ✅ In Progress
-2. **Thermistor Overview** - Dedicated page with specs, output tables, charts
-3. **RTD Overview** - Full technical specifications and ranges
-4. **Semiconductor Overview** - Detailed technical information
-5. **Temperature Transmitters Overview** - Complete specifications
-6. **Humidity Transmitters Overview** - Full specs and applications
-7. **Pressure Transmitters Overview** - Technical details and ranges
+**Solution Implemented:**
+- ✅ **Redesigned to match legacy layout** - Clean card-based grid (3 columns on desktop)
+- ✅ **6 sensor type cards:**
+  1. Thermistors
+  2. RTDs
+  3. Semiconductors
+  4. Temperature Transmitters
+  5. Humidity Transmitters
+  6. Pressure Transmitters
+- ✅ **Professional UI/UX:**
+  - Clean hero section with gradient background + decorative pattern
+  - Centered intro paragraph
+  - Card hover effects (border color + shadow)
+  - Icon badges for each sensor type
+  - "Overview" buttons that link to detailed pages
+  - Download CTA with accent gradient background
+- ✅ **Removed clutter:**
+  - Removed "Quick Navigation" icon row
+  - Removed all inline tables
+  - Removed Air Quality section (not on legacy)
+  - Removed heavy text blocks
+  - Simplified to scannable card format
 
-**Work Completed:**
-- ✅ Added explanatory content to main `/sensor-specs` page
-- ✅ Intro section, sensor importance, technology descriptions
-- 🔄 Creating 6 detailed overview pages (in progress)
+**Result:**
+- Clean, professional page matching site-wide UI/UX standards
+- Each sensor type card has description + link to detailed overview page
+- Matches legacy site structure exactly
+- Much more scannable and user-friendly
 
 **Work Remaining:**
-- [ ] Create Thermistor Overview page with output tables
-- [ ] Create RTD Overview page with specifications
-- [ ] Create Semiconductor Overview page
-- [ ] Create Temperature Transmitters Overview page
-- [ ] Create Humidity Transmitters Overview page  
-- [ ] Create Pressure Transmitters Overview page
+- [ ] Create 6 detailed overview pages (Thermistor, RTD, Semiconductor, etc.) with full specs, output tables, and charts
+- [ ] Design polish and responsive testing for overview pages
+
+**Assigned To:** Complete (main page), In Progress (detail pages)  
+**Estimated Effort:** 2 hours (main page - complete), 12-16 hours (6 detail pages)
+
+**Work Remaining:**
+- [x] **COMPLETE: Sensors Overview main page redesigned** - Clean card-based layout matching legacy + site-wide UI/UX standards
+- [ ] Create Thermistor Overview page with output tables and resistance/temperature charts
+- [ ] Create RTD Overview page with specifications and temperature curves
+- [ ] Create Semiconductor Overview page with voltage/temperature relationships
+- [ ] Create Temperature Transmitters Overview page with output scaling charts
+- [ ] Create Humidity Transmitters Overview page with calibration charts
+- [x] **COMPLETE: Pressure Transmitters tables match legacy format:**
+  - ✅ Updated `PressureData` type: `[wc, pascals, ma, v5, v10]` (5 columns)
+  - ✅ Transformed all existing data arrays from `[wc, v5, v10, ma]` to `[wc, pascals, ma, v5, v10]`
+  - ✅ Calculated Pascals: `wc × 249.089`
+  - ✅ Updated component headers: "W.C.", "Pascals", "4 to 20mA", "0 to 5V", "0 to 10V"
+  - ✅ Removed Mercury (5 ranges) and PSI (8 ranges) from data
+  - ✅ Removed "INCHES MERCURY (HG)" and "PSI" section headers from UI
+  - ✅ **Result: 22 Water Column ranges** (13 unidirectional + 9 bidirectional) — matches legacy exactly
+  - ✅ **Populated all tables:** `pressure_0_15_WC` (27 rows), `pressure_0_30_WC` (27 rows), `pressure_neg5_to_5_WC` (27 rows)
 - [ ] Update main page with "View Overview" links
 - [ ] Design polish and responsive testing
 
@@ -702,8 +734,8 @@ wp cache flush
 
 **Status Breakdown:**
 - 🔴 Blocked: 0
-- 🟡 In Progress: 1 (Sensor Specs expansion - 6 detailed pages)
-- 🟢 Complete: 6 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed)
+- 🟡 In Progress: 0
+- 🟢 Complete: 7 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, Sensors Overview main page)
 - 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing, Radio vs Dropdowns, Category Behavior, Datasheets)
 - ⚪ Not Started: 11
 

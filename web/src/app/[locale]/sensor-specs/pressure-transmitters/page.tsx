@@ -29,33 +29,39 @@ function PressureTable({ data, unit }: { data: PressureData; unit: string }) {
             <thead>
               <tr className="bg-neutral-200">
                 <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
-                  Pressure{unit}
+                  W.C.
                 </th>
                 <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
-                  0-5 VDC
+                  Pascals
                 </th>
                 <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
-                  0-10 VDC
+                  4 to 20mA
                 </th>
                 <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
-                  mA
+                  0 to 5V
+                </th>
+                <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  0 to 10V
                 </th>
               </tr>
             </thead>
             <tbody>
-              {column.map(([pressure, v5, v10, ma], rowIdx) => (
+              {column.map(([wc, pascals, ma, v5, v10], rowIdx) => (
                 <tr key={rowIdx} className="hover:bg-neutral-50">
                   <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
-                    {pressure}
+                    {wc.toFixed(3)}
                   </td>
                   <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
-                    {v5.toFixed(3)}
+                    {pascals.toFixed(2)}
                   </td>
                   <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
-                    {v10.toFixed(3)}
+                    {ma.toFixed(2)}
                   </td>
                   <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
-                    {ma.toFixed(3)}
+                    {v5.toFixed(2)}
+                  </td>
+                  <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                    {v10.toFixed(2)}
                   </td>
                 </tr>
               ))}
@@ -68,7 +74,7 @@ function PressureTable({ data, unit }: { data: PressureData; unit: string }) {
 }
 
 export default function PressureTransmittersPage() {
-  const [activeTab, setActiveTab] = useState<PressureRangeType>('0-0.1-WC');
+  const [activeTab, setActiveTab] = useState<PressureRangeType>('0-0.10-WC');
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}
@@ -348,51 +354,7 @@ export default function PressureTransmittersPage() {
                   Inches Water Column (W.C.)
                 </h3>
               </div>
-              {pressureRanges.filter(r => r.id.includes('WC')).map(range => (
-                <button
-                  key={range.id}
-                  onClick={() => setActiveTab(range.id)}
-                  className={`px-4 py-2 font-semibold transition-all whitespace-nowrap text-sm rounded-t ${
-                    activeTab === range.id
-                      ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
-                      : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
-                  }`}
-                  role="tab"
-                  aria-selected={activeTab === range.id}
-                >
-                  {range.label}
-                </button>
-              ))}
-
-              {/* Mercury Tabs */}
-              <div className="w-full mb-2 mt-4">
-                <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide px-2">
-                  Inches Mercury (Hg)
-                </h3>
-              </div>
-              {pressureRanges.filter(r => r.id.includes('Hg')).map(range => (
-                <button
-                  key={range.id}
-                  onClick={() => setActiveTab(range.id)}
-                  className={`px-4 py-2 font-semibold transition-all whitespace-nowrap text-sm rounded-t ${
-                    activeTab === range.id
-                      ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
-                      : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
-                  }`}
-                  role="tab"
-                  aria-selected={activeTab === range.id}
-                >
-                  {range.label}
-                </button>
-              ))}
-
-              {/* PSI Tabs */}
-              <div className="w-full mb-2 mt-4">
-                <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide px-2">
-                  PSI
-                </h3>
-              </div>
-              {pressureRanges.filter(r => r.id.includes('PSI')).map(range => (
+              {pressureRanges.map(range => (
                 <button
                   key={range.id}
                   onClick={() => setActiveTab(range.id)}

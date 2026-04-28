@@ -41,8 +41,8 @@ export function normalizeAttributeSlug(name: string): string {
     .replace(/^(pa_|attribute_pa_)/, '')
     // Convert ampersands to "and" to match WooCommerce slug generation
     .replace(/\s*&\s*/g, '-and-')
-    // Remove special characters (degree symbol, percent, commas, quotes, angle brackets)
-    .replace(/[°,%<>'"]/g, '')
+    // Remove special characters (degree symbol, percent, commas, quotes, angle brackets, periods)
+    .replace(/[°,%<>'"\.]/g, '')
     // Convert underscores to hyphens (WordPress uses both)
     .replace(/_/g, '-')
     // Replace spaces with hyphens

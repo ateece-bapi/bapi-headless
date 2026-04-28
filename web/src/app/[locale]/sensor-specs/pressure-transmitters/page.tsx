@@ -1,20 +1,74 @@
-import { getTranslations } from 'next-intl/server';
+'use client';
+
+import { useState } from 'react';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
+import { pressureRanges, type PressureRangeType, type PressureData } from '@/data/pressureTables';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
-  return {
-    title: `Pressure Transmitters Overview | BAPI`,
-    description:
-      'Silicon piezoresistive pressure sensors with digital compensation for high accuracy',
-  };
+// Helper component to render pressure table
+function PressureTable({ data, unit }: { data: PressureData; unit: string }) {
+  if (data.length === 0) {
+    return (
+      <div className="bg-accent-50 border border-accent-200 rounded-lg p-6 text-center">
+        <p className="text-neutral-700">
+          Table data to be populated for this pressure range.
+        </p>
+      </div>
+    );
+  }
+
+  const rowsPerColumn = Math.ceil(data.length / 2);
+  const column1 = data.slice(0, rowsPerColumn);
+  const column2 = data.slice(rowsPerColumn);
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      {[column1, column2].map((column, idx) => (
+        <div key={idx} className="overflow-x-auto">
+          <table className="w-full border border-neutral-300">
+            <thead>
+              <tr className="bg-neutral-200">
+                <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  Pressure{unit}
+                </th>
+                <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  0-5 VDC
+                </th>
+                <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  0-10 VDC
+                </th>
+                <th className="px-3 py-2 border border-neutral-300 text-center text-sm font-bold text-neutral-900">
+                  mA
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {column.map(([pressure, v5, v10, ma], rowIdx) => (
+                <tr key={rowIdx} className="hover:bg-neutral-50">
+                  <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                    {pressure}
+                  </td>
+                  <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                    {v5.toFixed(3)}
+                  </td>
+                  <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                    {v10.toFixed(3)}
+                  </td>
+                  <td className="px-3 py-1 border border-neutral-300 text-center text-sm">
+                    {ma.toFixed(3)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+  );
 }
 
-export default async function PressureTransmittersPage() {
+export default function PressureTransmittersPage() {
+  const [activeTab, setActiveTab] = useState<PressureRangeType>('0-0.1-WC');
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}
@@ -279,18 +333,109 @@ export default async function PressureTransmittersPage() {
           </div>
         </section>
 
-        {/* Available Ranges Note */}
+        {/* Pressure Transmitter Output Tables */}
+        <section className="max-w-6xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
+            Pressure Transmitter Output Tables
+          </h2>
+
+          {/* Tab Navigation - Organized by Unit Type */}
+          <div className="border-b-2 border-neutral-200 mb-8">
+            <div className="flex flex-wrap gap-2 px-2 pb-2">
+              {/* Water Column Tabs */}
+              <div className="w-full mb-2">
+                <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide px-2">
+                  Inches Water Column (W.C.)
+                </h3>
+              </div>
+              {pressureRanges.filter(r => r.id.includes('WC')).map(range => (
+                <button
+                  key={range.id}
+                  onClick={() => setActiveTab(range.id)}
+                  className={`px-4 py-2 font-semibold transition-all whitespace-nowrap text-sm rounded-t ${
+                    activeTab === range.id
+                      ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
+                      : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                  }`}
+                  role="tab"
+                  aria-selected={activeTab === range.id}
+                >
+                  {range.label}
+                </button>
+              ))}
+
+              {/* Mercury Tabs */}
+              <div className="w-full mb-2 mt-4">
+                <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide px-2">
+                  Inches Mercury (Hg)
+                </h3>
+              </div>
+              {pressureRanges.filter(r => r.id.includes('Hg')).map(range => (
+                <button
+                  key={range.id}
+                  onClick={() => setActiveTab(range.id)}
+                  className={`px-4 py-2 font-semibold transition-all whitespace-nowrap text-sm rounded-t ${
+                    activeTab === range.id
+                      ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
+                      : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                  }`}
+                  role="tab"
+                  aria-selected={activeTab === range.id}
+                >
+                  {range.label}
+                </button>
+              ))}
+
+              {/* PSI Tabs */}
+              <div className="w-full mb-2 mt-4">
+                <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide px-2">
+                  PSI
+                </h3>
+              </div>
+              {pressureRanges.filter(r => r.id.includes('PSI')).map(range => (
+                <button
+                  key={range.id}
+                  onClick={() => setActiveTab(range.id)}
+                  className={`px-4 py-2 font-semibold transition-all whitespace-nowrap text-sm rounded-t ${
+                    activeTab === range.id
+                      ? 'border-b-4 border-primary-600 text-primary-600 bg-primary-50'
+                      : 'border-b-4 border-transparent text-neutral-600 hover:text-primary-600 hover:bg-neutral-50'
+                  }`}
+                  role="tab"
+                  aria-selected={activeTab === range.id}
+                >
+                  {range.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Tab Content */}
+          <div className="mt-8">
+            {pressureRanges.map(range => (
+              activeTab === range.id && (
+                <div key={range.id} className="bg-white rounded-lg">
+                  <h3 className="text-2xl font-bold text-center text-neutral-900 mb-6">
+                    Pressure Range {range.label} Output Table
+                  </h3>
+                  <PressureTable data={range.data} unit={range.unit} />
+                </div>
+              )
+            ))}
+          </div>
+        </section>
+
+        {/* Using the Tables Note */}
         <section className="max-w-4xl mx-auto mb-16">
-          <div className="bg-accent-50 border-l-4 border-accent-500 p-6 rounded-r-lg">
+          <div className="bg-primary-50 border-l-4 border-primary-600 p-6 rounded-r-lg">
             <h3 className="font-semibold text-neutral-900 mb-2">
-              Extensive Range Options
+              Using These Output Tables
             </h3>
             <p className="text-neutral-700">
-              BAPI offers pressure transmitters in over 40 different ranges
-              covering low, standard, and high pressure applications. Each range
-              is NIST-traceable and factory calibrated for maximum accuracy.
-              Contact support for detailed output tables for your specific
-              pressure range.
+              Select your pressure range from the tabs above to view the corresponding output values.
+              Each table shows the relationship between pressure measurement and the three available
+              output types: 0-5 VDC, 0-10 VDC, and 4-20 mA. Use these tables to verify sensor
+              operation or integrate BAPI pressure transmitters into your control system.
             </p>
           </div>
         </section>

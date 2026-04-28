@@ -527,7 +527,7 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 ---
 
 ### 16. Bulleted Text Not Rendering
-**Status:** ⚪ Not Started  
+**Status:** 🟢 Complete  
 **Priority:** P2  
 **Type:** Bug - Rich Text Rendering
 
@@ -537,19 +537,32 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 - Headless site renders same content as plain paragraphs
 - Example product: Delta Style Sensors - description shows "Delta Style Enclosure with Optional Display", "±2%RH Accuracy", etc. as plain text instead of bulleted list
 
-**Screenshots:**
-- **Headless (broken)**: No bullets, plain text on separate lines
-- **Legacy (correct)**: Proper bulleted list with visible bullets
+**Root Cause:**
+WordPress stores bulleted content as plain text with bullet characters (`•`) and `<br />` tags instead of proper HTML lists:
+```html
+<p>• 11K-2 Thermistor Temperature Sensor<br />
+• ±2%RH Accuracy<br />
+• 0 to 10V Humidity Output<br />
+• Delta Style Enclosure, Bright White Color</p>
+```
 
-**Root Cause Investigation Needed:**
-- [ ] Check if WordPress GraphQL returns HTML with `<ul>`/`<li>` tags
-- [ ] Verify product description rendering component
-- [ ] Check CSS for `<ul>` and `<li>` elements (may be `list-style: none`)
-- [ ] Confirm HTML sanitization isn't stripping list tags
-- [ ] Test across multiple products with bulleted descriptions
+**Solution Implemented:**
+Added `transformBulletsToLists()` function to `sanitizeDescription.ts` that detects bullet character patterns and converts them to proper HTML `<ul>/<li>` structure:
+- Regex pattern matches paragraphs containing `• text<br />` sequences
+- Splits on bullet character and filters empty items
+- Wraps each item in `<li>` tags within `<ul>` parent
+- Tailwind prose classes (`prose-ul:list-disc`, `prose-li:marker:text-primary-500`) now apply correctly
 
-**Assigned To:** TBD  
-**Estimated Effort:** 2-3 hours
+**Files Changed:**
+- `web/src/lib/sanitizeDescription.ts` - Added bullet transformation before sanitization
+
+**Result:**
+- ✅ Bulleted lists now render with proper bullets in Description tab
+- ✅ Maintains all existing HTML sanitization and XSS protection
+- ✅ Works across all products with bullet character formatting
+
+**Assigned To:** Complete  
+**Actual Effort:** 2 hours
 
 ---
 
@@ -790,9 +803,9 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 **Status Breakdown:**
 - 🔴 Blocked: 0
 - 🟡 In Progress: 0
-- 🟢 Complete: 11 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**, **Delta Style categorization**, **Application Notes categorization**)
+- 🟢 Complete: 12 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**, **Delta Style categorization**, **Application Notes categorization**, **Bulleted text rendering**)
 - 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing, Radio vs Dropdowns, Category Behavior, Datasheets)
-- ⚪ Not Started: 7
+- ⚪ Not Started: 6
 
 **Estimated Total Effort Remaining:** 31-54 hours (reduced by 6-8 hours from Issue #19)
 

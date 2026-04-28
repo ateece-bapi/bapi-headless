@@ -423,7 +423,7 @@ wp term list product_cat --parent=307 --fields=term_id,name,slug,count
 ---
 
 ### 12. Delta Style Sensors Miscategorized
-**Status:** ⚪ Not Started  
+**Status:** 🟢 Complete  
 **Priority:** P1  
 **Type:** Data - Product Categorization
 
@@ -432,13 +432,28 @@ wp term list product_cat --parent=307 --fields=term_id,name,slug,count
 - Should ONLY be in "Room and Wall" category
 
 **Tasks:**
-- [ ] Identify all Delta Style products
-- [ ] Update category assignments in WordPress
-- [ ] Remove from Outside Air category
-- [ ] Verify display in Room and Wall
+- [x] Identify all Delta Style products
+- [x] Update category assignments in WordPress
+- [x] Remove from Outside Air category
+- [x] Verify display in Room and Wall
 
-**Assigned To:** TBD  
-**Estimated Effort:** 1-2 hours
+**Solution Implemented:**
+Used WP-CLI to audit and fix category assignments for Delta Style sensors:
+- **Found:** 14 Delta Style products (excluded 2 screwdriver tools)
+- **Problem:** Products 410143 and 410141 incorrectly in Outside Air (742/400) and Non-Room (756/331)
+- **Fix:** Removed Outside Air and Non-Room categories, ensured products only in Room categories (755 temp-room, 315 humidity-room)
+- **Result:** All Delta Style sensors now correctly categorized under Room only
+- **Commands Used:** `wp post term set` with slugs (BAPI category validation plugin blocks numeric IDs)
+
+**Verified:** Both products now have:
+- ✅ Room (755) - temp-room
+- ✅ Room (315) - humidity-room
+- ✅ Temperature Sensors (302), Humidity Sensors (305)
+- ✅ Delta Style (324) temperature, Delta Style (334) humidity
+- ❌ NO Outside Air or Non-Room categories
+
+**Assigned To:** Complete  
+**Actual Effort:** 1 hour
 
 ---
 
@@ -761,11 +776,11 @@ wp term list product_cat --parent=307 --fields=term_id,name,slug,count
 **Status Breakdown:**
 - 🔴 Blocked: 0
 - 🟡 In Progress: 0
-- 🟢 Complete: 9 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**)
+- 🟢 Complete: 10 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**, **Delta Style categorization**)
 - 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing, Radio vs Dropdowns, Category Behavior, Datasheets)
-- ⚪ Not Started: 9
+- ⚪ Not Started: 8
 
-**Estimated Total Effort Remaining:** 38-63 hours (was 55-80 hours, Issues #21 + #8 completed)
+**Estimated Total Effort Remaining:** 37-62 hours (was 38-63 hours, Issue #12 completed)
 
 ---
 

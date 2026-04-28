@@ -92,7 +92,13 @@
         "voc": "VOC Sensors",
         "vocDesc": "Volatile organic compounds",
         "particulate": "Particulate Matter",
-        "particulateDesc": "PM2.5 and PM10"
+        "particulateDesc": "PM2.5 and PM10",
+        "nitrogenDioxide": "Nitrogen Dioxide",
+        "nitrogenDioxideDesc": "NO₂ gas detection",
+        "carbonMonoxide": "Carbon Monoxide",
+        "carbonMonoxideDesc": "CO gas detection",
+        "refrigerantLeak": "Refrigerant Leak Detection",
+        "refrigerantLeakDesc": "Refrigerant leak sensors"
       },
       "wireless": {
         "title": "Wireless",

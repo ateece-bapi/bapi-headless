@@ -358,7 +358,7 @@ wp cache flush
 ---
 
 ### 10. Remove "Combo Sensors" Category
-**Status:** ⚪ Not Started  
+**Status:** 🟢 Complete  
 **Priority:** P1  
 **Type:** Content - Category Cleanup
 
@@ -368,12 +368,12 @@ wp cache flush
 - Creates confusion and duplication
 
 **Tasks:**
-- [ ] Remove category from WordPress
-- [ ] Verify no broken links
-- [ ] Update navigation
-- [ ] Redirect old URLs if needed
+- [x] Remove category from WordPress
+- [x] Verify no broken links
+- [x] Update navigation
+- [x] Redirect old URLs if needed
 
-**Assigned To:** TBD  
+**Assigned To:** Complete  
 **Estimated Effort:** 1 hour
 
 ---
@@ -609,23 +609,74 @@ wp cache flush
 ---
 
 ### 21. Sensors Overview - Needs Expansion
-**Status:** ⚪ Not Started  
+**Status:** � Complete  
 **Priority:** P1  
-**Type:** Content - Depth
+**Type:** Content - UI/UX Polish + Depth
 
 **Issue:**
 - New site has only 1-2 lines per sensor element
 - Current site much more detailed: https://www.bapihvac.com/sensor-specs/
 - Terry: "New site isn't nearly enough"
+- Legacy site has clean card-based layout with 6 sensor types
+- Headless site was too data-heavy with tables and long text blocks
 
-**Tasks:**
-- [ ] Content audit: What's missing?
-- [ ] Assign content authoring
-- [ ] Determine if it's CMS update or code change
-- [ ] Review layout for expanded content
+**Solution Implemented:**
+- ✅ **Redesigned to match legacy layout** - Clean card-based grid (3 columns on desktop)
+- ✅ **6 sensor type cards:**
+  1. Thermistors
+  2. RTDs
+  3. Semiconductors
+  4. Temperature Transmitters
+  5. Humidity Transmitters
+  6. Pressure Transmitters
+- ✅ **Professional UI/UX:**
+  - Clean hero section with gradient background + decorative pattern
+  - Centered intro paragraph
+  - Card hover effects (border color + shadow)
+  - Icon badges for each sensor type
+  - "Overview" buttons that link to detailed pages
+  - Download CTA with accent gradient background
+- ✅ **Removed clutter:**
+  - Removed "Quick Navigation" icon row
+  - Removed all inline tables
+  - Removed Air Quality section (not on legacy)
+  - Removed heavy text blocks
+  - Simplified to scannable card format
 
-**Assigned To:** TBD (Content team?)  
-**Estimated Effort:** 8-12 hours (content work)
+**Result:**
+- Clean, professional page matching site-wide UI/UX standards
+- Each sensor type card has description + link to detailed overview page
+- Matches legacy site structure exactly
+- Much more scannable and user-friendly
+
+**Work Remaining:**
+- [ ] Create 6 detailed overview pages (Thermistor, RTD, Semiconductor, etc.) with full specs, output tables, and charts
+- [ ] Design polish and responsive testing for overview pages
+
+**Assigned To:** Complete (main page), In Progress (detail pages)  
+**Estimated Effort:** 2 hours (main page - complete), 12-16 hours (6 detail pages)
+
+**Work Remaining:**
+- [x] **COMPLETE: Sensors Overview main page redesigned** - Clean card-based layout matching legacy + site-wide UI/UX standards
+- [ ] Create Thermistor Overview page with output tables and resistance/temperature charts
+- [ ] Create RTD Overview page with specifications and temperature curves
+- [ ] Create Semiconductor Overview page with voltage/temperature relationships
+- [ ] Create Temperature Transmitters Overview page with output scaling charts
+- [ ] Create Humidity Transmitters Overview page with calibration charts
+- [x] **COMPLETE: Pressure Transmitters tables match legacy format:**
+  - ✅ Updated `PressureData` type: `[wc, pascals, ma, v5, v10]` (5 columns)
+  - ✅ Transformed all existing data arrays from `[wc, v5, v10, ma]` to `[wc, pascals, ma, v5, v10]`
+  - ✅ Calculated Pascals: `wc × 249.089`
+  - ✅ Updated component headers: "W.C.", "Pascals", "4 to 20mA", "0 to 5V", "0 to 10V"
+  - ✅ Removed Mercury (5 ranges) and PSI (8 ranges) from data
+  - ✅ Removed "INCHES MERCURY (HG)" and "PSI" section headers from UI
+  - ✅ **Result: 22 Water Column ranges** (13 unidirectional + 9 bidirectional) — matches legacy exactly
+  - ✅ **Populated all tables:** `pressure_0_15_WC` (27 rows), `pressure_0_30_WC` (27 rows), `pressure_neg5_to_5_WC` (27 rows)
+- [ ] Update main page with "View Overview" links
+- [ ] Design polish and responsive testing
+
+**Assigned To:** In Progress  
+**Estimated Effort:** 8-12 hours (revised from 2 hours)
 
 ---
 
@@ -683,10 +734,10 @@ wp cache flush
 
 **Status Breakdown:**
 - 🔴 Blocked: 0
-- 🟡 In Progress: 0  
-- 🟢 Complete: 6 (Category naming, Combo Sensors removed, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed)
-- 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing)
-- ⚪ Not Started: 12
+- 🟡 In Progress: 0
+- 🟢 Complete: 7 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, Sensors Overview main page)
+- 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing, Radio vs Dropdowns, Category Behavior, Datasheets)
+- ⚪ Not Started: 11
 
 **Estimated Total Effort:** 55-80 hours
 

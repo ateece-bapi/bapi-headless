@@ -159,7 +159,7 @@ export default function ProductTabs({ product }: ProductTabsProps) {
           <div className="px-4 py-8">
             {product.description ? (
               <div
-                className="prose prose-lg prose-neutral mx-auto max-w-none
+                className="prose prose-lg prose-neutral mx-auto max-w-none [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_li]:leading-relaxed [&_li::marker]:text-primary-500
                   prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-neutral-900 
                   prose-h1:mb-10 prose-h1:mt-0 prose-h1:text-4xl prose-h1:leading-tight 
                   prose-h2:mb-8 prose-h2:mt-12 prose-h2:border-b prose-h2:border-neutral-200 prose-h2:pb-3 prose-h2:text-2xl 
@@ -169,9 +169,9 @@ export default function ProductTabs({ product }: ProductTabsProps) {
                   prose-a:font-medium prose-a:text-primary-600 prose-a:no-underline prose-a:transition-all hover:prose-a:text-primary-700 hover:prose-a:underline hover:prose-a:underline-offset-4 
                   prose-strong:font-bold prose-strong:text-neutral-900 
                   prose-hr:my-10 prose-hr:border-neutral-300
-                  prose-ul:my-8 prose-ul:ml-0 prose-ul:list-outside prose-ul:list-disc prose-ul:space-y-3 prose-ul:pl-6
-                  prose-ol:my-8 prose-ol:ml-0 prose-ol:list-outside prose-ol:list-decimal prose-ol:space-y-3 prose-ol:pl-6
-                  prose-li:leading-relaxed prose-li:text-neutral-900 prose-li:marker:text-primary-500
+                  prose-ul:my-8 prose-ul:ml-0 prose-ul:list-outside prose-ul:space-y-3
+                  prose-ol:my-8 prose-ol:ml-0 prose-ol:list-outside prose-ol:space-y-3
+                  prose-li:text-neutral-900
                   prose-img:my-6 prose-img:rounded-lg prose-img:shadow-md
                   **:text-neutral-900"
                 dangerouslySetInnerHTML={{ __html: sanitizeDescription(product.description) }}

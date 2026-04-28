@@ -1,39 +1,22 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Link } from '@/lib/navigation';
-import Image from 'next/image';
 import {
   BookOpenIcon,
   SearchIcon,
-  ClockIcon as CalendarIcon,
-  ArrowRightIcon,
-  SlidersHorizontalIcon as FilterIcon,
   XIcon,
   Grid3x3Icon,
   ListIcon,
   ArrowRightIcon as SortAscIcon,
 } from '@/lib/icons';
-
-interface ApplicationNote {
-  id: string;
-  databaseId: number;
-  title: string;
-  content: string;
-  excerpt: string;
-  slug: string;
-  date: string;
-  modified: string;
-  featuredImage: {
-    node: {
-      sourceUrl: string;
-      altText: string;
-    };
-  } | null;
-}
+import { CategoryAccordion } from './CategoryAccordion';
+import { ApplicationNoteCard } from './ApplicationNoteCard';
+import type { ApplicationNote, CategoryWithNotes } from '@/types/applicationNote';
 
 interface ApplicationNoteListProps {
   applicationNotes: ApplicationNote[];
+  categories?: CategoryWithNotes[];
+  showCategoryAccordion?: boolean;
 }
 
 type ViewMode = 'grid' | 'list';
@@ -43,22 +26,11 @@ function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, '');
 }
 
-function formatDate(dateString: string): string {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
-function getReadingTime(content: string): number {
-  const text = stripHtml(content);
-  const wordsPerMinute = 200;
-  const wordCount = text.split(/\s+/).length;
-  return Math.ceil(wordCount / wordsPerMinute);
-}
-
-export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListProps) {
+export function ApplicationNoteList({ 
+  applicationNotes, 
+  categories = [], 
+  showCategoryAccordion = false 
+}: ApplicationNoteListProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [sortBy, setSortBy] = useState<SortOption>('date-desc');
@@ -95,6 +67,26 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
 
     return sorted;
   }, [applicationNotes, searchQuery, sortBy]);
+
+  // Filter and sort categories with their notes
+  const filteredCategories = useMemo(() => {
+    if (!showCategoryAccordion || categories.length === 0) {
+      return [];
+    }
+
+    return categories
+      .map(category => ({
+        ...category,
+        notes: category.notes.filter(note =>
+          filteredAndSortedNotes.some(filtered => filtered.id === note.id)
+        ),
+      }))
+      .filter(category => category.notes.length > 0)
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [categories, filteredAndSortedNotes, showCategoryAccordion]);
+
+  // Determine if we should show accordion (desktop, no search, has categories)
+  const shouldShowAccordion = showCategoryAccordion && !searchQuery && filteredCategories.length > 0;
 
   const clearSearch = () => {
     setSearchQuery('');
@@ -205,7 +197,7 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
         </div>
       </div>
 
-      {/* Application Notes Grid/List */}
+      {/* Application Notes Grid/List or Category Accordion */}
       {filteredAndSortedNotes.length === 0 ? (
         <div className="rounded-xl border-2 border-dashed border-neutral-300 bg-gradient-to-br from-neutral-50 to-neutral-100 py-20 text-center">
           <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-sm">
@@ -224,97 +216,20 @@ export function ApplicationNoteList({ applicationNotes }: ApplicationNoteListPro
             Clear search
           </button>
         </div>
+      ) : shouldShowAccordion ? (
+        /* Category Accordion Mode (Desktop, No Search) */
+        <CategoryAccordion categories={filteredCategories} viewMode={viewMode} />
       ) : viewMode === 'grid' ? (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredAndSortedNotes.map((note) => {
-            const readingTime = getReadingTime(note.content);
-
-            return (
-              <Link
-                key={note.id}
-                href={`/application-notes/${note.slug}`}
-                className="duration-250 group overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm transition-[transform,shadow,border-color] ease-in-out will-change-transform hover:scale-[1.01] hover:border-primary-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-              >
-                {/* Consistent Icon Header */}
-                <div className="flex h-48 items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100">
-                  <BookOpenIcon className="duration-250 h-16 w-16 text-primary-600 transition-transform group-hover:scale-110" />
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="mb-2 line-clamp-2 min-h-[3.5rem] text-lg font-semibold text-neutral-900 transition-colors group-hover:text-primary-600">
-                    {note.title}
-                  </h3>
-
-                  {note.excerpt && (
-                    <p
-                      className="mb-4 line-clamp-3 text-sm text-neutral-700"
-                      dangerouslySetInnerHTML={{ __html: note.excerpt }}
-                    />
-                  )}
-
-                  {/* Metadata */}
-                  <div className="flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-700">
-                    <div className="flex items-center gap-1">
-                      <CalendarIcon className="h-3.5 w-3.5" />
-                      <span>{formatDate(note.date)}</span>
-                    </div>
-                    <span className="font-medium">{readingTime} min read</span>
-                  </div>
-
-                  {/* Read More Button */}
-                  <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary-600 group-hover:text-primary-700">
-                    <span>Read Article</span>
-                    <ArrowRightIcon className="duration-250 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+          {filteredAndSortedNotes.map((note) => (
+            <ApplicationNoteCard key={note.id} note={note} viewMode="grid" />
+          ))}
         </div>
       ) : (
         <div className="space-y-3">
-          {filteredAndSortedNotes.map((note) => {
-            const readingTime = getReadingTime(note.content);
-
-            return (
-              <Link
-                key={note.id}
-                href={`/application-notes/${note.slug}`}
-                className="group flex gap-4 rounded-lg border border-neutral-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-primary-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-              >
-                {/* Icon Thumbnail */}
-                <div className="flex h-24 w-32 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary-50 to-primary-100">
-                  <BookOpenIcon className="h-8 w-8 text-primary-600" />
-                </div>
-
-                {/* Content */}
-                <div className="min-w-0 flex-1">
-                  <h3 className="mb-2 line-clamp-2 font-semibold text-neutral-900 transition-colors group-hover:text-primary-600">
-                    {note.title}
-                  </h3>
-                  {note.excerpt && (
-                    <p
-                      className="mb-2 line-clamp-2 text-sm text-neutral-700"
-                      dangerouslySetInnerHTML={{ __html: note.excerpt }}
-                    />
-                  )}
-                  <div className="flex items-center gap-4 text-xs text-neutral-700">
-                    <div className="flex items-center gap-1">
-                      <CalendarIcon className="h-3 w-3" />
-                      <span>{formatDate(note.date)}</span>
-                    </div>
-                    <span>{readingTime} min read</span>
-                  </div>
-                </div>
-
-                {/* Arrow */}
-                <div className="flex flex-shrink-0 items-center">
-                  <ArrowRightIcon className="h-5 w-5 text-neutral-400 transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary-600" />
-                </div>
-              </Link>
-            );
-          })}
+          {filteredAndSortedNotes.map((note) => (
+            <ApplicationNoteCard key={note.id} note={note} viewMode="list" />
+          ))}
         </div>
       )}
     </div>

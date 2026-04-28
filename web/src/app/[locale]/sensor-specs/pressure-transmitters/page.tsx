@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
-import { pressureRanges, type PressureRangeType, type PressureData } from '@/data/pressureTables';
+import { pressureRanges, type PressureRange, type PressureData } from '@/data/pressureTables';
 
 // Helper component to render pressure table
 function PressureTable({ data, unit }: { data: PressureData; unit: string }) {
@@ -74,7 +74,7 @@ function PressureTable({ data, unit }: { data: PressureData; unit: string }) {
 }
 
 export default function PressureTransmittersPage() {
-  const [activeTab, setActiveTab] = useState<PressureRangeType>('0-0.10-WC');
+  const [activeTab, setActiveTab] = useState<string>('0-0.10');
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}

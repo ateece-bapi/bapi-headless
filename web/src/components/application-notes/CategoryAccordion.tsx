@@ -3,15 +3,7 @@
 import { useState } from 'react';
 import { ChevronDownIcon, ChevronRightIcon } from '@/lib/icons';
 import { ApplicationNoteCard } from './ApplicationNoteCard';
-import type { ApplicationNote } from '@/types/applicationNote';
-
-interface CategoryWithNotes {
-  id: string;
-  name: string;
-  slug: string;
-  count: number;
-  notes: ApplicationNote[];
-}
+import type { CategoryWithNotes } from '@/types/applicationNote';
 
 interface CategoryAccordionProps {
   categories: CategoryWithNotes[];

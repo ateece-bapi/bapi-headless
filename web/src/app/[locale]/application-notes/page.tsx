@@ -18,7 +18,11 @@ async function fetchApplicationNotes(): Promise<ApplicationNote[]> {
       first: 100,
     });
 
-    return (data.applicationNotes?.nodes || []) as ApplicationNote[];
+    // Filter and map GraphQL response to ensure required fields are present
+    const nodes = data.applicationNotes?.nodes || [];
+    return nodes
+      .filter(note => Boolean(note?.id && note?.title && note?.slug && note?.date))
+      .map(note => note as ApplicationNote);
   } catch (error) {
     logger.error('Error fetching application notes', error);
     return [];
@@ -29,11 +33,14 @@ async function fetchApplicationNoteCategories(): Promise<ApplicationNoteCategory
   try {
     const client = getGraphQLClient(['application-notes']);
     const data = await client.request<GetApplicationNoteCategoriesQuery>(
-      GetApplicationNoteCategoriesDocument,
-      { first: 100 }
+      GetApplicationNoteCategoriesDocument
     );
 
-    return (data.applicationNoteCategories?.nodes || []) as ApplicationNoteCategory[];
+    // Filter categories with missing required fields
+    const nodes = data.applicationNoteCategories?.nodes || [];
+    return nodes
+      .filter(cat => Boolean(cat?.id && cat?.name && cat?.slug))
+      .map(cat => cat as ApplicationNoteCategory);
   } catch (error) {
     logger.error('Error fetching application note categories', error);
     return [];
@@ -47,12 +54,12 @@ function groupNotesByCategory(
   return categories
     .map(category => ({
       id: category.id,
-      name: category.name,
-      slug: category.slug,
+      name: category.name ?? '',
+      slug: category.slug ?? category.id,
       description: category.description,
-      count: category.count,
+      count: category.count ?? 0,
       notes: notes.filter(note =>
-        note.applicationNoteCategories?.nodes.some(cat => cat.id === category.id)
+        note.applicationNoteCategories?.nodes?.some(cat => cat.id === category.id) ?? false
       ),
     }))
     .filter(category => category.notes.length > 0)

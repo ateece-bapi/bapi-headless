@@ -6,6 +6,7 @@ import {
   ClockIcon as CalendarIcon,
   ArrowRightIcon,
 } from '@/lib/icons';
+import { sanitizeWordPressContent } from '@/lib/sanitize';
 import type { ApplicationNote } from '@/types/applicationNote';
 
 function stripHtml(html: string): string {
@@ -55,7 +56,7 @@ export function ApplicationNoteCard({ note, viewMode }: ApplicationNoteCardProps
           {note.excerpt && (
             <p
               className="mb-4 line-clamp-3 text-sm text-neutral-700"
-              dangerouslySetInnerHTML={{ __html: note.excerpt }}
+              dangerouslySetInnerHTML={{ __html: sanitizeWordPressContent(note.excerpt) }}
             />
           )}
 
@@ -98,7 +99,7 @@ export function ApplicationNoteCard({ note, viewMode }: ApplicationNoteCardProps
         {note.excerpt && (
           <p
             className="mb-4 line-clamp-3 flex-1 text-neutral-700"
-            dangerouslySetInnerHTML={{ __html: note.excerpt }}
+            dangerouslySetInnerHTML={{ __html: sanitizeWordPressContent(note.excerpt) }}
           />
         )}
 

@@ -532,14 +532,21 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 **Type:** Bug - Rich Text Rendering
 
 **Issue:**
-- Bulleted text from current site displays without bullets on new site
-- Terry notes: "It doesn't look right without the bullet"
+- Product Description tab displays bulleted lists as plain text (no bullets)
+- Legacy site shows proper bullet formatting with `<ul>` and `<li>` elements
+- Headless site renders same content as plain paragraphs
+- Example product: Delta Style Sensors - description shows "Delta Style Enclosure with Optional Display", "±2%RH Accuracy", etc. as plain text instead of bulleted list
 
-**Investigation Needed:**
-- [ ] Check HTML/Markdown rendering for product descriptions
-- [ ] Verify CSS for `<ul>` and `<li>` elements
-- [ ] Check if it's data format issue (HTML vs Markdown)
-- [ ] Test across multiple products
+**Screenshots:**
+- **Headless (broken)**: No bullets, plain text on separate lines
+- **Legacy (correct)**: Proper bulleted list with visible bullets
+
+**Root Cause Investigation Needed:**
+- [ ] Check if WordPress GraphQL returns HTML with `<ul>`/`<li>` tags
+- [ ] Verify product description rendering component
+- [ ] Check CSS for `<ul>` and `<li>` elements (may be `list-style: none`)
+- [ ] Confirm HTML sanitization isn't stripping list tags
+- [ ] Test across multiple products with bulleted descriptions
 
 **Assigned To:** TBD  
 **Estimated Effort:** 2-3 hours

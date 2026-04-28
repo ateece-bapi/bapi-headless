@@ -305,30 +305,53 @@ wp cache flush
 ---
 
 ### 8. Air Quality Subcategories Incomplete
-**Status:** ⚪ Not Started  
+**Status:** 🟢 Complete  
 **Priority:** P1  
 **Type:** Bug - Navigation/Display
 
 **Issue:**
-- Air Quality category shows only 3 subcategories
-- Should show 6 (visible when clicking "View All")
+- Air Quality category showed only 3 subcategories in mega menu
+- WordPress had 6 total subcategories
+- Should display all 6 to match WordPress structure
 
-**Current Display:**
+**Original Display (3 subcategories):**
 - CO₂ Sensors
 - VOC Sensors  
 - Particulate Matter
 
-**Missing:**
-- 3 additional subcategories (need to identify)
+**Missing Subcategories Identified:**
+- Nitrogen Dioxide (3 products)
+- Carbon Monoxide (7 products)
+- Refrigerant Leak Detection (3 products)
 
-**Investigation Needed:**
-- [ ] Check navigation config logic
-- [ ] Review category display limit
-- [ ] Compare with "View All" page data
-- [ ] Verify GraphQL query for subcategories
+**Solution Implemented:**
+- ✅ Added 3 missing subcategories to navigation config
+- ✅ Added English translations for all 3 new subcategories
+- ✅ Updated mega menu to display all 6 Air Quality sensors
 
-**Assigned To:** TBD  
-**Estimated Effort:** 2 hours
+**WordPress Category Verification:**
+```bash
+wp term list product_cat --parent=307 --fields=term_id,name,slug,count
+# Air Quality Sensors (term_id: 307) has 6 children:
+# - VOC (voc) - 10 products
+# - Carbon Dioxide (carbon-dioxide) - 7 products
+# - Particulate (particulate) - 2 products
+# - Nitrogen Dioxide (nitrogen-dioxide) - 3 products
+# - Carbon Monoxide (carbon-monoxide) - 7 products
+# - Refrigerant Leak Det. (refrigerant-leak-det) - 3 products
+```
+
+**Files Changed:**
+- `web/messages/en.json` - Added translations for nitrogenDioxide, carbonMonoxide, refrigerantLeak
+- `web/src/components/layout/Header/config.ts` - Added 3 new navigation links
+
+**Result:**
+- Mega menu now displays all 6 Air Quality subcategories matching WordPress structure
+- All links route correctly to subcategory pages
+- No TypeScript errors
+
+**Assigned To:** Complete  
+**Actual Effort:** 1 hour
 
 ---
 
@@ -738,11 +761,11 @@ wp cache flush
 **Status Breakdown:**
 - 🔴 Blocked: 0
 - 🟡 In Progress: 0
-- 🟢 Complete: 8 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**)
+- 🟢 Complete: 9 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**)
 - 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing, Radio vs Dropdowns, Category Behavior, Datasheets)
-- ⚪ Not Started: 10
+- ⚪ Not Started: 9
 
-**Estimated Total Effort Remaining:** 39-64 hours (was 55-80 hours, Issue #21 completed with ~16 hours actual)
+**Estimated Total Effort Remaining:** 38-63 hours (was 55-80 hours, Issues #21 + #8 completed)
 
 ---
 

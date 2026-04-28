@@ -128,6 +128,21 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
               href: '/products/air-quality-sensors/particulate',
               description: t('products.airQuality.particulateDesc'),
             },
+            {
+              label: t('products.airQuality.nitrogenDioxide'),
+              href: '/products/air-quality-sensors/nitrogen-dioxide',
+              description: t('products.airQuality.nitrogenDioxideDesc'),
+            },
+            {
+              label: t('products.airQuality.carbonMonoxide'),
+              href: '/products/air-quality-sensors/carbon-monoxide',
+              description: t('products.airQuality.carbonMonoxideDesc'),
+            },
+            {
+              label: t('products.airQuality.refrigerantLeak'),
+              href: '/products/air-quality-sensors/refrigerant-leak-det',
+              description: t('products.airQuality.refrigerantLeakDesc'),
+            },
           ],
         },
         {

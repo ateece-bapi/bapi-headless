@@ -85,10 +85,37 @@ function isValidUrl(url: string): boolean {
   return allowedProtocols.has(schemeMatch[1]);
 }
 
+/**
+ * Transform pseudo-bullets (• text<br />) into proper HTML lists
+ * WordPress often stores bulleted content as plain text with bullet characters
+ */
+function transformBulletsToLists(html: string): string {
+  // Match paragraphs containing bullet points (• text<br /> pattern)
+  return html.replace(
+    /<p>((?:•[^<]*(?:<br\s*\/?>)?[\s\n]*)+)<\/p>/gi,
+    (match, bulletContent) => {
+      // Split on bullet character and filter empty items
+      const items = bulletContent
+        .split(/•/)
+        .map((item: string) => item.replace(/<br\s*\/?>/gi, '').trim())
+        .filter((item: string) => item.length > 0);
+
+      if (items.length === 0) return match;
+
+      // Convert to proper HTML list
+      const listItems = items.map((item: string) => `  <li>${item}</li>`).join('\n');
+      return `<ul>\n${listItems}\n</ul>`;
+    }
+  );
+}
+
 export function sanitizeWordPressContent(html: string): string {
   if (!html) return '';
 
   let cleaned = html;
+
+  // 0. Transform pseudo-bullets (• text<br />) into proper HTML lists
+  cleaned = transformBulletsToLists(cleaned);
 
   // 1. Remove dangerous tags and embedded media (videos belong in Videos tab, not description)
   cleaned = cleaned.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');

@@ -1,26 +1,15 @@
 import { Metadata } from 'next';
 import { ApplicationNoteList } from '@/components/application-notes/ApplicationNoteList';
-import { GetApplicationNotesQuery, GetApplicationNotesDocument } from '@/lib/graphql/generated';
+import { 
+  GetApplicationNotesQuery, 
+  GetApplicationNotesDocument,
+  GetApplicationNoteCategoriesQuery,
+  GetApplicationNoteCategoriesDocument,
+} from '@/lib/graphql/generated';
 import { getGraphQLClient } from '@/lib/graphql/client';
 import { BookOpenIcon, LightbulbIcon } from '@/lib/icons';
 import logger from '@/lib/logger';
-
-interface ApplicationNote {
-  id: string;
-  databaseId: number;
-  title: string;
-  content: string;
-  excerpt: string;
-  slug: string;
-  date: string;
-  modified: string;
-  featuredImage: {
-    node: {
-      sourceUrl: string;
-      altText: string;
-    };
-  } | null;
-}
+import type { ApplicationNote, ApplicationNoteCategory, CategoryWithNotes } from '@/types/applicationNote';
 
 async function fetchApplicationNotes(): Promise<ApplicationNote[]> {
   try {
@@ -36,6 +25,40 @@ async function fetchApplicationNotes(): Promise<ApplicationNote[]> {
   }
 }
 
+async function fetchApplicationNoteCategories(): Promise<ApplicationNoteCategory[]> {
+  try {
+    const client = getGraphQLClient(['application-notes']);
+    const data = await client.request<GetApplicationNoteCategoriesQuery>(
+      GetApplicationNoteCategoriesDocument,
+      { first: 100 }
+    );
+
+    return (data.applicationNoteCategories?.nodes || []) as ApplicationNoteCategory[];
+  } catch (error) {
+    logger.error('Error fetching application note categories', error);
+    return [];
+  }
+}
+
+function groupNotesByCategory(
+  notes: ApplicationNote[],
+  categories: ApplicationNoteCategory[]
+): CategoryWithNotes[] {
+  return categories
+    .map(category => ({
+      id: category.id,
+      name: category.name,
+      slug: category.slug,
+      description: category.description,
+      count: category.count,
+      notes: notes.filter(note =>
+        note.applicationNoteCategories?.nodes.some(cat => cat.id === category.id)
+      ),
+    }))
+    .filter(category => category.notes.length > 0)
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
 export const metadata: Metadata = {
   title: 'Technical Application Notes | BAPI',
   description:
@@ -49,7 +72,12 @@ export const metadata: Metadata = {
 };
 
 export default async function ApplicationNotesPage() {
-  const applicationNotes = await fetchApplicationNotes();
+  const [applicationNotes, categories] = await Promise.all([
+    fetchApplicationNotes(),
+    fetchApplicationNoteCategories(),
+  ]);
+
+  const categorizedNotes = groupNotesByCategory(applicationNotes, categories);
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -125,7 +153,11 @@ export default async function ApplicationNotesPage() {
             <p className="text-neutral-700">Check back soon for technical articles and guides.</p>
           </div>
         ) : (
-          <ApplicationNoteList applicationNotes={applicationNotes} />
+          <ApplicationNoteList 
+            applicationNotes={applicationNotes} 
+            categories={categorizedNotes}
+            showCategoryAccordion={true}
+          />
         )}
       </div>
     </div>

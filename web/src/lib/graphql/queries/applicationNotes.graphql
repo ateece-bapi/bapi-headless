@@ -28,6 +28,29 @@ query GetApplicationNotes($first: Int = 100, $after: String) {
           }
         }
       }
+      applicationNoteCategories {
+        nodes {
+          id
+          databaseId
+          name
+          slug
+          description
+          count
+        }
+      }
+    }
+  }
+}
+
+query GetApplicationNoteCategories {
+  applicationNoteCategories(first: 100, where: { orderby: NAME, order: ASC }) {
+    nodes {
+      id
+      databaseId
+      name
+      slug
+      description
+      count
     }
   }
 }

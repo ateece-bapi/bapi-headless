@@ -496,7 +496,7 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 ---
 
 ### 14. Circular Document Reference
-**Status:** ⚪ Not Started  
+**Status:** ✅ Complete  
 **Priority:** P1  
 **Type:** Bug - Product Documents
 
@@ -504,15 +504,42 @@ Used WP-CLI to audit and fix category assignments for Delta Style sensors:
 - "Instruction Sheet" category has extra document
 - Document links to same page (circular reference)
 - Product: duct-averaging-temperature-sensor-flexible-2
-- Also: configurator not working on this product (see #2)
+- Document data has empty title and empty URL
 
-**Tasks:**
-- [ ] Review product documents setup
-- [ ] Remove circular reference
-- [ ] Verify document categorization logic
+**Root Cause:**
+- WordPress product documents ACF field contains empty file entry:
+  ```json
+  {
+    "heading": "Instruction Sheet",
+    "files": [
+      { "title": "...", "url": "..." },  // Valid document
+      { "title": "", "url": "" }          // Empty entry (circular reference)
+    ]
+  }
+  ```
 
-**Assigned To:** TBD  
-**Estimated Effort:** 1 hour
+**Resolution:**
+- Added client-side filter in ProductTabs.tsx Documents tab
+- Filter removes documents with empty title AND empty URL
+- Code: `.filter((doc) => doc.title || doc.url)` before grouping by category
+- Prevents rendering of orphaned/empty document entries
+
+**Testing:**
+- ✅ Verified on product ID 136309 (duct-averaging-temperature-sensor-flexible-2)
+- ✅ GraphQL query shows empty file in "Instruction Sheet" category
+- ✅ Frontend filter successfully removes empty document from display
+- ✅ Other products with valid documents unaffected
+
+**Files Changed:**
+- `web/src/components/products/ProductPage/ProductTabs.tsx` (Lines 199-215)
+
+**Note:**
+- WordPress fix attempted but ACF field structure was incompatible with wp-cli eval
+- Client-side filter is safer and handles any future empty documents gracefully
+- No WordPress changes required
+
+**Assigned To:** Complete  
+**Estimated Effort:** 1 hour (actual)
 
 ---
 
@@ -626,7 +653,7 @@ Updated `normalizeAttributeSlug()` function in `web/src/lib/variations.ts`:
 **Code Change:**
 ```typescript
 // BEFORE: .replace(/[°,%<>'"]/g, '')
-// AFTER:  .replace(/[°,%<>'"\. ]/g, '')
+// AFTER:  .replace(/[°,%<>'"\.]/g, '')  // Added \. to remove periods (spaces handled on line 49)
 ```
 
 **Files Changed:**

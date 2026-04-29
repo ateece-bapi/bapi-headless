@@ -204,15 +204,18 @@ export default function ProductTabs({ product }: ProductTabsProps) {
               <div className="space-y-8">
                 {/* Group documents by category */}
                 {Object.entries(
-                  product.documents.reduce(
-                    (acc, doc) => {
-                      const category = doc.category || 'Documents';
-                      if (!acc[category]) acc[category] = [];
-                      acc[category].push(doc);
-                      return acc;
-                    },
-                    {} as Record<string, typeof product.documents>
-                  )
+                  product.documents
+                    // Filter out documents with empty title AND empty URL (circular references)
+                    .filter((doc) => doc.title || doc.url)
+                    .reduce(
+                      (acc, doc) => {
+                        const category = doc.category || 'Documents';
+                        if (!acc[category]) acc[category] = [];
+                        acc[category].push(doc);
+                        return acc;
+                      },
+                      {} as Record<string, typeof product.documents>
+                    )
                 ).map(([category, docs]) => (
                   <div key={category}>
                     <div className="mb-4 flex items-center gap-2">

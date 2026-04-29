@@ -8,6 +8,168 @@
 
 ---
 
+## April 29, 2026 — Issue #11: Wireless Product Categorization Fix 🔧✅
+
+**Status:** ✅ COMPLETE - Ready for PR  
+**Branch:** `fix/issue-11-wireless-product-categories`  
+**Context:** Wireless products incorrectly appearing in both Wireless AND Temperature categories  
+**Priority:** 🔴 P1 - Pre-Launch (Category/Navigation Issue)  
+**Time:** ~2 hours (investigation → team decision → WordPress fix → verification)  
+**Approach:** WordPress database cleanup - Remove temperature categories from wireless products
+
+### 🐛 USER REPORT
+
+**Issue:** Terry QA Feedback Issue #11 - Wireless Products in Wrong Categories  
+**Example Product:** Wireless Duct Temperature Sensor (ID: 408161)  
+**Expected:** Product appears ONLY in Wireless categories  
+**Actual:** Product appears in BOTH Wireless categories AND Temperature categories
+
+**User Confusion:** "I am NOT understaind Terry's feedback on this!"  
+**Team Clarification:** "For now we just keep it in the wireless. We can get more feedback from sales on how they think we should do it."
+
+### 🎯 INVESTIGATION & ROOT CAUSE
+
+**Phase 1: GraphQL Product Category Query**
+```bash
+# Query product 408161 to see all assigned categories
+curl -X POST "https://bapiheadlessstaging.kinsta.cloud/graphql" \
+  -d '{"query":"query{product(id:\"408161\",idType:DATABASE_ID){
+    name,productCategories(first:20){nodes{name,slug}}}}"}'
+```
+
+**GraphQL Response (Before Fix):**
+```json
+{
+  "name": "Wireless Duct Temperature Sensor",
+  "productCategories": {
+    "nodes": [
+      {"name": "Duct", "slug": "temp-duct"},                        // ❌ Temperature category
+      {"name": "Non-Room", "slug": "temp-non-room"},                // ❌ Temperature category
+      {"name": "Non-Room", "slug": "wireless-non-room"},            // ✅ Wireless category
+      {"name": "Wireless System - Bluetooth Low Energy", "slug": "bluetooth-wireless"}  // ✅ Wireless category
+    ]
+  }
+}
+```
+
+**Phase 2: Find All Affected Products**
+```bash
+# Query all Bluetooth Wireless products
+curl -X POST "https://bapiheadlessstaging.kinsta.cloud/graphql" \
+  -d '{"query":"query{productCategory(id:674,idType:DATABASE_ID){
+    products(first:100){nodes{databaseId,name,slug,productCategories{nodes{slug}}}}}}"}'
+```
+
+**Finding:** 12 Bluetooth Wireless products had temperature categories:
+1. 408148 - Wireless BAPI-Stat "Quantum" Temperature and Humidity Sensor
+2. 408050 - Wireless BAPI-Stat "Quantum" Temperature Sensor
+3. 408161 - Wireless Duct Temperature Sensor
+4. 408182 - Wireless Duct Temp/Humidity Sensor
+5. 408194 - Wireless Immersion Temperature Sensor
+6. 408204 - Wireless Remote Probe Temperature Sensor
+7. 408231 - Wireless Outside Air Temperature Sensor
+8. 408238 - Wireless Outside Air Temp/Humidity Sensor
+9. 408248 - Wireless BAPI-Stat "Quantum Slim" Temperature Sensor
+10. 408277 - Wireless BAPI-Stat "Quantum Slim" Temp/Humidity Sensor
+11. 408243 - Wireless Thermobuffer Temperature Sensor
+12. 408283 - Wireless Food Temperature Probe
+
+**Root Cause:**
+- Products manually categorized in both Wireless AND Temperature categories in WordPress
+- Intention unclear - could be intentional for discoverability OR data entry error
+- Team decision: Keep wireless products ONLY in wireless categories for Phase 1
+
+### ✅ SOLUTION IMPLEMENTED
+
+**WordPress Database Cleanup via WP-CLI**
+
+Created automation script: `scripts/fix-wireless-categorization.sh`
+
+**Script Logic:**
+```bash
+# SSH to Kinsta staging server
+ssh -p 17338 bapiheadlessstaging@35.224.70.159
+
+# For each of 12 products:
+# 1. List current categories
+wp post term list {PRODUCT_ID} product_cat --field=slug
+
+# 2. Remove temperature categories one by one
+wp post term remove {PRODUCT_ID} product_cat {TEMP_CATEGORY_SLUG}
+
+# 3. Verify final categories
+wp post term list {PRODUCT_ID} product_cat --fields=name,slug
+```
+
+**Categories Removed:**
+- `temp-room` (Room)
+- `temp-duct` (Duct)
+- `temp-non-room` (Non-Room)
+- `temp-immersion` (Immersion)
+- `temp-remote-probes-and-sensors` (Remote Probes)
+- `temp-outside-air` (Outside Air)
+- `temp-thermobuffer-freezer-cooler` (Thermobuffer)
+- `temp-submersible` (Submersible)
+
+**Execution:**
+```bash
+cd ~/bapi-headless
+bash scripts/fix-wireless-categorization.sh
+# Executed successfully - removed temperature categories from all 12 products
+```
+
+### ✅ VERIFICATION
+
+**GraphQL Query (After Fix):**
+```bash
+curl -X POST "https://bapiheadlessstaging.kinsta.cloud/graphql" \
+  -d '{"query":"query{product(id:\"408161\",idType:DATABASE_ID){
+    name,productCategories(first:20){nodes{name,slug}}}}"}'
+```
+
+**GraphQL Response (After Fix):**
+```json
+{
+  "name": "Wireless Duct Temperature Sensor",
+  "productCategories": {
+    "nodes": [
+      {"name": "Non-Room", "slug": "wireless-non-room"},            // ✅ Wireless category only
+      {"name": "Wireless System - Bluetooth Low Energy", "slug": "bluetooth-wireless"}  // ✅ Wireless category only
+    ]
+  }
+}
+```
+
+**✅ SUCCESS:** All temperature categories removed!
+
+### 📝 FILES CHANGED
+
+1. **scripts/fix-wireless-categorization.sh** (NEW)
+   - Automated WordPress category cleanup
+   - SSH + WP-CLI commands for all 12 products
+   
+2. **docs/TERRY-QA-FEEDBACK-APR2026.md** (UPDATED)
+   - Issue #11 status: 🔵 Needs Discussion → ✅ Complete
+   - Added team decision, products fixed, verification results
+   - Updated summary stats: Complete 14→15, Needs Discussion 6→5
+
+### 🎓 LESSONS LEARNED
+
+1. **Team Decisions Beat Assumptions:** Always clarify ambiguous feedback with stakeholders
+2. **WP-CLI for Bulk Operations:** More reliable than manual WordPress admin for category assignments
+3. **GraphQL Verification:** Essential to confirm WordPress changes propagate correctly
+4. **Categorization Strategy:** Wireless products are unique product line, not sub-type of temperature sensors
+
+### 🚀 NEXT STEPS
+
+1. ✅ WordPress fix complete
+2. ✅ Documentation updated
+3. ⏳ Commit changes
+4. ⏳ Push branch and create PR
+5. ⏳ Merge to main after review
+
+---
+
 ## April 29, 2026 — Issue #14: Circular Document Reference Fix 📄✅
 
 **Status:** ✅ COMPLETE - Ready for PR  

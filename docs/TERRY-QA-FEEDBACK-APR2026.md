@@ -419,7 +419,7 @@ wp term list product_cat --parent=307 --fields=term_id,name,slug,count
 ---
 
 ### 11. Wireless Products in Wrong Categories
-**Status:** ⚪ Not Started  
+**Status:** ✅ Complete  
 **Priority:** P1  
 **Type:** Data - Product Categorization
 
@@ -428,17 +428,38 @@ wp term list product_cat --parent=307 --fields=term_id,name,slug,count
 - Example: "Wireless Duct" in "Temperature Duct"
 - Should be in Wireless category ONLY
 
-**Investigation Needed:**
-- [ ] Identify all affected products
-- [ ] Check WordPress category assignments
-- [ ] Remove duplicate categorization
-- [ ] Verify product display after cleanup
+**Team Decision:**
+- "For now we just keep it in the wireless. We can get more feedback from sales on how they think we should do it."
+- Wireless products should appear ONLY in Wireless categories
+- May revisit based on sales feedback post-launch
 
-**Assigned To:** TBD  
-**Estimated Effort:** 2-3 hours
+**Products Fixed (12 total):**
+1. 408148 - Wireless BAPI-Stat "Quantum" Temperature and Humidity Sensor (removed: temp-room)
+2. 408050 - Wireless BAPI-Stat "Quantum" Temperature Sensor (removed: temp-room)
+3. 408161 - Wireless Duct Temperature Sensor (removed: temp-duct, temp-non-room)
+4. 408182 - Wireless Duct Temp/Humidity Sensor (removed: temp-duct, temp-non-room)
+5. 408194 - Wireless Immersion Temperature Sensor (removed: temp-immersion, temp-non-room)
+6. 408204 - Wireless Remote Probe Temperature Sensor (removed: temp-non-room, temp-remote-probes-and-sensors)
+7. 408231 - Wireless Outside Air Temperature Sensor (removed: temp-non-room, temp-outside-air)
+8. 408238 - Wireless Outside Air Temp/Humidity Sensor (removed: temp-non-room, temp-outside-air)
+9. 408248 - Wireless BAPI-Stat "Quantum Slim" Temperature Sensor (removed: temp-non-room, temp-remote-probes-and-sensors, temp-thermobuffer-freezer-cooler)
+10. 408277 - Wireless BAPI-Stat "Quantum Slim" Temp/Humidity Sensor (removed: temp-room)
+11. 408243 - Wireless Thermobuffer Temperature Sensor (removed: temp-non-room, temp-remote-probes-and-sensors, temp-thermobuffer-freezer-cooler)
+12. 408283 - Wireless Food Temperature Probe (removed: temp-non-room, temp-submersible)
+
+**Verification:**
+- ✅ GraphQL query confirms product 408161 now only has: wireless-non-room, bluetooth-wireless
+- ✅ No temperature categories remain on any wireless products
+- ✅ Wireless products now appear ONLY in Wireless category pages
+
+**Files Changed:**
+- `scripts/fix-wireless-categorization.sh` (new automation script)
+- WordPress category assignments updated via WP-CLI
+
+**Assigned To:** Complete  
+**Actual Effort:** 2 hours
 
 ---
-
 ### 12. Delta Style Sensors Miscategorized
 **Status:** 🟢 Complete  
 **Priority:** P1  
@@ -928,11 +949,11 @@ it('handles special characters - periods', () => {
 **Status Breakdown:**
 - 🔴 Blocked: 0
 - 🟡 In Progress: 0
-- 🟢 Complete: 13 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**, **Delta Style categorization**, **Application Notes categorization**, **Bulleted text rendering**, **Empty dropdown attribute slug fix**)  
+- 🟢 Complete: 15 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**, **Delta Style categorization**, **Application Notes categorization**, **Bulleted text rendering**, **Empty dropdown attribute slug fix**, **Circular document reference**, **Wireless product categorization**)  
 - 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing, Radio vs Dropdowns, Category Behavior, Datasheets)
-- ⚪ Not Started: 6
+- ⚪ Not Started: 5
 
-**Estimated Total Effort Remaining:** 27-50 hours (reduced by 4 hours from Issue #24)
+**Estimated Total Effort Remaining:** 24-47 hours (reduced by 2 hours from Issue #11)
 
 ---
 

@@ -106,8 +106,8 @@
         "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
         "nonRoomSensors": "Industrial Sensors",
         "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
-        "gatewaysModules": "Gateways & Modules",
-        "gatewaysModulesDesc": "Receivers, gateways, and output modules for wireless integration",
+        "gateway": "Gateway",
+        "gatewayDesc": "Wireless gateway for sensor connectivity",
         "wirelessAccessories": "Accessories",
         "wirelessAccessoriesDesc": "Mounting & installation accessories"
       },

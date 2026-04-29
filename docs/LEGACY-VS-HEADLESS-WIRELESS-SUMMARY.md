@@ -141,8 +141,8 @@ links: [
     href: '/products/bluetooth-wireless/wireless-non-room',  // ✅ Non-Room (7 products)
   },
   {
-    label: t('products.wireless.gatewaysModules'),  // NEW: Combined
-    href: '/products/bluetooth-wireless/wireless-gateway',  // ✅ Gateway/Modules landing
+    label: t('products.wireless.gateway'),  // NEW: Specific to gateway subcategory
+    href: '/products/bluetooth-wireless/wireless-gateway',  // ✅ Gateway (1 product)
   },
   {
     label: t('products.wireless.wirelessAccessories'),  // Existing
@@ -161,8 +161,8 @@ links: [
       "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
       "nonRoomSensors": "Industrial Sensors",
       "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
-      "gatewaysModules": "Gateways & Modules",
-      "gatewaysModulesDesc": "Receivers, gateways, and output modules"
+      "gateway": "Gateway",
+      "gatewayDesc": "Wireless gateway for sensor connectivity"
     }
   }
 }

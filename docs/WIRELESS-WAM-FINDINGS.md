@@ -210,9 +210,9 @@ Update mega-menu to link to actual subcategories:
       description: t('products.wireless.nonRoomSensorsDesc'),
     },
     {
-      label: t('products.wireless.gatewaysModules'),  // COMBINED LABEL
+      label: t('products.wireless.gateway'),  // SPECIFIC LABEL
       href: '/products/bluetooth-wireless/wireless-gateway',  // ✅ SPECIFIC
-      description: t('products.wireless.gatewaysModulesDesc'),
+      description: t('products.wireless.gatewayDesc'),
     },
     {
       label: t('products.wireless.wirelessAccessories'),

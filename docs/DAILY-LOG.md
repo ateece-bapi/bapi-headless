@@ -110,7 +110,7 @@ Updated mega-menu with specific, semantically correct labels and URLs:
   href: '/products/bluetooth-wireless/wireless-non-room',  // ✅ Specific subcategory (7 products)
 },
 {
-  label: t('products.wireless.gatewaysModules'),  // Updated label
+  label: t('products.wireless.gateway'),  // Updated label
   href: '/products/bluetooth-wireless/wireless-gateway',  // ✅ Specific subcategory (1 product)
 }
 ```
@@ -124,8 +124,8 @@ Updated mega-menu with specific, semantically correct labels and URLs:
       "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
       "nonRoomSensors": "Industrial Sensors",
       "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
-      "gatewaysModules": "Gateways & Modules",
-      "gatewaysModulesDesc": "Receivers, gateways, and output modules for wireless integration"
+      "gateway": "Gateway",
+      "gatewayDesc": "Wireless gateway for sensor connectivity"
     }
   }
 }

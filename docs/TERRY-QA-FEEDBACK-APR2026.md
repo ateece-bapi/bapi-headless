@@ -140,7 +140,7 @@ After comparing legacy site, headless site, and WordPress structure:
 Updated mega-menu config with semantic labels and specific URLs:
 - "Room Sensors" → `/products/bluetooth-wireless/wireless-room` (most popular)
 - "Industrial Sensors" → `/products/bluetooth-wireless/wireless-non-room`
-- "Gateways & Modules" → `/products/bluetooth-wireless/wireless-gateway`
+- "Gateway" → `/products/bluetooth-wireless/wireless-gateway`
 - "Accessories" → `/products/bluetooth-wireless/wireless-accessories` (already correct)
 
 **Files Changed:**

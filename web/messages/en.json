@@ -118,12 +118,8 @@
       },
       "testInstruments": {
         "title": "Test Instruments",
-        "bluTestTemperature": "Blu-Test Temperature",
-        "bluTestTemperatureDesc": "NIST-traceable reference",
-        "bluTestHumidity": "Blu-Test Humidity",
-        "bluTestHumidityDesc": "Temp + RH reference",
-        "bluTestPressure": "Blu-Test Pressure",
-        "bluTestPressureDesc": "Digital manometer"
+        "allTestInstruments": "All Test Instruments",
+        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
       },
       "featured": {
         "title": "WAM™ Wireless Asset Monitoring",

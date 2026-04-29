@@ -113,12 +113,8 @@
       },
       "accessories": {
         "title": "Accessories",
-        "mounting": "Mounting Hardware",
-        "mountingDesc": "Plates, boxes, brackets",
-        "enclosures": "Enclosures",
-        "enclosuresDesc": "BAPI-Box & covers",
-        "cables": "Cables & Connectors",
-        "cablesDesc": "Wiring accessories"
+        "allAccessories": "All Accessories",
+        "allAccessoriesDesc": "Mounting hardware, enclosures, cables, and sensor accessories"
       },
       "testInstruments": {
         "title": "Test Instruments",

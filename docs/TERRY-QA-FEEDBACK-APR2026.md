@@ -396,7 +396,7 @@ wp term list product_cat --parent=307 --fields=term_id,name,slug,count
 ---
 
 ### 9. Accessories Subcategories Wrong
-**Status:** ⚪ Not Started  
+**Status:** ✅ Complete  
 **Priority:** P1  
 **Type:** Bug - Category Structure
 
@@ -405,18 +405,37 @@ wp term list product_cat --parent=307 --fields=term_id,name,slug,count
 - Pages don't function correctly
 - Terry notes: "Accessories line covers so many unrelated things that it would be hard to make subcategories"
 
-**Current Incorrect Subcategories:**
-- Mounting Hardware
-- Enclosures
-- Cables & Connectors
+**Root Cause:**
+- Headless site added 3 fake subcategories: "Mounting Hardware", "Enclosures", "Cables & Connectors"
+- All three pointed to same `/accessories` page (broken navigation)
+- These subcategories don't exist in WordPress or on legacy site
 
-**Recommendation:**
-- [ ] Discuss if subcategories should exist at all
-- [ ] Consider removing subcategories for Accessories
-- [ ] Update navigation to match decision
+**Investigation Findings:**
+- ✅ WordPress: Accessories has NO subcategories (64 diverse products with filter-based navigation)
+- ✅ Legacy site: Accessories is a simple link, no dropdown subcategories
+- ✅ Headless: Incorrectly added fake subcategories causing UX confusion
 
-**Assigned To:** TBD  
-**Estimated Effort:** 1-2 hours + discussion
+**Solution Implemented:**
+- Replaced 3 fake subcategories with single "All Accessories" link
+- Matches WordPress structure (no subcategories)
+- Consistent with legacy site UX pattern
+- Users land on filter page to browse by application/enclosure/output
+
+**Files Changed:**
+- `web/src/components/layout/Header/config.ts` - Updated accessories navigation
+- `web/messages/en.json` - Simplified translation keys
+
+**Documentation:**
+- Full investigation: `docs/ACCESSORIES-INVESTIGATION.md`
+
+**Result:**
+- ✅ Clear, single entry point for accessories
+- ✅ No confusion from fake subcategories  
+- ✅ Filter page provides better browsing than forced categories
+- ✅ Consistent with WordPress data model
+
+**Assigned To:** Complete  
+**Actual Effort:** 1.5 hours
 
 ---
 

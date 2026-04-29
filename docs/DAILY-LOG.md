@@ -528,6 +528,224 @@ curl -s -X POST "https://bapiheadlessstaging.kinsta.cloud/graphql" \
 
 ---
 
+## April 29, 2026 — Issue #9: Accessories Subcategories Fix 📦✅
+
+**Status:** ✅ COMPLETE - Ready for PR  
+**Branch:** `investigate/issue-9-accessories`  
+**Context:** Three subcategories wrong in Accessories, pages don't function correctly  
+**Priority:** 🔴 P1 - Pre-Launch (Navigation/Category Issue)  
+**Time:** ~1.5 hours (investigation → legacy comparison → fix)  
+**Approach:** Remove fake subcategories, replace with single "All Accessories" link
+
+### 🐛 USER REPORT
+
+**Issue:** Terry QA Feedback Issue #9 - Accessories Subcategories Wrong  
+**Problem:** Three subcategories in Accessories mega-menu don't work correctly  
+**Terry's Note:** "Accessories line covers so many unrelated things that it would be hard to make subcategories"
+
+**Current Incorrect Subcategories:**
+- Mounting Hardware → `/accessories`
+- Enclosures → `/accessories`
+- Cables & Connectors → `/accessories`
+
+**Problem:** All three "subcategories" point to the same generic page - broken navigation UX
+
+### 🔍 COMPREHENSIVE INVESTIGATION
+
+**Phase 1: WordPress Category Structure Verification**
+```bash
+ssh -p 17338 bapiheadlessstaging@35.224.70.159
+cd public
+wp term list product_cat --parent=313 --fields=term_id,name,slug,count
+```
+
+**Finding:** Accessories category (ID 313) has **NO subcategories** in WordPress ✅
+
+**WordPress Structure:**
+- **64 products** in single "Accessories" category
+- **Filter-based navigation** with 3 filter types:
+  - Application (10 types): Averaging, Duct Temp, Immersion, Room Temp, etc.
+  - Enclosure Style (7 types): BAPI-Com, BAPI-Stat 4, Button Sensor, Wall Plates, etc.
+  - Sensor Output (5 types): 4-20mA, Thermistor/RTD, Modbus, Echelon
+
+**Conclusion:** Terry is correct - accessories are too diverse for meaningful subcategories. WordPress reflects this with filter-based organization.
+
+**Phase 2: Legacy Site Structure (bapihvac.com)**
+
+Navigated to: `https://www.bapihvac.com/products/accessories/`
+
+**Navigation Pattern:**
+```
+Products (dropdown menu)
+├── Test Instruments       ← Single link, no subcategories
+├── Temperature Sensors    ← Has subcategories
+├── Humidity Sensors       ← Has subcategories
+├── Pressure Sensors       ← Has subcategories
+├── Air Quality           ← Has subcategories
+├── Wireless              ← Single link, no subcategories
+├── Accessories           ← Single link, NO subcategories ✅
+├── ETA                   ← Single link, no subcategories
+└── WAM                   ← Single link, no subcategories
+```
+
+**Key Finding:** Legacy site treats Accessories like Test Instruments - **simple link with no dropdown subcategories** ✅
+
+**Phase 3: Headless Site Analysis**
+
+**Current Mega-Menu Config:**
+```typescript
+// web/src/components/layout/Header/config.ts (BEFORE FIX)
+{
+  title: t('products.accessories.title'),
+  slug: 'accessories',
+  icon: '/images/icons/Accessories_Icon.webp',
+  links: [
+    {
+      label: t('products.accessories.mounting'),
+      href: '/accessories',  // ❌ All point to same page
+      description: t('products.accessories.mountingDesc'),
+    },
+    {
+      label: t('products.accessories.enclosures'),
+      href: '/accessories',  // ❌ Broken navigation
+    },
+    {
+      label: t('products.accessories.cables'),
+      href: '/accessories',  // ❌ Useless subcategories
+    },
+  ],
+}
+```
+
+**Issues Identified:**
+1. **Non-existent in WordPress:** "Mounting Hardware", "Enclosures", "Cables & Connectors" don't exist as WordPress categories
+2. **Broken UX:** All three "subcategories" route to same page - users clicking different options get identical results
+3. **Inconsistent with legacy:** Legacy site has NO accessories subcategories
+4. **Ignores Terry's wisdom:** "too many unrelated things" - filters work better than forced categories
+
+### ✅ SOLUTION IMPLEMENTED
+
+**Approach:** Replace 3 fake subcategories with single "All Accessories" link
+
+**Code Changes:**
+```typescript
+// web/src/components/layout/Header/config.ts (AFTER FIX)
+{
+  title: t('products.accessories.title'),
+  slug: 'accessories',
+  icon: '/images/icons/Accessories_Icon.webp',
+  links: [
+    {
+      label: t('products.accessories.allAccessories'),
+      href: '/products/accessories',
+      description: t('products.accessories.allAccessoriesDesc'),
+    },
+  ],
+}
+```
+
+**Translation Updates:**
+```json
+// web/messages/en.json (BEFORE)
+"accessories": {
+  "title": "Accessories",
+  "mounting": "Mounting Hardware",
+  "mountingDesc": "Plates, boxes, brackets",
+  "enclosures": "Enclosures",
+  "enclosuresDesc": "BAPI-Box & covers",
+  "cables": "Cables & Connectors",
+  "cablesDesc": "Wiring accessories"
+}
+
+// web/messages/en.json (AFTER)
+"accessories": {
+  "title": "Accessories",
+  "allAccessories": "All Accessories",
+  "allAccessoriesDesc": "Mounting hardware, enclosures, cables, and sensor accessories"
+}
+```
+
+**Benefits:**
+- ✅ Matches WordPress structure (no subcategories)
+- ✅ Consistent with legacy site UX pattern
+- ✅ Single, clear call-to-action
+- ✅ Users land on filter page where they can browse by application/enclosure/output
+- ✅ Honors Terry's assessment that accessories are too diverse for subcategorization
+- ✅ Simpler code, fewer translation keys
+
+### 📊 COMPARISON: LEGACY VS HEADLESS
+
+| Aspect | Legacy Site | Headless (Before Fix) | Headless (After Fix) |
+|--------|-------------|----------------------|---------------------|
+| **Navigation** | Single link | Mega-menu with 3 subcats | Mega-menu with 1 link |
+| **Subcategories** | None | 3 fake ones | None |
+| **User clicks** | 1 click | 2 clicks (broken) | 2 clicks (working) |
+| **Page structure** | Filter-based | Filter-based | Filter-based |
+| **WordPress consistency** | ✅ | ❌ | ✅ |
+| **UX clarity** | Clear | Confusing | Clear |
+
+**Navigation Improvement:** While legacy has no mega-menu at all, headless provides a **single clear entry point** in the mega-menu structure, maintaining consistency with other product categories while respecting the reality that accessories are too diverse for subcategorization.
+
+### 📝 FILES CHANGED
+
+1. **web/src/components/layout/Header/config.ts** (Lines 175-195)
+   - Replaced 3 fake subcategories with single "All Accessories" link
+   - Updated href to use full path: `/products/accessories`
+
+2. **web/messages/en.json** (Lines 114-121)
+   - Removed: mounting, mountingDesc, enclosures, enclosuresDesc, cables, cablesDesc
+   - Added: allAccessories, allAccessoriesDesc
+
+**Documentation:**
+- `docs/ACCESSORIES-INVESTIGATION.md` (NEW) - Comprehensive investigation report
+- `docs/TERRY-QA-FEEDBACK-APR2026.md` (UPDATED) - Issue #9 marked complete
+
+### 🧪 TESTING
+
+- [x] WordPress structure verified (no subcategories)
+- [x] Legacy site comparison complete
+- [x] Navigation config updated
+- [x] Translation strings updated
+- [x] Production build successful (Exit code 0)
+- [x] TypeScript validation passed
+- [x] ESLint checks passed
+- [ ] Visual QA in staging
+- [ ] Cross-browser testing
+- [ ] Mobile responsive check
+
+**Build Verification:**
+```bash
+cd /home/ateece/bapi-headless/web && pnpm run build
+# ✓ Compiled successfully in 9.2s
+# ✓ TypeScript validation passed
+# ✓ Generated 852 static pages
+# Exit code: 0 ✅
+```
+
+### 🎓 LESSONS LEARNED
+
+1. **User feedback contains hidden wisdom** - Terry's note "too many unrelated things" was the key insight
+2. **WordPress is source of truth** - Always verify category structure before implementing navigation
+3. **Legacy patterns matter** - Business logic is encoded in legacy UX decisions
+4. **"No subcategories" is valid** - Not every category needs subdivision
+5. **Filter-based > Forced categorization** - For diverse product sets, filters work better
+6. **Simpler is better** - Single clear link beats 3 broken ones
+
+### 🚀 NEXT STEPS
+
+1. Push branch and create PR for review
+2. Deploy to staging for visual QA
+3. Test mega-menu navigation across all devices
+4. Consider Phase 2 enhancements:
+   - Featured application filters on accessories landing page
+   - Quick links for popular combinations
+   - "Frequently bought together" cross-selling
+
+**Branch:** `investigate/issue-9-accessories`  
+**Ready for:** Immediate PR creation
+
+---
+
 ## April 28, 2026 — Attribute Slug Normalization: Period Character Bug Fix 🔧✅
 
 **Status:** ✅ COMPLETE - Merged to main  

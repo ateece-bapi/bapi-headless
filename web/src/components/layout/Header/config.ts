@@ -197,6 +197,18 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
             },
           ],
         },
+        {
+          title: t('products.etaLine.title'),
+          slug: 'eta-line',
+          icon: '/images/icons/ETA_Icon.webp',
+          links: [
+            {
+              label: t('products.etaLine.allEtaLine'),
+              href: '/products/eta-line',
+              description: t('products.etaLine.allEtaLineDesc'),
+            },
+          ],
+        },
       ],
       featured: {
         title: t('products.featured.title'),

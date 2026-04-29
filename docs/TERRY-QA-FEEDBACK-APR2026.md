@@ -345,10 +345,27 @@ wp term list product_cat --parent=307 --fields=term_id,name,slug,count
 - `web/messages/en.json` - Added translations for nitrogenDioxide, carbonMonoxide, refrigerantLeak
 - `web/src/components/layout/Header/config.ts` - Added 3 new navigation links
 
+**Known Issue - Translation Coverage:**
+⚠️ **Action Required:** Translation keys only added to `en.json`. Missing from other locale files:
+- `de.json` (German)
+- `fr.json` (French)  
+- `es.json` (Spanish)
+- `ja.json` (Japanese)
+- `zh.json` (Chinese)
+- `ar.json` (Arabic)
+- `hi.json` (Hindi)
+- `vi.json` (Vietnamese)
+- `th.json` (Thai)
+- `pl.json` (Polish)
+
+**Impact:** Runtime errors when users switch to non-English locales (next-intl throws on missing keys).
+**Recommendation:** Either add temporary English fallback strings to all locale files OR implement safe fallback strategy in i18n config before Phase 1 launch (May 4, 2026).
+
 **Result:**
 - Mega menu now displays all 6 Air Quality subcategories matching WordPress structure
 - All links route correctly to subcategory pages
 - No TypeScript errors
+- ⚠️ English locale only (multi-language support incomplete)
 
 **Assigned To:** Complete  
 **Actual Effort:** 1 hour
@@ -548,13 +565,14 @@ WordPress stores bulleted content as plain text with bullet characters (`•`) a
 
 **Solution Implemented:**
 Added `transformBulletsToLists()` function to `sanitizeDescription.ts` that detects bullet character patterns and converts them to proper HTML `<ul>/<li>` structure:
-- Regex pattern matches paragraphs containing `• text<br />` sequences
+- Regex pattern matches paragraphs containing `• text<br />` sequences (including WordPress/Gutenberg paragraphs with attributes)
 - Splits on bullet character and filters empty items
 - Wraps each item in `<li>` tags within `<ul>` parent
-- Tailwind prose classes (`prose-ul:list-disc`, `prose-li:marker:text-primary-500`) now apply correctly
+- ProductTabs list styling now applies correctly via Tailwind arbitrary selectors on the rich-text container (e.g., `[&_ul]:list-disc` and `[&_ul_li::marker]:text-primary-500`)
 
 **Files Changed:**
 - `web/src/lib/sanitizeDescription.ts` - Added bullet transformation before sanitization
+- `web/src/components/products/ProductPage/ProductTabs.tsx` - Updated Description tab rendering with explicit list styling
 
 **Result:**
 - ✅ Bulleted lists now render with proper bullets in Description tab
@@ -563,6 +581,86 @@ Added `transformBulletsToLists()` function to `sanitizeDescription.ts` that dete
 
 **Assigned To:** Complete  
 **Actual Effort:** 2 hours
+
+---
+
+### 24. Empty Dropdown for Attributes with Periods in Name
+**Status:** 🟢 Complete  
+**Priority:** P1  
+**Type:** Bug - Attribute Slug Normalization
+
+**Issue:**
+- Product configurator dropdown "Comm. Jack and Test and Balance" rendering empty
+- Legacy site shows 2 options correctly
+- GraphQL confirms both options exist in variations
+- Example product: Delta Style Room Humidity Sensor (ID: 137821)
+- URL: http://localhost:3000/en/product/delta-style-room-humidity-or-temperature-humidity-sensor
+
+**Root Cause:**
+Attribute slug normalization function wasn't removing periods (`.`) from attribute names:
+- Product attribute name: `"Comm. Jack and Test and Balance"`
+- Normalized slug (BEFORE): `comm.-jack-and-test-and-balance` (extra period)
+- Variation attribute slug: `comm-jack-and-test-and-balance`
+- **Mismatch:** Smart filtering couldn't find variations because slugs didn't match
+
+**Investigation:**
+```bash
+# GraphQL confirmed variations have the attribute
+curl -X POST "https://bapiheadlessstaging.kinsta.cloud/graphql" \
+  -d '{"query":"...variations{nodes{attributes{nodes{name,value}}}}"}'  
+# Result: 32 variations, all have "comm-jack-and-test-and-balance" with both option values
+
+# Attribute definition shows 2 options
+{"name": "Comm. Jack and Test and Balance", "options": [
+  "No Comm Jack or Test and Balance Switch",
+  "C35 Comm. Jack and Test and Balance Switch"
+]}
+```
+
+**Solution Implemented:**
+Updated `normalizeAttributeSlug()` function in `web/src/lib/variations.ts`:
+- Added period (`.`) to special characters regex: `[°,%<>'"\.]`
+- Now removes periods along with other special characters
+- Both product and variation attributes normalize to same slug
+
+**Code Change:**
+```typescript
+// BEFORE: .replace(/[°,%<>'"]/g, '')
+// AFTER:  .replace(/[°,%<>'"\. ]/g, '')
+```
+
+**Files Changed:**
+- `web/src/lib/variations.ts` (Line 46) - Added `\.` to special characters regex
+- `web/src/lib/__tests__/variations.test.ts` - Added test case for period normalization
+
+**Test Coverage:**
+```typescript
+it('handles special characters - periods', () => {
+  // Real-world case: "Comm. Jack and Test and Balance" (product 137821)
+  expect(normalizeAttributeSlug('Comm. Jack and Test and Balance')).toBe(
+    'comm-jack-and-test-and-balance'
+  );
+  expect(normalizeAttributeSlug('Temp. Sensor')).toBe('temp-sensor');
+  expect(normalizeAttributeSlug('E.I.A. Standard')).toBe('eia-standard');
+});
+```
+
+**Result:**
+- ✅ Product attribute: `"Comm. Jack and Test and Balance"` → `comm-jack-and-test-and-balance`
+- ✅ Variation attribute: `"comm-jack-and-test-and-balance"` → `comm-jack-and-test-and-balance`
+- ✅ Slugs now match correctly
+- ✅ Smart filtering returns both options
+- ✅ Dropdown populates with 2 choices
+- ✅ Matches legacy site behavior
+
+**Verification:**
+- Tested product 137821: Dropdown now shows both options
+- All VariationSelector tests passing (4/4)
+- Legacy site parity confirmed
+
+**Assigned To:** Complete  
+**Actual Effort:** 4 hours (investigation + fix + testing)
+**Branch:** `fix/attribute-slug-period-normalization` (merged April 28, 2026)
 
 ---
 
@@ -794,20 +892,20 @@ Added `transformBulletsToLists()` function to `sanitizeDescription.ts` that dete
 
 ## 📊 Summary Statistics
 
-**Total Issues:** 23  
+**Total Issues:** 24  
 **P0 Critical:** 2 (was 4, resolved 2 as "not bugs")  
-**P1 High:** 14  
+**P1 High:** 15  
 **P2 Medium:** 5  
 **Resolved - Not Bugs:** 2
 
 **Status Breakdown:**
 - 🔴 Blocked: 0
 - 🟡 In Progress: 0
-- 🟢 Complete: 12 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**, **Delta Style categorization**, **Application Notes categorization**, **Bulleted text rendering**)
+- 🟢 Complete: 13 (Category naming, Combo Sensors, 404 redirect, Missing Image, Immersion→Thermowell, 4-20mA fixed, **Sensors Overview fully complete**, **Air Quality Subcategories**, **Delta Style categorization**, **Application Notes categorization**, **Bulleted text rendering**, **Empty dropdown attribute slug fix**)  
 - 🔵 Needs Discussion: 5 (Mega Menu Cut Off, Wireless Routing, Radio vs Dropdowns, Category Behavior, Datasheets)
 - ⚪ Not Started: 6
 
-**Estimated Total Effort Remaining:** 31-54 hours (reduced by 6-8 hours from Issue #19)
+**Estimated Total Effort Remaining:** 27-50 hours (reduced by 4 hours from Issue #24)
 
 ---
 

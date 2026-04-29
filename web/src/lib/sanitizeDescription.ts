@@ -90,9 +90,10 @@ function isValidUrl(url: string): boolean {
  * WordPress often stores bulleted content as plain text with bullet characters
  */
 function transformBulletsToLists(html: string): string {
-  // Match paragraphs containing bullet points (• text<br /> pattern)
+  // Match paragraphs containing bullet points (• text<br /> pattern),
+  // including WordPress/Gutenberg paragraphs with attributes.
   return html.replace(
-    /<p>((?:•[^<]*(?:<br\s*\/?>)?[\s\n]*)+)<\/p>/gi,
+    /<p\b[^>]*>((?:•[^<]*(?:<br\s*\/?>)?[\s\n]*)+)<\/p>/gi,
     (match, bulletContent) => {
       // Split on bullet character and filter empty items
       const items = bulletContent

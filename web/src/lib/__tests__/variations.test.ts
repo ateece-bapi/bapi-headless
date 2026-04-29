@@ -63,6 +63,15 @@ describe('Variation Utilities', () => {
       expect(normalizeAttributeSlug("Option&#039;s Value")).toBe('options-value');
     });
 
+    it('handles special characters - periods', () => {
+      // Real-world case: "Comm. Jack and Test and Balance" (product 137821)
+      expect(normalizeAttributeSlug('Comm. Jack and Test and Balance')).toBe(
+        'comm-jack-and-test-and-balance'
+      );
+      expect(normalizeAttributeSlug('Temp. Sensor')).toBe('temp-sensor');
+      expect(normalizeAttributeSlug('E.I.A. Standard')).toBe('eia-standard');
+    });
+
     it('handles multiple spaces', () => {
       expect(normalizeAttributeSlug('Multiple   Spaces   Here')).toBe('multiple-spaces-here');
     });

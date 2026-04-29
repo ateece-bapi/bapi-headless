@@ -121,6 +121,11 @@
         "allTestInstruments": "All Test Instruments",
         "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
       },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "All ETA Products",
+        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+      },
       "featured": {
         "title": "WAM™ Wireless Asset Monitoring",
         "description": "24/7 remote monitoring with instant alerts. Protect your valuable assets from power outages and equipment failures. No wiring required - get up and running in minutes.",

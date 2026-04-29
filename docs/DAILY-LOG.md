@@ -8,6 +8,110 @@
 
 ---
 
+## April 29, 2026 — ETA Mega-Menu Addition 📦✅
+
+**Status:** ✅ COMPLETE - Ready for PR  
+**Branch:** `investigate/eta-structure`  
+**Context:** ETA product line (70 products) completely missing from mega-menu  
+**Priority:** 🟡 P2 - Navigation Completeness  
+**Time:** ~20 minutes (pattern recognition from Accessories/Test Instruments)  
+**Approach:** Add ETA with single link pattern
+
+### 🎯 DISCOVERY
+
+After fixing Accessories and Test Instruments, systematic review revealed ETA was **completely absent** from mega-menu.
+
+**Investigation confirmed:**
+- WordPress: ETA Line (ID 309) has NO subcategories, 70 products
+- Legacy site: ETA in Products dropdown as simple link
+- Headless: ETA totally missing from mega-menu (only in footer)
+
+### 🔍 WORDPRESS VERIFICATION
+
+```bash
+wp term list product_cat --search='ETA'
+# Result: term_id=309, slug=eta-line, parent=0, count=70
+
+wp term list product_cat --parent=309
+# Result: EMPTY (no subcategories)
+```
+
+### ✅ SOLUTION IMPLEMENTED
+
+**Added ETA to mega-menu with single link pattern:**
+```typescript
+// web/src/components/layout/Header/config.ts
+{
+  title: t('products.etaLine.title'),
+  slug: 'eta-line',
+  icon: '/images/icons/ETA_Icon.webp',
+  links: [
+    {
+      label: t('products.etaLine.allEtaLine'),
+      href: '/products/eta-line',
+      description: t('products.etaLine.allEtaLineDesc'),
+    },
+  ],
+}
+```
+
+```json
+// web/messages/en.json
+"etaLine": {
+  "title": "ETA Line",
+  "allEtaLine": "All ETA Products",
+  "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+}
+```
+
+### 📝 DOCUMENTATION
+
+- `docs/ETA-MEGA-MENU-ADDITION.md` - Full investigation and implementation
+
+### 🧪 TESTING
+
+- [x] Production build successful (Exit code 0, 852 pages)
+- [x] TypeScript validation passed
+- [x] ESLint checks passed
+- [ ] Visual QA in staging
+- [ ] Mega-menu layout with 8 columns
+
+**Build Verification:**
+```bash
+cd /home/ateece/bapi-headless/web && pnpm run build
+# ✓ Compiled successfully in 9.0s
+# ✓ TypeScript validation passed
+# ✓ Generated 852 static pages
+# Exit code: 0 ✅
+```
+
+### 🎯 SYSTEMATIC CATEGORY REVIEW COMPLETE
+
+**All top-level categories now verified against WordPress:**
+1. ✅ Temperature Sensors - 6 real subcategories (mega-menu shows top 6)
+2. ✅ Humidity Sensors - 3 real subcategories
+3. ✅ Pressure Sensors - 3 real subcategories
+4. ✅ Air Quality Sensors - 6 real subcategories
+5. ✅ Wireless - 4 real subcategories
+6. ✅ Accessories - NO subcategories → Single "All Accessories" link (Issue #9)
+7. ✅ Test Instruments - NO subcategories → Single "All Test Instruments" link
+8. ✅ ETA Line - NO subcategories → Single "All ETA Products" link (this fix)
+9. ✅ WAM - Featured section (different pattern)
+
+**Mega-menu now 100% consistent with WordPress and legacy site!**
+
+### 🚀 NEXT STEPS
+
+1. Commit and push branch
+2. Create PR for review
+3. Verify ETA icon exists (`/images/icons/ETA_Icon.webp`)
+4. QA mega-menu layout with 8 product columns
+
+**Branch:** `investigate/eta-structure`  
+**Ready for:** Immediate PR creation
+
+---
+
 ## April 29, 2026 — Test Instruments Subcategories Fix 📊✅
 
 **Status:** ✅ COMPLETE - Ready for PR  

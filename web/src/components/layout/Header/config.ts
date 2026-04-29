@@ -191,20 +191,9 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           icon: '/images/icons/Test_Instruments_Icon.webp',
           links: [
             {
-              label: t('products.testInstruments.bluTestTemperature'),
-              href: '/test-instruments',
-              description: t('products.testInstruments.bluTestTemperatureDesc'),
-              badge: t('badges.new'),
-            },
-            {
-              label: t('products.testInstruments.bluTestHumidity'),
-              href: '/test-instruments',
-              description: t('products.testInstruments.bluTestHumidityDesc'),
-            },
-            {
-              label: t('products.testInstruments.bluTestPressure'),
-              href: '/test-instruments',
-              description: t('products.testInstruments.bluTestPressureDesc'),
+              label: t('products.testInstruments.allTestInstruments'),
+              href: '/products/test-instruments',
+              description: t('products.testInstruments.allTestInstrumentsDesc'),
             },
           ],
         },

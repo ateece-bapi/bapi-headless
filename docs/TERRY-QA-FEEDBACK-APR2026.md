@@ -434,8 +434,24 @@ wp term list product_cat --parent=307 --fields=term_id,name,slug,count
 - ✅ Filter page provides better browsing than forced categories
 - ✅ Consistent with WordPress data model
 
+**Pattern Applied to Other Categories:**
+After fixing Accessories, same pattern identified and applied to:
+- ✅ **Test Instruments** (April 29, 2026)
+  - Had 3 fake subcategories (Blu-Test Temperature, Humidity, Pressure)
+  - WordPress confirmed NO subcategories under Test Instruments (term_id 600)
+  - Legacy site shows simple link pattern
+  - Fixed: Single "All Test Instruments" link with comprehensive description
+  - PR merged: `investigate/test-instruments-structure`
+  - Documentation: `docs/TEST-INSTRUMENTS-FIX.md`
+
+**Categories Verified:**
+✅ Accessories - No subcategories (fixed)  
+✅ Test Instruments - No subcategories (fixed)  
+❓ ETA - Needs verification  
+❓ WAM - Featured section (different pattern)
+
 **Assigned To:** Complete  
-**Actual Effort:** 1.5 hours
+**Actual Effort:** 1.5 hours (Accessories) + 0.5 hours (Test Instruments)
 
 ---
 

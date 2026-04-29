@@ -102,13 +102,13 @@
       },
       "wireless": {
         "title": "Wireless",
-        "bluetoothSensors": "Bluetooth Sensors",
-        "bluetoothSensorsDesc": "Wireless HVAC sensors for building automation",
-        "gatewaysReceivers": "Gateways & Receivers",
-        "gatewaysReceiversDesc": "Connect wireless sensors to BAS",
-        "outputModules": "Output Modules",
-        "outputModulesDesc": "Wireless control outputs",
-        "wirelessAccessories": "Wireless Accessories",
+        "roomSensors": "Room Sensors",
+        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
+        "nonRoomSensors": "Industrial Sensors",
+        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
+        "gatewaysModules": "Gateways & Modules",
+        "gatewaysModulesDesc": "Receivers, gateways, and output modules for wireless integration",
+        "wirelessAccessories": "Accessories",
         "wirelessAccessoriesDesc": "Mounting & installation accessories"
       },
       "accessories": {

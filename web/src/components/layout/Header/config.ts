@@ -151,20 +151,20 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
           icon: '/images/icons/Wireless_Icon.webp',
           links: [
             {
-              label: t('products.wireless.bluetoothSensors'),
-              href: '/products/bluetooth-wireless',
-              description: t('products.wireless.bluetoothSensorsDesc'),
+              label: t('products.wireless.roomSensors'),
+              href: '/products/bluetooth-wireless/wireless-room',
+              description: t('products.wireless.roomSensorsDesc'),
               badge: t('badges.popular'),
             },
             {
-              label: t('products.wireless.gatewaysReceivers'),
-              href: '/products/bluetooth-wireless',
-              description: t('products.wireless.gatewaysReceiversDesc'),
+              label: t('products.wireless.nonRoomSensors'),
+              href: '/products/bluetooth-wireless/wireless-non-room',
+              description: t('products.wireless.nonRoomSensorsDesc'),
             },
             {
-              label: t('products.wireless.outputModules'),
-              href: '/products/bluetooth-wireless',
-              description: t('products.wireless.outputModulesDesc'),
+              label: t('products.wireless.gatewaysModules'),
+              href: '/products/bluetooth-wireless/wireless-gateway',
+              description: t('products.wireless.gatewaysModulesDesc'),
             },
             {
               label: t('products.wireless.wirelessAccessories'),

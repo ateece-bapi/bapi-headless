@@ -510,18 +510,14 @@
         "wirelessAccessoriesDesc": "取付・設置用アクセサリー"
       },
       "accessories": {
-        "title": "アクセサリ",
-        "mounting": "取り付け金具",
-        "mountingDesc": "プレート、ボックス、ブラケット",
-        "enclosures": "エンクロージャ",
-        "enclosuresDesc": "BAPI-Box & カバー",
-        "cables": "ケーブル & コネクタ",
-        "cablesDesc": "配線用アクセサリ"
+        "title": "アクセサリー",
+        "allAccessories": "全アクセサリー",
+        "allAccessoriesDesc": "取付金具、筐体、ケーブル、およびセンサーアクセサリー"
       },
       "testInstruments": {
-        "title": "測定器",
-        "allTestInstruments": "すべての測定器",
-        "allTestInstrumentsDesc": "NIST追跡可能な温度、湿度、圧力基準器"
+        "title": "テスト機器",
+        "allTestInstruments": "すべてのテスト機器",
+        "allTestInstrumentsDesc": "NIST トレーサブル温度、湿度、圧力リファレンス"
       },
       "featured": {
         "title": "WAM™ ワイヤレスアセット監視",

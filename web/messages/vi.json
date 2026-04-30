@@ -149,17 +149,13 @@
       },
       "accessories": {
         "title": "Phụ kiện",
-        "mounting": "Phụ kiện gắn",
-        "mountingDesc": "Tấm, hộp, giá đỡ",
-        "enclosures": "Vỏ bọc",
-        "enclosuresDesc": "BAPI-Box và nắp đậy",
-        "cables": "Cáp và đầu nối",
-        "cablesDesc": "Phụ kiện dây điện"
+        "allAccessories": "Tất cả Phụ kiện",
+        "allAccessoriesDesc": "Phần cứng lắp đặt, vỏ bọc, cáp và phụ kiện cảm biến"
       },
       "testInstruments": {
         "title": "Thiết Bị Kiểm Tra",
         "allTestInstruments": "Tất Cả Thiết Bị Kiểm Tra",
-        "allTestInstrumentsDesc": "Các thiết bị chuẩn đo nhiệt độ, độ ẩm và áp suất có thể truy xuất nguồn gốc NIST"
+        "allTestInstrumentsDesc": "Các tiêu chuẩn nhiệt độ, độ ẩm và áp suất có thể truy xuất nguồn gốc NIST"
       },
       "featured": {
         "title": "WAM™ Giám sát Tài sản Không dây",

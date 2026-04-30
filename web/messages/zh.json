@@ -511,12 +511,8 @@
       },
       "accessories": {
         "title": "配件",
-        "mounting": "安装硬件",
-        "mountingDesc": "板,盒,支架",
-        "enclosures": "外壳",
-        "enclosuresDesc": "BAPI-Box和盖板",
-        "cables": "线缆和连接器",
-        "cablesDesc": "接线配件"
+        "allAccessories": "所有配件",
+        "allAccessoriesDesc": "安装硬件、外壳、电缆和传感器配件"
       },
       "testInstruments": {
         "title": "测试仪器",

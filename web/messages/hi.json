@@ -109,12 +109,8 @@
       },
       "accessories": {
         "title": "सहायक उपकरण",
-        "mounting": "माउंटिंग हार्डवेयर",
-        "mountingDesc": "प्लेट, बॉक्स, ब्रैकेट",
-        "enclosures": "इनक्लोज़र",
-        "enclosuresDesc": "BAPI-बॉक्स और कवर",
-        "cables": "केबल और कनेक्टर",
-        "cablesDesc": "वायरिंग सहायक उपकरण"
+        "allAccessories": "सभी सहायक उपकरण",
+        "allAccessoriesDesc": "माउंटिंग हार्डवेयर, एनक्लोज़र, केबल्स, और सेंसर सहायक उपकरण"
       },
       "testInstruments": {
         "title": "परीक्षण उपकरण",

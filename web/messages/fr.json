@@ -511,17 +511,13 @@
       },
       "accessories": {
         "title": "Accessoires",
-        "mounting": "Matériel de montage",
-        "mountingDesc": "Plaques, boîtiers, supports",
-        "enclosures": "Boîtiers",
-        "enclosuresDesc": "Boîtes BAPI et couvercles",
-        "cables": "Câbles et connecteurs",
-        "cablesDesc": "Accessoires de câblage"
+        "allAccessories": "Tous les Accessoires",
+        "allAccessoriesDesc": "Matériel de montage, boîtiers, câbles et accessoires de capteurs"
       },
       "testInstruments": {
         "title": "Instruments de Test",
         "allTestInstruments": "Tous les Instruments de Test",
-        "allTestInstrumentsDesc": "Références de température, d'humidité et de pression traçables NIST"
+        "allTestInstrumentsDesc": "Références de température, humidité et pression traçables NIST"
       },
       "featured": {
         "title": "Surveillance d'actifs sans fil WAM™",

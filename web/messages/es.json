@@ -511,12 +511,8 @@
       },
       "accessories": {
         "title": "Accesorios",
-        "mounting": "Herrajes de montaje",
-        "mountingDesc": "Placas, cajas, soportes",
-        "enclosures": "Envolventes",
-        "enclosuresDesc": "BAPI-Box y cubiertas",
-        "cables": "Cables y conectores",
-        "cablesDesc": "Accesorios de cableado"
+        "allAccessories": "Todos los Accesorios",
+        "allAccessoriesDesc": "Hardware de montaje, gabinetes, cables y accesorios de sensores"
       },
       "testInstruments": {
         "title": "Instrumentos de Prueba",

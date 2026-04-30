@@ -193,17 +193,13 @@
       },
       "accessories": {
         "title": "อุปกรณ์เสริม",
-        "mounting": "ฮาร์ดแวร์การติดตั้ง",
-        "mountingDesc": "แผ่น ตู้ แขน",
-        "enclosures": "ตู้หุ้ม",
-        "enclosuresDesc": "BAPI-Box และฝาปิด",
-        "cables": "สายเคเบิลและตัวเชื่อมต่อ",
-        "cablesDesc": "อุปกรณ์เสริมสายไฟ"
+        "allAccessories": "อุปกรณ์เสริมทั้งหมด",
+        "allAccessoriesDesc": "ฮาร์ดแวร์สำหรับติดตั้ง, ตู้ครอบ, สายเคเบิล, และอุปกรณ์เสริมเซนเซอร์"
       },
       "testInstruments": {
         "title": "เครื่องมือทดสอบ",
         "allTestInstruments": "เครื่องมือทดสอบทั้งหมด",
-        "allTestInstrumentsDesc": "อุปกรณ์อ้างอิงอุณหภูมิ ความชื้น และความดันที่สามารถตรวจสอบย้อนกลับได้ตามมาตรฐาน NIST"
+        "allTestInstrumentsDesc": "อุปกรณ์อ้างอิงอุณหภูมิ ความชื้น และความดันที่สอบกลับได้ถึง NIST"
       },
       "featured": {
         "title": "การตรวจสอบทรัพย์สินไร้สาย WAM™",

@@ -193,12 +193,8 @@
       },
       "accessories": {
         "title": "Zubehör",
-        "mounting": "Montagematerial",
-        "mountingDesc": "Platten, Gehäuse, Halterungen",
-        "enclosures": "Gehäuse",
-        "enclosuresDesc": "BAPI-Box und Abdeckungen",
-        "cables": "Kabel und Anschlüsse",
-        "cablesDesc": "Verkabelungszubehör"
+        "allAccessories": "Gesamtes Zubehör",
+        "allAccessoriesDesc": "Montagehardware, Gehäuse, Kabel und Sensorzubehör"
       },
       "testInstruments": {
         "title": "Messgeräte",

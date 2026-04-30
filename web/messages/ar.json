@@ -511,16 +511,12 @@
       },
       "accessories": {
         "title": "الملحقات",
-        "mounting": "أجهزة التركيب",
-        "mountingDesc": "ألواح وصناديق وقضبان",
-        "enclosures": "الأغلفة",
-        "enclosuresDesc": "BAPI-Box والأغطية",
-        "cables": "الكابلات والموصلات",
-        "cablesDesc": "ملحقات السلك"
+        "allAccessories": "جميع الملحقات",
+        "allAccessoriesDesc": "أجهزة التثبيت، العلب، الكابلات، وملحقات أجهزة الاستشعار"
       },
       "testInstruments": {
-        "title": "أدوات الاختبار",
-        "allTestInstruments": "جميع أدوات الاختبار",
+        "title": "أجهزة الاختبار",
+        "allTestInstruments": "جميع أجهزة الاختبار",
         "allTestInstrumentsDesc": "مراجع درجة الحرارة والرطوبة والضغط القابلة للتتبع وفقاً لمعايير NIST"
       },
       "featured": {

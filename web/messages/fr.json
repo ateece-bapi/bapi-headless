@@ -484,13 +484,19 @@
         "differentialSwitchDesc": "Commutation activée par la pression"
       },
       "airQuality": {
-        "title": "Qualité de l'air",
-        "co2": "Capteurs de CO₂",
+        "title": "Qualité de l'Air",
+        "co2": "Capteurs CO₂",
         "co2Desc": "Surveillance du dioxyde de carbone",
-        "voc": "Capteurs de COV",
+        "voc": "Capteurs COV",
         "vocDesc": "Composés organiques volatils",
-        "particulate": "Matière particulaire",
-        "particulateDesc": "PM2,5 et PM10"
+        "particulate": "Particules en Suspension",
+        "particulateDesc": "PM2.5 et PM10",
+        "nitrogenDioxide": "Dioxyde d'Azote",
+        "nitrogenDioxideDesc": "Détection de gaz NO₂",
+        "carbonMonoxide": "Monoxyde de Carbone",
+        "carbonMonoxideDesc": "Détection de gaz CO",
+        "refrigerantLeak": "Détection de Fuite de Réfrigérant",
+        "refrigerantLeakDesc": "Capteurs de fuite de réfrigérant"
       },
       "wireless": {
         "title": "Sans fil",

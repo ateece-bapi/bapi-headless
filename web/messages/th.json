@@ -168,11 +168,17 @@
       "airQuality": {
         "title": "คุณภาพอากาศ",
         "co2": "เซ็นเซอร์ CO₂",
-        "co2Desc": "การตรวจสอบคาร์บอนไดออกไซด์",
+        "co2Desc": "การตรวจวัดก๊าซคาร์บอนไดออกไซด์",
         "voc": "เซ็นเซอร์ VOC",
         "vocDesc": "สารประกอบอินทรีย์ระเหย",
-        "particulate": "สารแขวนลอย",
-        "particulateDesc": "PM2.5 และ PM10"
+        "particulate": "ฝุ่นละออง",
+        "particulateDesc": "PM2.5 และ PM10",
+        "nitrogenDioxide": "ไนโตรเจนไดออกไซด์",
+        "nitrogenDioxideDesc": "การตรวจจับก๊าซ NO₂",
+        "carbonMonoxide": "คาร์บอนมอนอกไซด์",
+        "carbonMonoxideDesc": "การตรวจจับก๊าซ CO",
+        "refrigerantLeak": "การตรวจจับการรั่วไหลของสารทำความเย็น",
+        "refrigerantLeakDesc": "เซ็นเซอร์ตรวจจับการรั่วไหลสารทำความเย็น"
       },
       "wireless": {
         "title": "ไร้สาย",

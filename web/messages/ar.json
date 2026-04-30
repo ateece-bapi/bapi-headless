@@ -485,12 +485,18 @@
       },
       "airQuality": {
         "title": "جودة الهواء",
-        "co2": "استشعارات CO₂",
+        "co2": "مستشعرات CO₂",
         "co2Desc": "مراقبة ثاني أكسيد الكربون",
-        "voc": "استشعارات VOC",
+        "voc": "مستشعرات VOC",
         "vocDesc": "المركبات العضوية المتطايرة",
-        "particulate": "المواد الجزيئية",
-        "particulateDesc": "PM2.5 و PM10"
+        "particulate": "الجسيمات العالقة",
+        "particulateDesc": "PM2.5 و PM10",
+        "nitrogenDioxide": "ثاني أكسيد النيتروجين",
+        "nitrogenDioxideDesc": "كشف غاز NO₂",
+        "carbonMonoxide": "أول أكسيد الكربون",
+        "carbonMonoxideDesc": "كشف غاز CO",
+        "refrigerantLeak": "كشف تسرب مبرد التبريد",
+        "refrigerantLeakDesc": "مستشعرات تسرب المبرد"
       },
       "wireless": {
         "title": "لاسلكي",

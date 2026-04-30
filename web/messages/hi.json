@@ -86,9 +86,15 @@
         "co2": "CO₂ सेंसर",
         "co2Desc": "कार्बन डाइऑक्साइड निगरानी",
         "voc": "VOC सेंसर",
-        "vocDesc": "उच्छवसित जैविक यौगिक",
-        "particulate": "कणिक पदार्थ",
-        "particulateDesc": "PM2.5 और PM10"
+        "vocDesc": "वाष्पशील कार्बनिक यौगिक",
+        "particulate": "कण पदार्थ",
+        "particulateDesc": "PM2.5 और PM10",
+        "nitrogenDioxide": "नाइट्रोजन डाइऑक्साइड",
+        "nitrogenDioxideDesc": "NO₂ गैस का पता लगाना",
+        "carbonMonoxide": "कार्बन मोनोऑक्साइड",
+        "carbonMonoxideDesc": "CO गैस का पता लगाना",
+        "refrigerantLeak": "रेफ्रिजरेंट लीक डिटेक्शन",
+        "refrigerantLeakDesc": "रेफ्रिजरेंट लीक सेंसर"
       },
       "wireless": {
         "title": "वायरलेस",

@@ -167,12 +167,18 @@
       },
       "airQuality": {
         "title": "Luftqualität",
-        "co2": "CO₂-Sensoren",
+        "co2": "CO₂ Sensoren",
         "co2Desc": "Kohlendioxid-Überwachung",
-        "voc": "VOC-Sensoren",
+        "voc": "VOC Sensoren",
         "vocDesc": "Flüchtige organische Verbindungen",
-        "particulate": "Partikuläre Belastung",
-        "particulateDesc": "PM2,5 und PM10"
+        "particulate": "Feinstaub",
+        "particulateDesc": "PM2.5 und PM10",
+        "nitrogenDioxide": "Stickstoffdioxid",
+        "nitrogenDioxideDesc": "NO₂ Gasdetektion",
+        "carbonMonoxide": "Kohlenmonoxid",
+        "carbonMonoxideDesc": "CO Gasdetektion",
+        "refrigerantLeak": "Kältemittelleck-Erkennung",
+        "refrigerantLeakDesc": "Kältemittelleck-Sensoren"
       },
       "wireless": {
         "title": "Drahtlos",

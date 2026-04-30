@@ -484,13 +484,19 @@
         "differentialSwitchDesc": "圧力アクチュエーテッドスイッチング"
       },
       "airQuality": {
-        "title": "空気品質",
-        "co2": "CO₂センサ",
-        "co2Desc": "二酸化炭素監視",
-        "voc": "VOCセンサ",
+        "title": "空気質",
+        "co2": "CO₂センサー",
+        "co2Desc": "二酸化炭素モニタリング",
+        "voc": "VOCセンサー",
         "vocDesc": "揮発性有機化合物",
-        "particulate": "浮遊粒子状物質",
-        "particulateDesc": "PM2.5とPM10"
+        "particulate": "粒子状物質",
+        "particulateDesc": "PM2.5およびPM10",
+        "nitrogenDioxide": "二酸化窒素",
+        "nitrogenDioxideDesc": "NO₂ガス検知",
+        "carbonMonoxide": "一酸化炭素",
+        "carbonMonoxideDesc": "COガス検知",
+        "refrigerantLeak": "冷媒漏れ検知",
+        "refrigerantLeakDesc": "冷媒漏れセンサー"
       },
       "wireless": {
         "title": "ワイヤレス",

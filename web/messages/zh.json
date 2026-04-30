@@ -485,12 +485,18 @@
       },
       "airQuality": {
         "title": "空气质量",
-        "co2": "CO₂传感器",
+        "co2": "CO₂ 传感器",
         "co2Desc": "二氧化碳监测",
-        "voc": "VOC传感器",
+        "voc": "VOC 传感器",
         "vocDesc": "挥发性有机化合物",
         "particulate": "颗粒物",
-        "particulateDesc": "PM2.5和PM10"
+        "particulateDesc": "PM2.5 和 PM10",
+        "nitrogenDioxide": "二氧化氮",
+        "nitrogenDioxideDesc": "NO₂ 气体检测",
+        "carbonMonoxide": "一氧化碳",
+        "carbonMonoxideDesc": "CO 气体检测",
+        "refrigerantLeak": "制冷剂泄漏检测",
+        "refrigerantLeakDesc": "制冷剂泄漏传感器"
       },
       "wireless": {
         "title": "无线",

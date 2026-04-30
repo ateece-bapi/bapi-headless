@@ -82,13 +82,19 @@
         "differentialSwitchDesc": "Przełączanie aktywowane ciśnieniem"
       },
       "airQuality": {
-        "title": "Jakość powietrza",
+        "title": "Jakość Powietrza",
         "co2": "Czujniki CO₂",
         "co2Desc": "Monitorowanie dwutlenku węgla",
-        "voc": "Czujniki LZO",
+        "voc": "Czujniki VOC",
         "vocDesc": "Lotne związki organiczne",
-        "particulate": "Cząstki stałe",
-        "particulateDesc": "PM2,5 i PM10"
+        "particulate": "Pyły Zawieszone",
+        "particulateDesc": "PM2.5 i PM10",
+        "nitrogenDioxide": "Dwutlenek Azotu",
+        "nitrogenDioxideDesc": "Wykrywanie gazu NO₂",
+        "carbonMonoxide": "Tlenek Węgla",
+        "carbonMonoxideDesc": "Wykrywanie gazu CO",
+        "refrigerantLeak": "Wykrywanie Wycieków Czynnika Chłodniczego",
+        "refrigerantLeakDesc": "Czujniki wycieków czynnika chłodniczego"
       },
       "wireless": {
         "title": "Bezprzewodowe",

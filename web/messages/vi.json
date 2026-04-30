@@ -122,13 +122,19 @@
         "differentialSwitchDesc": "Chuyển mạch kích hoạt bởi áp suất"
       },
       "airQuality": {
-        "title": "Chất lượng không khí",
-        "co2": "Cảm biến CO₂",
-        "co2Desc": "Giám sát khí carbon dioxide",
-        "voc": "Cảm biến VOC",
+        "title": "Chất Lượng Không Khí",
+        "co2": "Cảm Biến CO₂",
+        "co2Desc": "Giám sát carbon dioxide",
+        "voc": "Cảm Biến VOC",
         "vocDesc": "Hợp chất hữu cơ dễ bay hơi",
-        "particulate": "Chất lơ lửng",
-        "particulateDesc": "PM2.5 và PM10"
+        "particulate": "Bụi Mịn",
+        "particulateDesc": "PM2.5 và PM10",
+        "nitrogenDioxide": "Nitrogen Dioxide",
+        "nitrogenDioxideDesc": "Phát hiện khí NO₂",
+        "carbonMonoxide": "Carbon Monoxide",
+        "carbonMonoxideDesc": "Phát hiện khí CO",
+        "refrigerantLeak": "Phát Hiện Rò Rỉ Chất Làm Lạnh",
+        "refrigerantLeakDesc": "Cảm biến rò rỉ chất làm lạnh"
       },
       "wireless": {
         "title": "Không dây",

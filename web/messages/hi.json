@@ -99,7 +99,13 @@
         "outputModules": "आउटपुट मॉड्यूल",
         "outputModulesDesc": "वायरलेस नियंत्रण आउटपुट",
         "wirelessAccessories": "वायरलेस सहायक उपकरण",
-        "wirelessAccessoriesDesc": "माउंटिंग और स्थापना सहायक उपकरण"
+        "wirelessAccessoriesDesc": "माउंटिंग और स्थापना सहायक उपकरण",
+        "roomSensors": "Room Sensors",
+        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
+        "nonRoomSensors": "Industrial Sensors",
+        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
+        "gateway": "Gateway",
+        "gatewayDesc": "Wireless gateway for sensor connectivity"
       },
       "accessories": {
         "title": "सहायक उपकरण",
@@ -117,7 +123,9 @@
         "bluTestHumidity": "Blu-Test आर्द्रता",
         "bluTestHumidityDesc": "तापमान + RH संदर्भ",
         "bluTestPressure": "Blu-Test दबाव",
-        "bluTestPressureDesc": "डिजिटल मानोमीटर"
+        "bluTestPressureDesc": "डिजिटल मानोमीटर",
+        "allTestInstruments": "All Test Instruments",
+        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
       },
       "featured": {
         "title": "WAM™ वायरलेस संपत्ति निगरानी",
@@ -132,6 +140,11 @@
         "popular": "लोकप्रिय",
         "new": "नया",
         "premium": "प्रीमियम"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "All ETA Products",
+        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
       }
     },
     "resources": {

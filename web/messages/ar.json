@@ -501,7 +501,13 @@
         "outputModules": "وحدات الإخراج",
         "outputModulesDesc": "مخارج التحكم اللاسلكية",
         "wirelessAccessories": "ملحقات لاسلكية",
-        "wirelessAccessoriesDesc": "ملحقات التركيب والتثبيت"
+        "wirelessAccessoriesDesc": "ملحقات التركيب والتثبيت",
+        "roomSensors": "Room Sensors",
+        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
+        "nonRoomSensors": "Industrial Sensors",
+        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
+        "gateway": "Gateway",
+        "gatewayDesc": "Wireless gateway for sensor connectivity"
       },
       "accessories": {
         "title": "الملحقات",
@@ -519,7 +525,9 @@
         "bluTestHumidity": "Blu-Test الرطوبة",
         "bluTestHumidityDesc": "مرجع درجة الحرارة + الرطوبة النسبية",
         "bluTestPressure": "Blu-Test الضغط",
-        "bluTestPressureDesc": "مانومتر رقمي"
+        "bluTestPressureDesc": "مانومتر رقمي",
+        "allTestInstruments": "All Test Instruments",
+        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
       },
       "featured": {
         "title": "WAM™ المراقبة اللاسلكية للأصول",
@@ -534,6 +542,11 @@
         "popular": "شعبي",
         "new": "جديد",
         "premium": "متميز"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "All ETA Products",
+        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
       }
     }
   },

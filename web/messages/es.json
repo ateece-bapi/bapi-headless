@@ -501,7 +501,13 @@
         "outputModules": "Módulos de salida",
         "outputModulesDesc": "Salidas de control inalámbricas",
         "wirelessAccessories": "Accesorios inalámbricos",
-        "wirelessAccessoriesDesc": "Accesorios de montaje e instalación"
+        "wirelessAccessoriesDesc": "Accesorios de montaje e instalación",
+        "roomSensors": "Room Sensors",
+        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
+        "nonRoomSensors": "Industrial Sensors",
+        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
+        "gateway": "Gateway",
+        "gatewayDesc": "Wireless gateway for sensor connectivity"
       },
       "accessories": {
         "title": "Accesorios",
@@ -519,7 +525,9 @@
         "bluTestHumidity": "Blu-Test Humedad",
         "bluTestHumidityDesc": "Referencia de temperatura + HR",
         "bluTestPressure": "Blu-Test Presión",
-        "bluTestPressureDesc": "Manómetro digital"
+        "bluTestPressureDesc": "Manómetro digital",
+        "allTestInstruments": "All Test Instruments",
+        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
       },
       "featured": {
         "title": "Monitoreo inalámbrico de activos WAM™",
@@ -534,6 +542,11 @@
         "popular": "Popular",
         "new": "Nuevo",
         "premium": "Premium"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "All ETA Products",
+        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
       }
     }
   },

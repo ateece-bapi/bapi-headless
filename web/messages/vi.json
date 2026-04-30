@@ -139,7 +139,13 @@
         "outputModules": "Mô-đun đầu ra",
         "outputModulesDesc": "Đầu ra điều khiển không dây",
         "wirelessAccessories": "Phụ kiện không dây",
-        "wirelessAccessoriesDesc": "Phụ kiện lắp đặt và lắp ráp"
+        "wirelessAccessoriesDesc": "Phụ kiện lắp đặt và lắp ráp",
+        "roomSensors": "Room Sensors",
+        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
+        "nonRoomSensors": "Industrial Sensors",
+        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
+        "gateway": "Gateway",
+        "gatewayDesc": "Wireless gateway for sensor connectivity"
       },
       "accessories": {
         "title": "Phụ kiện",
@@ -157,7 +163,9 @@
         "bluTestHumidity": "Blu-Test Độ ẩm",
         "bluTestHumidityDesc": "Tham chiếu nhiệt độ + RH",
         "bluTestPressure": "Blu-Test Áp suất",
-        "bluTestPressureDesc": "Áp kế kỹ thuật số"
+        "bluTestPressureDesc": "Áp kế kỹ thuật số",
+        "allTestInstruments": "All Test Instruments",
+        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
       },
       "featured": {
         "title": "WAM™ Giám sát Tài sản Không dây",
@@ -172,6 +180,11 @@
         "popular": "Phổ biến",
         "new": "Mới",
         "premium": "Cao cấp"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "All ETA Products",
+        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
       }
     },
     "resources": {

@@ -200,7 +200,7 @@ export const getMegaMenuItems = (t: any): MegaMenuItem[] => [
         {
           title: t('products.etaLine.title'),
           slug: 'eta-line',
-          icon: '/images/icons/ETA_Icon.webp',
+          icon: '/images/icons/Sensors_Icon.webp', // TODO: Replace with ETA_Icon.webp when design team creates it
           links: [
             {
               label: t('products.etaLine.allEtaLine'),

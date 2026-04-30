@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { ApplicationNoteList } from '@/components/application-notes/ApplicationNoteList';
 import { 
   GetApplicationNotesQuery, 
@@ -66,19 +67,22 @@ function groupNotesByCategory(
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export const metadata: Metadata = {
-  title: 'Technical Application Notes | BAPI',
-  description:
-    'Explore our comprehensive library of technical application notes covering sensor installation, best practices, troubleshooting guides, and industry insights for HVAC applications.',
-  openGraph: {
-    title: 'Technical Application Notes | BAPI',
-    description:
-      'Comprehensive technical guidance for HVAC sensor applications, installation best practices, and troubleshooting solutions.',
-    type: 'website',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('applicationNotesPage.metadata');
+  
+  return {
+    title: t('title'),
+    description: t('description'),
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      type: 'website',
+    },
+  };
+}
 
 export default async function ApplicationNotesPage() {
+  const t = await getTranslations('applicationNotesPage');
   const [applicationNotes, categories] = await Promise.all([
     fetchApplicationNotes(),
     fetchApplicationNoteCategories(),
@@ -99,30 +103,29 @@ export default async function ApplicationNotesPage() {
           <div className="mb-6 flex items-center gap-3">
             <BookOpenIcon className="h-10 w-10" />
             <span className="rounded-full bg-white/20 px-3 py-1 text-sm font-semibold uppercase tracking-wider">
-              Technical Guidance
+              {t('hero.badge')}
             </span>
           </div>
           <h1 className="mb-6 max-w-4xl text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
-            Application Notes
+            {t('hero.title')}
           </h1>
           <p className="mb-2 max-w-3xl text-xl leading-relaxed text-primary-100 md:text-2xl">
-            In-depth technical articles covering sensor installation, best practices, and industry
-            insights to help you get the most out of your BAPI sensors.
+            {t('hero.subtitle')}
           </p>
 
           {/* Stats */}
           <div className="mt-12 grid max-w-2xl grid-cols-2 gap-6 md:grid-cols-3">
             <div className="rounded-lg border border-white/20 bg-white/10 p-4 backdrop-blur-sm">
               <div className="mb-1 text-3xl font-bold">{applicationNotes.length}</div>
-              <div className="text-sm text-primary-100">Technical Articles</div>
+              <div className="text-sm text-primary-100">{t('hero.stats.articlesLabel')}</div>
             </div>
             <div className="rounded-lg border border-white/20 bg-white/10 p-4 backdrop-blur-sm">
               <div className="mb-1 text-3xl font-bold">15+</div>
-              <div className="text-sm text-primary-100">Years of Expertise</div>
+              <div className="text-sm text-primary-100">{t('hero.stats.expertiseLabel')}</div>
             </div>
             <div className="col-span-2 rounded-lg border border-white/20 bg-white/10 p-4 backdrop-blur-sm md:col-span-1">
               <div className="mb-1 text-3xl font-bold">100%</div>
-              <div className="text-sm text-primary-100">Free Access</div>
+              <div className="text-sm text-primary-100">{t('hero.stats.accessLabel')}</div>
             </div>
           </div>
         </div>
@@ -137,12 +140,10 @@ export default async function ApplicationNotesPage() {
             </div>
             <div>
               <h2 className="mb-2 text-xl font-semibold text-neutral-900">
-                Expert Guidance from Industry Leaders
+                {t('valueProposition.heading')}
               </h2>
               <p className="text-neutral-700">
-                Our application notes are written by BAPI&apos;s engineering team with decades of
-                combined experience. Each article provides practical, field-tested solutions to
-                common challenges in sensor installation, calibration, and maintenance.
+                {t('valueProposition.description')}
               </p>
             </div>
           </div>

@@ -2413,5 +2413,76 @@
       "title": "Sprache geändert",
       "message": "Sprache geändert zu {language}"
     }
+  },
+  "sensorSpecsPage": {
+    "metadata": {
+      "title": "BAPI Sensoren Übersicht & Spezifikationen | BAPI",
+      "description": "Vollständige Übersicht der BAPI Sensorspezifikationen für Temperatur-, Feuchtigkeits- und Drucküberwachung in Gebäudeautomationssystemen."
+    },
+    "hero": {
+      "title": "BAPI Sensoren Übersicht",
+      "subtitle": "Vollständige technische Spezifikationen für Gebäudeautomationssensoren"
+    },
+    "introduction": {
+      "heading": "Temperatur-, Feuchtigkeits- & Drucksensor Übersicht",
+      "description": "Es gibt heute viele Einrichtungen und Standorte, die auf Temperatur-, Druck- und Feuchtigkeitssensoren und -transmitter angewiesen sind, um eine stabile, sichere Umgebung zu gewährleisten, wie Krankenhäuser, Reinräume und Rechenzentren. Der Sensor oder Transmitter selbst kann über Erfolg oder Misserfolg des Systems entscheiden, daher müssen sie zuverlässig, genau und 100% kompatibel mit dem Gebäudeleitsystem sein. Anspruchsvollere Umgebungen, technologische Fortschritte und sich verändernde Kundenbedürfnisse halten die Branche dazu an, nach neuen und verbesserten Sensoren und Transmittern zu streben. BAPI bietet eine breite Palette von Temperatur-, Feuchtigkeits- und Drucksensoren und -transmittern in allen unseren Raum-, Kanal-, Tauch- und Außenlufteinheiten an, damit sie 100% kompatibel mit dem Leitsystem der Einrichtung sind."
+    },
+    "sensorTypes": {
+      "thermistors": {
+        "title": "THERMISTOREN",
+        "description": "Thermistoren sind thermisch empfindliche Widerstände, die dafür bekannt sind, eine große Widerstandsänderung bei nur geringer Temperaturveränderung zu zeigen. Die Widerstandsänderung eines Thermistors ist nichtlinear. Sie folgt einer vordefinierten Kurve, die vom Thermistorhersteller bereitgestellt wird.",
+        "buttonText": "Thermistor Übersicht"
+      },
+      "rtds": {
+        "title": "RTDs",
+        "description": "RTDs (Resistance Temperature Detectors) sind thermisch empfindliche Widerstandselemente, die eine geringe Widerstandsänderung pro Grad Temperaturveränderung aufweisen. RTDs sind besonders für ihre ausgezeichnete Linearität über ihren gesamten Temperaturbereich mit hoher Genauigkeit und Wiederholbarkeit anerkannt.",
+        "buttonText": "RTD Übersicht"
+      },
+      "semiconductors": {
+        "title": "HALBLEITER",
+        "description": "Halbleiter sind so konzipiert, dass sie einen definierten Stromausgang direkt proportional zur absoluten Temperatur (°K) aufweisen. Diese Eigenschaft macht sie zu den linearsten aller gängigen kommerziellen HVAC/R-Sensorelemente. Durch Anlegen dieses Stromausgangs an einen Widerstand wird eine proportionale Ausgangsspannung erzeugt.",
+        "buttonText": "Halbleiter Übersicht"
+      },
+      "temperatureTransmitters": {
+        "title": "TEMPERATURTRANSMITTER",
+        "description": "Temperaturtransmitter beinhalten einen Platin 100 Ohm oder 1k Ohm RTD-Sensor und einen Verstärker. Diese Geräte bieten einen genauen und vorhersagbaren 4 bis 20mA Ausgang über einen spezifizierten Temperaturbereich. Sie sind speziell für Temperaturerfassung und -übertragung über große Entfernungen ohne Verschlechterung des 4 bis 20mA Signals entwickelt.",
+        "buttonText": "Temperaturtransmitter Übersicht"
+      },
+      "humidityTransmitters": {
+        "title": "FEUCHTIGKEITSTRANSMITTER",
+        "description": "Feuchtigkeitstransmitter bieten eine hochpräzise 4 bis 20mA, 0 bis 5V oder 0 bis 10V Feuchtigkeitsmessung. Genauigkeiten von 2% oder 3% relativer Luftfeuchtigkeit (RH) sind verfügbar. BAPI Raumeinheiten sind durch ein geformtes Gehäuse mit integriertem Filter geschützt, während Kanal- und Außenlufteinheiten mit einem abnehmbaren 100 Mikron gesinterten Edelstahlfilter ausgestattet sind. Der Sensor wird nicht von flüchtigen organischen Verbindungen (VOC's) oder Oberflächenverschmutzung beeinflusst.",
+        "buttonText": "Feuchtigkeitstransmitter Übersicht"
+      },
+      "pressureTransmitters": {
+        "title": "DRUCKTRANSMITTER",
+        "description": "Das Herzstück jedes BAPI Drucktransmitters ist ein mikrobearbeiteter, einkristalliner Silizium-Piezowiderstand-Drucksensor, der seinen Widerstand als Funktion des angelegten Drucks ändert. Da Silizium-Dehnungsmessstreifen hohe Ausgangspegel im Verhältnis zum angelegten Druck haben, können die Druckpegel in der BAPI Membran niedriger sein als bei anderen Nicht-Silizium-Dehnungsmessstreifen. Das bedeutet eine genauere Messung niedrigerer Druckpegel.",
+        "buttonText": "Drucktransmitter Übersicht"
+      }
+    },
+    "cta": {
+      "title": "Entdecken Sie unsere Sensorprodukte",
+      "description": "Durchstöbern Sie unsere komplette Produktlinie für Temperatur-, Feuchtigkeits- und Drucksensoren",
+      "buttonText": "Alle Produkte anzeigen →"
+    }
+  },
+  "applicationNotesPage": {
+    "metadata": {
+      "title": "Technische Anwendungshinweise | BAPI",
+      "description": "Entdecken Sie unsere umfassende Bibliothek technischer Anwendungshinweise zu Sensorinstallation, bewährten Verfahren, Fehlerbehebungsanleitungen und Brancheneinblicken für HLK-Anwendungen."
+    },
+    "hero": {
+      "badge": "Technische Anleitung",
+      "title": "Anwendungshinweise",
+      "subtitle": "Detaillierte technische Artikel zu Sensorinstallation, bewährten Verfahren und Brancheneinblicken, die Ihnen helfen, das Beste aus Ihren BAPI-Sensoren herauszuholen.",
+      "stats": {
+        "articlesLabel": "Technische Artikel",
+        "expertiseLabel": "Jahre Expertise",
+        "accessLabel": "Kostenloser Zugang"
+      }
+    },
+    "valueProposition": {
+      "heading": "Expertenwissen von Branchenführern",
+      "description": "Unsere Anwendungshinweise werden vom BAPI-Ingenieursteam mit jahrzehntelanger kombinierter Erfahrung verfasst. Jeder Artikel bietet praktische, feldgetestete Lösungen für häufige Herausforderungen bei Sensorinstallation, Kalibrierung und Wartung."
+    }
   }
 }

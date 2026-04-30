@@ -2413,5 +2413,76 @@
       "title": "Langue modifiée",
       "message": "Langue changée en {language}"
     }
+  },
+  "sensorSpecsPage": {
+    "metadata": {
+      "title": "Aperçu et spécifications des capteurs BAPI | BAPI",
+      "description": "Aperçu complet des spécifications des capteurs BAPI pour la surveillance de la température, de l'humidité et de la pression dans les systèmes d'automatisation du bâtiment."
+    },
+    "hero": {
+      "title": "Aperçu des capteurs BAPI",
+      "subtitle": "Spécifications techniques complètes pour les capteurs d'automatisation du bâtiment"
+    },
+    "introduction": {
+      "heading": "Aperçu des capteurs de température, d'humidité et de pression",
+      "description": "Il existe aujourd'hui de nombreuses installations et emplacements qui dépendent des capteurs et transmetteurs de température, de pression et d'humidité pour fournir un environnement stable et sécurisé, tels que les hôpitaux, les salles blanches et les centres de données. Le capteur ou transmetteur lui-même peut faire ou défaire le système, par conséquent ils doivent être fiables, précis et 100% compatibles avec le système de contrôle du bâtiment. Des environnements plus exigeants, les avancées technologiques et l'évolution des besoins des clients maintiennent l'industrie dans sa quête de capteurs et transmetteurs nouveaux et améliorés. BAPI offre une large gamme de capteurs et transmetteurs de température, d'humidité et de pression dans toutes nos unités intérieures, de conduits, d'immersion et d'air extérieur afin qu'ils soient 100% compatibles avec le système de contrôle de l'installation."
+    },
+    "sensorTypes": {
+      "thermistors": {
+        "title": "THERMISTANCES",
+        "description": "Les thermistances sont des résistances thermosensibles connues pour présenter un grand changement de résistance avec seulement un petit changement de température. Le changement de résistance d'une thermistance est non linéaire. Il suit une courbe prédéfinie qui est fournie par le fabricant de thermistances.",
+        "buttonText": "Aperçu des thermistances"
+      },
+      "rtds": {
+        "title": "RTD",
+        "description": "Les RTD (détecteurs de température à résistance) sont des éléments résistifs thermosensibles qui présentent un petit changement de résistance par degré de changement de température. Les RTD sont particulièrement reconnus pour leur excellente linéarité sur toute leur plage de température avec un haut degré de précision et de répétabilité.",
+        "buttonText": "Aperçu des RTD"
+      },
+      "semiconductors": {
+        "title": "SEMI-CONDUCTEURS",
+        "description": "Les semi-conducteurs sont conçus pour présenter une sortie de courant définie directement proportionnelle à la température absolue (°K). Cette propriété en fait les plus linéaires de tous les éléments de détection HVAC/R commerciaux courants. En faisant passer cette sortie de courant à travers une résistance, une tension de sortie proportionnelle est produite.",
+        "buttonText": "Aperçu des semi-conducteurs"
+      },
+      "temperatureTransmitters": {
+        "title": "TRANSMETTEURS DE TEMPÉRATURE",
+        "description": "Les transmetteurs de température incorporent un capteur RTD platine 100 Ohm ou 1k Ohm et un amplificateur. Ces dispositifs fournissent une sortie 4 à 20mA précise et prévisible sur une plage de température spécifiée. Ils sont spécifiquement conçus pour la détection et la transmission de température sur de longues distances sans dégradation du signal 4 à 20mA.",
+        "buttonText": "Aperçu des transmetteurs de température"
+      },
+      "humidityTransmitters": {
+        "title": "TRANSMETTEURS D'HUMIDITÉ",
+        "description": "Les transmetteurs d'humidité fournissent une mesure d'humidité haute précision 4 à 20mA, 0 à 5V ou 0 à 10V. Des précisions de 2% ou 3% d'humidité relative (HR) sont disponibles. Les unités intérieures BAPI sont protégées par un boîtier moulé avec un filtre intégré, tandis que les unités de conduits et d'air extérieur sont équipées d'un filtre en acier inoxydable fritté de 100 microns amovible. Le capteur n'est pas affecté par les composés organiques volatils (COV) ou la contamination de surface.",
+        "buttonText": "Aperçu des transmetteurs d'humidité"
+      },
+      "pressureTransmitters": {
+        "title": "TRANSMETTEURS DE PRESSION",
+        "description": "Le cœur de chaque transmetteur de pression BAPI est un capteur de pression piézorésistif en silicium monocristallin micro-usiné qui change de résistance en fonction de la pression appliquée. Étant donné que les jauges de contrainte en silicium ont des niveaux de sortie élevés par rapport à la pression appliquée, les niveaux de pression dans le diaphragme BAPI peuvent être inférieurs à ceux d'autres jauges de contrainte non silicium. Cela signifie une mesure plus précise des niveaux de pression plus faibles.",
+        "buttonText": "Aperçu des transmetteurs de pression"
+      }
+    },
+    "cta": {
+      "title": "Explorez nos produits de capteurs",
+      "description": "Parcourez notre gamme complète de capteurs de température, d'humidité et de pression",
+      "buttonText": "Voir tous les produits →"
+    }
+  },
+  "applicationNotesPage": {
+    "metadata": {
+      "title": "Notes d'Application Techniques | BAPI",
+      "description": "Explorez notre bibliothèque complète de notes d'application techniques couvrant l'installation de capteurs, les meilleures pratiques, les guides de dépannage et les perspectives industrielles pour les applications CVC."
+    },
+    "hero": {
+      "badge": "Orientation Technique",
+      "title": "Notes d'Application",
+      "subtitle": "Articles techniques approfondis couvrant l'installation de capteurs, les meilleures pratiques et les perspectives industrielles pour vous aider à tirer le meilleur parti de vos capteurs BAPI.",
+      "stats": {
+        "articlesLabel": "Articles Techniques",
+        "expertiseLabel": "Années d'Expertise",
+        "accessLabel": "Accès Gratuit"
+      }
+    },
+    "valueProposition": {
+      "heading": "Orientation d'Experts de Leaders de l'Industrie",
+      "description": "Nos notes d'application sont rédigées par l'équipe d'ingénierie de BAPI avec des décennies d'expérience combinée. Chaque article fournit des solutions pratiques et éprouvées sur le terrain aux défis communs dans l'installation, l'étalonnage et la maintenance de capteurs."
+    }
   }
 }

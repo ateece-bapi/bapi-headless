@@ -2412,5 +2412,76 @@
       "title": "Idioma cambiado",
       "message": "Idioma cambiado a {language}"
     }
+  },
+  "sensorSpecsPage": {
+    "metadata": {
+      "title": "Descripción General y Especificaciones de Sensores BAPI | BAPI",
+      "description": "Descripción completa de las especificaciones de sensores BAPI para monitoreo de temperatura, humedad y presión en sistemas de automatización de edificios."
+    },
+    "hero": {
+      "title": "Descripción General de Sensores BAPI",
+      "subtitle": "Especificaciones técnicas completas para sensores de automatización de edificios"
+    },
+    "introduction": {
+      "heading": "Descripción General de Sensores de Temperatura, Humedad y Presión",
+      "description": "Existen muchas instalaciones y ubicaciones hoy en día que dependen de sensores y transmisores de temperatura, presión y humedad para proporcionar un ambiente estable y seguro, como hospitales, salas limpias y centros de datos. El sensor o transmisor en sí puede hacer que el sistema funcione o falle, por lo tanto deben ser confiables, precisos y 100% compatibles con el sistema de control del edificio. Ambientes más exigentes, avances en tecnología y necesidades cambiantes de los clientes mantienen a la industria esforzándose por sensores y transmisores nuevos y mejorados. BAPI ofrece una amplia gama de sensores y transmisores de temperatura, humedad y presión en todas nuestras unidades de sala, conducto, inmersión y aire exterior para que sean 100% compatibles con el sistema de control de la instalación."
+    },
+    "sensorTypes": {
+      "thermistors": {
+        "title": "TERMISTORES",
+        "description": "Los termistores son resistencias térmicamente sensibles conocidas por exhibir un gran cambio en resistencia con solo un pequeño cambio de temperatura. El cambio en resistencia de un termistor es no lineal. Sigue una curva predefinida que es proporcionada por el fabricante del termistor.",
+        "buttonText": "Descripción General de Termistores"
+      },
+      "rtds": {
+        "title": "RTDs",
+        "description": "Los RTDs (Detectores de Temperatura por Resistencia) son elementos resistivos térmicamente sensibles que exhiben un pequeño cambio en resistencia por grado de cambio de temperatura. Los RTDs son especialmente reconocidos por su excelente linealidad a lo largo de su rango de temperatura con un alto grado de precisión y repetibilidad.",
+        "buttonText": "Descripción General de RTD"
+      },
+      "semiconductors": {
+        "title": "SEMICONDUCTORES",
+        "description": "Los semiconductores están diseñados para exhibir una salida de corriente definida directamente proporcional a la temperatura absoluta (°K). Esta propiedad los hace los más lineales de todos los elementos de detección comerciales comunes de HVAC/R. Al poner esta salida de corriente a través de una resistencia, se produce un voltaje de salida proporcional.",
+        "buttonText": "Descripción General de Semiconductores"
+      },
+      "temperatureTransmitters": {
+        "title": "TRANSMISORES DE TEMPERATURA",
+        "description": "Los transmisores de temperatura incorporan un sensor RTD de platino de 100 Ohmios o 1k Ohmios y un amplificador. Estos dispositivos proporcionan una salida precisa y predecible de 4 a 20mA sobre un rango de temperatura especificado. Están específicamente diseñados para detección y transmisión de temperatura a largas distancias sin degradación de la señal de 4 a 20mA.",
+        "buttonText": "Descripción General de Transmisores de Temperatura"
+      },
+      "humidityTransmitters": {
+        "title": "TRANSMISORES DE HUMEDAD",
+        "description": "Los transmisores de humedad proporcionan una medición de humedad de alta precisión de 4 a 20mA, 0 a 5V o 0 a 10V. Están disponibles precisiones de 2% o 3% de Humedad Relativa (HR). Las unidades de sala BAPI están protegidas por una carcasa moldeada con un filtro integral, mientras que las unidades de conducto y aire exterior vienen con un filtro removible de acero inoxidable sinterizado de 100 micrones. El sensor no se ve afectado por compuestos orgánicos volátiles (VOC's) o contaminación superficial.",
+        "buttonText": "Descripción General de Transmisores de Humedad"
+      },
+      "pressureTransmitters": {
+        "title": "TRANSMISORES DE PRESIÓN",
+        "description": "El corazón de cada Transmisor de Presión BAPI es un sensor de presión piezoresistivo de silicio monocristalino micromaquinado que cambia la resistencia en función de la presión aplicada. Dado que las galgas extensométricas de silicio tienen niveles de salida altos en relación con la presión aplicada, los niveles de presión en el diafragma BAPI pueden ser más bajos que en otras galgas extensométricas no de silicio. Esto significa una medición más precisa de niveles de presión más bajos.",
+        "buttonText": "Descripción General de Transmisores de Presión"
+      }
+    },
+    "cta": {
+      "title": "Explore Nuestros Productos de Sensores",
+      "description": "Navegue por nuestra línea completa de sensores de temperatura, humedad y presión",
+      "buttonText": "Ver Todos los Productos →"
+    }
+  },
+  "applicationNotesPage": {
+    "metadata": {
+      "title": "Notas de Aplicación Técnicas | BAPI",
+      "description": "Explore nuestra biblioteca integral de notas de aplicación técnicas que cubren instalación de sensores, mejores prácticas, guías de solución de problemas e información de la industria para aplicaciones HVAC."
+    },
+    "hero": {
+      "badge": "Orientación Técnica",
+      "title": "Notas de Aplicación",
+      "subtitle": "Artículos técnicos detallados que cubren instalación de sensores, mejores prácticas e información de la industria para ayudarle a obtener el máximo rendimiento de sus sensores BAPI.",
+      "stats": {
+        "articlesLabel": "Artículos Técnicos",
+        "expertiseLabel": "Años de Experiencia",
+        "accessLabel": "Acceso Gratuito"
+      }
+    },
+    "valueProposition": {
+      "heading": "Orientación Experta de Líderes de la Industria",
+      "description": "Nuestras notas de aplicación están escritas por el equipo de ingeniería de BAPI con décadas de experiencia combinada. Cada artículo proporciona soluciones prácticas y probadas en campo para desafíos comunes en instalación, calibración y mantenimiento de sensores."
+    }
   }
 }

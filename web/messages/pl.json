@@ -91,21 +91,15 @@
         "particulateDesc": "PM2,5 i PM10"
       },
       "wireless": {
-        "title": "Bezprzewodowo",
-        "bluetoothSensors": "Czujniki Bluetooth",
-        "bluetoothSensorsDesc": "Bezprzewodowe czujniki HVAC do automatyki budynkowej",
-        "gatewaysReceivers": "Bramki i odbiorniki",
-        "gatewaysReceiversDesc": "Łączenie bezprzewodowych czujników z systemem BAS",
-        "outputModules": "Moduły wyjściowe",
-        "outputModulesDesc": "Bezprzewodowe wyjścia sterujące",
-        "wirelessAccessories": "Akcesoria bezprzewodowe",
-        "wirelessAccessoriesDesc": "Akcesoria montażowe i instalacyjne",
-        "roomSensors": "Room Sensors",
-        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
-        "nonRoomSensors": "Industrial Sensors",
-        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
-        "gateway": "Gateway",
-        "gatewayDesc": "Wireless gateway for sensor connectivity"
+        "title": "Bezprzewodowe",
+        "roomSensors": "Czujniki Pomieszczeniowe",
+        "roomSensorsDesc": "Czujniki temperatury i wilgotności do środowisk wewnętrznych",
+        "nonRoomSensors": "Czujniki Przemysłowe",
+        "nonRoomSensorsDesc": "Kanałowe, powietrza zewnętrznego i aplikacje specjalistyczne",
+        "gateway": "Bramka",
+        "gatewayDesc": "Bramka bezprzewodowa do łączności z czujnikami",
+        "wirelessAccessories": "Akcesoria",
+        "wirelessAccessoriesDesc": "Akcesoria montażowe i instalacyjne"
       },
       "accessories": {
         "title": "Akcesoria",
@@ -117,15 +111,9 @@
         "cablesDesc": "Akcesoria okablowania"
       },
       "testInstruments": {
-        "title": "Przyrządy testowe",
-        "bluTestTemperature": "Blu-Test Temperatura",
-        "bluTestTemperatureDesc": "Odniesienie śledzalne NIST",
-        "bluTestHumidity": "Blu-Test Wilgotność",
-        "bluTestHumidityDesc": "Odniesienie temp. + RH",
-        "bluTestPressure": "Blu-Test Ciśnienie",
-        "bluTestPressureDesc": "Cyfrowy manometr",
-        "allTestInstruments": "All Test Instruments",
-        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
+        "title": "Instrumenty Testowe",
+        "allTestInstruments": "Wszystkie Instrumenty Testowe",
+        "allTestInstrumentsDesc": "Wzorce temperatury, wilgotności i ciśnienia z metrologiczną ciągłością NIST"
       },
       "featured": {
         "title": "Bezprzewodowy monitoring aktywów WAM™",
@@ -143,8 +131,8 @@
       },
       "etaLine": {
         "title": "ETA Line",
-        "allEtaLine": "All ETA Products",
-        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+        "allEtaLine": "Wszystkie produkty ETA",
+        "allEtaLineDesc": "Modularne rozwiązania I/O i sterowania dla automatyki budynkowej"
       }
     },
     "support": {

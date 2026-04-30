@@ -132,20 +132,14 @@
       },
       "wireless": {
         "title": "Không dây",
-        "bluetoothSensors": "Cảm biến Bluetooth",
-        "bluetoothSensorsDesc": "Cảm biến HVAC không dây cho tự động hóa tòa nhà",
-        "gatewaysReceivers": "Cổng và Thiết bị thu",
-        "gatewaysReceiversDesc": "Kết nối cảm biến không dây với BAS",
-        "outputModules": "Mô-đun đầu ra",
-        "outputModulesDesc": "Đầu ra điều khiển không dây",
-        "wirelessAccessories": "Phụ kiện không dây",
-        "wirelessAccessoriesDesc": "Phụ kiện lắp đặt và lắp ráp",
-        "roomSensors": "Room Sensors",
-        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
-        "nonRoomSensors": "Industrial Sensors",
-        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
-        "gateway": "Gateway",
-        "gatewayDesc": "Wireless gateway for sensor connectivity"
+        "roomSensors": "Cảm biến Phòng",
+        "roomSensorsDesc": "Cảm biến nhiệt độ & độ ẩm cho môi trường trong nhà",
+        "nonRoomSensors": "Cảm biến Công nghiệp",
+        "nonRoomSensorsDesc": "Ống gió, không khí bên ngoài và các ứng dụng chuyên dụng",
+        "gateway": "Cổng kết nối",
+        "gatewayDesc": "Cổng kết nối không dây cho kết nối cảm biến",
+        "wirelessAccessories": "Phụ kiện",
+        "wirelessAccessoriesDesc": "Phụ kiện lắp đặt & cài đặt"
       },
       "accessories": {
         "title": "Phụ kiện",
@@ -157,15 +151,9 @@
         "cablesDesc": "Phụ kiện dây điện"
       },
       "testInstruments": {
-        "title": "Thiết bị kiểm tra",
-        "bluTestTemperature": "Blu-Test Nhiệt độ",
-        "bluTestTemperatureDesc": "Tham chiếu NIST",
-        "bluTestHumidity": "Blu-Test Độ ẩm",
-        "bluTestHumidityDesc": "Tham chiếu nhiệt độ + RH",
-        "bluTestPressure": "Blu-Test Áp suất",
-        "bluTestPressureDesc": "Áp kế kỹ thuật số",
-        "allTestInstruments": "All Test Instruments",
-        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
+        "title": "Thiết Bị Kiểm Tra",
+        "allTestInstruments": "Tất Cả Thiết Bị Kiểm Tra",
+        "allTestInstrumentsDesc": "Các thiết bị chuẩn đo nhiệt độ, độ ẩm và áp suất có thể truy xuất nguồn gốc NIST"
       },
       "featured": {
         "title": "WAM™ Giám sát Tài sản Không dây",
@@ -183,8 +171,8 @@
       },
       "etaLine": {
         "title": "ETA Line",
-        "allEtaLine": "All ETA Products",
-        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+        "allEtaLine": "Tất cả Sản phẩm ETA",
+        "allEtaLineDesc": "Giải pháp I/O và điều khiển mô-đun cho tự động hóa tòa nhà"
       }
     },
     "resources": {

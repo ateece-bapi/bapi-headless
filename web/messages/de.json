@@ -175,21 +175,15 @@
         "particulateDesc": "PM2,5 und PM10"
       },
       "wireless": {
-        "title": "Funk",
-        "bluetoothSensors": "Bluetooth-Sensoren",
-        "bluetoothSensorsDesc": "Kabellose HVAC-Sensoren für Gebäudeautomation",
-        "gatewaysReceivers": "Gateways und Empfänger",
-        "gatewaysReceiversDesc": "Verbindung von kabellosen Sensoren mit BAS",
-        "outputModules": "Ausgangsmodule",
-        "outputModulesDesc": "Kabellose Steuerausgänge",
-        "wirelessAccessories": "Funk-Zubehör",
-        "wirelessAccessoriesDesc": "Montage- und Installationszubehör",
-        "roomSensors": "Room Sensors",
-        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
-        "nonRoomSensors": "Industrial Sensors",
-        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
+        "title": "Drahtlos",
+        "roomSensors": "Raumsensoren",
+        "roomSensorsDesc": "Temperatur- und Feuchtigkeitssensoren für Innenräume",
+        "nonRoomSensors": "Industriesensoren",
+        "nonRoomSensorsDesc": "Kanal-, Außenluft- und Spezialanwendungen",
         "gateway": "Gateway",
-        "gatewayDesc": "Wireless gateway for sensor connectivity"
+        "gatewayDesc": "Drahtloses Gateway für Sensorkonnektivität",
+        "wirelessAccessories": "Zubehör",
+        "wirelessAccessoriesDesc": "Montage- und Installationszubehör"
       },
       "accessories": {
         "title": "Zubehör",
@@ -201,15 +195,9 @@
         "cablesDesc": "Verkabelungszubehör"
       },
       "testInstruments": {
-        "title": "Prüfinstrumente",
-        "bluTestTemperature": "Blu-Test Temperatur",
-        "bluTestTemperatureDesc": "NIST-rückführbare Referenz",
-        "bluTestHumidity": "Blu-Test Luftfeuchtigkeit",
-        "bluTestHumidityDesc": "Temperatur- und Feuchtereferenz",
-        "bluTestPressure": "Blu-Test Druck",
-        "bluTestPressureDesc": "Digitales Manometer",
-        "allTestInstruments": "All Test Instruments",
-        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
+        "title": "Messgeräte",
+        "allTestInstruments": "Alle Messgeräte",
+        "allTestInstrumentsDesc": "NIST-rückführbare Temperatur-, Feuchtigkeits- und Druckreferenzen"
       },
       "featured": {
         "title": "WAM™ Drahtlose Vermögensüberwachung",
@@ -227,8 +215,8 @@
       },
       "etaLine": {
         "title": "ETA Line",
-        "allEtaLine": "All ETA Products",
-        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+        "allEtaLine": "Alle ETA Produkte",
+        "allEtaLineDesc": "Modulare I/O- und Steuerungslösungen für die Gebäudeautomation"
       }
     }
   },

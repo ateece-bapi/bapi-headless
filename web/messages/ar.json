@@ -493,21 +493,15 @@
         "particulateDesc": "PM2.5 و PM10"
       },
       "wireless": {
-        "title": "اللاسلكي",
-        "bluetoothSensors": "استشعارات بلوتوث",
-        "bluetoothSensorsDesc": "استشعارات HVAC اللاسلكية لأتمتة المباني",
-        "gatewaysReceivers": "البوابات والمستقبلات",
-        "gatewaysReceiversDesc": "توصيل استشعارات لاسلكية بنظام التحكم بالمباني",
-        "outputModules": "وحدات الإخراج",
-        "outputModulesDesc": "مخارج التحكم اللاسلكية",
-        "wirelessAccessories": "ملحقات لاسلكية",
-        "wirelessAccessoriesDesc": "ملحقات التركيب والتثبيت",
-        "roomSensors": "Room Sensors",
-        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
-        "nonRoomSensors": "Industrial Sensors",
-        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
-        "gateway": "Gateway",
-        "gatewayDesc": "Wireless gateway for sensor connectivity"
+        "title": "لاسلكي",
+        "roomSensors": "حساسات الغرف",
+        "roomSensorsDesc": "حساسات درجة الحرارة والرطوبة للبيئات الداخلية",
+        "nonRoomSensors": "الحساسات الصناعية",
+        "nonRoomSensorsDesc": "القنوات والهواء الخارجي والتطبيقات المتخصصة",
+        "gateway": "البوابة",
+        "gatewayDesc": "بوابة لاسلكية لربط الحساسات",
+        "wirelessAccessories": "الملحقات",
+        "wirelessAccessoriesDesc": "ملحقات التركيب والتثبيت"
       },
       "accessories": {
         "title": "الملحقات",
@@ -520,14 +514,8 @@
       },
       "testInstruments": {
         "title": "أدوات الاختبار",
-        "bluTestTemperature": "Blu-Test درجة الحرارة",
-        "bluTestTemperatureDesc": "مرجع قابل للتتبع NIST",
-        "bluTestHumidity": "Blu-Test الرطوبة",
-        "bluTestHumidityDesc": "مرجع درجة الحرارة + الرطوبة النسبية",
-        "bluTestPressure": "Blu-Test الضغط",
-        "bluTestPressureDesc": "مانومتر رقمي",
-        "allTestInstruments": "All Test Instruments",
-        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
+        "allTestInstruments": "جميع أدوات الاختبار",
+        "allTestInstrumentsDesc": "مراجع درجة الحرارة والرطوبة والضغط القابلة للتتبع وفقاً لمعايير NIST"
       },
       "featured": {
         "title": "WAM™ المراقبة اللاسلكية للأصول",
@@ -544,9 +532,9 @@
         "premium": "متميز"
       },
       "etaLine": {
-        "title": "ETA Line",
-        "allEtaLine": "All ETA Products",
-        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+        "title": "خط ETA",
+        "allEtaLine": "جميع منتجات ETA",
+        "allEtaLineDesc": "حلول الإدخال/الإخراج المعيارية والتحكم لأتمتة المباني"
       }
     }
   },

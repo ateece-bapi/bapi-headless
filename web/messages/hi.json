@@ -92,20 +92,14 @@
       },
       "wireless": {
         "title": "वायरलेस",
-        "bluetoothSensors": "ब्लूटूथ सेंसर",
-        "bluetoothSensorsDesc": "भवन स्वचालन के लिए वायरलेस HVAC सेंसर",
-        "gatewaysReceivers": "गेटवे और रिसीवर",
-        "gatewaysReceiversDesc": "BAS से वायरलेस सेंसर को कनेक्ट करें",
-        "outputModules": "आउटपुट मॉड्यूल",
-        "outputModulesDesc": "वायरलेस नियंत्रण आउटपुट",
-        "wirelessAccessories": "वायरलेस सहायक उपकरण",
-        "wirelessAccessoriesDesc": "माउंटिंग और स्थापना सहायक उपकरण",
-        "roomSensors": "Room Sensors",
-        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
-        "nonRoomSensors": "Industrial Sensors",
-        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
-        "gateway": "Gateway",
-        "gatewayDesc": "Wireless gateway for sensor connectivity"
+        "roomSensors": "रूम सेंसर",
+        "roomSensorsDesc": "इनडोर वातावरण के लिए तापमान और आर्द्रता सेंसर",
+        "nonRoomSensors": "औद्योगिक सेंसर",
+        "nonRoomSensorsDesc": "डक्ट, बाहरी हवा, और विशेषीकृत अनुप्रयोग",
+        "gateway": "गेटवे",
+        "gatewayDesc": "सेंसर कनेक्टिविटी के लिए वायरलेस गेटवे",
+        "wirelessAccessories": "सहायक उपकरण",
+        "wirelessAccessoriesDesc": "माउंटिंग और इंस्टॉलेशन सहायक उपकरण"
       },
       "accessories": {
         "title": "सहायक उपकरण",
@@ -118,14 +112,8 @@
       },
       "testInstruments": {
         "title": "परीक्षण उपकरण",
-        "bluTestTemperature": "Blu-Test तापमान",
-        "bluTestTemperatureDesc": "NIST-ट्रेसेबल संदर्भ",
-        "bluTestHumidity": "Blu-Test आर्द्रता",
-        "bluTestHumidityDesc": "तापमान + RH संदर्भ",
-        "bluTestPressure": "Blu-Test दबाव",
-        "bluTestPressureDesc": "डिजिटल मानोमीटर",
-        "allTestInstruments": "All Test Instruments",
-        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
+        "allTestInstruments": "सभी परीक्षण उपकरण",
+        "allTestInstrumentsDesc": "NIST-ट्रेसेबल तापमान, आर्द्रता, और दबाव संदर्भ"
       },
       "featured": {
         "title": "WAM™ वायरलेस संपत्ति निगरानी",
@@ -143,8 +131,8 @@
       },
       "etaLine": {
         "title": "ETA Line",
-        "allEtaLine": "All ETA Products",
-        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+        "allEtaLine": "सभी ETA उत्पाद",
+        "allEtaLineDesc": "बिल्डिंग ऑटोमेशन के लिए मॉड्यूलर I/O और नियंत्रण समाधान"
       }
     },
     "resources": {

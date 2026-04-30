@@ -176,20 +176,14 @@
       },
       "wireless": {
         "title": "ไร้สาย",
-        "bluetoothSensors": "เซ็นเซอร์บลูทูธ",
-        "bluetoothSensorsDesc": "เซ็นเซอร์ HVAC ไร้สายสำหรับระบบอัตโนมัติอาคาร",
-        "gatewaysReceivers": "เกตเวย์และตัวรับสัญญาณ",
-        "gatewaysReceiversDesc": "เชื่อมต่อเซ็นเซอร์ไร้สายกับระบบควบคุมอาคาร",
-        "outputModules": "โมดูลเอาท์พุต",
-        "outputModulesDesc": "การควบคุมเอาท์พุตไร้สาย",
-        "wirelessAccessories": "อุปกรณ์เสริมไร้สาย",
-        "wirelessAccessoriesDesc": "อุปกรณ์ติดตั้งและอุปกรณ์ยึด",
-        "roomSensors": "Room Sensors",
-        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
-        "nonRoomSensors": "Industrial Sensors",
-        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
-        "gateway": "Gateway",
-        "gatewayDesc": "Wireless gateway for sensor connectivity"
+        "roomSensors": "เซ็นเซอร์ภายในห้อง",
+        "roomSensorsDesc": "เซ็นเซอร์วัดอุณหภูมิและความชื้นสำหรับสภาพแวดล้อมภายในอาคาร",
+        "nonRoomSensors": "เซ็นเซอร์อุตสาหกรรม",
+        "nonRoomSensorsDesc": "สำหรับท่ออากาศ อากาศภายนอก และการใช้งานเฉพาะทาง",
+        "gateway": "เกตเวย์",
+        "gatewayDesc": "เกตเวย์ไร้สายสำหรับการเชื่อมต่อเซ็นเซอร์",
+        "wirelessAccessories": "อุปกรณ์เสริม",
+        "wirelessAccessoriesDesc": "อุปกรณ์เสริมสำหรับการติดตั้งและการประกอบ"
       },
       "accessories": {
         "title": "อุปกรณ์เสริม",
@@ -202,14 +196,8 @@
       },
       "testInstruments": {
         "title": "เครื่องมือทดสอบ",
-        "bluTestTemperature": "Blu-Test อุณหภูมิ",
-        "bluTestTemperatureDesc": "การอ้างอิงที่ตรวจสอบมาตรฐาน NIST",
-        "bluTestHumidity": "Blu-Test ความชื้น",
-        "bluTestHumidityDesc": "อุณหภูมิ + การอ้างอิง RH",
-        "bluTestPressure": "Blu-Test ความดัน",
-        "bluTestPressureDesc": "มาโนมิเตอร์ดิจิทัล",
-        "allTestInstruments": "All Test Instruments",
-        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
+        "allTestInstruments": "เครื่องมือทดสอบทั้งหมด",
+        "allTestInstrumentsDesc": "อุปกรณ์อ้างอิงอุณหภูมิ ความชื้น และความดันที่สามารถตรวจสอบย้อนกลับได้ตามมาตรฐาน NIST"
       },
       "featured": {
         "title": "การตรวจสอบทรัพย์สินไร้สาย WAM™",
@@ -227,8 +215,8 @@
       },
       "etaLine": {
         "title": "ETA Line",
-        "allEtaLine": "All ETA Products",
-        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+        "allEtaLine": "ผลิตภัณฑ์ ETA ทั้งหมด",
+        "allEtaLineDesc": "โซลูชัน I/O แบบโมดูลาร์และการควบคุมสำหรับระบบอัตโนมัติในอาคาร"
       }
     }
   },

@@ -494,20 +494,14 @@
       },
       "wireless": {
         "title": "ワイヤレス",
-        "bluetoothSensors": "Bluetoothセンサ",
-        "bluetoothSensorsDesc": "建築自動化向けの無線HVACセンサ",
-        "gatewaysReceivers": "ゲートウェイ & レシーバ",
-        "gatewaysReceiversDesc": "ワイヤレスセンサをBASに接続",
-        "outputModules": "出力モジュール",
-        "outputModulesDesc": "ワイヤレス制御出力",
-        "wirelessAccessories": "ワイヤレスアクセサリ",
-        "wirelessAccessoriesDesc": "取り付け & 設置用アクセサリ",
-        "roomSensors": "Room Sensors",
-        "roomSensorsDesc": "Temperature & humidity sensors for indoor environments",
-        "nonRoomSensors": "Industrial Sensors",
-        "nonRoomSensorsDesc": "Duct, outside air, and specialized applications",
-        "gateway": "Gateway",
-        "gatewayDesc": "Wireless gateway for sensor connectivity"
+        "roomSensors": "室内センサー",
+        "roomSensorsDesc": "屋内環境用温湿度センサー",
+        "nonRoomSensors": "産業用センサー",
+        "nonRoomSensorsDesc": "ダクト、外気、および特殊用途向け",
+        "gateway": "ゲートウェイ",
+        "gatewayDesc": "センサー接続用ワイヤレスゲートウェイ",
+        "wirelessAccessories": "アクセサリー",
+        "wirelessAccessoriesDesc": "取付・設置用アクセサリー"
       },
       "accessories": {
         "title": "アクセサリ",
@@ -519,15 +513,9 @@
         "cablesDesc": "配線用アクセサリ"
       },
       "testInstruments": {
-        "title": "試験機器",
-        "bluTestTemperature": "Blu-Test 温度",
-        "bluTestTemperatureDesc": "NIST トレーサブル基準器",
-        "bluTestHumidity": "Blu-Test 湿度",
-        "bluTestHumidityDesc": "温度 + RH 基準器",
-        "bluTestPressure": "Blu-Test 圧力",
-        "bluTestPressureDesc": "デジタル微差圧計",
-        "allTestInstruments": "All Test Instruments",
-        "allTestInstrumentsDesc": "NIST-traceable temperature, humidity, and pressure references"
+        "title": "測定器",
+        "allTestInstruments": "すべての測定器",
+        "allTestInstrumentsDesc": "NIST追跡可能な温度、湿度、圧力基準器"
       },
       "featured": {
         "title": "WAM™ ワイヤレスアセット監視",
@@ -545,8 +533,8 @@
       },
       "etaLine": {
         "title": "ETA Line",
-        "allEtaLine": "All ETA Products",
-        "allEtaLineDesc": "Modular I/O and control solutions for building automation"
+        "allEtaLine": "すべてのETA製品",
+        "allEtaLineDesc": "ビルオートメーション用モジュラーI/O・制御ソリューション"
       }
     }
   },

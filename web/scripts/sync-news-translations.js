@@ -63,7 +63,7 @@ Provide ONLY the translations in this JSON format (no markdown, no code blocks):
 
   try {
     const response = await anthropic.messages.create({
-      model: 'claude-3-haiku-20240307',
+      model: 'claude-3-5-haiku-20241022',
       max_tokens: 500,
       temperature: 0.3,
       messages: [

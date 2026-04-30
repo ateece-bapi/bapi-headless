@@ -86,38 +86,36 @@
         "co2": "CO₂ सेंसर",
         "co2Desc": "कार्बन डाइऑक्साइड निगरानी",
         "voc": "VOC सेंसर",
-        "vocDesc": "उच्छवसित जैविक यौगिक",
-        "particulate": "कणिक पदार्थ",
-        "particulateDesc": "PM2.5 और PM10"
+        "vocDesc": "वाष्पशील कार्बनिक यौगिक",
+        "particulate": "कण पदार्थ",
+        "particulateDesc": "PM2.5 और PM10",
+        "nitrogenDioxide": "नाइट्रोजन डाइऑक्साइड",
+        "nitrogenDioxideDesc": "NO₂ गैस का पता लगाना",
+        "carbonMonoxide": "कार्बन मोनोऑक्साइड",
+        "carbonMonoxideDesc": "CO गैस का पता लगाना",
+        "refrigerantLeak": "रेफ्रिजरेंट लीक डिटेक्शन",
+        "refrigerantLeakDesc": "रेफ्रिजरेंट लीक सेंसर"
       },
       "wireless": {
         "title": "वायरलेस",
-        "bluetoothSensors": "ब्लूटूथ सेंसर",
-        "bluetoothSensorsDesc": "भवन स्वचालन के लिए वायरलेस HVAC सेंसर",
-        "gatewaysReceivers": "गेटवे और रिसीवर",
-        "gatewaysReceiversDesc": "BAS से वायरलेस सेंसर को कनेक्ट करें",
-        "outputModules": "आउटपुट मॉड्यूल",
-        "outputModulesDesc": "वायरलेस नियंत्रण आउटपुट",
-        "wirelessAccessories": "वायरलेस सहायक उपकरण",
-        "wirelessAccessoriesDesc": "माउंटिंग और स्थापना सहायक उपकरण"
+        "roomSensors": "रूम सेंसर",
+        "roomSensorsDesc": "इनडोर वातावरण के लिए तापमान और आर्द्रता सेंसर",
+        "nonRoomSensors": "औद्योगिक सेंसर",
+        "nonRoomSensorsDesc": "डक्ट, बाहरी हवा, और विशेषीकृत अनुप्रयोग",
+        "gateway": "गेटवे",
+        "gatewayDesc": "सेंसर कनेक्टिविटी के लिए वायरलेस गेटवे",
+        "wirelessAccessories": "सहायक उपकरण",
+        "wirelessAccessoriesDesc": "माउंटिंग और इंस्टॉलेशन सहायक उपकरण"
       },
       "accessories": {
         "title": "सहायक उपकरण",
-        "mounting": "माउंटिंग हार्डवेयर",
-        "mountingDesc": "प्लेट, बॉक्स, ब्रैकेट",
-        "enclosures": "इनक्लोज़र",
-        "enclosuresDesc": "BAPI-बॉक्स और कवर",
-        "cables": "केबल और कनेक्टर",
-        "cablesDesc": "वायरिंग सहायक उपकरण"
+        "allAccessories": "सभी सहायक उपकरण",
+        "allAccessoriesDesc": "माउंटिंग हार्डवेयर, एनक्लोज़र, केबल्स, और सेंसर सहायक उपकरण"
       },
       "testInstruments": {
         "title": "परीक्षण उपकरण",
-        "bluTestTemperature": "Blu-Test तापमान",
-        "bluTestTemperatureDesc": "NIST-ट्रेसेबल संदर्भ",
-        "bluTestHumidity": "Blu-Test आर्द्रता",
-        "bluTestHumidityDesc": "तापमान + RH संदर्भ",
-        "bluTestPressure": "Blu-Test दबाव",
-        "bluTestPressureDesc": "डिजिटल मानोमीटर"
+        "allTestInstruments": "सभी परीक्षण उपकरण",
+        "allTestInstrumentsDesc": "NIST-ट्रेसेबल तापमान, आर्द्रता, और दबाव संदर्भ"
       },
       "featured": {
         "title": "WAM™ वायरलेस संपत्ति निगरानी",
@@ -132,6 +130,11 @@
         "popular": "लोकप्रिय",
         "new": "नया",
         "premium": "प्रीमियम"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "सभी ETA उत्पाद",
+        "allEtaLineDesc": "बिल्डिंग ऑटोमेशन के लिए मॉड्यूलर I/O और नियंत्रण समाधान"
       }
     },
     "resources": {

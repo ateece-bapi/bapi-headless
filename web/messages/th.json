@@ -168,40 +168,38 @@
       "airQuality": {
         "title": "คุณภาพอากาศ",
         "co2": "เซ็นเซอร์ CO₂",
-        "co2Desc": "การตรวจสอบคาร์บอนไดออกไซด์",
+        "co2Desc": "การตรวจวัดก๊าซคาร์บอนไดออกไซด์",
         "voc": "เซ็นเซอร์ VOC",
         "vocDesc": "สารประกอบอินทรีย์ระเหย",
-        "particulate": "สารแขวนลอย",
-        "particulateDesc": "PM2.5 และ PM10"
+        "particulate": "ฝุ่นละออง",
+        "particulateDesc": "PM2.5 และ PM10",
+        "nitrogenDioxide": "ไนโตรเจนไดออกไซด์",
+        "nitrogenDioxideDesc": "การตรวจจับก๊าซ NO₂",
+        "carbonMonoxide": "คาร์บอนมอนอกไซด์",
+        "carbonMonoxideDesc": "การตรวจจับก๊าซ CO",
+        "refrigerantLeak": "การตรวจจับการรั่วไหลของสารทำความเย็น",
+        "refrigerantLeakDesc": "เซ็นเซอร์ตรวจจับการรั่วไหลสารทำความเย็น"
       },
       "wireless": {
         "title": "ไร้สาย",
-        "bluetoothSensors": "เซ็นเซอร์บลูทูธ",
-        "bluetoothSensorsDesc": "เซ็นเซอร์ HVAC ไร้สายสำหรับระบบอัตโนมัติอาคาร",
-        "gatewaysReceivers": "เกตเวย์และตัวรับสัญญาณ",
-        "gatewaysReceiversDesc": "เชื่อมต่อเซ็นเซอร์ไร้สายกับระบบควบคุมอาคาร",
-        "outputModules": "โมดูลเอาท์พุต",
-        "outputModulesDesc": "การควบคุมเอาท์พุตไร้สาย",
-        "wirelessAccessories": "อุปกรณ์เสริมไร้สาย",
-        "wirelessAccessoriesDesc": "อุปกรณ์ติดตั้งและอุปกรณ์ยึด"
+        "roomSensors": "เซ็นเซอร์ภายในห้อง",
+        "roomSensorsDesc": "เซ็นเซอร์วัดอุณหภูมิและความชื้นสำหรับสภาพแวดล้อมภายในอาคาร",
+        "nonRoomSensors": "เซ็นเซอร์อุตสาหกรรม",
+        "nonRoomSensorsDesc": "สำหรับท่ออากาศ อากาศภายนอก และการใช้งานเฉพาะทาง",
+        "gateway": "เกตเวย์",
+        "gatewayDesc": "เกตเวย์ไร้สายสำหรับการเชื่อมต่อเซ็นเซอร์",
+        "wirelessAccessories": "อุปกรณ์เสริม",
+        "wirelessAccessoriesDesc": "อุปกรณ์เสริมสำหรับการติดตั้งและการประกอบ"
       },
       "accessories": {
         "title": "อุปกรณ์เสริม",
-        "mounting": "ฮาร์ดแวร์การติดตั้ง",
-        "mountingDesc": "แผ่น ตู้ แขน",
-        "enclosures": "ตู้หุ้ม",
-        "enclosuresDesc": "BAPI-Box และฝาปิด",
-        "cables": "สายเคเบิลและตัวเชื่อมต่อ",
-        "cablesDesc": "อุปกรณ์เสริมสายไฟ"
+        "allAccessories": "อุปกรณ์เสริมทั้งหมด",
+        "allAccessoriesDesc": "ฮาร์ดแวร์สำหรับติดตั้ง, ตู้ครอบ, สายเคเบิล, และอุปกรณ์เสริมเซนเซอร์"
       },
       "testInstruments": {
         "title": "เครื่องมือทดสอบ",
-        "bluTestTemperature": "Blu-Test อุณหภูมิ",
-        "bluTestTemperatureDesc": "การอ้างอิงที่ตรวจสอบมาตรฐาน NIST",
-        "bluTestHumidity": "Blu-Test ความชื้น",
-        "bluTestHumidityDesc": "อุณหภูมิ + การอ้างอิง RH",
-        "bluTestPressure": "Blu-Test ความดัน",
-        "bluTestPressureDesc": "มาโนมิเตอร์ดิจิทัล"
+        "allTestInstruments": "เครื่องมือทดสอบทั้งหมด",
+        "allTestInstrumentsDesc": "อุปกรณ์อ้างอิงอุณหภูมิ ความชื้น และความดันที่สอบกลับได้ถึง NIST"
       },
       "featured": {
         "title": "การตรวจสอบทรัพย์สินไร้สาย WAM™",
@@ -216,6 +214,11 @@
         "popular": "ยอดนิยม",
         "new": "ใหม่",
         "premium": "พรีเมียม"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "ผลิตภัณฑ์ ETA ทั้งหมด",
+        "allEtaLineDesc": "โซลูชัน I/O แบบโมดูลาร์และการควบคุมสำหรับระบบอัตโนมัติในอาคาร"
       }
     }
   },

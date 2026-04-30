@@ -122,42 +122,40 @@
         "differentialSwitchDesc": "Chuyển mạch kích hoạt bởi áp suất"
       },
       "airQuality": {
-        "title": "Chất lượng không khí",
-        "co2": "Cảm biến CO₂",
-        "co2Desc": "Giám sát khí carbon dioxide",
-        "voc": "Cảm biến VOC",
+        "title": "Chất Lượng Không Khí",
+        "co2": "Cảm Biến CO₂",
+        "co2Desc": "Giám sát carbon dioxide",
+        "voc": "Cảm Biến VOC",
         "vocDesc": "Hợp chất hữu cơ dễ bay hơi",
-        "particulate": "Chất lơ lửng",
-        "particulateDesc": "PM2.5 và PM10"
+        "particulate": "Bụi Mịn",
+        "particulateDesc": "PM2.5 và PM10",
+        "nitrogenDioxide": "Nitrogen Dioxide",
+        "nitrogenDioxideDesc": "Phát hiện khí NO₂",
+        "carbonMonoxide": "Carbon Monoxide",
+        "carbonMonoxideDesc": "Phát hiện khí CO",
+        "refrigerantLeak": "Phát Hiện Rò Rỉ Chất Làm Lạnh",
+        "refrigerantLeakDesc": "Cảm biến rò rỉ chất làm lạnh"
       },
       "wireless": {
         "title": "Không dây",
-        "bluetoothSensors": "Cảm biến Bluetooth",
-        "bluetoothSensorsDesc": "Cảm biến HVAC không dây cho tự động hóa tòa nhà",
-        "gatewaysReceivers": "Cổng và Thiết bị thu",
-        "gatewaysReceiversDesc": "Kết nối cảm biến không dây với BAS",
-        "outputModules": "Mô-đun đầu ra",
-        "outputModulesDesc": "Đầu ra điều khiển không dây",
-        "wirelessAccessories": "Phụ kiện không dây",
-        "wirelessAccessoriesDesc": "Phụ kiện lắp đặt và lắp ráp"
+        "roomSensors": "Cảm biến Phòng",
+        "roomSensorsDesc": "Cảm biến nhiệt độ & độ ẩm cho môi trường trong nhà",
+        "nonRoomSensors": "Cảm biến Công nghiệp",
+        "nonRoomSensorsDesc": "Ống gió, không khí bên ngoài và các ứng dụng chuyên dụng",
+        "gateway": "Cổng kết nối",
+        "gatewayDesc": "Cổng kết nối không dây cho kết nối cảm biến",
+        "wirelessAccessories": "Phụ kiện",
+        "wirelessAccessoriesDesc": "Phụ kiện lắp đặt & cài đặt"
       },
       "accessories": {
         "title": "Phụ kiện",
-        "mounting": "Phụ kiện gắn",
-        "mountingDesc": "Tấm, hộp, giá đỡ",
-        "enclosures": "Vỏ bọc",
-        "enclosuresDesc": "BAPI-Box và nắp đậy",
-        "cables": "Cáp và đầu nối",
-        "cablesDesc": "Phụ kiện dây điện"
+        "allAccessories": "Tất cả Phụ kiện",
+        "allAccessoriesDesc": "Phần cứng lắp đặt, vỏ bọc, cáp và phụ kiện cảm biến"
       },
       "testInstruments": {
-        "title": "Thiết bị kiểm tra",
-        "bluTestTemperature": "Blu-Test Nhiệt độ",
-        "bluTestTemperatureDesc": "Tham chiếu NIST",
-        "bluTestHumidity": "Blu-Test Độ ẩm",
-        "bluTestHumidityDesc": "Tham chiếu nhiệt độ + RH",
-        "bluTestPressure": "Blu-Test Áp suất",
-        "bluTestPressureDesc": "Áp kế kỹ thuật số"
+        "title": "Thiết Bị Kiểm Tra",
+        "allTestInstruments": "Tất Cả Thiết Bị Kiểm Tra",
+        "allTestInstrumentsDesc": "Các tiêu chuẩn nhiệt độ, độ ẩm và áp suất có thể truy xuất nguồn gốc NIST"
       },
       "featured": {
         "title": "WAM™ Giám sát Tài sản Không dây",
@@ -172,6 +170,11 @@
         "popular": "Phổ biến",
         "new": "Mới",
         "premium": "Cao cấp"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "Tất cả Sản phẩm ETA",
+        "allEtaLineDesc": "Giải pháp I/O và điều khiển mô-đun cho tự động hóa tòa nhà"
       }
     },
     "resources": {

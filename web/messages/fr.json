@@ -484,42 +484,40 @@
         "differentialSwitchDesc": "Commutation activée par la pression"
       },
       "airQuality": {
-        "title": "Qualité de l'air",
-        "co2": "Capteurs de CO₂",
+        "title": "Qualité de l'Air",
+        "co2": "Capteurs CO₂",
         "co2Desc": "Surveillance du dioxyde de carbone",
-        "voc": "Capteurs de COV",
+        "voc": "Capteurs COV",
         "vocDesc": "Composés organiques volatils",
-        "particulate": "Matière particulaire",
-        "particulateDesc": "PM2,5 et PM10"
+        "particulate": "Particules en Suspension",
+        "particulateDesc": "PM2.5 et PM10",
+        "nitrogenDioxide": "Dioxyde d'Azote",
+        "nitrogenDioxideDesc": "Détection de gaz NO₂",
+        "carbonMonoxide": "Monoxyde de Carbone",
+        "carbonMonoxideDesc": "Détection de gaz CO",
+        "refrigerantLeak": "Détection de Fuite de Réfrigérant",
+        "refrigerantLeakDesc": "Capteurs de fuite de réfrigérant"
       },
       "wireless": {
         "title": "Sans fil",
-        "bluetoothSensors": "Capteurs Bluetooth",
-        "bluetoothSensorsDesc": "Capteurs HVAC sans fil pour l'automatisation des bâtiments",
-        "gatewaysReceivers": "Passerelles et récepteurs",
-        "gatewaysReceiversDesc": "Connecter les capteurs sans fil au système de gestion des bâtiments",
-        "outputModules": "Modules de sortie",
-        "outputModulesDesc": "Sorties de commande sans fil",
-        "wirelessAccessories": "Accessoires sans fil",
+        "roomSensors": "Capteurs d'ambiance",
+        "roomSensorsDesc": "Capteurs de température et d'humidité pour environnements intérieurs",
+        "nonRoomSensors": "Capteurs industriels",
+        "nonRoomSensorsDesc": "Gaines, air extérieur et applications spécialisées",
+        "gateway": "Passerelle",
+        "gatewayDesc": "Passerelle sans fil pour la connectivité des capteurs",
+        "wirelessAccessories": "Accessoires",
         "wirelessAccessoriesDesc": "Accessoires de montage et d'installation"
       },
       "accessories": {
         "title": "Accessoires",
-        "mounting": "Matériel de montage",
-        "mountingDesc": "Plaques, boîtiers, supports",
-        "enclosures": "Boîtiers",
-        "enclosuresDesc": "Boîtes BAPI et couvercles",
-        "cables": "Câbles et connecteurs",
-        "cablesDesc": "Accessoires de câblage"
+        "allAccessories": "Tous les Accessoires",
+        "allAccessoriesDesc": "Matériel de montage, boîtiers, câbles et accessoires de capteurs"
       },
       "testInstruments": {
-        "title": "Instruments de test",
-        "bluTestTemperature": "Blu-Test Température",
-        "bluTestTemperatureDesc": "Référence traçable NIST",
-        "bluTestHumidity": "Blu-Test Humidité",
-        "bluTestHumidityDesc": "Référence température + HR",
-        "bluTestPressure": "Blu-Test Pression",
-        "bluTestPressureDesc": "Manomètre numérique"
+        "title": "Instruments de Test",
+        "allTestInstruments": "Tous les Instruments de Test",
+        "allTestInstrumentsDesc": "Références de température, humidité et pression traçables NIST"
       },
       "featured": {
         "title": "Surveillance d'actifs sans fil WAM™",
@@ -534,6 +532,11 @@
         "popular": "Populaire",
         "new": "Nouveau",
         "premium": "Premium"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "Tous les produits ETA",
+        "allEtaLineDesc": "Solutions d'E/S modulaires et de contrôle pour l'automatisation des bâtiments"
       }
     }
   },

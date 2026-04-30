@@ -484,42 +484,40 @@
         "differentialSwitchDesc": "Conmutación activada por presión"
       },
       "airQuality": {
-        "title": "Calidad del aire",
+        "title": "Calidad del Aire",
         "co2": "Sensores de CO₂",
         "co2Desc": "Monitoreo de dióxido de carbono",
         "voc": "Sensores de COV",
         "vocDesc": "Compuestos orgánicos volátiles",
-        "particulate": "Material particulado",
-        "particulateDesc": "PM2.5 y PM10"
+        "particulate": "Material Particulado",
+        "particulateDesc": "PM2.5 y PM10",
+        "nitrogenDioxide": "Dióxido de Nitrógeno",
+        "nitrogenDioxideDesc": "Detección de gas NO₂",
+        "carbonMonoxide": "Monóxido de Carbono",
+        "carbonMonoxideDesc": "Detección de gas CO",
+        "refrigerantLeak": "Detección de Fugas de Refrigerante",
+        "refrigerantLeakDesc": "Sensores de fugas de refrigerante"
       },
       "wireless": {
         "title": "Inalámbrico",
-        "bluetoothSensors": "Sensores Bluetooth",
-        "bluetoothSensorsDesc": "Sensores HVAC inalámbricos para automatización de edificios",
-        "gatewaysReceivers": "Pasarelas y receptores",
-        "gatewaysReceiversDesc": "Conecte sensores inalámbricos al sistema BAS",
-        "outputModules": "Módulos de salida",
-        "outputModulesDesc": "Salidas de control inalámbricas",
-        "wirelessAccessories": "Accesorios inalámbricos",
+        "roomSensors": "Sensores de Ambiente",
+        "roomSensorsDesc": "Sensores de temperatura y humedad para ambientes interiores",
+        "nonRoomSensors": "Sensores Industriales",
+        "nonRoomSensorsDesc": "Conductos, aire exterior y aplicaciones especializadas",
+        "gateway": "Gateway",
+        "gatewayDesc": "Gateway inalámbrico para conectividad de sensores",
+        "wirelessAccessories": "Accesorios",
         "wirelessAccessoriesDesc": "Accesorios de montaje e instalación"
       },
       "accessories": {
         "title": "Accesorios",
-        "mounting": "Herrajes de montaje",
-        "mountingDesc": "Placas, cajas, soportes",
-        "enclosures": "Envolventes",
-        "enclosuresDesc": "BAPI-Box y cubiertas",
-        "cables": "Cables y conectores",
-        "cablesDesc": "Accesorios de cableado"
+        "allAccessories": "Todos los Accesorios",
+        "allAccessoriesDesc": "Hardware de montaje, gabinetes, cables y accesorios de sensores"
       },
       "testInstruments": {
-        "title": "Instrumentos de prueba",
-        "bluTestTemperature": "Blu-Test Temperatura",
-        "bluTestTemperatureDesc": "Referencia trazable a NIST",
-        "bluTestHumidity": "Blu-Test Humedad",
-        "bluTestHumidityDesc": "Referencia de temperatura + HR",
-        "bluTestPressure": "Blu-Test Presión",
-        "bluTestPressureDesc": "Manómetro digital"
+        "title": "Instrumentos de Prueba",
+        "allTestInstruments": "Todos los Instrumentos de Prueba",
+        "allTestInstrumentsDesc": "Referencias de temperatura, humedad y presión trazables NIST"
       },
       "featured": {
         "title": "Monitoreo inalámbrico de activos WAM™",
@@ -534,6 +532,11 @@
         "popular": "Popular",
         "new": "Nuevo",
         "premium": "Premium"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "Todos los Productos ETA",
+        "allEtaLineDesc": "Soluciones modulares de E/S y control para automatización de edificios"
       }
     }
   },

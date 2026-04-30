@@ -484,42 +484,40 @@
         "differentialSwitchDesc": "圧力アクチュエーテッドスイッチング"
       },
       "airQuality": {
-        "title": "空気品質",
-        "co2": "CO₂センサ",
-        "co2Desc": "二酸化炭素監視",
-        "voc": "VOCセンサ",
+        "title": "空気質",
+        "co2": "CO₂センサー",
+        "co2Desc": "二酸化炭素モニタリング",
+        "voc": "VOCセンサー",
         "vocDesc": "揮発性有機化合物",
-        "particulate": "浮遊粒子状物質",
-        "particulateDesc": "PM2.5とPM10"
+        "particulate": "粒子状物質",
+        "particulateDesc": "PM2.5およびPM10",
+        "nitrogenDioxide": "二酸化窒素",
+        "nitrogenDioxideDesc": "NO₂ガス検知",
+        "carbonMonoxide": "一酸化炭素",
+        "carbonMonoxideDesc": "COガス検知",
+        "refrigerantLeak": "冷媒漏れ検知",
+        "refrigerantLeakDesc": "冷媒漏れセンサー"
       },
       "wireless": {
         "title": "ワイヤレス",
-        "bluetoothSensors": "Bluetoothセンサ",
-        "bluetoothSensorsDesc": "建築自動化向けの無線HVACセンサ",
-        "gatewaysReceivers": "ゲートウェイ & レシーバ",
-        "gatewaysReceiversDesc": "ワイヤレスセンサをBASに接続",
-        "outputModules": "出力モジュール",
-        "outputModulesDesc": "ワイヤレス制御出力",
-        "wirelessAccessories": "ワイヤレスアクセサリ",
-        "wirelessAccessoriesDesc": "取り付け & 設置用アクセサリ"
+        "roomSensors": "室内センサー",
+        "roomSensorsDesc": "屋内環境用温湿度センサー",
+        "nonRoomSensors": "産業用センサー",
+        "nonRoomSensorsDesc": "ダクト、外気、および特殊用途向け",
+        "gateway": "ゲートウェイ",
+        "gatewayDesc": "センサー接続用ワイヤレスゲートウェイ",
+        "wirelessAccessories": "アクセサリー",
+        "wirelessAccessoriesDesc": "取付・設置用アクセサリー"
       },
       "accessories": {
-        "title": "アクセサリ",
-        "mounting": "取り付け金具",
-        "mountingDesc": "プレート、ボックス、ブラケット",
-        "enclosures": "エンクロージャ",
-        "enclosuresDesc": "BAPI-Box & カバー",
-        "cables": "ケーブル & コネクタ",
-        "cablesDesc": "配線用アクセサリ"
+        "title": "アクセサリー",
+        "allAccessories": "全アクセサリー",
+        "allAccessoriesDesc": "取付金具、筐体、ケーブル、およびセンサーアクセサリー"
       },
       "testInstruments": {
-        "title": "試験機器",
-        "bluTestTemperature": "Blu-Test 温度",
-        "bluTestTemperatureDesc": "NIST トレーサブル基準器",
-        "bluTestHumidity": "Blu-Test 湿度",
-        "bluTestHumidityDesc": "温度 + RH 基準器",
-        "bluTestPressure": "Blu-Test 圧力",
-        "bluTestPressureDesc": "デジタル微差圧計"
+        "title": "テスト機器",
+        "allTestInstruments": "すべてのテスト機器",
+        "allTestInstrumentsDesc": "NIST トレーサブル温度、湿度、圧力リファレンス"
       },
       "featured": {
         "title": "WAM™ ワイヤレスアセット監視",
@@ -534,6 +532,11 @@
         "popular": "人気",
         "new": "新製品",
         "premium": "プレミアム"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "すべてのETA製品",
+        "allEtaLineDesc": "ビルオートメーション用モジュラーI/O・制御ソリューション"
       }
     }
   },

@@ -167,41 +167,39 @@
       },
       "airQuality": {
         "title": "Luftqualität",
-        "co2": "CO₂-Sensoren",
+        "co2": "CO₂ Sensoren",
         "co2Desc": "Kohlendioxid-Überwachung",
-        "voc": "VOC-Sensoren",
+        "voc": "VOC Sensoren",
         "vocDesc": "Flüchtige organische Verbindungen",
-        "particulate": "Partikuläre Belastung",
-        "particulateDesc": "PM2,5 und PM10"
+        "particulate": "Feinstaub",
+        "particulateDesc": "PM2.5 und PM10",
+        "nitrogenDioxide": "Stickstoffdioxid",
+        "nitrogenDioxideDesc": "NO₂ Gasdetektion",
+        "carbonMonoxide": "Kohlenmonoxid",
+        "carbonMonoxideDesc": "CO Gasdetektion",
+        "refrigerantLeak": "Kältemittelleck-Erkennung",
+        "refrigerantLeakDesc": "Kältemittelleck-Sensoren"
       },
       "wireless": {
-        "title": "Funk",
-        "bluetoothSensors": "Bluetooth-Sensoren",
-        "bluetoothSensorsDesc": "Kabellose HVAC-Sensoren für Gebäudeautomation",
-        "gatewaysReceivers": "Gateways und Empfänger",
-        "gatewaysReceiversDesc": "Verbindung von kabellosen Sensoren mit BAS",
-        "outputModules": "Ausgangsmodule",
-        "outputModulesDesc": "Kabellose Steuerausgänge",
-        "wirelessAccessories": "Funk-Zubehör",
+        "title": "Drahtlos",
+        "roomSensors": "Raumsensoren",
+        "roomSensorsDesc": "Temperatur- und Feuchtigkeitssensoren für Innenräume",
+        "nonRoomSensors": "Industriesensoren",
+        "nonRoomSensorsDesc": "Kanal-, Außenluft- und Spezialanwendungen",
+        "gateway": "Gateway",
+        "gatewayDesc": "Drahtloses Gateway für Sensorkonnektivität",
+        "wirelessAccessories": "Zubehör",
         "wirelessAccessoriesDesc": "Montage- und Installationszubehör"
       },
       "accessories": {
         "title": "Zubehör",
-        "mounting": "Montagematerial",
-        "mountingDesc": "Platten, Gehäuse, Halterungen",
-        "enclosures": "Gehäuse",
-        "enclosuresDesc": "BAPI-Box und Abdeckungen",
-        "cables": "Kabel und Anschlüsse",
-        "cablesDesc": "Verkabelungszubehör"
+        "allAccessories": "Gesamtes Zubehör",
+        "allAccessoriesDesc": "Montagehardware, Gehäuse, Kabel und Sensorzubehör"
       },
       "testInstruments": {
-        "title": "Prüfinstrumente",
-        "bluTestTemperature": "Blu-Test Temperatur",
-        "bluTestTemperatureDesc": "NIST-rückführbare Referenz",
-        "bluTestHumidity": "Blu-Test Luftfeuchtigkeit",
-        "bluTestHumidityDesc": "Temperatur- und Feuchtereferenz",
-        "bluTestPressure": "Blu-Test Druck",
-        "bluTestPressureDesc": "Digitales Manometer"
+        "title": "Messgeräte",
+        "allTestInstruments": "Alle Messgeräte",
+        "allTestInstrumentsDesc": "NIST-rückführbare Temperatur-, Feuchtigkeits- und Druckreferenzen"
       },
       "featured": {
         "title": "WAM™ Drahtlose Vermögensüberwachung",
@@ -216,6 +214,11 @@
         "popular": "Beliebt",
         "new": "Neu",
         "premium": "Premium"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "Alle ETA Produkte",
+        "allEtaLineDesc": "Modulare I/O- und Steuerungslösungen für die Gebäudeautomation"
       }
     }
   },

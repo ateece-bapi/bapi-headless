@@ -62,7 +62,7 @@ Return ONLY the translated JSON object, no explanations.`;
 
   try {
     const message = await anthropic.messages.create({
-      model: 'claude-3-haiku-20240307',
+      model: 'claude-3-5-haiku-20241022',
       max_tokens: 4096, // Haiku's maximum
       messages: [
         {

@@ -18,12 +18,12 @@ Following the same investigation pattern as Accessories, we confirmed that Test 
 ### Test Instruments Category (ID 600)
 
 ```bash
-ssh -p 17338 bapiheadlessstaging@35.224.70.159
-cd public
-wp term list product_cat --search='Test Instruments'
+# Query Test Instruments category (returns term_id 600)
+ssh -p 17338 bapiheadlessstaging@35.224.70.159 "cd public && wp term list product_cat --search='Test Instruments' --fields=term_id,name,slug,parent,count"
 # Result: term_id=600, parent=0 (top-level)
 
-wp term list product_cat --parent=600
+# Check for subcategories (returns EMPTY)
+ssh -p 17338 bapiheadlessstaging@35.224.70.159 "cd public && wp term list product_cat --parent=600"
 # Result: EMPTY - NO subcategories
 ```
 
@@ -190,12 +190,12 @@ Keep Test Instruments in mega-menu but with **one comprehensive link** instead o
 - [x] Legacy site comparison complete
 - [x] Navigation config updated
 - [x] Translation strings added
-- [ ] Production build successful
-- [ ] TypeScript validation passed
-- [ ] ESLint checks passed
-- [ ] Visual QA in staging
-- [ ] Cross-browser testing
-- [ ] Mobile responsive check
+- [x] Production build successful (Exit code 0, 852 pages)
+- [x] TypeScript validation passed
+- [x] ESLint checks passed
+- [x] Visual QA in staging
+- [ ] Cross-browser testing (deferred to QA team)
+- [ ] Mobile responsive check (deferred to QA team)
 
 ---
 

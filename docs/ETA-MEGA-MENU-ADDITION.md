@@ -16,7 +16,7 @@ term_id name      slug      parent  count
 309     ETA Line  eta-line  0       70
 
 # Check for subcategories:
-wp term list product_cat --parent=309 --fields=term_id,name,slug,count
+ssh -p 17338 bapiheadlessstaging@35.224.70.159 "cd public && wp term list product_cat --parent=309 --fields=term_id,name,slug,count"
 
 # Result: EMPTY (no subcategories)
 ```
@@ -142,11 +142,11 @@ cd /home/ateece/bapi-headless/web && pnpm run build
 ```
 
 ### Manual QA Needed
-- [ ] Verify ETA appears in mega-menu on staging
-- [ ] Click "All ETA Products" link navigates to `/products/eta-line`
-- [ ] Verify icon displays correctly (ETA_Icon.webp)
-- [ ] Test mega-menu layout with 8 columns (temp, humidity, pressure, air quality, wireless, accessories, test instruments, ETA)
-- [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- [x] Verify ETA appears in mega-menu on staging
+- [x] Click "All ETA Products" link navigates to `/products/eta-line`
+- [ ] Verify icon displays correctly (Note: ETA_Icon.webp doesn't exist - using Sensors_Icon.webp as fallback - see PR review feedback)
+- [x] Test mega-menu layout with 8 columns (temp, humidity, pressure, air quality, wireless, accessories, test instruments, ETA)
+- [ ] Cross-browser testing (deferred to QA team)
 
 ## Files Changed
 
@@ -160,7 +160,7 @@ cd /home/ateece/bapi-headless/web && pnpm run build
 
 ## Recommendations
 
-1. **Icon Asset:** Verify `/images/icons/ETA_Icon.webp` exists in production, or update path if different
+1. **Icon Asset:** ⚠️ ETA_Icon.webp does not exist - using Sensors_Icon.webp as temporary fallback (PR #496 fix)
 2. **Mega-Menu Layout:** With 8 product columns, consider UI/UX review for optimal spacing
 3. **Systematic Review:** All top-level categories now verified against WordPress:
    - ✅ Temperature (6 subcategories)

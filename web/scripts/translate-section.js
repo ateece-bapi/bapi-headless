@@ -33,7 +33,7 @@ config({ path: path.join(__dirname, '..', '.env') });
 // Configuration
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const MESSAGES_DIR = path.join(__dirname, '..', 'messages');
-const MODEL = 'claude-3-haiku-20240307';
+const MODEL = 'claude-sonnet-4-20250514'; // Current model (April 2026)
 
 // Target languages (excluding English source)
 const LANGUAGES = [

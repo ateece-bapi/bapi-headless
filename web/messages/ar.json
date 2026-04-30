@@ -485,41 +485,39 @@
       },
       "airQuality": {
         "title": "جودة الهواء",
-        "co2": "استشعارات CO₂",
+        "co2": "مستشعرات CO₂",
         "co2Desc": "مراقبة ثاني أكسيد الكربون",
-        "voc": "استشعارات VOC",
+        "voc": "مستشعرات VOC",
         "vocDesc": "المركبات العضوية المتطايرة",
-        "particulate": "المواد الجزيئية",
-        "particulateDesc": "PM2.5 و PM10"
+        "particulate": "الجسيمات العالقة",
+        "particulateDesc": "PM2.5 و PM10",
+        "nitrogenDioxide": "ثاني أكسيد النيتروجين",
+        "nitrogenDioxideDesc": "كشف غاز NO₂",
+        "carbonMonoxide": "أول أكسيد الكربون",
+        "carbonMonoxideDesc": "كشف غاز CO",
+        "refrigerantLeak": "كشف تسرب مبرد التبريد",
+        "refrigerantLeakDesc": "مستشعرات تسرب المبرد"
       },
       "wireless": {
-        "title": "اللاسلكي",
-        "bluetoothSensors": "استشعارات بلوتوث",
-        "bluetoothSensorsDesc": "استشعارات HVAC اللاسلكية لأتمتة المباني",
-        "gatewaysReceivers": "البوابات والمستقبلات",
-        "gatewaysReceiversDesc": "توصيل استشعارات لاسلكية بنظام التحكم بالمباني",
-        "outputModules": "وحدات الإخراج",
-        "outputModulesDesc": "مخارج التحكم اللاسلكية",
-        "wirelessAccessories": "ملحقات لاسلكية",
+        "title": "لاسلكي",
+        "roomSensors": "حساسات الغرف",
+        "roomSensorsDesc": "حساسات درجة الحرارة والرطوبة للبيئات الداخلية",
+        "nonRoomSensors": "الحساسات الصناعية",
+        "nonRoomSensorsDesc": "القنوات والهواء الخارجي والتطبيقات المتخصصة",
+        "gateway": "البوابة",
+        "gatewayDesc": "بوابة لاسلكية لربط الحساسات",
+        "wirelessAccessories": "الملحقات",
         "wirelessAccessoriesDesc": "ملحقات التركيب والتثبيت"
       },
       "accessories": {
         "title": "الملحقات",
-        "mounting": "أجهزة التركيب",
-        "mountingDesc": "ألواح وصناديق وقضبان",
-        "enclosures": "الأغلفة",
-        "enclosuresDesc": "BAPI-Box والأغطية",
-        "cables": "الكابلات والموصلات",
-        "cablesDesc": "ملحقات السلك"
+        "allAccessories": "جميع الملحقات",
+        "allAccessoriesDesc": "أجهزة التثبيت، العلب، الكابلات، وملحقات أجهزة الاستشعار"
       },
       "testInstruments": {
-        "title": "أدوات الاختبار",
-        "bluTestTemperature": "Blu-Test درجة الحرارة",
-        "bluTestTemperatureDesc": "مرجع قابل للتتبع NIST",
-        "bluTestHumidity": "Blu-Test الرطوبة",
-        "bluTestHumidityDesc": "مرجع درجة الحرارة + الرطوبة النسبية",
-        "bluTestPressure": "Blu-Test الضغط",
-        "bluTestPressureDesc": "مانومتر رقمي"
+        "title": "أجهزة الاختبار",
+        "allTestInstruments": "جميع أجهزة الاختبار",
+        "allTestInstrumentsDesc": "مراجع درجة الحرارة والرطوبة والضغط القابلة للتتبع وفقاً لمعايير NIST"
       },
       "featured": {
         "title": "WAM™ المراقبة اللاسلكية للأصول",
@@ -534,6 +532,11 @@
         "popular": "شعبي",
         "new": "جديد",
         "premium": "متميز"
+      },
+      "etaLine": {
+        "title": "خط ETA",
+        "allEtaLine": "جميع منتجات ETA",
+        "allEtaLineDesc": "حلول الإدخال/الإخراج المعيارية والتحكم لأتمتة المباني"
       }
     }
   },

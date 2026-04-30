@@ -82,42 +82,40 @@
         "differentialSwitchDesc": "Przełączanie aktywowane ciśnieniem"
       },
       "airQuality": {
-        "title": "Jakość powietrza",
+        "title": "Jakość Powietrza",
         "co2": "Czujniki CO₂",
         "co2Desc": "Monitorowanie dwutlenku węgla",
-        "voc": "Czujniki LZO",
+        "voc": "Czujniki VOC",
         "vocDesc": "Lotne związki organiczne",
-        "particulate": "Cząstki stałe",
-        "particulateDesc": "PM2,5 i PM10"
+        "particulate": "Pyły Zawieszone",
+        "particulateDesc": "PM2.5 i PM10",
+        "nitrogenDioxide": "Dwutlenek Azotu",
+        "nitrogenDioxideDesc": "Wykrywanie gazu NO₂",
+        "carbonMonoxide": "Tlenek Węgla",
+        "carbonMonoxideDesc": "Wykrywanie gazu CO",
+        "refrigerantLeak": "Wykrywanie Wycieków Czynnika Chłodniczego",
+        "refrigerantLeakDesc": "Czujniki wycieków czynnika chłodniczego"
       },
       "wireless": {
-        "title": "Bezprzewodowo",
-        "bluetoothSensors": "Czujniki Bluetooth",
-        "bluetoothSensorsDesc": "Bezprzewodowe czujniki HVAC do automatyki budynkowej",
-        "gatewaysReceivers": "Bramki i odbiorniki",
-        "gatewaysReceiversDesc": "Łączenie bezprzewodowych czujników z systemem BAS",
-        "outputModules": "Moduły wyjściowe",
-        "outputModulesDesc": "Bezprzewodowe wyjścia sterujące",
-        "wirelessAccessories": "Akcesoria bezprzewodowe",
+        "title": "Bezprzewodowe",
+        "roomSensors": "Czujniki Pomieszczeniowe",
+        "roomSensorsDesc": "Czujniki temperatury i wilgotności do środowisk wewnętrznych",
+        "nonRoomSensors": "Czujniki Przemysłowe",
+        "nonRoomSensorsDesc": "Kanałowe, powietrza zewnętrznego i aplikacje specjalistyczne",
+        "gateway": "Bramka",
+        "gatewayDesc": "Bramka bezprzewodowa do łączności z czujnikami",
+        "wirelessAccessories": "Akcesoria",
         "wirelessAccessoriesDesc": "Akcesoria montażowe i instalacyjne"
       },
       "accessories": {
         "title": "Akcesoria",
-        "mounting": "Uchwyty montażowe",
-        "mountingDesc": "Płyty, skrzynki, wsporniki",
-        "enclosures": "Obudowy",
-        "enclosuresDesc": "BAPI-Box i pokrywy",
-        "cables": "Kable i złącza",
-        "cablesDesc": "Akcesoria okablowania"
+        "allAccessories": "Wszystkie Akcesoria",
+        "allAccessoriesDesc": "Sprzęt montażowy, obudowy, kable i akcesoria do czujników"
       },
       "testInstruments": {
-        "title": "Przyrządy testowe",
-        "bluTestTemperature": "Blu-Test Temperatura",
-        "bluTestTemperatureDesc": "Odniesienie śledzalne NIST",
-        "bluTestHumidity": "Blu-Test Wilgotność",
-        "bluTestHumidityDesc": "Odniesienie temp. + RH",
-        "bluTestPressure": "Blu-Test Ciśnienie",
-        "bluTestPressureDesc": "Cyfrowy manometr"
+        "title": "Przyrządy Testowe",
+        "allTestInstruments": "Wszystkie Przyrządy Testowe",
+        "allTestInstrumentsDesc": "Wzorce temperatury, wilgotności i ciśnienia z certyfikatem NIST"
       },
       "featured": {
         "title": "Bezprzewodowy monitoring aktywów WAM™",
@@ -132,6 +130,11 @@
         "popular": "Popularny",
         "new": "Nowy",
         "premium": "Premium"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "Wszystkie produkty ETA",
+        "allEtaLineDesc": "Modularne rozwiązania I/O i sterowania dla automatyki budynkowej"
       }
     },
     "support": {

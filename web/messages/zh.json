@@ -485,41 +485,39 @@
       },
       "airQuality": {
         "title": "空气质量",
-        "co2": "CO₂传感器",
+        "co2": "CO₂ 传感器",
         "co2Desc": "二氧化碳监测",
-        "voc": "VOC传感器",
+        "voc": "VOC 传感器",
         "vocDesc": "挥发性有机化合物",
         "particulate": "颗粒物",
-        "particulateDesc": "PM2.5和PM10"
+        "particulateDesc": "PM2.5 和 PM10",
+        "nitrogenDioxide": "二氧化氮",
+        "nitrogenDioxideDesc": "NO₂ 气体检测",
+        "carbonMonoxide": "一氧化碳",
+        "carbonMonoxideDesc": "CO 气体检测",
+        "refrigerantLeak": "制冷剂泄漏检测",
+        "refrigerantLeakDesc": "制冷剂泄漏传感器"
       },
       "wireless": {
         "title": "无线",
-        "bluetoothSensors": "蓝牙传感器",
-        "bluetoothSensorsDesc": "建筑自动化用无线HVAC传感器",
-        "gatewaysReceivers": "网关和接收器",
-        "gatewaysReceiversDesc": "连接无线传感器到BAS",
-        "outputModules": "输出模块",
-        "outputModulesDesc": "无线控制输出",
-        "wirelessAccessories": "无线配件",
-        "wirelessAccessoriesDesc": "安装和固定配件"
+        "roomSensors": "房间传感器",
+        "roomSensorsDesc": "用于室内环境的温湿度传感器",
+        "nonRoomSensors": "工业传感器",
+        "nonRoomSensorsDesc": "风管、室外空气和专业应用",
+        "gateway": "网关",
+        "gatewayDesc": "传感器连接的无线网关",
+        "wirelessAccessories": "配件",
+        "wirelessAccessoriesDesc": "安装和安装配件"
       },
       "accessories": {
         "title": "配件",
-        "mounting": "安装硬件",
-        "mountingDesc": "板,盒,支架",
-        "enclosures": "外壳",
-        "enclosuresDesc": "BAPI-Box和盖板",
-        "cables": "线缆和连接器",
-        "cablesDesc": "接线配件"
+        "allAccessories": "所有配件",
+        "allAccessoriesDesc": "安装硬件、外壳、电缆和传感器配件"
       },
       "testInstruments": {
         "title": "测试仪器",
-        "bluTestTemperature": "Blu-Test温度",
-        "bluTestTemperatureDesc": "NIST可溯源参考",
-        "bluTestHumidity": "Blu-Test湿度",
-        "bluTestHumidityDesc": "温度 + 湿度参考",
-        "bluTestPressure": "Blu-Test压力",
-        "bluTestPressureDesc": "数字压力计"
+        "allTestInstruments": "所有测试仪器",
+        "allTestInstrumentsDesc": "NIST可溯源的温度、湿度和压力基准"
       },
       "featured": {
         "title": "WAM™ 无线资产监控",
@@ -534,6 +532,11 @@
         "popular": "热门",
         "new": "新品",
         "premium": "高级"
+      },
+      "etaLine": {
+        "title": "ETA Line",
+        "allEtaLine": "所有ETA产品",
+        "allEtaLineDesc": "用于楼宇自动化的模块化I/O和控制解决方案"
       }
     }
   },

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ApplicationNoteList } from '@/components/application-notes/ApplicationNoteList';
 import { 
   GetApplicationNotesQuery, 
@@ -67,8 +67,13 @@ function groupNotesByCategory(
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('applicationNotesPage.metadata');
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'applicationNotesPage.metadata' });
   
   return {
     title: t('title'),
@@ -81,8 +86,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function ApplicationNotesPage() {
-  const t = await getTranslations('applicationNotesPage');
+export default async function ApplicationNotesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'applicationNotesPage' });
   const [applicationNotes, categories] = await Promise.all([
     fetchApplicationNotes(),
     fetchApplicationNoteCategories(),

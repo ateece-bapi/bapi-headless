@@ -1,10 +1,15 @@
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/navigation';
 import { ThermometerIcon, DropletsIcon, GaugeIcon } from '@/lib/icons';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('sensorSpecsPage.metadata');
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'sensorSpecsPage.metadata' });
   
   return {
     title: t('title'),
@@ -12,8 +17,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function SensorSpecsPage() {
-  const t = await getTranslations('sensorSpecsPage');
+export default async function SensorSpecsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'sensorSpecsPage' });
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}

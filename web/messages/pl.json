@@ -2412,5 +2412,76 @@
       "title": "Zmieniono język",
       "message": "Język został zmieniony na {language}"
     }
+  },
+  "sensorSpecsPage": {
+    "metadata": {
+      "title": "Przegląd i Specyfikacje Czujników BAPI | BAPI",
+      "description": "Kompletny przegląd specyfikacji czujników BAPI do monitorowania temperatury, wilgotności i ciśnienia w systemach automatyki budynkowej."
+    },
+    "hero": {
+      "title": "Przegląd Czujników BAPI",
+      "subtitle": "Kompletne specyfikacje techniczne czujników automatyki budynkowej"
+    },
+    "introduction": {
+      "heading": "Przegląd Czujników Temperatury, Wilgotności i Ciśnienia",
+      "description": "Istnieje wiele obiektów i lokalizacji, które obecnie polegają na czujnikach i przetwornikach temperatury, ciśnienia i wilgotności w celu zapewnienia stabilnego, bezpiecznego środowiska, takich jak szpitale, pomieszczenia czyste i centra danych. Sam czujnik lub przetwornik może zadecydować o powodzeniu lub porażce systemu, dlatego muszą być niezawodne, dokładne i w 100% kompatybilne z systemem kontroli budynku. Bardziej wymagające środowiska, postęp technologiczny i zmieniające się potrzeby klientów sprawiają, że branża ciągle dąży do nowych i ulepszonych czujników i przetworników. BAPI oferuje szeroką gamę czujników i przetworników temperatury, wilgotności i ciśnienia we wszystkich naszych jednostkach pokojowych, kanałowych, zanurzeniowych i powietrza zewnętrznego, tak aby były w 100% kompatybilne z systemem kontroli obiektu."
+    },
+    "sensorTypes": {
+      "thermistors": {
+        "title": "TERMISTORY",
+        "description": "Termistory to termicznie wrażliwe rezystory znane z wykazywania dużej zmiany oporu przy tylko niewielkiej zmianie temperatury. Zmiana oporu termistora jest nieliniowa. Podąża za predefiniowaną krzywą, która jest dostarczana przez producenta termistora.",
+        "buttonText": "Przegląd Termistorów"
+      },
+      "rtds": {
+        "title": "RTD",
+        "description": "RTD (Detektory Temperatury Oporowe) to termicznie wrażliwe elementy oporowe, które wykazują niewielką zmianę oporu na stopień zmiany temperatury. RTD są szczególnie rozpoznawalne dzięki doskonałej liniowości w całym zakresie temperatur z wysokim stopniem dokładności i powtarzalności.",
+        "buttonText": "Przegląd RTD"
+      },
+      "semiconductors": {
+        "title": "PÓŁPRZEWODNIKI",
+        "description": "Półprzewodniki są zaprojektowane tak, aby wykazywać określone wyjście prądowe bezpośrednio proporcjonalne do temperatury bezwzględnej (°K). Ta właściwość czyni je najbardziej liniowymi ze wszystkich powszechnych komercyjnych elementów czujnikowych HVAC/R. Przekazując to wyjście prądowe przez rezystor, wytwarzane jest proporcjonalne napięcie wyjściowe.",
+        "buttonText": "Przegląd Półprzewodników"
+      },
+      "temperatureTransmitters": {
+        "title": "PRZETWORNIKI TEMPERATURY",
+        "description": "Przetworniki temperatury zawierają czujnik RTD platynowy 100 Ohm lub 1k Ohm oraz wzmacniacz. Urządzenia te zapewniają dokładne i przewidywalne wyjście 4 do 20mA w określonym zakresie temperatur. Są specjalnie zaprojektowane do wykrywania i transmisji temperatury na duże odległości bez degradacji sygnału 4 do 20mA.",
+        "buttonText": "Przegląd Przetworników Temperatury"
+      },
+      "humidityTransmitters": {
+        "title": "PRZETWORNIKI WILGOTNOŚCI",
+        "description": "Przetworniki wilgotności zapewniają pomiar wilgotności o wysokiej dokładności 4 do 20mA, 0 do 5V lub 0 do 10V. Dostępne są dokładności 2% lub 3% Wilgotności Względnej (RH). Jednostki pokojowe BAPI są chronione przez formowaną obudowę ze zintegrowanym filtrem, podczas gdy jednostki kanałowe i powietrza zewnętrznego są wyposażone w wymienny filtr ze spiekanej stali nierdzewnej o grubości 100 mikronów. Czujnik nie jest podatny na lotne związki organiczne (VOC) lub zanieczyszczenia powierzchniowe.",
+        "buttonText": "Przegląd Przetworników Wilgotności"
+      },
+      "pressureTransmitters": {
+        "title": "PRZETWORNIKI CIŚNIENIA",
+        "description": "Sercem każdego Przetwornika Ciśnienia BAPI jest mikroobrobiony, monokrystaliczny krzem, piezooporowy czujnik ciśnienia, który zmienia opór w funkcji przyłożonego ciśnienia. Ponieważ tensometry krzemowe mają wysokie poziomy wyjściowe w stosunku do przyłożonego ciśnienia, poziomy ciśnienia w membranie BAPI mogą być niższe niż w innych tensometrach niekrzemowych. Oznacza to bardziej dokładny pomiar niższych poziomów ciśnienia.",
+        "buttonText": "Przegląd Przetworników Ciśnienia"
+      }
+    },
+    "cta": {
+      "title": "Poznaj Nasze Produkty Czujnikowe",
+      "description": "Przeglądaj naszą kompletną linię czujników temperatury, wilgotności i ciśnienia",
+      "buttonText": "Zobacz Wszystkie Produkty →"
+    }
+  },
+  "applicationNotesPage": {
+    "metadata": {
+      "title": "Notatki Techniczne Aplikacji | BAPI",
+      "description": "Poznaj naszą obszerną bibliotekę notatek technicznych aplikacji obejmujących instalację czujników, najlepsze praktyki, przewodniki rozwiązywania problemów i spostrzeżenia branżowe dla zastosowań HVAC."
+    },
+    "hero": {
+      "badge": "Wskazówki Techniczne",
+      "title": "Notatki Aplikacji",
+      "subtitle": "Szczegółowe artykuły techniczne obejmujące instalację czujników, najlepsze praktyki i spostrzeżenia branżowe, które pomogą Ci w pełni wykorzystać czujniki BAPI.",
+      "stats": {
+        "articlesLabel": "Artykuły Techniczne",
+        "expertiseLabel": "Lat Doświadczenia",
+        "accessLabel": "Darmowy Dostęp"
+      }
+    },
+    "valueProposition": {
+      "heading": "Eksperckie Wskazówki od Liderów Branży",
+      "description": "Nasze notatki aplikacji są napisane przez zespół inżynieryjny BAPI z dziesięcioleciami połączonego doświadczenia. Każdy artykuł zapewnia praktyczne, przetestowane w terenie rozwiązania typowych wyzwań związanych z instalacją, kalibracją i konserwacją czujników."
+    }
   }
 }

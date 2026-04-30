@@ -2409,5 +2409,76 @@
       "wireless": "Wireless Products",
       "airQuality": "Air Quality"
     }
+  },
+  "sensorSpecsPage": {
+    "metadata": {
+      "title": "BAPI Sensors Overview & Specifications | BAPI",
+      "description": "Complete overview of BAPI sensor specifications for temperature, humidity, and pressure monitoring in building automation systems."
+    },
+    "hero": {
+      "title": "BAPI Sensors Overview",
+      "subtitle": "Complete technical specifications for building automation sensors"
+    },
+    "introduction": {
+      "heading": "Temperature, Humidity & Pressure Sensor Overview",
+      "description": "There are many facilities and locations today that rely on temperature, pressure and humidity sensors and transmitters to provide a stable, secure environment, such as hospitals, clean rooms and data centers. The sensor or transmitter itself can make or break the system, therefore they must be dependable, accurate and 100% compatible with the building control system. More demanding environments, advances in technology, and changing customer needs keep the industry striving for new and improved sensors and transmitters. BAPI offers a wide range of temperature, humidity and pressure sensors and transmitters in all of our room, duct, immersion and outside air units so that they are 100% compatible with the facility's control system."
+    },
+    "sensorTypes": {
+      "thermistors": {
+        "title": "THERMISTORS",
+        "description": "Thermistors are thermally sensitive resistors known for exhibiting a large change in resistance with only a small change in temperature. A thermistor's change in resistance is non-linear. It follows a pre-defined curve which is provided by the thermistor manufacturer.",
+        "buttonText": "Thermistor Overview"
+      },
+      "rtds": {
+        "title": "RTDs",
+        "description": "RTDs (Resistance Temperature Detectors) are thermally sensitive resistive elements that exhibit a small change in resistance per degree of temperature change. RTDs are especially recognized for excellent linearity throughout their temperature range with a high degree of accuracy and repeatability.",
+        "buttonText": "RTD Overview"
+      },
+      "semiconductors": {
+        "title": "SEMICONDUCTORS",
+        "description": "Semiconductors are designed to exhibit a defined current output directly proportional to the absolute temperature (°K). This property makes them the most linear of all the common commercial HVAC/R sensing elements. By putting this current output across a resistor, a proportional output voltage is produced.",
+        "buttonText": "Semiconductor Overview"
+      },
+      "temperatureTransmitters": {
+        "title": "TEMPERATURE TRANSMITTERS",
+        "description": "Temperature transmitters incorporate a platinum 100 Ohm or 1k Ohm RTD sensor and an amplifier. These devices provide an accurate and predictable 4 to 20mA output over a specified temperature range. They are specifically designed for temperature sensing and transmission over long distances without degradation of the 4 to 20mA signal.",
+        "buttonText": "Temperature Transmitters Overview"
+      },
+      "humidityTransmitters": {
+        "title": "HUMIDITY TRANSMITTERS",
+        "description": "Humidity transmitters provide a high accuracy 4 to 20mA, 0 to 5V or 0 to 10V humidity measurement. Accuracies of 2% or 3% Relative Humidity (RH) are available. BAPI room units are protected by a molded housing with an integral filter, while duct and outside air units come with a removeable 100 micron sintered stainless steel filter. The sensor is unaffected by volatile organic compounds (VOC's) or surface contamination.",
+        "buttonText": "Humidity Transmitters Overview"
+      },
+      "pressureTransmitters": {
+        "title": "PRESSURE TRANSMITTERS",
+        "description": "The heart of every BAPI Pressure Transmitter is a micro-machined, single-crystal silicon, piezoresistive pressure sensor that changes resistance as a function of applied pressure. Since silicon strain gauges have high output levels in relation to the pressure applied, the pressure levels in the BAPI diaphragm can be lower than in other non-silicon strain gauges. This means a more accurate measurement of lower pressure levels.",
+        "buttonText": "Pressure Transmitters Overview"
+      }
+    },
+    "cta": {
+      "title": "Explore Our Sensor Products",
+      "description": "Browse our complete line of temperature, humidity, and pressure sensors",
+      "buttonText": "View All Products →"
+    }
+  },
+  "applicationNotesPage": {
+    "metadata": {
+      "title": "Technical Application Notes | BAPI",
+      "description": "Explore our comprehensive library of technical application notes covering sensor installation, best practices, troubleshooting guides, and industry insights for HVAC applications."
+    },
+    "hero": {
+      "badge": "Technical Guidance",
+      "title": "Application Notes",
+      "subtitle": "In-depth technical articles covering sensor installation, best practices, and industry insights to help you get the most out of your BAPI sensors.",
+      "stats": {
+        "articlesLabel": "Technical Articles",
+        "expertiseLabel": "Years of Expertise",
+        "accessLabel": "Free Access"
+      }
+    },
+    "valueProposition": {
+      "heading": "Expert Guidance from Industry Leaders",
+      "description": "Our application notes are written by BAPI's engineering team with decades of combined experience. Each article provides practical, field-tested solutions to common challenges in sensor installation, calibration, and maintenance."
+    }
   }
 }

@@ -2413,5 +2413,76 @@
       "title": "Đã thay đổi ngôn ngữ",
       "message": "Đã chuyển sang ngôn ngữ {language}"
     }
+  },
+  "sensorSpecsPage": {
+    "metadata": {
+      "title": "Tổng quan & Thông số kỹ thuật Cảm biến BAPI | BAPI",
+      "description": "Tổng quan đầy đủ về thông số kỹ thuật cảm biến BAPI cho giám sát nhiệt độ, độ ẩm và áp suất trong hệ thống tự động hóa tòa nhà."
+    },
+    "hero": {
+      "title": "Tổng quan Cảm biến BAPI",
+      "subtitle": "Thông số kỹ thuật đầy đủ cho cảm biến tự động hóa tòa nhà"
+    },
+    "introduction": {
+      "heading": "Tổng quan Cảm biến Nhiệt độ, Độ ẩm & Áp suất",
+      "description": "Ngày nay có rất nhiều cơ sở và địa điểm dựa vào cảm biến và bộ truyền tín hiệu nhiệt độ, áp suất và độ ẩm để cung cấp môi trường ổn định, an toàn, chẳng hạn như bệnh viện, phòng sạch và trung tâm dữ liệu. Chính cảm biến hoặc bộ truyền tín hiệu có thể quyết định thành công hay thất bại của hệ thống, do đó chúng phải đáng tin cậy, chính xác và tương thích 100% với hệ thống điều khiển tòa nhà. Môi trường khắt khe hơn, tiến bộ công nghệ và nhu cầu thay đổi của khách hàng khiến ngành công nghiệp không ngừng phấn đấu để có cảm biến và bộ truyền tín hiệu mới và cải tiến. BAPI cung cấp một loạt các cảm biến và bộ truyền tín hiệu nhiệt độ, độ ẩm và áp suất trong tất cả các đơn vị không khí phòng, ống dẫn, ngâm và bên ngoài để chúng tương thích 100% với hệ thống điều khiển của cơ sở."
+    },
+    "sensorTypes": {
+      "thermistors": {
+        "title": "NHIỆT ĐIỆN TRỞ",
+        "description": "Nhiệt điện trở là các điện trở nhạy cảm với nhiệt được biết đến với việc thể hiện sự thay đổi lớn về điện trở chỉ với một sự thay đổi nhỏ về nhiệt độ. Sự thay đổi điện trở của nhiệt điện trở là phi tuyến tính. Nó tuân theo một đường cong được xác định trước do nhà sản xuất nhiệt điện trở cung cấp.",
+        "buttonText": "Tổng quan Nhiệt điện trở"
+      },
+      "rtds": {
+        "title": "RTDs",
+        "description": "RTDs (Bộ phát hiện nhiệt độ điện trở) là các phần tử điện trở nhạy cảm với nhiệt thể hiện sự thay đổi nhỏ về điện trở trên mỗi độ thay đổi nhiệt độ. RTDs đặc biệt được công nhận về tính tuyến tính xuất sắc trong suốt phạm vi nhiệt độ của chúng với độ chính xác cao và khả năng lặp lại.",
+        "buttonText": "Tổng quan RTD"
+      },
+      "semiconductors": {
+        "title": "BÁN DẪN",
+        "description": "Bán dẫn được thiết kế để thể hiện đầu ra dòng điện xác định tỷ lệ thuận trực tiếp với nhiệt độ tuyệt đối (°K). Tính chất này làm cho chúng trở thành tuyến tính nhất trong tất cả các phần tử cảm biến thương mại HVAC/R phổ biến. Bằng cách đưa đầu ra dòng điện này qua một điện trở, một điện áp đầu ra tỷ lệ được tạo ra.",
+        "buttonText": "Tổng quan Bán dẫn"
+      },
+      "temperatureTransmitters": {
+        "title": "BỘ TRUYỀN TÍN HIỆU NHIỆT ĐỘ",
+        "description": "Bộ truyền tín hiệu nhiệt độ kết hợp cảm biến RTD bạch kim 100 Ohm hoặc 1k Ohm và một bộ khuếch đại. Các thiết bị này cung cấp đầu ra 4 đến 20mA chính xác và có thể dự đoán trong phạm vi nhiệt độ được chỉ định. Chúng được thiết kế đặc biệt để cảm nhận và truyền nhiệt độ trên khoảng cách xa mà không làm suy giảm tín hiệu 4 đến 20mA.",
+        "buttonText": "Tổng quan Bộ truyền tín hiệu nhiệt độ"
+      },
+      "humidityTransmitters": {
+        "title": "BỘ TRUYỀN TÍN HIỆU ĐỘ ẨM",
+        "description": "Bộ truyền tín hiệu độ ẩm cung cấp đo lường độ ẩm chính xác cao 4 đến 20mA, 0 đến 5V hoặc 0 đến 10V. Độ chính xác 2% hoặc 3% Độ ẩm tương đối (RH) có sẵn. Các đơn vị phòng BAPI được bảo vệ bởi vỏ đúc với bộ lọc tích hợp, trong khi các đơn vị ống dẫn và không khí bên ngoài đi kèm với bộ lọc thép không gỉ thiêu kết 100 micron có thể tháo rời. Cảm biến không bị ảnh hưởng bởi các hợp chất hữu cơ dễ bay hơi (VOC) hoặc ô nhiễm bề mặt.",
+        "buttonText": "Tổng quan Bộ truyền tín hiệu độ ẩm"
+      },
+      "pressureTransmitters": {
+        "title": "BỘ TRUYỀN TÍN HIỆU ÁP SUẤT",
+        "description": "Trái tim của mỗi Bộ truyền tín hiệu áp suất BAPI là cảm biến áp suất piezoresistive silicon tinh thể đơn được gia công vi mô thay đổi điện trở theo chức năng của áp suất được áp dụng. Vì các đồng hồ đo biến dạng silicon có mức đầu ra cao liên quan đến áp suất được áp dụng, mức áp suất trong màng ngăn BAPI có thể thấp hơn so với các đồng hồ đo biến dạng không phải silicon khác. Điều này có nghĩa là đo lường chính xác hơn các mức áp suất thấp hơn.",
+        "buttonText": "Tổng quan Bộ truyền tín hiệu áp suất"
+      }
+    },
+    "cta": {
+      "title": "Khám phá Sản phẩm Cảm biến của chúng tôi",
+      "description": "Duyệt dòng sản phẩm đầy đủ cảm biến nhiệt độ, độ ẩm và áp suất của chúng tôi",
+      "buttonText": "Xem tất cả sản phẩm →"
+    }
+  },
+  "applicationNotesPage": {
+    "metadata": {
+      "title": "Ghi Chú Ứng Dụng Kỹ Thuật | BAPI",
+      "description": "Khám phá thư viện toàn diện các ghi chú ứng dụng kỹ thuật của chúng tôi bao gồm lắp đặt cảm biến, phương pháp hay nhất, hướng dẫn khắc phục sự cố, và thông tin chuyên sâu về ngành cho các ứng dụng HVAC."
+    },
+    "hero": {
+      "badge": "Hướng Dẫn Kỹ Thuật",
+      "title": "Ghi Chú Ứng Dụng",
+      "subtitle": "Các bài viết kỹ thuật chuyên sâu bao gồm lắp đặt cảm biến, phương pháp hay nhất, và thông tin chuyên sâu về ngành để giúp bạn tận dụng tối đa các cảm biến BAPI của mình.",
+      "stats": {
+        "articlesLabel": "Bài Viết Kỹ Thuật",
+        "expertiseLabel": "Năm Kinh Nghiệm",
+        "accessLabel": "Truy Cập Miễn Phí"
+      }
+    },
+    "valueProposition": {
+      "heading": "Hướng Dẫn Chuyên Môn Từ Các Chuyên Gia Hàng Đầu",
+      "description": "Các ghi chú ứng dụng của chúng tôi được viết bởi đội ngũ kỹ sư của BAPI với hàng thập kỷ kinh nghiệm kết hợp. Mỗi bài viết cung cấp các giải pháp thực tế, đã được thử nghiệm thực địa cho các thách thức thường gặp trong lắp đặt, hiệu chuẩn và bảo trì cảm biến."
+    }
   }
 }

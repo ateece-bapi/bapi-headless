@@ -492,9 +492,9 @@
         "particulate": "颗粒物",
         "particulateDesc": "PM2.5 和 PM10",
         "nitrogenDioxide": "二氧化氮",
-        "nitrogenDioxideDesc": "NO₂ 气体检测",
+        "nitrogenDioxideDesc": "NO₂气体检测",
         "carbonMonoxide": "一氧化碳",
-        "carbonMonoxideDesc": "CO 气体检测",
+        "carbonMonoxideDesc": "CO气体检测",
         "refrigerantLeak": "制冷剂泄漏检测",
         "refrigerantLeakDesc": "制冷剂泄漏传感器"
       },

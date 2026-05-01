@@ -93,8 +93,8 @@
         "nitrogenDioxideDesc": "NO₂ गैस का पता लगाना",
         "carbonMonoxide": "कार्बन मोनोऑक्साइड",
         "carbonMonoxideDesc": "CO गैस का पता लगाना",
-        "refrigerantLeak": "रेफ्रिजरेंट लीक डिटेक्शन",
-        "refrigerantLeakDesc": "रेफ्रिजरेंट लीक सेंसर"
+        "refrigerantLeak": "रेफ्रिजरेंट रिसाव का पता लगाना",
+        "refrigerantLeakDesc": "रेफ्रिजरेंट रिसाव सेंसर"
       },
       "wireless": {
         "title": "वायरलेस",

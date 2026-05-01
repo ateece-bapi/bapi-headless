@@ -93,8 +93,8 @@
         "nitrogenDioxideDesc": "Wykrywanie gazu NO₂",
         "carbonMonoxide": "Tlenek Węgla",
         "carbonMonoxideDesc": "Wykrywanie gazu CO",
-        "refrigerantLeak": "Wykrywanie Wycieków Czynnika Chłodniczego",
-        "refrigerantLeakDesc": "Czujniki wycieków czynnika chłodniczego"
+        "refrigerantLeak": "Wykrywanie Wycieku Chłodziwa",
+        "refrigerantLeakDesc": "Czujniki wycieku chłodziwa"
       },
       "wireless": {
         "title": "Bezprzewodowe",

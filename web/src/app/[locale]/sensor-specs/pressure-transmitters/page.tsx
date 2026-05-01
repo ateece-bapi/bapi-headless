@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
-import { pressureRanges, type PressureRange, type PressureData } from '@/data/pressureTables';
+import { pressureRanges, type PressureData } from '@/data/pressureTables';
 
 // Helper component to render pressure table
-function PressureTable({ data, unit, t }: { data: PressureData; unit: string; t: any }) {
+function PressureTable({ data, t }: { data: PressureData; t: any }) {
   if (data.length === 0) {
     return (
       <div className="bg-accent-50 border border-accent-200 rounded-lg p-6 text-center">
@@ -359,7 +359,7 @@ export default function PressureTransmittersPage() {
                   <h3 className="text-2xl font-bold text-center text-neutral-900 mb-6">
                     {t('outputTables.tableHeading', { range: range.label })}
                   </h3>
-                  <PressureTable data={range.data} unit={range.unit} t={t} />
+                  <PressureTable data={range.data} t={t} />
                 </div>
               )
             ))}

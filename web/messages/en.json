@@ -2527,7 +2527,7 @@
       },
       "footnotes": {
         "note1": "*Other thermistors are available. Contact BAPI for availability and specifications of additional thermistor types.",
-        "note2": "**Available as an [X] (high accuracy) sensors.",
+        "note2": "**Available as an [X] (high accuracy) sensor.",
         "note3": "Minimum quantities and long lead times may apply. The \"JX5\" and \"5K\" thermistors are typically stocked items."
       }
     },
@@ -2619,7 +2619,7 @@
     },
     "description": {
       "heading": "Semiconductor Description",
-      "paragraph1": "BAPI semiconductors are designed to exhibit a defined current output directly proportional to the absolute temperature (°K). This property makes them the most linear of all the common commercial HVAC sensing elements. By putting this current output across a resistor, a proportional output voltage is produced.",
+      "paragraph1": "BAPI semiconductors are designed to exhibit a defined <strong>current output</strong> directly proportional to the <strong>absolute temperature</strong> (°K). This property makes them the most linear of all the common commercial HVAC sensing elements. By putting this current output across a resistor, a proportional output voltage is produced.",
       "paragraph2": "The AD592 semiconductor temperature sensor supplied with BAPI products provides a two wire 248 to 378 micro amp output or a three wire 2.48 to 3.78 volt output over a range of -13 to 221 °F (-25 to 105 °C). These units are offset using equipment traceable to the National Institute of Standards and Technology (NIST). Each unit is then labeled with the actual temperature and the corresponding offset."
     },
     "specifications": {
@@ -2828,7 +2828,7 @@
       },
       "media": {
         "title": "Media",
-        "value": "Non-Ionic, Non-Corrosive, Clean, Dry Gasses"
+        "value": "Non-Ionic, Non-Corrosive, Clean, Dry Gases"
       }
     },
     "outputTables": {

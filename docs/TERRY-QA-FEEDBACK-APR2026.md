@@ -952,7 +952,7 @@ it('handles special characters - periods', () => {
 
 ---
 
-### 24. Sensor Detail Pages Translation (Phase 1 i18n) 🌐
+### 25. Sensor Detail Pages Translation (Phase 1 i18n) 🌐
 **Status:** 🟢 Complete  
 **Priority:** P0 - Phase 1 Critical  
 **Type:** Internationalization - Content Translation
@@ -1025,6 +1025,8 @@ export default function SensorPage() {
 **Assigned To:** ✅ Complete (May 1, 2026)  
 **Actual Effort:** ~3 hours (extraction + translation + conversion + validation)
 
+**Note:** This is issue #25 (not #24 - that number was already taken by "Empty Dropdown for Attributes with Periods in Name" earlier in this document).
+
 ---
 
 ## 🔵 Requires Team Discussion
@@ -1073,7 +1075,7 @@ export default function SensorPage() {
 
 ## 📊 Summary Statistics
 
-**Total Issues:** 25 (added Sensor Translation - Issue #24)  
+**Total Issues:** 25 (added Sensor Translation - Issue #25)  
 **P0 Critical:** 3 (added Sensor Translation i18n requirement)  
 **P1 High:** 15  
 **P2 Medium:** 5  

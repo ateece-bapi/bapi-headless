@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
 
 export default function RTDOverviewPage() {
+  const t = useTranslations('rtdPage');
   const [activeTab, setActiveTab] = useState<'385' | '375' | 'nickel'>('385');
 
   return (
@@ -17,7 +19,7 @@ export default function RTDOverviewPage() {
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
           >
             <ChevronLeftIcon className="h-5 w-5" />
-            Back to Sensor Specifications
+            {t('breadcrumb.back')}
           </Link>
         </div>
       </div>
@@ -26,11 +28,10 @@ export default function RTDOverviewPage() {
       <div className="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            RTD Overview
+            {t('hero.title')}
           </h1>
           <p className="text-xl text-primary-50 max-w-3xl">
-            Resistance Temperature Detectors with excellent linearity,
-            accuracy, and repeatability
+            {t('hero.subtitle')}
           </p>
         </div>
       </div>
@@ -40,33 +41,17 @@ export default function RTDOverviewPage() {
         {/* Description Section */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-            RTD Description
+            {t('description.heading')}
           </h2>
           <div className="prose prose-lg max-w-none">
             <p className="text-neutral-700 leading-relaxed mb-4">
-              BAPI RTDs (Resistance Temperature Detectors) are thermally
-              sensitive resistive elements that exhibit a small change in
-              resistance per degree of temperature change. RTDs are especially
-              recognized for excellent linearity throughout their temperature
-              range with a high degree of accuracy and repeatability.
+              {t('description.paragraph1')}
             </p>
             <p className="text-neutral-700 leading-relaxed mb-4">
-              RTDs supplied in BAPI products feature a standard
-              interchangeability tolerance of ±0.3°C measured at 0°C. Higher
-              accuracy sensors are also available. The Class A line has an
-              interchangeability tolerance of ± 0.15°C measured at 0°C. Please
-              call for availability and pricing on Class A RTDs. Whether
-              standard or Class A, BAPI RTDs have such a high accuracy that they
-              can be interchanged without the expense of offsetting the
-              controller.
+              {t('description.paragraph2')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              Most RTD sensing elements can be packaged to withstand an
-              extremely broad temperature range (‑200 to 600°C). For most
-              purposes, the standard operating range should be sufficient, but
-              we also have RTDs with a higher or lower operating temperature
-              range. BAPI offers 1KΩ Platinum RTDs with various ranges to meet
-              your specific application needs.
+              {t('description.paragraph3')}
             </p>
           </div>
         </section>
@@ -74,39 +59,34 @@ export default function RTDOverviewPage() {
         {/* Definition of Specification Terms */}
         <section className="max-w-4xl mx-auto mb-16 bg-neutral-50 rounded-lg p-8">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8">
-            Definition of Specification Terms
+            {t('specifications.heading')}
           </h2>
 
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                Tolerance of Resistance (Accuracy)
+                {t('specifications.tolerance.title')}
               </h3>
               <p className="text-neutral-700">
-                The maximum amount that RTDs following the same curve will differ
-                from each other.
+                {t('specifications.tolerance.description')}
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                Stability (drift)
+                {t('specifications.stability.title')}
               </h3>
               <p className="text-neutral-700">
-                The amount that the RTD resistance characteristics will change.
-                BAPI uses only the highest quality, film platinum RTD sensors with
-                very small drift values.
+                {t('specifications.stability.description')}
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                Operating Range
+                {t('specifications.operatingRange.title')}
               </h3>
               <p className="text-neutral-700">
-                The operating range shown is for the RTD sensor only. The mounting
-                package may further limit the operating range and is described on
-                each mounting type specification.
+                {t('specifications.operatingRange.description')}
               </p>
             </div>
           </div>
@@ -115,7 +95,7 @@ export default function RTDOverviewPage() {
         {/* RTD Specifications Table */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            RTD Specifications
+            {t('specsTable.heading')}
           </h2>
 
           <div className="bg-white border-2 border-neutral-200 rounded-lg overflow-hidden mb-8">
@@ -123,21 +103,20 @@ export default function RTDOverviewPage() {
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Tolerance of Resistance (Accuracy)
+                    {t('specsTable.toleranceOfResistance.title')}
                   </h3>
                   <p className="text-neutral-700">
-                    Range: ±0.06 of the absolute ohm value at 0°C in accordance
-                    with Standard 1/3 DIN
+                    {t('specsTable.toleranceOfResistance.description')}
                   </p>
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Tolerance % (%)
+                    {t('specsTable.tolerancePercent.title')}
                   </h3>
                   <p className="text-neutral-700">
-                    Range: ±0.0 ± (0.02 x t (0.0111 + t)); t= temp °C <br />
-                    Example: At 0°C - Range ±0.02°C, At 100°C - Range ±0.13°C <br />
-                    Averaging Standard: ±0.0 ± (0.0052 + (0.01 x temp °C))
+                    {t('specsTable.tolerancePercent.description')} <br />
+                    {t('specsTable.tolerancePercent.example')} <br />
+                    {t('specsTable.tolerancePercent.averaging')}
                   </p>
                 </div>
               </div>
@@ -145,29 +124,29 @@ export default function RTDOverviewPage() {
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6 bg-neutral-50">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Stability (drift)
+                    {t('specsTable.stabilityDrift.title')}
                   </h3>
                   <p className="text-neutral-700">
-                    ±0.1°C over a 5,000 continuous hours at 65°C
+                    {t('specsTable.stabilityDrift.description')}
                   </p>
                 </div>
                 <div className="p-6 bg-neutral-50">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Sensitivity
+                    {t('specsTable.sensitivity.title')}
                   </h3>
                   <p className="text-neutral-700">
-                    1KΩ: 2.13Ω/°C (at 70°F)
+                    {t('specsTable.sensitivity.description1K')}
                     <br />
-                    100Ω: 0.385Ω/°C
+                    {t('specsTable.sensitivity.description100')}
                   </p>
                 </div>
               </div>
 
               <div className="p-6">
                 <h3 className="font-semibold text-neutral-900 mb-2">
-                  Self Heating (in RTD only)
+                  {t('specsTable.selfHeating.title')}
                 </h3>
-                <p className="text-neutral-700">0.4°C/mW in air</p>
+                <p className="text-neutral-700">{t('specsTable.selfHeating.description')}</p>
               </div>
             </div>
           </div>
@@ -175,23 +154,23 @@ export default function RTDOverviewPage() {
           {/* Standard & Internal Temperature Ranges */}
           <div className="bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
             <h3 className="text-xl font-bold text-neutral-900 p-6 bg-neutral-50 border-b-2 border-neutral-200">
-              Standard & Internal Temperature Ranges for the 1KΩ Platinum RTD
+              {t('standardRanges.heading')}
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-neutral-100">
                   <tr>
                     <th className="px-6 py-3 text-left text-sm font-bold text-neutral-900">
-                      Symbol
+                      {t('standardRanges.tableHeaders.symbol')}
                     </th>
                     <th className="px-6 py-3 text-left text-sm font-bold text-neutral-900">
-                      Reference Resistance
+                      {t('standardRanges.tableHeaders.referenceResistance')}
                     </th>
                     <th className="px-6 py-3 text-left text-sm font-bold text-neutral-900">
-                      Temperature Coefficient
+                      {t('standardRanges.tableHeaders.temperatureCoefficient')}
                     </th>
                     <th className="px-6 py-3 text-left text-sm font-bold text-neutral-900">
-                      Operating Range
+                      {t('standardRanges.tableHeaders.operatingRange')}
                     </th>
                   </tr>
                 </thead>
@@ -338,12 +317,10 @@ export default function RTDOverviewPage() {
         {/* Output Tables Section */}
         <section className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            RTD Output Tables
+            {t('outputTables.heading')}
           </h2>
           <p className="text-center text-neutral-700 mb-8 max-w-3xl mx-auto">
-            Detailed resistance vs. temperature tables showing precise ohm values
-            for each RTD type across their full operating range. These tables are
-            essential for system integration and troubleshooting.
+            {t('outputTables.description')}
           </p>
 
           {/* Tab Navigation */}

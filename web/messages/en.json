@@ -2480,5 +2480,559 @@
       "heading": "Expert Guidance from Industry Leaders",
       "description": "Our application notes are written by BAPI's engineering team with decades of combined experience. Each article provides practical, field-tested solutions to common challenges in sensor installation, calibration, and maintenance."
     }
+  },
+  "thermistorPage": {
+    "breadcrumb": {
+      "back": "Back to Sensor Specifications"
+    },
+    "hero": {
+      "title": "Thermistor Overview",
+      "subtitle": "Thermally sensitive resistors with exceptional accuracy and reliability for HVAC applications"
+    },
+    "description": {
+      "heading": "Thermistor Description",
+      "paragraph1": "BAPI Thermistors are thermally sensitive resistors known for exhibiting a large change in resistance with only a small change in temperature. It is important to note that a thermistor's change in resistance is non-linear. It follows a pre-defined curve which is provided by the thermistor manufacturer.",
+      "paragraph2": "Thermistors are manufactured to follow a specific curve with a high degree of accuracy. All BAPI thermistors have a standard accuracy of ± 0.2 °C throughout the commercial temperature range of 0 to 70 °C. BAPI also has available a higher accuracy sensor for meeting tougher specs. The extra precision [X line has an initial accuracy of ± 0.1 °C throughout the commercial temperature range of 0 to 70 °C. Please call for availability and pricing on [X line thermistors. Both accuracy levels allow BAPI thermistors to be interchanged without the extra expense of offsetting the controller.",
+      "footnote": "*All Passive Thermistors 10K Ω and smaller are CE compliant"
+    },
+    "specifications": {
+      "heading": "Definition of Specification Terms",
+      "interchangeability": {
+        "title": "Interchangeability Tolerance (Accuracy)",
+        "description": "The maximum amount that thermistors following the same curve will differ from each other."
+      },
+      "dissipation": {
+        "title": "Dissipation Constant",
+        "description": "The power needed to raise the thermistor's body temperature by 1°C. At the heart of all BAPI thermistor products is a sensor with a 2.7 mW/°C dissipation constant to ensure that self-heating stays at an absolute minimum."
+      },
+      "stability": {
+        "title": "Stability (Drift)",
+        "description": "The amount that the resistance characteristics of a thermistor will change. BAPI uses only the highest quality, \"pre-aged\" thermistors with very small drift values. Over a ten year span, BAPI thermistors will not change more than 0.1°C."
+      },
+      "operatingRange": {
+        "title": "Operating Range",
+        "description": "The operating range shown is for the thermistor only. The mounting package may further limit the operating range and is described on each mounting type specification. The thermal time constant will also be affected based on the added mass of the stainless steel probe and moisture protection encapsulation."
+      },
+      "thermalTime": {
+        "title": "Thermal Time Constant",
+        "description": "Bare sensors are typically measured and specified in still air and are timed at the statistical 63.2% of the step temperature change. A stirred liquid test will typically result in a much faster response time and is also timed at 63.2% of the step temperature change. The time constant is always the same whatever the temperature step change may be."
+      }
+    },
+    "specsTable": {
+      "heading": "Thermistor Specifications",
+      "headers": {
+        "type": "Thermistor Type",
+        "tolerance": "Interchangeability Tolerance/Accuracy",
+        "range": "Operating Range"
+      },
+      "footnotes": {
+        "note1": "*Other thermistors are available. Contact BAPI for availability and specifications of additional thermistor types.",
+        "note2": "**Available as an [X] (high accuracy) sensors.",
+        "note3": "Minimum quantities and long lead times may apply. The \"JX5\" and \"5K\" thermistors are typically stocked items."
+      }
+    },
+    "outputCurve": {
+      "heading": "Typical Thermistor Output Curve",
+      "imageAlt": "Typical Thermistor Output Curve 10K-2 Sensor showing resistance (Ohms) vs temperature (°C)",
+      "caption": "Figure 1 - Typical Thermistor Output Curve 10K-2 Sensor"
+    },
+    "outputTables": {
+      "heading": "Thermistor Output Tables"
+    }
+  },
+  "rtdPage": {
+    "breadcrumb": {
+      "back": "Back to Sensor Specifications"
+    },
+    "hero": {
+      "title": "RTD Overview",
+      "subtitle": "Resistance Temperature Detectors with excellent linearity, accuracy, and repeatability"
+    },
+    "description": {
+      "heading": "RTD Description",
+      "paragraph1": "BAPI RTDs (Resistance Temperature Detectors) are thermally sensitive resistive elements that exhibit a small change in resistance per degree of temperature change. RTDs are especially recognized for excellent linearity throughout their temperature range with a high degree of accuracy and repeatability.",
+      "paragraph2": "RTDs supplied in BAPI products feature a standard interchangeability tolerance of ±0.3°C measured at 0°C. Higher accuracy sensors are also available. The Class A line has an interchangeability tolerance of ± 0.15°C measured at 0°C. Please call for availability and pricing on Class A RTDs. Whether standard or Class A, BAPI RTDs have such a high accuracy that they can be interchanged without the expense of offsetting the controller.",
+      "paragraph3": "Most RTD sensing elements can be packaged to withstand an extremely broad temperature range (‑200 to 600°C). For most purposes, the standard operating range should be sufficient, but we also have RTDs with a higher or lower operating temperature range. BAPI offers 1KΩ Platinum RTDs with various ranges to meet your specific application needs."
+    },
+    "specifications": {
+      "heading": "Definition of Specification Terms",
+      "tolerance": {
+        "title": "Tolerance of Resistance (Accuracy)",
+        "description": "The maximum amount that RTDs following the same curve will differ from each other."
+      },
+      "stability": {
+        "title": "Stability (drift)",
+        "description": "The amount that the RTD resistance characteristics will change. BAPI uses only the highest quality, film platinum RTD sensors with very small drift values."
+      },
+      "operatingRange": {
+        "title": "Operating Range",
+        "description": "The operating range shown is for the RTD sensor only. The mounting package may further limit the operating range and is described on each mounting type specification."
+      }
+    },
+    "specsTable": {
+      "heading": "RTD Specifications",
+      "toleranceOfResistance": {
+        "title": "Tolerance of Resistance (Accuracy)",
+        "description": "Range: ±0.06 of the absolute ohm value at 0°C in accordance with Standard 1/3 DIN"
+      },
+      "tolerancePercent": {
+        "title": "Tolerance % (%)",
+        "description": "Range: ±0.0 ± (0.02 x t (0.0111 + t)); t= temp °C",
+        "example": "At 0°C - Range ±0.02°C, At 100°C - Range ±0.13°C",
+        "averaging": "Averaging Standard: ±0.0 ± (0.0052 + (0.01 x temp °C))"
+      },
+      "stabilityDrift": {
+        "title": "Stability (drift)",
+        "description": "±0.1°C over a 5,000 continuous hours at 65°C"
+      },
+      "sensitivity": {
+        "title": "Sensitivity",
+        "description1K": "1KΩ: 2.13Ω/°C (at 70°F)",
+        "description100": "100Ω: 0.385Ω/°C"
+      },
+      "selfHeating": {
+        "title": "Self Heating (in RTD only)",
+        "description": "0.4°C/mW in air"
+      }
+    },
+    "standardRanges": {
+      "heading": "Standard & Internal Temperature Ranges for the 1KΩ Platinum RTD",
+      "tableHeaders": {
+        "symbol": "Symbol",
+        "referenceResistance": "Reference Resistance",
+        "temperatureCoefficient": "Temperature Coefficient",
+        "operatingRange": "Operating Range"
+      }
+    },
+    "outputTables": {
+      "heading": "RTD Output Tables",
+      "description": "Detailed resistance vs. temperature tables showing precise ohm values for each RTD type across their full operating range. These tables are essential for system integration and troubleshooting."
+    }
+  },
+  "semiconductorPage": {
+    "breadcrumb": {
+      "back": "Back to Sensor Specifications"
+    },
+    "hero": {
+      "title": "Semiconductor Overview",
+      "subtitle": "The most linear temperature sensors for commercial HVAC applications"
+    },
+    "description": {
+      "heading": "Semiconductor Description",
+      "paragraph1": "BAPI semiconductors are designed to exhibit a defined current output directly proportional to the absolute temperature (°K). This property makes them the most linear of all the common commercial HVAC sensing elements. By putting this current output across a resistor, a proportional output voltage is produced.",
+      "paragraph2": "The AD592 semiconductor temperature sensor supplied with BAPI products provides a two wire 248 to 378 micro amp output or a three wire 2.48 to 3.78 volt output over a range of -13 to 221 °F (-25 to 105 °C). These units are offset using equipment traceable to the National Institute of Standards and Technology (NIST). Each unit is then labeled with the actual temperature and the corresponding offset."
+    },
+    "specifications": {
+      "heading": "Definition of Specification Terms",
+      "interchangeability": {
+        "title": "Interchangeability Tolerance (Accuracy)",
+        "description": "The maximum amount that sensors following the same curve will differ from each other."
+      },
+      "repeatability": {
+        "title": "Repeatability",
+        "description": "A measure of a sensor's ability to repeat the same output value for a given input value."
+      }
+    },
+    "customOffset": {
+      "heading": "Custom Offset Definition and Example",
+      "description": "This is how BAPI calculates the offset value provided on the sensor label:",
+      "thermReading": {
+        "title": "Therm Reading",
+        "description": "The actual temperature reading according to a thermometer that is certified traceable to recognized standards by the National Institute of Standards and Technology (NIST)."
+      },
+      "sensorReading": {
+        "title": "Sensor Reading",
+        "description": "The temperature reading according to the AD592 sensor, using the output in either µA or mV and converting the output to a Fahrenheit temperature."
+      },
+      "offset": {
+        "title": "Offset",
+        "description": "The difference between the Thermometer Reading and the Sensor Reading"
+      },
+      "maximizeAccuracy": "To maximize the sensor accuracy, simply add the offset value of the sensor reading into the controller.",
+      "example1": {
+        "thermReading": "e.g. Therm Reading 74.6",
+        "sensorReading": "Sensor Reading 73.0",
+        "offset": "Offset +1.6",
+        "correction": "Correction: Add (+1.6) °F to the sensor for an accurate reading: 73 + 1.6 = 74.6°F"
+      },
+      "example2": {
+        "thermReading": "e.g. Therm Reading 75.4",
+        "sensorReading": "Sensor Reading 77.2",
+        "offset": "Offset -1.8",
+        "correction": "Correction: Add (-1.8) °F to the sensor for an accurate reading: 77.2 + (-1.8) = 75.4°F"
+      }
+    },
+    "specsTable": {
+      "heading": "Semiconductor Specifications",
+      "interchangeability": {
+        "title": "Interchangeability Tolerance (Accuracy)",
+        "value": "Offset to 0.1 °C (0.18 °F)",
+        "note": "NIST Traceable"
+      },
+      "offsetRequirement": {
+        "title": "Offset Requirement",
+        "description": "Required to achieve maximum accuracy. Each sensor includes a custom offset listed on each sensor."
+      },
+      "repeatability": {
+        "title": "Repeatability",
+        "value": "± 0.10 °C (± 0.18°F)"
+      },
+      "linearity": {
+        "title": "Linearity",
+        "value": "± 0.15 °C max",
+        "note": "from 0 to 70 °C (32 to 158°F)"
+      },
+      "sensorRange": {
+        "title": "Sensor Range",
+        "value": "-25 to 105 °C",
+        "note": "(-13 to 221 °F) [248 to 378 °K]"
+      },
+      "biasVoltage": {
+        "title": "Bias Voltage",
+        "value": "5 to 30 VDC"
+      },
+      "accuracyReference": {
+        "title": "Accuracy Reference",
+        "value": "298.2 mA @ 25°C or 2.982 V @ 25°C"
+      },
+      "temperatureOutputCoefficient": {
+        "title": "Temperature Output Coefficient",
+        "twoWire": "2 wire: 1 µA/°C (0.556 µA/°F) [1 µA/°K]",
+        "threeWire": "3 wire: 10 mV/°C (5.556 mV/°F) [10 mV/°K]"
+      }
+    },
+    "outputCurve": {
+      "heading": "Typical Semiconductor Output Curve",
+      "alt": "Typical Semiconductor Output showing Current (µA) and Voltage (V) vs Temperature",
+      "caption": "Figure 1 - Typical Semiconductor Temperature Output"
+    },
+    "outputTables": {
+      "heading": "Semiconductor Output Tables",
+      "ad592Standard": {
+        "tabLabel": "AD592 Standard",
+        "heading": "AD592 Standard Semiconductor Output Table",
+        "description": "Standard AD592 current (µA) and voltage (V) output vs temperature"
+      },
+      "ad59210K": {
+        "tabLabel": "AD592-10K",
+        "heading": "AD592-10K Semiconductor Output Table",
+        "description": "AD592 Semiconductor with 10K shunt resistor - voltage (V) output vs temperature"
+      }
+    },
+    "cta": {
+      "heading": "Need Help with Semiconductor Sensors?",
+      "description": "Our technical team can help you understand if semiconductor sensors are right for your application.",
+      "browseButton": "Browse Temperature Sensors",
+      "contactButton": "Contact Support"
+    }
+  },
+  "pressureTransmittersPage": {
+    "breadcrumb": {
+      "back": "Back to Sensor Specifications"
+    },
+    "hero": {
+      "title": "Pressure Transmitters",
+      "subtitle": "Precision silicon sensors with digital compensation for ultimate accuracy"
+    },
+    "description": {
+      "heading": "Pressure Sensor Description",
+      "paragraph1": "The focal point of any sensor is the sensing element itself, and BAPI has gone to great lengths to produce one of the best sensors on the market today. The heart of every BAPI unit is a micromachined, single-crystal silicon, pressure sensor. Each sensor is fabricated using the same integrated circuit technology used to make millions of cell phones, game machines and personal computers. To control and maintain the quality of these sensors, BAPI is involved in all phases of production from design to use.",
+      "paragraph2": "Silicon does bring with it one undesired trait —thermal sensitivity. The traditional method of compensating for this thermal sensitivity is an external circuit with discreet resistors, some of which have their own temperature dependencies, introducing more error. BAPI uses a different, unique approach. We employ a custom compensation ASIC (Application Specific Integrated Circuit) that uses digital compensation while maintaining an analog signal path, producing a sensor that is precise and interchangeable.",
+      "paragraph3": "Because of the innovative sensor and digital temperature compensation circuit, we are able to produce a highly accurate and stable product. This accuracy is verified during final calibration at our factory using a pressure-controlled source accurate to 0.00015 inch of water and traceable to NIST standards."
+    },
+    "features": {
+      "accuracy": {
+        "value": "±0.25%",
+        "title": "High Accuracy",
+        "description": "NIST-traceable accuracy of ±0.25% for most ranges"
+      },
+      "compensation": {
+        "value": "Digital",
+        "title": "Digital Compensation",
+        "description": "ASIC-based digital compensation eliminates thermal drift"
+      },
+      "sensor": {
+        "value": "Silicon",
+        "title": "Piezoresistive",
+        "description": "Single-crystal silicon sensor fabricated with IC technology"
+      }
+    },
+    "specifications": {
+      "heading": "Specifications",
+      "outputRanges": {
+        "title": "Output Ranges",
+        "value": "4 to 20 mA, 0 to 5 V or 0 to 10V"
+      },
+      "power": {
+        "title": "Power",
+        "ma": "4-20 mA output:",
+        "maValue": "7 to 45 VDC",
+        "v5": "0-5 VDC output:",
+        "v5Value": "7 to 45 VDC or 7 to 32 VAC",
+        "v10": "0-10 VDC output:",
+        "v10Value": "13 to 45 VDC or 13 to 32 VAC"
+      },
+      "powerConsumption": {
+        "title": "Power Consumption",
+        "dc": "4.9 mA max DC at 0-5 VDC or 0-10 VDC Output",
+        "ac": "0.12 VA max AC at 0-5 VDC or 0-10 VDC Output",
+        "ma": "20 mA max, DC only at 4-20 mA Output"
+      },
+      "pressureRanges": {
+        "title": "Pressure Ranges",
+        "inchesWC": {
+          "title": "Inches W.C.",
+          "lowUnidirectional": "Low Range Unidirectional",
+          "lowUnidirectionalValues": "0 to 0.10\", 0 to 0.25\", 0 to 0.50\", 0 to 0.75\", 0 to 1.00\"",
+          "lowBidirectional": "Low Range Bi-directional",
+          "lowBidirectionalValues": "±0.10\", ±0.25\", ±0.50\", ±0.75\", ±1.00\"",
+          "standardUnidirectional": "Standard Range Unidirectional",
+          "standardUnidirectionalValues": "0 to 1.00\", 0 to 2.00\", 0 to 2.50\", 0 to 3.00\", 0 to 5.00\"",
+          "standardBidirectional": "Standard Range Bi-directional",
+          "standardBidirectionalValues": "±1.00\", ±2.00\", ±2.50\", ±3.00\", ±5.00\"",
+          "highUnidirectional": "High Range Unidirectional",
+          "highUnidirectionalValues": "0 to 5\", 0 to 10\", 0 to 15\", 0 to 25\", 0 to 30\""
+        },
+        "pascals": {
+          "title": "Pascals",
+          "lowUnidirectional": "Low Range Unidirectional",
+          "lowUnidirectionalValues": "0 to 30, 0 to 50, 0 to 100, 0 to 175, 0 to 250",
+          "lowBidirectional": "Low Range Bi-directional",
+          "lowBidirectionalValues": "±30, ±50, ±100, ±175, ±250",
+          "standardUnidirectional": "Standard Range Unidirectional",
+          "standardUnidirectionalValues": "0 to 250, 0 to 300, 0 to 500, 0 to 1,000, 0 to 1,250",
+          "standardBidirectional": "Standard Range Bi-directional",
+          "standardBidirectionalValues": "±250, ±300, ±500, ±1,000, ±1.250",
+          "highUnidirectional": "High Range Unidirectional",
+          "highUnidirectionalValues": "0 to 1,250, 0 to 2,500, 0 to 4,000, 0 to 6,000, 0 to 7,400"
+        }
+      },
+      "accuracy": {
+        "title": "Accuracy at 72°F (22.2°C)",
+        "lowRangeWC": "Low Range: ±0.5% of W.C. ranges 0 to 0.1\", 0 to 0.25\", ±0.1\" and ±0.25\"",
+        "lowRangePa": "Low Range: ±0.5% of Pa ranges 0 to 30, 0 to 50, ±30 and ±50 Pa",
+        "standardHighRange": "Standard and High Range: ±0.25% of range (all other ranges)"
+      },
+      "temperatureLimits": {
+        "title": "Temperature Limits",
+        "storage": "Storage:",
+        "storageValue": "-40°F to 203°F (-40°C to 95°C)",
+        "operational": "Operational:",
+        "operationalValue": "32°F to 140°F (0°C to 95°C)",
+        "compensated": "Compensated:",
+        "compensatedValue": "50°F to 104°F (10°C to 40°C)"
+      },
+      "operatingRH": {
+        "title": "Operating RH Range",
+        "value": "0 to 95% non-condensing"
+      },
+      "media": {
+        "title": "Media",
+        "value": "Non-Ionic, Non-Corrosive, Clean, Dry Gasses"
+      }
+    },
+    "outputTables": {
+      "heading": "Pressure Transmitter Output Tables",
+      "inchesWCHeading": "Inches Water Column (W.C.)",
+      "tableHeading": "Pressure Range {range} Output Table",
+      "emptyTable": "Table data to be populated for this pressure range."
+    },
+    "usingTables": {
+      "heading": "Using These Output Tables",
+      "description": "Select your pressure range from the tabs above to view the corresponding output values. Each table shows the relationship between pressure measurement and the three available output types: 0-5 VDC, 0-10 VDC, and 4-20 mA. Use these tables to verify sensor operation or integrate BAPI pressure transmitters into your control system."
+    },
+    "cta": {
+      "heading": "Need a Pressure Transmitter?",
+      "description": "Our digital compensation technology provides the ultimate in accuracy and stability for pressure measurement.",
+      "browseButton": "Browse Pressure Sensors",
+      "contactButton": "Contact Support"
+    }
+  },
+  "humidityTransmittersPage": {
+    "breadcrumb": {
+      "back": "Back to Sensor Specifications"
+    },
+    "hero": {
+      "title": "Humidity Transmitters",
+      "subtitle": "High-accuracy 4-20mA, 0-5V, and 0-10V humidity transmitters for demanding applications"
+    },
+    "description": {
+      "heading": "Humidity Transmitter Description",
+      "paragraph1": "BAPI humidity transmitters provide a high accuracy 4 to 20mA, 0 to 5V or 0 to 10V humidity measurement. Accuracies of 2% RH are available. Duct and outside air units come with a removable sintered stainless steel filter. On duct and outside air units, the filter may be cleaned with warm, distilled water.",
+      "paragraph2": "These units are microprocessor based and do not require any field calibration.",
+      "paragraph3": "For all non-room configurations, BAPI humidity transmitters come standard in a ruggedized package. Ruggedized transmitters are suitable for locations where moisture or condensation may be a problem. The potting material used to ruggedize the transmitters has a high thermal conductivity to eliminate circuit overheating and allow thermal expansion to minimize the stress on the circuit components. Due to the extremely low moisture absorption properties of the epoxy, a ruggedized transmitter will remain operational even if temporarily immersed in water.",
+      "paragraph4": "Many tests and studies have been conducted on the sensor incorporated into these humidity transmitters to assure that they provide longterm accuracy and durability. For applications requiring even higher accuracy, however, certified units are available which have been tested and offset against an NIST traceable reference. Please call for details or with specific requirements."
+    },
+    "features": {
+      "accuracy": {
+        "value": "2% RH",
+        "title": "High Accuracy",
+        "description": "Precision humidity measurement for critical applications"
+      },
+      "durability": {
+        "value": "Ruggedized",
+        "title": "Durable Design",
+        "description": "Operational even if temporarily immersed in water"
+      },
+      "calibration": {
+        "value": "No Cal",
+        "title": "Microprocessor Based",
+        "description": "No field calibration required"
+      }
+    },
+    "specifications": {
+      "heading": "General Specifications",
+      "outputRanges": {
+        "title": "Output Ranges",
+        "value": "4 to 20 mA, 0 to 5 V, or 0 to 10 V"
+      },
+      "power": {
+        "title": "Power",
+        "v5OrMa": "0-5 VDC or 4-20 mA outputs:",
+        "v5OrMaValue": "10 to 35 VDC",
+        "v10": "0-10 VDC Output:",
+        "v10Value": "15 to 35 VDC",
+        "v5AC": "0-5 VDC Output (AC):",
+        "v5ACValue": "12 to 27 VAC",
+        "v10AC": "0-10 VDC Output (AC):",
+        "v10ACValue": "15 to 27 VAC"
+      },
+      "powerConsumption": {
+        "title": "Power Consumption",
+        "dc": "DC: 22 mA max (0-5 VDC or 4-20 mA), 6 mA max (0-10 VDC)",
+        "ac": "AC: 0.53 VA max (0-5 VDC or 4-20 mA), 0.14 VA max (0-10 VDC)"
+      },
+      "sensingElement": {
+        "title": "Sensing Element",
+        "value": "Capacitive type humidity sensor"
+      },
+      "operatingRH": {
+        "title": "Operating RH Range",
+        "value": "0 to 100 %RH (non-condensing)"
+      },
+      "operatingTemperature": {
+        "title": "Operating Temperature Range",
+        "room": "Room:",
+        "roomValue": "0 to 70°C (32 to 158°F)",
+        "ductOutside": "Duct & Outside:",
+        "ductOutsideValue": "-20 to 70°C (-4 to 158°F)"
+      },
+      "accuracyRange": {
+        "title": "Accuracy Range",
+        "value": "from 10 to 90% RH at 25°C"
+      },
+      "responseTime": {
+        "title": "Response Time",
+        "value": "8 seconds",
+        "note": "in moving air for a 63% step"
+      },
+      "drift": {
+        "title": "Drift",
+        "value": "<0.5% RH per year"
+      }
+    },
+    "outputTable": {
+      "heading": "Humidity Transmitter Output Table"
+    },
+    "cta": {
+      "heading": "Need a Humidity Transmitter?",
+      "description": "Our humidity transmitters provide accurate, long-term reliable measurement with minimal drift.",
+      "browseButton": "Browse Humidity Sensors",
+      "contactButton": "Contact Support"
+    }
+  },
+  "temperatureTransmittersPage": {
+    "breadcrumb": {
+      "back": "Back to Sensor Specifications"
+    },
+    "hero": {
+      "title": "Temperature Transmitters",
+      "subtitle": "Precision 4-20mA transmitters for accurate temperature sensing over long distances"
+    },
+    "description": {
+      "heading": "Temperature Transmitter Description",
+      "paragraph1": "BAPI's temperature transmitters incorporate a 1KΩ RTD sensor and an amplifier. These devices provide an accurate two wire, 4 to 20mA output over a specified temp range. They are specifically designed for long distance transmission over long distances without degradation of the 4 to 20mA signal. 100Ω units also available upon request.",
+      "paragraph2": "Each temperature transmitter is not configurable for its specified temp range. If you don't offer the right transmitter at the field or the light transmitter in Class A RTD's to improve overall accuracy. The specified unit at the calibrated range offers better accuracy to minimize the cross on the control components. Use the accuracy of the matched pair unit becomes a function of the transfer linearity (RTD curve) and reference transmitter somewhat.",
+      "paragraph3": "Standard units will offset 0–100°F ( commonly found ) - Reference Thermometer (example) :",
+      "paragraph4": "Offset Range units : –20°C to +250°C (-4°F to 482°F)",
+      "paragraph4b": "Max.Span : 16.6°C (30°F) – 2.0 to +600°C (–148°F to +1000°F)",
+      "paragraph5": "BA/TM- 1K in (0-30°F) Spec : +/- 0.08˚C (0.14˚F) = 16°F] MAX",
+      "paragraph5b": "BA/TM- 1K in (0-100°F) Spec : +/- 0.10˚C (0.18˚F) = 38-55°F] OFFSET",
+      "paragraph6": "These accuracies are for the worst range of the sensor, although the accuracies in the midpoint of the sensor will be tighter. Run these over your BAPI representative for details.",
+      "paragraph7": "BAPI temperature transmitters come in a ruggedized package for all non-room configurations where moisture or condensation may be a problem. The potting material used to ruggedize the transmitters has a high thermal conductivity to eliminate circuit overheating and allow thermal expansion to minimize the stress on the control components. Due to the extremely low moisture absorption properties of the epoxy, a ruggedized transmitter will remain operational even if temporarily immersed in water."
+    },
+    "specifications": {
+      "heading": "Specifications",
+      "sensor": {
+        "title": "Sensor",
+        "value": "1000Ω Platinum RTD"
+      },
+      "supplyVoltage": {
+        "title": "Supply Voltage",
+        "value": "12 to 40 VDC"
+      },
+      "output": {
+        "title": "Output",
+        "value": "4 to 20 mA, 0 to 5V, 1 to 5V, 0 to 10V, 2 to 10V"
+      },
+      "maxLoopResistance": {
+        "title": "Max. Loop Resistance",
+        "value": "850Ω at 24VDC"
+      },
+      "span": {
+        "title": "Span",
+        "value": "Min 16.6°C (30°F), Max 555°C (1000°F)"
+      },
+      "zero": {
+        "title": "Zero",
+        "value": "Min -100°C (-148°F), Max 482°C (900°F)"
+      },
+      "systemAccuracy": {
+        "title": "System Accuracy",
+        "value": "±0.065% of Span"
+      },
+      "linearity": {
+        "title": "Linearity",
+        "value": "±(0.125 x T-20ºC)/100"
+      },
+      "operationalHumidity": {
+        "title": "Operational Humidity",
+        "value": "0 to 95%, non-condensing"
+      },
+      "outputCurrentLimits": {
+        "title": "Output Current Limits",
+        "value": "Less than 1mA and 22.35 ± 0.15 mA"
+      },
+      "powerOutputShift": {
+        "title": "Power Output Shift",
+        "value": "±0.009% of Span to 40VDC"
+      },
+      "connections": {
+        "title": "Connections",
+        "value": "Four 22-gauge etched Teflon leads or terminal blocks"
+      },
+      "operatingTemperature": {
+        "title": "Operating Temperature",
+        "transmitter": "Transmitter:",
+        "transmitterValue": "-20 to 70°C",
+        "sensorStandard": "Sensor (standard):",
+        "sensorStandardValue": "-65 to 105°C",
+        "sensorAvailable": "Sensor (available):",
+        "sensorAvailableValue": "-200 to 600°C"
+      }
+    },
+    "outputTable": {
+      "heading": "0-100 °F Temperature Transmitter Output Table"
+    },
+    "fieldAdjustments": {
+      "heading": "Field Adjustments",
+      "description": "Each transmitter is calibrated to the specified temperature range that is ordered. Field adjustments are not available. If adjustments are needed, please contact your BAPI representative."
+    },
+    "cta": {
+      "heading": "Need a Temperature Transmitter?",
+      "description": "Our T1K transmitters provide accurate 4-20mA signals for long-distance temperature measurement applications.",
+      "browseButton": "Browse Temperature Sensors",
+      "contactButton": "Contact Support"
+    }
   }
 }

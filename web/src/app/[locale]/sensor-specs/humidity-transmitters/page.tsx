@@ -1,8 +1,12 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
 import { humidityTransmitterOutput } from '@/data/humidityTransmitterTable';
 
 export default function HumidityTransmittersPage() {
+  const t = useTranslations('humidityTransmittersPage');
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}
@@ -13,7 +17,7 @@ export default function HumidityTransmittersPage() {
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
           >
             <ChevronLeftIcon className="h-5 w-5" />
-            Back to Sensor Specifications
+            {t('breadcrumb.back')}
           </Link>
         </div>
       </div>
@@ -22,11 +26,10 @@ export default function HumidityTransmittersPage() {
       <div className="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Humidity Transmitters
+            {t('hero.title')}
           </h1>
           <p className="text-xl text-primary-50 max-w-3xl">
-            High-accuracy 4-20mA, 0-5V, and 0-10V humidity transmitters for
-            demanding applications
+            {t('hero.subtitle')}
           </p>
         </div>
       </div>
@@ -36,39 +39,20 @@ export default function HumidityTransmittersPage() {
         {/* Description Section */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-            Humidity Transmitter Description
+            {t('description.heading')}
           </h2>
           <div className="prose prose-lg max-w-none space-y-4">
             <p className="text-neutral-700 leading-relaxed">
-              BAPI humidity transmitters provide a high accuracy 4 to 20mA, 0 to
-              5V or 0 to 10V humidity measurement. Accuracies of 2% RH are
-              available. Duct and outside air units come with a removable
-              sintered stainless steel filter. On duct and outside air units,
-              the filter may be cleaned with warm, distilled water.
+              {t('description.paragraph1')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              These units are microprocessor based and do not require any field
-              calibration.
+              {t('description.paragraph2')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              For all non-room configurations, BAPI humidity transmitters come
-              standard in a ruggedized package. Ruggedized transmitters are
-              suitable for locations where moisture or condensation may be a
-              problem. The potting material used to ruggedize the transmitters
-              has a high thermal conductivity to eliminate circuit overheating
-              and allow thermal expansion to minimize the stress on the circuit
-              components. Due to the extremely low moisture absorption
-              properties of the epoxy, a ruggedized transmitter will remain
-              operational even if temporarily immersed in water.
+              {t('description.paragraph3')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              Many tests and studies have been conducted on the sensor
-              incorporated into these humidity transmitters to assure that they
-              provide longterm accuracy and durability. For applications
-              requiring even higher accuracy, however, certified units are
-              available which have been tested and offset against an NIST
-              traceable reference. Please call for details or with specific
-              requirements.
+              {t('description.paragraph4')}
             </p>
           </div>
         </section>
@@ -78,37 +62,37 @@ export default function HumidityTransmittersPage() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-primary-50 rounded-lg p-6 border-2 border-primary-600">
               <div className="text-primary-600 text-3xl font-bold mb-3">
-                2% RH
+                {t('features.accuracy.value')}
               </div>
               <h3 className="font-semibold text-neutral-900 mb-2">
-                High Accuracy
+                {t('features.accuracy.title')}
               </h3>
               <p className="text-sm text-neutral-700">
-                Precision humidity measurement for critical applications
+                {t('features.accuracy.description')}
               </p>
             </div>
 
             <div className="bg-neutral-50 rounded-lg p-6 border-2 border-neutral-200">
               <div className="text-primary-600 text-3xl font-bold mb-3">
-                Ruggedized
+                {t('features.durability.value')}
               </div>
               <h3 className="font-semibold text-neutral-900 mb-2">
-                Durable Design
+                {t('features.durability.title')}
               </h3>
               <p className="text-sm text-neutral-700">
-                Operational even if temporarily immersed in water
+                {t('features.durability.description')}
               </p>
             </div>
 
             <div className="bg-neutral-50 rounded-lg p-6 border-2 border-neutral-200">
               <div className="text-primary-600 text-3xl font-bold mb-3">
-                No Cal
+                {t('features.calibration.value')}
               </div>
               <h3 className="font-semibold text-neutral-900 mb-2">
-                Microprocessor Based
+                {t('features.calibration.title')}
               </h3>
               <p className="text-sm text-neutral-700">
-                No field calibration required
+                {t('features.calibration.description')}
               </p>
             </div>
           </div>
@@ -117,54 +101,52 @@ export default function HumidityTransmittersPage() {
         {/* General Specifications */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            General Specifications
+            {t('specifications.heading')}
           </h2>
 
           <div className="bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
             <div className="grid divide-y divide-neutral-200">
               <div className="p-6">
                 <h3 className="font-semibold text-neutral-900 mb-2">
-                  Output Ranges
+                  {t('specifications.outputRanges.title')}
                 </h3>
                 <p className="text-primary-600 font-bold text-lg">
-                  4 to 20 mA, 0 to 5 V, or 0 to 10 V
+                  {t('specifications.outputRanges.value')}
                 </p>
               </div>
 
               <div className="p-6 bg-neutral-50">
-                <h3 className="font-semibold text-neutral-900 mb-3">Power</h3>
+                <h3 className="font-semibold text-neutral-900 mb-3">{t('specifications.power.title')}</h3>
                 <div className="space-y-2 text-sm text-neutral-700">
                   <div className="flex justify-between">
-                    <span>0-5 VDC or 4-20 mA outputs:</span>
-                    <span className="font-medium">10 to 35 VDC</span>
+                    <span>{t('specifications.power.v5OrMa')}</span>
+                    <span className="font-medium">{t('specifications.power.v5OrMaValue')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>0-10 VDC Output:</span>
-                    <span className="font-medium">15 to 35 VDC</span>
+                    <span>{t('specifications.power.v10')}</span>
+                    <span className="font-medium">{t('specifications.power.v10Value')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>0-5 VDC Output (AC):</span>
-                    <span className="font-medium">12 to 27 VAC</span>
+                    <span>{t('specifications.power.v5AC')}</span>
+                    <span className="font-medium">{t('specifications.power.v5ACValue')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>0-10 VDC Output (AC):</span>
-                    <span className="font-medium">15 to 27 VAC</span>
+                    <span>{t('specifications.power.v10AC')}</span>
+                    <span className="font-medium">{t('specifications.power.v10ACValue')}</span>
                   </div>
                 </div>
               </div>
 
               <div className="p-6">
                 <h3 className="font-semibold text-neutral-900 mb-3">
-                  Power Consumption
+                  {t('specifications.powerConsumption.title')}
                 </h3>
                 <div className="space-y-2 text-sm text-neutral-700">
                   <div>
-                    <span className="font-medium">DC:</span> 22 mA max (0-5 VDC
-                    or 4-20 mA), 6 mA max (0-10 VDC)
+                    {t('specifications.powerConsumption.dc')}
                   </div>
                   <div>
-                    <span className="font-medium">AC:</span> 0.53 VA max (0-5
-                    VDC or 4-20 mA), 0.14 VA max (0-10 VDC)
+                    {t('specifications.powerConsumption.ac')}
                   </div>
                 </div>
               </div>
@@ -172,35 +154,35 @@ export default function HumidityTransmittersPage() {
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Sensing Element
+                    {t('specifications.sensingElement.title')}
                   </h3>
-                  <p className="text-neutral-700">Capacitive type humidity sensor</p>
+                  <p className="text-neutral-700">{t('specifications.sensingElement.value')}</p>
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Operating RH Range
+                    {t('specifications.operatingRH.title')}
                   </h3>
                   <p className="text-primary-600 font-bold">
-                    0 to 100 %RH (non-condensing)
+                    {t('specifications.operatingRH.value')}
                   </p>
                 </div>
               </div>
 
               <div className="p-6 bg-neutral-50">
                 <h3 className="font-semibold text-neutral-900 mb-3">
-                  Operating Temperature Range
+                  {t('specifications.operatingTemperature.title')}
                 </h3>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-neutral-700">Room:</span>
+                    <span className="text-neutral-700">{t('specifications.operatingTemperature.room')}</span>
                     <span className="text-neutral-900 font-medium">
-                      0 to 70°C (32 to 158°F)
+                      {t('specifications.operatingTemperature.roomValue')}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-neutral-700">Duct & Outside:</span>
+                    <span className="text-neutral-700">{t('specifications.operatingTemperature.ductOutside')}</span>
                     <span className="text-neutral-900 font-medium">
-                      -20 to 70°C (-4 to 158°F)
+                      {t('specifications.operatingTemperature.ductOutsideValue')}
                     </span>
                   </div>
                 </div>
@@ -209,26 +191,26 @@ export default function HumidityTransmittersPage() {
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Accuracy Range
+                    {t('specifications.accuracyRange.title')}
                   </h3>
-                  <p className="text-neutral-700">from 10 to 90% RH at 25°C</p>
+                  <p className="text-neutral-700">{t('specifications.accuracyRange.value')}</p>
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Response Time
+                    {t('specifications.responseTime.title')}
                   </h3>
                   <p className="text-primary-600 font-bold">
-                    8 seconds
+                    {t('specifications.responseTime.value')}
                   </p>
                   <p className="text-sm text-neutral-600 mt-1">
-                    in moving air for a 63% step
+                    {t('specifications.responseTime.note')}
                   </p>
                 </div>
               </div>
 
               <div className="p-6">
-                <h3 className="font-semibold text-neutral-900 mb-2">Drift</h3>
-                <p className="text-primary-600 font-bold">&lt;0.5% RH per year</p>
+                <h3 className="font-semibold text-neutral-900 mb-2">{t('specifications.drift.title')}</h3>
+                <p className="text-primary-600 font-bold">{t('specifications.drift.value')}</p>
               </div>
             </div>
           </div>
@@ -237,7 +219,7 @@ export default function HumidityTransmittersPage() {
         {/* Humidity Transmitter Output Table */}
         <section className="max-w-6xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            Humidity Transmitter Output Table
+            {t('outputTable.heading')}
           </h2>
 
           <div className="bg-white rounded-lg border-2 border-neutral-200 overflow-hidden">
@@ -328,24 +310,23 @@ export default function HumidityTransmittersPage() {
         {/* CTA Section */}
         <section className="max-w-4xl mx-auto mt-16 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold text-neutral-900 mb-4">
-            Need a Humidity Transmitter?
+            {t('cta.heading')}
           </h2>
           <p className="text-neutral-700 mb-6">
-            Our humidity transmitters provide accurate, long-term reliable
-            measurement with minimal drift.
+            {t('cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/products/humidity-sensors"
               className="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
             >
-              Browse Humidity Sensors
+              {t('cta.browseButton')}
             </Link>
             <Link
               href="/support"
               className="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold border-2 border-primary-600 hover:bg-primary-50 transition-colors"
             >
-              Contact Support
+              {t('cta.contactButton')}
             </Link>
           </div>
         </section>

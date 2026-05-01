@@ -2483,5 +2483,559 @@
       "heading": "業界リーダーによる専門ガイダンス",
       "description": "当社のアプリケーションノートは、数十年の総合経験を持つBAPIのエンジニアリングチームによって執筆されています。各記事では、センサーの設置、校正、メンテナンスにおける一般的な課題に対する実用的で現場検証済みのソリューションを提供しています。"
     }
+  },
+  "thermistorPage": {
+    "breadcrumb": {
+      "back": "センサー仕様に戻る"
+    },
+    "hero": {
+      "title": "サーミスタ概要",
+      "subtitle": "HVAC用途向けの優れた精度と信頼性を備えた感熱抵抗器"
+    },
+    "description": {
+      "heading": "サーミスタの説明",
+      "paragraph1": "BAPIサーミスタは、温度のわずかな変化に対して抵抗値の大きな変化を示すことで知られる感熱抵抗器です。サーミスタの抵抗変化は非線形であることに注意することが重要です。サーミスタメーカーから提供される事前定義された曲線に従います。",
+      "paragraph2": "サーミスタは高精度で特定の曲線に従うように製造されています。すべてのBAPIサーミスタは、0～70°Cの商用温度範囲において±0.2°Cの標準精度を有しています。BAPIでは、より厳しい仕様を満たすための高精度センサーもご用意しています。エクストラプレシジョン[Xラインは、0～70°Cの商用温度範囲において±0.1°Cの初期精度を有しています。[Xラインサーミスタの在庫状況と価格については、お電話でお問い合わせください。どちらの精度レベルでも、コントローラのオフセット調整という追加費用なしにBAPIサーミスタを交換することができます。",
+      "footnote": "*10K Ω以下のすべてのパッシブサーミスタはCE準拠です"
+    },
+    "specifications": {
+      "heading": "仕様用語の定義",
+      "interchangeability": {
+        "title": "互換性許容差（精度）",
+        "description": "同一曲線に従うサーミスタ間で生じる最大差異。"
+      },
+      "dissipation": {
+        "title": "放散定数",
+        "description": "サーミスタの本体温度を1°C上昇させるのに必要な電力。すべてのBAPIサーミスタ製品の中核には、自己発熱を絶対最小限に抑えるため2.7 mW/°Cの放散定数を持つセンサーがあります。"
+      },
+      "stability": {
+        "title": "安定性（ドリフト）",
+        "description": "サーミスタの抵抗特性が変化する量。BAPIは非常に小さなドリフト値を持つ最高品質の「プリエージド」サーミスタのみを使用しています。10年間にわたって、BAPIサーミスタは0.1°C以上変化しません。"
+      },
+      "operatingRange": {
+        "title": "動作範囲",
+        "description": "表示されている動作範囲はサーミスタのみのものです。実装パッケージによって動作範囲がさらに制限される場合があり、各実装タイプの仕様に記載されています。熱時定数も、ステンレス鋼プローブと防湿保護カプセル化の追加質量により影響を受けます。"
+      },
+      "thermalTime": {
+        "title": "熱時定数",
+        "description": "ベアセンサーは通常、静止空気中で測定・仕様化され、ステップ温度変化の統計的63.2%で計時されます。撹拌液体試験では通常、はるかに速い応答時間が得られ、同様にステップ温度変化の63.2%で計時されます。時定数は温度ステップ変化がどのようなものであっても常に同じです。"
+      }
+    },
+    "specsTable": {
+      "heading": "サーミスタ仕様",
+      "headers": {
+        "type": "サーミスタタイプ",
+        "tolerance": "互換性許容差/精度",
+        "range": "動作範囲"
+      },
+      "footnotes": {
+        "note1": "*その他のサーミスタもご用意しています。追加のサーミスタタイプの在庫状況と仕様については、BAPIまでお問い合わせください。",
+        "note2": "**[X]（高精度）センサーとしてご利用いただけます。",
+        "note3": "最小数量と長いリードタイムが適用される場合があります。「JX5」および「5K」サーミスタは通常在庫品です。"
+      }
+    },
+    "outputCurve": {
+      "heading": "標準サーミスタ出力曲線",
+      "imageAlt": "標準サーミスタ出力曲線 10K-2センサー 抵抗（Ω）対温度（°C）",
+      "caption": "図1 - 標準サーミスタ出力曲線 10K-2センサー"
+    },
+    "outputTables": {
+      "heading": "サーミスタ出力テーブル"
+    }
+  },
+  "rtdPage": {
+    "breadcrumb": {
+      "back": "センサー仕様に戻る"
+    },
+    "hero": {
+      "title": "RTD概要",
+      "subtitle": "優れた直線性、精度、再現性を持つ測温抵抗体"
+    },
+    "description": {
+      "heading": "RTD説明",
+      "paragraph1": "BAPI RTD（測温抵抗体）は、温度変化1度あたりの抵抗値の変化が小さい熱感応抵抗素子です。RTDは、高い精度と再現性を持ちながら、温度範囲全体にわたって優れた直線性を持つことで特に認知されています。",
+      "paragraph2": "BAPI製品に供給されるRTDは、0°Cで測定された±0.3°Cの標準互換公差を特徴としています。より高精度なセンサーも利用可能です。クラスAラインは0°Cで測定された±0.15°Cの互換公差を持ちます。クラスA RTDの入手可能性と価格については、お電話でお問い合わせください。標準品かクラスAかを問わず、BAPI RTDは非常に高い精度を持つため、コントローラーのオフセット調整という費用をかけることなく交換することができます。",
+      "paragraph3": "ほとんどのRTDセンシング素子は、極めて広い温度範囲（-200～600°C）に耐えるようにパッケージ化することができます。ほとんどの用途では標準動作範囲で十分ですが、より高いまたは低い動作温度範囲のRTDも取り扱っています。BAPIは、お客様の特定のアプリケーションニーズに対応するため、さまざまな範囲の1KΩプラチナRTDを提供しています。"
+    },
+    "specifications": {
+      "heading": "仕様用語の定義",
+      "tolerance": {
+        "title": "抵抗公差（精度）",
+        "description": "同じカーブに従うRTD間で相互に異なる最大量。"
+      },
+      "stability": {
+        "title": "安定性（ドリフト）",
+        "description": "RTD抵抗特性が変化する量。BAPIは、非常に小さなドリフト値を持つ最高品質のフィルムプラチナRTDセンサーのみを使用しています。"
+      },
+      "operatingRange": {
+        "title": "動作範囲",
+        "description": "表示されている動作範囲はRTDセンサーのみのものです。実装パッケージにより動作範囲がさらに制限される場合があり、各実装タイプの仕様に記載されています。"
+      }
+    },
+    "specsTable": {
+      "heading": "RTD仕様",
+      "toleranceOfResistance": {
+        "title": "抵抗公差（精度）",
+        "description": "範囲：標準1/3 DINに従い、0°Cでの絶対オーム値の±0.06"
+      },
+      "tolerancePercent": {
+        "title": "公差%（%）",
+        "description": "範囲：±0.0 ± (0.02 x t (0.0111 + t)); t= 温度°C",
+        "example": "0°Cで - 範囲±0.02°C、100°Cで - 範囲±0.13°C",
+        "averaging": "平均化標準：±0.0 ± (0.0052 + (0.01 x 温度°C))"
+      },
+      "stabilityDrift": {
+        "title": "安定性（ドリフト）",
+        "description": "65°Cで5,000時間連続運転時±0.1°C"
+      },
+      "sensitivity": {
+        "title": "感度",
+        "description1K": "1KΩ：2.13Ω/°C（70°Fで）",
+        "description100": "100Ω：0.385Ω/°C"
+      },
+      "selfHeating": {
+        "title": "自己発熱（RTDのみ）",
+        "description": "空気中で0.4°C/mW"
+      }
+    },
+    "standardRanges": {
+      "heading": "1KΩプラチナRTDの標準・内部温度範囲",
+      "tableHeaders": {
+        "symbol": "記号",
+        "referenceResistance": "基準抵抗",
+        "temperatureCoefficient": "温度係数",
+        "operatingRange": "動作範囲"
+      }
+    },
+    "outputTables": {
+      "heading": "RTD出力表",
+      "description": "各RTDタイプの全動作範囲にわたる正確なオーム値を示す詳細な抵抗値対温度表。これらの表はシステム統合とトラブルシューティングに不可欠です。"
+    }
+  },
+  "semiconductorPage": {
+    "breadcrumb": {
+      "back": "センサー仕様に戻る"
+    },
+    "hero": {
+      "title": "半導体概要",
+      "subtitle": "商用HVACアプリケーション向けの最も線形性の高い温度センサー"
+    },
+    "description": {
+      "heading": "半導体の説明",
+      "paragraph1": "BAPI半導体は、絶対温度（°K）に直接比例する定義された電流出力を示すように設計されています。この特性により、一般的な商用HVAC感知素子の中で最も線形性が高くなります。この電流出力を抵抗に通すことで、比例した出力電圧が生成されます。",
+      "paragraph2": "BAPI製品に付属するAD592半導体温度センサーは、-13～221°F（-25～105°C）の範囲で2線式248～378マイクロアンペア出力または3線式2.48～3.78ボルト出力を提供します。これらの装置は、米国標準技術研究所（NIST）にトレーサブルな機器を使用してオフセット調整されます。各装置には、実際の温度と対応するオフセットがラベル表示されます。"
+    },
+    "specifications": {
+      "heading": "仕様用語の定義",
+      "interchangeability": {
+        "title": "互換性許容差（精度）",
+        "description": "同じ特性曲線に従うセンサー間で生じる最大偏差。"
+      },
+      "repeatability": {
+        "title": "再現性",
+        "description": "特定の入力値に対して同じ出力値を繰り返すセンサーの能力の測定値。"
+      }
+    },
+    "customOffset": {
+      "heading": "カスタムオフセットの定義と例",
+      "description": "BAPIがセンサーラベルに記載されているオフセット値を算出する方法：",
+      "thermReading": {
+        "title": "温度計読み取り値",
+        "description": "米国標準技術研究所（NIST）により認定された標準にトレーサブルな温度計による実際の温度読み取り値。"
+      },
+      "sensorReading": {
+        "title": "センサー読み取り値",
+        "description": "AD592センサーによる温度読み取り値。µAまたはmVでの出力を華氏温度に変換して使用。"
+      },
+      "offset": {
+        "title": "オフセット",
+        "description": "温度計読み取り値とセンサー読み取り値の差"
+      },
+      "maximizeAccuracy": "センサー精度を最大化するには、センサー読み取り値にオフセット値を加算してコントローラーに入力してください。",
+      "example1": {
+        "thermReading": "例：温度計読み取り値 74.6",
+        "sensorReading": "センサー読み取り値 73.0",
+        "offset": "オフセット +1.6",
+        "correction": "補正：正確な読み取り値を得るためにセンサーに（+1.6）°Fを加算：73 + 1.6 = 74.6°F"
+      },
+      "example2": {
+        "thermReading": "例：温度計読み取り値 75.4",
+        "sensorReading": "センサー読み取り値 77.2",
+        "offset": "オフセット -1.8",
+        "correction": "補正：正確な読み取り値を得るためにセンサーに（-1.8）°Fを加算：77.2 + (-1.8) = 75.4°F"
+      }
+    },
+    "specsTable": {
+      "heading": "半導体仕様",
+      "interchangeability": {
+        "title": "互換性許容差（精度）",
+        "value": "0.1°C（0.18°F）にオフセット",
+        "note": "NISTトレーサブル"
+      },
+      "offsetRequirement": {
+        "title": "オフセット要件",
+        "description": "最大精度を達成するために必要。各センサーには、各センサーに記載されたカスタムオフセットが含まれます。"
+      },
+      "repeatability": {
+        "title": "再現性",
+        "value": "± 0.10°C（± 0.18°F）"
+      },
+      "linearity": {
+        "title": "線形性",
+        "value": "± 0.15°C 最大",
+        "note": "0～70°C（32～158°F）"
+      },
+      "sensorRange": {
+        "title": "センサー範囲",
+        "value": "-25～105°C",
+        "note": "（-13～221°F）[248～378°K]"
+      },
+      "biasVoltage": {
+        "title": "バイアス電圧",
+        "value": "5～30 VDC"
+      },
+      "accuracyReference": {
+        "title": "精度基準",
+        "value": "298.2 mA @ 25°C または 2.982 V @ 25°C"
+      },
+      "temperatureOutputCoefficient": {
+        "title": "温度出力係数",
+        "twoWire": "2線式：1 µA/°C（0.556 µA/°F）[1 µA/°K]",
+        "threeWire": "3線式：10 mV/°C（5.556 mV/°F）[10 mV/°K]"
+      }
+    },
+    "outputCurve": {
+      "heading": "典型的な半導体出力特性曲線",
+      "alt": "温度に対する電流（µA）と電圧（V）を示す典型的な半導体出力",
+      "caption": "図1 - 典型的な半導体温度出力"
+    },
+    "outputTables": {
+      "heading": "半導体出力テーブル",
+      "ad592Standard": {
+        "tabLabel": "AD592 標準",
+        "heading": "AD592 標準半導体出力テーブル",
+        "description": "標準AD592電流（µA）と電圧（V）出力対温度"
+      },
+      "ad59210K": {
+        "tabLabel": "AD592-10K",
+        "heading": "AD592-10K 半導体出力テーブル",
+        "description": "10Kシャント抵抗付きAD592半導体 - 電圧（V）出力対温度"
+      }
+    },
+    "cta": {
+      "heading": "半導体センサーについてサポートが必要ですか？",
+      "description": "当社の技術チームが、半導体センサーがお客様のアプリケーションに適しているかどうかの判断をサポートいたします。",
+      "browseButton": "温度センサーを見る",
+      "contactButton": "サポートに連絡"
+    }
+  },
+  "pressureTransmittersPage": {
+    "breadcrumb": {
+      "back": "センサー仕様に戻る"
+    },
+    "hero": {
+      "title": "圧力トランスミッタ",
+      "subtitle": "究極の精度を実現するデジタル補償付き高精度シリコンセンサー"
+    },
+    "description": {
+      "heading": "圧力センサーの説明",
+      "paragraph1": "あらゆるセンサーの焦点となるのは検知素子そのものであり、BAPIは今日市場で最高のセンサーの一つを製造するために多大な努力を払ってきました。すべてのBAPIユニットの心臓部は、マイクロマシンド単結晶シリコン圧力センサーです。各センサーは、何百万もの携帯電話、ゲーム機、パーソナルコンピュータの製造に使用されているのと同じ集積回路技術を使用して製造されています。これらのセンサーの品質を制御し維持するために、BAPIは設計から使用まで生産のすべての段階に関与しています。",
+      "paragraph2": "シリコンには一つの望ましくない特性があります——熱感度です。この熱感度を補償する従来の方法は、個別の抵抗器を使用した外部回路で、その一部は独自の温度依存性を持ち、より多くの誤差を導入します。BAPIは異なる独自のアプローチを採用しています。アナログ信号経路を維持しながらデジタル補償を使用するカスタム補償ASIC（特定用途向け集積回路）を採用し、精密で互換性のあるセンサーを製造しています。",
+      "paragraph3": "革新的なセンサーとデジタル温度補償回路により、高精度で安定した製品を製造することができます。この精度は、NIST標準にトレーサブルで0.00015インチ水柱の精度を持つ圧力制御源を使用して、当社工場での最終校正時に検証されています。"
+    },
+    "features": {
+      "accuracy": {
+        "value": "±0.25%",
+        "title": "高精度",
+        "description": "ほとんどの範囲で±0.25%のNISTトレーサブル精度"
+      },
+      "compensation": {
+        "value": "デジタル",
+        "title": "デジタル補償",
+        "description": "ASICベースのデジタル補償により熱ドリフトを除去"
+      },
+      "sensor": {
+        "value": "シリコン",
+        "title": "ピエゾ抵抗式",
+        "description": "IC技術で製造された単結晶シリコンセンサー"
+      }
+    },
+    "specifications": {
+      "heading": "仕様",
+      "outputRanges": {
+        "title": "出力範囲",
+        "value": "4～20 mA、0～5 V または 0～10V"
+      },
+      "power": {
+        "title": "電源",
+        "ma": "4-20 mA出力：",
+        "maValue": "7～45 VDC",
+        "v5": "0-5 VDC出力：",
+        "v5Value": "7～45 VDC または 7～32 VAC",
+        "v10": "0-10 VDC出力：",
+        "v10Value": "13～45 VDC または 13～32 VAC"
+      },
+      "powerConsumption": {
+        "title": "消費電力",
+        "dc": "0-5 VDCまたは0-10 VDC出力時 最大4.9 mA DC",
+        "ac": "0-5 VDCまたは0-10 VDC出力時 最大0.12 VA AC",
+        "ma": "4-20 mA出力時 最大20 mA、DC専用"
+      },
+      "pressureRanges": {
+        "title": "圧力範囲",
+        "inchesWC": {
+          "title": "インチ水柱",
+          "lowUnidirectional": "低圧単方向",
+          "lowUnidirectionalValues": "0～0.10\"、0～0.25\"、0～0.50\"、0～0.75\"、0～1.00\"",
+          "lowBidirectional": "低圧双方向",
+          "lowBidirectionalValues": "±0.10\"、±0.25\"、±0.50\"、±0.75\"、±1.00\"",
+          "standardUnidirectional": "標準単方向",
+          "standardUnidirectionalValues": "0～1.00\"、0～2.00\"、0～2.50\"、0～3.00\"、0～5.00\"",
+          "standardBidirectional": "標準双方向",
+          "standardBidirectionalValues": "±1.00\"、±2.00\"、±2.50\"、±3.00\"、±5.00\"",
+          "highUnidirectional": "高圧単方向",
+          "highUnidirectionalValues": "0～5\"、0～10\"、0～15\"、0～25\"、0～30\""
+        },
+        "pascals": {
+          "title": "パスカル",
+          "lowUnidirectional": "低圧単方向",
+          "lowUnidirectionalValues": "0～30、0～50、0～100、0～175、0～250",
+          "lowBidirectional": "低圧双方向",
+          "lowBidirectionalValues": "±30、±50、±100、±175、±250",
+          "standardUnidirectional": "標準単方向",
+          "standardUnidirectionalValues": "0～250、0～300、0～500、0～1,000、0～1,250",
+          "standardBidirectional": "標準双方向",
+          "standardBidirectionalValues": "±250、±300、±500、±1,000、±1,250",
+          "highUnidirectional": "高圧単方向",
+          "highUnidirectionalValues": "0～1,250、0～2,500、0～4,000、0～6,000、0～7,400"
+        }
+      },
+      "accuracy": {
+        "title": "72°F（22.2°C）での精度",
+        "lowRangeWC": "低圧範囲：水柱範囲 0～0.1\"、0～0.25\"、±0.1\"、±0.25\"の±0.5%",
+        "lowRangePa": "低圧範囲：Pa範囲 0～30、0～50、±30、±50 Paの±0.5%",
+        "standardHighRange": "標準・高圧範囲：範囲の±0.25%（その他すべての範囲）"
+      },
+      "temperatureLimits": {
+        "title": "温度制限",
+        "storage": "保管：",
+        "storageValue": "-40°F～203°F（-40°C～95°C）",
+        "operational": "動作：",
+        "operationalValue": "32°F～140°F（0°C～95°C）",
+        "compensated": "補償：",
+        "compensatedValue": "50°F～104°F（10°C～40°C）"
+      },
+      "operatingRH": {
+        "title": "動作湿度範囲",
+        "value": "0～95% 結露なし"
+      },
+      "media": {
+        "title": "媒体",
+        "value": "非イオン性、非腐食性、清浄、乾燥ガス"
+      }
+    },
+    "outputTables": {
+      "heading": "圧力トランスミッタ出力表",
+      "inchesWCHeading": "インチ水柱（W.C.）",
+      "tableHeading": "圧力範囲 {range} 出力表",
+      "emptyTable": "この圧力範囲の表データは今後入力予定です。"
+    },
+    "usingTables": {
+      "heading": "これらの出力表の使用方法",
+      "description": "上のタブから圧力範囲を選択して、対応する出力値を表示してください。各表は、圧力測定と3つの利用可能な出力タイプ：0-5 VDC、0-10 VDC、4-20 mAとの関係を示しています。これらの表を使用してセンサーの動作を確認したり、BAPI圧力トランスミッタを制御システムに統合したりしてください。"
+    },
+    "cta": {
+      "heading": "圧力トランスミッタをお探しですか？",
+      "description": "当社のデジタル補償技術は圧力測定において究極の精度と安定性を提供します。",
+      "browseButton": "圧力センサーを閲覧",
+      "contactButton": "サポートに連絡"
+    }
+  },
+  "humidityTransmittersPage": {
+    "breadcrumb": {
+      "back": "センサー仕様に戻る"
+    },
+    "hero": {
+      "title": "湿度トランスミッタ",
+      "subtitle": "要求の厳しい用途向けの高精度4-20mA、0-5V、0-10V湿度トランスミッタ"
+    },
+    "description": {
+      "heading": "湿度トランスミッタの説明",
+      "paragraph1": "BAPI湿度トランスミッタは、高精度の4〜20mA、0〜5V、または0〜10Vの湿度測定を提供します。2% RHの精度が利用可能です。ダクトおよび外気ユニットには、取り外し可能な焼結ステンレス鋼フィルターが付属しています。ダクトおよび外気ユニットでは、フィルターは温かい蒸留水で清掃できます。",
+      "paragraph2": "これらのユニットはマイクロプロセッサベースで、現場校正は必要ありません。",
+      "paragraph3": "すべての非室内構成において、BAPI湿度トランスミッタは標準で耐久性パッケージで提供されます。耐久性トランスミッタは、湿気や結露が問題となる可能性がある場所に適しています。トランスミッタを耐久化するために使用されるポッティング材は高い熱伝導率を持ち、回路の過熱を防止し、熱膨張を可能にして回路部品への応力を最小限に抑えます。エポキシの極めて低い吸湿特性により、耐久性トランスミッタは一時的に水に浸かっても動作し続けます。",
+      "paragraph4": "これらの湿度トランスミッタに組み込まれたセンサーについて、長期間の精度と耐久性を保証するために多くのテストと研究が実施されています。しかし、さらに高い精度を要求する用途については、NIST追跡可能基準に対してテストおよびオフセットされた認定ユニットが利用可能です。詳細または具体的な要件についてはお電話ください。"
+    },
+    "features": {
+      "accuracy": {
+        "value": "2% RH",
+        "title": "高精度",
+        "description": "重要な用途向けの精密湿度測定"
+      },
+      "durability": {
+        "value": "耐久性",
+        "title": "耐久設計",
+        "description": "一時的に水に浸かっても動作可能"
+      },
+      "calibration": {
+        "value": "校正不要",
+        "title": "マイクロプロセッサベース",
+        "description": "現場校正は不要"
+      }
+    },
+    "specifications": {
+      "heading": "一般仕様",
+      "outputRanges": {
+        "title": "出力範囲",
+        "value": "4〜20 mA、0〜5 V、または0〜10 V"
+      },
+      "power": {
+        "title": "電源",
+        "v5OrMa": "0-5 VDCまたは4-20 mA出力:",
+        "v5OrMaValue": "10〜35 VDC",
+        "v10": "0-10 VDC出力:",
+        "v10Value": "15〜35 VDC",
+        "v5AC": "0-5 VDC出力 (AC):",
+        "v5ACValue": "12〜27 VAC",
+        "v10AC": "0-10 VDC出力 (AC):",
+        "v10ACValue": "15〜27 VAC"
+      },
+      "powerConsumption": {
+        "title": "消費電力",
+        "dc": "DC: 22 mA最大 (0-5 VDCまたは4-20 mA)、6 mA最大 (0-10 VDC)",
+        "ac": "AC: 0.53 VA最大 (0-5 VDCまたは4-20 mA)、0.14 VA最大 (0-10 VDC)"
+      },
+      "sensingElement": {
+        "title": "センシング素子",
+        "value": "容量式湿度センサー"
+      },
+      "operatingRH": {
+        "title": "動作湿度範囲",
+        "value": "0〜100 %RH（非結露）"
+      },
+      "operatingTemperature": {
+        "title": "動作温度範囲",
+        "room": "室内:",
+        "roomValue": "0〜70°C（32〜158°F）",
+        "ductOutside": "ダクト・外気:",
+        "ductOutsideValue": "-20〜70°C（-4〜158°F）"
+      },
+      "accuracyRange": {
+        "title": "精度範囲",
+        "value": "25°Cで10〜90% RH"
+      },
+      "responseTime": {
+        "title": "応答時間",
+        "value": "8秒",
+        "note": "63%ステップの移動空気中"
+      },
+      "drift": {
+        "title": "ドリフト",
+        "value": "年間0.5% RH未満"
+      }
+    },
+    "outputTable": {
+      "heading": "湿度トランスミッタ出力表"
+    },
+    "cta": {
+      "heading": "湿度トランスミッタをお探しですか？",
+      "description": "当社の湿度トランスミッタは、最小限のドリフトで正確で長期信頼性のある測定を提供します。",
+      "browseButton": "湿度センサーを見る",
+      "contactButton": "サポートに問い合わせ"
+    }
+  },
+  "temperatureTransmittersPage": {
+    "breadcrumb": {
+      "back": "センサー仕様に戻る"
+    },
+    "hero": {
+      "title": "温度トランスミッター",
+      "subtitle": "長距離での正確な温度センシングのための精密4-20mAトランスミッター"
+    },
+    "description": {
+      "heading": "温度トランスミッターの説明",
+      "paragraph1": "BAPIの温度トランスミッターは1KΩ RTDセンサーとアンプを組み込んでいます。これらのデバイスは、指定された温度範囲で正確な2線式、4～20mA出力を提供します。4～20mA信号の劣化なしに長距離伝送のために特別に設計されています。100Ω仕様もリクエストに応じて利用可能です。",
+      "paragraph2": "各温度トランスミッターは、指定された温度範囲に対して設定変更はできません。現場で適切なトランスミッターを提供していない場合、または全体的な精度を向上させるためにクラスA RTDの軽量トランスミッターを使用する場合、校正範囲での指定ユニットは制御コンポーネントのクロスを最小限に抑えるためのより良い精度を提供します。マッチドペアユニットの精度は、伝達直線性（RTD曲線）と基準トランスミッターの関数となります。",
+      "paragraph3": "標準ユニットは0～100°F（一般的に見つけられる）をオフセットします - 基準温度計（例）：",
+      "paragraph4": "オフセット範囲ユニット：-20°C～+250°C（-4°F～482°F）",
+      "paragraph4b": "最大スパン：16.6°C（30°F）- 2.0～+600°C（-148°F～+1000°F）",
+      "paragraph5": "BA/TM-1K（0-30°F）仕様：+/- 0.08˚C（0.14˚F）= 16°F] MAX",
+      "paragraph5b": "BA/TM-1K（0-100°F）仕様：+/- 0.10˚C（0.18˚F）= 38-55°F] OFFSET",
+      "paragraph6": "これらの精度はセンサーの最悪の範囲に対するものですが、センサーの中点での精度はより厳密になります。詳細についてはBAPI担当者にお問い合わせください。",
+      "paragraph7": "BAPI温度トランスミッターは、湿気や結露が問題となる可能性のあるすべての非室内構成用の堅牢なパッケージで提供されます。トランスミッターを堅牢にするために使用されるポッティング材料は、回路の過熱を防ぎ、熱膨張を可能にして制御コンポーネントのストレスを最小限に抑えるために高い熱伝導率を持っています。エポキシの極めて低い水分吸収特性により、堅牢なトランスミッターは一時的に水に浸かっても動作し続けます。"
+    },
+    "specifications": {
+      "heading": "仕様",
+      "sensor": {
+        "title": "センサー",
+        "value": "1000Ω プラチナRTD"
+      },
+      "supplyVoltage": {
+        "title": "電源電圧",
+        "value": "12～40 VDC"
+      },
+      "output": {
+        "title": "出力",
+        "value": "4～20 mA、0～5V、1～5V、0～10V、2～10V"
+      },
+      "maxLoopResistance": {
+        "title": "最大ループ抵抗",
+        "value": "24VDCで850Ω"
+      },
+      "span": {
+        "title": "スパン",
+        "value": "最小16.6°C（30°F）、最大555°C（1000°F）"
+      },
+      "zero": {
+        "title": "ゼロ",
+        "value": "最小-100°C（-148°F）、最大482°C（900°F）"
+      },
+      "systemAccuracy": {
+        "title": "システム精度",
+        "value": "スパンの±0.065%"
+      },
+      "linearity": {
+        "title": "直線性",
+        "value": "±(0.125 x T-20ºC)/100"
+      },
+      "operationalHumidity": {
+        "title": "動作湿度",
+        "value": "0～95%、結露なし"
+      },
+      "outputCurrentLimits": {
+        "title": "出力電流制限",
+        "value": "1mA未満および22.35 ± 0.15 mA"
+      },
+      "powerOutputShift": {
+        "title": "電源出力シフト",
+        "value": "40VDCまでスパンの±0.009%"
+      },
+      "connections": {
+        "title": "接続",
+        "value": "4本の22ゲージエッチングテフロンリードまたは端子台"
+      },
+      "operatingTemperature": {
+        "title": "動作温度",
+        "transmitter": "トランスミッター：",
+        "transmitterValue": "-20～70°C",
+        "sensorStandard": "センサー（標準）：",
+        "sensorStandardValue": "-65～105°C",
+        "sensorAvailable": "センサー（利用可能）：",
+        "sensorAvailableValue": "-200～600°C"
+      }
+    },
+    "outputTable": {
+      "heading": "0-100 °F 温度トランスミッター出力表"
+    },
+    "fieldAdjustments": {
+      "heading": "現場調整",
+      "description": "各トランスミッターは、注文された指定温度範囲に校正されています。現場調整はできません。調整が必要な場合は、BAPI担当者にお問い合わせください。"
+    },
+    "cta": {
+      "heading": "温度トランスミッターが必要ですか？",
+      "description": "当社のT1Kトランスミッターは、長距離温度測定アプリケーション向けに正確な4-20mA信号を提供します。",
+      "browseButton": "温度センサーを閲覧",
+      "contactButton": "サポートに連絡"
+    }
   }
 }

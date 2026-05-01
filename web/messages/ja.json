@@ -492,9 +492,9 @@
         "particulate": "粒子状物質",
         "particulateDesc": "PM2.5およびPM10",
         "nitrogenDioxide": "二酸化窒素",
-        "nitrogenDioxideDesc": "NO₂ガス検知",
+        "nitrogenDioxideDesc": "NO₂ガス検出",
         "carbonMonoxide": "一酸化炭素",
-        "carbonMonoxideDesc": "COガス検知",
+        "carbonMonoxideDesc": "COガス検出",
         "refrigerantLeak": "冷媒漏れ検知",
         "refrigerantLeakDesc": "冷媒漏れセンサー"
       },

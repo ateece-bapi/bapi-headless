@@ -495,8 +495,8 @@
         "nitrogenDioxideDesc": "كشف غاز NO₂",
         "carbonMonoxide": "أول أكسيد الكربون",
         "carbonMonoxideDesc": "كشف غاز CO",
-        "refrigerantLeak": "كشف تسرب مبرد التبريد",
-        "refrigerantLeakDesc": "مستشعرات تسرب المبرد"
+        "refrigerantLeak": "كشف تسرب المبرد",
+        "refrigerantLeakDesc": "أجهزة استشعار تسرب المبرد"
       },
       "wireless": {
         "title": "لاسلكي",

@@ -174,9 +174,9 @@
         "particulate": "Feinstaub",
         "particulateDesc": "PM2.5 und PM10",
         "nitrogenDioxide": "Stickstoffdioxid",
-        "nitrogenDioxideDesc": "NO₂ Gasdetektion",
+        "nitrogenDioxideDesc": "NO₂-Gasdetektion",
         "carbonMonoxide": "Kohlenmonoxid",
-        "carbonMonoxideDesc": "CO Gasdetektion",
+        "carbonMonoxideDesc": "CO-Gasdetektion",
         "refrigerantLeak": "Kältemittelleck-Erkennung",
         "refrigerantLeakDesc": "Kältemittelleck-Sensoren"
       },

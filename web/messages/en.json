@@ -2245,10 +2245,15 @@
     },
     "hero": {
       "title": "Product Datasheets",
-      "subtitle": "Detailed technical specifications for all BAPI products"
+      "subtitle": "Detailed technical specifications for all BAPI products",
+      "totalDocs": "{count} documents available"
+    },
+    "stats": {
+      "showing": "Showing {start}-{end} of {total} documents"
     },
     "search": {
       "placeholder": "Search datasheets by model number or product name...",
+      "ariaLabel": "Search documents",
       "categoryLabel": "All Categories",
       "categories": {
         "temperature": "Temperature",
@@ -2259,9 +2264,39 @@
         "controllers": "Controllers"
       }
     },
+    "filters": {
+      "clear": "Clear filters",
+      "categoryLabel": "Filter by category",
+      "typeLabel": "Filter by document type",
+      "allCategories": "All Categories",
+      "allTypes": "All Types"
+    },
+    "sort": {
+      "label": "Sort documents",
+      "dateDesc": "Newest First",
+      "dateAsc": "Oldest First",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "sizeDesc": "Largest First",
+      "sizeAsc": "Smallest First"
+    },
+    "recentSearches": {
+      "heading": "Recent Searches"
+    },
+    "noResults": {
+      "heading": "No documents found",
+      "description": "Try adjusting your filters or search term",
+      "clearButton": "Clear all filters"
+    },
     "grid": {
       "pagesLabel": "pages",
-      "downloadButton": "Download PDF"
+      "downloadButton": "Download",
+      "selectAll": "Select all on this page",
+      "selectedCount": "{count} selected"
+    },
+    "bulkActions": {
+      "downloadZip": "Download {count} as ZIP",
+      "creatingZip": "Creating ZIP..."
     },
     "pagination": {
       "previous": "Previous",

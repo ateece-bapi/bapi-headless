@@ -2484,5 +2484,559 @@
       "heading": "Orientation d'Experts de Leaders de l'Industrie",
       "description": "Nos notes d'application sont rédigées par l'équipe d'ingénierie de BAPI avec des décennies d'expérience combinée. Chaque article fournit des solutions pratiques et éprouvées sur le terrain aux défis communs dans l'installation, l'étalonnage et la maintenance de capteurs."
     }
+  },
+  "thermistorPage": {
+    "breadcrumb": {
+      "back": "Retour aux spécifications des capteurs"
+    },
+    "hero": {
+      "title": "Aperçu des thermistances",
+      "subtitle": "Résistances thermosensibles avec précision exceptionnelle et fiabilité pour les applications CVC"
+    },
+    "description": {
+      "heading": "Description des thermistances",
+      "paragraph1": "Les thermistances BAPI sont des résistances thermosensibles connues pour présenter un grand changement de résistance avec seulement un petit changement de température. Il est important de noter que le changement de résistance d'une thermistance n'est pas linéaire. Il suit une courbe prédéfinie qui est fournie par le fabricant de la thermistance.",
+      "paragraph2": "Les thermistances sont fabriquées pour suivre une courbe spécifique avec un haut degré de précision. Toutes les thermistances BAPI ont une précision standard de ± 0,2 °C dans toute la plage de température commerciale de 0 à 70 °C. BAPI dispose également d'un capteur de plus haute précision pour répondre aux spécifications plus strictes. La ligne de précision supplémentaire [X a une précision initiale de ± 0,1 °C dans toute la plage de température commerciale de 0 à 70 °C. Veuillez appeler pour la disponibilité et les prix des thermistances de ligne [X. Les deux niveaux de précision permettent aux thermistances BAPI d'être interchangées sans les frais supplémentaires de décalage du contrôleur.",
+      "footnote": "*Toutes les thermistances passives 10K Ω et plus petites sont conformes CE"
+    },
+    "specifications": {
+      "heading": "Définition des termes de spécification",
+      "interchangeability": {
+        "title": "Tolérance d'interchangeabilité (Précision)",
+        "description": "La quantité maximale que les thermistances suivant la même courbe différeront les unes des autres."
+      },
+      "dissipation": {
+        "title": "Constante de dissipation",
+        "description": "La puissance nécessaire pour élever la température du corps de la thermistance de 1°C. Au cœur de tous les produits de thermistance BAPI se trouve un capteur avec une constante de dissipation de 2,7 mW/°C pour s'assurer que l'auto-échauffement reste au minimum absolu."
+      },
+      "stability": {
+        "title": "Stabilité (Dérive)",
+        "description": "La quantité que les caractéristiques de résistance d'une thermistance changeront. BAPI utilise uniquement les thermistances de la plus haute qualité, \"pré-vieillies\" avec des valeurs de dérive très petites. Sur une période de dix ans, les thermistances BAPI ne changeront pas plus de 0,1°C."
+      },
+      "operatingRange": {
+        "title": "Plage de fonctionnement",
+        "description": "La plage de fonctionnement indiquée est pour la thermistance uniquement. Le boîtier de montage peut limiter davantage la plage de fonctionnement et est décrit sur chaque spécification de type de montage. La constante de temps thermique sera également affectée en fonction de la masse ajoutée de la sonde en acier inoxydable et de l'encapsulation de protection contre l'humidité."
+      },
+      "thermalTime": {
+        "title": "Constante de temps thermique",
+        "description": "Les capteurs nus sont généralement mesurés et spécifiés dans l'air immobile et sont chronométrés à 63,2% statistiques du changement de température par étape. Un test de liquide agité résultera généralement en un temps de réponse beaucoup plus rapide et est également chronométré à 63,2% du changement de température par étape. La constante de temps est toujours la même quel que soit le changement de température par étape."
+      }
+    },
+    "specsTable": {
+      "heading": "Spécifications des thermistances",
+      "headers": {
+        "type": "Type de thermistance",
+        "tolerance": "Tolérance d'interchangeabilité/Précision",
+        "range": "Plage de fonctionnement"
+      },
+      "footnotes": {
+        "note1": "*D'autres thermistances sont disponibles. Contactez BAPI pour la disponibilité et les spécifications de types de thermistances supplémentaires.",
+        "note2": "**Disponible en tant que capteurs [X] (haute précision).",
+        "note3": "Des quantités minimales et de longs délais de livraison peuvent s'appliquer. Les thermistances \"JX5\" et \"5K\" sont généralement des articles en stock."
+      }
+    },
+    "outputCurve": {
+      "heading": "Courbe de sortie typique de thermistance",
+      "imageAlt": "Courbe de sortie typique de thermistance capteur 10K-2 montrant la résistance (Ohms) vs température (°C)",
+      "caption": "Figure 1 - Courbe de sortie typique de thermistance capteur 10K-2"
+    },
+    "outputTables": {
+      "heading": "Tableaux de sortie de thermistance"
+    }
+  },
+  "rtdPage": {
+    "breadcrumb": {
+      "back": "Retour aux spécifications des capteurs"
+    },
+    "hero": {
+      "title": "Aperçu RTD",
+      "subtitle": "Détecteurs de température à résistance avec excellente linéarité, précision et répétabilité"
+    },
+    "description": {
+      "heading": "Description RTD",
+      "paragraph1": "Les RTD BAPI (Détecteurs de température à résistance) sont des éléments résistifs thermosensibles qui présentent un petit changement de résistance par degré de changement de température. Les RTD sont particulièrement reconnus pour leur excellente linéarité sur toute leur plage de température avec un haut degré de précision et de répétabilité.",
+      "paragraph2": "Les RTD fournis dans les produits BAPI présentent une tolérance d'interchangeabilité standard de ±0,3°C mesurée à 0°C. Des capteurs de plus haute précision sont également disponibles. La ligne Classe A a une tolérance d'interchangeabilité de ± 0,15°C mesurée à 0°C. Veuillez appeler pour la disponibilité et les prix des RTD Classe A. Qu'ils soient standard ou Classe A, les RTD BAPI ont une si haute précision qu'ils peuvent être interchangés sans les frais de compensation du contrôleur.",
+      "paragraph3": "La plupart des éléments de détection RTD peuvent être conditionnés pour résister à une plage de température extrêmement large (‑200 à 600°C). Pour la plupart des applications, la plage de fonctionnement standard devrait être suffisante, mais nous avons aussi des RTD avec une plage de température de fonctionnement plus élevée ou plus basse. BAPI offre des RTD Platine 1KΩ avec diverses plages pour répondre aux besoins de votre application spécifique."
+    },
+    "specifications": {
+      "heading": "Définition des termes de spécification",
+      "tolerance": {
+        "title": "Tolérance de résistance (Précision)",
+        "description": "La quantité maximale que les RTD suivant la même courbe peuvent différer les uns des autres."
+      },
+      "stability": {
+        "title": "Stabilité (dérive)",
+        "description": "La quantité que les caractéristiques de résistance RTD vont changer. BAPI utilise seulement les capteurs RTD platine pelliculaire de la plus haute qualité avec des valeurs de dérive très faibles."
+      },
+      "operatingRange": {
+        "title": "Plage de fonctionnement",
+        "description": "La plage de fonctionnement indiquée est pour le capteur RTD seulement. Le boîtier de montage peut limiter davantage la plage de fonctionnement et est décrit sur chaque spécification de type de montage."
+      }
+    },
+    "specsTable": {
+      "heading": "Spécifications RTD",
+      "toleranceOfResistance": {
+        "title": "Tolérance de résistance (Précision)",
+        "description": "Plage : ±0,06 de la valeur absolue en ohms à 0°C en conformité avec la norme 1/3 DIN"
+      },
+      "tolerancePercent": {
+        "title": "Tolérance % (%)",
+        "description": "Plage : ±0,0 ± (0,02 x t (0,0111 + t)); t= temp °C",
+        "example": "À 0°C - Plage ±0,02°C, À 100°C - Plage ±0,13°C",
+        "averaging": "Moyenne standard : ±0,0 ± (0,0052 + (0,01 x temp °C))"
+      },
+      "stabilityDrift": {
+        "title": "Stabilité (dérive)",
+        "description": "±0,1°C sur 5 000 heures continues à 65°C"
+      },
+      "sensitivity": {
+        "title": "Sensibilité",
+        "description1K": "1KΩ : 2,13Ω/°C (à 70°F)",
+        "description100": "100Ω : 0,385Ω/°C"
+      },
+      "selfHeating": {
+        "title": "Auto-échauffement (dans RTD seulement)",
+        "description": "0,4°C/mW dans l'air"
+      }
+    },
+    "standardRanges": {
+      "heading": "Plages de température standard et interne pour le RTD Platine 1KΩ",
+      "tableHeaders": {
+        "symbol": "Symbole",
+        "referenceResistance": "Résistance de référence",
+        "temperatureCoefficient": "Coefficient de température",
+        "operatingRange": "Plage de fonctionnement"
+      }
+    },
+    "outputTables": {
+      "heading": "Tables de sortie RTD",
+      "description": "Tables détaillées de résistance vs température montrant les valeurs précises en ohms pour chaque type de RTD sur toute leur plage de fonctionnement. Ces tables sont essentielles pour l'intégration système et le dépannage."
+    }
+  },
+  "semiconductorPage": {
+    "breadcrumb": {
+      "back": "Retour aux spécifications des capteurs"
+    },
+    "hero": {
+      "title": "Vue d'ensemble des semi-conducteurs",
+      "subtitle": "Les capteurs de température les plus linéaires pour les applications CVC commerciales"
+    },
+    "description": {
+      "heading": "Description des semi-conducteurs",
+      "paragraph1": "Les semi-conducteurs BAPI sont conçus pour présenter une sortie de courant définie directement proportionnelle à la température absolue (°K). Cette propriété en fait les plus linéaires de tous les éléments de détection CVC commerciaux courants. En faisant passer cette sortie de courant à travers une résistance, une tension de sortie proportionnelle est produite.",
+      "paragraph2": "Le capteur de température à semi-conducteur AD592 fourni avec les produits BAPI offre une sortie de 248 à 378 micro ampères à deux fils ou une sortie de 2,48 à 3,78 volts à trois fils sur une plage de -13 à 221 °F (-25 à 105 °C). Ces unités sont décalées en utilisant un équipement traçable au National Institute of Standards and Technology (NIST). Chaque unité est ensuite étiquetée avec la température réelle et le décalage correspondant."
+    },
+    "specifications": {
+      "heading": "Définition des termes de spécification",
+      "interchangeability": {
+        "title": "Tolérance d'interchangeabilité (Précision)",
+        "description": "La quantité maximale de différence entre les capteurs suivant la même courbe."
+      },
+      "repeatability": {
+        "title": "Répétabilité",
+        "description": "Une mesure de la capacité d'un capteur à répéter la même valeur de sortie pour une valeur d'entrée donnée."
+      }
+    },
+    "customOffset": {
+      "heading": "Définition et exemple de décalage personnalisé",
+      "description": "Voici comment BAPI calcule la valeur de décalage fournie sur l'étiquette du capteur :",
+      "thermReading": {
+        "title": "Lecture du thermomètre",
+        "description": "La lecture de température réelle selon un thermomètre certifié traçable aux normes reconnues par le National Institute of Standards and Technology (NIST)."
+      },
+      "sensorReading": {
+        "title": "Lecture du capteur",
+        "description": "La lecture de température selon le capteur AD592, en utilisant la sortie en µA ou mV et en convertissant la sortie en température Fahrenheit."
+      },
+      "offset": {
+        "title": "Décalage",
+        "description": "La différence entre la lecture du thermomètre et la lecture du capteur"
+      },
+      "maximizeAccuracy": "Pour maximiser la précision du capteur, ajoutez simplement la valeur de décalage de la lecture du capteur dans le contrôleur.",
+      "example1": {
+        "thermReading": "ex. Lecture du thermomètre 74,6",
+        "sensorReading": "Lecture du capteur 73,0",
+        "offset": "Décalage +1,6",
+        "correction": "Correction : Ajouter (+1,6) °F au capteur pour une lecture précise : 73 + 1,6 = 74,6°F"
+      },
+      "example2": {
+        "thermReading": "ex. Lecture du thermomètre 75,4",
+        "sensorReading": "Lecture du capteur 77,2",
+        "offset": "Décalage -1,8",
+        "correction": "Correction : Ajouter (-1,8) °F au capteur pour une lecture précise : 77,2 + (-1,8) = 75,4°F"
+      }
+    },
+    "specsTable": {
+      "heading": "Spécifications des semi-conducteurs",
+      "interchangeability": {
+        "title": "Tolérance d'interchangeabilité (Précision)",
+        "value": "Décalage à 0,1 °C (0,18 °F)",
+        "note": "Traçable NIST"
+      },
+      "offsetRequirement": {
+        "title": "Exigence de décalage",
+        "description": "Requis pour atteindre une précision maximale. Chaque capteur inclut un décalage personnalisé listé sur chaque capteur."
+      },
+      "repeatability": {
+        "title": "Répétabilité",
+        "value": "± 0,10 °C (± 0,18°F)"
+      },
+      "linearity": {
+        "title": "Linéarité",
+        "value": "± 0,15 °C max",
+        "note": "de 0 à 70 °C (32 à 158°F)"
+      },
+      "sensorRange": {
+        "title": "Plage du capteur",
+        "value": "-25 à 105 °C",
+        "note": "(-13 à 221 °F) [248 à 378 °K]"
+      },
+      "biasVoltage": {
+        "title": "Tension de polarisation",
+        "value": "5 à 30 VDC"
+      },
+      "accuracyReference": {
+        "title": "Référence de précision",
+        "value": "298,2 mA @ 25°C ou 2,982 V @ 25°C"
+      },
+      "temperatureOutputCoefficient": {
+        "title": "Coefficient de sortie de température",
+        "twoWire": "2 fils : 1 µA/°C (0,556 µA/°F) [1 µA/°K]",
+        "threeWire": "3 fils : 10 mV/°C (5,556 mV/°F) [10 mV/°K]"
+      }
+    },
+    "outputCurve": {
+      "heading": "Courbe de sortie typique des semi-conducteurs",
+      "alt": "Sortie typique des semi-conducteurs montrant le courant (µA) et la tension (V) vs température",
+      "caption": "Figure 1 - Sortie de température typique des semi-conducteurs"
+    },
+    "outputTables": {
+      "heading": "Tableaux de sortie des semi-conducteurs",
+      "ad592Standard": {
+        "tabLabel": "AD592 Standard",
+        "heading": "Tableau de sortie des semi-conducteurs AD592 standard",
+        "description": "Sortie standard AD592 courant (µA) et tension (V) vs température"
+      },
+      "ad59210K": {
+        "tabLabel": "AD592-10K",
+        "heading": "Tableau de sortie des semi-conducteurs AD592-10K",
+        "description": "Semi-conducteur AD592 avec résistance de dérivation 10K - sortie de tension (V) vs température"
+      }
+    },
+    "cta": {
+      "heading": "Besoin d'aide avec les capteurs à semi-conducteurs ?",
+      "description": "Notre équipe technique peut vous aider à comprendre si les capteurs à semi-conducteurs conviennent à votre application.",
+      "browseButton": "Parcourir les capteurs de température",
+      "contactButton": "Contacter le support"
+    }
+  },
+  "pressureTransmittersPage": {
+    "breadcrumb": {
+      "back": "Retour aux Spécifications des Capteurs"
+    },
+    "hero": {
+      "title": "Transmetteurs de Pression",
+      "subtitle": "Capteurs silicium de précision avec compensation numérique pour une précision ultime"
+    },
+    "description": {
+      "heading": "Description du Capteur de Pression",
+      "paragraph1": "Le point focal de tout capteur est l'élément de détection lui-même, et BAPI a déployé de grands efforts pour produire l'un des meilleurs capteurs du marché aujourd'hui. Le cœur de chaque unité BAPI est un capteur de pression en silicium monocristallin micro-usiné. Chaque capteur est fabriqué en utilisant la même technologie de circuits intégrés utilisée pour fabriquer des millions de téléphones portables, de consoles de jeu et d'ordinateurs personnels. Pour contrôler et maintenir la qualité de ces capteurs, BAPI est impliqué dans toutes les phases de production, de la conception à l'utilisation.",
+      "paragraph2": "Le silicium apporte avec lui une caractéristique indésirable — la sensibilité thermique. La méthode traditionnelle de compensation de cette sensibilité thermique est un circuit externe avec des résistances discrètes, dont certaines ont leurs propres dépendances de température, introduisant plus d'erreur. BAPI utilise une approche différente et unique. Nous employons un ASIC de compensation personnalisé (Circuit Intégré Spécifique à l'Application) qui utilise la compensation numérique tout en maintenant un chemin de signal analogique, produisant un capteur qui est précis et interchangeable.",
+      "paragraph3": "Grâce au capteur innovant et au circuit de compensation de température numérique, nous sommes capables de produire un produit très précis et stable. Cette précision est vérifiée lors de l'étalonnage final dans notre usine en utilisant une source contrôlée en pression précise à 0,00015 pouce d'eau et traçable aux normes NIST."
+    },
+    "features": {
+      "accuracy": {
+        "value": "±0,25%",
+        "title": "Haute Précision",
+        "description": "Précision traçable NIST de ±0,25% pour la plupart des gammes"
+      },
+      "compensation": {
+        "value": "Numérique",
+        "title": "Compensation Numérique",
+        "description": "La compensation numérique basée sur ASIC élimine la dérive thermique"
+      },
+      "sensor": {
+        "value": "Silicium",
+        "title": "Piézorésistif",
+        "description": "Capteur en silicium monocristallin fabriqué avec la technologie IC"
+      }
+    },
+    "specifications": {
+      "heading": "Spécifications",
+      "outputRanges": {
+        "title": "Gammes de Sortie",
+        "value": "4 à 20 mA, 0 à 5 V ou 0 à 10V"
+      },
+      "power": {
+        "title": "Alimentation",
+        "ma": "Sortie 4-20 mA :",
+        "maValue": "7 à 45 VDC",
+        "v5": "Sortie 0-5 VDC :",
+        "v5Value": "7 à 45 VDC ou 7 à 32 VAC",
+        "v10": "Sortie 0-10 VDC :",
+        "v10Value": "13 à 45 VDC ou 13 à 32 VAC"
+      },
+      "powerConsumption": {
+        "title": "Consommation Électrique",
+        "dc": "4,9 mA max DC à sortie 0-5 VDC ou 0-10 VDC",
+        "ac": "0,12 VA max AC à sortie 0-5 VDC ou 0-10 VDC",
+        "ma": "20 mA max, DC seulement à sortie 4-20 mA"
+      },
+      "pressureRanges": {
+        "title": "Gammes de Pression",
+        "inchesWC": {
+          "title": "Pouces C.E.",
+          "lowUnidirectional": "Gamme Basse Unidirectionnelle",
+          "lowUnidirectionalValues": "0 à 0,10\", 0 à 0,25\", 0 à 0,50\", 0 à 0,75\", 0 à 1,00\"",
+          "lowBidirectional": "Gamme Basse Bidirectionnelle",
+          "lowBidirectionalValues": "±0,10\", ±0,25\", ±0,50\", ±0,75\", ±1,00\"",
+          "standardUnidirectional": "Gamme Standard Unidirectionnelle",
+          "standardUnidirectionalValues": "0 à 1,00\", 0 à 2,00\", 0 à 2,50\", 0 à 3,00\", 0 à 5,00\"",
+          "standardBidirectional": "Gamme Standard Bidirectionnelle",
+          "standardBidirectionalValues": "±1,00\", ±2,00\", ±2,50\", ±3,00\", ±5,00\"",
+          "highUnidirectional": "Gamme Haute Unidirectionnelle",
+          "highUnidirectionalValues": "0 à 5\", 0 à 10\", 0 à 15\", 0 à 25\", 0 à 30\""
+        },
+        "pascals": {
+          "title": "Pascals",
+          "lowUnidirectional": "Gamme Basse Unidirectionnelle",
+          "lowUnidirectionalValues": "0 à 30, 0 à 50, 0 à 100, 0 à 175, 0 à 250",
+          "lowBidirectional": "Gamme Basse Bidirectionnelle",
+          "lowBidirectionalValues": "±30, ±50, ±100, ±175, ±250",
+          "standardUnidirectional": "Gamme Standard Unidirectionnelle",
+          "standardUnidirectionalValues": "0 à 250, 0 à 300, 0 à 500, 0 à 1 000, 0 à 1 250",
+          "standardBidirectional": "Gamme Standard Bidirectionnelle",
+          "standardBidirectionalValues": "±250, ±300, ±500, ±1 000, ±1 250",
+          "highUnidirectional": "Gamme Haute Unidirectionnelle",
+          "highUnidirectionalValues": "0 à 1 250, 0 à 2 500, 0 à 4 000, 0 à 6 000, 0 à 7 400"
+        }
+      },
+      "accuracy": {
+        "title": "Précision à 72°F (22,2°C)",
+        "lowRangeWC": "Gamme Basse : ±0,5% des gammes C.E. 0 à 0,1\", 0 à 0,25\", ±0,1\" et ±0,25\"",
+        "lowRangePa": "Gamme Basse : ±0,5% des gammes Pa 0 à 30, 0 à 50, ±30 et ±50 Pa",
+        "standardHighRange": "Gamme Standard et Haute : ±0,25% de la gamme (toutes les autres gammes)"
+      },
+      "temperatureLimits": {
+        "title": "Limites de Température",
+        "storage": "Stockage :",
+        "storageValue": "-40°F à 203°F (-40°C à 95°C)",
+        "operational": "Fonctionnement :",
+        "operationalValue": "32°F à 140°F (0°C à 95°C)",
+        "compensated": "Compensée :",
+        "compensatedValue": "50°F à 104°F (10°C à 40°C)"
+      },
+      "operatingRH": {
+        "title": "Gamme d'Humidité Relative de Fonctionnement",
+        "value": "0 à 95% sans condensation"
+      },
+      "media": {
+        "title": "Milieu",
+        "value": "Gaz Non-Ioniques, Non-Corrosifs, Propres et Secs"
+      }
+    },
+    "outputTables": {
+      "heading": "Tableaux de Sortie des Transmetteurs de Pression",
+      "inchesWCHeading": "Pouces Colonne d'Eau (C.E.)",
+      "tableHeading": "Tableau de Sortie de la Gamme de Pression {range}",
+      "emptyTable": "Données du tableau à remplir pour cette gamme de pression."
+    },
+    "usingTables": {
+      "heading": "Utilisation de ces Tableaux de Sortie",
+      "description": "Sélectionnez votre gamme de pression dans les onglets ci-dessus pour afficher les valeurs de sortie correspondantes. Chaque tableau montre la relation entre la mesure de pression et les trois types de sortie disponibles : 0-5 VDC, 0-10 VDC et 4-20 mA. Utilisez ces tableaux pour vérifier le fonctionnement du capteur ou intégrer les transmetteurs de pression BAPI dans votre système de contrôle."
+    },
+    "cta": {
+      "heading": "Besoin d'un Transmetteur de Pression ?",
+      "description": "Notre technologie de compensation numérique offre le summum en matière de précision et de stabilité pour la mesure de pression.",
+      "browseButton": "Parcourir les Capteurs de Pression",
+      "contactButton": "Contacter le Support"
+    }
+  },
+  "humidityTransmittersPage": {
+    "breadcrumb": {
+      "back": "Retour aux spécifications des capteurs"
+    },
+    "hero": {
+      "title": "Transmetteurs d'humidité",
+      "subtitle": "Transmetteurs d'humidité haute précision 4-20mA, 0-5V et 0-10V pour applications exigeantes"
+    },
+    "description": {
+      "heading": "Description du transmetteur d'humidité",
+      "paragraph1": "Les transmetteurs d'humidité BAPI fournissent une mesure d'humidité haute précision de 4 à 20mA, 0 à 5V ou 0 à 10V. Des précisions de 2% HR sont disponibles. Les unités de conduit et d'air extérieur sont équipées d'un filtre en acier inoxydable fritté amovible. Sur les unités de conduit et d'air extérieur, le filtre peut être nettoyé à l'eau tiède distillée.",
+      "paragraph2": "Ces unités sont basées sur microprocesseur et ne nécessitent aucun étalonnage sur site.",
+      "paragraph3": "Pour toutes les configurations non-locales, les transmetteurs d'humidité BAPI sont livrés en standard dans un boîtier renforcé. Les transmetteurs renforcés conviennent aux emplacements où l'humidité ou la condensation peut poser problème. Le matériau d'enrobage utilisé pour renforcer les transmetteurs a une conductivité thermique élevée pour éliminer la surchauffe du circuit et permettre la dilatation thermique pour minimiser le stress sur les composants du circuit. En raison des propriétés d'absorption d'humidité extrêmement faibles de l'époxy, un transmetteur renforcé restera opérationnel même s'il est temporairement immergé dans l'eau.",
+      "paragraph4": "De nombreux tests et études ont été menés sur le capteur incorporé dans ces transmetteurs d'humidité pour assurer qu'ils fournissent une précision et une durabilité à long terme. Pour les applications nécessitant une précision encore plus élevée, cependant, des unités certifiées sont disponibles qui ont été testées et décalées par rapport à une référence traçable NIST. Veuillez appeler pour plus de détails ou avec des exigences spécifiques."
+    },
+    "features": {
+      "accuracy": {
+        "value": "2% HR",
+        "title": "Haute précision",
+        "description": "Mesure d'humidité de précision pour applications critiques"
+      },
+      "durability": {
+        "value": "Renforcé",
+        "title": "Conception durable",
+        "description": "Opérationnel même si temporairement immergé dans l'eau"
+      },
+      "calibration": {
+        "value": "Aucun étal.",
+        "title": "Basé sur microprocesseur",
+        "description": "Aucun étalonnage sur site requis"
+      }
+    },
+    "specifications": {
+      "heading": "Spécifications générales",
+      "outputRanges": {
+        "title": "Plages de sortie",
+        "value": "4 à 20 mA, 0 à 5 V, ou 0 à 10 V"
+      },
+      "power": {
+        "title": "Alimentation",
+        "v5OrMa": "Sorties 0-5 VCC ou 4-20 mA :",
+        "v5OrMaValue": "10 à 35 VCC",
+        "v10": "Sortie 0-10 VCC :",
+        "v10Value": "15 à 35 VCC",
+        "v5AC": "Sortie 0-5 VCC (CA) :",
+        "v5ACValue": "12 à 27 VCA",
+        "v10AC": "Sortie 0-10 VCC (CA) :",
+        "v10ACValue": "15 à 27 VCA"
+      },
+      "powerConsumption": {
+        "title": "Consommation électrique",
+        "dc": "CC : 22 mA max (0-5 VCC ou 4-20 mA), 6 mA max (0-10 VCC)",
+        "ac": "CA : 0,53 VA max (0-5 VCC ou 4-20 mA), 0,14 VA max (0-10 VCC)"
+      },
+      "sensingElement": {
+        "title": "Élément de détection",
+        "value": "Capteur d'humidité de type capacitif"
+      },
+      "operatingRH": {
+        "title": "Plage HR de fonctionnement",
+        "value": "0 à 100 %HR (sans condensation)"
+      },
+      "operatingTemperature": {
+        "title": "Plage de température de fonctionnement",
+        "room": "Local :",
+        "roomValue": "0 à 70°C (32 à 158°F)",
+        "ductOutside": "Conduit et extérieur :",
+        "ductOutsideValue": "-20 à 70°C (-4 à 158°F)"
+      },
+      "accuracyRange": {
+        "title": "Plage de précision",
+        "value": "de 10 à 90% HR à 25°C"
+      },
+      "responseTime": {
+        "title": "Temps de réponse",
+        "value": "8 secondes",
+        "note": "dans l'air en mouvement pour un échelon de 63%"
+      },
+      "drift": {
+        "title": "Dérive",
+        "value": "<0,5% HR par an"
+      }
+    },
+    "outputTable": {
+      "heading": "Tableau de sortie du transmetteur d'humidité"
+    },
+    "cta": {
+      "heading": "Besoin d'un transmetteur d'humidité ?",
+      "description": "Nos transmetteurs d'humidité fournissent une mesure précise et fiable à long terme avec une dérive minimale.",
+      "browseButton": "Parcourir les capteurs d'humidité",
+      "contactButton": "Contacter le support"
+    }
+  },
+  "temperatureTransmittersPage": {
+    "breadcrumb": {
+      "back": "Retour aux Spécifications des Capteurs"
+    },
+    "hero": {
+      "title": "Transmetteurs de Température",
+      "subtitle": "Transmetteurs 4-20mA de précision pour une détection de température précise sur de longues distances"
+    },
+    "description": {
+      "heading": "Description du Transmetteur de Température",
+      "paragraph1": "Les transmetteurs de température BAPI incorporent un capteur RTD 1KΩ et un amplificateur. Ces dispositifs fournissent une sortie précise à deux fils, de 4 à 20mA sur une plage de température spécifiée. Ils sont spécifiquement conçus pour la transmission longue distance sans dégradation du signal 4 à 20mA. Unités 100Ω également disponibles sur demande.",
+      "paragraph2": "Chaque transmetteur de température n'est pas configurable pour sa plage de température spécifiée. Si vous n'offrez pas le bon transmetteur sur le terrain ou le transmetteur léger en RTD Classe A pour améliorer la précision globale. L'unité spécifiée à la plage calibrée offre une meilleure précision pour minimiser la croix sur les composants de contrôle. Utilisez la précision de l'unité appariée qui devient une fonction de la linéarité de transfert (courbe RTD) et du transmetteur de référence quelque peu.",
+      "paragraph3": "Les unités standard auront un décalage de 0–100°F (couramment trouvé) - Thermomètre de Référence (exemple) :",
+      "paragraph4": "Unités de Plage de Décalage : –20°C à +250°C (-4°F à 482°F)",
+      "paragraph4b": "Plage Max : 16,6°C (30°F) – 2,0 à +600°C (–148°F à +1000°F)",
+      "paragraph5": "BA/TM- 1K en (0-30°F) Spéc : +/- 0,08˚C (0,14˚F) = 16°F] MAX",
+      "paragraph5b": "BA/TM- 1K en (0-100°F) Spéc : +/- 0,10˚C (0,18˚F) = 38-55°F] DÉCALAGE",
+      "paragraph6": "Ces précisions sont pour la pire plage du capteur, bien que les précisions au point médian du capteur seront plus serrées. Consultez votre représentant BAPI pour plus de détails.",
+      "paragraph7": "Les transmetteurs de température BAPI sont livrés dans un boîtier renforcé pour toutes les configurations non-locales où l'humidité ou la condensation peut être un problème. Le matériau d'enrobage utilisé pour renforcer les transmetteurs a une conductivité thermique élevée pour éliminer la surchauffe du circuit et permettre l'expansion thermique pour minimiser le stress sur les composants de contrôle. En raison des propriétés d'absorption d'humidité extrêmement faibles de l'époxy, un transmetteur renforcé restera opérationnel même s'il est temporairement immergé dans l'eau."
+    },
+    "specifications": {
+      "heading": "Spécifications",
+      "sensor": {
+        "title": "Capteur",
+        "value": "RTD Platine 1000Ω"
+      },
+      "supplyVoltage": {
+        "title": "Tension d'Alimentation",
+        "value": "12 à 40 VDC"
+      },
+      "output": {
+        "title": "Sortie",
+        "value": "4 à 20 mA, 0 à 5V, 1 à 5V, 0 à 10V, 2 à 10V"
+      },
+      "maxLoopResistance": {
+        "title": "Résistance de Boucle Max.",
+        "value": "850Ω à 24VDC"
+      },
+      "span": {
+        "title": "Plage",
+        "value": "Min 16,6°C (30°F), Max 555°C (1000°F)"
+      },
+      "zero": {
+        "title": "Zéro",
+        "value": "Min -100°C (-148°F), Max 482°C (900°F)"
+      },
+      "systemAccuracy": {
+        "title": "Précision du Système",
+        "value": "±0,065% de la Plage"
+      },
+      "linearity": {
+        "title": "Linéarité",
+        "value": "±(0,125 x T-20ºC)/100"
+      },
+      "operationalHumidity": {
+        "title": "Humidité Opérationnelle",
+        "value": "0 à 95%, sans condensation"
+      },
+      "outputCurrentLimits": {
+        "title": "Limites de Courant de Sortie",
+        "value": "Moins de 1mA et 22,35 ± 0,15 mA"
+      },
+      "powerOutputShift": {
+        "title": "Dérive de Sortie d'Alimentation",
+        "value": "±0,009% de la Plage à 40VDC"
+      },
+      "connections": {
+        "title": "Connexions",
+        "value": "Quatre fils Téflon gravés de calibre 22 ou blocs de terminaux"
+      },
+      "operatingTemperature": {
+        "title": "Température de Fonctionnement",
+        "transmitter": "Transmetteur :",
+        "transmitterValue": "-20 à 70°C",
+        "sensorStandard": "Capteur (standard) :",
+        "sensorStandardValue": "-65 à 105°C",
+        "sensorAvailable": "Capteur (disponible) :",
+        "sensorAvailableValue": "-200 à 600°C"
+      }
+    },
+    "outputTable": {
+      "heading": "Tableau de Sortie du Transmetteur de Température 0-100 °F"
+    },
+    "fieldAdjustments": {
+      "heading": "Ajustements de Terrain",
+      "description": "Chaque transmetteur est calibré à la plage de température spécifiée qui est commandée. Les ajustements de terrain ne sont pas disponibles. Si des ajustements sont nécessaires, veuillez contacter votre représentant BAPI."
+    },
+    "cta": {
+      "heading": "Besoin d'un Transmetteur de Température ?",
+      "description": "Nos transmetteurs T1K fournissent des signaux 4-20mA précis pour les applications de mesure de température longue distance.",
+      "browseButton": "Parcourir les Capteurs de Température",
+      "contactButton": "Contacter le Support"
+    }
   }
 }

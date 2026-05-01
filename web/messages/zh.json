@@ -2483,5 +2483,559 @@
       "heading": "来自行业领导者的专家指导",
       "description": "我们的应用指南由BAPI工程团队撰写，团队拥有数十年的综合经验。每篇文章都提供经过实地验证的实用解决方案，解决传感器安装、校准和维护中的常见挑战。"
     }
+  },
+  "thermistorPage": {
+    "breadcrumb": {
+      "back": "返回传感器规格"
+    },
+    "hero": {
+      "title": "Thermistor概述",
+      "subtitle": "具有卓越精度和可靠性的热敏电阻，专用于暖通空调应用"
+    },
+    "description": {
+      "heading": "Thermistor描述",
+      "paragraph1": "BAPI Thermistor是热敏电阻，以在温度微小变化时电阻产生大幅变化而著称。需要注意的是，thermistor的电阻变化是非线性的。它遵循thermistor制造商提供的预定义曲线。",
+      "paragraph2": "Thermistor按照特定曲线制造，具有高精度。所有BAPI thermistor在0至70°C的商用温度范围内标准精度为±0.2°C。BAPI还提供更高精度的传感器以满足更严格的规格要求。超精密[X系列在0至70°C的商用温度范围内初始精度为±0.1°C。有关[X系列thermistor的供货情况和价格，请致电咨询。两种精度等级都允许BAPI thermistor互换使用，无需额外的控制器偏移费用。",
+      "footnote": "*所有10K Ω及更小的无源Thermistor均符合CE标准"
+    },
+    "specifications": {
+      "heading": "规格术语定义",
+      "interchangeability": {
+        "title": "互换性公差（精度）",
+        "description": "遵循相同曲线的thermistor之间的最大差异量。"
+      },
+      "dissipation": {
+        "title": "耗散常数",
+        "description": "使thermistor本体温度升高1°C所需的功率。所有BAPI thermistor产品的核心都是具有2.7 mW/°C耗散常数的传感器，确保自热保持在绝对最小值。"
+      },
+      "stability": {
+        "title": "稳定性（漂移）",
+        "description": "thermistor电阻特性的变化量。BAPI仅使用最高质量的预老化thermistor，漂移值极小。在十年时间内，BAPI thermistor的变化不会超过0.1°C。"
+      },
+      "operatingRange": {
+        "title": "工作范围",
+        "description": "所示工作范围仅适用于thermistor本身。安装封装可能进一步限制工作范围，具体描述见各安装类型规格。热时间常数也会受到不锈钢探头和防潮保护封装增加质量的影响。"
+      },
+      "thermalTime": {
+        "title": "热时间常数",
+        "description": "裸传感器通常在静止空气中测量和规定，在统计学上63.2%的阶跃温度变化时计时。搅拌液体测试通常会产生更快的响应时间，同样在63.2%的阶跃温度变化时计时。无论温度阶跃变化如何，时间常数始终相同。"
+      }
+    },
+    "specsTable": {
+      "heading": "Thermistor规格",
+      "headers": {
+        "type": "Thermistor类型",
+        "tolerance": "互换性公差/精度",
+        "range": "工作范围"
+      },
+      "footnotes": {
+        "note1": "*还有其他thermistor可供选择。请联系BAPI了解其他thermistor类型的供货情况和规格。",
+        "note2": "**可作为[X]（高精度）传感器提供。",
+        "note3": "可能需要最小订购量和较长交货期。JX5和5K thermistor通常为库存产品。"
+      }
+    },
+    "outputCurve": {
+      "heading": "典型Thermistor输出曲线",
+      "imageAlt": "典型Thermistor输出曲线10K-2传感器显示电阻（欧姆）与温度（°C）的关系",
+      "caption": "图1 - 典型Thermistor输出曲线10K-2传感器"
+    },
+    "outputTables": {
+      "heading": "Thermistor输出表"
+    }
+  },
+  "rtdPage": {
+    "breadcrumb": {
+      "back": "返回传感器规格"
+    },
+    "hero": {
+      "title": "RTD概述",
+      "subtitle": "具有优异线性度、精度和重现性的电阻温度检测器"
+    },
+    "description": {
+      "heading": "RTD说明",
+      "paragraph1": "BAPI RTD（电阻温度检测器）是热敏电阻元件，每度温度变化都会产生微小的电阻变化。RTD因其在整个温度范围内具有优异的线性度以及高精度和重现性而特别受到认可。",
+      "paragraph2": "BAPI产品中提供的RTD具有±0.3°C的标准互换性公差（在0°C时测量）。同时也提供更高精度的传感器。A级系列的互换性公差为±0.15°C（在0°C时测量）。A级RTD的可用性和价格请来电咨询。无论是标准级还是A级，BAPI RTD都具有如此高的精度，可以互换使用而无需承担控制器偏移的费用。",
+      "paragraph3": "大多数RTD感应元件可以封装以承受极宽的温度范围（-200至600°C）。对于大多数用途，标准工作范围应该足够，但我们也有工作温度范围更高或更低的RTD。BAPI提供1KΩ铂金RTD，具有各种范围以满足您的特定应用需求。"
+    },
+    "specifications": {
+      "heading": "规格术语定义",
+      "tolerance": {
+        "title": "电阻公差（精度）",
+        "description": "遵循相同曲线的RTD之间最大差值。"
+      },
+      "stability": {
+        "title": "稳定性（漂移）",
+        "description": "RTD电阻特性变化量。BAPI仅使用最高质量的薄膜铂金RTD传感器，具有极小的漂移值。"
+      },
+      "operatingRange": {
+        "title": "工作范围",
+        "description": "所示的工作范围仅针对RTD传感器。安装封装可能会进一步限制工作范围，具体说明见各安装类型规格。"
+      }
+    },
+    "specsTable": {
+      "heading": "RTD规格",
+      "toleranceOfResistance": {
+        "title": "电阻公差（精度）",
+        "description": "范围：在0°C时绝对欧姆值的±0.06，符合标准1/3 DIN"
+      },
+      "tolerancePercent": {
+        "title": "公差百分比（%）",
+        "description": "范围：±0.0 ± (0.02 x t (0.0111 + t))；t=温度°C",
+        "example": "在0°C时 - 范围±0.02°C，在100°C时 - 范围±0.13°C",
+        "averaging": "平均标准：±0.0 ± (0.0052 + (0.01 x 温度°C))"
+      },
+      "stabilityDrift": {
+        "title": "稳定性（漂移）",
+        "description": "在65°C下连续5,000小时内±0.1°C"
+      },
+      "sensitivity": {
+        "title": "灵敏度",
+        "description1K": "1KΩ：2.13Ω/°C（在70°F时）",
+        "description100": "100Ω：0.385Ω/°C"
+      },
+      "selfHeating": {
+        "title": "自热（仅RTD内部）",
+        "description": "在空气中0.4°C/mW"
+      }
+    },
+    "standardRanges": {
+      "heading": "1KΩ铂金RTD的标准和内部温度范围",
+      "tableHeaders": {
+        "symbol": "符号",
+        "referenceResistance": "参考电阻",
+        "temperatureCoefficient": "温度系数",
+        "operatingRange": "工作范围"
+      }
+    },
+    "outputTables": {
+      "heading": "RTD输出表",
+      "description": "详细的电阻与温度对照表，显示每种RTD类型在其全工作范围内的精确欧姆值。这些表格对系统集成和故障排除至关重要。"
+    }
+  },
+  "semiconductorPage": {
+    "breadcrumb": {
+      "back": "返回传感器规格"
+    },
+    "hero": {
+      "title": "半导体概述",
+      "subtitle": "商用暖通空调应用中最线性的温度传感器"
+    },
+    "description": {
+      "heading": "半导体描述",
+      "paragraph1": "BAPI半导体被设计为输出与绝对温度(°K)直接成正比的定义电流输出。这一特性使其成为所有常见商用暖通空调传感元件中最线性的。通过将此电流输出通过电阻器，产生成正比的输出电压。",
+      "paragraph2": "BAPI产品提供的AD592半导体温度传感器在-13至221°F（-25至105°C）范围内提供两线248至378微安输出或三线2.48至3.78伏输出。这些单元使用可追溯到国家标准与技术研究院(NIST)的设备进行校正。每个单元随后标记实际温度和相应的偏移量。"
+    },
+    "specifications": {
+      "heading": "规格术语定义",
+      "interchangeability": {
+        "title": "互换性公差（准确性）",
+        "description": "遵循相同曲线的传感器之间相互差异的最大量。"
+      },
+      "repeatability": {
+        "title": "重复性",
+        "description": "传感器对给定输入值重复相同输出值能力的度量。"
+      }
+    },
+    "customOffset": {
+      "heading": "自定义偏移定义和示例",
+      "description": "这是BAPI计算传感器标签上提供偏移值的方法：",
+      "thermReading": {
+        "title": "温度计读数",
+        "description": "根据由国家标准与技术研究院(NIST)认证可追溯到认可标准的温度计的实际温度读数。"
+      },
+      "sensorReading": {
+        "title": "传感器读数",
+        "description": "根据AD592传感器的温度读数，使用µA或mV输出并将输出转换为华氏温度。"
+      },
+      "offset": {
+        "title": "偏移量",
+        "description": "温度计读数和传感器读数之间的差值"
+      },
+      "maximizeAccuracy": "为了最大化传感器准确性，只需将传感器的偏移值添加到传感器读数中输入控制器。",
+      "example1": {
+        "thermReading": "例如 温度计读数 74.6",
+        "sensorReading": "传感器读数 73.0",
+        "offset": "偏移量 +1.6",
+        "correction": "校正：向传感器添加(+1.6)°F以获得准确读数：73 + 1.6 = 74.6°F"
+      },
+      "example2": {
+        "thermReading": "例如 温度计读数 75.4",
+        "sensorReading": "传感器读数 77.2",
+        "offset": "偏移量 -1.8",
+        "correction": "校正：向传感器添加(-1.8)°F以获得准确读数：77.2 + (-1.8) = 75.4°F"
+      }
+    },
+    "specsTable": {
+      "heading": "半导体规格",
+      "interchangeability": {
+        "title": "互换性公差（准确性）",
+        "value": "偏移至0.1°C（0.18°F）",
+        "note": "NIST可追溯"
+      },
+      "offsetRequirement": {
+        "title": "偏移要求",
+        "description": "实现最高准确性所必需。每个传感器包含列在每个传感器上的自定义偏移量。"
+      },
+      "repeatability": {
+        "title": "重复性",
+        "value": "± 0.10°C（± 0.18°F）"
+      },
+      "linearity": {
+        "title": "线性度",
+        "value": "± 0.15°C 最大",
+        "note": "从0至70°C（32至158°F）"
+      },
+      "sensorRange": {
+        "title": "传感器范围",
+        "value": "-25至105°C",
+        "note": "（-13至221°F）[248至378°K]"
+      },
+      "biasVoltage": {
+        "title": "偏置电压",
+        "value": "5至30 VDC"
+      },
+      "accuracyReference": {
+        "title": "准确性参考",
+        "value": "298.2 mA @ 25°C 或 2.982 V @ 25°C"
+      },
+      "temperatureOutputCoefficient": {
+        "title": "温度输出系数",
+        "twoWire": "2线：1 µA/°C（0.556 µA/°F）[1 µA/°K]",
+        "threeWire": "3线：10 mV/°C（5.556 mV/°F）[10 mV/°K]"
+      }
+    },
+    "outputCurve": {
+      "heading": "典型半导体输出曲线",
+      "alt": "典型半导体输出显示电流（µA）和电压（V）与温度的关系",
+      "caption": "图1 - 典型半导体温度输出"
+    },
+    "outputTables": {
+      "heading": "半导体输出表",
+      "ad592Standard": {
+        "tabLabel": "AD592标准",
+        "heading": "AD592标准半导体输出表",
+        "description": "标准AD592电流（µA）和电压（V）输出与温度的关系"
+      },
+      "ad59210K": {
+        "tabLabel": "AD592-10K",
+        "heading": "AD592-10K半导体输出表",
+        "description": "带10K并联电阻的AD592半导体 - 电压（V）输出与温度的关系"
+      }
+    },
+    "cta": {
+      "heading": "需要半导体传感器帮助？",
+      "description": "我们的技术团队可以帮助您了解半导体传感器是否适合您的应用。",
+      "browseButton": "浏览温度传感器",
+      "contactButton": "联系支持"
+    }
+  },
+  "pressureTransmittersPage": {
+    "breadcrumb": {
+      "back": "返回传感器规格"
+    },
+    "hero": {
+      "title": "压力变送器",
+      "subtitle": "具有数字补偿功能的精密硅传感器，实现极致精度"
+    },
+    "description": {
+      "heading": "压力传感器描述",
+      "paragraph1": "任何传感器的核心都是传感元件本身，BAPI 在生产当今市场上最优秀的传感器方面付出了巨大努力。每个 BAPI 设备的核心都是微加工、单晶硅压力传感器。每个传感器都使用与制造数百万部手机、游戏机和个人电脑相同的集成电路技术制造。为了控制和维护这些传感器的质量，BAPI 参与从设计到使用的所有生产阶段。",
+      "paragraph2": "硅确实带来了一个不良特性——热敏性。补偿这种热敏性的传统方法是使用分立电阻器的外部电路，其中一些电阻器具有自己的温度依赖性，引入更多误差。BAPI 采用了不同的独特方法。我们采用定制补偿 ASIC（专用集成电路），在保持模拟信号路径的同时使用数字补偿，产生精确且可互换的传感器。",
+      "paragraph3": "由于创新的传感器和数字温度补偿电路，我们能够生产出高度精确和稳定的产品。这种精度在我们工厂的最终校准过程中得到验证，使用压力控制源，精度达到 0.00015 英寸水柱，并可追溯到 NIST 标准。"
+    },
+    "features": {
+      "accuracy": {
+        "value": "±0.25%",
+        "title": "高精度",
+        "description": "大多数量程的 NIST 可追溯精度为 ±0.25%"
+      },
+      "compensation": {
+        "value": "数字",
+        "title": "数字补偿",
+        "description": "基于 ASIC 的数字补偿消除热漂移"
+      },
+      "sensor": {
+        "value": "硅",
+        "title": "压阻式",
+        "description": "采用 IC 技术制造的单晶硅传感器"
+      }
+    },
+    "specifications": {
+      "heading": "规格参数",
+      "outputRanges": {
+        "title": "输出范围",
+        "value": "4 至 20 mA、0 至 5 V 或 0 至 10V"
+      },
+      "power": {
+        "title": "电源",
+        "ma": "4-20 mA 输出：",
+        "maValue": "7 至 45 VDC",
+        "v5": "0-5 VDC 输出：",
+        "v5Value": "7 至 45 VDC 或 7 至 32 VAC",
+        "v10": "0-10 VDC 输出：",
+        "v10Value": "13 至 45 VDC 或 13 至 32 VAC"
+      },
+      "powerConsumption": {
+        "title": "功耗",
+        "dc": "0-5 VDC 或 0-10 VDC 输出时最大 4.9 mA DC",
+        "ac": "0-5 VDC 或 0-10 VDC 输出时最大 0.12 VA AC",
+        "ma": "4-20 mA 输出时最大 20 mA，仅 DC"
+      },
+      "pressureRanges": {
+        "title": "压力范围",
+        "inchesWC": {
+          "title": "英寸水柱",
+          "lowUnidirectional": "低量程单向",
+          "lowUnidirectionalValues": "0 至 0.10\"、0 至 0.25\"、0 至 0.50\"、0 至 0.75\"、0 至 1.00\"",
+          "lowBidirectional": "低量程双向",
+          "lowBidirectionalValues": "±0.10\"、±0.25\"、±0.50\"、±0.75\"、±1.00\"",
+          "standardUnidirectional": "标准量程单向",
+          "standardUnidirectionalValues": "0 至 1.00\"、0 至 2.00\"、0 至 2.50\"、0 至 3.00\"、0 至 5.00\"",
+          "standardBidirectional": "标准量程双向",
+          "standardBidirectionalValues": "±1.00\"、±2.00\"、±2.50\"、±3.00\"、±5.00\"",
+          "highUnidirectional": "高量程单向",
+          "highUnidirectionalValues": "0 至 5\"、0 至 10\"、0 至 15\"、0 至 25\"、0 至 30\""
+        },
+        "pascals": {
+          "title": "帕斯卡",
+          "lowUnidirectional": "低量程单向",
+          "lowUnidirectionalValues": "0 至 30、0 至 50、0 至 100、0 至 175、0 至 250",
+          "lowBidirectional": "低量程双向",
+          "lowBidirectionalValues": "±30、±50、±100、±175、±250",
+          "standardUnidirectional": "标准量程单向",
+          "standardUnidirectionalValues": "0 至 250、0 至 300、0 至 500、0 至 1,000、0 至 1,250",
+          "standardBidirectional": "标准量程双向",
+          "standardBidirectionalValues": "±250、±300、±500、±1,000、±1.250",
+          "highUnidirectional": "高量程单向",
+          "highUnidirectionalValues": "0 至 1,250、0 至 2,500、0 至 4,000、0 至 6,000、0 至 7,400"
+        }
+      },
+      "accuracy": {
+        "title": "72°F (22.2°C) 时的精度",
+        "lowRangeWC": "低量程：水柱范围 0 至 0.1\"、0 至 0.25\"、±0.1\" 和 ±0.25\" 的 ±0.5%",
+        "lowRangePa": "低量程：帕斯卡范围 0 至 30、0 至 50、±30 和 ±50 Pa 的 ±0.5%",
+        "standardHighRange": "标准和高量程：量程的 ±0.25%（所有其他量程）"
+      },
+      "temperatureLimits": {
+        "title": "温度限制",
+        "storage": "储存：",
+        "storageValue": "-40°F 至 203°F (-40°C 至 95°C)",
+        "operational": "工作：",
+        "operationalValue": "32°F 至 140°F (0°C 至 95°C)",
+        "compensated": "补偿：",
+        "compensatedValue": "50°F 至 104°F (10°C 至 40°C)"
+      },
+      "operatingRH": {
+        "title": "工作相对湿度范围",
+        "value": "0 至 95% 无冷凝"
+      },
+      "media": {
+        "title": "介质",
+        "value": "非离子、非腐蚀性、清洁、干燥气体"
+      }
+    },
+    "outputTables": {
+      "heading": "压力变送器输出表",
+      "inchesWCHeading": "英寸水柱 (W.C.)",
+      "tableHeading": "压力范围 {range} 输出表",
+      "emptyTable": "此压力范围的表格数据待填充。"
+    },
+    "usingTables": {
+      "heading": "使用这些输出表",
+      "description": "从上方选项卡中选择您的压力范围以查看相应的输出值。每个表格显示压力测量与三种可用输出类型之间的关系：0-5 VDC、0-10 VDC 和 4-20 mA。使用这些表格验证传感器运行或将 BAPI 压力变送器集成到您的控制系统中。"
+    },
+    "cta": {
+      "heading": "需要压力变送器吗？",
+      "description": "我们的数字补偿技术为压力测量提供极致的精度和稳定性。",
+      "browseButton": "浏览压力传感器",
+      "contactButton": "联系支持"
+    }
+  },
+  "humidityTransmittersPage": {
+    "breadcrumb": {
+      "back": "返回传感器规格"
+    },
+    "hero": {
+      "title": "湿度变送器",
+      "subtitle": "适用于高要求应用的高精度4-20mA、0-5V和0-10V湿度变送器"
+    },
+    "description": {
+      "heading": "湿度变送器描述",
+      "paragraph1": "BAPI湿度变送器提供高精度的4至20mA、0至5V或0至10V湿度测量。可达到2% RH的精度。风管和室外空气装置配备可拆卸的烧结不锈钢过滤器。在风管和室外空气装置上，过滤器可用温热的蒸馏水清洁。",
+      "paragraph2": "这些装置基于微处理器，无需任何现场校准。",
+      "paragraph3": "对于所有非室内配置，BAPI湿度变送器标配加固封装。加固变送器适用于可能出现湿气或冷凝问题的场所。用于加固变送器的密封材料具有高导热性，可消除电路过热并允许热胀冷缩以减少对电路元件的应力。由于环氧树脂极低的吸湿特性，加固变送器即使暂时浸泡在水中也能保持正常工作。",
+      "paragraph4": "已对这些湿度变送器中集成的传感器进行了大量测试和研究，以确保其提供长期精度和耐用性。然而，对于需要更高精度的应用，可提供经过测试并对照NIST可追溯参考标准进行偏移校正的认证装置。如需详细信息或有特定要求，请致电咨询。"
+    },
+    "features": {
+      "accuracy": {
+        "value": "2% RH",
+        "title": "高精度",
+        "description": "适用于关键应用的精密湿度测量"
+      },
+      "durability": {
+        "value": "加固型",
+        "title": "耐用设计",
+        "description": "即使暂时浸泡在水中也能正常工作"
+      },
+      "calibration": {
+        "value": "无需校准",
+        "title": "基于微处理器",
+        "description": "无需现场校准"
+      }
+    },
+    "specifications": {
+      "heading": "常规规格",
+      "outputRanges": {
+        "title": "输出范围",
+        "value": "4至20 mA、0至5 V或0至10 V"
+      },
+      "power": {
+        "title": "电源",
+        "v5OrMa": "0-5 VDC或4-20 mA输出：",
+        "v5OrMaValue": "10至35 VDC",
+        "v10": "0-10 VDC输出：",
+        "v10Value": "15至35 VDC",
+        "v5AC": "0-5 VDC输出（交流）：",
+        "v5ACValue": "12至27 VAC",
+        "v10AC": "0-10 VDC输出（交流）：",
+        "v10ACValue": "15至27 VAC"
+      },
+      "powerConsumption": {
+        "title": "功耗",
+        "dc": "直流：最大22 mA（0-5 VDC或4-20 mA），最大6 mA（0-10 VDC）",
+        "ac": "交流：最大0.53 VA（0-5 VDC或4-20 mA），最大0.14 VA（0-10 VDC）"
+      },
+      "sensingElement": {
+        "title": "感应元件",
+        "value": "电容式湿度传感器"
+      },
+      "operatingRH": {
+        "title": "工作相对湿度范围",
+        "value": "0至100 %RH（非冷凝）"
+      },
+      "operatingTemperature": {
+        "title": "工作温度范围",
+        "room": "室内：",
+        "roomValue": "0至70°C（32至158°F）",
+        "ductOutside": "风管和室外：",
+        "ductOutsideValue": "-20至70°C（-4至158°F）"
+      },
+      "accuracyRange": {
+        "title": "精度范围",
+        "value": "在25°C时从10至90% RH"
+      },
+      "responseTime": {
+        "title": "响应时间",
+        "value": "8秒",
+        "note": "在流动空气中63%阶跃响应"
+      },
+      "drift": {
+        "title": "漂移",
+        "value": "<0.5% RH每年"
+      }
+    },
+    "outputTable": {
+      "heading": "湿度变送器输出表"
+    },
+    "cta": {
+      "heading": "需要湿度变送器？",
+      "description": "我们的湿度变送器提供准确、长期可靠的测量，具有最小漂移。",
+      "browseButton": "浏览湿度传感器",
+      "contactButton": "联系支持"
+    }
+  },
+  "temperatureTransmittersPage": {
+    "breadcrumb": {
+      "back": "返回传感器规格"
+    },
+    "hero": {
+      "title": "温度变送器",
+      "subtitle": "精密4-20mA变送器，用于长距离精确温度感测"
+    },
+    "description": {
+      "heading": "温度变送器说明",
+      "paragraph1": "BAPI的温度变送器集成了1KΩ RTD传感器和放大器。这些设备在指定温度范围内提供精确的两线制4至20mA输出。它们专为长距离传输而设计，在长距离传输过程中4至20mA信号不会发生衰减。100Ω单元也可根据要求提供。",
+      "paragraph2": "每个温度变送器在其指定温度范围内不可配置。如果您在现场没有提供合适的变送器或轻型变送器中的A级RTD来提高整体精度。在校准范围内的指定单元提供更好的精度，以最大限度地减少对控制组件的交叉影响。使用匹配对单元的精度成为传输线性度（RTD曲线）和参考变送器的函数。",
+      "paragraph3": "标准单元将偏移0–100°F（常见）- 参考温度计（示例）：",
+      "paragraph4": "偏移范围单元：–20°C至+250°C（-4°F至482°F）",
+      "paragraph4b": "最大量程：16.6°C（30°F）– 2.0至+600°C（–148°F至+1000°F）",
+      "paragraph5": "BA/TM- 1K在（0-30°F）规格：+/- 0.08˚C（0.14˚F）= 16°F] 最大",
+      "paragraph5b": "BA/TM- 1K在（0-100°F）规格：+/- 0.10˚C（0.18˚F）= 38-55°F] 偏移",
+      "paragraph6": "这些精度适用于传感器的最差范围，尽管传感器中点的精度会更紧。请联系您的BAPI代表了解详情。",
+      "paragraph7": "BAPI温度变送器采用加固封装，适用于所有可能出现湿气或冷凝问题的非室内配置。用于加固变送器的灌封材料具有高导热性，以消除电路过热并允许热膨胀，从而最大限度地减少对控制组件的应力。由于环氧树脂的吸湿性极低，加固变送器即使暂时浸入水中也能保持运行。"
+    },
+    "specifications": {
+      "heading": "规格",
+      "sensor": {
+        "title": "传感器",
+        "value": "1000Ω铂RTD"
+      },
+      "supplyVoltage": {
+        "title": "供电电压",
+        "value": "12至40 VDC"
+      },
+      "output": {
+        "title": "输出",
+        "value": "4至20 mA，0至5V，1至5V，0至10V，2至10V"
+      },
+      "maxLoopResistance": {
+        "title": "最大回路电阻",
+        "value": "24VDC时850Ω"
+      },
+      "span": {
+        "title": "量程",
+        "value": "最小16.6°C（30°F），最大555°C（1000°F）"
+      },
+      "zero": {
+        "title": "零点",
+        "value": "最小-100°C（-148°F），最大482°C（900°F）"
+      },
+      "systemAccuracy": {
+        "title": "系统精度",
+        "value": "±0.065%量程"
+      },
+      "linearity": {
+        "title": "线性度",
+        "value": "±(0.125 x T-20ºC)/100"
+      },
+      "operationalHumidity": {
+        "title": "工作湿度",
+        "value": "0至95%，无冷凝"
+      },
+      "outputCurrentLimits": {
+        "title": "输出电流限制",
+        "value": "小于1mA和22.35 ± 0.15 mA"
+      },
+      "powerOutputShift": {
+        "title": "功率输出偏移",
+        "value": "至40VDC时±0.009%量程"
+      },
+      "connections": {
+        "title": "连接",
+        "value": "四根22号蚀刻特氟龙导线或端子块"
+      },
+      "operatingTemperature": {
+        "title": "工作温度",
+        "transmitter": "变送器：",
+        "transmitterValue": "-20至70°C",
+        "sensorStandard": "传感器（标准）：",
+        "sensorStandardValue": "-65至105°C",
+        "sensorAvailable": "传感器（可选）：",
+        "sensorAvailableValue": "-200至600°C"
+      }
+    },
+    "outputTable": {
+      "heading": "0-100°F温度变送器输出表"
+    },
+    "fieldAdjustments": {
+      "heading": "现场调整",
+      "description": "每个变送器都根据订购的指定温度范围进行校准。不提供现场调整。如需调整，请联系您的BAPI代表。"
+    },
+    "cta": {
+      "heading": "需要温度变送器？",
+      "description": "我们的T1K变送器为长距离温度测量应用提供精确的4-20mA信号。",
+      "browseButton": "浏览温度传感器",
+      "contactButton": "联系支持"
+    }
   }
 }

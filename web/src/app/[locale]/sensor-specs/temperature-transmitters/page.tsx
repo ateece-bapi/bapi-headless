@@ -1,8 +1,12 @@
+'use client';
+
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
 import { temperatureTransmitterOutput } from '@/data/temperatureTransmitterTable';
+import { useTranslations } from 'next-intl';
 
 export default function TemperatureTransmittersPage() {
+  const t = useTranslations('temperatureTransmittersPage');
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb Navigation */}
@@ -13,7 +17,7 @@ export default function TemperatureTransmittersPage() {
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
           >
             <ChevronLeftIcon className="h-5 w-5" />
-            Back to Sensor Specifications
+            {t('breadcrumb.back')}
           </Link>
         </div>
       </div>
@@ -22,11 +26,10 @@ export default function TemperatureTransmittersPage() {
       <div className="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Temperature Transmitters
+            {t('hero.title')}
           </h1>
           <p className="text-xl text-primary-50 max-w-3xl">
-            Precision 4-20mA transmitters for accurate temperature sensing over
-            long distances
+            {t('hero.subtitle')}
           </p>
         </div>
       </div>
@@ -36,55 +39,31 @@ export default function TemperatureTransmittersPage() {
         {/* Temperature Transmitter Description */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-            Temperature Transmitter Description
+            {t('description.heading')}
           </h2>
           <div className="prose prose-lg max-w-none space-y-4">
             <p className="text-neutral-700 leading-relaxed">
-              BAPI's temperature transmitters incorporate a 1KΩ RTD sensor and
-              an amplifier. These devices provide an accurate two wire, 4 to
-              20mA output over a specified temp range. They are specifically
-              designed for long distance transmission over long distances
-              without degradation of the 4 to 20mA signal. 100Ω units also
-              available upon request.
+              {t('description.paragraph1')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              Each temperature transmitter is not configurable for its
-              specified temp range. If you don't offer the right transmitter at
-              the field or the light transmitter in Class A RTD's to improve
-              overall accuracy. The specified unit at the calibrated range
-              offers better accuracy to minimize the cross on the control
-              components. Use the accuracy of the matched pair unit becomes a
-              function of the transfer linearity (RTD curve) and reference
-              transmitter somewhat.
+              {t('description.paragraph2')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              Standard units will offset 0–100°F ( commonly found ) -  Reference
-              Thermometer (example) :
+              {t('description.paragraph3')}
             </p>
             <p className="text-neutral-700 leading-relaxed font-mono text-sm bg-neutral-50 p-4 rounded">
-              Offset Range units :  –20°C to +250°C  (-4°F to 482°F)<br />
-              Max.Span : 16.6°C (30°F) – 2.0 to +600°C (–148°F to +1000°F)
+              {t('description.paragraph4')}<br />
+              {t('description.paragraph4b')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              BA/TM- 1K in (0-30°F)<br />
-              Spec : +/- 0.08˚C (0.14˚F) = 16°F] MAX<br />
-              BA/TM- 1K in (0-100°F)<br />
-              Spec : +/- 0.10˚C (0.18˚F) = 38-55°F] OFFSET
+              {t('description.paragraph5')}<br />
+              {t('description.paragraph5b')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              These accuracies are for the worst range of the sensor, although
-              the accuracies in the midpoint of the sensor will be tighter. Run
-              these over your BAPI representative for details.
+              {t('description.paragraph6')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              BAPI temperature transmitters come in a ruggedized package for all
-              non-room configurations where moisture or condensation may be a
-              problem. The potting material used to ruggedize the transmitters
-              has a high thermal conductivity to eliminate circuit overheating
-              and allow thermal expansion to minimize the stress on the control
-              components. Due to the extremely low moisture absorption
-              properties of the epoxy, a ruggedized transmitter will remain
-              operational even if temporarily immersed in water.
+              {t('description.paragraph7')}
             </p>
           </div>
         </section>
@@ -92,7 +71,7 @@ export default function TemperatureTransmittersPage() {
         {/* Specifications */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            Specifications
+            {t('specifications.heading')}
           </h2>
 
           <div className="bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
@@ -100,79 +79,79 @@ export default function TemperatureTransmittersPage() {
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Sensor
+                    {t('specifications.sensor.title')}
                   </h3>
                   <p className="text-primary-600 font-bold">
-                    1000Ω Platinum RTD
+                    {t('specifications.sensor.value')}
                   </p>
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Supply Voltage
+                    {t('specifications.supplyVoltage.title')}
                   </h3>
-                  <p className="text-primary-600 font-bold">12 to 40 VDC</p>
+                  <p className="text-primary-600 font-bold">{t('specifications.supplyVoltage.value')}</p>
                 </div>
               </div>
 
               <div className="p-6">
-                <h3 className="font-semibold text-neutral-900 mb-2">Output</h3>
+                <h3 className="font-semibold text-neutral-900 mb-2">{t('specifications.output.title')}</h3>
                 <p className="text-primary-600 font-bold text-lg">
-                  4 to 20 mA, 0 to 5V, 1 to 5V, 0 to 10V, 2 to 10V
+                  {t('specifications.output.value')}
                 </p>
               </div>
 
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Max. Loop Resistance
+                    {t('specifications.maxLoopResistance.title')}
                   </h3>
-                  <p className="text-neutral-700">850Ω at 24VDC</p>
+                  <p className="text-neutral-700">{t('specifications.maxLoopResistance.value')}</p>
                 </div>
                 <div className="p-6">
-                  <h3 className="font-semibold text-neutral-900 mb-2">Span</h3>
+                  <h3 className="font-semibold text-neutral-900 mb-2">{t('specifications.span.title')}</h3>
                   <p className="text-neutral-700">
-                    Min 16.6°C (30°F), Max 555°C (1000°F)
+                    {t('specifications.span.value')}
                   </p>
                 </div>
               </div>
 
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6">
-                  <h3 className="font-semibold text-neutral-900 mb-2">Zero</h3>
+                  <h3 className="font-semibold text-neutral-900 mb-2">{t('specifications.zero.title')}</h3>
                   <p className="text-neutral-700">
-                    Min -100°C (-148°F), Max 482°C (900°F)
+                    {t('specifications.zero.value')}
                   </p>
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    System Accuracy
+                    {t('specifications.systemAccuracy.title')}
                   </h3>
                   <p className="text-primary-600 font-bold">
-                    ±0.065% of Span
+                    {t('specifications.systemAccuracy.value')}
                   </p>
                 </div>
               </div>
 
               <div className="p-6">
                 <h3 className="font-semibold text-neutral-900 mb-2">
-                  Linearity
+                  {t('specifications.linearity.title')}
                 </h3>
-                <p className="text-neutral-700">±(0.125 x T-20ºC)/100</p>
+                <p className="text-neutral-700">{t('specifications.linearity.value')}</p>
               </div>
 
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Operational Humidity
+                    {t('specifications.operationalHumidity.title')}
                   </h3>
-                  <p className="text-neutral-700">0 to 95%, non-condensing</p>
+                  <p className="text-neutral-700">{t('specifications.operationalHumidity.value')}</p>
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Output Current Limits
+                    {t('specifications.outputCurrentLimits.title')}
                   </h3>
                   <p className="text-neutral-700">
-                    Less than 1mA and 22.35 ± 0.15 mA
+                    {t('specifications.outputCurrentLimits.value')}
                   </p>
                 </div>
               </div>
@@ -180,43 +159,43 @@ export default function TemperatureTransmittersPage() {
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Power Output Shift
+                    {t('specifications.powerOutputShift.title')}
                   </h3>
-                  <p className="text-neutral-700">±0.009% of Span to 40VDC</p>
+                  <p className="text-neutral-700">{t('specifications.powerOutputShift.value')}</p>
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Connections
+                    {t('specifications.connections.title')}
                   </h3>
                   <p className="text-neutral-700">
-                    Four 22-gauge etched Teflon leads or terminal blocks
+                    {t('specifications.connections.value')}
                   </p>
                 </div>
               </div>
 
               <div className="p-6 bg-neutral-50">
                 <h3 className="font-semibold text-neutral-900 mb-3">
-                  Operating Temperature
+                  {t('specifications.operatingTemperature.title')}
                 </h3>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-neutral-700">Transmitter:</span>
+                    <span className="text-neutral-700">{t('specifications.operatingTemperature.transmitter')}</span>
                     <span className="text-neutral-900 font-medium">
-                      -20 to 70°C
+                      {t('specifications.operatingTemperature.transmitterValue')}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-neutral-700">Sensor (standard):</span>
+                    <span className="text-neutral-700">{t('specifications.operatingTemperature.sensorStandard')}</span>
                     <span className="text-neutral-900 font-medium">
-                      -65 to 105°C
+                      {t('specifications.operatingTemperature.sensorStandardValue')}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-neutral-700">
-                      Sensor (available):
+                      {t('specifications.operatingTemperature.sensorAvailable')}
                     </span>
                     <span className="text-neutral-900 font-medium">
-                      -200 to 600°C
+                      {t('specifications.operatingTemperature.sensorAvailableValue')}
                     </span>
                   </div>
                 </div>
@@ -228,7 +207,7 @@ export default function TemperatureTransmittersPage() {
         {/* Temperature Transmitter Output Table */}
         <section className="max-w-6xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            0-100 °F Temperature Transmitter Output Table
+            {t('outputTable.heading')}
           </h2>
 
           <div className="bg-white rounded-lg border-2 border-neutral-200 overflow-hidden">
@@ -308,12 +287,10 @@ export default function TemperatureTransmittersPage() {
         <section className="max-w-4xl mx-auto mb-16">
           <div className="bg-accent-50 border-l-4 border-accent-500 p-6 rounded-r-lg">
             <h3 className="font-semibold text-neutral-900 mb-2">
-              Field Adjustments
+              {t('fieldAdjustments.heading')}
             </h3>
             <p className="text-neutral-700">
-              Each transmitter is calibrated to the specified temperature range
-              that is ordered. Field adjustments are not available. If
-              adjustments are needed, please contact your BAPI representative.
+              {t('fieldAdjustments.description')}
             </p>
           </div>
         </section>
@@ -321,24 +298,23 @@ export default function TemperatureTransmittersPage() {
         {/* CTA Section */}
         <section className="max-w-4xl mx-auto mt-16 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold text-neutral-900 mb-4">
-            Need a Temperature Transmitter?
+            {t('cta.heading')}
           </h2>
           <p className="text-neutral-700 mb-6">
-            Our T1K transmitters provide accurate 4-20mA signals for long-distance
-            temperature measurement applications.
+            {t('cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/products/temperature-sensors"
               className="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
             >
-              Browse Temperature Sensors
+              {t('cta.browseButton')}
             </Link>
             <Link
               href="/support"
               className="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold border-2 border-primary-600 hover:bg-primary-50 transition-colors"
             >
-              Contact Support
+              {t('cta.contactButton')}
             </Link>
           </div>
         </section>

@@ -2483,5 +2483,559 @@
       "heading": "Eksperckie Wskazówki od Liderów Branży",
       "description": "Nasze notatki aplikacji są napisane przez zespół inżynieryjny BAPI z dziesięcioleciami połączonego doświadczenia. Każdy artykuł zapewnia praktyczne, przetestowane w terenie rozwiązania typowych wyzwań związanych z instalacją, kalibracją i konserwacją czujników."
     }
+  },
+  "thermistorPage": {
+    "breadcrumb": {
+      "back": "Powrót do Specyfikacji Czujników"
+    },
+    "hero": {
+      "title": "Przegląd Termistorów",
+      "subtitle": "Rezystory wrażliwe na temperaturę o wyjątkowej dokładności i niezawodności do zastosowań HVAC"
+    },
+    "description": {
+      "heading": "Opis Termistora",
+      "paragraph1": "Termistory BAPI to rezystory wrażliwe na temperaturę, znane z wykazywania dużej zmiany oporu przy niewielkiej zmianie temperatury. Ważne jest, aby zauważyć, że zmiana oporu termistora jest nieliniowa. Podąża za z góry określoną krzywą, która jest dostarczana przez producenta termistora.",
+      "paragraph2": "Termistory są produkowane tak, aby podążać za określoną krzywą z wysokim stopniem dokładności. Wszystkie termistory BAPI mają standardową dokładność ± 0,2 °C w całym zakresie temperatur komercyjnych od 0 do 70 °C. BAPI ma również dostępny czujnik o wyższej dokładności do spełnienia bardziej rygorystycznych specyfikacji. Linia o dodatkowej precyzji [X ma początkową dokładność ± 0,1 °C w całym zakresie temperatur komercyjnych od 0 do 70 °C. Prosimy dzwonić w sprawie dostępności i cennika termistorów linii [X. Oba poziomy dokładności pozwalają na wymienność termistorów BAPI bez dodatkowych kosztów związanych z kompensacją kontrolera.",
+      "footnote": "*Wszystkie Pasywne Termistory 10K Ω i mniejsze są zgodne z CE"
+    },
+    "specifications": {
+      "heading": "Definicja Terminów Specyfikacji",
+      "interchangeability": {
+        "title": "Tolerancja Wymienności (Dokładność)",
+        "description": "Maksymalna różnica między termistorami podążającymi za tą samą krzywą."
+      },
+      "dissipation": {
+        "title": "Stała Dyssypacji",
+        "description": "Moc potrzebna do podniesienia temperatury korpusu termistora o 1°C. Sercem wszystkich produktów termistorowych BAPI jest czujnik ze stałą dyssypacji 2,7 mW/°C, aby zapewnić, że samo-nagrzewanie pozostanie na absolutnym minimum."
+      },
+      "stability": {
+        "title": "Stabilność (Dryfowanie)",
+        "description": "Wielkość zmiany charakterystyk oporowych termistora. BAPI używa tylko najwyższej jakości, \"wstępnie postarzonych\" termistorów z bardzo małymi wartościami dryftu. W ciągu dziesięciu lat termistory BAPI nie zmienią się o więcej niż 0,1°C."
+      },
+      "operatingRange": {
+        "title": "Zakres Pracy",
+        "description": "Pokazany zakres pracy dotyczy tylko termistora. Obudowa montażowa może dodatkowo ograniczyć zakres pracy i jest opisana w specyfikacji każdego typu montażu. Stała czasowa termiczna będzie również wpływać na podstawie dodanej masy sondy ze stali nierdzewnej i enkapsulacji zabezpieczającej przed wilgocią."
+      },
+      "thermalTime": {
+        "title": "Termiczna Stała Czasowa",
+        "description": "Nagie czujniki są typowo mierzone i specyfikowane w nieruchomym powietrzu i są mierzone przy statystycznych 63,2% zmiany temperatury skokowej. Test w mieszanej cieczy zazwyczaj skutkuje znacznie szybszym czasem reakcji i jest również mierzony przy 63,2% zmiany temperatury skokowej. Stała czasowa jest zawsze taka sama, niezależnie od wielkości zmiany temperatury skokowej."
+      }
+    },
+    "specsTable": {
+      "heading": "Specyfikacje Termistorów",
+      "headers": {
+        "type": "Typ Termistora",
+        "tolerance": "Tolerancja Wymienności/Dokładność",
+        "range": "Zakres Pracy"
+      },
+      "footnotes": {
+        "note1": "*Dostępne są inne termistory. Skontaktuj się z BAPI w sprawie dostępności i specyfikacji dodatkowych typów termistorów.",
+        "note2": "**Dostępne jako czujniki [X] (wysoka dokładność).",
+        "note3": "Mogą obowiązywać minimalne ilości i długie terminy realizacji. Termistory \"JX5\" i \"5K\" są zazwyczaj dostępne z magazynu."
+      }
+    },
+    "outputCurve": {
+      "heading": "Typowa Krzywa Wyjściowa Termistora",
+      "imageAlt": "Typowa Krzywa Wyjściowa Termistora Czujnik 10K-2 pokazująca opór (Omy) w stosunku do temperatury (°C)",
+      "caption": "Rysunek 1 - Typowa Krzywa Wyjściowa Termistora Czujnik 10K-2"
+    },
+    "outputTables": {
+      "heading": "Tabele Wyjściowe Termistorów"
+    }
+  },
+  "rtdPage": {
+    "breadcrumb": {
+      "back": "Powrót do Specyfikacji Czujników"
+    },
+    "hero": {
+      "title": "Przegląd RTD",
+      "subtitle": "Oporowe Detektory Temperatury o doskonałej liniowości, dokładności i powtarzalności"
+    },
+    "description": {
+      "heading": "Opis RTD",
+      "paragraph1": "RTD BAPI (Oporowe Detektory Temperatury) to termicznie wrażliwe elementy oporowe, które wykazują niewielką zmianę oporu na stopień zmiany temperatury. RTD są szczególnie cenione za doskonałą liniowość w całym zakresie temperatur z wysokim stopniem dokładności i powtarzalności.",
+      "paragraph2": "RTD dostarczane w produktach BAPI charakteryzują się standardową tolerancją wymienialności ±0,3°C mierzoną w 0°C. Dostępne są również czujniki o wyższej dokładności. Linia Class A ma tolerancję wymienialności ± 0,15°C mierzoną w 0°C. Prosimy o kontakt w sprawie dostępności i cen RTD Class A. Niezależnie od tego, czy standardowe czy Class A, RTD BAPI mają tak wysoką dokładność, że mogą być wymieniane bez kosztów kompensacji sterownika.",
+      "paragraph3": "Większość elementów czujnikowych RTD może być pakowana w sposób umożliwiający wytrzymanie niezwykle szerokiego zakresu temperatur (‑200 do 600°C). W większości przypadków standardowy zakres pracy powinien być wystarczający, ale oferujemy także RTD o wyższym lub niższym zakresie temperatur pracy. BAPI oferuje 1KΩ Platynowe RTD z różnymi zakresami dostosowanymi do Twoich specyficznych potrzeb aplikacyjnych."
+    },
+    "specifications": {
+      "heading": "Definicja Terminów Specyfikacji",
+      "tolerance": {
+        "title": "Tolerancja Oporu (Dokładność)",
+        "description": "Maksymalna wartość, o jaką RTD następujące tej samej krzywej będą się różnić między sobą."
+      },
+      "stability": {
+        "title": "Stabilność (dryf)",
+        "description": "Wartość, o jaką zmienią się charakterystyki oporu RTD. BAPI używa wyłącznie najwyższej jakości, platynowych czujników RTD z bardzo małymi wartościami dryftu."
+      },
+      "operatingRange": {
+        "title": "Zakres Pracy",
+        "description": "Pokazany zakres pracy dotyczy wyłącznie czujnika RTD. Opakowanie montażowe może dodatkowo ograniczać zakres pracy i jest opisane w specyfikacji każdego typu montażu."
+      }
+    },
+    "specsTable": {
+      "heading": "Specyfikacje RTD",
+      "toleranceOfResistance": {
+        "title": "Tolerancja Oporu (Dokładność)",
+        "description": "Zakres: ±0,06 bezwzględnej wartości omowej w 0°C zgodnie ze Standardem 1/3 DIN"
+      },
+      "tolerancePercent": {
+        "title": "Tolerancja % (%)",
+        "description": "Zakres: ±0,0 ± (0,02 x t (0,0111 + t)); t= temp °C",
+        "example": "W 0°C - Zakres ±0,02°C, W 100°C - Zakres ±0,13°C",
+        "averaging": "Standard Uśredniania: ±0,0 ± (0,0052 + (0,01 x temp °C))"
+      },
+      "stabilityDrift": {
+        "title": "Stabilność (dryf)",
+        "description": "±0,1°C przez 5 000 ciągłych godzin w 65°C"
+      },
+      "sensitivity": {
+        "title": "Czułość",
+        "description1K": "1KΩ: 2,13Ω/°C (w 70°F)",
+        "description100": "100Ω: 0,385Ω/°C"
+      },
+      "selfHeating": {
+        "title": "Samogrzanie (tylko w RTD)",
+        "description": "0,4°C/mW w powietrzu"
+      }
+    },
+    "standardRanges": {
+      "heading": "Standardowe i Wewnętrzne Zakresy Temperatur dla 1KΩ Platynowego RTD",
+      "tableHeaders": {
+        "symbol": "Symbol",
+        "referenceResistance": "Opór Referencyjny",
+        "temperatureCoefficient": "Współczynnik Temperatury",
+        "operatingRange": "Zakres Pracy"
+      }
+    },
+    "outputTables": {
+      "heading": "Tabele Wyjściowe RTD",
+      "description": "Szczegółowe tabele opór vs. temperatura pokazujące precyzyjne wartości omowe dla każdego typu RTD w całym zakresie pracy. Te tabele są niezbędne do integracji systemu i rozwiązywania problemów."
+    }
+  },
+  "semiconductorPage": {
+    "breadcrumb": {
+      "back": "Powrót do Specyfikacji Czujników"
+    },
+    "hero": {
+      "title": "Przegląd Półprzewodników",
+      "subtitle": "Najbardziej liniowe czujniki temperatury dla komercyjnych zastosowań HVAC"
+    },
+    "description": {
+      "heading": "Opis Półprzewodników",
+      "paragraph1": "Półprzewodniki BAPI są zaprojektowane tak, aby wykazywać zdefiniowany prąd wyjściowy bezpośrednio proporcjonalny do temperatury bezwzględnej (°K). Ta właściwość czyni je najbardziej liniowymi spośród wszystkich popularnych komercyjnych elementów czujnikowych HVAC. Przepuszczając ten prąd wyjściowy przez rezystor, uzyskuje się proporcjonalne napięcie wyjściowe.",
+      "paragraph2": "Półprzewodnikowy czujnik temperatury AD592 dostarczany z produktami BAPI zapewnia dwuprzewodowy sygnał wyjściowy 248 do 378 mikroamperów lub trzyprzewodowy sygnał wyjściowy 2,48 do 3,78 woltów w zakresie od -13 do 221 °F (od -25 do 105 °C). Urządzenia te są kalibrowane przy użyciu sprzętu z certyfikatem zgodności z Narodowym Instytutem Standardów i Technologii (NIST). Każda jednostka jest następnie oznaczona rzeczywistą temperaturą i odpowiadającą jej wartością offsetu."
+    },
+    "specifications": {
+      "heading": "Definicja Terminów Specyfikacji",
+      "interchangeability": {
+        "title": "Tolerancja Zamienności (Dokładność)",
+        "description": "Maksymalna różnica między czujnikami następującymi tą samą krzywą."
+      },
+      "repeatability": {
+        "title": "Powtarzalność",
+        "description": "Miara zdolności czujnika do powtarzania tej samej wartości wyjściowej dla danej wartości wejściowej."
+      }
+    },
+    "customOffset": {
+      "heading": "Definicja i Przykład Niestandardowego Offsetu",
+      "description": "W ten sposób BAPI oblicza wartość offsetu podaną na etykiecie czujnika:",
+      "thermReading": {
+        "title": "Odczyt Termometru",
+        "description": "Rzeczywisty odczyt temperatury według termometru z certyfikatem zgodności z uznanymi standardami Narodowego Instytutu Standardów i Technologii (NIST)."
+      },
+      "sensorReading": {
+        "title": "Odczyt Czujnika",
+        "description": "Odczyt temperatury według czujnika AD592, używając sygnału wyjściowego w µA lub mV i konwertując sygnał wyjściowy na temperaturę w stopniach Fahrenheita."
+      },
+      "offset": {
+        "title": "Offset",
+        "description": "Różnica między Odczytem Termometru a Odczytem Czujnika"
+      },
+      "maximizeAccuracy": "Aby zmaksymalizować dokładność czujnika, wystarczy dodać wartość offsetu odczytu czujnika do kontrolera.",
+      "example1": {
+        "thermReading": "np. Odczyt Termometru 74,6",
+        "sensorReading": "Odczyt Czujnika 73,0",
+        "offset": "Offset +1,6",
+        "correction": "Korekta: Dodaj (+1,6) °F do czujnika dla dokładnego odczytu: 73 + 1,6 = 74,6°F"
+      },
+      "example2": {
+        "thermReading": "np. Odczyt Termometru 75,4",
+        "sensorReading": "Odczyt Czujnika 77,2",
+        "offset": "Offset -1,8",
+        "correction": "Korekta: Dodaj (-1,8) °F do czujnika dla dokładnego odczytu: 77,2 + (-1,8) = 75,4°F"
+      }
+    },
+    "specsTable": {
+      "heading": "Specyfikacje Półprzewodników",
+      "interchangeability": {
+        "title": "Tolerancja Zamienności (Dokładność)",
+        "value": "Offset do 0,1 °C (0,18 °F)",
+        "note": "Z certyfikatem NIST"
+      },
+      "offsetRequirement": {
+        "title": "Wymaganie Offsetu",
+        "description": "Wymagane do osiągnięcia maksymalnej dokładności. Każdy czujnik zawiera niestandardowy offset podany na każdym czujniku."
+      },
+      "repeatability": {
+        "title": "Powtarzalność",
+        "value": "± 0,10 °C (± 0,18°F)"
+      },
+      "linearity": {
+        "title": "Liniowość",
+        "value": "± 0,15 °C maks",
+        "note": "od 0 do 70 °C (32 do 158°F)"
+      },
+      "sensorRange": {
+        "title": "Zakres Czujnika",
+        "value": "-25 do 105 °C",
+        "note": "(-13 do 221 °F) [248 do 378 °K]"
+      },
+      "biasVoltage": {
+        "title": "Napięcie Polaryzacji",
+        "value": "5 do 30 VDC"
+      },
+      "accuracyReference": {
+        "title": "Odniesienie Dokładności",
+        "value": "298,2 mA @ 25°C lub 2,982 V @ 25°C"
+      },
+      "temperatureOutputCoefficient": {
+        "title": "Współczynnik Wyjściowy Temperatury",
+        "twoWire": "2 przewody: 1 µA/°C (0,556 µA/°F) [1 µA/°K]",
+        "threeWire": "3 przewody: 10 mV/°C (5,556 mV/°F) [10 mV/°K]"
+      }
+    },
+    "outputCurve": {
+      "heading": "Typowa Krzywa Wyjściowa Półprzewodnika",
+      "alt": "Typowe Wyjście Półprzewodnika pokazujące Prąd (µA) i Napięcie (V) względem Temperatury",
+      "caption": "Rysunek 1 - Typowe Wyjście Temperatury Półprzewodnika"
+    },
+    "outputTables": {
+      "heading": "Tabele Wyjściowe Półprzewodników",
+      "ad592Standard": {
+        "tabLabel": "AD592 Standard",
+        "heading": "Tabela Wyjściowa Półprzewodnika AD592 Standard",
+        "description": "Standardowy AD592 prąd (µA) i napięcie (V) wyjściowe względem temperatury"
+      },
+      "ad59210K": {
+        "tabLabel": "AD592-10K",
+        "heading": "Tabela Wyjściowa Półprzewodnika AD592-10K",
+        "description": "Półprzewodnik AD592 z rezystorem bocznikowym 10K - napięcie (V) wyjściowe względem temperatury"
+      }
+    },
+    "cta": {
+      "heading": "Potrzebujesz Pomocy z Czujnikami Półprzewodnikowymi?",
+      "description": "Nasz zespół techniczny może pomóc Ci zrozumieć, czy czujniki półprzewodnikowe są odpowiednie dla Twojej aplikacji.",
+      "browseButton": "Przeglądaj Czujniki Temperatury",
+      "contactButton": "Skontaktuj się z Pomocą Techniczną"
+    }
+  },
+  "pressureTransmittersPage": {
+    "breadcrumb": {
+      "back": "Powrót do Specyfikacji Czujników"
+    },
+    "hero": {
+      "title": "Przetworniki Ciśnienia",
+      "subtitle": "Precyzyjne czujniki krzemowe z cyfrową kompensacją dla najwyższej dokładności"
+    },
+    "description": {
+      "heading": "Opis Czujnika Ciśnienia",
+      "paragraph1": "Centralnym punktem każdego czujnika jest sam element pomiarowy, a BAPI dołożyło wszelkich starań, aby wyprodukować jeden z najlepszych czujników dostępnych obecnie na rynku. Sercem każdej jednostki BAPI jest mikroobrobiony, jednokrystaliczny krzemowy czujnik ciśnienia. Każdy czujnik jest wytwarzany przy użyciu tej samej technologii układów scalonych, która służy do produkcji milionów telefonów komórkowych, konsol do gier i komputerów osobistych. Aby kontrolować i utrzymywać jakość tych czujników, BAPI bierze udział we wszystkich fazach produkcji od projektowania do użytkowania.",
+      "paragraph2": "Krzem niesie ze sobą jedną niepożądaną cechę — wrażliwość termiczną. Tradycyjną metodą kompensacji tej wrażliwości termicznej jest zewnętrzny obwód z odrębnymi rezystorami, z których niektóre mają własne zależności temperaturowe, wprowadzając więcej błędów. BAPI stosuje inne, unikalne podejście. Wykorzystujemy niestandardowy układ scalony kompensacyjny ASIC (Application Specific Integrated Circuit), który używa cyfrowej kompensacji przy zachowaniu analogowej ścieżki sygnału, produkując czujnik, który jest precyzyjny i wymienny.",
+      "paragraph3": "Dzięki innowacyjnemu czujnikowi i cyfrowemu obwodowi kompensacji temperatury, jesteśmy w stanie wyprodukować produkt wysoce dokładny i stabilny. Ta dokładność jest weryfikowana podczas końcowej kalibracji w naszej fabryce przy użyciu źródła kontrolowanego ciśnienia o dokładności 0,00015 cala słupa wody i z możliwością śledzenia według standardów NIST."
+    },
+    "features": {
+      "accuracy": {
+        "value": "±0,25%",
+        "title": "Wysoka Dokładność",
+        "description": "Dokładność ±0,25% z możliwością śledzenia NIST dla większości zakresów"
+      },
+      "compensation": {
+        "value": "Cyfrowa",
+        "title": "Cyfrowa Kompensacja",
+        "description": "Cyfrowa kompensacja oparta na ASIC eliminuje dryf termiczny"
+      },
+      "sensor": {
+        "value": "Krzem",
+        "title": "Piezorezystancyjny",
+        "description": "Jednokrystaliczny czujnik krzemowy wytwarzany technologią IC"
+      }
+    },
+    "specifications": {
+      "heading": "Specyfikacje",
+      "outputRanges": {
+        "title": "Zakresy Wyjściowe",
+        "value": "4 do 20 mA, 0 do 5 V lub 0 do 10V"
+      },
+      "power": {
+        "title": "Zasilanie",
+        "ma": "Wyjście 4-20 mA:",
+        "maValue": "7 do 45 VDC",
+        "v5": "Wyjście 0-5 VDC:",
+        "v5Value": "7 do 45 VDC lub 7 do 32 VAC",
+        "v10": "Wyjście 0-10 VDC:",
+        "v10Value": "13 do 45 VDC lub 13 do 32 VAC"
+      },
+      "powerConsumption": {
+        "title": "Pobór Mocy",
+        "dc": "Maks. 4,9 mA DC przy wyjściu 0-5 VDC lub 0-10 VDC",
+        "ac": "Maks. 0,12 VA AC przy wyjściu 0-5 VDC lub 0-10 VDC",
+        "ma": "Maks. 20 mA, tylko DC przy wyjściu 4-20 mA"
+      },
+      "pressureRanges": {
+        "title": "Zakresy Ciśnienia",
+        "inchesWC": {
+          "title": "Cale W.C.",
+          "lowUnidirectional": "Niski Zakres Jednokierunkowy",
+          "lowUnidirectionalValues": "0 do 0,10\", 0 do 0,25\", 0 do 0,50\", 0 do 0,75\", 0 do 1,00\"",
+          "lowBidirectional": "Niski Zakres Dwukierunkowy",
+          "lowBidirectionalValues": "±0,10\", ±0,25\", ±0,50\", ±0,75\", ±1,00\"",
+          "standardUnidirectional": "Standardowy Zakres Jednokierunkowy",
+          "standardUnidirectionalValues": "0 do 1,00\", 0 do 2,00\", 0 do 2,50\", 0 do 3,00\", 0 do 5,00\"",
+          "standardBidirectional": "Standardowy Zakres Dwukierunkowy",
+          "standardBidirectionalValues": "±1,00\", ±2,00\", ±2,50\", ±3,00\", ±5,00\"",
+          "highUnidirectional": "Wysoki Zakres Jednokierunkowy",
+          "highUnidirectionalValues": "0 do 5\", 0 do 10\", 0 do 15\", 0 do 25\", 0 do 30\""
+        },
+        "pascals": {
+          "title": "Paskale",
+          "lowUnidirectional": "Niski Zakres Jednokierunkowy",
+          "lowUnidirectionalValues": "0 do 30, 0 do 50, 0 do 100, 0 do 175, 0 do 250",
+          "lowBidirectional": "Niski Zakres Dwukierunkowy",
+          "lowBidirectionalValues": "±30, ±50, ±100, ±175, ±250",
+          "standardUnidirectional": "Standardowy Zakres Jednokierunkowy",
+          "standardUnidirectionalValues": "0 do 250, 0 do 300, 0 do 500, 0 do 1.000, 0 do 1.250",
+          "standardBidirectional": "Standardowy Zakres Dwukierunkowy",
+          "standardBidirectionalValues": "±250, ±300, ±500, ±1.000, ±1.250",
+          "highUnidirectional": "Wysoki Zakres Jednokierunkowy",
+          "highUnidirectionalValues": "0 do 1.250, 0 do 2.500, 0 do 4.000, 0 do 6.000, 0 do 7.400"
+        }
+      },
+      "accuracy": {
+        "title": "Dokładność przy 72°F (22,2°C)",
+        "lowRangeWC": "Niski Zakres: ±0,5% zakresów W.C. 0 do 0,1\", 0 do 0,25\", ±0,1\" i ±0,25\"",
+        "lowRangePa": "Niski Zakres: ±0,5% zakresów Pa 0 do 30, 0 do 50, ±30 i ±50 Pa",
+        "standardHighRange": "Standardowy i Wysoki Zakres: ±0,25% zakresu (wszystkie inne zakresy)"
+      },
+      "temperatureLimits": {
+        "title": "Limity Temperatury",
+        "storage": "Przechowywanie:",
+        "storageValue": "-40°F do 203°F (-40°C do 95°C)",
+        "operational": "Operacyjna:",
+        "operationalValue": "32°F do 140°F (0°C do 95°C)",
+        "compensated": "Skompensowana:",
+        "compensatedValue": "50°F do 104°F (10°C do 40°C)"
+      },
+      "operatingRH": {
+        "title": "Zakres Wilgotności Roboczej",
+        "value": "0 do 95% bez kondensacji"
+      },
+      "media": {
+        "title": "Media",
+        "value": "Niejonowe, Niekorozyjne, Czyste, Suche Gazy"
+      }
+    },
+    "outputTables": {
+      "heading": "Tabele Wyjściowe Przetwornika Ciśnienia",
+      "inchesWCHeading": "Cale Słupa Wody (W.C.)",
+      "tableHeading": "Tabela Wyjściowa Zakresu Ciśnienia {range}",
+      "emptyTable": "Dane tabeli do uzupełnienia dla tego zakresu ciśnienia."
+    },
+    "usingTables": {
+      "heading": "Użycie Tych Tabel Wyjściowych",
+      "description": "Wybierz swój zakres ciśnienia z kart powyżej, aby wyświetlić odpowiadające wartości wyjściowe. Każda tabela pokazuje związek między pomiarem ciśnienia a trzema dostępnymi typami wyjść: 0-5 VDC, 0-10 VDC i 4-20 mA. Użyj tych tabel do weryfikacji działania czujnika lub integracji przetworników ciśnienia BAPI z systemem sterowania."
+    },
+    "cta": {
+      "heading": "Potrzebujesz Przetwornika Ciśnienia?",
+      "description": "Nasza technologia cyfrowej kompensacji zapewnia najwyższą dokładność i stabilność pomiaru ciśnienia.",
+      "browseButton": "Przeglądaj Czujniki Ciśnienia",
+      "contactButton": "Skontaktuj się z Pomocą Techniczną"
+    }
+  },
+  "humidityTransmittersPage": {
+    "breadcrumb": {
+      "back": "Powrót do Specyfikacji Czujników"
+    },
+    "hero": {
+      "title": "Przetworniki Wilgotności",
+      "subtitle": "Wysokiej dokładności przetworniki wilgotności 4-20mA, 0-5V i 0-10V do wymagających zastosowań"
+    },
+    "description": {
+      "heading": "Opis Przetwornika Wilgotności",
+      "paragraph1": "Przetworniki wilgotności BAPI zapewniają wysokiej dokładności pomiar wilgotności 4 do 20mA, 0 do 5V lub 0 do 10V. Dostępne są dokładności 2% RH. Jednostki kanałowe i powietrza zewnętrznego wyposażone są w wymienny filtr ze spiekanej stali nierdzewnej. W jednostkach kanałowych i powietrza zewnętrznego filtr można czyścić ciepłą, destylowaną wodą.",
+      "paragraph2": "Te jednostki są oparte na mikroprocesorze i nie wymagają żadnej kalibracji terenowej.",
+      "paragraph3": "Dla wszystkich konfiguracji innych niż pomieszczeniowe, przetworniki wilgotności BAPI są standardowo dostarczane w wzmocnionej obudowie. Wzmocnione przetworniki nadają się do miejsc, gdzie wilgoć lub kondensacja mogą stanowić problem. Materiał zalewowy używany do wzmocnienia przetworników ma wysoką przewodność cieplną, aby wyeliminować przegrzewanie obwodu i umożliwić rozszerzalność termiczną w celu zminimalizowania naprężeń na komponenty obwodu. Ze względu na wyjątkowo niskie właściwości absorpcji wilgoci żywicy epoksydowej, wzmocniony przetwornik będzie działać nawet po czasowym zanurzeniu w wodzie.",
+      "paragraph4": "Przeprowadzono wiele testów i badań czujnika wbudowanego w te przetworniki wilgotności, aby zapewnić długoterminową dokładność i trwałość. Dla zastosowań wymagających jeszcze wyższej dokładności dostępne są jednak jednostki certyfikowane, które zostały przetestowane i skalibrowane względem wzorca z certyfikatem NIST. Prosimy o kontakt w celu uzyskania szczegółów lub z konkretnymi wymaganiami."
+    },
+    "features": {
+      "accuracy": {
+        "value": "2% RH",
+        "title": "Wysoka Dokładność",
+        "description": "Precyzyjny pomiar wilgotności do aplikacji krytycznych"
+      },
+      "durability": {
+        "value": "Wzmocniony",
+        "title": "Trwała Konstrukcja",
+        "description": "Działa nawet po czasowym zanurzeniu w wodzie"
+      },
+      "calibration": {
+        "value": "Bez Kal.",
+        "title": "Oparty na Mikroprocesorze",
+        "description": "Nie wymaga kalibracji terenowej"
+      }
+    },
+    "specifications": {
+      "heading": "Specyfikacje Ogólne",
+      "outputRanges": {
+        "title": "Zakresy Wyjściowe",
+        "value": "4 do 20 mA, 0 do 5 V, lub 0 do 10 V"
+      },
+      "power": {
+        "title": "Zasilanie",
+        "v5OrMa": "Wyjścia 0-5 VDC lub 4-20 mA:",
+        "v5OrMaValue": "10 do 35 VDC",
+        "v10": "Wyjście 0-10 VDC:",
+        "v10Value": "15 do 35 VDC",
+        "v5AC": "Wyjście 0-5 VDC (AC):",
+        "v5ACValue": "12 do 27 VAC",
+        "v10AC": "Wyjście 0-10 VDC (AC):",
+        "v10ACValue": "15 do 27 VAC"
+      },
+      "powerConsumption": {
+        "title": "Pobór Mocy",
+        "dc": "DC: 22 mA maks (0-5 VDC lub 4-20 mA), 6 mA maks (0-10 VDC)",
+        "ac": "AC: 0,53 VA maks (0-5 VDC lub 4-20 mA), 0,14 VA maks (0-10 VDC)"
+      },
+      "sensingElement": {
+        "title": "Element Pomiarowy",
+        "value": "Pojemnościowy czujnik wilgotności"
+      },
+      "operatingRH": {
+        "title": "Zakres Pracy RH",
+        "value": "0 do 100 %RH (bez kondensacji)"
+      },
+      "operatingTemperature": {
+        "title": "Zakres Temperatury Pracy",
+        "room": "Pomieszczenie:",
+        "roomValue": "0 do 70°C (32 do 158°F)",
+        "ductOutside": "Kanał i Zewnętrzne:",
+        "ductOutsideValue": "-20 do 70°C (-4 do 158°F)"
+      },
+      "accuracyRange": {
+        "title": "Zakres Dokładności",
+        "value": "od 10 do 90% RH przy 25°C"
+      },
+      "responseTime": {
+        "title": "Czas Odpowiedzi",
+        "value": "8 sekund",
+        "note": "w ruchomym powietrzu dla skoku 63%"
+      },
+      "drift": {
+        "title": "Dryf",
+        "value": "<0,5% RH rocznie"
+      }
+    },
+    "outputTable": {
+      "heading": "Tabela Wyjść Przetwornika Wilgotności"
+    },
+    "cta": {
+      "heading": "Potrzebujesz Przetwornika Wilgotności?",
+      "description": "Nasze przetworniki wilgotności zapewniają dokładny, długoterminowo niezawodny pomiar z minimalnym dryfem.",
+      "browseButton": "Przeglądaj Czujniki Wilgotności",
+      "contactButton": "Skontaktuj się z Pomocą Techniczną"
+    }
+  },
+  "temperatureTransmittersPage": {
+    "breadcrumb": {
+      "back": "Powrót do Specyfikacji Czujników"
+    },
+    "hero": {
+      "title": "Przetworniki Temperatury",
+      "subtitle": "Precyzyjne przetworniki 4-20mA do dokładnego pomiaru temperatury na duże odległości"
+    },
+    "description": {
+      "heading": "Opis Przetwornika Temperatury",
+      "paragraph1": "Przetworniki temperatury BAPI zawierają czujnik RTD 1KΩ i wzmacniacz. Urządzenia te zapewniają dokładne dwuprzewodowe wyjście 4-20mA w określonym zakresie temperatur. Zostały specjalnie zaprojektowane do transmisji na duże odległości bez degradacji sygnału 4-20mA. Jednostki 100Ω również dostępne na zamówienie.",
+      "paragraph2": "Każdy przetwornik temperatury nie jest konfigurowalny dla swojego określonego zakresu temperatur. Jeśli nie oferujesz odpowiedniego przetwornika w terenie lub lekkiego przetwornika w RTD klasy A w celu poprawy ogólnej dokładności. Określona jednostka w skalibrowanym zakresie oferuje lepszą dokładność, aby zminimalizować wpływ krzyżowy na komponenty sterujące. Dokładność dopasowanej pary jednostek staje się funkcją liniowości transferu (krzywa RTD) i przetwornika referencyjnego.",
+      "paragraph3": "Jednostki standardowe będą miały przesunięcie 0–100°F (powszechnie spotykane) - Termometr Referencyjny (przykład):",
+      "paragraph4": "Jednostki zakresu przesunięcia: –20°C do +250°C (-4°F do 482°F)",
+      "paragraph4b": "Maks. Rozpiętość: 16,6°C (30°F) – 2,0 do +600°C (–148°F do +1000°F)",
+      "paragraph5": "BA/TM- 1K w (0-30°F) Spec: +/- 0,08˚C (0,14˚F) = 16°F] MAKS",
+      "paragraph5b": "BA/TM- 1K w (0-100°F) Spec: +/- 0,10˚C (0,18˚F) = 38-55°F] PRZESUNIĘCIE",
+      "paragraph6": "Te dokładności dotyczą najgorszego zakresu czujnika, chociaż dokładności w środkowym punkcie czujnika będą bardziej precyzyjne. Skontaktuj się z przedstawicielem BAPI w celu uzyskania szczegółów.",
+      "paragraph7": "Przetworniki temperatury BAPI są dostarczane w wzmocnionej obudowie dla wszystkich konfiguracji innych niż pomieszczeniowe, gdzie wilgoć lub kondensacja może stanowić problem. Materiał zalewający używany do wzmocnienia przetworników ma wysoką przewodność cieplną, aby wyeliminować przegrzewanie układu i umożliwić rozszerzalność cieplną w celu zminimalizowania naprężeń na komponenty sterujące. Ze względu na bardzo niską absorpcję wilgoci żywicy epoksydowej, wzmocniony przetwornik pozostanie sprawny nawet w przypadku tymczasowego zanurzenia w wodzie."
+    },
+    "specifications": {
+      "heading": "Specyfikacje",
+      "sensor": {
+        "title": "Czujnik",
+        "value": "1000Ω Platynowy RTD"
+      },
+      "supplyVoltage": {
+        "title": "Napięcie Zasilania",
+        "value": "12 do 40 VDC"
+      },
+      "output": {
+        "title": "Wyjście",
+        "value": "4 do 20 mA, 0 do 5V, 1 do 5V, 0 do 10V, 2 do 10V"
+      },
+      "maxLoopResistance": {
+        "title": "Maks. Rezystancja Pętli",
+        "value": "850Ω przy 24VDC"
+      },
+      "span": {
+        "title": "Rozpiętość",
+        "value": "Min 16,6°C (30°F), Maks 555°C (1000°F)"
+      },
+      "zero": {
+        "title": "Zero",
+        "value": "Min -100°C (-148°F), Maks 482°C (900°F)"
+      },
+      "systemAccuracy": {
+        "title": "Dokładność Systemu",
+        "value": "±0,065% rozpiętości"
+      },
+      "linearity": {
+        "title": "Liniowość",
+        "value": "±(0,125 x T-20ºC)/100"
+      },
+      "operationalHumidity": {
+        "title": "Wilgotność Robocza",
+        "value": "0 do 95%, bez kondensacji"
+      },
+      "outputCurrentLimits": {
+        "title": "Limity Prądu Wyjściowego",
+        "value": "Mniej niż 1mA i 22,35 ± 0,15 mA"
+      },
+      "powerOutputShift": {
+        "title": "Przesunięcie Wyjścia Mocy",
+        "value": "±0,009% rozpiętości do 40VDC"
+      },
+      "connections": {
+        "title": "Połączenia",
+        "value": "Cztery przewody teflonowe trawione 22-gauge lub bloki zaciskowe"
+      },
+      "operatingTemperature": {
+        "title": "Temperatura Robocza",
+        "transmitter": "Przetwornik:",
+        "transmitterValue": "-20 do 70°C",
+        "sensorStandard": "Czujnik (standardowy):",
+        "sensorStandardValue": "-65 do 105°C",
+        "sensorAvailable": "Czujnik (dostępny):",
+        "sensorAvailableValue": "-200 do 600°C"
+      }
+    },
+    "outputTable": {
+      "heading": "Tabela Wyjścia Przetwornika Temperatury 0-100 °F"
+    },
+    "fieldAdjustments": {
+      "heading": "Regulacje Terenowe",
+      "description": "Każdy przetwornik jest kalibrowany do określonego zakresu temperatur, który został zamówiony. Regulacje terenowe nie są dostępne. Jeśli potrzebne są regulacje, skontaktuj się z przedstawicielem BAPI."
+    },
+    "cta": {
+      "heading": "Potrzebujesz Przetwornika Temperatury?",
+      "description": "Nasze przetworniki T1K zapewniają dokładne sygnały 4-20mA do zastosowań pomiaru temperatury na duże odległości.",
+      "browseButton": "Przeglądaj Czujniki Temperatury",
+      "contactButton": "Skontaktuj się z Pomocą"
+    }
   }
 }

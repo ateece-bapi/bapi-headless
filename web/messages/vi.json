@@ -2484,5 +2484,559 @@
       "heading": "Hướng Dẫn Chuyên Môn Từ Các Chuyên Gia Hàng Đầu",
       "description": "Các ghi chú ứng dụng của chúng tôi được viết bởi đội ngũ kỹ sư của BAPI với hàng thập kỷ kinh nghiệm kết hợp. Mỗi bài viết cung cấp các giải pháp thực tế, đã được thử nghiệm thực địa cho các thách thức thường gặp trong lắp đặt, hiệu chuẩn và bảo trì cảm biến."
     }
+  },
+  "thermistorPage": {
+    "breadcrumb": {
+      "back": "Quay lại Thông số kỹ thuật Cảm biến"
+    },
+    "hero": {
+      "title": "Tổng quan Thermistor",
+      "subtitle": "Điện trở nhạy cảm nhiệt với độ chính xác và độ tin cậy vượt trội cho các ứng dụng HVAC"
+    },
+    "description": {
+      "heading": "Mô tả Thermistor",
+      "paragraph1": "BAPI Thermistor là các điện trở nhạy cảm nhiệt được biết đến với khả năng thể hiện sự thay đổi lớn về điện trở chỉ với một sự thay đổi nhỏ về nhiệt độ. Điều quan trọng cần lưu ý là sự thay đổi điện trở của thermistor là không tuyến tính. Nó tuân theo một đường cong được xác định trước do nhà sản xuất thermistor cung cấp.",
+      "paragraph2": "Thermistor được sản xuất để tuân theo một đường cong cụ thể với độ chính xác cao. Tất cả thermistor BAPI đều có độ chính xác tiêu chuẩn ± 0,2 °C trong toàn bộ dải nhiệt độ thương mại từ 0 đến 70 °C. BAPI cũng có sẵn cảm biến độ chính xác cao hơn để đáp ứng các thông số kỹ thuật khắt khe hơn. Dòng độ chính xác cao [X có độ chính xác ban đầu ± 0,1 °C trong toàn bộ dải nhiệt độ thương mại từ 0 đến 70 °C. Vui lòng gọi để biết tình trạng có sẵn và giá cả cho thermistor dòng [X. Cả hai mức độ chính xác đều cho phép thermistor BAPI có thể hoán đổi mà không tốn thêm chi phí điều chỉnh bộ điều khiển.",
+      "footnote": "*Tất cả Thermistor Thụ động 10K Ω và nhỏ hơn đều tuân thủ CE"
+    },
+    "specifications": {
+      "heading": "Định nghĩa các Thuật ngữ Thông số kỹ thuật",
+      "interchangeability": {
+        "title": "Dung sai Khả năng hoán đổi (Độ chính xác)",
+        "description": "Lượng tối đa mà các thermistor tuân theo cùng một đường cong sẽ khác nhau."
+      },
+      "dissipation": {
+        "title": "Hằng số Tỏa nhiệt",
+        "description": "Công suất cần thiết để tăng nhiệt độ thân thermistor lên 1°C. Trung tâm của tất cả sản phẩm thermistor BAPI là một cảm biến có hằng số tỏa nhiệt 2,7 mW/°C để đảm bảo việc tự gia nhiệt được giữ ở mức tuyệt đối tối thiểu."
+      },
+      "stability": {
+        "title": "Độ ổn định (Độ trôi)",
+        "description": "Lượng mà các đặc tính điện trở của thermistor sẽ thay đổi. BAPI chỉ sử dụng thermistor chất lượng cao nhất, \"được lão hóa trước\" với các giá trị trôi rất nhỏ. Trong khoảng thời gian mười năm, thermistor BAPI sẽ không thay đổi quá 0,1°C."
+      },
+      "operatingRange": {
+        "title": "Dải Hoạt động",
+        "description": "Dải hoạt động được hiển thị chỉ dành cho thermistor. Gói lắp đặt có thể hạn chế thêm dải hoạt động và được mô tả trên mỗi thông số kỹ thuật loại lắp đặt. Hằng số thời gian nhiệt cũng sẽ bị ảnh hưởng dựa trên khối lượng bổ sung của đầu dò thép không gỉ và việc đóng gói bảo vệ độ ẩm."
+      },
+      "thermalTime": {
+        "title": "Hằng số Thời gian Nhiệt",
+        "description": "Cảm biến trần thường được đo và xác định trong không khí tĩnh và được tính thời gian tại 63,2% thống kê của sự thay đổi nhiệt độ bước. Thử nghiệm chất lỏng khuấy đều thường sẽ dẫn đến thời gian phản hồi nhanh hơn nhiều và cũng được tính thời gian tại 63,2% của sự thay đổi nhiệt độ bước. Hằng số thời gian luôn giống nhau dù sự thay đổi nhiệt độ bước có thể là bao nhiêu."
+      }
+    },
+    "specsTable": {
+      "heading": "Thông số kỹ thuật Thermistor",
+      "headers": {
+        "type": "Loại Thermistor",
+        "tolerance": "Dung sai Khả năng hoán đổi/Độ chính xác",
+        "range": "Dải Hoạt động"
+      },
+      "footnotes": {
+        "note1": "*Các thermistor khác có sẵn. Liên hệ BAPI để biết tình trạng có sẵn và thông số kỹ thuật của các loại thermistor bổ sung.",
+        "note2": "**Có sẵn dưới dạng cảm biến [X] (độ chính xác cao).",
+        "note3": "Số lượng tối thiểu và thời gian giao hàng dài có thể áp dụng. Thermistor \"JX5\" và \"5K\" thường là các mặt hàng có sẵn trong kho."
+      }
+    },
+    "outputCurve": {
+      "heading": "Đường cong Đầu ra Thermistor Điển hình",
+      "imageAlt": "Đường cong Đầu ra Thermistor Điển hình Cảm biến 10K-2 hiển thị điện trở (Ohm) so với nhiệt độ (°C)",
+      "caption": "Hình 1 - Đường cong Đầu ra Thermistor Điển hình Cảm biến 10K-2"
+    },
+    "outputTables": {
+      "heading": "Bảng Đầu ra Thermistor"
+    }
+  },
+  "rtdPage": {
+    "breadcrumb": {
+      "back": "Quay lại Thông số kỹ thuật Cảm biến"
+    },
+    "hero": {
+      "title": "Tổng quan RTD",
+      "subtitle": "Cảm biến nhiệt độ điện trở với tính tuyến tính, độ chính xác và khả năng lặp lại tuyệt vời"
+    },
+    "description": {
+      "heading": "Mô tả RTD",
+      "paragraph1": "RTD của BAPI (Cảm biến Nhiệt độ Điện trở) là các phần tử điện trở nhạy nhiệt có sự thay đổi nhỏ về điện trở theo từng độ thay đổi nhiệt độ. RTD đặc biệt được công nhận vì tính tuyến tính tuyệt vời trong toàn bộ phạm vi nhiệt độ với độ chính xác và khả năng lặp lại cao.",
+      "paragraph2": "RTD được cung cấp trong các sản phẩm BAPI có dung sai khả năng thay thế tiêu chuẩn là ±0,3°C được đo tại 0°C. Các cảm biến có độ chính xác cao hơn cũng có sẵn. Dòng Class A có dung sai khả năng thay thế là ± 0,15°C được đo tại 0°C. Vui lòng gọi để biết tình trạng có hàng và giá của RTD Class A. Dù là tiêu chuẩn hay Class A, RTD của BAPI có độ chính xác cao đến mức chúng có thể được thay thế mà không tốn kém cho việc bù trừ bộ điều khiển.",
+      "paragraph3": "Hầu hết các phần tử cảm biến RTD có thể được đóng gói để chịu được phạm vi nhiệt độ cực rộng (‑200 đến 600°C). Đối với hầu hết các mục đích, phạm vi hoạt động tiêu chuẩn sẽ đủ, nhưng chúng tôi cũng có RTD với phạm vi nhiệt độ hoạt động cao hơn hoặc thấp hơn. BAPI cung cấp RTD Bạch kim 1KΩ với nhiều phạm vi khác nhau để đáp ứng nhu cầu ứng dụng cụ thể của bạn."
+    },
+    "specifications": {
+      "heading": "Định nghĩa các Thuật ngữ Thông số kỹ thuật",
+      "tolerance": {
+        "title": "Dung sai Điện trở (Độ chính xác)",
+        "description": "Lượng tối đa mà các RTD theo cùng đường cong sẽ khác nhau."
+      },
+      "stability": {
+        "title": "Độ ổn định (độ trôi)",
+        "description": "Lượng thay đổi của đặc tính điện trở RTD. BAPI chỉ sử dụng các cảm biến RTD bạch kim màng chất lượng cao nhất với giá trị trôi rất nhỏ."
+      },
+      "operatingRange": {
+        "title": "Phạm vi Hoạt động",
+        "description": "Phạm vi hoạt động được hiển thị chỉ dành cho cảm biến RTD. Gói lắp đặt có thể hạn chế thêm phạm vi hoạt động và được mô tả trong thông số kỹ thuật của từng loại lắp đặt."
+      }
+    },
+    "specsTable": {
+      "heading": "Thông số kỹ thuật RTD",
+      "toleranceOfResistance": {
+        "title": "Dung sai Điện trở (Độ chính xác)",
+        "description": "Phạm vi: ±0,06 của giá trị ohm tuyệt đối tại 0°C theo Tiêu chuẩn 1/3 DIN"
+      },
+      "tolerancePercent": {
+        "title": "Dung sai % (%)",
+        "description": "Phạm vi: ±0,0 ± (0,02 x t (0,0111 + t)); t= nhiệt độ °C",
+        "example": "Tại 0°C - Phạm vi ±0,02°C, Tại 100°C - Phạm vi ±0,13°C",
+        "averaging": "Tiêu chuẩn Trung bình: ±0,0 ± (0,0052 + (0,01 x nhiệt độ °C))"
+      },
+      "stabilityDrift": {
+        "title": "Độ ổn định (độ trôi)",
+        "description": "±0,1°C trong 5.000 giờ liên tục tại 65°C"
+      },
+      "sensitivity": {
+        "title": "Độ nhạy",
+        "description1K": "1KΩ: 2,13Ω/°C (tại 70°F)",
+        "description100": "100Ω: 0,385Ω/°C"
+      },
+      "selfHeating": {
+        "title": "Tự làm nóng (chỉ trong RTD)",
+        "description": "0,4°C/mW trong không khí"
+      }
+    },
+    "standardRanges": {
+      "heading": "Phạm vi Tiêu chuẩn & Nhiệt độ Nội bộ cho RTD Bạch kim 1KΩ",
+      "tableHeaders": {
+        "symbol": "Ký hiệu",
+        "referenceResistance": "Điện trở Tham chiếu",
+        "temperatureCoefficient": "Hệ số Nhiệt độ",
+        "operatingRange": "Phạm vi Hoạt động"
+      }
+    },
+    "outputTables": {
+      "heading": "Bảng Đầu ra RTD",
+      "description": "Bảng điện trở theo nhiệt độ chi tiết hiển thị các giá trị ohm chính xác cho từng loại RTD trong toàn bộ phạm vi hoạt động. Các bảng này rất cần thiết cho tích hợp hệ thống và khắc phục sự cố."
+    }
+  },
+  "semiconductorPage": {
+    "breadcrumb": {
+      "back": "Quay lại Thông số kỹ thuật Cảm biến"
+    },
+    "hero": {
+      "title": "Tổng quan về Semiconductor",
+      "subtitle": "Cảm biến nhiệt độ tuyến tính nhất cho các ứng dụng HVAC thương mại"
+    },
+    "description": {
+      "heading": "Mô tả Semiconductor",
+      "paragraph1": "Semiconductor BAPI được thiết kế để tạo ra đầu ra dòng điện xác định tỷ lệ thuận với nhiệt độ tuyệt đối (°K). Tính chất này khiến chúng trở thành phần tử cảm biến HVAC thương mại phổ biến có tính tuyến tính cao nhất. Bằng cách đưa đầu ra dòng điện này qua một điện trở, một điện áp đầu ra tỷ lệ được tạo ra.",
+      "paragraph2": "Cảm biến nhiệt độ semiconductor AD592 được cung cấp với các sản phẩm BAPI tạo ra đầu ra hai dây từ 248 đến 378 micro ampere hoặc đầu ra ba dây từ 2,48 đến 3,78 volt trong phạm vi -13 đến 221 °F (-25 đến 105 °C). Các thiết bị này được hiệu chuẩn bằng thiết bị có thể truy xuất nguồn gốc từ Viện Tiêu chuẩn và Công nghệ Quốc gia (NIST). Mỗi thiết bị sau đó được gắn nhãn với nhiệt độ thực tế và độ lệch tương ứng."
+    },
+    "specifications": {
+      "heading": "Định nghĩa các Thuật ngữ Thông số kỹ thuật",
+      "interchangeability": {
+        "title": "Dung sai Khả năng thay thế (Độ chính xác)",
+        "description": "Lượng tối đa mà các cảm biến tuân theo cùng một đường cong sẽ khác nhau."
+      },
+      "repeatability": {
+        "title": "Khả năng lặp lại",
+        "description": "Thước đo khả năng của cảm biến để lặp lại cùng một giá trị đầu ra cho một giá trị đầu vào nhất định."
+      }
+    },
+    "customOffset": {
+      "heading": "Định nghĩa và Ví dụ về Độ lệch Tùy chỉnh",
+      "description": "Đây là cách BAPI tính toán giá trị độ lệch được cung cấp trên nhãn cảm biến:",
+      "thermReading": {
+        "title": "Số đọc Nhiệt kế",
+        "description": "Số đọc nhiệt độ thực tế theo nhiệt kế được chứng nhận có thể truy xuất nguồn gốc theo tiêu chuẩn được công nhận bởi Viện Tiêu chuẩn và Công nghệ Quốc gia (NIST)."
+      },
+      "sensorReading": {
+        "title": "Số đọc Cảm biến",
+        "description": "Số đọc nhiệt độ theo cảm biến AD592, sử dụng đầu ra bằng µA hoặc mV và chuyển đổi đầu ra thành nhiệt độ Fahrenheit."
+      },
+      "offset": {
+        "title": "Độ lệch",
+        "description": "Chênh lệch giữa Số đọc Nhiệt kế và Số đọc Cảm biến"
+      },
+      "maximizeAccuracy": "Để tối đa hóa độ chính xác của cảm biến, chỉ cần cộng giá trị độ lệch của số đọc cảm biến vào bộ điều khiển.",
+      "example1": {
+        "thermReading": "ví dụ: Số đọc Nhiệt kế 74,6",
+        "sensorReading": "Số đọc Cảm biến 73,0",
+        "offset": "Độ lệch +1,6",
+        "correction": "Hiệu chỉnh: Cộng (+1,6) °F vào cảm biến để có số đọc chính xác: 73 + 1,6 = 74,6°F"
+      },
+      "example2": {
+        "thermReading": "ví dụ: Số đọc Nhiệt kế 75,4",
+        "sensorReading": "Số đọc Cảm biến 77,2",
+        "offset": "Độ lệch -1,8",
+        "correction": "Hiệu chỉnh: Cộng (-1,8) °F vào cảm biến để có số đọc chính xác: 77,2 + (-1,8) = 75,4°F"
+      }
+    },
+    "specsTable": {
+      "heading": "Thông số kỹ thuật Semiconductor",
+      "interchangeability": {
+        "title": "Dung sai Khả năng thay thế (Độ chính xác)",
+        "value": "Hiệu chuẩn đến 0,1 °C (0,18 °F)",
+        "note": "Có thể truy xuất NIST"
+      },
+      "offsetRequirement": {
+        "title": "Yêu cầu Độ lệch",
+        "description": "Bắt buộc để đạt độ chính xác tối đa. Mỗi cảm biến bao gồm độ lệch tùy chỉnh được liệt kê trên mỗi cảm biến."
+      },
+      "repeatability": {
+        "title": "Khả năng lặp lại",
+        "value": "± 0,10 °C (± 0,18°F)"
+      },
+      "linearity": {
+        "title": "Tính tuyến tính",
+        "value": "± 0,15 °C tối đa",
+        "note": "từ 0 đến 70 °C (32 đến 158°F)"
+      },
+      "sensorRange": {
+        "title": "Phạm vi Cảm biến",
+        "value": "-25 đến 105 °C",
+        "note": "(-13 đến 221 °F) [248 đến 378 °K]"
+      },
+      "biasVoltage": {
+        "title": "Điện áp Phân cực",
+        "value": "5 đến 30 VDC"
+      },
+      "accuracyReference": {
+        "title": "Tham chiếu Độ chính xác",
+        "value": "298,2 mA @ 25°C hoặc 2,982 V @ 25°C"
+      },
+      "temperatureOutputCoefficient": {
+        "title": "Hệ số Đầu ra Nhiệt độ",
+        "twoWire": "2 dây: 1 µA/°C (0,556 µA/°F) [1 µA/°K]",
+        "threeWire": "3 dây: 10 mV/°C (5,556 mV/°F) [10 mV/°K]"
+      }
+    },
+    "outputCurve": {
+      "heading": "Đường cong Đầu ra Semiconductor Điển hình",
+      "alt": "Đầu ra Semiconductor Điển hình hiển thị Dòng điện (µA) và Điện áp (V) theo Nhiệt độ",
+      "caption": "Hình 1 - Đầu ra Nhiệt độ Semiconductor Điển hình"
+    },
+    "outputTables": {
+      "heading": "Bảng Đầu ra Semiconductor",
+      "ad592Standard": {
+        "tabLabel": "AD592 Tiêu chuẩn",
+        "heading": "Bảng Đầu ra Semiconductor AD592 Tiêu chuẩn",
+        "description": "Đầu ra dòng điện (µA) và điện áp (V) AD592 tiêu chuẩn theo nhiệt độ"
+      },
+      "ad59210K": {
+        "tabLabel": "AD592-10K",
+        "heading": "Bảng Đầu ra Semiconductor AD592-10K",
+        "description": "Semiconductor AD592 với điện trở shunt 10K - đầu ra điện áp (V) theo nhiệt độ"
+      }
+    },
+    "cta": {
+      "heading": "Cần Trợ giúp với Cảm biến Semiconductor?",
+      "description": "Đội ngũ kỹ thuật của chúng tôi có thể giúp bạn hiểu liệu cảm biến semiconductor có phù hợp với ứng dụng của bạn không.",
+      "browseButton": "Duyệt Cảm biến Nhiệt độ",
+      "contactButton": "Liên hệ Hỗ trợ"
+    }
+  },
+  "pressureTransmittersPage": {
+    "breadcrumb": {
+      "back": "Quay lại Thông số Kỹ thuật Cảm biến"
+    },
+    "hero": {
+      "title": "Bộ Truyền Áp Suất",
+      "subtitle": "Cảm biến silicon chính xác với bù trừ số để đạt độ chính xác tối ưu"
+    },
+    "description": {
+      "heading": "Mô tả Cảm biến Áp suất",
+      "paragraph1": "Điểm trọng tâm của bất kỳ cảm biến nào là chính phần tử cảm biến, và BAPI đã nỗ lực rất nhiều để tạo ra một trong những cảm biến tốt nhất trên thị trường hiện nay. Trái tim của mọi thiết bị BAPI là một cảm biến áp suất silicon đơn tinh thể được gia công vi cơ. Mỗi cảm biến được chế tạo bằng công nghệ mạch tích hợp tương tự được sử dụng để sản xuất hàng triệu điện thoại di động, máy chơi game và máy tính cá nhân. Để kiểm soát và duy trì chất lượng của các cảm biến này, BAPI tham gia vào tất cả các giai đoạn sản xuất từ thiết kế đến sử dụng.",
+      "paragraph2": "Silicon mang theo một đặc tính không mong muốn - độ nhạy nhiệt. Phương pháp truyền thống để bù trừ độ nhạy nhiệt này là một mạch ngoài với các điện trở riêng biệt, một số trong đó có sự phụ thuộc nhiệt độ riêng, gây thêm sai số. BAPI sử dụng một cách tiếp cận khác, độc đáo. Chúng tôi sử dụng một ASIC bù trừ tùy chỉnh (Mạch Tích hợp Ứng dụng Đặc biệt) sử dụng bù trừ số trong khi duy trì đường dẫn tín hiệu tương tự, tạo ra một cảm biến chính xác và có thể thay thế được.",
+      "paragraph3": "Nhờ cảm biến sáng tạo và mạch bù trừ nhiệt độ số, chúng tôi có thể sản xuất một sản phẩm có độ chính xác cao và ổn định. Độ chính xác này được xác minh trong quá trình hiệu chuẩn cuối cùng tại nhà máy của chúng tôi bằng nguồn kiểm soát áp suất chính xác đến 0.00015 inch nước và có thể truy xuất theo tiêu chuẩn NIST."
+    },
+    "features": {
+      "accuracy": {
+        "value": "±0.25%",
+        "title": "Độ Chính xác Cao",
+        "description": "Độ chính xác truy xuất NIST ±0.25% cho hầu hết các dải"
+      },
+      "compensation": {
+        "value": "Số",
+        "title": "Bù trừ Số",
+        "description": "Bù trừ số dựa trên ASIC loại bỏ độ trôi nhiệt"
+      },
+      "sensor": {
+        "value": "Silicon",
+        "title": "Áp trở",
+        "description": "Cảm biến silicon đơn tinh thể được chế tạo bằng công nghệ IC"
+      }
+    },
+    "specifications": {
+      "heading": "Thông số Kỹ thuật",
+      "outputRanges": {
+        "title": "Dải Đầu ra",
+        "value": "4 đến 20 mA, 0 đến 5 V hoặc 0 đến 10V"
+      },
+      "power": {
+        "title": "Nguồn Điện",
+        "ma": "Đầu ra 4-20 mA:",
+        "maValue": "7 đến 45 VDC",
+        "v5": "Đầu ra 0-5 VDC:",
+        "v5Value": "7 đến 45 VDC hoặc 7 đến 32 VAC",
+        "v10": "Đầu ra 0-10 VDC:",
+        "v10Value": "13 đến 45 VDC hoặc 13 đến 32 VAC"
+      },
+      "powerConsumption": {
+        "title": "Tiêu thụ Điện năng",
+        "dc": "4.9 mA tối đa DC tại Đầu ra 0-5 VDC hoặc 0-10 VDC",
+        "ac": "0.12 VA tối đa AC tại Đầu ra 0-5 VDC hoặc 0-10 VDC",
+        "ma": "20 mA tối đa, chỉ DC tại Đầu ra 4-20 mA"
+      },
+      "pressureRanges": {
+        "title": "Dải Áp suất",
+        "inchesWC": {
+          "title": "Inches W.C.",
+          "lowUnidirectional": "Dải Thấp Một chiều",
+          "lowUnidirectionalValues": "0 đến 0.10\", 0 đến 0.25\", 0 đến 0.50\", 0 đến 0.75\", 0 đến 1.00\"",
+          "lowBidirectional": "Dải Thấp Hai chiều",
+          "lowBidirectionalValues": "±0.10\", ±0.25\", ±0.50\", ±0.75\", ±1.00\"",
+          "standardUnidirectional": "Dải Tiêu chuẩn Một chiều",
+          "standardUnidirectionalValues": "0 đến 1.00\", 0 đến 2.00\", 0 đến 2.50\", 0 đến 3.00\", 0 đến 5.00\"",
+          "standardBidirectional": "Dải Tiêu chuẩn Hai chiều",
+          "standardBidirectionalValues": "±1.00\", ±2.00\", ±2.50\", ±3.00\", ±5.00\"",
+          "highUnidirectional": "Dải Cao Một chiều",
+          "highUnidirectionalValues": "0 đến 5\", 0 đến 10\", 0 đến 15\", 0 đến 25\", 0 đến 30\""
+        },
+        "pascals": {
+          "title": "Pascals",
+          "lowUnidirectional": "Dải Thấp Một chiều",
+          "lowUnidirectionalValues": "0 đến 30, 0 đến 50, 0 đến 100, 0 đến 175, 0 đến 250",
+          "lowBidirectional": "Dải Thấp Hai chiều",
+          "lowBidirectionalValues": "±30, ±50, ±100, ±175, ±250",
+          "standardUnidirectional": "Dải Tiêu chuẩn Một chiều",
+          "standardUnidirectionalValues": "0 đến 250, 0 đến 300, 0 đến 500, 0 đến 1,000, 0 đến 1,250",
+          "standardBidirectional": "Dải Tiêu chuẩn Hai chiều",
+          "standardBidirectionalValues": "±250, ±300, ±500, ±1,000, ±1.250",
+          "highUnidirectional": "Dải Cao Một chiều",
+          "highUnidirectionalValues": "0 đến 1,250, 0 đến 2,500, 0 đến 4,000, 0 đến 6,000, 0 đến 7,400"
+        }
+      },
+      "accuracy": {
+        "title": "Độ Chính xác tại 72°F (22.2°C)",
+        "lowRangeWC": "Dải Thấp: ±0.5% của dải W.C. 0 đến 0.1\", 0 đến 0.25\", ±0.1\" và ±0.25\"",
+        "lowRangePa": "Dải Thấp: ±0.5% của dải Pa 0 đến 30, 0 đến 50, ±30 và ±50 Pa",
+        "standardHighRange": "Dải Tiêu chuẩn và Cao: ±0.25% của dải (tất cả các dải khác)"
+      },
+      "temperatureLimits": {
+        "title": "Giới hạn Nhiệt độ",
+        "storage": "Bảo quản:",
+        "storageValue": "-40°F đến 203°F (-40°C đến 95°C)",
+        "operational": "Hoạt động:",
+        "operationalValue": "32°F đến 140°F (0°C đến 95°C)",
+        "compensated": "Được bù trừ:",
+        "compensatedValue": "50°F đến 104°F (10°C đến 40°C)"
+      },
+      "operatingRH": {
+        "title": "Dải RH Hoạt động",
+        "value": "0 đến 95% không ngưng tụ"
+      },
+      "media": {
+        "title": "Môi trường",
+        "value": "Khí không Ion, không ăn mòn, sạch, khô"
+      }
+    },
+    "outputTables": {
+      "heading": "Bảng Đầu ra Bộ Truyền Áp suất",
+      "inchesWCHeading": "Inches Cột Nước (W.C.)",
+      "tableHeading": "Bảng Đầu ra Dải Áp suất {range}",
+      "emptyTable": "Dữ liệu bảng sẽ được điền cho dải áp suất này."
+    },
+    "usingTables": {
+      "heading": "Sử dụng Các Bảng Đầu ra Này",
+      "description": "Chọn dải áp suất của bạn từ các tab ở trên để xem các giá trị đầu ra tương ứng. Mỗi bảng hiển thị mối quan hệ giữa đo áp suất và ba loại đầu ra có sẵn: 0-5 VDC, 0-10 VDC, và 4-20 mA. Sử dụng các bảng này để xác minh hoạt động của cảm biến hoặc tích hợp bộ truyền áp suất BAPI vào hệ thống điều khiển của bạn."
+    },
+    "cta": {
+      "heading": "Cần Bộ Truyền Áp suất?",
+      "description": "Công nghệ bù trừ số của chúng tôi cung cấp độ chính xác và ổn định tối ưu cho đo áp suất.",
+      "browseButton": "Duyệt Cảm biến Áp suất",
+      "contactButton": "Liên hệ Hỗ trợ"
+    }
+  },
+  "humidityTransmittersPage": {
+    "breadcrumb": {
+      "back": "Quay lại Thông số Kỹ thuật Cảm biến"
+    },
+    "hero": {
+      "title": "Bộ Truyền Tín hiệu Độ Ẩm",
+      "subtitle": "Bộ truyền tín hiệu độ ẩm 4-20mA, 0-5V và 0-10V độ chính xác cao cho các ứng dụng khắt khe"
+    },
+    "description": {
+      "heading": "Mô tả Bộ Truyền Tín hiệu Độ Ẩm",
+      "paragraph1": "Bộ truyền tín hiệu độ ẩm BAPI cung cấp phép đo độ ẩm độ chính xác cao 4 đến 20mA, 0 đến 5V hoặc 0 đến 10V. Độ chính xác 2% RH có sẵn. Các đơn vị ống dẫn và không khí bên ngoài được trang bị bộ lọc thép không gỉ thiêu kết có thể tháo rời. Đối với các đơn vị ống dẫn và không khí bên ngoài, bộ lọc có thể được làm sạch bằng nước cất ấm.",
+      "paragraph2": "Các đơn vị này dựa trên vi xử lý và không yêu cầu hiệu chuẩn hiện trường nào.",
+      "paragraph3": "Đối với tất cả các cấu hình không phải phòng, bộ truyền tín hiệu độ ẩm BAPI được trang bị tiêu chuẩn trong gói gia cố. Bộ truyền tín hiệu gia cố phù hợp cho các vị trí có thể gặp vấn đề về độ ẩm hoặc ngưng tụ. Vật liệu đổ khuôn được sử dụng để gia cố các bộ truyền tín hiệu có độ dẫn nhiệt cao để loại bỏ hiện tượng quá nhiệt mạch và cho phép giãn nở nhiệt để giảm thiểu ứng suất lên các thành phần mạch. Do tính chất hấp thụ độ ẩm cực thấp của epoxy, bộ truyền tín hiệu gia cố sẽ vẫn hoạt động được ngay cả khi tạm thời bị ngập trong nước.",
+      "paragraph4": "Nhiều thử nghiệm và nghiên cứu đã được thực hiện trên cảm biến được tích hợp vào các bộ truyền tín hiệu độ ẩm này để đảm bảo rằng chúng cung cấp độ chính xác và độ bền lâu dài. Tuy nhiên, đối với các ứng dụng yêu cầu độ chính xác cao hơn, các đơn vị được chứng nhận có sẵn đã được kiểm tra và hiệu chỉnh theo tiêu chuẩn tham chiếu có thể truy xuất NIST. Vui lòng gọi để biết chi tiết hoặc với các yêu cầu cụ thể."
+    },
+    "features": {
+      "accuracy": {
+        "value": "2% RH",
+        "title": "Độ Chính Xác Cao",
+        "description": "Đo độ ẩm chính xác cho các ứng dụng quan trọng"
+      },
+      "durability": {
+        "value": "Gia Cố",
+        "title": "Thiết Kế Bền Bỉ",
+        "description": "Hoạt động được ngay cả khi tạm thời bị ngập trong nước"
+      },
+      "calibration": {
+        "value": "Không Cần Hiệu Chuẩn",
+        "title": "Dựa Trên Vi Xử Lý",
+        "description": "Không yêu cầu hiệu chuẩn hiện trường"
+      }
+    },
+    "specifications": {
+      "heading": "Thông Số Kỹ Thuật Chung",
+      "outputRanges": {
+        "title": "Dải Đầu Ra",
+        "value": "4 đến 20 mA, 0 đến 5 V, hoặc 0 đến 10 V"
+      },
+      "power": {
+        "title": "Nguồn Điện",
+        "v5OrMa": "Đầu ra 0-5 VDC hoặc 4-20 mA:",
+        "v5OrMaValue": "10 đến 35 VDC",
+        "v10": "Đầu Ra 0-10 VDC:",
+        "v10Value": "15 đến 35 VDC",
+        "v5AC": "Đầu Ra 0-5 VDC (AC):",
+        "v5ACValue": "12 đến 27 VAC",
+        "v10AC": "Đầu Ra 0-10 VDC (AC):",
+        "v10ACValue": "15 đến 27 VAC"
+      },
+      "powerConsumption": {
+        "title": "Tiêu Thụ Điện Năng",
+        "dc": "DC: 22 mA tối đa (0-5 VDC hoặc 4-20 mA), 6 mA tối đa (0-10 VDC)",
+        "ac": "AC: 0.53 VA tối đa (0-5 VDC hoặc 4-20 mA), 0.14 VA tối đa (0-10 VDC)"
+      },
+      "sensingElement": {
+        "title": "Phần Tử Cảm Biến",
+        "value": "Cảm biến độ ẩm loại điện dung"
+      },
+      "operatingRH": {
+        "title": "Dải RH Hoạt Động",
+        "value": "0 đến 100 %RH (không ngưng tụ)"
+      },
+      "operatingTemperature": {
+        "title": "Dải Nhiệt Độ Hoạt Động",
+        "room": "Phòng:",
+        "roomValue": "0 đến 70°C (32 đến 158°F)",
+        "ductOutside": "Ống Dẫn & Bên Ngoài:",
+        "ductOutsideValue": "-20 đến 70°C (-4 đến 158°F)"
+      },
+      "accuracyRange": {
+        "title": "Dải Độ Chính Xác",
+        "value": "từ 10 đến 90% RH ở 25°C"
+      },
+      "responseTime": {
+        "title": "Thời Gian Phản Ứng",
+        "value": "8 giây",
+        "note": "trong không khí chuyển động cho bước nhảy 63%"
+      },
+      "drift": {
+        "title": "Drift",
+        "value": "<0.5% RH mỗi năm"
+      }
+    },
+    "outputTable": {
+      "heading": "Bảng Đầu Ra Bộ Truyền Tín hiệu Độ Ẩm"
+    },
+    "cta": {
+      "heading": "Cần Bộ Truyền Tín hiệu Độ Ẩm?",
+      "description": "Các bộ truyền tín hiệu độ ẩm của chúng tôi cung cấp phép đo chính xác, đáng tin cậy lâu dài với drift tối thiểu.",
+      "browseButton": "Duyệt Cảm Biến Độ Ẩm",
+      "contactButton": "Liên Hệ Hỗ Trợ"
+    }
+  },
+  "temperatureTransmittersPage": {
+    "breadcrumb": {
+      "back": "Quay lại Thông số kỹ thuật Cảm biến"
+    },
+    "hero": {
+      "title": "Bộ truyền tín hiệu Nhiệt độ",
+      "subtitle": "Bộ truyền tín hiệu 4-20mA chính xác để cảm biến nhiệt độ chính xác trên khoảng cách dài"
+    },
+    "description": {
+      "heading": "Mô tả Bộ truyền tín hiệu Nhiệt độ",
+      "paragraph1": "Bộ truyền tín hiệu nhiệt độ của BAPI tích hợp cảm biến RTD 1KΩ và bộ khuếch đại. Những thiết bị này cung cấp đầu ra chính xác hai dây, 4 đến 20mA trong phạm vi nhiệt độ được chỉ định. Chúng được thiết kế đặc biệt cho truyền tín hiệu khoảng cách dài mà không làm suy giảm tín hiệu 4 đến 20mA. Các đơn vị 100Ω cũng có sẵn theo yêu cầu.",
+      "paragraph2": "Mỗi bộ truyền tín hiệu nhiệt độ không thể cấu hình cho phạm vi nhiệt độ được chỉ định của nó. Nếu bạn không cung cấp bộ truyền tín hiệu phù hợp tại hiện trường hoặc bộ truyền tín hiệu nhẹ trong RTD Lớp A để cải thiện độ chính xác tổng thể. Đơn vị được chỉ định tại phạm vi hiệu chuẩn cung cấp độ chính xác tốt hơn để giảm thiểu sự giao thoa trên các thành phần điều khiển. Sử dụng độ chính xác của đơn vị cặp phù hợp trở thành một hàm của tính tuyến tính truyền (đường cong RTD) và bộ truyền tín hiệu tham chiếu phần nào.",
+      "paragraph3": "Các đơn vị tiêu chuẩn sẽ bù trừ 0–100°F (thường thấy) - Nhiệt kế Tham chiếu (ví dụ):",
+      "paragraph4": "Đơn vị Phạm vi Bù trừ: –20°C đến +250°C (-4°F đến 482°F)",
+      "paragraph4b": "Khoảng Tối đa: 16.6°C (30°F) – 2.0 đến +600°C (–148°F đến +1000°F)",
+      "paragraph5": "BA/TM- 1K trong (0-30°F) Spec: +/- 0.08˚C (0.14˚F) = 16°F] TỐI ĐA",
+      "paragraph5b": "BA/TM- 1K trong (0-100°F) Spec: +/- 0.10˚C (0.18˚F) = 38-55°F] BÙ TRỪ",
+      "paragraph6": "Những độ chính xác này dành cho phạm vi tệ nhất của cảm biến, mặc dù độ chính xác tại điểm giữa của cảm biến sẽ chặt chẽ hơn. Liên hệ với đại diện BAPI của bạn để biết chi tiết.",
+      "paragraph7": "Bộ truyền tín hiệu nhiệt độ BAPI có gói gia cố cho tất cả các cấu hình không phải phòng nơi độ ẩm hoặc ngưng tụ có thể là vấn đề. Vật liệu đổ được sử dụng để gia cố bộ truyền tín hiệu có độ dẫn nhiệt cao để loại bỏ quá nhiệt mạch và cho phép giãn nở nhiệt để giảm thiểu ứng suất trên các thành phần điều khiển. Do tính chất hấp thụ độ ẩm cực thấp của epoxy, bộ truyền tín hiệu gia cố sẽ vẫn hoạt động ngay cả khi tạm thời ngâm trong nước."
+    },
+    "specifications": {
+      "heading": "Thông số kỹ thuật",
+      "sensor": {
+        "title": "Cảm biến",
+        "value": "1000Ω Platinum RTD"
+      },
+      "supplyVoltage": {
+        "title": "Điện áp Cấp nguồn",
+        "value": "12 đến 40 VDC"
+      },
+      "output": {
+        "title": "Đầu ra",
+        "value": "4 đến 20 mA, 0 đến 5V, 1 đến 5V, 0 đến 10V, 2 đến 10V"
+      },
+      "maxLoopResistance": {
+        "title": "Điện trở Vòng lặp Tối đa",
+        "value": "850Ω tại 24VDC"
+      },
+      "span": {
+        "title": "Khoảng",
+        "value": "Tối thiểu 16.6°C (30°F), Tối đa 555°C (1000°F)"
+      },
+      "zero": {
+        "title": "Điểm không",
+        "value": "Tối thiểu -100°C (-148°F), Tối đa 482°C (900°F)"
+      },
+      "systemAccuracy": {
+        "title": "Độ chính xác Hệ thống",
+        "value": "±0.065% của Khoảng"
+      },
+      "linearity": {
+        "title": "Tính tuyến tính",
+        "value": "±(0.125 x T-20ºC)/100"
+      },
+      "operationalHumidity": {
+        "title": "Độ ẩm Hoạt động",
+        "value": "0 đến 95%, không ngưng tụ"
+      },
+      "outputCurrentLimits": {
+        "title": "Giới hạn Dòng Đầu ra",
+        "value": "Ít hơn 1mA và 22.35 ± 0.15 mA"
+      },
+      "powerOutputShift": {
+        "title": "Dịch chuyển Đầu ra Công suất",
+        "value": "±0.009% của Khoảng đến 40VDC"
+      },
+      "connections": {
+        "title": "Kết nối",
+        "value": "Bốn dây dẫn Teflon khắc 22-gauge hoặc khối đầu cuối"
+      },
+      "operatingTemperature": {
+        "title": "Nhiệt độ Hoạt động",
+        "transmitter": "Bộ truyền tín hiệu:",
+        "transmitterValue": "-20 đến 70°C",
+        "sensorStandard": "Cảm biến (tiêu chuẩn):",
+        "sensorStandardValue": "-65 đến 105°C",
+        "sensorAvailable": "Cảm biến (có sẵn):",
+        "sensorAvailableValue": "-200 đến 600°C"
+      }
+    },
+    "outputTable": {
+      "heading": "Bảng Đầu ra Bộ truyền tín hiệu Nhiệt độ 0-100 °F"
+    },
+    "fieldAdjustments": {
+      "heading": "Điều chỉnh Hiện trường",
+      "description": "Mỗi bộ truyền tín hiệu được hiệu chuẩn theo phạm vi nhiệt độ được chỉ định khi đặt hàng. Không có điều chỉnh hiện trường. Nếu cần điều chỉnh, vui lòng liên hệ với đại diện BAPI của bạn."
+    },
+    "cta": {
+      "heading": "Cần Bộ truyền tín hiệu Nhiệt độ?",
+      "description": "Bộ truyền tín hiệu T1K của chúng tôi cung cấp tín hiệu 4-20mA chính xác cho các ứng dụng đo nhiệt độ khoảng cách dài.",
+      "browseButton": "Duyệt Cảm biến Nhiệt độ",
+      "contactButton": "Liên hệ Hỗ trợ"
+    }
   }
 }

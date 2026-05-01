@@ -1,17 +1,18 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
-import { pressureRanges, type PressureRange, type PressureData } from '@/data/pressureTables';
+import { pressureRanges, type PressureData } from '@/data/pressureTables';
 
 // Helper component to render pressure table
-function PressureTable({ data, unit }: { data: PressureData; unit: string }) {
+function PressureTable({ data, t }: { data: PressureData; t: any }) {
   if (data.length === 0) {
     return (
       <div className="bg-accent-50 border border-accent-200 rounded-lg p-6 text-center">
         <p className="text-neutral-700">
-          Table data to be populated for this pressure range.
+          {t('outputTables.emptyTable')}
         </p>
       </div>
     );
@@ -74,6 +75,7 @@ function PressureTable({ data, unit }: { data: PressureData; unit: string }) {
 }
 
 export default function PressureTransmittersPage() {
+  const t = useTranslations('pressureTransmittersPage');
   const [activeTab, setActiveTab] = useState<string>('0-0.10');
   return (
     <div className="min-h-screen bg-white">
@@ -85,7 +87,7 @@ export default function PressureTransmittersPage() {
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
           >
             <ChevronLeftIcon className="h-5 w-5" />
-            Back to Sensor Specifications
+            {t('breadcrumb.back')}
           </Link>
         </div>
       </div>
@@ -94,11 +96,10 @@ export default function PressureTransmittersPage() {
       <div className="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Pressure Transmitters
+            {t('hero.title')}
           </h1>
           <p className="text-xl text-primary-50 max-w-3xl">
-            Precision silicon sensors with digital compensation for ultimate
-            accuracy
+            {t('hero.subtitle')}
           </p>
         </div>
       </div>
@@ -108,36 +109,17 @@ export default function PressureTransmittersPage() {
         {/* Description Section */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-            Pressure Sensor Description
+            {t('description.heading')}
           </h2>
           <div className="prose prose-lg max-w-none space-y-4">
             <p className="text-neutral-700 leading-relaxed">
-              The focal point of any sensor is the sensing element itself, and
-              BAPI has gone to great lengths to produce one of the best sensors
-              on the market today. The heart of every BAPI unit is a
-              micromachined, single-crystal silicon, pressure sensor. Each
-              sensor is fabricated using the same integrated circuit technology
-              used to make millions of cell phones, game machines and personal
-              computers. To control and maintain the quality of these sensors,
-              BAPI is involved in all phases of production from design to use.
+              {t('description.paragraph1')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              Silicon does bring with it one undesired trait —thermal
-              sensitivity. The traditional method of compensating for this
-              thermal sensitivity is an external circuit with discreet
-              resistors, some of which have their own temperature dependencies,
-              introducing more error. BAPI uses a different, unique approach. We
-              employ a custom compensation ASIC (Application Specific Integrated
-              Circuit) that uses digital compensation while maintaining an
-              analog signal path, producing a sensor that is precise and
-              interchangeable.
+              {t('description.paragraph2')}
             </p>
             <p className="text-neutral-700 leading-relaxed">
-              Because of the innovative sensor and digital temperature
-              compensation circuit, we are able to produce a highly accurate and
-              stable product. This accuracy is verified during final calibration
-              at our factory using a pressure-controlled source accurate to
-              0.00015 inch of water and traceable to NIST standards.
+              {t('description.paragraph3')}
             </p>
           </div>
         </section>
@@ -147,37 +129,37 @@ export default function PressureTransmittersPage() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-primary-50 rounded-lg p-6 border-2 border-primary-600">
               <div className="text-primary-600 text-3xl font-bold mb-3">
-                ±0.25%
+                {t('features.accuracy.value')}
               </div>
               <h3 className="font-semibold text-neutral-900 mb-2">
-                High Accuracy
+                {t('features.accuracy.title')}
               </h3>
               <p className="text-sm text-neutral-700">
-                NIST-traceable accuracy of ±0.25% for most ranges
+                {t('features.accuracy.description')}
               </p>
             </div>
 
             <div className="bg-neutral-50 rounded-lg p-6 border-2 border-neutral-200">
               <div className="text-primary-600 text-3xl font-bold mb-3">
-                Digital
+                {t('features.compensation.value')}
               </div>
               <h3 className="font-semibold text-neutral-900 mb-2">
-                Digital Compensation
+                {t('features.compensation.title')}
               </h3>
               <p className="text-sm text-neutral-700">
-                ASIC-based digital compensation eliminates thermal drift
+                {t('features.compensation.description')}
               </p>
             </div>
 
             <div className="bg-neutral-50 rounded-lg p-6 border-2 border-neutral-200">
               <div className="text-primary-600 text-3xl font-bold mb-3">
-                Silicon
+                {t('features.sensor.value')}
               </div>
               <h3 className="font-semibold text-neutral-900 mb-2">
-                Piezoresistive
+                {t('features.sensor.title')}
               </h3>
               <p className="text-sm text-neutral-700">
-                Single-crystal silicon sensor fabricated with IC technology
+                {t('features.sensor.description')}
               </p>
             </div>
           </div>
@@ -186,86 +168,86 @@ export default function PressureTransmittersPage() {
         {/* Specifications */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            Specifications
+            {t('specifications.heading')}
           </h2>
 
           <div className="bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
             <div className="grid divide-y divide-neutral-200">
               <div className="p-6">
                 <h3 className="font-semibold text-neutral-900 mb-2">
-                  Output Ranges
+                  {t('specifications.outputRanges.title')}
                 </h3>
                 <p className="text-primary-600 font-bold text-lg">
-                  4 to 20 mA, 0 to 5 V or 0 to 10V
+                  {t('specifications.outputRanges.value')}
                 </p>
               </div>
 
               <div className="p-6 bg-neutral-50">
-                <h3 className="font-semibold text-neutral-900 mb-3">Power</h3>
+                <h3 className="font-semibold text-neutral-900 mb-3">{t('specifications.power.title')}</h3>
                 <div className="space-y-2 text-sm text-neutral-700">
                   <div className="flex justify-between">
-                    <span>4-20 mA output:</span>
-                    <span className="font-medium">7 to 45 VDC</span>
+                    <span>{t('specifications.power.ma')}</span>
+                    <span className="font-medium">{t('specifications.power.maValue')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>0-5 VDC output:</span>
-                    <span className="font-medium">7 to 45 VDC or 7 to 32 VAC</span>
+                    <span>{t('specifications.power.v5')}</span>
+                    <span className="font-medium">{t('specifications.power.v5Value')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>0-10 VDC output:</span>
-                    <span className="font-medium">13 to 45 VDC or 13 to 32 VAC</span>
+                    <span>{t('specifications.power.v10')}</span>
+                    <span className="font-medium">{t('specifications.power.v10Value')}</span>
                   </div>
                 </div>
               </div>
 
               <div className="p-6">
                 <h3 className="font-semibold text-neutral-900 mb-3">
-                  Power Consumption
+                  {t('specifications.powerConsumption.title')}
                 </h3>
                 <div className="space-y-2 text-sm text-neutral-700">
-                  <div>4.9 mA max DC at 0-5 VDC or 0-10 VDC Output</div>
-                  <div>0.12 VA max AC at 0-5 VDC or 0-10 VDC Output</div>
-                  <div>20 mA max, DC only at 4-20 mA Output</div>
+                  <div>{t('specifications.powerConsumption.dc')}</div>
+                  <div>{t('specifications.powerConsumption.ac')}</div>
+                  <div>{t('specifications.powerConsumption.ma')}</div>
                 </div>
               </div>
 
               <div className="p-6 bg-neutral-50">
                 <h3 className="font-semibold text-neutral-900 mb-3">
-                  Pressure Ranges
+                  {t('specifications.pressureRanges.title')}
                 </h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <h4 className="font-semibold text-primary-600 mb-2">
-                      Inches W.C.
+                      {t('specifications.pressureRanges.inchesWC.title')}
                     </h4>
                     <div className="space-y-1 text-sm text-neutral-700">
-                      <div className="font-medium">Low Range Unidirectional</div>
-                      <div>0 to 0.10", 0 to 0.25", 0 to 0.50", 0 to 0.75", 0 to 1.00"</div>
-                      <div className="font-medium mt-2">Low Range Bi-directional</div>
-                      <div>±0.10", ±0.25", ±0.50", ±0.75", ±1.00"</div>
-                      <div className="font-medium mt-2">Standard Range Unidirectional</div>
-                      <div>0 to 1.00", 0 to 2.00", 0 to 2.50", 0 to 3.00", 0 to 5.00"</div>
-                      <div className="font-medium mt-2">Standard Range Bi-directional</div>
-                      <div>±1.00", ±2.00", ±2.50", ±3.00", ±5.00"</div>
-                      <div className="font-medium mt-2">High Range Unidirectional</div>
-                      <div>0 to 5", 0 to 10", 0 to 15", 0 to 25", 0 to 30"</div>
+                      <div className="font-medium">{t('specifications.pressureRanges.inchesWC.lowUnidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.inchesWC.lowUnidirectionalValues')}</div>
+                      <div className="font-medium mt-2">{t('specifications.pressureRanges.inchesWC.lowBidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.inchesWC.lowBidirectionalValues')}</div>
+                      <div className="font-medium mt-2">{t('specifications.pressureRanges.inchesWC.standardUnidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.inchesWC.standardUnidirectionalValues')}</div>
+                      <div className="font-medium mt-2">{t('specifications.pressureRanges.inchesWC.standardBidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.inchesWC.standardBidirectionalValues')}</div>
+                      <div className="font-medium mt-2">{t('specifications.pressureRanges.inchesWC.highUnidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.inchesWC.highUnidirectionalValues')}</div>
                     </div>
                   </div>
                   <div>
                     <h4 className="font-semibold text-primary-600 mb-2">
-                      Pascals
+                      {t('specifications.pressureRanges.pascals.title')}
                     </h4>
                     <div className="space-y-1 text-sm text-neutral-700">
-                      <div className="font-medium">Low Range Unidirectional</div>
-                      <div>0 to 30, 0 to 50, 0 to 100, 0 to 175, 0 to 250</div>
-                      <div className="font-medium mt-2">Low Range Bi-directional</div>
-                      <div>±30, ±50, ±100, ±175, ±250</div>
-                      <div className="font-medium mt-2">Standard Range Unidirectional</div>
-                      <div>0 to 250, 0 to 300, 0 to 500, 0 to 1,000, 0 to 1,250</div>
-                      <div className="font-medium mt-2">Standard Range Bi-directional</div>
-                      <div>±250, ±300, ±500, ±1,000, ±1.250</div>
-                      <div className="font-medium mt-2">High Range Unidirectional</div>
-                      <div>0 to 1,250, 0 to 2,500, 0 to 4,000, 0 to 6,000, 0 to 7,400</div>
+                      <div className="font-medium">{t('specifications.pressureRanges.pascals.lowUnidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.pascals.lowUnidirectionalValues')}</div>
+                      <div className="font-medium mt-2">{t('specifications.pressureRanges.pascals.lowBidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.pascals.lowBidirectionalValues')}</div>
+                      <div className="font-medium mt-2">{t('specifications.pressureRanges.pascals.standardUnidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.pascals.standardUnidirectionalValues')}</div>
+                      <div className="font-medium mt-2">{t('specifications.pressureRanges.pascals.standardBidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.pascals.standardBidirectionalValues')}</div>
+                      <div className="font-medium mt-2">{t('specifications.pressureRanges.pascals.highUnidirectional')}</div>
+                      <div>{t('specifications.pressureRanges.pascals.highUnidirectionalValues')}</div>
                     </div>
                   </div>
                 </div>
@@ -273,22 +255,19 @@ export default function PressureTransmittersPage() {
 
               <div className="p-6">
                 <h3 className="font-semibold text-neutral-900 mb-3">
-                  Accuracy at 72°F (22.2°C)
+                  {t('specifications.accuracy.title')}
                 </h3>
                 <div className="space-y-2 text-neutral-700">
                   <div>
-                    <span className="font-semibold text-primary-600">Low Range:</span> ±0.5% of
-                    W.C. ranges 0 to 0.1", 0 to 0.25", ±0.1" and ±0.25"
+                    <span className="font-semibold text-primary-600">{t('specifications.accuracy.lowRangeWC')}</span>
                   </div>
                   <div>
-                    <span className="font-semibold text-primary-600">Low Range:</span> ±0.5% of Pa
-                    ranges 0 to 30, 0 to 50, ±30 and ±50 Pa
+                    <span className="font-semibold text-primary-600">{t('specifications.accuracy.lowRangePa')}</span>
                   </div>
                   <div>
                     <span className="font-semibold text-primary-600">
-                      Standard and High Range:
-                    </span>{' '}
-                    ±0.25% of range (all other ranges)
+                      {t('specifications.accuracy.standardHighRange')}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -296,43 +275,43 @@ export default function PressureTransmittersPage() {
               <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200">
                 <div className="p-6 bg-neutral-50">
                   <h3 className="font-semibold text-neutral-900 mb-3">
-                    Temperature Limits
+                    {t('specifications.temperatureLimits.title')}
                   </h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-neutral-700">Storage:</span>
+                      <span className="text-neutral-700">{t('specifications.temperatureLimits.storage')}</span>
                       <span className="text-neutral-900 font-medium">
-                        -40°F to 203°F (-40°C to 95°C)
+                        {t('specifications.temperatureLimits.storageValue')}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-neutral-700">Operational:</span>
+                      <span className="text-neutral-700">{t('specifications.temperatureLimits.operational')}</span>
                       <span className="text-neutral-900 font-medium">
-                        32°F to 140°F (0°C to 95°C)
+                        {t('specifications.temperatureLimits.operationalValue')}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-neutral-700">Compensated:</span>
+                      <span className="text-neutral-700">{t('specifications.temperatureLimits.compensated')}</span>
                       <span className="text-neutral-900 font-medium">
-                        50°F to 104°F (10°C to 40°C)
+                        {t('specifications.temperatureLimits.compensatedValue')}
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
                   <h3 className="font-semibold text-neutral-900 mb-2">
-                    Operating RH Range
+                    {t('specifications.operatingRH.title')}
                   </h3>
                   <p className="text-primary-600 font-bold">
-                    0 to 95% non-condensing
+                    {t('specifications.operatingRH.value')}
                   </p>
                 </div>
               </div>
 
               <div className="p-6">
-                <h3 className="font-semibold text-neutral-900 mb-2">Media</h3>
+                <h3 className="font-semibold text-neutral-900 mb-2">{t('specifications.media.title')}</h3>
                 <p className="text-neutral-700">
-                  Non-Ionic, Non-Corrosive, Clean, Dry Gasses
+                  {t('specifications.media.value')}
                 </p>
               </div>
             </div>
@@ -342,7 +321,7 @@ export default function PressureTransmittersPage() {
         {/* Pressure Transmitter Output Tables */}
         <section className="max-w-6xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            Pressure Transmitter Output Tables
+            {t('outputTables.heading')}
           </h2>
 
           {/* Tab Navigation - Organized by Unit Type */}
@@ -351,7 +330,7 @@ export default function PressureTransmittersPage() {
               {/* Water Column Tabs */}
               <div className="w-full mb-2">
                 <h3 className="text-sm font-semibold text-neutral-600 uppercase tracking-wide px-2">
-                  Inches Water Column (W.C.)
+                  {t('outputTables.inchesWCHeading')}
                 </h3>
               </div>
               {pressureRanges.map(range => (
@@ -378,9 +357,9 @@ export default function PressureTransmittersPage() {
               activeTab === range.id && (
                 <div key={range.id} className="bg-white rounded-lg">
                   <h3 className="text-2xl font-bold text-center text-neutral-900 mb-6">
-                    Pressure Range {range.label} Output Table
+                    {t('outputTables.tableHeading', { range: range.label })}
                   </h3>
-                  <PressureTable data={range.data} unit={range.unit} />
+                  <PressureTable data={range.data} t={t} />
                 </div>
               )
             ))}
@@ -391,13 +370,10 @@ export default function PressureTransmittersPage() {
         <section className="max-w-4xl mx-auto mb-16">
           <div className="bg-primary-50 border-l-4 border-primary-600 p-6 rounded-r-lg">
             <h3 className="font-semibold text-neutral-900 mb-2">
-              Using These Output Tables
+              {t('usingTables.heading')}
             </h3>
             <p className="text-neutral-700">
-              Select your pressure range from the tabs above to view the corresponding output values.
-              Each table shows the relationship between pressure measurement and the three available
-              output types: 0-5 VDC, 0-10 VDC, and 4-20 mA. Use these tables to verify sensor
-              operation or integrate BAPI pressure transmitters into your control system.
+              {t('usingTables.description')}
             </p>
           </div>
         </section>
@@ -405,24 +381,23 @@ export default function PressureTransmittersPage() {
         {/* CTA Section */}
         <section className="max-w-4xl mx-auto mt-16 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold text-neutral-900 mb-4">
-            Need a Pressure Transmitter?
+            {t('cta.heading')}
           </h2>
           <p className="text-neutral-700 mb-6">
-            Our digital compensation technology provides the ultimate in
-            accuracy and stability for pressure measurement.
+            {t('cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/products/pressure-sensors"
               className="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
             >
-              Browse Pressure Sensors
+              {t('cta.browseButton')}
             </Link>
             <Link
               href="/support"
               className="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold border-2 border-primary-600 hover:bg-primary-50 transition-colors"
             >
-              Contact Support
+              {t('cta.contactButton')}
             </Link>
           </div>
         </section>

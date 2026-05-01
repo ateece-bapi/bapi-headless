@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/lib/navigation';
 import { ChevronLeftIcon } from '@/lib/icons';
 import {
@@ -71,6 +72,7 @@ function ThermistorTable({ data }: { data: ThermistorData }) {
 }
 
 export default function ThermistorOverviewPage() {
+  const t = useTranslations('thermistorPage');
   const [activeTab, setActiveTab] = useState<ThermistorType>('10K-3');
   return (
     <div className="min-h-screen bg-white">
@@ -82,7 +84,7 @@ export default function ThermistorOverviewPage() {
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
           >
             <ChevronLeftIcon className="h-5 w-5" />
-            Back to Sensor Specifications
+            {t('breadcrumb.back')}
           </Link>
         </div>
       </div>
@@ -91,11 +93,10 @@ export default function ThermistorOverviewPage() {
       <div className="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Thermistor Overview
+            {t('hero.title')}
           </h1>
           <p className="text-xl text-primary-50 max-w-3xl">
-            Thermally sensitive resistors with exceptional accuracy and
-            reliability for HVAC applications
+            {t('hero.subtitle')}
           </p>
         </div>
       </div>
@@ -105,30 +106,17 @@ export default function ThermistorOverviewPage() {
         {/* Description Section */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-6">
-            Thermistor Description
+            {t('description.heading')}
           </h2>
           <div className="prose prose-lg max-w-none">
             <p className="text-neutral-700 leading-relaxed mb-4">
-              BAPI Thermistors are thermally sensitive resistors known for
-              exhibiting a large change in resistance with only a small change
-              in temperature. It is important to note that a thermistor's change
-              in resistance is non-linear. It follows a pre-defined curve which
-              is provided by the thermistor manufacturer.
+              {t('description.paragraph1')}
             </p>
             <p className="text-neutral-700 leading-relaxed mb-4">
-              Thermistors are manufactured to follow a specific curve with a
-              high degree of accuracy. All BAPI thermistors have a standard
-              accuracy of ± 0.2 °C throughout the commercial temperature range
-              of 0 to 70 °C. BAPI also has available a higher accuracy sensor
-              for meeting tougher specs. The extra precision [X line has an
-              initial accuracy of ± 0.1 °C throughout the commercial temperature
-              range of 0 to 70 °C. Please call for availability and pricing on
-              [X line thermistors. Both accuracy levels allow BAPI thermistors
-              to be interchanged without the extra expense of offsetting the
-              controller.
+              {t('description.paragraph2')}
             </p>
             <p className="text-sm text-neutral-600 italic">
-              *All Passive Thermistors 10K Ω and smaller are CE compliant
+              {t('description.footnote')}
             </p>
           </div>
         </section>
@@ -136,68 +124,52 @@ export default function ThermistorOverviewPage() {
         {/* Specifications Section */}
         <section className="max-w-4xl mx-auto mb-16 bg-neutral-50 rounded-lg p-8">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8">
-            Definition of Specification Terms
+            {t('specifications.heading')}
           </h2>
 
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                Interchangeability Tolerance (Accuracy)
+                {t('specifications.interchangeability.title')}
               </h3>
               <p className="text-neutral-700">
-                The maximum amount that thermistors following the same curve
-                will differ from each other.
+                {t('specifications.interchangeability.description')}
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                Dissipation Constant
+                {t('specifications.dissipation.title')}
               </h3>
               <p className="text-neutral-700">
-                The power needed to raise the thermistor's body temperature by
-                1°C. At the heart of all BAPI thermistor products is a sensor
-                with a 2.7 mW/°C dissipation constant to ensure that
-                self-heating stays at an absolute minimum.
+                {t('specifications.dissipation.description')}
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                Stability (Drift)
+                {t('specifications.stability.title')}
               </h3>
               <p className="text-neutral-700">
-                The amount that the resistance characteristics of a thermistor
-                will change. BAPI uses only the highest quality, "pre-aged"
-                thermistors with very small drift values. Over a ten year span,
-                BAPI thermistors will not change more than 0.1°C.
+                {t('specifications.stability.description')}
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                Operating Range
+                {t('specifications.operatingRange.title')}
               </h3>
               <p className="text-neutral-700">
-                The operating range shown is for the thermistor only. The
-                mounting package may further limit the operating range and is
-                described on each mounting type specification. The thermal time
-                constant will also be affected based on the added mass of the
-                stainless steel probe and moisture protection encapsulation.
+                {t('specifications.operatingRange.description')}
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                Thermal Time Constant
+                {t('specifications.thermalTime.title')}
               </h3>
               <p className="text-neutral-700">
-                Bare sensors are typically measured and specified in still air
-                and are timed at the statistical 63.2% of the step temperature
-                change. A stirred liquid test will typically result in a much
-                faster response time and is also timed at 63.2% of the step
-                temperature change. The time constant is always the same
-                whatever the temperature step change may be.
+                {t('specifications.thermalTime.description')}
               </p>
             </div>
           </div>
@@ -206,7 +178,7 @@ export default function ThermistorOverviewPage() {
         {/* Thermistor Specifications Table */}
         <section className="max-w-6xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            Thermistor Specifications
+            {t('specsTable.heading')}
           </h2>
           <div className="bg-white border-2 border-neutral-200 rounded-lg overflow-hidden">
             <div className="overflow-x-auto">
@@ -214,13 +186,13 @@ export default function ThermistorOverviewPage() {
                 <thead className="bg-neutral-100">
                   <tr>
                     <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900 border-b-2 border-neutral-200">
-                      Thermistor Type
+                      {t('specsTable.headers.type')}
                     </th>
                     <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900 border-b-2 border-neutral-200">
-                      Interchangeability Tolerance/Accuracy
+                      {t('specsTable.headers.tolerance')}
                     </th>
                     <th className="px-6 py-4 text-left text-sm font-bold text-neutral-900 border-b-2 border-neutral-200">
-                      Operating Range
+                      {t('specsTable.headers.range')}
                     </th>
                   </tr>
                 </thead>
@@ -340,15 +312,13 @@ export default function ThermistorOverviewPage() {
 
           <div className="mt-6 space-y-2 text-sm text-neutral-600 max-w-4xl mx-auto">
             <p>
-              *Other thermistors are available. Contact BAPI for availability
-              and specifications of additional thermistor types.
+              {t('specsTable.footnotes.note1')}
             </p>
             <p>
-              **Available as an [X] (high accuracy) sensors.
+              {t('specsTable.footnotes.note2')}
             </p>
             <p>
-              Minimum quantities and long lead times may apply. The "JX5" and
-              "5K" thermistors are typically stocked items.
+              {t('specsTable.footnotes.note3')}
             </p>
           </div>
         </section>
@@ -356,24 +326,24 @@ export default function ThermistorOverviewPage() {
         {/* Typical Output Curve */}
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            Typical Thermistor Output Curve
+            {t('outputCurve.heading')}
           </h2>
           <div className="bg-white rounded-lg border-2 border-neutral-200 p-6 flex justify-center">
             <img
               src="https://bapiheadlessstaging.kinsta.cloud/wp-content/uploads/Thermistor_output_chart.png"
-              alt="Typical Thermistor Output Curve 10K-2 Sensor showing resistance (Ohms) vs temperature (°C)"
+              alt={t('outputCurve.imageAlt')}
               className="max-w-full h-auto"
             />
           </div>
           <p className="text-center text-sm text-neutral-600 mt-4">
-            Figure 1 - Typical Thermistor Output Curve 10K-2 Sensor
+            {t('outputCurve.caption')}
           </p>
         </section>
 
         {/* Output Tables Section */}
         <section className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center">
-            Thermistor Output Tables
+            {t('outputTables.heading')}
           </h2>
 
           {/* Tab Navigation */}

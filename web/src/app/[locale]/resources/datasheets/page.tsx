@@ -1,12 +1,127 @@
 import { Metadata } from 'next';
-import { FileTextIcon, DownloadIcon, SearchIcon, FilterIcon } from '@/lib/icons';
+import { FileTextIcon } from '@/lib/icons';
 import { getTranslations } from 'next-intl/server';
 import { generatePageMetadata } from '@/lib/metadata';
+import DocumentLibraryClient from '@/components/resources/DocumentLibraryClient';
+import { cookies } from 'next/headers';
+import { extractCustomerGroupFromTitle } from '@/lib/utils/filterProductsByCustomerGroup';
+import { GET_CURRENT_USER_QUERY, type GetCurrentUserResponse } from '@/lib/auth/queries';
+
+// WordPress REST API types
+interface WPMediaItem {
+  id: number;
+  title: { rendered: string };
+  source_url: string;
+  media_details?: {
+    filesize?: number;
+  };
+  date: string;
+}
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
+/**
+ * Get user's customer groups from auth token
+ * Defaults to ['end-user'] for guests (matches WordPress behavior)
+ */
+async function getUserCustomerGroups(): Promise<string[]> {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('auth_token')?.value;
+
+    if (!token) {
+      return ['end-user']; // Guest users default to end-user group
+    }
+
+    const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || '';
+
+    // Query current user with GraphQL
+    const response = await fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        query: GET_CURRENT_USER_QUERY,
+      }),
+    });
+
+    const { data, errors }: { data: GetCurrentUserResponse; errors?: unknown[] } =
+      await response.json();
+
+    if (errors || !data?.viewer) {
+      return ['end-user']; // Invalid token - treat as guest
+    }
+
+    const { viewer } = data;
+
+    // Extract customer groups from ACF fields (customerInformation.customerGroup1/2/3)
+    const customerInfo = viewer.customerInformation;
+    const rawCustomerGroups = [
+      ...(customerInfo?.customerGroup1 || []),
+      ...(customerInfo?.customerGroup2 || []),
+      ...(customerInfo?.customerGroup3 || []),
+    ]
+      .filter((group): group is string => typeof group === 'string')
+      .map((group) => group.trim())
+      .filter((group) => group.length > 0 && group.toUpperCase() !== 'NO ACCESS');
+
+    // Normalize to lowercase
+    const slugifiedGroups = rawCustomerGroups.map(g => g.toLowerCase());
+
+    // Default to 'end-user' if no valid groups
+    return slugifiedGroups.length > 0 ? slugifiedGroups : ['end-user'];
+  } catch (error) {
+    console.error('Failed to get user customer groups', error);
+    return ['end-user']; // Fallback to guest
+  }
+}
+
+/**
+ * Check if user can view a document based on customer group rules
+ * Matches product filtering logic - OEM documents (ALC, ACS, etc.) require matching customer group
+ */
+function canUserViewDocument(documentTitle: string, userCustomerGroups: string[]): boolean {
+  const documentGroup = extractCustomerGroupFromTitle(documentTitle);
+  
+  // Public document (no customer group prefix) - visible to all
+  if (!documentGroup) {
+    return true;
+  }
+  
+  // Document has OEM prefix - check if user has matching group
+  return userCustomerGroups.includes(documentGroup);
+}
+
+/**
+ * Document type classifier
+ * Categorizes documents based on title keywords
+ */
+function classifyDocumentType(title: string | null): string {
+  if (!title) return 'Other';
+  const text = title.toLowerCase();
+  
+  if (text.includes('instruction') || text.includes('_ins_')) return 'Instructions';
+  if (text.includes('with pricing') || text.match(/[^no]price/)) return 'Datasheet (Pricing)';
+  if (text.includes('noprice') || text.includes('for submittal')) return 'Datasheet (Submittal)';
+  if (text.includes('datasheet')) return 'Datasheet';
+  if (text.includes('catalog')) return 'Catalog';
+  if (text.includes('guide') || text.includes('selection')) return 'Selection Guide';
+  if (text.includes('drawing') || text.includes('dimension')) return 'Technical Drawing';
+  if (text.includes('manual') || text.includes('operation')) return 'Operation Manual';
+  if (text.includes('specification') || text.includes('spec')) return 'Specification';
+  if (text.includes('application note')) return 'Application Note';
+  if (text.includes('warranty') || text.includes('compliance') || text.includes('certificate')) return 'Compliance';
+  
+  return 'Other';
+}
+
+/**
+ * Generate metadata for datasheets page
+ */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'datasheetsPage' });
@@ -22,9 +137,81 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   );
 }
 
+/**
+ * Datasheets page - Display searchable library of all product documentation
+ * Filters OEM documents (ALC, ACS, etc.) based on user's customer group access
+ */
 export default async function DatasheetsPage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'datasheetsPage' });
+  
+  // Get user's customer groups for OEM document filtering
+  const userCustomerGroups = await getUserCustomerGroups();
+  
+  // Fetch all PDFs from custom WordPress endpoint (bypasses REST API pagination limits)
+  // Extract base URL from GraphQL endpoint
+  const graphqlUrl = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL || 'https://bapiheadlessstaging.kinsta.cloud/graphql';
+  const baseUrl = graphqlUrl.replace('/graphql', '');
+  
+  let documents: Array<{
+    id: string;
+    title: string;
+    filename: string;
+    url: string;
+    fileSize?: number;
+    date: string;
+    productName: undefined;
+    productSku: undefined;
+    categories: never[];
+    documentType: string;
+  }> = [];
+  
+  try {
+    // Use custom endpoint that returns ALL 918 PDFs in one request
+    const response = await fetch(
+      `${baseUrl}/wp-json/bapi/v1/all-pdfs`,
+      {
+        next: { revalidate: 3600, tags: ['documents'] },
+      }
+    );
+    
+    if (!response.ok) {
+      console.error(`Failed to fetch documents: ${response.status}`);
+      throw new Error(`Custom endpoint returned ${response.status}`);
+    }
+    
+    const data = await response.json();
+    const allDocuments: WPMediaItem[] = data.documents;
+    
+    console.log(`✅ Fetched ALL ${allDocuments.length} documents from custom WordPress endpoint (bypassed REST API limits)`);
+  
+    // Filter documents based on customer group access (same logic as products)
+    const filteredDocuments = allDocuments.filter(doc => 
+      canUserViewDocument(doc.title?.rendered || '', userCustomerGroups)
+    );
+    
+    console.log(`🔒 Filtered to ${filteredDocuments.length} documents for user with groups: ${userCustomerGroups.join(', ')}`);
+  
+    // Transform documents for client component
+    documents = filteredDocuments.map(doc => {
+      return {
+        id: String(doc.id),
+        title: doc.title?.rendered || 'Untitled Document',
+        filename: doc.source_url?.split('/').pop() || '',
+        url: doc.source_url || '',
+        fileSize: doc.media_details?.filesize,
+        date: doc.date,
+        productName: undefined,
+        productSku: undefined,
+        categories: [],
+        documentType: classifyDocumentType(doc.title?.rendered),
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching documents:', error);
+    documents = [];
+  }
+  
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -34,174 +221,17 @@ export default async function DatasheetsPage({ params }: Props) {
             <FileTextIcon className="mx-auto mb-4 h-16 w-16" />
             <h1 className="mb-4 text-4xl font-bold sm:text-5xl">{t('hero.title')}</h1>
             <p className="mx-auto max-w-content text-xl text-primary-50">{t('hero.subtitle')}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Search & Filter */}
-      <section className="sticky top-0 z-10 border-b-2 border-neutral-200 bg-neutral-50 py-8">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-4 md:flex-row">
-            <div className="flex-1">
-              <div className="relative">
-                <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
-                <input
-                  type="search"
-                  placeholder={t('search.placeholder')}
-                  className="w-full rounded-lg border border-neutral-300 py-3 pl-10 pr-4 focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
-                />
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <select className="min-w-[150px] rounded-lg border border-neutral-300 px-4 py-3 focus:ring-2 focus:ring-primary-500">
-                <option value="">{t('search.categoryLabel')}</option>
-                <option value="temperature">{t('search.categories.temperature')}</option>
-                <option value="humidity">{t('search.categories.humidity')}</option>
-                <option value="pressure">{t('search.categories.pressure')}</option>
-                <option value="air-quality">{t('search.categories.airQuality')}</option>
-                <option value="wireless">{t('search.categories.wireless')}</option>
-                <option value="controllers">{t('search.categories.controllers')}</option>
-              </select>
-              <button className="rounded-lg bg-primary-500 px-4 py-3 font-semibold text-white transition-colors hover:bg-primary-600">
-                <FilterIcon className="h-5 w-5" />
-              </button>
+            <div className="mt-6">
+              <p className="text-sm text-primary-100">
+                {t('hero.totalDocs', { count: documents.length })}
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Datasheets Grid */}
-      <section className="py-16">
-        <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* Sample Datasheet Cards */}
-            {sampleDatasheets.map((item, index) => (
-              <div
-                key={index}
-                className="rounded-xl border-2 border-neutral-200 bg-white p-6 transition-all hover:border-primary-500 hover:shadow-lg"
-              >
-                <div className="mb-4 flex items-start gap-4">
-                  <div className="flex h-20 w-16 flex-shrink-0 items-center justify-center rounded bg-neutral-100">
-                    <FileTextIcon className="h-8 w-8 text-primary-500" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="mb-1 text-xs text-neutral-700">{item.model}</div>
-                    <h3 className="mb-1 line-clamp-2 font-bold text-neutral-900">{item.name}</h3>
-                    <div className="flex flex-wrap gap-1">
-                      {item.categories.map((cat, idx) => (
-                        <span
-                          key={idx}
-                          className="rounded bg-neutral-100 px-2 py-0.5 text-xs text-neutral-700"
-                        >
-                          {cat}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <p className="mb-4 line-clamp-2 text-sm text-neutral-700">{item.description}</p>
-                <div className="mb-4 flex items-center justify-between text-xs text-neutral-700">
-                  <span>
-                    {item.pages} {t('grid.pagesLabel')}
-                  </span>
-                  <span>{item.size}</span>
-                </div>
-                <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent-500 px-4 py-2 font-bold text-neutral-900 transition-colors hover:bg-accent-600">
-                  <DownloadIcon className="h-4 w-4" />
-                  {t('grid.downloadButton')}
-                </button>
-              </div>
-            ))}
-          </div>
-
-          {/* Pagination */}
-          <div className="mt-12 flex justify-center gap-2">
-            <button className="rounded-lg border-2 border-neutral-300 px-4 py-2 transition-colors hover:border-primary-500">
-              {t('pagination.previous')}
-            </button>
-            <button className="rounded-lg bg-primary-500 px-4 py-2 text-white">1</button>
-            <button className="rounded-lg border-2 border-neutral-300 px-4 py-2 transition-colors hover:border-primary-500">
-              2
-            </button>
-            <button className="rounded-lg border-2 border-neutral-300 px-4 py-2 transition-colors hover:border-primary-500">
-              3
-            </button>
-            <button className="rounded-lg border-2 border-neutral-300 px-4 py-2 transition-colors hover:border-primary-500">
-              ...
-            </button>
-            <button className="rounded-lg border-2 border-neutral-300 px-4 py-2 transition-colors hover:border-primary-500">
-              15
-            </button>
-            <button className="rounded-lg border-2 border-neutral-300 px-4 py-2 transition-colors hover:border-primary-500">
-              {t('pagination.next')}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Bulk Download */}
-      <section className="bg-neutral-50 py-12">
-        <div className="mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-3 text-2xl font-bold text-neutral-900">{t('bulkDownload.heading')}</h2>
-          <p className="mb-6 text-neutral-700">{t('bulkDownload.description')}</p>
-          <button className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-8 py-3 font-bold text-white transition-colors hover:bg-primary-600">
-            <DownloadIcon className="h-5 w-5" />
-            {t('bulkDownload.button')}
-          </button>
-          <p className="mt-3 text-sm text-neutral-700">{t('bulkDownload.packageInfo')}</p>
-        </div>
-      </section>
+      {/* Document Library */}
+      <DocumentLibraryClient documents={documents} totalCount={documents.length} />
     </div>
   );
 }
-
-const sampleDatasheets = [
-  {
-    model: 'BA/10K-2-O',
-    name: 'Outdoor Temperature Sensor',
-    description: '10K Type 2 thermistor for outdoor applications with weatherproof housing',
-    categories: ['Temperature', 'Outdoor'],
-    pages: 4,
-    size: '1.2 MB',
-  },
-  {
-    model: 'BA/RH-AS-R2',
-    name: 'Humidity & Temperature Sensor',
-    description: 'Room-mount humidity and temperature sensor with 2% RH accuracy',
-    categories: ['Humidity', 'Temperature'],
-    pages: 6,
-    size: '1.8 MB',
-  },
-  {
-    model: 'BA/W-R',
-    name: 'Wireless Room Sensor',
-    description: '900MHz wireless temperature sensor with 10-year battery life',
-    categories: ['Wireless', 'Temperature'],
-    pages: 8,
-    size: '2.1 MB',
-  },
-  {
-    model: 'BA/CO2-P',
-    name: 'CO₂ Sensor',
-    description: 'NDIR CO₂ sensor for demand control ventilation applications',
-    categories: ['Air Quality', 'CO₂'],
-    pages: 6,
-    size: '1.5 MB',
-  },
-  {
-    model: 'BA/DP-P',
-    name: 'Differential Pressure Sensor',
-    description: 'Pressure transducer for filter monitoring and building pressurization',
-    categories: ['Pressure'],
-    pages: 5,
-    size: '1.3 MB',
-  },
-  {
-    model: 'BA/1KT',
-    name: '1000Ω RTD Temperature Sensor',
-    description: 'Platinum RTD sensor with Class A accuracy',
-    categories: ['Temperature', 'RTD'],
-    pages: 4,
-    size: '1.1 MB',
-  },
-];

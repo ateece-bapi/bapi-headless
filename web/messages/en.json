@@ -2271,6 +2271,18 @@
       "allCategories": "All Categories",
       "allTypes": "All Types"
     },
+    "sort": {
+      "label": "Sort documents",
+      "dateDesc": "Newest First",
+      "dateAsc": "Oldest First",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "sizeDesc": "Largest First",
+      "sizeAsc": "Smallest First"
+    },
+    "recentSearches": {
+      "heading": "Recent Searches"
+    },
     "noResults": {
       "heading": "No documents found",
       "description": "Try adjusting your filters or search term",

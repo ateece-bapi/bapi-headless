@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { FileTextIcon, DownloadIcon, SearchIcon, FilterIcon, XCircleIcon } from '@/lib/icons';
 import { useTranslations } from 'next-intl';
 
@@ -51,13 +52,100 @@ function formatFileSize(bytes: number | null | undefined): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+// Highlight search terms in text
+function highlightText(text: string, searchTerm: string): React.ReactNode {
+  if (!searchTerm) return text;
+  
+  const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
+  return parts.map((part, i) => 
+    part.toLowerCase() === searchTerm.toLowerCase() ? 
+      <mark key={i} className="bg-accent-300 font-semibold">{part}</mark> : 
+      part
+  );
+}
+
+// Get recent searches from localStorage
+function getRecentSearches(): string[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    return JSON.parse(localStorage.getItem('bapi_recent_searches') || '[]');
+  } catch {
+    return [];
+  }
+}
+
+// Save search to localStorage
+function saveRecentSearch(term: string): void {
+  if (typeof window === 'undefined' || !term.trim()) return;
+  try {
+    const recent = getRecentSearches();
+    const updated = [term, ...recent.filter(t => t !== term)].slice(0, 5);
+    localStorage.setItem('bapi_recent_searches', JSON.stringify(updated));
+  } catch {
+    // Ignore localStorage errors
+  }
+}
+
+type SortOption = 'date-desc' | 'date-asc' | 'name-asc' | 'name-desc' | 'size-desc' | 'size-asc';
+
 export default function DocumentLibraryClient({ documents, totalCount }: DocumentLibraryClientProps) {
   const t = useTranslations('datasheetsPage');
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const searchInputRef = useRef<HTMLInputElement>(null);
   
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedType, setSelectedType] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  // Initialize state from URL params
+  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
+  const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || '');
+  const [selectedType, setSelectedType] = useState(searchParams.get('type') || '');
+  const [sortBy, setSortBy] = useState<SortOption>((searchParams.get('sort') as SortOption) || 'date-desc');
+  const [currentPage, setCurrentPage] = useState(parseInt(searchParams.get('page') || '1'));
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [showRecentSearches, setShowRecentSearches] = useState(false);
+  
+  // Load recent searches on mount
+  useEffect(() => {
+    setRecentSearches(getRecentSearches());
+  }, []);
+  
+  // Debounce search input (300ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchTerm);
+      if (searchTerm.trim()) {
+        saveRecentSearch(searchTerm);
+        setRecentSearches(getRecentSearches());
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+  
+  // Update URL when filters change
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (debouncedSearch) params.set('search', debouncedSearch);
+    if (selectedCategory) params.set('category', selectedCategory);
+    if (selectedType) params.set('type', selectedType);
+    if (sortBy !== 'date-desc') params.set('sort', sortBy);
+    if (currentPage > 1) params.set('page', currentPage.toString());
+    
+    const queryString = params.toString();
+    const newUrl = queryString ? `?${queryString}` : window.location.pathname;
+    router.replace(newUrl, { scroll: false });
+  }, [debouncedSearch, selectedCategory, selectedType, sortBy, currentPage, router]);
+  
+  // Keyboard shortcut: Cmd/Ctrl + K to focus search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Extract unique categories and types
   const { allCategories, allTypes } = useMemo(() => {
@@ -75,15 +163,15 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
     };
   }, [documents]);
 
-  // Filtered documents
+  // Filtered and sorted documents
   const filteredDocuments = useMemo(() => {
-    return documents.filter(doc => {
-      // Search filter
-      const matchesSearch = !searchTerm || 
-        doc.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        doc.productName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        doc.productSku?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        doc.filename.toLowerCase().includes(searchTerm.toLowerCase());
+    let filtered = documents.filter(doc => {
+      // Search filter (debounced)
+      const matchesSearch = !debouncedSearch || 
+        doc.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        doc.productName?.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        doc.productSku?.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        doc.filename.toLowerCase().includes(debouncedSearch.toLowerCase());
       
       // Category filter
       const matchesCategory = !selectedCategory || 
@@ -94,7 +182,27 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
       
       return matchesSearch && matchesCategory && matchesType;
     });
-  }, [documents, searchTerm, selectedCategory, selectedType]);
+    
+    // Sort documents
+    return filtered.sort((a, b) => {
+      switch (sortBy) {
+        case 'date-desc':
+          return (b.date || '').localeCompare(a.date || '');
+        case 'date-asc':
+          return (a.date || '').localeCompare(b.date || '');
+        case 'name-asc':
+          return a.title.localeCompare(b.title);
+        case 'name-desc':
+          return b.title.localeCompare(a.title);
+        case 'size-desc':
+          return (b.fileSize || 0) - (a.fileSize || 0);
+        case 'size-asc':
+          return (a.fileSize || 0) - (b.fileSize || 0);
+        default:
+          return 0;
+      }
+    });
+  }, [documents, debouncedSearch, selectedCategory, selectedType, sortBy]);
 
   // Paginated documents
   const paginatedDocuments = useMemo(() => {
@@ -109,14 +217,34 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
     setCurrentPage(1);
   };
 
-  const clearFilters = () => {
+  const clearFilters = useCallback(() => {
     setSearchTerm('');
+    setDebouncedSearch('');
     setSelectedCategory('');
     setSelectedType('');
+    setSortBy('date-desc');
     setCurrentPage(1);
-  };
+  }, []);
+  
+  const handleRecentSearchClick = useCallback((term: string) => {
+    setSearchTerm(term);
+    setShowRecentSearches(false);
+    handleFilterChange();
+  }, []);
+  
+  // Track download analytics
+  const handleDownload = useCallback((doc: Document) => {
+    if (typeof window !== 'undefined' && (window as unknown as { gtag?: Function }).gtag) {
+      (window as unknown as { gtag: Function }).gtag('event', 'document_download', {
+        document_id: doc.id,
+        document_title: doc.title,
+        document_type: doc.documentType,
+        file_size: doc.fileSize,
+      });
+    }
+  }, []);
 
-  const hasActiveFilters = searchTerm || selectedCategory || selectedType;
+  const hasActiveFilters = searchTerm || selectedCategory || selectedType || sortBy !== 'date-desc';
 
   return (
     <>
@@ -144,21 +272,46 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
 
           {/* Filter Controls */}
           <div className="flex flex-col gap-3 lg:flex-row">
-            {/* Search */}
+            {/* Search with Recent Searches */}
             <div className="flex-1">
               <div className="relative">
                 <SearchIcon className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-400" />
                 <input
+                  ref={searchInputRef}
                   type="search"
                   value={searchTerm}
                   onChange={(e) => {
                     setSearchTerm(e.target.value);
                     handleFilterChange();
                   }}
+                  onFocus={() => setShowRecentSearches(true)}
+                  onBlur={() => setTimeout(() => setShowRecentSearches(false), 200)}
                   placeholder={t('search.placeholder')}
                   className="w-full rounded-lg border border-neutral-300 py-2.5 pl-10 pr-4 transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
                   aria-label={t('search.ariaLabel')}
                 />
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-neutral-400">
+                  ⌘K
+                </div>
+                
+                {/* Recent Searches Dropdown */}
+                {showRecentSearches && recentSearches.length > 0 && !searchTerm && (
+                  <div className="absolute top-full mt-1 w-full rounded-lg border border-neutral-300 bg-white shadow-lg z-20">
+                    <div className="p-2">
+                      <div className="px-2 py-1 text-xs font-semibold text-neutral-500\">{t('recentSearches.heading')}</div>
+                      {recentSearches.map((term, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handleRecentSearchClick(term)}
+                          className="w-full rounded px-3 py-2 text-left text-sm hover:bg-neutral-100 transition-colors"
+                        >
+                          <SearchIcon className="inline-block h-3 w-3 mr-2 text-neutral-400" />
+                          {term}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -197,6 +350,23 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
                 ))}
               </select>
             </div>
+            
+            {/* Sort Dropdown */}
+            <div className="w-full lg:w-64">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as SortOption)}
+                className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500"
+                aria-label={t('sort.label')}
+              >
+                <option value="date-desc">{t('sort.dateDesc')}</option>
+                <option value="date-asc">{t('sort.dateAsc')}</option>
+                <option value="name-asc">{t('sort.nameAsc')}</option>
+                <option value="name-desc">{t('sort.nameDesc')}</option>
+                <option value="size-desc">{t('sort.sizeDesc')}</option>
+                <option value="size-asc">{t('sort.sizeAsc')}</option>
+              </select>
+            </div>
           </div>
         </div>
       </section>
@@ -231,6 +401,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
                     href={doc.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleDownload(doc)}
                     className="group flex flex-col rounded-xl border-2 border-neutral-200 bg-white p-5 transition-all hover:border-primary-500 hover:shadow-lg"
                   >
                     {/* Icon & Type Badge */}
@@ -249,7 +420,7 @@ export default function DocumentLibraryClient({ documents, totalCount }: Documen
                         <div className="mb-1 text-xs font-mono text-neutral-600">{doc.productSku}</div>
                       )}
                       <h3 className="mb-1.5 line-clamp-2 text-sm font-bold text-neutral-900 group-hover:text-primary-600">
-                        {doc.title}
+                        {highlightText(doc.title, debouncedSearch)}
                       </h3>
                       {doc.productName && (
                         <p className="mb-2 line-clamp-1 text-xs text-neutral-600">{doc.productName}</p>
